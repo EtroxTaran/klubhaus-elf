@@ -70,6 +70,10 @@ pnpm dev
 - Test offline with `await context.setOffline(true)`. Install-prompt testing is unsupported
   in Playwright; use Lighthouse `installable-manifest` audit in CI.
 
+## Task Tracking
+
+Linear is the operational task tracker. Use project `soccer-manager — Research & Architecture` for Phase 1 research, Phase 2 ADRs, and seed backlog work. Agents must comment progress, blockers, PR links, and final Vault paths on the Linear issue before marking it done. The docs vault remains the durable knowledge base.
+
 ## Commits & PRs
 
 - Conventional Commits: feat / fix / chore / docs / test / refactor.
