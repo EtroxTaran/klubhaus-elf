@@ -18,11 +18,11 @@ test('loads the bootstrap home page and registers a service worker', async ({ pa
   await waitForServiceWorkerControl(page)
 })
 
-test('keeps the shell available while offline', async ({ context, page }) => {
+test('keeps the current shell available while offline', async ({ context, page }) => {
   await page.goto('/')
   await waitForServiceWorkerControl(page)
   await context.setOffline(true)
-  await page.goto('/', { waitUntil: 'domcontentloaded' })
 
   await expect(page.getByRole('heading', { name: /dein fußballverein/i })).toBeVisible()
+  await expect.poll(() => page.evaluate(() => navigator.onLine)).toBe(false)
 })

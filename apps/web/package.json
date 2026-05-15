@@ -19,10 +19,8 @@
     "react": "latest",
     "react-dom": "latest",
     "react-i18next": "latest",
-    "vite-plugin-pwa": "latest",
     "workbox-core": "^7.4.1",
     "workbox-precaching": "^7.4.1",
-    "workbox-window": "^7.4.1",
     "zod": "latest"
   },
   "devDependencies": {

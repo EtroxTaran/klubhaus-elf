@@ -65,8 +65,7 @@ pnpm dev
 
 ## PWA Rules
 
-- vite-plugin-pwa with Workbox: stale-while-revalidate for assets, network-first for routes,
-  never cache POST/PUT/DELETE. Background Sync for offline mutations.
+- Workbox generates the production service worker via `apps/web/scripts/build-pwa.mjs`: stale-while-revalidate for assets, network-first for routes, never cache POST/PUT/DELETE. Background Sync for offline mutations is future work. vite-plugin-pwa is deferred until TanStack Start SSR build compatibility is resolved.
 - Game state lives in IndexedDB via Dexie.js - never localStorage.
 - Test offline with `await context.setOffline(true)`. Install-prompt testing is unsupported
   in Playwright; use Lighthouse `installable-manifest` audit in CI.

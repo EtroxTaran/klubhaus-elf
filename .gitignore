@@ -13,3 +13,4 @@ playwright-report/
 test-results/
 routeTree.gen.ts
 *.tsbuildinfo
+.lighthouseci/

@@ -1,5 +1,3 @@
-import { registerSW } from 'virtual:pwa-register'
-
 let registered = false
 
 export async function registerServiceWorker() {
@@ -8,13 +6,5 @@ export async function registerServiceWorker() {
   }
 
   registered = true
-  registerSW({
-    immediate: true,
-    onNeedRefresh() {
-      window.dispatchEvent(new CustomEvent('soccer-manager:pwa-update-ready'))
-    },
-    onOfflineReady() {
-      window.dispatchEvent(new CustomEvent('soccer-manager:pwa-offline-ready'))
-    },
-  })
+  await navigator.serviceWorker.register('/service-worker.js')
 }
