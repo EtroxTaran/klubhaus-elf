@@ -1,0 +1,9 @@
+---
+description: Project stack baseline
+alwaysApply: true
+---
+# Stack Baseline
+
+Use pnpm, TypeScript strict, TanStack Start/Router, React, shadcn/ui + Tailwind,
+SurrealDB, Dexie IndexedDB saves, Vitest, Playwright, Biome, Docker, and Dokploy.
+No npm/yarn, ESLint, Prettier, Redux, Zustand, real club/player names, or localStorage saves.

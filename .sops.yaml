@@ -1,0 +1,3 @@
+creation_rules:
+  - path_regex: \.env\.sops$
+    age: AGE_PUBLIC_KEY_PLACEHOLDER_REPLACE_BEFORE_USE

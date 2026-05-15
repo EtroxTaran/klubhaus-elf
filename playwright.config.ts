@@ -1,0 +1,19 @@
+import { defineConfig, devices } from '@playwright/test'
+
+export default defineConfig({
+  testDir: './tests/e2e',
+  use: {
+    baseURL: process.env.BASE_URL ?? 'http://localhost:3000',
+    serviceWorkers: 'allow',
+    trace: 'on-first-retry',
+  },
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'mobile-safari', use: { ...devices['iPhone 14'] } },
+  ],
+  webServer: {
+    command: 'pnpm --filter @soccer-manager/web dev -- --host 127.0.0.1',
+    reuseExistingServer: !process.env.CI,
+    url: 'http://127.0.0.1:3000',
+  },
+})

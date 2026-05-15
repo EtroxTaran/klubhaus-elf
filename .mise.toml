@@ -1,0 +1,7 @@
+[tools]
+node = "22"
+pnpm = "latest"
+surrealdb = "latest"
+
+[env]
+NODE_ENV = "development"

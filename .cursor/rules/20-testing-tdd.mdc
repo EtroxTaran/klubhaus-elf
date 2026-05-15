@@ -1,0 +1,42 @@
+---
+description: TDD enforcement - failing test before any implementation
+globs: src/**/*.ts, src/**/*.tsx, apps/**/*.ts, apps/**/*.tsx, packages/**/*.ts, tests/**/*
+alwaysApply: false
+---
+# Test-Driven Development - STRICT
+
+You MUST follow Red -> Green -> Refactor for every change.
+
+## RED (mandatory)
+
+1. Before writing or modifying any non-test source file, locate or create the matching
+   `*.test.ts` (Vitest) or `*.spec.ts` (Playwright) file.
+2. Write the failing test that captures the user-visible behavior.
+3. Run `pnpm vitest run <path>` and paste the failing output into chat.
+   If it passes immediately, the test is wrong - revise.
+4. Only then proceed to GREEN.
+
+## GREEN
+
+1. Smallest implementation that makes the failing test pass.
+2. No untested branches, defensive code, or "while I'm here" refactors.
+3. Run the test file; paste passing output.
+
+## REFACTOR
+
+1. Improve names, deduplicate, extract.
+2. Run tests after every step. Revert if anything goes red.
+
+## Hard rules
+
+- NEVER edit implementation code without first showing a failing test.
+- NEVER use `it.skip`, `it.todo`, `it.only`, or empty describes in committed code.
+- NEVER weaken an assertion or delete a test to make it pass - ask if the test is wrong.
+- If asked to "just implement X", reply: "TDD: I'll write the failing test first."
+
+## Coverage thresholds
+
+- packages/match-engine: 100% branches.
+- packages/game-data and packages/db-schema: 95%+.
+- apps/web: 85% lines, 75% branches.
+- `thresholds.perFile: true`, `autoUpdate: false`.
