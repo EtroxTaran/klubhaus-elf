@@ -22,3 +22,9 @@ project briefing directly:
 - Vitest and Playwright quality gates.
 - Cursor rules/hooks/BUGBOT setup.
 - Docker Compose for Dokploy.
+
+## Additional bootstrap notes
+
+- The SurrealDB repository cloned successfully, but the requested `public/integrations/agent-rules/*.mdc` path was not present. Project-specific SurrealDB rules were created in `.cursor/rules/40-surrealdb.mdc` instead.
+- TanStack Start currently prevents vite-plugin-pwa from emitting a production service worker in this setup. A Workbox postbuild generator in `apps/web/scripts/build-pwa.mjs` creates `dist/client/service-worker.js` after `vite build`.
+- shadcn CLI initialization prompted for interactive component-library choices. The repository therefore includes `apps/web/components.json` and shadcn-compatible aliases; generated primitives should be added with explicit future commands.
