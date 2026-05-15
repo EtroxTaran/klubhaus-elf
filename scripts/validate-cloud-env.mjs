@@ -18,6 +18,7 @@ function readJson(path) {
 
 const packageJson = readJson('package.json')
 const environment = readJson('.cursor/environment.json')
+const cursorDockerfile = readFileSync('.cursor/Dockerfile', 'utf8')
 const miseToml = readFileSync('.mise.toml', 'utf8')
 
 if (packageJson.packageManager !== `pnpm@${expectedPnpmVersion}`) {
@@ -27,7 +28,25 @@ if (packageJson.packageManager !== `pnpm@${expectedPnpmVersion}`) {
 assertIncludes(miseToml, 'node = "22"', '.mise.toml')
 assertIncludes(miseToml, `pnpm = "${expectedPnpmVersion}"`, '.mise.toml')
 
-assertIncludes(environment.install, 'mise install', '.cursor install command')
+if (environment.user !== 'root') {
+  fail(
+    '.cursor/environment.json must run as root so Docker and Playwright deps can start without sudo',
+  )
+}
+
+if (environment.build?.dockerfile !== 'Dockerfile') {
+  fail('.cursor/environment.json must reference .cursor/Dockerfile')
+}
+
+if (environment.build?.context !== '..') {
+  fail('.cursor/environment.json must use the repository root as Docker build context')
+}
+
+assertIncludes(cursorDockerfile, 'FROM node:22-bookworm', '.cursor/Dockerfile')
+assertIncludes(cursorDockerfile, 'docker.io', '.cursor/Dockerfile')
+assertIncludes(cursorDockerfile, 'docker-compose-plugin', '.cursor/Dockerfile')
+assertIncludes(cursorDockerfile, 'corepack prepare pnpm@11.1.2 --activate', '.cursor/Dockerfile')
+
 assertIncludes(
   environment.install,
   `corepack prepare pnpm@${expectedPnpmVersion} --activate`,
