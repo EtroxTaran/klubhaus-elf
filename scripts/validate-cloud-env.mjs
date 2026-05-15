@@ -43,7 +43,7 @@ if (environment.build?.context !== '..') {
 }
 
 assertIncludes(cursorDockerfile, 'FROM node:22-bookworm', '.cursor/Dockerfile')
-assertIncludes(cursorDockerfile, 'docker.io', '.cursor/Dockerfile')
+assertIncludes(cursorDockerfile, 'docker-ce', '.cursor/Dockerfile')
 assertIncludes(cursorDockerfile, 'docker-compose-plugin', '.cursor/Dockerfile')
 assertIncludes(cursorDockerfile, 'corepack prepare pnpm@11.1.2 --activate', '.cursor/Dockerfile')
 
