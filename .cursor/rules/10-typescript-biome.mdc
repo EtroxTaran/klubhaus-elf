@@ -1,0 +1,13 @@
+---
+description: TypeScript and Biome conventions
+globs: **/*.{ts,tsx}
+alwaysApply: false
+---
+# TypeScript + Biome
+
+- Keep TypeScript strict and avoid `any`; use `unknown` plus Zod/schema narrowing.
+- Use named exports and kebab-case filenames.
+- Prefer pure functions, explicit return types on exported functions, and immutable data.
+- Biome is the only formatter/linter. Do not add ESLint or Prettier.
+- Use `@/` for app imports and package entry points for workspace packages.
+- Do not hand-edit generated files such as `routeTree.gen.ts`.

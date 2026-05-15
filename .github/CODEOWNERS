@@ -1,0 +1,8 @@
+# Security-sensitive paths require explicit human review.
+packages/match-engine/**     @EtroxTaran
+apps/web/src/server/auth/**  @EtroxTaran
+db/migrations/**             @EtroxTaran
+db/schema.surql              @EtroxTaran
+.cursor/**                   @EtroxTaran
+.github/workflows/**         @EtroxTaran
+docker-compose.prod.yml      @EtroxTaran

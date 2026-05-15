@@ -1,0 +1,12 @@
+---
+description: TanStack Start routing and server rules
+globs: apps/web/src/routes/**, apps/web/src/server/**
+alwaysApply: false
+---
+# TanStack Start
+
+- Use file-based routes and keep route modules small.
+- Do not read `process.env.*` in route loaders or components.
+- Server-only behavior belongs in server functions or server-only modules.
+- Never hand-edit `routeTree.gen.ts`; let TanStack tooling generate it.
+- Prefer TanStack Query/Form/Table/Store for their respective concerns.

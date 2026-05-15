@@ -1,0 +1,39 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      surrealdb:
+        condition: service_healthy
+    environment:
+      APP_URL: ${APP_URL:-http://localhost:3000}
+      SURREALDB_DATABASE: ${SURREALDB_DATABASE:-prod}
+      SURREALDB_NAMESPACE: ${SURREALDB_NAMESPACE:-soccer_manager}
+      SURREALDB_URL: ${SURREALDB_URL:-http://surrealdb:8000}
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.soccer-manager.rule: Host(`${APP_DOMAIN:-soccer-manager.etrox.de}`)
+      traefik.http.routers.soccer-manager.entrypoints: websecure
+      traefik.http.routers.soccer-manager.tls.certresolver: letsencrypt
+      traefik.http.services.soccer-manager.loadbalancer.server.port: "3000"
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  surrealdb:
+    image: surrealdb/surrealdb:latest
+    command: start --log info --user ${SURREALDB_USER:-root} --pass ${SURREALDB_PASS:-root} rocksdb:/data/database.db
+    healthcheck:
+      test: ["CMD", "surreal", "isready", "--conn", "http://127.0.0.1:8000"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      - surrealdb-data:/data
+
+volumes:
+  surrealdb-data:

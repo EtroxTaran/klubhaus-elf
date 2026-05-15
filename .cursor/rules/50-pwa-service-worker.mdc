@@ -1,0 +1,12 @@
+---
+description: PWA and service worker conventions
+globs: apps/web/src/workers/**, apps/web/src/sw/**, apps/web/vite.config.ts
+alwaysApply: false
+---
+# PWA + Service Worker
+
+- Service worker source lives in `src/workers/`; bootstrap registration lives in `apps/web/public/sw-register.js` until interactive client hydration is introduced.
+- Never cache POST, PUT, PATCH, or DELETE responses.
+- Use IndexedDB via Dexie for game saves; never localStorage.
+- E2E offline tests must use Playwright `context.setOffline(true)`.
+- Keep manifest installable and run Lighthouse PWA audits in CI.

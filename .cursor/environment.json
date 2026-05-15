@@ -1,0 +1,19 @@
+{
+  "snapshot": "POPULATED_FROM_SETTINGS",
+  "install": "mise install && pnpm install --frozen-lockfile",
+  "start": "service docker start || true",
+  "terminals": [
+    {
+      "name": "dev",
+      "command": "pnpm dev"
+    },
+    {
+      "name": "surreal",
+      "command": "docker compose -f docker-compose.dev.yml up surrealdb"
+    },
+    {
+      "name": "test:watch",
+      "command": "pnpm vitest --watch"
+    }
+  ]
+}

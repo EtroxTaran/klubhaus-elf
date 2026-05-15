@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": "node .cursor/hooks/policy.js"
+      }
+    ],
+    "beforeMCPExecution": [
+      {
+        "command": "node .cursor/hooks/mcp-allowlist.js"
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": "pnpm biome check --write --no-errors-on-unmatched \"$CURSOR_FILE_PATH\""
+      },
+      {
+        "command": "node .cursor/hooks/secret-scan.js"
+      }
+    ]
+  }
+}

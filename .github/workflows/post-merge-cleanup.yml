@@ -1,0 +1,20 @@
+name: Post-merge cleanup
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: write
+
+jobs:
+  delete-cursor-branch:
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'cursor/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete merged cursor branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+          REPO: ${{ github.repository }}
+        run: gh api -X DELETE "repos/${REPO}/git/refs/heads/${BRANCH}"

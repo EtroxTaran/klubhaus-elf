@@ -1,0 +1,24 @@
+# Files never indexed or sent to models
+.env
+.env.*
+!.env.sops
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+secrets/
+.aws/
+.ssh/
+**/*credentials*
+**/*token*
+**/.npmrc
+
+# Generated
+**/node_modules/
+**/.next/
+**/.output/
+**/dist/
+**/coverage/
+**/playwright-report/
+**/routeTree.gen.ts

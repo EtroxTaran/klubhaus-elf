@@ -1,0 +1,12 @@
+---
+description: React and shadcn/ui conventions
+globs: apps/web/src/components/**/*.tsx, apps/web/src/routes/**/*.tsx, packages/ui/**/*.tsx
+alwaysApply: false
+---
+# React + shadcn/ui
+
+- Use functional React components with named exports.
+- Generated shadcn primitives live in `src/components/ui/**`; update with shadcn tooling.
+- Keep layouts mobile-first, accessible, keyboard navigable, and WCAG 2.1 AA oriented.
+- Use Lucide icons via named imports when icons are needed.
+- Keep UI text in i18n resource files unless it is test-only copy.

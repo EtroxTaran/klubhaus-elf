@@ -1,0 +1,11 @@
+services:
+  surrealdb:
+    image: surrealdb/surrealdb:latest
+    command: start --log debug --user root --pass root memory
+    healthcheck:
+      test: ["CMD", "surreal", "isready", "--conn", "http://127.0.0.1:8000"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    ports:
+      - "8000:8000"

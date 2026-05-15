@@ -1,0 +1,11 @@
+---
+description: Hard safety stops
+alwaysApply: true
+---
+# Safety
+
+Never read secrets (`.env*`, keys, cloud credentials), force-push, reset hard,
+delete infrastructure/data, pipe network scripts to a shell, bypass hooks, cache
+unsafe HTTP mutations, or weaken tests/coverage to pass CI. Escalate production
+credentials, Dokploy access, paid services, IP gray areas, and architecture-wide
+trade-offs to Nico.

@@ -1,0 +1,13 @@
+pre-commit:
+  parallel: true
+  commands:
+    biome:
+      run: pnpm biome check --write {staged_files}
+      stage_fixed: true
+    typecheck:
+      run: pnpm typecheck
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm commitlint --edit {1}
