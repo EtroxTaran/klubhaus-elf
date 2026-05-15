@@ -1,7 +1,6 @@
 /// <reference types="vite/client" />
-import { createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router'
+import { createRootRoute, HeadContent, Outlet } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
-import { registerServiceWorker } from '../sw/register'
 import '../styles/app.css'
 
 export const Route = createRootRoute({
@@ -22,10 +21,6 @@ export const Route = createRootRoute({
 })
 
 function RootComponent() {
-  if (typeof window !== 'undefined') {
-    void registerServiceWorker()
-  }
-
   return (
     <RootDocument>
       <Outlet />
@@ -41,7 +36,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       </head>
       <body>
         {children}
-        <Scripts />
+        <script defer src="/sw-register.js" />
       </body>
     </html>
   )

@@ -5,7 +5,7 @@ alwaysApply: false
 ---
 # PWA + Service Worker
 
-- Service worker source lives in `src/workers/`; registration lives only in `src/sw/register.ts`.
+- Service worker source lives in `src/workers/`; bootstrap registration lives in `apps/web/public/sw-register.js` until interactive client hydration is introduced.
 - Never cache POST, PUT, PATCH, or DELETE responses.
 - Use IndexedDB via Dexie for game saves; never localStorage.
 - E2E offline tests must use Playwright `context.setOffline(true)`.

@@ -54,7 +54,7 @@ pnpm dev
 - All SurrealDB access flows through `src/db/client.ts`. Always parameterize:
   `db.query("SELECT * FROM player WHERE id = $id", { id })`.
 - Tables are `DEFINE TABLE ... SCHEMAFULL`. Use record links (`player:ulid`) and `RELATE`, not joins.
-- Service worker lives in `src/workers/`; registrations only through `src/sw/register.ts`.
+- Service worker lives in `src/workers/`; the bootstrap shell registers it through `apps/web/public/sw-register.js` until interactive client hydration is introduced.
 - shadcn primitives in `src/components/ui/**` are generated; update them with shadcn tooling.
 
 ## Database & Migrations

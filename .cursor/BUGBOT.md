@@ -11,7 +11,7 @@
 - New ESLint/Prettier dependencies (Biome only).
 - New npm/yarn lockfiles.
 - Real club names from Bundesliga/EPL/La Liga/Serie A in `packages/game-data/`.
-- Service worker registrations outside `src/sw/register.ts`.
+- Service worker registrations outside the documented bootstrap path (`apps/web/public/sw-register.js`) or future `src/sw/register.ts`.
 - POST/PUT/DELETE responses being cached.
 - `it.skip`, `it.todo`, `it.only` in committed test files.
 - Lowering coverage thresholds in `vitest.config.ts`.
