@@ -100,3 +100,22 @@ Linear is the operational task tracker. Use project `soccer-manager — Research
 - Do not bypass `src/db/client.ts`.
 - Do not use class components, default exports for React components, or enums.
 - Do not use real Bundesliga/EPL club names/logos/player names; see ADR-0007.
+
+## Cursor Cloud specific instructions
+
+### Services overview
+
+| Service | How to start | Port |
+|---|---|---|
+| TanStack Start dev server | `pnpm dev` | 3000 |
+| SurrealDB (in-memory) | `sudo dockerd &>/dev/null & sleep 2 && sudo docker compose -f docker-compose.dev.yml up -d surrealdb` | 8000 |
+
+### Gotchas
+
+- **Docker requires sudo** in the Cloud VM. The daemon isn't auto-started; run `sudo dockerd` before any `docker compose` commands.
+- **`pnpm typecheck` builds `apps/web` first** (via `pnpm --filter @soccer-manager/web build && tsc --build`). This is intentional—TanStack Start generates route types during build.
+- **E2e tests build and preview automatically.** Playwright's `webServer` config runs `pnpm build && vite preview --port 3000`. Stop any running dev server on port 3000 before `pnpm test:e2e`.
+- **`db:migrate` is a placeholder.** It only prints a message; no actual migration runs yet.
+- **`.env` file** is needed at root. Copy from `.env.example` (`cp .env.example .env`). Default credentials: `root`/`root` for SurrealDB on localhost:8000.
+- **Playwright browsers:** Install with `npx playwright install --with-deps chromium webkit` (both chromium and mobile-safari/webkit are tested).
+- Standard lint/test/build commands are documented in the Setup and Build & Test sections above.
