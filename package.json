@@ -12,6 +12,7 @@
     "dev": "pnpm --filter @soccer-manager/web dev",
     "start": "pnpm --filter @soccer-manager/web start",
     "test": "vitest run --coverage",
+    "test:cloud-env": "node scripts/validate-cloud-env.mjs",
     "test:e2e": "playwright test",
     "typecheck": "pnpm --filter @soccer-manager/web build && tsc --build --pretty false"
   },

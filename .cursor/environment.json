@@ -1,19 +1,34 @@
 {
+  "name": "soccer-manager cloud dev",
+  "user": "root",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
   "snapshot": "POPULATED_FROM_SETTINGS",
-  "install": "mise install && pnpm install --frozen-lockfile",
-  "start": "service docker start || true",
+  "agentCanUpdateSnapshot": true,
+  "install": "corepack enable && corepack prepare pnpm@11.1.2 --activate && pnpm install --frozen-lockfile && pnpm exec playwright install --with-deps chromium",
+  "start": "service docker start || true; docker compose -f docker-compose.dev.yml up -d --wait surrealdb; pnpm db:migrate",
+  "ports": [
+    {
+      "name": "web",
+      "port": 3000
+    },
+    {
+      "name": "surrealdb",
+      "port": 8000
+    }
+  ],
   "terminals": [
     {
       "name": "dev",
+      "description": "Starts the TanStack web app on port 3000.",
       "command": "pnpm dev"
     },
     {
-      "name": "surreal",
-      "command": "docker compose -f docker-compose.dev.yml up surrealdb"
-    },
-    {
-      "name": "test:watch",
-      "command": "pnpm vitest --watch"
+      "name": "surrealdb logs",
+      "description": "Streams logs from the SurrealDB service started by the cloud start command.",
+      "command": "docker compose -f docker-compose.dev.yml logs -f surrealdb"
     }
   ]
 }

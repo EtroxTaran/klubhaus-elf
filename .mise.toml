@@ -1,6 +1,6 @@
 [tools]
 node = "22"
-pnpm = "latest"
+pnpm = "11.1.2"
 surrealdb = "latest"
 
 [env]
