@@ -16,5 +16,6 @@ This Obsidian Vault is the documentation single source of truth for the
 - [[Decision-Log]]
 - [[../10-Architecture/01-Introduction]]
 - [[../30-Implementation/cursor-cloud-agent-workflow]]
+- [[../30-Implementation/linear-task-tracking]]
 - [[../60-Research/00-summary]]
 - [[../90-Meta/conventions]]

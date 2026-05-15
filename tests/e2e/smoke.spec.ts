@@ -1,6 +1,7 @@
 import { expect, type Page, test } from '@playwright/test'
 
 async function waitForServiceWorkerControl(page: Page) {
+  await page.evaluate(() => window.dispatchEvent(new Event('soccer-manager:register-sw')))
   await page.waitForFunction(async () => Boolean((await navigator.serviceWorker?.ready)?.active))
 
   const isControlled = await page.evaluate(() => Boolean(navigator.serviceWorker.controller))
