@@ -2,9 +2,10 @@
 
 ## What to flag (always)
 
-- Raw `process.env.*` access in TanStack route loaders or components.
-- String-concatenated SurrealQL (use `$params`).
-- Missing `await` on `db.query` or Dexie operations.
+- Raw `process.env.*` access in TanStack route loaders, React components, or
+  client-reachable modules; server-only reads must use server functions/server-only modules.
+- String-concatenated SurrealQL or unparameterized `db.query` calls; use `$params`.
+- Missing `await` or `return` on `db.query` or Dexie Promise-returning operations.
 - `localStorage` usage for game state (must be IndexedDB via Dexie).
 - Hand-edited `src/components/ui/**` (shadcn primitives are generated).
 - New ESLint/Prettier dependencies (Biome only).
