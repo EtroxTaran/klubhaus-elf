@@ -1,0 +1,305 @@
+[
+  {
+    "id": "R-001",
+    "file": "issues/R-001-club-boss-analysis.md",
+    "title": "[research] Analyze Club Boss gameplay and UX patterns",
+    "labels": [
+      "type:research",
+      "area:research",
+      "area:gamedata",
+      "prio:high",
+      "size:m",
+      "parallel:safe"
+    ],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": [],
+    "primary_output": "docs/60-Research/club-boss-analysis.md"
+  },
+  {
+    "id": "R-002",
+    "file": "issues/R-002-anstoss-deep-dive.md",
+    "title": "[research] Deep dive classic Anstoss design patterns",
+    "labels": [
+      "type:research",
+      "area:research",
+      "area:gamedata",
+      "prio:high",
+      "size:m",
+      "parallel:safe"
+    ],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": [],
+    "primary_output": "docs/60-Research/anstoss-series-deep-dive.md"
+  },
+  {
+    "id": "R-003",
+    "file": "issues/R-003-competitor-matrix.md",
+    "title": "[research] Build football manager competitor matrix",
+    "labels": ["type:research", "area:research", "prio:high", "size:m", "parallel:safe"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": [],
+    "primary_output": "docs/60-Research/competitor-matrix.md"
+  },
+  {
+    "id": "R-004",
+    "file": "issues/R-004-feature-gap-moscow.md",
+    "title": "[research] Produce MVP feature-gap and MoSCoW scope",
+    "labels": [
+      "type:research",
+      "area:research",
+      "area:feature",
+      "prio:high",
+      "size:m",
+      "parallel:after-R-001-R-002-R-003"
+    ],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["R-001", "R-002", "R-003"],
+    "primary_output": "docs/60-Research/feature-gap-analysis.md"
+  },
+  {
+    "id": "R-005",
+    "file": "issues/R-005-ip-licensing-naming.md",
+    "title": "[research] Define IP, licensing, and naming constraints",
+    "labels": [
+      "type:research",
+      "area:research",
+      "area:gamedata",
+      "prio:critical",
+      "size:m",
+      "parallel:safe",
+      "needs-decision"
+    ],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": [],
+    "primary_output": "docs/60-Research/ip-and-licensing.md"
+  },
+  {
+    "id": "R-006",
+    "file": "issues/R-006-pwa-offline-patterns.md",
+    "title": "[research] Research PWA offline-first save and sync patterns",
+    "labels": [
+      "type:research",
+      "area:research",
+      "area:pwa",
+      "area:save",
+      "prio:high",
+      "size:m",
+      "parallel:safe"
+    ],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": [],
+    "primary_output": "docs/60-Research/pwa-offline-patterns.md"
+  },
+  {
+    "id": "R-007",
+    "file": "issues/R-007-research-summary.md",
+    "title": "[research] Consolidate Phase 1 findings and MVP recommendation",
+    "labels": [
+      "type:research",
+      "area:research",
+      "prio:critical",
+      "size:m",
+      "parallel:after-research"
+    ],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["R-001", "R-002", "R-003", "R-004", "R-005", "R-006"],
+    "primary_output": "docs/60-Research/00-summary.md"
+  },
+  {
+    "id": "A-001",
+    "file": "issues/A-001-ADR-0001-tech-stack.md",
+    "title": "[adr] Finalize tech-stack ADR",
+    "labels": ["type:adr", "area:docs", "prio:high", "size:s", "parallel:after-R-007"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["R-007"],
+    "primary_output": "docs/10-Architecture/09-Decisions/ADR-0001-tech-stack.md"
+  },
+  {
+    "id": "A-002",
+    "file": "issues/A-002-ADR-0002-offline-first.md",
+    "title": "[adr] Finalize offline-first architecture ADR",
+    "labels": ["type:adr", "area:docs", "prio:high", "size:s", "parallel:after-research"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["R-006", "R-007"],
+    "primary_output": "docs/10-Architecture/09-Decisions/ADR-0002-offline-first.md"
+  },
+  {
+    "id": "A-003",
+    "file": "issues/A-003-ADR-0003-match-engine.md",
+    "title": "[adr] Finalize deterministic match-engine ADR",
+    "labels": ["type:adr", "area:docs", "prio:high", "size:s", "parallel:after-research"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["R-002", "R-004", "R-007"],
+    "primary_output": "docs/10-Architecture/09-Decisions/ADR-0003-match-engine.md"
+  },
+  {
+    "id": "A-004",
+    "file": "issues/A-004-ADR-0004-data-model.md",
+    "title": "[adr] Finalize club/player/league data model ADR",
+    "labels": ["type:adr", "area:docs", "prio:high", "size:s", "parallel:after-research"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["R-004", "R-005", "R-007"],
+    "primary_output": "docs/10-Architecture/09-Decisions/ADR-0004-data-model.md"
+  },
+  {
+    "id": "A-005",
+    "file": "issues/A-005-ADR-0005-save-format.md",
+    "title": "[adr] Finalize save format and migration ADR",
+    "labels": ["type:adr", "area:docs", "prio:high", "size:s", "parallel:after-research"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["R-006", "R-007"],
+    "primary_output": "docs/10-Architecture/09-Decisions/ADR-0005-save-format.md"
+  },
+  {
+    "id": "A-006",
+    "file": "issues/A-006-ADR-0006-i18n.md",
+    "title": "[adr] Finalize i18n strategy ADR",
+    "labels": ["type:adr", "area:docs", "prio:high", "size:s", "parallel:after-R-007"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["R-007"],
+    "primary_output": "docs/10-Architecture/09-Decisions/ADR-0006-i18n.md"
+  },
+  {
+    "id": "A-007",
+    "file": "issues/A-007-ADR-0007-naming-schema.md",
+    "title": "[adr] Finalize IP-clean naming schema ADR",
+    "labels": ["type:adr", "area:docs", "prio:high", "size:s", "parallel:after-research"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["R-005", "R-007"],
+    "primary_output": "docs/10-Architecture/09-Decisions/ADR-0007-naming-schema.md"
+  },
+  {
+    "id": "A-008",
+    "file": "issues/A-008-ADR-0008-mobile-first-ui.md",
+    "title": "[adr] Finalize mobile-first UI ADR",
+    "labels": ["type:adr", "area:docs", "prio:high", "size:s", "parallel:after-research"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["R-001", "R-002", "R-003", "R-007"],
+    "primary_output": "docs/10-Architecture/09-Decisions/ADR-0008-mobile-first-ui.md"
+  },
+  {
+    "id": "A-009",
+    "file": "issues/A-009-ADR-0009-cursor-orchestration.md",
+    "title": "[adr] Finalize Cursor Cloud Agent orchestration ADR",
+    "labels": ["type:adr", "area:docs", "prio:high", "size:s", "parallel:after-R-007"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["R-007"],
+    "primary_output": "docs/10-Architecture/09-Decisions/ADR-0009-cursor-orchestration.md"
+  },
+  {
+    "id": "A-010",
+    "file": "issues/A-010-arc42-architecture-synthesis.md",
+    "title": "[architecture] Expand arc42 docs from research and ADRs",
+    "labels": [
+      "type:adr",
+      "area:docs",
+      "area:architecture",
+      "prio:high",
+      "size:m",
+      "parallel:after-adr"
+    ],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["A-001", "A-002", "A-003", "A-004", "A-005", "A-006", "A-007", "A-008", "A-009"],
+    "primary_output": "docs/10-Architecture/"
+  },
+  {
+    "id": "B-001",
+    "file": "issues/B-001-create-labels-milestones-and-branch-protection-checklist.md",
+    "title": "[meta] Create labels, milestones, and branch protection checklist",
+    "labels": ["type:chore", "area:infra", "prio:critical", "size:s", "parallel:safe"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": [],
+    "primary_output": "docs/90-Meta/github-issue-suite/labels.md"
+  },
+  {
+    "id": "B-002",
+    "file": "issues/B-002-create-m1-m8-implementation-backlog-from-adrs.md",
+    "title": "[meta] Create M1-M8 implementation backlog from ADRs",
+    "labels": ["type:chore", "area:docs", "prio:critical", "size:m", "parallel:after-adr"],
+    "milestone": "M1 Research & Architecture",
+    "depends_on": ["A-010"],
+    "primary_output": "docs/90-Meta/github-issue-suite/implementation-backlog.md"
+  },
+  {
+    "id": "M2-001",
+    "file": "issues/M2-001-implement-deterministic-match-engine-v1.md",
+    "title": "[area:match-engine] Implement deterministic match engine v1",
+    "labels": [
+      "type:feature",
+      "area:match-engine",
+      "prio:critical",
+      "size:l",
+      "parallel:serial-only"
+    ],
+    "milestone": "M2",
+    "depends_on": ["A-010"],
+    "primary_output": "packages/match-engine/**"
+  },
+  {
+    "id": "M3-001",
+    "file": "issues/M3-001-implement-single-league-schedule-and-standings.md",
+    "title": "[area:league] Implement single-league schedule and standings",
+    "labels": ["type:feature", "area:league", "prio:high", "size:l", "parallel:after-M2-contract"],
+    "milestone": "M3",
+    "depends_on": ["A-010"],
+    "primary_output": "packages/game-data/**, packages/db-schema/**, apps/web/**"
+  },
+  {
+    "id": "M4-001",
+    "file": "issues/M4-001-implement-player-attributes-and-squad-model.md",
+    "title": "[area:squad] Implement player attributes and squad model",
+    "labels": ["type:feature", "area:squad", "prio:high", "size:l", "parallel:after-data-model"],
+    "milestone": "M4",
+    "depends_on": ["A-010"],
+    "primary_output": "packages/db-schema/**, packages/game-data/**, apps/web/**"
+  },
+  {
+    "id": "M5-001",
+    "file": "issues/M5-001-implement-weekly-training-planning-skeleton.md",
+    "title": "[area:training] Implement weekly training planning skeleton",
+    "labels": ["type:feature", "area:training", "prio:medium", "size:m", "parallel:after-M4"],
+    "milestone": "M5",
+    "depends_on": ["A-010"],
+    "primary_output": "packages/match-engine/**, apps/web/**"
+  },
+  {
+    "id": "M6-001",
+    "file": "issues/M6-001-implement-transfer-market-offer-loop-skeleton.md",
+    "title": "[area:transfer] Implement transfer market offer loop skeleton",
+    "labels": [
+      "type:feature",
+      "area:transfer",
+      "prio:medium",
+      "size:l",
+      "parallel:after-schema-contract"
+    ],
+    "milestone": "M6",
+    "depends_on": ["A-010"],
+    "primary_output": "packages/db-schema/**, apps/web/**"
+  },
+  {
+    "id": "M7-001",
+    "file": "issues/M7-001-implement-finance-and-stadium-foundations.md",
+    "title": "[area:finance] Implement finance and stadium foundations",
+    "labels": [
+      "type:feature",
+      "area:finance",
+      "area:stadium",
+      "prio:medium",
+      "size:l",
+      "parallel:after-data-model"
+    ],
+    "milestone": "M7",
+    "depends_on": ["A-010"],
+    "primary_output": "packages/db-schema/**, apps/web/**"
+  },
+  {
+    "id": "M8-001",
+    "file": "issues/M8-001-implement-youth-academy-skeleton.md",
+    "title": "[area:youth] Implement youth academy skeleton",
+    "labels": ["type:feature", "area:youth", "prio:medium", "size:m", "parallel:after-M4"],
+    "milestone": "M8",
+    "depends_on": ["A-010"],
+    "primary_output": "packages/game-data/**, apps/web/**"
+  }
+]
