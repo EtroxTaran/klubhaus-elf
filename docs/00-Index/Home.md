@@ -16,6 +16,7 @@ This Obsidian Vault is the documentation single source of truth for the
 - [[Decision-Log]]
 - [[../10-Architecture/01-Introduction]]
 - [[../10-Architecture/09-Design-System]]
+- [[../30-Implementation/agent-workflow-pattern]]
 - [[../30-Implementation/ci-and-review-process]]
 - [[../30-Implementation/cursor-cloud-agent-workflow]]
 - [[../30-Implementation/design-sync-workflow]]
