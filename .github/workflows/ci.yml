@@ -6,6 +6,12 @@ on:
   push:
     branches: [develop, main]
 
+# Supersede in-flight runs for the same ref so PR status reflects the latest
+# commit only (no stale red/green from outdated runs).
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -63,6 +69,9 @@ jobs:
         with:
           urls: http://localhost:3000
           budgetPath: .github/lighthouse/budget.json
+          # Median of 3 runs: removes LHCI run-to-run noise WITHOUT loosening
+          # any budget. A real regression still exceeds the budget at median.
+          runs: 3
           uploadArtifacts: true
 
   cursor-smoke:
