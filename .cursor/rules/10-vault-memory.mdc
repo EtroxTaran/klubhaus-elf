@@ -1,0 +1,17 @@
+---
+description: Vault memory and Obsidian documentation protocol
+alwaysApply: true
+---
+# Vault Memory
+
+- Treat `docs/` as the durable project memory and Obsidian vault.
+- Start substantial work at `docs/00-Index/Agent-Onboarding.md`, then `docs/00-Index/Current-State.md`.
+- Read relevant maps, accepted ADRs, approved game design or feature specs, and implementation notes before changing behavior.
+- Prefer `current`, `accepted`, and `approved` notes. Never implement from `superseded` or `archived` notes.
+- Keep AGENTS/CLAUDE/rules as orchestrators; durable content belongs in vault notes.
+- Follow `docs/30-Implementation/linear-task-tracking.md` for Linear ticket quality, workflow states, labels, and closure requirements.
+- Use `docs/90-Meta/templates/linear-issue.md` (and `linear-issue-examples.md`) when creating or refining Linear issues.
+- Update vault docs in the same PR when code changes architecture, product scope, gameplay, operations, or user-facing behavior.
+- User docs are player-facing output, not authoritative implementation specs.
+- Use Ref for library/framework docs. Use Perplexity for external research when credentials work.
+- Never store secrets, credentials, API keys, private Obsidian state, or local workspace state in the vault.

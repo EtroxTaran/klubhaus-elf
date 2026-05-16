@@ -20,6 +20,28 @@ TanStack Start (file-based routing, server functions, SSR) + shadcn/ui + Tailwin
 + SurrealDB (document/graph/relational) + TypeScript strict + Vitest + Playwright
 + Biome + pnpm + mise + sops+age+direnv + Docker + Dokploy on Hetzner.
 
+## Vault Memory
+
+The `docs/` directory is the Obsidian vault and durable project memory. This file
+is only an orchestrator; keep durable project context in vault notes.
+
+Agent entry chain:
+
+1. `docs/00-Index/Agent-Onboarding.md`
+2. `docs/00-Index/Current-State.md`
+3. `docs/00-Index/Home.md`
+4. `docs/90-Meta/agent-memory-protocol.md`
+5. `docs/90-Meta/vault-governance.md`
+
+Use `current`, `accepted`, and `approved` vault notes for implementation. Never
+implement from `superseded` or `archived` notes. Player-facing docs are output
+docs, not implementation specifications.
+
+Use the project skill `.cursor/skills/vault-memory/SKILL.md` for the repeatable
+vault start/update/wrap-up workflow when available.
+Use `.cursor/skills/linear-issue-creation/SKILL.md` when creating, triaging, or
+closing Linear tickets.
+
 ## Setup
 
 ```bash
@@ -72,7 +94,16 @@ pnpm dev
 
 ## Task Tracking
 
-Linear is the operational task tracker. Use project `soccer-manager — Research & Architecture` for Phase 1 research, Phase 2 ADRs, and seed backlog work. Agents must comment progress, blockers, PR links, and final Vault paths on the Linear issue before marking it done. The docs vault remains the durable knowledge base.
+Linear is the operational task tracker. Use project `soccer-manager — Research & Architecture` for Phase 1 research, Phase 2 ADRs, and seed backlog work.
+
+Linear ticket operating system:
+
+- Follow `docs/30-Implementation/linear-task-tracking.md` for issue quality, workflow, labels, dependencies, and closure rules.
+- Create issue bodies from `docs/90-Meta/templates/linear-issue.md` and adapt from `docs/90-Meta/templates/linear-issue-examples.md`.
+- Include user story, Gherkin scenarios, acceptance criteria, dependencies, and verification notes on substantial tickets.
+- Agents must comment progress, blockers, PR links, and final vault paths on the Linear issue before marking it done.
+
+The docs vault remains the durable knowledge base.
 
 ## Commits & PRs
 
