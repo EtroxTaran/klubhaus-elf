@@ -42,6 +42,28 @@ if (environment.build?.context !== '..') {
   fail('.cursor/environment.json must use the repository root as Docker build context')
 }
 
+if (typeof environment.snapshot === 'string') {
+  const placeholderSnapshots = new Set([
+    'POPULATED_FROM_SETTINGS',
+    'POPULATED_FROM_DASHBOARD',
+    'TODO',
+    '',
+  ])
+
+  if (placeholderSnapshots.has(environment.snapshot)) {
+    fail(
+      `.cursor/environment.json snapshot must be a real ID (e.g. "snapshot-YYYYMMDD-..."), not a placeholder like "${environment.snapshot}". ` +
+        'Remove the field entirely to use the Dockerfile build, or paste the real snapshot ID from the Cloud Agents dashboard.',
+    )
+  }
+
+  if (!/^snapshot-/.test(environment.snapshot)) {
+    fail(
+      `.cursor/environment.json snapshot "${environment.snapshot}" does not look like a Cursor snapshot ID (expected prefix "snapshot-")`,
+    )
+  }
+}
+
 assertIncludes(cursorDockerfile, 'FROM node:22-bookworm', '.cursor/Dockerfile')
 assertIncludes(cursorDockerfile, 'docker-ce', '.cursor/Dockerfile')
 assertIncludes(cursorDockerfile, 'docker-compose-plugin', '.cursor/Dockerfile')
