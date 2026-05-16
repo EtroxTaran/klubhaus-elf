@@ -37,7 +37,10 @@ A PR is mergeable only when **all** required checks are green:
 `quality` (Biome + typecheck + Vitest coverage), `e2e`, `lighthouse`,
 `cursor-smoke`, `configured`. "Works locally" is not done. The author runs
 `pnpm check`, `pnpm typecheck`, `pnpm test`, and (for app changes)
-`pnpm test:e2e` before requesting review.
+`pnpm test:e2e` before requesting review. In addition, the three workflow
+gates in [[agent-workflow-pattern]] must hold: design-system compliance
+(no agent-invented style), a vault delta in the same PR, and knowledge-base
+alignment (contradictions escalated to Nico, not merged).
 
 ## Flake policy
 

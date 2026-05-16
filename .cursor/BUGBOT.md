@@ -16,6 +16,15 @@
 - `it.skip`, `it.todo`, `it.only` in committed test files.
 - Lowering coverage thresholds in `vitest.config.ts`.
 - Missing migration file for schema changes in `db/schema.surql`.
+- Raw hex colors or arbitrary Tailwind values (`*-[#...]`, `*-[<n>px]`,
+  `text-[...]`) in `apps/web/src/**` outside `styles/app.css` / `theme/**`;
+  design-system tokens must be used instead.
+- Inline `style=` attributes used for visual design (color/spacing/layout).
+- A new component duplicating an existing atom/composite in
+  `apps/web/src/components/{atoms,composites}` instead of reusing it.
+- Behaviour/UI change in a PR with no corresponding vault delta under `docs/**`
+  (ADR, feature spec, or architecture doc) — see
+  `docs/30-Implementation/agent-workflow-pattern.md`.
 
 ## What to leave alone
 
