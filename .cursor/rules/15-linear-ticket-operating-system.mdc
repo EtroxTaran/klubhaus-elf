@@ -1,0 +1,17 @@
+---
+description: Linear ticket operating system for issue quality and execution tracking
+alwaysApply: true
+---
+# Linear Ticket Operating System
+
+- Linear is the operational source of truth for issue state, ownership, dependencies, and progress.
+- The vault (`docs/`) is the durable source of truth for decisions and documentation.
+- Follow `docs/30-Implementation/linear-task-tracking.md` for:
+  - required ticket sections (context, user story, Gherkin, acceptance criteria, dependencies, verification)
+  - Definition of Ready and Definition of Done
+  - workflow states, label taxonomy, and linking/dependency standards
+  - progress and closure comment conventions
+- Use `docs/90-Meta/templates/linear-issue.md` for new issues.
+- Use `docs/90-Meta/templates/linear-issue-examples.md` for feature/bug/research patterns.
+- Use `.cursor/skills/linear-issue-creation/SKILL.md` for repeatable issue creation, triage, splitting, and closure checks.
+- Do not close Linear issues without final vault paths and acceptance criteria evidence.

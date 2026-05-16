@@ -8,7 +8,9 @@ updated: 2026-05-15
 # Cursor Cloud Agent Workflow
 
 Operational task tracking happens in Linear. See [[linear-task-tracking]] for the
-project link, issue wave plan, and required progress-comment conventions.
+project link, issue wave plan, and required progress-comment conventions. Use
+`.cursor/skills/linear-issue-creation/SKILL.md` for repeatable issue quality and
+closure checks.
 
 1. Create or update a plan in `.cursor/plans/`.
 2. Check file exclusivity, interface stability, and config exclusivity.
