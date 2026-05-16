@@ -23,6 +23,12 @@ test('loads the Office Hub and registers a service worker', async ({ page }) => 
 test('keeps the current shell available while offline', async ({ context, page }) => {
   await page.goto('/')
   await waitForServiceWorkerControl(page)
+
+  // Wait for the hub to be fully rendered while still online, so this test
+  // verifies the loaded shell *persists* when the network drops — not
+  // first-paint/hydration speed (that is tracked separately; see D-002).
+  await expect(page.getByText('Nächster Termin')).toBeVisible()
+
   await context.setOffline(true)
 
   await expect(page.getByText('Nächster Termin')).toBeVisible()
