@@ -310,5 +310,14 @@
     "milestone": "M3",
     "depends_on": ["A-010"],
     "primary_output": "apps/web/src/screens/**, apps/web/src/routes/**"
+  },
+  {
+    "id": "D-002",
+    "file": "issues/D-002-home-route-lighthouse-tbt.md",
+    "title": "[area:ui] Home route exceeds Lighthouse Total Blocking Time budget",
+    "labels": ["type:bug", "area:ui", "prio:high", "size:m", "parallel:safe"],
+    "milestone": "M3",
+    "depends_on": ["A-010"],
+    "primary_output": "apps/web/**"
   }
 ]
