@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": ["packages/match-engine/src/**/*.ts", "packages/db-schema/src/**/*.ts"]
+}

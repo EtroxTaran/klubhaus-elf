@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/stryker-mutator/stryker-js/master/packages/api/schema/stryker-core.json",
+  "packageManager": "pnpm",
+  "plugins": ["@stryker-mutator/vitest-runner", "@stryker-mutator/typescript-checker"],
+  "testRunner": "vitest",
+  "vitest": { "configFile": "vitest.config.ts" },
+  "checkers": ["typescript"],
+  "tsconfigFile": "tsconfig.stryker.json",
+  "mutate": [
+    "packages/match-engine/src/**/*.ts",
+    "packages/db-schema/src/**/*.ts",
+    "!packages/**/src/**/*.test.ts"
+  ],
+  "incremental": true,
+  "incrementalFile": ".stryker-tmp/incremental.json",
+  "reporters": ["html", "clear-text", "progress"],
+  "htmlReporter": { "fileName": "reports/mutation/mutation.html" },
+  "thresholds": { "high": 90, "low": 80, "break": 80 },
+  "concurrency": 4,
+  "timeoutMS": 60000
+}
