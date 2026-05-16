@@ -76,5 +76,6 @@ jobs:
       - run: node --check .cursor/hooks/policy.js
       - run: node --check .cursor/hooks/secret-scan.js
       - run: node --check .cursor/hooks/mcp-allowlist.js
+      - run: node --check scripts/design-sync.mjs
       - run: pnpm test:cloud-env
       - run: node -e "JSON.parse(require('fs').readFileSync('.cursor/hooks.json', 'utf8'))"

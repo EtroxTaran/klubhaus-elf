@@ -301,5 +301,14 @@
     "milestone": "M8",
     "depends_on": ["A-010"],
     "primary_output": "packages/game-data/**, apps/web/**"
+  },
+  {
+    "id": "D-001",
+    "file": "issues/D-001-remaining-screens-by-phase.md",
+    "title": "[area:ui] Implement remaining 35 Aurelia Premier screens by phase",
+    "labels": ["type:feature", "area:ui", "prio:medium", "size:l", "parallel:after-design-system"],
+    "milestone": "M3",
+    "depends_on": ["A-010"],
+    "primary_output": "apps/web/src/screens/**, apps/web/src/routes/**"
   }
 ]

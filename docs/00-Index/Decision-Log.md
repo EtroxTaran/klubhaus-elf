@@ -16,3 +16,4 @@ updated: 2026-05-15
 - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
 - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
 - [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]]
+- [[../10-Architecture/09-Decisions/ADR-0010-design-system]]
