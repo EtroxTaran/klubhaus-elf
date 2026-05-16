@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.output/
+coverage/
+playwright-report/
+test-results/
+.lighthouseci/
+.stryker-tmp/
+reports/
+routeTree.gen.ts
+design/handoff/
+*.min.js

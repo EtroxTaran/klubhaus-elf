@@ -5,6 +5,9 @@ on:
     branches: [develop, main]
   push:
     branches: [develop, main]
+  schedule:
+    # Nightly full mutation run (authoritative, break threshold enforced).
+    - cron: '0 3 * * *'
 
 # Supersede in-flight runs for the same ref so PR status reflects the latest
 # commit only (no stale red/green from outdated runs).
@@ -15,36 +18,114 @@ concurrency:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm biome ci .
+      - uses: ./.github/actions/setup
+      - run: pnpm lint:ci
       - run: pnpm typecheck
       - run: pnpm test -- --coverage
+      - name: Coverage PR comment
+        if: github.event_name == 'pull_request'
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          json-summary-path: coverage/coverage-summary.json
+          json-final-path: coverage/coverage-final.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: coverage
           path: coverage
 
+  static-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: pnpm knip
+      - run: pnpm madge
+
+  semgrep:
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    # Rollout: advisory until the baseline is triaged, then drop this line.
+    continue-on-error: true
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Semgrep OSS scan (accountless)
+        run: |
+          semgrep scan \
+            --config p/typescript \
+            --config p/javascript \
+            --config p/react \
+            --config p/secrets \
+            --sarif --output semgrep.sarif --error
+      - name: Upload SARIF to code scanning
+        if: always()
+        continue-on-error: true
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: semgrep-sarif
+          path: semgrep.sarif
+
+  mutation:
+    needs: quality
+    if: github.event_name == 'pull_request' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Restore Stryker incremental cache
+        if: github.event_name == 'pull_request'
+        uses: actions/cache@v4
+        with:
+          path: .stryker-tmp
+          key: stryker-${{ hashFiles('packages/match-engine/src/**', 'packages/db-schema/src/**') }}
+          restore-keys: stryker-
+      - name: Mutation testing (PR — incremental, advisory)
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: pnpm mutation:incremental
+      - name: Mutation testing (nightly — full, enforced)
+        if: github.event_name == 'schedule'
+        run: pnpm mutation
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mutation-report
+          path: reports/mutation
+
   e2e:
     needs: quality
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: ./.github/actions/setup
+      - name: Cache Playwright browsers
+        id: pw-cache
+        uses: actions/cache@v4
         with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm playwright install --with-deps
-      - run: pnpm build
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: playwright-${{ runner.os }}-
+      - name: Install Playwright (browsers + OS deps)
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+        run: pnpm playwright install --with-deps chromium webkit
+      - name: Install Playwright OS deps only (browsers cached)
+        if: steps.pw-cache.outputs.cache-hit == 'true'
+        run: pnpm playwright install-deps chromium webkit
+      # `pnpm test:e2e` builds the app via Playwright's webServer command,
+      # so no separate build step is needed here.
       - run: pnpm test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
@@ -57,12 +138,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/setup
       - run: pnpm build
       - run: pnpm --filter @soccer-manager/web preview &
       - uses: treosh/lighthouse-ci-action@v12

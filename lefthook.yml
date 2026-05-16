@@ -7,6 +7,14 @@ pre-commit:
     typecheck:
       run: pnpm typecheck
 
+pre-push:
+  parallel: true
+  commands:
+    knip:
+      run: pnpm knip
+    madge:
+      run: pnpm madge
+
 commit-msg:
   commands:
     commitlint:

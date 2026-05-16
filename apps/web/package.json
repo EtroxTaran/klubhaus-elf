@@ -17,7 +17,6 @@
     "@tanstack/react-router": "latest",
     "@tanstack/react-start": "latest",
     "clsx": "^2.1.1",
-    "dexie": "latest",
     "i18next": "latest",
     "lucide-react": "latest",
     "react": "latest",
@@ -25,8 +24,7 @@
     "react-i18next": "latest",
     "tailwind-merge": "^3.3.1",
     "workbox-core": "^7.4.1",
-    "workbox-precaching": "^7.4.1",
-    "zod": "latest"
+    "workbox-precaching": "^7.4.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "latest",
