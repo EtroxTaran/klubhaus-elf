@@ -14,6 +14,10 @@ export function initI18n() {
         escapeValue: false,
       },
       lng: 'de',
+      react: {
+        // Inline resources are synchronous — no Suspense needed (SSR-safe).
+        useSuspense: false,
+      },
       resources: {
         de,
         en,
@@ -23,3 +27,9 @@ export function initI18n() {
 
   return initPromise
 }
+
+// Kick off synchronous init at module load so the singleton is render-ready
+// on both server and client (inline resources resolve immediately).
+initI18n()
+
+export { i18next as i18n }

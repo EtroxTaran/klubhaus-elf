@@ -15,7 +15,10 @@
       "!**/coverage",
       "!**/playwright-report",
       "!**/.lighthouseci",
-      "!**/routeTree.gen.ts"
+      "!**/routeTree.gen.ts",
+      // Tailwind v4 entry stylesheet: uses @theme / @custom-variant which
+      // Biome's CSS parser (2.4) does not understand.
+      "!apps/web/src/styles/app.css"
     ]
   },
   "formatter": {
