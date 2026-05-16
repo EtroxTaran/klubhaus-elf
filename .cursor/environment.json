@@ -5,7 +5,6 @@
     "dockerfile": "Dockerfile",
     "context": ".."
   },
-  "snapshot": "POPULATED_FROM_SETTINGS",
   "agentCanUpdateSnapshot": true,
   "install": "corepack enable && corepack prepare pnpm@11.1.2 --activate && pnpm install --frozen-lockfile && pnpm exec playwright install --with-deps chromium",
   "start": "service docker start || true; docker compose -f docker-compose.dev.yml up -d --wait surrealdb; pnpm db:migrate",
