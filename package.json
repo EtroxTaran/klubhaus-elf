@@ -11,6 +11,7 @@
     "db:migrate": "node scripts/db-migrate-placeholder.mjs",
     "dev": "pnpm --filter @soccer-manager/web dev",
     "start": "pnpm --filter @soccer-manager/web start",
+    "sync:design": "node scripts/design-sync.mjs",
     "test": "vitest run --coverage",
     "test:cloud-env": "node scripts/validate-cloud-env.mjs",
     "test:e2e": "playwright test",
