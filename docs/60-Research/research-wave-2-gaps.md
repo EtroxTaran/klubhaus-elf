@@ -1,11 +1,17 @@
 ---
 title: Research Wave 2 — Gap Analysis & Backlog Proposal
-status: proposal
-tags: [research, planning, gap-analysis]
+status: superseded
+superseded_by: [[wave-3-gap-analysis]]
+tags: [research, planning, gap-analysis, superseded]
 updated: 2026-05-16
 ---
 
 # Research Wave 2 — Gap Analysis & Backlog Proposal
+
+> **Superseded by [[wave-3-gap-analysis]] (2026-05-16). Historical context
+> only.** The 19 R2-01..R2-19 IDs are preserved verbatim under group **D**
+> of the Wave 3 backlog so any reference from Linear issues / PRs still
+> resolves. Do not implement from this note — implement from Wave 3.
 
 > Prerequisite reading: [[anstoss-series-deep-dive]], [[club-boss-analysis]],
 > [[competitor-matrix]], [[ip-and-licensing]], [[pwa-offline-patterns]].
@@ -19,6 +25,31 @@ updated: 2026-05-16
 > foundations, product & UX, and platform/cross-cutting concerns. The first
 > wave of 13 was created as Linear issues `AKOM-136`…`AKOM-148`; the additional
 > six (R2-14…R2-19) extend it.
+
+## 2026-05-16 update — partial coverage from product-design Wave 2
+
+A separate research wave focused on **product design** (not technical depth)
+landed on 2026-05-16 and populated seven synthesis notes plus six raw
+preservation notes (see [[00-summary]]). It does **not** replace the
+technical R2 items below - those remain valid - but it *touches* a few:
+
+| R2 item | Touched by 2026-05-16 product wave | Still needs depth |
+|---|---|---|
+| R2-03 Tactics & formation depth on mobile | [[progressive-disclosure-research]] adds Quick/Standard/Expert UX tiers and the Position+Role+Duty+Instructions+Traits model | RNG calibration, formation-effect curves, mobile UX patterns |
+| R2-04 AI manager / opponent behaviour | [[mode-design-research]] sketches the four-quadrant mode matrix that AI archetypes must respect | All technical AI work |
+| R2-07 Mobile UX, IA & a11y | [[progressive-disclosure-research]] gives the 3-tier IA principle | Route map, components, a11y commitments |
+| R2-12 Hotseat & async friend leagues | [[async-multiplayer-research]] gives Fixed/Dynamic cadence + watch-party design | Hotseat-specific UX, conflict resolution |
+| R2-13 Women's football | Not touched | Still open |
+| **New R2-20** Environment, regulations, rivalries, sanctions, match-day events | NEW research lane introduced by [[regulations-and-pyramids-research]], [[fan-culture-segmentation-research]] and [[../50-Game-Design/matchday-event-engine]] | DFB/FA/LFP/FIGC tier-by-tier obligation tables, sanction chain calibration, event probability tuning |
+
+The product-design wave also proposed seven new ADRs (ADR-0010..ADR-0016)
+which are tracked in [[../00-Index/Decision-Log]]. Two of these have
+research dependencies that should map to the R2 backlog:
+
+- ADR-0011 (server-authoritative MP) ↔ R2-08 (determinism / replay), R2-12.
+- ADR-0013 (transactional outbox) ↔ R2-08, R2-09.
+- ADR-0015 (spectator snapshot streaming) ↔ R2-09 (perf budgets), R2-16
+  (match presentation rendering).
 
 ## Method
 
@@ -54,7 +85,13 @@ M2 work, `prio:high` = blocks an M2-M8 seed epic, `prio:medium` = unblocks
 post-MVP). All items are `parallel:safe` by default — they each produce a
 single Markdown file under `docs/60-Research/`.
 
-### R2-01 — Deterministic match-engine simulation model — `prio:critical`
+### R2-01 — Deterministic match-engine simulation model — `prio:critical` — RESOLVED 2026-05-16
+
+> **Resolved by [[match-engine-simulation-model]] (Wave 3 gap D1,
+> 2026-05-16).** Locked: hybrid Markov + attribute rolls; per-event
+> tick; event schema with typed payloads; hybrid zone+role formation
+> influence; strict MatchCoreRng/MatchAiRng separation; ≤ 50 ms /
+> match budget; full test pyramid with 10 canonical golden replays.
 
 **Why now.** ADR-0003 (AKOM-119) and AKOM-130 (Match Engine v1) both depend on
 a documented simulation model. Today we have a feel-driven description
@@ -201,7 +238,13 @@ route map, navigation pattern, or WCAG 2.2 commitments.
 **Output.** `docs/60-Research/mobile-ux-ia-a11y.md`.
 **Acceptance.** Route map, IA diagram, a11y commitments, ADR-0008 input block.
 
-### R2-08 — Determinism, RNG, replay & save-determinism contract — `prio:critical`
+### R2-08 — Determinism, RNG, replay & save-determinism contract — `prio:critical` — RESOLVED 2026-05-16
+
+> **Resolved by [[determinism-and-replay]] (Wave 3 gap D8, 2026-05-16).**
+> Locked: PCG32 via pure-rand; 8 named RNG streams; hybrid replay
+> (seed+inputs canonical + full event log for human matches +
+> seed-only for AI vs AI); integers / basis-points; 12 save-determinism
+> rules; Chromium-only CI gate at MVP.
 
 **Why now.** Cross-cutting concern that ADR-0003 (match engine), ADR-0005
 (save format) and the outbox in ADR-0002 all rely on. Wave 1 left RNG choice
@@ -322,7 +365,16 @@ not have to re-do schemas in M5.
 **Acceptance.** Schema recommendation that's additive-only at MVP, calendar
 notes, ADR-0004 input block.
 
-### R2-14 — SurrealDB schema patterns for offline-first game data — `prio:critical`
+### R2-14 — SurrealDB schema patterns for offline-first game data — `prio:critical` — RESOLVED 2026-05-16
+
+> **Resolved by [[surrealdb-schema-patterns]] (Wave 3 gap D14, 2026-05-16).**
+> Locked: hybrid per-save isolation (platform DB + DB per save);
+> hybrid schema (SCHEMAFULL core + SCHEMALESS event tables);
+> per-relationship modelling rules; TS-first `packages/db-schema`
+> mirror emits .surql + Zod + types; explicit `pnpm db:migrate`
+> release step; Dexie-only browser store at MVP, SurrealDB WASM
+> deferred to post-MVP research track; Live Queries for UI
+> projections only; per-context `queryGateway` abstraction.
 
 **Why now.** ADR-0004 (AKOM-120) chooses the canonical store shape. AGENTS.md
 locks SurrealDB as the document/graph/relational backing for game data,

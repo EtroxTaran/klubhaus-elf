@@ -19,3 +19,6 @@ tools/docs-preview/.quartz/
 .stryker-tmp/
 reports/mutation/
 semgrep.sarif
+
+.claude/
+.tmp-pnpm-shim/

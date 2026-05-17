@@ -12,6 +12,11 @@
       "!**/node_modules",
       "!**/.output",
       "!**/dist",
+      // Cursor agent worktrees — checkouts of other branches with their own
+      // biome.jsonc files which would clash as "nested root configurations".
+      "!.claude",
+      // Local pnpm shim folder (transient build helper).
+      "!.tmp-pnpm-shim",
       "!**/coverage",
       "!**/playwright-report",
       "!**/.lighthouseci",
