@@ -375,4 +375,12 @@ export const en = {
       neutral: '"Composed, but vague." — Sport-Echo',
     },
   },
+  halbzeitBubbles: {
+    screenLabel: 'Half-time · dressing-room talk',
+    eyebrow: 'Dressing-room talk',
+    title: 'What do you hear?',
+    subtitle: 'Three players speak up. One reaction per voice.',
+    moreTactics: 'More tactics',
+    kickoff: 'Kick off the 2nd half',
+  },
 } as const
