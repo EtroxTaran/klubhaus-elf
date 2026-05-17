@@ -560,3 +560,56 @@ export const IDENT_TINCTURES = [
 
 export const nf = new Intl.NumberFormat('de-DE')
 export const eur = (n: number) => `${nf.format(n)} €`
+
+/** A token position on the 2D pitch (viewBox 0 0 360 220). */
+export interface PitchToken {
+  x: number
+  y: number
+  /** Shirt number. */
+  n: string
+  /** Goalkeeper — rendered in the contrast kit. */
+  gk?: boolean
+  /** Highlight ring (ball carrier / scorer). */
+  highlight?: boolean
+}
+
+/** Northbridge (away) defends the left goal. */
+export const TICKER_AWAY: PitchToken[] = [
+  { x: 30, y: 110, n: '1', gk: true },
+  { x: 60, y: 60, n: '2' },
+  { x: 60, y: 90, n: '4' },
+  { x: 60, y: 130, n: '5' },
+  { x: 60, y: 160, n: '3' },
+  { x: 110, y: 80, n: '6' },
+  { x: 110, y: 140, n: '8' },
+  { x: 140, y: 110, n: '10' },
+  { x: 170, y: 70, n: '7' },
+  { x: 175, y: 150, n: '11' },
+  { x: 185, y: 110, n: '9' },
+]
+
+/** Hafenstadt (home) defends the right goal. */
+export const TICKER_HOME: PitchToken[] = [
+  { x: 330, y: 110, n: '1', gk: true },
+  { x: 300, y: 60, n: '18' },
+  { x: 300, y: 90, n: '5' },
+  { x: 300, y: 130, n: '4' },
+  { x: 300, y: 160, n: '22' },
+  { x: 250, y: 80, n: '6' },
+  { x: 250, y: 130, n: '14' },
+  { x: 230, y: 110, n: '8' },
+  { x: 200, y: 65, n: '10', highlight: true },
+  { x: 210, y: 155, n: '11' },
+  { x: 195, y: 108, n: '9' },
+]
+
+export type StatMode = 'pct' | 'count' | 'xg'
+
+export const TICKER_STATS: Array<{ key: string; a: number; b: number; mode: StatMode }> = [
+  { key: 'possession', a: 42, b: 58, mode: 'pct' },
+  { key: 'shots', a: 9, b: 14, mode: 'count' },
+  { key: 'onTarget', a: 3, b: 6, mode: 'count' },
+  { key: 'corners', a: 4, b: 7, mode: 'count' },
+  { key: 'fouls', a: 11, b: 8, mode: 'count' },
+  { key: 'xg', a: 1.2, b: 2.1, mode: 'xg' },
+]

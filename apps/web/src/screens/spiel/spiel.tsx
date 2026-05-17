@@ -1,25 +1,32 @@
 import { Link } from '@tanstack/react-router'
 import { ChevronLeft, Settings } from 'lucide-react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Crest } from '@/components/atoms/crest/crest'
 import { Jersey } from '@/components/atoms/jersey/jersey'
+import { StatBar } from '@/components/atoms/stat-bar/stat-bar'
 import { LiveXgStrip } from '@/components/composites/live-xg-strip/live-xg-strip'
 import { MatchEvent } from '@/components/composites/match-event/match-event'
+import { Pitch2D } from '@/components/composites/pitch-2d/pitch-2d'
 import { ScreenShell } from '@/components/layout/screen-shell'
 import { clubByName } from '@/theme/club-registry'
-import { FEED, XG } from '../fixtures'
+import { FEED, TICKER_AWAY, TICKER_HOME, TICKER_STATS, XG } from '../fixtures'
 import { Halbzeit } from '../halbzeit/halbzeit'
 
 const NBC = clubByName('Northbridge City')
 const FCH = clubByName('FC Hafenstadt')
 const TABS = ['report', 'ticker', 'lineup'] as const
+type SpielTab = (typeof TABS)[number]
 
 export interface SpielProps {
   halftimeOpen?: boolean
+  /** Initial tab — handy for routing/stories/tests. */
+  initialTab?: SpielTab
 }
 
-export function Spiel({ halftimeOpen = false }: SpielProps) {
+export function Spiel({ halftimeOpen = false, initialTab = 'report' }: SpielProps) {
   const { t } = useTranslation(['spiel', 'common'])
+  const [tab, setTab] = useState<SpielTab>(initialTab)
   return (
     <ScreenShell label={t('common:appName')}>
       <div className="relative flex flex-1 flex-col">
@@ -73,30 +80,89 @@ export function Spiel({ halftimeOpen = false }: SpielProps) {
           </div>
           <LiveXgStrip points={XG} aLabel="NBC" bLabel="FCH" className="mt-1.5" />
           <div className="mt-2 flex gap-0.5 rounded-lg bg-bg-ink p-[3px]">
-            {TABS.map((tab, i) => (
-              <span
-                key={tab}
+            {TABS.map((id) => (
+              <button
+                type="button"
+                key={id}
+                aria-pressed={tab === id}
+                onClick={() => setTab(id)}
                 className={`flex-1 rounded-md py-1.5 text-center text-[11px] font-bold ${
-                  i === 0 ? 'bg-card text-ink shadow-paper' : 'text-ink-mute'
+                  tab === id ? 'bg-card text-ink shadow-paper' : 'text-ink-mute'
                 }`}
               >
-                {t(`spiel:tabs.${tab}`)}
-              </span>
+                {t(`spiel:tabs.${id}`)}
+              </button>
             ))}
           </div>
         </header>
 
         <div className="flex-1 overflow-y-auto px-3.5 pb-24 pt-2">
-          {FEED.map((e) => (
-            <MatchEvent
-              key={`${e.min}-${e.t}`}
-              min={e.min}
-              kind={e.kind}
-              title={e.t}
-              sub={e.s}
-              {...(e.score ? { score: e.score } : {})}
-            />
-          ))}
+          {tab === 'report' &&
+            FEED.map((e) => (
+              <MatchEvent
+                key={`${e.min}-${e.t}`}
+                min={e.min}
+                kind={e.kind}
+                title={e.t}
+                sub={e.s}
+                {...(e.score ? { score: e.score } : {})}
+              />
+            ))}
+
+          {tab === 'ticker' && (
+            <div className="flex flex-col gap-3">
+              <Pitch2D
+                label={t('spiel:tabs.ticker')}
+                northLabel="NORD"
+                southLabel="SÜD"
+                away={{
+                  a: NBC.crest.a,
+                  b: NBC.crest.b,
+                  pattern: NBC.kit.pattern,
+                  sleeveAccent: NBC.kit.sleeveAccent,
+                  players: TICKER_AWAY,
+                }}
+                home={{
+                  a: FCH.crest.a,
+                  b: FCH.crest.b,
+                  pattern: FCH.kit.pattern,
+                  sleeveAccent: FCH.kit.sleeveAccent,
+                  players: TICKER_HOME,
+                }}
+              />
+              <div className="flex items-center justify-between rounded-[10px] border border-rule bg-card px-2.5 py-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-wide text-ink-mute">
+                  {t('spiel:ticker.lastActionLabel')}
+                </span>
+                <span className="font-display text-[11.5px] font-bold italic text-accent">
+                  {t('spiel:ticker.lastAction')}
+                </span>
+              </div>
+              <div>
+                <div className="mb-1.5 text-[11px] font-bold uppercase tracking-wide text-ink-mute">
+                  {t('spiel:ticker.statsLive')}
+                </div>
+                <div className="rounded-[14px] border border-rule bg-card px-3.5 py-1">
+                  {TICKER_STATS.map((s, i) => (
+                    <StatBar
+                      key={s.key}
+                      label={t(`spiel:ticker.stats.${s.key}`)}
+                      a={s.a}
+                      b={s.b}
+                      mode={s.mode}
+                      last={i === TICKER_STATS.length - 1}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {tab === 'lineup' && (
+            <p className="px-2 py-8 text-center font-display text-sm italic text-ink-soft">
+              {t('spiel:ticker.lineupSoon')}
+            </p>
+          )}
         </div>
 
         <div className="absolute inset-x-0 bottom-0 flex gap-2 bg-gradient-to-t from-bg via-bg to-transparent p-3.5 pb-6">

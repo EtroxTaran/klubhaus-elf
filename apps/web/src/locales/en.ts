@@ -111,6 +111,23 @@ export const en = {
     pause: 'Pause',
     speed: 'Speed',
     speedFactor: '(2×)',
+    ticker: {
+      clock: "● 82'",
+      possession: 'Possession · 58%',
+      lastActionLabel: 'Last action',
+      lastAction: "82' · GOAL Brody · volley",
+      statsLive: 'Statistics · live',
+      sub: 'Substitute',
+      lineupSoon: 'Line-up — its own screen, coming soon.',
+      stats: {
+        possession: 'Possession',
+        shots: 'Shots',
+        onTarget: 'On target',
+        corners: 'Corners',
+        fouls: 'Fouls',
+        xg: 'xG',
+      },
+    },
   },
   halbzeit: {
     eyebrow: 'Team talk',
