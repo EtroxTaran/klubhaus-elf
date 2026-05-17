@@ -1,0 +1,44 @@
+name: Redeploy docs + showcase
+
+# The docs vault and the Storybook showcase are static builds baked into
+# Dokploy images — they do NOT update when a PR merges. This pings their
+# Dokploy deploy webhooks on every push to main so the deployed sites stay
+# current automatically (the recurring "I can't see it in the showcase"
+# problem). Set the webhook URLs as repo secrets (Dokploy → service →
+# Deployments → Webhook). If a secret is unset, that site is skipped.
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: redeploy-showcase
+  cancel-in-progress: false
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger showcase (Storybook) redeploy
+        env:
+          HOOK: ${{ secrets.DOKPLOY_SHOWCASE_WEBHOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "DOKPLOY_SHOWCASE_WEBHOOK not set — skipping showcase redeploy."
+            exit 0
+          fi
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -X POST "$HOOK")
+          echo "Showcase redeploy webhook → HTTP $code"
+          case "$code" in 2*) ;; *) echo "::error::showcase webhook failed ($code)"; exit 1;; esac
+
+      - name: Trigger docs (Quartz vault) redeploy
+        env:
+          HOOK: ${{ secrets.DOKPLOY_DOCS_WEBHOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "DOKPLOY_DOCS_WEBHOOK not set — skipping docs redeploy."
+            exit 0
+          fi
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -X POST "$HOOK")
+          echo "Docs redeploy webhook → HTTP $code"
+          case "$code" in 2*) ;; *) echo "::error::docs webhook failed ($code)"; exit 1;; esac
