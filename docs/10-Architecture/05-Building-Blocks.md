@@ -2,10 +2,19 @@
 title: Building Blocks
 status: draft
 tags: [architecture]
-updated: 2026-05-15
+updated: 2026-05-16
 ---
 
 # Building Blocks
+
+The application is a **modular monolith** with eleven bounded contexts in
+TypeScript. Each context owns its domain logic, state machine(s), storage
+isolation, and contracts (commands / queries / domain events).
+
+> Authority: [[09-Decisions/ADR-0010-modular-monolith-ddd]]. Full map at
+> [[bounded-context-map]].
+
+## High-level package layout
 
 ```mermaid
 flowchart TB
@@ -16,3 +25,88 @@ flowchart TB
   Web --> Dexie[Dexie / IndexedDB]
   Web --> Surreal[SurrealDB sync post-MVP]
 ```
+
+## Bounded context layout
+
+```mermaid
+flowchart TB
+  subgraph Identity[Identity & Access]
+  end
+  subgraph Orch[League Orchestration]
+  end
+  subgraph Club[Club Management]
+  end
+  subgraph Squad[Squad & Player]
+  end
+  subgraph Training[Training]
+  end
+  subgraph Transfer[Transfer]
+  end
+  subgraph Match[Match]
+  end
+  subgraph WP[Watch Party]
+  end
+  subgraph Notif[Notification]
+  end
+  subgraph Sync[Offline Sync]
+  end
+  subgraph Audit[Audit & Security]
+  end
+
+  Identity --> Orch
+  Identity --> Club
+  Orch --> Match
+  Orch --> Transfer
+  Orch --> WP
+  Club --> Squad
+  Squad --> Training
+  Squad --> Transfer
+  Squad --> Match
+  Match --> WP
+  Match --> Notif
+  Transfer --> Notif
+  Orch --> Notif
+  Sync --> Identity
+  Sync --> Club
+  Sync --> Squad
+  Sync --> Transfer
+  Sync --> Match
+  Audit --> Identity
+  Audit --> Transfer
+  Audit --> Match
+  Audit --> Orch
+```
+
+## Source folder convention
+
+```text
+src/domain/
+  identity/
+  league/
+  club/
+  squad/
+  training/
+  transfer/
+  match/
+  watch-party/
+  notifications/
+  sync/
+  audit/
+```
+
+Each folder owns `commands.ts`, `events.ts`, `queries.ts`,
+`state-machine.ts` (if applicable), `policies.ts`, `repository.ts` and
+`index.ts` (public exports only).
+
+## Cross-cutting infrastructure
+
+- **Transactional outbox** ([[09-Decisions/ADR-0013-transactional-outbox]])
+  for domain-event publication.
+- **Job queue + scheduler** for timers, reminders, escalation,
+  auto-resolves.
+- **Realtime channel** for league status + watch-party signals
+  (SurrealDB Live Queries).
+- **Match worker** for server-authoritative simulation
+  ([[09-Decisions/ADR-0011-server-authoritative-multiplayer]]).
+- **Spectator service** for watch parties
+  ([[09-Decisions/ADR-0015-spectator-snapshot-streaming]]).

@@ -8,6 +8,7 @@
     "build": "pnpm --filter @soccer-manager/web build",
     "check": "biome check .",
     "check:write": "biome check --write .",
+    "docs:check": "node scripts/docs-check.mjs",
     "db:migrate": "node scripts/db-migrate-placeholder.mjs",
     "dev": "pnpm --filter @soccer-manager/web dev",
     "start": "pnpm --filter @soccer-manager/web start",
