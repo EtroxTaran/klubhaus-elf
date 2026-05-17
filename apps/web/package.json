@@ -8,6 +8,8 @@
     "dev": "vite dev --port 3000",
     "preview": "vite preview --host 0.0.0.0 --port 3000",
     "start": "vinxi start --port 3000",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -27,6 +29,8 @@
     "workbox-precaching": "^7.4.1"
   },
   "devDependencies": {
+    "@storybook/react": "^8.6.14",
+    "@storybook/react-vite": "^8.6.14",
     "@tailwindcss/vite": "latest",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
@@ -35,6 +39,7 @@
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
     "jsdom": "^26.0.0",
+    "storybook": "^8.6.14",
     "tailwindcss": "latest",
     "typescript": "^5.9.3",
     "vite": "latest",
