@@ -115,6 +115,23 @@ export const de = {
     pause: 'Pause',
     speed: 'Tempo',
     speedFactor: '(2×)',
+    ticker: {
+      clock: "● 82'",
+      possession: 'Ballbesitz · 58 %',
+      lastActionLabel: 'Letzte Aktion',
+      lastAction: "82' · TOR Brody · Volley",
+      statsLive: 'Statistiken · live',
+      sub: 'Wechsel',
+      lineupSoon: 'Aufstellung — eigener Screen, folgt.',
+      stats: {
+        possession: 'Ballbesitz',
+        shots: 'Schüsse',
+        onTarget: 'Aufs Tor',
+        corners: 'Ecken',
+        fouls: 'Fouls',
+        xg: 'xG',
+      },
+    },
   },
   halbzeit: {
     eyebrow: 'Kabinenansprache',
