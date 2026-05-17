@@ -149,12 +149,13 @@ see [[../90-Meta/github-issue-suite/issues/D-001-remaining-screens-by-phase]].
 | 11 | Klub-Identität · Wappen- & Trikot-Generator | `/identity` | **shipped ✓** (2026-05-17 sync) |
 | 32 | 2D-Ticker · Live-Pitch + Live-Statistiken | `/spiel` (Ticker-Tab) | **shipped ✓** |
 | 35 | Tabloid-Cover · Spiel-Spezial (Triumph / Krise) | `/tabloid` (`?tone=storm`) | **shipped ✓** |
+| 36 | Pressekonferenz · Verzweigte Fragen + Wirkungs-Vorhersage | `/pressekonferenz` | **shipped ✓** |
 | 11–14 | Spielervertrag · Vorstandsvertrauen · Sponsoren · Presse-Interview | — | deferred |
 | 15–17 | Taktik · Aufstellung · Statistiken | — | deferred |
 | 18–24 | Spielerdetail · Training · Einzeltraining · Krankenstation · Scouting · Mannschaften · Mitarbeiter | — | deferred |
 | 25–28 | Spielervergleich · Mannschaftsvergleich · Profi-Modus · Rollen-Editor | — | deferred |
 | 29–34 | Transferbüro · Liga-Tabelle · Pokalbaum · Aufstellung mit Rollen · Einstellungen | — | deferred |
-| 36–38 | Pressekonferenz · Halbzeit-Sprechblasen · Transfer-Gegenangebot | — | deferred |
+| 37–38 | Halbzeit-Sprechblasen · Transfer-Gegenangebot | — | deferred |
 | 39–41 | Heatmap · Karrierebogen · Saison-Album | — | deferred |
 | 42–45 | A11y-Audit · Sponsoren-Pyramide · Tunnel-Moment · Siegerehrung | — | deferred |
 

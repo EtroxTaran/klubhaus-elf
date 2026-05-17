@@ -681,3 +681,122 @@ export const TICKER_STATS: Array<{ key: string; a: number; b: number; mode: Stat
   { key: 'fouls', a: 11, b: 8, mode: 'count' },
   { key: 'xg', a: 1.2, b: 2.1, mode: 'xg' },
 ]
+
+export type PressTone = 'polite' | 'edgy' | 'sarcasm' | 'neutral'
+export type PressStakeholder = 'board' | 'fans' | 'sponsor' | 'brody'
+
+export interface PressAnswer {
+  tone: PressTone
+  text: string
+  predict: Array<{ who: PressStakeholder; d: number }>
+}
+
+export interface PressQuestion {
+  who: string
+  whoTag: string
+  q: string
+  answers: PressAnswer[]
+}
+
+/** Branching pre-match press conference — scripted scenario (mock domain). */
+export const PRESS_CONFERENCE: PressQuestion[] = [
+  {
+    who: 'Auerbach-Zeitung',
+    whoTag: 'Hauptblatt',
+    q: 'Hafenstadt zwei Punkte hinter Riverdale. Was sagen Sie zum Titelrennen?',
+    answers: [
+      {
+        tone: 'polite',
+        text: 'Wir konzentrieren uns auf das nächste Spiel.',
+        predict: [
+          { who: 'board', d: 0 },
+          { who: 'fans', d: -1 },
+          { who: 'sponsor', d: 0 },
+        ],
+      },
+      {
+        tone: 'edgy',
+        text: 'Wir holen Riverdale. Punkt.',
+        predict: [
+          { who: 'board', d: 1 },
+          { who: 'fans', d: 2 },
+          { who: 'sponsor', d: 1 },
+        ],
+      },
+      {
+        tone: 'sarcasm',
+        text: 'Die Tabelle interessiert nur Statistiker.',
+        predict: [
+          { who: 'board', d: -1 },
+          { who: 'fans', d: 0 },
+          { who: 'sponsor', d: -1 },
+        ],
+      },
+    ],
+  },
+  {
+    who: 'Sport-Echo',
+    whoTag: 'Sportblatt',
+    q: 'Brody wird mit Riverdale in Verbindung gebracht. Bestätigen Sie das?',
+    answers: [
+      {
+        tone: 'polite',
+        text: 'Marek bleibt bis 2027 — Punkt.',
+        predict: [
+          { who: 'board', d: 0 },
+          { who: 'brody', d: 1 },
+          { who: 'fans', d: 1 },
+        ],
+      },
+      {
+        tone: 'neutral',
+        text: 'Ich kommentiere keine Gerüchte.',
+        predict: [
+          { who: 'board', d: 0 },
+          { who: 'brody', d: 0 },
+          { who: 'fans', d: 0 },
+        ],
+      },
+      {
+        tone: 'edgy',
+        text: 'Wer ihn will, soll zahlen.',
+        predict: [
+          { who: 'board', d: -1 },
+          { who: 'brody', d: -2 },
+          { who: 'fans', d: -1 },
+        ],
+      },
+    ],
+  },
+  {
+    who: 'Tageskurier',
+    whoTag: 'Boulevard',
+    q: 'Das Klubhotel macht Verluste. Hat sich der Vorstand verkalkuliert?',
+    answers: [
+      {
+        tone: 'polite',
+        text: 'Das ist Sache des Aufsichtsrats.',
+        predict: [
+          { who: 'board', d: 1 },
+          { who: 'fans', d: 0 },
+        ],
+      },
+      {
+        tone: 'polite',
+        text: 'Der Plan ist langfristig — geben Sie ihm Zeit.',
+        predict: [
+          { who: 'board', d: 2 },
+          { who: 'fans', d: 0 },
+        ],
+      },
+      {
+        tone: 'edgy',
+        text: 'Hätten Sie das Geld besser in Spieler gesteckt?',
+        predict: [
+          { who: 'board', d: -2 },
+          { who: 'fans', d: 2 },
+        ],
+      },
+    ],
+  },
+]
