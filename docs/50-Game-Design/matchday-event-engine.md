@@ -1,26 +1,33 @@
 ---
 title: Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prevention
-status: draft
+status: approved
 tags: [game-design, events, matchday, weather, sanctions]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
-binding: false
-related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[fan-ecology]], [[rivalry-system]], [[stadium-and-campus]], [[regulations-and-compliance]]
+binding: true
+related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[fan-ecology]], [[rivalry-system]], [[stadium-and-campus]], [[regulations-and-compliance]]
 ---
 
 # Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prevention
 
+> Approved by the systemic events / player lifecycle pass (2026-05-17).
+> Match-day events are part of the wider systemic event architecture, but
+> their rules remain owned by the relevant domains.
+
 Match-day events ("the beer line froze", "a fan collapsed", "the catering
-ran out") are **rule-based**, not random. Each event has a trigger, a
-probability, an effect and a prevention path. The point is to turn flavour
-into management.
+ran out") are **rule-based and deterministic given the same inputs + seed**.
+Each event has a trigger, a conditional probability, an effect and a
+prevention path. The point is to turn flavour into management.
 
 ## 1. Product rule
 
 > **Every match-day event is defined by four fields: Trigger,
 > Probability, Effect, Prevention. The Match-day Event Engine evaluates
 > the active rule set before, during and after each match.**
+
+The wider `WorldEventDirector` may schedule the match-day evaluation window,
+but it does not own these rules or their state changes.
 
 ## 2. Event categories
 
@@ -144,6 +151,18 @@ Events feed into other systems, not just inbox cards:
 - Medical events ↔ [[training-load-and-medicine]] injury record.
 - Fan events ↔ [[fan-ecology]] segment mood.
 - Media events ↔ [[club-dna-and-governance]] media image.
+- Pitch and venue conflicts ↔ [[stadium-and-campus]] venue calendar,
+  pitch wear and setup/teardown windows.
+
+Domain ownership:
+
+| Event source | Owner |
+|---|---|
+| Stadium, catering, sponsor and fan effects | Club Management |
+| Fixture phase and match interruption facts | Match + League Orchestration |
+| Injuries/availability | Squad & Player after Match/Training facts |
+| Sanctions | Regulations/compliance policy under Club/League |
+| User-facing cards | Notification/Narrative projection |
 
 ## 8. UI tiers
 
@@ -158,6 +177,17 @@ Events feed into other systems, not just inbox cards:
 Events live in `packages/game-data/events/` as YAML files. Community
 packs ([[community-editor-and-datasets]]) can add or override events with
 a manifest declaring their replacement scope.
+
+Authoring rules:
+
+- event IDs are stable;
+- triggers must name their required state inputs;
+- probability is conditional on eligibility, not global randomness;
+- every effect names the owning context;
+- every prevention action must be surfaced as a management decision,
+  facility upgrade or policy;
+- narrative copy references [[../60-Research/narrative-content-pipeline]]
+  event families and never creates facts not present in the event payload.
 
 ## 10. Open questions
 

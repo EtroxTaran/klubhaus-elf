@@ -3,10 +3,10 @@ title: Economy System - Cash-flow, Budgets and KPIs
 status: draft
 tags: [game-design, economy, finance]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[sponsorship-portfolio]], [[stadium-and-campus]], [[mode-create-a-club-roguelite]]
+related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/transfer-market-simulation]], [[sponsorship-portfolio]], [[stadium-and-campus]], [[transfer-market-and-contracts]], [[mode-create-a-club-roguelite]]
 ---
 
 # Economy System - Cash-flow, Budgets and KPIs
@@ -44,6 +44,9 @@ flowchart LR
 
 Important rule: **Transfer budget ≠ cash.** The board may release a budget
 that the club can only spend if liquidity allows or extra credit is taken.
+Transfer packages therefore affect both immediate liquidity and future
+liabilities: instalments, bonuses, wage subsidies and sell-on obligations must
+flow into cash-flow projections.
 
 ## 2. Revenue taxonomy
 
@@ -118,7 +121,29 @@ The roguelite "death spiral" runs *through* this system:
 
 The drama is built into the cascade.
 
-## 7. UI surfaces
+## 7. Transfer-Market Finance Rules
+
+Transfer finance uses the model in [[transfer-market-and-contracts]]:
+
+- `cashEquivalent` compares complex offers, but accounting still stores each
+  component separately.
+- Upfront fees reduce liquidity immediately.
+- Instalments become dated liabilities.
+- Performance bonuses are probability-weighted for planning and become hard
+  liabilities when triggered.
+- Sell-on / profit-share clauses reduce expected net proceeds on future sales.
+- Loan wage-share and wage-contribution terms affect monthly wage outflow.
+- Forced sales can repair liquidity, but they damage squad value, fan sentiment
+  and board trust unless the context clearly justifies them.
+
+Board / owner pressure can set transfer directives:
+
+- raise cash by selling one high-value player;
+- cut wage ratio by moving top earners;
+- protect academy assets unless an offer includes sell-on / buy-back upside;
+- block long instalment chains when liquidity is urgent.
+
+## 8. UI surfaces
 
 Per progressive disclosure ([[progressive-disclosure-ui]]):
 
@@ -126,7 +151,7 @@ Per progressive disclosure ([[progressive-disclosure-ui]]):
 - **Standard**: KPI summary screen with the 8 KPIs.
 - **Expert**: Full P&L, cash-flow projection, contract liability schedule.
 
-## 8. Open questions
+## 9. Open questions
 
 - Should currency be fictional (e.g. "credits") or per-country real
   currency in fictional clubs? Recommendation: per-country fictional

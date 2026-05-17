@@ -1,12 +1,12 @@
 ---
 title: Youth Academy and Player Development
-status: draft
+status: approved
 tags: [game-design, youth, development, academy]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
-binding: false
-related: [[README]], [[squad-and-club-structure]], [[training-load-and-medicine]], [[scouting-and-recruitment]]
+binding: true
+related: [[README]], [[squad-and-club-structure]], [[training-load-and-medicine]], [[scouting-and-recruitment]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Youth Academy and Player Development
@@ -15,23 +15,35 @@ Player development is the slowest-moving system and the most rewarding one
 when it works. Modelled as a *portfolio* - not every cohort delivers, but
 infrastructure improves the odds.
 
-## 1. Player hidden values
+> Approved by the systemic events / player lifecycle pass (2026-05-17).
+> Implement from this note together with [[../60-Research/data-generators]]
+> and [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]].
+
+## 1. Player hidden values and uncertainty
 
 Each player carries (visible to varying degrees):
 
 - **Current Ability (CA)** - present strength.
-- **Potential Ability (PA)** - stored as a **range** (e.g. 75-85), not a
-  single value. Only revealed gradually by scouts + coaches.
-- **Learning ability** - how fast attributes can move.
-- **Professionalism** - effort + training quality multiplier.
-- **Ambition** - propensity to want bigger stages.
-- **Resilience** - injury recovery + setback bounce-back.
-- **Injury proneness**.
-- **Positional understanding**.
-- **Game intelligence**.
+- **Potential** - stored internally as a deterministic underlying value /
+  curve seed, exposed to the player as a scouting/coaching **range**.
+- **Eight hidden meta attributes** from [[../60-Research/data-generators]]:
+  `potential`, `consistency`, `pressure`, `professionalism`,
+  `determination`, `adaptability`, `injury_proneness`, `big_matches`.
 
-The PA range, learning ability, professionalism and injury proneness are
-the four hidden values that scouts gradually estimate.
+The following are **derived labels**, not extra MVP hidden attributes:
+
+| Label | Derived from |
+|---|---|
+| Learning ability | potential, age phase, professionalism, coach fit |
+| Ambition | determination, adaptability, contract pressure, career context |
+| Resilience | injury proneness, pressure, medical quality, morale |
+| Leadership | mental attributes, age, squad status, captaincy history |
+| Positional understanding | role fit, tactical familiarity, mental attributes |
+| Game intelligence | visible mental attributes + role/tactic performance data |
+
+Scouts gradually narrow the public PA range and improve confidence in
+personality labels. The true underlying value does not change just because
+the player learns more about it.
 
 ## 2. Development levers
 
@@ -110,16 +122,24 @@ of role or with too little intensity.
 Weekly:
 
 ```text
-growth = base_potential_step
+growth = base_progression
+       * age_phase_factor
        * training_quality_factor
        * coach_specialisation_factor
        * minutes_factor
+       * role_fit_factor
        * morale_factor
-       * personality_multiplier   # professionalism + ambition
-       * age_curve_factor
+       * health_factor
+       * personality_factor
+       + bounded_noise
 ```
 
-`base_potential_step` is sampled from the PA-range distribution.
+`bounded_noise` is small and seeded. Visible causes must dominate random
+variation so development feels fair.
+
+Development output emits explanation tags for UI and narrative:
+`training_focus`, `match_minutes`, `role_mismatch`, `injury_rehab`,
+`morale_low`, `mentor_influence`, `loan_context`.
 
 ## 8. UI tiers
 
@@ -131,11 +151,32 @@ growth = base_potential_step
 
 ## 9. Mentoring sub-system
 
-A senior leadership-group player can mentor up to 2 young players. Effects:
+A senior leadership-group player can mentor up to 2 young players. Compact
+groups are preferred: 1 mentor + 1-2 mentees, or a 3-4 player group with
+one dominant positive influence.
 
-- Personality transfer (e.g. mercenary mentor → mercenary protégé).
+Mentor suitability comes from:
+
+- squad status and age;
+- leadership/captaincy standing;
+- personality label;
+- shared language/culture;
+- training attendance;
+- relationship context.
+
+Effects:
+
+- Slow movement of hidden/meta tendencies such as professionalism,
+  determination, pressure handling and adaptability.
+- Personality-label transfer (e.g. mercenary mentor → mercenary protégé)
+  as an emergent outcome, not an instant tag copy.
 - Faster integration.
 - Reduced morale shocks.
+- Optional player-tendency transfer when the football role context matches.
+
+Conflicts are allowed: a demanding mentor can improve professionalism while
+hurting morale or temperament. Caps and diminishing returns prevent a
+solvable "perfect mentoring tree".
 
 Mentoring pairs are surfaced as suggested cards; player can override.
 

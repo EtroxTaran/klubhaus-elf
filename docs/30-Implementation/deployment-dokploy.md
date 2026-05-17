@@ -54,6 +54,10 @@ Planned runtime additions from accepted ADRs:
 - `redis`: Redis Streams fan-out buffer for ADR-0013.
 - `outbox-publisher`: SurrealDB outbox to Redis Streams worker.
 - `scheduler`: countdowns, retries and maintenance jobs.
+- `match-worker`: extracted server-authoritative match simulation worker
+  when load justifies it. MVP can run match simulation inside the app
+  runtime; a future Rust worker is gated by
+  [[../60-Research/match-engine-runtime-strategy]].
 
 All runtime services write structured JSON logs to stdout/stderr once
 logging implementation begins.

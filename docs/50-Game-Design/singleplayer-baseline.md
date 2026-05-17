@@ -3,10 +3,10 @@ title: Singleplayer Baseline
 status: approved
 tags: [game-design, mode, singleplayer, baseline]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/mode-design-research]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]], [[async-multiplayer-private-group]]
+related: [[README]], [[../60-Research/mode-design-research]], [[../60-Research/match-engine-runtime-strategy]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]], [[match-engine]], [[async-multiplayer-private-group]]
 ---
 
 # Singleplayer Baseline
@@ -71,12 +71,18 @@ Per [[../10-Architecture/09-Decisions/ADR-0005-save-format]]:
 
 ## 6. Compute model
 
-Per [[../10-Architecture/09-Decisions/ADR-0002-offline-first]] and
-[[../60-Research/research-wave-2-gaps]] R2-09:
+Per [[../10-Architecture/09-Decisions/ADR-0002-offline-first]],
+[[match-engine]] and [[../60-Research/match-engine-runtime-strategy]]:
 
 - Match engine runs in a Web Worker.
 - League AI tick runs in batch in background.
 - UI thread never blocks on simulation.
+- The active human match uses `interactive-standard` or `competitive-full`
+  quality depending on device tier and settings.
+- Background fixtures use `background-detailed` or `background-fast`; a full
+  matchday never simulates every fixture at the deepest profile.
+- Singleplayer remains local-authoritative. Server-side match workers and Rust
+  extraction are multiplayer/server concerns, not required for offline play.
 
 ## 7. Time and pacing
 

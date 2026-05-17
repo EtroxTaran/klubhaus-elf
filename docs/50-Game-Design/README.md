@@ -3,7 +3,7 @@ title: Game Design Hub
 status: current
 tags: [game-design, index]
 created: 2026-05-15
-updated: 2026-05-16
+updated: 2026-05-17
 type: index
 binding: false
 related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]]
@@ -38,6 +38,7 @@ transcripts in [[../60-Research/raw-perplexity/README]].
 
 - [[squad-and-club-structure]] - sporting org roles + squad design dimensions.
 - [[scouting-and-recruitment]] - recruitment funnel + scout attributes + market dynamics.
+- [[transfer-market-and-contracts]] - AI club selling, valuation bands, clause packages, player terms and tiered market simulation.
 - [[youth-academy-and-development]] - CA/PA range, age curves, loan rules.
 - [[training-load-and-medicine]] - training blocks, load model, medical pipeline.
 
@@ -66,6 +67,7 @@ transcripts in [[../60-Research/raw-perplexity/README]].
 ## UX
 
 - [[progressive-disclosure-ui]] - 3-tier UX (Quick / Standard / Expert).
+- [[../60-Research/player-strength-presentation]] - Impact Lens player-strength model; no global OVR.
 
 ## Status legend
 

@@ -1,37 +1,30 @@
 ---
 title: Obsidian Config
-status: current
+status: draft
 tags: [meta]
-created: 2026-05-15
-updated: 2026-05-16
-type: configuration
-binding: true
+updated: 2026-05-17
 ---
 
 # Obsidian Config
 
-Use the `docs/` directory as the Obsidian vault. The vault must also stay useful
-as plain Markdown and in webview-style renderers.
+Use the `docs/` directory as the vault. Keep private plugins and local workspace
+state out of Git.
 
-## Shared Config
+## Viewing the vault
 
-- Commit only minimal, safe Obsidian configuration.
-- Keep private plugins, workspace state, local cache, API keys, and local REST
-  tokens out of Git.
-- Do not require Dataview, Local REST API, or any plugin to reveal critical
-  current-state context.
+### Option A — Obsidian desktop app
 
-## Navigation
+1. Open Obsidian.
+2. "Open folder as vault" → select this repository's `docs/` directory.
+3. `docs/.obsidian/app.json` is auto-detected. No build step. Start at
+   `00-Index/Home.md`.
 
-- Start at [[../00-Index/Home]].
-- Agents start at [[../00-Index/Agent-Onboarding]].
-- Current project guidance lives at [[../00-Index/Current-State]].
-- Maps should use readable headings, short summaries, and explicit outgoing links.
+### Option B — Browser preview (no Obsidian required)
 
-## Optional Local Enhancements
+```bash
+pnpm docs:preview
+```
 
-- Dataview may be used locally for status and tag queries.
-- Obsidian Local REST API may be used locally for authenticated vault search,
-  active-file access, and heading/frontmatter patching.
-- These tools are access layers only; the canonical content remains Markdown in
-  `docs/`.
+Serves the vault at <http://localhost:8080> via Quartz v4 (wikilinks,
+frontmatter and graph view supported). First run clones Quartz into a
+gitignored, vendored checkout; details in `tools/docs-preview/README.md`.

@@ -3,10 +3,10 @@ title: SurrealDB Schema Patterns - Locked Decisions
 status: current
 tags: [research, surrealdb, schema, data-model, persistence, wave-3]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: research
 binding: true
-related: [[research-wave-2-gaps]], [[wave-3-gap-analysis]], [[determinism-and-replay]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/bounded-context-map]], [[../30-Implementation/surrealdb-integration]]
+related: [[research-wave-2-gaps]], [[wave-3-gap-analysis]], [[determinism-and-replay]], [[player-strength-presentation]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/bounded-context-map]], [[../30-Implementation/surrealdb-integration]]
 ---
 
 # SurrealDB Schema Patterns - Locked Decisions
@@ -451,7 +451,17 @@ fan_segment_state# club, segment, population, mood, loyalty
 player          # SCHEMAFULL; CA, PA range, traits, contract embed
 injury          # linked rows (player.injury)
 contract        # embedded inside player
+impact_lens_projection
+                # SCHEMAFULL read model; player + club + tactic + role context,
+                # integer Role Impact, category scores, status signals,
+                # scouting confidence, explanation drivers
 ```
+
+`impact_lens_projection` is owned by Squad & Player. Inputs from tactics,
+training, match and scouting arrive through public query contracts, published
+facts or denormalised projection inputs; there is no cross-context JOIN. The
+same read shape may be cached in Dexie for offline UI and refreshed by Live
+Query invalidation when online.
 
 ### Training (`per_save`)
 

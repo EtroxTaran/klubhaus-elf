@@ -263,7 +263,7 @@ shipped core data.
 - **D15 Narrative content**: club / manager bios use the same RNG
   stream with `:narrative:*` labels.
 - **Phase 2 locale rollout** (Tier 2 buckets) post-MVP.
-- **Server-side world genesis** (per ADR-0010 §service extraction):
+- **Server-side world genesis** (per ADR-0019 §service extraction):
   hot-seat-to-async-MP promotion (per ADR-0011) can re-generate the
   same world server-side from the master seed.
 

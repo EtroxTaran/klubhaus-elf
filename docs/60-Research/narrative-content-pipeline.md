@@ -14,7 +14,7 @@ related: [[onboarding-strategy]], [[late-game-systems]], [[ai-manager-behaviour]
 > Gap D15 of [[wave-3-gap-analysis]]. Locks the narrative authoring
 > pipeline for an offline-first PWA football manager: Markdown +
 > frontmatter source → compiled locale-split JSON catalogues + typed
-> TS message IDs; FormatJS / `intl-messageformat` for ICU; ~50
+> TS message IDs; FormatJS / `intl-messageformat` for ICU; 106
 > event families across 10 groups; 6 story arc state machines;
 > 5-tone press conferences; auto-generated Anstoss-style newspaper;
 > multi-layer voice consistency with per-sender cards + per-AI-
@@ -64,7 +64,7 @@ top of locked foundations:
 - **ADR-0007 Naming Schema**: all names fictional + IP-clean.
 
 This note adds: full authoring pipeline (Markdown source → JSON
-catalogs + TS types), ICU MessageFormat patterns, ~50 event family
+catalogs + TS types), ICU MessageFormat patterns, 106 event family
 taxonomy across 10 groups, 6 story arc state machines, 5-tone press
 conferences with cumulative effects, newspaper generation algorithm
 (weekly / monthly / season / decade), multi-layer voice consistency
@@ -101,7 +101,7 @@ with deterministic output.
 
 | # | Technique | Source | Adoption |
 |---:|---|---|---|
-| 1 | **Tagged event-family system** | FM "story engine" FM23+ | §5 — ~50 stable IDs across 10 groups |
+| 1 | **Tagged event-family system** | FM "story engine" FM23+ | §5 — 106 stable IDs across 10 groups |
 | 2 | **Template-based newspaper with stat slots** | Anstoss 3 Zeitung | §9 — auto-generated weekly + monthly + season + decade |
 | 3 | **Cast of senders (Assistant + Chairman + DoF + ...)** | Club Boss inbox | D5 locked; D15 expands |
 | 4 | **Storylet model with quality gates** | Failbetter Games | §6 — context flags + variant selection |
@@ -126,7 +126,7 @@ Where we differ from every competitor:
   ("Chairman never uses contractions"); no competitor lints
   narrative voice consistency in CI.
 - **Per-AI-archetype reaction patterns mapped from D4**: 10
-  archetypes × ~50 event families × 3-7 tones = ~1500 reaction-
+  archetypes × 106 event families × 3-7 tones = ~1500-2000 reaction-
   context slots; FM implicit, we make explicit + tuneable.
 - **Anstoss-style personal life events as toggleable flavour layer**:
   most competitors hardcode this or omit; we make it on/reduced/off-
@@ -516,10 +516,11 @@ PR fails on:
 
 ## 5. Event family taxonomy
 
-Per D15 Q&A: full ~50 families across 10 groups at MVP (phased
+Per D15 Q&A and the systemic events pass: 106 families across 10
+groups at MVP (phased
 content authoring 80-120 templates → 250 → 500).
 
-### 5.1 Family list (50 IDs)
+### 5.1 Family list (106 IDs)
 
 Stable internal IDs (save-compatibility). Each family has 3-7
 reactive variants by tone + context.
@@ -560,15 +561,15 @@ reactive variants by tone + context.
 | `SQUAD_CONTRACT_RENEWAL_OFFERED` | extension started |
 | `SQUAD_CONTRACT_RENEWAL_REJECTED` | wage/role/loyalty conflict |
 | `SQUAD_CONTRACT_RENEWAL_ACCEPTED` | extension signed |
-| `SQUAD_PLAYER_PROMOTED_FROM_YOUTH` | first-team promotion |
+| `SQUAD_PLAYER_PROMOTED_FROM_YOUTH` | first-team promotion / development breakthrough |
 | `SQUAD_PLAYER_DEMOTED_OR_LISTED` | transfer list / reserves |
-| `SQUAD_NEW_CAPTAIN_APPOINTED` | captaincy assigned |
+| `SQUAD_NEW_CAPTAIN_APPOINTED` | captaincy or leadership/mentoring group changed |
 | `SQUAD_CAPTAINCY_STRIPPED` | captaincy removed |
 | `SQUAD_TRAINING_INJURY` | non-match injury |
 | `SQUAD_FORM_STREAK_PLAYER_HOT` | 5+ games good ratings/goals |
 | `SQUAD_FORM_STREAK_PLAYER_COLD` | slump; seeds Player Crisis arc |
 | `SQUAD_PLAYER_WANTAWAY` | wants move (5 sub-reasons) |
-| `SQUAD_LOCKER_ROOM_UNREST` | cliques / unhappy group |
+| `SQUAD_LOCKER_ROOM_UNREST` | cliques / unhappy group / mentoring conflict |
 | `SQUAD_RETURN_FROM_INJURY` | star returns |
 | `SQUAD_AWARD_PLAYER_OF_MONTH_OR_YEAR` | individual award |
 
@@ -589,8 +590,8 @@ reactive variants by tone + context.
 | `BOARD_ADMINISTRATION_ENTERED` | full admin |
 | `BOARD_NEW_SPONSOR_SIGNED` | revenue boost |
 | `BOARD_SPONSOR_LOST` | revenue hit |
-| `BOARD_STADIUM_EXPANSION_PROJECT` | per D6 year-X event |
-| `BOARD_INFRASTRUCTURE_UPGRADE` | training / youth facilities |
+| `BOARD_STADIUM_OR_VENUE_EVENT` | expansion project / non-matchday arena event / setup conflict |
+| `BOARD_INFRASTRUCTURE_UPGRADE` | training / youth / venue facilities |
 | `BOARD_TICKET_PRICE_CHANGE_OR_FAN_PROTEST` | optional fan story |
 
 #### 5.1.4 Tactical & training events (6)
@@ -687,6 +688,22 @@ Settings: `On (full)` / `Reduced (1 / in-game month)` / `Off (none)`.
 **Total**: 18 + 20 + 16 + 6 + 9 + 9 + 6 + 6 + 9 + 7 = 106 events.
 (Earlier counted as ~50 families but each group has more granularity
 than initially estimated; actual count locks at 106 stable IDs.)
+
+### 5.1.11 Systemic events mapping
+
+The systemic events pass does not add a separate "random event" taxonomy.
+It maps player lifecycle and venue facts onto the existing 106 families:
+
+| System fact | Event family |
+|---|---|
+| Weekly development breakthrough | `SQUAD_PLAYER_PROMOTED_FROM_YOUTH` when it changes squad status; otherwise low-priority `TRAINING_*` or report copy |
+| Development plateau / role mismatch | `SQUAD_FORM_STREAK_PLAYER_COLD`, `TRAINING_COMPLAINT_OR_PRAISE_INTENSITY` |
+| Mentoring influence or conflict | `SQUAD_NEW_CAPTAIN_APPOINTED`, `SQUAD_LOCKER_ROOM_UNREST`, `TRAINING_COMPLAINT_OR_PRAISE_INTENSITY` |
+| Training injury | `SQUAD_TRAINING_INJURY` |
+| Match injury | `MATCH_INJURY_KEY_PLAYER` |
+| Return from injury | `SQUAD_RETURN_FROM_INJURY` |
+| Venue booking / concert / conference | `BOARD_STADIUM_OR_VENUE_EVENT` |
+| Pitch condition from venue or weather | `BOARD_STADIUM_OR_VENUE_EVENT`, `MATCH_TEAM_SELECTION_DRAMA` when it affects availability |
 
 ### 5.2 Priority + frequency caps
 
@@ -868,7 +885,7 @@ Beats:
    archetype expectations)
 3. **Manager uncertainty** (CTAs: support / silent / hint at
    leaving; press conference + inbox)
-4. **Integration** (`BOARD_NEW_SPONSOR_*`, `BOARD_STADIUM_EXPANSION_*`,
+4. **Integration** (`BOARD_NEW_SPONSOR_*`, `BOARD_STADIUM_OR_VENUE_EVENT`,
    budget changes; archetype-specific)
 5. **Newspaper retrospective** ("End of an era" piece feeding D6
    archive)
@@ -1385,6 +1402,23 @@ deterministic** because:
 - Once committed, the same `.md` file produces the same compiled JSON
 - Build artifacts are reproducible from source
 
+### 13.5 Runtime AI research track
+
+Runtime AI-generated story text is not approved by this note or by
+[[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]].
+If investigated later, it needs a separate research/ADR pass covering:
+
+- deterministic replay and save compatibility;
+- offline-first behaviour and fallback copy;
+- moderation, IP and legal safety;
+- localization and voice consistency;
+- multiplayer consistency and server-side caching;
+- strict separation from simulation facts.
+
+Any future runtime AI output must be cosmetic-only. It must never create
+facts, change morale, alter transfers, influence injuries or modify any
+simulation state.
+
 ## 14. Determinism + RNG usage
 
 Per D8.
@@ -1480,7 +1514,7 @@ Per 50-year save: ~3-5 MB narrative data total; well within D9
 ### 15.3 Content authoring scale
 
 - MVP: 80-120 templates (per D5 estimate)
-- Phase 2: ~250 templates (extends to all 50+ event families)
+- Phase 2: ~250 templates (extends to the full 106 event-family surface)
 - Phase 3: ~500 templates (full personal life + decade retrospectives
   + reaction variants per archetype)
 
@@ -1582,7 +1616,7 @@ interface EventThrottleRecord {
   Anstoss 3 Zeitung + Club Boss + EA SPORTS FC Career + 80 Days
   (inkle) + Failbetter Games + Disco Elysium.
 - Perplexity Sonar research, 2026-05-17 (gap D15): event family
-  taxonomy (~50 families across 10 groups) with concrete trigger
+  taxonomy, later locked at 106 families across 10 groups, with concrete trigger
   conditions; priority + frequency caps; reactive variants with
   context flags (storylet model from Failbetter); 6 core story
   arcs (Transfer / Takeover / Player Crisis / Bankruptcy / Rivalry

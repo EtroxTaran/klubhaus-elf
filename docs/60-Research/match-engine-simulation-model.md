@@ -3,10 +3,10 @@ title: Match Engine Simulation Model - Locked Decisions
 status: current
 tags: [research, match-engine, simulation, markov, attributes, wave-3, binding]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: research
 binding: true
-related: [[research-wave-2-gaps]], [[wave-3-gap-analysis]], [[determinism-and-replay]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/state-machines/match]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/tactics-system]], [[../50-Game-Design/progressive-disclosure-ui]]
+related: [[research-wave-2-gaps]], [[wave-3-gap-analysis]], [[determinism-and-replay]], [[match-engine-runtime-strategy]], [[performance-budgets]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/state-machines/match]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/tactics-system]], [[../50-Game-Design/progressive-disclosure-ui]]
 ---
 
 # Match Engine Simulation Model - Locked Decisions
@@ -533,6 +533,37 @@ values are baked into the match's pre-match-setup snapshot per
 - AI vs AI batch simulation (no narrative output): **≤ 30 ms** per
   match (less event narrative work).
 
+### 6.1.1 Match quality profiles
+
+The simulation supports four output-depth profiles. Profiles change output
+volume and sampling frequency; they do not create separate football rules.
+
+| Profile | Event depth | Spatial samples | Default use |
+|---|---|---|---|
+| `competitive-full` | Full event taxonomy | Full lightweight sampling | Human-involving matches, watch-party fixtures, key competitive matches |
+| `interactive-standard` | Full event taxonomy | Reduced sampling | Active singleplayer match on capable devices |
+| `background-detailed` | Selected event categories + key stats | Sparse or on-demand | Important AI fixtures in active leagues |
+| `background-fast` | Summary-only macro outputs | None | Rest-world fixtures and large matchday batches |
+
+Determinism requirement: the selected profile is part of `MatchInputs` and
+therefore part of the replay/audit input set. Changing profile changes output
+depth, so it must be stored with the match record.
+
+### 6.1.2 Interactive chunking
+
+For non-interactive batch and replay paths, the engine may simulate the full
+match before playback. For human-interactive matches, the runtime may buffer
+future events in chunks and accept intervention commands at deterministic
+points:
+
+- dead balls and set pieces;
+- halftime and extra-time breaks;
+- injury/card/substitution stoppages;
+- tactical phase transitions.
+
+Past events are immutable. Interventions recompute team influence and future
+transition weights only from the intervention point forward.
+
 ### 6.2 Worker bridge contract
 
 ```ts
@@ -550,6 +581,7 @@ interface MatchWorkerBridge {
 interface MatchInputs {
   engine_version: string
   seeds: { coreSeed: number; aiSeed: number }
+  quality_profile: 'competitive-full' | 'interactive-standard' | 'background-detailed' | 'background-fast'
   home_lineup: Lineup
   away_lineup: Lineup
   home_tactic: TacticConfig

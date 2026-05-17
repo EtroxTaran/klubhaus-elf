@@ -3,10 +3,10 @@ title: Feature - Player-to-Player Transfer Negotiation
 status: draft
 tags: [feature, transfers, multiplayer, escalation]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/transfer-negotiations-p2p]], [[../10-Architecture/state-machines/transfer]]
+related: [[README]], [[feature-transfer-market-ai-and-contracts]], [[../50-Game-Design/transfer-market-and-contracts]], [[../50-Game-Design/transfer-negotiations-p2p]], [[../10-Architecture/state-machines/transfer]]
 ---
 
 # Feature - Player-to-Player Transfer Negotiation
@@ -61,6 +61,8 @@ non-response costly but never instantly catastrophic.
 
 ## Dependencies
 
+- [[feature-transfer-market-ai-and-contracts]]
+- [[../50-Game-Design/transfer-market-and-contracts]]
 - [[../10-Architecture/state-machines/transfer]]
 - [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
 - [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]

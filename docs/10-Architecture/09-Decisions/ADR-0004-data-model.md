@@ -7,7 +7,7 @@ updated: 2026-05-16
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[ADR-0010-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[../bounded-context-map]], [[../../60-Research/surrealdb-schema-patterns]], [[../../60-Research/determinism-and-replay]]
+related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[../bounded-context-map]], [[../../60-Research/surrealdb-schema-patterns]], [[../../60-Research/determinism-and-replay]]
 ---
 
 # ADR-0004: Data Model — Domain Entities, Schemas, Saves
@@ -19,7 +19,7 @@ Accepted (2026-05-16, gap A4 of [[../../60-Research/wave-3-gap-analysis]]).
 ## Context
 
 `soccer-manager` is an offline-first PWA with eleven DDD bounded
-contexts (ADR-0010), server-authoritative multiplayer (ADR-0011),
+contexts (ADR-0019), server-authoritative multiplayer (ADR-0011),
 deterministic match simulation (D8 research), a transactional outbox
 (ADR-0013), encrypted saves (B2), and IP-clean fictional content
 (ADR-0007). Wave-1 ADR-0004 was a 12-line stub. Wave-3 gap **D14**
@@ -248,7 +248,7 @@ ADR addendum or successor ADR. MVP does NOT ship cloud sync.
 
 ### 8. Multi-context coordination
 
-Per ADR-0010 §6 strict storage isolation: no JOIN across context
+Per ADR-0019 §6 strict storage isolation: no JOIN across context
 boundaries; no shared lookup tables that bypass the rule. Cross-context
 reads happen via the public `queryGateway` (per D14 §6) of the owning
 context, not by querying its tables directly.
@@ -289,7 +289,7 @@ table trap (which makes cross-pool queries painful).
 - Schema stays consistent across DB, Zod, and TS via the single
   generator source.
 - Service-extraction-ready: every context's storage is isolated from
-  every other context (per ADR-0010).
+  every other context (per ADR-0019).
 - Deterministic match replay is straightforward: every save persists
   its full RNG state per D8.
 - Encrypted at rest by default (per B2): tamper-resistant saves +
@@ -329,7 +329,7 @@ and every command handler / projection updater:
   production code.
 - Migrations MUST be forward-only and idempotent (`IF NOT EXISTS`).
 - Cross-context table access MUST go through the owning context's
-  `queryGateway` (per ADR-0010 §6).
+  `queryGateway` (per ADR-0019 §6).
 - Saves MUST be encrypted on disk and in export envelopes (per B2).
 - Money / probabilities / attributes MUST use integers / basis-points
   (per D8 §4).

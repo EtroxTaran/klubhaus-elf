@@ -3,7 +3,7 @@ title: Set Pieces - Corners, Free Kicks, Penalties, Throw-ins
 status: draft
 tags: [game-design, tactics, set-pieces]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
 binding: false
 related: [[README]], [[tactics-system]], [[match-engine]], [[squad-and-club-structure]], [[../60-Research/tactics-and-formations]]
@@ -41,7 +41,7 @@ Variants per module: 3 default + N user-defined.
 
 ## 3. Set-piece attributes
 
-| Area | Sample attributes (1-10) |
+| Area | Sample attributes (1-20 canonical scale) |
 |---|---|
 | **Execution** | Crossing, shot technique, composure, decisions |
 | **Target** | Timing, heading, jumping, bravery |

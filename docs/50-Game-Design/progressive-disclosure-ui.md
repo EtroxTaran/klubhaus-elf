@@ -3,10 +3,10 @@ title: Progressive Disclosure UI - Three Tier Model (Quick / Standard / Expert)
 status: approved
 tags: [game-design, ux, progressive-disclosure, tactics, casual, expert]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/tactics-and-formations]], [[../60-Research/onboarding-strategy]], [[tactics-system]], [[onboarding-and-tutorial]], [[match-engine]]
+related: [[README]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/tactics-and-formations]], [[../60-Research/onboarding-strategy]], [[../60-Research/player-strength-presentation]], [[tactics-system]], [[onboarding-and-tutorial]], [[match-engine]]
 ---
 
 # Progressive Disclosure UI - Three Tier Model (Quick / Standard / Expert)
@@ -38,7 +38,7 @@ allowed without changing the global preference.
 
 | Area | Quick | Standard | Expert |
 |---|---|---|---|
-| Player view | Star rating (1-5) | Star + role-fit % + 3 trend arrows | Full 1-10 attribute grid (toggleable 1-20) |
+| Player view | Qualitative Impact band + availability warnings | Role Impact + category bars + status icons | Full 1-20 attribute grid + Impact formula breakdown |
 | Tactic | Preset + auto-pick | Roles + duties + mentality slider + pressing | Full Position+Role+Duty+Instructions+Traits editor |
 | Set pieces | Auto | 3 default variants | Full editor |
 | Training | Auto-coach toggle | Block grid + intensity slider | Per-player schedule + load forecast |
@@ -62,6 +62,22 @@ A single button "Auto-Coach" that proposes:
 The Auto-Coach **proposes only** - it never overwrites manual choices.
 This guarantee is critical: a player switching tiers mid-season must not
 have their tactical work silently overwritten.
+
+## 4.1 Player strength rule
+
+Per [[../60-Research/player-strength-presentation]], player strength is
+Impact-first and context-aware. The UI MUST NOT expose a global OVR or
+universal star rating as the canonical player-strength value.
+
+- **Quick** uses assistant-ranked lists, qualitative Impact bands and
+  availability warnings.
+- **Standard** shows Role Impact, Technical / Mental / Physical / GK category
+  bars and short-term status icons.
+- **Expert** exposes the full 1-20 visible attribute grid, role-weight drivers
+  and scouting uncertainty bands where applicable.
+
+Every ranked recommendation must have a role / tactic context. Match ratings in
+reports are separate performance outputs, not player-strength OVR.
 
 ## 5. Daily prompt list
 

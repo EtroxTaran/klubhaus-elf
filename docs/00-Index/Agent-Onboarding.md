@@ -2,41 +2,51 @@
 title: Agent Onboarding
 status: current
 tags: [meta, agents, vault]
-created: 2026-05-16
-updated: 2026-05-16
+created: 2026-05-17
+updated: 2026-05-17
 type: index
 binding: true
-related: [[Home]], [[Current-State]], [[../90-Meta/agent-memory-protocol]]
+related: [[../90-Meta/agent-memory-protocol]]
 ---
 
 # Agent Onboarding
 
-Start here when an agent needs project context.
+First read for every agent (Claude Code, Cursor local, Cursor Cloud, Bugbot).
+The vault (`docs/`) is durable project memory. `AGENTS.md` / `CLAUDE.md` and the
+`.cursor/rules` are orchestrators only — durable context lives in vault notes.
 
-## Required Entry Chain
+## Read in this order
 
-1. Read [Home](Home.md) for the vault map.
-2. Read [Current State](Current-State.md) for active guidance.
-3. Read [../90-Meta/agent-memory-protocol.md](../90-Meta/agent-memory-protocol.md).
-4. Read [../90-Meta/vault-governance.md](../90-Meta/vault-governance.md).
-5. Read the map for the area you are changing.
+1. This note.
+2. [[Current-State]] — what is being built, stable, blocked, open questions.
+3. Relevant maps from [[Home]] (Glossary, Decision-Log, Architecture).
+4. `accepted` ADRs and `approved` game design / feature specs for the task.
+5. The linked Linear issue when one exists.
+6. The latest note under [[../40-Execution/session-handoffs/README|session-handoffs]]
+   if the work continues a prior thread.
 
-## Binding Context
+## Memory classes
 
-- Architecture changes require accepted ADR context from [Decision Log](Decision-Log.md).
-- Gameplay and product changes require approved game design or feature notes.
-- Implementation work should read the relevant implementation note and tests.
-- User docs are player-facing output, not implementation authority.
+- **Cold** — durable, rarely changes, often referenced: `accepted` ADRs,
+  `10-Architecture/**`, `00-Index/Vision`, `Glossary`, approved design notes.
+- **Warm** — changes regularly: [[Current-State]], active feature specs,
+  module notes, open questions.
+- **Hot** — changes every session: `40-Execution/session-handoffs/*`, the
+  linked Linear issue, current branch context.
 
-## Do Not Use
+Load the minimum depth the task needs. Never "read the whole vault".
 
-- `superseded` notes for implementation guidance.
-- old `.cursor/plans/` files as current authority unless the user explicitly says so.
-- `docs/90-Meta/github-issue-suite/` issue mirrors as active task state.
-- chat history as durable project memory.
+## Non-negotiables
 
-## Handoff
+- Prefer `current`, `accepted`, `approved` notes. Never implement from `draft`,
+  `superseded`, `archived`, old plans, issue mirrors, or chat history.
+- One canonical location per fact. Do not duplicate vault content into
+  `AGENTS.md`, `CLAUDE.md`, rules, or README.
+- Update the vault in the **same PR** when work changes architecture, scope,
+  gameplay, operations, or user-facing behavior.
+- On approach change: supersede, do not silently overwrite (see
+  [[../90-Meta/vault-governance]]).
+- End substantial sessions with a handoff note and a [[Current-State]] update.
 
-For substantial work, write or update a note in
-[../90-Meta/session-handoffs/](../90-Meta/session-handoffs/) and promote durable
-decisions into current vault notes.
+Full rules: [[../90-Meta/agent-memory-protocol]] and
+[[../90-Meta/vault-governance]].

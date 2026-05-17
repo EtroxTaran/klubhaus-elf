@@ -1,15 +1,19 @@
 ---
 title: Training, Load and Medicine
-status: draft
+status: approved
 tags: [game-design, training, load, medical]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
-binding: false
-related: [[README]], [[youth-academy-and-development]], [[tactics-system]], [[match-engine]]
+binding: true
+related: [[README]], [[../60-Research/player-strength-presentation]], [[youth-academy-and-development]], [[tactics-system]], [[match-engine]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Training, Load and Medicine
+
+> Approved by the systemic events / player lifecycle pass (2026-05-17).
+> This note uses a multifactor risk model. Do not implement injuries from
+> one magic workload threshold.
 
 Training links short-term match form with long-term development. The
 research stresses that training should not just "+1 attribute" - it should
@@ -38,16 +42,22 @@ Load comes from:
 
 - Match minutes.
 - Training intensity.
+- Training block type.
 - Travel time (long away trips ↑).
 - Weather (heat / cold ↑).
+- Pitch/surface quality.
+- Role demands (pressing, sprint exposure, duel volume).
 - Fitness state (poor fitness ↑ load per same activity).
 - Medical history (chronic risk ↑).
 
 Outputs:
 
 - **Fatigue** - decays naturally with rest.
-- **Injury risk** - rises non-linearly with load.
+- **Readiness** - short-term availability estimate for match and training.
+- **Injury risk** - rises non-linearly with load, recurrence and context.
 - **Form** - peaks at moderate load.
+- **Sharpness** - rises with appropriate match exposure and falls with long
+  absence.
 
 High intensity briefly ↑ pressing and fitness but ↑ injury + form risk.
 This makes rotation a real resource-management decision across the season.
@@ -67,6 +77,22 @@ injury_risk = base_injury_risk
             + fatigue_amplifier(fatigue_state)
 ```
 
+This is a UI-friendly simplification. The simulation tracks risk channels
+rather than a single threshold:
+
+| Channel | Typical source |
+|---|---|
+| Training exposure | block type, intensity, surface, weather |
+| Match exposure | minutes, sprint load, contact, role demand |
+| Overuse | acute load versus chronic baseline, monotony, poor recovery |
+| Recurrence | body-part history, recent return, rehab quality |
+| Contact | duels, fouls, collisions |
+| Illness/minor availability | travel, fatigue, seasonal/weather context |
+
+External workload research supports load spikes as a signal, but the
+evidence for universal thresholds is mixed. The game therefore exposes
+staff risk bands and causes, not one exact predictor.
+
 ## 4. Medical and sport science
 
 A medical centre with high tier delivers three benefits:
@@ -82,13 +108,24 @@ develop juniors more stably.
 
 | Injury class | Typical duration | Recovery |
 |---|---|---|
-| Minor knock | 1-7 days | Light training |
-| Sprain / pull | 1-3 weeks | Rehab |
-| Tear | 1-3 months | Rehab + medical centre tier |
-| Severe (ACL etc.) | 6-12 months | Specialist + risk of recurrence |
-| Chronic flag | indefinite | Permanent injury_proneness ↑ |
+| Niggle | 0-3 days | monitor / reduced load |
+| Minor knock | 1-14 days | light training |
+| Sprain / pull | 1-8 weeks | rehab |
+| Tear | 2-6 months | rehab + medical centre tier |
+| Season-threatening | 6+ months | specialist + recurrence risk |
+| Chronic flag | indefinite | permanent `injury_proneness` ↑ possible |
 
 Medical centre tier reduces durations 10-25 %.
+
+Pipeline:
+
+1. Training and Match emit load/contact/readiness signals.
+2. Squad & Player owns the injury profile and persisted injury record.
+3. Risk windows open only during eligible activities.
+4. Injury occurrence and severity are separate deterministic draws.
+5. `TrainingInjuryOccurred`, `MatchInjuryOccurred`,
+   `PlayerAvailabilityChanged` and `PlayerReturnedFromInjury` feed
+   Notification/Narrative.
 
 ## 6. Tactical familiarity
 
@@ -116,13 +153,28 @@ team-shape correctness.
 | Standard | Block grid per week, intensity slider, recovery toggle |
 | Expert | Per-player schedule, individual focus targets, load forecast |
 
-## 8. Coach role-fit
+## 8. Impact Lens status signals
+
+Training owns or contributes the short-term availability facts consumed by
+[[../60-Research/player-strength-presentation]]:
+
+- fatigue,
+- fitness,
+- sharpness,
+- injury-risk warnings,
+- training-derived tactical familiarity.
+
+These signals may modify Role Impact projections, but the UI must keep them
+visible as separate status indicators so the player can tell the difference
+between a poor role fit and a good fit who is currently tired or rusty.
+
+## 9. Coach role-fit
 
 Coaches have specialisations (attacking / midfield / defensive / GK /
 fitness / set-piece). Assigning a coach outside their specialisation
 reduces block effectiveness.
 
-## 9. Open questions
+## 10. Open questions
 
 - "Training camp" event in pre-season - implement as a special week-block
   bundle with morale + chemistry bonuses but a travel-fatigue cost.

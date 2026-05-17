@@ -3,11 +3,11 @@ title: ADR-0011 Server-Authoritative Multiplayer
 status: accepted
 tags: [adr, architecture, multiplayer, security]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[ADR-0010-modular-monolith-ddd]], [[ADR-0013-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/raw-perplexity/raw-architecture]]
+related: [[ADR-0003-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0013-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
 # ADR-0011: Server-Authoritative Multiplayer
@@ -86,11 +86,11 @@ humans and matches between two AI clubs. The policy is the **hybrid
 server-sim with on-demand replay** pattern (Perplexity research,
 2026-05-16):
 
-| Match type | Engine | Persisted |
+| Match type | Engine profile | Persisted |
 |---|---|---|
-| Human ↔ Human | Full 2D event engine | Full event log + RNG seed + lineups + result |
-| Human ↔ AI | Full 2D event engine | Full event log + RNG seed + lineups + result |
-| AI ↔ AI | Full 2D event engine | RNG seed + lineups + tactics + summary (result + key stats); **no event log by default** |
+| Human ↔ Human | `competitive-full` | Full event log + RNG seed + lineups + result |
+| Human ↔ AI | `competitive-full` | Full event log + RNG seed + lineups + result |
+| AI ↔ AI | `background-detailed` or `background-fast` by fixture relevance | RNG seed + lineups + tactics + quality profile + summary (result + key stats); **no event log by default** |
 
 The engine is deterministic given seed + lineups + tactics (per
 [[ADR-0003-match-engine]] and Wave 3 gap D8). Therefore an AI vs AI
@@ -120,6 +120,13 @@ Match worker version pinning: every match record stores
 `engine_version`. Re-sim must use the same version. Engine upgrades
 that change determinism require a forward migration of stored matches
 (re-sim and re-store seeds when needed).
+
+Runtime note: MVP multiplayer simulation uses the TypeScript
+`packages/match-engine` implementation from [[ADR-0003-match-engine]]. A
+future extracted Rust Match Worker may become authoritative only after the
+polyglot extraction gate in
+[[../../60-Research/match-engine-runtime-strategy]] passes. This keeps the
+AI-vs-AI policy from drifting into a separate balance model.
 
 ### Save integrity (gap B2 outcome)
 
@@ -189,7 +196,7 @@ frequency.
 ### Future
 
 - Service extraction (match worker, scheduler worker, spectator service)
-  is open per [[ADR-0010-modular-monolith-ddd]] §Future.
+  is open per [[ADR-0019-modular-monolith-ddd]] §Future.
 - Offline-first stays viable because drafts persist locally and replay
   on reconnect (per [[ADR-0002-offline-first]] + [[ADR-0013-transactional-outbox]]).
 - AI vs AI summary storage opens a Phase-2 option of selectively keeping
@@ -204,7 +211,7 @@ frequency.
   outbox ([[ADR-0013-transactional-outbox]]).
 - Read models project to SurrealDB tables that clients read directly via
   the public query layer of the owning context (per
-  [[ADR-0010-modular-monolith-ddd]] §6).
+  [[ADR-0019-modular-monolith-ddd]] §6).
 - Match worker emits a *summary stream* for AI vs AI matches (result +
   key stats only) and a *full stream* for human-involving matches.
 - Re-sim service exposes a `replayMatch(matchId)` command on the Match

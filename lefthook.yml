@@ -2,10 +2,22 @@ pre-commit:
   parallel: true
   commands:
     biome:
-      run: pnpm biome check --write --no-errors-on-unmatched {staged_files}
+      # Use Biome's native --staged flag instead of expanding {staged_files} on
+      # the command line; on Windows, large merges exceed the 8191-char cmd-line
+      # limit. --staged uses git plumbing internally and works regardless of
+      # change-set size. stage_fixed is still honoured for any --write fixes.
+      run: pnpm biome check --write --staged --no-errors-on-unmatched
       stage_fixed: true
     typecheck:
       run: pnpm typecheck
+
+pre-push:
+  parallel: true
+  commands:
+    knip:
+      run: pnpm knip
+    madge:
+      run: pnpm madge
 
 commit-msg:
   commands:

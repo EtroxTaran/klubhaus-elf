@@ -1,15 +1,19 @@
 ---
 title: Squad and Club Structure - Sporting Organisation and Squad Design
-status: draft
+status: approved
 tags: [game-design, squad, staff, organisation]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
-binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[scouting-and-recruitment]], [[training-load-and-medicine]], [[tactics-system]]
+binding: true
+related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/player-strength-presentation]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/transfer-market-simulation]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[scouting-and-recruitment]], [[transfer-market-and-contracts]], [[training-load-and-medicine]], [[tactics-system]]
 ---
 
 # Squad and Club Structure - Sporting Organisation and Squad Design
+
+> Approved by the systemic events / player lifecycle pass (2026-05-17).
+> The player record must stay aligned with [[../60-Research/data-generators]]
+> and [[tactics-system]].
 
 A club is more than 25 players. It is a sporting organisation with roles,
 pipelines and quality multipliers across recruitment, development and
@@ -23,7 +27,7 @@ staff outperforms one who hoards transfers.
 | Manager / Head Coach | Tactics, line-up, in-game calls | Direct match performance |
 | Sport Director | Strategy across windows, contract policy | Long-term squad balance |
 | Chief Scout | Scout network, regional priorities | Coverage breadth |
-| Data Analyst | Match + opposition data | Tactical depth, role-fit reports |
+| Data Analyst | Match + opposition data | Tactical depth, Impact Lens reports |
 | Head of Youth | Academy strategy, intake calendar | Youth pipeline yield |
 | U-team Coaches | U-21 / U-19 development | Per-player growth |
 | Fitness Coach | Load + conditioning | Injury reduction, peak windows |
@@ -82,21 +86,42 @@ Each player carries:
 
 - **Identity**: name, nationality, dob, region.
 - **Position primary + secondaries** (3 max).
-- **Attributes** in 4 groups (Technical / Mental / Physical / Hidden) -
-  see [[tactics-system]] for category list. 1-10 scale by default, 1-20
-  in expert mode.
-- **CA (Current Ability)** and **PA (Potential Ability)** - PA stored as
-  a range, not a single value.
-- **Personality** (8-12 trait flags: professional, leader, mercenary,
-  prankster, smoker, homesick, …).
+- **Attributes**: 16 visible outfield + 4 GK-only extras + 8 hidden meta
+  attributes. See [[tactics-system]] and [[../60-Research/data-generators]]
+  for the canonical category list. The canonical scale is 1-20 across all
+  tiers; lower tiers change presentation, not stored values.
+- **CA (Current Ability)** and **PA (Potential Ability)**. PA has a
+  deterministic underlying value/curve seed. The player sees scouting and
+  coaching **uncertainty ranges**, not the hidden true value. CA/PA are
+  internal development and generation concepts, not a squad-list OVR.
+- **Personality labels** (professional, leader, mercenary, prankster,
+  homesick, etc.) derived from the hidden meta attributes, squad context
+  and event history. They are not a second hidden-attribute schema.
 - **Tendencies** (5-10 traits: drifts to centre, shoots from distance,
   tries first-time passes, …).
 - **Contract**: length, wage, bonuses, clauses, agent.
 - **Fitness / form / morale** state.
-- **Injury history**.
+- **Injury profile and history** owned by Squad & Player; load and match
+  signals come from Training and Match via domain events.
 - **Match minutes log** for development calculation.
 
-## 6. Captain and leadership group
+## 6. Player Market Profile
+
+Each senior player also has a market profile consumed by
+[[transfer-market-and-contracts]]:
+
+- sport value: ability, potential band, role scarcity and tactical fit;
+- contract value: remaining months, wage level, clauses and renewal risk;
+- player agency: ambition, loyalty, professionalism, morale and role happiness;
+- agent profile: fee expectation, leak tendency and openness to intermediaries;
+- risk: injury proneness, form volatility, adaptation and family stability;
+- public value: reputation, shirt sales, fan attachment and leadership.
+
+The market profile produces ranges and pressure flags, not one public exact
+price. UI exposure depends on scouting confidence and progressive-disclosure
+tier.
+
+## 7. Captain and leadership group
 
 - Captain has match-day morale effect.
 - Vice-captain takes over on absence.
@@ -104,15 +129,29 @@ Each player carries:
   mentoring.
 - Toxic personalities can drag the group; modelled with weekly mood ticks.
 
-## 7. UI tiers
+## 8. UI tiers
 
 | Tier | Squad UI |
 |---|---|
-| Quick | Star-rating per player, "best 11" auto-pick |
-| Standard | Position group view, role assignment, fitness/morale icons |
-| Expert | Full attribute grid, traits, personality, contract liabilities |
+| Quick | Assistant-ranked "best 11", qualitative Impact bands, availability warnings |
+| Standard | Position group view, role assignment, Role Impact, category bars, fitness/form/morale icons |
+| Expert | Full attribute grid, Impact formula breakdown, traits, personality, contract liabilities |
 
-## 8. Open questions
+## 9. Impact Lens
+
+Player strength presentation follows
+[[../60-Research/player-strength-presentation]]:
+
+- No global OVR or universal star rating is shown in squad lists.
+- Every ranked recommendation is tied to a role / duty / tactic context.
+- Category scores summarise Technical / Mental / Physical / GK attributes for
+  scanability.
+- Fitness, form, morale, injury / suspension and sharpness stay visible as
+  separate availability signals.
+- Unscouted external players show ranges, labels and trust levels rather than
+  false precision.
+
+## 10. Open questions
 
 - How many position slots per player? Recommendation: 1 primary + up to 2
   secondaries; a "natural" badge for the primary.

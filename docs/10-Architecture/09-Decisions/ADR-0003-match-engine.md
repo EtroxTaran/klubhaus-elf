@@ -112,6 +112,11 @@ running outside hot paths).
 export interface MatchInputs {
   engine_version: string
   seeds: { coreSeed: number; aiSeed: number }
+  quality_profile:
+    | 'competitive-full'
+    | 'interactive-standard'
+    | 'background-detailed'
+    | 'background-fast'
   home_lineup: Lineup
   away_lineup: Lineup
   home_tactic: TacticConfig
@@ -136,9 +141,9 @@ export interface MatchEngine {
 ```
 
 All four operations are deterministic given the same `(engine_version,
-seeds, lineups, tactics, weather, referee_profile)`. The contract is the
-same in singleplayer (runs on the client Worker) and multiplayer (runs
-on the server Match Worker per ADR-0011).
+seeds, quality_profile, lineups, tactics, weather, referee_profile)`. The
+contract is the same in singleplayer (runs on the client Worker) and
+multiplayer (runs on the server Match Worker per ADR-0011).
 
 ### 3. Simulation model — hybrid Markov + attribute rolls
 
@@ -419,7 +424,7 @@ Locked from D8 + A5:
   tactical familiarity full integration; in-house visual formation
   authoring tool that emits TS patches.
 - **Service extraction**: when MP traffic grows, the server-side Match
-  Worker becomes its own process per ADR-0010 §Future. The package
+  Worker becomes its own process per ADR-0019 §Future. The package
   contract stays the same.
 
 ## Compliance

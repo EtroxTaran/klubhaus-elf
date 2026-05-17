@@ -3,10 +3,10 @@ title: Feature - Match-day Event Engine
 status: draft
 tags: [feature, events, matchday, weather, sanctions]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/matchday-event-engine]], [[../50-Game-Design/regulations-and-compliance]], [[../50-Game-Design/rivalry-system]]
+related: [[README]], [[../50-Game-Design/matchday-event-engine]], [[../50-Game-Design/regulations-and-compliance]], [[../50-Game-Design/rivalry-system]], [[feature-systemic-event-director]], [[feature-venue-operations]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Feature - Match-day Event Engine
@@ -33,6 +33,7 @@ Drive flavour and management depth from rule-based match-day events
 - ≥ 20 events across the 6 categories.
 - Inbox cards + per-match effect surfacing.
 - Sanction chain feeding from security events.
+- Venue/pitch conflict inputs from [[feature-venue-operations]].
 
 ## Out of scope (MVP)
 
@@ -59,3 +60,4 @@ Drive flavour and management depth from rule-based match-day events
 - [[../50-Game-Design/matchday-event-engine]]
 - [[../50-Game-Design/regulations-and-compliance]]
 - [[../50-Game-Design/community-editor-and-datasets]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]

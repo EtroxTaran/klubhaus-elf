@@ -1,5 +1,5 @@
 ---
-title: ADR-0010 Service-ready Modular Monolith with DDD Bounded Contexts
+title: ADR-0019 Service-ready Modular Monolith with DDD Bounded Contexts
 status: accepted
 tags: [adr, architecture, ddd, modular-monolith, service-architecture]
 created: 2026-05-16
@@ -10,7 +10,12 @@ binding: true
 related: [[../bounded-context-map]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0014-state-machines]], [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
-# ADR-0010: Service-ready Modular Monolith with DDD Bounded Contexts
+# ADR-0019: Service-ready Modular Monolith with DDD Bounded Contexts
+
+> **History**: This ADR was originally numbered 0010 during Wave 3 work.
+> It was renumbered to 0019 on merge into main when an existing
+> `ADR-0010-design-system` was discovered. Content is unchanged from the
+> 2026-05-16 acceptance; only the ADR number was rotated.
 
 ## Status
 

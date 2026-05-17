@@ -1,15 +1,19 @@
 ---
 title: Current State
 status: current
-tags: [meta, current-state]
+tags: [meta, current-state, execution, hot]
 created: 2026-05-16
 updated: 2026-05-17
 type: index
 binding: true
-related: [[Project-Goals]], [[Decision-Log]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[Decision-Log]]
 ---
 
 # Current State
+
+Hot-memory snapshot. Update this in the same PR as any change to architecture,
+scope, operations, or status. Move durable detail into ADRs, approved specs, or
+current research notes.
 
 This page is the first stop for active project context. If another note conflicts
 with this page, prefer the accepted ADR or approved/current note linked here.
@@ -36,9 +40,32 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 - **Progressive disclosure**: three explicit UI tiers - Quick / Standard /
   Expert. Default Standard.
   ([[../50-Game-Design/progressive-disclosure-ui]])
+- **Player strength presentation**: Impact-first, no global OVR. Squad,
+  tactic, scouting and transfer recommendations use role/tactic-contextual
+  Impact Lens projections, category bars, status signals and scouting
+  confidence instead of universal stars or Overall ratings.
+  ([[../60-Research/player-strength-presentation]],
+  [[../50-Game-Design/progressive-disclosure-ui]],
+  [[../50-Game-Design/tactics-system]])
 - **Singleplayer is the baseline**: every system ships first in
   singleplayer; multiplayer rules are additive constraints.
   ([[../50-Game-Design/singleplayer-baseline]])
+- **Match engine gameplay profile**: event-based 2D simulation with
+  intervention points, Result / Event / Spatial / Analytics output
+  layers, explicit match-depth profiles and server-authoritative MP.
+  ([[../50-Game-Design/match-engine]])
+- **Player lifecycle and systemic events**: squad structure, player
+  development, training/medicine, stadium/campus and match-day event
+  specs are approved. Development is weekly and causal; PA is true hidden
+  potential plus scouting uncertainty; injuries are multifactor risk
+  events; venue operations are weekly/event-based Club Management rules;
+  narrative is deterministic rendering of structured facts.
+  ([[../60-Research/systemic-events-player-development-venue-ops]],
+  [[../50-Game-Design/squad-and-club-structure]],
+  [[../50-Game-Design/youth-academy-and-development]],
+  [[../50-Game-Design/training-load-and-medicine]],
+  [[../50-Game-Design/stadium-and-campus]],
+  [[../50-Game-Design/matchday-event-engine]])
 
 ## Active Architecture
 
@@ -95,14 +122,43 @@ R2-01..R2-19 IDs are preserved under Wave 3 group D for traceability.
 Start critical-path work from W3.A (P0): data model, match engine,
 offline-first, auth, GDPR, CI/CD, threat model, SurrealDB schemas.
 
+## Transfer market blueprint active (2026-05-17)
+
+[[../60-Research/transfer-market-simulation]] is the current binding
+research synthesis for the active transfer market. It promotes Nico's attached
+research into the project model:
+
+- market value is a reference range, not a final price;
+- AI selling compares `sellPressure` against `protectionScore` and uses hard
+  floors to prevent token-fee sales of protected players;
+- offers are multi-part clause packages priced by cash-equivalent value;
+- club agreement and player / agent terms are separate gates;
+- full negotiation depth is tiered by world proximity for D9 PWA budgets.
+
+Nico resolved the initial open decisions on 2026-05-17:
+
+- full clause-family integration belongs in the MVP foundation;
+- Expert UI should show clear numeric values when knowledge supports them,
+  with confidence / source breakdown;
+- Transfer Scope should be a save setting with Focused / Standard / Deep /
+  Custom presets;
+- training compensation / solidarity become simplified visible training rewards
+  (net-only in Quick, full waterfall in Expert);
+- agents stay simple at MVP but use stable future-ready profiles.
+
+Implementation should start from
+[[../10-Architecture/transfer-market-architecture]],
+[[../50-Game-Design/transfer-market-and-contracts]] and
+[[../20-Features/feature-transfer-market-ai-and-contracts]].
+
 ## Accepted architecture (Wave 2/3)
 
-- **ADR-0010 Service-ready Modular Monolith with DDD** (accepted
+- **ADR-0019 Service-ready Modular Monolith with DDD** (accepted
   2026-05-16, gap B1). Eleven bounded contexts, strict storage
   isolation, network-transparent contracts. The MVP ships as one
   process but every context is extractable into its own service
   without code changes - only deployment / infra changes.
-  See [[../10-Architecture/09-Decisions/ADR-0010-modular-monolith-ddd]]
+  See [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]
   and [[../10-Architecture/bounded-context-map]].
 - **ADR-0011 Server-Authoritative Multiplayer** (accepted 2026-05-16,
   gap B2). Server is the only authority for MP state. New product
@@ -111,9 +167,10 @@ offline-first, auth, GDPR, CI/CD, threat model, SurrealDB schemas.
     async MP group via a one-way server-validated upload. After
     acceptance the device save is read-only for the promoted club.
   - **AI vs AI match policy**: server simulates every fixture with the
-    full 2D engine. Human-involving matches store full event logs.
-    AI vs AI matches store only seed + lineups + tactics + summary and
-    re-simulate deterministically on demand (watch-party / audit).
+    same deterministic engine contract and a relevance-based quality
+    profile. Human-involving matches store full event logs. AI vs AI
+    matches store seed + lineups + tactics + quality profile + summary
+    and re-simulate deterministically on demand (watch-party / audit).
   - **Encrypted saves**: AES-GCM 256 via Web Crypto API, PBKDF2 KDF
     from account secret + device salt. Tampering breaks the save.
     Mandatory in ADR-0005 (locked by B2).
@@ -738,9 +795,24 @@ offline-first, auth, GDPR, CI/CD, threat model, SurrealDB schemas.
   - **Attribute schema reconciled with D2** (mechanical fix): 16
     visible + 4 GK + 8 hidden on 1-20 scale. Replaces previous
     incorrect "10 + 8 + 10 + 5 = 33 on 1-10 scale" claim from the
-    original draft GDD. Per-tier display: Quick = 4-star summary;
-    Standard = 1-20 across 16 visible (+4 GK); Expert = 1-20 across
-    20 visible + scout-uncertainty bands for 8 hidden.
+    original draft GDD. Per-tier player-strength display now follows
+    **Impact Lens**: Quick = qualitative Impact bands + availability
+    warnings; Standard = Role Impact + category bars + status icons;
+    Expert = full 1-20 visible attributes + Impact formula breakdown +
+    scout-uncertainty bands for 8 hidden. No global OVR.
+- **Player Strength Presentation / Impact Lens** (locked 2026-05-17) -
+  [[../60-Research/player-strength-presentation]]:
+  - No global player Overall / OVR / universal star rating in squad,
+    tactics, scouting or transfer lists.
+  - Role Impact is a deterministic integer read projection for a player in a
+    specific role, duty, tactic and availability context.
+  - Category scores summarise Technical / Mental / Physical / GK from the
+    locked D2 1-20 attribute schema; status signals stay visible separately.
+  - Poorly scouted players show labels, ranges and trust levels rather than
+    false precision.
+  - `ImpactLensProjection` is a Squad & Player read model exposed via
+    `queryGateway`, cacheable in Dexie, refreshed by Live Queries, never
+    workflow authority and never a cross-context JOIN.
 - **AI Manager Behaviour** (locked 2026-05-17, gap D4) -
   [[../60-Research/ai-manager-behaviour]]:
   - **Three-layer architecture**: utility AI core + light FSM
@@ -974,6 +1046,15 @@ offline-first, auth, GDPR, CI/CD, threat model, SurrealDB schemas.
   - **Engine version**: semver (`2.3.0`) embedded in every match
     record + save envelope; engine modules vendored per version
     inside the PWA bundle for offline replay.
+  - **Runtime strategy update** (2026-05-17): TypeScript remains the MVP
+    authoritative engine for client Web Worker and server Match Worker.
+    Post-MVP Rust/polyglot extraction is allowed only after the gate in
+    [[../60-Research/match-engine-runtime-strategy]] passes: measured need,
+    stable DTO contract, golden replay parity, statistical parity,
+    determinism parity, operational readiness and old-engine replay fallback.
+  - **Quality profiles**: `competitive-full`,
+    `interactive-standard`, `background-detailed`, `background-fast`.
+    The selected profile is part of `MatchInputs` and replay inputs.
 - **Match Engine Simulation Model** (locked 2026-05-16, gap D1) -
   [[../60-Research/match-engine-simulation-model]]:
   - **Simulation model**: hybrid Markov + attribute rolls. Macro
@@ -1157,6 +1238,17 @@ offline-first, auth, GDPR, CI/CD, threat model, SurrealDB schemas.
   are privacy-minimised, redacted before local queueing/sending and
   capped when stored offline. Product analytics are deferred to H7/G3
   and must not be mixed into operational logs.
+- **ADR-0018 Systemic Events and Player Lifecycle Architecture**
+  (accepted 2026-05-17). Player development, mentoring, injuries,
+  systemic events, narrative rendering and venue operations are
+  **domain-owned policies coordinated by deterministic event
+  orchestration**, not one random-event context. The existing 11
+  bounded contexts remain authoritative: Training computes load and
+  development signals; Squad & Player owns player/injury state; Match
+  emits match injury facts; Club Management owns stadium, venue,
+  sponsors and fans; Notification renders deterministic narrative
+  projections. Runtime AI text is a separate research track and is not
+  approved for runtime simulation or narrative output.
 
 ## Needs Promotion
 
@@ -1167,7 +1259,8 @@ offline-first, auth, GDPR, CI/CD, threat model, SurrealDB schemas.
   **C**.
 - Feature specs are seeded (10 stubs in [[../20-Features/README]]) but
   need scoping per implementation beat.
-- Game design notes for the 25 systems are `draft` (mode + UI notes are
-  `approved`); per-system "Open questions" tuning is Wave 3 group **I**.
+- Game design notes for the 25 systems are mostly `draft`; mode + UI notes,
+  tactics and match-engine gameplay are now `approved`. Per-system "Open
+  questions" tuning is Wave 3 group **I**.
 - Player-facing docs should be written after playable mechanics exist
   (Wave 3 group **K**, P3).

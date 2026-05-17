@@ -3,10 +3,10 @@ title: Player-to-Player Transfer Negotiations
 status: draft
 tags: [game-design, transfers, multiplayer, escalation]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/async-multiplayer-research]], [[scouting-and-recruitment]], [[async-multiplayer-private-group]], [[../10-Architecture/state-machines/transfer]]
+related: [[README]], [[transfer-market-and-contracts]], [[../60-Research/transfer-market-simulation]], [[../60-Research/async-multiplayer-research]], [[scouting-and-recruitment]], [[async-multiplayer-private-group]], [[../10-Architecture/state-machines/transfer]]
 ---
 
 # Player-to-Player Transfer Negotiations
@@ -14,6 +14,10 @@ related: [[README]], [[../60-Research/async-multiplayer-research]], [[scouting-a
 Human-to-human transfers are the most strategic interaction in async
 groups. The design rule is **silence must not be the strongest strategy**.
 This note documents the deadline-based escalation chain.
+
+The general market, valuation and clause model lives in
+[[transfer-market-and-contracts]]. This note is the multiplayer-specific
+extension.
 
 ## 1. Product rule
 
@@ -61,12 +65,11 @@ Strike is **never** an immediate consequence of one ignored offer.
 An offer contains:
 
 - **Fee**: cash up front, instalments schedule.
-- **Sell-on clause**: % to selling club on future sale.
-- **Bonus per appearance**.
-- **Bonus per league position**.
-- **Release clause** (optional).
-- **Loyalty bonus**.
-- **Lifestyle / language requirement** (rare).
+- **Bonuses**: appearances, goals, promotion, continental qualification.
+- **Sell-on / profit share**: future resale upside for selling club.
+- **Buy-back / matching right**: mostly for talent pathways.
+- **Loan structures**: loan fee, wage share, option, obligation, loan-back.
+- **Player terms**: wage, role promise, signing fee, agent fee.
 
 Counter-offers can adjust any of the above and reset the response
 deadline (with limits to avoid infinite loops).
@@ -80,6 +83,7 @@ Even if both clubs agree, the **player** must accept terms:
 - League level vs current.
 - Geographical / family fit (hidden personality flags).
 - Career trajectory ("I want Champions League football").
+- Agent fee, relationship and willingness to leak.
 
 Personality + ambition flags drive this. Some players will refuse moves
 regardless of money.
@@ -95,8 +99,8 @@ bid; auction-style dynamics emerge naturally.
 
 - Maximum **3 outstanding outgoing offers** per manager at once.
 - Spam pattern (10+ offers in 24 h from same manager) triggers rate-limit.
-- Offers below 30 % of fair-value mark are filtered as "lowball"
-  (auto-rejected unless target is unhappy).
+- Offers below 30 % of the fair valuation band are filtered as "lowball"
+  (auto-rejected unless target is unhappy or the seller is in forced-sale state).
 - Repeated lowballing logs a `griefingScore` per manager; admin can
   review.
 
@@ -117,11 +121,12 @@ Group rule sets can override.
 |---|---|
 | Quick | Inbox card: "Offer for X. Accept / Reject / Counter / Defer" |
 | Standard | Side panel with full offer terms and counter-offer wizard |
-| Expert | Full offer history, bargaining-power meter, agent-pressure flag, clause editor |
+| Expert | Full offer history, bargaining-power meter, agent-pressure flag, clause editor, estimated cash-equivalent comparison |
 
 ## 10. Open questions
 
-- Should the system propose "fair value" estimates to both sides? Yes,
-  using market data from the league + scout reports.
+- Should the system propose "fair value" estimates to both sides? Yes, as
+  estimate ranges from league market data + scout / director confidence. Exact
+  internal formula stays hidden by default.
 - Auction mode for free agents (group-wide draft) - Phase 2.
 - Cross-group transfer? Out of scope - groups are sealed.

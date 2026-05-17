@@ -12,18 +12,25 @@ async function waitForServiceWorkerControl(page: Page) {
   await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller))
 }
 
-test('loads the bootstrap home page and registers a service worker', async ({ page }) => {
+test('loads the Office Hub and registers a service worker', async ({ page }) => {
   await page.goto('/')
 
-  await expect(page.getByRole('heading', { name: /dein fußballverein/i })).toBeVisible()
+  await expect(page.getByText(/Heute klärt sich, ob der Vorstand Geduld kennt/)).toBeVisible()
+  await expect(page.getByRole('link', { name: /Weiter zum nächsten Termin/ })).toBeVisible()
   await waitForServiceWorkerControl(page)
 })
 
 test('keeps the current shell available while offline', async ({ context, page }) => {
   await page.goto('/')
   await waitForServiceWorkerControl(page)
+
+  // Wait for the hub to be fully rendered while still online, so this test
+  // verifies the loaded shell *persists* when the network drops — not
+  // first-paint/hydration speed (that is tracked separately; see D-002).
+  await expect(page.getByText('Nächster Termin')).toBeVisible()
+
   await context.setOffline(true)
 
-  await expect(page.getByRole('heading', { name: /dein fußballverein/i })).toBeVisible()
+  await expect(page.getByText('Nächster Termin')).toBeVisible()
   await expect.poll(() => page.evaluate(() => navigator.onLine)).toBe(false)
 })

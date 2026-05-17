@@ -19,7 +19,7 @@ workflow. Each is owned by exactly one bounded context.
 | Name | Owning context | File |
 |---|---|---|
 | League / Week | League Orchestration | [[league-week]] |
-| Transfer | Transfer | [[transfer]] |
+| Transfer Negotiation | Transfer | [[transfer]] |
 | Watch Party | Watch Party | [[watch-party]] |
 | Match (overview) | Match | [[match]] |
 

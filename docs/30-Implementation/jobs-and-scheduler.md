@@ -1,13 +1,13 @@
 ---
 title: Jobs and Scheduler
 status: current
-tags: [implementation, jobs, scheduler, outbox, redis-streams, observability]
+tags: [implementation, jobs, scheduler, outbox, redis-streams, observability, matchday, events]
 created: 2026-05-17
 updated: 2026-05-17
 type: implementation
 binding: false
-adr: [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
-related: [[observability-runbook]], [[audit-trail]], [[deployment-dokploy]]
+adr: [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+related: [[observability-runbook]], [[audit-trail]], [[deployment-dokploy]], [[../60-Research/match-engine-runtime-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/systemic-events-player-development-venue-ops]]
 ---
 
 # Jobs and Scheduler
@@ -38,10 +38,60 @@ Planned workers:
   them to Redis Streams.
 - `scheduler`: runs countdowns, reminders, maintenance jobs and retry
   timers.
+- `simulation-scheduler`: opens deterministic simulation windows for
+  day/week/match/season ticks and dispatches commands to owning contexts.
+  It coordinates player lifecycle and systemic event evaluation but does
+  not mutate domain state directly.
 - `archiver`: moves published outbox rows older than 60 days into
   monthly cold partitions.
-- future context workers: match, notification, spectator/watch-party and
+- `match-worker`: future context worker for server-authoritative
+  multiplayer match simulation. MVP may run in the app/runtime; extraction
+  comes when operational load demands it.
+- future context workers: notification, spectator/watch-party and
   projection consumers.
+
+## Matchday Scheduling
+
+Matchday is a priority queue, not a flat list of fixtures. The scheduler
+assigns every fixture a `quality_profile` before dispatching work to the
+Match Worker:
+
+| Priority | Fixtures | Profile |
+|---:|---|---|
+| 1 | Human-vs-human, human-vs-AI, explicitly watched fixtures | `competitive-full` |
+| 2 | Title deciders, relegation deciders, key cup/continental fixtures, direct rivals | `background-detailed` or promoted to `competitive-full` |
+| 3 | Other active-league AI fixtures | `background-detailed` |
+| 4 | Rest-world fixtures | `background-fast` |
+
+Scheduling rules:
+
+- Human-involving async multiplayer fixtures always run server-side.
+- AI-vs-AI fixtures store seed + lineups + tactics + profile + summary by
+  default; full event logs are generated on demand for watch-party/audit.
+- The scheduler batches `background-fast` jobs to avoid long matchday waits.
+- Worker concurrency is capped by deployment tier and observed lag; adding more
+  workers must not starve outbox publishing or spectator streams.
+- Floor-tier singleplayer devices downgrade background profiles before blocking
+  the UI thread. Server-side multiplayer does not use client device tier for
+  authority.
+
+## Future Extracted Match Worker
+
+If the Match Worker is extracted, it consumes scheduled simulation jobs and
+returns deterministic outputs to the Match context. It may remain TypeScript or
+eventually become Rust, but Rust cannot become authoritative until the gate in
+[[../60-Research/match-engine-runtime-strategy]] passes.
+
+Required operational hooks for the extracted worker:
+
+- `/healthz` or equivalent liveness endpoint;
+- structured JSON logs with `match_id`, `engine_version`, `quality_profile`,
+  `job_id`, `duration_ms`, `status` and `correlation_id`;
+- metrics for queue lag, in-flight jobs, duration by profile, failures by
+  reason, and replay/audit requests;
+- graceful shutdown that finishes or releases in-flight jobs;
+- backpressure so matchday batches do not overwhelm Redis Streams, SurrealDB or
+  spectator fan-out.
 
 ## Stream Naming
 
@@ -50,6 +100,29 @@ Default stream naming is `events:<aggregate_type>`.
 Allowed fallback: one `events:all` stream if operational testing shows
 per-aggregate streams add unnecessary complexity. This is the remaining
 E14 implementation choice and does not change ADR-0013 semantics.
+
+## Simulation Tick Responsibilities
+
+ADR-0018 adds scheduler-facing simulation windows:
+
+| Window | Scheduler action | Owning contexts |
+|---|---|---|
+| Day tick | active-club reminders, light venue checks, notification digests | League, Club, Notification |
+| Week tick | dispatch training, development, mentoring, injury-risk and venue operations commands | Training, Squad & Player, Club |
+| Match pre/live/post | dispatch match-day event evaluation and persist match facts | League, Match, Club, Squad & Player |
+| Season rollover | structural events, youth intake, long-term venue/board checks | League, Club, Squad & Player |
+
+The scheduler only opens windows and routes commands. It must not compute
+development deltas, decide injuries, mutate venue state or render narrative
+text itself.
+
+All simulation windows must carry:
+
+- save/world id;
+- deterministic tick id (`season/week/day/match`);
+- correlation id;
+- engine/content version when relevant;
+- RNG stream label or sub-label expected by the owning context.
 
 ## Retry Policy
 
@@ -80,6 +153,13 @@ Required metrics:
 | `job_retry_total` | counter | retries by job type |
 | `archiver_moved_total` | counter | archived rows by partition |
 | `archiver_failure_total` | counter | archive failures |
+| `simulation_tick_duration_seconds` | histogram | deterministic simulation window duration by tick type |
+| `simulation_tick_failure_total` | counter | failed tick dispatches by tick type/context |
+| `match_jobs_pending_count` | gauge | pending simulation jobs by quality profile |
+| `match_job_duration_seconds` | histogram | match worker duration by profile and engine version |
+| `match_job_failures_total` | counter | failed match jobs by reason |
+| `match_worker_inflight_count` | gauge | currently running match simulations |
+| `match_replay_requests_total` | counter | on-demand AI-vs-AI replay/audit jobs |
 
 ADR-0013 thresholds:
 

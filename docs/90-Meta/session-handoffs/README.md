@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, agents, handoff]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: index
 binding: false
 related: [[../agent-memory-protocol]]
@@ -34,3 +34,10 @@ Use `YYYY-MM-DD-topic.md`, for example:
 - Blockers
 - Durable Notes Updated
 - Promotion Needed
+
+## Recent Handoffs
+
+- [[2026-05-17-impact-lens-docs]] - attached player-strength research promoted
+  into Impact Lens gameplay, architecture, feature and index docs.
+- [[2026-05-17-match-engine-runtime-docs]] - attached match-engine runtime
+  research promoted into architecture, gameplay, implementation and index docs.

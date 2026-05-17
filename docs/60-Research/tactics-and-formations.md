@@ -6,7 +6,7 @@ tags: [research, tactics, formations, roles, instructions, familiarity, oppositi
 created: 2026-05-17
 updated: 2026-05-17
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]], [[ai-manager-behaviour]], [[match-engine-simulation-model]], [[data-generators]], [[performance-budgets]], [[progressive-disclosure-research]], [[../50-Game-Design/tactics-system]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/set-pieces]]
+related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]], [[ai-manager-behaviour]], [[match-engine-simulation-model]], [[data-generators]], [[player-strength-presentation]], [[performance-budgets]], [[progressive-disclosure-research]], [[../50-Game-Design/tactics-system]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/set-pieces]]
 ---
 
 # Tactics & Formations — Mobile-first Manager Game Tactics Depth
@@ -31,6 +31,10 @@ foundations:
   pre-existing `tactics-system.md` GDD §9 incorrectly claimed
   "10 + 8 + 10 + 5 = 33 attributes on 1-10 scale" — D3 reconciles this
   to the D2 schema as a mechanical fix.
+- **Player Strength Presentation** ([[player-strength-presentation]]): locks
+  the no-global-OVR Impact Lens model. Player comparison is role/tactic
+  contextual, with qualitative Quick bands, Standard category bars and Expert
+  formula breakdown.
 - **A3 Match Engine** ([[../10-Architecture/09-Decisions/ADR-0003-match-engine]]):
   formation zone weights are TS literals per `(formation, role)` →
   18-zone intensity profile. 20 formations × ~50 roles = ~13 500 entries;
@@ -1014,13 +1018,16 @@ attributes on 1-20 scale**.
 
 Per-tier display:
 
-- **Quick**: 4-star summary rating (computed as weighted average of
-  visible attributes by archetype).
-- **Standard**: 1-20 scale across the 16 visible (+ 4 GK if keeper).
-- **Expert**: 1-20 scale across 20 visible + scout-report uncertainty
-  bands for 8 hidden attributes.
+- **Quick**: qualitative Impact band and availability warnings for the
+  selected tactic / role context; no global OVR or universal star rating.
+- **Standard**: Role Impact, Technical / Mental / Physical / GK category bars,
+  short-term status icons and access to the 1-20 visible attributes.
+- **Expert**: full 1-20 visible attribute grid + Impact formula breakdown +
+  scout-report uncertainty bands for 8 hidden attributes.
 
 GDD update will replace the §9 paragraph with this reconciled schema.
+The player-strength presentation details are locked in
+[[player-strength-presentation]].
 
 ## 13. Performance budget
 

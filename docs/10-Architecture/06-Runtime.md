@@ -2,7 +2,7 @@
 title: Runtime
 status: draft
 tags: [architecture]
-updated: 2026-05-16
+updated: 2026-05-17
 ---
 
 # Runtime
@@ -59,6 +59,28 @@ sequenceDiagram
 Detail: [[state-machines/match]] and
 [[09-Decisions/ADR-0015-spectator-snapshot-streaming]].
 
+## Match worker runtime modes
+
+The same match contract supports four runtime modes:
+
+| Mode | Runtime | Authority | Output depth |
+|---|---|---|---|
+| Singleplayer active match | Client Web Worker | Local client | `competitive-full` or `interactive-standard` by device/profile |
+| Singleplayer background fixtures | Client Web Worker batch | Local client | `background-detailed` / `background-fast` |
+| Async multiplayer human-involving match | Server Match Worker | Server | `competitive-full` |
+| Async multiplayer AI-vs-AI fixture | Server Match Worker batch | Server | Summary by default; deterministic full replay on demand |
+
+MVP uses the TypeScript `packages/match-engine` implementation everywhere.
+Post-MVP extraction can move the server Match Worker into a separate process.
+A Rust implementation is allowed only after
+[[../60-Research/match-engine-runtime-strategy]]'s polyglot extraction gate
+passes.
+
+Interactive human matches are not required to know the full result at kickoff.
+They may buffer deterministic event chunks and apply substitutions, tactics and
+shouts at ordered intervention points. Batch/replay paths may still simulate to
+completion before playback.
+
 ## Offline-first
 
 Client writes commands to a **local IndexedDB outbox**. On reconnect,
@@ -81,6 +103,10 @@ sequenceDiagram
 
 Detail: [[09-Decisions/ADR-0002-offline-first]] +
 [[09-Decisions/ADR-0013-transactional-outbox]].
+
+Multiplayer conflicts are hard-rejected at MVP per
+[[09-Decisions/ADR-0011-server-authoritative-multiplayer]]. The client shows
+the new state and a redo affordance; it does not auto-rebase gameplay actions.
 
 ## Storage
 

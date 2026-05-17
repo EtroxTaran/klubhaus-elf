@@ -3,10 +3,10 @@ title: Feature - Stadium Builder
 status: draft
 tags: [feature, stadium, infrastructure]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/stadium-and-campus]], [[../50-Game-Design/regulations-and-compliance]]
+related: [[README]], [[../50-Game-Design/stadium-and-campus]], [[../50-Game-Design/regulations-and-compliance]], [[feature-venue-operations]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Feature - Stadium Builder
@@ -33,6 +33,7 @@ trade-offs.
 - Construction queue with cost + time.
 - Ageing + renovation cycle.
 - Compliance check on promotion.
+- Venue readiness fields used by [[feature-venue-operations]].
 
 ## Out of scope (MVP)
 
@@ -59,3 +60,4 @@ trade-offs.
 - [[../50-Game-Design/stadium-and-campus]]
 - [[../50-Game-Design/regulations-and-compliance]]
 - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]

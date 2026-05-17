@@ -3,10 +3,10 @@ title: Async Multiplayer - Private Group with Two Cadence Models
 status: approved
 tags: [game-design, mode, multiplayer, async]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/async-multiplayer-research]], [[singleplayer-baseline]], [[watch-party-and-conference]], [[transfer-negotiations-p2p]], [[../10-Architecture/state-machines/league-week]]
+related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/match-engine-runtime-strategy]], [[singleplayer-baseline]], [[match-engine]], [[watch-party-and-conference]], [[transfer-negotiations-p2p]], [[../10-Architecture/state-machines/league-week]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
 ---
 
 # Async Multiplayer - Private Group with Two Cadence Models
@@ -120,6 +120,26 @@ Three tiers of player-player interaction:
 Pure-async stays local. Deadline-based actions get **explicit fall-backs**
 (see [[transfer-negotiations-p2p]] and §7). Live moments are optional via
 watch parties ([[watch-party-and-conference]]).
+
+## 6.1 Match Authority and Depth
+
+All async multiplayer match results are server-authoritative per
+[[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]].
+Local devices may prepare tactics, lineups, substitutions plans and preview
+likely outcomes, but those previews are non-binding.
+
+Match-depth policy:
+
+| Fixture | Profile | Storage |
+|---|---|---|
+| Human-vs-human | `competitive-full` | Full event log + seed + summary |
+| Human-vs-AI | `competitive-full` | Full event log + seed + summary |
+| Watched AI-vs-AI / title decider | `background-detailed` or promoted to `competitive-full` | Seed + summary, full log on demand |
+| Ordinary AI-vs-AI | `background-fast` or `background-detailed` | Seed + lineups + tactics + summary |
+
+Fixed cadence benefits from this model because the server can batch work during
+the matchday window. Dynamic cadence uses the same profiles once quorum and
+countdown reach `matchday_locked`.
 
 ## 7. Inactivity policy
 

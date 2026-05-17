@@ -3,10 +3,10 @@ title: Feature - Tactics with Progressive Disclosure
 status: draft
 tags: [feature, tactics, ux, progressive-disclosure]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/tactics-system]], [[../60-Research/progressive-disclosure-research]]
+related: [[README]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/tactics-system]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/player-strength-presentation]]
 ---
 
 # Feature - Tactics with Progressive Disclosure
@@ -30,19 +30,24 @@ manage the same match engine.
 - Three explicit UI tiers, switchable in user settings.
 - Auto-Coach proposes-only, never overwrites manual choices.
 - Tier-aware match reports.
-- Player attribute view: stars (Quick), star + role-fit + arrows
-  (Standard), full 1-10 + traits (Expert).
+- Player strength view: qualitative Impact bands (Quick), Role Impact +
+  category bars + status icons (Standard), full 1-20 visible attributes +
+  Impact formula breakdown + traits (Expert).
+- No global OVR or universal player star is shown in squad, tactic, scouting
+  or transfer lists.
 
 ## Out of scope (MVP)
 
 - Per-area tier override (Standard with Expert tactics only) - Phase 2.
-- 1-20 attribute parity mode (post-MVP).
+- Exact role-weight tuning for all 50 roles beyond the MVP seed table.
 
 ## Acceptance
 
 - Tier switching preserves underlying tactical state.
 - Auto-Coach proposals do not overwrite manual edits.
 - All three tiers consume the same event log from the match engine.
+- Every player recommendation has a role / tactic context and can be explained
+  without revealing unearned hidden attributes.
 
 ## Dependencies
 

@@ -3,10 +3,10 @@ title: Progressive Disclosure for Tactical Depth (Casual + Power-User)
 status: in-review
 tags: [research, ux, tactics, progressive-disclosure, synthesis, wave-2]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: research
 binding: false
-related: [[raw-perplexity/raw-environment-events]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/tactics-system]]
+related: [[raw-perplexity/raw-environment-events]], [[player-strength-presentation]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/tactics-system]]
 ---
 
 # Progressive Disclosure for Tactical Depth (Casual + Power-User)
@@ -23,7 +23,7 @@ the Perplexity recommendation into a UX pattern and tactical model.
 
 | Tier | Target user | What they touch |
 |---|---|---|
-| **Quick** | 5 min/week, "did I win?" | Formation pick, star ratings, recommended XI, match-report-lite |
+| **Quick** | 5 min/week, "did I win?" | Formation pick, qualitative Impact bands, recommended XI, match-report-lite |
 | **Standard** | Casual manager, default | Roles, team focus, basic instructions |
 | **Expert** | Tactics / data enthusiast | Role detail, per-player instructions, data hub, deep reports |
 
@@ -61,8 +61,8 @@ Surface only what is needed in five minutes:
 
 - **Recommended XI** auto-built by assistant from chosen play style.
 - **Recommended roles** prefilled with sensible defaults.
-- **Star rating per player** (1-5) - raw 1-10 attributes hidden by
-  default.
+- **Qualitative Impact band per player** for the chosen role / tactic context;
+  raw 1-20 attributes hidden by default.
 - **Match-Report-Lite**: won / lost, top performer, lowest performer, one
   recommended action.
 - **What should I do next?** - prioritised daily inbox with Accept /
@@ -85,7 +85,7 @@ Adds:
 
 Adds:
 
-- Full 1-10 attribute view (and optional 1-20 mode for hard-core users).
+- Full 1-20 visible attribute view and Impact formula breakdown.
 - Role detail editor with player instructions overriding role defaults.
 - Set-piece routine editor.
 - Data hub: zone heat-maps, pass networks, fatigue curves, pressing
@@ -111,7 +111,7 @@ The match engine must produce data that supports every tier:
 - Fatigue per player over time.
 
 The Quick tier *consumes the same data* but presents a 3-line summary +
-star rating; the Expert tier consumes the full event log.
+qualitative Impact guidance; the Expert tier consumes the full event log.
 
 ## 8. Implementation note
 

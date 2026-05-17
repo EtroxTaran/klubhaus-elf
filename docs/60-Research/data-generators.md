@@ -113,7 +113,7 @@ Where we differ from every competitor:
   storage (A2). Hattrick does similar server-side; we do it client-
   side without burning IndexedDB.
 - **Same generators run client-side AND post-MVP server-side** (per
-  ADR-0010 service extraction). World genesis runs in a Web Worker on
+  ADR-0019 service extraction). World genesis runs in a Web Worker on
   the client at MVP; server-side genesis is a future capability for
   hot-seat-to-async-MP promotion.
 - **No 3D crest rendering** (per D9) — pure SVG, scales to all DPRs,
@@ -1145,7 +1145,7 @@ Phase budget breakdown (Large world worst case):
 
 ### 13.2 Implementation notes
 
-- World genesis runs in a **dedicated Web Worker** (per ADR-0010 §
+- World genesis runs in a **dedicated Web Worker** (per ADR-0019 §
   cross-context). UI thread stays responsive; progress bar driven by
   postMessage events.
 - Batches of 50-100 clubs / 200-500 players per tick; yield via

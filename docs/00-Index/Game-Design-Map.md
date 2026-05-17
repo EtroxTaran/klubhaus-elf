@@ -3,7 +3,7 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: map
 binding: false
 related: [[Project-Goals]], [[Feature-Map]]
@@ -37,6 +37,7 @@ Use this map for gameplay, economy, progression, and player experience work.
 
 - [[../50-Game-Design/squad-and-club-structure]]
 - [[../50-Game-Design/scouting-and-recruitment]]
+- [[../50-Game-Design/transfer-market-and-contracts]]
 - [[../50-Game-Design/youth-academy-and-development]]
 - [[../50-Game-Design/training-load-and-medicine]]
 
@@ -65,6 +66,12 @@ Use this map for gameplay, economy, progression, and player experience work.
 ## UX
 
 - [[../50-Game-Design/progressive-disclosure-ui]]
+- [[../60-Research/player-strength-presentation]] - binding Impact Lens model for player strength presentation; no global OVR.
+- [[../50-Game-Design/squad-and-club-structure]]
+- [[../50-Game-Design/youth-academy-and-development]]
+- [[../50-Game-Design/training-load-and-medicine]]
+- [[../50-Game-Design/stadium-and-campus]]
+- [[../50-Game-Design/matchday-event-engine]]
 
 ## Design inputs
 
@@ -75,6 +82,7 @@ Use this map for gameplay, economy, progression, and player experience work.
 - [[../60-Research/async-multiplayer-research]]
 - [[../60-Research/fan-culture-segmentation-research]]
 - [[../60-Research/progressive-disclosure-research]]
+- [[../60-Research/player-strength-presentation]]
 - [[../60-Research/regulations-and-pyramids-research]]
 - [[../60-Research/anstoss-series-deep-dive]]
 - [[../60-Research/club-boss-analysis]]
@@ -92,3 +100,7 @@ implementation specs. Today the `approved` notes are:
 - [[../50-Game-Design/singleplayer-baseline]]
 - [[../50-Game-Design/async-multiplayer-private-group]] (product rules)
 - [[../50-Game-Design/progressive-disclosure-ui]]
+- [[../50-Game-Design/transfer-market-and-contracts]]
+- [[../60-Research/player-strength-presentation]] (binding research synthesis)
+- [[../50-Game-Design/tactics-system]]
+- [[../50-Game-Design/match-engine]]

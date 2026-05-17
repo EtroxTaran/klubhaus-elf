@@ -11,7 +11,7 @@ The application is a **modular monolith** with eleven bounded contexts in
 TypeScript. Each context owns its domain logic, state machine(s), storage
 isolation, and contracts (commands / queries / domain events).
 
-> Authority: [[09-Decisions/ADR-0010-modular-monolith-ddd]]. Full map at
+> Authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]]. Full map at
 > [[bounded-context-map]].
 
 ## High-level package layout

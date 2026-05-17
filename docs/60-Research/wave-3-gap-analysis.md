@@ -253,7 +253,7 @@ update [[../00-Index/Decision-Log]].
     if it were a separate service. Service extraction must be a
     deployment change, not a refactor.
 - **Output files**: ADR-0010 status flipped `proposed` → `accepted`; ADR title widened to "Service-ready Modular Monolith"; [[../10-Architecture/bounded-context-map]] revised with strict storage rule + service-extraction order; [[../00-Index/Decision-Log]] + [[../00-Index/Architecture-Map]] + [[../00-Index/Current-State]] updated.
-- **Done outputs**: [[../10-Architecture/09-Decisions/ADR-0010-modular-monolith-ddd]] (accepted); [[../10-Architecture/bounded-context-map]] (status: current).
+- **Done outputs**: [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]] (accepted); [[../10-Architecture/bounded-context-map]] (status: current).
 - **Dependencies**: none.
 - **Estimated effort**: S (actual: S).
 
@@ -271,10 +271,12 @@ update [[../00-Index/Decision-Log]].
     path.
   - **AI vs AI matches**: Perplexity research applied →
     **hybrid server-sim + on-demand re-simulation**. Server simulates
-    every fixture with the full 2D engine. Human-involving matches
-    store the full event log. AI vs AI matches store only
-    `seed + lineups + tactics + summary` and re-simulate deterministically
-    on demand when a watch-party or audit requests the full log.
+    every fixture with the same deterministic engine contract and a
+    relevance-based quality profile. Human-involving matches store the
+    full event log. AI vs AI matches store
+    `seed + lineups + tactics + qualityProfile + summary` and re-simulate
+    deterministically on demand when a watch-party or audit requests the
+    full log.
   - **Save integrity**: saves are encrypted at rest with AES-GCM 256 via
     Web Crypto; key derivation PBKDF2 from account secret + device salt.
     Tampering breaks the save.
@@ -581,7 +583,7 @@ its IDs are mirrored here verbatim. Wave 3 adds explicit per-gap research
 - **Q&A outcome (2026-05-16)** — all locked in [[determinism-and-replay]]:
   - **PRNG**: PCG32 in 32-bit JS (no BigInt). Library: `pure-rand` (TS-first, used by fast-check). Fallback: roll-our-own 30-line PCG32.
   - **RNG streams**: 8 named streams - WorldRng, WorldAiMgmtRng, MatchCoreRng(matchId), MatchAiRng(matchId), WeatherRng, InjuryRng, TransferRng, NewsRng/PresentationRng. Seeded from masterSeed via xxhash32(label, parentSeed). Adding new streams later is safe (no perturbation of existing streams).
-  - **Replay format**: hybrid - `(seed, lineups, tactics, engineVersion)` is canonical truth for every match (already locked in ADR-0011); human-involving matches additionally store the **FULL event log** (every pass/duel/dribble/shot/foul/sub/card/goal/HT/FT, ~5-20 KB/match) for fast UI + audit. AI-vs-AI stays seed-only.
+  - **Replay format**: hybrid - `(seed, lineups, tactics, qualityProfile, engineVersion)` is canonical truth for every match (already locked in ADR-0011); human-involving matches additionally store the **FULL event log** (every pass/duel/dribble/shot/foul/sub/card/goal/HT/FT, ~5-20 KB/match) for fast UI + audit. AI-vs-AI stays seed-only.
   - **Numeric representation**: integers / basis-points (money in cents, probabilities 0-10000, attributes 0-100, coordinates integer-mm). No transcendental math in deterministic decision logic.
   - **12 save-determinism rules** locked (lint-enforced where possible).
   - **CI determinism gate**: Chromium-only at MVP via Playwright; WebKit + Firefox added in Phase-2 hardening.
@@ -601,7 +603,7 @@ its IDs are mirrored here verbatim. Wave 3 adds explicit per-gap research
   - **World-size presets** (FM-style): Small / Medium / Large at New Save; Floor tier forced Small; Medium default on Standard.
   - **Match render policy**: explicit **no 3D ever** (permanent product decision; supersedes prior "post-MVP / deferred" classification). Two modes only - Text & Stats (first-class, Floor default) + 2D canvas (primary, mandatory, 30/60 fps cap by tier).
   - **Best-of-competitors techniques adopted**: discrete-event sim (FM/OSM/Champ Man — already locked in D1), text-first match mode (OSM/Hattrick/Top Eleven), world-size slider (FM Mobile's #1 perf lever), compact binary saves (already locked in A5), virtualised tables + minimal DOM (FM26 UI Speed Patch lesson), graphics scalability (FM/SM/FC Mobile), small assets + LRU eviction (Top Eleven/FC Mobile), throttle + yield (FM processing screens), battery saver + reduced motion (SI recommendations + `prefers-reduced-motion`), incremental updates (every scalable manager).
-  - **Our unique twist**: deterministic match engine + Worker-based "simulate-to-completion → playback" architecture gives our local-sim PWA the same client-side perf profile as Hattrick/OSM's server-thin clients.
+  - **Our unique twist**: deterministic match engine + Worker-based simulate-to-completion for non-interactive fixtures plus buffered interactive chunks for human matches gives our local-sim PWA a thin-client-like UI profile without losing offline play.
 - **Output files**: wrote [[performance-budgets]] (new, comprehensive, 16-section research note with §12 cheat-sheet table); updated [[../10-Architecture/08-Crosscutting]] §Performance to incorporate the device matrix + budgets + match render policy; propagated "no 3D" decision into [[../50-Game-Design/match-engine]] §7 and moved 3D match view from "Could (deferred)" to "Won't (out of scope)" in [[feature-gap-analysis]] §4.
 - **Promotes / supersedes**: locks [[performance-budgets]] as `current binding`; supersedes "Lighthouse ≥ 90 placeholder" in arc42 §Crosscutting; supersedes "3D match view post-MVP" in match-engine GDD + feature-gap-analysis.
 - **Dependencies**: D1 (done), A2 (done), D8 (done), A3 (done), D11 (done, telemetry for RUM CWV).
@@ -669,7 +671,7 @@ its IDs are mirrored here verbatim. Wave 3 adds explicit per-gap research
 - **Q&A outcome (2026-05-17)** — Perplexity research (2 deep dives covering authoring formats + competitor analysis + ICU best practices + event family taxonomy + story arcs + voice consistency + press conferences + newspaper generation + personal life + workflow + LLM assistance) + 9-question Q&A with Nico. **All 9 recommendations accepted as-is** — maximum scope locked:
   - **Authoring format**: Markdown + frontmatter source → compiled locale-split JSON + typed TS catalogues. Best balance writer + dev ergonomics.
   - **ICU library**: FormatJS / `intl-messageformat`. Industry standard; mature TS.
-  - **Event taxonomy**: full ~50 families (actually 106 stable IDs across 10 groups). Future-proof.
+  - **Event taxonomy**: 106 stable IDs across 10 groups. Future-proof.
   - **Story arcs**: all 6 at MVP. Maximum narrative depth.
   - **Press conferences**: 5 tones × 4 contexts with cumulative season effects. FM + NBA 2K reference.
   - **Voice consistency**: voice cards + AI archetype reactions + CI lint rules. Disco Elysium-level consistency.
@@ -1530,7 +1532,7 @@ Append to this section as gaps complete. Format:
 - 2026-MM-DD  Gap <ID>  <Title>  →  <output file(s)>
 ```
 
-- 2026-05-16  Gap **B1**  Promote ADR-0010 Modular Monolith + DDD  →  [[../10-Architecture/09-Decisions/ADR-0010-modular-monolith-ddd]] (accepted, retitled "Service-ready Modular Monolith"), [[../10-Architecture/bounded-context-map]] (status: current; strict storage isolation + service-extraction order)
+- 2026-05-16  Gap **B1**  Promote ADR-0010 Modular Monolith + DDD  →  [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]] (accepted, retitled "Service-ready Modular Monolith"), [[../10-Architecture/bounded-context-map]] (status: current; strict storage isolation + service-extraction order)
 - 2026-05-16  Gap **B2**  Promote ADR-0011 Server-Authoritative Multiplayer  →  [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]] (accepted; hotseat handoff + hybrid server-sim AI matches + encrypted saves + hard-reject offline conflict), [[../10-Architecture/state-machines/match]] (extended persistence with engine_version + match_type + AI vs AI seed-only storage), gap A5 (encryption locked as mandatory) and D12 (hotseat handoff locked) updated.
 - 2026-05-16  Gap **B4**  Promote ADR-0013 Transactional Outbox  →  [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]] (accepted; SurrealDB outbox + Redis Streams; UUIDv7; tiered retention 60d hot + monthly cold archive forever; JSON+Zod forward-compat schema versioning; time-based lag alerting). Gaps E14, F10, E1, D14 updated with locked-from-B4 constraints.
 - 2026-05-16  Gap **D8**  R2-08 Determinism / RNG / Replay  →  [[determinism-and-replay]] (PCG32 via pure-rand, 8 named RNG streams seeded via xxhash32, full-event-log replay for human matches + seed-only for AI vs AI, integers/basis-points throughout, 12 save-determinism rules, Chromium-only CI gate at MVP). Gaps A2, A3, A5, E11, I8 updated with locked-from-D8 constraints.

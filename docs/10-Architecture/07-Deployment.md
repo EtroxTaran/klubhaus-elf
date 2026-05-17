@@ -34,6 +34,10 @@ MVP runtime services:
   Redis Streams.
 - `scheduler`: future long-running worker for timers, countdowns and
   retry jobs.
+- `match-worker`: future extracted Match Worker for server-authoritative
+  multiplayer simulation. MVP may run this inside the app/runtime; extraction
+  is a deployment change. Rust is only allowed after the gate in
+  [[../60-Research/match-engine-runtime-strategy]] passes.
 
 `/healthz` is the app liveness contract. The Dockerfile already uses it
 for the app container health check.

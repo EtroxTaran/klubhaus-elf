@@ -411,43 +411,86 @@ Generation per D2 `generator:manager:<managerId>`:
 
 ### 6.1 Transfer market
 
+Decision authority for the detailed market model is
+[[transfer-market-simulation]]. This section keeps the AI-manager layer aligned
+with that transfer-specific blueprint.
+
 **Squad gap analysis** (weekly per club):
 
 ```ts
 roleNeed[R] =
     0.6 * normalize(gapCount[R], 0, 2)
   + 0.4 * normalize(qualityGap[R], 0, 15)
-// Then modulated by personality (tacticalAttacking weights attacking roles)
+// Then modulated by manager personality and club situation.
 ```
 
-If `roleNeed[R] > 0.4`, role becomes a transfer priority. Max 3
-priority roles per club per week.
+If `roleNeed[R] > 0.4`, role becomes a transfer priority. Max 3 priority roles
+per club per week.
+
+**Window strategy**:
+
+Each club builds a `ClubTransferStrategy` at the start of a window and refreshes
+it weekly:
+
+```text
+buyTargets + sellCandidates + loanList + notForSaleCore
++ wageCorrectionTargets + successionNeeds + boardPressure
++ cashUrgency + styleFit
+```
 
 **Scouting** (cheap; precomputed indexes):
 
 - Global indexes built once per game-day:
-  - `PlayersByRole[Role]: Player[]` sorted by `estimatedAbility`.
+  - `PlayersByRole[Role]` sorted by estimated ability / role fit.
   - `FreeAgents[]` per role.
   - `PlayersByTransferList`.
-- For each priority role, scan top **N = 60** players in the index;
-  filter by:
-  - `feeEstimate ≤ maxFee × riskFactor`
-  - `wageDemand ≤ maxWage`
-  - `reputation ≤ clubReputation + 15`
-  - `styleFit ≥ 0.5`
+  - `TransferOpportunities[]` from the Transfer context.
+- For each priority role, scan top **N = 60** players in the index; filter by:
+  - valuation band within budget tolerance;
+  - wage demand within wage-policy tolerance;
+  - reputation within club attraction range;
+  - style fit `>= 0.5`;
+  - player-side plausibility above a low threshold.
 
 **Target scoring**:
 
 ```ts
-TargetScore =
-    0.35 * abilityFit
-  + 0.25 * potentialFit
+targetScore =
+    0.30 * abilityFit
+  + 0.20 * potentialFit
   + 0.15 * ageFit
   + 0.15 * styleFit
-  + 0.10 * contractOpportunity   // 1 if < 12 months left on contract
+  + 0.10 * contractOpportunity
+  + 0.10 * marketOpportunity
 ```
 
-Keep top 3-5 targets per role per club.
+Personality changes weights, not hard rules. `youthTrust` raises potential and
+age-fit weights; `starPreference` raises reputation / ability fit; `bargainSeeking`
+raises contract and market-opportunity weights.
+
+**Selling model**:
+
+The old simple sale formula is replaced by the transfer-market blueprint:
+
+```text
+sellPressure =
+  playerUnrest + contractRisk + wageBurden + squadSurplus
+  + financeUrgency + tacticalMismatch + ownerDirective
+  + marketOpportunity + agentPush
+
+protectionScore =
+  squadImportance + replacementScarcity + leadershipValue
+  + fanBoardBacklash + tacticalFit + rivalryRisk + statusSignal
+```
+
+Outcomes:
+
+- `protectionScore` clearly higher -> not-for-sale core; only exceptional
+  overpay opens talks.
+- scores close -> listen to offers.
+- `sellPressure` higher -> actively list or seek loan.
+- administration / owner directive / severe FFP pressure -> forced sale, still
+  bounded by `panicSaleFloor`.
 
 **Bidding logic** (with escalation + walk-away):
 
@@ -455,35 +498,34 @@ Keep top 3-5 targets per role per club.
 urgency =
     0.5 * roleNeed[R]
   + 0.2 * injuryCrisisFactor
-  + 0.2 * seasonPhaseFactor       // higher near transfer-window close
+  + 0.2 * seasonPhaseFactor
   + 0.1 * boardPressureFactor
 ```
 
 - If `urgency < 0.4`: do nothing this week.
-- Initial bid: `bidFee = player.feeEstimate × random(0.85, 1.0)`.
-- Escalation if outbid: `newBid = min(ourMaxFee, currentBid × (1 + random(0.02, 0.08)))`.
-  `ourMaxFee = player.feeEstimate × (1.2 + 0.3 × riskTaking)`.
-- **Walk-away rules** (prevents FIFA Career-style insanity):
-  - Bid > 1.4 × `valueEstimate`.
-  - Wage demand > `maxWage × 1.3`.
-  - Player would slot 3rd or lower in depth chart AND `starPreference < 0.6`.
+- Initial bid uses the Transfer context's valuation band, not a single
+  `valueEstimate`.
+- Escalation compares offer packages by `cashEquivalent`.
+- Walk away when the package exceeds the buyer's reservation value, wage policy,
+  squad-role plausibility or difficulty-specific risk cap.
 
-**Multi-club contest**: when ≥ 2 clubs bid on the same player, award
-to highest `bidScore`:
+**Multi-club contest**: when >= 2 clubs bid on the same player, award to highest
+combined package score:
 
 ```ts
-bidScore = 0.5 × normalize(fee, valueEstimate)
-         + 0.3 × clubReputationFactor
-         + 0.2 × wageOfferFactor
+bidScore =
+    0.45 * normalize(cashEquivalent, sellerAskBand)
+  + 0.25 * clubReputationFactor
+  + 0.20 * playerTermsFit
+  + 0.10 * relationshipTemperature
 // tie-breaker: WorldAiMgmtRng micro-jitter
 ```
 
 **Transfer window dynamics**:
 
-- Inflation factor: `1 + 0.2 × (1 - daysRemaining / windowLength)` for
-  mid-to-late window.
-- Deadline-day frenzy: `daysRemaining ≤ 1` AND `roleNeed > 0.5` → boost
-  `urgency` by `+0.3`, allow `ourMaxFee` up to `1.5 × valueEstimate`.
+- Market inflation / heat comes from `transfer_window_regime`.
+- Deadline-day urgency can raise reservation values, but cannot cross hard
+  valuation floors / caps.
 - Cap: max 2 deadline-day signings per club.
 
 ### 6.2 Contract renewals
@@ -972,7 +1014,7 @@ Per D2 + this gap's locks:
 - Mid-tier clubs with proven youth-development track record (3+ stars
   sold over past 5 seasons) get upgraded `youthFacilitiesLevel`,
   improving regen quality.
-- **Min playing time pressure**: any 4-star+ player (`PA ≥ 160`) with
+- **Min playing time pressure**: any high-potential player (`PA ≥ 160`) with
   < 35 % of available minutes for 2 consecutive seasons → 70-80 %
   chance to demand transfer (per `WorldAiMgmtRng:player:wantaway:<id>`).
 
@@ -1173,7 +1215,7 @@ first interaction.
   with §9 sacking + §11.2 roguelite integration.
 - **I12 Career: confidence thresholds + reputation per-region**:
   refines §9 with per-region reputation accumulators.
-- **ADR-0010 service extraction**: post-MVP server-side AI for
+- **ADR-0019 service extraction**: post-MVP server-side AI for
   async-MP worlds reuses the same `packages/ai-manager/` code path.
 
 ## 15. Sources

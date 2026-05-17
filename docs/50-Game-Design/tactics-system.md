@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-17
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/data-generators]], [[../60-Research/match-engine-simulation-model]], [[match-engine]], [[set-pieces]], [[progressive-disclosure-ui]]
+related: [[README]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/data-generators]], [[../60-Research/player-strength-presentation]], [[../60-Research/match-engine-simulation-model]], [[match-engine]], [[set-pieces]], [[progressive-disclosure-ui]]
 ---
 
 # Tactics System - Position, Role, Duty, Instructions, Traits
@@ -165,15 +165,20 @@ Per [[../60-Research/data-generators]] §10 (locked schema):
 
 Per-tier display:
 
-- **Quick**: 4-star summary rating (weighted average of visible
-  attributes by archetype).
-- **Standard**: 1-20 scale across 16 visible (+ 4 GK if keeper).
-- **Expert**: 1-20 scale across 20 visible + scout-report uncertainty
-  bands for 8 hidden.
+- **Quick**: qualitative Impact band and availability warnings for the
+  selected tactic / role context; no global OVR or universal star rating.
+- **Standard**: Role Impact, Technical / Mental / Physical / GK category bars,
+  short-term status icons and access to the 1-20 visible attributes.
+- **Expert**: full 1-20 visible attribute grid + Impact formula breakdown +
+  scout-report uncertainty bands for 8 hidden attributes.
 
 (Replaces the previous incorrect "10 + 8 + 10 + 5 = 33 on 1-10 scale"
 claim from the original draft. The previous schema was authored
 before D2 locked the canonical numbers.)
+
+Player strength presentation follows [[../60-Research/player-strength-presentation]]:
+the squad and tactic UI rank players by role/tactic context, never by a
+context-free Overall.
 
 ## 10. Tactical familiarity
 

@@ -20,6 +20,21 @@ TanStack Start (file-based routing, server functions, SSR) + shadcn/ui + Tailwin
 + SurrealDB (document/graph/relational) + TypeScript strict + Vitest + Playwright
 + Biome + pnpm + mise + sops+age+direnv + Docker + Dokploy on Hetzner.
 
+## Workflow Pattern
+
+**Authoritative:** `docs/30-Implementation/agent-workflow-pattern.md` (vault doc,
+also bound via `.cursor/rules/80-workflow-vault.mdc`). Read it before any beat.
+
+Every beat follows one loop: pick a small Linear beat → confirm understanding
+(ask the human if anything is unclear — never guess or work around) → plan →
+implement using the **design system only** (no agent-invented style/layout) →
+reflect the change in the Obsidian vault in the **same PR** → check it against
+the knowledge base (contradiction → escalate; extension → update docs) → draft
+PR → review → merge green. Tasks stay small, modular, and future-proof; no
+decision may foreclose evolution. Knowledge-base drift or unclear architecture
+is a **stop condition**: open a Linear issue tagged for Nico, mark the beat
+Blocked, and halt — do not paper over it.
+
 ## Vault Memory
 
 The `docs/` directory is the Obsidian vault and durable project memory. This file
@@ -78,6 +93,32 @@ pnpm dev
 - Tables are `DEFINE TABLE ... SCHEMAFULL`. Use record links (`player:ulid`) and `RELATE`, not joins.
 - Service worker lives in `src/workers/`; the bootstrap shell registers it through `apps/web/public/sw-register.js` until interactive client hydration is introduced.
 - shadcn primitives in `src/components/ui/**` are generated; update them with shadcn tooling.
+- UI uses the design system only: tokens in `apps/web/src/styles/app.css`, `cn()`
+  from `apps/web/src/lib/utils.ts`, theme in `apps/web/src/theme/*`, and atoms/
+  composites in `apps/web/src/components/`. No raw hex, arbitrary Tailwind values,
+  or inline `style=` for visual design. Missing primitive → propose it + update
+  `docs/10-Architecture/09-Design-System.md` first; never improvise in a feature PR.
+- Every atom/composite/layout/screen ships a colocated `*.stories.tsx`; a
+  new or changed primitive/screen must add or update its story in the same PR
+  so the Storybook showcase stays a complete mirror of the design system.
+- Before any UI work, **read `docs/10-Architecture/09-Design-System.md`**
+  (§1–12 = how it works; §13 = using the Storybook showcase as the reference
+  + the story-authoring convention) and use the showcase to see components
+  rendered: `pnpm --filter @soccer-manager/web storybook` (local :6006) or the
+  deployed `SHOWCASE_DOMAIN`. The showcase is the canonical *visual* reference;
+  the code in `apps/web/src` is authoritative on any conflict.
+- **New design export** (claude.ai/design, e.g. an
+  `https://api.anthropic.com/v1/design/h/<code>` link): do not eyeball or
+  reimplement it. Run `pnpm sync:design <url>` (or `--dry-run` first), review
+  the generated `design/handoff/<date>/CHANGES.md`, map deltas onto the §5
+  layers, update the affected components **and their stories** plus
+  `09-Design-System.md` (§13 if structure changes), and land one small
+  dedicated PR. The script never edits app code. Full procedure:
+  `docs/30-Implementation/design-sync-workflow.md`.
+- Unclear architecture/feature/ADR gap is a stop condition: escalate via Linear
+  (tag Nico, mark Blocked) — never scaffold a workaround or guess.
+- Behaviour changes ship with their vault delta in the same PR; a change that
+  contradicts a documented ADR/architecture decision is escalated, not merged.
 
 ## Database & Migrations
 
@@ -131,6 +172,11 @@ The docs vault remains the durable knowledge base.
 - Do not bypass `src/db/client.ts`.
 - Do not use class components, default exports for React components, or enums.
 - Do not use real Bundesliga/EPL club names/logos/player names; see ADR-0007.
+- Do not invent styling/layout or add one-off styled components when a
+  design-system primitive exists.
+- Do not work around an unclear spec/architecture; do not merge a change whose
+  vault delta is missing or that diverges from the knowledge base.
+- Do not make one-way-door decisions without an ADR + Nico sign-off.
 
 ## Cursor Cloud specific instructions
 

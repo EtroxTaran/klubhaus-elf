@@ -12,10 +12,23 @@
       "!**/node_modules",
       "!**/.output",
       "!**/dist",
+      // Cursor agent worktrees — checkouts of other branches with their own
+      // biome.jsonc files which would clash as "nested root configurations".
+      "!.claude",
+      // Local pnpm shim folder (transient build helper).
+      "!.tmp-pnpm-shim",
       "!**/coverage",
       "!**/playwright-report",
       "!**/.lighthouseci",
-      "!**/routeTree.gen.ts"
+      "!**/.stryker-tmp",
+      "!**/reports/mutation",
+      "!**/routeTree.gen.ts",
+      // Tailwind v4 entry stylesheet: uses @theme / @custom-variant which
+      // Biome's CSS parser (2.4) does not understand.
+      "!apps/web/src/styles/app.css",
+      // Archived design-export prototype snapshots — historical artifact,
+      // intentionally not linted/formatted (see design-sync-workflow).
+      "!design/handoff"
     ]
   },
   "formatter": {
@@ -35,10 +48,19 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "complexity": { "recommended": true },
+      "correctness": { "recommended": true },
+      "performance": { "recommended": true },
+      "security": { "recommended": true },
+      "a11y": { "recommended": true },
+      "nursery": { "recommended": true },
       "suspicious": {
-        "noExplicitAny": "error"
+        "recommended": true,
+        "noExplicitAny": "error",
+        "noImportCycles": "error"
       },
       "style": {
+        "recommended": true,
         "useImportType": "error"
       }
     }

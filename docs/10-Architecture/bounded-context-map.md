@@ -3,10 +3,10 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[09-Decisions/ADR-0010-modular-monolith-ddd]], [[05-Building-Blocks]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[05-Building-Blocks]]
 ---
 
 # Bounded Context Map
@@ -17,7 +17,7 @@ its state machine(s), its database tables, and a thin public contract
 (commands + queries + domain events) that is JSON-serialisable and
 network-transparent.
 
-> Decision authority: [[09-Decisions/ADR-0010-modular-monolith-ddd]] —
+> Decision authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]] —
 > accepted 2026-05-16.
 
 **Service-ready** means: although MVP ships as one process, every
@@ -32,14 +32,19 @@ change, not a refactor.
 | **Identity & Access** | User, sessions, roles, device state | Auth claims, membership context |
 | **League Orchestration** | Season, week, match-day, mode, pause, quorum | League status, deadlines, lifecycle events |
 | **Club Management** | Finances, infrastructure, sponsors, board, fans | Club state, board pressure, facility modifiers |
-| **Squad & Player** | Player base data, fitness, morale, contracts, injuries | Squad projections, player state |
+| **Squad & Player** | Player base data, fitness, morale, contracts, injuries | Impact Lens projections, squad projections, player state |
 | **Training** | Training plan, load, development signals | Training outcomes, fatigue signals, growth deltas |
-| **Transfer** | Offers, counter-offers, deadlines, escalation | Transfer state, pressure signals |
+| **Transfer** | Market valuation, opportunities, offers, clause packages, negotiation cases, deadlines, escalation | Transfer state, valuation bands, pressure signals, completed deals |
 | **Match** | Line-up, tactic lock, simulation, results | Result, match events, replay stream |
 | **Watch Party** | Polls, scheduling, broadcast, conference | Watch-party status, event timeline |
 | **Notification** | Inbox, push, reminder, digest | User-facing message projections |
 | **Offline Sync** | Local outbox, command replay, conflict logic | Sync status, retry status |
 | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
+
+Player lifecycle and systemic world events are specialised by
+[[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]. They do not
+add a twelfth bounded context. The `WorldEventDirector` is an orchestration
+policy over the existing contexts.
 
 ## 2. Context map (high-level)
 
@@ -103,6 +108,28 @@ No context reads another context's internal tables or document fields.
 No JOIN across context boundaries. No shared lookup tables that bypass
 the rule.
 
+Systemic event rules follow the same contract discipline. For example,
+Training may emit `TrainingWeekProcessed` and `InjuryRiskUpdated`, Squad &
+Player may emit `PlayerDevelopmentDeltaApplied` and `TrainingInjuryOccurred`,
+Club Management may emit `VenueEventBooked` and `MatchdayEventTriggered`,
+and Notification may render deterministic projections from those facts.
+
+### 3.1 Impact Lens projection
+
+Per [[../60-Research/player-strength-presentation]], `ImpactLensProjection`
+is a **Squad & Player** read model exposed via the squad `queryGateway`.
+
+It may combine facts from tactics, training, match and scouting only through:
+
+- public queries,
+- published domain events,
+- or denormalised projection inputs already copied into Squad-owned storage.
+
+It MUST NOT query another context's internal tables. The projection is
+read-only: it can rank UI recommendations and Auto-Coach proposals, but command
+handlers and workflow transitions must re-read authoritative state from the
+owning context.
+
 ## 4. Source mapping
 
 The TypeScript code lives under `src/domain/` with one folder per context:
@@ -159,7 +186,7 @@ scaling signal forces a split.
 
 This is the explicit user requirement that drove this map: maximum
 service-architecture readiness so individual systems can be
-re-developed independently and scaled independently. See ADR-0010
+re-developed independently and scaled independently. See ADR-0019
 §Decision.
 
 ## 6. Storage isolation
@@ -187,6 +214,15 @@ extraction stays a deployment change rather than a data-migration.
   [[../60-Research/ai-manager-behaviour]] (gap D4, 2026-05-17):
   utility-AI core + FSM situation classifier + heuristic constraints;
   `packages/ai-manager/` framework-agnostic; uses pre-allocated
-  `WorldAiMgmtRng` + `MatchAiRng` from D8.
+  `WorldAiMgmtRng` + `MatchAiRng` from D8. Transfer-specific valuation,
+  sell pressure, clause pricing and negotiation ownership are detailed in
+  [[transfer-market-architecture]] and
+  [[../60-Research/transfer-market-simulation]].
+- Where do player development, injuries, venue events and narrative events
+  sit? Locked in
+  [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]:
+  domain-owned policies inside Training, Squad & Player, Club Management,
+  Match, League and Notification, coordinated by deterministic event
+  orchestration. No generic random-event bounded context.
 - Spectator stream: own context or in Match? Own context (Watch Party)
   because it has independent state machine and scheduling.

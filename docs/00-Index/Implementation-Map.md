@@ -22,10 +22,13 @@ Use this map for operational, deployment, data, and agent workflow work.
 - [Deployment Dokploy](../30-Implementation/deployment-dokploy.md)
 - [Observability Runbook](../30-Implementation/observability-runbook.md)
 - [Client Telemetry](../30-Implementation/client-telemetry.md)
-- [Jobs and Scheduler](../30-Implementation/jobs-and-scheduler.md)
+- [Jobs and Scheduler](../30-Implementation/jobs-and-scheduler.md) - includes
+  matchday scheduling, quality-profile dispatch and future extracted
+  `match-worker` observability hooks.
 - [Audit Trail](../30-Implementation/audit-trail.md)
 - [Incident Response](../30-Implementation/incident-response.md)
 - [Secrets Rotation](../30-Implementation/secrets-rotation.md)
+- [Transfer Market Implementation Plan](../30-Implementation/transfer-market-implementation-plan.md)
 
 ## Related Rules
 

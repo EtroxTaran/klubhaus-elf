@@ -1,15 +1,19 @@
 ---
 title: Stadium and Club Campus - Build-out and On-grounds Economy
-status: draft
+status: approved
 tags: [game-design, stadium, infrastructure, anstoss]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
-binding: false
-related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[economy-system]], [[fan-ecology]], [[regulations-and-compliance]]
+binding: true
+related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[economy-system]], [[fan-ecology]], [[regulations-and-compliance]]
 ---
 
 # Stadium and Club Campus - Build-out and On-grounds Economy
+
+> Approved by the systemic events / player lifecycle pass (2026-05-17).
+> Venue operations are a Club Management system with football consequences,
+> not a detached tycoon minigame.
 
 The stadium is the **economic and emotional heart** of the club. Anstoss 3
 proved that buildings on the grounds (Würstchenbude, Bierzelt, Fanshop,
@@ -72,6 +76,27 @@ upgrades:
 Source pattern: [[../60-Research/raw-perplexity/raw-feature-library]] §3 (Anstoss 3
 buildings) + [[../60-Research/anstoss-series-deep-dive]] §3.
 
+## 4.1 Venue operations calendar
+
+Multi-use arenas have a separate event calendar next to matches and
+training. It is evaluated weekly or at event boundaries, not with a
+visitor-by-visitor simulation.
+
+| Event type | Benefit | Football consequence |
+|---|---|---|
+| Concert | high rental / catering revenue | pitch wear, setup/teardown conflict |
+| Conference | stable weekday revenue | low pitch impact, sponsor synergy |
+| Fan festival | mood and brand lift | security/staffing cost |
+| Museum special | prestige and non-matchday spend | low operational risk |
+| Community day | family/local segment mood | moderate staff cost, sponsor fit |
+
+Venue event rules include eligibility tags, setup days, teardown days,
+pitch impact, revenue range, operating cost, sponsor affinity, fan segment
+effects and conflict rules.
+
+The player should normally choose policies or accept/reject highlighted
+events rather than micromanage every booking.
+
 ## 5. Club campus (beyond the stadium)
 
 Often co-located, often on a separate site:
@@ -118,6 +143,21 @@ matchday_revenue = ticket_revenue
 Each component depends on attendance, dwell time, fan-segment mix and
 weather. See [[fan-ecology]] §4.
 
+Non-matchday revenue is separate:
+
+```text
+venue_event_profit =
+  event_revenue
+  + sponsor_activation_revenue
+  - operating_cost
+  - pitch_recovery_cost
+  - security_cost
+```
+
+High event density can reduce future match pitch quality or raise
+operational incident risk. Good hybrid turf, logistics, security and
+maintenance upgrades reduce the downside.
+
 ## 8. UI tiers
 
 | Tier | Surface |
@@ -144,3 +184,6 @@ checks the current stadium against the destination tier. Player options:
 - Are weather-protected stand types modelled (roof / partial roof)? Yes -
   modifier on weather event impact ([[matchday-event-engine]]).
 - Multiple stadium owners (community stadium) - in scope post-MVP only.
+- Manual venue booking depth - start with policy presets + highlighted
+  accept/reject decisions; consider Expert manual booking only after the
+  first stadium prototype proves the added depth is fun.

@@ -3,10 +3,10 @@ title: Feature Gap Analysis - MoSCoW Scope
 status: in-review
 tags: [research, feature, moscow, scope]
 created: 2026-05-15
-updated: 2026-05-16
+updated: 2026-05-17
 type: research
 binding: false
-related: [[competitor-matrix]], [[feature-library-synthesis]], [[anstoss-series-deep-dive]], [[../00-Index/Feature-Map]]
+related: [[competitor-matrix]], [[feature-library-synthesis]], [[anstoss-series-deep-dive]], [[player-strength-presentation]], [[../00-Index/Feature-Map]]
 ---
 
 # Feature Gap Analysis - MoSCoW Scope
@@ -28,7 +28,7 @@ mobile-friendly fictional-universe manager with depth.
 | Feature | Source pattern | Linked design note |
 |---|---|---|
 | 7-pillar club simulation (Identity / Economy / Infra / Fans / Sport / Tactics / Time) | All competitors | [[systems-design-synthesis]] |
-| 1-10 attribute + 4 talent buckets per player (mobile-readable) | Anstoss 3 scale + mobile UI convention | [[../50-Game-Design/squad-and-club-structure]] |
+| 1-20 player attributes + Impact Lens presentation (mobile-readable without global OVR) | FM scale + mobile UI convention, corrected by D2 and Impact Lens | [[../50-Game-Design/squad-and-club-structure]], [[player-strength-presentation]] |
 | Weekly heartbeat with 7-day ticks + match tick | Anstoss day-by-day, FM weekly model | [[../50-Game-Design/core-loop]] |
 | 2D event-based match engine + text ticker | FM 2D, Anstoss text | [[../50-Game-Design/match-engine]] |
 | Tactics: Position + Role + Duty + basic instructions | FM tactics core | [[../50-Game-Design/tactics-system]] |
@@ -53,7 +53,7 @@ Second-wave features that distinguish a depth product from a casual one.
 
 | Feature | Source pattern | Linked design note |
 |---|---|---|
-| Full 30+ attribute model (1-20 expert mode) | FM | [[../50-Game-Design/squad-and-club-structure]] |
+| Full 20 visible + 8 hidden meta attribute model | FM-style depth, simplified by D2 | [[../50-Game-Design/squad-and-club-structure]], [[data-generators]] |
 | Tactical familiarity over time | FM | [[../50-Game-Design/tactics-system]] |
 | Set-piece sub-system (corners / free kicks / penalties / throw-ins) | FM24+ set-piece coach | [[../50-Game-Design/set-pieces]] |
 | Youth academy with intake pipeline + loan environment | FM youth | [[../50-Game-Design/youth-academy-and-development]] |

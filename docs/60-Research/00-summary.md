@@ -2,7 +2,7 @@
 title: Research Summary
 status: current
 tags: [research, summary]
-updated: 2026-05-16
+updated: 2026-05-17
 ---
 
 # Research Summary
@@ -64,3 +64,10 @@ Each gap follows the same template (Why now / Scope / Research questions
 Dependencies / Effort) and the doc defines four execution waves
 (W3.A-W3.D) by priority. Per-gap workflow is agent-led: Perplexity MCP
 research → synthesis + Q&A → final vault docs → map updates.
+
+## Ad-hoc Transfer Market Synthesis (2026-05-17)
+
+[[transfer-market-simulation]] promotes Nico's attached transfer-market
+research into a current binding synthesis. It reconciles the new ideas with D4
+AI Manager Behaviour, D8 Determinism, D9 Performance Budgets, D15 Narrative
+Content and the Transfer bounded context.

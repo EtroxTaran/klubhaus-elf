@@ -19,3 +19,20 @@ pnpm --filter @soccer-manager/web dev
 
 See `AGENTS.md` for agent rules and `docs/00-Index/Home.md` for the Obsidian
 Vault entry point.
+
+## Docs vault preview
+
+Open `docs/` as a vault in the Obsidian app, or preview it in a browser
+(no Obsidian required):
+
+```bash
+pnpm docs:preview   # http://localhost:8080
+```
+
+## UI showcase (Storybook)
+
+```bash
+pnpm storybook      # http://localhost:6006
+```
+
+See `docs/90-Meta/obsidian-config.md` for vault details.

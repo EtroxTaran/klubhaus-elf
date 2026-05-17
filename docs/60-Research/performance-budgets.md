@@ -25,6 +25,9 @@ locked elsewhere:
   match in Web Worker on 2022 mid-range Android; soft alert 30-40 ms;
   AI-vs-AI batch ≤ 30 ms (no narrative); heavy-scenario CI perf gate
   already specified.
+- **Runtime strategy** ([[match-engine-runtime-strategy]]): TypeScript MVP
+  engine with a post-MVP polyglot/Rust extraction gate, plus explicit match
+  quality profiles.
 - **Storage** (A2, [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]):
   ~300 MB soft cap; warn at 70 %; persistent storage requested.
 - **Determinism** (D8, [[determinism-and-replay]]): Chromium-only CI
@@ -71,9 +74,10 @@ The market splits cleanly into:
 We're forced into local sim (offline-first), but we can borrow the
 **lightweight client philosophy** because:
 
-- The match engine runs **to completion in a Web Worker before
-  playback starts** (per A3 + D1). Once playback starts, the UI thread
-  only consumes the event log — it never re-simulates.
+- Non-interactive batch/replay paths can run **to completion in a Web Worker
+  before playback starts** (per A3 + D1). Interactive human matches may buffer
+  deterministic chunks so substitutions and tactical changes can affect the
+  remaining match.
 - This makes the on-device experience structurally similar to a
   Hattrick/OSM thin client: the heavy work is "remote" (in the Worker)
   and the UI just renders pre-computed events.
@@ -104,12 +108,12 @@ Where we differ from every game in the table:
   MVP; everything must fit Workbox 7 + Service Worker + IndexedDB +
   Web Worker on a single Origin.
 - **Deterministic + reproducible** (per D8) — same `(engine_version,
-  seeds, lineups, tactics)` → byte-identical event log. No competitor
-  in the table guarantees this; it's our primary technical
+  seeds, quality_profile, lineups, tactics)` → byte-identical event log.
+  No competitor in the table guarantees this; it's our primary technical
   differentiator and enables:
-  - Splitting the match into **simulate-to-completion → playback** phases
-    (the trick that makes our client structurally "thin" even though
-    the sim is local).
+  - Splitting non-interactive fixtures into **simulate-to-completion →
+    playback** phases, while interactive matches consume deterministic
+    buffered chunks.
   - Async multiplayer with hard-reject offline conflict resolution
     (per B2/ADR-0011), which constrains storage but not perf budgets.
 - **Workbox 7 + `injectManifest`** (per A2) — service worker is our
@@ -121,6 +125,27 @@ Where we differ from every game in the table:
   decision 2026-05-17: **no 3D mode is on the roadmap, ever**. This
   removes the entire WebGL/GPU budget category and is a permanent
   constraint, not a "post-MVP" deferral.
+
+### 2.4 Match quality profiles
+
+Performance budgets are enforced per profile, not just per "match".
+
+| Profile | Budget target | Main risk |
+|---|---:|---|
+| `competitive-full` | ≤ 50 ms full sim; full event + spatial output | Event/spatial output volume |
+| `interactive-standard` | ≤ 50 ms full sim; reduced spatial output | Too much lookahead during live interventions |
+| `background-detailed` | ≤ 30 ms; summary + key stats/selected events | Promoting too many AI fixtures |
+| `background-fast` | Batch throughput first; no full event log | Plausibility drift if overused in active leagues |
+
+Matchday processing must prioritise profiles in this order:
+
+1. human-involving and watched fixtures;
+2. active league and direct rivals;
+3. relevant cup/continental fixtures;
+4. rest-world fixtures.
+
+On Floor tier, all user-visible active matches default to Text & Stats and
+background fixtures downgrade before the main thread blocks.
 
 ## 3. Device matrix
 
@@ -360,8 +385,9 @@ Two match render modes:
   drawing, not a raster image. Badges / kit colours from data, not
   bitmap.
 - Match engine writes the full event log before canvas playback
-  starts (per A3). Canvas only interpolates between events; it never
-  blocks on simulation work.
+  starts for non-interactive replay/batch paths. Interactive matches may
+  consume buffered event chunks. Canvas only interpolates between committed
+  events; it never blocks on simulation work.
 
 ### 6.3 Mode switching
 

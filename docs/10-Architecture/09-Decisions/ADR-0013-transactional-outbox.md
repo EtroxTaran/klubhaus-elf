@@ -7,7 +7,7 @@ updated: 2026-05-16
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[ADR-0010-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0014-state-machines]], [[../../60-Research/raw-perplexity/raw-architecture]]
+related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0014-state-machines]], [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
 # ADR-0013: Transactional Outbox for Domain Events
@@ -253,7 +253,7 @@ trouble, not normal queue growth.
 ### Future
 
 - Move publisher to a separate worker / pod when load demands (already
-  service-extraction-ready per [[ADR-0010-modular-monolith-ddd]]).
+  service-extraction-ready per [[ADR-0019-modular-monolith-ddd]]).
 - Add tier-3 archival to S3-compatible object storage when monthly
   partition count exceeds N (say > 36 months).
 - Swap Redis Streams for NATS JetStream or Kafka if we outgrow Redis

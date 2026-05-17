@@ -3,10 +3,10 @@ title: Determinism, RNG and Replay - Locked Decisions
 status: current
 tags: [research, determinism, rng, replay, match-engine, save-format]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: research
 binding: true
-related: [[research-wave-2-gaps]], [[wave-3-gap-analysis]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+related: [[research-wave-2-gaps]], [[wave-3-gap-analysis]], [[match-engine-runtime-strategy]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
 ---
 
 # Determinism, RNG and Replay - Locked Decisions
@@ -157,6 +157,7 @@ type MatchReplayInputs = {
   engineVersion: string          // semantic version, pinned
   coreSeed: u32                  // for MatchCoreRng
   aiSeed: u32                    // for MatchAiRng
+  qualityProfile: 'competitive-full' | 'interactive-standard' | 'background-detailed' | 'background-fast'
   weatherSeedSlice: u32          // derived once at kickoff
   kickOffSimTime: number         // simClock at kickoff
   homeLineup: Lineup             // frozen at lineup_lock
@@ -280,7 +281,27 @@ Test types:
 4. **PRNG cross-implementation test** (post-MVP): a reference Python
    PCG32 produces the same first-N outputs as our JS implementation.
 
-## 7. Cross-references and propagation
+## 7. Cross-runtime parity gate
+
+MVP has one TypeScript implementation. If a post-MVP Rust or WASM Match
+Worker is introduced per [[match-engine-runtime-strategy]], determinism
+expands from "same JS code path" to "same versioned engine semantics".
+
+Additional gate before a polyglot worker becomes authoritative:
+
+- PRNG reference vectors match for every named RNG stream and sub-label.
+- 10 canonical golden replays byte-match where the `engineVersion` claims
+  semantic parity.
+- If byte parity is intentionally broken, the new worker must ship under a new
+  `engineVersion`; old saves and audit replays continue to load the old TS
+  engine module.
+- Statistical envelopes over 1k-5k matches stay inside the accepted D1 bands.
+- Event ordering, sort tie-breakers, integer comparisons and coordinate
+  rounding are specified at the DTO boundary, not left to runtime defaults.
+- CI runs both implementations against the same frozen fixture corpus before
+  multiplayer authority can switch.
+
+## 8. Cross-references and propagation
 
 The following Wave 3 gaps inherit constraints from this note:
 
@@ -295,7 +316,7 @@ The following Wave 3 gaps inherit constraints from this note:
 - **I8** (Match-engine zone granularity + tick rate) — choose grid +
   tick that play well with integer-mm coordinates.
 
-## 8. Sources
+## 9. Sources
 
 - Perplexity research, 2026-05-16 (gap D8). Calls cited:
   - PRNG comparison + 2026 JS library landscape.

@@ -3,10 +3,10 @@ title: State Machine - Match
 status: draft
 tags: [architecture, state-machine, match]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/match-engine]], [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/match-engine]], [[../../60-Research/match-engine-runtime-strategy]], [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]]
 ---
 
 # State Machine - Match
@@ -72,7 +72,7 @@ stateDiagram-v2
 ## 5. Determinism contract
 
 Per [[../09-Decisions/ADR-0003-match-engine]] and
-[[../60-Research/research-wave-2-gaps]] R2-08:
+[[../../60-Research/determinism-and-replay]]:
 
 - Match RNG seeded at `lineup_locked`.
 - Tactical changes during `simulating` are events in the same stream;
@@ -98,6 +98,7 @@ match {
   away_lineup: object,
   home_tactic: object,
   away_tactic: object,
+  quality_profile: enum(competitive_full | interactive_standard | background_detailed | background_fast),
   match_type: enum(human_vs_human | human_vs_ai | ai_vs_ai),
   events: array<event>?,         # full log for human-involving; null until re-sim for AI vs AI
   summary: object,               # always present: result + key stats
@@ -111,10 +112,12 @@ match {
 Per [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]] §AI vs AI
 match policy:
 
-- AI vs AI matches store `seed + lineups + tactics + summary` by default.
+- AI vs AI matches store `seed + lineups + tactics + quality_profile +
+  summary` by default.
 - `events` stays null until a watch-party / audit triggers re-simulation.
 - Re-simulation runs the deterministic engine with the stored seed +
-  `engine_version` to produce the full event log on demand.
+  `engine_version` + `quality_profile` to produce the full event log on
+  demand.
 - Engine upgrades that change determinism require a forward migration
   of stored matches (re-sim and re-store seeds).
 

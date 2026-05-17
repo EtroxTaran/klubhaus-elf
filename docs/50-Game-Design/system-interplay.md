@@ -3,10 +3,10 @@ title: System Interplay - The Five Master Feedback Loops
 status: draft
 tags: [game-design, system-design, feedback-loop]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]]
+related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/transfer-market-simulation]], [[transfer-market-and-contracts]]
 ---
 
 # System Interplay - The Five Master Feedback Loops
@@ -60,6 +60,7 @@ Detail:
 - [[youth-academy-and-development]] §7 development math
 - [[economy-system]] §2 revenue
 - [[scouting-and-recruitment]] §10 free agents
+- [[transfer-market-and-contracts]] §9 economy integration
 
 ## 3. Loop 3: Sponsors → Stadium → Experience → Sponsors
 
@@ -120,12 +121,17 @@ flowchart LR
 ```
 
 This is the engine of the [[mode-create-a-club-roguelite]] death spiral.
+The transfer market is where the pressure becomes visible: boards can demand
+wage cuts, owners can force sales, players can become wantaway and protected
+stars only move when `sellPressure` exceeds `protectionScore` or the buyer
+offers a genuinely exceptional package.
 
 Detail:
 
 - [[economy-system]] §6 spiral mechanics
 - [[club-dna-and-governance]] §3 pressure loop
 - [[fan-ecology]] §5 protest events
+- [[transfer-market-and-contracts]] §8 AI club behaviour
 
 ## 6. Cross-cutting rules
 

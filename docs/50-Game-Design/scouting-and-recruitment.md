@@ -3,10 +3,10 @@ title: Scouting and Recruitment - Funnel, Scout Attributes, Market Dynamics
 status: draft
 tags: [game-design, scouting, recruitment, transfers]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-17
 type: game-design
 binding: false
-related: [[README]], [[squad-and-club-structure]], [[tactics-system]], [[transfer-negotiations-p2p]]
+related: [[README]], [[../60-Research/player-strength-presentation]], [[squad-and-club-structure]], [[tactics-system]], [[transfer-market-and-contracts]], [[transfer-negotiations-p2p]]
 ---
 
 # Scouting and Recruitment - Funnel, Scout Attributes, Market Dynamics
@@ -53,24 +53,47 @@ scouting is technically possible but high-risk.
 | Personality reading | Character + leadership |
 | Network | More chances for early discovery |
 
-Each attribute is 1-10. A scout's value is the *combination* against the
-club's recruitment strategy, not a single sum.
+Each scout attribute uses the same 1-20 scale as the wider player/staff model
+unless a future staff-system note narrows it. A scout's value is the
+*combination* against the club's recruitment strategy, not a single sum.
 
 ## 3. Player report opacity
 
 A player report is *not* fully revealed instantly:
 
-- **Layer 1** (first sight): Position, age, approximate ability range
-  (★★ - ★★★★★), top-line traits.
+- **Layer 1** (first sight): Position, age, broad Impact band for the
+  searched role context, top-line traits.
 - **Layer 2** (after 2-3 reports): Approximate attributes (banded),
-  personality cue.
-- **Layer 3** (after deep scout): Numeric attributes (1-10), PA range,
-  hidden flags partly visible.
+  category bands, personality cue.
+- **Layer 3** (after deep scout): Numeric visible attributes (1-20), Role
+  Impact range, PA range, hidden flags partly visible.
 
-In expert UI, opacity layers are explicit; in Quick / Standard, layers
-collapse into ★ ratings + a trust meter.
+In Expert UI, opacity layers are explicit. In Quick / Standard, layers collapse
+into qualitative Impact labels + a trust meter. The trust meter describes
+information quality, not player quality.
+
+### 3.1 Transfer-value knowledge
+
+Transfer values follow the same knowledge model:
+
+- own-club player contracts, wages and incoming offer terms are exact;
+- external player valuations start as wide bands;
+- better scouts, better analysts, regional knowledge, league data coverage,
+  repeated reports and direct match exposure narrow the band;
+- Expert UI shows the clearest available numbers: low / midpoint / high,
+  confidence, source and "last updated";
+- coaches can improve role-fit and tactical-fit confidence, but scouts and
+  analysts drive market-value confidence.
+
+The design target is clarity without false certainty. Expert users should see
+numbers, but also why a number is trusted or fuzzy.
 
 ## 4. Market dynamics
+
+Market dynamics are governed by [[transfer-market-and-contracts]] and the
+binding research in [[../60-Research/transfer-market-simulation]]. Scout reports
+never reveal one exact truth; they estimate valuation bands, player-side
+openness and seller preferences.
 
 Prices rise with:
 
@@ -80,6 +103,9 @@ Prices rise with:
 - Agent relations.
 - Other clubs' squad needs.
 - Timing close to deadline.
+- Position scarcity / market heat.
+- Seller protection score.
+- Clause preferences that reduce immediate cash.
 
 In async multiplayer ([[async-multiplayer-private-group]]) the human-to-
 human transfer market gains *bluffing* and *time-pressure exploitation* as
@@ -103,7 +129,8 @@ The UI maintains two persistent lists:
 - **Long list**: many candidates, periodic light updates from scouts.
 - **Short list**: priority targets, frequent deep updates.
 
-Each list entry shows trust meter, last update date, fit-to-tactic %.
+Each list entry shows trust meter, last update date and role/tactic Impact
+context. There is no global OVR fallback for poorly scouted players.
 
 ## 7. Hidden flags surfaced by scouts
 
@@ -133,7 +160,9 @@ sequenceDiagram
 ```
 
 Clauses: sell-on %, bonus per appearance, bonus per league position,
-release clause, loyalty bonus, language/lifestyle requirements.
+release clause, buy-back / matching right, loan option / obligation, loyalty
+bonus, language/lifestyle requirements. Internally, clause packages are compared
+by cash-equivalent value.
 
 ## 9. UI tiers
 
