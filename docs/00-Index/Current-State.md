@@ -21,6 +21,9 @@ specs, or architecture notes.
   stub) and the Phase 1 consolidation rewrite (AKOM-116).
 - Memory-system hardening: vault entry chain, governance, and agent-config
   alignment so every agent uses memory identically.
+- Knowledge graph connectivity + the new **Game Design layer**
+  ([[../50-Game-Design/README]]): 16 GDDRs synthesized from research, wired
+  into the research → game-design → ADR → implementation chain.
 
 ## Stable
 
@@ -30,7 +33,10 @@ specs, or architecture notes.
   Lighthouse budgets).
 - Research Wave 1 (M1.1) complete — 5 research notes in `60-Research/`.
 - Accepted ADRs: 0001 tech-stack, 0002 offline-first, 0005 save-format,
-  0007 naming-schema, 0009 cursor-orchestration.
+  0007 naming-schema, 0009 cursor-orchestration, 0010 design-system.
+- Approved GDDRs: [[../50-Game-Design/GD-0014-save-career-model]],
+  [[../50-Game-Design/GD-0015-ip-clean-data]] (restate accepted ADRs). The
+  other 14 GDDRs are `draft` — synthesized from research, gated on Wave 2.
 
 ## Blocked
 

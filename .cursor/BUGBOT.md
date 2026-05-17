@@ -22,6 +22,11 @@
   handoff). See `docs/90-Meta/agent-memory-protocol.md` and `vault-governance.md`.
 - Implementing from a `draft`/`superseded` ADR, or silently overwriting an
   `accepted` ADR instead of superseding it.
+- Gameplay/game-system code (e.g. `packages/match-engine/**`,
+  `packages/game-data/**`, squad/finance/training/transfer/youth/league logic)
+  changed without updating the matching GDDR in `docs/50-Game-Design/`, or
+  implementing gameplay from a `draft`/`idea` GDDR, or code contradicting an
+  `approved` GDDR. See `docs/90-Meta/vault-governance.md` § Game design layer.
 - Raw hex colors or arbitrary Tailwind values (`*-[#...]`, `*-[<n>px]`,
   `text-[...]`) in `apps/web/src/**` outside `styles/app.css` / `theme/**`;
   design-system tokens must be used instead.

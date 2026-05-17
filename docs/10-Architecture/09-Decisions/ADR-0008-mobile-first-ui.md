@@ -62,8 +62,15 @@ Negative:
 
 None
 
+## Design source
+
+This ADR **implements** game-design decisions — it must not contradict them:
+
+- [[../../50-Game-Design/GD-0016-mobile-ux-loop]] (primary) · [[../../50-Game-Design/GD-0001-core-loop]] (advance verb) · [[../../50-Game-Design/GD-0004-tactics]] (tactics UX) · [[../../50-Game-Design/GD-0012-onboarding]]
+
 ## Related Docs
 
+- [[../../50-Game-Design/README]] — Game Design Log
 - [[../../60-Research/club-boss-analysis]]
 - [[../../60-Research/research-wave-2-gaps]]
 - [[ADR-0006-i18n]]

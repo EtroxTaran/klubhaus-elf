@@ -101,6 +101,31 @@ Every package/app under `apps/` and `packages/` has a note in
 architecture-relevant change to a module updates it. Template:
 [[templates/module]].
 
+## Game design layer
+
+The causal chain for this project is:
+
+`research (60-Research) → game design (50-Game-Design) → architecture (ADRs) → implementation`
+
+Game design is a **first-class decision layer, peer to ADRs**, recorded as
+Game Design Decision Records (GDDRs) in `50-Game-Design/`, indexed by
+[[../50-Game-Design/README]] (the Game Design Log — status + lineage, like
+[[../00-Index/Decision-Log]] for ADRs). Template: [[templates/game-design]].
+
+Rules every agent follows:
+
+- **Implement gameplay only from `approved` GDDRs.** `idea`/`draft` GDDRs are
+  the recognized intent layer (read for direction, do not implement).
+- **An ADR must not contradict an `approved` GDDR.** ADRs *implement* game
+  design; each gameplay ADR carries a "Design source" link to its GDDR(s).
+- **Same-PR rule (gameplay):** a PR that changes gameplay, a game system, or
+  player-facing behavior updates the relevant GDDR in the same PR (and the
+  ADR/Current-State if affected) — exactly like the architecture same-PR rule.
+- **Supersede discipline applies** to GDDRs identically to ADRs (status,
+  two-way links, banner, Game Design Log row).
+- New game system ⇒ new GDDR. A gameplay change with no GDDR is a defect
+  (Bugbot flags it).
+
 ## Knowledge connectivity
 
 The vault is a graph, not a folder of essays. A note that no other note links
@@ -121,10 +146,10 @@ feature, design — not templates or archival mirrors):
   Obsidian/Quartz backlinks make the edge bidirectional automatically.
 - **Hub-and-spoke.** Every domain has a Map of Content (MOC) hub that links its
   children and is reachable from [[../00-Index/Home]]: `00-Index/Home`
-  (master), `00-Index/Decision-Log` (ADRs), `10-Architecture/README`
-  (architecture), `30-Implementation/README` (implementation),
-  `60-Research/00-summary` (research), `10-Architecture/05-Building-Blocks`
-  (modules).
+  (master), `00-Index/Decision-Log` (ADRs), `50-Game-Design/README`
+  (game design), `10-Architecture/README` (architecture),
+  `30-Implementation/README` (implementation), `60-Research/00-summary`
+  (research), `10-Architecture/05-Building-Blocks` (modules).
 
 Archival/non-canonical notes (`90-Meta/github-issue-suite/**`) are filtered
 out of the graph view via the documented Obsidian/Quartz filter
@@ -137,9 +162,10 @@ defect. The monthly review greps for it.
 ## Review cadence
 
 - **Per session** — update [[../00-Index/Current-State]], write a handoff.
-- **Monthly** — mark stale notes, link superseded ADRs, prune the glossary,
-  confirm the entry chain has zero dangling links, and grep for orphan content
-  notes (zero inbound/outbound `[[wikilinks]]`) — connect or archive each.
+- **Monthly** — mark stale notes, link superseded ADRs **and GDDRs**, prune
+  the glossary, confirm the entry chain has zero dangling links, and grep for
+  orphan content notes (zero inbound/outbound `[[wikilinks]]`) — connect or
+  archive each.
 - **Quarterly** — review `AGENTS.md`, `CLAUDE.md`, and the `.cursor` rules
   against this note and [[agent-memory-protocol]].
 

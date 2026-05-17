@@ -21,9 +21,13 @@ alwaysApply: true
   (see `docs/90-Meta/vault-governance.md` § Draft / idea layer).
 - Keep AGENTS/CLAUDE/rules as orchestrators; one canonical location per fact —
   no duplicated vault content in config or README.
+- Game design is a decision layer peer to ADRs: research → game design
+  (`docs/50-Game-Design/`, indexed by its README) → architecture (ADRs) →
+  implementation. Implement gameplay only from `approved` GDDRs; an ADR must
+  not contradict one; a gameplay/system change updates its GDDR in the same PR.
 - On approach change: supersede, do not silently overwrite (replacement note,
   `status: superseded`, two-way `supersedes`/`superseded_by`, banner, update
-  `Current-State`).
+  `Current-State`). Applies to ADRs and GDDRs identically.
 - Update vault docs in the same PR when code changes architecture, product
   scope, gameplay, operations, or user-facing behavior.
 - Session wrap-up: write/update a handoff under

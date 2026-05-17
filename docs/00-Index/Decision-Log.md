@@ -16,6 +16,11 @@ without opening any ADR. Implement only from `accepted` ADRs. `draft` ADRs are
 blocked on Research Wave 2 ([[../60-Research/research-wave-2-gaps]]) — do not
 implement from them.
 
+ADRs decide **how the game is built**. They implement the **game design**
+decisions in [[../50-Game-Design/README]] (GDDRs — how the game *works*); an ADR
+must not contradict an `approved` GDDR. Chain: research → game design → ADRs →
+implementation.
+
 When an ADR is superseded: keep its row, set status `superseded`, and fill the
 Supersedes / Superseded-by columns so the chain (old → new) stays readable here.
 

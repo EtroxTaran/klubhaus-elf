@@ -63,8 +63,15 @@ Negative:
 
 None
 
+## Design source
+
+This ADR **implements** game-design decisions — it must not contradict them:
+
+- [[../../50-Game-Design/GD-0003-squad-players]] · [[../../50-Game-Design/GD-0006-transfers]] · [[../../50-Game-Design/GD-0007-youth]] · [[../../50-Game-Design/GD-0008-finance-economy]] · [[../../50-Game-Design/GD-0009-league-structure]]
+
 ## Related Docs
 
+- [[../../50-Game-Design/README]] — Game Design Log
 - [[../../60-Research/research-wave-2-gaps]]
 - [[ADR-0003-match-engine]]
 - [[ADR-0005-save-format]]

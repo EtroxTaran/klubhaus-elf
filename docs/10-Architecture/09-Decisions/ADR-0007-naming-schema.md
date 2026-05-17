@@ -59,7 +59,12 @@ Negative:
 
 None
 
+## Design source
+
+Implements the ratified game-design decision [[../../50-Game-Design/GD-0015-ip-clean-data]] (approved); also constrains [[../../50-Game-Design/GD-0009-league-structure]].
+
 ## Related Docs
 
+- [[../../50-Game-Design/README]] — Game Design Log
 - [[../../60-Research/ip-and-licensing]]
 - [[../../60-Research/anstoss-series-deep-dive]]

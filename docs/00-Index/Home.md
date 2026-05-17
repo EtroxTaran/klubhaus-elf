@@ -32,11 +32,15 @@ The graph is hub-and-spoke. Each MOC links all notes in its domain; every
 content note links back to its MOC and to its ADRs/modules (see
 [[../90-Meta/vault-governance]] § Knowledge connectivity).
 
-- [[Decision-Log]] — **ADRs** (status + lineage)
+- [[../60-Research/00-summary]] — **Research** (inputs)
+- [[../50-Game-Design/README]] — **Game Design** (GDDRs — how the game works)
+- [[Decision-Log]] — **ADRs** (how it is built — status + lineage)
 - [[../10-Architecture/README]] — **Architecture** (arc42)
 - [[../10-Architecture/05-Building-Blocks]] — **Modules**
 - [[../30-Implementation/README]] — **Implementation** (process, CI, infra)
-- [[../60-Research/00-summary]] — **Research**
+
+The order above is the causal chain: research → game design → ADRs →
+architecture → implementation.
 
 ## Other entry points
 

@@ -60,8 +60,13 @@ Negative:
 
 None
 
+## Design source
+
+Implements the ratified game-design decision [[../../50-Game-Design/GD-0014-save-career-model]] (approved).
+
 ## Related Docs
 
+- [[../../50-Game-Design/README]] — Game Design Log
 - [[../../60-Research/pwa-offline-patterns]]
 - [[ADR-0005-save-format]]
 - [[../../30-Implementation/pwa-offline-strategy]]

@@ -61,7 +61,14 @@ Negative:
 
 None
 
+## Design source
+
+This ADR **implements** game-design decisions — it must not contradict them:
+
+- [[../../50-Game-Design/GD-0002-match-engine]] (primary) · [[../../50-Game-Design/GD-0001-core-loop]] (match-tick) · [[../../50-Game-Design/GD-0004-tactics]] (tactics contract) · [[../../50-Game-Design/GD-0010-ai-world]] (AI inputs)
+
 ## Related Docs
 
+- [[../../50-Game-Design/README]] — Game Design Log
 - [[../../60-Research/research-wave-2-gaps]]
 - [[ADR-0001-tech-stack]]
