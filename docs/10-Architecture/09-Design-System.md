@@ -227,8 +227,11 @@ the vault (`DOCS_BASIC_AUTH`). Ops detail: `tools/docs-preview/README.md`.
 ### 13.1 Using the showcase as a reference
 
 - **Canvas** = the component rendered live. Use the **toolbar** to flip
-  `Scheme` (light/dark) and `Club` (×8) — that is how you verify a token /
-  accent decision actually holds across the matrix before trusting it.
+  `Scheme` (light/dark), `Club` (×8) and **Viewport** (Phone 390 · Tablet
+  1024 · Desktop 1440) — that is how you verify a token / accent / responsive
+  decision actually holds across the matrix before trusting it. Stories
+  default to the Phone frame (mobile-first); switch to Tablet/Desktop to see
+  the `DesktopShell` cockpit and any responsive behaviour.
 - **Docs tab** (autodocs) = the component's prop API, generated from its
   TypeScript types — the authoritative "what props exist and what do they
   mean" surface. Read this before adding a new prop to an existing primitive.

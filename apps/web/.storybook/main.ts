@@ -24,7 +24,7 @@ function isBlockedPlugin(plugin: unknown): boolean {
 const config: StorybookConfig = {
   framework: '@storybook/react-vite',
   stories: ['../src/**/*.stories.@(ts|tsx)'],
-  addons: [],
+  addons: ['@storybook/addon-viewport'],
   viteFinal: async (viteConfig) => {
     const resolved = await Promise.all((viteConfig.plugins ?? []).flat(Number.POSITIVE_INFINITY))
     viteConfig.plugins = resolved.filter((plugin) => !isBlockedPlugin(plugin))
