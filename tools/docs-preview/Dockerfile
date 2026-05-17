@@ -1,6 +1,15 @@
 # Standalone deployable docs site: builds the Obsidian vault (docs/) into a
 # static Quartz v4 site and serves it with nginx. Independent of the game app
 # and SurrealDB. Build context is the repo root.
+#
+# NOTE: this copies the whole build context once (`COPY . /ctx`) instead of
+# selective `COPY docs/ …` / `COPY README.md …`. Selective COPY makes BuildKit
+# compute restrictive include-patterns; intersecting those with the `**/…`
+# excludes in .dockerignore triggers a BuildKit/fsutil bug ("error from
+# sender: failed to match includepatterns: syntax error in pattern") that
+# aborts the whole compose build. The showcase image already uses the
+# whole-context path and builds fine with the same .dockerignore, so docs
+# does the same and assembles what it needs with `cp`.
 
 # Debian-based node (not alpine): Quartz's CLI uses a `#!/usr/bin/env -S node`
 # shebang, and BusyBox `env` on alpine does not support `-S`. The Debian image
@@ -15,20 +24,21 @@ RUN git clone --depth 1 --branch "${QUARTZ_REF}" https://github.com/jackyzha0/qu
 # Quartz uses npm internally; isolated to this image, never the pnpm workspace.
 RUN npm install
 
+# Whole repo context (proven-safe path; see header note).
+COPY . /ctx
+
 # Mirror the vault into Quartz's content dir, drop Obsidian's private state,
-# surface the vault entry point (00-Index/Home.md) as the landing page, point
-# Quartz's baseUrl at the real domain, and shrink Quartz's default
-# ignorePatterns (["private","templates",".obsidian"]) so the vault's
-# 90-Meta/templates notes are NOT silently dropped — .obsidian is already
-# removed above, "private" is kept as a deliberate opt-out escape hatch.
-COPY docs/ ./content/
-# Repo-root onboarding docs live outside the vault — mirror them in so the
-# deployed wiki is self-contained (see 00-Index/Repository.md).
-COPY README.md ./content/00-Index/Repository-README.md
-COPY CONTRIBUTING.md ./content/00-Index/Contributing.md
-COPY AGENTS.md ./content/00-Index/Agent-Guide.md
-COPY CLAUDE.md ./content/00-Index/Claude-Guide.md
-RUN rm -rf content/.obsidian \
+# surface the vault entry point (00-Index/Home.md) as the landing page, mirror
+# the repo-root onboarding docs in (self-contained wiki), point Quartz's
+# baseUrl at the real domain, and shrink Quartz's default ignorePatterns
+# (["private","templates",".obsidian"]) so 90-Meta/templates is not dropped.
+RUN cp -r /ctx/docs/. ./content/ \
+  && cp /ctx/README.md ./content/00-Index/Repository-README.md \
+  && cp /ctx/CONTRIBUTING.md ./content/00-Index/Contributing.md \
+  && cp /ctx/AGENTS.md ./content/00-Index/Agent-Guide.md \
+  && cp /ctx/CLAUDE.md ./content/00-Index/Claude-Guide.md \
+  && cp /ctx/tools/docs-preview/nginx.conf /build/nginx.conf \
+  && rm -rf content/.obsidian /ctx \
   && cp content/00-Index/Home.md content/index.md \
   && sed -i -E "s|baseUrl: \"[^\"]*\"|baseUrl: \"${DOCS_DOMAIN}\"|; s|baseUrl: '[^']*'|baseUrl: \"${DOCS_DOMAIN}\"|" quartz.config.ts \
   && sed -i -E "s|ignorePatterns: \[[^]]*\]|ignorePatterns: [\"private\"]|" quartz.config.ts \
@@ -36,6 +46,6 @@ RUN rm -rf content/.obsidian \
   && npx quartz build
 
 FROM nginx:alpine AS runtime
-COPY tools/docs-preview/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /build/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /build/public /usr/share/nginx/html
 EXPOSE 80
