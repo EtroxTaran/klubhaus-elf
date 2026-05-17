@@ -14,3 +14,8 @@ test-results/
 routeTree.gen.ts
 *.tsbuildinfo
 .lighthouseci/
+storybook-static/
+tools/docs-preview/.quartz/
+.stryker-tmp/
+reports/mutation/
+semgrep.sarif

@@ -2,10 +2,18 @@ pre-commit:
   parallel: true
   commands:
     biome:
-      run: pnpm biome check --write {staged_files}
+      run: pnpm biome check --write --no-errors-on-unmatched {staged_files}
       stage_fixed: true
     typecheck:
       run: pnpm typecheck
+
+pre-push:
+  parallel: true
+  commands:
+    knip:
+      run: pnpm knip
+    madge:
+      run: pnpm madge
 
 commit-msg:
   commands:

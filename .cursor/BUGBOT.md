@@ -22,6 +22,15 @@
   handoff). See `docs/90-Meta/agent-memory-protocol.md` and `vault-governance.md`.
 - Implementing from a `draft`/`superseded` ADR, or silently overwriting an
   `accepted` ADR instead of superseding it.
+- Raw hex colors or arbitrary Tailwind values (`*-[#...]`, `*-[<n>px]`,
+  `text-[...]`) in `apps/web/src/**` outside `styles/app.css` / `theme/**`;
+  design-system tokens must be used instead.
+- Inline `style=` attributes used for visual design (color/spacing/layout).
+- A new component duplicating an existing atom/composite in
+  `apps/web/src/components/{atoms,composites}` instead of reusing it.
+- Behaviour/UI change in a PR with no corresponding vault delta under `docs/**`
+  (ADR, feature spec, or architecture doc) — see
+  `docs/30-Implementation/agent-workflow-pattern.md`.
 
 ## What to leave alone
 

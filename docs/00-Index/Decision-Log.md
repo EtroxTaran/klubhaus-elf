@@ -30,6 +30,7 @@ Supersedes / Superseded-by columns so the chain (old → new) stays readable her
 | [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] | accepted | 2026-05-17 | — | — |
 | [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] | draft (Wave 2) | 2026-05-17 | — | — |
 | [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]] | accepted | 2026-05-17 | — | — |
+| [[../10-Architecture/09-Decisions/ADR-0010-design-system]] | accepted | 2026-05-16 | — | — |
 
 > Example of a superseded row once it happens:
 > `| [[ADR-0001-tech-stack]] | superseded | 2026-09-01 | — | [[ADR-0012-...]] |`

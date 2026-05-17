@@ -1,0 +1,16 @@
+.git
+node_modules
+**/node_modules
+.output
+**/dist
+coverage
+playwright-report
+test-results
+.lighthouseci
+storybook-static
+**/storybook-static
+tools/docs-preview/.quartz
+.direnv
+.env
+.env.*
+!.env.example
