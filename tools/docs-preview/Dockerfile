@@ -15,12 +15,16 @@ RUN git clone --depth 1 --branch "${QUARTZ_REF}" https://github.com/jackyzha0/qu
 RUN npm install
 
 # Mirror the vault into Quartz's content dir, drop Obsidian's private state,
-# surface the vault entry point (00-Index/Home.md) as the landing page, and
-# point Quartz's baseUrl at the real domain so sitemap/RSS/OG URLs are correct.
+# surface the vault entry point (00-Index/Home.md) as the landing page, point
+# Quartz's baseUrl at the real domain, and shrink Quartz's default
+# ignorePatterns (["private","templates",".obsidian"]) so the vault's
+# 90-Meta/templates notes are NOT silently dropped — .obsidian is already
+# removed above, "private" is kept as a deliberate opt-out escape hatch.
 COPY docs/ ./content/
 RUN rm -rf content/.obsidian \
   && cp content/00-Index/Home.md content/index.md \
   && sed -i -E "s|baseUrl: \"[^\"]*\"|baseUrl: \"${DOCS_DOMAIN}\"|; s|baseUrl: '[^']*'|baseUrl: \"${DOCS_DOMAIN}\"|" quartz.config.ts \
+  && sed -i -E "s|ignorePatterns: \[[^]]*\]|ignorePatterns: [\"private\"]|" quartz.config.ts \
   && npx quartz build
 
 FROM nginx:alpine AS runtime
