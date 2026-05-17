@@ -1,11 +1,19 @@
 ---
 title: Cursor Cloud Agent Workflow
-status: draft
+status: current
 tags: [meta, implementation]
-updated: 2026-05-15
+created: 2026-05-15
+updated: 2026-05-17
+type: index
+binding: true
 ---
 
 # Cursor Cloud Agent Workflow
+
+Start every session via the vault entry chain: [[../00-Index/Agent-Onboarding]]
+→ [[../00-Index/Current-State]] → [[../90-Meta/agent-memory-protocol]]. Use the
+`vault-memory` skill (`.cursor/skills/vault-memory/SKILL.md`) for the
+start/update/wrap-up checklist.
 
 Operational task tracking happens in Linear. See [[linear-task-tracking]] for the
 project link, issue wave plan, and required progress-comment conventions. Use

@@ -16,6 +16,12 @@
 - `it.skip`, `it.todo`, `it.only` in committed test files.
 - Lowering coverage thresholds in `vitest.config.ts`.
 - Missing migration file for schema changes in `db/schema.surql`.
+- Memory protocol: a PR that changes architecture, product scope, gameplay,
+  operations, or user-facing behavior but does not update the vault in the same
+  PR (relevant ADR/spec, `docs/00-Index/Current-State.md`, and a session
+  handoff). See `docs/90-Meta/agent-memory-protocol.md` and `vault-governance.md`.
+- Implementing from a `draft`/`superseded` ADR, or silently overwriting an
+  `accepted` ADR instead of superseding it.
 - Raw hex colors or arbitrary Tailwind values (`*-[#...]`, `*-[<n>px]`,
   `text-[...]`) in `apps/web/src/**` outside `styles/app.css` / `theme/**`;
   design-system tokens must be used instead.

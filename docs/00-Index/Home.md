@@ -1,22 +1,34 @@
 ---
 title: Vault Home
-status: draft
+status: current
 tags: [meta]
+created: 2026-05-15
 updated: 2026-05-17
+type: index
+binding: true
 ---
 
 # soccer-manager — Project Wiki
 
-The single source of truth for the `soccer-manager` project. This page is the
-front door: every area is linked below. The left **Explorer** lists every note
-verbatim if you want to browse the full tree.
+The documentation single source of truth for the `soccer-manager` project, and
+the front door to every area. Agents start at [[Agent-Onboarding]]; humans can
+read top-to-bottom or use the left **Explorer** to browse the full tree.
 
-## Start here
+## Start here (agents)
 
-- [[Repository]] — README, Contributing, Agent & Claude guides (repo-root docs).
-- [[UI-Showcase]] — the live Storybook design-system showcase.
+- [[Agent-Onboarding]] — first read every session
+- [[Current-State]] — hot snapshot: building / stable / blocked
+- [[../90-Meta/agent-memory-protocol]] — session start/update/wrap-up steps
+- [[../90-Meta/vault-governance]] — memory classes, supersede discipline
+
+## Context
+
+- [[Vision]] — goals
+- [[Non-Goals]] — explicit exclusions
 - [[Glossary]] · [[Decision-Log]]
-- [[../90-Meta/conventions]] — how the vault is written and organised.
+- [[Repository]] — README, Contributing, Agent & Claude guides (repo-root docs)
+- [[UI-Showcase]] — the live Storybook design-system showcase
+- [[../90-Meta/conventions]] — how the vault is written and organised
 
 ## Architecture (arc42)
 
@@ -57,6 +69,6 @@ verbatim if you want to browse the full tree.
 ## Meta & process
 
 - [[../90-Meta/README]] · [[../90-Meta/agent-memory-protocol]] ·
-  [[../90-Meta/obsidian-config]]
+  [[../90-Meta/vault-governance]] · [[../90-Meta/obsidian-config]]
 - [[../90-Meta/templates/README]] — Linear issue templates.
 - GitHub issue suite & implementation backlog: `90-Meta/github-issue-suite/`.
