@@ -277,6 +277,8 @@ export const NEXT_FIXTURE = {
   venue: 'Northbridge Arena',
   home: 'Northbridge City',
   away: 'FC Hafenstadt',
+  /** Seconds to kick-off; < 30 min flips the hub card to the countdown (T1.5). */
+  kickoffSeconds: 3 * 60 * 60,
 }
 
 export const OPP = {

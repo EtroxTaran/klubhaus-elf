@@ -35,6 +35,7 @@ export const de = {
     headline: 'Mo, 18. Mai · 09:41',
     quote: '„Heute klärt sich, ob der Vorstand Geduld kennt." — Auerbach-Zeitung',
     nextLabel: 'Nächster Termin',
+    kickoffIn: 'Anpfiff in',
     matchVs: 'vs.',
     strength: 'Stärke',
     form: 'Form',
