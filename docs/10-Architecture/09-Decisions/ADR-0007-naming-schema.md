@@ -267,6 +267,10 @@ shipped core data.
   hot-seat-to-async-MP promotion (per ADR-0011) can re-generate the
   same world server-side from the master seed.
 
+## Design source
+
+Implements the approved IP-clean data record [[../../50-Game-Design/GD-0015-ip-clean-data]] and constrains [[../../50-Game-Design/GD-0009-league-structure]] plus current world-generation notes in [[../../50-Game-Design/README]].
+
 ## Compliance
 
 The following rules apply to all code in `packages/game-data/` +

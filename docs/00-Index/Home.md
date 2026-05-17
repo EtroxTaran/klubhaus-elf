@@ -46,8 +46,13 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
 ## Product
 
 - [[../20-Features/README]] — feature specifications.
-- [[../50-Game-Design/README]] — game-design specifications.
+- [[../50-Game-Design/README]] — game-design specifications, including the
+  GDDR decision-record set (`GD-0001`...`GD-0016`).
 - [[../40-User-Docs/README]] — player-facing documentation.
+
+Product authority flows research -> game design -> ADRs -> implementation.
+Approved game-design records are the source for gameplay behaviour; accepted
+ADRs are the source for technical shape.
 
 ## Implementation
 

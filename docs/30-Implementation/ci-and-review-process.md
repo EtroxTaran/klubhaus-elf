@@ -2,7 +2,10 @@
 title: CI & Review Process
 status: draft
 tags: [implementation, ci, process, quality]
-updated: 2026-05-16
+created: 2026-05-16
+updated: 2026-05-17
+type: implementation
+related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../00-Index/Current-State]]
 ---
 
 # CI & Review Process
@@ -115,3 +118,9 @@ gh api -X PUT repos/EtroxTaran/football-manager-x/branches/main/protection \
 remaining deterministic red is `lighthouse` (Office Hub TBT), tracked as
 **D-002** — the green-blocker for the whole repo. It is being fixed, not
 overruled.
+
+## Related
+
+- [[../10-Architecture/10-Quality]] — arc42 quality view this enforces
+- [[agent-workflow-pattern]] — review phases · [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]] — toolchain
+- [[../00-Index/Current-State]] — D-002 live status · [[deployment-dokploy]] — gate before deploy

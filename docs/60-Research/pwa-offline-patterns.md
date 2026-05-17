@@ -2,12 +2,17 @@
 title: PWA Offline Patterns
 status: review
 tags: [research, pwa, save, offline-first, indexeddb, service-worker, sync]
-updated: 2026-05-15
+created: 2026-05-15
+updated: 2026-05-17
+type: research
+linear: AKOM-110
 related:
-  - "[[ADR-0002-offline-first]]"
-  - "[[ADR-0005-save-format]]"
-  - "[[pwa-offline-strategy]]"
-  - "[[08-Crosscutting]]"
+  - "[[00-summary]]"
+  - "[[../10-Architecture/09-Decisions/ADR-0002-offline-first]]"
+  - "[[../10-Architecture/09-Decisions/ADR-0005-save-format]]"
+  - "[[../30-Implementation/pwa-offline-strategy]]"
+  - "[[../30-Implementation/surrealdb-integration]]"
+  - "[[../10-Architecture/08-Crosscutting]]"
 ---
 
 # PWA Offline Patterns
@@ -810,3 +815,9 @@ Proposed — pending ADR-0005 finalization (AKOM-117).
   storage rules).
 - Project: [[08-Crosscutting]] (no mutation caching).
 - Project: [[pwa-offline-strategy]] (current implementation snapshot).
+
+## Related
+
+- [[00-summary]] — research MOC (hub)
+- [[../10-Architecture/09-Decisions/ADR-0002-offline-first]] · [[../10-Architecture/09-Decisions/ADR-0005-save-format]] — decisions this directly fed
+- [[../30-Implementation/pwa-offline-strategy]] · [[../30-Implementation/surrealdb-integration]] — implementations · [[club-boss-analysis]] — sibling

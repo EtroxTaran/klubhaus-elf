@@ -22,6 +22,11 @@
   handoff). See `docs/90-Meta/agent-memory-protocol.md` and `vault-governance.md`.
 - Implementing from a `draft`/`superseded` ADR, or silently overwriting an
   `accepted` ADR instead of superseding it.
+- Gameplay/game-system code (e.g. `packages/match-engine/**`,
+  `packages/game-data/**`, squad/finance/training/transfer/youth/league logic)
+  changed without updating the matching GDDR in `docs/50-Game-Design/`, or
+  implementing gameplay from a `draft`/`idea` GDDR, or code contradicting an
+  `approved` GDDR. See `docs/90-Meta/vault-governance.md` § Game design layer.
 - Raw hex colors or arbitrary Tailwind values (`*-[#...]`, `*-[<n>px]`,
   `text-[...]`) in `apps/web/src/**` outside `styles/app.css` / `theme/**`;
   design-system tokens must be used instead.
@@ -31,6 +36,12 @@
 - Behaviour/UI change in a PR with no corresponding vault delta under `docs/**`
   (ADR, feature spec, or architecture doc) — see
   `docs/30-Implementation/agent-workflow-pattern.md`.
+- A new or substantially changed content note under `docs/**` (architecture,
+  implementation, research, feature, design) that has no `## Related` section
+  and no `related:` frontmatter linking its ADRs/modules/research — orphan
+  notes break the knowledge graph. See `docs/90-Meta/vault-governance.md`
+  § Knowledge connectivity. (Templates and `90-Meta/github-issue-suite/**` are
+  exempt.)
 
 ## What to leave alone
 

@@ -48,9 +48,16 @@ Agent entry chain:
 4. `docs/90-Meta/agent-memory-protocol.md`
 5. `docs/90-Meta/vault-governance.md`
 
+Decision layers (research → game design → architecture → implementation):
+
+- Game design: `docs/50-Game-Design/README.md` (GDDRs — how the game works)
+- Architecture: `docs/00-Index/Decision-Log.md` (ADRs — how it is built)
+
 Use `current`, `accepted`, and `approved` vault notes for implementation. Never
-implement from `superseded` or `archived` notes. Player-facing docs are output
-docs, not implementation specifications.
+implement from `draft`/`superseded`/`archived` notes. Implement gameplay only
+from `approved` GDDRs; an ADR must not contradict one; a gameplay/system change
+updates its GDDR in the same PR. Player-facing docs are output docs, not
+implementation specifications.
 
 Use the project skill `.cursor/skills/vault-memory/SKILL.md` for the repeatable
 vault start/update/wrap-up workflow when available.

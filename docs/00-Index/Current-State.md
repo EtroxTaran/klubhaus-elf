@@ -24,6 +24,9 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 - The game is an offline-first, IP-clean football manager PWA.
 - German is the primary UI language.
 - User-facing docs are output documentation, not implementation authority.
+- Game design lives in approved system notes and the GDDR decision-record set in
+  [[../50-Game-Design/README]]. Implement only from approved records; conflicts
+  between approved game-design records are stop conditions until superseded.
 
 ## Approved product rules (Wave 2, 2026-05-16)
 

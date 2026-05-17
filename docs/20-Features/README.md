@@ -13,7 +13,7 @@ related: [[../00-Index/Feature-Map]], [[../50-Game-Design/README]]
 
 Each feature spec note is a focused, implementable slice. It links to:
 
-- its parent game-design note in [[../50-Game-Design/README]],
+- its parent game-design note or GDDR in [[../50-Game-Design/README]],
 - the relevant ADR(s),
 - the relevant research synthesis note(s),
 - the Linear issue (when one exists).

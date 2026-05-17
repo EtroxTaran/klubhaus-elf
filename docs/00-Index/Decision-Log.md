@@ -14,6 +14,12 @@ ADR index with status and lineage. Implement only from `accepted` ADRs or
 `current binding` research notes explicitly promoted here. Draft/proposed ADRs
 are planning context only.
 
+ADRs decide **how the game is built**. Game-design notes and GDDRs in
+[[../50-Game-Design/README]] decide how the game works; ADRs must not contradict
+an `approved` game-design record. Chain: research -> game design -> ADRs ->
+implementation. If approved game-design records conflict, stop and supersede one
+explicitly before implementation.
+
 ## Accepted / drafted ADRs (Wave 1)
 
 - [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]]

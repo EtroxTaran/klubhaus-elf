@@ -101,11 +101,76 @@ Every package/app under `apps/` and `packages/` has a note in
 architecture-relevant change to a module updates it. Template:
 [[templates/module]].
 
+## Game design layer
+
+The causal chain for this project is:
+
+`research (60-Research) → game design (50-Game-Design) → architecture (ADRs) → implementation`
+
+Game design is a **first-class decision layer, peer to ADRs**, recorded as
+Game Design Decision Records (GDDRs) in `50-Game-Design/`, indexed by
+[[../50-Game-Design/README]] (the Game Design Log — status + lineage, like
+[[../00-Index/Decision-Log]] for ADRs). Template: [[templates/game-design]].
+
+Rules every agent follows:
+
+- **Implement gameplay only from `approved` GDDRs.** `idea`/`draft` GDDRs are
+  the recognized intent layer (read for direction, do not implement).
+- **Scoped approval.** In an `approved` GDDR only the **Decided / strong**
+  section is ratified. Its **Open (Wave 2)** section is never approved and not
+  implementable until that research closes — `approved` status does not make
+  the whole note buildable. A GDDR whose entire core is Wave-2-gated stays
+  `draft` (e.g. GD-0002, GD-0010) — do not promote it just to look complete.
+- **An ADR must not contradict an `approved` GDDR.** ADRs *implement* game
+  design; each gameplay ADR carries a "Design source" link to its GDDR(s).
+- **Same-PR rule (gameplay):** a PR that changes gameplay, a game system, or
+  player-facing behavior updates the relevant GDDR in the same PR (and the
+  ADR/Current-State if affected) — exactly like the architecture same-PR rule.
+- **Supersede discipline applies** to GDDRs identically to ADRs (status,
+  two-way links, banner, Game Design Log row).
+- New game system ⇒ new GDDR. A gameplay change with no GDDR is a defect
+  (Bugbot flags it).
+
+## Knowledge connectivity
+
+The vault is a graph, not a folder of essays. A note that no other note links
+to is invisible to the graph, to backlinks, and to an agent navigating by
+relationships. Connectivity is mandatory, not decorative.
+
+Rules for every **content** note (architecture, implementation, research,
+feature, design — not templates or archival mirrors):
+
+- **Link its decisions.** Name the ADRs it depends on or realizes with
+  `[[wikilinks]]`. If it implements an architectural choice, it links that ADR.
+- **Link its modules.** If it concerns a package/app, link the
+  `10-Architecture/modules/*` note.
+- **Link its inputs.** Research that fed a decision links that decision;
+  implementation that realizes a strategy links the arc42 note.
+- **Carry a `## Related` section** at the end with those wikilinks, and mirror
+  the key ones in a `related:` frontmatter list. One direction is enough —
+  Obsidian/Quartz backlinks make the edge bidirectional automatically.
+- **Hub-and-spoke.** Every domain has a Map of Content (MOC) hub that links its
+  children and is reachable from [[../00-Index/Home]]: `00-Index/Home`
+  (master), `00-Index/Decision-Log` (ADRs), `50-Game-Design/README`
+  (game design), `10-Architecture/README` (architecture),
+  `30-Implementation/README` (implementation), `60-Research/00-summary`
+  (research), `10-Architecture/05-Building-Blocks` (modules).
+
+Archival/non-canonical notes (`90-Meta/github-issue-suite/**`) are filtered
+out of the graph view via the documented Obsidian/Quartz filter
+([[obsidian-config]]). Do not add new links from canonical notes into them;
+the few existing D-001/D-002 references are tolerated legacy.
+
+Orphan check: a content note with zero inbound or outbound `[[wikilinks]]` is a
+defect. The monthly review greps for it.
+
 ## Review cadence
 
 - **Per session** — update [[../00-Index/Current-State]], write a handoff.
-- **Monthly** — mark stale notes, link superseded ADRs, prune the glossary,
-  confirm the entry chain has zero dangling links.
+- **Monthly** — mark stale notes, link superseded ADRs **and GDDRs**, prune
+  the glossary, confirm the entry chain has zero dangling links, and grep for
+  orphan content notes (zero inbound/outbound `[[wikilinks]]`) — connect or
+  archive each.
 - **Quarterly** — review `AGENTS.md`, `CLAUDE.md`, and the `.cursor` rules
   against this note and [[agent-memory-protocol]].
 

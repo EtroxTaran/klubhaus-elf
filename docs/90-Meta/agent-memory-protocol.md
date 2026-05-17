@@ -22,7 +22,11 @@ Before substantial work:
 1. Read [../00-Index/Agent-Onboarding.md](../00-Index/Agent-Onboarding.md).
 2. Read [../00-Index/Current-State.md](../00-Index/Current-State.md).
 3. Read relevant maps from [../00-Index/Home.md](../00-Index/Home.md).
-4. Read accepted ADRs and approved game design or feature specs for the task.
+4. Read accepted ADRs ([../00-Index/Decision-Log.md](../00-Index/Decision-Log.md))
+   and approved game-design specs
+   ([../50-Game-Design/README.md](../50-Game-Design/README.md)) for the task.
+   Implement gameplay only from `approved` GDDRs; an ADR must not contradict
+   one. Chain: research → game design → architecture → implementation.
 5. Read the linked Linear issue when one exists.
 6. Read the latest session handoff if the work continues a prior thread.
 
@@ -51,8 +55,10 @@ Before substantial work:
 
 Update the vault in the same PR when work changes:
 
-- Architecture or technical approach.
-- Product scope, gameplay, or feature behavior.
+- Architecture or technical approach (the relevant ADR).
+- Product scope, gameplay, or game-system behavior (the relevant GDDR in
+  `../50-Game-Design/`; see [vault-governance.md](vault-governance.md)
+  § Game design layer).
 - Operational process.
 - User-facing behavior that should be documented.
 - Research conclusions that future agents need.

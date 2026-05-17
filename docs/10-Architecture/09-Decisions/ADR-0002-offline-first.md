@@ -328,6 +328,10 @@ panel, not only in Sync / Activity.
 - Phase-2 cloud sync (per ADR-0004 §6.4) layers on top of this
   offline-first model; nothing in A2 needs to change for that.
 
+## Design source
+
+Implements the approved save/career design record [[../../50-Game-Design/GD-0014-save-career-model]] and the current offline/system notes in [[../../50-Game-Design/README]].
+
 ## Compliance
 
 The following rules apply to every module in `apps/web`, `packages/sw`,

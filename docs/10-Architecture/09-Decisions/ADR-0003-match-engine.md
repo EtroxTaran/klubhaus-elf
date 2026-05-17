@@ -427,6 +427,10 @@ Locked from D8 + A5:
   Worker becomes its own process per ADR-0019 §Future. The package
   contract stays the same.
 
+## Design source
+
+Implements game-design decisions from [[../../50-Game-Design/GD-0002-match-engine]], [[../../50-Game-Design/GD-0001-core-loop]], [[../../50-Game-Design/GD-0004-tactics]], and the current match/tactics system notes in [[../../50-Game-Design/README]].
+
 ## Compliance
 
 The following rules apply to all code in `packages/match-engine/`

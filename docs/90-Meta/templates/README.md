@@ -20,6 +20,7 @@ Obsidian, Dataview, and docs checks can identify current guidance.
 - [linear-issue-examples.md](linear-issue-examples.md)
 - [handoff.md](handoff.md)
 - [adr.md](adr.md)
+- [game-design.md](game-design.md)
 - [module.md](module.md)
 
 ## Common Fields

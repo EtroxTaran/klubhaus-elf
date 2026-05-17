@@ -374,6 +374,10 @@ flowchart TB
 - A separate "redacted export" mode for community sharing (strips
   identifying data) could be added as a third saveMode.
 
+## Design source
+
+Implements the approved save/career design record [[../../50-Game-Design/GD-0014-save-career-model]] and current save/offline rules in [[../../50-Game-Design/README]].
+
 ## Compliance
 
 The following rules apply across `packages/save-format`, `src/domain/sync`,

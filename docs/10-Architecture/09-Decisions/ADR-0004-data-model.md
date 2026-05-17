@@ -319,6 +319,10 @@ table trap (which makes cross-pool queries painful).
 - SurrealDB WASM in the browser is a deferred research track per
   D14 §5 (Dexie-only at MVP).
 
+## Design source
+
+Implements data needs from [[../../50-Game-Design/GD-0003-squad-players]], [[../../50-Game-Design/GD-0006-transfers]], [[../../50-Game-Design/GD-0007-youth]], [[../../50-Game-Design/GD-0008-finance-economy]], [[../../50-Game-Design/GD-0009-league-structure]], and current approved system notes in [[../../50-Game-Design/README]].
+
 ## Compliance
 
 The following rules apply across `packages/db-schema`, `src/domain/*`,

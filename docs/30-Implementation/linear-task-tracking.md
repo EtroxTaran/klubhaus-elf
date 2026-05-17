@@ -2,7 +2,11 @@
 title: Linear Task Tracking
 status: current
 tags: [meta, implementation, backlog]
+created: 2026-05-15
 updated: 2026-05-17
+type: index
+binding: true
+related: [[agent-workflow-pattern]], [[cursor-cloud-agent-workflow]], [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../90-Meta/agent-memory-protocol]]
 ---
 
 # Linear Task Tracking
@@ -186,3 +190,10 @@ Seed epics exist in Linear and must be split after ADRs are stable:
 - Linear priority is set in addition to priority labels.
 - Dependencies use Linear blockers, not only text references.
 - Research issues are intentionally independent so parallel agents can run them safely.
+
+## Related
+
+- [[agent-workflow-pattern]] — how agents pick up these issues
+- [[cursor-cloud-agent-workflow]] — cloud-agent operational steps
+- [[../00-Index/Decision-Log]] — ADRs issues trace to · [[../00-Index/Home]] — vault hub
+- [[../90-Meta/agent-memory-protocol]] — Linear = hot memory, vault = durable
