@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { CLUB_REGISTRY, clubById, clubByName, crestFor, themeKeyFor } from './club-registry'
+import { CLUB_REGISTRY, clubById, clubByName, crestFor, kitFor, themeKeyFor } from './club-registry'
 
 describe('CLUB_REGISTRY', () => {
   it('contains the eight fictional clubs with IP-clean names', () => {
@@ -15,6 +15,23 @@ describe('CLUB_REGISTRY', () => {
       expect(club.crest.a).toMatch(/^#[0-9a-f]{6}$/i)
       expect(club.crest.b).toMatch(/^#[0-9a-f]{6}$/i)
     }
+  })
+
+  it('every club carries a kit spec', () => {
+    for (const club of Object.values(CLUB_REGISTRY)) {
+      expect(club.kit.pattern).toBeTruthy()
+      expect(typeof club.kit.sleeveAccent).toBe('boolean')
+    }
+  })
+})
+
+describe('kitFor', () => {
+  it('returns the kit of a named club', () => {
+    expect(kitFor('FC Hafenstadt')).toEqual(CLUB_REGISTRY.hafenstadt.kit)
+  })
+
+  it('falls back to the Hafenstadt kit for an unknown name', () => {
+    expect(kitFor('Unbekannter SV')).toEqual(CLUB_REGISTRY.hafenstadt.kit)
   })
 })
 

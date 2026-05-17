@@ -538,5 +538,25 @@ export const SAVE_SLOTS: SaveSlot[] = [
   { i: 3, empty: true },
 ]
 
+/**
+ * Heraldic tincture palette for the Klub-Identität studio. Hexes are drawn
+ * from the CLUB_REGISTRY tones so mixes always stay "in world". Names are
+ * sample content (engine-replaceable), not UI chrome — see Design-System §7.
+ */
+export const IDENT_TINCTURES = [
+  { id: 'navy', hex: '#0e3a5f', name: 'Marineblau' },
+  { id: 'wine', hex: '#7a1a1a', name: 'Weinrot' },
+  { id: 'forest', hex: '#1f4a3a', name: 'Tannengrün' },
+  { id: 'meadow', hex: '#2b6b3f', name: 'Wiesengrün' },
+  { id: 'liver', hex: '#4a2a2a', name: 'Leberbraun' },
+  { id: 'graphite', hex: '#262626', name: 'Graphit' },
+  { id: 'gold', hex: '#c8a45a', name: 'Altgold' },
+  { id: 'brass', hex: '#c97a2a', name: 'Messing' },
+  { id: 'butter', hex: '#f4e4b8', name: 'Butter' },
+  { id: 'cream', hex: '#f0e8d8', name: 'Cremepapier' },
+  { id: 'sand', hex: '#d8c8a8', name: 'Sand' },
+  { id: 'paper', hex: '#fbf6ea', name: 'Papier' },
+] as const
+
 export const nf = new Intl.NumberFormat('de-DE')
 export const eur = (n: number) => `${nf.format(n)} €`

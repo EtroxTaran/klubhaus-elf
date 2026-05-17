@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router'
 import { ChevronLeft, Settings } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Crest } from '@/components/atoms/crest/crest'
+import { Jersey } from '@/components/atoms/jersey/jersey'
 import { LiveXgStrip } from '@/components/composites/live-xg-strip/live-xg-strip'
 import { MatchEvent } from '@/components/composites/match-event/match-event'
 import { ScreenShell } from '@/components/layout/screen-shell'
@@ -41,6 +42,13 @@ export function Spiel({ halftimeOpen = false }: SpielProps) {
           <div className="mt-1.5 flex items-center justify-center gap-3.5">
             <div className="flex items-center gap-2">
               <Crest {...NBC.crest} size={28} label={NBC.name} />
+              <Jersey
+                pattern={NBC.kit.pattern}
+                a={NBC.crest.a}
+                b={NBC.crest.b}
+                sleeveAccent={NBC.kit.sleeveAccent}
+                size={24}
+              />
               <span className="font-display text-sm font-bold text-ink">Northbridge</span>
             </div>
             <span className="font-display text-[42px] font-extrabold leading-none tracking-tighter text-ink">
@@ -49,6 +57,13 @@ export function Spiel({ halftimeOpen = false }: SpielProps) {
             </span>
             <div className="flex items-center gap-2">
               <span className="font-display text-sm font-bold text-ink">Hafenstadt</span>
+              <Jersey
+                pattern={FCH.kit.pattern}
+                a={FCH.crest.a}
+                b={FCH.crest.b}
+                sleeveAccent={FCH.kit.sleeveAccent}
+                size={24}
+              />
               <Crest {...FCH.crest} size={28} label={FCH.name} />
             </div>
           </div>
