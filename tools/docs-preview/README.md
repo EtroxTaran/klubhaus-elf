@@ -43,6 +43,24 @@ game app and SurrealDB, that serves **two** auth-gated sites:
 | `docs` | `tools/docs-preview/Dockerfile` (Quartz → nginx) | `DOCS_DOMAIN` | Obsidian vault |
 | `showcase` | `tools/storybook/Dockerfile` (Storybook → nginx) | `SHOWCASE_DOMAIN` | UI design-system showcase |
 
+### Keeping the deployed sites current (important)
+
+Both sites are **static builds baked into their images** — they do **not**
+update when a PR merges to `main`. Until rebuilt, the deployed showcase keeps
+showing an old story set (e.g. missing `Composites/Pitch2D`).
+
+Automated: `.github/workflows/redeploy-showcase.yml` pings Dokploy deploy
+webhooks on every push to `main`. Wire it once:
+
+1. Dokploy → `showcase` service → **Deployments → Webhook**, copy the URL.
+2. GitHub → repo **Settings → Secrets → Actions** → add
+   `DOKPLOY_SHOWCASE_WEBHOOK` (and `DOKPLOY_DOCS_WEBHOOK` for the vault).
+3. Done — every merge to `main` now auto-rebuilds the sites. Unset secrets
+   are skipped, so the workflow is harmless until configured.
+
+Manual one-off (until the secrets are set): hit the same webhook, or click
+**Deploy** on the `showcase` service in Dokploy.
+
 Both sit behind the **same** fail-closed basic-auth (`DOCS_BASIC_AUTH` guards
 both). `nginx.conf` in each tool dir handles clean URLs (Quartz `/a/b` →
 `/a/b.html`; Storybook SPA fallback to `/index.html`).
