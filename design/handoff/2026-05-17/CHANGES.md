@@ -78,12 +78,19 @@ _none_
 
 ## Mapping checklist (fill in when patching — separate targeted PR)
 
-- [ ] Tokens → `apps/web/src/styles/app.css`
-- [ ] Atoms → `apps/web/src/components/atoms/**`
-- [ ] Composites → `apps/web/src/components/composites/**`
-- [ ] Screens + routes → `apps/web/src/screens/**`, `apps/web/src/routes/**`
-- [ ] Sample data / copy → `apps/web/src/screens/fixtures.ts`, `apps/web/src/locales/{de,en}.ts`
-- [ ] Update `docs/10-Architecture/09-Design-System.md` if architecture shifted
+- [x] Tokens → `apps/web/src/styles/app.css` — n/a (no token/theme delta; the
+      prototype only deleted unused Direction B/C blocks, already absent in prod)
+- [x] Atoms → new `components/atoms/jersey/` (procedural kit, `jersey-paths.ts`
+      split, tests + story)
+- [~] Composites → shared `ScreenHeader` + Halbzeit `PlayerToken` **deferred**
+      to a follow-up (see Design-System §11) — not in this PR
+- [x] Screens + routes → new `screens/identity/` + `routes/identity.tsx`;
+      Jersey propagated into `anpfiff/spiel/onboarding/karriere`
+- [x] Sample data / copy → `IDENT_TINCTURES` in `screens/fixtures.ts`;
+      `identity` namespace in `locales/{de,en}.ts`; `KitSpec`/`kitFor` in
+      `types/club.ts` + `theme/club-registry.ts`
+- [x] Updated `docs/10-Architecture/09-Design-System.md` §5/§10/§11/§13
+      (no ADR change — additive within ADR-0010)
 
 <details><summary>Full unified diff</summary>
 

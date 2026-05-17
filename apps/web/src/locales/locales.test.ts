@@ -23,6 +23,7 @@ const SCREEN_NAMESPACES = [
   'stadion',
   'onboarding',
   'karriere',
+  'identity',
 ] as const
 
 describe('locale resources', () => {

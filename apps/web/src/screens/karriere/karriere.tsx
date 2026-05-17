@@ -1,8 +1,10 @@
 import { Link } from '@tanstack/react-router'
 import { CloudOff, Download, Plus, Settings, Share, Trash2, Upload } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { Portrait } from '@/components/atoms/portrait/portrait'
+import { Crest } from '@/components/atoms/crest/crest'
+import { Jersey } from '@/components/atoms/jersey/jersey'
 import { ScreenShell } from '@/components/layout/screen-shell'
+import { clubByName } from '@/theme/club-registry'
 import { SAVE_SLOTS } from '../fixtures'
 
 export function Karriere() {
@@ -48,13 +50,29 @@ export function Karriere() {
           ) : (
             <div key={s.i} className="mb-2.5 rounded-2xl border border-rule bg-card p-3.5">
               <div className="flex items-center gap-2.5">
-                <Portrait name={s.mgr} size={42} />
+                <div className="relative grid h-[54px] w-[54px] shrink-0 place-items-center rounded-xl border border-rule bg-bg">
+                  <Jersey
+                    pattern={clubByName(s.club).kit.pattern}
+                    a={clubByName(s.club).crest.a}
+                    b={clubByName(s.club).crest.b}
+                    sleeveAccent={clubByName(s.club).kit.sleeveAccent}
+                    size={42}
+                  />
+                  <span className="absolute -bottom-1 -right-1 grid h-[22px] w-[22px] place-items-center rounded-full border-[1.5px] border-rule bg-card">
+                    <Crest {...clubByName(s.club).crest} size={18} />
+                  </span>
+                </div>
                 <div className="min-w-0 flex-1">
                   <span className="block font-display text-base font-bold leading-tight text-ink">
                     {s.name}
                   </span>
                   <div className="mt-0.5 text-[11px] text-ink-mute">
-                    {s.club} · {t('karriere:season', { season: s.season })}
+                    <span className="inline-flex items-center gap-1">
+                      <span className="grid h-3.5 w-3.5 place-items-center rounded-full bg-accent-soft font-display text-[9px] font-extrabold text-accent">
+                        {s.mgr}
+                      </span>
+                      {s.club} · {t('karriere:season', { season: s.season })}
+                    </span>
                   </div>
                 </div>
                 <span className="whitespace-nowrap text-[10px] text-ink-soft">{s.stamp}</span>

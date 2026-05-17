@@ -1,4 +1,4 @@
-import type { Club, ClubId, CrestSpec } from '@/types/club'
+import type { Club, ClubId, CrestSpec, KitSpec } from '@/types/club'
 
 /**
  * Single source of truth for every fictional club referenced in the design.
@@ -13,6 +13,7 @@ export const CLUB_REGISTRY: Record<ClubId, Club> = {
     primary: '#0e3a5f',
     secondary: '#c8a45a',
     crest: { shape: 'heater', a: '#0e3a5f', b: '#c8a45a', charge: 'ship' },
+    kit: { pattern: 'stripes', sleeveAccent: true },
   },
   northbridge: {
     id: 'northbridge',
@@ -21,6 +22,7 @@ export const CLUB_REGISTRY: Record<ClubId, Club> = {
     primary: '#262626',
     secondary: '#c97a2a',
     crest: { shape: 'roundel', a: '#262626', b: '#c97a2a', charge: 'tower' },
+    kit: { pattern: 'split', sleeveAccent: true },
   },
   kaltenbach: {
     id: 'kaltenbach',
@@ -29,6 +31,7 @@ export const CLUB_REGISTRY: Record<ClubId, Club> = {
     primary: '#4a2a2a',
     secondary: '#d8c8a8',
     crest: { shape: 'gonfalon', a: '#4a2a2a', b: '#d8c8a8', charge: 'sword' },
+    kit: { pattern: 'sash', sleeveAccent: true },
   },
   sauveterre: {
     id: 'sauveterre',
@@ -37,6 +40,7 @@ export const CLUB_REGISTRY: Record<ClubId, Club> = {
     primary: '#1f4a3a',
     secondary: '#e8d28a',
     crest: { shape: 'iberian', a: '#1f4a3a', b: '#e8d28a', charge: 'eagle' },
+    kit: { pattern: 'solid', sleeveAccent: true },
   },
   auerbach: {
     id: 'auerbach',
@@ -45,6 +49,7 @@ export const CLUB_REGISTRY: Record<ClubId, Club> = {
     primary: '#2b6b3f',
     secondary: '#f4e4b8',
     crest: { shape: 'iberian', a: '#2b6b3f', b: '#f4e4b8', charge: 'wave' },
+    kit: { pattern: 'hoops', sleeveAccent: true },
   },
   valguarda: {
     id: 'valguarda',
@@ -53,6 +58,7 @@ export const CLUB_REGISTRY: Record<ClubId, Club> = {
     primary: '#7a1a1a',
     secondary: '#f0e8d8',
     crest: { shape: 'gonfalon', a: '#7a1a1a', b: '#f0e8d8', charge: 'lion' },
+    kit: { pattern: 'stripes', sleeveAccent: true },
   },
   riverdale: {
     id: 'riverdale',
@@ -61,6 +67,7 @@ export const CLUB_REGISTRY: Record<ClubId, Club> = {
     primary: '#7a1a1a',
     secondary: '#f0e8d8',
     crest: { shape: 'roundel', a: '#7a1a1a', b: '#f0e8d8', charge: 'lion' },
+    kit: { pattern: 'hoops', sleeveAccent: true },
   },
   oakport: {
     id: 'oakport',
@@ -69,6 +76,7 @@ export const CLUB_REGISTRY: Record<ClubId, Club> = {
     primary: '#2a221c',
     secondary: '#c97a2a',
     crest: { shape: 'heater', a: '#262626', b: '#c97a2a', charge: 'cog' },
+    kit: { pattern: 'chevron', sleeveAccent: true },
   },
 }
 
@@ -86,6 +94,10 @@ export function clubByName(name: string): Club {
 
 export function crestFor(name: string): CrestSpec {
   return clubByName(name).crest
+}
+
+export function kitFor(name: string): KitSpec {
+  return clubByName(name).kit
 }
 
 /** Direction A theme key used to scope a club-tinted theme. */
