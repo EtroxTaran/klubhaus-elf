@@ -20,6 +20,7 @@ services:
       args:
         QUARTZ_REF: ${QUARTZ_REF:-v4}
         DOCS_DOMAIN: ${DOCS_DOMAIN:-docs.soccer-manager.etrox.de}
+        SHOWCASE_DOMAIN: ${SHOWCASE_DOMAIN:-showcase.soccer-manager.etrox.de}
     labels:
       traefik.enable: "true"
       traefik.http.routers.soccer-docs.rule: Host(`${DOCS_DOMAIN:-docs.soccer-manager.etrox.de}`)

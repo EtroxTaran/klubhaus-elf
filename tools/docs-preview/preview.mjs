@@ -76,6 +76,28 @@ if (existsSync(home)) {
   console.warn('00-Index/Home.md not found; Quartz will use its default landing page.')
 }
 
+// Mirror the repo-root onboarding docs into the wiki (parity with the image).
+const indexDir = join(contentDir, '00-Index')
+for (const [srcName, destName] of [
+  ['README.md', 'Repository-README.md'],
+  ['CONTRIBUTING.md', 'Contributing.md'],
+  ['AGENTS.md', 'Agent-Guide.md'],
+  ['CLAUDE.md', 'Claude-Guide.md'],
+]) {
+  const src = join(repoRoot, srcName)
+  if (existsSync(src)) cpSync(src, join(indexDir, destName))
+}
+
+// Resolve the UI-Showcase link: real domain if set, else the local hint.
+const showcaseDoc = join(indexDir, 'UI-Showcase.md')
+if (existsSync(showcaseDoc)) {
+  const target = process.env.SHOWCASE_DOMAIN ?? 'localhost:6006 (pnpm storybook)'
+  writeFileSync(
+    showcaseDoc,
+    readFileSync(showcaseDoc, 'utf8').replaceAll('SHOWCASE_DOMAIN_PLACEHOLDER', target),
+  )
+}
+
 // Shrink Quartz's default ignorePatterns so the vault's 90-Meta/templates
 // notes are not silently dropped (.obsidian is excluded from the copy above).
 const quartzConfig = join(quartzDir, 'quartz.config.ts')
