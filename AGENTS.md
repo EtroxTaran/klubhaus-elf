@@ -98,6 +98,9 @@ pnpm dev
   composites in `apps/web/src/components/`. No raw hex, arbitrary Tailwind values,
   or inline `style=` for visual design. Missing primitive → propose it + update
   `docs/10-Architecture/09-Design-System.md` first; never improvise in a feature PR.
+- Every atom/composite/layout/screen ships a colocated `*.stories.tsx`; a
+  new or changed primitive/screen must add or update its story in the same PR
+  so the Storybook showcase stays a complete mirror of the design system.
 - Unclear architecture/feature/ADR gap is a stop condition: escalate via Linear
   (tag Nico, mark Blocked) — never scaffold a workaround or guess.
 - Behaviour changes ship with their vault delta in the same PR; a change that

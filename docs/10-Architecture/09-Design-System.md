@@ -2,7 +2,7 @@
 title: Design System — Aurelia Premier
 status: draft
 tags: [architecture, design, ui, accessibility]
-updated: 2026-05-16
+updated: 2026-05-17
 ---
 
 # Design System — Aurelia Premier
@@ -164,3 +164,26 @@ A new claude.ai/design export → run `pnpm sync:design <url>` → review the
 generated `design/handoff/<date>/CHANGES.md` → map deltas to the layers above
 → land a small dedicated PR. The script never edits app code. Procedure and
 expired-link handling: [[../30-Implementation/design-sync-workflow]].
+
+## 13. UI showcase (Storybook)
+
+Storybook is the canonical **visual** reference of this design system (the
+code in §5 stays authoritative on conflict). It is deployed alongside the
+docs vault — one Dokploy compose stack (`docker-compose.docs.yml`), separate
+subdomain (`SHOWCASE_DOMAIN`), behind the **same** fail-closed basic-auth as
+the vault (`DOCS_BASIC_AUTH`). Ops detail: `tools/docs-preview/README.md`.
+
+- **Completeness is a rule, not a goal.** Every atom, composite, layout and
+  screen ships a colocated `*.stories.tsx`; a CI `build-storybook` job fails
+  the build if a story is broken. Adding/changing a primitive without its
+  story is an incomplete PR (mirrored in `AGENTS.md`).
+- **Coverage today**: 10 atoms, 12 composites, 1 layout, 10 screens, plus a
+  `Foundations/Design Tokens` page (colours, type, radius/spacing, motion).
+- **Theming**: a toolbar (`Scheme` light/dark × `Club` ×8) drives the real
+  `ThemeProvider`, so every story is exercised across the full token matrix.
+- **Future vision**: the deferred screens in §10 enter the showcase the same
+  way — a colocated story when each lands; `autodocs` renders each
+  component's prop API automatically, so the showcase grows by construction.
+- **Local**: `pnpm --filter @soccer-manager/web storybook`. Decorators
+  (i18n + theme + a memory router so screen `Link`s are inert) live in
+  `apps/web/.storybook/`.
