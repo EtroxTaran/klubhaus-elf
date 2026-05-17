@@ -18,9 +18,13 @@ Obsidian.
 2. Installs Quartz's own dependencies **inside that checkout only** — Quartz
    uses npm internally. This is a vendored tool, isolated from the pnpm
    workspace, so the repo's pnpm-only rule is not violated.
-3. Mirrors `docs/` into `.quartz/content/` (excluding `.obsidian/`) and copies
-   `00-Index/Home.md` to `content/index.md` as the landing page.
-4. Runs `npx quartz build --serve`.
+3. Mirrors `docs/` into `.quartz/content/` (excluding `.obsidian/`), and also
+   mirrors the repo-root onboarding docs (`README.md`, `CONTRIBUTING.md`,
+   `AGENTS.md`, `CLAUDE.md`) into `00-Index/` so the wiki is self-contained.
+4. Copies `00-Index/Home.md` to `content/index.md` as the landing page,
+   widens Quartz `ignorePatterns` (keeps `private`, drops the `templates`
+   default-ignore), and resolves the `UI-Showcase` link to `SHOWCASE_DOMAIN`.
+5. Runs `npx quartz build --serve`.
 
 ## Notes
 
