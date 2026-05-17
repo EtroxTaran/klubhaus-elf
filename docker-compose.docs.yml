@@ -1,10 +1,14 @@
-# Standalone documentation site. Deploy independently of the game app
-# (docker-compose.yml) so docs redeploys/outages never touch the game.
+# Standalone internal sites, deployed independently of the game app
+# (docker-compose.yml) so their redeploys/outages never touch the game.
+# ONE stack serves TWO auth-gated sites:
+#   - docs     → the Obsidian vault   at DOCS_DOMAIN
+#   - showcase → the Storybook UI lib at SHOWCASE_DOMAIN
 #
 #   docker compose -f docker-compose.docs.yml up -d --build
 #
 # Access control is fail-closed: DOCS_BASIC_AUTH MUST be set or the stack
-# refuses to start, so the internal vault can never deploy publicly by accident.
+# refuses to start, so these internal sites can never deploy publicly by
+# accident. The same credential guards BOTH sites.
 # Generate a value with:  htpasswd -nbB <user> <pass>
 # and double every '$' to '$$' (compose escaping), e.g.
 #   DOCS_BASIC_AUTH=docs:$$2y$$05$$....
@@ -23,7 +27,23 @@ services:
       traefik.http.routers.soccer-docs.tls.certresolver: letsencrypt
       traefik.http.services.soccer-docs.loadbalancer.server.port: "80"
       traefik.http.routers.soccer-docs.middlewares: soccer-docs-auth
-      traefik.http.middlewares.soccer-docs-auth.basicauth.users: ${DOCS_BASIC_AUTH:?set DOCS_BASIC_AUTH (htpasswd entries) to protect the docs site}
+      traefik.http.middlewares.soccer-docs-auth.basicauth.users: ${DOCS_BASIC_AUTH:?set DOCS_BASIC_AUTH (htpasswd entries) to protect the docs + showcase sites}
     ports:
       - "8081:80"
+    restart: unless-stopped
+
+  showcase:
+    build:
+      context: .
+      dockerfile: tools/storybook/Dockerfile
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.soccer-showcase.rule: Host(`${SHOWCASE_DOMAIN:-showcase.soccer-manager.etrox.de}`)
+      traefik.http.routers.soccer-showcase.entrypoints: websecure
+      traefik.http.routers.soccer-showcase.tls.certresolver: letsencrypt
+      traefik.http.services.soccer-showcase.loadbalancer.server.port: "80"
+      traefik.http.routers.soccer-showcase.middlewares: soccer-showcase-auth
+      traefik.http.middlewares.soccer-showcase-auth.basicauth.users: ${DOCS_BASIC_AUTH:?set DOCS_BASIC_AUTH (htpasswd entries) to protect the docs + showcase sites}
+    ports:
+      - "8082:80"
     restart: unless-stopped

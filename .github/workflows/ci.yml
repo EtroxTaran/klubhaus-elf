@@ -47,6 +47,15 @@ jobs:
       - run: pnpm knip
       - run: pnpm madge
 
+  storybook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      # Fails if any story is broken — keeps the deployed UI showcase green
+      # and enforces the colocated-story rule (AGENTS.md / 09-Design-System §13).
+      - run: pnpm --filter @soccer-manager/web build-storybook
+
   semgrep:
     runs-on: ubuntu-latest
     container:

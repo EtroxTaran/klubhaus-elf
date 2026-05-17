@@ -24,5 +24,6 @@ RUN rm -rf content/.obsidian \
   && npx quartz build
 
 FROM nginx:alpine AS runtime
+COPY tools/docs-preview/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /build/public /usr/share/nginx/html
 EXPOSE 80
