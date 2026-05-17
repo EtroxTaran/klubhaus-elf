@@ -139,8 +139,10 @@ no colon-headers. Numbers: `12.500 €`, `2,4 Mio. €`, form as comma-decimal
 
 ## 10. Screen catalogue (45)
 
-Phase 1 (shipped, PR #13) = the 10 key screens; Klub-Identität, the
-2D-Ticker and the Tabloid-Cover added post-sync. The rest are phased —
+Phase 1 (shipped, PR #13) = the 10 key screens; further screens added
+post-sync (see shipped rows below). Office Hub also gains the T1.5
+kick-off countdown: under 30 min the next-match card flips to a big
+mono timer (`OfficeHub` `kickoffSeconds` prop). The rest are phased —
 see [[../90-Meta/github-issue-suite/issues/D-001-remaining-screens-by-phase]].
 
 | # | Screens | Route(s) | Status |

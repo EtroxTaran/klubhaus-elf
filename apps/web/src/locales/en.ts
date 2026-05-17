@@ -35,6 +35,7 @@ export const en = {
     headline: 'Mon, 18 May · 09:41',
     quote: '“Today we learn whether the board knows patience.” — Auerbach Times',
     nextLabel: 'Next fixture',
+    kickoffIn: 'Kick-off in',
     matchVs: 'vs.',
     strength: 'Strength',
     form: 'Form',

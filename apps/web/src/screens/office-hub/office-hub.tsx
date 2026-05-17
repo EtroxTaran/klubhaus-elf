@@ -10,8 +10,19 @@ import { NEXT_FIXTURE } from '../fixtures'
 
 const HAFENSTADT = clubByName('FC Hafenstadt')
 
-export function OfficeHub() {
+/** Kick-off within this window swaps the next-match card for the countdown. */
+const KICKOFF_SOON_S = 30 * 60
+
+export interface OfficeHubProps {
+  /** Seconds until the next kick-off — under 30 min shows the T1.5 countdown. */
+  kickoffSeconds?: number
+}
+
+export function OfficeHub({ kickoffSeconds = NEXT_FIXTURE.kickoffSeconds }: OfficeHubProps = {}) {
   const { t } = useTranslation(['officeHub', 'common'])
+  const isSoon = kickoffSeconds < KICKOFF_SOON_S
+  const mm = String(Math.floor(kickoffSeconds / 60)).padStart(2, '0')
+  const ss = String(kickoffSeconds % 60).padStart(2, '0')
   const tiles = [
     { key: 'training', icon: <Target size={20} />, to: '/kader' },
     { key: 'transfers', icon: <Users size={20} />, to: '/kader' },
@@ -50,39 +61,60 @@ export function OfficeHub() {
           {t('officeHub:quote')}
         </p>
 
-        <section className="rounded-2xl border border-rule bg-card p-3.5">
-          <div className="flex items-baseline justify-between">
-            <span className="text-[10px] font-extrabold uppercase tracking-[1.2px] text-accent">
-              {t('officeHub:nextLabel')}
+        {isSoon ? (
+          <section
+            data-state="countdown"
+            className="rounded-2xl border border-accent bg-accent-soft p-3.5 text-center"
+          >
+            <div className="text-[10px] font-extrabold uppercase tracking-[1.4px] text-accent">
+              · {t('officeHub:kickoffIn')} ·
+            </div>
+            <div className="mt-1 font-mono text-[52px] font-extrabold leading-none tracking-tighter text-ink tabular-nums">
+              {mm}:{ss}
+            </div>
+            <span className="mt-1.5 block font-display text-[15px] font-bold text-ink">
+              {NEXT_FIXTURE.home} <span className="text-ink-soft">{t('officeHub:matchVs')}</span>{' '}
+              Hafenstadt
             </span>
-            <span className="text-[11px] tabular-nums text-ink-mute">
-              {NEXT_FIXTURE.date} · {NEXT_FIXTURE.time}
+            <div className="mt-0.5 text-[11px] text-ink-mute">
+              {NEXT_FIXTURE.comp} · {NEXT_FIXTURE.venue}
+            </div>
+          </section>
+        ) : (
+          <section className="rounded-2xl border border-rule bg-card p-3.5">
+            <div className="flex items-baseline justify-between">
+              <span className="text-[10px] font-extrabold uppercase tracking-[1.2px] text-accent">
+                {t('officeHub:nextLabel')}
+              </span>
+              <span className="text-[11px] tabular-nums text-ink-mute">
+                {NEXT_FIXTURE.date} · {NEXT_FIXTURE.time}
+              </span>
+            </div>
+            <span className="mt-1.5 block font-display text-[22px] font-bold leading-tight text-ink">
+              {NEXT_FIXTURE.home} <span className="text-ink-soft">{t('officeHub:matchVs')}</span>{' '}
+              Hafenstadt
             </span>
-          </div>
-          <span className="mt-1.5 block font-display text-[22px] font-bold leading-tight text-ink">
-            {NEXT_FIXTURE.home} <span className="text-ink-soft">{t('officeHub:matchVs')}</span>{' '}
-            Hafenstadt
-          </span>
-          <div className="mt-1 text-xs text-ink-mute">
-            {NEXT_FIXTURE.comp} · {NEXT_FIXTURE.venue}
-          </div>
-          <div className="mt-3 flex items-center gap-5">
-            <div>
-              <div className="text-[10px] font-semibold text-ink-mute">
-                {t('officeHub:strength')}
+            <div className="mt-1 text-xs text-ink-mute">
+              {NEXT_FIXTURE.comp} · {NEXT_FIXTURE.venue}
+            </div>
+            <div className="mt-3 flex items-center gap-5">
+              <div>
+                <div className="text-[10px] font-semibold text-ink-mute">
+                  {t('officeHub:strength')}
+                </div>
+                <div className="mt-1 flex items-center gap-1.5 font-mono text-[13px] font-bold text-ink">
+                  7,6 <span className="text-[10px] text-ink-soft">vs</span> 7,4
+                </div>
               </div>
-              <div className="mt-1 flex items-center gap-1.5 font-mono text-[13px] font-bold text-ink">
-                7,6 <span className="text-[10px] text-ink-soft">vs</span> 7,4
+              <div className="flex-1">
+                <div className="text-[10px] font-semibold text-ink-mute">{t('officeHub:form')}</div>
+                <div className="mt-1">
+                  <FormStrip form="SSNSU" />
+                </div>
               </div>
             </div>
-            <div className="flex-1">
-              <div className="text-[10px] font-semibold text-ink-mute">{t('officeHub:form')}</div>
-              <div className="mt-1">
-                <FormStrip form="SSNSU" />
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         <div className="mt-3.5 grid grid-cols-2 gap-2.5">
           {tiles.map((tile) => (
