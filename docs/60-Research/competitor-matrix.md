@@ -2,7 +2,7 @@
 title: Competitor Matrix
 status: draft
 tags: [research, competitor, product]
-updated: 2026-05-15
+updated: 2026-05-16
 ---
 
 # Competitor Matrix
@@ -12,7 +12,12 @@ user expectations for soccer-manager. Focus is on actionable product scope and
 differentiation, not implementation detail. Club Boss is referenced here at a
 profile level only and treated in depth in [[club-boss-analysis]].
 
-> Retrieval date for all sources: **2026-05-15**. See [Sources](#sources).
+> Wave 2 (2026-05-16) added rows for ManagerZone, SOKKA, Soccer Manager 2026
+> and EA Fußball Manager. The deeper competitor inventory now lives in
+> [[feature-library-synthesis]]. This matrix keeps the original side-by-side
+> product view.
+> Retrieval date for all sources: **2026-05-15** (Wave 1) and
+> **2026-05-16** (Wave 2). See [Sources](#sources).
 
 ## Method
 
@@ -40,6 +45,9 @@ playable, **Light** = present but shallow/abstracted, **Out** = not in product,
 | **We Are Football 2024** (Winning Streak Games, Gerald Köhler) | PC (Steam) | One-time paid (~£35, frequently discounted) | Single-player offline; local hotseat up to 4 | Medium, broad scope | Out (desktop only) | Women's football, accessible UI, integrated stadium/finance, hotseat multiplayer | No official player licences, limited match visuals, niche audience |
 | **Soccer Manager 2024 / 2025** (Invincibles Studio) | iOS, Android | Free-to-play with IAP; FIFPRO + DFL + Man City licences | Limited (single-player core can run offline; transfers/competitions need sync) | Medium for mobile | Excellent (mobile-first, 5M+ installs) | Real licensed players, 900+ clubs, 3D match engine on phone | Mobile-tier depth, F2P pacing/monetisation friction, annual reset cadence |
 | **Club Boss** (Games by Joe) — see [[club-boss-analysis]] | iOS, Android | Free-to-play with IAP | Offline-first by design | Light to medium | Excellent (mobile-first, short sessions) | Genuinely offline, fast progression loop, strong store ratings | Real league brand usage is grey; shallow tactics; covered in dedicated analysis |
+| **ManagerZone** (Power Challenge) | Web, iOS, Android | Free-to-play with PLUS subscription | Out (always-online, persistent MMO since 2001) | Medium | Solid (mobile companion) | Oldest async football MMO, real-manager transfer market, stadium attractions, Friendly Leagues | Aging UI, no offline, real-money tilt for top tier |
+| **SOKKA** (Sokka Online) | Web | Free-to-play with VIP tier | Out (always-online, daily server tick) | Medium | Solid (web responsive) | 27-day seasons, one match/day, market-based economy, no pay-to-win | Web only, no native, no async friend groups |
+| **Soccer Manager 2026** (Invincibles Studio) | Steam, iOS, Android | Free-to-play with IAP / Steam paid | Single-player core can run offline; transfers/competitions need sync | Medium | Excellent (mobile-first) | 90+ leagues, Match Motion Engine, Manager Trait System, Create-a-Club | Pay-to-win complaints, micro-transactions, annual reset cadence |
 
 ## Feature coverage table
 
@@ -53,6 +61,9 @@ playable, **Light** = present but shallow/abstracted, **Out** = not in product,
 | **We Are Football 2024** | Deep (63 men's + 29 women's competitions) | Solid | Solid (skill trees) | Solid | Deep (build and customise) | Solid | Light to solid (3D engine, limited animation) | Local saves; no cloud; hotseat multiplayer |
 | **Soccer Manager 2024 / 2025** | Deep for mobile (900+ clubs, 54 leagues, national teams in SM24) | Solid (live transfer market, real player data) | Solid | Solid | Solid (facility upgrades) | Solid (budget, sponsors) | Solid (3D engine on phone) | Account-bound cloud save; tied to publisher servers |
 | **Club Boss** | Solid (selected major leagues) | Solid (negotiation flow) | Solid | Solid (academy) | Solid (stadium upgrades) | Solid (budget, sponsors, ticket pricing) | Light (text + simple visualisation) | Local-first save; covered in [[club-boss-analysis]] |
+| **ManagerZone** | Solid (pyramid based on English system, 22 match-days/season, 13-week quarter) | Deep (real-manager market, supply-and-demand pricing) | Solid (weekly coaches) | Solid (youth academy) | Solid (stadium attractions: clinics, restaurants, souvenir shops) | Solid (gates + transfers + position prize money) | Light (text events) | Server-side; persistent MMO |
+| **SOKKA** | Solid (closed competitive ladder) | Deep (live market between managers) | Solid (stamina + special qualities) | Solid (youth pipeline) | Light | Solid (market-based economy) | Light (text + simple visualisation) | Server-side; one match per day |
+| **Soccer Manager 2026** | Deep (90+ leagues, 54 countries, 900+ clubs) | Solid | Solid (skill tree) | Solid | Solid (facility upgrade) | Solid | Solid (Match Motion Engine, 3D on mobile) | Account-bound cloud save |
 
 ## Differentiation opportunities for soccer-manager
 
@@ -134,6 +145,9 @@ we frame the scope explicitly. The risks below should feed
 - [[feature-gap-analysis]] — MoSCoW classification consumes the risks above.
 - [[ip-and-licensing]] — drives ADR-0007 (fictional naming).
 - [[pwa-offline-patterns]] — anchors the "offline-first" differentiation claim.
+- [[feature-library-synthesis]] — Wave 2 deeper feature inventory across all competitors.
+- [[mode-design-research]] — Wave 2 mode-design recommendations (roguelite + career).
+- [[async-multiplayer-research]] — Wave 2 async cadence + watch-party model.
 
 ## Sources
 

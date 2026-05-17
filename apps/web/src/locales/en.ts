@@ -311,6 +311,15 @@ export const en = {
     cta: 'Apply to club',
     ctaNote: 'Takes effect immediately on the 2D ticker, line-up & league table.',
   },
+  tabloid: {
+    strapline: '"Truth, wit and a touch of wistfulness."',
+    glance: 'At a glance',
+    photoCaption: 'PHOTO · S. KAUFMANN / HAFEN-BOTE',
+    close: 'Close',
+    album: 'To album',
+    share: 'Share',
+    advance: 'On to the date',
+  },
   nav: {
     hub: 'Office',
     inbox: 'Inbox',

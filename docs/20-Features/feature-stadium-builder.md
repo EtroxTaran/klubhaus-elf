@@ -1,0 +1,63 @@
+---
+title: Feature - Stadium Builder
+status: draft
+tags: [feature, stadium, infrastructure]
+created: 2026-05-16
+updated: 2026-05-17
+type: feature
+binding: false
+related: [[README]], [[../50-Game-Design/stadium-and-campus]], [[../50-Game-Design/regulations-and-compliance]], [[feature-venue-operations]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+---
+
+# Feature - Stadium Builder
+
+## Goal
+
+Let the player upgrade the stadium and club campus through capacity
+tiers + Anstoss-style on-grounds attractions, with build cost, time and
+trade-offs.
+
+## User stories
+
+- As a manager I can grow my stadium from 5 k to 30 k as the club rises.
+- As a manager I can add a Würstchenbude / Bierstand / Fanzone to lift
+  match-day revenue and atmosphere.
+- As a manager I can see which compliance requirements I will need on
+  promotion.
+
+## In scope (MVP)
+
+- 5 capacity tiers.
+- Seat-mix trade-offs (standing / seating / premium / suites).
+- ≥ 8 on-grounds attraction modules.
+- Construction queue with cost + time.
+- Ageing + renovation cycle.
+- Compliance check on promotion.
+- Venue readiness fields used by [[feature-venue-operations]].
+
+## Out of scope (MVP)
+
+- Plot-by-plot SimCity layout (Expert tier; Phase 2).
+- Multi-stadium ownership.
+- 3D stadium view.
+
+## UI tiers
+
+- Quick: build wizard with recommended next upgrades.
+- Standard: tile map + module list.
+- Expert: full grid + per-plot pricing + queue (Phase 2).
+
+## Acceptance
+
+- Capacity tier transitions produce the correct revenue + atmosphere
+  changes.
+- Compliance check fires correctly on promotion event.
+- Construction queue holds across save/load.
+- Renovation reset reverses ageing decay.
+
+## Dependencies
+
+- [[../50-Game-Design/stadium-and-campus]]
+- [[../50-Game-Design/regulations-and-compliance]]
+- [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]

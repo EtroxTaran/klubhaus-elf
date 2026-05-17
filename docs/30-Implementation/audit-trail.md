@@ -1,0 +1,108 @@
+---
+title: Audit Trail
+status: current
+tags: [implementation, audit, outbox, compliance, observability]
+created: 2026-05-17
+updated: 2026-05-17
+type: implementation
+binding: false
+adr: [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
+related: [[jobs-and-scheduler]], [[observability-runbook]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+---
+
+# Audit Trail
+
+## Purpose
+
+Define the boundary between domain audit history and operational logs.
+
+## Current Approach
+
+ADR-0013 states that the outbox **is** the audit trail:
+
+- hot table: `outbox_event`, last 60 days;
+- cold archive: `outbox_event_archive_YYYY_MM`, kept forever;
+- consumer offsets: `consumer_event_offset`, retained 60 days.
+
+Operational logs in Loki are not the domain audit trail. They support
+debugging and incident triage only.
+
+## Audit Event Scope
+
+Audit-relevant events include:
+
+- authentication and account-security changes;
+- save creation, archive, deletion and restore;
+- multiplayer group creation and membership changes;
+- submitted commands and server decisions;
+- transfer offers, acceptances, rejections and deadline closures;
+- match simulation/resolution summaries;
+- economy and sponsorship decisions;
+- admin actions;
+- content moderation actions for community datasets.
+
+Each audit event is a domain event with:
+
+- `event_id`;
+- `correlation_id`;
+- optional `causation_id`;
+- `event_type`;
+- `schema_version`;
+- `aggregate_type`;
+- `aggregate_id`;
+- JSON payload validated by Zod;
+- `emitted_at`.
+
+## Operational Logs vs Audit
+
+| Concern | Store | Retention | Purpose |
+|---|---|---:|---|
+| Domain event history | SurrealDB outbox/archive | 60 days hot, archive forever | business/audit truth |
+| App/server logs | Loki | 14 days | debugging, incident triage |
+| Crash reports | GlitchTip | 30 days | error grouping and release regression |
+| Metrics | Prometheus | 15 months | trends, alerts, SLOs |
+| Traces | Tempo | 7 days | workflow debugging |
+
+Do not reconstruct business truth from Loki. Query the Audit context,
+which reads hot and archive tables transparently.
+
+## Query Patterns
+
+Audit UI/API should support:
+
+- by aggregate id and type;
+- by event type;
+- by time range;
+- by correlation id;
+- by actor/telemetry subject id where allowed;
+- by save id or multiplayer group id.
+
+Large archive queries must be paginated and time-bounded.
+
+## Privacy
+
+Audit payloads still follow minimisation:
+
+- no secrets or credentials;
+- no raw save blobs;
+- no unnecessary PII;
+- user-facing names are stored only when required by the domain decision;
+- payload schemas are versioned and documented.
+
+Account deletion must follow F6 policy. Some audit rows may be retained
+for legal/security reasons but should be minimised or pseudonymised where
+possible.
+
+## Tamper Evidence
+
+Open F10 decision: whether cold archive partitions need hash-chain
+tamper evidence. Until decided, the minimum control is:
+
+- append-only event production via outbox;
+- admin access logging;
+- backup retention;
+- no manual edits outside documented incident procedures.
+
+## Change History
+
+- 2026-05-17: Created to separate ADR-0013 audit from ADR-0017 operational logs.

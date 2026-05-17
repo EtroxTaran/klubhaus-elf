@@ -38,9 +38,10 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
   [[../10-Architecture/07-Deployment]] · [[../10-Architecture/08-Crosscutting]]
 - [[../10-Architecture/09-Design-System]] · [[../10-Architecture/10-Quality]] ·
   [[../10-Architecture/11-Risks]]
-- **Decisions:** ADR-0001 … ADR-0010 in `10-Architecture/09-Decisions/`
+- **Decisions:** ADR-0001 … ADR-0018 in `10-Architecture/09-Decisions/`
   (tech stack, offline-first, match engine, data model, save format, i18n,
-  naming, mobile-first UI, cursor orchestration, design system).
+  naming, mobile-first UI, cursor orchestration, design system, DDD,
+  multiplayer, outbox, observability and systemic events).
 
 ## Product
 
@@ -62,9 +63,9 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
 
 ## Research
 
-- [[../60-Research/00-summary]] — start here, then: Anstoß deep-dive,
-  Club Boss analysis, competitor matrix, feature-gap analysis, IP & licensing,
-  PWA/offline patterns, Wave-2 gaps (all in `60-Research/`).
+- [[../60-Research/00-summary]] — start here, then [[Research-Map]] for
+  locked Wave 3 notes, including narrative, AI managers, match/runtime,
+  performance, player strength, transfer market and systemic events.
 
 ## Meta & process
 
@@ -72,3 +73,12 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
   [[../90-Meta/vault-governance]] · [[../90-Meta/obsidian-config]]
 - [[../90-Meta/templates/README]] — Linear issue templates.
 - GitHub issue suite & implementation backlog: `90-Meta/github-issue-suite/`.
+
+## Maps
+
+- [[Architecture-Map]]
+- [[Game-Design-Map]]
+- [[Feature-Map]]
+- [[Research-Map]]
+- [[Implementation-Map]]
+- [[User-Docs-Map]]
