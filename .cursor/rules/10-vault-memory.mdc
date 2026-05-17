@@ -5,13 +5,36 @@ alwaysApply: true
 # Vault Memory
 
 - Treat `docs/` as the durable project memory and Obsidian vault.
-- Start substantial work at `docs/00-Index/Agent-Onboarding.md`, then `docs/00-Index/Current-State.md`.
-- Read relevant maps, accepted ADRs, approved game design or feature specs, and implementation notes before changing behavior.
-- Prefer `current`, `accepted`, and `approved` notes. Never implement from `superseded` or `archived` notes.
-- Keep AGENTS/CLAUDE/rules as orchestrators; durable content belongs in vault notes.
-- Follow `docs/30-Implementation/linear-task-tracking.md` for Linear ticket quality, workflow states, labels, and closure requirements.
-- Use `docs/90-Meta/templates/linear-issue.md` (and `linear-issue-examples.md`) when creating or refining Linear issues.
-- Update vault docs in the same PR when code changes architecture, product scope, gameplay, operations, or user-facing behavior.
+- Canonical workflow: `docs/90-Meta/agent-memory-protocol.md`. Governance
+  (memory classes, canonical-location rule, supersede discipline,
+  entry-point conformance): `docs/90-Meta/vault-governance.md`. This rule is an
+  orchestrator; if it disagrees with those notes, the vault wins.
+- Session start: read `docs/00-Index/Agent-Onboarding.md`, then
+  `docs/00-Index/Current-State.md`, then relevant maps, accepted ADRs, approved
+  specs, and the latest `docs/40-Execution/session-handoffs/*` if continuing.
+- Use the `vault-memory` skill (`.cursor/skills/vault-memory/SKILL.md`) for the
+  repeatable start/update/wrap-up checklist.
+- Prefer `current`, `accepted`, `approved` notes. Never implement from `draft`,
+  `superseded`, or `archived` notes.
+- `draft`/`idea` notes are the recognized intent layer: read for direction and
+  to avoid re-deciding, but do not implement from or cite them as settled
+  (see `docs/90-Meta/vault-governance.md` § Draft / idea layer).
+- Keep AGENTS/CLAUDE/rules as orchestrators; one canonical location per fact —
+  no duplicated vault content in config or README.
+- On approach change: supersede, do not silently overwrite (replacement note,
+  `status: superseded`, two-way `supersedes`/`superseded_by`, banner, update
+  `Current-State`).
+- Update vault docs in the same PR when code changes architecture, product
+  scope, gameplay, operations, or user-facing behavior.
+- Session wrap-up: write/update a handoff under
+  `docs/40-Execution/session-handoffs/` and update `Current-State.md`.
+- Follow `docs/30-Implementation/linear-task-tracking.md` for Linear ticket
+  quality, workflow states, labels, and closure requirements.
+- Use `docs/90-Meta/templates/linear-issue.md` (and `linear-issue-examples.md`)
+  when creating or refining Linear issues.
 - User docs are player-facing output, not authoritative implementation specs.
-- Use Ref for library/framework docs. Use Perplexity for external research when credentials work.
-- Never store secrets, credentials, API keys, private Obsidian state, or local workspace state in the vault.
+- MCP usage: follow `docs/90-Meta/mcp-memory-integration.md` (allowlist:
+  Context7, Linear, Figma). Use Ref for library docs, Perplexity for external
+  research when credentials work.
+- Never store secrets, credentials, API keys, private Obsidian state, or local
+  workspace state in the vault.
