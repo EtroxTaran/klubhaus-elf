@@ -40,11 +40,16 @@ RUN cp -r /ctx/docs/. ./content/ \
        [ -f "$src" ] && cp "$src" "$dst" || echo "skip missing $src"; \
      done \
   && cp /ctx/tools/docs-preview/nginx.conf /build/nginx.conf \
+  && cp /ctx/tools/docs-preview/sanitize-frontmatter.mjs /build/sanitize-frontmatter.mjs \
   && rm -rf content/.obsidian /ctx \
   && cp content/00-Index/Home.md content/index.md \
   && sed -i -E "s|baseUrl: \"[^\"]*\"|baseUrl: \"${DOCS_DOMAIN}\"|; s|baseUrl: '[^']*'|baseUrl: \"${DOCS_DOMAIN}\"|" quartz.config.ts \
   && sed -i -E "s|ignorePatterns: \[[^]]*\]|ignorePatterns: [\"private\"]|" quartz.config.ts \
   && sed -i "s|SHOWCASE_DOMAIN_PLACEHOLDER|${SHOWCASE_DOMAIN}|g" content/00-Index/UI-Showcase.md \
+  # Obsidian writes invalid-YAML wikilink frontmatter (`related: [[A]], [[B]]`)
+  # across ~165 notes; Quartz's strict parser aborts on the first one.
+  # Normalise it to valid YAML before building.
+  && node /build/sanitize-frontmatter.mjs content \
   && npx quartz build
 
 FROM nginx:alpine AS runtime
