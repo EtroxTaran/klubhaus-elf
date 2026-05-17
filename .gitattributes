@@ -1,0 +1,11 @@
+# Infra files consumed by Linux tooling (Docker BuildKit, nginx, shell,
+# compose) MUST be LF. Windows autocrlf was storing CRLF into the blob,
+# which broke the Dokploy build (".dockerignore: syntax error in pattern").
+.dockerignore   text eol=lf
+.gitattributes  text eol=lf
+**/Dockerfile   text eol=lf
+*.sh            text eol=lf
+*.conf          text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+*.mjs           text eol=lf
