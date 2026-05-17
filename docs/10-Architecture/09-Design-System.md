@@ -75,10 +75,10 @@ Self-hosted (offline PWA — no runtime CDN), latin + latin-ext for de-DE
 |---|---|---|
 | Tokens | `styles/app.css` | Tailwind v4 `@theme` + `--c-*` indirection + fonts |
 | Theme | `theme/{club-registry,theme-context,theme-provider,use-theme}` | scheme + club state → `<html>` attrs + `--c-accent` |
-| Atoms (10) | `components/atoms/{crest,portrait,str-bar,talent,form-strip,pos-pill,sparkline,break-bar,pill-btn,levy-chip}` | `crest/` and SVG atoms split a pure `*-paths`/geometry module for branch-testability |
+| Atoms (11) | `components/atoms/{crest,jersey,portrait,str-bar,talent,form-strip,pos-pill,sparkline,break-bar,pill-btn,levy-chip}` | `crest/` and `jersey/` split a pure `*-paths`/geometry module for branch-testability |
 | Composites (9) | `components/composites/{player-card,hub-tile,inbox-card,match-event,stat-strip,formation-pitch,mini-pitch,live-xg-strip,stadium/*}` | `formation-pitch`+`formation-map.ts`; `stadium/` = geometry + glyphs + plot + side-view + type-plan + capacity-bar |
 | Layout | `components/layout/screen-shell.tsx` | paper surface, centred mobile column |
-| Screens (10) | `screens/{office-hub,posteingang,kader,anpfiff,spiel,halbzeit,finanzen,stadion,onboarding,karriere}` + `screens/fixtures.ts` | declarative; branching pushed into atoms |
+| Screens (11) | `screens/{office-hub,posteingang,kader,anpfiff,spiel,halbzeit,finanzen,stadion,onboarding,karriere,identity}` + `screens/fixtures.ts` | declarative; branching pushed into atoms |
 | Routes | `routes/*.tsx` (+ `__root.tsx`) | thin TanStack file routes; `__root` mounts `I18nextProvider` + `ThemeProvider` |
 | i18n | `i18n/init.ts`, `locales/{de,en}.ts` | de primary, en parity-tested |
 | shadcn | `components/ui/**` | reserved, CLI-managed, currently unused (deferred) |
@@ -125,12 +125,14 @@ no colon-headers. Numbers: `12.500 €`, `2,4 Mio. €`, form as comma-decimal
 
 ## 10. Screen catalogue (45)
 
-Phase 1 (shipped, PR #13) = the 10 key screens. Remaining 35 are phased — see
-[[../90-Meta/github-issue-suite/issues/D-001-remaining-screens-by-phase]].
+Phase 1 (shipped, PR #13) = the 10 key screens; Klub-Identität added in the
+2026-05-17 design sync (closes prototype TASKS T3.4). Remaining 34 are phased —
+see [[../90-Meta/github-issue-suite/issues/D-001-remaining-screens-by-phase]].
 
 | # | Screens | Route(s) | Status |
 |---|---|---|---|
 | 01–10 | Office Hub · Posteingang · Kader · Vor dem Anpfiff · Spielreportage · Halbzeit · Finanzen · Stadionausbau · Onboarding (3) · Karriereverwaltung | `/`, `/posteingang`, `/kader`, `/anpfiff`, `/spiel`, `/spiel?halbzeit=1`, `/finanzen`, `/stadion`, `/onboarding?step=`, `/karriere` | **Phase 1 ✓** |
+| 11 | Klub-Identität · Wappen- & Trikot-Generator | `/identity` | **shipped ✓** (2026-05-17 sync) |
 | 11–14 | Spielervertrag · Vorstandsvertrauen · Sponsoren · Presse-Interview | — | deferred |
 | 15–17 | Taktik · Aufstellung · Statistiken | — | deferred |
 | 18–24 | Spielerdetail · Training · Einzeltraining · Krankenstation · Scouting · Mannschaften · Mitarbeiter | — | deferred |
@@ -156,7 +158,21 @@ Recorded so a future maintainer understands non-obvious choices:
 - **shadcn deferred**: prototype visuals are bespoke; Halbzeit uses an
   accessible native dialog. `components/ui/**` reserved for when primitives are
   actually needed.
-- **fixtures-vs-i18n boundary** (see §7).
+- **fixtures-vs-i18n boundary** (see §7). The Klub-Identität tincture palette
+  (`IDENT_TINCTURES`) is engine-replaceable sample data → `screens/fixtures.ts`;
+  every shape/charge/pattern/section label is chrome → `locales` `identity`.
+- **`Club` carries a `KitSpec`** (`{ pattern, sleeveAccent }`) beside `crest`;
+  `kitFor(name)` mirrors `crestFor(name)`. The procedural `jersey/` atom is
+  tincture-driven (raw hex props, like `crest/`), not token-themed.
+- **2026-05-17 sync — deliberately deferred**: that export also introduced a
+  shared `ScreenHeader` composite (retrofit across the 10 shipped screens) and
+  a Halbzeit `PlayerToken`. These are a cross-cutting refactor with no
+  functional tie to club identity; deferred to a follow-up so the identity PR
+  stays reviewable. The export's edits to deferred prototype screens
+  (`more/team/tactics/directions/negotiations/sponsor/settings`) have no
+  Phase-1 production target and were intentionally not mapped. Direction B/C
+  token blocks removed from the prototype were already absent in production
+  (only Direction A is implemented) — no-op.
 
 ## 12. Keeping in sync
 
@@ -177,7 +193,7 @@ the vault (`DOCS_BASIC_AUTH`). Ops detail: `tools/docs-preview/README.md`.
   screen ships a colocated `*.stories.tsx`; a CI `build-storybook` job fails
   the build if a story is broken. Adding/changing a primitive without its
   story is an incomplete PR (mirrored in `AGENTS.md`).
-- **Coverage today**: 10 atoms, 12 composites, 1 layout, 10 screens, plus a
+- **Coverage today**: 11 atoms, 12 composites, 1 layout, 11 screens, plus a
   `Foundations/Design Tokens` page (colours, type, radius/spacing, motion).
 - **Theming**: a toolbar (`Scheme` light/dark × `Club` ×8) drives the real
   `ThemeProvider`, so every story is exercised across the full token matrix.
