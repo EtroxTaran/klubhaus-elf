@@ -561,6 +561,74 @@ export const IDENT_TINCTURES = [
 export const nf = new Intl.NumberFormat('de-DE')
 export const eur = (n: number) => `${nf.format(n)} €`
 
+export type TabloidTone = 'triumph' | 'storm'
+
+export interface TabloidStory {
+  masthead: string
+  date: string
+  edition: string
+  kicker: string
+  headline: string
+  sub: string
+  facts: Array<{ l: string; v: string }>
+  dropcap: string
+  body: string
+  quote: string
+  quoteWho: string
+  stamp: string
+  teasers: Array<{ kicker: string; t: string; s: string }>
+}
+
+/** Post-match newspaper special — two preset editorial tones. */
+export const TABLOID: Record<TabloidTone, TabloidStory> = {
+  triumph: {
+    masthead: 'DER HAFEN-BOTE',
+    date: 'Montag · 25. Mai 2026',
+    edition: 'Nr. 132 · 1,80 €',
+    kicker: 'POKAL-VIERTELFINALE',
+    headline: '„Brody schießt sich in die Herzen."',
+    sub: '2:1 in Northbridge — Hafenstadt stürmt ins Viertelfinale, die Tribünen singen den Spielmacher hoch.',
+    facts: [
+      { l: 'Endstand', v: 'Northbridge 1 : 2 Hafenstadt' },
+      { l: 'Torschützen', v: "Wieser 34' · Brody 82'" },
+      { l: 'Spieler des Spiels', v: 'Marek Brody · 8,7' },
+      { l: 'Zuschauer', v: '27.412 in der Northbridge Arena' },
+    ],
+    dropcap: 'H',
+    body: 'afenstadt ist wieder Hafenstadt. Wer den Vortag in der Nordbridge-Arena verbracht hat, wird das Singen lange in den Ohren behalten. Und mittendrin, mit Tor und Vorlage und einem Lächeln, das aussah, als hätte er nie weggehört: Marek Brody.',
+    quote: '„Diese Stadt hat zwei Jahre auf so einen Abend gewartet."',
+    quoteWho: '— Marek Brody, OM',
+    stamp: 'BESTE AUSGABE SEIT 2018',
+    teasers: [
+      { kicker: 'SEITE 3', t: 'Wer wechselt im Sommer?', s: 'Drei Namen, ein Verdacht.' },
+      { kicker: 'SEITE 5', t: 'Northbridges Trainer geht', s: '„Die Niederlage war zu viel."' },
+    ],
+  },
+  storm: {
+    masthead: 'DER HAFEN-BOTE',
+    date: 'Montag · 25. Mai 2026',
+    edition: 'Nr. 132 · 1,80 €',
+    kicker: 'KRISE IM VORSTAND',
+    headline: '„Drei Wochen, dann fällt die Geduld."',
+    sub: 'Aufsichtsrat zieht die Daumenschrauben an — der Trainerin bleibt wenig Zeit.',
+    facts: [
+      { l: 'Letztes Spiel', v: '1:3 in Northbridge' },
+      { l: 'Tabelle', v: 'auf Rang 4 abgerutscht' },
+      { l: 'Stimmung', v: '„angespannt"' },
+      { l: 'Vorstandsfrist', v: '21 Tage' },
+    ],
+    dropcap: 'D',
+    body: 'er Aufsichtsrat tagte am Sonntagabend — und stand danach vor der Presse. Es war kein guter Auftritt. Ungewöhnlich knapp gehalten, ungewöhnlich kalt im Ton. Was sich abzeichnet, hätte vor drei Monaten noch niemand für möglich gehalten.',
+    quote: '„Ich respektiere den Druck. Er gehört zum Beruf."',
+    quoteWho: '— Julia Lindquist, Cheftrainerin',
+    stamp: 'EILMELDUNG',
+    teasers: [
+      { kicker: 'SEITE 3', t: 'Wer wechselt im Sommer?', s: 'Drei Namen, ein Verdacht.' },
+      { kicker: 'SEITE 5', t: 'Northbridges Trainer geht', s: '„Die Niederlage war zu viel."' },
+    ],
+  },
+}
+
 /** A token position on the 2D pitch (viewBox 0 0 360 220). */
 export interface PitchToken {
   x: number

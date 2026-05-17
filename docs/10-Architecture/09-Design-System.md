@@ -139,8 +139,8 @@ no colon-headers. Numbers: `12.500 €`, `2,4 Mio. €`, form as comma-decimal
 
 ## 10. Screen catalogue (45)
 
-Phase 1 (shipped, PR #13) = the 10 key screens; Klub-Identität and the
-2D-Ticker added post-sync. Remaining 32 are phased —
+Phase 1 (shipped, PR #13) = the 10 key screens; Klub-Identität, the
+2D-Ticker and the Tabloid-Cover added post-sync. The rest are phased —
 see [[../90-Meta/github-issue-suite/issues/D-001-remaining-screens-by-phase]].
 
 | # | Screens | Route(s) | Status |
@@ -148,12 +148,13 @@ see [[../90-Meta/github-issue-suite/issues/D-001-remaining-screens-by-phase]].
 | 01–10 | Office Hub · Posteingang · Kader · Vor dem Anpfiff · Spielreportage · Halbzeit · Finanzen · Stadionausbau · Onboarding (3) · Karriereverwaltung | `/`, `/posteingang`, `/kader`, `/anpfiff`, `/spiel`, `/spiel?halbzeit=1`, `/finanzen`, `/stadion`, `/onboarding?step=`, `/karriere` | **Phase 1 ✓** |
 | 11 | Klub-Identität · Wappen- & Trikot-Generator | `/identity` | **shipped ✓** (2026-05-17 sync) |
 | 32 | 2D-Ticker · Live-Pitch + Live-Statistiken | `/spiel` (Ticker-Tab) | **shipped ✓** |
+| 35 | Tabloid-Cover · Spiel-Spezial (Triumph / Krise) | `/tabloid` (`?tone=storm`) | **shipped ✓** |
 | 11–14 | Spielervertrag · Vorstandsvertrauen · Sponsoren · Presse-Interview | — | deferred |
 | 15–17 | Taktik · Aufstellung · Statistiken | — | deferred |
 | 18–24 | Spielerdetail · Training · Einzeltraining · Krankenstation · Scouting · Mannschaften · Mitarbeiter | — | deferred |
 | 25–28 | Spielervergleich · Mannschaftsvergleich · Profi-Modus · Rollen-Editor | — | deferred |
 | 29–34 | Transferbüro · Liga-Tabelle · Pokalbaum · Aufstellung mit Rollen · Einstellungen | — | deferred |
-| 35–38 | Tabloid-Cover · Pressekonferenz · Halbzeit-Sprechblasen · Transfer-Gegenangebot | — | deferred |
+| 36–38 | Pressekonferenz · Halbzeit-Sprechblasen · Transfer-Gegenangebot | — | deferred |
 | 39–41 | Heatmap · Karrierebogen · Saison-Album | — | deferred |
 | 42–45 | A11y-Audit · Sponsoren-Pyramide · Tunnel-Moment · Siegerehrung | — | deferred |
 
