@@ -2,8 +2,10 @@
 # static Quartz v4 site and serves it with nginx. Independent of the game app
 # and SurrealDB. Build context is the repo root.
 
-FROM node:22-alpine AS build
-RUN apk add --no-cache git
+# Debian-based node (not alpine): Quartz's CLI uses a `#!/usr/bin/env -S node`
+# shebang, and BusyBox `env` on alpine does not support `-S`. The Debian image
+# has GNU coreutils env and ships git, so no extra package install is needed.
+FROM node:22 AS build
 WORKDIR /build
 
 ARG QUARTZ_REF=v4
