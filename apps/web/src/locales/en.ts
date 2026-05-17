@@ -375,6 +375,33 @@ export const en = {
       neutral: '"Composed, but vague." — Sport-Echo',
     },
   },
+  transferNeg: {
+    eyebrow: 'Negotiation · transfer',
+    back: 'Back',
+    menu: 'More',
+    stressTitle: 'Agent stress',
+    stressHint: 'One more lowball and they hang up.',
+    stress: {
+      calm: 'calm',
+      tense: 'tense',
+      nearBreak: 'near walkout',
+    },
+    historyTitle: 'History · 4 steps',
+    counterTitle: 'Your counter-offer',
+    sum: 'Total',
+    levers: {
+      fee: 'Fee',
+      bonus: 'Bonus',
+      clause: 'Sell-on clause',
+    },
+    offer: {
+      fee: 'Fee',
+      bonus: 'Bonus',
+      clause: 'Clause',
+    },
+    giveUp: 'Give up',
+    send: 'Send',
+  },
   halbzeitBubbles: {
     screenLabel: 'Half-time · dressing-room talk',
     eyebrow: 'Dressing-room talk',

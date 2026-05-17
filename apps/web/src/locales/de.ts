@@ -379,6 +379,33 @@ export const de = {
       neutral: '„Souverän, aber wenig konkret." — Sport-Echo',
     },
   },
+  transferNeg: {
+    eyebrow: 'Verhandlung · Transfer',
+    back: 'Zurück',
+    menu: 'Mehr',
+    stressTitle: 'Berater-Stress',
+    stressHint: 'Noch ein Lowball, und sie legen auf.',
+    stress: {
+      calm: 'gelassen',
+      tense: 'angespannt',
+      nearBreak: 'fast Abbruch',
+    },
+    historyTitle: 'Verlauf · 4 Schritte',
+    counterTitle: 'Ihr Gegenangebot',
+    sum: 'Summe',
+    levers: {
+      fee: 'Ablöse',
+      bonus: 'Bonus',
+      clause: 'Weiterverkauf-Klausel',
+    },
+    offer: {
+      fee: 'Ablöse',
+      bonus: 'Bonus',
+      clause: 'Klausel',
+    },
+    giveUp: 'Aufgeben',
+    send: 'Senden',
+  },
   halbzeitBubbles: {
     screenLabel: 'Halbzeit · Kabinenansprache',
     eyebrow: 'Kabinenansprache',
