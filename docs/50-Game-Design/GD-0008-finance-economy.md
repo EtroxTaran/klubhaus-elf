@@ -1,11 +1,11 @@
 ---
 title: GD-0008 Finance, Economy & Stadium
-status: draft
+status: approved
 tags: [game-design, gddr, finance, economy]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: false
+binding: true
 related: [[README]], [[GD-0011-career-progression]], [[GD-0012-onboarding]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../60-Research/competitor-matrix]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 ---
 
@@ -13,7 +13,12 @@ related: [[README]], [[GD-0011-career-progression]], [[GD-0012-onboarding]], [[.
 
 ## Status
 
-draft
+approved
+
+> **Approved** — the **Decided / strong** section is ratified design
+> direction; an ADR or implementation must not contradict it. The
+> **Open (Wave 2)** items are NOT approved and not implementable until
+> Wave 2 research closes.
 
 ## Date
 
@@ -31,7 +36,7 @@ vs investment budget — never an opaque number that just goes down.
   (anstoss-series-deep-dive §7 rec. 7, §3 "Finance").
 - Anstoss model drawn from: operating revenue vs expenses incl. **federation
   levy ≈4% of monthly income**; **presidential spending freeze on negative
-  balance** (anstoss-series-deep-dive §3, §2 item 5).
+  balance** (anstoss-series-deep-dive §3 "Finance").
 - Stadium economy: capacity + on-grounds buildings each with ROI;
   **per-match ticket pricing** by prestige; amenities affect mood. Attractions
   sub-economy is **post-MVP** (anstoss-series-deep-dive §3, §7 post-MVP 12).

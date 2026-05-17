@@ -1,11 +1,11 @@
 ---
 title: GD-0004 Tactics & Formations
-status: draft
+status: approved
 tags: [game-design, gddr, tactics]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: false
+binding: true
 related: [[README]], [[GD-0002-match-engine]], [[GD-0016-mobile-ux-loop]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
 ---
 
@@ -13,7 +13,12 @@ related: [[README]], [[GD-0002-match-engine]], [[GD-0016-mobile-ux-loop]], [[../
 
 ## Status
 
-draft
+approved
+
+> **Approved** — the **Decided / strong** section is ratified design
+> direction; an ADR or implementation must not contradict it. The
+> **Open (Wave 2)** items are NOT approved and not implementable until
+> Wave 2 research closes.
 
 ## Date
 

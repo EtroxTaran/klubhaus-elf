@@ -1,11 +1,11 @@
 ---
 title: GD-0005 Training & Development
-status: draft
+status: approved
 tags: [game-design, gddr, training]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: false
+binding: true
 related: [[README]], [[GD-0003-squad-players]], [[GD-0001-core-loop]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
 ---
 
@@ -13,7 +13,12 @@ related: [[README]], [[GD-0003-squad-players]], [[GD-0001-core-loop]], [[../60-R
 
 ## Status
 
-draft
+approved
+
+> **Approved** — the **Decided / strong** section is ratified design
+> direction; an ADR or implementation must not contradict it. The
+> **Open (Wave 2)** items are NOT approved and not implementable until
+> Wave 2 research closes.
 
 ## Date
 
@@ -35,8 +40,9 @@ as a real, punishing trade-off against injuries.
 - ~7-week pre-season conditioning; winter break = mini camp
   (anstoss-series-deep-dive §4).
 - Development scales with training-centre upgrades; **hard cap of 5 trainers**
-  as a scarcity lever; caps should be **upgradeable** via infrastructure so
-  they stop feeling punitive late game (club-boss-analysis takeaways 9).
+  as a scarcity lever (club-boss-analysis "Staff"); caps should be
+  **upgradeable** via infrastructure so they stop feeling punitive late game
+  (club-boss-analysis takeaway 9).
 
 ## Open (Wave 2)
 

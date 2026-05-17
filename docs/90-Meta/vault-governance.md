@@ -116,6 +116,11 @@ Rules every agent follows:
 
 - **Implement gameplay only from `approved` GDDRs.** `idea`/`draft` GDDRs are
   the recognized intent layer (read for direction, do not implement).
+- **Scoped approval.** In an `approved` GDDR only the **Decided / strong**
+  section is ratified. Its **Open (Wave 2)** section is never approved and not
+  implementable until that research closes — `approved` status does not make
+  the whole note buildable. A GDDR whose entire core is Wave-2-gated stays
+  `draft` (e.g. GD-0002, GD-0010) — do not promote it just to look complete.
 - **An ADR must not contradict an `approved` GDDR.** ADRs *implement* game
   design; each gameplay ADR carries a "Design source" link to its GDDR(s).
 - **Same-PR rule (gameplay):** a PR that changes gameplay, a game system, or

@@ -1,11 +1,11 @@
 ---
 title: GD-0003 Squad, Players & Attributes
-status: draft
+status: approved
 tags: [game-design, gddr, squad]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: false
+binding: true
 related: [[README]], [[GD-0005-training]], [[GD-0006-transfers]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/modules/db-schema]]
 ---
 
@@ -13,7 +13,12 @@ related: [[README]], [[GD-0005-training]], [[GD-0006-transfers]], [[../60-Resear
 
 ## Status
 
-draft
+approved
+
+> **Approved** — the **Decided / strong** section is ratified design
+> direction; an ADR or implementation must not contradict it. The
+> **Open (Wave 2)** items are NOT approved and not implementable until
+> Wave 2 research closes.
 
 ## Date
 

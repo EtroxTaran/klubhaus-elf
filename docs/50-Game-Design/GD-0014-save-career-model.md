@@ -35,7 +35,8 @@ exportable, never silently corrupted.
   with migration tests; **no localStorage / ad-hoc JSON fallback**
   (ADR-0005 accepted; Non-Goals).
 - **Multiple parallel career saves per browser profile** (one IndexedDB DB,
-  many saves) — improving on Anstoss single-slot (pwa-offline-patterns §2.1).
+  many saves) (pwa-offline-patterns §2.1) — improving on Anstoss single-slot
+  (anstoss-series-deep-dive §8).
 - **User-owned saves**: export/import a single human-readable
   `.smsave.json`; user can export *and delete* their save
   (pwa-offline-patterns §4/§12; club-boss-analysis takeaway 14).

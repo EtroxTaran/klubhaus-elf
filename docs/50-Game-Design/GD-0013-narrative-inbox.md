@@ -1,11 +1,11 @@
 ---
 title: GD-0013 Narrative, Inbox & Events
-status: draft
+status: approved
 tags: [game-design, gddr, narrative]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: false
+binding: true
 related: [[README]], [[GD-0006-transfers]], [[GD-0015-ip-clean-data]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
 ---
 
@@ -13,7 +13,12 @@ related: [[README]], [[GD-0006-transfers]], [[GD-0015-ip-clean-data]], [[../60-R
 
 ## Status
 
-draft
+approved
+
+> **Approved** — the **Decided / strong** section is ratified design
+> direction; an ADR or implementation must not contradict it. The
+> **Open (Wave 2)** items are NOT approved and not implementable until
+> Wave 2 research closes.
 
 ## Date
 
