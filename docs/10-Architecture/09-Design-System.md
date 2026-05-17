@@ -75,13 +75,27 @@ Self-hosted (offline PWA — no runtime CDN), latin + latin-ext for de-DE
 |---|---|---|
 | Tokens | `styles/app.css` | Tailwind v4 `@theme` + `--c-*` indirection + fonts |
 | Theme | `theme/{club-registry,theme-context,theme-provider,use-theme}` | scheme + club state → `<html>` attrs + `--c-accent` |
-| Atoms (11) | `components/atoms/{crest,jersey,portrait,str-bar,talent,form-strip,pos-pill,sparkline,break-bar,pill-btn,levy-chip}` | `crest/` and `jersey/` split a pure `*-paths`/geometry module for branch-testability |
-| Composites (9) | `components/composites/{player-card,hub-tile,inbox-card,match-event,stat-strip,formation-pitch,mini-pitch,live-xg-strip,stadium/*}` | `formation-pitch`+`formation-map.ts`; `stadium/` = geometry + glyphs + plot + side-view + type-plan + capacity-bar |
-| Layout | `components/layout/screen-shell.tsx` | paper surface, centred mobile column |
+| Atoms (12) | `components/atoms/{crest,jersey,portrait,str-bar,talent,form-strip,pos-pill,sparkline,break-bar,pill-btn,levy-chip,stat-bar}` | `crest/` and `jersey/` split a pure `*-paths`/geometry module for branch-testability; `stat-bar` = opposed live match stat |
+| Composites (10) | `components/composites/{player-card,hub-tile,inbox-card,match-event,stat-strip,formation-pitch,mini-pitch,live-xg-strip,pitch-2d,stadium/*}` | `formation-pitch`+`formation-map.ts`; `pitch-2d` = top-down 2D match pitch (Jersey tokens); `stadium/` = geometry + glyphs + plot + side-view + type-plan + capacity-bar |
+| Layout | `components/layout/{screen-shell,desktop-shell}.tsx` | `screen-shell` = paper surface, centred mobile column; `desktop-shell` = adaptive office cockpit (§5a) |
 | Screens (11) | `screens/{office-hub,posteingang,kader,anpfiff,spiel,halbzeit,finanzen,stadion,onboarding,karriere,identity}` + `screens/fixtures.ts` | declarative; branching pushed into atoms |
 | Routes | `routes/*.tsx` (+ `__root.tsx`) | thin TanStack file routes; `__root` mounts `I18nextProvider` + `ThemeProvider` |
 | i18n | `i18n/init.ts`, `locales/{de,en}.ts` | de primary, en parity-tested |
 | shadcn | `components/ui/**` | reserved, CLI-managed, currently unused (deferred) |
+
+### 5a. Responsive shell (TASKS Q.1)
+
+`DesktopShell` re-lays the same phone primitives into a 3-column office
+cockpit (top bar · left nav rail · main · optional right context rail) using
+only token utilities — scheme/club cascade unchanged. It is **adaptive, not a
+fork**: below Tailwind `lg` the chrome is hidden and children render
+full-width, so the existing mobile screens (their own `ScreenShell`) pass
+straight through; `lg` adds the 2-column cockpit; `xl` adds the right rail
+when supplied. Breakpoint mapping vs the design brief (phone ≤768 / tablet
+769–1199 / desktop ≥1200): `lg` (1024) is the phone→cockpit switch, `xl`
+(1280) gates the right rail. Nav labels live in the `nav` i18n namespace
+(de/en parity-tested). Wiring `DesktopShell` into the live routes is a
+follow-up; the component + its story ship first so the showcase covers it.
 
 ## 6. Theming & club-adaptive accent
 
@@ -125,20 +139,21 @@ no colon-headers. Numbers: `12.500 €`, `2,4 Mio. €`, form as comma-decimal
 
 ## 10. Screen catalogue (45)
 
-Phase 1 (shipped, PR #13) = the 10 key screens; Klub-Identität added in the
-2026-05-17 design sync (closes prototype TASKS T3.4). The rest are phased —
+Phase 1 (shipped, PR #13) = the 10 key screens; Klub-Identität, the
+2D-Ticker and the Tabloid-Cover added post-sync. The rest are phased —
 see [[../90-Meta/github-issue-suite/issues/D-001-remaining-screens-by-phase]].
 
 | # | Screens | Route(s) | Status |
 |---|---|---|---|
 | 01–10 | Office Hub · Posteingang · Kader · Vor dem Anpfiff · Spielreportage · Halbzeit · Finanzen · Stadionausbau · Onboarding (3) · Karriereverwaltung | `/`, `/posteingang`, `/kader`, `/anpfiff`, `/spiel`, `/spiel?halbzeit=1`, `/finanzen`, `/stadion`, `/onboarding?step=`, `/karriere` | **Phase 1 ✓** |
 | 11 | Klub-Identität · Wappen- & Trikot-Generator | `/identity` | **shipped ✓** (2026-05-17 sync) |
+| 32 | 2D-Ticker · Live-Pitch + Live-Statistiken | `/spiel` (Ticker-Tab) | **shipped ✓** |
 | 35 | Tabloid-Cover · Spiel-Spezial (Triumph / Krise) | `/tabloid` (`?tone=storm`) | **shipped ✓** |
 | 11–14 | Spielervertrag · Vorstandsvertrauen · Sponsoren · Presse-Interview | — | deferred |
 | 15–17 | Taktik · Aufstellung · Statistiken | — | deferred |
 | 18–24 | Spielerdetail · Training · Einzeltraining · Krankenstation · Scouting · Mannschaften · Mitarbeiter | — | deferred |
 | 25–28 | Spielervergleich · Mannschaftsvergleich · Profi-Modus · Rollen-Editor | — | deferred |
-| 29–34 | Transferbüro · Liga-Tabelle · Pokalbaum · 2D-Ticker · Aufstellung mit Rollen · Einstellungen | — | deferred |
+| 29–34 | Transferbüro · Liga-Tabelle · Pokalbaum · Aufstellung mit Rollen · Einstellungen | — | deferred |
 | 36–38 | Pressekonferenz · Halbzeit-Sprechblasen · Transfer-Gegenangebot | — | deferred |
 | 39–41 | Heatmap · Karrierebogen · Saison-Album | — | deferred |
 | 42–45 | A11y-Audit · Sponsoren-Pyramide · Tunnel-Moment · Siegerehrung | — | deferred |
