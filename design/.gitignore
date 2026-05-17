@@ -1,0 +1,4 @@
+# Raw export bundles are binary; the extracted text under handoff/<date>/
+# is committed so `git diff` between snapshots stays reviewable.
+bundle.tar.gz
+**/bundle.tar.gz
