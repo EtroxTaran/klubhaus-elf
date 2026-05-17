@@ -561,6 +561,71 @@ export const IDENT_TINCTURES = [
 export const nf = new Intl.NumberFormat('de-DE')
 export const eur = (n: number) => `${nf.format(n)} €`
 
+/** Compact German money: 2,3 Mio. € · 300.000 € · 0 €. */
+export function eurK(n: number): string {
+  if (Math.abs(n) >= 1_000_000) return `${(n / 1_000_000).toFixed(1).replace('.', ',')} Mio. €`
+  if (Math.abs(n) >= 1_000) return `${nf.format(n)} €`
+  return `${n} €`
+}
+
+export interface TransferOffer {
+  fee: number
+  bonus: number
+  clause: number | null
+}
+
+export interface TransferTurn {
+  side: 'us' | 'them'
+  who: string
+  when: string
+  offer: TransferOffer
+  msg: string
+}
+
+/** Transfer counter-offer loop — scripted scenario (mock domain). */
+export const TRANSFER_NEG = {
+  target: {
+    name: 'Élise Vannier',
+    age: 19,
+    pos: 'OM',
+    nat: 'FR',
+    club: 'Olympique Sauveterre',
+    str: 6,
+    tal: 4,
+  },
+  stress: 45,
+  log: [
+    {
+      side: 'them',
+      who: 'Sauveterre',
+      when: 'gestern · 16:42',
+      offer: { fee: 3_200_000, bonus: 0, clause: null },
+      msg: '„Élise gehört uns bis 2028. Ohne 3,2 Mio. plus Solidaritätsanteil reden wir nicht."',
+    },
+    {
+      side: 'us',
+      who: 'Hafenstadt',
+      when: 'heute · 09:14',
+      offer: { fee: 1_800_000, bonus: 200_000, clause: null },
+      msg: '„Wir bieten 1,8 plus Bonus bei 10 Einsätzen."',
+    },
+    {
+      side: 'them',
+      who: 'Sauveterre',
+      when: 'heute · 10:02',
+      offer: { fee: 2_900_000, bonus: 300_000, clause: null },
+      msg: '„Bitte ernsthaft. 2,9 plus Bonus, sonst legen wir auf."',
+    },
+    {
+      side: 'us',
+      who: 'Hafenstadt',
+      when: 'heute · 10:48',
+      offer: { fee: 2_300_000, bonus: 300_000, clause: 6_000_000 },
+      msg: '„2,3 plus Bonus, dafür 6 Mio. Weiterverkaufsklausel."',
+    },
+  ] satisfies TransferTurn[],
+}
+
 export type TabloidTone = 'triumph' | 'storm'
 
 export interface TabloidStory {
