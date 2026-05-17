@@ -24,18 +24,22 @@ This Obsidian Vault is the documentation single source of truth for the
 
 - [[Vision]] — goals
 - [[Non-Goals]] — explicit exclusions
+- [[Glossary]] — terminology
 
-## Entry points
+## Maps of Content (domain hubs)
 
-- [[Glossary]]
-- [[Decision-Log]]
-- [[../10-Architecture/01-Introduction]]
-- [[../10-Architecture/05-Building-Blocks]]
-- [[../10-Architecture/09-Design-System]]
-- [[../30-Implementation/agent-workflow-pattern]]
-- [[../30-Implementation/ci-and-review-process]]
-- [[../30-Implementation/cursor-cloud-agent-workflow]]
-- [[../30-Implementation/design-sync-workflow]]
-- [[../30-Implementation/linear-task-tracking]]
-- [[../60-Research/00-summary]]
-- [[../90-Meta/conventions]]
+The graph is hub-and-spoke. Each MOC links all notes in its domain; every
+content note links back to its MOC and to its ADRs/modules (see
+[[../90-Meta/vault-governance]] § Knowledge connectivity).
+
+- [[Decision-Log]] — **ADRs** (status + lineage)
+- [[../10-Architecture/README]] — **Architecture** (arc42)
+- [[../10-Architecture/05-Building-Blocks]] — **Modules**
+- [[../30-Implementation/README]] — **Implementation** (process, CI, infra)
+- [[../60-Research/00-summary]] — **Research**
+
+## Other entry points
+
+- [[../10-Architecture/01-Introduction]] · [[../10-Architecture/09-Design-System]]
+- [[../30-Implementation/agent-workflow-pattern]] · [[../30-Implementation/cursor-cloud-agent-workflow]]
+- [[../90-Meta/conventions]] · [[../90-Meta/obsidian-config]]

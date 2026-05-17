@@ -2,7 +2,10 @@
 title: Dokploy Deployment
 status: draft
 tags: [deployment, implementation]
-updated: 2026-05-15
+created: 2026-05-15
+updated: 2026-05-17
+type: implementation
+related: [[../10-Architecture/07-Deployment]], [[secrets-rotation]], [[surrealdb-integration]], [[ci-and-review-process]]
 ---
 
 # Dokploy Deployment
@@ -22,3 +25,9 @@ updated: 2026-05-15
 ## Health check
 
 Use `/healthz` on the app container.
+
+## Related
+
+- [[../10-Architecture/07-Deployment]] — arc42 deployment view this realizes
+- [[secrets-rotation]] — credential policy · [[surrealdb-integration]] — DB in compose
+- [[ci-and-review-process]] — green gate before deploy

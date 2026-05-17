@@ -2,7 +2,10 @@
 title: Design System — Aurelia Premier
 status: draft
 tags: [architecture, design, ui, accessibility]
-updated: 2026-05-16
+created: 2026-05-16
+updated: 2026-05-17
+type: arch
+related: [[09-Decisions/ADR-0010-design-system]], [[09-Decisions/ADR-0006-i18n]], [[09-Decisions/ADR-0008-mobile-first-ui]], [[../30-Implementation/design-sync-workflow]], [[08-Crosscutting]], [[10-Quality]], [[modules/ui]]
 ---
 
 # Design System — Aurelia Premier
@@ -164,3 +167,10 @@ A new claude.ai/design export → run `pnpm sync:design <url>` → review the
 generated `design/handoff/<date>/CHANGES.md` → map deltas to the layers above
 → land a small dedicated PR. The script never edits app code. Procedure and
 expired-link handling: [[../30-Implementation/design-sync-workflow]].
+
+## Related
+
+- [[09-Decisions/ADR-0010-design-system]] — the decision this documents
+- [[09-Decisions/ADR-0006-i18n]] · [[09-Decisions/ADR-0008-mobile-first-ui]] — realized here
+- [[08-Crosscutting]] · [[10-Quality]] — arc42 siblings · [[modules/ui]] — owning module
+- [[../30-Implementation/design-sync-workflow]] — how updates land

@@ -2,7 +2,10 @@
 title: Design Sync Workflow
 status: draft
 tags: [implementation, design, workflow]
-updated: 2026-05-16
+created: 2026-05-16
+updated: 2026-05-17
+type: implementation
+related: [[../10-Architecture/09-Design-System]], [[../10-Architecture/09-Decisions/ADR-0010-design-system]], [[ci-and-review-process]], [[agent-workflow-pattern]]
 ---
 
 # Design Sync Workflow
@@ -69,3 +72,9 @@ Zero external deps; network only via `curl` writing to a file (never piped to
 a shell); no `.env*`/secret reads; no app or vault edits — honors
 `.cursor/rules/99-safety.mdc`. CI syntax-checks the script in the
 `cursor-smoke` job.
+
+## Related
+
+- [[../10-Architecture/09-Decisions/ADR-0010-design-system]] — decision this realizes
+- [[../10-Architecture/09-Design-System]] — design reference it syncs into
+- [[ci-and-review-process]] — small-PR landing rule · [[agent-workflow-pattern]] — workflow context

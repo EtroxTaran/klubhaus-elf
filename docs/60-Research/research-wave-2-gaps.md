@@ -2,7 +2,10 @@
 title: Research Wave 2 — Gap Analysis & Backlog Proposal
 status: proposal
 tags: [research, planning, gap-analysis]
-updated: 2026-05-16
+created: 2026-05-16
+updated: 2026-05-17
+type: research
+related: [[00-summary]], [[feature-gap-analysis]], [[../00-Index/Current-State]], [[../00-Index/Decision-Log]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 ---
 
 # Research Wave 2 — Gap Analysis & Backlog Proposal
@@ -528,3 +531,9 @@ work.
   R2-16.
 - AKOM-127 (infra checklist) — informed by R2-09, R2-11.
 - AKOM-128 (M1-M8 backlog generator) — informed by R2-19.
+
+## Related
+
+- [[00-summary]] — research MOC (hub) · [[feature-gap-analysis]] — synthesis sibling
+- Unblocks: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] · [[../10-Architecture/09-Decisions/ADR-0004-data-model]] · [[../10-Architecture/09-Decisions/ADR-0006-i18n]] · [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+- [[../00-Index/Current-State]] — live blocked status

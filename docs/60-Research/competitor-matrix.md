@@ -2,7 +2,11 @@
 title: Competitor Matrix
 status: draft
 tags: [research, competitor, product]
-updated: 2026-05-15
+created: 2026-05-15
+updated: 2026-05-17
+type: research
+linear: AKOM-112
+related: [[00-summary]], [[anstoss-series-deep-dive]], [[club-boss-analysis]], [[ip-and-licensing]], [[feature-gap-analysis]], [[pwa-offline-patterns]]
 ---
 
 # Competitor Matrix
@@ -167,3 +171,9 @@ All retrieved on **2026-05-15**.
 26. App Store. *Club Boss - Football Game.* https://apps.apple.com/gb/app/club-boss-football-game/id6455041452
 27. Google Play. *Club Boss - Football Game.* https://play.google.com/store/apps/details?id=com.GamesbyJoe.ClubBoss
 28. Droid Gamers. *This Game Could Become Your Next Football Management Addiction* (Club Boss profile). https://droidgamers.com/news/this-game-could-become-your-next-football-management-addiction
+
+## Related
+
+- [[00-summary]] — research MOC (hub)
+- [[anstoss-series-deep-dive]] · [[club-boss-analysis]] · [[ip-and-licensing]] — research siblings
+- [[feature-gap-analysis]] — MoSCoW scope this informs · [[pwa-offline-patterns]] — differentiation tech

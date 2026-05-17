@@ -30,3 +30,9 @@ project briefing directly:
 - shadcn CLI initialization prompted for interactive component-library choices. The repository therefore includes `apps/web/components.json` and shadcn-compatible aliases; generated primitives should be added with explicit future commands.
 
 - Bootstrap shell deliberately avoids TanStack client hydration on the static landing page so Lighthouse mobile budgets stay meaningful on GitHub-hosted runners. Future interactive routes should reintroduce client scripts only where needed and keep Lighthouse budgets green.
+
+## Related
+
+- [[README]] — meta index · [[../00-Index/Home]] — vault hub
+- [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]] — the stack these deviations adapt
+- [[../30-Implementation/pwa-offline-strategy]] — SW deviation detail · [[../10-Architecture/11-Risks]] — AI-stack access risk

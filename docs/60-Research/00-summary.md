@@ -2,7 +2,10 @@
 title: Research Summary
 status: phase-1-done
 tags: [research, summary]
-updated: 2026-05-16
+created: 2026-05-16
+updated: 2026-05-17
+type: research
+related: [[anstoss-series-deep-dive]], [[club-boss-analysis]], [[competitor-matrix]], [[ip-and-licensing]], [[pwa-offline-patterns]], [[feature-gap-analysis]], [[research-wave-2-gaps]], [[../00-Index/Current-State]]
 ---
 
 # Research Summary
@@ -28,3 +31,12 @@ See [[research-wave-2-gaps]] for the prioritised list of deeper research that
 Wave 1 surfaced but did not cover. Wave 2 unblocks ADR-0003 (match engine),
 ADR-0004 (data model), ADR-0006 (i18n), ADR-0008 (mobile-first UI), and the
 M2-M8 seed epics.
+
+## Related
+
+This note is the research Map of Content — it links every research note above.
+Up-links:
+
+- [[../00-Index/Current-State]] — how research status feeds live state
+- [[../00-Index/Decision-Log]] — ADRs the research informs
+- [[research-wave-2-gaps]] — the open backlog · [[feature-gap-analysis]] — synthesis

@@ -2,8 +2,11 @@
 title: Anstoss Series Deep Dive
 status: in-review
 tags: [research, game-design, anstoss, inspiration, ip]
-updated: 2026-05-15
+created: 2026-05-15
+updated: 2026-05-17
+type: research
 linear: AKOM-113
+related: [[00-summary]], [[club-boss-analysis]], [[competitor-matrix]], [[ip-and-licensing]], [[feature-gap-analysis]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
 ---
 
 # Anstoss Series Deep Dive
@@ -303,3 +306,9 @@ text.
 [^mu-sega-2020]: BAILII — *Manchester United Football Club Ltd v Sega Publishing Europe Ltd & Anor [2020] EWHC 1439 (Ch)*. <https://mansfield.bailii.org/ew/cases/EWHC/Ch/2020/1439.html>
 [^mishcon-fm]: Mishcon de Reya — *Brands in Sports Video Games: Why Football Manager Might Be the Exception*. <https://www.mishcon.com/news/brands-in-sports-video-games-whyfootball-managermight-be-the-exception>
 [^manfields-mu]: Mansfield BAILII case copy — referenced together with [^mu-sega-2020]. <https://mansfield.bailii.org/ew/cases/EWHC/Ch/2020/1439.html>
+
+## Related
+
+- [[00-summary]] — research MOC (hub)
+- [[club-boss-analysis]] · [[competitor-matrix]] · [[ip-and-licensing]] — research siblings
+- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] — IP rules this fed · [[feature-gap-analysis]] — feeds scope

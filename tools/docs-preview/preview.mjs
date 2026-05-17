@@ -58,7 +58,9 @@ if (!existsSync(quartzDir)) {
 }
 
 // Mirror the vault into Quartz's content directory, excluding Obsidian's
-// private workspace state.
+// private workspace state. The archival GitHub issue-suite is kept in the
+// build (a few canonical notes link D-001/D-002), but is filtered out of the
+// graph view at read time — see docs/90-Meta/obsidian-config.md.
 rmSync(contentDir, { recursive: true, force: true })
 mkdirSync(contentDir, { recursive: true })
 cpSync(vaultDir, contentDir, {
