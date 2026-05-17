@@ -13,4 +13,3 @@ tools/docs-preview/.quartz
 .direnv
 .env
 .env.*
-!.env.example
