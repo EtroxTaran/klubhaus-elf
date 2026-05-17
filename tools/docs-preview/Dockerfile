@@ -33,10 +33,12 @@ COPY . /ctx
 # baseUrl at the real domain, and shrink Quartz's default ignorePatterns
 # (["private","templates",".obsidian"]) so 90-Meta/templates is not dropped.
 RUN cp -r /ctx/docs/. ./content/ \
-  && cp /ctx/README.md ./content/00-Index/Repository-README.md \
-  && cp /ctx/CONTRIBUTING.md ./content/00-Index/Contributing.md \
-  && cp /ctx/AGENTS.md ./content/00-Index/Agent-Guide.md \
-  && cp /ctx/CLAUDE.md ./content/00-Index/Claude-Guide.md \
+  # Onboarding docs are "nice to have" — a missing/odd one must never fail the
+  # deploy (CLAUDE.md was historically a dangling symlink on Linux).
+  && for m in "README.md:Repository-README.md" "CONTRIBUTING.md:Contributing.md" "AGENTS.md:Agent-Guide.md" "CLAUDE.md:Claude-Guide.md"; do \
+       src="/ctx/${m%%:*}"; dst="./content/00-Index/${m##*:}"; \
+       [ -f "$src" ] && cp "$src" "$dst" || echo "skip missing $src"; \
+     done \
   && cp /ctx/tools/docs-preview/nginx.conf /build/nginx.conf \
   && rm -rf content/.obsidian /ctx \
   && cp content/00-Index/Home.md content/index.md \
