@@ -187,3 +187,54 @@ the vault (`DOCS_BASIC_AUTH`). Ops detail: `tools/docs-preview/README.md`.
 - **Local**: `pnpm --filter @soccer-manager/web storybook`. Decorators
   (i18n + theme + a memory router so screen `Link`s are inert) live in
   `apps/web/.storybook/`.
+
+### 13.1 Using the showcase as a reference
+
+- **Canvas** = the component rendered live. Use the **toolbar** to flip
+  `Scheme` (light/dark) and `Club` (×8) — that is how you verify a token /
+  accent decision actually holds across the matrix before trusting it.
+- **Docs tab** (autodocs) = the component's prop API, generated from its
+  TypeScript types — the authoritative "what props exist and what do they
+  mean" surface. Read this before adding a new prop to an existing primitive.
+- **Screens** render from `screens/fixtures.ts` with inert navigation, so
+  they show exactly what ships without a running game/DB.
+- The left tree mirrors the layered architecture (§5):
+  `Foundations → Atoms → Composites → Layout → Screens`. If something is not
+  in the tree, it does not exist in the design system — propose it (see the
+  "missing primitive" rule above) rather than improvising.
+
+### 13.2 Authoring a story (the convention)
+
+Colocated `<name>.stories.tsx` next to the component. Keep it minimal — the
+global decorators already provide theme, i18n and a router, so **do not**
+re-wrap a story in providers.
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react'
+import { PosPill } from '@/components/atoms/pos-pill/pos-pill'
+
+const meta = {
+  title: 'Atoms/PosPill',          // prefix = layer (Atoms/Composites/Layout/Screens)
+  component: PosPill,
+  parameters: { layout: 'centered' }, // 'padded' for rows, 'fullscreen' for screens
+  args: { pos: 'ST' },
+} satisfies Meta<typeof PosPill>      // `satisfies` — args are type-checked
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {}
+export const AllPositions: Story = { render: () => /* enumerate variants */ }
+```
+
+Rules that keep the showcase green and complete:
+
+- One story per meaningful variant/state (enumerate enums — every
+  position/tone/kind — don't just show the default).
+- Reuse real fixtures (`@/screens/fixtures`) for data-driven composites
+  rather than inventing shapes. `noUncheckedIndexedAccess` is on: destructure
+  with a guard (`const [first] = SQUAD; if (!first) throw …`), never `arr[0]!`.
+- Doc-only pages with no component (e.g. Design Tokens) set
+  `tags: ['!autodocs']`.
+- A new/changed atom, composite, layout or screen **must** add/extend its
+  story in the same PR — CI `build-storybook` fails otherwise.
