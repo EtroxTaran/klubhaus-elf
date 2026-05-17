@@ -30,6 +30,9 @@ Before substantial work:
 
 - Prefer `current`, `accepted`, and `approved` notes.
 - Do not implement from `draft`, `superseded`, `archived`, old plans, old issue mirrors, or chat history.
+- `draft`/`idea` notes are the recognized intent layer: read them for
+  direction and to avoid re-deciding, but never implement from or cite them as
+  settled. See [vault-governance.md](vault-governance.md) § Draft / idea layer.
 - Treat user docs as output docs for players, not implementation specifications.
 - Use Ref for library/framework documentation.
 - Use Perplexity for external research when credentials are working.
@@ -38,6 +41,10 @@ Before substantial work:
   [templates/linear-issue-examples.md](templates/linear-issue-examples.md))
   when creating or refining substantial Linear issues.
 - Follow [mcp-memory-integration.md](mcp-memory-integration.md) for approved MCP usage.
+- Follow [vault-governance.md](vault-governance.md) for memory classes, the
+  canonical-location rule, and supersede discipline.
+- Use the `vault-memory` skill (`.cursor/skills/vault-memory/SKILL.md`) for the
+  repeatable start/update/wrap-up checklist.
 - Keep private credentials, API keys, and local Obsidian state out of the vault.
 
 ## Updating Memory
@@ -62,7 +69,9 @@ When an approach changes:
 
 Before handing off substantial work:
 
-1. Write or update a handoff note under [session-handoffs/](session-handoffs/).
+1. Write or update a handoff note under
+   [../40-Execution/session-handoffs/](../40-Execution/session-handoffs/) using
+   [templates/handoff.md](templates/handoff.md).
 2. Record completed work, open tasks, blockers, and changed vault paths.
 3. List any decisions that still need promotion into ADRs, feature specs, game design notes, or rules.
 4. Link the final vault paths from Linear when a Linear issue exists.
