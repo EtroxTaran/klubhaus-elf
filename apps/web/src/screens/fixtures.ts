@@ -865,3 +865,60 @@ export const PRESS_CONFERENCE: PressQuestion[] = [
     ],
   },
 ]
+
+export type VoiceMood = 'energie' | 'frust' | 'erschoepft'
+
+export interface HalftimeVoice {
+  name: string
+  pos: string
+  form: number
+  mood: VoiceMood
+  line: string
+  reactions: Array<{ l: string; e: string }>
+}
+
+/** Half-time dressing-room voices — scripted scenario (mock domain). */
+export const HALFTIME_TALK = {
+  clock: "Halbzeit · 45'",
+  scoreLine: 'Northbridge 0 : 1 Hafenstadt',
+  statLine: "Wieser 34' · Ballbesitz 58% · Schüsse 4:9",
+  pause: '2:48 Pause',
+  voices: [
+    {
+      name: 'Marek Brody',
+      pos: 'OM',
+      form: 8.6,
+      mood: 'energie',
+      line: '„Die Lücke zwischen ihren Sechsern wird größer. Lass mich tiefer fallen — ich finde den Pass."',
+      reactions: [
+        { l: 'Mehr Mut', e: '+ Risiko · + 0,2 Form' },
+        { l: 'Bleib in der Zehn', e: '= sicher' },
+        { l: 'Du bist mein Kapitän heute', e: '+ Moral · + Mannschaft' },
+      ],
+    },
+    {
+      name: 'Aleksy Wieser',
+      pos: 'ST',
+      form: 7.2,
+      mood: 'frust',
+      line: '„Die Bälle kommen nicht. Ihr seid am Sechserdreieck zu langsam — die kriegen mich nie frei."',
+      reactions: [
+        { l: 'Halt dich auf dem Platz', e: '= Geduld' },
+        { l: 'Wechsel in den Halbraum', e: '+ neue Rolle' },
+        { l: 'Du wechselst', e: '– Stürmer-Moral' },
+      ],
+    },
+    {
+      name: 'Sven Holtmann',
+      pos: 'DM',
+      form: 6.4,
+      mood: 'erschoepft',
+      line: '„Mein Hüftbeuger zwickt seit der 30. Ich bringe es nicht über 90."',
+      reactions: [
+        { l: 'Beiß durch · bis 60', e: '+ Verletzungsrisiko' },
+        { l: 'Velten wärmt sich auf', e: "frischer Mann ab 46'" },
+        { l: 'Sofortwechsel', e: 'Velten kommt jetzt' },
+      ],
+    },
+  ] satisfies HalftimeVoice[],
+}

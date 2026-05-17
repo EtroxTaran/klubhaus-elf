@@ -406,4 +406,12 @@ export const de = {
     giveUp: 'Aufgeben',
     send: 'Senden',
   },
+  halbzeitBubbles: {
+    screenLabel: 'Halbzeit · Kabinenansprache',
+    eyebrow: 'Kabinenansprache',
+    title: 'Was hörst du?',
+    subtitle: 'Drei Spieler melden sich zu Wort. Eine Reaktion pro Sprecher.',
+    moreTactics: 'Mehr Taktik',
+    kickoff: 'Anpfiff der 2. Hälfte',
+  },
 } as const
