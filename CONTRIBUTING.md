@@ -73,6 +73,24 @@ pnpm semgrep         # security SAST (requires semgrep installed)
 
 Per-package: `pnpm --filter @soccer-manager/match-engine test`.
 
+## UI / design system
+
+All UI is built from the design system only (tokens, `cn()`, theme, atoms/
+composites). **Storybook is the canonical visual reference** and must stay a
+complete mirror: every atom, composite, layout and screen ships a colocated
+`*.stories.tsx`, and a new/changed primitive or screen adds/extends its story
+in the same PR (CI `build-storybook` enforces this).
+
+```bash
+pnpm --filter @soccer-manager/web storybook        # local, :6006
+pnpm --filter @soccer-manager/web build-storybook  # what CI runs
+```
+
+How the design system works, the story-authoring convention, and how to read
+the showcase as a reference: `docs/10-Architecture/09-Design-System.md`
+(see §13). A missing design primitive is a stop condition — propose it and
+update that doc first; never improvise visual style in a feature PR.
+
 ## Commits
 
 Conventional Commits, enforced by commitlint on `commit-msg`. Lefthook
