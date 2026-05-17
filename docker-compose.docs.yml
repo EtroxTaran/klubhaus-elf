@@ -1,0 +1,29 @@
+# Standalone documentation site. Deploy independently of the game app
+# (docker-compose.yml) so docs redeploys/outages never touch the game.
+#
+#   docker compose -f docker-compose.docs.yml up -d --build
+#
+# Access control is fail-closed: DOCS_BASIC_AUTH MUST be set or the stack
+# refuses to start, so the internal vault can never deploy publicly by accident.
+# Generate a value with:  htpasswd -nbB <user> <pass>
+# and double every '$' to '$$' (compose escaping), e.g.
+#   DOCS_BASIC_AUTH=docs:$$2y$$05$$....
+services:
+  docs:
+    build:
+      context: .
+      dockerfile: tools/docs-preview/Dockerfile
+      args:
+        QUARTZ_REF: ${QUARTZ_REF:-v4}
+        DOCS_DOMAIN: ${DOCS_DOMAIN:-docs.soccer-manager.etrox.de}
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.soccer-docs.rule: Host(`${DOCS_DOMAIN:-docs.soccer-manager.etrox.de}`)
+      traefik.http.routers.soccer-docs.entrypoints: websecure
+      traefik.http.routers.soccer-docs.tls.certresolver: letsencrypt
+      traefik.http.services.soccer-docs.loadbalancer.server.port: "80"
+      traefik.http.routers.soccer-docs.middlewares: soccer-docs-auth
+      traefik.http.middlewares.soccer-docs-auth.basicauth.users: ${DOCS_BASIC_AUTH:?set DOCS_BASIC_AUTH (htpasswd entries) to protect the docs site}
+    ports:
+      - "8081:80"
+    restart: unless-stopped
