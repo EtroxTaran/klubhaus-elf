@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router'
 import { ArrowRight, Check } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Crest } from '@/components/atoms/crest/crest'
+import { Jersey } from '@/components/atoms/jersey/jersey'
 import { ScreenShell } from '@/components/layout/screen-shell'
 import { clubById } from '@/theme/club-registry'
 import type { ClubId } from '@/types/club'
@@ -91,8 +92,18 @@ export function Onboarding({ step = 1 }: { step?: OnboardingStep }) {
                       i === 0 ? 'border-accent bg-accent-soft' : 'border-rule bg-card'
                     }`}
                   >
-                    <Crest {...club.crest} size={42} label={c.name} />
-                    <span className="mt-0.5 font-display text-[13px] font-bold leading-tight text-ink">
+                    <div className="flex items-end gap-1.5 self-stretch">
+                      <Crest {...club.crest} size={42} label={c.name} />
+                      <span className="flex-1" />
+                      <Jersey
+                        pattern={club.kit.pattern}
+                        a={club.crest.a}
+                        b={club.crest.b}
+                        sleeveAccent={club.kit.sleeveAccent}
+                        size={36}
+                      />
+                    </div>
+                    <span className="mt-1 font-display text-[13px] font-bold leading-tight text-ink">
                       {c.name}
                     </span>
                     <span

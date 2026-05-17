@@ -18,6 +18,19 @@ describe('OfficeHub', () => {
     expect(screen.getByText('· Druck wächst')).toBeInTheDocument()
   })
 
+  it('keeps the next-fixture card when kick-off is far off', async () => {
+    await renderScreen(<OfficeHub kickoffSeconds={3 * 60 * 60} />)
+    expect(screen.getByText('Nächster Termin')).toBeInTheDocument()
+    expect(screen.queryByText('Anpfiff in')).toBeNull()
+  })
+
+  it('swaps to the kick-off countdown under 30 minutes (T1.5)', async () => {
+    await renderScreen(<OfficeHub kickoffSeconds={23 * 60 + 14} />)
+    expect(screen.queryByText('Nächster Termin')).toBeNull()
+    expect(screen.getByText(/Anpfiff in/)).toBeInTheDocument()
+    expect(screen.getByText('23:14')).toBeInTheDocument()
+  })
+
   it('links to the inbox and the advance flow', async () => {
     await renderScreen(<OfficeHub />)
     expect(screen.getByRole('link', { name: 'Posteingang öffnen' })).toHaveAttribute(

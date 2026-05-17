@@ -21,6 +21,14 @@ export interface CrestSpec {
   charge: CrestCharge
 }
 
+export type JerseyPattern = 'solid' | 'stripes' | 'hoops' | 'sash' | 'split' | 'chevron'
+
+export interface KitSpec {
+  pattern: JerseyPattern
+  /** Render collar + cuffs in the secondary tincture. */
+  sleeveAccent: boolean
+}
+
 export type ClubId =
   | 'hafenstadt'
   | 'northbridge'
@@ -40,4 +48,5 @@ export interface Club {
   /** Club secondary colour — drives the adaptive accent-2. */
   secondary: string
   crest: CrestSpec
+  kit: KitSpec
 }

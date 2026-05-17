@@ -1,40 +1,40 @@
 ---
-title: Game Design Log (Map of Content)
+title: Game Design Hub
 status: current
-tags: [game-design, gddr, moc]
+tags: [game-design, index]
 created: 2026-05-15
 updated: 2026-05-17
 type: index
-binding: true
-related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../60-Research/00-summary]], [[../90-Meta/templates/game-design]]
+binding: false
+related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]]
 ---
 
-# Game Design Log — Map of Content
+# Game Design Hub
 
-Game Design Decision Records (GDDRs): the canonical "how **our** game works"
-layer. It sits **between research and the technical ADRs** —
+Working game-design notes for soccer-manager. Treat this folder as the GDD:
+one note per system + mode + emergent system. Notes are `draft` unless the
+status field says otherwise; `approved` notes are binding for implementation.
 
-`research (60-Research) → game design (this layer) → architecture (ADRs) → implementation`
+Research input for every note lives in [[../60-Research/]]; raw research
+transcripts in [[../60-Research/raw-perplexity/README]].
 
-Implement gameplay **only from `approved` GDDRs**. **Scoped approval:** in an
-`approved` GDDR only the **Decided / strong** section is ratified — its
-**Open (Wave 2)** section is never approved and not implementable until that
-research closes. `draft` GDDRs are the recognized intent layer (read for
-direction, do not implement). See [[../90-Meta/vault-governance]] § Game design
-layer. Template: [[../90-Meta/templates/game-design]].
+## Authority and decision records
 
-These 14 were verified faithful to their cited sources (independent fact-check,
-2026-05-17) and ratified. **GD-0002 (match engine) and GD-0010 (AI/world) stay
-`draft`** — their own Decided sections are explicitly "intended, pending Wave 2"
-/ "almost entirely open"; there is no stable core to ratify yet (R2-01/04/08).
+Implement gameplay only from `approved` game-design records. This folder now has
+two complementary record shapes:
 
-When a GDDR is superseded: keep its row, set status `superseded`, fill the
-Supersedes / Superseded-by columns so old → new stays readable here.
+- system and mode notes such as [[core-loop]], [[match-engine]], and
+  [[transfer-market-and-contracts]];
+- GDDRs (`GD-0001`...`GD-0016`), which preserve the decision-record chain from
+  research into ADRs.
+
+When an approved GDDR and an approved system note disagree, stop and supersede
+one explicitly before implementation. `draft` records are planning context only.
 
 | GDDR | System | Status | Feeds ADR |
 |---|---|---|---|
 | [[GD-0001-core-loop]] | Core career loop & weekly rhythm | approved | ADR-0003, ADR-0008 |
-| [[GD-0002-match-engine]] | Match engine & simulation model | draft (Wave 2) | ADR-0003, ADR-0005 |
+| [[GD-0002-match-engine]] | Match engine & simulation model | draft (Wave 2 gated) | ADR-0003, ADR-0005 |
 | [[GD-0003-squad-players]] | Squad, players & attributes | approved | ADR-0004, ADR-0003 |
 | [[GD-0004-tactics]] | Tactics & formations | approved | ADR-0003, ADR-0008 |
 | [[GD-0005-training]] | Training & development | approved | ADR-0003 |
@@ -42,7 +42,7 @@ Supersedes / Superseded-by columns so old → new stays readable here.
 | [[GD-0007-youth]] | Youth academy | approved | ADR-0004, ADR-0007 |
 | [[GD-0008-finance-economy]] | Finance, economy & stadium | approved | ADR-0004 |
 | [[GD-0009-league-structure]] | League & competition structure | approved | ADR-0007, ADR-0004 |
-| [[GD-0010-ai-world]] | AI managers & world simulation | draft (Wave 2) | ADR-0003, ADR-0009 |
+| [[GD-0010-ai-world]] | AI managers & world simulation | draft (Wave 2 gated) | ADR-0003, ADR-0009 |
 | [[GD-0011-career-progression]] | Career progression, board & objectives | approved | ADR-0003 |
 | [[GD-0012-onboarding]] | Onboarding & new game | approved | ADR-0008, ADR-0006 |
 | [[GD-0013-narrative-inbox]] | Narrative, inbox & events | approved | ADR-0006, ADR-0003 |
@@ -50,13 +50,62 @@ Supersedes / Superseded-by columns so old → new stays readable here.
 | [[GD-0015-ip-clean-data]] | IP-clean data generation | approved | ADR-0007 |
 | [[GD-0016-mobile-ux-loop]] | Mobile UX gameplay loop | approved | ADR-0008, ADR-0010 |
 
-> **14 approved** (scoped — Decided sections only; Open/Wave-2 never
-> implementable). **GD-0002 and GD-0010 remain `draft`**: their Decided cores
-> are explicitly Wave-2-gated (no model/numbers yet), so there is nothing
-> stable to ratify — promoting them would tell agents to build undefined
-> systems. They move to `approved` when R2-01/04/08 close.
+## Core loop
 
-## Up
+- [[core-loop]] - season arc, weekly heartbeat, day ticks.
+- [[club-dna-and-governance]] - 7 DNA parameters + board+fans split confidence.
+- [[system-interplay]] - the 5 master feedback loops.
 
-- [[../00-Index/Home]] — vault hub · [[../00-Index/Decision-Log]] — ADRs (peer layer)
-- [[../60-Research/00-summary]] — research MOC (inputs) · [[../00-Index/Current-State]]
+## Economy and infrastructure
+
+- [[economy-system]] - cash-flow, budget pots, KPIs.
+- [[sponsorship-portfolio]] - 4-tier sponsor inventory at asset level.
+- [[stadium-and-campus]] - stadium tiers + Anstoss-style attractions + club campus.
+
+## Fans and brand
+
+- [[fan-ecology]] - 6 supporter segments + atmosphere engine.
+
+## Sporting core
+
+- [[squad-and-club-structure]] - sporting org roles + squad design dimensions.
+- [[scouting-and-recruitment]] - recruitment funnel + scout attributes + market dynamics.
+- [[transfer-market-and-contracts]] - AI club selling, valuation bands, clause packages, player terms and tiered market simulation.
+- [[youth-academy-and-development]] - CA/PA range, age curves, loan rules.
+- [[training-load-and-medicine]] - training blocks, load model, medical pipeline.
+
+## Tactics and match
+
+- [[tactics-system]] - Position+Role+Duty+Instructions+Traits model, tactical familiarity.
+- [[set-pieces]] - corners, FKs, penalties, throw-ins as a sub-system.
+- [[match-engine]] - 2D event-based engine spec.
+
+## Modes
+
+- [[mode-create-a-club-roguelite]] - permadeath + soft carries.
+- [[mode-manage-a-club-career]] - Anstoss-2 "real manager career" + split confidence.
+- [[singleplayer-baseline]] - the full reference experience.
+- [[async-multiplayer-private-group]] - 2 cadence rule sets + transfer escalation.
+- [[watch-party-and-conference]] - synchronous emotional spikes.
+- [[transfer-negotiations-p2p]] - human-to-human transfers with deadlines + escalation.
+
+## Environment and emergent systems
+
+- [[regulations-and-compliance]] - promotion-gated stadium / ops requirements.
+- [[rivalry-system]] - emergent rivalry score with 5 sub-scores.
+- [[matchday-event-engine]] - rule-based events with trigger / probability / effect / prevention.
+- [[community-editor-and-datasets]] - override pack model with manifests.
+
+## UX
+
+- [[progressive-disclosure-ui]] - 3-tier UX (Quick / Standard / Expert).
+- [[../60-Research/player-strength-presentation]] - Impact Lens player-strength model; no global OVR.
+
+## Status legend
+
+- `approved` - binding. Implementation must follow.
+- `draft` - design in progress; safe to plan from but expect changes.
+- `superseded` - historical only; never implement from.
+
+When status changes, also update [[../00-Index/Current-State]] and
+[[../00-Index/Game-Design-Map]].

@@ -22,6 +22,7 @@ const PATHS = [
   '/stadion',
   '/onboarding',
   '/karriere',
+  '/identity',
 ] as const
 
 function Providers({ children }: { children: ReactNode }) {

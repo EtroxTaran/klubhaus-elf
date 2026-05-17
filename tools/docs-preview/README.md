@@ -18,9 +18,13 @@ Obsidian.
 2. Installs Quartz's own dependencies **inside that checkout only** — Quartz
    uses npm internally. This is a vendored tool, isolated from the pnpm
    workspace, so the repo's pnpm-only rule is not violated.
-3. Mirrors `docs/` into `.quartz/content/` (excluding `.obsidian/`) and copies
-   `00-Index/Home.md` to `content/index.md` as the landing page.
-4. Runs `npx quartz build --serve`.
+3. Mirrors `docs/` into `.quartz/content/` (excluding `.obsidian/`), and also
+   mirrors the repo-root onboarding docs (`README.md`, `CONTRIBUTING.md`,
+   `AGENTS.md`, `CLAUDE.md`) into `00-Index/` so the wiki is self-contained.
+4. Copies `00-Index/Home.md` to `content/index.md` as the landing page,
+   widens Quartz `ignorePatterns` (keeps `private`, drops the `templates`
+   default-ignore), and resolves the `UI-Showcase` link to `SHOWCASE_DOMAIN`.
+5. Runs `npx quartz build --serve`.
 
 ## Notes
 
@@ -29,12 +33,19 @@ Obsidian.
   (defaults to Quartz's rolling `v4` stable branch).
 - Nothing here is tracked by Git — see the root `.gitignore`.
 
-## Deploying (standalone docs site)
+## Deploying (one stack, two internal sites)
 
-`Dockerfile` + `../../docker-compose.docs.yml` build the vault into a static
-Quartz site served by nginx. It is fully independent of the game app and
-SurrealDB, so it deploys and rolls back on its own (Dokploy: point a stack at
-`docker-compose.docs.yml`).
+`../../docker-compose.docs.yml` is a single Dokploy stack, independent of the
+game app and SurrealDB, that serves **two** auth-gated sites:
+
+| Service | Source | URL | What |
+|---|---|---|---|
+| `docs` | `tools/docs-preview/Dockerfile` (Quartz → nginx) | `DOCS_DOMAIN` | Obsidian vault |
+| `showcase` | `tools/storybook/Dockerfile` (Storybook → nginx) | `SHOWCASE_DOMAIN` | UI design-system showcase |
+
+Both sit behind the **same** fail-closed basic-auth (`DOCS_BASIC_AUTH` guards
+both). `nginx.conf` in each tool dir handles clean URLs (Quartz `/a/b` →
+`/a/b.html`; Storybook SPA fallback to `/index.html`).
 
 ```bash
 docker compose -f docker-compose.docs.yml up -d --build
@@ -51,10 +62,14 @@ the stack will not start unless `DOCS_BASIC_AUTH` is set.
    `DOCS_BASIC_AUTH=docs:$$2y$$05$$....`
 3. Optional overrides: `DOCS_DOMAIN` (default `docs.soccer-manager.etrox.de`,
    also sets Quartz `baseUrl` so sitemap/RSS/OG URLs are correct),
+   `SHOWCASE_DOMAIN` (default `showcase.soccer-manager.etrox.de`),
    `QUARTZ_REF` (Quartz version pin).
 
-To intentionally make the site public, remove the two
-`...soccer-docs-auth...` middleware labels from `docker-compose.docs.yml`.
+Each site needs a DNS A record (`DOCS_DOMAIN`, `SHOWCASE_DOMAIN`) pointing at
+the Traefik host so Let's Encrypt can issue certs.
+
+To intentionally make a site public, remove its `...-auth` middleware labels
+from `docker-compose.docs.yml`.
 
 `DOCS_DOMAIN` drives both the Traefik host rule and Quartz's `baseUrl` (patched
 into `quartz.config.ts` at build time), so a single value keeps routing and

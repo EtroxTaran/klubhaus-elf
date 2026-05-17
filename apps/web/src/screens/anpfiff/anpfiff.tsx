@@ -3,6 +3,7 @@ import { ChevronLeft, MoreHorizontal } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Crest } from '@/components/atoms/crest/crest'
 import { FormStrip } from '@/components/atoms/form-strip/form-strip'
+import { Jersey } from '@/components/atoms/jersey/jersey'
 import { PosPill } from '@/components/atoms/pos-pill/pos-pill'
 import { StatStrip } from '@/components/composites/stat-strip/stat-strip'
 import { ScreenShell } from '@/components/layout/screen-shell'
@@ -38,7 +39,16 @@ export function Anpfiff() {
 
       <div className="flex items-center gap-2.5 px-4 pt-2.5">
         <div className="flex flex-1 flex-col items-start gap-1.5">
-          <Crest {...NBC.crest} size={56} label={NBC.name} />
+          <div className="flex items-end gap-1.5">
+            <Crest {...NBC.crest} size={56} label={NBC.name} />
+            <Jersey
+              pattern={NBC.kit.pattern}
+              a={NBC.crest.a}
+              b={NBC.crest.b}
+              sleeveAccent={NBC.kit.sleeveAccent}
+              size={40}
+            />
+          </div>
           <span className="font-display text-[17px] font-bold leading-tight text-ink">
             {OPP.name}
           </span>
@@ -48,7 +58,16 @@ export function Anpfiff() {
           {t('anpfiff:vs')}
         </span>
         <div className="flex flex-1 flex-col items-end gap-1.5">
-          <Crest {...FCH.crest} size={56} label={FCH.name} />
+          <div className="flex flex-row-reverse items-end gap-1.5">
+            <Crest {...FCH.crest} size={56} label={FCH.name} />
+            <Jersey
+              pattern={FCH.kit.pattern}
+              a={FCH.crest.a}
+              b={FCH.crest.b}
+              sleeveAccent={FCH.kit.sleeveAccent}
+              size={40}
+            />
+          </div>
           <span className="font-display text-[17px] font-bold leading-tight text-ink">
             {OWN.name}
           </span>

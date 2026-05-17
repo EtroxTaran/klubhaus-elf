@@ -105,6 +105,23 @@ pnpm dev
   composites in `apps/web/src/components/`. No raw hex, arbitrary Tailwind values,
   or inline `style=` for visual design. Missing primitive → propose it + update
   `docs/10-Architecture/09-Design-System.md` first; never improvise in a feature PR.
+- Every atom/composite/layout/screen ships a colocated `*.stories.tsx`; a
+  new or changed primitive/screen must add or update its story in the same PR
+  so the Storybook showcase stays a complete mirror of the design system.
+- Before any UI work, **read `docs/10-Architecture/09-Design-System.md`**
+  (§1–12 = how it works; §13 = using the Storybook showcase as the reference
+  + the story-authoring convention) and use the showcase to see components
+  rendered: `pnpm --filter @soccer-manager/web storybook` (local :6006) or the
+  deployed `SHOWCASE_DOMAIN`. The showcase is the canonical *visual* reference;
+  the code in `apps/web/src` is authoritative on any conflict.
+- **New design export** (claude.ai/design, e.g. an
+  `https://api.anthropic.com/v1/design/h/<code>` link): do not eyeball or
+  reimplement it. Run `pnpm sync:design <url>` (or `--dry-run` first), review
+  the generated `design/handoff/<date>/CHANGES.md`, map deltas onto the §5
+  layers, update the affected components **and their stories** plus
+  `09-Design-System.md` (§13 if structure changes), and land one small
+  dedicated PR. The script never edits app code. Full procedure:
+  `docs/30-Implementation/design-sync-workflow.md`.
 - Unclear architecture/feature/ADR gap is a stop condition: escalate via Linear
   (tag Nico, mark Blocked) — never scaffold a workaround or guess.
 - Behaviour changes ship with their vault delta in the same PR; a change that

@@ -2,10 +2,7 @@
 title: Design System — Aurelia Premier
 status: draft
 tags: [architecture, design, ui, accessibility]
-created: 2026-05-16
 updated: 2026-05-17
-type: arch
-related: [[09-Decisions/ADR-0010-design-system]], [[09-Decisions/ADR-0006-i18n]], [[09-Decisions/ADR-0008-mobile-first-ui]], [[../30-Implementation/design-sync-workflow]], [[08-Crosscutting]], [[10-Quality]], [[modules/ui]]
 ---
 
 # Design System — Aurelia Premier
@@ -78,13 +75,27 @@ Self-hosted (offline PWA — no runtime CDN), latin + latin-ext for de-DE
 |---|---|---|
 | Tokens | `styles/app.css` | Tailwind v4 `@theme` + `--c-*` indirection + fonts |
 | Theme | `theme/{club-registry,theme-context,theme-provider,use-theme}` | scheme + club state → `<html>` attrs + `--c-accent` |
-| Atoms (10) | `components/atoms/{crest,portrait,str-bar,talent,form-strip,pos-pill,sparkline,break-bar,pill-btn,levy-chip}` | `crest/` and SVG atoms split a pure `*-paths`/geometry module for branch-testability |
-| Composites (9) | `components/composites/{player-card,hub-tile,inbox-card,match-event,stat-strip,formation-pitch,mini-pitch,live-xg-strip,stadium/*}` | `formation-pitch`+`formation-map.ts`; `stadium/` = geometry + glyphs + plot + side-view + type-plan + capacity-bar |
-| Layout | `components/layout/screen-shell.tsx` | paper surface, centred mobile column |
-| Screens (10) | `screens/{office-hub,posteingang,kader,anpfiff,spiel,halbzeit,finanzen,stadion,onboarding,karriere}` + `screens/fixtures.ts` | declarative; branching pushed into atoms |
+| Atoms (12) | `components/atoms/{crest,jersey,portrait,str-bar,talent,form-strip,pos-pill,sparkline,break-bar,pill-btn,levy-chip,stat-bar}` | `crest/` and `jersey/` split a pure `*-paths`/geometry module for branch-testability; `stat-bar` = opposed live match stat |
+| Composites (10) | `components/composites/{player-card,hub-tile,inbox-card,match-event,stat-strip,formation-pitch,mini-pitch,live-xg-strip,pitch-2d,stadium/*}` | `formation-pitch`+`formation-map.ts`; `pitch-2d` = top-down 2D match pitch (Jersey tokens); `stadium/` = geometry + glyphs + plot + side-view + type-plan + capacity-bar |
+| Layout | `components/layout/{screen-shell,desktop-shell}.tsx` | `screen-shell` = paper surface, centred mobile column; `desktop-shell` = adaptive office cockpit (§5a) |
+| Screens (11) | `screens/{office-hub,posteingang,kader,anpfiff,spiel,halbzeit,finanzen,stadion,onboarding,karriere,identity}` + `screens/fixtures.ts` | declarative; branching pushed into atoms |
 | Routes | `routes/*.tsx` (+ `__root.tsx`) | thin TanStack file routes; `__root` mounts `I18nextProvider` + `ThemeProvider` |
 | i18n | `i18n/init.ts`, `locales/{de,en}.ts` | de primary, en parity-tested |
 | shadcn | `components/ui/**` | reserved, CLI-managed, currently unused (deferred) |
+
+### 5a. Responsive shell (TASKS Q.1)
+
+`DesktopShell` re-lays the same phone primitives into a 3-column office
+cockpit (top bar · left nav rail · main · optional right context rail) using
+only token utilities — scheme/club cascade unchanged. It is **adaptive, not a
+fork**: below Tailwind `lg` the chrome is hidden and children render
+full-width, so the existing mobile screens (their own `ScreenShell`) pass
+straight through; `lg` adds the 2-column cockpit; `xl` adds the right rail
+when supplied. Breakpoint mapping vs the design brief (phone ≤768 / tablet
+769–1199 / desktop ≥1200): `lg` (1024) is the phone→cockpit switch, `xl`
+(1280) gates the right rail. Nav labels live in the `nav` i18n namespace
+(de/en parity-tested). Wiring `DesktopShell` into the live routes is a
+follow-up; the component + its story ship first so the showcase covers it.
 
 ## 6. Theming & club-adaptive accent
 
@@ -128,18 +139,26 @@ no colon-headers. Numbers: `12.500 €`, `2,4 Mio. €`, form as comma-decimal
 
 ## 10. Screen catalogue (45)
 
-Phase 1 (shipped, PR #13) = the 10 key screens. Remaining 35 are phased — see
-[[../90-Meta/github-issue-suite/issues/D-001-remaining-screens-by-phase]].
+Phase 1 (shipped, PR #13) = the 10 key screens; further screens added
+post-sync (see shipped rows below). Office Hub also gains the T1.5
+kick-off countdown: under 30 min the next-match card flips to a big
+mono timer (`OfficeHub` `kickoffSeconds` prop). The rest are phased —
+see [[../90-Meta/github-issue-suite/issues/D-001-remaining-screens-by-phase]].
 
 | # | Screens | Route(s) | Status |
 |---|---|---|---|
 | 01–10 | Office Hub · Posteingang · Kader · Vor dem Anpfiff · Spielreportage · Halbzeit · Finanzen · Stadionausbau · Onboarding (3) · Karriereverwaltung | `/`, `/posteingang`, `/kader`, `/anpfiff`, `/spiel`, `/spiel?halbzeit=1`, `/finanzen`, `/stadion`, `/onboarding?step=`, `/karriere` | **Phase 1 ✓** |
+| 11 | Klub-Identität · Wappen- & Trikot-Generator | `/identity` | **shipped ✓** (2026-05-17 sync) |
+| 32 | 2D-Ticker · Live-Pitch + Live-Statistiken | `/spiel` (Ticker-Tab) | **shipped ✓** |
+| 35 | Tabloid-Cover · Spiel-Spezial (Triumph / Krise) | `/tabloid` (`?tone=storm`) | **shipped ✓** |
+| 36 | Pressekonferenz · Verzweigte Fragen + Wirkungs-Vorhersage | `/pressekonferenz` | **shipped ✓** |
+| 37 | Halbzeit-Sprechblasen · Kabinen-Reaktionen | `/halbzeit-sprechblasen` | **shipped ✓** |
+| 38 | Transfer-Gegenangebot · Hebel + Berater-Stress | `/transfer-verhandlung` | **shipped ✓** |
 | 11–14 | Spielervertrag · Vorstandsvertrauen · Sponsoren · Presse-Interview | — | deferred |
 | 15–17 | Taktik · Aufstellung · Statistiken | — | deferred |
 | 18–24 | Spielerdetail · Training · Einzeltraining · Krankenstation · Scouting · Mannschaften · Mitarbeiter | — | deferred |
 | 25–28 | Spielervergleich · Mannschaftsvergleich · Profi-Modus · Rollen-Editor | — | deferred |
-| 29–34 | Transferbüro · Liga-Tabelle · Pokalbaum · 2D-Ticker · Aufstellung mit Rollen · Einstellungen | — | deferred |
-| 35–38 | Tabloid-Cover · Pressekonferenz · Halbzeit-Sprechblasen · Transfer-Gegenangebot | — | deferred |
+| 29–34 | Transferbüro · Liga-Tabelle · Pokalbaum · Aufstellung mit Rollen · Einstellungen | — | deferred |
 | 39–41 | Heatmap · Karrierebogen · Saison-Album | — | deferred |
 | 42–45 | A11y-Audit · Sponsoren-Pyramide · Tunnel-Moment · Siegerehrung | — | deferred |
 
@@ -159,7 +178,21 @@ Recorded so a future maintainer understands non-obvious choices:
 - **shadcn deferred**: prototype visuals are bespoke; Halbzeit uses an
   accessible native dialog. `components/ui/**` reserved for when primitives are
   actually needed.
-- **fixtures-vs-i18n boundary** (see §7).
+- **fixtures-vs-i18n boundary** (see §7). The Klub-Identität tincture palette
+  (`IDENT_TINCTURES`) is engine-replaceable sample data → `screens/fixtures.ts`;
+  every shape/charge/pattern/section label is chrome → `locales` `identity`.
+- **`Club` carries a `KitSpec`** (`{ pattern, sleeveAccent }`) beside `crest`;
+  `kitFor(name)` mirrors `crestFor(name)`. The procedural `jersey/` atom is
+  tincture-driven (raw hex props, like `crest/`), not token-themed.
+- **2026-05-17 sync — deliberately deferred**: that export also introduced a
+  shared `ScreenHeader` composite (retrofit across the 10 shipped screens) and
+  a Halbzeit `PlayerToken`. These are a cross-cutting refactor with no
+  functional tie to club identity; deferred to a follow-up so the identity PR
+  stays reviewable. The export's edits to deferred prototype screens
+  (`more/team/tactics/directions/negotiations/sponsor/settings`) have no
+  Phase-1 production target and were intentionally not mapped. Direction B/C
+  token blocks removed from the prototype were already absent in production
+  (only Direction A is implemented) — no-op.
 
 ## 12. Keeping in sync
 
@@ -168,9 +201,76 @@ generated `design/handoff/<date>/CHANGES.md` → map deltas to the layers above
 → land a small dedicated PR. The script never edits app code. Procedure and
 expired-link handling: [[../30-Implementation/design-sync-workflow]].
 
-## Related
+## 13. UI showcase (Storybook)
 
-- [[09-Decisions/ADR-0010-design-system]] — the decision this documents
-- [[09-Decisions/ADR-0006-i18n]] · [[09-Decisions/ADR-0008-mobile-first-ui]] — realized here
-- [[08-Crosscutting]] · [[10-Quality]] — arc42 siblings · [[modules/ui]] — owning module
-- [[../30-Implementation/design-sync-workflow]] — how updates land
+Storybook is the canonical **visual** reference of this design system (the
+code in §5 stays authoritative on conflict). It is deployed alongside the
+docs vault — one Dokploy compose stack (`docker-compose.docs.yml`), separate
+subdomain (`SHOWCASE_DOMAIN`), behind the **same** fail-closed basic-auth as
+the vault (`DOCS_BASIC_AUTH`). Ops detail: `tools/docs-preview/README.md`.
+
+- **Completeness is a rule, not a goal.** Every atom, composite, layout and
+  screen ships a colocated `*.stories.tsx`; a CI `build-storybook` job fails
+  the build if a story is broken. Adding/changing a primitive without its
+  story is an incomplete PR (mirrored in `AGENTS.md`).
+- **Coverage today**: 11 atoms, 12 composites, 1 layout, 11 screens, plus a
+  `Foundations/Design Tokens` page (colours, type, radius/spacing, motion).
+- **Theming**: a toolbar (`Scheme` light/dark × `Club` ×8) drives the real
+  `ThemeProvider`, so every story is exercised across the full token matrix.
+- **Future vision**: the deferred screens in §10 enter the showcase the same
+  way — a colocated story when each lands; `autodocs` renders each
+  component's prop API automatically, so the showcase grows by construction.
+- **Local**: `pnpm --filter @soccer-manager/web storybook`. Decorators
+  (i18n + theme + a memory router so screen `Link`s are inert) live in
+  `apps/web/.storybook/`.
+
+### 13.1 Using the showcase as a reference
+
+- **Canvas** = the component rendered live. Use the **toolbar** to flip
+  `Scheme` (light/dark) and `Club` (×8) — that is how you verify a token /
+  accent decision actually holds across the matrix before trusting it.
+- **Docs tab** (autodocs) = the component's prop API, generated from its
+  TypeScript types — the authoritative "what props exist and what do they
+  mean" surface. Read this before adding a new prop to an existing primitive.
+- **Screens** render from `screens/fixtures.ts` with inert navigation, so
+  they show exactly what ships without a running game/DB.
+- The left tree mirrors the layered architecture (§5):
+  `Foundations → Atoms → Composites → Layout → Screens`. If something is not
+  in the tree, it does not exist in the design system — propose it (see the
+  "missing primitive" rule above) rather than improvising.
+
+### 13.2 Authoring a story (the convention)
+
+Colocated `<name>.stories.tsx` next to the component. Keep it minimal — the
+global decorators already provide theme, i18n and a router, so **do not**
+re-wrap a story in providers.
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react'
+import { PosPill } from '@/components/atoms/pos-pill/pos-pill'
+
+const meta = {
+  title: 'Atoms/PosPill',          // prefix = layer (Atoms/Composites/Layout/Screens)
+  component: PosPill,
+  parameters: { layout: 'centered' }, // 'padded' for rows, 'fullscreen' for screens
+  args: { pos: 'ST' },
+} satisfies Meta<typeof PosPill>      // `satisfies` — args are type-checked
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {}
+export const AllPositions: Story = { render: () => /* enumerate variants */ }
+```
+
+Rules that keep the showcase green and complete:
+
+- One story per meaningful variant/state (enumerate enums — every
+  position/tone/kind — don't just show the default).
+- Reuse real fixtures (`@/screens/fixtures`) for data-driven composites
+  rather than inventing shapes. `noUncheckedIndexedAccess` is on: destructure
+  with a guard (`const [first] = SQUAD; if (!first) throw …`), never `arr[0]!`.
+- Doc-only pages with no component (e.g. Design Tokens) set
+  `tags: ['!autodocs']`.
+- A new/changed atom, composite, layout or screen **must** add/extend its
+  story in the same PR — CI `build-storybook` fails otherwise.
