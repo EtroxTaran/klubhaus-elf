@@ -298,4 +298,13 @@ export const de = {
     cta: 'Auf Klub anwenden',
     ctaNote: 'Wirkt sofort auf 2D-Ticker, Aufstellung & Liga-Tabelle.',
   },
+  tabloid: {
+    strapline: '„Wahrheit, Witz und ein wenig Wehmut."',
+    glance: 'Auf einen Blick',
+    photoCaption: 'FOTO · S. KAUFMANN / HAFEN-BOTE',
+    close: 'Schließen',
+    album: 'Ins Album',
+    share: 'Teilen',
+    advance: 'Weiter zum Termin',
+  },
 } as const
