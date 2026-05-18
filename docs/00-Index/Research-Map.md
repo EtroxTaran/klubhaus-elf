@@ -68,6 +68,7 @@ design notes.
 ## Research Rules
 
 - Use Ref for library, framework, API, and SDK documentation.
-- Use Perplexity for broader external research when credentials work.
+- Use Perplexity for broader external research; wired automatically via
+  `.cursor/mcp.json`, see [[../90-Meta/mcp-memory-integration]].
 - Keep citations and assumptions in the research note.
 - Promote final choices into accepted ADRs or approved product/game notes.

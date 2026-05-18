@@ -37,8 +37,10 @@ alwaysApply: true
 - Use `docs/90-Meta/templates/linear-issue.md` (and `linear-issue-examples.md`)
   when creating or refining Linear issues.
 - User docs are player-facing output, not authoritative implementation specs.
-- MCP usage: follow `docs/90-Meta/mcp-memory-integration.md` (allowlist:
-  Context7, Linear, Figma). Use Ref for library docs, Perplexity for external
-  research when credentials work.
+- MCP usage: follow `docs/90-Meta/mcp-memory-integration.md`. Allowlist is
+ enforced by `.cursor/hooks/mcp-allowlist.js`. Context7 / Ref for library docs,
+ Linear for ops, Figma for design, Perplexity for external research. Perplexity
+ is wired via `.cursor/mcp.json` with the `perplexity-key` cloud secret so
+ every cloud agent and local Cursor session discovers it automatically.
 - Never store secrets, credentials, API keys, private Obsidian state, or local
   workspace state in the vault.

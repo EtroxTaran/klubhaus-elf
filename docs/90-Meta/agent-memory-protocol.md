@@ -39,7 +39,8 @@ Before substantial work:
   settled. See [vault-governance.md](vault-governance.md) § Draft / idea layer.
 - Treat user docs as output docs for players, not implementation specifications.
 - Use Ref for library/framework documentation.
-- Use Perplexity for external research when credentials are working.
+- Use Perplexity for external research; it is wired automatically via
+  `.cursor/mcp.json` (see [mcp-memory-integration.md](mcp-memory-integration.md)).
 - Follow [../30-Implementation/linear-task-tracking.md](../30-Implementation/linear-task-tracking.md) for Linear ticket quality and execution tracking.
 - Use [templates/linear-issue.md](templates/linear-issue.md) (and
   [templates/linear-issue-examples.md](templates/linear-issue-examples.md))
