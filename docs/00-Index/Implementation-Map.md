@@ -93,7 +93,29 @@ Use this map for operational, deployment, data, and agent workflow work.
   maintenance cadence. Companion to [[../60-Research/gdpr-compliance]].
   Closes F2 FU-6 + F2 FU-7 + F3 FU-8 + F5 FU-8 + F5 FU-9.
 - [Incident Response](../30-Implementation/incident-response.md)
-- [Secrets Rotation](../30-Implementation/secrets-rotation.md)
+- [Secrets Management](../30-Implementation/secrets-management.md) — F11
+  (2026-05-18, `current binding`). Full runbook for sops + age +
+  direnv repo layout + 15-category secret inventory (A-O) with
+  per-category rotation cadence + zero-downtime rotation recipes
+  (versioned HMAC pepper, `accountSecret` column-key online
+  migration, age key re-encrypt, dual-user DB rotation); 3-class
+  age key hierarchy (human / environment / CI) with paper-backup
+  escrow; **zero-secret CI** + Dokploy decrypts locally + tmpfs
+  runtime injection (NIST SP 800-190 + CIS Docker Benchmark);
+  developer onboarding / offboarding checklists; **5-tier leak
+  classification** + 1-hour response playbook + leaked-age-key
+  procedure + leaked-column-key procedure + Sigstore Rekor
+  outage contingency; **quarterly Tier-A dependency audit
+  runbook** (closes F1 FU-4); **backup + recovery drill
+  schedule** with concrete recipes (Redis monthly closes F3
+  FU-6; SurrealDB semi-annually; age key annually; full system
+  quarterly); 6 DR tabletop scenarios annually; outbox audit
+  integration; future-proof `SecretsProvider` interface for
+  Bitwarden Secrets Manager / Infisical / 1Password Connect
+  graduation. Closes F1 FU-4 + F1 FU-6 + F3 FU-6.
+- [Secrets Rotation](../30-Implementation/secrets-rotation.md) —
+  narrow Cloud-Agent credential boundary policy; companion to
+  [[secrets-management]].
 - [Transfer Market Implementation Plan](../30-Implementation/transfer-market-implementation-plan.md)
 
 ## Related Rules
