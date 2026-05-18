@@ -185,6 +185,66 @@ F5 Account recovery (stable account-master-key envelope), F6 GDPR
 compliance (DSAR + DPIA on `accountSecret`), F12 Rate limiting.
 Surfaces 7 product-owner Q&A questions and 9 follow-up tasks
 (FU-1..FU-9) for the downstream gaps.
+## Session management locked (2026-05-18)
+
+[[../30-Implementation/session-management]] is the binding spec for
+the server-side session and refresh-token lifecycle (Wave 3 gap F3).
+It locks:
+
+- **Redis hot store + SurrealDB outbox audit mirror** as the
+  persistence model; AOF + RDB on the Hetzner box; SurrealDB never
+  rehydrates Redis on cold start (force re-sign-in is the simplest
+  safe behaviour).
+- **Lifetimes**: 30 min idle / 12 h absolute on `session_id`;
+  30 d refresh-family absolute; **15-second rotation grace window**
+  with strict reuse detection outside it.
+- **Slide-on-meaningful-activity** with 60 s rate-limit on Redis
+  writes (Service-Worker and background prefetch never bump the
+  timer).
+- **Cross-tab logout/login broadcast** via BroadcastChannel +
+  localStorage sentinel fallback; SSE push deferred to FU-2.
+- **Revocation matrix**: 15 triggers (explicit logout, log-out-
+  everywhere, per-device, password change/reset, MFA changes,
+  recovery-code use, accountSecret rotation, email change, account
+  lock, account delete, refresh-token reuse, operator emergency,
+  idle/absolute expiry) × scope × outbox event; **hybrid
+  `tokenVersion` + family-revoke** so identity-changing events take
+  one atomic write while session-table family-revoke handles
+  granular per-device cleanup.
+- **`device` SCHEMAFULL table** with explicit separation between
+  user-visible "Devices" (only after successful auth) and
+  operational sessions; client-generated 128-bit `device_id` in
+  IndexedDB; **no browser fingerprinting**.
+- **"Trust this device"** opt-in 30-day MFA-skip with hard cap and
+  anomaly-downgrade; never bypasses primary factor or step-up.
+- **Per-device revoke** signs out sessions but does NOT rotate
+  `accountSecret` by default (offline-first parity with Signal /
+  1Password / Bitwarden); a separate "Sign out everywhere AND
+  rotate security key" flow exists for known-compromise.
+- **Offline-first reconnect**: silent refresh when family is still
+  valid; non-modal "Cloud sync paused" banner when family expired;
+  local progress never lost.
+- **TanStack Start integration patterns**: `getSessionFromRequest`
+  server helper, `createAuthedServerFn` higher-order wrapper
+  enforcing `authorize(actor, action, resource)` + CSRF + Origin /
+  `Sec-Fetch-Site` + optional step-up; `_authed/` route guard via
+  `beforeLoad`; SSR hydration of minimal actor blob; singleton
+  client-side CSRF interceptor; Workbox SW network-first on authed
+  HTML + complete bypass of `/api/auth/**`.
+- **Admin CLI** for emergency revoke at MVP (admin UI deferred to
+  post-MVP).
+- **Future-proof extension fields** provisioned now (`idp_provider`,
+  `idp_sub`, `org_id`, `org_roles`, `session_purpose`, DPoP
+  reservation per RFC 9449).
+- **Compliance**: full ASVS v5.0 V7 + V8 mapping + NIST SP 800-63B
+  rev. 4 §7 anchors + RFC 6819 / OAuth 2.1 draft refresh-token
+  guidance.
+
+Anchors F1 (threat model) and F2 (auth flows). Binds inputs for
+F5 (stable account-master-key envelope, FU-7), F6 (DSAR + DPIA,
+FU-8), F12 (edge WAF + per-endpoint quotas, FU-9). Surfaces 7
+product-owner Q&A questions and 9 follow-up tasks.
+
 ## Transfer market blueprint active (2026-05-17)
 
 [[../60-Research/transfer-market-simulation]] is the current binding
