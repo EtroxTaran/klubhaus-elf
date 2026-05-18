@@ -3,7 +3,7 @@ title: Audit Trail
 status: current
 tags: [implementation, audit, outbox, compliance, observability]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
@@ -31,7 +31,19 @@ debugging and incident triage only.
 
 Audit-relevant events include:
 
-- authentication and account-security changes;
+- authentication and account-security changes — concrete event
+  catalogue (per [[auth-flows]] F2 §2 + §6 + §8):
+  - `auth.signup_verified`
+  - `auth.login_passkey`, `auth.login_password`, `auth.login_mfa`
+  - `auth.password_changed`, `auth.password_reset_completed`
+  - `auth.mfa_enrolled`, `auth.mfa_disabled`,
+    `auth.recovery_codes_generated`, `auth.recovery_code_used`
+  - `auth.session_revoked`, `auth.logout_everywhere`
+  - `auth.account_secret_rotated`, `auth.email_changed`,
+    `auth.account_deleted`
+  - `auth.anomaly.*` (new-device / new-country / impossible-travel
+    / credential-stuffing / reset-storm / signup-storm /
+    global-fail-spike — F2 §8.5);
 - save creation, archive, deletion and restore;
 - multiplayer group creation and membership changes;
 - submitted commands and server decisions;
@@ -106,3 +118,4 @@ tamper evidence. Until decided, the minimum control is:
 ## Change History
 
 - 2026-05-17: Created to separate ADR-0013 audit from ADR-0017 operational logs.
+- 2026-05-18: Concrete `auth.*` event catalogue added (F2 [[auth-flows]]).

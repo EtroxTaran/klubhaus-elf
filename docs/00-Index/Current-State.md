@@ -3,7 +3,7 @@ title: Current State
 status: current
 tags: [meta, current-state, execution, hot]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: index
 binding: true
 related: [[Agent-Onboarding]], [[Project-Goals]], [[Decision-Log]]
@@ -124,6 +124,44 @@ R2-01..R2-19 IDs are preserved under Wave 3 group D for traceability.
 
 Start critical-path work from W3.A (P0): data model, match engine,
 offline-first, auth, GDPR, CI/CD, threat model, SurrealDB schemas.
+
+## Auth flows locked (2026-05-18)
+
+[[../30-Implementation/auth-flows]] is the binding spec for the
+user-facing auth surfaces (Wave 3 gap F2). It locks:
+
+- **Credential model** — passkey-first sign-up + login with password
+  fallback; opt-in TOTP / WebAuthn-as-MFA; 10 single-use recovery
+  codes; "cannot recover" stance if all credentials are lost
+  (matches privacy-first posture).
+- **Sensitive-op catalogue + step-up MFA** with `stepup_mfa_max_age`
+  15 min and `reauth_max_age` 12 h.
+- **Cookie + token shape** F3 must implement: opaque session-ID +
+  Redis lookup (not JWT); `session_id` SameSite=Lax, `refresh_token`
+  SameSite=Strict on Path=`/api/auth/refresh`, refresh-token
+  rotation with reuse detection.
+- **Three-layer CSRF defence** — SameSite + `Origin`/`Sec-Fetch-Site`
+  enforcement + double-submit token.
+- **`accountSecret` bootstrap contract** — once-per-device delivery
+  via `GET /api/auth/account-secret/bootstrap` after authenticated
+  session, immediately wrapped client-side as a non-extractable
+  AES-GCM `CryptoKey` per F1 §5.4 and ADR-0005 §3.
+- **No external IdP / no CAPTCHA / no SMS at MVP** — schema +
+  abstraction provisioned now (`user_identity` table,
+  `ExternalIdentity` value-object, `openid-client` chosen) so post-
+  MVP addition is additive.
+- **Redis-based progressive throttling** and **anomaly signal
+  starter set** (new-device, new-country, impossible-travel,
+  credential-stuffing, password-reset storm, signup storm, global
+  fail spike); no auto-lockout at MVP.
+- **Argon2id** for password storage with calibrated 2026 params
+  (128 MiB / time 3 / parallelism 1, ~150–250 ms target).
+
+Anchors F1 (threat model). Binds inputs for F3 Session management,
+F5 Account recovery (stable account-master-key envelope), F6 GDPR
+compliance (DSAR + DPIA on `accountSecret`), F12 Rate limiting.
+Surfaces 7 product-owner Q&A questions and 9 follow-up tasks
+(FU-1..FU-9) for the downstream gaps.
 
 ## Transfer market blueprint active (2026-05-17)
 
