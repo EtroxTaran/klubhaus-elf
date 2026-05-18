@@ -244,6 +244,61 @@ Anchors F1 (threat model) and F2 (auth flows). Binds inputs for
 F5 (stable account-master-key envelope, FU-7), F6 (DSAR + DPIA,
 FU-8), F12 (edge WAF + per-endpoint quotas, FU-9). Surfaces 7
 product-owner Q&A questions and 9 follow-up tasks.
+## Account recovery locked (2026-05-18)
+
+[[../30-Implementation/account-recovery]] is the binding spec for
+the master-key envelope and the full recovery-flow set (Wave 3 gap
+F5). It locks the architectural shift that closes F2 FU-1 and
+F3 FU-7: a stable inner master key `K` survives all rotations of
+the user-visible secret; only the small envelope is re-wrapped.
+
+- **Stable inner `K`** (256-bit AES-GCM, non-extractable on every
+  device, never seen by server) + **canonical user-level envelope**
+  `Env_user = AES-GCM-256(K, KEK_user)` with
+  `KEK_user = PBKDF2-SHA256(accountSecret, userSalt, 600 000)`.
+- **No cross-device protocol on rotation**: re-wrap `Env_user` once;
+  other devices fetch the new `Env_user` on re-login. Per-device
+  envelopes are an optional offline-cache optimisation, not a
+  security primitive.
+- **Three recovery flows**: email password reset (mandatory
+  `accountSecret` rotation, full session revoke); recovery-code
+  use (10 single-use codes with their own envelopes, mandatory
+  regeneration of the full set + `userSalt` rotation on use);
+  "Sign out everywhere AND rotate security key" (Settings).
+- **Cannot-recover cliff confirmed**: passkey + password + all 10
+  codes lost → account unrecoverable by design; portable-export
+  with remembered passphrase is the only escape path.
+- **F2 → F5 lazy migration**: per user on first F5-enabled login;
+  one-shot save re-encryption inside the migration transaction
+  (~1-2 s for a typical user); idempotent; offline-compatible.
+- **Atomic rotation algorithm** with Redis `rotation_lock` + 60-s
+  TTL + idempotency-key replay protection + SurrealDB transaction
+  wrapping `accountSecret` update + `env_user` swap +
+  `account_secret_version++` + `envelope_version` bump +
+  `token_version++` + cache wipe + outbox emission.
+- **Versioned envelope wire format** with full AAD binding;
+  `envelopeVersion = 2` reserved for Argon2id (post-MVP portable
+  export UI), `envelopeVersion = 3` reserved for HPKE / RFC 9180
+  (post-quantum migration), `wrapMode = 'shared_save'` reserved
+  for Phase-2 cloud MP per-member content keys.
+- **Web Crypto mechanics** spelled out: generate `K` as
+  `extractable: true` for the wrap step, then re-import as
+  `extractable: false` for runtime use; `wrapKey/unwrapKey`
+  semantics keep `K` out of JS heap; `CryptoKey` survives
+  `IndexedDB.put()` round-trip on Chrome / Edge / Firefox /
+  Safari 16+; constant-time error UX via uniform
+  `InvalidEnvelopeError`.
+- **10-row attack mitigation matrix** on recovery surfaces
+  (reset-email intercept, recovery-code phishing / stuffing /
+  replay, oracle timing, email-change → reset chain, server
+  compromise, rollback, envelope transplant).
+- **Compliance**: full NIST SP 800-130 + 800-63B §6 + 800-132 +
+  800-38D + 800-57 Pt. 1 + OWASP ASVS v5 V6 + V11 mapping.
+
+Anchors on F1 (threat model) + F2 (auth flows) + F3 (session
+management); closes F2 FU-1 + F3 FU-7. Surfaces 6 Q&A questions
+(all defaults sensible) and 9 deferred follow-ups (FU-1..FU-9)
+to F4 / F6 / E10 / E11 / post-MVP.
 
 ## Transfer market blueprint active (2026-05-17)
 

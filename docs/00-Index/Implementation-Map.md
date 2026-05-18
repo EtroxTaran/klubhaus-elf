@@ -56,6 +56,26 @@ Use this map for operational, deployment, data, and agent workflow work.
   Anchors on [[../60-Research/threat-model]] (F1) and
   [[../30-Implementation/auth-flows]] (F2); binds inputs for F5
   (envelope), F6 (DSAR + DPIA), F12 (edge WAF).
+- [Account Recovery](../30-Implementation/account-recovery.md) — F5
+  (2026-05-18, `current binding`). Introduces the **stable inner
+  master key `K`** + **canonical user-level envelope
+  `Env_user = AES-GCM-256(K, KEK_user)`** with
+  `KEK_user = PBKDF2(accountSecret, userSalt, 600 000)`. Per-device
+  envelopes (`Env_device`) become an *optional offline-cache
+  optimisation*; per-recovery-code envelopes (`Env_recovery_i`, 10
+  per user) survive the loss of all devices; portable-export
+  envelopes (`Env_portable`) survive `accountSecret` rotation by
+  design. Rotation is O(1) wrap, no inter-device coordination
+  required — devices fetch `Env_user` on re-login, derive
+  `KEK_user_new`, unwrap `K`. F2 → F5 lazy migration on first
+  F5-enabled login per user (one-shot save re-encryption inside
+  the migration transaction). Versioned envelope wire format with
+  AAD-bound header; `envelopeVersion = 2` reserved for Argon2id
+  (post-MVP portable export UI); `envelopeVersion = 3` reserved
+  for HPKE / RFC 9180 (post-quantum). Atomic Redis-locked rotation
+  algorithm with idempotency keys; constant-time error UX. Full
+  ASVS v5 V6 + V11 + NIST 800-130 + 800-63B §6 + 800-132 + 800-38D
+  mapping. Anchors on F1 + F2 + F3; closes F2 FU-1 + F3 FU-7.
 - [Incident Response](../30-Implementation/incident-response.md)
 - [Secrets Rotation](../30-Implementation/secrets-rotation.md)
 - [Transfer Market Implementation Plan](../30-Implementation/transfer-market-implementation-plan.md)
