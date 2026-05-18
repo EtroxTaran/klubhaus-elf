@@ -3,7 +3,7 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: map
 binding: false
 related: [[Current-State]]
@@ -50,6 +50,7 @@ design notes.
 - [Match Engine Simulation Model - Locked Decisions](../60-Research/match-engine-simulation-model.md) — D1 (2026-05-16). Hybrid Markov + attribute rolls; per-event tick with integer-second simClock; event schema with typed payloads; hybrid zone+role formation influence; MatchCoreRng/MatchAiRng strict separation; ≤ 50 ms / match perf budget; full test pyramid with 10 golden replays + statistical envelopes + property-based + perf gate.
 - [Match Engine Runtime Strategy - TypeScript MVP with Polyglot Extraction Gate](../60-Research/match-engine-runtime-strategy.md) — 2026-05-17. Challenges the attached runtime technology report against accepted ADRs. Locks TypeScript as MVP authority, defines the post-MVP Rust/polyglot extraction gate, match quality profiles, interactive chunking and AI-adapter boundaries.
 - [Telemetry, Privacy and GDPR - Locked Decisions](../60-Research/telemetry-privacy.md) — D11 (2026-05-17). Self-hosted diagnostics, consent categories, PII redaction, capped offline telemetry queues, retention, DSAR impact and ADR-0017 inputs.
+- [GDPR Compliance — RoPA, lawful basis, retention, DPIA, DPO](../60-Research/gdpr-compliance.md) — F6 (2026-05-18, `current binding`). Full Article 30 Record of Processing Activities (8 activities × 6 data categories); lawful basis per activity (Art. 6(1)(b) contract for the core service + Art. 6(1)(f) legitimate interest for security + observability with two formal LIAs); confirmed **no Art. 9 special categories** (passkey credentials are public-key material, not biometric); 16+ self-declaration age gate (no parental-consent flow at MVP, no DOB collected); **no third-country transfers** (sidesteps Chapter V SCC / TIA / DPF paperwork entirely; GitHub explicitly assessed as non-processor for user data); processor Art. 28 DPA list (Hetzner + transactional email vendor only); full per-category retention schedule with permanent-audit-but-pseudonymised-on-Art.17 policy and cryptographic erasure via F5 envelope burn; **voluntary DPIA** with three-part legitimate-interest assessments (security anomaly + observability); **DPO not required** (Art. 37 + § 38 BDSG thresholds both below — founder designated as Privacy Lead); compliance overhead estimate (~7-15 founder days launch + ~3-5 days/year ongoing); legal-landscape framing (GDPR yes / ePrivacy yes / DSA de minimis / DMA no / AI Act low-risk / NIS2 no); future-proof triggers documented (payments / analytics / external IdP / scaling). Companion to [[../30-Implementation/privacy-and-consent]]. Anchors on D11 telemetry-privacy + F1 threat-model + F2 / F3 / F5; closes F2 FU-6 + F2 FU-7 + F3 FU-8 + F5 FU-8 + F5 FU-9.
 - [Performance Budgets - Device Matrix, CWV Targets, CI Strategy](../60-Research/performance-budgets.md) — D9 (2026-05-17).
 - [Data Generators - Names, Crests, Cities, Clubs, Players - Locked Decisions](../60-Research/data-generators.md) — D2 (2026-05-17).
 - [AI Manager Behaviour - Architecture, Personalities, Difficulty, World Drift](../60-Research/ai-manager-behaviour.md) — D4 (2026-05-17).
