@@ -3,11 +3,12 @@ title: ADR-0004 Data Model — Domain Entities, Schemas, Saves
 status: accepted
 tags: [adr, architecture, data, surrealdb, dexie, schema, saves]
 created: 2026-05-15
-updated: 2026-05-16
+updated: 2026-05-18
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[../bounded-context-map]], [[../../60-Research/surrealdb-schema-patterns]], [[../../60-Research/determinism-and-replay]]
+amended_by: [[ADR-0020-hybrid-online-mvp-offline-ready]]
+related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../bounded-context-map]], [[../../60-Research/surrealdb-schema-patterns]], [[../../60-Research/determinism-and-replay]]
 ---
 
 # ADR-0004: Data Model — Domain Entities, Schemas, Saves
@@ -15,6 +16,10 @@ related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-mult
 ## Status
 
 Accepted (2026-05-16, gap A4 of [[../../60-Research/wave-3-gap-analysis]]).
+MVP timing amended by [[ADR-0020-hybrid-online-mvp-offline-ready]]:
+server-confirmed SurrealDB state is authoritative in MVP; Dexie stores
+cache/drafts/staging data and remains the reserved local-save/export substrate
+for post-MVP selective offline.
 
 ## Context
 
@@ -49,6 +54,11 @@ context) and [[../30-Implementation/surrealdb-integration]]
 (implementation guide, gap E1).
 
 ### 1. Storage topology — hybrid per-save isolation
+
+MVP staging note: the platform/per-save SurrealDB topology below is the
+authoritative MVP storage. Browser-side Dexie mirrors read caches, drafts and
+future export/sync staging data; it does not own canonical domain progression
+until a later selective-offline singleplayer adapter is explicitly added.
 
 One namespace `soccer_manager` with two kinds of databases:
 

@@ -3,9 +3,9 @@ title: Solution Strategy
 status: draft
 tags: [architecture]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-05-18
 type: arch
-related: [[01-Introduction]], [[02-Constraints]], [[05-Building-Blocks]], [[09-Decisions/ADR-0001-tech-stack]]
+related: [[01-Introduction]], [[02-Constraints]], [[05-Building-Blocks]], [[09-Decisions/ADR-0001-tech-stack]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../00-Index/MVP-Scope]]
 ---
 
 # Solution Strategy
@@ -18,8 +18,17 @@ Build a modular pnpm workspace:
 - `packages/db-schema`: SurrealDB schema mirrors and validation.
 - `packages/ui`: shared UI primitives/components.
 
+MVP runtime strategy:
+
+- Create-a-Club Roguelite first playable.
+- Server-confirmed commands own authoritative progression.
+- Dexie / IndexedDB stores cached read models, drafts and local UI state.
+- Contracts remain versioned and storage-adapter-friendly so selective
+  offline-first singleplayer can be added later.
+
 ## Related
 
 - [[05-Building-Blocks]] — module map (hub) · [[09-Decisions/ADR-0001-tech-stack]] — stack decision
+- [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] — MVP runtime staging · [[../00-Index/MVP-Scope]] — scope
 - Modules: [[modules/web]] · [[modules/match-engine]] · [[modules/game-data]] · [[modules/db-schema]] · [[modules/ui]]
 - [[01-Introduction]] · [[02-Constraints]] — arc42 siblings

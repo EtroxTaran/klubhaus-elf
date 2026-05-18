@@ -3,10 +3,10 @@ title: Crosscutting Concerns
 status: current
 tags: [architecture, security, quality, observability, logging]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-05-18
 type: architecture
 binding: false
-related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0002-offline-first]], [[09-Decisions/ADR-0003-match-engine]], [[09-Decisions/ADR-0013-transactional-outbox]], [[../60-Research/performance-budgets]], [[../60-Research/telemetry-privacy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/client-telemetry]]
+related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0003-match-engine]], [[09-Decisions/ADR-0013-transactional-outbox]], [[../60-Research/performance-budgets]], [[../60-Research/telemetry-privacy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/client-telemetry]]
 ---
 
 # Crosscutting Concerns
@@ -204,20 +204,20 @@ Cross-cutting enforcement:
 - slow SurrealDB query spans and logs;
 - long task / worker duration diagnostics for client simulation.
 
-## PWA and Offline
+## PWA and Offline-ready MVP
 
-ADR-0002 governs offline behavior:
+ADR-0020 governs MVP offline behavior:
 
 - mutating HTTP responses must never be cached;
-- service worker update strategy is hybrid smart;
-- outbox replay is cross-browser and visible through Sync / Activity;
-- Background Sync is a Chromium-only accelerator, not the source of
-  truth;
-- IndexedDB is the browser storage layer at MVP.
+- the service worker may cache app shell/static assets and safe read-only data;
+- Dexie / IndexedDB stores caches, drafts and local UI state;
+- authoritative domain mutations require server confirmation in MVP;
+- stale/cached data must be labelled when it can affect decisions; and
+- future selective offline must not be blocked by storage or contract choices.
 
-Observability must not break offline-first behavior. Telemetry queues are
-secondary to game state, are bounded, and may be dropped before they risk
-save durability or storage pressure.
+Observability must not break offline-ready behavior or future offline-first
+singleplayer. Telemetry queues are secondary to game state, are bounded, and
+may be dropped before they risk save durability or storage pressure.
 
 ## Security Baseline
 

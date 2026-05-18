@@ -3,11 +3,11 @@ title: ADR-0011 Server-Authoritative Multiplayer
 status: accepted
 tags: [adr, architecture, multiplayer, security]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[ADR-0003-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0013-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/raw-perplexity/raw-architecture]]
+related: [[ADR-0003-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0013-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
 # ADR-0011: Server-Authoritative Multiplayer
@@ -15,6 +15,9 @@ related: [[ADR-0003-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-001
 ## Status
 
 Accepted (2026-05-16, gap B2 of [[../../60-Research/wave-3-gap-analysis]]).
+Confirmed by [[ADR-0020-hybrid-online-mvp-offline-ready]]: multiplayer is
+post-MVP and remains server-authoritative; offline multiplayer effects are never
+finalised locally.
 
 ## Context
 
@@ -44,7 +47,8 @@ The server is the **only** authority for multiplayer state:
 - Quorum + countdown + auto-resolve timers.
 
 Clients **only** send commands. Server validates against current state
-and decides the next state.
+and decides the next state. Drafts may be stored locally, but no multiplayer
+effect is final until the server confirms it.
 
 ### Operating modes
 
