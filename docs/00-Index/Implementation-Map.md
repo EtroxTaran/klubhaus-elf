@@ -92,6 +92,22 @@ Use this map for operational, deployment, data, and agent workflow work.
   DPA checklist + onboarding routine; per-quarter / per-year
   maintenance cadence. Companion to [[../60-Research/gdpr-compliance]].
   Closes F2 FU-6 + F2 FU-7 + F3 FU-8 + F5 FU-8 + F5 FU-9.
+- [Rate Limiting and Anti-Abuse](../30-Implementation/rate-limiting-anti-abuse.md)
+  — F12 (2026-05-18, `current binding`). 3-phase edge-WAF
+  graduation pathway (Phase 1 no WAF at MVP → Phase 2 Bunny.net
+  Shield when triggered → Phase 3 Cloudflare-only-if-forced
+  with TIA); full per-endpoint quota catalogue across 7 groups
+  (GDPR / auth / saves / MP commands / game reads /
+  observability / admin); 6-pattern anti-griefing playbook for
+  MP + transfer market (lowball storming, counter ping-pong,
+  inactive member, quorum spam, press-conference spam,
+  spectator abuse); single-VM Redis-Lua token-bucket with
+  multi-VM scale-out path; mCaptcha stage-1 → Friendly Captcha
+  stage-2 trigger thresholds; admin CLI emergency-response
+  commands; full Prometheus + Loki + Grafana observability;
+  DE/EN user-facing 429 copy; future-proof B2B per-org +
+  paid-tier burst + WebSocket / SSE extension points. Closes
+  F1 Q5 + F2 FU-5 + F3 FU-9.
 - [Incident Response](../30-Implementation/incident-response.md)
 - [Secrets Management](../30-Implementation/secrets-management.md) — F11
   (2026-05-18, `current binding`). Full runbook for sops + age +
