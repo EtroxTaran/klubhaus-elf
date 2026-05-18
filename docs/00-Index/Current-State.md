@@ -412,7 +412,51 @@ runbook for the full secrets surface. Highlights:
 **Closes F1 FU-4 + F1 FU-6 + F3 FU-6.** Surfaces 6 minimal
 product Q&A (all sensible defaults). 9 follow-ups (FU-1..FU-9)
 anchored to E10 / E11 / post-MVP / founder.
+## Rate limiting and anti-abuse locked (2026-05-18)
 
+[[../30-Implementation/rate-limiting-anti-abuse]] is the binding
+F12 spec for the abuse-surface layer of the platform. Highlights:
+
+- **3-phase edge-WAF graduation pathway** (closes F1 Q5):
+  Phase 1 no edge WAF at MVP (Hetzner native L3/4 + app-level
+  Redis-Lua quotas sufficient; matches F6 §10 EU-residency
+  posture); Phase 2 Bunny.net Shield when triggered (EU
+  Slovenian; signed Art. 28 DPA; updates RoPA); Phase 3
+  Cloudflare explicitly rejected unless TIA + DPA + Privacy
+  Notice revision complete.
+- **Full per-endpoint quota catalogue** across 7 groups (GDPR /
+  auth / saves / MP commands / game reads / observability /
+  admin) with `429 Too Many Requests` + IETF rate-limit
+  headers; stable `reason` enum; advisory vs enforced rows.
+- **6-pattern anti-griefing playbook** for MP + transfer
+  surfaces: lowball storming (< 25% market value → 7-day
+  cooldown), counter ping-pong (max 5 rounds), inactive member
+  (host-kick after 14 in-game days), quorum spam (max 3
+  votes/season/group), press-conference spam (last-write-wins
+  10-min re-edit), spectator burst (60/hour + 10/10s). Each
+  emits `mp.griefing_blocked` outbox event.
+- **Single-VM Redis-Lua token-bucket** at MVP via hand-rolled
+  Lua + ioredis; multi-VM scale-out path documented
+  (shared Redis Cluster default at first trigger).
+- **mCaptcha stage-1 → Friendly Captcha stage-2** activation
+  thresholds (closes F2 FU-5); rejected reCAPTCHA / hCaptcha /
+  Turnstile on GDPR.
+- **Admin CLI**: `pnpm rate-limit:block | unblock | status |
+  tighten | restore | captcha-on | captcha-off | captcha-provider`
+  with SSH + admin TOTP + outbox emission.
+- **Observability**: Prometheus counters + Loki structured logs
+  with redaction + 2 Grafana dashboards (operational +
+  security) + 6 alert rules; email + Discord webhook at MVP.
+- **DE/EN user-facing 429 copy** for 10 distinct reasons;
+  never reveals exact thresholds.
+- **Future-proof extensions** provisioned (B2B per-org tier,
+  paid-tier burst credit, WebSocket / SSE quotas, distributed
+  quota multi-VM path).
+
+**Closes F1 Q5 + F2 FU-5 + F3 FU-9.** Surfaces 6 minimal
+product Q&A (all defaults confirmed) + 9 follow-ups
+(FU-1..FU-9) anchored to E10 / E11 / observability-runbook /
+calendar / when-triggered.
 ## Transfer market blueprint active (2026-05-17)
 
 [[../60-Research/transfer-market-simulation]] is the current binding
