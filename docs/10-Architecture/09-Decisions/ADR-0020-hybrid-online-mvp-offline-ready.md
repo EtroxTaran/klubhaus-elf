@@ -7,7 +7,7 @@ updated: 2026-05-18
 accepted_at: 2026-05-18
 type: adr
 binding: true
-supersedes: [[ADR-0002-offline-first]]
+supersedes: ADR-0002-offline-first
 amends: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]]
 related: [[../../00-Index/MVP-Scope]], [[../../60-Research/offline-mvp-scope-and-sync-strategy]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0004-data-model]], [[ADR-0005-save-format]]
 ---

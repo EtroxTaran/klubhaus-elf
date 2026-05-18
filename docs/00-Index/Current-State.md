@@ -1117,8 +1117,7 @@ Implementation should start from
     golden replays + statistical envelope tests (1k-5k nightly
     matches) + property-based (fast-check + pure-rand) + CI perf
     gate.
-- **ADR-0002 Offline-first** (superseded 2026-05-18 by ADR-0020) -
-  [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]:
+- **ADR-0002 Offline-first** (superseded 2026-05-18 by ADR-0020):
   - Historical full offline-first MVP decision. Do not implement for MVP.
   - Current MVP posture is [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]:
     app shell, safe cached reads and local drafts; server-confirmed

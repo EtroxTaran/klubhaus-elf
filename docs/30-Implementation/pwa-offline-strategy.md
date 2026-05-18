@@ -5,7 +5,7 @@ tags: [pwa, implementation]
 created: 2026-05-15
 updated: 2026-05-18
 type: implementation
-superseded_by: [[hybrid-online-pwa-strategy]]
+superseded_by: hybrid-online-pwa-strategy
 related: [[../10-Architecture/06-Runtime]], [[../60-Research/pwa-offline-patterns]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[hybrid-online-pwa-strategy]]
 ---
 
