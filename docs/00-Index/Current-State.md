@@ -125,6 +125,29 @@ R2-01..R2-19 IDs are preserved under Wave 3 group D for traceability.
 Start critical-path work from W3.A (P0): data model, match engine,
 offline-first, auth, GDPR, CI/CD, threat model, SurrealDB schemas.
 
+## Threat model active (2026-05-18)
+
+[[../60-Research/threat-model]] is the binding security reference for
+the project (Wave 3 gap F1). It locks:
+
+- **Attacker scope** (T0-T4 in, T5-T6 partial, T7-T9 out) — any
+  expansion needs an ADR + update to this note.
+- **STRIDE catalogue** of 41 concrete threats per bounded context with
+  bound controls referencing ADR-0002 / 0005 / 0011 / 0013 / 0017 /
+  0019 + OWASP ASVS v5 L2 + NIST SP 800-38D / 63B / 92 / 190 +
+  SLSA v1.0.
+- **Trust-boundary diagram** across Client / Edge / App / Match Worker
+  / DB / Redis / Observability planes.
+- **Cryptographic refinements** to ADR-0005: PBKDF2 stays MVP, Argon2id
+  when portable-export UI ships; 1M-encryption soft cap per content
+  key; compress-then-encrypt safe at rest; no XChaCha20-Poly1305 at
+  MVP.
+- **9 residual risks** explicitly accepted with re-evaluation triggers.
+
+Anchors downstream gaps F2 / F3 / F5 / F6 / F10 / F11 / F12 / F13 /
+C6 / C8 / D18. Seven product-level open questions surfaced for Nico
+(see §8 of the note).
+
 ## Auth flows locked (2026-05-18)
 
 [[../30-Implementation/auth-flows]] is the binding spec for the
@@ -162,7 +185,6 @@ F5 Account recovery (stable account-master-key envelope), F6 GDPR
 compliance (DSAR + DPIA on `accountSecret`), F12 Rate limiting.
 Surfaces 7 product-owner Q&A questions and 9 follow-up tasks
 (FU-1..FU-9) for the downstream gaps.
-
 ## Transfer market blueprint active (2026-05-17)
 
 [[../60-Research/transfer-market-simulation]] is the current binding
