@@ -360,6 +360,58 @@ Surfaces 6 minimal product-owner Q&A (Brevo email vendor,
 age-gate language, pseudonymisation, backup non-scrub
 disclosure, DPIA/LIAs co-located in the research note, Privacy
 Lead designation) + 10 deferred follow-ups (FU-1..FU-10).
+## Secrets management runbook locked (2026-05-18)
+
+[[../30-Implementation/secrets-management]] is the binding F11
+runbook for the full secrets surface. Highlights:
+
+- **15-category secret inventory** (A-O) with per-category
+  rotation cadence + zero-downtime recipes.
+- **sops + age + direnv** repo layout with `.sops.yaml`
+  `encrypted_regex` (values encrypted, structure visible);
+  per-env directories `secrets/{dev,staging,prod}/`; `*.enc.*`
+  naming convention enforced by CI lint.
+- **3-class age key hierarchy** (human / environment / CI) with
+  paper-backup escrow; founder-only prod access.
+- **Zero-downtime rotation recipes**: versioned HMAC pepper
+  (D / G / N) with 7-30 d overlap; `accountSecret` column-
+  encryption key (E) with per-row version + online migration +
+  90 d old-key escrow; age key (A) via `sops updatekeys` +
+  cosign re-sign; dual-user SurrealDB (B) with 7-14 d overlap.
+- **Zero-secret CI + Dokploy local decryption + tmpfs runtime
+  injection** (NIST SP 800-190 + CIS Docker Benchmark). The
+  only static CI secret is the bounded-scope `DOKPLOY_WEBHOOK_SECRET`.
+- **Cosign keyless container signing** via GitHub OIDC +
+  Sigstore Fulcio; locally-cached trust fallback on Rekor
+  outage (closes F1 FU-6).
+- **5-tier accidental-leak classification + 1-hour response
+  playbook**; specific leaked-age-key + leaked-column-key
+  playbooks; integration with F6 §9 Art. 33/34 breach
+  notification.
+- **Detection sources**: GitHub secret-scanning, gitleaks +
+  trufflehog CI, F2 §8.5 anomaly signals, responsible-
+  disclosure email.
+- **Quarterly Tier-A dependency audit runbook** (closes
+  F1 FU-4) — 11 initial packages, Socket.dev + OSV + GitHub
+  Advisory + `npm audit signatures`; `pnpm.overrides` +
+  `SECURITY_OVERRIDES.md` for security pins.
+- **SLSA Level 2 target** at MVP with cosign provenance + Syft
+  SBOM.
+- **Backup + recovery drill schedule**: Redis-only restore
+  monthly (closes F3 FU-6); SurrealDB-only semi-annually;
+  age-key recovery annually; full-system snapshot restore
+  quarterly. RTO < 2 h, RPO ≤ 24 h.
+- **6 DR tabletop scenarios** annually.
+- **Audit integration**: every rotation / leak-response /
+  drill emits an outbox event per ADR-0013.
+- **`SecretsProvider` interface** in `apps/web/src/server/secrets/`
+  for future-proof migration to Bitwarden SM / Infisical /
+  1Password Connect when graduation triggers hit (≥ 5 devs,
+  ≥ 3 envs, SOC 2 / ISO 27001 / TISAX audit, payments).
+
+**Closes F1 FU-4 + F1 FU-6 + F3 FU-6.** Surfaces 6 minimal
+product Q&A (all sensible defaults). 9 follow-ups (FU-1..FU-9)
+anchored to E10 / E11 / post-MVP / founder.
 
 ## Transfer market blueprint active (2026-05-17)
 
