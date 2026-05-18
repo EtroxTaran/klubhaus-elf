@@ -3,7 +3,7 @@ title: Implementation Map
 status: current
 tags: [implementation, meta]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: map
 binding: false
 related: [[Architecture-Map]], [[Current-State]]
@@ -18,6 +18,7 @@ Use this map for operational, deployment, data, and agent workflow work.
 - [Cursor Cloud Agent Workflow](../30-Implementation/cursor-cloud-agent-workflow.md)
 - [Linear Task Tracking](../30-Implementation/linear-task-tracking.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
+- [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md) - current MVP PWA/offline-ready implementation stance.
 - [SurrealDB Integration](../30-Implementation/surrealdb-integration.md)
 - [Deployment Dokploy](../30-Implementation/deployment-dokploy.md)
 - [Observability Runbook](../30-Implementation/observability-runbook.md)

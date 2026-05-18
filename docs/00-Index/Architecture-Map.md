@@ -3,10 +3,10 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: map
 binding: false
-related: [[Decision-Log]], [[Current-State]]
+related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]]
 ---
 
 # Architecture Map
@@ -46,7 +46,7 @@ Use this map before architecture or cross-cutting implementation work.
 ### Accepted / drafted (Wave 1)
 
 - [ADR-0001 Tech Stack](../10-Architecture/09-Decisions/ADR-0001-tech-stack.md)
-- [ADR-0002 Offline-first](../10-Architecture/09-Decisions/ADR-0002-offline-first.md)
+- [ADR-0002 Offline-first](../10-Architecture/09-Decisions/ADR-0002-offline-first.md) — superseded by ADR-0020 for MVP scope
 - [ADR-0003 Match Engine](../10-Architecture/09-Decisions/ADR-0003-match-engine.md)
 - [ADR-0004 Data Model](../10-Architecture/09-Decisions/ADR-0004-data-model.md)
 - [ADR-0005 Save Format](../10-Architecture/09-Decisions/ADR-0005-save-format.md)
@@ -54,12 +54,14 @@ Use this map before architecture or cross-cutting implementation work.
 - [ADR-0007 Naming Schema](../10-Architecture/09-Decisions/ADR-0007-naming-schema.md)
 - [ADR-0008 Mobile-first UI](../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui.md)
 - [ADR-0009 Cursor Orchestration](../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration.md)
+- [ADR-0020 Hybrid-online MVP, Offline-ready Architecture](../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready.md)
 
 ### Accepted (Wave 2 → Wave 3 promotion track)
 
 - [ADR-0004 Data Model](../10-Architecture/09-Decisions/ADR-0004-data-model.md) — **accepted 2026-05-16** (hybrid per-save isolation + hybrid schema + TS-first generator + per-relationship modelling + integer numeric model + save quotas + encrypted saves + Phase-2 hybrid cloud-sync + gender-eligibility additivity)
 - [ADR-0005 Save Format](../10-Architecture/09-Decisions/ADR-0005-save-format.md) — **accepted 2026-05-16** (two export modes + AES-GCM 256 + PBKDF2-SHA256 @ 600k + gzip + three independent version fields + AAD-bound header + RNG snapshot)
-- [ADR-0002 Offline-first](../10-Architecture/09-Decisions/ADR-0002-offline-first.md) — **accepted 2026-05-16** (offline capability matrix + injectManifest + hybrid smart updates + cross-browser replay triggers + Chromium accelerator + 300 MB soft cap + Sync/Activity view + hard-reject UX)
+- [ADR-0020 Hybrid-online MVP, Offline-ready Architecture](../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready.md) — **accepted 2026-05-18** (supersedes ADR-0002 for MVP scope; server-confirmed MVP progression; Dexie cache/drafts/staging; full selective offline and export/import post-MVP but reserved by contracts)
+- [ADR-0002 Offline-first](../10-Architecture/09-Decisions/ADR-0002-offline-first.md) — **superseded 2026-05-18** by ADR-0020 (historical full offline-first MVP capability matrix)
 - [ADR-0003 Match Engine](../10-Architecture/09-Decisions/ADR-0003-match-engine.md) — **accepted 2026-05-16** (framework-agnostic packages/match-engine; hybrid Markov + attribute rolls; per-event tick; TS-literal formation zone weights + JSON community overrides; set-piece routine library + Phase-2 per-club editor; namespaced-slug IDs; Worker bridge; ≤ 50 ms perf gate; engine version pinning)
 - [Match Engine Runtime Strategy](../60-Research/match-engine-runtime-strategy.md) — **current 2026-05-17** (TypeScript MVP engine remains binding; post-MVP Rust/polyglot extraction requires measured need, stable contract, golden/statistical/determinism parity and operational readiness; defines `competitive-full` / `interactive-standard` / `background-detailed` / `background-fast` profiles)
 - [Performance Budgets](../60-Research/performance-budgets.md) — **locked 2026-05-17** (D9; four-tier device matrix, CWV product targets, JS / DOM / heap / storage / SW budgets, world-size presets, no-3D match policy, phased CI test-rig strategy; carried into [arc42 §Crosscutting](../10-Architecture/08-Crosscutting.md))

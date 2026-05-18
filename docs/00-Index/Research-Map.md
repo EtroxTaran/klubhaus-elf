@@ -3,7 +3,7 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: map
 binding: false
 related: [[Current-State]]
@@ -44,6 +44,7 @@ design notes.
 
 ## Wave 3 Locked Research Notes (binding)
 
+- [Offline MVP Scope and Future Sync Strategy](../60-Research/offline-mvp-scope-and-sync-strategy.md) — 2026-05-18. Locks hybrid-online MVP posture: app shell + safe read caches + local drafts; server-confirmed authoritative progression; selective offline-first singleplayer and export/import post-MVP but reserved by contracts.
 - [Transfer Market Simulation - Valuation, AI Selling, Clauses and Negotiation](../60-Research/transfer-market-simulation.md) — ad-hoc locked synthesis (2026-05-17). Market value is a reference range, not final price; AI selling uses `sellPressure` vs `protectionScore`; offer packages are priced via cash-equivalent clause pricing; player / agent agency is separate from club agreement; full negotiation depth is tiered by world proximity for D9 budgets; plugs into D4 AI, D15 Transfer Saga and the Transfer bounded context.
 - [Determinism, RNG and Replay - Locked Decisions](../60-Research/determinism-and-replay.md) — D8 (2026-05-16). PCG32, 8 RNG streams, hybrid replay format, integers/basis-points, 12 save-determinism rules, Chromium-only CI gate.
 - [SurrealDB Schema Patterns - Locked Decisions](../60-Research/surrealdb-schema-patterns.md) — D14 (2026-05-16). Hybrid per-save isolation, hybrid schema (SCHEMAFULL core + SCHEMALESS events), per-relationship modelling table, TS-first `packages/db-schema` mirror, Dexie-only browser at MVP, Live Queries for UI projections only, `queryGateway` abstraction.

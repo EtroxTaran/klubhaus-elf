@@ -2,7 +2,7 @@
 title: Research Summary
 status: current
 tags: [research, summary]
-updated: 2026-05-17
+updated: 2026-05-18
 ---
 
 # Research Summary
@@ -71,3 +71,11 @@ research → synthesis + Q&A → final vault docs → map updates.
 research into a current binding synthesis. It reconciles the new ideas with D4
 AI Manager Behaviour, D8 Determinism, D9 Performance Budgets, D15 Narrative
 Content and the Transfer bounded context.
+
+## MVP Offline Scope Synthesis (2026-05-18)
+
+[[offline-mvp-scope-and-sync-strategy]] supersedes the old MVP assumption that
+full offline-first singleplayer must ship immediately. The new binding direction
+is a hybrid-online, offline-ready MVP: app shell, safe read caches and local
+drafts now; server-confirmed authoritative progression; selective offline-first
+singleplayer and export/import after MVP with contracts reserved from day one.

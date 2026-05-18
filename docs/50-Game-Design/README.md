@@ -3,7 +3,7 @@ title: Game Design Hub
 status: current
 tags: [game-design, index]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-05-18
 type: index
 binding: false
 related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]]
@@ -49,6 +49,7 @@ one explicitly before implementation. `draft` records are planning context only.
 | [[GD-0014-save-career-model]] | Save & career model | approved | ADR-0002, ADR-0005 |
 | [[GD-0015-ip-clean-data]] | IP-clean data generation | approved | ADR-0007 |
 | [[GD-0016-mobile-ux-loop]] | Mobile UX gameplay loop | approved | ADR-0008, ADR-0010 |
+| [[GD-0017-mvp-scope-and-mode-sequencing]] | MVP scope & mode sequencing | approved | ADR-0020 |
 
 ## Core loop
 
@@ -82,8 +83,8 @@ one explicitly before implementation. `draft` records are planning context only.
 
 ## Modes
 
-- [[mode-create-a-club-roguelite]] - permadeath + soft carries.
-- [[mode-manage-a-club-career]] - Anstoss-2 "real manager career" + split confidence.
+- [[mode-create-a-club-roguelite]] - MVP first playable; permadeath + soft carries.
+- [[mode-manage-a-club-career]] - Anstoss-2 "real manager career" + split confidence; visible as "comes later" in MVP.
 - [[singleplayer-baseline]] - the full reference experience.
 - [[async-multiplayer-private-group]] - 2 cadence rule sets + transfer escalation.
 - [[watch-party-and-conference]] - synchronous emotional spikes.
@@ -100,6 +101,7 @@ one explicitly before implementation. `draft` records are planning context only.
 
 - [[progressive-disclosure-ui]] - 3-tier UX (Quick / Standard / Expert).
 - [[../60-Research/player-strength-presentation]] - Impact Lens player-strength model; no global OVR.
+- [[GD-0017-mvp-scope-and-mode-sequencing]] - binding MVP mode sequencing.
 
 ## Status legend
 

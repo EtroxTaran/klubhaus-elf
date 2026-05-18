@@ -3,7 +3,7 @@ title: Vault Home
 status: current
 tags: [meta]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-05-18
 type: index
 binding: true
 ---
@@ -24,6 +24,7 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
 ## Context
 
 - [[Vision]] — goals
+- [[MVP-Scope]] — canonical MVP scope
 - [[Non-Goals]] — explicit exclusions
 - [[Glossary]] · [[Decision-Log]]
 - [[Repository]] — README, Contributing, Agent & Claude guides (repo-root docs)
@@ -38,8 +39,8 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
   [[../10-Architecture/07-Deployment]] · [[../10-Architecture/08-Crosscutting]]
 - [[../10-Architecture/09-Design-System]] · [[../10-Architecture/10-Quality]] ·
   [[../10-Architecture/11-Risks]]
-- **Decisions:** ADR-0001 … ADR-0018 in `10-Architecture/09-Decisions/`
-  (tech stack, offline-first, match engine, data model, save format, i18n,
+- **Decisions:** ADR-0001 … ADR-0020 in `10-Architecture/09-Decisions/`
+  (tech stack, hybrid-online MVP, match engine, data model, save format, i18n,
   naming, mobile-first UI, cursor orchestration, design system, DDD,
   multiplayer, outbox, observability and systemic events).
 

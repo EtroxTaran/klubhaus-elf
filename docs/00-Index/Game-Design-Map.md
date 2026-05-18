@@ -3,10 +3,10 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: map
 binding: false
-related: [[Project-Goals]], [[Feature-Map]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]]
 ---
 
 # Game Design Map
@@ -20,6 +20,7 @@ Use this map for gameplay, economy, progression, and player experience work.
 ## Core loop & structure
 
 - [[../50-Game-Design/core-loop]]
+- [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
 - [[../50-Game-Design/club-dna-and-governance]]
 - [[../50-Game-Design/system-interplay]]
 
@@ -49,8 +50,8 @@ Use this map for gameplay, economy, progression, and player experience work.
 
 ## Modes
 
-- [[../50-Game-Design/mode-create-a-club-roguelite]]
-- [[../50-Game-Design/mode-manage-a-club-career]]
+- [[../50-Game-Design/mode-create-a-club-roguelite]] - MVP first playable.
+- [[../50-Game-Design/mode-manage-a-club-career]] - visible as "comes later"; post-MVP playable.
 - [[../50-Game-Design/singleplayer-baseline]]
 - [[../50-Game-Design/async-multiplayer-private-group]]
 - [[../50-Game-Design/watch-party-and-conference]]
@@ -97,6 +98,7 @@ implementation specs. Today the `approved` notes are:
 
 - [[../50-Game-Design/mode-create-a-club-roguelite]] (product rule)
 - [[../50-Game-Design/mode-manage-a-club-career]] (product rule)
+- [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]] (MVP sequencing)
 - [[../50-Game-Design/singleplayer-baseline]]
 - [[../50-Game-Design/async-multiplayer-private-group]] (product rules)
 - [[../50-Game-Design/progressive-disclosure-ui]]
