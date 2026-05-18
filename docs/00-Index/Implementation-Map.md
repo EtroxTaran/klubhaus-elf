@@ -38,6 +38,24 @@ Use this map for operational, deployment, data, and agent workflow work.
   800-63B AAL2 mapped. Anchors on [[../60-Research/threat-model]]
   and ADR-0005; binds inputs for F3 (sessions), F5 (recovery),
   F6 (GDPR), F12 (rate limits).
+- [Session Management](../30-Implementation/session-management.md) — F3
+  (2026-05-18, `current binding`). Redis-based opaque session +
+  refresh-token store; 15-second rotation grace window with strict
+  reuse detection outside it; 30 min idle / 12 h absolute on
+  `session_id`; 30 d refresh-family absolute cap; slide-on-meaningful-
+  activity with 60 s rate-limit; cross-tab logout via BroadcastChannel
+  + localStorage sentinel; 15-trigger revocation matrix with hybrid
+  `tokenVersion` + family-revoke; `device` SCHEMAFULL table with
+  separation between user-visible devices and operational sessions;
+  "Trust this device" opt-in MFA-skip (30 d cap, anomaly-downgradeable);
+  per-device revoke does not rotate `accountSecret` by default;
+  TanStack Start integration via `getSessionFromRequest` +
+  `createAuthedServerFn` HOF + `_authed` route guard + CSRF
+  interceptor + Workbox SW bypass; admin CLI emergency-revoke at
+  MVP. Full ASVS v5.0 V7 + V8 mapping + NIST SP 800-63B §7 anchors.
+  Anchors on [[../60-Research/threat-model]] (F1) and
+  [[../30-Implementation/auth-flows]] (F2); binds inputs for F5
+  (envelope), F6 (DSAR + DPIA), F12 (edge WAF).
 - [Incident Response](../30-Implementation/incident-response.md)
 - [Secrets Rotation](../30-Implementation/secrets-rotation.md)
 - [Transfer Market Implementation Plan](../30-Implementation/transfer-market-implementation-plan.md)
