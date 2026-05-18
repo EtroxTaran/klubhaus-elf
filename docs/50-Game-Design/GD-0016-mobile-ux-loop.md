@@ -3,10 +3,10 @@ title: GD-0016 Mobile UX Gameplay Loop
 status: approved
 tags: [game-design, gddr, ux, mobile]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: game-design
 binding: true
-related: [[README]], [[GD-0001-core-loop]], [[GD-0013-narrative-inbox]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../60-Research/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0010-design-system]], [[../10-Architecture/09-Design-System]]
+related: [[README]], [[GD-0001-core-loop]], [[GD-0013-narrative-inbox]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../60-Research/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0010-design-system]], [[../10-Architecture/09-Design-System]]
 ---
 
 # GD-0016: Mobile UX Gameplay Loop
@@ -23,6 +23,9 @@ approved
 > Note: the visual design language is independently `accepted` via ADR-0010
 > (Aurelia Premier). The interaction-model ADR (ADR-0008) is still `draft` —
 > ratifying this GDDR gives that ADR its approved design source to implement.
+>
+> MVP sequencing: [[GD-0017-mvp-scope-and-mode-sequencing]] scopes the first
+> playable to Create-a-Club Roguelite, with Career shown as "comes later".
 
 ## Date
 

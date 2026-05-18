@@ -3,10 +3,10 @@ title: Core Loop - Season Arc and Weekly Heartbeat
 status: draft
 tags: [game-design, core-loop, pacing]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-18
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]]
+related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]]
 ---
 
 # Core Loop - Season Arc and Weekly Heartbeat
@@ -14,6 +14,10 @@ related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Resear
 The single most important game-design decision: how often the player taps,
 what they tap on, and what happens between taps. Everything else - economy,
 tactics, fans, transfers - rides on the loop.
+
+MVP sequencing note: the loop first ships through
+[[mode-create-a-club-roguelite]]. [[mode-manage-a-club-career]] uses the same
+loop when it becomes playable post-MVP.
 
 ## 1. Three nested loops
 

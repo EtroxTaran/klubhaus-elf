@@ -3,7 +3,7 @@ title: Feature - Rivalry System
 status: draft
 tags: [feature, rivalry, fans, narrative]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-18
 type: feature
 binding: false
 related: [[README]], [[../50-Game-Design/rivalry-system]], [[../50-Game-Design/fan-ecology]], [[../50-Game-Design/matchday-event-engine]]
@@ -24,7 +24,10 @@ proposals and the match engine.
 - As a watch-party organiser I see the system propose high-rivalry
   fixtures.
 
-## In scope (MVP)
+## Post-MVP depth scope
+
+Rivalry systems are post-MVP depth unless a minimal derby/fan signal is needed
+for the Roguelite first playable.
 
 - 5 sub-scores (regional / historical / sporting / fan-incident /
   transfer-tension).
@@ -33,7 +36,7 @@ proposals and the match engine.
 - Per-season decay logic.
 - Integration with atmosphere + sanction chain.
 
-## Out of scope (MVP)
+## Out of first rivalry release
 
 - Cross-country rivalries (Phase 2).
 - Rivalry-driven media event campaigns (Phase 2).

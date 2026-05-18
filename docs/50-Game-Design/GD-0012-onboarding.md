@@ -3,10 +3,10 @@ title: GD-0012 Onboarding & New Game
 status: approved
 tags: [game-design, gddr, onboarding]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: game-design
 binding: true
-related: [[README]], [[GD-0008-finance-economy]], [[GD-0016-mobile-ux-loop]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]]
+related: [[README]], [[GD-0008-finance-economy]], [[GD-0016-mobile-ux-loop]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]]
 ---
 
 # GD-0012: Onboarding & New Game
@@ -19,6 +19,10 @@ approved
 > direction; an ADR or implementation must not contradict it. The
 > **Open (Wave 2)** items are NOT approved and not implementable until
 > Wave 2 research closes.
+>
+> **MVP amendment (2026-05-18):** [[GD-0017-mvp-scope-and-mode-sequencing]]
+> supersedes this note where it implies all modes are playable in MVP. The MVP
+> shows Roguelite as active and Career as "comes later".
 
 ## Date
 
@@ -31,7 +35,7 @@ end of season one — the single biggest churn risk solved.
 
 ## Decided / strong
 
-- **Frictionless ~60-second start**: pick country → pick fictional club →
+- **Frictionless ~60-second start**: pick Roguelite → pick country → pick fictional club →
   optional manager avatar; full editor/custom data is **post-MVP**
   (anstoss-series-deep-dive §5 takeaway 7, §7 rec. 10).
 - **Strategic onboarding, not just controls**: a guided first season that

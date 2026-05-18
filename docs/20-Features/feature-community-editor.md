@@ -3,10 +3,10 @@ title: Feature - Community Editor
 status: draft
 tags: [feature, editor, datasets, modding]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/community-editor-and-datasets]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]
+related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/community-editor-and-datasets]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]
 ---
 
 # Feature - Community Editor
@@ -27,7 +27,11 @@ scenarios.
 - As a player I see clearly why a save will not load (missing pack /
   wrong version).
 
-## In scope (MVP)
+## Post-MVP scope
+
+Community editor/importer is post-MVP per [[../00-Index/MVP-Scope]]. The MVP
+must still keep IP-clean generated IDs stable enough that override packs can be
+added later.
 
 - Pack file format (archive with `manifest.yaml` + data + optional
   migrations).
@@ -37,7 +41,7 @@ scenarios.
 - Import preview with conflict view.
 - Save records active packs + versions.
 
-## Out of scope (MVP)
+## Out of first editor release
 
 - In-game marketplace.
 - Pack signature scheme.

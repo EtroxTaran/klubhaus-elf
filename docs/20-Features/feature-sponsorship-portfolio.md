@@ -3,7 +3,7 @@ title: Feature - Sponsorship Portfolio
 status: draft
 tags: [feature, sponsors, finance]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-18
 type: feature
 binding: false
 related: [[README]], [[../50-Game-Design/sponsorship-portfolio]], [[../50-Game-Design/economy-system]], [[../50-Game-Design/fan-ecology]]
@@ -26,7 +26,10 @@ money AND side conditions.
 - As a manager I see how my sponsor portfolio reacts to fan-segment
   conflicts and club identity changes.
 
-## In scope (MVP)
+## MVP foundation scope
+
+For the Roguelite first playable, sponsorship is scoped to clear run-economy
+signals and simple choices. Full portfolio depth can follow after MVP.
 
 - 6-tier sponsor taxonomy (Main / Secondary / Infrastructure / Match-day /
   Digital / Local).
@@ -36,7 +39,7 @@ money AND side conditions.
   Renewing / Terminated).
 - Per-asset valuation formula.
 
-## Out of scope (MVP)
+## Out of first playable scope
 
 - Sponsor activation campaigns (Phase 2).
 - Multi-year auction events.

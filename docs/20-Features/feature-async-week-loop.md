@@ -3,10 +3,10 @@ title: Feature - Async Week Loop
 status: draft
 tags: [feature, multiplayer, async]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/async-multiplayer-private-group]], [[../10-Architecture/state-machines/league-week]], [[../10-Architecture/09-Decisions/ADR-0012-async-cadence-models]]
+related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/async-multiplayer-private-group]], [[../10-Architecture/state-machines/league-week]], [[../10-Architecture/09-Decisions/ADR-0012-async-cadence-models]]
 ---
 
 # Feature - Async Week Loop
@@ -24,7 +24,11 @@ under either Fixed or Dynamic cadence, using one shared state machine.
 - As an admin I can pause the league via a vote.
 - As an inactive manager I do not block the group - my fall-back applies.
 
-## In scope (MVP)
+## Post-MVP scope
+
+This feature is post-MVP per [[../00-Index/MVP-Scope]]. The MVP may keep
+server-confirmed week/day commands for the Roguelite first playable, but async
+private groups are not in the first playable.
 
 - Fixed cadence with one match-day per week.
 - Dynamic cadence with configurable quorum + countdown + max week.
@@ -32,7 +36,7 @@ under either Fixed or Dynamic cadence, using one shared state machine.
 - Inactivity fall-backs (last tactic, assistant).
 - Notifications: transactional + digest.
 
-## Out of scope (MVP)
+## Out of first async release
 
 - Dynamic cadence sub-variants (e.g. hybrid).
 - Custom league calendars beyond the cadence.

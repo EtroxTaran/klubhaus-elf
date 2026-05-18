@@ -3,7 +3,7 @@ title: PWA Offline Patterns
 status: review
 tags: [research, pwa, save, offline-first, indexeddb, service-worker, sync]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-05-18
 type: research
 linear: AKOM-110
 related:
@@ -16,6 +16,12 @@ related:
 ---
 
 # PWA Offline Patterns
+
+> **MVP scope note (2026-05-18):** [[offline-mvp-scope-and-sync-strategy]] and
+> [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+> supersede this note's original assumption that full offline-first
+> singleplayer ships in MVP. This research remains the Phase-2+ reference for
+> selective offline-first, export/import, migrations and sync.
 
 Phase 1 research for an installable, offline-first football manager PWA.
 Covers local save architecture, IndexedDB schema migrations, service worker

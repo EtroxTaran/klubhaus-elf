@@ -4,7 +4,7 @@ status: current
 binding: true
 tags: [research, onboarding, ftue, tutorial, inbox, feed-cards, accessibility, mobile-ux]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: research
 related: [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[ai-manager-behaviour]], [[tactics-and-formations]], [[data-generators]], [[performance-budgets]], [[progressive-disclosure-research]], [[club-boss-analysis]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/mode-manage-a-club-career]], [[../50-Game-Design/mode-create-a-club-roguelite]]
 ---
@@ -12,7 +12,7 @@ related: [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[ai-mana
 # Onboarding Strategy — FTUE, Inbox Tutorial, Feed-Cards, Accessibility
 
 > Gap D5 of [[wave-3-gap-analysis]]. Locks the strategic onboarding
-> system for an offline-first PWA football manager: 60-second FTUE
+> system for an offline-ready PWA football manager: 60-second FTUE
 > with single experience question + mode picker + Advanced-setup
 > escape; 12-message first-season inbox tutorial arc with 10-sender
 > cast and per-sender voice guides; named configurable Assistant
@@ -115,7 +115,7 @@ match**.
 | 6 | **Feed-card daily action queue** | Top Eleven, EA FC objectives | §7 — Home primary UI |
 | 7 | **Coach marks max 2-3 per screen** | Modern mobile games | §8.2 — first-visit only |
 | 8 | **"While you were away" recap** | Modern returning-user UX | §9 — 7+ in-game day trigger |
-| 9 | **Mode picker upfront** | Roguelites + modern multi-mode games | §3.3 — Career + Roguelite as launch tiles |
+| 9 | **Mode step upfront** | Roguelites + modern multi-mode games | §3.3 — Roguelite active, Career "comes later" |
 | 10 | **Veteran skip with safety net** | Best-practice 2026 | §10 — micro-tooltips + reset button |
 
 ### 2.5 Our unique style
@@ -132,12 +132,13 @@ Where we differ from every competitor:
 - **Soft-transition message** ending tutorial at week 4 ("You've got
   the basics; I'll only step in when something important comes up"):
   no competitor handles tutorial-to-narrative handover explicitly.
-- **Mode picker upfront with both available day 0**: Top Eleven /
-  OSM / FM Mobile lock modes; we trust user agency. Veterans head
-  straight to Roguelite; new players default to Career.
+- **Mode step upfront with future promise visible**: Roguelite is playable in
+  MVP; Career remains visible as "comes later" so user agency and roadmap are
+  clear without expanding the first playable.
 - **Per-difficulty assistant intensity + user override toggle**: best
   of FM (manual help) + casual mobile (proactive coach).
-- **Deterministic + offline-first**: onboarding works fully offline;
+- **Deterministic + offline-ready**: onboarding shell, copy and drafts work
+  with cached/local state; authoritative progression needs connection in MVP.
   PWA install prompt timed to first success (per D9), not session 1.
 
 ## 3. The 60-second FTUE
@@ -164,8 +165,8 @@ Target: from app launch to first meaningful tactical choice in
 └──────────────────────────────────────────────────┘
    ↓
 ┌──────────────────────────────────────────────────┐
-│ STEP 2 — Mode Picker (5-10s)                     │
-│ Both modes available from day 0.                 │
+│ STEP 2 — Mode Step (5-10s)                       │
+│ Roguelite playable; Career comes later.          │
 │                                                  │
 │  ┌─────────────────────┐  ┌────────────────────┐ │
 │  │ Manage a Club       │  │ Create a Club      │ │
@@ -246,10 +247,11 @@ Silent mapping (NOT shown to user):
 User can change in Settings anytime. Veteran path triggers "Skip
 tutorial" confirmation modal in step 2 (see §10).
 
-### 3.3 Step 2 — Mode picker
+### 3.3 Step 2 — Mode step
 
-Both Career and Create-a-Club Roguelite available from day 0 (per D5
-Q&A locked decision).
+Create-a-Club Roguelite is playable in MVP. Manage-a-Club Career is visible as
+a disabled/roadmap tile labelled "comes later" per
+[[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]].
 
 ```text
 ┌─────────────────────────────────────┐
@@ -1313,6 +1315,6 @@ All well within D9's frame budget (p95 main-thread ≤ 12 ms).
   attribute schema), [[club-boss-analysis]] + [[anstoss-series-deep-dive]]
   (Wave 1 inbox-as-narrative references).
 - D5 Q&A with Nico (2026-05-17): 6 of 8 recommendations accepted
-  as-is; FTUE 60s flow refined to single-question PLUS visible
-  Advanced-setup escape hatch; mode picker promoted to upfront
-  (both Career + Roguelite available day 0 as launch tiles).
+  as-is historically; FTUE 60s flow refined to single-question PLUS visible
+  Advanced-setup escape hatch; mode step promoted to upfront. 2026-05-18 MVP
+  scope changes launch behavior to Roguelite playable and Career "comes later".

@@ -3,10 +3,10 @@ title: Onboarding & Tutorial — FTUE, Inbox Arc, Feed-Cards, Assistant Manager
 status: approved
 tags: [game-design, onboarding, ftue, tutorial, inbox, feed-cards, assistant, mobile-ux]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/onboarding-strategy]], [[../60-Research/narrative-content-pipeline]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[progressive-disclosure-ui]], [[mode-manage-a-club-career]], [[mode-create-a-club-roguelite]]
+related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/onboarding-strategy]], [[../60-Research/narrative-content-pipeline]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[progressive-disclosure-ui]], [[mode-manage-a-club-career]], [[mode-create-a-club-roguelite]]
 ---
 
 # Onboarding & Tutorial - FTUE, Inbox Arc, Feed-Cards, Assistant Manager
@@ -23,9 +23,9 @@ analysis live in the research note.
    screens.
 2. **Default first-time experience must complete in < 60 seconds** to
    the first meaningful tactical choice.
-3. **Both modes available from day 0**: Manage a Club Career +
-   Create a Club Roguelite Challenge. Mode picker is upfront after
-   the experience question.
+3. **Roguelite playable from day 0; Career visible as "comes later"**:
+   Manage-a-Club Career stays visible in the mode step but cannot be started
+   until post-MVP.
 4. **3 UI tiers and 4 difficulty modes are silently mapped** from a
    single experience question; user can override anytime in
    Settings.
@@ -52,7 +52,7 @@ match.
   ↓ 5-7s
 [Experience Question]
   ↓ 5-10s
-[Mode Picker — Career / Roguelite]
+[Mode Step — Roguelite playable / Career comes later]
   ↓ 15-25s
 [Club / Setup — Recommended club + Advanced setup escape]
   ↓ auto + 5s
@@ -72,10 +72,17 @@ Silent tier + difficulty mapping from experience question:
 User can change all of these in Settings → Assistance / Game
 Settings anytime.
 
-"Advanced setup" link on the Mode picker AND Club picker opens the
+"Advanced setup" link on the Mode step AND Club picker opens the
 full **New Save wizard** (5 screens: World / Country & Region /
 Club / Difficulty & Mode / Assistance preferences). Power-user
 opt-in; deliberate friction.
+
+MVP mode step:
+
+| Tile | MVP state |
+|---|---|
+| Create-a-Club Roguelite | Active primary CTA. |
+| Manage-a-Club Career | Disabled / roadmap tile labelled "comes later". |
 
 ## 3. Inbox-as-narrative tutorial
 

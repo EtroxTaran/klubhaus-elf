@@ -342,7 +342,7 @@ Implementation should start from
   - **First PWA manager to combine**: FM tagged event system + Anstoss Zeitung
     templating + Club Boss inbox cast + Failbetter storylet quality-
     gates + Disco Elysium voice consistency + Ink-style state-
-    machine arcs, all deterministic + offline-first.
+    machine arcs, all deterministic + offline-ready.
 - **Late-Game Systems** (locked 2026-05-17, gap D6) -
   [[../60-Research/late-game-systems]]:
   - **Continental cup stack** (IP-safe per ADR-0007):

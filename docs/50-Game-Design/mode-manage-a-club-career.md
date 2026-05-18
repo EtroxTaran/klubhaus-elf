@@ -3,10 +3,10 @@ title: Mode - Manage a Club Career
 status: approved
 tags: [game-design, mode, career, anstoss]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-18
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/mode-design-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/onboarding-strategy]], [[../60-Research/late-game-systems]], [[mode-create-a-club-roguelite]], [[onboarding-and-tutorial]], [[club-dna-and-governance]], [[fan-ecology]]
+related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/onboarding-strategy]], [[../60-Research/late-game-systems]], [[mode-create-a-club-roguelite]], [[onboarding-and-tutorial]], [[club-dna-and-governance]], [[fan-ecology]]
 ---
 
 # Mode - Manage a Club Career
@@ -22,6 +22,17 @@ confidence model; sub-tuning remains `draft`.
 > a split confidence model: Board Confidence + Supporter Confidence, both
 > decomposed into sub-areas, weighted by the club's Expectation Profile.
 > Sacking is possible. Career arc spans many clubs.**
+
+## 1.1 Post-MVP sequencing
+
+Manage-a-Club Career is first-class long-term scope, but it is **not playable
+in the MVP**. Per [[GD-0017-mvp-scope-and-mode-sequencing]], the MVP shows it as
+a visible "comes later" mode tile while [[mode-create-a-club-roguelite]] is the
+active first playable.
+
+Career must reuse the same simulation core, contracts, IP-clean data, match
+engine, Impact Lens, finance and squad systems so adding it later is a mode-rule
+extension rather than a second product.
 
 ## 2. Career flow
 

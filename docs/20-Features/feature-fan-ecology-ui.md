@@ -3,7 +3,7 @@ title: Feature - Fan Ecology UI
 status: draft
 tags: [feature, fans, ux]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-18
 type: feature
 binding: false
 related: [[README]], [[../50-Game-Design/fan-ecology]], [[../60-Research/fan-culture-segmentation-research]]
@@ -24,14 +24,17 @@ politics and see how their decisions move each segment.
   accepting.
 - As a casual player I just need a single "mood" badge with one card.
 
-## In scope (MVP)
+## MVP foundation scope
+
+For the Roguelite first playable, fan ecology appears as simple mood/atmosphere
+feedback. Full segment UI can follow after MVP.
 
 - Per-segment state (population, loyalty, mood, attendance probability).
 - Atmosphere composite calculation.
 - Fan-events feed (choreo, protest banner, ticket boycott).
 - Quick / Standard / Expert tier views.
 
-## Out of scope (MVP)
+## Out of first playable scope
 
 - Per-ultras-group naming.
 - Fan-segment churn animations.
