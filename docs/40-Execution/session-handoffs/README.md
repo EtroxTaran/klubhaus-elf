@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -22,3 +22,9 @@ feature specs, or implementation docs — then the handoff may be marked
 Start-of-session: read the latest handoff if continuing a prior thread.
 End-of-session: write or update one (see [[../../90-Meta/agent-memory-protocol]]
 § Session Wrap-Up).
+
+## Recent Handoffs
+
+- [[2026-05-18-mvp-scope-realignment]] - MVP realigned to hybrid-online
+  Create-a-Club Roguelite first playable with future selective offline/export
+  seams preserved.
