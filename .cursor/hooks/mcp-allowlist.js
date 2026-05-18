@@ -16,6 +16,8 @@ const allowedServers = new Set([
   'plugin-figma-figma',
   'user-Ref',
   'user-perplexity-ask',
+  'perplexity-ask',
+  'perplexity',
   'obsidian-mcp-server',
   'mcp-memory-service',
 ])
