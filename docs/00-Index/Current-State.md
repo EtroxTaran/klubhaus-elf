@@ -299,6 +299,67 @@ Anchors on F1 (threat model) + F2 (auth flows) + F3 (session
 management); closes F2 FU-1 + F3 FU-7. Surfaces 6 Q&A questions
 (all defaults sensible) and 9 deferred follow-ups (FU-1..FU-9)
 to F4 / F6 / E10 / E11 / post-MVP.
+## GDPR compliance locked (2026-05-18)
+
+[[../60-Research/gdpr-compliance]] (research synthesis) +
+[[../30-Implementation/privacy-and-consent]] (implementation
+surface) jointly lock the F6 P0 compliance posture. Highlights:
+
+- **Legal landscape**: GDPR yes, ePrivacy Directive yes (no
+  ePrivacy Regulation adopted in 2026), DSA de minimis, DMA no,
+  EU AI Act low-risk path (deterministic worldgen per ADR-0007),
+  NIS2 no. Lead supervisory authority: **BfDI** via one-stop-shop
+  (Art. 56) for our DE domicile.
+- **Art. 30 RoPA**: 8 processing activities × 6 data categories;
+  lawful basis Art. 6(1)(b) contract for the core service +
+  Art. 6(1)(f) legitimate interest for security anomaly +
+  observability (two formal three-part LIAs in the research
+  note); **no Art. 9 special-category data** processed (passkey
+  credentials store public-key material, not biometric).
+- **No third-country transfers** — sidestepping the Chapter V
+  SCC/TIA/DPF apparatus entirely; GitHub explicitly assessed as
+  non-processor for user data.
+- **Children's data**: 16+ self-declaration radio at signup with
+  refusal flow; no DOB collected; no parental-consent flow at
+  MVP per § 12 BDSG + EDPB indie-default.
+- **DPIA**: voluntary (Art. 35(3) not mandatory at our scale —
+  confirmed against BfDI Muss-Liste + CNIL + ICO lists). The
+  DPIA lives in the research note §8 and is the documented
+  paper trail.
+- **DPO**: **not required** (Art. 37 + § 38 BDSG thresholds both
+  below). Founder designated as Privacy Lead. Re-evaluate at
+  100 k MAU or 20 employees.
+- **Retention schedule**: per-category; audit outbox forever
+  with one-way HMAC pseudonymisation on Art. 17 erasure
+  (preserves forensic event sequence while disconnecting from
+  the natural person); cryptographic erasure via F5 envelope
+  burn at account-delete + 30 d grace expiry.
+- **No cookie banner at MVP**: all storage is strictly necessary
+  per ePrivacy Art. 5(3); passive footer Privacy Notice link
+  satisfies Art. 13.
+- **User rights endpoint surface**: `POST /api/me/data-export`
+  (Art. 15+20 with full DSAR ZIP layout); `PATCH /api/me/profile`
+  (Art. 16 with step-up MFA only on email change + dual
+  confirmation + 24 h cool-down); `POST /api/me/delete-account`
+  (Art. 17 with 30-day grace + cryptographic erasure on expiry
+  + outbox pseudonymisation); `POST /api/me/restrict` (Art. 18);
+  Art. 21 explainer modal with legitimate-interest override
+  documented + account-closure escape; Art. 22 explicitly N/A
+  (no auto-decisions with legal effects).
+- **Breach notification runbook**: Art. 33 (BfDI within 72 h
+  with WP250 partial-notification pattern) + Art. 34 (DE + EN
+  user-notification template).
+- **Vendor Art. 28 DPAs required**: Hetzner AVV + transactional
+  email vendor only. Brevo (FR, EU residency) selected as
+  default per F2 §10.7 + F6 §11.4.
+- **Compliance overhead** for an indie 1-3 founder studio:
+  ~7-15 founder days launch + ~3-5 days/year ongoing.
+
+Closes F2 FU-6 + F2 FU-7 + F3 FU-8 + F5 FU-8 + F5 FU-9.
+Surfaces 6 minimal product-owner Q&A (Brevo email vendor,
+age-gate language, pseudonymisation, backup non-scrub
+disclosure, DPIA/LIAs co-located in the research note, Privacy
+Lead designation) + 10 deferred follow-ups (FU-1..FU-10).
 
 ## Transfer market blueprint active (2026-05-17)
 

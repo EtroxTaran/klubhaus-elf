@@ -76,6 +76,22 @@ Use this map for operational, deployment, data, and agent workflow work.
   algorithm with idempotency keys; constant-time error UX. Full
   ASVS v5 V6 + V11 + NIST 800-130 + 800-63B §6 + 800-132 + 800-38D
   mapping. Anchors on F1 + F2 + F3; closes F2 FU-1 + F3 FU-7.
+- [Privacy and Consent](../30-Implementation/privacy-and-consent.md) — F6
+  (2026-05-18, `current binding`). Implementation surface for GDPR
+  compliance: Privacy Notice content + cookie inventory; signup
+  consent moment (single mandatory checkbox, no dark patterns); 16+
+  self-declaration age gate with refusal flow; **no cookie banner**
+  needed (all storage is strictly necessary per ePrivacy Art. 5(3));
+  Settings → Privacy & Data screen with per-category data summary;
+  user-rights endpoints (`POST /api/me/data-export` for Art. 15+20,
+  `PATCH /api/me/profile` for Art. 16, `POST /api/me/delete-account`
+  with 30-day grace + cryptographic erasure on expiry for Art. 17,
+  `POST /api/me/restrict` for Art. 18, Art. 21 explainer modal); full
+  DSAR ZIP layout; Art. 33/34 breach-notification runbook with
+  decision tree + DE/EN user-notification template; vendor Art. 28
+  DPA checklist + onboarding routine; per-quarter / per-year
+  maintenance cadence. Companion to [[../60-Research/gdpr-compliance]].
+  Closes F2 FU-6 + F2 FU-7 + F3 FU-8 + F5 FU-8 + F5 FU-9.
 - [Incident Response](../30-Implementation/incident-response.md)
 - [Secrets Rotation](../30-Implementation/secrets-rotation.md)
 - [Transfer Market Implementation Plan](../30-Implementation/transfer-market-implementation-plan.md)
