@@ -3,7 +3,7 @@ title: Feature - Systemic Event Director
 status: draft
 tags: [feature, events, world-events, scheduler, narrative]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: feature
 binding: false
 related: [[README]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/narrative-content-pipeline]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[feature-matchday-event-engine]]
@@ -22,7 +22,11 @@ generic random-event bounded context.
 - As a returning player I see a digest of important events rather than spam.
 - As a developer I can add event families without bypassing domain ownership.
 
-## In scope (MVP)
+## MVP foundation scope
+
+For the Roguelite first playable, use only deterministic event orchestration
+needed for run feedback and tutorial/narrative. Broader world-event depth can
+follow after MVP.
 
 - Week/day/match/season evaluation windows.
 - Eligibility, weighting, priority and cooldown rules.
@@ -30,7 +34,7 @@ generic random-event bounded context.
 - Domain event emission through the transactional outbox.
 - Notification/narrative projection from structured facts.
 
-## Out of scope (MVP)
+## Out of first playable scope
 
 - Runtime AI text generation.
 - Events that mutate state without an owning context.

@@ -3,7 +3,7 @@ title: Feature - Match-day Event Engine
 status: draft
 tags: [feature, events, matchday, weather, sanctions]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: feature
 binding: false
 related: [[README]], [[../50-Game-Design/matchday-event-engine]], [[../50-Game-Design/regulations-and-compliance]], [[../50-Game-Design/rivalry-system]], [[feature-systemic-event-director]], [[feature-venue-operations]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
@@ -25,7 +25,10 @@ Drive flavour and management depth from rule-based match-day events
 - As a manager I prevent fan-incident events by investing in security +
   fan-project budget.
 
-## In scope (MVP)
+## Post-MVP depth scope
+
+Matchday events are post-MVP depth unless a minimal deterministic event is
+needed for the first match tutorial or run-risk feedback.
 
 - YAML-authored event schema (trigger / probability / effect /
   prevention).
@@ -35,7 +38,7 @@ Drive flavour and management depth from rule-based match-day events
 - Sanction chain feeding from security events.
 - Venue/pitch conflict inputs from [[feature-venue-operations]].
 
-## Out of scope (MVP)
+## Out of first matchday-event release
 
 - Recurring multi-match parent events (Phase 2).
 - Region-specific weather generators (Phase 2).

@@ -3,7 +3,7 @@ title: Feature - AI Transfer Market and Contracts
 status: approved
 tags: [feature, transfers, contracts, ai, scouting, economy]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: feature
 binding: true
 related: [[README]], [[../50-Game-Design/transfer-market-and-contracts]], [[../60-Research/transfer-market-simulation]], [[../10-Architecture/transfer-market-architecture]], [[../10-Architecture/state-machines/transfer]]
@@ -26,7 +26,10 @@ negotiate from squad strategy, finances, player pressure and market context.
 - As a manager, I can experience rare but believable shock sales and forced
   sales without nonsensical token-fee outcomes.
 
-## MVP Scope
+## MVP foundation scope
+
+For the Roguelite first playable, this is a foundation and explanation layer.
+Full market depth can phase in after the first loop is playable.
 
 - Knowledge-gated valuation values: clear numbers in Expert when confidence is
   high, wider bands when scouting / data knowledge is incomplete.
@@ -42,7 +45,7 @@ negotiate from squad strategy, finances, player pressure and market context.
 - Transfer Scope presets for tiered world simulation.
 - Inbox / feed / negotiation UI hooks for explanations.
 
-## Out of Scope for MVP
+## Out of first playable scope
 
 - Full agent relationship game across multiple seasons.
 - Full legal replication of every domestic transfer regulation.

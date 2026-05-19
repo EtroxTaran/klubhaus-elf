@@ -3,18 +3,27 @@ title: ADR-0005 Save Format and Versioning
 status: accepted
 tags: [adr, save, encryption, compression, versioning, e2ee]
 created: 2026-05-15
-updated: 2026-05-16
+updated: 2026-05-18
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[ADR-0004-data-model]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0002-offline-first]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/surrealdb-schema-patterns]]
+amended_by: [[ADR-0020-hybrid-online-mvp-offline-ready]]
+related: [[ADR-0004-data-model]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0002-offline-first]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/surrealdb-schema-patterns]]
 ---
 
 # ADR-0005: Save Format and Versioning
 
+> **MVP SCOPE AMENDED on 2026-05-18 by
+> [[ADR-0020-hybrid-online-mvp-offline-ready]].** The envelope, encryption,
+> compression, versioning and migration decisions below remain the future
+> save/export contract. User-facing export/import and canonical local
+> save-authority implementation move after MVP. MVP code must still avoid
+> storage or schema choices that block this contract.
+
 ## Status
 
 Accepted (2026-05-16, gap A5 of [[../../60-Research/wave-3-gap-analysis]]).
+MVP timing amended by [[ADR-0020-hybrid-online-mvp-offline-ready]].
 
 ## Context
 

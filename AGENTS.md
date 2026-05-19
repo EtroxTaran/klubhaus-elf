@@ -15,7 +15,10 @@ Before substantial work:
 
 ## Project Overview
 
-Offline-first PWA football manager game in the style of the Anstoß series.
+Offline-ready PWA football manager game in the style of the Anstoß series. The
+current MVP is hybrid-online and Create-a-Club Roguelite first; selective
+offline-first singleplayer, Manage-a-Club Career, export/import and
+server-authoritative multiplayer are planned future capabilities.
 TanStack Start (file-based routing, server functions, SSR) + shadcn/ui + Tailwind
 + SurrealDB (document/graph/relational) + TypeScript strict + Vitest + Playwright
 + Biome + pnpm + mise + sops+age+direnv + Docker + Dokploy on Hetzner.
@@ -136,7 +139,8 @@ pnpm dev
 ## PWA Rules
 
 - Workbox generates the production service worker via `apps/web/scripts/build-pwa.mjs`: stale-while-revalidate for assets, network-first for routes, never cache POST/PUT/DELETE. Background Sync for offline mutations is future work. vite-plugin-pwa is deferred until TanStack Start SSR build compatibility is resolved.
-- Game state lives in IndexedDB via Dexie.js - never localStorage.
+- Browser-side game caches, drafts, local UI state and future local saves live
+  in IndexedDB via Dexie.js - never localStorage.
 - Test offline with `await context.setOffline(true)`. Install-prompt testing is unsupported
   in Playwright; use Lighthouse `installable-manifest` audit in CI.
 

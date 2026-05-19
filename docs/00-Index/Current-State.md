@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-18
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[Decision-Log]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]]
 ---
 
 # Current State
@@ -21,22 +21,41 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 ## Active Product Direction
 
 - [Project Goals](Project-Goals.md) defines mission, boundaries, and milestones.
-- The game is an offline-first, IP-clean football manager PWA.
+- The MVP is a **hybrid-online, offline-ready, IP-clean football manager PWA**
+  focused on the [[MVP-Scope|Create-a-Club Roguelite first playable]].
+- Selective offline-first singleplayer, Manage-a-Club Career and export/import
+  remain planned future capabilities; they must not be blocked by MVP
+  architecture.
 - German is the primary UI language.
 - User-facing docs are output documentation, not implementation authority.
 - Game design lives in approved system notes and the GDDR decision-record set in
   [[../50-Game-Design/README]]. Implement only from approved records; conflicts
   between approved game-design records are stop conditions until superseded.
 
-## Approved product rules (Wave 2, 2026-05-16)
+## Active MVP Scope (2026-05-18)
 
-- **Mode matrix**: one simulation core, two content modes
+[[MVP-Scope]] is canonical for "what ships first":
+
+- **Playable MVP mode**: [[../50-Game-Design/mode-create-a-club-roguelite|Create-a-Club Roguelite]].
+- **Visible but not playable**: [[../50-Game-Design/mode-manage-a-club-career|Manage-a-Club Career]]
+  as a "comes later" tile/promise.
+- **Runtime posture**: server-confirmed / online-authoritative progression,
+  with Dexie caches, drafts and local UI state.
+- **Offline posture**: app shell, safe cached reads and local drafts only.
+  Full offline-first local authority is Phase 2+ selective offline.
+- **Export/import**: post-MVP user-facing feature; envelope/versioning
+  reserved from day one.
+
+## Approved product rules (Wave 2, updated by MVP scope 2026-05-18)
+
+- **Long-term mode matrix**: one simulation core, two content modes
   ([[../50-Game-Design/mode-create-a-club-roguelite|Create-a-Club Roguelite]]
   and [[../50-Game-Design/mode-manage-a-club-career|Manage-a-Club Career]]),
   two session modes
   ([[../50-Game-Design/singleplayer-baseline|Singleplayer]] and
   [[../50-Game-Design/async-multiplayer-private-group|Private Async Group]]).
-  Private groups are locked to one content mode at creation.
+  Private groups are locked to one content mode at creation. MVP sequencing is
+  Roguelite first per [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]].
 - **Async cadence**: two rule sets, **Fixed** (default) and **Dynamic**
   (quorum + countdown). Switch only at season boundary.
   ([[../50-Game-Design/async-multiplayer-private-group]])
@@ -50,8 +69,9 @@ with this page, prefer the accepted ADR or approved/current note linked here.
   ([[../60-Research/player-strength-presentation]],
   [[../50-Game-Design/progressive-disclosure-ui]],
   [[../50-Game-Design/tactics-system]])
-- **Singleplayer is the baseline**: every system ships first in
-  singleplayer; multiplayer rules are additive constraints.
+- **Singleplayer remains the long-term baseline**: every system ships first in
+  singleplayer; multiplayer rules are additive constraints. The MVP is a
+  narrower Roguelite-first slice.
   ([[../50-Game-Design/singleplayer-baseline]])
 - **Match engine gameplay profile**: event-based 2D simulation with
   intervention points, Result / Event / Spatial / Analytics output
@@ -123,7 +143,8 @@ Wave 2 gaps ([[../60-Research/research-wave-2-gaps]]) are superseded; their
 R2-01..R2-19 IDs are preserved under Wave 3 group D for traceability.
 
 Start critical-path work from W3.A (P0): data model, match engine,
-offline-first, auth, GDPR, CI/CD, threat model, SurrealDB schemas.
+hybrid-online/offline-ready MVP, auth, GDPR, CI/CD, threat model,
+SurrealDB schemas.
 
 ## Threat model active (2026-05-18)
 
@@ -495,6 +516,11 @@ Implementation should start from
   without code changes - only deployment / infra changes.
   See [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]
   and [[../10-Architecture/bounded-context-map]].
+- **ADR-0020 Hybrid-online MVP, Offline-ready Architecture** (accepted
+  2026-05-18). Supersedes ADR-0002 for MVP scope. MVP progression is
+  server-confirmed; Dexie stores caches, drafts and future export/sync staging;
+  selective offline-first singleplayer and export/import are post-MVP but
+  reserved by contracts and save-envelope design.
 - **ADR-0011 Server-Authoritative Multiplayer** (accepted 2026-05-16,
   gap B2). Server is the only authority for MP state. New product
   rules locked in this gap:
@@ -648,7 +674,7 @@ Implementation should start from
   - **First PWA manager to combine**: FM tagged event system + Anstoss Zeitung
     templating + Club Boss inbox cast + Failbetter storylet quality-
     gates + Disco Elysium voice consistency + Ink-style state-
-    machine arcs, all deterministic + offline-first.
+    machine arcs, all deterministic + offline-ready.
 - **Late-Game Systems** (locked 2026-05-17, gap D6) -
   [[../60-Research/late-game-systems]]:
   - **Continental cup stack** (IP-safe per ADR-0007):
@@ -884,8 +910,8 @@ Implementation should start from
   [[../50-Game-Design/onboarding-and-tutorial]] (new `approved` GDD):
   - **60-second FTUE** in 4 steps: experience question (Newbie / Bit
     / Veteran) silently mapping to UI tier + difficulty + recommended
-    club tier + tutorial verbosity → mode picker upfront (both
-    Career + Roguelite available day 0 per Nico's choice) → club
+    club tier + tutorial verbosity → mode picker upfront (Roguelite
+    playable, Career visible as "comes later" per 2026-05-18 MVP scope) → club
     picker with recommended-club default + "Advanced setup" escape
     to full 5-screen New Save wizard → Home dashboard with first
     inbox tutorial card. Target < 60 s to first tactical choice;
@@ -1423,30 +1449,11 @@ Implementation should start from
     golden replays + statistical envelope tests (1k-5k nightly
     matches) + property-based (fast-check + pure-rand) + CI perf
     gate.
-- **ADR-0002 Offline-first** (accepted 2026-05-16, gap A2) -
-  [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]:
-  - **Capability matrix**: singleplayer + draft / read / save / export
-    work offline; mutating multiplayer effects need server
-    confirmation; live realtime needs online.
-  - **SW tooling**: `vite-plugin-pwa` with **`injectManifest`** +
-    Workbox 7. Hand-authored SW at `apps/web/src/sw.ts`.
-  - **Update strategy**: **hybrid smart** — auto-`skipWaiting` if
-    no in-progress state (match / draft / watch-party); else
-    `workbox-window` prompt. Preserves in-progress game state.
-  - **Outbox replay**: cross-browser primary triggers (startup +
-    `online` + `visibilitychange`) + Chromium-only
-    `BackgroundSyncPlugin` as accelerator. Post-MVP push-driven
-    sync hints for installed PWAs.
-  - **Storage budget**: soft ~300 MB cap, warn at 70 %, encourage
-    export of saves > 6 months. `navigator.storage.persist()` on
-    Chromium/Firefox; iOS treated as fragile (no-op).
-  - **Install UX**: never on first load; surface after first match
-    completed OR first save created + ≥ 3 sessions; dismissible
-    card; 7-day snooze; iOS Share→Add-to-Home-Screen guide.
-  - **Outbox UX**: dedicated **Sync / Activity view** + nav badge
-    + `setAppBadge()` + non-modal banner on hard-reject; transient
-    retry `0/10s/30s/2min/5min` cap 7; hard-reject never
-    auto-retried; per-`rejected_with_reason` copy table.
+- **ADR-0002 Offline-first** (superseded 2026-05-18 by ADR-0020):
+  - Historical full offline-first MVP decision. Do not implement for MVP.
+  - Current MVP posture is [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]:
+    app shell, safe cached reads and local drafts; server-confirmed
+    authoritative progression; full selective offline later.
 - **ADR-0005 Save Format** (accepted 2026-05-16, gap A5) -
   [[../10-Architecture/09-Decisions/ADR-0005-save-format]]:
   - **Two export modes**: 'Device backup' (account-secret +

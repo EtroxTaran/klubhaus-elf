@@ -2,17 +2,19 @@
 title: Runtime
 status: draft
 tags: [architecture]
-updated: 2026-05-17
+updated: 2026-05-18
 ---
 
 # Runtime
 
-The runtime is an **offline-first PWA** for singleplayer, with a
-**server-authoritative** backbone for async multiplayer. TanStack Start
-handles SSR, server routes, and server functions; the match engine and
-match-day workflows run as state-machine-driven server jobs.
+The MVP runtime is a **hybrid-online PWA** for the Create-a-Club Roguelite
+first playable. TanStack Start handles SSR, server routes, and server
+functions; SurrealDB-backed server commands confirm authoritative progression.
+Dexie / IndexedDB stores cached read models, drafts and local UI state. Future
+selective offline-first singleplayer can add a local-authoritative adapter
+without changing public bounded-context contracts.
 
-> Authority: [[09-Decisions/ADR-0002-offline-first]],
+> Authority: [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]],
 > [[09-Decisions/ADR-0011-server-authoritative-multiplayer]],
 > [[09-Decisions/ADR-0014-state-machines]].
 
@@ -83,25 +85,24 @@ completion before playback.
 
 ## Offline-first
 
-Client writes commands to a **local IndexedDB outbox**. On reconnect,
-commands replay against the server, which validates and confirms.
-Multi-state conflicts are surfaced as `rejected_with_reason` and the
-client rebases.
+MVP offline behavior is app shell, cached reads and local drafts. Client writes
+drafts to **Dexie / IndexedDB** but authoritative commands require network and
+server confirmation. The UI must not present a draft/cache write as final.
 
 ```mermaid
 sequenceDiagram
-    participant C as Client (offline)
-    participant SW as Service Worker / Background Sync
-    participant S as Server
-    C->>C: Write command to IndexedDB outbox
-    C->>C: UI shows "queued"
-    Note over C: Network returns
-    SW->>S: Replay outbox commands
-    S-->>SW: Confirm OR rejected_with_reason
-    SW-->>C: Update local projections
+    participant C as Client
+    participant IDB as Dexie / IndexedDB
+    participant S as Server command
+    participant DB as SurrealDB
+    C->>IDB: Store draft/cache with freshness metadata
+    C->>S: Submit command when online
+    S->>DB: Validate preconditions + persist
+    S-->>C: Confirm OR rejected_with_reason
+    C->>IDB: Update cached projection / draft status
 ```
 
-Detail: [[09-Decisions/ADR-0002-offline-first]] +
+Detail: [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] +
 [[09-Decisions/ADR-0013-transactional-outbox]].
 
 Multiplayer conflicts are hard-rejected at MVP per
@@ -110,8 +111,9 @@ the new state and a redo affordance; it does not auto-rebase gameplay actions.
 
 ## Storage
 
-- **SurrealDB** (server) - canonical store, projections, live queries.
-- **Dexie / IndexedDB** (client) - local game state, outbox, drafts.
+- **SurrealDB** (server) - canonical MVP store, projections, live queries.
+- **Dexie / IndexedDB** (client) - read caches, drafts, onboarding/local UI
+  state, and future local-save/export staging.
 
 Per [[09-Decisions/ADR-0004-data-model]] and
 [[09-Decisions/ADR-0005-save-format]].

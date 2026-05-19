@@ -3,10 +3,10 @@ title: Feature - Player-to-Player Transfer Negotiation
 status: draft
 tags: [feature, transfers, multiplayer, escalation]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[feature-transfer-market-ai-and-contracts]], [[../50-Game-Design/transfer-market-and-contracts]], [[../50-Game-Design/transfer-negotiations-p2p]], [[../10-Architecture/state-machines/transfer]]
+related: [[README]], [[../00-Index/MVP-Scope]], [[feature-transfer-market-ai-and-contracts]], [[../50-Game-Design/transfer-market-and-contracts]], [[../50-Game-Design/transfer-negotiations-p2p]], [[../10-Architecture/state-machines/transfer]]
 ---
 
 # Feature - Player-to-Player Transfer Negotiation
@@ -28,7 +28,9 @@ non-response costly but never instantly catastrophic.
 - As a manager I see consequence escalation if I keep ignoring strong
   interest.
 
-## In scope (MVP)
+## Post-MVP scope
+
+Human-to-human transfer negotiation is post-MVP per [[../00-Index/MVP-Scope]].
 
 - Transfer state machine (pending / countered / accepted / rejected /
   expired / escalated).
@@ -40,7 +42,7 @@ non-response costly but never instantly catastrophic.
 - Anti-griefing (≤ 3 outstanding offers per manager, lowball filter,
   griefingScore log).
 
-## Out of scope (MVP)
+## Out of first P2P release
 
 - Free-agent auction mode (Phase 2).
 - Cross-group transfers (out of scope permanently).

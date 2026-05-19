@@ -3,7 +3,7 @@ title: Feature - Player Lifecycle and Development
 status: draft
 tags: [feature, player-development, youth, mentoring]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: feature
 binding: false
 related: [[README]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/squad-and-club-structure]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
@@ -23,7 +23,10 @@ minutes, role fit, morale, health and mentoring.
 - As a manager I can use loans to improve a player through fit, not just
   raw minutes.
 
-## In scope (MVP)
+## MVP foundation scope
+
+Applies to the Roguelite first playable only where it supports the opening
+squad/run loop; deeper lifecycle depth can follow after MVP.
 
 - Weekly development tick for active club players.
 - PA uncertainty ranges from scout/coach knowledge.
@@ -31,7 +34,7 @@ minutes, role fit, morale, health and mentoring.
 - Mentoring groups with influence score, caps and conflict risk.
 - Loan-environment modifiers for development.
 
-## Out of scope (MVP)
+## Out of first playable scope
 
 - Full social graph / clique simulator.
 - More than the locked 8 hidden meta attributes.

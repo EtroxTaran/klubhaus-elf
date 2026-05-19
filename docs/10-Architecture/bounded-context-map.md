@@ -3,10 +3,10 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[05-Building-Blocks]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[05-Building-Blocks]]
 ---
 
 # Bounded Context Map
@@ -38,7 +38,7 @@ change, not a refactor.
 | **Match** | Line-up, tactic lock, simulation, results | Result, match events, replay stream |
 | **Watch Party** | Polls, scheduling, broadcast, conference | Watch-party status, event timeline |
 | **Notification** | Inbox, push, reminder, digest | User-facing message projections |
-| **Offline Sync** | Local outbox, command replay, conflict logic | Sync status, retry status |
+| **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
 | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
 
 Player lifecycle and systemic world events are specialised by
@@ -205,6 +205,12 @@ Accepted in gap B1 Q&A (2026-05-16) at the strict level so service
 extraction stays a deployment change rather than a data-migration.
 
 ## 7. Open questions
+
+MVP staging per [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]:
+Offline Sync is intentionally narrow in the first playable. It owns cache
+freshness, draft status and "requires connection" surfaces. Queued domain
+mutation replay and conflict resolution are preserved as future responsibilities,
+not MVP requirements.
 
 - Should Match Engine be a separately deployable service in MVP? No -
   modular monolith. Extraction is allowed post-MVP if perf demands it.

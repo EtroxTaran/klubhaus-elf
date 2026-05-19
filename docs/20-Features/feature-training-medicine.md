@@ -3,7 +3,7 @@ title: Feature - Training, Medicine and Availability
 status: draft
 tags: [feature, training, medicine, injuries, availability]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: feature
 binding: false
 related: [[README]], [[../50-Game-Design/training-load-and-medicine]], [[../50-Game-Design/squad-and-club-structure]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
@@ -24,7 +24,10 @@ them to fatigue, readiness, injury risk and development.
 - As a manager I can invest in medical and sport-science quality to reduce
   downtime and re-injury risk.
 
-## In scope (MVP)
+## MVP foundation scope
+
+For the Roguelite first playable, training/medicine is limited to the basic
+training signal and readiness impact needed for the first-week loop.
 
 - Training block grid and intensity/readiness output.
 - Multifactor injury risk profile with visible staff bands.
@@ -32,7 +35,7 @@ them to fatigue, readiness, injury risk and development.
 - Rehab quality and medical-centre duration modifiers.
 - Deterministic `InjuryRng` usage for long-term injury draws.
 
-## Out of scope (MVP)
+## Out of first playable scope
 
 - Real GPS metric simulation.
 - Exact ACWR threshold UI.

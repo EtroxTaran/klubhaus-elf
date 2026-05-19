@@ -3,7 +3,7 @@ title: Feature - Stadium Builder
 status: draft
 tags: [feature, stadium, infrastructure]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: feature
 binding: false
 related: [[README]], [[../50-Game-Design/stadium-and-campus]], [[../50-Game-Design/regulations-and-compliance]], [[feature-venue-operations]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
@@ -25,7 +25,10 @@ trade-offs.
 - As a manager I can see which compliance requirements I will need on
   promotion.
 
-## In scope (MVP)
+## MVP foundation scope
+
+For the Roguelite first playable, stadium scope is limited to capacity/run-cost
+signals and a simple upgrade path if needed. Full builder depth can follow.
 
 - 5 capacity tiers.
 - Seat-mix trade-offs (standing / seating / premium / suites).
@@ -35,7 +38,7 @@ trade-offs.
 - Compliance check on promotion.
 - Venue readiness fields used by [[feature-venue-operations]].
 
-## Out of scope (MVP)
+## Out of first playable scope
 
 - Plot-by-plot SimCity layout (Expert tier; Phase 2).
 - Multi-stadium ownership.

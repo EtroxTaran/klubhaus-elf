@@ -3,7 +3,7 @@ title: Feature - Venue Operations
 status: draft
 tags: [feature, stadium, venue, events, club-management]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: feature
 binding: false
 related: [[README]], [[feature-stadium-builder]], [[../50-Game-Design/stadium-and-campus]], [[../50-Game-Design/matchday-event-engine]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
@@ -24,7 +24,10 @@ pitch/logistics trade-offs and fan/sponsor effects.
 - As a manager I can understand how venue events affect revenue, pitch and
   supporter mood.
 
-## In scope (MVP)
+## Post-MVP depth scope
+
+Venue operations are post-MVP depth. MVP may keep only simple stadium/run-cost
+signals needed by the Roguelite first playable.
 
 - Venue event rules for concerts, conferences, fan festivals, museum
   specials and community days.
@@ -33,7 +36,7 @@ pitch/logistics trade-offs and fan/sponsor effects.
 - Weekly/event-boundary evaluation.
 - Integration with match-day event risk and stadium modules.
 
-## Out of scope (MVP)
+## Out of first venue release
 
 - Visitor-level operations simulation.
 - Manual booking calendar for every date.

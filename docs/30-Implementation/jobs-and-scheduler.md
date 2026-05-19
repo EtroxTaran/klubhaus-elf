@@ -3,11 +3,11 @@ title: Jobs and Scheduler
 status: current
 tags: [implementation, jobs, scheduler, outbox, redis-streams, observability, matchday, events]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: implementation
 binding: false
-adr: [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
-related: [[observability-runbook]], [[audit-trail]], [[deployment-dokploy]], [[../60-Research/match-engine-runtime-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/systemic-events-player-development-venue-ops]]
+adr: [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+related: [[observability-runbook]], [[audit-trail]], [[deployment-dokploy]], [[../00-Index/MVP-Scope]], [[../60-Research/match-engine-runtime-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/systemic-events-player-development-venue-ops]]
 ---
 
 # Jobs and Scheduler
@@ -44,9 +44,9 @@ Planned workers:
   not mutate domain state directly.
 - `archiver`: moves published outbox rows older than 60 days into
   monthly cold partitions.
-- `match-worker`: future context worker for server-authoritative
-  multiplayer match simulation. MVP may run in the app/runtime; extraction
-  comes when operational load demands it.
+- `match-worker`: future context worker for server-authoritative multiplayer
+  match simulation. MVP Roguelite progression may run through the app/runtime
+  command path; extraction comes when operational load demands it.
 - future context workers: notification, spectator/watch-party and
   projection consumers.
 
@@ -65,7 +65,10 @@ Match Worker:
 
 Scheduling rules:
 
-- Human-involving async multiplayer fixtures always run server-side.
+- MVP Roguelite match resolution is server-confirmed, with the deterministic
+  engine contract kept compatible with future local singleplayer authority.
+- Human-involving async multiplayer fixtures always run server-side when
+  multiplayer ships.
 - AI-vs-AI fixtures store seed + lineups + tactics + profile + summary by
   default; full event logs are generated on demand for watch-party/audit.
 - The scheduler batches `background-fast` jobs to avoid long matchday waits.

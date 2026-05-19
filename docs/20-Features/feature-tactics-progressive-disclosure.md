@@ -3,7 +3,7 @@ title: Feature - Tactics with Progressive Disclosure
 status: draft
 tags: [feature, tactics, ux, progressive-disclosure]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: feature
 binding: false
 related: [[README]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/tactics-system]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/player-strength-presentation]]
@@ -25,7 +25,10 @@ manage the same match engine.
 - As an Expert I edit per-player instructions, set-piece variants, view
   pass networks and heat-maps.
 
-## In scope (MVP)
+## MVP foundation scope
+
+Tactics progressive disclosure remains in the Roguelite first playable, scoped
+to the first tactic choice and starter presets before deeper Expert tuning.
 
 - Three explicit UI tiers, switchable in user settings.
 - Auto-Coach proposes-only, never overwrites manual choices.
@@ -36,7 +39,7 @@ manage the same match engine.
 - No global OVR or universal player star is shown in squad, tactic, scouting
   or transfer lists.
 
-## Out of scope (MVP)
+## Out of first playable scope
 
 - Per-area tier override (Standard with Expert tactics only) - Phase 2.
 - Exact role-weight tuning for all 50 roles beyond the MVP seed table.

@@ -3,10 +3,10 @@ title: Mode - Create a Club Roguelite
 status: approved
 tags: [game-design, mode, roguelite, create-a-club]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-18
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/mode-design-research]], [[../60-Research/onboarding-strategy]], [[mode-manage-a-club-career]], [[onboarding-and-tutorial]], [[economy-system]], [[club-dna-and-governance]]
+related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/onboarding-strategy]], [[mode-manage-a-club-career]], [[onboarding-and-tutorial]], [[economy-system]], [[club-dna-and-governance]]
 ---
 
 # Mode - Create a Club Roguelite
@@ -25,6 +25,25 @@ tuning remains `draft` and lives in linked notes.
 
 This rule is binding for implementation. Detailed tuning is in
 [[economy-system]] §6 and [[club-dna-and-governance]].
+
+## 1.1 MVP-first slice
+
+Per [[GD-0017-mvp-scope-and-mode-sequencing]] and [[../00-Index/MVP-Scope]],
+Create-a-Club Roguelite is the active MVP first playable.
+
+MVP includes:
+
+- fast fictional club setup;
+- starter region/country, colours and crest;
+- first Home dashboard/feed-card;
+- starter tactic choice;
+- first match and report;
+- cash/run-risk feedback; and
+- server-confirmed progression with local drafts/caches only.
+
+Deep legacy carries, advanced meta-progression, multi-run narrative echoes and
+full local-authoritative offline play are future phases unless they directly
+block the first playable loop.
 
 ## 2. Run lifecycle
 

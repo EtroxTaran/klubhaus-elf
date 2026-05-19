@@ -3,10 +3,10 @@ title: Feature - Watch Party
 status: draft
 tags: [feature, watch-party, multiplayer]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/watch-party-and-conference]], [[../10-Architecture/state-machines/watch-party]], [[../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming]]
+related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/watch-party-and-conference]], [[../10-Architecture/state-machines/watch-party]], [[../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming]]
 ---
 
 # Feature - Watch Party
@@ -25,7 +25,9 @@ to a private async group, with configurable spectator delay.
   doesn't leak realtime info.
 - As an admin I can cancel a watch party before broadcast.
 
-## In scope (MVP)
+## Post-MVP scope
+
+Watch parties are post-MVP per [[../00-Index/MVP-Scope]].
 
 - Watch-party state machine (proposed / poll_open / scheduled /
   setup_locked / live / completed / cancelled).
@@ -34,7 +36,7 @@ to a private async group, with configurable spectator delay.
 - Spectator service with configurable delay.
 - Live chat (in-app).
 
-## Out of scope (MVP)
+## Out of first watch-party release
 
 - Voice (use external Discord etc.).
 - Multi-match conference (Phase 2).

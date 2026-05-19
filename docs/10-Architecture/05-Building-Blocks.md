@@ -2,7 +2,7 @@
 title: Building Blocks
 status: draft
 tags: [architecture]
-updated: 2026-05-16
+updated: 2026-05-18
 ---
 
 # Building Blocks
@@ -22,8 +22,9 @@ flowchart TB
   Web --> Data[packages/game-data]
   Web --> Schema[packages/db-schema]
   Web --> Engine[packages/match-engine]
-  Web --> Dexie[Dexie / IndexedDB]
-  Web --> Surreal[SurrealDB sync post-MVP]
+  Web --> Dexie[Dexie / IndexedDB cache + drafts]
+  Web --> Surreal[SurrealDB authoritative MVP store]
+  Dexie -. future local SP adapter .-> Engine
 ```
 
 ## Bounded context layout
@@ -110,3 +111,6 @@ Each folder owns `commands.ts`, `events.ts`, `queries.ts`,
   ([[09-Decisions/ADR-0011-server-authoritative-multiplayer]]).
 - **Spectator service** for watch parties
   ([[09-Decisions/ADR-0015-spectator-snapshot-streaming]]).
+- **Hybrid-online PWA seam** ([[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]])
+  keeps Dexie scoped to caches/drafts/staging in MVP while preserving a future
+  local-authoritative singleplayer adapter.

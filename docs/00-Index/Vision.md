@@ -3,22 +3,25 @@ title: Vision
 status: current
 tags: [context, vision]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: index
 binding: true
-related: [[Non-Goals]]
+related: [[Non-Goals]], [[MVP-Scope]]
 ---
 
 # Vision
 
-`soccer-manager` is an offline-first football management PWA in the Anstoß
-tradition: long single-player careers, deterministic simulation, and IP-clean
-generated game data.
+`soccer-manager` is an offline-ready football management PWA in the Anstoß
+tradition: roguelite club-building first, long single-player careers later,
+deterministic simulation, and IP-clean generated game data.
 
 ## Goals
 
-- **Offline-first** — full gameplay with no network; local saves
-  ([[../10-Architecture/09-Decisions/ADR-0002-offline-first]]).
+- **Roguelite-first MVP** — Create-a-Club Roguelite proves the first playable;
+  Manage-a-Club Career is visible as "comes later" ([[MVP-Scope]]).
+- **Offline-ready now, selective offline-first later** — MVP has app shell,
+  cached reads and local drafts; full local-authoritative singleplayer is a
+  future stage ([[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]).
 - **Long careers** — multi-season play with versioned, forward-migrating saves
   ([[../10-Architecture/09-Decisions/ADR-0005-save-format]]).
 - **Deterministic simulation** — reproducible, testable match core

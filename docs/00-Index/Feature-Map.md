@@ -3,10 +3,10 @@ title: Feature Map
 status: current
 tags: [feature, meta]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: map
 binding: false
-related: [[Project-Goals]], [[Game-Design-Map]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]]
 ---
 
 # Feature Map
@@ -16,6 +16,10 @@ Use this map for feature planning and implementation beats.
 ## Current Hub
 
 - [Features README](../20-Features/README.md)
+
+## Active MVP feature
+
+- [[../20-Features/feature-roguelite-mvp-first-playable]] — Create-a-Club Roguelite first playable.
 
 ## Seed Epics
 
@@ -40,12 +44,12 @@ Use this map for feature planning and implementation beats.
 - [[../20-Features/feature-systemic-event-director]]
 - [[../20-Features/feature-sponsorship-portfolio]]
 - [[../20-Features/feature-fan-ecology-ui]]
-- [[../20-Features/feature-watch-party]]
+- [[../20-Features/feature-watch-party]] - post-MVP social layer.
 - [[../20-Features/feature-rivalry-system]]
 - [[../20-Features/feature-matchday-event-engine]]
 - [[../20-Features/feature-community-editor]]
 - [[../20-Features/feature-transfer-market-ai-and-contracts]]
-- [[../20-Features/feature-p2p-transfer-negotiation]]
+- [[../20-Features/feature-p2p-transfer-negotiation]] - post-MVP multiplayer layer.
 
 Operational issue seeds are documented in
 [../30-Implementation/linear-task-tracking.md](../30-Implementation/linear-task-tracking.md)
@@ -59,4 +63,5 @@ context, and tests. User docs are not feature specs.
 
 Approved feature specs:
 
+- [[../20-Features/feature-roguelite-mvp-first-playable]]
 - [[../20-Features/feature-transfer-market-ai-and-contracts]]

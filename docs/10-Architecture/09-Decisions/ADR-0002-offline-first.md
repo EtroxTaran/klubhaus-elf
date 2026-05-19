@@ -1,20 +1,29 @@
 ---
 title: ADR-0002 Offline-first Strategy
-status: accepted
+status: superseded
 tags: [adr, pwa, offline-first, service-worker, workbox, indexeddb, dexie, sync]
 created: 2026-05-15
-updated: 2026-05-16
+updated: 2026-05-18
 accepted_at: 2026-05-16
 type: adr
 binding: true
+superseded_by: ADR-0020-hybrid-online-mvp-offline-ready
 related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[../../60-Research/pwa-offline-patterns]], [[../../60-Research/determinism-and-replay]]
 ---
 
 # ADR-0002: Offline-first Strategy
 
+> **SUPERSEDED on 2026-05-18 by [[ADR-0020-hybrid-online-mvp-offline-ready]].**
+> Old way: full offline-first singleplayer was required for MVP. New way:
+> hybrid-online MVP with offline-ready app shell, caches and drafts; selective
+> offline-first singleplayer is a future stage. Kept for history — do not
+> implement for MVP.
+
 ## Status
 
-Accepted (2026-05-16, gap A2 of [[../../60-Research/wave-3-gap-analysis]]).
+Superseded (2026-05-18 by [[ADR-0020-hybrid-online-mvp-offline-ready]]).
+Accepted historically on 2026-05-16, gap A2 of
+[[../../60-Research/wave-3-gap-analysis]].
 
 ## Context
 

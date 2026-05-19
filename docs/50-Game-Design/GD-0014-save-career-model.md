@@ -3,10 +3,10 @@ title: GD-0014 Save & Career Model
 status: approved
 tags: [game-design, gddr, save]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-18
 type: game-design
 binding: true
-related: [[README]], [[GD-0002-match-engine]], [[../60-Research/pwa-offline-patterns]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../00-Index/Non-Goals]]
+related: [[README]], [[GD-0002-match-engine]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../60-Research/pwa-offline-patterns]], [[../60-Research/offline-mvp-scope-and-sync-strategy]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../00-Index/Non-Goals]]
 ---
 
 # GD-0014: Save & Career Model
@@ -17,6 +17,11 @@ approved
 
 > The rules below are ratified — they restate accepted ADR-0002 / ADR-0005 and
 > binding Vision/Non-Goals. The Wave-2 items under "Open" are NOT approved.
+>
+> **MVP amendment (2026-05-18):** [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+> supersedes the full offline-first MVP assumption. Long local saves and
+> export/import remain designed through [[../10-Architecture/09-Decisions/ADR-0005-save-format]],
+> but user-facing export/import and local-authoritative saves ship after MVP.
 
 ## Date
 
@@ -29,25 +34,27 @@ exportable, never silently corrupted.
 
 ## Decided / strong (ratified)
 
-- **Long single-player careers, fully playable with no network**, incl. all
-  match simulation and save/load (ADR-0002 accepted; Vision).
+- **Long single-player careers, eventually fully playable with no network**,
+  remain the long-term target. MVP progression is server-confirmed with local
+  caches/drafts only (ADR-0020; Vision).
 - **Every save is versioned; forward migrations only**; breaking changes ship
   with migration tests; **no localStorage / ad-hoc JSON fallback**
   (ADR-0005 accepted; Non-Goals).
 - **Multiple parallel career saves per browser profile** (one IndexedDB DB,
   many saves) (pwa-offline-patterns §2.1) — improving on Anstoss single-slot
   (anstoss-series-deep-dive §8).
-- **User-owned saves**: export/import a single human-readable
-  `.smsave.json`; user can export *and delete* their save
-  (pwa-offline-patterns §4/§12; club-boss-analysis takeaway 14).
+- **User-owned saves**: export/import a single versioned save envelope remains
+  required post-MVP; user-facing export/import is not part of the first
+  playable.
 - **Autosave: three rotating slots** (`current`, `autosave_n-1`,
   `autosave_n-2`) + a manual slot; "Restore previous" is an explicit UI action,
   never a silent fallback (pwa-offline-patterns §3.5/§12).
 - **No `Date` objects in save payloads — ISO strings only**; all state
   structured-cloneable and JSON-serializable without loss
   (pwa-offline-patterns §12).
-- Cloud sync is **out of scope for MVP**; single-player only (Non-Goals;
-  ADR-0002).
+- Cloud sync, full local-authoritative saves and user-facing export/import are
+  **out of scope for MVP**; their data contracts are reserved up front
+  (Non-Goals; ADR-0020).
 
 ## Open (Wave 2)
 
@@ -78,7 +85,7 @@ None
 
 ## Feeds ADRs
 
-- [[../10-Architecture/09-Decisions/ADR-0002-offline-first]] (accepted)
+- [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] (accepted)
 - [[../10-Architecture/09-Decisions/ADR-0005-save-format]] (accepted)
 
 ## Related

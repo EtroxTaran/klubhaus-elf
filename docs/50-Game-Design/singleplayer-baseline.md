@@ -3,10 +3,10 @@ title: Singleplayer Baseline
 status: approved
 tags: [game-design, mode, singleplayer, baseline]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-18
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/mode-design-research]], [[../60-Research/match-engine-runtime-strategy]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]], [[match-engine]], [[async-multiplayer-private-group]]
+related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/match-engine-runtime-strategy]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]], [[match-engine]], [[async-multiplayer-private-group]]
 ---
 
 # Singleplayer Baseline
@@ -16,6 +16,10 @@ Multiplayer rules are derived from singleplayer by *adding* constraints
 (deadlines, defaults, no-mid-week-mode-switches). Approved at the product
 level.
 
+> MVP sequencing note: this remains the long-term reference experience. The MVP
+> is a narrower [[mode-create-a-club-roguelite]] first playable per
+> [[GD-0017-mvp-scope-and-mode-sequencing]] and [[../00-Index/MVP-Scope]].
+
 ## 1. Approved product rule
 
 > **Singleplayer is the baseline. Every system that ships, ships first in
@@ -24,9 +28,9 @@ level.
 
 ## 2. Baseline guarantees
 
-In singleplayer:
+In the long-term singleplayer baseline:
 
-- Both content modes are fully available
+- Both content modes are fully available after their rollout
   ([[mode-create-a-club-roguelite]] and [[mode-manage-a-club-career]]).
 - All sub-systems are fully exposed.
 - The game is **fully pausable** and **accelerable** (1×, 2×, 4×,
@@ -71,7 +75,7 @@ Per [[../10-Architecture/09-Decisions/ADR-0005-save-format]]:
 
 ## 6. Compute model
 
-Per [[../10-Architecture/09-Decisions/ADR-0002-offline-first]],
+Long-term per [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]],
 [[match-engine]] and [[../60-Research/match-engine-runtime-strategy]]:
 
 - Match engine runs in a Web Worker.
@@ -81,8 +85,9 @@ Per [[../10-Architecture/09-Decisions/ADR-0002-offline-first]],
   quality depending on device tier and settings.
 - Background fixtures use `background-detailed` or `background-fast`; a full
   matchday never simulates every fixture at the deepest profile.
-- Singleplayer remains local-authoritative. Server-side match workers and Rust
-  extraction are multiplayer/server concerns, not required for offline play.
+- Singleplayer can become local-authoritative in a later selective-offline
+  phase. MVP progression is server-confirmed; server-side match workers and
+  Rust extraction remain later scaling/extraction concerns.
 
 ## 7. Time and pacing
 
