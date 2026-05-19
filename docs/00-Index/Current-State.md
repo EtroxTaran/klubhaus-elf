@@ -146,6 +146,338 @@ Start critical-path work from W3.A (P0): data model, match engine,
 hybrid-online/offline-ready MVP, auth, GDPR, CI/CD, threat model,
 SurrealDB schemas.
 
+## Threat model active (2026-05-18)
+
+[[../60-Research/threat-model]] is the binding security reference for
+the project (Wave 3 gap F1). It locks:
+
+- **Attacker scope** (T0-T4 in, T5-T6 partial, T7-T9 out) — any
+  expansion needs an ADR + update to this note.
+- **STRIDE catalogue** of 41 concrete threats per bounded context with
+  bound controls referencing ADR-0002 / 0005 / 0011 / 0013 / 0017 /
+  0019 + OWASP ASVS v5 L2 + NIST SP 800-38D / 63B / 92 / 190 +
+  SLSA v1.0.
+- **Trust-boundary diagram** across Client / Edge / App / Match Worker
+  / DB / Redis / Observability planes.
+- **Cryptographic refinements** to ADR-0005: PBKDF2 stays MVP, Argon2id
+  when portable-export UI ships; 1M-encryption soft cap per content
+  key; compress-then-encrypt safe at rest; no XChaCha20-Poly1305 at
+  MVP.
+- **9 residual risks** explicitly accepted with re-evaluation triggers.
+
+Anchors downstream gaps F2 / F3 / F5 / F6 / F10 / F11 / F12 / F13 /
+C6 / C8 / D18. Seven product-level open questions surfaced for Nico
+(see §8 of the note).
+
+## Auth flows locked (2026-05-18)
+
+[[../30-Implementation/auth-flows]] is the binding spec for the
+user-facing auth surfaces (Wave 3 gap F2). It locks:
+
+- **Credential model** — passkey-first sign-up + login with password
+  fallback; opt-in TOTP / WebAuthn-as-MFA; 10 single-use recovery
+  codes; "cannot recover" stance if all credentials are lost
+  (matches privacy-first posture).
+- **Sensitive-op catalogue + step-up MFA** with `stepup_mfa_max_age`
+  15 min and `reauth_max_age` 12 h.
+- **Cookie + token shape** F3 must implement: opaque session-ID +
+  Redis lookup (not JWT); `session_id` SameSite=Lax, `refresh_token`
+  SameSite=Strict on Path=`/api/auth/refresh`, refresh-token
+  rotation with reuse detection.
+- **Three-layer CSRF defence** — SameSite + `Origin`/`Sec-Fetch-Site`
+  enforcement + double-submit token.
+- **`accountSecret` bootstrap contract** — once-per-device delivery
+  via `GET /api/auth/account-secret/bootstrap` after authenticated
+  session, immediately wrapped client-side as a non-extractable
+  AES-GCM `CryptoKey` per F1 §5.4 and ADR-0005 §3.
+- **No external IdP / no CAPTCHA / no SMS at MVP** — schema +
+  abstraction provisioned now (`user_identity` table,
+  `ExternalIdentity` value-object, `openid-client` chosen) so post-
+  MVP addition is additive.
+- **Redis-based progressive throttling** and **anomaly signal
+  starter set** (new-device, new-country, impossible-travel,
+  credential-stuffing, password-reset storm, signup storm, global
+  fail spike); no auto-lockout at MVP.
+- **Argon2id** for password storage with calibrated 2026 params
+  (128 MiB / time 3 / parallelism 1, ~150–250 ms target).
+
+Anchors F1 (threat model). Binds inputs for F3 Session management,
+F5 Account recovery (stable account-master-key envelope), F6 GDPR
+compliance (DSAR + DPIA on `accountSecret`), F12 Rate limiting.
+Surfaces 7 product-owner Q&A questions and 9 follow-up tasks
+(FU-1..FU-9) for the downstream gaps.
+## Session management locked (2026-05-18)
+
+[[../30-Implementation/session-management]] is the binding spec for
+the server-side session and refresh-token lifecycle (Wave 3 gap F3).
+It locks:
+
+- **Redis hot store + SurrealDB outbox audit mirror** as the
+  persistence model; AOF + RDB on the Hetzner box; SurrealDB never
+  rehydrates Redis on cold start (force re-sign-in is the simplest
+  safe behaviour).
+- **Lifetimes**: 30 min idle / 12 h absolute on `session_id`;
+  30 d refresh-family absolute; **15-second rotation grace window**
+  with strict reuse detection outside it.
+- **Slide-on-meaningful-activity** with 60 s rate-limit on Redis
+  writes (Service-Worker and background prefetch never bump the
+  timer).
+- **Cross-tab logout/login broadcast** via BroadcastChannel +
+  localStorage sentinel fallback; SSE push deferred to FU-2.
+- **Revocation matrix**: 15 triggers (explicit logout, log-out-
+  everywhere, per-device, password change/reset, MFA changes,
+  recovery-code use, accountSecret rotation, email change, account
+  lock, account delete, refresh-token reuse, operator emergency,
+  idle/absolute expiry) × scope × outbox event; **hybrid
+  `tokenVersion` + family-revoke** so identity-changing events take
+  one atomic write while session-table family-revoke handles
+  granular per-device cleanup.
+- **`device` SCHEMAFULL table** with explicit separation between
+  user-visible "Devices" (only after successful auth) and
+  operational sessions; client-generated 128-bit `device_id` in
+  IndexedDB; **no browser fingerprinting**.
+- **"Trust this device"** opt-in 30-day MFA-skip with hard cap and
+  anomaly-downgrade; never bypasses primary factor or step-up.
+- **Per-device revoke** signs out sessions but does NOT rotate
+  `accountSecret` by default (offline-first parity with Signal /
+  1Password / Bitwarden); a separate "Sign out everywhere AND
+  rotate security key" flow exists for known-compromise.
+- **Offline-first reconnect**: silent refresh when family is still
+  valid; non-modal "Cloud sync paused" banner when family expired;
+  local progress never lost.
+- **TanStack Start integration patterns**: `getSessionFromRequest`
+  server helper, `createAuthedServerFn` higher-order wrapper
+  enforcing `authorize(actor, action, resource)` + CSRF + Origin /
+  `Sec-Fetch-Site` + optional step-up; `_authed/` route guard via
+  `beforeLoad`; SSR hydration of minimal actor blob; singleton
+  client-side CSRF interceptor; Workbox SW network-first on authed
+  HTML + complete bypass of `/api/auth/**`.
+- **Admin CLI** for emergency revoke at MVP (admin UI deferred to
+  post-MVP).
+- **Future-proof extension fields** provisioned now (`idp_provider`,
+  `idp_sub`, `org_id`, `org_roles`, `session_purpose`, DPoP
+  reservation per RFC 9449).
+- **Compliance**: full ASVS v5.0 V7 + V8 mapping + NIST SP 800-63B
+  rev. 4 §7 anchors + RFC 6819 / OAuth 2.1 draft refresh-token
+  guidance.
+
+Anchors F1 (threat model) and F2 (auth flows). Binds inputs for
+F5 (stable account-master-key envelope, FU-7), F6 (DSAR + DPIA,
+FU-8), F12 (edge WAF + per-endpoint quotas, FU-9). Surfaces 7
+product-owner Q&A questions and 9 follow-up tasks.
+## Account recovery locked (2026-05-18)
+
+[[../30-Implementation/account-recovery]] is the binding spec for
+the master-key envelope and the full recovery-flow set (Wave 3 gap
+F5). It locks the architectural shift that closes F2 FU-1 and
+F3 FU-7: a stable inner master key `K` survives all rotations of
+the user-visible secret; only the small envelope is re-wrapped.
+
+- **Stable inner `K`** (256-bit AES-GCM, non-extractable on every
+  device, never seen by server) + **canonical user-level envelope**
+  `Env_user = AES-GCM-256(K, KEK_user)` with
+  `KEK_user = PBKDF2-SHA256(accountSecret, userSalt, 600 000)`.
+- **No cross-device protocol on rotation**: re-wrap `Env_user` once;
+  other devices fetch the new `Env_user` on re-login. Per-device
+  envelopes are an optional offline-cache optimisation, not a
+  security primitive.
+- **Three recovery flows**: email password reset (mandatory
+  `accountSecret` rotation, full session revoke); recovery-code
+  use (10 single-use codes with their own envelopes, mandatory
+  regeneration of the full set + `userSalt` rotation on use);
+  "Sign out everywhere AND rotate security key" (Settings).
+- **Cannot-recover cliff confirmed**: passkey + password + all 10
+  codes lost → account unrecoverable by design; portable-export
+  with remembered passphrase is the only escape path.
+- **F2 → F5 lazy migration**: per user on first F5-enabled login;
+  one-shot save re-encryption inside the migration transaction
+  (~1-2 s for a typical user); idempotent; offline-compatible.
+- **Atomic rotation algorithm** with Redis `rotation_lock` + 60-s
+  TTL + idempotency-key replay protection + SurrealDB transaction
+  wrapping `accountSecret` update + `env_user` swap +
+  `account_secret_version++` + `envelope_version` bump +
+  `token_version++` + cache wipe + outbox emission.
+- **Versioned envelope wire format** with full AAD binding;
+  `envelopeVersion = 2` reserved for Argon2id (post-MVP portable
+  export UI), `envelopeVersion = 3` reserved for HPKE / RFC 9180
+  (post-quantum migration), `wrapMode = 'shared_save'` reserved
+  for Phase-2 cloud MP per-member content keys.
+- **Web Crypto mechanics** spelled out: generate `K` as
+  `extractable: true` for the wrap step, then re-import as
+  `extractable: false` for runtime use; `wrapKey/unwrapKey`
+  semantics keep `K` out of JS heap; `CryptoKey` survives
+  `IndexedDB.put()` round-trip on Chrome / Edge / Firefox /
+  Safari 16+; constant-time error UX via uniform
+  `InvalidEnvelopeError`.
+- **10-row attack mitigation matrix** on recovery surfaces
+  (reset-email intercept, recovery-code phishing / stuffing /
+  replay, oracle timing, email-change → reset chain, server
+  compromise, rollback, envelope transplant).
+- **Compliance**: full NIST SP 800-130 + 800-63B §6 + 800-132 +
+  800-38D + 800-57 Pt. 1 + OWASP ASVS v5 V6 + V11 mapping.
+
+Anchors on F1 (threat model) + F2 (auth flows) + F3 (session
+management); closes F2 FU-1 + F3 FU-7. Surfaces 6 Q&A questions
+(all defaults sensible) and 9 deferred follow-ups (FU-1..FU-9)
+to F4 / F6 / E10 / E11 / post-MVP.
+## GDPR compliance locked (2026-05-18)
+
+[[../60-Research/gdpr-compliance]] (research synthesis) +
+[[../30-Implementation/privacy-and-consent]] (implementation
+surface) jointly lock the F6 P0 compliance posture. Highlights:
+
+- **Legal landscape**: GDPR yes, ePrivacy Directive yes (no
+  ePrivacy Regulation adopted in 2026), DSA de minimis, DMA no,
+  EU AI Act low-risk path (deterministic worldgen per ADR-0007),
+  NIS2 no. Lead supervisory authority: **BfDI** via one-stop-shop
+  (Art. 56) for our DE domicile.
+- **Art. 30 RoPA**: 8 processing activities × 6 data categories;
+  lawful basis Art. 6(1)(b) contract for the core service +
+  Art. 6(1)(f) legitimate interest for security anomaly +
+  observability (two formal three-part LIAs in the research
+  note); **no Art. 9 special-category data** processed (passkey
+  credentials store public-key material, not biometric).
+- **No third-country transfers** — sidestepping the Chapter V
+  SCC/TIA/DPF apparatus entirely; GitHub explicitly assessed as
+  non-processor for user data.
+- **Children's data**: 16+ self-declaration radio at signup with
+  refusal flow; no DOB collected; no parental-consent flow at
+  MVP per § 12 BDSG + EDPB indie-default.
+- **DPIA**: voluntary (Art. 35(3) not mandatory at our scale —
+  confirmed against BfDI Muss-Liste + CNIL + ICO lists). The
+  DPIA lives in the research note §8 and is the documented
+  paper trail.
+- **DPO**: **not required** (Art. 37 + § 38 BDSG thresholds both
+  below). Founder designated as Privacy Lead. Re-evaluate at
+  100 k MAU or 20 employees.
+- **Retention schedule**: per-category; audit outbox forever
+  with one-way HMAC pseudonymisation on Art. 17 erasure
+  (preserves forensic event sequence while disconnecting from
+  the natural person); cryptographic erasure via F5 envelope
+  burn at account-delete + 30 d grace expiry.
+- **No cookie banner at MVP**: all storage is strictly necessary
+  per ePrivacy Art. 5(3); passive footer Privacy Notice link
+  satisfies Art. 13.
+- **User rights endpoint surface**: `POST /api/me/data-export`
+  (Art. 15+20 with full DSAR ZIP layout); `PATCH /api/me/profile`
+  (Art. 16 with step-up MFA only on email change + dual
+  confirmation + 24 h cool-down); `POST /api/me/delete-account`
+  (Art. 17 with 30-day grace + cryptographic erasure on expiry
+  + outbox pseudonymisation); `POST /api/me/restrict` (Art. 18);
+  Art. 21 explainer modal with legitimate-interest override
+  documented + account-closure escape; Art. 22 explicitly N/A
+  (no auto-decisions with legal effects).
+- **Breach notification runbook**: Art. 33 (BfDI within 72 h
+  with WP250 partial-notification pattern) + Art. 34 (DE + EN
+  user-notification template).
+- **Vendor Art. 28 DPAs required**: Hetzner AVV + transactional
+  email vendor only. Brevo (FR, EU residency) selected as
+  default per F2 §10.7 + F6 §11.4.
+- **Compliance overhead** for an indie 1-3 founder studio:
+  ~7-15 founder days launch + ~3-5 days/year ongoing.
+
+Closes F2 FU-6 + F2 FU-7 + F3 FU-8 + F5 FU-8 + F5 FU-9.
+Surfaces 6 minimal product-owner Q&A (Brevo email vendor,
+age-gate language, pseudonymisation, backup non-scrub
+disclosure, DPIA/LIAs co-located in the research note, Privacy
+Lead designation) + 10 deferred follow-ups (FU-1..FU-10).
+## Secrets management runbook locked (2026-05-18)
+
+[[../30-Implementation/secrets-management]] is the binding F11
+runbook for the full secrets surface. Highlights:
+
+- **15-category secret inventory** (A-O) with per-category
+  rotation cadence + zero-downtime recipes.
+- **sops + age + direnv** repo layout with `.sops.yaml`
+  `encrypted_regex` (values encrypted, structure visible);
+  per-env directories `secrets/{dev,staging,prod}/`; `*.enc.*`
+  naming convention enforced by CI lint.
+- **3-class age key hierarchy** (human / environment / CI) with
+  paper-backup escrow; founder-only prod access.
+- **Zero-downtime rotation recipes**: versioned HMAC pepper
+  (D / G / N) with 7-30 d overlap; `accountSecret` column-
+  encryption key (E) with per-row version + online migration +
+  90 d old-key escrow; age key (A) via `sops updatekeys` +
+  cosign re-sign; dual-user SurrealDB (B) with 7-14 d overlap.
+- **Zero-secret CI + Dokploy local decryption + tmpfs runtime
+  injection** (NIST SP 800-190 + CIS Docker Benchmark). The
+  only static CI secret is the bounded-scope `DOKPLOY_WEBHOOK_SECRET`.
+- **Cosign keyless container signing** via GitHub OIDC +
+  Sigstore Fulcio; locally-cached trust fallback on Rekor
+  outage (closes F1 FU-6).
+- **5-tier accidental-leak classification + 1-hour response
+  playbook**; specific leaked-age-key + leaked-column-key
+  playbooks; integration with F6 §9 Art. 33/34 breach
+  notification.
+- **Detection sources**: GitHub secret-scanning, gitleaks +
+  trufflehog CI, F2 §8.5 anomaly signals, responsible-
+  disclosure email.
+- **Quarterly Tier-A dependency audit runbook** (closes
+  F1 FU-4) — 11 initial packages, Socket.dev + OSV + GitHub
+  Advisory + `npm audit signatures`; `pnpm.overrides` +
+  `SECURITY_OVERRIDES.md` for security pins.
+- **SLSA Level 2 target** at MVP with cosign provenance + Syft
+  SBOM.
+- **Backup + recovery drill schedule**: Redis-only restore
+  monthly (closes F3 FU-6); SurrealDB-only semi-annually;
+  age-key recovery annually; full-system snapshot restore
+  quarterly. RTO < 2 h, RPO ≤ 24 h.
+- **6 DR tabletop scenarios** annually.
+- **Audit integration**: every rotation / leak-response /
+  drill emits an outbox event per ADR-0013.
+- **`SecretsProvider` interface** in `apps/web/src/server/secrets/`
+  for future-proof migration to Bitwarden SM / Infisical /
+  1Password Connect when graduation triggers hit (≥ 5 devs,
+  ≥ 3 envs, SOC 2 / ISO 27001 / TISAX audit, payments).
+
+**Closes F1 FU-4 + F1 FU-6 + F3 FU-6.** Surfaces 6 minimal
+product Q&A (all sensible defaults). 9 follow-ups (FU-1..FU-9)
+anchored to E10 / E11 / post-MVP / founder.
+## Rate limiting and anti-abuse locked (2026-05-18)
+
+[[../30-Implementation/rate-limiting-anti-abuse]] is the binding
+F12 spec for the abuse-surface layer of the platform. Highlights:
+
+- **3-phase edge-WAF graduation pathway** (closes F1 Q5):
+  Phase 1 no edge WAF at MVP (Hetzner native L3/4 + app-level
+  Redis-Lua quotas sufficient; matches F6 §10 EU-residency
+  posture); Phase 2 Bunny.net Shield when triggered (EU
+  Slovenian; signed Art. 28 DPA; updates RoPA); Phase 3
+  Cloudflare explicitly rejected unless TIA + DPA + Privacy
+  Notice revision complete.
+- **Full per-endpoint quota catalogue** across 7 groups (GDPR /
+  auth / saves / MP commands / game reads / observability /
+  admin) with `429 Too Many Requests` + IETF rate-limit
+  headers; stable `reason` enum; advisory vs enforced rows.
+- **6-pattern anti-griefing playbook** for MP + transfer
+  surfaces: lowball storming (< 25% market value → 7-day
+  cooldown), counter ping-pong (max 5 rounds), inactive member
+  (host-kick after 14 in-game days), quorum spam (max 3
+  votes/season/group), press-conference spam (last-write-wins
+  10-min re-edit), spectator burst (60/hour + 10/10s). Each
+  emits `mp.griefing_blocked` outbox event.
+- **Single-VM Redis-Lua token-bucket** at MVP via hand-rolled
+  Lua + ioredis; multi-VM scale-out path documented
+  (shared Redis Cluster default at first trigger).
+- **mCaptcha stage-1 → Friendly Captcha stage-2** activation
+  thresholds (closes F2 FU-5); rejected reCAPTCHA / hCaptcha /
+  Turnstile on GDPR.
+- **Admin CLI**: `pnpm rate-limit:block | unblock | status |
+  tighten | restore | captcha-on | captcha-off | captcha-provider`
+  with SSH + admin TOTP + outbox emission.
+- **Observability**: Prometheus counters + Loki structured logs
+  with redaction + 2 Grafana dashboards (operational +
+  security) + 6 alert rules; email + Discord webhook at MVP.
+- **DE/EN user-facing 429 copy** for 10 distinct reasons;
+  never reveals exact thresholds.
+- **Future-proof extensions** provisioned (B2B per-org tier,
+  paid-tier burst credit, WebSocket / SSE quotas, distributed
+  quota multi-VM path).
+
+**Closes F1 Q5 + F2 FU-5 + F3 FU-9.** Surfaces 6 minimal
+product Q&A (all defaults confirmed) + 9 follow-ups
+(FU-1..FU-9) anchored to E10 / E11 / observability-runbook /
+calendar / when-triggered.
 ## Transfer market blueprint active (2026-05-17)
 
 [[../60-Research/transfer-market-simulation]] is the current binding
