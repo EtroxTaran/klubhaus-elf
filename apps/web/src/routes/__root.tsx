@@ -35,6 +35,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <meta name="description" content="Offline-first Fußballmanager im Anstoß-Stil." />
         <meta name="theme-color" content="#f4ede0" />
         <link rel="manifest" href="/manifest.webmanifest" />
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: static NO_FLASH FOUC-prevention script with no untrusted input */}
         <script dangerouslySetInnerHTML={{ __html: NO_FLASH }} />
       </head>
       <body>

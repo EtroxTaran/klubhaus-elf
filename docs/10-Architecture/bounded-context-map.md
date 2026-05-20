@@ -191,8 +191,14 @@ re-developed independently and scaled independently. See ADR-0019
 
 ## 6. Storage isolation
 
-Each context owns its own SurrealDB tables (per
-[[09-Decisions/ADR-0004-data-model]]). The rule is **strict**:
+Each context owns its own PostgreSQL tables (per
+[[09-Decisions/ADR-0027-postgres-data-model]] — supersedes the SurrealDB
+mechanics in [[09-Decisions/ADR-0004-data-model]]). Tables live in
+`public` (platform contexts) or in a `save_<uuidv7hex>` schema (per-save
+contexts); access is routed through `QueryGateway.withPlatform` /
+`withSave(saveId)` (`@soccer-manager/db`), which sets a `LOCAL search_path`
+so a wrong scope yields **relation-not-found**, never a silent cross-tenant
+read. The rule is **strict**:
 
 - Cross-context reads happen via the public query layer of the other
   context, not by querying their tables directly.

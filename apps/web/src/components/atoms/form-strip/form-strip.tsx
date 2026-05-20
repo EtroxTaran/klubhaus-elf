@@ -23,6 +23,7 @@ export function FormStrip({ form, className }: FormStripProps) {
     >
       {chars.map((c, i) => (
         <span
+          // biome-ignore lint/suspicious/noArrayIndexKey: positional 5-glyph form strip never reorders
           key={i}
           className={cn(
             'inline-flex h-[18px] w-[18px] items-center justify-center rounded-[5px] font-mono text-[10px] font-extrabold text-white',

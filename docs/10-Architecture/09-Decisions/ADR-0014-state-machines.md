@@ -3,13 +3,22 @@ title: ADR-0014 Explicit State Machines for Time-critical Workflows
 status: proposed
 tags: [adr, architecture, state-machine, workflow]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-19
 type: adr
 binding: false
-related: [[../state-machines/README]], [[../../60-Research/raw-perplexity/raw-architecture]]
+related: [[../state-machines/README]], [[../../60-Research/raw-perplexity/raw-architecture]], [[ADR-0021-revised-tech-stack]], [[ADR-0013-transactional-outbox]]
 ---
 
 # ADR-0014: Explicit State Machines for Time-critical Workflows
+
+> **STACK-REVISION IMPACT 2026-05-19 ([[ADR-0021-revised-tech-stack]] + ADR-0023/0024/0025).**
+> Informational only — status (`proposed`) and decision are **unchanged**; do not
+> implement. On promotion the substrate amendment below applies: *state-machine
+> pattern unchanged; **persistence substrate → PostgreSQL** per
+> [[ADR-0021-revised-tech-stack]]; event emission via the Postgres-backed
+> transactional outbox per [[ADR-0013-transactional-outbox]] (amended 2026-05-19).*
+> Disposition: **keep parked** (owner directive 2026-05-19; gate is owner
+> review, currently paused — not the stack).
 
 ## Status
 

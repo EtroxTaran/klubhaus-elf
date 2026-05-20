@@ -18,6 +18,7 @@ export function StrBar({ n, max = 10, className }: StrBarProps) {
       <span className="mr-1 font-mono text-xs font-semibold tabular-nums text-ink">{n}</span>
       <div className="flex w-[72px] gap-[2px]">
         {Array.from({ length: max }).map((_, i) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: fixed-length positional strength bar
           <div key={i} className={cn('h-1.5 flex-1 rounded-[1px]', i < n ? 'bg-ink' : 'bg-rule')} />
         ))}
       </div>

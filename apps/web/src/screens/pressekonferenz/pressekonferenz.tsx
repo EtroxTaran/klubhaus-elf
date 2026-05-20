@@ -107,6 +107,7 @@ export function Pressekonferenz() {
           >
             {PRESS_CONFERENCE.map((_, i) => (
               <span
+                // biome-ignore lint/suspicious/noArrayIndexKey: positional progress-dot row over a fixed-length script
                 key={i}
                 className={cn('h-1 flex-1 rounded-full', i <= idx ? 'bg-accent' : 'bg-rule')}
               />

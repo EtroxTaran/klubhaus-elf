@@ -46,6 +46,52 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 - **Export/import**: post-MVP user-facing feature; envelope/versioning
   reserved from day one.
 
+## Stack revision (2026-05-19, [[Decision-Log#Stack revision 2026-05-19 deep tech-stack review]])
+
+A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]
+(supersedes the original tech-stack ADR; see [[Decision-Log]] for the chain):
+
+- **DB (hybrid):** PostgreSQL + Drizzle is the system of record. **SurrealDB
+  deferred** to an optional additive realtime/graph engine behind an interface.
+  **Wave 2 groundwork landed 2026-05-19**: [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]
+  (supersedes ADR-0004) and [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]]
+  (supersedes ADR-0013) lock the Postgres design (schema-per-save, A2 lazy
+  migration, Drizzle source of truth + generated standalone Zod mirror, branded
+  opaque cross-context UUIDs, junction-table edges, integer-only numerics,
+  same-tx outbox + polling-floor/`LISTEN/NOTIFY` + native partitioning).
+  [[../30-Implementation/postgres-drizzle-integration]] replaces the superseded
+  SurrealDB integration spec.
+- **State:** TanStack Query (server) + Zustand v5 (client/sim). **Zod 4.**
+  All-in TanStack data layer (Query/Table/Virtual/Form).
+- **Game-feel:** Motion + GSAP ([[../10-Architecture/09-Decisions/ADR-0022-animation-game-feel]]).
+- **Realtime:** SSE now → Centrifugo planned ([[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]]).
+- **Match view:** Canvas 2D now → PixiJS later ([[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]]);
+  engine↔renderer seam pinned by [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]]
+  (new `packages/match-contract` leaf package, events-only engine, derived non-
+  persisted frames, `chance` removed / `save` added).
+- **Mobile:** PWA + planned Capacitor shell ([[../10-Architecture/09-Decisions/ADR-0025-mobile-delivery]]).
+- **Observability:** lean MVP profile; Tempo/Mimir deferred (ADR-0017 amended).
+- **Auth:** F2 already locked Argon2id (review premise was wrong); only library
+  refined to `@node-rs/argon2`. Deps pinned + Renovate (no more `"latest"`).
+- **Secrets (F11):** Category B is now Postgres `DATABASE_URL` + roles;
+  [[../30-Implementation/secrets-management]] amended (no `.sops.yaml` change —
+  `dsn:` matches the existing `encrypted_regex`).
+- **Open ADR disposition 2026-05-19:** ADR-0006/0008/0012/0014/0015/0016 all
+  carry informational "Stack-revision impact" banners; **none promoted**
+  (owner directive: stop with reviews at the moment). Gate remains owner
+  review / Wave-2 research closure.
+- **Tech-debt tracked (non-blocking):** Storybook 8 → 9 upgrade
+  ([[../10-Architecture/11-Risks#Tracked tech-debt (non-blocking)]]).
+- Retained unchanged: TanStack Start/React/Tailwind/Dexie/Biome/Vitest/
+  Playwright/pnpm. **Deployment: Dokploy on the existing Hetzner machine —
+  owner-confirmed 2026-05-19 (Nico), stays; mandatory mitigations in
+  [[../30-Implementation/deployment-dokploy]].**
+- **Next engineering wave (Wave-2 → Wave-3 implementation):** real Postgres
+  driver + `QueryGateway` + lazy migrator (`packages/db`), full ADR-0027
+  domain schema for the bounded contexts, the outbox publisher worker +
+  SSE bridge, Capacitor shell scaffold, the match-engine implementation
+  against the now-locked ADR-0026 contract.
+
 ## Approved product rules (Wave 2, updated by MVP scope 2026-05-18)
 
 - **Long-term mode matrix**: one simulation core, two content modes
@@ -1548,62 +1594,46 @@ Implementation should start from
   - **Save lifecycle**: `active → archived → deleted` (with 30-day
     grace period before per-save DB drop). Soft 10 / hard 50
     quota per user (per A4).
-- **ADR-0004 Data Model** (accepted 2026-05-16, gap A4) -
-  [[../10-Architecture/09-Decisions/ADR-0004-data-model]]:
-  - **Storage topology**: hybrid (shared `platform` DB + one DB per
-    save in `soccer_manager` namespace).
-  - **Schema strategy**: SCHEMAFULL for stable core, SCHEMALESS for
-    event/log/payload tables.
-  - **Generator**: custom TS-first mirror in `packages/db-schema`
-    emits `.surql` + Zod + TS types. CI gate `pnpm db:generate &&
-    git diff --exit-code` blocks drift.
+- **Data model** (accepted 2026-05-19, supersedes ADR-0004) -
+  [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] +
+  [[../30-Implementation/postgres-drizzle-integration]]:
+  - **Storage topology**: PostgreSQL **schema-per-save** — platform data
+    in `public`; each save in its own `save_<uuidv7hex>` schema; delete =
+    `DROP SCHEMA ... CASCADE` after the 30-day grace window.
+  - **Schema strategy**: SCHEMAFULL governance = typed Drizzle columns +
+    `CHECK` constraints; SCHEMALESS = `jsonb` + per-event Zod at producer
+    and consumer.
+  - **Generator**: Drizzle `pgTable` is the single source of truth.
+    `drizzle-kit generate` emits forward-only SQL; `drizzle-zod` derives
+    runtime validators; a small `tsx` codegen writes a standalone Zod
+    mirror into `packages/db-schema/src/generated/**`. CI gate
+    `pnpm db:generate && git diff --exit-code` blocks drift.
+  - **Migrations**: A2 lazy on save-open — per-save `schema_version` in
+    `save_registry`; `QueryGateway.withSave` applies pending migrations
+    before serving. Deploy stays O(1).
   - **Numeric model**: integers / basis-points throughout simulation
-    logic (per D8).
-  - **Save quotas**: soft UX limit 10 active saves + archive flow +
-    server-side hard cap 50 (active + archived) per user. No tiering
-    at MVP.
-  - **Save export envelope**: `{schemaVersion, saveVersion,
-    engineVersion, createdAt, saveMode, aeadHeader, ciphertext}`.
-    Encrypted with AES-GCM 256 + PBKDF2 KDF from account secret +
-    device salt.
-  - **Phase-2 cloud sync**: hybrid - initial encrypted snapshot per
-    device + encrypted delta ops + periodic checkpoints (every 100
-    deltas or 5 MB). Save-level content key wrapped per member for
-    shared MP saves. MVP does NOT ship cloud sync.
-  - **IDs**: UUIDv7 (per ADR-0013); record links across contexts;
-    raw strings forbidden.
+    logic (per D8) — `bigint(mode:'number')` for cents, `integer` + CHECK
+    for basis points, `smallint` + CHECK for attributes, `integer` mm for
+    coordinates.
+  - **IDs**: **app-generated UUIDv7** everywhere (not
+    `gen_random_uuid()`, which is v4); cross-context refs are opaque
+    `uuid` columns with branded TypeScript types — **no Drizzle
+    `references()` across context boundaries** (intra-context FKs are
+    fine).
+  - **Relationship modelling**: junction tables with surrogate UUIDv7 PK
+    + `joined_at/role/left_at` for RELATE-style edges; `jsonb` for small
+    immutable embedded data (stadium, traits).
+  - **Isolation enforcement**: mechanical — `QueryGateway.withSave`
+    sets `LOCAL search_path = save_<hex>, public`; a wrong scope yields
+    *relation-not-found*, never a silent cross-tenant read.
+  - **Save quotas**: soft UX 10 active + server-side hard cap 50
+    (active + archived) per user; no tiering at MVP (preserved from
+    ADR-0004).
+  - **Save export envelope**: client-side AES-GCM 256 + PBKDF2 KDF
+    (ADR-0005, substrate-agnostic, unchanged).
   - **Forward additivity**: `gender_eligibility` set on player +
-    `gender_restriction` enum on competition; season calendars on
-    competition (not gender). Future-proof for women's football,
-    junior open, mixed-eligibility competitions.
-- **SurrealDB Schema Patterns** (locked 2026-05-16, gap D14) -
-  [[../60-Research/surrealdb-schema-patterns]]:
-  - **Per-save isolation**: hybrid. One shared `platform` DB
-    (identity, save registry, outbox, audit, IP-clean catalog) + one
-    DB per save (mutable game state). Single namespace
-    `soccer_manager`.
-  - **Schema strategy**: hybrid. SCHEMAFULL for stable core
-    (player, club, league, match, transfer_offer, sponsor, …);
-    SCHEMALESS for event / log / payload tables (match_event,
-    outbox_event, audit_log, notification).
-  - **Relationship modelling**: per-relationship rule. Record links
-    for one-to-many references (club → players); linked rows for
-    paged or append-only sets (match → match_events); RELATE only
-    for edges with their own lifecycle metadata (watch_party →
-    participants); document tables for transactional entities
-    (transfer, sponsor_contract, rivalry).
-  - **Migrations + types**: TS-first schema mirror in
-    `packages/db-schema` is the single source; custom generator
-    emits `.surql` + Zod + TS types. Explicit `pnpm db:migrate`
-    release step (not boot-time). Forward-only, idempotent, phased
-    renames.
-  - **Browser offline store**: Dexie / IndexedDB only at MVP.
-    SurrealDB WASM kept as a post-MVP research track (trigger:
-    Capacitor / native packaging, server-cost constraint, or WASM
-    bundle < 500 KB).
-  - **Live Queries**: UI projection updates only; never workflow
-    authority. Each bounded context's `index.ts` exports a
-    `queryGateway` wrapping queries + Live Query subscriptions.
+    `gender_restriction` text+CHECK on competition (preserved from
+    ADR-0004 §9).
 - **Determinism / RNG / Replay** (locked 2026-05-16, gap D8) -
   [[../60-Research/determinism-and-replay]]:
   - **PRNG**: PCG32 via `pure-rand` (32-bit JS, no BigInt). RNG state

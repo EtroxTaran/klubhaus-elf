@@ -67,8 +67,10 @@ export function Jersey({
       <g clipPath={`url(#${clipId})`}>
         {jerseyPattern(pattern).map((s, i) =>
           s.kind === 'rect' ? (
+            // biome-ignore lint/suspicious/noArrayIndexKey: jersey pattern is a stable positional list
             <rect key={i} x={s.x} y={s.y} width={s.w} height={s.h} fill={fill(s.fill)} />
           ) : (
+            // biome-ignore lint/suspicious/noArrayIndexKey: jersey pattern is a stable positional list
             <polygon key={i} points={s.points} fill={fill(s.fill)} />
           ),
         )}

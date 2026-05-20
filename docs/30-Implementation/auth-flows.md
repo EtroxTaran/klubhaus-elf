@@ -889,7 +889,19 @@ Both packages are Tier-A dependencies per F1 §5.6.
 
 ### 10.3 Password hashing — Argon2id
 
-- **Library**: `argon2` (libsodium-backed Node native addon).
+> **Correction 2026-05-19 (ADR-0021 stack review).** The stack review's working
+> premise that login used "PBKDF2-600k now, Argon2id later" was **factually
+> wrong** — this spec already locked Argon2id for password storage (F1 §5.1).
+> No supersede needed. Only refinement: library `argon2` (libsodium native,
+> node-gyp build) → **`@node-rs/argon2`** (prebuilt Rust/NAPI binaries, no
+> node-gyp/postinstall compile — smaller image, zero CI build pain, same
+> Argon2id PHC output). Parameters are **retained**: 128 MiB / t=3 deliberately
+> exceeds the OWASP-2026 floor (19 MiB / t=2) by latency calibration — do not
+> weaken to the floor.
+
+- **Library**: `@node-rs/argon2` (prebuilt Rust/NAPI Argon2id; no node-gyp).
+  Rejected: `argon2` (libsodium native addon — node-gyp build pain in CI and
+  container images for no security gain).
 - **Parameters** at MVP (Hetzner CPX-class):
   - `type: argon2id`
   - `memoryCost: 128 MiB` (131 072 KiB)
