@@ -509,13 +509,41 @@ updated: 2026-05-20
 
 IDs `PM-2026-05-20-02-F-NN` zitierbar in Commits/PRs/ADRs (`Addresses PM-2026-05-20-02-F-NN`). Aggregat-Status: [[findings-registry]].
 
+## Iteration 2 Addendum (2026-05-20) — Security & Single-Player-Foundation
+
+> Ergänzt diesen Tech-/Ops-Report. Cross-Refs: [[threat-model]], [[PM-2026-05-20-05-security-and-integrity]].
+
+### Security & Tamper-Resistance (Tech & Ops)
+
+- **Supply-Chain.** `pnpm audit` als CI-Gate, signierte Container-Images (cosign), Renovate-Quarantäne-Branch + 72 h Cooldown, SBOM (CycloneDX) pro Release. Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-05|05-F-05]].
+- **Secrets-Rotation-Runbook.** Konkret: was passiert wenn Hetzner-Token leakt? sops-Rotation, Service-Restart, Loki-Hunt nach Missbrauch. Verweis auf [[../../30-Implementation/secrets-management]].
+- **Auth-Hardening.** WebAuthn-User-Verification = `required`, kein PW-only-Fallback in Production. Account-Recovery-Code-Verlust soll nicht zur Account-Übernahme degenerieren. Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-10|05-F-10]].
+- **Rate-Limit / Anti-Abuse.** Konkrete Werte (≤ 60 Commands/min/Account, ≤ 5 Login-Versuche/min/IP, Captcha-Schwellen) gem. [[../../30-Implementation/rate-limiting-anti-abuse]].
+- **Determinismus-CI-Gate.** Replay-Diff im CI ist Qualitäts-Test *und* Anti-Cheat-Foundation. Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-03|05-F-03]].
+- **TLS / Cookie / Header.** HSTS, COOP/COEP, CSP (mit Nonce, kein `unsafe-inline`), Referrer-Policy `same-origin`, SameSite=Strict für Session-Cookies.
+- **Privacy by Design.** PII gehasht oder eingeschränkt geloggt; Loki-Redaction als Allow-List statt Deny-List. Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-09|05-F-09]].
+- **Backup-Crypto.** Backups Ende-zu-Ende verschlüsselt mit Off-Site-Key (kein gemeinsamer Cloud-KMS-Single-Point).
+- **DDoS / WAF.** Cloudflare L7-Schutz vor TanStack-Routes; Anycast-Rate-Limit ergänzt App-Layer.
+- **Observability für Security.** Dedizierte Loki-Streams `stream=audit`, `stream=auth`; Grafana-Alerts für ungewöhnliche Token-Reuse-Frequenzen. Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-08|05-F-08]].
+
+### Single-Player-Foundation-Check (Tech & Ops)
+
+- **Determinism-Test gilt auch SP.** Derselbe Test, der MP vor Cheats schützt, garantiert SP vor versteckten Bugs (Bug-Replays reproduzierbar).
+- **Backup eines lokalen Saves.** Muss auch ohne Server-Verbindung erzeugbar sein (Export-Datei), mit demselben Schema und derselben Signatur-Struktur — sonst „Backup im SP" inkompatibel mit „Cloud-Sync später".
+- **Auth funktioniert auch lokal.** Passkey-Erstellung darf nicht zwingend Online-Roundtrip benötigen (Erst-Use offline aktivierbar); Sync passiert bei nächster Online-Verbindung.
+
+---
+
 ## Related
 
 - [[00-index]]
 - [[findings-registry]]
+- [[threat-model]]
 - [[PM-2026-05-20-01-architecture]]
 - [[PM-2026-05-20-03-gameplay]]
 - [[PM-2026-05-20-04-monetization]]
+- [[PM-2026-05-20-05-security-and-integrity]]
+- [[PM-2026-05-20-06-distributed-match-compute]]
 - [[../wave-3-gap-analysis]]
 - [[../determinism-and-replay]]
 - [[../../10-Architecture/09-Decisions/ADR-0001-tech-stack]]

@@ -585,13 +585,37 @@ Jedes Finding in diesem Report hat eine immutable ID (`PM-2026-05-20-01-F-NN`).
 - **Status-Übergänge:** `open → mitigating → mitigated → verified` (verifiziert durch Test/Load-Test/Audit).
 - **Aggregat-Übersicht:** [[findings-registry]] zeigt Status aller Findings über alle Reports hinweg.
 
+## Iteration 2 Addendum (2026-05-20) — Security & Single-Player-Foundation
+
+> Ergänzt diesen Architektur-Report um Security-Tamper-Findings und einen Single-Player-Foundation-Check. Querverweise: [[threat-model]], [[PM-2026-05-20-05-security-and-integrity]], [[PM-2026-05-20-06-distributed-match-compute]].
+
+### Security & Tamper-Resistance (Architecture)
+
+- **Bounded-Context-Grenzen als Trust-Boundaries.** Jeder Context-Übergang in Z1 führt einen Authorization-Check und Input-Validation-Schritt — sonst wird ein kompromittierter Context zum Lateral-Movement-Vektor. Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-06|05-F-06]].
+- **Command-Bus-Signing.** Commands aus Z2 (Client) tragen `(payload, nonce, deviceKey, signature)`; Server lehnt unsignierte oder replay'te Commands ab. Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02|05-F-02]].
+- **Outbox-Idempotenz.** Jeder Command hat client-erzeugte `commandId` (UUIDv7); Server speichert verarbeitete IDs 30 Tage. Schützt vor Double-Spend bei Retries und Replay aus DevTools.
+- **State-Hashing.** Nach jedem Command wird `state.merkleRoot` aktualisiert und im Audit-Log mitgeführt — Forensik wird trivial.
+- **Match-Worker-Extraktion (Future).** Falls Polyglot-Gate (Rust) gezogen wird: Worker bekommt Server-State *nur* via signierte Tickets. Extraktion ist sonst Vertrauens-Downgrade.
+- **BYOC-Eintrittspunkt.** Falls je BYOC kommt, *einziger* Eintrittspunkt ist der dedizierte Match-Validation-Endpoint. Bounded Contexts bleiben verschlossen. Cross-Ref: [[PM-2026-05-20-06-distributed-match-compute|Report 06]].
+
+### Single-Player-Foundation-Check (Architecture)
+
+- **Commands-im-SP-Modus.** Auch im Offline-SP wird jeder Command als signierte Struktur gespeichert — Voraussetzung für späteres Cloud-Verify, Achievements, BYOC. Keine „Direct-State-Mutations" als Convenience.
+- **Save-Format-Invariante.** SP-Save = MP-Save (gleiches Schema, gleiche Signatur-Pflicht, gleicher Merkle-Root). Unterschied nur im `trust_level`-Feld. Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-01|05-F-01]] und §Save-Format-Vorschlag (Schema v2).
+- **Bounded-Context-Boundaries gelten auch SP.** Selbst lokal trennt die Architektur Contexts — sonst gewinnen wir die DDD-Erträge nicht, wenn wir später Multi-Player skalieren.
+
+---
+
 ## Related
 
 - [[00-index]] — Pre-Mortem-Cluster-Hub mit Heatmap und Cross-Cutting-Risks
 - [[findings-registry]] — Status-Tracking für alle Findings
+- [[threat-model]] — Trust-Boundaries und STRIDE-Matrix
 - [[PM-2026-05-20-02-tech-and-ops]] — Technische und operative Sicht (Cross-Cutting)
 - [[PM-2026-05-20-03-gameplay]] — Gameplay-Auswirkungen architektonischer Entscheidungen
 - [[PM-2026-05-20-04-monetization]] — Kosten-Implikationen pro Szenario
+- [[PM-2026-05-20-05-security-and-integrity]] — Security-Querschnitt
+- [[PM-2026-05-20-06-distributed-match-compute]] — BYOC-Future-Scope
 - [[../wave-3-gap-analysis]] — Quelle der P0/P1-Coverage
 - [[../match-engine-runtime-strategy]] — Polyglot-Gate-Kontext
 - [[../surrealdb-schema-patterns]]

@@ -26,16 +26,21 @@ design notes.
 ## Pre-Mortem 2026-05-20 (Cluster)
 
 Antizipiert Failure-Modes für 10.000 Spieler in 6 Monaten über zwei Szenarien
-(single-node Hetzner vs Cloud-Autoscaling). 40 Findings mit stabilen IDs
-`PM-2026-05-20-XX-F-NN` zur Verkettung mit Fixes (`Addresses PM-…` in Commits,
-PRs, ADR-Frontmatter).
+(single-node Hetzner vs Cloud-Autoscaling). **Iteration 2 (2026-05-20)**
+ergänzt um Security & Integrity, BYOC Future-Scope, übergreifendes
+Threat-Model und Security & Single-Player-Foundation-Addenda in den vier
+Original-Reports. 62 Findings mit stabilen IDs `PM-2026-05-20-XX-F-NN` zur
+Verkettung mit Fixes (`Addresses PM-…` in Commits, PRs, ADR-Frontmatter).
 
 - [[../60-Research/pre-mortem/00-index]] — Cluster-Index, Heatmap, 30/60/90-Tage-Plan, Decision-Log
-- [[../60-Research/pre-mortem/PM-2026-05-20-01-architecture]] — 10 Findings, max Score 25
-- [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops]] — 10 Findings, max Score 25
-- [[../60-Research/pre-mortem/PM-2026-05-20-03-gameplay]] — 10 Findings, max Score 20
-- [[../60-Research/pre-mortem/PM-2026-05-20-04-monetization]] — 10 Findings, max Score 25
-- [[../60-Research/pre-mortem/findings-registry]] — Status-Tracking aller 40 Findings
+- [[../60-Research/pre-mortem/threat-model]] — Trust-Boundaries, STRIDE-Matrix, Crypto-Bausteine (Iter 2)
+- [[../60-Research/pre-mortem/PM-2026-05-20-01-architecture]] — 10 Findings + Iter-2-Addendum, max Score 25
+- [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops]] — 10 Findings + Iter-2-Addendum, max Score 25
+- [[../60-Research/pre-mortem/PM-2026-05-20-03-gameplay]] — 10 Findings + Iter-2-Addendum, max Score 20
+- [[../60-Research/pre-mortem/PM-2026-05-20-04-monetization]] — 10 Findings + Iter-2-Addendum, max Score 25
+- [[../60-Research/pre-mortem/PM-2026-05-20-05-security-and-integrity]] — 12 Findings, max Score 25 (Iter 2)
+- [[../60-Research/pre-mortem/PM-2026-05-20-06-distributed-match-compute]] — 10 Findings, accepted-risk (Iter 2, Future-Scope)
+- [[../60-Research/pre-mortem/findings-registry]] — Status-Tracking aller 62 Findings
 
 ## Wave 1 Research Notes
 

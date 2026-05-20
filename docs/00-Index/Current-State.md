@@ -120,18 +120,36 @@ The Wave 2 ingestion proposes ADR-0010..ADR-0016 (see
 ## Active Risks (Pre-Mortem 2026-05-20)
 
 A 6-month / 10.000-player pre-mortem was logged on 2026-05-20 covering
-architecture, tech & ops, gameplay and monetization. 40 findings carry stable
-IDs (`PM-2026-05-20-XX-F-NN`) for fix-traceability — citable in commits, PRs
-and downstream ADRs as `Addresses PM-…`. Highest-score open findings to watch
-right now:
+architecture, tech & ops, gameplay, monetization. **Iteration 2 (2026-05-20)
+extended the cluster** with a dedicated Security & Integrity report
+(import/export integrity, command signing, save trust levels), a
+future-scope BYOC report (distributed match compute), a cross-cutting
+threat-model and Security & Single-Player-Foundation addenda inside the
+four original reports. 62 findings now carry stable IDs
+(`PM-2026-05-20-XX-F-NN`) — citable in commits, PRs and ADRs as
+`Addresses PM-…`. Highest-score open findings to watch right now:
 
 - [[../60-Research/pre-mortem/PM-2026-05-20-01-architecture#PM-2026-05-20-01-F-02|01-F-02]] — SurrealDB single-node SPOF (score 25)
 - [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-04|02-F-04]] — Backups never restored (score 25)
 - [[../60-Research/pre-mortem/PM-2026-05-20-04-monetization#PM-2026-05-20-04-F-01|04-F-01]] — no monetization hypothesis committed (score 25)
-- [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-02|02-F-02]] / [[../60-Research/pre-mortem/PM-2026-05-20-03-gameplay#PM-2026-05-20-03-F-02|03-F-02]] — determinism drift (cross-cutting, score 20+20)
+- [[../60-Research/pre-mortem/PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-01|05-F-01]] — save authenticates key knowledge, not provenance (score 25, **Iter 2**)
+- [[../60-Research/pre-mortem/PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02|05-F-02]] — commands not signed / replay-protected (score 25, **Iter 2**)
+- [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-02|02-F-02]] / [[../60-Research/pre-mortem/PM-2026-05-20-03-gameplay#PM-2026-05-20-03-F-02|03-F-02]] / [[../60-Research/pre-mortem/PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-03|05-F-03]] — determinism drift (cross-cutting, anti-cheat foundation, BYOC prerequisite)
+- [[../60-Research/pre-mortem/PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-05|05-F-05]] — supply-chain uncontrolled (score 20, **Iter 2**)
 - [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-03|02-F-03]] — observability stack deployed but dashboards/alerts not built (score 20)
 
-Cluster entry: [[../60-Research/pre-mortem/00-index]]. Aggregated status:
+**Leitsatz Iter 2.** Single-player ist das Fundament — aber jedes Datenformat,
+jeder Command-Pfad und jede State-Übergangsfunktion wird so entworfen, dass
+sie auch unter dem strengeren Vertrauensmodell von async Multiplayer und
+(zukünftig) Distributed Match Compute trägt. Ein Stack mit zuschaltbarem
+Trust-Level — nicht zwei Stacks.
+
+**BYOC (Distributed Match Compute) status:** future-scope. Decision-Gate
+defined in [[../60-Research/pre-mortem/PM-2026-05-20-06-distributed-match-compute]];
+all 10 BYOC findings are `accepted-risk` until gate passes.
+
+Cluster entry: [[../60-Research/pre-mortem/00-index]]. Threat-model:
+[[../60-Research/pre-mortem/threat-model]]. Aggregated status:
 [[../60-Research/pre-mortem/findings-registry]].
 
 ## Active Vault Rules

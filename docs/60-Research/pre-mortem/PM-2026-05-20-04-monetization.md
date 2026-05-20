@@ -494,13 +494,37 @@ updated: 2026-05-20
 
 IDs `PM-2026-05-20-04-F-NN`. Aggregat: [[findings-registry]].
 
+## Iteration 2 Addendum (2026-05-20) — Security & Single-Player-Foundation
+
+> Ergänzt diesen Monetarisierungs-Report. Cross-Refs: [[threat-model]], [[PM-2026-05-20-05-security-and-integrity]].
+
+### Security & Tamper-Resistance (Monetization)
+
+- **Receipt-Replay.** Derselbe Stripe-Receipt mehrfach eingereicht → Server-Side-Idempotenz via `eventId` aus Webhook-Payload (30-Tage-Replay-Window). Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-07|05-F-07]].
+- **Refund-Abuse.** Kauf → Entitlement-Grant → Refund → Entitlement bleibt. **Mitigation:** Webhook `charge.refunded` → automatischer Entitlement-Revoke mit Karenz für Disputes.
+- **Webhook-Forgery.** Stripe-Webhook-Endpoint signiert prüfen (`stripe-signature` Header + Webhook-Secret); IP-Allow-List wo möglich.
+- **Currency-Manipulation.** Client schlägt Preis vor → Server akzeptiert. **Mitigation:** Preise serverseitig autoritativ; Client zeigt nur an.
+- **GDPR-Conflict.** Account-Löschung vs steuerliche Aufbewahrung (10 Jahre). **Mitigation:** Pseudonymisierung + Aufbewahrung der Steuer-Records; Account-Daten gelöscht. Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-09|05-F-09]] und Runbook RB-S3.
+- **Chargeback-Fraud-Detection-Signale.** Rapider Kauf+Refund+Re-Kauf, mehrere Accounts ein Gerät, VPN/Geo-Mismatch → Manual-Review-Queue.
+- **Hijacked-Entitlements.** Account-Übernahme transferiert Käufe. Verweis auf Auth-Hardening in [[PM-2026-05-20-02-tech-and-ops]] und [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-10|05-F-10]].
+
+### Single-Player-Foundation-Check (Monetization)
+
+- **Monetarisierungs-Layer ist trust-aware.** Premium-Features (z. B. Carry-Slots) sind in `cloud-verified`-Saves explizit verfügbar; in `unverified`-Saves grayed-out oder mit Hinweis „Premium aktiv, Save nicht synchronisiert". Verhindert Refund-Argument „meine Premium-Features waren weg" und schützt vor Cheat-Argument „ich habe Premium von einem geforgten Save geerbt".
+- **SP-Käufer ist MP-fähig.** Premium-Käufe an Account, nicht an Save. SP-Spieler, der später in MP wechselt, behält Entitlements ohne Sync-Problem.
+
+---
+
 ## Related
 
 - [[00-index]]
 - [[findings-registry]]
+- [[threat-model]]
 - [[PM-2026-05-20-01-architecture]]
 - [[PM-2026-05-20-02-tech-and-ops]]
 - [[PM-2026-05-20-03-gameplay]]
+- [[PM-2026-05-20-05-security-and-integrity]]
+- [[PM-2026-05-20-06-distributed-match-compute]]
 - [[../gdpr-compliance]]
 - [[../wave-3-gap-analysis]]
 - [[../../30-Implementation/privacy-and-consent]]

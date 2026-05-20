@@ -82,10 +82,15 @@ singleplayer and export/import after MVP with contracts reserved from day one.
 
 ## Pre-Mortem Cluster (2026-05-20)
 
-[[pre-mortem/00-index]] is the entry point to a four-report pre-mortem
+[[pre-mortem/00-index]] is the entry point to the pre-mortem cluster
 covering architecture, tech & ops, gameplay and monetization for the
 6-month / 10.000-player horizon across two scenarios (single-node Hetzner
-vs. cloud autoscaling). 40 findings carry stable IDs
-(`PM-2026-05-20-XX-F-NN`) so commits, PRs and downstream ADRs can cite a
-finding via `Addresses PM-…`. Aggregated status lives in
-[[pre-mortem/findings-registry]].
+vs. cloud autoscaling). **Iteration 2 (2026-05-20)** added a dedicated
+[[pre-mortem/PM-2026-05-20-05-security-and-integrity|Security & Integrity
+report]], a future-scope
+[[pre-mortem/PM-2026-05-20-06-distributed-match-compute|BYOC report]],
+a cross-cutting [[pre-mortem/threat-model|threat-model]] and Security &
+Single-Player-Foundation addenda inside the four original reports. 62
+findings carry stable IDs (`PM-2026-05-20-XX-F-NN`) so commits, PRs and
+downstream ADRs can cite a finding via `Addresses PM-…`. Aggregated status
+lives in [[pre-mortem/findings-registry]].
