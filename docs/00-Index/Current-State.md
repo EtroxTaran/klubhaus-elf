@@ -117,6 +117,23 @@ The Wave 2 ingestion proposes ADR-0010..ADR-0016 (see
 - Watch parties via spectator snapshot streaming with delay.
 - Community datasets via versioned override packs.
 
+## Active Risks (Pre-Mortem 2026-05-20)
+
+A 6-month / 10.000-player pre-mortem was logged on 2026-05-20 covering
+architecture, tech & ops, gameplay and monetization. 40 findings carry stable
+IDs (`PM-2026-05-20-XX-F-NN`) for fix-traceability — citable in commits, PRs
+and downstream ADRs as `Addresses PM-…`. Highest-score open findings to watch
+right now:
+
+- [[../60-Research/pre-mortem/PM-2026-05-20-01-architecture#PM-2026-05-20-01-F-02|01-F-02]] — SurrealDB single-node SPOF (score 25)
+- [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-04|02-F-04]] — Backups never restored (score 25)
+- [[../60-Research/pre-mortem/PM-2026-05-20-04-monetization#PM-2026-05-20-04-F-01|04-F-01]] — no monetization hypothesis committed (score 25)
+- [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-02|02-F-02]] / [[../60-Research/pre-mortem/PM-2026-05-20-03-gameplay#PM-2026-05-20-03-F-02|03-F-02]] — determinism drift (cross-cutting, score 20+20)
+- [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-03|02-F-03]] — observability stack deployed but dashboards/alerts not built (score 20)
+
+Cluster entry: [[../60-Research/pre-mortem/00-index]]. Aggregated status:
+[[../60-Research/pre-mortem/findings-registry]].
+
 ## Active Vault Rules
 
 - [../90-Meta/vault-governance.md](../90-Meta/vault-governance.md)

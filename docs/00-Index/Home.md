@@ -72,6 +72,10 @@ ADRs are the source for technical shape.
 - [[../60-Research/00-summary]] — start here, then [[Research-Map]] for
   locked Wave 3 notes, including narrative, AI managers, match/runtime,
   performance, player strength, transfer market and systemic events.
+- [[../60-Research/pre-mortem/00-index]] — Pre-Mortem 2026-05-20 (architecture,
+  tech & ops, gameplay, monetization) — 40 Findings mit `PM-2026-05-20-XX-F-NN`
+  IDs zur Verkettung mit Fixes; siehe
+  [[../60-Research/pre-mortem/findings-registry]] für Status.
 
 ## Meta & process
 

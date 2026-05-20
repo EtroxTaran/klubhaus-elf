@@ -23,6 +23,20 @@ design notes.
 - [Research Wave 2 Gaps](../60-Research/research-wave-2-gaps.md) — superseded
   by Wave 3; kept for traceability of R2-01..R2-19 IDs.
 
+## Pre-Mortem 2026-05-20 (Cluster)
+
+Antizipiert Failure-Modes für 10.000 Spieler in 6 Monaten über zwei Szenarien
+(single-node Hetzner vs Cloud-Autoscaling). 40 Findings mit stabilen IDs
+`PM-2026-05-20-XX-F-NN` zur Verkettung mit Fixes (`Addresses PM-…` in Commits,
+PRs, ADR-Frontmatter).
+
+- [[../60-Research/pre-mortem/00-index]] — Cluster-Index, Heatmap, 30/60/90-Tage-Plan, Decision-Log
+- [[../60-Research/pre-mortem/PM-2026-05-20-01-architecture]] — 10 Findings, max Score 25
+- [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops]] — 10 Findings, max Score 25
+- [[../60-Research/pre-mortem/PM-2026-05-20-03-gameplay]] — 10 Findings, max Score 20
+- [[../60-Research/pre-mortem/PM-2026-05-20-04-monetization]] — 10 Findings, max Score 25
+- [[../60-Research/pre-mortem/findings-registry]] — Status-Tracking aller 40 Findings
+
 ## Wave 1 Research Notes
 
 - [Anstoss Series Deep Dive](../60-Research/anstoss-series-deep-dive.md)

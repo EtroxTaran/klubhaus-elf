@@ -79,3 +79,13 @@ full offline-first singleplayer must ship immediately. The new binding direction
 is a hybrid-online, offline-ready MVP: app shell, safe read caches and local
 drafts now; server-confirmed authoritative progression; selective offline-first
 singleplayer and export/import after MVP with contracts reserved from day one.
+
+## Pre-Mortem Cluster (2026-05-20)
+
+[[pre-mortem/00-index]] is the entry point to a four-report pre-mortem
+covering architecture, tech & ops, gameplay and monetization for the
+6-month / 10.000-player horizon across two scenarios (single-node Hetzner
+vs. cloud autoscaling). 40 findings carry stable IDs
+(`PM-2026-05-20-XX-F-NN`) so commits, PRs and downstream ADRs can cite a
+finding via `Addresses PM-…`. Aggregated status lives in
+[[pre-mortem/findings-registry]].
