@@ -7,14 +7,23 @@ updated: 2026-05-16
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0016-community-dataset-overrides]], [[../state-machines/match]], [[../../60-Research/match-engine-simulation-model]], [[../../60-Research/determinism-and-replay]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/tactics-system]]
+related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0016-community-dataset-overrides]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[../state-machines/match]], [[../../60-Research/match-engine-simulation-model]], [[../../60-Research/determinism-and-replay]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/tactics-system]]
 ---
 
 # ADR-0003: Match Engine Architecture
 
+> **CROSS-LINK 2026-05-19: render seam pinned by [[ADR-0026-match-frame-contract]].**
+> The engine emits a typed **event log** only — never frame snapshots, never
+> normalised coordinates. The engine→renderer seam (coordinate normalisation,
+> event-kind mapping, entity-id scheme, frame builder) lives in
+> `@soccer-manager/match-contract`. **Compliance:** the engine MUST NOT import
+> a renderer, MUST NOT normalise coordinates, and MUST NOT interpolate
+> positions — those are downstream of the contract.
+
 ## Status
 
 Accepted (2026-05-16, gap A3 of [[../../60-Research/wave-3-gap-analysis]]).
+Render-seam contract added 2026-05-19 by [[ADR-0026-match-frame-contract]].
 
 ## Context
 

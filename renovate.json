@@ -1,0 +1,33 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":pinAllExceptPeerDependencies",
+    ":dependencyDashboard",
+    "group:monorepos"
+  ],
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": { "enabled": true },
+  "packageRules": [
+    {
+      "description": "Pin everything — reproducible builds are a reliability requirement (see ADR-0021).",
+      "matchManagers": ["npm"],
+      "rangeStrategy": "pin"
+    },
+    {
+      "description": "TanStack ecosystem is a coordinated upgrade — group it (ADR-0021 all-in bet).",
+      "groupName": "tanstack",
+      "matchSourceUrls": ["https://github.com/TanStack/{/,}**"]
+    },
+    {
+      "description": "Frontier deps we accept risk on — never auto-merge, always review release notes.",
+      "matchPackageNames": [
+        "@tanstack/react-start",
+        "@tanstack/react-router",
+        "drizzle-orm",
+        "drizzle-kit"
+      ],
+      "automerge": false
+    }
+  ]
+}

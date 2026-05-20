@@ -1,21 +1,32 @@
 ---
 title: ADR-0001 Tech Stack
-status: accepted
+status: superseded
 tags: [adr, architecture]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-05-19
+accepted_at: 2026-05-15
 type: adr
 binding: true
-supersedes:
-superseded_by:
-related: [[ADR-0020-hybrid-online-mvp-offline-ready]]
+superseded_by: ADR-0021-revised-tech-stack
+related: [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-stack]]
 ---
 
 # ADR-0001: Tech Stack
 
+> **SUPERSEDED on 2026-05-19 by [[ADR-0021-revised-tech-stack]].**
+> Old way: SurrealDB authoritative for MVP progression; React Context for
+> state; "minimal Tailwind keyframes" for animation; SurrealDB outbox is the
+> realtime substrate. New way: PostgreSQL + Drizzle is the system of record
+> (SurrealDB deferred to an optional additive realtime/graph engine behind an
+> interface); TanStack Query + Zustand for state; Motion + GSAP for game-feel;
+> SSE→Centrifugo realtime behind a transport interface. TanStack Start, React,
+> Tailwind, Dexie, Biome, Vitest, Playwright, pnpm are **retained unchanged**.
+> Kept for history — do not implement the SurrealDB-as-primary parts.
+
 ## Status
 
-accepted
+Superseded (2026-05-19 by [[ADR-0021-revised-tech-stack]]).
+Accepted historically on 2026-05-15.
 
 ## Date
 

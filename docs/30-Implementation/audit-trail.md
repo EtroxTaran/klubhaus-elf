@@ -69,7 +69,7 @@ Each audit event is a domain event with:
 
 | Concern | Store | Retention | Purpose |
 |---|---|---:|---|
-| Domain event history | SurrealDB outbox/archive | 60 days hot, archive forever | business/audit truth |
+| Domain event history | PostgreSQL outbox / partitioned archive ([[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]]) | 60 days hot, monthly partitioned archive forever | business/audit truth |
 | App/server logs | Loki | 14 days | debugging, incident triage |
 | Crash reports | GlitchTip | 30 days | error grouping and release regression |
 | Metrics | Prometheus | 15 months | trends, alerts, SLOs |

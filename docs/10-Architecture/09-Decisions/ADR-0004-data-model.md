@@ -1,25 +1,42 @@
 ---
 title: ADR-0004 Data Model — Domain Entities, Schemas, Saves
-status: accepted
+status: superseded
 tags: [adr, architecture, data, surrealdb, dexie, schema, saves]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-05-19
 accepted_at: 2026-05-16
 type: adr
 binding: true
 amended_by: [[ADR-0020-hybrid-online-mvp-offline-ready]]
-related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../bounded-context-map]], [[../../60-Research/surrealdb-schema-patterns]], [[../../60-Research/determinism-and-replay]]
+superseded_by: ADR-0027-postgres-data-model
+related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-stack]], [[ADR-0027-postgres-data-model]], [[../bounded-context-map]], [[../../60-Research/surrealdb-schema-patterns]], [[../../60-Research/determinism-and-replay]]
 ---
 
 # ADR-0004: Data Model — Domain Entities, Schemas, Saves
 
+> **SUPERSEDED on 2026-05-19 by [[ADR-0027-postgres-data-model]].**
+> Old way: SurrealDB namespace + database-per-save, `.surql` schema generator,
+> SCHEMAFULL/SCHEMALESS directives, `RELATE` edges, `record<player>` typed
+> cross-table pointers. New way: PostgreSQL **schema-per-save** (one `save_<…>`
+> schema per save in one database), Drizzle schema-as-TypeScript as the single
+> source of truth + drizzle-zod + a generated standalone Zod mirror, typed
+> columns + CHECK / `jsonb` + Zod for the SCHEMAFULL/SCHEMALESS split,
+> junction tables with surrogate UUIDv7 PK for RELATE-style edges, branded
+> opaque `uuid` columns (no cross-context FKs) for cross-context refs.
+> Substrate-agnostic invariants (per-save isolation; quotas 10/50; UUIDv7;
+> integer-only numerics; encrypted save envelope per [[ADR-0005-save-format]];
+> hard-reject offline contract; forward-additive `gender_eligibility`) are
+> **preserved** in [[ADR-0027-postgres-data-model]]. Kept for history — do not
+> implement the SurrealDB-specific mechanics here.
+
 ## Status
 
-Accepted (2026-05-16, gap A4 of [[../../60-Research/wave-3-gap-analysis]]).
-MVP timing amended by [[ADR-0020-hybrid-online-mvp-offline-ready]]:
-server-confirmed SurrealDB state is authoritative in MVP; Dexie stores
-cache/drafts/staging data and remains the reserved local-save/export substrate
-for post-MVP selective offline.
+Superseded (2026-05-19 by [[ADR-0027-postgres-data-model]]).
+Accepted historically on 2026-05-16, gap A4 of
+[[../../60-Research/wave-3-gap-analysis]].
+MVP timing amended historically by
+[[ADR-0020-hybrid-online-mvp-offline-ready]] (server-confirmed state is
+authoritative in MVP; Dexie stores cache/drafts/staging).
 
 ## Context
 

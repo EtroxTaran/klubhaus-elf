@@ -1,28 +1,29 @@
 import { describe, expect, it } from 'vitest'
-import { recordIdSchema } from './index'
+import { clubInsertSchema, clubSelectSchema } from './index'
 
-describe('recordIdSchema', () => {
-  it('accepts SurrealDB record ids', () => {
-    expect(recordIdSchema.parse('player:01HX')).toBe('player:01HX')
+describe('clubInsertSchema', () => {
+  it('accepts a valid new club (id/createdAt optional via defaults)', () => {
+    const r = clubInsertSchema.safeParse({ name: 'FC Example', city: 'Berlin' })
+    expect(r.success).toBe(true)
   })
 
-  it('accepts underscore tables and hyphenated ids', () => {
-    expect(recordIdSchema.parse('match_event:abc-123_XYZ')).toBe('match_event:abc-123_XYZ')
+  it('rejects a club missing required name', () => {
+    expect(clubInsertSchema.safeParse({ city: 'Berlin' }).success).toBe(false)
   })
 
-  it('rejects ids with leading garbage (start anchor)', () => {
-    expect(recordIdSchema.safeParse(' player:01HX').success).toBe(false)
-    expect(recordIdSchema.safeParse('1player:01HX').success).toBe(false)
+  it('rejects a non-string city', () => {
+    expect(clubInsertSchema.safeParse({ name: 'FC Example', city: 42 }).success).toBe(false)
   })
+})
 
-  it('rejects ids with trailing garbage (end anchor)', () => {
-    expect(recordIdSchema.safeParse('player:01HX ').success).toBe(false)
-    expect(recordIdSchema.safeParse('player:01HX:extra').success).toBe(false)
-  })
-
-  it('rejects ids missing the table or id segment', () => {
-    expect(recordIdSchema.safeParse('player:').success).toBe(false)
-    expect(recordIdSchema.safeParse(':01HX').success).toBe(false)
-    expect(recordIdSchema.safeParse('player01HX').success).toBe(false)
+describe('clubSelectSchema', () => {
+  it('accepts a fully materialised row', () => {
+    const r = clubSelectSchema.safeParse({
+      id: '00000000-0000-0000-0000-000000000000',
+      name: 'FC Example',
+      city: 'Berlin',
+      createdAt: new Date(),
+    })
+    expect(r.success).toBe(true)
   })
 })

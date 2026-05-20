@@ -12,9 +12,22 @@ related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[
 
 # ADR-0017: Self-hosted Observability and Logging
 
+> **AMENDED 2026-05-19 by [[ADR-0021-revised-tech-stack]] (MVP scope trim, not a
+> supersede).** The decision (self-hosted EU observability, GDPR/no-third-country)
+> is unchanged and still binding. MVP profile is trimmed to **Loki + Prometheus
+> + Grafana + Alloy + GlitchTip + Cosign**. **Tempo and Mimir are deferred** —
+> they add ~3–5 GB RAM and upgrade/2am surface for zero pre-scale payoff, and
+> Alloy already future-proofs re-adding them as a collector-config + container
+> change. Re-add trigger: multiple deployed services with cross-service latency
+> not explainable from logs+metrics (Tempo), or Prometheus local TSDB outgrowing
+> the node (Mimir). GlitchTip is confirmed over self-hosted Sentry (~16 GB / 40+
+> containers — rejected at this scale). Substrate note: references to "SurrealDB"
+> as a log/metric *source* now mean Postgres per [[ADR-0021-revised-tech-stack]].
+
 ## Status
 
 Accepted (2026-05-17, gap D11 / C6 / E3 planning pass).
+MVP-scope amended 2026-05-19 (Tempo/Mimir deferred) — see banner.
 
 ## Context
 

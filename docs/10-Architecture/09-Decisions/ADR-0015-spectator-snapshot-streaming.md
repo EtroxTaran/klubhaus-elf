@@ -3,13 +3,22 @@ title: ADR-0015 Watch-Party via Spectator Snapshot Streaming
 status: proposed
 tags: [adr, architecture, watch-party, streaming, replay]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-19
 type: adr
 binding: false
-related: [[../state-machines/watch-party]], [[../../60-Research/async-multiplayer-research]], [[../../50-Game-Design/watch-party-and-conference]]
+related: [[../state-machines/watch-party]], [[../../60-Research/async-multiplayer-research]], [[../../50-Game-Design/watch-party-and-conference]], [[ADR-0021-revised-tech-stack]], [[ADR-0023-realtime-transport]], [[ADR-0024-match-renderer-abstraction]]
 ---
 
 # ADR-0015: Watch-Party via Spectator Snapshot Streaming
+
+> **STACK-REVISION IMPACT 2026-05-19 ([[ADR-0021-revised-tech-stack]] + ADR-0023/0024/0025).**
+> Informational only — status (`proposed`) and decision are **unchanged**; do not
+> implement. On promotion the substrate amendment below applies: *snapshot/delay
+> model unchanged; **transport → SSE-now / Centrifugo-planned** per
+> [[ADR-0023-realtime-transport]]; frames are the typed renderer frames per
+> [[ADR-0024-match-renderer-abstraction]] (and ADR-0026 once landed).*
+> Disposition: **keep parked** (owner directive 2026-05-19; gate is owner
+> review, currently paused — not the stack).
 
 ## Status
 

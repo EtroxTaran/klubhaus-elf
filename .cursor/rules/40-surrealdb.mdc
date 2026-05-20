@@ -1,13 +1,11 @@
 ---
-description: SurrealDB data access conventions
-globs: db/**, packages/db-schema/**, apps/web/src/server/**/*.ts
+description: SUPERSEDED — see 40-postgres-drizzle
+globs:
 alwaysApply: false
 ---
-# SurrealDB
+# SurrealDB — SUPERSEDED 2026-05-19
 
-- All application data access flows through a dedicated DB client module.
-- Use `DEFINE TABLE ... SCHEMAFULL` and idempotent forward-only migrations.
-- Parameterize every query: `db.query('SELECT * FROM player WHERE id = $id', { id })`.
-- Prefer record links and `RELATE` over join-like application code.
-- Never concatenate user input into SurrealQL.
-- Schema changes require a migration and mirrored TypeScript/Zod types.
+This rule is **superseded** by `40-postgres-drizzle.mdc`. ADR-0021 swapped
+the system of record to PostgreSQL + Drizzle; ADR-0027/0028 deliver the
+Postgres data model and outbox substrate. Do not apply SurrealDB
+conventions to new code.

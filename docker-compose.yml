@@ -4,13 +4,11 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      surrealdb:
+      postgres:
         condition: service_healthy
     environment:
       APP_URL: ${APP_URL:-http://localhost:3000}
-      SURREALDB_DATABASE: ${SURREALDB_DATABASE:-prod}
-      SURREALDB_NAMESPACE: ${SURREALDB_NAMESPACE:-soccer_manager}
-      SURREALDB_URL: ${SURREALDB_URL:-http://surrealdb:8000}
+      DATABASE_URL: ${DATABASE_URL:-postgres://soccer_manager:soccer_manager@postgres:5432/soccer_manager}
     labels:
       traefik.enable: "true"
       traefik.http.routers.soccer-manager.rule: Host(`${APP_DOMAIN:-soccer-manager.etrox.de}`)
@@ -21,19 +19,25 @@ services:
       - "3000:3000"
     restart: unless-stopped
 
-  surrealdb:
-    image: surrealdb/surrealdb:latest
-    command: start --log info --user ${SURREALDB_USER:-root} --pass ${SURREALDB_PASS:-root} rocksdb:/data/database.db
+  # System of record — PostgreSQL + Drizzle (ADR-0021, supersedes ADR-0001).
+  # Single-node OSS; backup/PITR via pg_dump + WAL archiving to EU object
+  # storage (see deployment-dokploy mandatory mitigations). SurrealDB may
+  # return only as an optional additive realtime/graph engine (ADR-0023).
+  postgres:
+    image: postgres:17-alpine
+    command: postgres -c wal_level=replica
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-soccer_manager}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-soccer_manager}
+      POSTGRES_DB: ${POSTGRES_DB:-soccer_manager}
     healthcheck:
-      test: ["CMD", "surreal", "isready", "--conn", "http://127.0.0.1:8000"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-soccer_manager}"]
       interval: 10s
       timeout: 5s
       retries: 10
-    ports:
-      - "8000:8000"
     restart: unless-stopped
     volumes:
-      - surrealdb-data:/data
+      - postgres-data:/var/lib/postgresql/data
 
 volumes:
-  surrealdb-data:
+  postgres-data:

@@ -3,13 +3,14 @@ title: Secrets Management — sops + age + direnv, rotation, leak response, dep 
 status: current
 tags: [implementation, secrets, sops, age, direnv, key-rotation, leak-response, supply-chain, backups]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-05-19
 type: implementation
 binding: true
 adr:
   - "[[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]"
   - "[[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]"
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
+  - "[[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]"
 related:
   - "[[secrets-rotation]]"
   - "[[deployment-dokploy]]"
@@ -24,6 +25,21 @@ related:
 ---
 
 # Secrets Management — sops + age + direnv, rotation, leak response, dep audit, backup drills
+
+> **AMENDED 2026-05-19 by [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]] (substrate change, not a supersede).**
+> The secrets architecture, key hierarchy, rotation policy, leak-response and
+> CI/Dokploy injection in this note **stand and are still binding**. Category
+> **B** changes substrate: **SurrealDB credentials → PostgreSQL credentials
+> (`DATABASE_URL` + `postgres` superuser + `app_rw` per-context role)** per
+> ADR-0021. SurrealDB-specific mechanics (`DEFINE USER … ROLES`, `surreal
+> import`, `INFO FOR NS/DB`) are replaced by Postgres equivalents (`CREATE
+> ROLE/USER`, `GRANT`, `pg_dump`/`pg_restore`, `\du`/`\dt`). The `.sops.yaml`
+> `encrypted_regex` already matches `password|dsn|...` so **no `.sops.yaml`
+> edit is required**; the DSN secret key is named **`dsn:`** (matched by the
+> existing regex) and exported at runtime as the `DATABASE_URL` env var that
+> `packages/db/drizzle.config.ts` consumes. SurrealDB is deferred (ADR-0021);
+> a future additive realtime/graph engine would re-add a category-B-style row
+> when introduced.
 
 This note resolves Wave 3 gap **F11** (Secrets management runbook,
 **P1**) and is the **binding implementation specification** for:
@@ -43,7 +59,7 @@ This note resolves Wave 3 gap **F11** (Secrets management runbook,
 - The **quarterly Tier-A dependency audit runbook** (closes F1
   FU-4).
 - The **backup + recovery drill schedule** (Redis monthly,
-  SurrealDB semi-annually, age key annually, full system
+  PostgreSQL semi-annually, age key annually, full system
   quarterly), closing F3 FU-6.
 - Six **DR tabletop scenarios** for annual exercises.
 
@@ -101,7 +117,7 @@ co-exist.
 - **Tier-A dependency audit runbook** + quarterly cadence + tool
   selection (§10).
 - **Backup + recovery drill schedule** with concrete recipes
-  for Redis / SurrealDB / age key / full-system drills (§11).
+  for Redis / PostgreSQL / age key / full-system drills (§11).
 - **Six DR tabletop scenarios** for annual exercises (§12).
 - **Audit integration** — every rotation emits an outbox event
   per ADR-0013 + audit-trail catalogue (§13).
@@ -134,7 +150,7 @@ this note + the audit catalogue. Each category has a stable name
 | ID | Name                                       | Owner / scope                          | Storage at rest                                                                                  |
 | -- | ---                                        | ---                                    | ---                                                                                              |
 | A  | **age private keys**                       | per-developer + per-environment + per-CI | dev laptop (`~/.config/age/key.txt`) + paper backup + password manager · prod VM `/etc/age/prod.key` (0400) · CI: GitHub Actions encrypted secret `AGE_KEY_CI` |
-| B  | **SurrealDB credentials**                  | root + per-context users (per ADR-0019) | sops `secrets/prod/db.enc.yaml` → runtime tmpfs                                                  |
+| B  | **PostgreSQL credentials** (`DATABASE_URL`)| postgres superuser + `app_rw` per-context role (ADR-0019; ADR-0021) | sops `secrets/{dev,staging,prod}/db.enc.yaml` → runtime env (tmpfs)                              |
 | C  | **Redis password**                         | one per deployment                     | sops `secrets/prod/db.enc.yaml` → runtime tmpfs                                                  |
 | D  | **Refresh-token `hash` HMAC pepper**       | one per deployment (F3 §4.4)            | sops `secrets/prod/app.enc.env` → runtime env                                                    |
 | E  | **`accountSecret` column-encryption key**  | one per deployment (versioned)         | sops `secrets/prod/app.enc.env` keyring → runtime env                                            |
@@ -277,6 +293,32 @@ fi
 - Each developer must have their age key available via
   `~/.config/sops/age/keys.txt` or `SOPS_AGE_KEY_FILE`.
 
+### 3.4 `db.enc.yaml` canonical shape (Postgres + Redis)
+
+Category B (PostgreSQL) + Category C (Redis) live in one encrypted
+file per environment. The DSN key is named `dsn:` so it is matched
+by the existing `.sops.yaml` `encrypted_regex` (`password|dsn|…`) —
+**no `.sops.yaml` change required**. The runtime injection layer
+maps `dsn` → the `DATABASE_URL` env var consumed by
+`packages/db/drizzle.config.ts` (and the Drizzle migrator).
+
+```yaml
+# secrets/<env>/db.enc.yaml
+postgres:
+  host: db.internal          # structural — visible in git diff
+  port: 5432
+  database: soccer_manager
+  superuser:
+    username: postgres
+    password: "<sops-encrypted>"   # matched by *_password
+  app_rw:
+    username: app_rw
+    password: "<sops-encrypted>"
+  dsn: "<sops-encrypted>"          # full DATABASE_URL DSN
+redis:
+  password: "<sops-encrypted>"     # category C, unchanged
+```
+
 ### 3.3 Naming convention: `*.enc.*`
 
 All encrypted files MUST have `.enc.` in their name (e.g.
@@ -359,7 +401,7 @@ Management Cheat Sheet + NIST SP 800-57 Pt. 1.
 | ID | Secret                                | Normal cadence              | Triggers                                                          | Overlap window     | Outbox event                       | Annual review entry |
 | -- | ---                                   | ---                         | ---                                                               | ---                | ---                                | ---                 |
 | A  | age keys (per-dev / per-env / per-CI) | Prod: 12 m · dev: 24 m · CI: 12 m | schedule, onboarding / offboarding, leak-suspected               | None at runtime; sops files re-encrypted to new recipient set | `infra.secret_rotated{type:"age",scope:"prod"}` | yes |
-| B  | SurrealDB credentials                 | Root: 6-12 m · app-users: 90 d | schedule, leak-suspected, role-change                              | 7-14 d (dual-user pattern §6.4) | `infra.secret_rotated{type:"db_user",user:"…"}` | yes |
+| B  | PostgreSQL credentials (DATABASE_URL) | Superuser: 6-12 m · app roles: 90 d | schedule, leak-suspected, role-change                              | 7-14 d (dual-role pattern §6.4) | `infra.secret_rotated{type:"db_user",user:"…"}` | yes |
 | C  | Redis password                        | 90-180 d                    | schedule, leak-suspected                                          | Brief (≤ 1 min) restart window OR dual-pwd if Redis version supports | `infra.secret_rotated{type:"redis"}` | yes |
 | D  | Refresh-token HMAC pepper             | 6 m                         | schedule, leak-suspected                                          | 7 d versioned pepper (§6.1) | `auth.secret_rotated{type:"refresh_pepper"}` | yes |
 | E  | `accountSecret` column-encryption key | 12-24 m                     | schedule, leak-suspected, crypto-parameter change                  | 90 d escrow for old key (§6.2) | `auth.secret_rotated{type:"accountSecret_col_key",version:N}` | yes (+ migration report) |
@@ -555,40 +597,48 @@ or leak-suspected.
 rotation; the application doesn't know which age key was used
 to decrypt at startup.
 
-### 6.4 SurrealDB credential rotation (B) — dual-user pattern
+### 6.4 PostgreSQL credential rotation (B) — dual-role pattern
 
 **Pattern**: create a new user, deploy the app with the new
 credentials, then revoke the old user after the overlap window.
 
 **Procedure** (~15-30 minutes elapsed):
 
-1. Connect to SurrealDB as root: `surreal sql --user root ...`.
-2. Create a new user with the same permissions:
-   ```surql
-   DEFINE USER app_rw_v2 ON DATABASE PASSWORD "<new-password>"
-     ROLES OWNER;  -- or the scoped role per ADR-0019
+1. Connect to PostgreSQL as superuser: `psql "$DATABASE_URL_ADMIN"`
+   (or `psql -U postgres`).
+2. Create a new role with the same grants:
+   ```sql
+   CREATE ROLE app_rw_v2 LOGIN PASSWORD '<new-password>';
+   GRANT app_rw TO app_rw_v2;
+   -- or replicate scoped grants per ADR-0019, e.g.:
+   --   GRANT USAGE ON SCHEMA app TO app_rw_v2;
+   --   GRANT SELECT, INSERT, UPDATE, DELETE
+   --     ON ALL TABLES IN SCHEMA app TO app_rw_v2;
    ```
 3. Edit `secrets/prod/db.enc.yaml`:
    ```yaml
-   surreal:
-     users:
-       app_readwrite:
-         username: app_rw_v2  # was app_rw
-         password: "<new>"
+   postgres:
+     app_rw:
+       username: app_rw_v2     # was app_rw
+       password: "<new>"
+     dsn: "<new>"               # rebuilt DATABASE_URL with new creds
    ```
-4. Commit + push + CI deploys. The app now connects as `app_rw_v2`.
+4. Commit + push + CI deploys. The app (Drizzle) now connects as `app_rw_v2`.
 5. Wait **7-14 days** (long enough for any in-flight connection
    to drain).
-6. Revoke the old user:
-   ```surql
-   REMOVE USER app_rw ON DATABASE;
+6. Drop the old role:
+   ```sql
+   REASSIGN OWNED BY app_rw TO app_rw_v2;
+   DROP OWNED BY app_rw;
+   DROP ROLE app_rw;
    ```
 7. Emit `infra.secret_rotated{type:"db_user",user:"app_readwrite"}`
-   outbox event.
+   outbox event (event shape unchanged — stable consumer contract).
 
-For SurrealDB **root** rotation (rare, 6-12 m cadence), same
-pattern but for the root user. The new root is configured in
-sops + Dokploy; the old root revoked after the overlap.
+For the PostgreSQL **superuser** rotation (rare, 6-12 m cadence),
+same dual-role pattern but for the `postgres` superuser. The new
+superuser is configured in sops + Dokploy; the old one dropped
+after the overlap.
 
 ## 7. CI + Dokploy secret-injection — zero-secret CI
 
@@ -930,9 +980,9 @@ Reference: Sigstore 2026 SLA + community status page.
 Initial list per F1 §5.6 + F2 §10:
 
 - `@simplewebauthn/server` + `@simplewebauthn/browser` (WebAuthn)
-- `argon2` (libsodium-backed Node native addon)
+- `@node-rs/argon2` (prebuilt Rust/NAPI Argon2id — auth-flows §10.3)
 - `argon2-browser` (post-MVP, F5 portable export)
-- `surrealdb` (official JS client)
+- `pg` + `drizzle-orm` / `drizzle-kit` (PostgreSQL driver + ORM per ADR-0021)
 - `workbox-*` packages (Service Worker tooling)
 - `dexie` (IndexedDB)
 - `zod` (validation across server functions)
@@ -1035,7 +1085,7 @@ When pinning a transitive dep for security:
 | Drill                              | Cadence       | Output location                                            |
 | ---                                | ---           | ---                                                        |
 | Redis-only restore                 | Monthly       | `docs/40-Execution/restore-drills/YYYY-MM-DD-redis.md`     |
-| SurrealDB-only restore             | Semi-annually | `docs/40-Execution/restore-drills/YYYY-MM-DD-surrealdb.md` |
+| PostgreSQL-only restore            | Semi-annually | `docs/40-Execution/restore-drills/YYYY-MM-DD-postgres.md`  |
 | age-key recovery from paper backup | Annually      | `docs/40-Execution/restore-drills/YYYY-MM-DD-age-key.md`   |
 | Full-system restore from snapshot  | Quarterly     | `docs/40-Execution/restore-drills/YYYY-MM-DD-full.md`      |
 | DR tabletop scenarios              | Annually      | `docs/40-Execution/restore-drills/YYYY-MM-DD-tabletop.md`  |
@@ -1061,15 +1111,21 @@ into a fresh Redis instance and that session lookups work.
 6. If failure, open a Linear incident ticket + investigate
    before next deploy.
 
-### 11.3 SurrealDB restore drill
+### 11.3 PostgreSQL restore drill
 
-1. Spin up a fresh SurrealDB instance.
-2. `surreal import <latest-weekly-dump.surql>`.
-3. Verify schema integrity: `INFO FOR NS soccer_manager`,
-   `INFO FOR DB platform`, `INFO FOR TABLE user`.
+1. Spin up a fresh PostgreSQL instance (same major version + config).
+2. `pg_restore -d soccer_manager <latest-weekly-dump>` (or
+   `psql -d soccer_manager < dump.sql` for plain-text dumps).
+3. Verify schema integrity:
+   - `\dn` — confirm `public` and any `save_*` schemas (ADR-0021
+     schema-per-save) are present.
+   - `\dt public.*` — confirm platform tables (`user`, `device`,
+     `session`, `save_registry`, `mp_group`, `outbox_event`,
+     `consumer_event_offset`, `catalog_*`).
+   - `\d public.user` — confirm columns + CHECK constraints.
 4. Sample queries:
    - Known `user` row → expect to find it.
-   - Known `outbox_event` → verify shape.
+   - Known `outbox_event` → verify shape (UUIDv7 PK + JSONB payload).
    - Known `device` → verify schema.
 5. F5 envelope decrypt test: pick a known test user, attempt to
    decrypt their `account_secret_ciphertext` with the test
@@ -1109,7 +1165,7 @@ into a fresh Redis instance and that session lookups work.
 | 2        | Hetzner VM hardware failure                                    | Restore from latest snapshot into a new VM (RTO < 2 h, RPO ≤ 24 h)                                    |
 | 3        | Hetzner Nuremberg region outage                                | Restore into Falkenstein or Helsinki using cross-region snapshot copy                                  |
 | 4        | Ransomware on dev laptop; age key compromised                  | Tier-1 leak response per §9.4; rotate all sops files; verify no production credentials exposed         |
-| 5        | SurrealDB corruption                                           | Restore from weekly dump; replay outbox events from the last 7 days; force re-auth on all sessions     |
+| 5        | PostgreSQL corruption                                          | Restore from latest pg_dump + WAL/PITR; replay outbox events from the last 7 days; force re-auth on all sessions |
 | 6        | Redis lost (AOF corrupted, no backup)                          | Accepted per F3 §3.2: sessions all invalidated; users must re-sign-in                                  |
 
 Each tabletop exercise:
@@ -1346,7 +1402,7 @@ Six focused Perplexity-sonar-pro queries, 2026-05-18, total
    for npm + `pnpm.overrides` + `SECURITY_OVERRIDES.md` + SLSA
    target.
 6. Backup + recovery drill schedule + per-drill recipe (Redis
-   monthly, SurrealDB semi-annually, age annually, full
+   monthly, PostgreSQL semi-annually, age annually, full
    quarterly) + 6 DR tabletop scenarios + backup verification.
 
 Raw transcripts not committed (ephemeral); citations preserved

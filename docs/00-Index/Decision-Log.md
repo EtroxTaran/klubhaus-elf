@@ -22,7 +22,7 @@ explicitly before implementation.
 
 ## Accepted / drafted ADRs (Wave 1)
 
-- [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]]
+- [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]] — **Superseded 2026-05-19 by ADR-0021**. SurrealDB-as-primary / React-Context / minimal-keyframes parts retired; do not implement.
 - [[../10-Architecture/09-Decisions/ADR-0002-offline-first]] — superseded by ADR-0020 for MVP scope
 - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
 - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
@@ -33,6 +33,45 @@ explicitly before implementation.
 - [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]]
 - [[../10-Architecture/09-Decisions/ADR-0010-design-system]] — Design system + Storybook showcase as visual reference; agents must consult before changing UI. Accepted 2026-05-16 (main track).
 - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] — Hybrid-online MVP with offline-ready architecture. Accepted 2026-05-18.
+
+## Stack revision (2026-05-19, deep tech-stack review)
+
+- [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]] — **Supersedes ADR-0001.** Hybrid DB: **PostgreSQL + Drizzle** is the system of record; SurrealDB deferred to an optional additive realtime/graph engine behind an interface. State: TanStack Query (server) + **Zustand v5** (client/sim) — not TanStack Store. **Zod 4** (+ Zod Mini). All-in TanStack data layer (Query/Table/Virtual/Form). All deps pinned + Renovate. TanStack Start/React/Tailwind/Dexie/Biome/Vitest/Playwright/pnpm retained. Accepted 2026-05-19.
+- [[../10-Architecture/09-Decisions/ADR-0022-animation-game-feel]] — **Motion** (UI/gesture/layout, `m`+LazyMotion) + **GSAP** (`@gsap/react`, choreography/canvas); Tailwind keyframes for micro-states. Retires the "minimal keyframes only" stance. Accepted 2026-05-19.
+- [[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]] — `RealtimeTransport` interface; **SSE** (TanStack Start) at MVP, **Centrifugo** the planned swap-in for guaranteed delivery/presence/bidirectional. Decouples realtime from the DB. Accepted 2026-05-19.
+- [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]] — `MatchRenderer` interface + typed frame-snapshots; **Canvas 2D** first (GSAP-tweened), **PixiJS v8** the planned contained-swap effects upgrade. Accepted 2026-05-19.
+- [[../10-Architecture/09-Decisions/ADR-0025-mobile-delivery]] — Responsive PWA stays source of truth; thin **Capacitor** shell is the planned native-push path (iOS PWA push unfit; EU iOS gets none). Accepted 2026-05-19 (research default; reversible).
+- [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]] — **Amended 2026-05-19**: MVP profile trimmed to Loki+Prometheus+Grafana+Alloy+GlitchTip+Cosign; **Tempo/Mimir deferred** (re-add trigger documented). Decision unchanged.
+- [[../30-Implementation/auth-flows]] — **Corrected 2026-05-19**: F2 already locked Argon2id (review premise was wrong); only refinement is library `argon2` → `@node-rs/argon2`. No supersede.
+
+### Wave 2 — Groundwork (2026-05-19)
+
+- [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]] — Pins the engine↔renderer seam in a new `packages/match-contract` leaf package. Coordinate normalisation, 17→6 event-kind mapping (`chance` removed, `save` added), `MatchFrame` is derived-not-persisted via `MatchWorldStateTracker`, batching/cadence decoupled, immutable frames, only `competitive-full` + `interactive-standard` render at MVP. Referenced by ADR-0003 + ADR-0024 (the latter amended in-place). Accepted 2026-05-19.
+- [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] — **Supersedes ADR-0004.** Schema-per-save (`save_<uuidv7hex>`) with `QueryGateway.withSave` setting `LOCAL search_path`; Drizzle as single source of truth + generated standalone Zod mirror; A2 lazy per-save migrations driven by `save_registry.schema_version`; branded opaque `uuid` cross-context refs (no FKs across context boundaries); junction tables with surrogate UUIDv7 PK for RELATE-style edges; integer-only numeric mapping table. Accepted 2026-05-19.
+- [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]] — **Supersedes ADR-0013.** Same-Postgres-transaction outbox; publisher hybrid polling-floor + `LISTEN/NOTIFY` (polling = correctness floor, NOTIFY = latency hint); native declarative range partitioning by month for the cold archive; fan-out via [[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]] (SSE → Centrifugo), never direct. Accepted 2026-05-19.
+- [[../10-Architecture/09-Decisions/ADR-0004-data-model]] — **Superseded 2026-05-19 by ADR-0027.** Historical SurrealDB-specific data-model mechanics; substrate-agnostic invariants carried forward in ADR-0027. Do not implement.
+- [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]] — **Superseded 2026-05-19 by ADR-0028.** Historical SurrealDB + Redis-Streams outbox substrate; transactional-outbox pattern carried forward in ADR-0028. Do not implement.
+- [[../30-Implementation/secrets-management]] — **Amended 2026-05-19** (F11 substrate): Category B SurrealDB credentials → PostgreSQL `DATABASE_URL` + roles; `.sops.yaml` unchanged (`dsn:` matches existing `encrypted_regex`); §6.4 dual-role recipe + §11.3 PostgreSQL restore drill. Decision unchanged.
+- [[../30-Implementation/surrealdb-integration]] — **Superseded 2026-05-19**; replaced by [[../30-Implementation/postgres-drizzle-integration]]. Do not implement.
+- [[../30-Implementation/postgres-drizzle-integration]] — **New 2026-05-19**: binding implementation spec for Drizzle migrations, `QueryGateway`, `withOutbox`, CI drift gate, isolation tests.
+- [[../60-Research/surrealdb-schema-patterns]] — **Historical (status: superseded) 2026-05-19**; intent carried forward into ADR-0027.
+
+### Stack-revision disposition 2026-05-19 (no promotions)
+
+The six open ADRs ADR-0006 / 0008 (`draft`, Wave-2 research-blocked) and
+ADR-0012 / 0014 / 0015 / 0016 (`proposed`, owner-review-blocked) received an
+informational "Stack-revision impact" banner so the graph isn't silently
+inconsistent with ADR-0021. **None** were promoted (owner directive: "stop
+with reviews at the moment"); status and binding are unchanged. The gate
+remains owner review (currently paused) / Wave-2 research closure — not the
+stack.
+
+- [[../10-Architecture/09-Decisions/ADR-0006-i18n]] — banner 2026-05-19, kept parked. No substrate change on promotion.
+- [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] — banner 2026-05-19, kept parked. Refine viewport/native-shell against ADR-0024/0025 on promotion.
+- [[../10-Architecture/09-Decisions/ADR-0012-async-cadence-models]] — banner 2026-05-19, kept parked. Cadence persistence → Postgres on promotion.
+- [[../10-Architecture/09-Decisions/ADR-0014-state-machines]] — banner 2026-05-19, kept parked. Persistence → Postgres; event emission via the ADR-0028 outbox on promotion.
+- [[../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming]] — banner 2026-05-19, kept parked. Transport → SSE/Centrifugo per ADR-0023; frames per ADR-0026 on promotion.
+- [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]] — banner 2026-05-19, kept parked. Pack storage → Postgres on promotion; ADR-0007 IP-naming gate still applies.
 
 ## Accepted ADRs (Wave 2/3 promotion track)
 

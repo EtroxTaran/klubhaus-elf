@@ -3,17 +3,25 @@ title: ADR-0008 Mobile-first UI
 status: draft
 tags: [adr, ui]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-05-19
 type: adr
 binding: false
 supersedes:
 superseded_by:
-related: [[../../60-Research/research-wave-2-gaps]]
+related: [[../../60-Research/research-wave-2-gaps]], [[ADR-0021-revised-tech-stack]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0025-mobile-delivery]]
 ---
 
 > **DRAFT — do not implement from this ADR.** Blocked on Research Wave 2
 > ([[../../60-Research/research-wave-2-gaps]]). Direction below is current
 > intent, not an accepted decision.
+
+> **STACK-REVISION IMPACT 2026-05-19 ([[ADR-0021-revised-tech-stack]] + ADR-0023/0024/0025).**
+> Informational only — status (`draft`) and decision are **unchanged**; do not
+> implement. On promotion the substrate amendment below applies: *refine
+> viewport/native-shell sections against [[ADR-0025-mobile-delivery]] (Capacitor)
+> + [[ADR-0024-match-renderer-abstraction]] (renderer); responsive-PWA-first
+> stance is consistent with ADR-0025, no contradiction.*
+> Disposition: **keep parked** (owner directive 2026-05-19).
 
 # ADR-0008: Mobile-first UI Approach
 

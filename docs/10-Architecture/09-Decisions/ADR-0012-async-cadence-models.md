@@ -3,13 +3,21 @@ title: ADR-0012 Async Multiplayer Cadence Models (Fixed + Dynamic)
 status: proposed
 tags: [adr, architecture, async, multiplayer, cadence]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-19
 type: adr
 binding: false
-related: [[../../60-Research/async-multiplayer-research]], [[../../50-Game-Design/async-multiplayer-private-group]], [[../state-machines/league-week]]
+related: [[../../60-Research/async-multiplayer-research]], [[../../50-Game-Design/async-multiplayer-private-group]], [[../state-machines/league-week]], [[ADR-0021-revised-tech-stack]]
 ---
 
 # ADR-0012: Async Multiplayer Cadence Models (Fixed + Dynamic)
+
+> **STACK-REVISION IMPACT 2026-05-19 ([[ADR-0021-revised-tech-stack]] + ADR-0023/0024/0025).**
+> Informational only — status (`proposed`) and decision are **unchanged**; do not
+> implement. On promotion the substrate amendment below applies: *cadence/season-
+> boundary logic is substrate-neutral; cadence-state persistence → PostgreSQL
+> per [[ADR-0021-revised-tech-stack]].*
+> Disposition: **keep parked** (owner directive 2026-05-19; gate is owner
+> review, currently paused — not the stack).
 
 ## Status
 

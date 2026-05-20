@@ -12,6 +12,19 @@ related: [[../10-Architecture/07-Deployment]], [[observability-runbook]], [[clie
 
 # Dokploy Deployment
 
+> **Confirmed decision 2026-05-19 — Nico (owner) ([[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]], [[../10-Architecture/11-Risks]]).**
+> Dokploy on the existing Hetzner machine **stays** — this is a deliberate,
+> owner-confirmed choice, no longer "research default / reconsider". Dokploy
+> runs Docker Swarm under the hood; on a single node we accept Swarm footguns
+> (silent failed deploys, stale-`:latest`-image bug, single Traefik ingress) in
+> exchange for its DB/volume backup-to-S3 + dashboard UX. The following
+> mitigations are therefore **mandatory** (the price of keeping Dokploy): hard
+> disk/retention caps on observability data; tested off-box EU backups (untested
+> backup = no backup); external (out-of-box) uptime alerting; a rehearsed
+> restore runbook. Kamal 2 / Compose+Caddy is retained only as a **fallback if
+> the mandatory mitigations prove insufficient in practice** — not a planned
+> migration.
+
 ## Purpose
 
 This note describes how the Docker/Dokploy deployment should host the app

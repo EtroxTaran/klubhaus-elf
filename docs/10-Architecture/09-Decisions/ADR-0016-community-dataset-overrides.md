@@ -3,13 +3,22 @@ title: ADR-0016 Community Datasets via Versioned Override Packs
 status: proposed
 tags: [adr, architecture, data, modding, community]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-19
 type: adr
 binding: false
-related: [[../../60-Research/regulations-and-pyramids-research]], [[../../50-Game-Design/community-editor-and-datasets]], [[ADR-0004-data-model]], [[ADR-0007-naming-schema]]
+related: [[../../60-Research/regulations-and-pyramids-research]], [[../../50-Game-Design/community-editor-and-datasets]], [[ADR-0004-data-model]], [[ADR-0007-naming-schema]], [[ADR-0021-revised-tech-stack]]
 ---
 
 # ADR-0016: Community Datasets via Versioned Override Packs
+
+> **STACK-REVISION IMPACT 2026-05-19 ([[ADR-0021-revised-tech-stack]] + ADR-0023/0024/0025).**
+> Informational only — status (`proposed`) and decision are **unchanged**; do not
+> implement. On promotion the substrate amendment below applies: *override-pack
+> versioning and manifest model unchanged; **pack storage/query substrate →
+> PostgreSQL** per [[ADR-0021-revised-tech-stack]] (not SurrealDB);
+> [[ADR-0007-naming-schema]] IP-naming gate still applies.*
+> Disposition: **keep parked** (owner directive 2026-05-19; gate is owner
+> review, currently paused — not the stack).
 
 ## Status
 
