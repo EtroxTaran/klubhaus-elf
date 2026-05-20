@@ -79,6 +79,7 @@ export function Pitch2D({ away, home, northLabel, southLabel, className, label }
       <rect x="0" y="0" width="360" height="220" fill="var(--c-ok)" />
       {Array.from({ length: 10 }).map((_, i) => (
         <rect
+          // biome-ignore lint/suspicious/noArrayIndexKey: fixed pitch-stripe count never reorders
           key={i}
           x="0"
           y={i * 22}

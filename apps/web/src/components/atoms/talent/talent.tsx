@@ -18,6 +18,7 @@ export function Talent({ n, max = 4, className }: TalentProps) {
     >
       {Array.from({ length: max }).map((_, i) => (
         <Star
+          // biome-ignore lint/suspicious/noArrayIndexKey: fixed-length positional star row
           key={i}
           size={11}
           className={i < n ? 'fill-accent text-accent' : 'text-rule'}

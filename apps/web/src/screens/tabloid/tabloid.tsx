@@ -36,6 +36,7 @@ function TabloidPhoto({
         />
         <g fill="#fff" opacity=".18">
           {Array.from({ length: 50 }).map((_, i) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: decorative fixed-length crowd-dot loop
             <circle key={i} cx={6 + i * 6.4} cy={155 + (i % 3) * 4} r="2.8" />
           ))}
         </g>

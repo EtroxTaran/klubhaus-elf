@@ -47,6 +47,7 @@ export function StandSideView({ stand, className }: StandSideViewProps) {
         if (isVip) {
           return (
             <rect
+              // biome-ignore lint/suspicious/noArrayIndexKey: stand row index is the stable positional identity
               key={i}
               x={x + 1}
               y={y - g.stepH + 2}
@@ -61,6 +62,7 @@ export function StandSideView({ stand, className }: StandSideViewProps) {
         }
         return (
           <line
+            // biome-ignore lint/suspicious/noArrayIndexKey: stand row index is the stable positional identity
             key={i}
             x1={x + 2}
             y1={y - 2}
