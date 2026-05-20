@@ -181,7 +181,11 @@ Product targets enforced via CI + RUM:
 Match render policy:
 
 - **No 3D match view** is on the roadmap, ever (permanent product
-  decision, gap D9).
+  decision, gap D9). Scope precised 2026-05-20 by
+  [[09-Decisions/ADR-0029-3d-presentation-layer]]: the ban applies to
+  the live match render pipeline only; a 3D **Presentation Layer**
+  (isometric stadium view, event cutscenes, static backdrops) is
+  permitted under that ADR with mandatory floor-tier 2D fallback.
 - Two modes only: Text & Stats (first-class, Floor default) and
   2D canvas (primary, Standard / Premium default). Canvas frame cap
   30 fps on Standard, 60 fps on Premium.

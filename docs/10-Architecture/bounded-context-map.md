@@ -3,10 +3,10 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-05-18
+updated: 2026-05-19
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[05-Building-Blocks]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[05-Building-Blocks]], [[context-contracts/README]], [[../../30-Implementation/mvp-implementation-roadmap]]
 ---
 
 # Bounded Context Map
@@ -19,6 +19,10 @@ network-transparent.
 
 > Decision authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]] —
 > accepted 2026-05-16.
+
+Per-context public contracts and code paths:
+[[context-contracts/README]]. MVP build order:
+[[../../30-Implementation/mvp-implementation-roadmap]].
 
 **Service-ready** means: although MVP ships as one process, every
 context's contract is designed as if it could be running on its own
@@ -238,3 +242,12 @@ not MVP requirements.
   orchestration. No generic random-event bounded context.
 - Spectator stream: own context or in Match? Own context (Watch Party)
   because it has independent state machine and scheduling.
+- 3D Presentation Layer (post-MVP, iso-stadium / cutscenes /
+  backdrops) is **not** a bounded context. It is a UI/presentation
+  adapter that consumes existing read-models and domain events
+  ([[09-Decisions/ADR-0029-3d-presentation-layer]],
+  [[../30-Implementation/3d-presentation-architecture]]). Renderer
+  inputs cross the boundary only as immutable JSON `SceneDescriptor`
+  objects produced by `apps/web/src/lib/scene-mapper/*` adapters; no
+  domain command, query, event or storage is owned by the renderer.
+  The match renderer itself is governed by [[09-Decisions/ADR-0024-match-renderer-abstraction]] (Canvas 2D → PixiJS v8 WebGL behind [[09-Decisions/ADR-0026-match-frame-contract]]) — not by ADR-0029.

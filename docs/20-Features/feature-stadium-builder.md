@@ -42,7 +42,19 @@ signals and a simple upgrade path if needed. Full builder depth can follow.
 
 - Plot-by-plot SimCity layout (Expert tier; Phase 2).
 - Multi-stadium ownership.
-- 3D stadium view.
+
+## Presentation layer (Phase 2)
+
+A 3D isometric stadium / campus view is on the post-MVP roadmap as
+part of the **3D Presentation Layer**, accepted 2026-05-20 in
+[[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] and
+detailed in [[feature-3d-presentation-layer]]. Capacity-tier upgrades
+and module placements defined here drive the
+`iso-stadium` `SceneDescriptor` consumed by the renderer. The existing
+2D composite family under
+`apps/web/src/components/composites/stadium/**` is preserved as the
+mandatory floor-tier / reduced-motion / Save-Data fallback. Live match
+render remains 2D-only.
 
 ## UI tiers
 
