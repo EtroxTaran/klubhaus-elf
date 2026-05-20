@@ -117,6 +117,76 @@ The Wave 2 ingestion proposes ADR-0010..ADR-0016 (see
 - Watch parties via spectator snapshot streaming with delay.
 - Community datasets via versioned override packs.
 
+## Active Risks (Pre-Mortem 2026-05-20, 3 Iterationen)
+
+A 6-month / 10.000-player pre-mortem was logged on 2026-05-20 covering
+all major domains across **3 iterations**:
+
+- **Iter 1**: architecture, tech & ops, gameplay, monetization (40 findings).
+- **Iter 2**: security & integrity (import/export integrity, command signing,
+  save trust levels), future-scope BYOC (distributed match compute), cross-
+  cutting threat-model, Single-Player-Foundation-Addenda in original reports
+  (+22 findings).
+- **Iter 3**: 12 deep-dive reports — live-ops & client-telemetry, legal/
+  consumer-law/tax (beyond DSGVO), i18n/l10n, accessibility (WCAG 2.2 AA /
+  EAA-2025 / BFSG), AI/LLM dependency & fallbacks, long-term game-balance,
+  community/moderation/UGC, brand/PR/crisis-comms + re-branding, browser/
+  device/storage matrix, test-strategy-depth, vendor-lifecycle & sustainability,
+  responsible-gaming & open-source (+129 findings).
+
+**~191 findings total** carrying stable IDs (`PM-2026-05-20-XX-F-NN`) with
+**P0–P4 priority tagging** — citable in commits, PRs and ADRs as
+`Addresses PM-…`.
+
+**Fresh-agent entry points:** [[../60-Research/pre-mortem/execution-index]]
+groups all findings into **15 expertise categories** (SEC, BACKEND, PLATFORM,
+FRONTEND, DETERMINISM, GAMEDESIGN, TEST, A11Y, LEGAL, PRODUCT, AI, COMM, BRAND,
+FOUNDER, SUSTAIN) — each category is a self-contained briefing for a single
+agent to draft documented solutions (ADRs / GDDRs / Implementation-Specs /
+Runbooks). [[../60-Research/pre-mortem/prioritization-matrix]] shows P×I
+heat-map, Score×Effort levers, Cross-Cutting-Cluster A–G and Sprint allocation
+T-90 → T-0.
+
+**P0 — Pre-Launch-Blocker (13 findings):**
+- [[../60-Research/pre-mortem/PM-2026-05-20-01-architecture#PM-2026-05-20-01-F-02|01-F-02]] — SurrealDB single-node SPOF (score 25)
+- [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-04|02-F-04]] — Backups never restored (score 25)
+- [[../60-Research/pre-mortem/PM-2026-05-20-04-monetization#PM-2026-05-20-04-F-01|04-F-01]] — no monetization hypothesis (score 25)
+- [[../60-Research/pre-mortem/PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-01|05-F-01]] — save authenticates key knowledge, not provenance (score 25)
+- [[../60-Research/pre-mortem/PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02|05-F-02]] — commands not signed / replay-protected (score 25)
+- [[../60-Research/pre-mortem/PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-05|08-F-05]] / [[../60-Research/pre-mortem/PM-2026-05-20-14-brand-pr-and-crisis-comms#PM-2026-05-20-14-F-01|14-F-01]] — trademark collision SEGA/SI (score 25, **Rebrand vor Public-Launch**)
+- [[../60-Research/pre-mortem/PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-06|08-F-06]] — UGC DFL trademark / club logos (score 20)
+- [[../60-Research/pre-mortem/PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-11|08-F-11]] / [[../60-Research/pre-mortem/PM-2026-05-20-13-community-moderation-and-ugc#PM-2026-05-20-13-F-01|13-F-01]] — DSA Art. 16 Notice-and-Action SLA (score 25)
+- [[../60-Research/pre-mortem/PM-2026-05-20-10-accessibility-and-inclusion#PM-2026-05-20-10-F-01|10-F-01]] — WCAG 2.5.7 Dragging Movements (Tactic-Board ohne Tastatur-Alternative, score 25)
+- [[../60-Research/pre-mortem/PM-2026-05-20-15-browser-device-storage-matrix#PM-2026-05-20-15-F-01|15-F-01]] — iOS-Safari 7-Tage-Eviction (score 25, ~30 % Mobile-Markt Datenverlust)
+- [[../60-Research/pre-mortem/PM-2026-05-20-17-vendor-lifecycle-and-sustainability#PM-2026-05-20-17-F-07|17-F-07]] — CRA-SBOM-Pflicht (score 25, **Stichtag 11.09.2026 Vuln-Reporting**)
+
+**Regulatorische Stichtage 2026/2027:**
+- **2026-08-02**: EU AI Act Art. 50 (Kennzeichnung synthetic content)
+- **2026-09-11**: CRA Vulnerability-Reporting an ENISA (24 h ab CVSS ≥ 9.0) — **harte Pflicht**
+- **2026-12-02**: AI Act Art. 50 Bestandssysteme
+- **Q4 2026**: EU Digital Fairness Act Proposal erwartet
+- **2027-12-11**: EU CRA volle Anwendbarkeit (SBOM, 5-Jahre-Updates) — **harte Pflicht**
+
+**Leitsatz.** Single-player ist das Fundament — aber jedes Datenformat, jeder
+Command-Pfad und jede State-Übergangsfunktion wird so entworfen, dass sie auch
+unter dem strengeren Vertrauensmodell von async Multiplayer und (zukünftig)
+Distributed Match Compute trägt. **Ein Stack mit zuschaltbarem Trust-Level.**
+**MVP-Linie** (deliberate omissions): kein Runtime-LLM, kein Image-Upload, kein
+Free-Form-Chat, kein aktives Marketing, kein Cloudflare-Workers-Lock, keine
+Lootboxes, keine Daily-Login-Streaks.
+
+**BYOC (Distributed Match Compute) status:** future-scope. Decision-Gate
+defined in [[../60-Research/pre-mortem/PM-2026-05-20-06-distributed-match-compute]];
+all 10 BYOC findings are `accepted-risk` until gate passes (compute > 500 €/Mo
++ external threat-model-review + DPIA + 1 quarter server-only baseline).
+
+**~15 vorgeschlagene ADRs** (0026–0040) sammeln sich aus dem Cluster — siehe
+[[../60-Research/pre-mortem/findings-registry]] § ADR-Vorschläge.
+
+Cluster entry: [[../60-Research/pre-mortem/00-index]]. Threat-model:
+[[../60-Research/pre-mortem/threat-model]]. Aggregated status mit
+P0–P4-Sortierung: [[../60-Research/pre-mortem/findings-registry]].
+
 ## Active Vault Rules
 
 - [../90-Meta/vault-governance.md](../90-Meta/vault-governance.md)

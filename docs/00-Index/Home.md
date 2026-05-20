@@ -72,6 +72,19 @@ ADRs are the source for technical shape.
 - [[../60-Research/00-summary]] — start here, then [[Research-Map]] for
   locked Wave 3 notes, including narrative, AI managers, match/runtime,
   performance, player strength, transfer market and systemic events.
+- [[../60-Research/pre-mortem/00-index]] — Pre-Mortem 2026-05-20 (3 Iterationen,
+  14 Reports + Threat-Model + Registry, ~191 Findings). **Iter 1**: 4 Original-
+  Reports (Architecture, Tech-Ops, Gameplay, Monetization). **Iter 2**: Security
+  & Integrity, BYOC Future-Scope, Threat-Model, Single-Player-Foundation-Addenda.
+  **Iter 3**: 12 Deep-Dive-Reports (Live-Ops, Legal/Tax, i18n, Accessibility,
+  AI/LLM, Long-Term-Balance, Community/UGC, Brand/PR + Re-Branding, Browser/
+  Storage, Test-Strategy, Vendor/ESG, Responsible-Gaming/OSS). Alle Findings mit
+  `PM-2026-05-20-XX-F-NN`-IDs + **P0–P4-Prioritäts-Tag** zur Verkettung mit Fixes.
+  Siehe [[../60-Research/pre-mortem/findings-registry]] für Status (sortiert nach
+  Priorität), [[../60-Research/pre-mortem/threat-model]] für Trust-Boundaries,
+  [[../60-Research/pre-mortem/prioritization-matrix]] für Hebel/Cluster und
+  [[../60-Research/pre-mortem/execution-index]] für 15 Expertise-Kategorien
+  (Briefings für frische Agenten zur Erarbeitung der Lösungen).
 
 ## Meta & process
 
