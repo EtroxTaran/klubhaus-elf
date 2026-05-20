@@ -14,12 +14,17 @@
     "apps/web": {
       // TanStack file-routes are reachable only through the gitignored
       // generated routeTree; server/sw/worker are standalone runtime entries.
+      // Stack-revision scaffolds (ADR-0023/0024, 2026-05-19): the renderer +
+      // transport interfaces are declared now and wired by the next
+      // engineering wave (match-view + inbox features).
       "entry": [
         "src/router.tsx",
         "src/routes/**/*.{ts,tsx}",
         "src/server.ts",
         "src/sw/register.ts",
-        "src/workers/service-worker.ts"
+        "src/workers/service-worker.ts",
+        "src/lib/match-renderer.ts",
+        "src/lib/realtime-transport.ts"
       ],
       "project": ["src/**/*.{ts,tsx}"],
       "ignoreUnresolved": ["./routeTree.gen"],
@@ -27,12 +32,28 @@
       "ignoreBinaries": ["vinxi"],
       // fontsource + tailwindcss: imported from app.css (knip skips CSS).
       // jsdom: consumed by the root vitest `web` project (environment: jsdom).
+      // Stack-revision deps (ADR-0021, 2026-05-19): declared and pinned now;
+      // consumed by the next engineering wave (TanStack Query persistence,
+      // Table/Virtual for league tables + squad lists, Zustand for client/
+      // sim state, Zod runtime validation, Motion + GSAP for game-feel,
+      // @node-rs/argon2 server-side per F2 §10.3).
       "ignoreDependencies": [
         "@fontsource-variable/newsreader",
         "@fontsource/inter",
         "@fontsource/jetbrains-mono",
         "tailwindcss",
-        "jsdom"
+        "jsdom",
+        "@tanstack/react-query",
+        "@tanstack/react-query-persist-client",
+        "@tanstack/react-table",
+        "@tanstack/react-virtual",
+        "@tanstack/react-form",
+        "gsap",
+        "@gsap/react",
+        "motion",
+        "zod",
+        "zustand",
+        "@node-rs/argon2"
       ]
     },
     "packages/ui": {
