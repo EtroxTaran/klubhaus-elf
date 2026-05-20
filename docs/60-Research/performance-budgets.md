@@ -355,6 +355,22 @@ Borrowed from Top Eleven / FC Mobile / Workbox best practices:
 a permanent product decision (Nico, 2026-05-17), not a "post-MVP"
 deferral.
 
+> **Scope precised 2026-05-20 by
+> [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]].**
+> The ban applies to the **live match render pipeline** (22 players,
+> ball, referee, live camera). A 3D **Presentation Layer** for the
+> isometric stadium / campus view, kuratierte Event-Cutscenes
+> (walkout, trophy lift, goal celebration) and static backdrops is
+> permitted under that ADR, gated by `SceneDescriptor` contract,
+> floor-tier 2D fallback, OffscreenCanvas worker render, draw-call
+> budget ≤ 150 and iOS context-loss layered recovery. The match
+> renderer itself is governed by
+> [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]]
+> (Canvas 2D → PixiJS v8 WebGL behind
+> [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]]);
+> the planned PixiJS upgrade is a 2D-pitch quality lift, not a 3D
+> scene, and remains consistent with the no-3D-match-render decision.
+
 Two match render modes:
 
 ### 6.1 Text & Stats mode (first-class)

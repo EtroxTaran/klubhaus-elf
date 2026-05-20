@@ -3,10 +3,10 @@ title: Current State
 status: current
 tags: [meta, current-state, execution, hot]
 created: 2026-05-16
-updated: 2026-05-18
+updated: 2026-05-19
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]]
 ---
 
 # Current State
@@ -70,6 +70,13 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   (new `packages/match-contract` leaf package, events-only engine, derived non-
   persisted frames, `chance` removed / `save` added).
 - **Mobile:** PWA + planned Capacitor shell ([[../10-Architecture/09-Decisions/ADR-0025-mobile-delivery]]).
+- **Presentation 3D layer (post-MVP, Phase 2):** Three.js + React Three Fiber
+  for isometric stadium / campus view + kuratierte Event-Cutscenes (walkout,
+  trophy lift, goal celebration) + static highlight backdrops
+  ([[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]). Lives
+  parallel to (not inside) the match renderer; gated by `SceneDescriptor`
+  contract + 2D fallback on Floor / `prefers-reduced-motion` / Save-Data /
+  iOS context-loss trip.
 - **Observability:** lean MVP profile; Tempo/Mimir deferred (ADR-0017 amended).
 - **Auth:** F2 already locked Argon2id (review premise was wrong); only library
   refined to `@node-rs/argon2`. Deps pinned + Renovate (no more `"latest"`).
@@ -1479,9 +1486,10 @@ Implementation should start from
     - Small (1 nation, 2 leagues, ~5 MB) - Floor default + forced.
     - Medium (3 nations, 6 leagues, ~15 MB) - Standard default.
     - Large (8 nations, 20 leagues, ~50 MB) - Premium default; Standard opt-in with warning.
-  - **Match render policy** - **no 3D match view on the roadmap, ever** (permanent product decision). Two modes only:
+  - **Match render policy** - **no 3D match view on the roadmap, ever** (permanent product decision; scope precised 2026-05-20 by [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] to cover live match rendering only). Two modes only:
     - **Text & Stats** (first-class, not a fallback): DOM list at 1-2 Hz, stats sidebar; default on Floor; user-selectable everywhere.
     - **2D canvas** (primary, mandatory): HTML Canvas 2D (NOT WebGL); 30 fps cap on Standard, 60 fps on Premium; 720p internal resolution, DPR clamp at 2.0.
+  - **3D Presentation Layer** (post-MVP, Phase 2, accepted 2026-05-20 via [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]) - Three.js + React Three Fiber for isometric stadium / campus view, kuratierte Event-Cutscenes (walkout, trophy lift, goal celebration) and static highlight backdrops. Gated by `SceneDescriptor` contract, mandatory 2D fallback on Floor / `prefers-reduced-motion` / Save-Data / iOS context-loss trip. Lives parallel to (not inside) the match renderer; match render itself follows [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]] (Canvas 2D → PixiJS v8 WebGL) behind [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]].
   - **Battery-saver / reduced-motion / data-saver** auto-honoured via `prefers-reduced-motion`, `navigator.connection.saveData`, `prefers-reduced-data`.
   - **CI perf gate** (Phase 1, MVP, mandatory): Lighthouse CI + Playwright + injected `web-vitals` library on every PR; bundle-size CI per the budgets; match-engine perf gate per D1; storage assertion per A2.
   - **Phase 2** (post-MVP): add LambdaTest 1-slot weekly real-device job (~€1.5 k/yr) on Galaxy A54 / Pixel 7a / iPhone SE 3-class hardware.
