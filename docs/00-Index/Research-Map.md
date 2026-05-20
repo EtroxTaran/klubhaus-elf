@@ -47,6 +47,8 @@ Tagging** in `findings-registry.md`.
 - [[../60-Research/pre-mortem/00-index]] — Cluster-Index, Heatmap, Cross-Cutting, Decision-Log
 - [[../60-Research/pre-mortem/threat-model]] — Trust-Boundaries Z0–Z5, STRIDE-Matrix, Crypto-Bausteine
 - [[../60-Research/pre-mortem/findings-registry]] — **~191 Findings mit P0–P4-Priorität**
+- [[../60-Research/pre-mortem/prioritization-matrix]] — P×I-Heatmap, Score×Effort-Hebel, Cross-Cutting-Cluster A–G, Regulatorische Deadlines, Sprint-Belegung
+- [[../60-Research/pre-mortem/execution-index]] — **15 Expertise-Kategorien** (SEC/BACKEND/PLATFORM/FRONTEND/DETERMINISM/GAMEDESIGN/TEST/A11Y/LEGAL/PRODUCT/AI/COMM/BRAND/FOUNDER/SUSTAIN) mit Briefings + Findings + Output-Artefakten für frische Agenten
 
 **Iteration 1 + Addenda:**
 - [[../60-Research/pre-mortem/PM-2026-05-20-01-architecture]] — 10 Findings + Iter-2-Addendum, max Score 25

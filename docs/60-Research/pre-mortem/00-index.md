@@ -31,6 +31,8 @@ related:
   - [[PM-2026-05-20-18-responsible-gaming-and-open-source]]
   - [[threat-model]]
   - [[findings-registry]]
+  - [[prioritization-matrix]]
+  - [[execution-index]]
   - [[../wave-3-gap-analysis]]
   - [[../../00-Index/Current-State]]
   - [[../../00-Index/Research-Map]]
@@ -42,6 +44,11 @@ related:
 > **Frage, die diese Übung beantwortet:** Was sind die wahrscheinlichsten Gründe, dass football-manager-x in sechs Monaten bei 10.000 Spielern gescheitert ist — und was tun wir *jetzt*, damit das nicht passiert?
 
 Diese Pre-Mortem ist ein **Intent-Layer**-Dokument (`binding: false`). Empfehlungen werden über ADRs/GDDRs ratifiziert, nicht direkt aus diesem Cluster implementiert.
+
+> **Frischer Agent? Start hier:**
+> - **[[execution-index]]** — 15 Expertise-Kategorien mit Briefings, Findings-Listen und erwarteten Output-Artefakten (ADRs / GDDRs / Implementation-Specs / Runbooks). Jede Kategorie ist self-contained genug für einen einzelnen Agent.
+> - **[[prioritization-matrix]]** — Risiko-Heatmap (P×I), Score×Effort-Hebel, Cross-Cutting-Cluster A–G, regulatorische Deadlines, Sprint-Belegung T-90→T-0.
+> - **[[findings-registry]]** — Status aller ~191 Findings, sortiert nach P0–P4.
 
 ## Cluster (3 Iterationen, 14 Reports + Threat-Model + Registry)
 
@@ -75,6 +82,8 @@ Diese Pre-Mortem ist ein **Intent-Layer**-Dokument (`binding: false`). Empfehlun
 | [[PM-2026-05-20-18-responsible-gaming-and-open-source]] | Responsible-Gaming + Open-Source-Strategy | 12 | 20 |
 
 | [[findings-registry]] | **Status-Tracking aller ~191 Findings mit P0–P4-Priorität** | — | — |
+| [[prioritization-matrix]] | **Heatmap P×I, Score×Effort-Hebel, Cross-Cutting-Cluster A–G, Regulatorische Deadlines, Sprint-Belegung T-90→T-0** | — | — |
+| [[execution-index]] | **15 Expertise-Kategorien (SEC, BACKEND, PLATFORM, FRONTEND, DETERMINISM, GAMEDESIGN, TEST, A11Y, LEGAL, PRODUCT, AI, COMM, BRAND, FOUNDER, SUSTAIN) — Briefings + Findings-Listen + Output-Artefakte für frische Agenten** | — | — |
 
 ## Annahmen
 

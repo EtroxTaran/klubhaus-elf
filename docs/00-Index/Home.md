@@ -81,7 +81,10 @@ ADRs are the source for technical shape.
   Storage, Test-Strategy, Vendor/ESG, Responsible-Gaming/OSS). Alle Findings mit
   `PM-2026-05-20-XX-F-NN`-IDs + **P0–P4-Prioritäts-Tag** zur Verkettung mit Fixes.
   Siehe [[../60-Research/pre-mortem/findings-registry]] für Status (sortiert nach
-  Priorität), [[../60-Research/pre-mortem/threat-model]] für Trust-Boundaries.
+  Priorität), [[../60-Research/pre-mortem/threat-model]] für Trust-Boundaries,
+  [[../60-Research/pre-mortem/prioritization-matrix]] für Hebel/Cluster und
+  [[../60-Research/pre-mortem/execution-index]] für 15 Expertise-Kategorien
+  (Briefings für frische Agenten zur Erarbeitung der Lösungen).
 
 ## Meta & process
 

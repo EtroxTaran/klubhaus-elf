@@ -138,6 +138,15 @@ all major domains across **3 iterations**:
 **P0–P4 priority tagging** — citable in commits, PRs and ADRs as
 `Addresses PM-…`.
 
+**Fresh-agent entry points:** [[../60-Research/pre-mortem/execution-index]]
+groups all findings into **15 expertise categories** (SEC, BACKEND, PLATFORM,
+FRONTEND, DETERMINISM, GAMEDESIGN, TEST, A11Y, LEGAL, PRODUCT, AI, COMM, BRAND,
+FOUNDER, SUSTAIN) — each category is a self-contained briefing for a single
+agent to draft documented solutions (ADRs / GDDRs / Implementation-Specs /
+Runbooks). [[../60-Research/pre-mortem/prioritization-matrix]] shows P×I
+heat-map, Score×Effort levers, Cross-Cutting-Cluster A–G and Sprint allocation
+T-90 → T-0.
+
 **P0 — Pre-Launch-Blocker (13 findings):**
 - [[../60-Research/pre-mortem/PM-2026-05-20-01-architecture#PM-2026-05-20-01-F-02|01-F-02]] — SurrealDB single-node SPOF (score 25)
 - [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-04|02-F-04]] — Backups never restored (score 25)

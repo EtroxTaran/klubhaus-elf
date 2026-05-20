@@ -110,3 +110,11 @@ covering all major domains across **3 iterations** for the
 **~191 findings total** with stable IDs (`PM-2026-05-20-XX-F-NN`) + **P0–P4
 priority tagging**. Cite via `Addresses PM-…` in commits, PRs, ADR-Frontmatter.
 Aggregated status sorted by priority lives in [[pre-mortem/findings-registry]].
+
+**Fresh-agent navigation:** [[pre-mortem/execution-index]] organises every
+finding into 15 expertise categories (SEC, BACKEND, PLATFORM, FRONTEND,
+DETERMINISM, GAMEDESIGN, TEST, A11Y, LEGAL, PRODUCT, AI, COMM, BRAND, FOUNDER,
+SUSTAIN), each with self-contained briefing + finding list + expected output
+artefacts. [[pre-mortem/prioritization-matrix]] gives P×I-heatmap,
+Score×Effort-lever, Cross-Cutting-Cluster A–G, regulatory deadlines and the
+T-90 → T-0 sprint allocation.
