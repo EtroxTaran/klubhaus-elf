@@ -7,8 +7,10 @@ import type { EngineEventType, MatchEventKind } from './types'
  * Returns `null` for events that are NOT surfaced as highlights (they still
  * affect entity positions via the frame builder).
  *
- * Exhaustive switch: adding a new engine event type breaks this at compile
- * time — intentional governance (ADR-0026 §3).
+ * Exhaustiveness is enforced at compile time by the union return type: adding
+ * a new variant to `EngineEventType` without a case here makes TypeScript
+ * reject the function (no ending return) — no runtime `default` arm needed
+ * (which would also be uncoverable by tests).
  */
 export function toMatchEventKind(t: EngineEventType): MatchEventKind | null {
   switch (t) {
@@ -37,10 +39,5 @@ export function toMatchEventKind(t: EngineEventType): MatchEventKind | null {
     case 'tactical_change':
     case 'misc':
       return null
-    default: {
-      // Compile-time exhaustiveness guard.
-      const _exhaustive: never = t
-      return _exhaustive
-    }
   }
 }
