@@ -17,6 +17,18 @@ related:
   - [[PM-2026-05-20-04-monetization]]
   - [[PM-2026-05-20-05-security-and-integrity]]
   - [[PM-2026-05-20-06-distributed-match-compute]]
+  - [[PM-2026-05-20-07-live-ops-and-client-telemetry]]
+  - [[PM-2026-05-20-08-legal-consumer-law-and-tax]]
+  - [[PM-2026-05-20-09-i18n-and-localization]]
+  - [[PM-2026-05-20-10-accessibility-and-inclusion]]
+  - [[PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
+  - [[PM-2026-05-20-12-long-term-balance-and-meta]]
+  - [[PM-2026-05-20-13-community-moderation-and-ugc]]
+  - [[PM-2026-05-20-14-brand-pr-and-crisis-comms]]
+  - [[PM-2026-05-20-15-browser-device-storage-matrix]]
+  - [[PM-2026-05-20-16-test-strategy-depth]]
+  - [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability]]
+  - [[PM-2026-05-20-18-responsible-gaming-and-open-source]]
   - [[threat-model]]
   - [[findings-registry]]
   - [[../wave-3-gap-analysis]]
@@ -31,18 +43,38 @@ related:
 
 Diese Pre-Mortem ist ein **Intent-Layer**-Dokument (`binding: false`). Empfehlungen werden über ADRs/GDDRs ratifiziert, nicht direkt aus diesem Cluster implementiert.
 
-## Cluster
+## Cluster (3 Iterationen, 14 Reports + Threat-Model + Registry)
 
+### Iteration 1 — Original 4 Domänen
 | Report | Domain | Findings | Höchster Score |
 |---|---|---|---|
 | [[PM-2026-05-20-01-architecture]] | Architektur | 10 (+Iter-2-Addendum) | 25 |
 | [[PM-2026-05-20-02-tech-and-ops]] | Tech & Ops & Security | 10 (+Iter-2-Addendum) | 25 |
 | [[PM-2026-05-20-03-gameplay]] | Gameplay | 10 (+Iter-2-Addendum) | 20 |
 | [[PM-2026-05-20-04-monetization]] | Monetarisierung & Compliance | 10 (+Iter-2-Addendum) | 25 |
-| [[PM-2026-05-20-05-security-and-integrity]] | Security & Integrity (Iter 2) | 12 | 25 |
-| [[PM-2026-05-20-06-distributed-match-compute]] | Distributed Match Compute / BYOC (Iter 2, Future-Scope) | 10 (accepted-risk) | 20 |
-| [[threat-model]] | Trust-Boundaries & STRIDE (Iter 2) | — | — |
-| [[findings-registry]] | Status-Tracking aller 62 Findings | — | — |
+
+### Iteration 2 — Security & BYOC + Threat-Model
+| [[PM-2026-05-20-05-security-and-integrity]] | Security & Integrity | 12 | 25 |
+| [[PM-2026-05-20-06-distributed-match-compute]] | Distributed Match Compute / BYOC (Future-Scope) | 10 (accepted-risk) | 20 |
+| [[threat-model]] | Trust-Boundaries & STRIDE-Matrix | — | — |
+
+### Iteration 3 — Deep-Dive Coverage (12 weitere Domänen)
+| Report | Domain | Findings | Höchster Score |
+|---|---|---|---|
+| [[PM-2026-05-20-07-live-ops-and-client-telemetry]] | Live-Ops & Client-Telemetrie & Game-Edge-Cases | 10 | 20 |
+| [[PM-2026-05-20-08-legal-consumer-law-and-tax]] | Legal/Consumer-Law/Tax (beyond DSGVO) | 13 | 20 |
+| [[PM-2026-05-20-09-i18n-and-localization]] | i18n/l10n | 10 | 15 |
+| [[PM-2026-05-20-10-accessibility-and-inclusion]] | Accessibility & Inclusion (WCAG/EAA/BFSG) | 11 | 25 |
+| [[PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]] | AI/LLM Dependency & Fallbacks | 12 | 12 |
+| [[PM-2026-05-20-12-long-term-balance-and-meta]] | Long-Term Balance & Meta | 10 | 20 |
+| [[PM-2026-05-20-13-community-moderation-and-ugc]] | Community/Moderation/UGC | 11 | 25 |
+| [[PM-2026-05-20-14-brand-pr-and-crisis-comms]] | Brand/PR/Crisis-Comms + Re-Branding | 9 (+12 Brand-Candidates) | 25 |
+| [[PM-2026-05-20-15-browser-device-storage-matrix]] | Browser/Device/Storage-Matrix | 9 | 25 |
+| [[PM-2026-05-20-16-test-strategy-depth]] | Test-Strategy-Depth | 10 | 20 |
+| [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability]] | Vendor-Lifecycle & Sustainability/ESG | 12 | 25 |
+| [[PM-2026-05-20-18-responsible-gaming-and-open-source]] | Responsible-Gaming + Open-Source-Strategy | 12 | 20 |
+
+| [[findings-registry]] | **Status-Tracking aller ~191 Findings mit P0–P4-Priorität** | — | — |
 
 ## Annahmen
 
@@ -55,18 +87,40 @@ Diese Pre-Mortem ist ein **Intent-Layer**-Dokument (`binding: false`). Empfehlun
 | Szenario A | Single-node Hetzner (Ist) |
 | Szenario B | Cloud-Autoscaling (Nutzer-Annahme) |
 
-## Executive Summary
+## Executive Summary (Iter 1+2+3 — ~191 Findings)
 
-Aus jetzt 62 Findings (40 Iter-1 + 12 Iter-2-Security + 10 Iter-2-BYOC, letztere `accepted-risk`) ergeben sich **sechs dominante Failure-Themen**:
+Aus ~191 Findings (40 Iter-1 + 22 Iter-2 + 129 Iter-3) verteilt auf **18 Reports + Threat-Model**, mit Prioritäts-Tagging:
+- **13 P0** (Pre-Launch-Blocker)
+- **37 P1** (Pre-Launch dringend empfohlen)
+- **24 P2** (erste 90 Tage Post-Launch)
+- **73 P3** (erste 6 Monate Post-Launch)
+- **44 P4** (Backlog / accepted-risk inkl. 10 BYOC-Future-Scope)
 
-1. **Verbrauchsfertige Infrastruktur fehlt.** SurrealDB single-node ist nicht produktionserprobt für 10k Spieler; Migrations-Story ist Placeholder.
-2. **Determinismus ist Versprechen ohne Garantie.** Ohne CI-Gate + Semgrep-Regel kann ein `Math.random` das lautlos brechen. **Cross-Cutting: Tech + Gameplay + Security (Anti-Cheat-Foundation) + BYOC-Voraussetzung.**
-3. **Gameplay-UX-Risiken** ohne Telemetrie blind.
-4. **Monetarisierung ist 0 % implementiert.** Keine Hypothese, keine Analytics, keine Flags, keine Retention.
-5. **Security-Fundament unvollständig (Iteration 2).** AES-GCM-Save-Envelope authentisiert *Kenntnis*, nicht *Herkunft* — Save-Forgery ist machbar; Commands sind nicht signiert/replay-geschützt; Supply-Chain unkontrolliert. Tampering-Skandal in async MP würde Vertrauen für Wochen zerstören.
-6. **Single-Player-Foundation ist MP-/BYOC-tragend oder bricht später.** Wenn Save-Schema, Command-Modell und Determinismus-Garantie nicht *von Anfang an* MP-/BYOC-kompatibel gebaut werden, kosten Retrofits Quartale und brechen Determinismus-Replay.
+Vollständige Prioritäts-Sortierung in [[findings-registry]].
 
-> **Leitsatz Iteration 2.** *Single-Player ist das Fundament — aber jedes Datenformat, jeder Command-Pfad und jede State-Übergangsfunktion wird so entworfen, dass sie auch unter dem strengeren Vertrauensmodell von async Multiplayer und (zukünftig) Distributed Match Compute trägt. Ein Stack mit zuschaltbarem Trust-Level — nicht zwei Stacks.*
+**Acht dominante Failure-Themen:**
+
+1. **Verbrauchsfertige Infrastruktur fehlt.** SurrealDB single-node nicht produktionserprobt für 10k; Migrations-Story Placeholder. ([[PM-2026-05-20-01-architecture#PM-2026-05-20-01-F-02|01-F-02]] P0, [[PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-04|02-F-04]] P0, [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability#PM-2026-05-20-17-F-02|17-F-02]] P1)
+2. **Determinismus = Anti-Cheat-Foundation + AI-Act-Befreiung + BYOC-Voraussetzung + Balance-Hotfix-Replay.** 5-fach-Hebel. ([[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-03|05-F-03]] P1, [[PM-2026-05-20-12-long-term-balance-and-meta#PM-2026-05-20-12-F-08|12-F-08]] P1, [[PM-2026-05-20-16-test-strategy-depth#PM-2026-05-20-16-F-04|16-F-04]] P1)
+3. **Gameplay-UX-Risiken blind ohne Telemetrie.** Onboarding-60s-Spec vs Realität. ([[PM-2026-05-20-03-gameplay#PM-2026-05-20-03-F-03|03-F-03]] P1, [[PM-2026-05-20-07-live-ops-and-client-telemetry#PM-2026-05-20-07-F-01|07-F-01]] P1)
+4. **Monetarisierung 0 % implementiert.** Keine Hypothese, keine Analytics, keine Flags, keine Retention. ([[PM-2026-05-20-04-monetization#PM-2026-05-20-04-F-01|04-F-01]] P0)
+5. **Security-Fundament unvollständig.** AES-GCM-Save authentisiert *Kenntnis*, nicht *Herkunft*; Commands nicht signiert/replay-geschützt; Supply-Chain unkontrolliert. ([[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-01|05-F-01]] P0, [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02|05-F-02]] P0)
+6. **Single-Player-Foundation MP-/BYOC-tragend oder bricht später.** Save-Schema v2 + Command-Modell + Determinismus von Anfang an MP-/BYOC-kompatibel.
+7. **DSA + BFSG + EAA + CRA + AI-Act-Stack** (4 regulatorische Stichtage 2026/2027). ([[PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-11|08-F-11]] P0, [[PM-2026-05-20-13-community-moderation-and-ugc#PM-2026-05-20-13-F-01|13-F-01]] P0, [[PM-2026-05-20-10-accessibility-and-inclusion#PM-2026-05-20-10-F-01|10-F-01]] P0 + [[PM-2026-05-20-10-accessibility-and-inclusion#PM-2026-05-20-10-F-02|10-F-02]] P1, [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability#PM-2026-05-20-17-F-07|17-F-07]] P0)
+8. **Marken-Kollision SEGA/SI „football-manager-x"** — Rebrand vor Public-Launch zwingend. Top-3-Finalisten: Heimrunde / Klubkönig / Formationfuchs. ([[PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-05|08-F-05]] P0, [[PM-2026-05-20-14-brand-pr-and-crisis-comms#PM-2026-05-20-14-F-01|14-F-01]] P0)
+
+> **Leitsatz Iteration 2/3.** *Single-Player ist das Fundament — aber jedes Datenformat, jeder Command-Pfad und jede State-Übergangsfunktion wird so entworfen, dass sie auch unter dem strengeren Vertrauensmodell von async Multiplayer und (zukünftig) Distributed Match Compute trägt. Ein Stack mit zuschaltbarem Trust-Level — nicht zwei Stacks. MVP-Linie: kein Runtime-LLM, kein Image-Upload, kein Free-Form-Chat, kein aktives Marketing, kein Cloudflare-Workers-Lock, keine Lootboxes, keine Daily-Login-Streaks.*
+
+## Regulatorische Stichtage 2026/2027
+
+| Datum | Was | Pflicht ab |
+|---|---|---|
+| **2026-08-02** | EU AI Act Art. 50 (Kennzeichnung synthetic content) | Neue Systeme |
+| **2026-09-11** | CRA Vulnerability-Reporting an ENISA (24 h ab CVSS ≥ 9.0) | Pflicht |
+| **2026-12-02** | EU AI Act Art. 50 Bestandssysteme | Pflicht |
+| **Q4 2026** | EU Digital Fairness Act Proposal erwartet | Watch |
+| **2027-08-02** | EU AI Act High-Risk-System-Pflichten | Watch |
+| **2027-12-11** | EU CRA volle Anwendbarkeit (SBOM, 5-Jahre-Updates) | **Pflicht** |
 
 ## Risk-Heatmap (Probability × Impact) — Iteration 1 + 2
 
@@ -177,6 +231,21 @@ Iter-2-Findings (Security/Report 05 + BYOC/Report 06) sind **fett markiert**. BY
 | **BYOC-Decision-Gate-Status (Iter 2)** | product+platform | T-0+90 (post-launch) | nicht gebaut, Future-Scope |
 | **Bug-Bounty-Programm (Discord-Pilot vs HackerOne) (Iter 2)** | security | T-30 | offen |
 | **Externer Pentest-Lieferant (Iter 2)** | security | T-60 | offen |
+| **Re-Branding Top-3-Finalisten (Heimrunde/Klubkönig/Formationfuchs) (Iter 3)** | founder+legal | T-90 | offen |
+| **DE-Markenanwältin Auswahl (Iter 3)** | founder | T-90 | offen |
+| **License-Decision Client-Repo (AGPL-3.0 empfohlen) (ADR-0034) (Iter 3)** | founder | Welle-3-End | offen |
+| **Split-Repo Architecture (Client OSS / Server proprietär) (ADR-0035) (Iter 3)** | architecture | MVP-Feature-Freeze | offen |
+| **LLM Provider-Selection (Mistral EU Primary) (ADR-0029) (Iter 3)** | tech-lead | bei erstem Runtime-LLM | offen |
+| **i18n MVP-Locales (DE/EN/FR/ES/IT empfohlen) (Iter 3)** | founder+content | T-90 | offen |
+| **Du-vs-Sie DE-Tonfall (Du empfohlen) (Iter 3)** | design+content | Sprint-1 | offen |
+| **i18n-Library (Paraglide JS empfohlen) (Iter 3)** | frontend | Sprint-2 | offen |
+| **TMS (Tolgee self-hosted empfohlen) (Iter 3)** | ops+content | T-60 | offen |
+| **Payment-Provider (Paddle MoR empfohlen) (Iter 3)** | founder+finance | T-75 | offen |
+| **Registrar (INWX empfohlen) + DNS (Cloudflare-DNS) (ADR-0038) (Iter 3)** | platform | T-90 | offen |
+| **Hetzner-Backup-Region (FI) + Fly.io Cold-Standby (Iter 3)** | platform | T-60 | offen |
+| **PostgreSQL-Fallback-PoC (Iter 3, vor MVP-Freeze)** | platform+architecture | T-60 | offen |
+| **Visual-Regression-Tool (Argos $19 empfohlen) (Iter 3)** | tech-lead | Sprint-1 | offen |
+| **CI-Hybrid (GitHub-PR + Hetzner-Nightly) (ADR-0040) (Iter 3)** | tech-lead | Sprint-1 | offen |
 
 ## Vault-Integration
 

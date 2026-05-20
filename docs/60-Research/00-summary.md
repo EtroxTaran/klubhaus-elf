@@ -80,17 +80,33 @@ is a hybrid-online, offline-ready MVP: app shell, safe read caches and local
 drafts now; server-confirmed authoritative progression; selective offline-first
 singleplayer and export/import after MVP with contracts reserved from day one.
 
-## Pre-Mortem Cluster (2026-05-20)
+## Pre-Mortem Cluster (2026-05-20, 3 Iterationen)
 
 [[pre-mortem/00-index]] is the entry point to the pre-mortem cluster
-covering architecture, tech & ops, gameplay and monetization for the
-6-month / 10.000-player horizon across two scenarios (single-node Hetzner
-vs. cloud autoscaling). **Iteration 2 (2026-05-20)** added a dedicated
-[[pre-mortem/PM-2026-05-20-05-security-and-integrity|Security & Integrity
-report]], a future-scope
-[[pre-mortem/PM-2026-05-20-06-distributed-match-compute|BYOC report]],
-a cross-cutting [[pre-mortem/threat-model|threat-model]] and Security &
-Single-Player-Foundation addenda inside the four original reports. 62
-findings carry stable IDs (`PM-2026-05-20-XX-F-NN`) so commits, PRs and
-downstream ADRs can cite a finding via `Addresses PM-…`. Aggregated status
-lives in [[pre-mortem/findings-registry]].
+covering all major domains across **3 iterations** for the
+6-month / 10.000-player horizon (single-node Hetzner vs. cloud autoscaling).
+
+- **Iteration 1**: 4 original reports — architecture, tech & ops, gameplay,
+  monetization (40 findings).
+- **Iteration 2**: [[pre-mortem/PM-2026-05-20-05-security-and-integrity|Security
+  & Integrity]], future-scope [[pre-mortem/PM-2026-05-20-06-distributed-match-compute|BYOC]],
+  cross-cutting [[pre-mortem/threat-model|threat-model]], Single-Player-
+  Foundation-Addenda in original reports (+22 findings).
+- **Iteration 3**: 12 deep-dive reports —
+  [[pre-mortem/PM-2026-05-20-07-live-ops-and-client-telemetry|Live-Ops]],
+  [[pre-mortem/PM-2026-05-20-08-legal-consumer-law-and-tax|Legal/Tax (beyond DSGVO)]],
+  [[pre-mortem/PM-2026-05-20-09-i18n-and-localization|i18n]],
+  [[pre-mortem/PM-2026-05-20-10-accessibility-and-inclusion|Accessibility]],
+  [[pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks|AI/LLM]],
+  [[pre-mortem/PM-2026-05-20-12-long-term-balance-and-meta|Long-Term Balance]],
+  [[pre-mortem/PM-2026-05-20-13-community-moderation-and-ugc|Community/UGC]],
+  [[pre-mortem/PM-2026-05-20-14-brand-pr-and-crisis-comms|Brand/PR + Re-Branding]],
+  [[pre-mortem/PM-2026-05-20-15-browser-device-storage-matrix|Browser/Storage]],
+  [[pre-mortem/PM-2026-05-20-16-test-strategy-depth|Test-Strategy]],
+  [[pre-mortem/PM-2026-05-20-17-vendor-lifecycle-and-sustainability|Vendor/ESG]],
+  [[pre-mortem/PM-2026-05-20-18-responsible-gaming-and-open-source|Responsible-Gaming/OSS]]
+  (+129 findings, each with verified sources + accessed-dates).
+
+**~191 findings total** with stable IDs (`PM-2026-05-20-XX-F-NN`) + **P0–P4
+priority tagging**. Cite via `Addresses PM-…` in commits, PRs, ADR-Frontmatter.
+Aggregated status sorted by priority lives in [[pre-mortem/findings-registry]].

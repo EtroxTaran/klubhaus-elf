@@ -23,24 +23,54 @@ design notes.
 - [Research Wave 2 Gaps](../60-Research/research-wave-2-gaps.md) — superseded
   by Wave 3; kept for traceability of R2-01..R2-19 IDs.
 
-## Pre-Mortem 2026-05-20 (Cluster)
+## Pre-Mortem 2026-05-20 (Cluster, 3 Iterationen)
 
 Antizipiert Failure-Modes für 10.000 Spieler in 6 Monaten über zwei Szenarien
-(single-node Hetzner vs Cloud-Autoscaling). **Iteration 2 (2026-05-20)**
-ergänzt um Security & Integrity, BYOC Future-Scope, übergreifendes
-Threat-Model und Security & Single-Player-Foundation-Addenda in den vier
-Original-Reports. 62 Findings mit stabilen IDs `PM-2026-05-20-XX-F-NN` zur
-Verkettung mit Fixes (`Addresses PM-…` in Commits, PRs, ADR-Frontmatter).
+(single-node Hetzner vs Cloud-Autoscaling).
 
-- [[../60-Research/pre-mortem/00-index]] — Cluster-Index, Heatmap, 30/60/90-Tage-Plan, Decision-Log
-- [[../60-Research/pre-mortem/threat-model]] — Trust-Boundaries, STRIDE-Matrix, Crypto-Bausteine (Iter 2)
+**Iteration 1** (2026-05-20, commit `014b95b`): 4 Original-Reports
+(Architecture, Tech-Ops, Gameplay, Monetization), 40 Findings.
+
+**Iteration 2** (2026-05-20, commit `5db998f`): + Security & Integrity,
+BYOC Future-Scope, Threat-Model, Iter-2-Addenda in Original-Reports.
++22 Findings.
+
+**Iteration 3** (2026-05-20, commits `6267a3e`–`2366982`): 12 neue Deep-Dive-
+Reports (Live-Ops, Legal/Tax, i18n, Accessibility, AI/LLM, Long-Term-Balance,
+Community/UGC, Brand/PR, Browser/Storage, Test-Strategy, Vendor/ESG,
+Responsible-Gaming/OSS). +129 Findings mit Quellen-Verifikation.
+
+Total: **~191 Findings** mit stabilen IDs `PM-2026-05-20-XX-F-NN` zur Verkettung
+mit Fixes (`Addresses PM-…` in Commits, PRs, ADR-Frontmatter). **P0–P4-Prioritäts-
+Tagging** in `findings-registry.md`.
+
+- [[../60-Research/pre-mortem/00-index]] — Cluster-Index, Heatmap, Cross-Cutting, Decision-Log
+- [[../60-Research/pre-mortem/threat-model]] — Trust-Boundaries Z0–Z5, STRIDE-Matrix, Crypto-Bausteine
+- [[../60-Research/pre-mortem/findings-registry]] — **~191 Findings mit P0–P4-Priorität**
+
+**Iteration 1 + Addenda:**
 - [[../60-Research/pre-mortem/PM-2026-05-20-01-architecture]] — 10 Findings + Iter-2-Addendum, max Score 25
 - [[../60-Research/pre-mortem/PM-2026-05-20-02-tech-and-ops]] — 10 Findings + Iter-2-Addendum, max Score 25
 - [[../60-Research/pre-mortem/PM-2026-05-20-03-gameplay]] — 10 Findings + Iter-2-Addendum, max Score 20
 - [[../60-Research/pre-mortem/PM-2026-05-20-04-monetization]] — 10 Findings + Iter-2-Addendum, max Score 25
-- [[../60-Research/pre-mortem/PM-2026-05-20-05-security-and-integrity]] — 12 Findings, max Score 25 (Iter 2)
-- [[../60-Research/pre-mortem/PM-2026-05-20-06-distributed-match-compute]] — 10 Findings, accepted-risk (Iter 2, Future-Scope)
-- [[../60-Research/pre-mortem/findings-registry]] — Status-Tracking aller 62 Findings
+
+**Iteration 2:**
+- [[../60-Research/pre-mortem/PM-2026-05-20-05-security-and-integrity]] — 12 Findings, max Score 25
+- [[../60-Research/pre-mortem/PM-2026-05-20-06-distributed-match-compute]] — 10 Findings, accepted-risk (Future-Scope)
+
+**Iteration 3:**
+- [[../60-Research/pre-mortem/PM-2026-05-20-07-live-ops-and-client-telemetry]] — 10 Findings, max Score 20
+- [[../60-Research/pre-mortem/PM-2026-05-20-08-legal-consumer-law-and-tax]] — 13 Findings, max Score 20
+- [[../60-Research/pre-mortem/PM-2026-05-20-09-i18n-and-localization]] — 10 Findings, max Score 15
+- [[../60-Research/pre-mortem/PM-2026-05-20-10-accessibility-and-inclusion]] — 11 Findings, max Score 25
+- [[../60-Research/pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]] — 12 Findings, max Score 12
+- [[../60-Research/pre-mortem/PM-2026-05-20-12-long-term-balance-and-meta]] — 10 Findings, max Score 20
+- [[../60-Research/pre-mortem/PM-2026-05-20-13-community-moderation-and-ugc]] — 11 Findings, max Score 25
+- [[../60-Research/pre-mortem/PM-2026-05-20-14-brand-pr-and-crisis-comms]] — 9 Findings + 12 Re-Branding-Candidates, max Score 25
+- [[../60-Research/pre-mortem/PM-2026-05-20-15-browser-device-storage-matrix]] — 9 Findings, max Score 25
+- [[../60-Research/pre-mortem/PM-2026-05-20-16-test-strategy-depth]] — 10 Findings + 16-Layer-Test-Pyramid, max Score 20
+- [[../60-Research/pre-mortem/PM-2026-05-20-17-vendor-lifecycle-and-sustainability]] — 12 Findings + Vendor-Risk-Matrix, max Score 25
+- [[../60-Research/pre-mortem/PM-2026-05-20-18-responsible-gaming-and-open-source]] — 12 Findings + License-Decision-Matrix, max Score 20
 
 ## Wave 1 Research Notes
 
