@@ -2,7 +2,7 @@
 title: Research Summary
 status: current
 tags: [research, summary]
-updated: 2026-05-18
+updated: 2026-05-22
 ---
 
 # Research Summary
@@ -79,6 +79,17 @@ full offline-first singleplayer must ship immediately. The new binding direction
 is a hybrid-online, offline-ready MVP: app shell, safe read caches and local
 drafts now; server-confirmed authoritative progression; selective offline-first
 singleplayer and export/import after MVP with contracts reserved from day one.
+
+## Presentation Renderer Strategy (2026-05-22)
+
+[[presentation-renderer-strategy]] promotes the attached renderer report and
+follow-up architecture review into durable research and feeds
+[[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]].
+The conclusion: keep MVP match presentation Text & Stats + Canvas 2D; permit
+optional post-MVP 2.5D/3D presentation scenes only as non-authoritative,
+lazy-loaded, device-gated modules with fallback. Three.js + React Three Fiber is
+the only planned optional 3D stack; PixiJS, Babylon.js and PlayCanvas require a
+superseding ADR instead of being planned migration paths.
 
 ## Pre-Mortem Cluster (2026-05-20, 3 Iterationen)
 

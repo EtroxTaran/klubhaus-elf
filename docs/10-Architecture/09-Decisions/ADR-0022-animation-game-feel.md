@@ -3,7 +3,7 @@ title: ADR-0022 Animation & Game-Feel Stack
 status: accepted
 tags: [adr, architecture, ui, animation]
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-05-22
 accepted_at: 2026-05-19
 type: adr
 binding: true
@@ -53,8 +53,8 @@ Motion MIT) and React-19-ready as of 2026.
 ## Rationale
 
 Motion owns React-state-driven motion (layout prop, gestures, springs); GSAP
-owns precise, reversible, sequenced choreography and is the only one that tweens
-cleanly inside the Canvas/PixiJS match view. Bundle cost is controlled via
+owns precise, reversible, sequenced choreography and is the animation tool for
+the Canvas 2D match view. Bundle cost is controlled via
 `m`+`LazyMotion` and by loading GSAP only where the match view mounts.
 
 ## Consequences

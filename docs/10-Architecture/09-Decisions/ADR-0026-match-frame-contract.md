@@ -3,13 +3,13 @@ title: ADR-0026 Match Frame Contract
 status: accepted
 tags: [adr, architecture, match-engine, match-view, contract, determinism]
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-05-22
 accepted_at: 2026-05-19
 type: adr
 binding: true
 supersedes:
 superseded_by:
-related: [[ADR-0003-match-engine]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0004-data-model]], [[ADR-0022-animation-game-feel]], [[ADR-0021-revised-tech-stack]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/match-engine-simulation-model]]
+related: [[ADR-0003-match-engine]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0041-presentation-renderer-strategy]], [[ADR-0004-data-model]], [[ADR-0022-animation-game-feel]], [[ADR-0021-revised-tech-stack]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/match-engine-simulation-model]]
 ---
 
 # ADR-0026: Match Frame Contract
@@ -31,9 +31,9 @@ resim-from-kickoff is the replay model
 ([[../../60-Research/determinism-and-replay]] §3.5).
 
 [[ADR-0024-match-renderer-abstraction]] locks a renderer-agnostic
-`MatchRenderer` interface (Canvas 2D first, PixiJS later; GSAP tweens *state
-values*, not draw calls) and refers to "typed frame snapshots emitted by the
-engine".
+`MatchRenderer` interface (Canvas 2D first; GSAP tweens *state values*, not draw
+calls) and refers to "typed frame snapshots emitted by the engine". ADR-0041
+later removes PixiJS as a planned renderer migration.
 
 The scaffolded `apps/web/src/lib/match-renderer.ts` assumed a different shape
 than the engine actually emits: normalised `[0,1]` coordinates, 6 event kinds
@@ -211,7 +211,7 @@ Positive:
 
 - The two largest packages build against one pinned contract; no rework.
 - Determinism is preserved end-to-end and provable by golden frames.
-- Canvas 2D → PixiJS swap and engine internals stay independently mutable.
+- Canvas 2D renderer internals and engine internals stay independently mutable.
 
 Negative:
 

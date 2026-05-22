@@ -97,8 +97,9 @@ Kamal-2 escape-hatch note (see [[../11-Risks]] and
 ## Rationale
 
 The through-line: **keep risky bets where the upside compounds and the blast
-radius is contained behind an interface (the TanStack ecosystem; Canvas→PixiJS;
-SSE→Centrifugo; SurrealDB-as-additive-later); refuse the risk only where it
+   radius is contained behind an interface (the TanStack ecosystem; Canvas 2D
+   match renderer; SSE→Centrifugo; SurrealDB-as-additive-later); refuse the risk
+   only where it
 lands on irreversible, money-critical state (the relational core → Postgres).**
 Velocity gained in the graph/realtime corner does not outweigh risk taken on
 the financial/relational core for a small self-hosting team. Zustand and Zod 4

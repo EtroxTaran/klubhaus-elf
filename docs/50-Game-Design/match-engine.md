@@ -3,10 +3,10 @@ title: Match Engine - 2D Event-based Specification
 status: approved
 tags: [game-design, match-engine, simulation]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-22
 type: game-design
 binding: true
-related: [[README]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../60-Research/match-engine-simulation-model]], [[../60-Research/match-engine-runtime-strategy]], [[../60-Research/determinism-and-replay]], [[../60-Research/performance-budgets]], [[../60-Research/tactics-and-formations]], [[tactics-system]], [[fan-ecology]], [[set-pieces]], [[singleplayer-baseline]], [[async-multiplayer-private-group]]
+related: [[README]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/match-engine-simulation-model]], [[../60-Research/match-engine-runtime-strategy]], [[../60-Research/determinism-and-replay]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/tactics-and-formations]], [[tactics-system]], [[fan-ecology]], [[set-pieces]], [[singleplayer-baseline]], [[async-multiplayer-private-group]]
 ---
 
 # Match Engine - 2D Event-based Specification
@@ -239,7 +239,18 @@ Examples:
 | Standard | Text ticker + 2D top-down view + halftime + per-player ratings |
 | Expert | Full 2D + heat-maps + pass network + zone control + event log |
 
-3D match view is **out of scope** (permanent product decision, 2026-05-17 per gap D9). The two supported match render modes are **Text & Stats** (first-class, default on Floor tier) and **2D canvas** (primary, default on Standard / Premium). See [[../60-Research/performance-budgets]] §6 for the full render-mode policy.
+Interactive or authoritative browser 3D match view is **out of scope**
+(permanent product decision, 2026-05-17 per gap D9; refined 2026-05-22 by
+[[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]).
+The two supported match render modes are **Text & Stats** (first-class, default
+on Floor tier) and **2D canvas** (primary, default on Standard / Premium). See
+[[../60-Research/performance-budgets]] §6 for the full render-mode policy.
+
+Curated 3D presentation scenes, if added post-MVP, are not a match render mode:
+they consume committed event logs or career facts, have 2D/still/text
+fallbacks, and never compute outcomes or expose hidden data. Examples are a
+trophy lift, walk-in, celebration or selected highlight beat. See
+[[../60-Research/presentation-renderer-strategy]].
 
 ## 7.1 Matchday Pacing
 

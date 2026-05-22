@@ -3,10 +3,10 @@ title: Feature Gap Analysis - MoSCoW Scope
 status: in-review
 tags: [research, feature, moscow, scope]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-05-22
 type: research
 binding: false
-related: [[competitor-matrix]], [[feature-library-synthesis]], [[anstoss-series-deep-dive]], [[player-strength-presentation]], [[offline-mvp-scope-and-sync-strategy]], [[../00-Index/MVP-Scope]], [[../00-Index/Feature-Map]]
+related: [[competitor-matrix]], [[feature-library-synthesis]], [[anstoss-series-deep-dive]], [[player-strength-presentation]], [[offline-mvp-scope-and-sync-strategy]], [[presentation-renderer-strategy]], [[../00-Index/MVP-Scope]], [[../00-Index/Feature-Map]]
 ---
 
 # Feature Gap Analysis - MoSCoW Scope
@@ -85,6 +85,7 @@ Nice-to-haves that lift the product but aren't required for the MVP loop.
 | Press conferences (100+ keyed responses) | Anstoss, FM | TBD post-MVP |
 | Capacitor packaging for iOS + Android stores | Our roadmap | [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] |
 | Sanction service (chain of penalties) | UEFA / DFB references | [[../50-Game-Design/matchday-event-engine]] |
+| Optional 2.5D/3D presentation scenes | Stadium/campus emotion, trophy moments, curated highlight beats | [[presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]] |
 
 ## 4. Won't (out of scope for the foreseeable future)
 
@@ -96,7 +97,7 @@ Nice-to-haves that lift the product but aren't required for the MVP loop.
 | Open MMO (single persistent world) | We commit to private friend groups only |
 | Doping / "schwarze Kasse" / Babe of the Month (Anstoss flavour) | [[anstoss-series-deep-dive]] §6 IP / ethics boundaries |
 | Public real-tournament data feeds | Out of legal scope; community editor handles user wishes |
-| 3D match view | Permanent product decision (gap D9, 2026-05-17). Match render is Text & Stats (Floor tier default) + 2D canvas (Standard / Premium default). See [[performance-budgets]] §6. |
+| Interactive or authoritative browser 3D match view | Permanent product decision (gap D9, 2026-05-17; refined 2026-05-22). Match render is Text & Stats (Floor tier default) + 2D canvas (Standard / Premium default). Optional 3D presentation scenes are separate and non-authoritative. See [[performance-budgets]] §6 and [[presentation-renderer-strategy]]. |
 
 ## 5. Open scope questions (not yet classified)
 

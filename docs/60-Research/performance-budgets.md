@@ -4,9 +4,9 @@ status: current
 binding: true
 tags: [research, performance, mobile, pwa, ci, web-vitals, lighthouse, budgets]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-22
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/08-Crosscutting]], [[match-engine-simulation-model]], [[determinism-and-replay]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/progressive-disclosure-ui]]
+related: [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/08-Crosscutting]], [[match-engine-simulation-model]], [[determinism-and-replay]], [[presentation-renderer-strategy]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/progressive-disclosure-ui]]
 ---
 
 # Performance Budgets — Device Matrix, CWV Targets, CI Strategy
@@ -121,10 +121,12 @@ Where we differ from every game in the table:
 - **TanStack Start file-based routing** — natural route-chunk
   splitting; per-route bundle budgets are enforceable at the framework
   layer.
-- **2D canvas as the primary match render** — explicit product
-  decision 2026-05-17: **no 3D mode is on the roadmap, ever**. This
-  removes the entire WebGL/GPU budget category and is a permanent
-  constraint, not a "post-MVP" deferral.
+- **2D canvas as the primary match render** - explicit product decision
+  2026-05-17: no interactive or authoritative browser 3D match view is on the
+  roadmap. Refined by
+  [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+  on 2026-05-22: optional post-MVP 2.5D/3D presentation scenes are separate,
+  lazy-loaded renderer modules with 2D/still/text fallbacks.
 
 ### 2.4 Match quality profiles
 
@@ -351,9 +353,12 @@ Borrowed from Top Eleven / FC Mobile / Workbox best practices:
 
 ## 6. Match render-mode policy
 
-**Hard constraint**: no 3D match view is on the roadmap, ever. This is
-a permanent product decision (Nico, 2026-05-17), not a "post-MVP"
-deferral.
+**Hard constraint**: no interactive or authoritative browser 3D match view is
+on the roadmap. This is a permanent product decision (Nico, 2026-05-17),
+refined on 2026-05-22 by
+[[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]] to
+allow optional, post-MVP, non-authoritative 2.5D/3D presentation scenes outside
+the match renderer.
 
 > **Scope precised 2026-05-20 by
 > [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]].**
@@ -366,10 +371,10 @@ deferral.
 > budget ≤ 150 and iOS context-loss layered recovery. The match
 > renderer itself is governed by
 > [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]]
-> (Canvas 2D → PixiJS v8 WebGL behind
-> [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]]);
-> the planned PixiJS upgrade is a 2D-pitch quality lift, not a 3D
-> scene, and remains consistent with the no-3D-match-render decision.
+> (Canvas 2D first behind
+> [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]]).
+> [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+> later removes PixiJS as a planned 2D match-surface upgrade.
 
 Two match render modes:
 
@@ -411,6 +416,20 @@ Two match render modes:
 - Default by tier on first match: Floor → Text, Standard → Canvas,
   Premium → Canvas.
 - One-click toggle on the matchday lobby and inside the match HUD.
+
+### 6.4 Optional presentation scenes
+
+Curated stadium/campus, walk-in, trophy, celebration or selected highlight
+scenes are governed by [[presentation-renderer-strategy]], not by this match
+render-mode policy. They must:
+
+- be post-MVP unless a later ADR explicitly changes scope;
+- derive from committed event logs, venue read models or career facts;
+- be lazy-loaded outside the initial app shell;
+- be unavailable or replaced by 2D/still/text fallback on Floor tier;
+- handle WebGL/WebGPU context loss and GPU memory pressure;
+- never compute match outcomes, hidden scouting data, multiplayer authority or
+  gameplay modifiers.
 
 ## 7. World-size presets
 
@@ -683,4 +702,9 @@ For copy-paste reference and future arc42 §Performance update.
 - Sports Interactive support docs — FM26 match engine perf
   recommendations.
 - D9 Q&A with Nico (2026-05-17): all six recommendations accepted;
-  explicit no-3D constraint locked.
+  explicit no-authoritative-3D-match constraint locked.
+- Presentation renderer report (2026-05-22), promoted into
+  [[presentation-renderer-strategy]] and
+  [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]:
+  optional 3D/2.5D scenes stay outside the match renderer and require fallback
+  plus device-tier gates.

@@ -3,9 +3,9 @@ title: Risks
 status: draft
 tags: [architecture, risk]
 created: 2026-05-15
-updated: 2026-05-19
+updated: 2026-05-22
 type: arch
-related: [[10-Quality]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[09-Decisions/ADR-0001-tech-stack]], [[09-Decisions/ADR-0007-naming-schema]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0023-realtime-transport]], [[09-Decisions/ADR-0024-match-renderer-abstraction]], [[09-Decisions/ADR-0025-mobile-delivery]], [[09-Decisions/ADR-0010-design-system]]
+related: [[10-Quality]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[09-Decisions/ADR-0001-tech-stack]], [[09-Decisions/ADR-0007-naming-schema]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0023-realtime-transport]], [[09-Decisions/ADR-0024-match-renderer-abstraction]], [[09-Decisions/ADR-0025-mobile-delivery]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[09-Decisions/ADR-0010-design-system]]
 ---
 
 # Risks
@@ -44,7 +44,7 @@ the risk only where it lands on irreversible, money-critical state.**
 | Zustand over TanStack Store | TanStack Store not production-ready as primary store; Zustand battle-tested | Store only transitively (Query/Form/Table); revisit if it matures |
 | Drizzle recursive CTEs for graph | Graph needs modest (scouting/relationships), not a property-graph workload | Typed raw SQL (`sql`/`.with()`); SurrealDB reserved if graph becomes core |
 | SurrealDB deferred (upside not captured now) | Its weak spots (Enterprise-gated PITR, single-node OSS, durability debate, forced major migrations, thin TS typing, tiny hiring pool) land exactly on our money/contract core run by a small Hetzner team | Reversible: realtime/graph behind interfaces → add SurrealDB later as additive engine if it proves the differentiator |
-| Canvas 2D first (PixiJS deferred) | 22 dots + ball is far below where WebGL pays; Canvas is mobile-reliable | `MatchRenderer` interface → Canvas→PixiJS is a contained swap |
+| Canvas 2D first; PixiJS not planned | 22 dots + ball is far below where WebGL pays; Canvas is mobile-reliable | `MatchRenderer` interface contains any future swap, but ADR-0041 requires measured need before adding another 2D renderer |
 | Centrifugo deferred | SSE covers all current server→client needs, zero new infra | `RealtimeTransport` interface → Centrifugo swap-in on multiplayer/recovery pressure |
 | Dokploy on a single Hetzner node (Swarm footguns) | **Owner-confirmed 2026-05-19** (Nico): the existing Hetzner machine + Dokploy stays. Backup/restore + dashboard UX keeps a small team off heavy ops | **Mandatory (price of keeping Dokploy):** disk/retention caps, tested off-box EU backups, external uptime alert, rehearsed restore runbook. Kamal 2 = fallback only if mitigations prove insufficient (not a planned migration) |
 | Capacitor native pipeline added | Only way mobile messaging/push works (esp. EU iOS); additive, web codebase unchanged | Web PWA stays source of truth; thin reversible shell; ~1–2 eng-wk one-time |
@@ -55,6 +55,7 @@ the risk only where it lands on irreversible, money-critical state.**
 | **Native partitioning requires app nightly job** *(Wave 2)* | `pg_partman` would add a Postgres extension dep on the Hetzner box | Nightly job creates next-month partition + moves >60d rows; alert on missing partition (would block outbox insert) |
 | **Generated `db-schema` mirror drift** *(Wave 2)* | Hand-keeping a mirror is fragile; cross-package `.ts` imports are composite-build-incompatible | `pnpm db:generate && git diff --exit-code` CI gate |
 | **`packages/match-contract` is one more composite root** *(Wave 2)* | Leaf-package size is trivial; alternative homes (engine or web) violate ADR-0003 framework-agnostic rule | Mirrors `db-schema` posture (zero runtime deps); one root tsconfig reference |
+| **Optional 3D/2.5D presentation renderer scope creep** *(2026-05-22)* | Stadium, ceremony and highlight scenes can create WebGL/WebGPU, asset and mobile GPU risk if mistaken for core gameplay | ADR-0041 keeps it presentation-only, post-MVP, lazy-loaded, device-gated and fallback-safe; no renderer-side authority; Three.js/R3F is the only planned optional 3D stack, not a dependency now |
 
 `"latest"` dependency pinning was a reliability **defect**, not an accepted
 risk — fixed in the ADR-0021 PR (all deps pinned + Renovate).

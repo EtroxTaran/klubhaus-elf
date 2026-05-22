@@ -3,7 +3,7 @@ title: Current State
 status: current
 tags: [meta, current-state, execution, hot]
 created: 2026-05-16
-updated: 2026-05-19
+updated: 2026-05-22
 type: index
 binding: true
 related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]]
@@ -65,10 +65,18 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   All-in TanStack data layer (Query/Table/Virtual/Form).
 - **Game-feel:** Motion + GSAP ([[../10-Architecture/09-Decisions/ADR-0022-animation-game-feel]]).
 - **Realtime:** SSE now → Centrifugo planned ([[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]]).
-- **Match view:** Canvas 2D now → PixiJS later ([[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]]);
+- **Match view:** Canvas 2D first; PixiJS no longer planned ([[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]]);
   engine↔renderer seam pinned by [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]]
   (new `packages/match-contract` leaf package, events-only engine, derived non-
   persisted frames, `chance` removed / `save` added).
+- **Presentation renderer:** two-renderer strategy locked by
+  [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+  and [[../60-Research/presentation-renderer-strategy]]. MVP match remains Text
+  & Stats + Canvas 2D; no interactive/authoritative browser 3D match view.
+  Optional post-MVP 2.5D/3D stadium, campus, trophy, celebration or curated
+  highlight scenes are presentation-only, lazy-loaded and fallback-safe.
+  Three.js + React Three Fiber is the only planned optional 3D stack; PixiJS,
+  Babylon.js and PlayCanvas require a superseding ADR.
 - **Mobile:** PWA + planned Capacitor shell ([[../10-Architecture/09-Decisions/ADR-0025-mobile-delivery]]).
 - **Presentation 3D layer (post-MVP, Phase 2):** Three.js + React Three Fiber
   for isometric stadium / campus view + kuratierte Event-Cutscenes (walkout,
@@ -262,7 +270,7 @@ P0–P4-Sortierung: [[../60-Research/pre-mortem/findings-registry]].
 for all remaining documentation + architecture work. 123 gap entries
 across 12 groups (A-L), prioritised P0-P3, with a per-gap workflow of
 Perplexity MCP research → synthesis + Q&A → final vault docs.
-Wave 2 gaps ([[../60-Research/research-wave-2-gaps]]) are superseded; their
+The Wave 2 gap note is superseded; its
 R2-01..R2-19 IDs are preserved under Wave 3 group D for traceability.
 
 Start critical-path work from W3.A (P0): data model, match engine,
@@ -1486,10 +1494,10 @@ Implementation should start from
     - Small (1 nation, 2 leagues, ~5 MB) - Floor default + forced.
     - Medium (3 nations, 6 leagues, ~15 MB) - Standard default.
     - Large (8 nations, 20 leagues, ~50 MB) - Premium default; Standard opt-in with warning.
-  - **Match render policy** - **no 3D match view on the roadmap, ever** (permanent product decision; scope precised 2026-05-20 by [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] to cover live match rendering only). Two modes only:
+  - **Match render policy** - **no interactive or authoritative browser 3D match view** (permanent product decision; scoped by [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] on 2026-05-20 and tightened by [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]] on 2026-05-22). Two modes only:
     - **Text & Stats** (first-class, not a fallback): DOM list at 1-2 Hz, stats sidebar; default on Floor; user-selectable everywhere.
     - **2D canvas** (primary, mandatory): HTML Canvas 2D (NOT WebGL); 30 fps cap on Standard, 60 fps on Premium; 720p internal resolution, DPR clamp at 2.0.
-  - **3D Presentation Layer** (post-MVP, Phase 2, accepted 2026-05-20 via [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]) - Three.js + React Three Fiber for isometric stadium / campus view, kuratierte Event-Cutscenes (walkout, trophy lift, goal celebration) and static highlight backdrops. Gated by `SceneDescriptor` contract, mandatory 2D fallback on Floor / `prefers-reduced-motion` / Save-Data / iOS context-loss trip. Lives parallel to (not inside) the match renderer; match render itself follows [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]] (Canvas 2D → PixiJS v8 WebGL) behind [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]].
+  - **3D Presentation Layer** (post-MVP, Phase 2, accepted 2026-05-20 via [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]], tightened 2026-05-22 by [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]) - Three.js + React Three Fiber for isometric stadium / campus view, kuratierte Event-Cutscenes (walkout, trophy lift, goal celebration) and static highlight backdrops. Gated by `SceneDescriptor` contract, mandatory 2D fallback on Floor / `prefers-reduced-motion` / Save-Data / iOS context-loss trip. Lives parallel to (not inside) the match renderer; match render itself follows [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]] (Canvas 2D first; PixiJS no longer planned) behind [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]].
   - **Battery-saver / reduced-motion / data-saver** auto-honoured via `prefers-reduced-motion`, `navigator.connection.saveData`, `prefers-reduced-data`.
   - **CI perf gate** (Phase 1, MVP, mandatory): Lighthouse CI + Playwright + injected `web-vitals` library on every PR; bundle-size CI per the budgets; match-engine perf gate per D1; storage assertion per A2.
   - **Phase 2** (post-MVP): add LambdaTest 1-slot weekly real-device job (~€1.5 k/yr) on Galaxy A54 / Pixel 7a / iPhone SE 3-class hardware.

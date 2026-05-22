@@ -3,10 +3,10 @@ title: Stadium and Club Campus - Build-out and On-grounds Economy
 status: approved
 tags: [game-design, stadium, infrastructure, anstoss]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-22
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[economy-system]], [[fan-ecology]], [[regulations-and-compliance]]
+related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[economy-system]], [[fan-ecology]], [[regulations-and-compliance]]
 ---
 
 # Stadium and Club Campus - Build-out and On-grounds Economy
@@ -165,6 +165,22 @@ maintenance upgrades reduce the downside.
 | Quick | "Build wizard": recommend next 1-3 upgrades + cost |
 | Standard | Tile map of grounds + module list |
 | Expert | SimCity-style grid, plot pricing, queueing, blueprint optimisation |
+
+## 8.1 Visual presentation direction
+
+Stadium/campus presentation starts as a readable management surface, not a
+free-build 3D game:
+
+- MVP / first build-out: curated slots, module cards, 2D or isometric board,
+  KPI overlays and clear upgrade stages.
+- Phase 2+: infrastructure overlays for fan flow, queue pressure, security
+  load, hospitality utilisation, sponsor activation and revenue per zone.
+- Optional later: 2.5D/3D stadium or campus viewer behind
+  [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]].
+  It consumes venue read models only and does not change build economics.
+
+Free placement is not the default path. Slot-based or curated build fields are
+better for mobile, balance, DDD modelling and deterministic saves.
 
 ## 9. Promotion compliance hooks
 

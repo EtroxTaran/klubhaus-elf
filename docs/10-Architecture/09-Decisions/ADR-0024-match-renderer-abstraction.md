@@ -3,25 +3,29 @@ title: ADR-0024 Match Renderer Abstraction
 status: accepted
 tags: [adr, architecture, ui, match-view]
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-05-22
 accepted_at: 2026-05-19
 type: adr
 binding: true
 supersedes:
 superseded_by:
-related: [[ADR-0021-revised-tech-stack]], [[ADR-0022-animation-game-feel]], [[ADR-0003-match-engine]], [[ADR-0026-match-frame-contract]]
+related: [[ADR-0021-revised-tech-stack]], [[ADR-0022-animation-game-feel]], [[ADR-0003-match-engine]], [[ADR-0026-match-frame-contract]], [[ADR-0041-presentation-renderer-strategy]]
 ---
 
 # ADR-0024: Match Renderer Abstraction
 
+> **AMENDED 2026-05-22 by [[ADR-0041-presentation-renderer-strategy]].** The
+> renderer abstraction and Canvas 2D-first decision remain binding. PixiJS is no
+> longer a planned effects upgrade; any future 2D renderer change requires a new
+> ADR with measured Canvas 2D failure and device/bundle evidence.
+
 > **AMENDED 2026-05-19 by [[ADR-0026-match-frame-contract]] (wording clarified,
-> decision unchanged).** The renderer abstraction + Canvas2D-first / PixiJS-
-> later decision is unchanged. Wording correction: the engine emits a typed
-> **event log**, never typed frame snapshots — `MatchFrame` is an ephemeral,
-> derived, in-memory projection built per [[ADR-0026-match-frame-contract]]
-> (reconciles this ADR with the determinism rule "no persisted snapshots").
-> The renderer still only draws frames. The "typed frame-snapshot contract
-> must be defined" follow-up below is **now defined** in ADR-0026.
+> decision unchanged).** The engine emits a typed **event log**, never typed
+> frame snapshots. `MatchFrame` is an ephemeral, derived, in-memory projection
+> built per [[ADR-0026-match-frame-contract]] and reconciles this ADR with the
+> determinism rule "no persisted snapshots". The renderer still only draws
+> frames. The "typed frame-snapshot contract must be defined" follow-up below is
+> now defined in ADR-0026.
 
 ## Status
 
@@ -46,38 +50,39 @@ but "should not die trying in the beginning".
 
 ## Decision
 
-Introduce a renderer-agnostic **`MatchRenderer` interface** that consumes
-typed **`MatchFrame`** values (defined by [[ADR-0026-match-frame-contract]] —
+Introduce a renderer-agnostic **`MatchRenderer` interface** that consumes typed
+**`MatchFrame`** values (defined by [[ADR-0026-match-frame-contract]]:
 ephemeral, derived projections of the engine's event log; never persisted).
 Ship a **Canvas 2D** implementation first (hand-written loop, GSAP-tweened
-state values, client-only React boundary). **PixiJS v8 (WebGL renderer)** is
-the planned effects upgrade — a contained swap behind the interface, not a
-rewrite.
+state values, client-only React boundary). A future 2D renderer swap is possible
+behind the interface, but **PixiJS is not planned** after
+[[ADR-0041-presentation-renderer-strategy]].
 
 The engine emits a typed event log (ADR-0003); the caller projects it into
 `MatchFrame`s via the ADR-0026 builder; the renderer only draws frames; GSAP
-tweens *state values*, not draw calls — so the Canvas→PixiJS switch replaces
-one implementation.
+tweens *state values*, not draw calls. If a future ADR accepts a renderer swap,
+only the renderer implementation changes.
 
 ## Rationale
 
 22 dots + ball + highlights is far below where WebGL pays off; Canvas 2D is the
 most reliable across the wide range of mobile GPUs a PWA hits and is
-SSR-trivial. Domain type-safety is equal regardless of renderer (the scene
-model is our own typed code); the interface is what de-risks the upgrade —
-mirroring the project-wide "reversible bet behind an interface" posture.
+SSR-trivial. Domain type-safety is equal regardless of renderer because the
+scene model is our own typed code. The interface de-risks future changes without
+reserving PixiJS as a default migration.
 
 ## Consequences
 
 Positive:
 
 - Lively match view shipped fast with zero WebGL/WebGPU/SSR risk.
-- PixiJS effects later cost a contained implementation swap, not a rewrite.
+- A future renderer swap would be contained if measured Canvas 2D limits justify
+  it.
 
 Negative:
 
 - We own the Canvas render loop and hit-testing initially.
-- The typed frame-snapshot contract is **defined** in
+- The typed frame-snapshot contract is defined in
   [[ADR-0026-match-frame-contract]] (resolved follow-up).
 
 ## Supersedes
@@ -86,4 +91,8 @@ None.
 
 ## Related Docs
 
-- [[ADR-0021-revised-tech-stack]] · [[ADR-0022-animation-game-feel]] · [[ADR-0003-match-engine]] · [[ADR-0026-match-frame-contract]]
+- [[ADR-0021-revised-tech-stack]]
+- [[ADR-0022-animation-game-feel]]
+- [[ADR-0003-match-engine]]
+- [[ADR-0026-match-frame-contract]]
+- [[ADR-0041-presentation-renderer-strategy]]

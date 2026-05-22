@@ -250,4 +250,4 @@ not MVP requirements.
   inputs cross the boundary only as immutable JSON `SceneDescriptor`
   objects produced by `apps/web/src/lib/scene-mapper/*` adapters; no
   domain command, query, event or storage is owned by the renderer.
-  The match renderer itself is governed by [[09-Decisions/ADR-0024-match-renderer-abstraction]] (Canvas 2D → PixiJS v8 WebGL behind [[09-Decisions/ADR-0026-match-frame-contract]]) — not by ADR-0029.
+  The match renderer itself is governed by [[09-Decisions/ADR-0024-match-renderer-abstraction]] (Canvas 2D first behind [[09-Decisions/ADR-0026-match-frame-contract]]; PixiJS no longer planned per [[09-Decisions/ADR-0041-presentation-renderer-strategy]]) — not by ADR-0029.

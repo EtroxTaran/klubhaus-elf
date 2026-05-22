@@ -1,7 +1,7 @@
 ---
 title: Research Wave 2 — Gap Analysis & Backlog Proposal
 status: superseded
-superseded_by: [[wave-3-gap-analysis]]
+superseded_by: wave-3-gap-analysis
 tags: [research, planning, gap-analysis, superseded]
 updated: 2026-05-16
 ---

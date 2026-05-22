@@ -3,13 +3,14 @@ title: ADR-0029 3D Presentation Layer (Stadium, Cutscenes, Backdrop)
 status: accepted
 tags: [adr, presentation, 3d, three-js, r3f, stadium, cutscene, pwa, mobile]
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 accepted_at: 2026-05-20
 type: adr
 binding: true
 supersedes:
 amends: []
-related: [[../../60-Research/performance-budgets]], [[../../20-Features/feature-stadium-builder]], [[../../20-Features/feature-3d-presentation-layer]], [[../../30-Implementation/3d-presentation-architecture]], [[ADR-0008-mobile-first-ui]], [[ADR-0010-design-system]], [[ADR-0017-observability-logging]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-stack]], [[ADR-0022-animation-game-feel]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[../08-Crosscutting]], [[../bounded-context-map]]
+amended_by: [[ADR-0041-presentation-renderer-strategy]]
+related: [[../../60-Research/performance-budgets]], [[../../20-Features/feature-stadium-builder]], [[../../20-Features/feature-3d-presentation-layer]], [[../../30-Implementation/3d-presentation-architecture]], [[ADR-0008-mobile-first-ui]], [[ADR-0010-design-system]], [[ADR-0017-observability-logging]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-stack]], [[ADR-0022-animation-game-feel]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[ADR-0041-presentation-renderer-strategy]], [[../08-Crosscutting]], [[../bounded-context-map]]
 ---
 
 # ADR-0029: 3D Presentation Layer (Stadium, Cutscenes, Backdrop)
@@ -30,6 +31,11 @@ product.
 
 This ADR makes that distinction explicit and reusable for future
 contributors who would otherwise stop at the literal "no 3D ever" wording.
+
+> **AMENDED 2026-05-22 by [[ADR-0041-presentation-renderer-strategy]].** The
+> Three.js/R3F 3D Presentation Layer remains accepted. ADR-0041 tightens the
+> renderer portfolio: PixiJS is no longer a planned match-view upgrade, and
+> Babylon.js / PlayCanvas are not planned fallback engines.
 
 ## Date
 
@@ -98,10 +104,10 @@ remains the locked 2D Canvas + Text & Stats policy from
 ### 2. Framework: Three.js + React Three Fiber
 
 R3F is adopted as the canonical 3D Presentation framework. Babylon.js
-and PlayCanvas are not adopted at this time. A later switch (e.g. to
-Babylon.js for cinematic cutscenes) is reserved as a future ADR; the
-`SceneDescriptor` contract below makes the renderer swappable without
-touching match-engine or domain code.
+and PlayCanvas are not adopted. ADR-0041 later tightens this from "future
+switch reserved" to "not planned unless a superseding ADR proves measured
+Three/R3F failure"; the `SceneDescriptor` contract below keeps domain code
+independent from renderer APIs.
 
 Packages permitted: `three`, `@react-three/fiber`, `@react-three/drei`,
 `@react-three/offscreen`, `three-stdlib`. No further 3D packages
@@ -197,12 +203,12 @@ future ADR/beat.
 
 Live match-rendering is **out of scope** for this ADR. The match
 renderer is governed by [[ADR-0024-match-renderer-abstraction]]
-(Canvas 2D first, PixiJS v8 WebGL as the planned effects upgrade)
+(Canvas 2D first; PixiJS no longer planned after ADR-0041)
 behind the [[ADR-0026-match-frame-contract]] seam. The locked
 2026-05-17 "no 3D ever" decision, as precised here, scopes to the
 live match render pipeline (22 players, ball, referee, live camera);
-it does **not** prevent the planned ADR-0024 PixiJS WebGL upgrade,
-which is a 2D-pitch rendering quality lift, not a 3D scene.
+it does **not** authorise a 3D match renderer. ADR-0041 later removes the
+previously planned ADR-0024 PixiJS WebGL upgrade from the roadmap.
 
 Should any future need arise for a 3D match render, it would require
 a new ADR that explicitly supersedes ADR-0024's renderer-implementation
@@ -218,8 +224,8 @@ For 3D Presentation composites under this ADR:
 
 - Scene-state values (camera position, light intensity, cutscene
   beats, scripted character motion) MAY be tweened with **GSAP** —
-  the same pattern ADR-0022 prescribes for the PixiJS match-view
-  upgrade. R3F's `useFrame` reads the GSAP-tweened state on each
+  the same state-tweening pattern ADR-0022 prescribes for the Canvas 2D
+  match view. R3F's `useFrame` reads the GSAP-tweened state on each
   demand frame.
 - DOM overlays around the canvas (skip button, controls, post-cutscene
   CTA) use **Motion** per ADR-0022.

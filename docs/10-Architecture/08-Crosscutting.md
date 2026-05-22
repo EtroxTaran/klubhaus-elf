@@ -3,10 +3,10 @@ title: Crosscutting Concerns
 status: current
 tags: [architecture, security, quality, observability, logging]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-05-22
 type: architecture
 binding: false
-related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0003-match-engine]], [[09-Decisions/ADR-0013-transactional-outbox]], [[../60-Research/performance-budgets]], [[../60-Research/telemetry-privacy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/client-telemetry]]
+related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0003-match-engine]], [[09-Decisions/ADR-0013-transactional-outbox]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/telemetry-privacy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/client-telemetry]]
 ---
 
 # Crosscutting Concerns
@@ -178,17 +178,20 @@ Product targets enforced via CI + RUM:
 - JS heap (Standard tier) <= 150 MB main + <= 80 MB workers steady;
   Floor tier <= 100 MB + <= 50 MB.
 
-Match render policy:
+Match and presentation render policy:
 
-- **No 3D match view** is on the roadmap, ever (permanent product
-  decision, gap D9). Scope precised 2026-05-20 by
-  [[09-Decisions/ADR-0029-3d-presentation-layer]]: the ban applies to
-  the live match render pipeline only; a 3D **Presentation Layer**
-  (isometric stadium view, event cutscenes, static backdrops) is
-  permitted under that ADR with mandatory floor-tier 2D fallback.
+- **No interactive or authoritative browser 3D match view** is on the
+  roadmap (permanent product decision, gap D9). [[09-Decisions/ADR-0029-3d-presentation-layer]]
+  scoped the ban to the live match render pipeline; [[09-Decisions/ADR-0041-presentation-renderer-strategy]]
+  tightened the renderer portfolio so Canvas 2D remains the match renderer and
+  Three.js/R3F is the only planned optional 3D presentation stack.
 - Two modes only: Text & Stats (first-class, Floor default) and
   2D canvas (primary, Standard / Premium default). Canvas frame cap
   30 fps on Standard, 60 fps on Premium.
+- Optional post-MVP 2.5D/3D stadium, campus, celebration, trophy or curated
+  highlight scenes are presentation-only modules. They must be lazy-loaded,
+  device-gated, fallback-safe and derived from committed event/career/venue
+  data; they never compute domain outcomes.
 
 CI gate (MVP):
 
