@@ -75,8 +75,8 @@ OpenTelemetry spans should cover:
 
 - browser navigation/fetch operations when sampled;
 - TanStack Start server functions and route handlers;
-- SurrealDB queries through the project DB client;
-- Redis Streams publish/consume operations;
+- PostgreSQL queries through the project DB client/query gateway;
+- outbox publisher and realtime transport operations;
 - outbox publisher and scheduled-job work;
 - match Web Worker jobs and long simulation steps;
 - service worker update/replay paths when diagnostics are enabled.

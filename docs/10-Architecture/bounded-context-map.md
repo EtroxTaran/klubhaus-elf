@@ -3,10 +3,10 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-05-19
+updated: 2026-05-22
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[05-Building-Blocks]], [[context-contracts/README]], [[../../30-Implementation/mvp-implementation-roadmap]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[05-Building-Blocks]], [[context-contracts/README]], [[../../30-Implementation/mvp-implementation-roadmap]]
 ---
 
 # Bounded Context Map
@@ -41,7 +41,7 @@ change, not a refactor.
 | **Transfer** | Market valuation, opportunities, offers, clause packages, negotiation cases, deadlines, escalation | Transfer state, valuation bands, pressure signals, completed deals |
 | **Match** | Line-up, tactic lock, simulation, results | Result, match events, replay stream |
 | **Watch Party** | Polls, scheduling, broadcast, conference | Watch-party status, event timeline |
-| **Notification** | Inbox, push, reminder, digest | User-facing message projections |
+| **Notification** | Durable notifications, inbox, preferences, subscriptions, schedules, delivery attempts, provider adapters, push preparation, digests | User-facing message projections, unread counters, delivery/audit events |
 | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
 | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
 
@@ -184,6 +184,12 @@ Anticipated extraction order when scaling demands it:
 3. **Spectator service** - high fan-out per
    [[09-Decisions/ADR-0015-spectator-snapshot-streaming]].
 4. **Notification service** - independent scaling per push volume.
+
+Notification extraction follows
+[[09-Decisions/ADR-0043-notification-and-messaging-platform]]: Postgres
+notification records remain the durable source of truth; SurrealDB projections,
+Dexie mirrors, email/push providers and Centrifugo are adapters around that
+context, not owners of notification state.
 
 The remaining seven contexts likely stay co-located unless a real
 scaling signal forces a split.

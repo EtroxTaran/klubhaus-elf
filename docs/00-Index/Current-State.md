@@ -82,6 +82,13 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   All-in TanStack data layer (Query/Table/Virtual/Form).
 - **Game-feel:** Motion + GSAP ([[../10-Architecture/09-Decisions/ADR-0022-animation-game-feel]]).
 - **Realtime:** SSE now → Centrifugo planned ([[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]]).
+- **Notification/Messaging:** [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
+  locks a first-party Notification bounded context. PostgreSQL is durable
+  notification truth, SurrealDB is allowed as additive graph/live projection,
+  Dexie mirrors the in-app inbox offline, SSE is the MVP wake-up/update
+  channel, Centrifugo is the realtime scale path, Brevo is the default
+  transactional email provider with Mailjet fallback, and Web Push/native push
+  are prepared behind adapters.
 - **Match view:** Canvas 2D first; PixiJS no longer planned ([[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]]);
   engine↔renderer seam pinned by [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]]
   (new `packages/match-contract` leaf package, events-only engine, derived non-

@@ -75,10 +75,12 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0028 Postgres Transactional Outbox](../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox.md)
 - [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
+- [ADR-0043 Notification and Messaging Platform](../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform.md)
 
 ## Current Binding Research and Specs
 
 - [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md)
+- [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md)
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
 - [Match Engine Runtime Strategy](../60-Research/match-engine-runtime-strategy.md)

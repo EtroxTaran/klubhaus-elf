@@ -3,7 +3,7 @@ title: Privacy and Consent — implementation surface
 status: current
 tags: [implementation, gdpr, eprivacy, privacy, consent, dsar, deletion, age-gate, breach-runbook]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-05-22
 type: implementation
 binding: true
 adr:
@@ -20,6 +20,7 @@ related:
   - "[[session-management]]"
   - "[[account-recovery]]"
   - "[[audit-trail]]"
+  - "[[notification-messaging-platform]]"
   - "[[incident-response]]"
 ---
 
@@ -782,6 +783,21 @@ When onboarding a new processor that touches personal data:
 - **Transactional email vendor** (Brevo / Mailjet / IONOS per
   [[../60-Research/gdpr-compliance]] §11.4) — sign their
   published Art. 28 DPA; verify the EU-subprocessor list.
+
+ADR-0043 narrows the initial notification vendor stance:
+
+- **Brevo** is the default transactional email processor.
+- **Mailjet** is the prepared fallback.
+- **IONOS** remains an emergency/basic SMTP fallback, not the preferred
+  transactional implementation.
+- **Novu/Knock/Courier** are not processors at MVP because they are not start
+  dependencies. If a later spike adopts one, this note, the RoPA and the
+  Privacy Notice must be updated before any personal data is sent.
+- **Web Push** subscriptions are personal data. Push payloads must carry only
+  an opaque `notification_id`; details are fetched from the app after open.
+- **Discord/webhook user integrations** are post-MVP and opt-in only. Internal
+  ops Discord webhooks are operational alerting, not user notification
+  delivery.
 
 ### 10.2 Not required
 

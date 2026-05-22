@@ -3,10 +3,10 @@ title: Async Multiplayer - Private Group with Two Cadence Models
 status: approved
 tags: [game-design, mode, multiplayer, async]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-22
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/match-engine-runtime-strategy]], [[singleplayer-baseline]], [[match-engine]], [[watch-party-and-conference]], [[transfer-negotiations-p2p]], [[../10-Architecture/state-machines/league-week]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/match-engine-runtime-strategy]], [[singleplayer-baseline]], [[match-engine]], [[watch-party-and-conference]], [[transfer-negotiations-p2p]], [[../10-Architecture/state-machines/league-week]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
 ---
 
 # Async Multiplayer - Private Group with Two Cadence Models
@@ -169,6 +169,12 @@ Three classes (from [[../60-Research/async-multiplayer-research]] §7):
 
 Per-user channel preferences, rate-limited, escalation in-app → reminder →
 optional mail / Discord webhook.
+
+Architecture binding: [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
+and [[../30-Implementation/notification-messaging-platform]]. This narrows the
+above product shorthand: escalation is in-app first, then reminders and optional
+transactional email where the category allows it. User-facing Discord/webhooks
+are post-MVP opt-in integrations, not default notification channels.
 
 ## 9. Admin powers
 

@@ -3,7 +3,7 @@ title: Observability Runbook
 status: current
 tags: [implementation, observability, logging, monitoring, incident-response]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-22
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
@@ -119,7 +119,7 @@ Back up:
 - Prometheus only if SLO history must survive rebuild.
 
 Do not treat Loki or Tempo as the business audit trail. Restoring domain
-history uses SurrealDB outbox archives per ADR-0013.
+history uses PostgreSQL outbox/archive partitions per ADR-0028.
 
 ## Access
 

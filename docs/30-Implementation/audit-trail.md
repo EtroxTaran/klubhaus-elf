@@ -3,11 +3,11 @@ title: Audit Trail
 status: current
 tags: [implementation, audit, outbox, compliance, observability]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-05-22
 type: implementation
 binding: false
-adr: [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
-related: [[jobs-and-scheduler]], [[observability-runbook]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+adr: [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
+related: [[jobs-and-scheduler]], [[observability-runbook]], [[notification-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 ---
 
 # Audit Trail
@@ -18,7 +18,7 @@ Define the boundary between domain audit history and operational logs.
 
 ## Current Approach
 
-ADR-0013 states that the outbox **is** the audit trail:
+ADR-0028 states that the Postgres outbox **is** the audit trail:
 
 - hot table: `outbox_event`, last 60 days;
 - cold archive: `outbox_event_archive_YYYY_MM`, kept forever;
@@ -52,6 +52,17 @@ Audit-relevant events include:
 - economy and sponsorship decisions;
 - admin actions;
 - content moderation actions for community datasets.
+- notification preference changes, subscription lifecycle, delivery state and
+  provider webhook decisions:
+  - `notification.created`
+  - `notification.delivered`
+  - `notification.delivery_failed`
+  - `notification.read`
+  - `notification.dismissed`
+  - `notification.preference_changed`
+  - `notification.subscription_created`
+  - `notification.subscription_revoked`
+  - `notification.digest_sent`
 
 Each audit event is a domain event with:
 

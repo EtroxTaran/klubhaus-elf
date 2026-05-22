@@ -3,7 +3,7 @@ title: Rate Limiting and Anti-Abuse — edge WAF, endpoint quotas, anti-griefing
 status: current
 tags: [implementation, rate-limiting, anti-abuse, anti-griefing, waf, ddos, bot-mitigation, mcaptcha]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-05-22
 type: implementation
 binding: true
 adr:
@@ -20,6 +20,7 @@ related:
   - "[[session-management]]"
   - "[[account-recovery]]"
   - "[[privacy-and-consent]]"
+  - "[[notification-messaging-platform]]"
   - "[[secrets-management]]"
   - "[[audit-trail]]"
   - "[[incident-response]]"
@@ -34,9 +35,9 @@ This note resolves Wave 3 gap **F12** (Rate limiting / anti-abuse,
 - The **edge-WAF graduation pathway** (Phase 1 no WAF → Phase 2
   Bunny.net Shield → Phase 3 Cloudflare-only-if-required) closing
   **F1 Q5**.
-- The **full per-endpoint quota catalogue** across all 7 endpoint
+- The **full per-endpoint quota catalogue** across all 8 endpoint
   groups (A GDPR, B auth, C saves, D MP commands, E game-state
-  reads, F observability, G admin) closing **F3 FU-9** + extending
+  reads, F observability, G admin, H notification/messaging) closing **F3 FU-9** + extending
   **F2 §8** beyond auth.
 - The **6-pattern anti-griefing playbook** for multiplayer +
   transfer-market surfaces (lowball storming, counter-offer
@@ -67,7 +68,7 @@ quotas), F11 (Redis observability + rotation events).
 
 - **Edge-WAF Phase 1/2/3 graduation pathway** with concrete
   trigger thresholds (§2).
-- **Full per-endpoint quota catalogue** (§3) for groups A-G
+- **Full per-endpoint quota catalogue** (§3) for groups A-H
   with bucket size × window × scope × response shape.
 - **6-pattern anti-griefing playbook** for MP + transfer
   surfaces (§4).
@@ -406,7 +407,25 @@ Founder + Privacy Lead only; behind an additional layer
 | POST `/api/admin/users/:id/lock`                    | 30 / 5 min           | (admin)  | E   | F3 §13.1 CLI alternative                                               |
 | POST `/api/admin/users/:id/unlock`                  | 30 / 5 min           | (admin)  | E   | Same                                                                   |
 
-### 3.9 Asymmetry rules (locked)
+### 3.9 Group H - Notification and messaging endpoints
+
+ADR-0043 makes Notification a first-party bounded context. The quotas below
+apply when notification endpoints are implemented.
+
+| Endpoint / surface                                  | Bucket               | Scope    | Enf | Rationale                                                              |
+| ---                                                 | ---                  | ---      | --- | ---                                                                    |
+| GET `/api/notifications`                            | 300 / 5 min          | user     | E   | Inbox reads; generous for route reloads and reconnect                  |
+| POST `/api/notifications/:id/read`                  | 120 / 5 min          | user     | E   | Read/dismiss sync; allows offline catch-up bursts                      |
+| PATCH `/api/notification-preferences`               | 30 / 5 min           | user     | E   | Settings changes; high enough for normal editing                       |
+| POST `/api/push/subscriptions`                      | 10 / 24 h            | user     | E   | Web Push endpoint creation; prevents endpoint churn abuse              |
+| DELETE `/api/push/subscriptions/:id`                | 30 / 24 h            | user     | E   | Device cleanup; generous but bounded                                   |
+| POST `/api/email/webhooks/brevo`                    | provider-specific    | signed provider | E | Verify signature/token before processing; no user scope available      |
+| POST `/api/email/webhooks/mailjet`                  | provider-specific    | signed provider | E | Prepared fallback provider                                             |
+| Notification channel sends                          | 20 / 1 h             | user+channel | E | Outbound storm cap; security notices bypass but page ops               |
+| Digest creation                                     | 4 / 24 h             | user     | E   | Avoid digest loops                                                     |
+| Watch-party chat message (post-MVP)                 | TBD before promotion | group+user | E | Requires separate chat/moderation decision before implementation       |
+
+### 3.10 Asymmetry rules (locked)
 
 - **Read vs write**: reads get ≥ 5× the write quota at the
   same scope (e.g. `GET /api/saves` 300/5 min vs `POST /api/saves`
@@ -1085,7 +1104,7 @@ Six focused Perplexity-sonar-pro queries, 2026-05-18, total
 1. Edge WAF graduation pathway (Cloudflare vs Bunny.net
    Shield vs self-hosted nginx+modsecurity vs none-at-MVP);
    EU/GDPR posture; trigger thresholds for Phase 2 + Phase 3.
-2. Per-endpoint quota catalogue across 7 endpoint groups
+2. Per-endpoint quota catalogue across 8 endpoint groups
    (GDPR / auth / saves / MP commands / game reads /
    observability / admin); read vs write asymmetry;
    authenticated vs unauthenticated; IETF RateLimit headers.

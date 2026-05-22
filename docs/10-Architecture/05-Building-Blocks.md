@@ -1,8 +1,8 @@
 ---
 title: Building Blocks
-status: draft
+status: current
 tags: [architecture]
-updated: 2026-05-18
+updated: 2026-05-22
 ---
 
 # Building Blocks
@@ -23,7 +23,8 @@ flowchart TB
   Web --> Schema[packages/db-schema]
   Web --> Engine[packages/match-engine]
   Web --> Dexie[Dexie / IndexedDB cache + drafts]
-  Web --> Surreal[SurrealDB authoritative MVP store]
+  Web --> Postgres[PostgreSQL + Drizzle system of record]
+  Web --> Surreal[SurrealDB projection/live graph]
   Dexie -. future local SP adapter .-> Engine
 ```
 
@@ -101,12 +102,16 @@ Each folder owns `commands.ts`, `events.ts`, `queries.ts`,
 
 ## Cross-cutting infrastructure
 
-- **Transactional outbox** ([[09-Decisions/ADR-0013-transactional-outbox]])
-  for domain-event publication.
+- **Transactional outbox** ([[09-Decisions/ADR-0028-postgres-transactional-outbox]])
+  for same-Postgres-transaction domain-event publication.
 - **Job queue + scheduler** for timers, reminders, escalation,
   auto-resolves.
-- **Realtime channel** for league status + watch-party signals
-  (SurrealDB Live Queries).
+- **Realtime channel** ([[09-Decisions/ADR-0023-realtime-transport]])
+  for league status, notifications and watch-party signals: SSE first,
+  Centrifugo when scale/presence/recovery requires it.
+- **Notification platform** ([[09-Decisions/ADR-0043-notification-and-messaging-platform]])
+  for inbox, preferences, delivery attempts, email, push preparation and
+  offline notification projections.
 - **Match worker** for server-authoritative simulation
   ([[09-Decisions/ADR-0011-server-authoritative-multiplayer]]).
 - **Spectator service** for watch parties

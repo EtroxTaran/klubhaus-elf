@@ -3,11 +3,11 @@ title: ADR-0017 Self-hosted Observability and Logging
 status: accepted
 tags: [adr, architecture, observability, logging, monitoring, telemetry, gdpr]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-22
 accepted_at: 2026-05-17
 type: adr
 binding: true
-related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[ADR-0013-transactional-outbox]], [[../08-Crosscutting]], [[../../30-Implementation/observability-runbook]], [[../../30-Implementation/client-telemetry]]
+related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[ADR-0013-transactional-outbox]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0043-notification-and-messaging-platform]], [[../08-Crosscutting]], [[../../30-Implementation/observability-runbook]], [[../../30-Implementation/client-telemetry]]
 ---
 
 # ADR-0017: Self-hosted Observability and Logging
@@ -35,7 +35,8 @@ MVP-scope amended 2026-05-19 (Tempo/Mimir deferred) — see banner.
 
 - client crashes and service worker failures must be visible even when
   they happen during offline-first flows;
-- server functions, workers, SurrealDB, Redis Streams and Dokploy
+- server functions, workers, PostgreSQL, optional SurrealDB projections,
+  Redis/Centrifugo when enabled and Dokploy
   containers need structured logs;
 - match simulation, sync replay, outbox publishing and multiplayer
   workflows need metrics and later traces;
@@ -45,7 +46,8 @@ MVP-scope amended 2026-05-19 (Tempo/Mimir deferred) — see banner.
   EU-hosted, offline-first and stores encrypted user saves.
 
 The stack baseline is Docker/Dokploy on Hetzner, TanStack Start/React,
-service workers, Dexie/IndexedDB, SurrealDB, Redis Streams and a
+service workers, Dexie/IndexedDB, PostgreSQL + Drizzle as system of record,
+optional SurrealDB projections, Redis/Centrifugo when enabled and a
 service-ready modular monolith. SaaS observability is not the default.
 
 ## Decision
@@ -59,7 +61,7 @@ crash/error reporting in v1.
 
 | Concern | Decision | Role |
 |---|---|---|
-| Structured logs | Grafana Loki | Store app, worker, container, SurrealDB, Redis and reverse-proxy logs |
+| Structured logs | Grafana Loki | Store app, worker, container, PostgreSQL, optional SurrealDB, Redis/Centrifugo and reverse-proxy logs |
 | Metrics | Prometheus | Store service health, latency, queue, sync, worker and resource metrics |
 | Traces | Grafana Tempo | Store sampled distributed traces after v1 logs/metrics are stable |
 | Collector / agent | Grafana Alloy | Receive OTLP, collect logs, scrape/forward metrics, ship to LGTM |
@@ -77,8 +79,9 @@ operational cost.
 Operational data is split into five classes:
 
 1. **Operational logs**: JSON logs from server functions, workers,
-   service worker reporting endpoint, Docker containers, SurrealDB,
-   Redis and reverse proxy. Stored in Loki for short retention.
+   service worker reporting endpoint, Docker containers, PostgreSQL,
+   optional SurrealDB, Redis/Centrifugo and reverse proxy. Stored in Loki for
+   short retention.
 2. **Crash/error reports**: scrubbed exceptions, stack traces,
    release/build id, route/screen id, feature area, correlation id and
    minimal browser/device context. Stored in GlitchTip.
@@ -86,10 +89,10 @@ Operational data is split into five classes:
    depth, sync failures, IndexedDB quota warnings, PWA update failures,
    worker restarts and resource usage. Stored in Prometheus.
 4. **Traces**: sampled workflows spanning browser fetch, TanStack server
-   functions, SurrealDB queries, Redis stream publication and background
-   workers. Stored in Tempo.
+   functions, PostgreSQL queries, outbox publishing, realtime transport and
+   background workers. Stored in Tempo.
 5. **Domain audit events**: authoritative business/audit history via
-   ADR-0013 SurrealDB outbox and archive tables. These are not stored in
+   ADR-0028 PostgreSQL outbox and archive partitions. These are not stored in
    Loki and have their own retention policy.
 
 ### 3. Client crash and offline diagnostics

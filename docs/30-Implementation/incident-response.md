@@ -3,7 +3,7 @@ title: Incident Response
 status: current
 tags: [implementation, operations, incident-response, observability]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-22
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
@@ -44,11 +44,11 @@ durability risk, security issues and telemetry blind spots.
 - GlitchTip grouped crashes and affected release.
 - Prometheus metrics and alerts.
 - Tempo traces when enabled.
-- SurrealDB outbox/audit tables for domain truth.
+- PostgreSQL outbox/audit archive tables for domain truth.
 - CI artifacts for release regressions.
 
 Operational logs are short-retention evidence. Domain audit evidence is
-the SurrealDB outbox/archive.
+the ADR-0028 PostgreSQL outbox/archive.
 
 ## Legal Hold
 

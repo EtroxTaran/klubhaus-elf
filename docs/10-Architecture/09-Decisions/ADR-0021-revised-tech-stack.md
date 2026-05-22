@@ -3,13 +3,13 @@ title: ADR-0021 Revised Tech Stack
 status: accepted
 tags: [adr, architecture, database, state, validation]
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-05-22
 accepted_at: 2026-05-19
 type: adr
 binding: true
 supersedes: ADR-0001-tech-stack
 superseded_by:
-related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0022-animation-game-feel]], [[ADR-0023-realtime-transport]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0025-mobile-delivery]], [[../11-Risks]]
+related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0022-animation-game-feel]], [[ADR-0023-realtime-transport]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0025-mobile-delivery]], [[ADR-0043-notification-and-messaging-platform]], [[../11-Risks]]
 ---
 
 # ADR-0021: Revised Tech Stack
@@ -79,6 +79,11 @@ Kamal-2 escape-hatch note (see [[../11-Risks]] and
    not adopted**: it may be introduced post-launch as an additive engine for
    realtime/graph behind the [[ADR-0023-realtime-transport]] interface iff it
    proves to be the differentiator.
+
+   2026-05-22 amendment: [[ADR-0043-notification-and-messaging-platform]]
+   selects SurrealDB as an allowed additive projection/live-graph store for
+   notification and inbox read models. PostgreSQL remains the durable system of
+   record; SurrealDB does not own money/progression/notification truth.
 2. **State — split.** TanStack Query (+ persist-client over IndexedDB) for all
    server-mirrored state; **Zustand v5** for client/UI/match-simulation state
    (replaces ad-hoc React Context for app/game state). **Not TanStack Store** —

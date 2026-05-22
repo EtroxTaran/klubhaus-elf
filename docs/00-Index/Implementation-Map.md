@@ -24,6 +24,11 @@ unless re-opened by a current issue or accepted ADR.
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md) - current MVP PWA/offline-ready implementation stance.
 - [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md) - current persistence implementation stance.
+- [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md)
+  - current ADR-0043 implementation stance: first-party Notification
+  bounded context; Postgres durable truth; SurrealDB projection/live graph;
+  Dexie offline mirror; SSE MVP; Centrifugo scale path; Brevo default with
+  Mailjet fallback; Web Push/native push prepared behind adapters.
 - [SurrealDB Integration](../30-Implementation/surrealdb-integration.md) - superseded historical substrate note; do not implement.
 - [Deployment Dokploy](../30-Implementation/deployment-dokploy.md)
 - [Observability Runbook](../30-Implementation/observability-runbook.md)

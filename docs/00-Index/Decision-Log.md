@@ -43,6 +43,7 @@ contradict an `approved` game-design record.
 | [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]] | accepted | Same-Postgres-transaction outbox, polling floor plus `LISTEN/NOTIFY`, partitioned archive. | Supersedes ADR-0013. |
 | [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] | accepted/amended | Post-MVP non-authoritative Three/R3F presentation scenes. | Tightened by ADR-0041. |
 | [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]] | accepted | MVP Text & Stats + Canvas 2D; optional post-MVP Three/R3F presentation scenes only. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]] | accepted | First-party Notification bounded context; Postgres durable truth, SurrealDB projection, Dexie offline mirror, Brevo/Mailjet email, Web Push/native push prepared. | Amends ADR-0021/0023/0028 for notification delivery. |
 
 ## Superseded ADRs
 
@@ -70,6 +71,7 @@ PR as the work that needs them.
 ## Current Binding Non-ADR Inputs
 
 - [[../30-Implementation/postgres-drizzle-integration]] - implementation spec for ADR-0027/0028.
+- [[../30-Implementation/notification-messaging-platform]] - implementation spec for ADR-0043 notification, messaging, delivery and provider boundaries.
 - [[../30-Implementation/hybrid-online-pwa-strategy]] - implementation stance for ADR-0020.
 - [[../60-Research/match-engine-runtime-strategy]] - TypeScript MVP engine and post-MVP extraction gate.
 - [[../60-Research/presentation-renderer-strategy]] - research basis for ADR-0041.

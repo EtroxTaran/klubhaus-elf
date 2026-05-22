@@ -3,10 +3,10 @@ title: Dokploy Deployment
 status: current
 tags: [deployment, implementation, dokploy, observability]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-05-22
 type: implementation
 binding: false
-adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
+adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
 related: [[../10-Architecture/07-Deployment]], [[observability-runbook]], [[client-telemetry]]
 ---
 
@@ -60,13 +60,23 @@ dashboards together.
 Initial compose services:
 
 - `app`: TanStack Start / Vinxi app.
-- `surrealdb`: app data.
+- `postgres`: system of record for platform data, per-save schemas,
+  notification records, outbox and audit archive.
 
 Planned runtime additions from accepted ADRs:
 
-- `redis`: Redis Streams fan-out buffer for ADR-0013.
-- `outbox-publisher`: SurrealDB outbox to Redis Streams worker.
-- `scheduler`: countdowns, retries and maintenance jobs.
+- `outbox-publisher`: Postgres outbox to `RealtimeTransport` worker
+  (ADR-0028 + ADR-0023).
+- `scheduler`: countdowns, retries, notification reminders, digests and
+  maintenance jobs.
+- `notification-worker`: notification policy, delivery attempts, provider
+  webhooks and channel retries.
+- `surrealdb`: optional additive projection/live-graph store; not the system of
+  record.
+- `redis`: sessions/cache/rate limits and future Centrifugo engine storage; not
+  a durable event queue.
+- `centrifugo`: future realtime scale service for presence, recovery, history
+  and horizontal fan-out.
 - `match-worker`: extracted server-authoritative match simulation worker
   when load justifies it. MVP can run match simulation inside the app
   runtime; a future Rust worker is gated by
@@ -108,7 +118,7 @@ Protected/admin-only:
 - GlitchTip admin UI;
 - Prometheus, Loki and Tempo APIs;
 - Alloy debug UI / internal endpoints;
-- SurrealDB and Redis.
+- Postgres, SurrealDB, Redis and Centrifugo.
 
 Recommended access controls:
 
@@ -125,7 +135,8 @@ forwarding to Alloy or GlitchTip.
 
 Persist separately:
 
-- SurrealDB data.
+- PostgreSQL platform/per-save/notification/outbox data.
+- SurrealDB projection data only if enabled and rebuild cost matters.
 - Grafana data, dashboards and alert rules.
 - Loki chunks/index.
 - Prometheus time-series database.
@@ -145,18 +156,19 @@ Configure retention to match ADR-0017:
 - Tempo: 7 days traces.
 - Client offline telemetry: max 24 hours before send/drop.
 
-Domain audit retention is not configured here; ADR-0013 stores it in
-SurrealDB outbox/archive tables.
+Domain audit retention is not configured here; ADR-0028 stores it in
+Postgres outbox/archive partitions.
 
 ## Backups
 
 Backup priority:
 
-1. SurrealDB data.
+1. PostgreSQL platform/per-save/notification/outbox data.
 2. GlitchTip Postgres and source maps.
 3. Grafana dashboards and alert configuration.
 4. Prometheus if long-range SLO history is required.
 5. Loki/Tempo only for active incident/legal hold windows.
+6. SurrealDB projection data only if enabled and rebuild cost matters.
 
 Restore tests should prove that Grafana dashboards, alert rules and
 GlitchTip source maps survive a stack rebuild.
@@ -182,6 +194,6 @@ only after:
 ## Current Code Pointers
 
 - `Dockerfile`: app build and `/healthz` Docker health check.
-- `docker-compose.yml`: current app + SurrealDB production-like stack.
-- `docker-compose.dev.yml`: local SurrealDB for development.
+- `docker-compose.yml`: current app + Postgres production-like stack.
+- `docker-compose.dev.yml`: local Postgres for development.
 - `apps/web/src/routes/healthz.ts`: app health response.
