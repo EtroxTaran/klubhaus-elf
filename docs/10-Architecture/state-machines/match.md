@@ -1,4 +1,4 @@
----
+﻿---
 title: State Machine - Match
 status: draft
 tags: [architecture, state-machine, match]
@@ -109,7 +109,7 @@ match {
 
 ### AI vs AI storage policy
 
-Per [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]] §AI vs AI
+Per [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]] Â§AI vs AI
 match policy:
 
 - AI vs AI matches store `seed + lineups + tactics + quality_profile +
@@ -141,7 +141,7 @@ match policy:
 | Player disconnects during live coaching | Last submitted state used; auto-coach proceeds |
 | Race on lineup submission | Server-authoritative latest-wins until `lineup_locked` |
 
-## 9. Open questions
+## 9. Future-scope notes (classified future-scope)
 
 - Tick rate of `MatchEvent` batches - tentative 1 batch per virtual
   minute, max 60 events / batch.

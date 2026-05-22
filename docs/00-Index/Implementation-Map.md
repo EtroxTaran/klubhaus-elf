@@ -3,15 +3,19 @@ title: Implementation Map
 status: current
 tags: [implementation, meta]
 created: 2026-05-16
-updated: 2026-05-18
+updated: 2026-05-22
 type: map
 binding: false
-related: [[Architecture-Map]], [[Current-State]]
+related: [[Architecture-Map]], [[Current-State]], [[Documentation-Baseline-2026-05-22]]
 ---
 
 # Implementation Map
 
 Use this map for operational, deployment, data, and agent workflow work.
+
+[[Documentation-Baseline-2026-05-22]] is the implementation-facing closure
+baseline: current specs below are implementable; historical Wave 3 gap IDs are
+traceability only unless re-opened by a current issue or accepted ADR.
 
 ## Implementation Notes
 
@@ -19,7 +23,8 @@ Use this map for operational, deployment, data, and agent workflow work.
 - [Linear Task Tracking](../30-Implementation/linear-task-tracking.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md) - current MVP PWA/offline-ready implementation stance.
-- [SurrealDB Integration](../30-Implementation/surrealdb-integration.md)
+- [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md)
+- [SurrealDB Integration](../30-Implementation/surrealdb-integration.md) - superseded historical substrate note.
 - [Deployment Dokploy](../30-Implementation/deployment-dokploy.md)
 - [Observability Runbook](../30-Implementation/observability-runbook.md)
 - [Client Telemetry](../30-Implementation/client-telemetry.md)

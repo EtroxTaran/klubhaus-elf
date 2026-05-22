@@ -18,9 +18,11 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
-- [Wave 3 Gap Analysis](../60-Research/wave-3-gap-analysis.md) — **current
-  backlog of record** for all remaining documentation + architecture work.
-- [Research Wave 2 Gaps](../60-Research/research-wave-2-gaps.md) — superseded
+- [Documentation Baseline 2026-05-22](Documentation-Baseline-2026-05-22.md) - current
+  temporal/structural closure baseline for vault gaps.
+- [Wave 3 Gap Analysis](../60-Research/wave-3-gap-analysis.md) - superseded
+  planning backlog; kept for traceability of W3 IDs.
+- [Research Wave 2 Gaps](../60-Research/research-wave-2-gaps.md) - superseded
   by Wave 3; kept for traceability of R2-01..R2-19 IDs.
 
 ## Pre-Mortem 2026-05-20 (Cluster, 3 Iterationen)
@@ -47,6 +49,7 @@ Tagging** in `findings-registry.md`.
 - [[../60-Research/pre-mortem/00-index]] — Cluster-Index, Heatmap, Cross-Cutting, Decision-Log
 - [[../60-Research/pre-mortem/threat-model]] — Trust-Boundaries Z0–Z5, STRIDE-Matrix, Crypto-Bausteine
 - [[../60-Research/pre-mortem/findings-registry]] — **~191 Findings mit P0–P4-Priorität**
+- [[../60-Research/pre-mortem/gap-closure-concept-2026-05-22]] - **Konzept-Closure fuer alle ehemals offenen Pre-Mortem-Findings**; 15 Solution Tracks, externe Best-Practice-Quellen, Wettbewerbsdifferenzierung, Statusregel `mitigated` vs `verified`
 - [[../60-Research/pre-mortem/prioritization-matrix]] — P×I-Heatmap, Score×Effort-Hebel, Cross-Cutting-Cluster A–G, Regulatorische Deadlines, Sprint-Belegung
 - [[../60-Research/pre-mortem/execution-index]] — **15 Expertise-Kategorien** (SEC/BACKEND/PLATFORM/FRONTEND/DETERMINISM/GAMEDESIGN/TEST/A11Y/LEGAL/PRODUCT/AI/COMM/BRAND/FOUNDER/SUSTAIN) mit Briefings + Findings + Output-Artefakten für frische Agenten
 

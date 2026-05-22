@@ -1,4 +1,4 @@
----
+﻿---
 title: Game Design Map
 status: current
 tags: [game-design, meta]
@@ -6,12 +6,16 @@ created: 2026-05-16
 updated: 2026-05-22
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-Baseline-2026-05-22]]
 ---
 
 # Game Design Map
 
 Use this map for gameplay, economy, progression, and player experience work.
+
+[[Documentation-Baseline-2026-05-22]] classifies draft game-design notes as
+future-scope or historical planning unless they are listed as approved/current
+below. This means old `Future-scope notes` sections are not active work by default.
 
 ## Hub
 
@@ -95,7 +99,9 @@ Use this map for gameplay, economy, progression, and player experience work.
 
 Only `approved` game design or feature notes are binding for
 implementation. Draft gameplay ideas can be used for planning but not as
-implementation specs. Today the `approved` notes are:
+implementation specs. As of the 2026-05-22 baseline, the current MVP/gameplay
+surface is covered; non-approved notes are future-scope, not open gaps. Today
+the `approved` notes are:
 
 - [[../50-Game-Design/mode-create-a-club-roguelite]] (product rule)
 - [[../50-Game-Design/mode-manage-a-club-career]] (product rule)

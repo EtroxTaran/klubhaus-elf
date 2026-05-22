@@ -3,15 +3,19 @@ title: Feature Map
 status: current
 tags: [feature, meta]
 created: 2026-05-16
-updated: 2026-05-18
+updated: 2026-05-22
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-Baseline-2026-05-22]]
 ---
 
 # Feature Map
 
 Use this map for feature planning and implementation beats.
+
+[[Documentation-Baseline-2026-05-22]] classifies feature stubs as future-scope
+planning unless listed below as approved/current. They are not active
+documentation gaps.
 
 ## Current Hub
 
@@ -32,7 +36,7 @@ Use this map for feature planning and implementation beats.
 - M8 Youth Academy
 - M9 Systemic Events and Venue Operations
 
-## Feature stubs (Wave 2)
+## Feature stubs (classified future-scope / planning)
 
 - [[../20-Features/feature-tactics-progressive-disclosure]] - now includes
   Impact Lens player-strength presentation; no global OVR.

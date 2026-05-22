@@ -1,4 +1,4 @@
-<!--
+﻿<!--
 id: R-007
 title: [research] Consolidate Phase 1 findings and MVP recommendation
 labels: type:research, area:research, prio:critical, size:m, parallel:after-research
@@ -38,7 +38,7 @@ Rewrite `docs/60-Research/00-summary.md`.
 - [ ] MVP scope recommendation.
 - [ ] Differentiation statement.
 - [ ] Architecture/ADR inputs list.
-- [ ] Open questions for Nico with recommended answers.
+- [ ] Future-scope notes for Nico with recommended answers.
 - [ ] Links to all research notes.
 - [ ] Clear statement whether Phase 2 can proceed.
 

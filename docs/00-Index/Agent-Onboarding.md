@@ -1,37 +1,38 @@
----
+﻿---
 title: Agent Onboarding
 status: current
 tags: [meta, agents, vault]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-22
 type: index
 binding: true
-related: [[../90-Meta/agent-memory-protocol]]
+related: [[../90-Meta/agent-memory-protocol]], [[Documentation-Baseline-2026-05-22]]
 ---
 
 # Agent Onboarding
 
 First read for every agent (Claude Code, Cursor local, Cursor Cloud, Bugbot).
 The vault (`docs/`) is durable project memory. `AGENTS.md` / `CLAUDE.md` and the
-`.cursor/rules` are orchestrators only — durable context lives in vault notes.
+`.cursor/rules` are orchestrators only â€” durable context lives in vault notes.
 
 ## Read in this order
 
 1. This note.
-2. [[Current-State]] — what is being built, stable, blocked, open questions.
-3. Relevant maps from [[Home]] (Glossary, Decision-Log, Architecture).
-4. `accepted` ADRs and `approved` game design / feature specs for the task.
-5. The linked Linear issue when one exists.
-6. The latest note under [[../40-Execution/session-handoffs/README|session-handoffs]]
+2. [[Current-State]] - what is being built, stable and temporally classified.
+3. [[Documentation-Baseline-2026-05-22]] - current gap-closure baseline.
+4. Relevant maps from [[Home]] (Glossary, Decision-Log, Architecture).
+5. `accepted` ADRs and `approved` game design / feature specs for the task.
+6. The linked Linear issue when one exists.
+7. The latest note under [[../40-Execution/session-handoffs/README|session-handoffs]]
    if the work continues a prior thread.
 
 ## Memory classes
 
-- **Cold** — durable, rarely changes, often referenced: `accepted` ADRs,
+- **Cold** â€” durable, rarely changes, often referenced: `accepted` ADRs,
   `10-Architecture/**`, `00-Index/Vision`, `Glossary`, approved design notes.
-- **Warm** — changes regularly: [[Current-State]], active feature specs,
-  module notes, open questions.
-- **Hot** — changes every session: `40-Execution/session-handoffs/*`, the
+- **Warm** â€” changes regularly: [[Current-State]], active feature specs,
+  module notes, gap classifications.
+- **Hot** â€” changes every session: `40-Execution/session-handoffs/*`, the
   linked Linear issue, current branch context.
 
 Load the minimum depth the task needs. Never "read the whole vault".

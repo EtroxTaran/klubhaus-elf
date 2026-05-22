@@ -3,16 +3,18 @@ title: Architecture (Map of Content)
 status: current
 tags: [architecture, moc]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-22
 type: index
 binding: true
-related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[05-Building-Blocks]]
+related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[05-Building-Blocks]], [[../00-Index/Documentation-Baseline-2026-05-22]]
 ---
 
 # Architecture — Map of Content
 
 arc42-structured architecture. This is the hub for the architecture domain;
 every note below links back here and to its decisions/modules.
+[[../00-Index/Documentation-Baseline-2026-05-22]] is the current temporal
+baseline for architecture-gap classification.
 
 ## arc42 sections
 

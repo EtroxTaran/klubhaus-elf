@@ -1,4 +1,4 @@
----
+﻿---
 title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
@@ -17,7 +17,7 @@ its state machine(s), its database tables, and a thin public contract
 (commands + queries + domain events) that is JSON-serialisable and
 network-transparent.
 
-> Decision authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]] —
+> Decision authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]] â€”
 > accepted 2026-05-16.
 
 Per-context public contracts and code paths:
@@ -191,12 +191,12 @@ scaling signal forces a split.
 This is the explicit user requirement that drove this map: maximum
 service-architecture readiness so individual systems can be
 re-developed independently and scaled independently. See ADR-0019
-§Decision.
+Â§Decision.
 
 ## 6. Storage isolation
 
 Each context owns its own PostgreSQL tables (per
-[[09-Decisions/ADR-0027-postgres-data-model]] — supersedes the SurrealDB
+[[09-Decisions/ADR-0027-postgres-data-model]] â€” supersedes the SurrealDB
 mechanics in [[09-Decisions/ADR-0004-data-model]]). Tables live in
 `public` (platform contexts) or in a `save_<uuidv7hex>` schema (per-save
 contexts); access is routed through `QueryGateway.withPlatform` /
@@ -214,7 +214,7 @@ read. The rule is **strict**:
 Accepted in gap B1 Q&A (2026-05-16) at the strict level so service
 extraction stays a deployment change rather than a data-migration.
 
-## 7. Open questions
+## 7. Future-scope notes (classified future-scope)
 
 MVP staging per [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]:
 Offline Sync is intentionally narrow in the first playable. It owns cache

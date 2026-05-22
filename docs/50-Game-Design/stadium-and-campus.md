@@ -1,4 +1,4 @@
----
+﻿---
 title: Stadium and Club Campus - Build-out and On-grounds Economy
 status: approved
 tags: [game-design, stadium, infrastructure, anstoss]
@@ -16,10 +16,10 @@ related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Resear
 > not a detached tycoon minigame.
 
 The stadium is the **economic and emotional heart** of the club. Anstoss 3
-proved that buildings on the grounds (Würstchenbude, Bierzelt, Fanshop,
+proved that buildings on the grounds (WÃ¼rstchenbude, Bierzelt, Fanshop,
 Disco) carry more long-term player engagement than any tactic screen. This
 is one of our three flagship differentiators - see
-[[../60-Research/systems-design-synthesis]] §4.
+[[../60-Research/systems-design-synthesis]] Â§4.
 
 ## 1. Three stadium layers
 
@@ -49,10 +49,10 @@ Each tier change triggers compliance checks
 
 | Move | Pro | Con |
 |---|---|---|
-| Add standing terrace | ↑ atmosphere, ↑ ultras density | ↓ per-seat revenue |
-| Convert standing to seating | ↑ per-seat revenue, ↑ hospitality eligibility | ↓ atmosphere |
-| Add VIP suites | ↑ revenue, ↑ sponsor deals | Possible ultras alienation |
-| Add fan zone | ↑ dwell time, ↑ catering | Costs floor space, staff, security |
+| Add standing terrace | â†‘ atmosphere, â†‘ ultras density | â†“ per-seat revenue |
+| Convert standing to seating | â†‘ per-seat revenue, â†‘ hospitality eligibility | â†“ atmosphere |
+| Add VIP suites | â†‘ revenue, â†‘ sponsor deals | Possible ultras alienation |
+| Add fan zone | â†‘ dwell time, â†‘ catering | Costs floor space, staff, security |
 | Construction phase | Long-term gain | Temporary capacity + revenue drop |
 
 ## 4. Stadium modules (the Anstoss-3 wing)
@@ -64,7 +64,7 @@ upgrades:
 |---|---|---|
 | Extra stand | Capacity | Maintenance + staffing |
 | VIP suites | Revenue / seat | Sponsor tier upgrade |
-| Beer stand / Würstchenbude | Match-day revenue | Fan mood, dwell |
+| Beer stand / WÃ¼rstchenbude | Match-day revenue | Fan mood, dwell |
 | Fan shop | Merch revenue | Brand bonding |
 | Fan zone | Atmosphere, sponsor activation | Security + event cost |
 | WiFi / app infrastructure | In-app revenue, CRM | Sponsor digital inventory |
@@ -73,8 +73,8 @@ upgrades:
 | Outdoor screen | Atmosphere | Family-friendly fan zone |
 | Boutique hotel | Hospitality bookings + match-day stays | Long-term real estate value |
 
-Source pattern: [[../60-Research/raw-perplexity/raw-feature-library]] §3 (Anstoss 3
-buildings) + [[../60-Research/anstoss-series-deep-dive]] §3.
+Source pattern: [[../60-Research/raw-perplexity/raw-feature-library]] Â§3 (Anstoss 3
+buildings) + [[../60-Research/anstoss-series-deep-dive]] Â§3.
 
 ## 4.1 Venue operations calendar
 
@@ -141,7 +141,7 @@ matchday_revenue = ticket_revenue
 ```
 
 Each component depends on attendance, dwell time, fan-segment mix and
-weather. See [[fan-ecology]] §4.
+weather. See [[fan-ecology]] Â§4.
 
 Non-matchday revenue is separate:
 
@@ -192,7 +192,7 @@ checks the current stadium against the destination tier. Player options:
 - Ground-share with another club (rent cost, lower revenue).
 - Refuse promotion (only in roguelite mode - run consequence).
 
-## 10. Open questions
+## 10. Future-scope notes (classified future-scope)
 
 - Should we model travel time inside the campus (Anstoss "Flugplatz" gave
   +20 % away wins)? Yes, but as a soft modifier (+5 % at most) so it can't

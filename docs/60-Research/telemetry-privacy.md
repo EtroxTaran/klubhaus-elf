@@ -1,4 +1,4 @@
----
+﻿---
 title: Telemetry, Privacy and GDPR - Locked Decisions
 status: current
 tags: [research, telemetry, privacy, gdpr, observability, pwa]
@@ -204,7 +204,7 @@ Incident handling must document:
 - H7 product analytics remains deferred until explicit product metrics are
   approved.
 
-## Open Questions
+## Future-scope notes (classified future-scope)
 
 - F6 must finalise jurisdiction-specific consent copy and privacy notice
   language.

@@ -1,4 +1,4 @@
----
+﻿---
 title: Economy System - Cash-flow, Budgets and KPIs
 status: draft
 tags: [game-design, economy, finance]
@@ -42,7 +42,7 @@ flowchart LR
 | Debt | Loans + instalments + interest | Refinancing, early repayment |
 | Risk reserve | Unallocated cushion | Set aside in good months |
 
-Important rule: **Transfer budget ≠ cash.** The board may release a budget
+Important rule: **Transfer budget â‰  cash.** The board may release a budget
 that the club can only spend if liquidity allows or extra credit is taken.
 Transfer packages therefore affect both immediate liquidity and future
 liabilities: instalments, bonuses, wage subsidies and sell-on obligations must
@@ -104,20 +104,20 @@ Two budget breaches across two seasons trigger:
 - Fines.
 - Continental competition exclusion.
 
-In [[mode-create-a-club-roguelite]] persistent breaches → loss of control →
+In [[mode-create-a-club-roguelite]] persistent breaches â†’ loss of control â†’
 run ends.
 
 ## 6. Roguelite implications
 
 The roguelite "death spiral" runs *through* this system:
 
-1. Bad scouting → bad signings on big wages.
-2. Wage ratio breaches > 75 % → sponsor concern.
-3. Operating result negative → cash reserve drains.
-4. Risk reserve empty → forced sales at discount.
-5. Sales hurt squad strength → bad results.
-6. Bad results → board demand cost cuts + sponsor withdrawal.
-7. Insolvency → run ends.
+1. Bad scouting â†’ bad signings on big wages.
+2. Wage ratio breaches > 75 % â†’ sponsor concern.
+3. Operating result negative â†’ cash reserve drains.
+4. Risk reserve empty â†’ forced sales at discount.
+5. Sales hurt squad strength â†’ bad results.
+6. Bad results â†’ board demand cost cuts + sponsor withdrawal.
+7. Insolvency â†’ run ends.
 
 The drama is built into the cascade.
 
@@ -151,12 +151,12 @@ Per progressive disclosure ([[progressive-disclosure-ui]]):
 - **Standard**: KPI summary screen with the 8 KPIs.
 - **Expert**: Full P&L, cash-flow projection, contract liability schedule.
 
-## 9. Open questions
+## 9. Future-scope notes (classified future-scope)
 
 - Should currency be fictional (e.g. "credits") or per-country real
   currency in fictional clubs? Recommendation: per-country fictional
-  currency (€/£/etc.) for realism without licensing.
+  currency (â‚¬/Â£/etc.) for realism without licensing.
 - Inflation: do prices drift per season? Yes - modest 1-3 % per season to
   push the player to grow revenue with the squad.
 - Owner injection: should a sugar-daddy owner be able to clear debt? Yes,
-  but it has DNA cost (`tradition ↓`, `brand_strength ↑`).
+  but it has DNA cost (`tradition â†“`, `brand_strength â†‘`).

@@ -1,4 +1,4 @@
----
+﻿---
 title: Sponsorship Portfolio - Asset-level Sponsor Inventory
 status: draft
 tags: [game-design, sponsors, finance]
@@ -81,7 +81,7 @@ constrain other decisions:
 - Player conduct clauses (disciplinary triggers).
 - Stadium-name retention (no name change for X years).
 
-Breaking a side-condition → contract renegotiation, fine or termination.
+Breaking a side-condition â†’ contract renegotiation, fine or termination.
 
 ## 5. Sponsor management UI tiers
 
@@ -119,7 +119,7 @@ Some sponsor categories *fight* the fan segments
 The conflict surface is intentional - it provides decisions with
 trade-offs.
 
-## 8. Open questions
+## 8. Future-scope notes (classified future-scope)
 
 - Stadium naming - one slot per club or none for traditional clubs? Both;
   some clubs have `tradition` so high that naming is non-negotiable.

@@ -1,15 +1,23 @@
 ---
 title: Wave 3 Gap Analysis and Execution Backlog
-status: proposal
+status: superseded
 tags: [research, planning, gap-analysis, wave-3, backlog]
 created: 2026-05-16
-updated: 2026-05-19
+updated: 2026-05-22
 type: research-backlog
-supersedes: research-wave-2-gaps
-related: [[00-summary]], [[../00-Index/Current-State]], [[../00-Index/Research-Map]], [[../00-Index/Decision-Log]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
+binding: false
+supersedes: [[research-wave-2-gaps]]
+superseded_by: [[../00-Index/Documentation-Baseline-2026-05-22]]
+related: [[00-summary]], [[../00-Index/Current-State]], [[../00-Index/Research-Map]], [[../00-Index/Decision-Log]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/Documentation-Baseline-2026-05-22]]
 ---
 
 # Wave 3 Gap Analysis and Execution Backlog
+
+> **Superseded 2026-05-22.** This document is no longer the active backlog of
+> record. [[../00-Index/Documentation-Baseline-2026-05-22]] classifies and closes
+> the documentation-level gap state. Keep the W3 IDs here for traceability only.
+> Do not open implementation work from this document unless a current issue,
+> accepted ADR, approved GDDR or current implementation spec re-promotes it.
 
 > **MVP scope amendment (2026-05-18):** Gap **D5** onboarding research below
 > records the 2026-05-17 Q&A outcome. For current MVP product scope, prefer
@@ -44,7 +52,7 @@ Gaps were identified by auditing:
 - Every accepted/draft ADR in [[../10-Architecture/09-Decisions/]].
 - Every arc42 chapter under [[../10-Architecture/]].
 - Every implementation note under [[../30-Implementation/]].
-- The "Open questions" sections inside the 25 Wave-2 game-design notes
+- The "Future-scope notes" sections inside the 25 Wave-2 game-design notes
   under [[../50-Game-Design/]].
 - The pre-existing R2-01..R2-19 backlog in [[research-wave-2-gaps]].
 - The Project Goals + Glossary + Current-State indexes for missing
@@ -1400,9 +1408,9 @@ its IDs are mirrored here verbatim. Wave 3 adds explicit per-gap research
 - **Dependencies**: H1.
 - **Estimated effort**: S.
 
-### I. Game-design refinement (resolves Wave-2 "Open questions")
+### I. Game-design refinement (resolves Wave-2 "Future-scope notes")
 
-Each entry lifts the "Open questions" section of a `50-Game-Design/`
+Each entry lifts the "Future-scope notes" section of a `50-Game-Design/`
 note from `draft` toward `approved`.
 
 #### I1. Economy: currency + inflation

@@ -6,12 +6,16 @@ created: 2026-05-16
 updated: 2026-05-22
 type: map
 binding: false
-related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]]
+related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-Baseline-2026-05-22]]
 ---
 
 # Architecture Map
 
 Use this map before architecture or cross-cutting implementation work.
+
+[[Documentation-Baseline-2026-05-22]] classifies all historical draft/proposed
+architecture items. If a note is not `accepted`, `current` or explicitly
+promoted by the baseline, treat it as future-scope or historical context.
 
 ## Arc42 Chapters
 
@@ -80,14 +84,15 @@ Use this map before architecture or cross-cutting implementation work.
 - [ADR-0017 Observability and Logging](../10-Architecture/09-Decisions/ADR-0017-observability-logging.md) — **accepted 2026-05-17** (OpenTelemetry + Grafana Loki/Prometheus/Tempo/Alloy + GlitchTip, privacy-aware client diagnostics, capped offline crash queues)
 - [ADR-0018 Systemic Events and Player Lifecycle Architecture](../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle.md) — **accepted 2026-05-17** (domain-owned policies for player development, mentoring, injuries, match-day events and venue operations; `WorldEventDirector` as orchestration over existing contexts, not a new bounded context; narrative remains deterministic projection over structured facts)
 
-### Proposed (Wave 2, awaiting promotion)
+### Classified future-scope / optional promotion
 
-- [ADR-0012 Async Cadence Models](../10-Architecture/09-Decisions/ADR-0012-async-cadence-models.md)
-- [ADR-0014 State Machines](../10-Architecture/09-Decisions/ADR-0014-state-machines.md)
-- [ADR-0015 Spectator Snapshot Streaming](../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming.md)
-- [ADR-0016 Community Dataset Overrides](../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides.md)
+- [ADR-0012 Async Cadence Models](../10-Architecture/09-Decisions/ADR-0012-async-cadence-models.md) - product rules already approved in game design; ADR promotion is optional cleanup.
+- [ADR-0014 State Machines](../10-Architecture/09-Decisions/ADR-0014-state-machines.md) - promote before changing runtime orchestration.
+- [ADR-0015 Spectator Snapshot Streaming](../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming.md) - post-MVP watch-party layer.
+- [ADR-0016 Community Dataset Overrides](../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides.md) - future-scope until UGC moderation/security gates are implemented.
 
 ## Rule
 
-Implement from accepted ADRs. Draft or proposed ADRs are planning context
-only. Superseded ADRs are historical only.
+Implement from accepted ADRs and current implementation specs. Draft/proposed
+ADRs are planning context classified by [[Documentation-Baseline-2026-05-22]],
+not open gaps. Superseded ADRs are historical only.

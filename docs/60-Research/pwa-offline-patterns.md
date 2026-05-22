@@ -1,4 +1,4 @@
----
+﻿---
 title: PWA Offline Patterns
 status: review
 tags: [research, pwa, save, offline-first, indexeddb, service-worker, sync]
@@ -77,13 +77,13 @@ In scope:
 Out of scope (explicitly):
 
 - Real-time multiplayer.
-- Server-rendered career data — server is for static content + future sync.
+- Server-rendered career data â€” server is for static content + future sync.
 - Real club/player identities (see [[ADR-0007-naming-schema]]).
 - Migrating away from Dexie / IndexedDB.
 
 Hard constraints from project docs:
 
-- "Game state lives in IndexedDB via Dexie.js — never localStorage."
+- "Game state lives in IndexedDB via Dexie.js â€” never localStorage."
   ([AGENTS.md](../../AGENTS.md))
 - Mutating HTTP responses must not be cached ([[08-Crosscutting]]).
 - SurrealDB sync optional and post-MVP ([[ADR-0002-offline-first]]).
@@ -108,18 +108,18 @@ Why split `saves` from `save_blobs`:
 - Listing the save menu must be cheap. `db.saves.toArray()` should not
   deserialize hundreds of kilobytes of state.
 - Chunking lets a single save grow well beyond the practical
-  IndexedDB structured-clone size sweet spot (≤ ~1 MB per row stays
+  IndexedDB structured-clone size sweet spot (â‰¤ ~1 MB per row stays
   fast; we cap chunks at 256 KB after gzip).
 - Each chunk write is a separate IDB transaction commit, which limits
   damage from a mid-write crash and pairs cleanly with the corruption
-  check in §3.4.
+  check in Â§3.4.
 
 ### 2.2 Save envelope (logical schema)
 
 Every persisted state blob is a **`SaveEnvelope`** validated by Zod:
 
 ```ts
-// pseudocode — see ADR-0005 input for normative shape
+// pseudocode â€” see ADR-0005 input for normative shape
 const SaveEnvelope = z.object({
   formatVersion: z.literal(1),         // bumped on breaking changes
   saveId: z.string().ulid(),
@@ -127,7 +127,7 @@ const SaveEnvelope = z.object({
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
   schemaHash: z.string(),              // SHA-256 of the canonical TS schema
-  payload: z.unknown(),                // versioned game state, see §3
+  payload: z.unknown(),                // versioned game state, see Â§3
 })
 ```
 
@@ -154,12 +154,12 @@ Two reasons for the single-transaction approach:
    fully roll back, which gives us the atomicity that browser file
    APIs do not.
 2. Dexie 4's transaction guarantees survive mid-transaction promise
-   chains, which is what makes serializing → chunking → writing safe
+   chains, which is what makes serializing â†’ chunking â†’ writing safe
    to express as an `async` function.
 
 We never overwrite the previous save row in place: when the user
 explicitly "Saves", we write a new envelope under the same `saveId`
-plus an `autosave_n` rotation slot (see §3.5) so a corrupt write
+plus an `autosave_n` rotation slot (see Â§3.5) so a corrupt write
 cannot wipe the last good version.
 
 ---
@@ -172,7 +172,7 @@ We distinguish **schema** versioning from **payload** versioning.
 
 | Layer                | What changes                                  | Mechanism                                        |
 |----------------------|-----------------------------------------------|--------------------------------------------------|
-| Dexie schema version | Tables, primary keys, indexes                 | `db.version(N).stores({...}).upgrade(tx => …)`   |
+| Dexie schema version | Tables, primary keys, indexes                 | `db.version(N).stores({...}).upgrade(tx => â€¦)`   |
 | Save payload version | Shape of the deserialized game state         | Pure functions `migrateSaveV1ToV2(payload)`      |
 
 This split matters because adding an index never requires touching a
@@ -205,14 +205,14 @@ Rules we adopt:
 
 - **Never delete** a previous `version()` block once it has shipped to
   any user. Append-only.
-- `upgrade()` callbacks are pure with respect to network and clock —
+- `upgrade()` callbacks are pure with respect to network and clock â€”
   they may run on a phone in flight mode at first launch after update.
 - Each `upgrade()` ships with a Vitest fixture: a snapshot IDB dump
   from the previous version is loaded into a fake Dexie via
   `fake-indexeddb` and asserted post-upgrade. **No upgrade ships
   without this test.**
 - We accept Dexie 4's auto-version-detection but **still bump**
-  `version(N)` on every schema change — the millisecond saved at boot
+  `version(N)` on every schema change â€” the millisecond saved at boot
   is irrelevant; explicit version numbers make the upgrade graph
   reviewable in PRs.
 - Dexie 4 supports downgrades for IDB shape but provides no
@@ -244,7 +244,7 @@ function loadEnvelope(raw: unknown): SaveV3 {
 
 Properties:
 
-- Migrations form a linear chain `v1 → v2 → v3 …`. **No branching.**
+- Migrations form a linear chain `v1 â†’ v2 â†’ v3 â€¦`. **No branching.**
 - Each migrator has 100% Vitest coverage on golden fixtures stored in
   `tests/fixtures/saves/v{N}/*.json`.
 - Migrations run **on read**, never on background threads, never
@@ -252,7 +252,7 @@ Properties:
   on the next user-initiated save, not eagerly, so a botched migration
   cannot destroy an unmigrated original.
 - We keep golden fixtures for every shipped `formatVersion`
-  forever — they are the spec for "we will not break existing saves".
+  forever â€” they are the spec for "we will not break existing saves".
 
 ### 3.4 Corruption recovery
 
@@ -265,7 +265,7 @@ Recovery surfaces:
    `chunkHash` (SHA-256 of the concatenated decompressed chunks).
    Loader recomputes it and treats mismatch as corruption.
 3. **Storage quota exceeded mid-write**: IndexedDB rolls the
-   transaction back — the previous save survives. We surface a
+   transaction back â€” the previous save survives. We surface a
    `QuotaExceededError` to the user and refuse further saves until
    space is freed (delete other saves, export to disk).
 
@@ -276,7 +276,7 @@ To survive partial writes and bad migrations:
 - Three rotating slots per career: `current`, `autosave_n-1`,
   `autosave_n-2`. Manual saves write to a separate `manual` slot.
 - Rotation is a swap of pointer rows in `meta`, not a copy of blob
-  data — cheap.
+  data â€” cheap.
 - "Restore previous" is a UI-exposed action, not an automatic
   fallback, so silent reverts cannot mask data loss.
 
@@ -343,8 +343,8 @@ with:
 - `skipWaiting: true`
 - `cleanupOutdatedCaches: true`
 - Routes:
-  - `request.mode === 'navigate'` → `NetworkFirst` (cache `pages`)
-  - `script | style | image | font` → `StaleWhileRevalidate` (cache `assets`)
+  - `request.mode === 'navigate'` â†’ `NetworkFirst` (cache `pages`)
+  - `script | style | image | font` â†’ `StaleWhileRevalidate` (cache `assets`)
 - `navigateFallback: '/offline.html'`
 
 `apps/web/public/sw-register.js` registers `/service-worker.js` 15 s
@@ -354,15 +354,15 @@ shell stays usable.
 
 ### 5.2 What to keep
 
-- **`StaleWhileRevalidate` for static assets** — well-suited to
+- **`StaleWhileRevalidate` for static assets** â€” well-suited to
   cache-busted hashed assets emitted by Vite.
-- **`NetworkFirst` for navigations** — protects HTML freshness while
+- **`NetworkFirst` for navigations** â€” protects HTML freshness while
   still falling back offline.
-- **Never cache mutating methods** — `runtimeCaching` in Workbox only
+- **Never cache mutating methods** â€” `runtimeCaching` in Workbox only
   matches GET by default; we keep that default and additionally
   pass `request.method === 'GET'` predicates explicitly to make
   intent obvious.
-- **Late registration** — staying compatible with Lighthouse and
+- **Late registration** â€” staying compatible with Lighthouse and
   giving hydration a head start is a defensible MVP choice.
 
 ### 5.3 What to change before interactive routes ship
@@ -398,7 +398,7 @@ addEventListener('message', e => {
 
 Concretely this means:
 
-1. Flip `skipWaiting: true` → `false` in `build-pwa.mjs`.
+1. Flip `skipWaiting: true` â†’ `false` in `build-pwa.mjs`.
 2. Replace inline registration in `sw-register.js` with a
    `workbox-window`-based registrar gated on hydration.
 3. Add a "Reload to update" toast component using shadcn `Toast`.
@@ -431,7 +431,7 @@ game in 2026:
 
 - **Chromium-only.** Safari and Firefox have no implementation.
   Workbox's fallback is "replay on next service worker startup",
-  which requires the page to be open — i.e. the same trigger as
+  which requires the page to be open â€” i.e. the same trigger as
   our own `online` event.
 - **Designed for HTTP retries**, not for a domain-level mutation
   log. Replays send the original `Request`; our future
@@ -439,7 +439,7 @@ game in 2026:
   `applyTransfer(playerId, ...)`, not REST calls.
 - **Unfriendly to test.** Workbox's own docs note that DevTools
   "offline" does not affect SW fetches and that you must trigger
-  sync events manually from DevTools — Playwright cannot do this.
+  sync events manually from DevTools â€” Playwright cannot do this.
 
 ### 6.2 Outbox pattern (recommended for MVP)
 
@@ -468,7 +468,7 @@ Drain triggers, in priority order:
 The drainer has the same retry-with-exponential-backoff semantics
 as Workbox's `BackgroundSyncPlugin`, but operates on **domain ops**
 rather than serialized Requests. This keeps the conflict-resolution
-section (§9) implementable.
+section (Â§9) implementable.
 
 ### 6.3 When to revisit Background Sync
 
@@ -488,22 +488,22 @@ around the same outbox. Until then: domain-level outbox only.
 | Chromium (desktop + Android) | up to ~60% of total disk    | up to ~60% of total disk       |
 | Firefox            | 10% of disk or 10 GiB (group cap) | up to 50% of disk, cap 8 TiB   |
 | Safari iOS 17+ / macOS Sonoma+ (browser app or home-screen PWA) | up to ~60% of disk | same; persistent via heuristic |
-| Safari embedded WKWebView (in-app) | up to ~15% of disk      | n/a — best-effort only         |
+| Safari embedded WKWebView (in-app) | up to ~15% of disk      | n/a â€” best-effort only         |
 
 Exact numbers are upper bounds. Browsers cap further to avoid
 fingerprinting, so always handle `QuotaExceededError`.
 
 ### 7.2 Eviction triggers
 
-- **LRU under storage pressure** — least-recently-used origins
+- **LRU under storage pressure** â€” least-recently-used origins
   evicted first; persistent origins skipped (Chromium, Firefox,
   Safari).
 - **Overall-quota eviction** (Chromium ~80% of disk, Safari ~80%
   for browser apps): same LRU rules.
 - **Safari ITP proactive eviction**: 7 days of no user
-  interaction → script-created data (IDB, Cache, OPFS, localStorage)
+  interaction â†’ script-created data (IDB, Cache, OPFS, localStorage)
   deleted. Cookies set by the *server* are exempt.
-- **Home-screen PWAs are exempt** from the 7-day ITP eviction —
+- **Home-screen PWAs are exempt** from the 7-day ITP eviction â€”
   this is the single most important reason to push the
   "Add to Home Screen" flow.
 
@@ -511,7 +511,7 @@ fingerprinting, so always handle `QuotaExceededError`.
 
 1. Call `navigator.storage.persist()` immediately after the user
    creates their first save. If it returns `false`, surface a UI
-   chip "Saves may be evicted — install the app for full
+   chip "Saves may be evicted â€” install the app for full
    persistence". WebKit's heuristic grants persistence
    automatically once installed to the Home Screen.
 2. Show free-space telemetry from `navigator.storage.estimate()`
@@ -532,7 +532,7 @@ fingerprinting, so always handle `QuotaExceededError`.
   `window.matchMedia('(display-mode: standalone)')`.
 - **iOS pre-17.4**: third-party browsers are WebKit underneath, so
   the Safari quotas apply. Post-17.4 EU users may use alternative
-  engines with their own policies — assume Safari rules unless
+  engines with their own policies â€” assume Safari rules unless
   detected otherwise.
 - **Android Chrome**: `beforeinstallprompt` works; we capture and
   defer it, and re-prompt on the save screen after first save.
@@ -552,10 +552,10 @@ fingerprinting, so always handle `QuotaExceededError`.
 
 ---
 
-## 8. Future cloud sync — conflict resolution
+## 8. Future cloud sync â€” conflict resolution
 
 This section frames the post-MVP SurrealDB sync. None of it is
-implemented in MVP; the outbox in §6 is the seam.
+implemented in MVP; the outbox in Â§6 is the seam.
 
 ### 8.1 The problem
 
@@ -572,7 +572,7 @@ multi-writer editing.
 | Last-write-wins on whole save           | OK for MVP cloud, lossy on conflicts            | Simple, but discards 30 minutes of phone play silently. Not user-acceptable as default. |
 | Per-document LWW + `updatedAt`          | Good for fine-grained domain entities (player, club) but a single save is one document in our model. | Useful only if we re-shape the save into many SurrealDB records. |
 | Operational log (op-log) replay         | Strong fit for our outbox model.                | Each device appends ops; server defines the canonical order; clients replay.            |
-| CRDTs (Yjs / Automerge)                 | Overkill for single-writer; expensive payloads. | Useful when we add features like collaborative tactics boards — not for career state.   |
+| CRDTs (Yjs / Automerge)                 | Overkill for single-writer; expensive payloads. | Useful when we add features like collaborative tactics boards â€” not for career state.   |
 | Manual "branches"                        | Low-tech, user-honest.                         | When two devices diverge, surface both saves and let the user pick or fork.             |
 
 ### 8.3 Recommendation
@@ -586,7 +586,7 @@ For SurrealDB cloud sync (post-MVP), adopt a **two-tier model**:
    "Phone version is 30 min ahead of cloud. Keep phone, keep cloud,
    or fork into a second save."
 2. **Op-log replay** for each save under the hood. The outbox
-   (§6.2) is already an op-log; the cloud just appends and
+   (Â§6.2) is already an op-log; the cloud just appends and
    replays it on the canonical version.
 
 Why this stack:
@@ -619,7 +619,7 @@ Why this stack:
 - **Cannot reliably:** make the **service worker** see the offline
   state. Per Playwright's own docs and well-known issue
   (open since 2020), `setOffline()` is per page target, and the SW
-  target stays online — it will continue to serve cached pages and
+  target stays online â€” it will continue to serve cached pages and
   perform new fetches normally. WebSockets and keep-alive HTTP
   sockets also stay open across the flip.
 
@@ -637,9 +637,9 @@ Why this stack:
    handles internally.
 4. **Test the outbox via app-level UI**, not via DevTools
    "Sync" buttons (Playwright cannot click them):
-   - Go offline → trigger mutation in UI → assert outbox has 1
+   - Go offline â†’ trigger mutation in UI â†’ assert outbox has 1
      entry (via test-only API or a debug overlay).
-   - Go online → assert outbox drains, mutation is "synced".
+   - Go online â†’ assert outbox drains, mutation is "synced".
 5. **Service-worker code paths get unit + integration tests in
    Vitest with a Workbox test harness**; Playwright covers
    end-to-end PWA install + reload-to-update flows.
@@ -648,12 +648,12 @@ Why this stack:
 
 | Scenario                                              | Tooling                                     |
 |-------------------------------------------------------|---------------------------------------------|
-| Fresh visit → offline → reload → app shell renders    | Playwright `setOffline(true)` + cache warm  |
-| Save → offline → reload → save still loads            | Playwright + Dexie via in-page eval         |
-| Migration v(N-1) → v(N) on first launch after update  | Vitest + `fake-indexeddb` + golden fixtures |
+| Fresh visit â†’ offline â†’ reload â†’ app shell renders    | Playwright `setOffline(true)` + cache warm  |
+| Save â†’ offline â†’ reload â†’ save still loads            | Playwright + Dexie via in-page eval         |
+| Migration v(N-1) â†’ v(N) on first launch after update  | Vitest + `fake-indexeddb` + golden fixtures |
 | Outbox queues mutations offline and drains online     | Playwright with debug API on `window`       |
-| Quota exceeded mid-write → previous save survives     | Vitest with mocked Dexie throwing           |
-| SW update prompt → user accepts → reload              | Playwright by deploying two app versions in serial test runs |
+| Quota exceeded mid-write â†’ previous save survives     | Vitest with mocked Dexie throwing           |
+| SW update prompt â†’ user accepts â†’ reload              | Playwright by deploying two app versions in serial test runs |
 | Lighthouse `installable-manifest` audit               | CI Lighthouse step (already in plan)         |
 | iOS install + offline launch                          | Out of automation; manual smoke checklist   |
 
@@ -667,7 +667,7 @@ Why this stack:
 
 ---
 
-## 10. Open questions
+## 10. Future-scope notes (classified future-scope)
 
 These do not block MVP but should be resolved before cloud sync ships:
 
@@ -680,12 +680,12 @@ These do not block MVP but should be resolved before cloud sync ships:
   is silently rotate. Recommend "refuse + UI" for trust.
 - Should we mirror saves to OPFS as an additional durable layer?
   OPFS shares the same origin quota and the same eviction rules,
-  so it adds **no** persistence guarantee — recommendation: **no**,
+  so it adds **no** persistence guarantee â€” recommendation: **no**,
   not worth the second code path.
 
 ---
 
-## 11. Direct input for ADR-0002 — Offline-first strategy
+## 11. Direct input for ADR-0002 â€” Offline-first strategy
 
 > Drop-in section the ADR can lift verbatim under "Decision" /
 > "Consequences" / "Status quo".
@@ -713,7 +713,7 @@ These do not block MVP but should be resolved before cloud sync ships:
 - iOS users are explicitly steered to "Add to Home Screen" because
   only home-screen PWAs are exempt from Safari ITP's 7-day eviction.
 - SurrealDB cloud sync is **out of scope for MVP**. The outbox is
-  the seam; see §8 for the chosen conflict-resolution model when
+  the seam; see Â§8 for the chosen conflict-resolution model when
   sync is added.
 
 ### Consequences
@@ -731,11 +731,11 @@ These do not block MVP but should be resolved before cloud sync ships:
 
 ### Status
 
-Proposed — pending ADR-0002 finalization (AKOM-121).
+Proposed â€” pending ADR-0002 finalization (AKOM-121).
 
 ---
 
-## 12. Direct input for ADR-0005 — Save format and versioning
+## 12. Direct input for ADR-0005 â€” Save format and versioning
 
 > Drop-in section the ADR can lift verbatim.
 
@@ -744,18 +744,18 @@ Proposed — pending ADR-0002 finalization (AKOM-121).
 - One **`SaveEnvelope`** Zod schema is the source of truth for every
   persisted save, both in IndexedDB and in exported JSON files.
 - The envelope carries:
-  - `formatVersion: integer` — bumped on every breaking payload
+  - `formatVersion: integer` â€” bumped on every breaking payload
     change.
   - `saveId: ULID`.
-  - `appVersion: semver` — recorded for diagnostics; not used to
+  - `appVersion: semver` â€” recorded for diagnostics; not used to
     gate loading.
   - `schemaHash: SHA-256` of the canonical TS schema at build time.
   - `createdAt`, `updatedAt`: ISO-8601 datetimes.
-  - `payload: unknown` — versioned game state.
+  - `payload: unknown` â€” versioned game state.
   - `chunkHash: SHA-256` of the concatenated decompressed payload
     bytes (in IDB form), used to detect chunk corruption.
 - Storage layout is `saves` (metadata) + `save_blobs` (gzip-compressed
-  fixed-size chunks, ≤ 256 KB each), written atomically inside one
+  fixed-size chunks, â‰¤ 256 KB each), written atomically inside one
   Dexie `'rw'` transaction.
 - Migrations live in two layers:
   - Dexie schema migrations, append-only `db.version(N)` blocks
@@ -782,7 +782,7 @@ Proposed — pending ADR-0002 finalization (AKOM-121).
   loading a v(N-1) fixture and asserting v(N) shape. CI gate.
 - All gameplay state must be **structured-cloneable** and
   serializable to JSON without information loss. No `Date` objects
-  in payloads — ISO strings only. No `Map`/`Set` in payloads
+  in payloads â€” ISO strings only. No `Map`/`Set` in payloads
   except via explicit (de)serializers.
 - The save format is the public contract. Renaming a payload field
   requires a migration, even when the type is unchanged.
@@ -793,29 +793,29 @@ Proposed — pending ADR-0002 finalization (AKOM-121).
 
 ### Status
 
-Proposed — pending ADR-0005 finalization (AKOM-117).
+Proposed â€” pending ADR-0005 finalization (AKOM-117).
 
 ---
 
 ## 13. References
 
-- Dexie.js — *Tutorial: Design* (database versioning, schema
+- Dexie.js â€” *Tutorial: Design* (database versioning, schema
   declaration, Dexie 3/4 behavior). <https://dexie.org/docs/Tutorial/Design>
-- Dexie.js — *Version.upgrade()*. <https://dexie.org/docs/Version/Version.upgrade()>
-- MDN — *Storage quotas and eviction criteria*.
+- Dexie.js â€” *Version.upgrade()*. <https://dexie.org/docs/Version/Version.upgrade()>
+- MDN â€” *Storage quotas and eviction criteria*.
   <https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria>
-- WebKit — *Updates to Storage Policy* (Safari 17 / iOS 17 quotas
+- WebKit â€” *Updates to Storage Policy* (Safari 17 / iOS 17 quotas
   and home-screen PWA exemption). <https://webkit.org/blog/14403/updates-to-storage-policy/>
-- WebKit — *Intelligent Tracking Prevention 2.3* (7-day script-data
+- WebKit â€” *Intelligent Tracking Prevention 2.3* (7-day script-data
   eviction). <https://webkit.org/blog/9521/intelligent-tracking-prevention-2-3/>
-- Chrome for Developers — *Handling service worker updates*
+- Chrome for Developers â€” *Handling service worker updates*
   (workbox-window prompt pattern, SKIP_WAITING).
   <https://developer.chrome.com/docs/workbox/handling-service-worker-updates>
-- Chrome for Developers — *workbox-background-sync* (BackgroundSync
+- Chrome for Developers â€” *workbox-background-sync* (BackgroundSync
   API, IDB queue, fallback semantics).
   <https://developer.chrome.com/docs/workbox/modules/workbox-background-sync>
-- Playwright — *Service Workers* and *Network*.
-  <https://playwright.dev/docs/service-workers> ·
+- Playwright â€” *Service Workers* and *Network*.
+  <https://playwright.dev/docs/service-workers> Â·
   <https://playwright.dev/docs/network>
 - Project: [AGENTS.md](../../AGENTS.md) (architecture rules, PWA rules,
   storage rules).
@@ -824,6 +824,6 @@ Proposed — pending ADR-0005 finalization (AKOM-117).
 
 ## Related
 
-- [[00-summary]] — research MOC (hub)
-- [[../10-Architecture/09-Decisions/ADR-0002-offline-first]] · [[../10-Architecture/09-Decisions/ADR-0005-save-format]] — decisions this directly fed
-- [[../30-Implementation/pwa-offline-strategy]] · [[../30-Implementation/surrealdb-integration]] — implementations · [[club-boss-analysis]] — sibling
+- [[00-summary]] â€” research MOC (hub)
+- [[../10-Architecture/09-Decisions/ADR-0002-offline-first]] Â· [[../10-Architecture/09-Decisions/ADR-0005-save-format]] â€” decisions this directly fed
+- [[../30-Implementation/pwa-offline-strategy]] Â· [[../30-Implementation/surrealdb-integration]] â€” implementations Â· [[club-boss-analysis]] â€” sibling

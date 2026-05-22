@@ -1,12 +1,12 @@
----
+﻿---
 title: Game Design Hub
 status: current
 tags: [game-design, index]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-05-22
 type: index
 binding: false
-related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]]
+related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-Baseline-2026-05-22]]
 ---
 
 # Game Design Hub
@@ -14,6 +14,9 @@ related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]]
 Working game-design notes for soccer-manager. Treat this folder as the GDD:
 one note per system + mode + emergent system. Notes are `draft` unless the
 status field says otherwise; `approved` notes are binding for implementation.
+[[../00-Index/Documentation-Baseline-2026-05-22]] classifies non-approved notes
+as future-scope or historical planning unless they are promoted in
+[[../00-Index/Current-State]].
 
 Research input for every note lives in [[../60-Research/]]; raw research
 transcripts in [[../60-Research/raw-perplexity/README]].
@@ -30,6 +33,9 @@ two complementary record shapes:
 
 When an approved GDDR and an approved system note disagree, stop and supersede
 one explicitly before implementation. `draft` records are planning context only.
+As of 2026-05-22, the MVP gameplay surface is covered by the approved/current
+notes listed in [[../00-Index/Game-Design-Map]]; remaining draft status labels
+are not active work.
 
 | GDDR | System | Status | Feeds ADR |
 |---|---|---|---|
@@ -106,7 +112,8 @@ one explicitly before implementation. `draft` records are planning context only.
 ## Status legend
 
 - `approved` - binding. Implementation must follow.
-- `draft` - design in progress; safe to plan from but expect changes.
+- `draft` - future-scope or historical planning; not implementation authority
+  and not active work unless re-opened by [[../00-Index/Documentation-Baseline-2026-05-22]].
 - `superseded` - historical only; never implement from.
 
 When status changes, also update [[../00-Index/Current-State]] and

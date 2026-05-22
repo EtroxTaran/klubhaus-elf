@@ -1,4 +1,4 @@
----
+﻿---
 title: Fan Ecology - Six Segments and Atmosphere Engine
 status: draft
 tags: [game-design, fans, atmosphere, ultras]
@@ -42,11 +42,11 @@ For each segment the system tracks:
 
 A decision can move different segments in opposite directions. Examples:
 
-- Ticket-price hike: Ultras + Core mood ↓↓; Corporate neutral.
-- VIP expansion: Corporate ↑; Ultras ↓.
-- Selling an icon: Ultras + Core ↓↓; Fair Weather mixed.
-- Sponsor from incompatible industry: Ultras + Family ↓.
-- Alcohol ban: Ultras + Casual ↓; Family ↑; catering revenue ↓.
+- Ticket-price hike: Ultras + Core mood â†“â†“; Corporate neutral.
+- VIP expansion: Corporate â†‘; Ultras â†“.
+- Selling an icon: Ultras + Core â†“â†“; Fair Weather mixed.
+- Sponsor from incompatible industry: Ultras + Family â†“.
+- Alcohol ban: Ultras + Casual â†“; Family â†‘; catering revenue â†“.
 
 ## 3. Atmosphere engine
 
@@ -55,7 +55,7 @@ Atmosphere is a single composite value `[0..100]` per match. Inputs:
 - Derby / rivalry intensity (from [[rivalry-system]]).
 - Table context (relegation fight / title race).
 - Stadium utilisation %.
-- Fan-segment mix at the match × stadium architecture (standing %).
+- Fan-segment mix at the match Ã— stadium architecture (standing %).
 - Weather + kickoff time.
 - Recent security interventions.
 - Form + club mood.
@@ -93,7 +93,7 @@ per_capita_revenue = base
 ```
 
 This is why fan-zone build-out has cascading effects (see
-[[stadium-and-campus]] §4).
+[[stadium-and-campus]] Â§4).
 
 ## 5. Fan politics events
 
@@ -112,9 +112,9 @@ Events are surfaced as inbox cards with Accept / Decline / Defer actions.
 
 The Fan Service consumes the `rivalry_score` from [[rivalry-system]]:
 
-- High score → segment population temporarily ↑ for the derby.
-- High score → atmosphere multiplier × 1.3.
-- High score → risk-event probabilities ↑ (see [[matchday-event-engine]]).
+- High score â†’ segment population temporarily â†‘ for the derby.
+- High score â†’ atmosphere multiplier Ã— 1.3.
+- High score â†’ risk-event probabilities â†‘ (see [[matchday-event-engine]]).
 
 ## 7. UI tiers
 
@@ -129,16 +129,16 @@ The Fan Service consumes the `rivalry_score` from [[rivalry-system]]:
 A sanction chain item ([[matchday-event-engine]]) propagates into fan
 population:
 
-- Partial sector closure → Ultras attendance ↓.
-- Visiting-fan ban → away-segment population ↓.
-- Alcohol ban → Casual + Ultras catering ↓.
-- Ghost match → all attendance = 0 + Core loyalty ↓ for one cycle.
+- Partial sector closure â†’ Ultras attendance â†“.
+- Visiting-fan ban â†’ away-segment population â†“.
+- Alcohol ban â†’ Casual + Ultras catering â†“.
+- Ghost match â†’ all attendance = 0 + Core loyalty â†“ for one cycle.
 
-## 9. Open questions
+## 9. Future-scope notes (classified future-scope)
 
 - Should ultras have *individual* groups (named) or as one aggregate
   segment? Recommendation: aggregate at MVP; named groups Phase 2+.
-- Do fans churn between segments? Yes, but slowly - Family → Core after
+- Do fans churn between segments? Yes, but slowly - Family â†’ Core after
   N years of attendance.
 - Should fan-zone modules generate Family loyalty bumps? Yes (modest +1
   per season).

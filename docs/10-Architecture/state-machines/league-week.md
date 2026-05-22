@@ -1,4 +1,4 @@
----
+﻿---
 title: State Machine - League Week
 status: draft
 tags: [architecture, state-machine, league, async, ddd]
@@ -49,7 +49,7 @@ stateDiagram-v2
 | From | To | Trigger | Condition |
 |---|---|---|---|
 | `week_open` | `quorum_reached` | Fixed mode: scheduled timer | Specific weekday + time |
-| `week_open` | `quorum_reached` | Dynamic mode: `CompleteWeek` events | `count(complete) ≥ quorum %` |
+| `week_open` | `quorum_reached` | Dynamic mode: `CompleteWeek` events | `count(complete) â‰¥ quorum %` |
 | `quorum_reached` | `pre_match_countdown` | System event | Countdown job created |
 | `pre_match_countdown` | `matchday_open` | Timer event | Configured countdown elapsed |
 | `matchday_open` | `matchday_locked` | Timer event | Match-day lock time reached |
@@ -104,7 +104,7 @@ All events route through the transactional outbox
 | Quorum never reached | Max-week-length timer forces `quorum_reached` with current count |
 | Match worker crash | Idempotent retry; lock prevents double-execution |
 | Lost timer | Scheduler reconciliation rebuilds from `state_entered_at` |
-| Pause vote in mid-state | Vote queued; applied at safe boundary (next `post_match_reports` → `week_open`) |
+| Pause vote in mid-state | Vote queued; applied at safe boundary (next `post_match_reports` â†’ `week_open`) |
 
 ## 7. Test strategy
 
@@ -116,7 +116,7 @@ All events route through the transactional outbox
 - Quorum sweep: vary quorum % and complete-times; verify
   `quorum_reached` fires correctly.
 
-## 8. Open questions
+## 8. Future-scope notes (classified future-scope)
 
 - Should `post_match_reports` automatically advance to the next week, or
   require a user-triggered "start next week" action? Auto-advance with a

@@ -1,12 +1,12 @@
 ---
 title: Features
-status: draft
+status: current
 tags: [feature, index]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-05-22
 type: index
 binding: false
-related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]]
+related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-Baseline-2026-05-22]]
 ---
 
 # Features
@@ -20,6 +20,8 @@ Each feature spec note is a focused, implementable slice. It links to:
 
 Specs are `draft` until tied to an implementation beat. Promotion to
 `approved` happens after Nico + the implementing agent agree on scope.
+[[../00-Index/Documentation-Baseline-2026-05-22]] classifies the remaining
+stubs as future-scope planning, not open documentation gaps.
 
 ## Active MVP feature
 
@@ -29,7 +31,7 @@ Older feature stubs may contain historical "In scope (MVP)" headings. The
 canonical MVP scope is [[../00-Index/MVP-Scope]]; use it before interpreting
 those headings.
 
-## Feature stubs (Wave 2)
+## Feature stubs (future-scope planning)
 
 - [[feature-async-week-loop]] — post-MVP server-driven week cycle with two cadence rule sets.
 - [[feature-stadium-builder]] — Anstoss-style on-grounds attractions + capacity tiers.

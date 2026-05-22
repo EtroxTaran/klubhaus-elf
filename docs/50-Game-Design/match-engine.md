@@ -304,7 +304,7 @@ Implications:
 - Hundreds of fixtures must be assigned quality profiles; they must never all
   default to `competitive-full`.
 
-## 10. Open questions
+## 10. Future-scope notes (classified future-scope)
 
 - Tuning values for quality-profile downgrades by world size and device tier.
 - Minimum spatial sample rate per profile for credible heatmaps and running

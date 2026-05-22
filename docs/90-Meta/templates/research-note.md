@@ -1,4 +1,4 @@
----
+﻿---
 title: Research Title
 status: draft
 tags: [research]
@@ -32,6 +32,6 @@ Short decision-ready summary.
 - ADR input:
 - Feature/game design input:
 
-## Open Questions
+## Future-scope notes (classified future-scope)
 
 - Question:

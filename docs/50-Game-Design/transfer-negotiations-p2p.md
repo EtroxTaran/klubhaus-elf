@@ -1,4 +1,4 @@
----
+﻿---
 title: Player-to-Player Transfer Negotiations
 status: draft
 tags: [game-design, transfers, multiplayer, escalation]
@@ -47,13 +47,13 @@ sequenceDiagram
 
 ## 3. Escalation chain (verbatim)
 
-Per [[../60-Research/async-multiplayer-research]] §4 and
+Per [[../60-Research/async-multiplayer-research]] Â§4 and
 [[../10-Architecture/state-machines/transfer]]:
 
 | Stage | Trigger | Effect |
 |---|---|---|
 | 1 | First non-response | Offer `expired`. Agent registers interest. |
-| 2 | Repeated ignored strong interest | `agentPressure ↑`, `playerUnrest ↑` for the target player |
+| 2 | Repeated ignored strong interest | `agentPressure â†‘`, `playerUnrest â†‘` for the target player |
 | 3 | Sustained ignoring + player favors move | Player issues transfer request via media |
 | 4 | Continued ignoring | Training-mood slip in B's squad |
 | 5 | Public chain | Media leak / supporter unrest in B's club |
@@ -123,7 +123,7 @@ Group rule sets can override.
 | Standard | Side panel with full offer terms and counter-offer wizard |
 | Expert | Full offer history, bargaining-power meter, agent-pressure flag, clause editor, estimated cash-equivalent comparison |
 
-## 10. Open questions
+## 10. Future-scope notes (classified future-scope)
 
 - Should the system propose "fair value" estimates to both sides? Yes, as
   estimate ranges from league market data + scout / director confidence. Exact

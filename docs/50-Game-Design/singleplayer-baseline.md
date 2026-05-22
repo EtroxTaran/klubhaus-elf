@@ -1,4 +1,4 @@
----
+﻿---
 title: Singleplayer Baseline
 status: approved
 tags: [game-design, mode, singleplayer, baseline]
@@ -33,7 +33,7 @@ In the long-term singleplayer baseline:
 - Both content modes are fully available after their rollout
   ([[mode-create-a-club-roguelite]] and [[mode-manage-a-club-career]]).
 - All sub-systems are fully exposed.
-- The game is **fully pausable** and **accelerable** (1×, 2×, 4×,
+- The game is **fully pausable** and **accelerable** (1Ã—, 2Ã—, 4Ã—,
   match-only mode).
 - All actions are **delegable** to assistants where the player chooses.
 - The user can **save at any moment**.
@@ -111,7 +111,7 @@ in async groups):
 - Cheat-adjacent toggles like "no insolvency" (renamed: "casual finance
   mode") - explicit opt-in, not default.
 
-## 9. Open questions
+## 9. Future-scope notes (classified future-scope)
 
 - Should singleplayer support "challenge runs" (constraint-based)? Yes -
   modelled as scenario packs.

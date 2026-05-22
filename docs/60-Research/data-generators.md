@@ -1,5 +1,5 @@
----
-title: Data Generators — Names, Crests, Cities, Clubs, Players
+﻿---
+title: Data Generators â€” Names, Crests, Cities, Clubs, Players
 status: current
 binding: true
 tags: [research, data-generation, worldgen, names, crests, players, clubs, determinism, ip-safe]
@@ -9,7 +9,7 @@ type: research
 related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]], [[determinism-and-replay]], [[performance-budgets]], [[surrealdb-schema-patterns]], [[../50-Game-Design/scouting-and-recruitment]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/club-dna-and-governance]]
 ---
 
-# Data Generators — Names, Crests, Cities, Clubs, Players
+# Data Generators â€” Names, Crests, Cities, Clubs, Players
 
 > Gap D2 of [[wave-3-gap-analysis]]. Locks the procedural-generation
 > architecture for fictional names, crests, cities, clubs (with finances
@@ -32,12 +32,12 @@ decisions already locked elsewhere:
   pinned; deterministic re-load.
 - **D8 Determinism + Replay** ([[determinism-and-replay]]): PCG32 via
   `pure-rand`; 8 named RNG streams; **stream additions are forward-
-  compatible by label** — adding a 9th stream does not invalidate
-  existing replays. This note adds stream #9 `GeneratorRng` (§12).
+  compatible by label** â€” adding a 9th stream does not invalidate
+  existing replays. This note adds stream #9 `GeneratorRng` (Â§12).
 - **D9 Performance Budgets** ([[performance-budgets]]): world-size
   presets Small (~700 players / 1 nation), Medium (~2 500 / 3),
   Large (~7 500 / 8); ~5 s budget for full world genesis on Snapdragon
-  695; total IndexedDB usage ≤ 200 MB.
+  695; total IndexedDB usage â‰¤ 200 MB.
 - **D14 SurrealDB Schema Patterns** ([[surrealdb-schema-patterns]]):
   per-save SurrealDB isolation; hybrid SCHEMAFULL core + SCHEMALESS
   events; TS-first `packages/db-schema` mirror.
@@ -45,11 +45,11 @@ decisions already locked elsewhere:
   player attributes via integer basis-points contests; the attribute
   schema below MUST be representable in the contest math.
 
-This note adds: the full Country × Tier matrix, locale corpus strategy,
+This note adds: the full Country Ã— Tier matrix, locale corpus strategy,
 crest grammar, city-naming policy, archetype library, lazy-expansion
 strategy, and the RNG-stream extension.
 
-## 2. Comparative analysis — how other manager games generate worlds
+## 2. Comparative analysis â€” how other manager games generate worlds
 
 Distilled from public dev commentary, modding community reverse-
 engineering, and product teardowns.
@@ -80,7 +80,7 @@ The market splits cleanly:
 
 We are in the **second camp by ADR-0007 constraint**: no real names
 ever. This pushes us toward Hattrick / Anstoss-random as the closest
-prior art — but both are decades old, and neither shipped a polished
+prior art â€” but both are decades old, and neither shipped a polished
 modern procedural-crest system or rich cultural naming. We have room
 to be the **best-in-class** procedural-worldgen manager in 2026.
 
@@ -88,35 +88,35 @@ to be the **best-in-class** procedural-worldgen manager in 2026.
 
 | # | Technique | Source | Adoption |
 |---:|---|---|---|
-| 1 | **Wordlist-based name generation + cultural composition rules** | Everyone | **Primary technique** (§4) |
-| 2 | **CA / PA split with hidden potential** | FM newgens (industry reference) | Locked (§10-11) - extended to "potential range" |
-| 3 | **Archetype-first player generation** | FM's role + duty model | Locked - 50 archetypes (§11) |
-| 4 | **Lazy expansion of obscure players** | Hattrick (server-side; deterministic) | Locked - compressed records + on-demand expansion (§11.6) |
-| 5 | **Country × Tier finance matrix** | FM (from real-world data); Anstoss random worlds | Locked - 10-country starting matrix (§7) |
-| 6 | **Log-normal money distributions** | Real-world football economics | Locked (§7.4) |
-| 7 | **Hierarchical seed derivation** | Hattrick + modern PRNG practice | Locked (§12) |
-| 8 | **Region-biased crest grammar** | Hattrick simple templates - nobody does this well | **Our unique twist** (§5) |
-| 9 | **Procedural crests as a polish point, not an afterthought** | FM's procedural crests are widely mocked | **Our unique twist** (§5) |
-| 10 | **IP-safe public-domain corpus (Wikidata / GeoNames)** | Nobody does this cleanly | **Our unique twist** (§3, §6) |
+| 1 | **Wordlist-based name generation + cultural composition rules** | Everyone | **Primary technique** (Â§4) |
+| 2 | **CA / PA split with hidden potential** | FM newgens (industry reference) | Locked (Â§10-11) - extended to "potential range" |
+| 3 | **Archetype-first player generation** | FM's role + duty model | Locked - 50 archetypes (Â§11) |
+| 4 | **Lazy expansion of obscure players** | Hattrick (server-side; deterministic) | Locked - compressed records + on-demand expansion (Â§11.6) |
+| 5 | **Country Ã— Tier finance matrix** | FM (from real-world data); Anstoss random worlds | Locked - 10-country starting matrix (Â§7) |
+| 6 | **Log-normal money distributions** | Real-world football economics | Locked (Â§7.4) |
+| 7 | **Hierarchical seed derivation** | Hattrick + modern PRNG practice | Locked (Â§12) |
+| 8 | **Region-biased crest grammar** | Hattrick simple templates - nobody does this well | **Our unique twist** (Â§5) |
+| 9 | **Procedural crests as a polish point, not an afterthought** | FM's procedural crests are widely mocked | **Our unique twist** (Â§5) |
+| 10 | **IP-safe public-domain corpus (Wikidata / GeoNames)** | Nobody does this cleanly | **Our unique twist** (Â§3, Â§6) |
 
 ### 2.4 Our unique style
 
 Where we differ from every competitor:
 
-- **Wikidata CC0 + government open-data primary corpus** — proprietary
+- **Wikidata CC0 + government open-data primary corpus** â€” proprietary
   / scraped name databases are the industry default; our legal-
   cleanliness story is a marketing differentiator.
-- **Region-biased crest grammar** — FM procedural crests are widely
+- **Region-biased crest grammar** â€” FM procedural crests are widely
   mocked as ugly; Top Eleven gives users a logo builder; nobody does
   region-coherent procedural crests well. We do.
-- **Lazy expansion** — enabled by our determinism (D8) + offline-first
+- **Lazy expansion** â€” enabled by our determinism (D8) + offline-first
   storage (A2). Hattrick does similar server-side; we do it client-
   side without burning IndexedDB.
 - **Same generators run client-side AND post-MVP server-side** (per
   ADR-0019 service extraction). World genesis runs in a Web Worker on
   the client at MVP; server-side genesis is a future capability for
   hot-seat-to-async-MP promotion.
-- **No 3D crest rendering** (per D9) — pure SVG, scales to all DPRs,
+- **No 3D crest rendering** (per D9) â€” pure SVG, scales to all DPRs,
   ~1-3 KB per crest. Bundle-friendly + offline-friendly.
 
 ## 3. Locale strategy
@@ -125,7 +125,7 @@ Where we differ from every competitor:
 
 Two-tier locale rollout:
 
-**Tier 1 (MVP)** — 7 buckets covering Bundesliga + EPL + top-5
+**Tier 1 (MVP)** â€” 7 buckets covering Bundesliga + EPL + top-5
 European leagues + Lusophone South America:
 
 | Bucket | Countries | Why MVP |
@@ -138,7 +138,7 @@ European leagues + Lusophone South America:
 | Low Countries | Netherlands, Belgium | Strong football culture + Eredivisie fans |
 | Lusophone | Portugal, Brazil | Top developer of talent + Brazilian player pool feeds elsewhere |
 
-**Tier 2 (post-MVP)** — extended set:
+**Tier 2 (post-MVP)** â€” extended set:
 
 | Bucket | Countries |
 |---|---|
@@ -168,7 +168,7 @@ Total Tier 1 corpus: ~150-200 KB gzipped. Total with Tier 2:
 | **Statbel** (Belgium) | Open data | Belgian given names |
 | **Destatis** (Germany) | Mixed (some datasets open; surnames typically from Wikidata) | German given names |
 | **IBGE** (Brazil) | Open | Brazilian given names |
-| **GeoNames** | CC-BY 4.0 (attribution required) | Real regions / cities (§6) |
+| **GeoNames** | CC-BY 4.0 (attribution required) | Real regions / cities (Â§6) |
 | **Behind the Name** | Not free for commercial bulk use | **DO NOT USE** |
 | **Wikipedia raw text** | CC-BY-SA 4.0 | **DO NOT USE** (share-alike would taint our DB) |
 | **Common Crawl** | Mixed (original content still copyrighted) | **DO NOT USE** |
@@ -186,16 +186,16 @@ Must-have at MVP (per locale):
 | DACH | `First Last`; `Last-Last` hyphenated (~5 %); `First von Last` (~1 %) | "von / zu" particle list ~10 entries |
 | British Isles | `First Last`; `First Last-Last` (~5 %); Welsh / Irish first names weighted by sub-region | Scottish surnames separate weights |
 | France | `First [Second] Last`; `Last-Last` hyphenated (~3 %) | |
-| Spain | `First [Second] LastP LastM` — two surnames required | Shirt name typically `LastP`; UI must support |
+| Spain | `First [Second] LastP LastM` â€” two surnames required | Shirt name typically `LastP`; UI must support |
 | Italy | `First Last`; optional middle | Regional weighting deferred to Tier 2 |
-| Low Countries | `First [tussenvoegsel] Last` — `van`, `van der`, `de`, `ter`, `ten` particles | Store `tussenvoegsel` separately for sort |
-| Lusophone | `First [Second] [particle] LastP [LastM]` — `de`, `da`, `do`, `dos`, `das` particles common | Brazilian: optional single-name nickname field |
+| Low Countries | `First [tussenvoegsel] Last` â€” `van`, `van der`, `de`, `ter`, `ten` particles | Store `tussenvoegsel` separately for sort |
+| Lusophone | `First [Second] [particle] LastP [LastM]` â€” `de`, `da`, `do`, `dos`, `das` particles common | Brazilian: optional single-name nickname field |
 
 Deferred to Tier 2:
 
-- Polish gendered surnames (`-ski / -ska`) — relevant only with women's
+- Polish gendered surnames (`-ski / -ska`) â€” relevant only with women's
   football or detailed Eastern Europe.
-- Japanese family-name-first ordering — UI toggle.
+- Japanese family-name-first ordering â€” UI toggle.
 - Korean two-syllable given names with hyphen.
 - Arabic patronymic `ibn / bin / bint` middle parts.
 - Italian regional first-name clustering.
@@ -227,7 +227,7 @@ export interface LocaleNameConfig {
   firstNames: FirstNameEntry[]
   lastNames: LastNameEntry[]
   particles: ParticleSet   // {given, surname} optional
-  composition: CompositionRule  // see §3.3
+  composition: CompositionRule  // see Â§3.3
 }
 ```
 
@@ -238,25 +238,25 @@ Generation pipeline per player:
    at MVP; D13 women's-football gap separately).
 3. Sample `firstName` via cumulative-weight binary search on PRNG roll.
 4. Sample `lastName` via same mechanism.
-5. Apply composition rule (e.g. Spanish two-surname → sample second
+5. Apply composition rule (e.g. Spanish two-surname â†’ sample second
    surname).
 6. Apply particle injection at the configured probability.
 7. Return `GeneratedName` record:
    ```ts
    interface GeneratedName {
      localeId: LocaleId
-     given: string[]          // ['Carlos', 'José']
-     surname: string[]        // ['García', 'López']
+     given: string[]          // ['Carlos', 'JosÃ©']
+     surname: string[]        // ['GarcÃ­a', 'LÃ³pez']
      particle?: string
-     shirtName: string        // 'García' or 'C. García'
-     fullDisplay: string      // 'Carlos José García López'
+     shirtName: string        // 'GarcÃ­a' or 'C. GarcÃ­a'
+     fullDisplay: string      // 'Carlos JosÃ© GarcÃ­a LÃ³pez'
      sortKey: string          // 'GARCIA LOPEZ CARLOS JOSE'
    }
    ```
 
 Performance: O(log n) per name via cumulative-array binary search;
-~7 500 names × ~3-5 µs/name = ~25-40 ms on Snapdragon 695. Well
-within the §13 budget.
+~7 500 names Ã— ~3-5 Âµs/name = ~25-40 ms on Snapdragon 695. Well
+within the Â§13 budget.
 
 ### 4.2 Phonotactic fallback (Tier 2 + underrepresented locales)
 
@@ -286,12 +286,12 @@ adds a new locale via community packs (per ADR-0016).
 ### 4.3 Collision handling
 
 Expected collisions: in a 7 500-player world, ~2-4 duplicate full
-names per ~2 000-player locale (per §5.3 of the research note;
+names per ~2 000-player locale (per Â§5.3 of the research note;
 standard birthday-paradox math).
 
 Policy:
 
-- **Allow duplicates globally**: realistic ("John Smith", "José García").
+- **Allow duplicates globally**: realistic ("John Smith", "JosÃ© GarcÃ­a").
 - **Disallow duplicates within the same club**: regenerate surname up
   to 3 times with deterministic `seed + attemptIndex` derivation.
 - **Optional disallow within the same league** at "High Realism"
@@ -303,7 +303,7 @@ Hard rules:
 
 - Never include any **real living person's full name** verbatim. The
   Wikidata pull MUST filter out `instance of (P31) = human` records
-  with `date of death` unset (i.e. living persons) — only use names,
+  with `date of death` unset (i.e. living persons) â€” only use names,
   not name+nationality+DoB combinations that could identify someone.
 - Each shipped corpus carries provenance metadata: source dataset
   ID, license, URL, accessed-on date.
@@ -320,7 +320,7 @@ A small grammar of layers produces tens of millions of unique
 combinations:
 
 ```text
-Crest := Shield × Division × FieldColors × Charge × Border × Banner
+Crest := Shield Ã— Division Ã— FieldColors Ã— Charge Ã— Border Ã— Banner
 ```
 
 | Layer | Cardinality | Notes |
@@ -333,8 +333,8 @@ Crest := Shield × Division × FieldColors × Charge × Border × Banner
 | Banner | 3 | none / top / bottom |
 | Year (founding) | 0-1 | optional bottom text |
 
-Combinatorial space: 7 × 8 × 10 × 40 × 4 × 3 × 2 ≈ 538 000 base
-combinations, then × ~10 micro-shape jitters = ~5 M unique crests.
+Combinatorial space: 7 Ã— 8 Ã— 10 Ã— 40 Ã— 4 Ã— 3 Ã— 2 â‰ˆ 538 000 base
+combinations, then Ã— ~10 micro-shape jitters = ~5 M unique crests.
 
 ### 5.2 Lazy generation pipeline
 
@@ -392,8 +392,8 @@ template work).
 Sources:
 
 - Custom illustrations restyled from **Game-Icons.net** (CC-BY 3.0;
-  attribution in credits) — already heraldic / fantasy / sports flavour.
-- Heroicons / Tabler (MIT) for some abstract shapes — simplified +
+  attribution in credits) â€” already heraldic / fantasy / sports flavour.
+- Heroicons / Tabler (MIT) for some abstract shapes â€” simplified +
   restyled.
 - No copying of national emblems, military insignia, or specific
   real-club emblems.
@@ -418,7 +418,7 @@ Bundle: ~10-15 KB gzipped (paths only, no full SVG wrappers).
 | `teal_white` | #008080 | #FFFFFF | #F0E0B8 | universal modern |
 
 Region-biased weights stored per locale. Contrast ratio enforced
-≥ 3:1 between primary field and primary charge color (WCAG-aligned;
+â‰¥ 3:1 between primary field and primary charge color (WCAG-aligned;
 ensures 24 px thumbnail readability).
 
 ### 5.5 Region-biased shape priors
@@ -460,7 +460,7 @@ Algorithm:
 
 Per region, extract:
 
-- Common prefixes (`Brand-`, `Berg-`, `Lin-`, `Mün-`).
+- Common prefixes (`Brand-`, `Berg-`, `Lin-`, `MÃ¼n-`).
 - Common suffixes (`-hausen`, `-burg`, `-feld`, `-heim`, `-bach`).
 - Allowed mid-syllables.
 
@@ -494,7 +494,7 @@ Prefix selection weighted by region; prestige influences fancier
 prefixes (Real, Borussia, Olympique reserved for higher-prestige
 clubs).
 
-## 7. Club tier model + Country × Tier matrix
+## 7. Club tier model + Country Ã— Tier matrix
 
 ### 7.1 Pyramid structure per country
 
@@ -506,120 +506,120 @@ clubs).
 | 2 | 16-22 | Strong pro | 48-62 |
 | 3 | 18-22 | Mixed pro / semi-pro | 32-44 |
 | 4 | 16-20 (regionalised) | Semi-pro | 20-32 |
-| 5 | open | Semi-pro / amateur | 8-22 |
+| 5 | variable/unbounded | Semi-pro / amateur | 8-22 |
 
 Total clubs per country depends on world-size preset (per D9):
 
-- Small world: 1 nation × 2 tiers × ~18 clubs = ~36 clubs.
-- Medium world: 3 nations × 4 tiers × ~18 avg = ~216 clubs.
-- Large world: 8 nations × 5 tiers × ~18 avg = ~720 clubs.
+- Small world: 1 nation Ã— 2 tiers Ã— ~18 clubs = ~36 clubs.
+- Medium world: 3 nations Ã— 4 tiers Ã— ~18 avg = ~216 clubs.
+- Large world: 8 nations Ã— 5 tiers Ã— ~18 avg = ~720 clubs.
 
-(Player counts in §11.7.)
+(Player counts in Â§11.7.)
 
-### 7.2 Country × Tier matrix (10 starting countries)
+### 7.2 Country Ã— Tier matrix (10 starting countries)
 
-All money values in **€ million** (mean ± std-dev); attendance in
+All money values in **â‚¬ million** (mean Â± std-dev); attendance in
 average home attendance; prestige 0-100.
 
 #### Germany (baseline)
 
 | Tier | Wage bill | Transfer budget | Attendance | Prestige |
 |---|---|---|---|---|
-| 1 | 18.0 ± 12.0 | 10.0 ± 7.0 | 23 000 ± 9 000 | 72 ± 12 |
-| 2 | 6.8 ± 5.0 | 4.2 ± 3.4 | 13 000 ± 6 000 | 54 ± 11 |
-| 3 | 2.9 ± 2.5 | 1.8 ± 1.6 | 7 000 ± 3 500 | 38 ± 10 |
-| 4 | 1.3 ± 1.2 | 0.9 ± 0.8 | 4 000 ± 2 200 | 26 ± 9 |
-| 5 | 0.55 ± 0.70 | 0.35 ± 0.45 | 2 100 ± 1 200 | 16 ± 8 |
+| 1 | 18.0 Â± 12.0 | 10.0 Â± 7.0 | 23 000 Â± 9 000 | 72 Â± 12 |
+| 2 | 6.8 Â± 5.0 | 4.2 Â± 3.4 | 13 000 Â± 6 000 | 54 Â± 11 |
+| 3 | 2.9 Â± 2.5 | 1.8 Â± 1.6 | 7 000 Â± 3 500 | 38 Â± 10 |
+| 4 | 1.3 Â± 1.2 | 0.9 Â± 0.8 | 4 000 Â± 2 200 | 26 Â± 9 |
+| 5 | 0.55 Â± 0.70 | 0.35 Â± 0.45 | 2 100 Â± 1 200 | 16 Â± 8 |
 
 #### England
 
 | Tier | Wage bill | Transfer budget | Attendance | Prestige |
 |---|---|---|---|---|
-| 1 | 29.7 ± 22.0 | 18.0 ± 14.0 | 35 700 ± 14 000 | 78 ± 12 |
-| 2 | 10.2 ± 8.0 | 6.5 ± 5.2 | 17 700 ± 7 000 | 60 ± 11 |
-| 3 | 4.4 ± 4.0 | 2.9 ± 2.6 | 9 500 ± 4 400 | 43 ± 10 |
-| 4 | 2.0 ± 1.8 | 1.3 ± 1.1 | 5 400 ± 2 900 | 31 ± 9 |
-| 5 | 0.85 ± 1.0 | 0.55 ± 0.65 | 2 900 ± 1 500 | 20 ± 8 |
+| 1 | 29.7 Â± 22.0 | 18.0 Â± 14.0 | 35 700 Â± 14 000 | 78 Â± 12 |
+| 2 | 10.2 Â± 8.0 | 6.5 Â± 5.2 | 17 700 Â± 7 000 | 60 Â± 11 |
+| 3 | 4.4 Â± 4.0 | 2.9 Â± 2.6 | 9 500 Â± 4 400 | 43 Â± 10 |
+| 4 | 2.0 Â± 1.8 | 1.3 Â± 1.1 | 5 400 Â± 2 900 | 31 Â± 9 |
+| 5 | 0.85 Â± 1.0 | 0.55 Â± 0.65 | 2 900 Â± 1 500 | 20 Â± 8 |
 
 #### Spain
 
 | Tier | Wage bill | Transfer budget | Attendance | Prestige |
 |---|---|---|---|---|
-| 1 | 16.6 ± 11.5 | 9.5 ± 7.2 | 18 000 ± 8 500 | 75 ± 12 |
-| 2 | 6.0 ± 4.6 | 3.8 ± 3.0 | 10 500 ± 5 000 | 57 ± 11 |
-| 3 | 2.5 ± 2.1 | 1.6 ± 1.4 | 5 900 ± 3 000 | 40 ± 10 |
-| 4 | 1.1 ± 1.0 | 0.75 ± 0.7 | 3 300 ± 1 900 | 28 ± 9 |
-| 5 | 0.48 ± 0.55 | 0.30 ± 0.35 | 1 700 ± 1 000 | 18 ± 8 |
+| 1 | 16.6 Â± 11.5 | 9.5 Â± 7.2 | 18 000 Â± 8 500 | 75 Â± 12 |
+| 2 | 6.0 Â± 4.6 | 3.8 Â± 3.0 | 10 500 Â± 5 000 | 57 Â± 11 |
+| 3 | 2.5 Â± 2.1 | 1.6 Â± 1.4 | 5 900 Â± 3 000 | 40 Â± 10 |
+| 4 | 1.1 Â± 1.0 | 0.75 Â± 0.7 | 3 300 Â± 1 900 | 28 Â± 9 |
+| 5 | 0.48 Â± 0.55 | 0.30 Â± 0.35 | 1 700 Â± 1 000 | 18 Â± 8 |
 
 #### Italy
 
 | Tier | Wage bill | Transfer budget | Attendance | Prestige |
 |---|---|---|---|---|
-| 1 | 15.8 ± 11.0 | 9.0 ± 6.8 | 17 500 ± 8 000 | 74 ± 12 |
-| 2 | 5.4 ± 4.2 | 3.4 ± 2.8 | 9 800 ± 4 700 | 56 ± 11 |
-| 3 | 2.2 ± 2.0 | 1.4 ± 1.3 | 5 400 ± 2 900 | 39 ± 10 |
-| 4 | 1.0 ± 0.95 | 0.68 ± 0.65 | 3 000 ± 1 800 | 27 ± 9 |
-| 5 | 0.42 ± 0.50 | 0.26 ± 0.32 | 1 600 ± 900 | 17 ± 8 |
+| 1 | 15.8 Â± 11.0 | 9.0 Â± 6.8 | 17 500 Â± 8 000 | 74 Â± 12 |
+| 2 | 5.4 Â± 4.2 | 3.4 Â± 2.8 | 9 800 Â± 4 700 | 56 Â± 11 |
+| 3 | 2.2 Â± 2.0 | 1.4 Â± 1.3 | 5 400 Â± 2 900 | 39 Â± 10 |
+| 4 | 1.0 Â± 0.95 | 0.68 Â± 0.65 | 3 000 Â± 1 800 | 27 Â± 9 |
+| 5 | 0.42 Â± 0.50 | 0.26 Â± 0.32 | 1 600 Â± 900 | 17 Â± 8 |
 
 #### France
 
 | Tier | Wage bill | Transfer budget | Attendance | Prestige |
 |---|---|---|---|---|
-| 1 | 14.4 ± 10.0 | 8.2 ± 6.2 | 16 100 ± 7 500 | 70 ± 12 |
-| 2 | 5.0 ± 3.9 | 3.1 ± 2.6 | 9 000 ± 4 400 | 52 ± 11 |
-| 3 | 2.1 ± 1.8 | 1.3 ± 1.2 | 5 000 ± 2 700 | 36 ± 10 |
-| 4 | 0.95 ± 0.90 | 0.62 ± 0.60 | 2 800 ± 1 700 | 25 ± 9 |
-| 5 | 0.40 ± 0.45 | 0.25 ± 0.30 | 1 500 ± 850 | 15 ± 8 |
+| 1 | 14.4 Â± 10.0 | 8.2 Â± 6.2 | 16 100 Â± 7 500 | 70 Â± 12 |
+| 2 | 5.0 Â± 3.9 | 3.1 Â± 2.6 | 9 000 Â± 4 400 | 52 Â± 11 |
+| 3 | 2.1 Â± 1.8 | 1.3 Â± 1.2 | 5 000 Â± 2 700 | 36 Â± 10 |
+| 4 | 0.95 Â± 0.90 | 0.62 Â± 0.60 | 2 800 Â± 1 700 | 25 Â± 9 |
+| 5 | 0.40 Â± 0.45 | 0.25 Â± 0.30 | 1 500 Â± 850 | 15 Â± 8 |
 
 #### Portugal
 
 | Tier | Wage bill | Transfer budget | Attendance | Prestige |
 |---|---|---|---|---|
-| 1 | 9.4 ± 7.5 | 5.2 ± 4.2 | 13 300 ± 6 300 | 67 ± 12 |
-| 2 | 3.1 ± 2.8 | 1.9 ± 1.8 | 7 800 ± 3 800 | 49 ± 11 |
-| 3 | 1.3 ± 1.2 | 0.82 ± 0.82 | 4 300 ± 2 300 | 33 ± 10 |
-| 4 | 0.56 ± 0.65 | 0.36 ± 0.42 | 2 300 ± 1 400 | 22 ± 9 |
-| 5 | 0.24 ± 0.30 | 0.15 ± 0.20 | 1 200 ± 700 | 13 ± 8 |
+| 1 | 9.4 Â± 7.5 | 5.2 Â± 4.2 | 13 300 Â± 6 300 | 67 Â± 12 |
+| 2 | 3.1 Â± 2.8 | 1.9 Â± 1.8 | 7 800 Â± 3 800 | 49 Â± 11 |
+| 3 | 1.3 Â± 1.2 | 0.82 Â± 0.82 | 4 300 Â± 2 300 | 33 Â± 10 |
+| 4 | 0.56 Â± 0.65 | 0.36 Â± 0.42 | 2 300 Â± 1 400 | 22 Â± 9 |
+| 5 | 0.24 Â± 0.30 | 0.15 Â± 0.20 | 1 200 Â± 700 | 13 Â± 8 |
 
 #### Netherlands
 
 | Tier | Wage bill | Transfer budget | Attendance | Prestige |
 |---|---|---|---|---|
-| 1 | 10.8 ± 8.0 | 6.0 ± 4.8 | 14 000 ± 6 500 | 69 ± 12 |
-| 2 | 3.9 ± 3.2 | 2.4 ± 2.0 | 8 300 ± 4 000 | 51 ± 11 |
-| 3 | 1.6 ± 1.5 | 1.0 ± 1.0 | 4 700 ± 2 500 | 35 ± 10 |
-| 4 | 0.72 ± 0.80 | 0.46 ± 0.50 | 2 700 ± 1 500 | 24 ± 9 |
-| 5 | 0.30 ± 0.35 | 0.19 ± 0.24 | 1 400 ± 800 | 14 ± 8 |
+| 1 | 10.8 Â± 8.0 | 6.0 Â± 4.8 | 14 000 Â± 6 500 | 69 Â± 12 |
+| 2 | 3.9 Â± 3.2 | 2.4 Â± 2.0 | 8 300 Â± 4 000 | 51 Â± 11 |
+| 3 | 1.6 Â± 1.5 | 1.0 Â± 1.0 | 4 700 Â± 2 500 | 35 Â± 10 |
+| 4 | 0.72 Â± 0.80 | 0.46 Â± 0.50 | 2 700 Â± 1 500 | 24 Â± 9 |
+| 5 | 0.30 Â± 0.35 | 0.19 Â± 0.24 | 1 400 Â± 800 | 14 Â± 8 |
 
 #### Brazil
 
 | Tier | Wage bill | Transfer budget | Attendance | Prestige |
 |---|---|---|---|---|
-| 1 | 12.6 ± 10.0 | 8.4 ± 7.2 | 19 000 ± 11 000 | 71 ± 13 |
-| 2 | 4.4 ± 3.8 | 3.0 ± 2.8 | 10 200 ± 6 500 | 52 ± 12 |
-| 3 | 1.9 ± 1.8 | 1.3 ± 1.2 | 5 800 ± 4 000 | 36 ± 11 |
-| 4 | 0.86 ± 0.95 | 0.60 ± 0.70 | 3 100 ± 2 500 | 25 ± 10 |
-| 5 | 0.36 ± 0.45 | 0.24 ± 0.30 | 1 700 ± 1 400 | 15 ± 9 |
+| 1 | 12.6 Â± 10.0 | 8.4 Â± 7.2 | 19 000 Â± 11 000 | 71 Â± 13 |
+| 2 | 4.4 Â± 3.8 | 3.0 Â± 2.8 | 10 200 Â± 6 500 | 52 Â± 12 |
+| 3 | 1.9 Â± 1.8 | 1.3 Â± 1.2 | 5 800 Â± 4 000 | 36 Â± 11 |
+| 4 | 0.86 Â± 0.95 | 0.60 Â± 0.70 | 3 100 Â± 2 500 | 25 Â± 10 |
+| 5 | 0.36 Â± 0.45 | 0.24 Â± 0.30 | 1 700 Â± 1 400 | 15 Â± 9 |
 
 #### Argentina
 
 | Tier | Wage bill | Transfer budget | Attendance | Prestige |
 |---|---|---|---|---|
-| 1 | 7.6 ± 6.6 | 4.4 ± 4.0 | 13 500 ± 8 500 | 68 ± 13 |
-| 2 | 2.4 ± 2.4 | 1.5 ± 1.6 | 7 800 ± 5 000 | 50 ± 12 |
-| 3 | 0.95 ± 1.0 | 0.60 ± 0.70 | 4 400 ± 3 200 | 34 ± 11 |
-| 4 | 0.40 ± 0.50 | 0.26 ± 0.32 | 2 300 ± 1 800 | 23 ± 10 |
-| 5 | 0.16 ± 0.20 | 0.10 ± 0.14 | 1 100 ± 900 | 13 ± 9 |
+| 1 | 7.6 Â± 6.6 | 4.4 Â± 4.0 | 13 500 Â± 8 500 | 68 Â± 13 |
+| 2 | 2.4 Â± 2.4 | 1.5 Â± 1.6 | 7 800 Â± 5 000 | 50 Â± 12 |
+| 3 | 0.95 Â± 1.0 | 0.60 Â± 0.70 | 4 400 Â± 3 200 | 34 Â± 11 |
+| 4 | 0.40 Â± 0.50 | 0.26 Â± 0.32 | 2 300 Â± 1 800 | 23 Â± 10 |
+| 5 | 0.16 Â± 0.20 | 0.10 Â± 0.14 | 1 100 Â± 900 | 13 Â± 9 |
 
 #### Japan
 
 | Tier | Wage bill | Transfer budget | Attendance | Prestige |
 |---|---|---|---|---|
-| 1 | 9.9 ± 7.6 | 6.0 ± 5.2 | 14 500 ± 6 800 | 70 ± 12 |
-| 2 | 3.4 ± 2.8 | 2.2 ± 2.0 | 8 400 ± 4 100 | 52 ± 11 |
-| 3 | 1.4 ± 1.3 | 0.92 ± 0.90 | 4 800 ± 2 500 | 36 ± 10 |
-| 4 | 0.64 ± 0.70 | 0.42 ± 0.48 | 2 700 ± 1 400 | 25 ± 9 |
-| 5 | 0.28 ± 0.32 | 0.18 ± 0.22 | 1 500 ± 800 | 15 ± 8 |
+| 1 | 9.9 Â± 7.6 | 6.0 Â± 5.2 | 14 500 Â± 6 800 | 70 Â± 12 |
+| 2 | 3.4 Â± 2.8 | 2.2 Â± 2.0 | 8 400 Â± 4 100 | 52 Â± 11 |
+| 3 | 1.4 Â± 1.3 | 0.92 Â± 0.90 | 4 800 Â± 2 500 | 36 Â± 10 |
+| 4 | 0.64 Â± 0.70 | 0.42 Â± 0.48 | 2 700 Â± 1 400 | 25 Â± 9 |
+| 5 | 0.28 Â± 0.32 | 0.18 Â± 0.22 | 1 500 Â± 800 | 15 Â± 8 |
 
 ### 7.3 Distribution shape
 
@@ -646,18 +646,18 @@ std-dev as above with sensible tails.
 After sampling tier baseline:
 
 ```text
-wage_bill        = country_mul[C] × tier_wage_band[T] × prestige_factor × noise
-transfer_budget  = wage_bill × budget_ratio[T] × prestige_factor × noise
-cash_reserves    = transfer_budget × cash_ratio[T] × noise
-attendance_avg   = country_att_mul[C] × tier_att_band[T] × prestige_factor × noise
+wage_bill        = country_mul[C] Ã— tier_wage_band[T] Ã— prestige_factor Ã— noise
+transfer_budget  = wage_bill Ã— budget_ratio[T] Ã— prestige_factor Ã— noise
+cash_reserves    = transfer_budget Ã— cash_ratio[T] Ã— noise
+attendance_avg   = country_att_mul[C] Ã— tier_att_band[T] Ã— prestige_factor Ã— noise
 ```
 
 Ratios:
 
-- `budget_ratio[T]` = 0.35 (T5) → 0.90 (T1).
-- `cash_ratio[T]` = 1.0 (T1) → 4.0 (T5) (smaller clubs sit on relatively
+- `budget_ratio[T]` = 0.35 (T5) â†’ 0.90 (T1).
+- `cash_ratio[T]` = 1.0 (T1) â†’ 4.0 (T5) (smaller clubs sit on relatively
   more cash; less revenue volatility absorbed).
-- `prestige_factor` = `0.7 + 0.006 × prestige` (range 0.7-1.3).
+- `prestige_factor` = `0.7 + 0.006 Ã— prestige` (range 0.7-1.3).
 
 ## 8. Stadium generation
 
@@ -665,7 +665,7 @@ Ratios:
 
 ```text
 capacity = clamp(
-  round(base_capacity[C,T] × prestige_factor × country_att_mul[C] × log_normal_noise),
+  round(base_capacity[C,T] Ã— prestige_factor Ã— country_att_mul[C] Ã— log_normal_noise),
   500,    // amateur floor
   90000   // top stadium cap
 )
@@ -681,12 +681,12 @@ Base capacities (Germany baseline):
 | 4 | 6 000 | 3 500 |
 | 5 | 2 800 | 1 800 |
 
-Country multiplier (attendance multiplier from §7.2 row).
+Country multiplier (attendance multiplier from Â§7.2 row).
 
-### 8.2 Age model — bimodal
+### 8.2 Age model â€” bimodal
 
 ```text
-age_band ∈ { modern (0-25y), hybrid (15-70y), old (45-120y) }
+age_band âˆˆ { modern (0-25y), hybrid (15-70y), old (45-120y) }
 ```
 
 Probability per tier:
@@ -707,26 +707,26 @@ Three pattern categories with tier-weighted selection:
 | Pattern | Examples | Probability by tier |
 |---|---|---|
 | **Traditional / local** | `Weserstadion`, `Stadion am Park`, `Westend Park` | T1 35 / T2 45 / T3 60 / T4-5 75 % |
-| **Modern arena** | `Brennsdorf Arena`, `Südpark Arena`, `Kaiser Arena` | T1 35 / T2 25 / T3 15 / T4-5 10 % |
+| **Modern arena** | `Brennsdorf Arena`, `SÃ¼dpark Arena`, `Kaiser Arena` | T1 35 / T2 25 / T3 15 / T4-5 10 % |
 | **Sponsor-named** | `HanseBank Arena`, `VitaMed Stadium`, `NordTel Arena` | T1 30 / T2 30 / T3 25 / T4-5 15 % |
 
 Sponsor names use procedurally-generated fictional brand names (per
 ADR-0007 IP-cleanliness; no `Allianz`, `Signal Iduna`, etc.). Sponsor
-brand generator is a phonotactic + suffix generator (`Brand →
+brand generator is a phonotactic + suffix generator (`Brand â†’
 [stem][suffix]`, where stems are CV phonotactic outputs and suffixes
-∈ {`Bank`, `Tel`, `Med`, `Tech`, `Auto`, `Logistik`, `Versicherung`}).
+âˆˆ {`Bank`, `Tel`, `Med`, `Tech`, `Auto`, `Logistik`, `Versicherung`}).
 
 ### 8.4 Build / upgrade cost
 
 ```text
-build_cost = capacity × cost_per_seat[C, age_band]
+build_cost = capacity Ã— cost_per_seat[C, age_band]
 ```
 
 `cost_per_seat`:
 
-- T1 modern: €2 800-5 500 / seat
-- T2-3: €1 200-3 000 / seat
-- T4-5: €500-1 500 / seat
+- T1 modern: â‚¬2 800-5 500 / seat
+- T2-3: â‚¬1 200-3 000 / seat
+- T4-5: â‚¬500-1 500 / seat
 
 Upgrade path (per [[../50-Game-Design/stadium-and-campus]]):
 
@@ -740,7 +740,7 @@ Upgrade path (per [[../50-Game-Design/stadium-and-campus]]):
 prestige = clamp(
   tier_base[T]                         // 10 / 24 / 38 / 52 / 66
   + country_offset[C]                  // EN +6, DE +4, ES +4, ...
-  + history_bonus                      // log10(1 + years_since_founding) × 4
+  + history_bonus                      // log10(1 + years_since_founding) Ã— 4
   + recent_success_bonus               // champion last 5y +8..+12; promoted +2; relegated -3..-6
   + facilities_bonus                   // stadium quality + youth academy + training: 0..+8
   + fanbase_bonus                      // city population proxy: 0..+6
@@ -750,7 +750,7 @@ prestige = clamp(
 ```
 
 Internal mapping for compatibility with FM-style 4-digit reputation
-(if needed for analytics): `repFM = prestige × 100`.
+(if needed for analytics): `repFM = prestige Ã— 100`.
 
 Bands:
 
@@ -769,7 +769,7 @@ Bands:
 
 All on a **1-20 integer scale** (FM convention; fits 5-bit storage;
 maps cleanly to basis-points contest math in [[match-engine-simulation-model]]
-via `attr × 500 = success_bp`).
+via `attr Ã— 500 = success_bp`).
 
 #### Technical (7)
 
@@ -838,23 +838,23 @@ surfaced via:
 Per player, generate:
 
 - `birthDate` (deterministic from age band).
-- `height` (cm) — sampled from position-conditional distribution.
-- `weight` (kg) — correlated with height via BMI band.
+- `height` (cm) â€” sampled from position-conditional distribution.
+- `weight` (kg) â€” correlated with height via BMI band.
 - `preferredFoot`: `'left'` 20 % | `'right'` 75 % | `'both'` 5 %;
   position-biased (left-backs lean left-footed; +15 % left).
 
-Position height distributions (mean ± std-dev):
+Position height distributions (mean Â± std-dev):
 
 | Position | Height (cm) |
 |---|---|
-| GK | 188 ± 4 |
-| CB | 187 ± 4 |
-| FB / WB | 178 ± 4 |
-| DM | 181 ± 4 |
-| CM | 179 ± 4 |
-| AM | 177 ± 4 |
-| W / IF | 175 ± 5 |
-| ST | 183 ± 6 (target-man + nimble forward bimodal) |
+| GK | 188 Â± 4 |
+| CB | 187 Â± 4 |
+| FB / WB | 178 Â± 4 |
+| DM | 181 Â± 4 |
+| CM | 179 Â± 4 |
+| AM | 177 Â± 4 |
+| W / IF | 175 Â± 5 |
+| ST | 183 Â± 6 (target-man + nimble forward bimodal) |
 
 ### 10.4 Nationality + heritage
 
@@ -883,15 +883,15 @@ Foreign-player share by tier:
 ### 11.1 Pipeline overview
 
 ```text
-generatePlayer(seed, clubContext) →
+generatePlayer(seed, clubContext) â†’
   1. derive sub-seed from (worldSeed, clubId, slotIndex)
   2. pick (position, archetype, age_band)
-  3. sample PA from skewed nation×club-quality distribution
+  3. sample PA from skewed nationÃ—club-quality distribution
   4. sample CA from age + environment
   5. allocate CA budget across attributes (archetype weights + Dirichlet noise)
   6. generate hidden meta from personality priors
   7. generate physicals from position + nation priors
-  8. generate name (§4) + nationality (§10.4)
+  8. generate name (Â§4) + nationality (Â§10.4)
   9. assemble Player record
 ```
 
@@ -909,7 +909,7 @@ generatePlayer(seed, clubContext) →
 | **ST** | poacher, target_man, complete_forward, false_9, deep_lying_forward, pressing_forward (6) |
 
 Plus rare archetypes (~8): regista, libero, trequartista,
-verteidigender flügelspieler, falscher neuner, etc. for flavour.
+verteidigender flÃ¼gelspieler, falscher neuner, etc. for flavour.
 
 Each archetype has:
 
@@ -930,12 +930,12 @@ interface PlayerArchetype {
 #### Potential Ability (PA), 1-200 scale
 
 ```text
-PA_base = sampleSkewed(rng, mode=80, scale=country_youth_quality[C] × club_youth_quality[K])
+PA_base = sampleSkewed(rng, mode=80, scale=country_youth_quality[C] Ã— club_youth_quality[K])
 PA = clamp(round(PA_base + tier_bonus + noise), 30, 200)
 ```
 
 Distribution shape: log-normal-ish with median ~85, long tail. ~1 %
-of players are "wonderkid" tier (PA ≥ 150).
+of players are "wonderkid" tier (PA â‰¥ 150).
 
 `country_youth_quality`:
 
@@ -954,21 +954,21 @@ Age-conditioned:
 |---|---|
 | 15-17 | 20-55 |
 | 18-21 | 30-100 |
-| 22-29 | PA × (0.90 + small_noise) |
-| 30-32 | PA × (0.85-0.95) |
-| 33-36 | PA × (0.70-0.85), physicals decline faster |
+| 22-29 | PA Ã— (0.90 + small_noise) |
+| 30-32 | PA Ã— (0.85-0.95) |
+| 33-36 | PA Ã— (0.70-0.85), physicals decline faster |
 
 Club tier influences CA at sub-PA ages: T1 clubs have better-developed
 youth than T5 clubs at the same age.
 
-### 11.4 CA → attribute allocation (Dirichlet)
+### 11.4 CA â†’ attribute allocation (Dirichlet)
 
 Given CA budget B and archetype weights w:
 
 1. Convert weights to Dirichlet concentration parameters (multiply by
-   strength factor, e.g. `α_i = w_i × 30`).
-2. Sample Dirichlet draw `p_i ~ Dir(α)` deterministically via PRNG.
-3. Allocate B × p_i to each attribute.
+   strength factor, e.g. `Î±_i = w_i Ã— 30`).
+2. Sample Dirichlet draw `p_i ~ Dir(Î±)` deterministically via PRNG.
+3. Allocate B Ã— p_i to each attribute.
 4. Clamp to [1, 20] and re-distribute overflow.
 
 This produces archetype-coherent players with realistic variance
@@ -1021,7 +1021,7 @@ Full attributes are generated on demand when:
 Generated attributes are then cached in the player record (per A4)
 and never regenerated.
 
-Tier C player count for Large world: ~6 500 players × ~12 bytes =
+Tier C player count for Large world: ~6 500 players Ã— ~12 bytes =
 ~78 KB compact representation. Massive saving.
 
 ### 11.7 Squad composition
@@ -1045,7 +1045,7 @@ Age mix per tier:
 | 4 | 22 % | 50 % | 28 % |
 | 5 | 25 % | 45 % | 30 % |
 
-Wage budget check: total weekly wages ≤ 95 % of `wage_bill_annual /
+Wage budget check: total weekly wages â‰¤ 95 % of `wage_bill_annual /
 52`. If over budget, downgrade fringe players' attributes / age until
 fit.
 
@@ -1062,9 +1062,9 @@ target shape here for completeness:
 
 ## 12. Determinism + RNG stream
 
-### 12.1 New RNG stream — `GeneratorRng`
+### 12.1 New RNG stream â€” `GeneratorRng`
 
-Per D8 §2.3 (label-derived seeds, future-proof), we add:
+Per D8 Â§2.3 (label-derived seeds, future-proof), we add:
 
 ```ts
 const generatorRng = pcg32(deriveStreamSeed(masterSeed, 'generator'))
@@ -1097,14 +1097,14 @@ This means:
 
 ### 12.2 Locked stream list update
 
-[[determinism-and-replay]] §2.2 currently lists 8 streams. This note
+[[determinism-and-replay]] Â§2.2 currently lists 8 streams. This note
 adds:
 
 | # | Stream | Scope | Persistence |
 |---|---|---|---|
 | **9** | **`GeneratorRng`** | One-time world-genesis randomness (clubs, stadiums, crests, players, names, locations) | World save (master seed only; derived seeds re-computed) |
 
-D8 §2.3 already permits this addition without breaking replays.
+D8 Â§2.3 already permits this addition without breaking replays.
 
 ### 12.3 Generation order is canonical
 
@@ -1113,7 +1113,7 @@ Always generate in this order to keep derivations stable:
 1. Countries (sorted by `countryId`).
 2. Leagues per country (sorted by tier, ascending).
 3. Clubs per league (sorted by internal ID).
-4. For each club: stadium → staff → crest design → squad slots.
+4. For each club: stadium â†’ staff â†’ crest design â†’ squad slots.
 5. Players (sorted by `clubId`, then `slotIndex`).
 
 Re-ordering on a re-load (e.g. iterating a Set) would NOT change
@@ -1126,9 +1126,9 @@ required for **debug equivalence** (golden test diffing).
 
 | World size | Clubs | Players | Total gen time on Snapdragon 695 | IndexedDB delta |
 |---|---|---|---|---|
-| **Small** | ~36 | ~700 (full) | ≤ 2 s | ≤ 2 MB |
-| **Medium** | ~216 | ~2 500 (full) + ~3 000 compact | ≤ 5 s | ≤ 8 MB |
-| **Large** | ~720 | ~7 500 (full Tier A/B) + ~55 000 compact | ≤ 8 s | ≤ 25 MB |
+| **Small** | ~36 | ~700 (full) | â‰¤ 2 s | â‰¤ 2 MB |
+| **Medium** | ~216 | ~2 500 (full) + ~3 000 compact | â‰¤ 5 s | â‰¤ 8 MB |
+| **Large** | ~720 | ~7 500 (full Tier A/B) + ~55 000 compact | â‰¤ 8 s | â‰¤ 25 MB |
 
 Phase budget breakdown (Large world worst case):
 
@@ -1145,7 +1145,7 @@ Phase budget breakdown (Large world worst case):
 
 ### 13.2 Implementation notes
 
-- World genesis runs in a **dedicated Web Worker** (per ADR-0019 §
+- World genesis runs in a **dedicated Web Worker** (per ADR-0019 Â§
   cross-context). UI thread stays responsive; progress bar driven by
   postMessage events.
 - Batches of 50-100 clubs / 200-500 players per tick; yield via
@@ -1154,7 +1154,7 @@ Phase budget breakdown (Large world worst case):
 - Final write to IndexedDB happens in a single transaction at the
   end (avoids cascading commits).
 - Total CPU usage capped at ~80 % of one big core to avoid thermal
-  throttling per D9 §9.3.
+  throttling per D9 Â§9.3.
 
 ### 13.3 Crest SVG render budget
 
@@ -1162,7 +1162,7 @@ Crest SVG strings are generated **lazily**, not at world genesis:
 
 - ~1-3 ms per crest on first display (pure string template work).
 - Cached as data URI in IndexedDB under `club_crest_cache:<clubId>`.
-- 24 px thumbnail render: ~5 KB SVG per crest × N visible clubs in a
+- 24 px thumbnail render: ~5 KB SVG per crest Ã— N visible clubs in a
   league table = ~100 KB per page; cheap.
 
 ## 14. Open follow-ups
@@ -1175,7 +1175,7 @@ Crest SVG strings are generated **lazily**, not at world genesis:
   bios, journalist profiles. Phase 2 work; uses the same RNG stream
   with different labels.
 - **I4 Youth: partner schools + wonderkid tagging**: wonderkid
-  detection (PA ≥ 150 + low reputation) feeds the scouting hype
+  detection (PA â‰¥ 150 + low reputation) feeds the scouting hype
   system.
 - **ADR-0007 Naming Schema promotion**: this note's locked decisions
   collapse ADR-0007 from a 10-line stub into a full Decision Record
@@ -1198,7 +1198,7 @@ Crest SVG strings are generated **lazily**, not at world genesis:
   (Game-Icons.net CC-BY 3.0, Heroicons MIT, Tabler MIT); colour
   theory for thumbnail readability; concrete grammar spec.
 - Perplexity Sonar research, 2026-05-17 (gap D2): club tier model;
-  Country × Tier financial matrix for DE / EN / ES / IT / FR / PT /
+  Country Ã— Tier financial matrix for DE / EN / ES / IT / FR / PT /
   NL / BR / AR / JP; stadium generation (capacity, age, naming, build
   costs); prestige formula; IP-safe city naming (real-region +
   fictional city via GeoNames CC-BY 4.0).
@@ -1214,7 +1214,7 @@ Crest SVG strings are generated **lazily**, not at world genesis:
 - D2 Q&A with Nico (2026-05-17): all 8 recommendations accepted
   (locale list 7-bucket MVP; hybrid wordlist + phonotactic; grammar-
   based crests with lazy generation; custom inlined icon library;
-  real-region + fictional city; 5-tier × 10-country matrix; 16 + 4
+  real-region + fictional city; 5-tier Ã— 10-country matrix; 16 + 4
   + 8 attribute schema; hybrid archetype + CA budget + lazy
   expansion).
 - Locked context: ADR-0004 (data model), ADR-0005 (save format),

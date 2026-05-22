@@ -1,4 +1,4 @@
----
+﻿---
 title: State Machine - Watch Party
 status: draft
 tags: [architecture, state-machine, watch-party, multiplayer]
@@ -131,7 +131,7 @@ watch_party {
 - State machine never enters undefined state.
 - Spectator delay math holds under variable network conditions.
 
-## 11. Open questions
+## 11. Future-scope notes (classified future-scope)
 
 - Should conference watch-parties have their own state record per match
   or one record per conference? Recommendation: one per conference, with

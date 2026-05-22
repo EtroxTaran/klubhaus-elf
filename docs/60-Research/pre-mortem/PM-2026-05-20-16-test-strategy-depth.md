@@ -1,9 +1,9 @@
----
-title: "Pre-Mortem 2026-05-20 · 16 · Test-Strategy-Depth"
-status: draft
+﻿---
+title: "Pre-Mortem 2026-05-20 Â· 16 Â· Test-Strategy-Depth"
+status: current
 tags: [research, pre-mortem, testing, vitest, playwright, stryker, fast-check, determinism, 2026-Q2]
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 type: research
 binding: false
 report_id: PM-2026-05-20-16
@@ -22,18 +22,18 @@ related:
   - [[../determinism-and-replay]]
 ---
 
-# Pre-Mortem 2026-05-20 · 16 · Test-Strategy-Depth
+# Pre-Mortem 2026-05-20 Â· 16 Â· Test-Strategy-Depth
 
 > **Failure-Headlines**
-> - „Test-Pyramid kollabiert: Unit-only, kein Mutation/Property — Off-by-One in Goal-Diff-Tiebreaker shipped — Replay zwischen v1.4 → v1.5 weg."
-> - „CI-Minuten brennen GitHub-Free-Tier in Woche 4 — 22.000 min/Mo nötig — Founder schaltet Determinism-Gate ab."
-> - „50-Year-Soak passt lokal, deadlock at year-47 on CI (4 vCPU 7 GB OOM) — silent continue-on-error — Live-User-Wall nach 6 in-game-Monaten."
-> - „Visual-Regression-False-Positive-Fatigue → Snapshots disabled → echte LCP-Regression unbemerkt."
-> - „Save-Forward-Compat assumed, never tested — v2.0-Engine korrumpiert v1.4-Saves silent."
+> - â€žTest-Pyramid kollabiert: Unit-only, kein Mutation/Property â€” Off-by-One in Goal-Diff-Tiebreaker shipped â€” Replay zwischen v1.4 â†’ v1.5 weg."
+> - â€žCI-Minuten brennen GitHub-Free-Tier in Woche 4 â€” 22.000 min/Mo nÃ¶tig â€” Founder schaltet Determinism-Gate ab."
+> - â€ž50-Year-Soak passt lokal, deadlock at year-47 on CI (4 vCPU 7 GB OOM) â€” silent continue-on-error â€” Live-User-Wall nach 6 in-game-Monaten."
+> - â€žVisual-Regression-False-Positive-Fatigue â†’ Snapshots disabled â†’ echte LCP-Regression unbemerkt."
+> - â€žSave-Forward-Compat assumed, never tested â€” v2.0-Engine korrumpiert v1.4-Saves silent."
 
 ## Top Failure-Hypothesen
 
-### PM-2026-05-20-16-F-01 — Vitest 3 Browser-Mode + Playwright Provider als Component-Test-Baseline
+### PM-2026-05-20-16-F-01 â€” Vitest 3 Browser-Mode + Playwright Provider als Component-Test-Baseline
 
 ```yaml
 id: PM-2026-05-20-16-F-01
@@ -66,19 +66,21 @@ sources:
     accessed: "2026-05-20"
     publisher: "PkgPulse"
     confidence: medium
-verification_notes: "Vitest 3.x browser mode matured 2025–2026, Playwright-provider recommended. Sharding via --shard=N/M + --reporter=blob; CI wall-time -4× auf 500-test suite."
-status: open
+verification_notes: "Vitest 3.x browser mode matured 2025â€“2026, Playwright-provider recommended. Sharding via --shard=N/M + --reporter=blob; CI wall-time -4Ã— auf 500-test suite."
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: tech-lead
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
 **Mitigation.** `vitest 3.x` mit `@vitest/browser-playwright` (Chromium-Provider). Unit-Tests jsdom-pool; UI browser-pool mit Sharding `--shard=$SHARD/4 --reporter=blob` und `vitest --merge-reports`. `maxWorkers: '50%'`.
 
-**Verifikation.** CI-Wall-Time-Budget Vitest-Browser-Job ≤ 6 min/PR. Lokal `pnpm test --shard=1/4` reproduziert CI. Kein Aufkommen von `happy-dom`/`jsdom`-Mocks für Browser-APIs.
+**Verifikation.** CI-Wall-Time-Budget Vitest-Browser-Job â‰¤ 6 min/PR. Lokal `pnpm test --shard=1/4` reproduziert CI. Kein Aufkommen von `happy-dom`/`jsdom`-Mocks fÃ¼r Browser-APIs.
 
-### PM-2026-05-20-16-F-02 — Property-based testing (fast-check) ist highest-leverage Layer
+### PM-2026-05-20-16-F-02 â€” Property-based testing (fast-check) ist highest-leverage Layer
 
 ```yaml
 id: PM-2026-05-20-16-F-02
@@ -91,7 +93,7 @@ confidence: high
 early_warning:
   - metric: "Engine-Invariant-Coverage"
     threshold: "< 5 core props"
-mitigation_summary: "fast-check 4.x für Match-Engine-Invariants + Save-Parser + Player-Attribute-Generator; Seed aus engine_bundle_hash"
+mitigation_summary: "fast-check 4.x fÃ¼r Match-Engine-Invariants + Save-Parser + Player-Attribute-Generator; Seed aus engine_bundle_hash"
 linked_adrs: []
 linked_specs: [[[PM-2026-05-20-05-security-and-integrity]], [[PM-2026-05-20-12-long-term-balance-and-meta]]]
 linked_code: ["packages/match-engine/src/*.test.ts"]
@@ -106,19 +108,21 @@ sources:
     accessed: "2026-05-20"
     publisher: "innoQ"
     confidence: high
-verification_notes: "Example-Based-Tests übersehen Edge-Cases (Ball verschwindet bei equal-vector collisions, Score nicht monoton, Attribute-Boundary). Property-Tests finden mit > 99 % Wahrscheinlichkeit in < 100 Iterationen."
-status: open
+verification_notes: "Example-Based-Tests Ã¼bersehen Edge-Cases (Ball verschwindet bei equal-vector collisions, Score nicht monoton, Attribute-Boundary). Property-Tests finden mit > 99 % Wahrscheinlichkeit in < 100 Iterationen."
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: tech-lead
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Mitigation.** `fast-check` ≥ 4.x mit `fc.assert(..., { seed: PRNG_SEED, numRuns: 200, endOnFailure: false })`. Seed deriviert aus `engine_bundle_hash` für CI-Reproduzierbarkeit. **5 Core-Invariants**: (a) `ball.position` immer auf-Feld oder dead-ball-state; (b) `score` monoton wachsend pro Team; (c) `playerCount` pro Seite ≤ 11 ∧ ≥ 7; (d) Save-roundtrip `parse(serialize(save)) === save` für N=1000 zufällige Saves; (e) Player-Attribute-Generator → mean ± σ in vorhersagbarem Band.
+**Mitigation.** `fast-check` â‰¥ 4.x mit `fc.assert(..., { seed: PRNG_SEED, numRuns: 200, endOnFailure: false })`. Seed deriviert aus `engine_bundle_hash` fÃ¼r CI-Reproduzierbarkeit. **5 Core-Invariants**: (a) `ball.position` immer auf-Feld oder dead-ball-state; (b) `score` monoton wachsend pro Team; (c) `playerCount` pro Seite â‰¤ 11 âˆ§ â‰¥ 7; (d) Save-roundtrip `parse(serialize(save)) === save` fÃ¼r N=1000 zufÃ¤llige Saves; (e) Player-Attribute-Generator â†’ mean Â± Ïƒ in vorhersagbarem Band.
 
 **Verifikation.** Shrinking-Output bei Fehlschlag im CI-Artifact als `counterexample.json`. Reproduzieren: `pnpm test:prop --seed=<seed>` regeneriert identisch.
 
-### PM-2026-05-20-16-F-03 — Stryker Mutation Testing scoped auf /engine, nicht project-weit
+### PM-2026-05-20-16-F-03 â€” Stryker Mutation Testing scoped auf /engine, nicht project-weit
 
 ```yaml
 id: PM-2026-05-20-16-F-03
@@ -130,7 +134,7 @@ score: 9
 confidence: high
 early_warning:
   - metric: "Stryker CI-Time"
-    threshold: "> 45 min/PR (kann zu Mutation-Fatigue führen)"
+    threshold: "> 45 min/PR (kann zu Mutation-Fatigue fÃ¼hren)"
 mitigation_summary: "Stryker 8.x + @stryker-mutator/vitest-runner + --incremental + scoped src/engine/**; UI gedeckt durch Visual + axe + component"
 linked_adrs: []
 linked_specs: []
@@ -151,22 +155,24 @@ sources:
     accessed: "2026-05-20"
     publisher: "OneUptime"
     confidence: medium
-verification_notes: "Default-Konfig auf gesamtem Repo: > 45 min CI/PR + Mutation-Fatigue. Solo-Founder schaltet ab. Scope-Tier nötig."
-status: open
+verification_notes: "Default-Konfig auf gesamtem Repo: > 45 min CI/PR + Mutation-Fatigue. Solo-Founder schaltet ab. Scope-Tier nÃ¶tig."
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: tech-lead
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
 **Mitigation.** Stryker 8.x + `@stryker-mutator/vitest-runner` + `--incremental` (`reports/stryker-incremental.json` committed-cached). Scope-Tier:
-- **Tier-A (PR-gate, fail)**: `src/engine/**` (match-engine, RNG, save-parser, command-log) → break 70, low 80, high 90.
-- **Tier-B (nightly only)**: `src/domain/**` (tactic, player, training) → break 50, low 65.
+- **Tier-A (PR-gate, fail)**: `src/engine/**` (match-engine, RNG, save-parser, command-log) â†’ break 70, low 80, high 90.
+- **Tier-B (nightly only)**: `src/domain/**` (tactic, player, training) â†’ break 50, low 65.
 - **Tier-C (excluded)**: `src/ui/**` (UI gedeckt durch Visual + axe + component).
 
-**Verifikation.** Nightly-Report in `docs/40-Quality/mutation-trend.md`. Drop > 5pp in PR → blocks. Incremental-Cache-Hit-Rate ≥ 80 %.
+**Verifikation.** Nightly-Report in `docs/40-Quality/mutation-trend.md`. Drop > 5pp in PR â†’ blocks. Incremental-Cache-Hit-Rate â‰¥ 80 %.
 
-### PM-2026-05-20-16-F-04 — Determinism-CI-Gate: 1000-seed overkill für PR; Tiered N
+### PM-2026-05-20-16-F-04 â€” Determinism-CI-Gate: 1000-seed overkill fÃ¼r PR; Tiered N
 
 ```yaml
 id: PM-2026-05-20-16-F-04
@@ -179,7 +185,7 @@ confidence: medium
 early_warning:
   - metric: "PR-Determinism-Gate-Time"
     threshold: "> 5 min (Founder lockert Gate)"
-mitigation_summary: "Bit-identischer Hash-Vergleich (sha256(event-log)) in fast-pfad; struktureller Diff nur bei Mismatch. Tier 32/PR · 1000/nightly · 10k/release"
+mitigation_summary: "Bit-identischer Hash-Vergleich (sha256(event-log)) in fast-pfad; struktureller Diff nur bei Mismatch. Tier 32/PR Â· 1000/nightly Â· 10k/release"
 linked_adrs: []
 linked_specs: [[[PM-2026-05-20-05-security-and-integrity]], [[PM-2026-05-20-12-long-term-balance-and-meta]]]
 linked_code: ["packages/match-engine/", ".github/workflows/ci.yml"]
@@ -194,22 +200,24 @@ sources:
     accessed: "2026-05-20"
     publisher: "Tessa Power"
     confidence: medium
-verification_notes: "1000 Seeds × 90-Min-Match × 8 RNG-Streams pro PR ~12 min CI bei optimaler Parallelisierung. Tiered N reduziert auf 2 min PR / 25 min nightly / 60 min release."
-status: open
+verification_notes: "1000 Seeds Ã— 90-Min-Match Ã— 8 RNG-Streams pro PR ~12 min CI bei optimaler Parallelisierung. Tiered N reduziert auf 2 min PR / 25 min nightly / 60 min release."
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: backend
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
 **Mitigation.** Tiered N:
-- **PR-Gate (fail-fast)**: 32 Smoke-Seeds, ≤ 2 min, hard-fail bei Hash-Mismatch.
-- **Nightly**: 1000 Seeds, ≤ 25 min, statistische Diff-Berichte (latency, AI-tactic-entropy).
-- **Release-Tag**: 10.000 Seeds verteilt auf Self-Hosted-Hetzner-Runner-Pool (parallel-shard 10×), 60-min-Budget.
+- **PR-Gate (fail-fast)**: 32 Smoke-Seeds, â‰¤ 2 min, hard-fail bei Hash-Mismatch.
+- **Nightly**: 1000 Seeds, â‰¤ 25 min, statistische Diff-Berichte (latency, AI-tactic-entropy).
+- **Release-Tag**: 10.000 Seeds verteilt auf Self-Hosted-Hetzner-Runner-Pool (parallel-shard 10Ã—), 60-min-Budget.
 
 **Verifikation.** Smoke-Seeds in `tests/fixtures/determinism/smoke.seeds` versioniert. Mismatch erzeugt Artifact mit erstem divergierendem Tick + Stream-ID.
 
-### PM-2026-05-20-16-F-05 — Save-Forward-Compatibility: N-2 Fixture-Matrix or es existiert nicht
+### PM-2026-05-20-16-F-05 â€” Save-Forward-Compatibility: N-2 Fixture-Matrix or es existiert nicht
 
 ```yaml
 id: PM-2026-05-20-16-F-05
@@ -221,7 +229,7 @@ score: 20
 confidence: high
 early_warning:
   - signal: "Keine versionierten Save-Fixtures in tests/fixtures/saves/"
-mitigation_summary: "Versionierte Save-Fixture-Matrix + Migration-Replay-Test; engine-version-pinning pro Save; älterer Engine refuses neue Save graceful"
+mitigation_summary: "Versionierte Save-Fixture-Matrix + Migration-Replay-Test; engine-version-pinning pro Save; Ã¤lterer Engine refuses neue Save graceful"
 linked_adrs: []
 linked_specs: [[[PM-2026-05-20-05-security-and-integrity]], [[PM-2026-05-20-12-long-term-balance-and-meta]]]
 linked_code: ["tests/fixtures/saves/v{N-2,N-1,N}/canonical.save"]
@@ -237,18 +245,20 @@ sources:
     publisher: "JsonToTable"
     confidence: medium
 verification_notes: "Ohne versionierte Save-Fixtures ist 'Forward-Compat' Behauptung ohne Test. Erste Engine-MAJOR-Migration korrumpiert silent Player-Saves."
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: backend
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Mitigation.** (1) `tests/fixtures/saves/v{N-2,N-1,N}/canonical.save` + `golden-replay-events.jsonl`. (2) **Migration-Replay-Test**: Lade `v(N-2)` in Engine `v(N)`, replay `command_log`, vergleiche `merkle_root` mit goldenem. Schema-Diff via JSON-Schema + ajv-strict (additive-only check on MINOR). (3) **Engine-Version-Pinning**: jedes Save speichert `engine_bundle_hash`. Load-Pfad routet via Migration-Registry (`migrations/{from}→{to}.ts`). (4) **Forward-Compat-Sanity**: ältere Engine darf neues Save nicht laden (graceful refuse statt crash), getestet, nicht behauptet.
+**Mitigation.** (1) `tests/fixtures/saves/v{N-2,N-1,N}/canonical.save` + `golden-replay-events.jsonl`. (2) **Migration-Replay-Test**: Lade `v(N-2)` in Engine `v(N)`, replay `command_log`, vergleiche `merkle_root` mit goldenem. Schema-Diff via JSON-Schema + ajv-strict (additive-only check on MINOR). (3) **Engine-Version-Pinning**: jedes Save speichert `engine_bundle_hash`. Load-Pfad routet via Migration-Registry (`migrations/{from}â†’{to}.ts`). (4) **Forward-Compat-Sanity**: Ã¤ltere Engine darf neues Save nicht laden (graceful refuse statt crash), getestet, nicht behauptet.
 
-**Verifikation.** Compat-Matrix-Job (nightly): N×N replay-grid, ≤ 8 min. Schema-Diff-Bot kommentiert PRs „BREAKING / ADDITIVE / NONE".
+**Verifikation.** Compat-Matrix-Job (nightly): NÃ—N replay-grid, â‰¤ 8 min. Schema-Diff-Bot kommentiert PRs â€žBREAKING / ADDITIVE / NONE".
 
-### PM-2026-05-20-16-F-06 — 50-Year-Headless-Soak: Assertions + Drift-Baseline, nicht nur „läuft durch"
+### PM-2026-05-20-16-F-06 â€” 50-Year-Headless-Soak: Assertions + Drift-Baseline, nicht nur â€žlÃ¤uft durch"
 
 ```yaml
 id: PM-2026-05-20-16-F-06
@@ -260,8 +270,8 @@ score: 20
 confidence: medium
 early_warning:
   - metric: "Soak-Test asserts (memory, save-size, narrative-burn, tactic-entropy)"
-    threshold: "Drift > 3σ baseline"
-mitigation_summary: "Soak-Assertions: heap-Steady-State, Save-Size-Growth, Narrative-Template-Burn ≤ 40 %, Tactic-Entropy ≥ 1.8 bits; baseline-diff via Mahalanobis-Distance"
+    threshold: "Drift > 3Ïƒ baseline"
+mitigation_summary: "Soak-Assertions: heap-Steady-State, Save-Size-Growth, Narrative-Template-Burn â‰¤ 40 %, Tactic-Entropy â‰¥ 1.8 bits; baseline-diff via Mahalanobis-Distance"
 linked_adrs: []
 linked_specs: [[[PM-2026-05-20-12-long-term-balance-and-meta]]]
 linked_code: ["tests/soak/"]
@@ -271,25 +281,27 @@ sources:
     accessed: "2026-05-20"
     publisher: "Browserless"
     confidence: medium
-verification_notes: "Wenn Soak nur 'terminate without throw' prüft, übersieht das eigentliche Risiko: lineare Memory-Growth (10 KB/Saison × 50 Jahre = 500 MB), Save-File-Bloat, Narrative-Exhaustion, AI-Entropy-Collapse."
-status: open
+verification_notes: "Wenn Soak nur 'terminate without throw' prÃ¼ft, Ã¼bersieht das eigentliche Risiko: lineare Memory-Growth (10 KB/Saison Ã— 50 Jahre = 500 MB), Save-File-Bloat, Narrative-Exhaustion, AI-Entropy-Collapse."
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: backend
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
 **Mitigation.** Soak-Assertions:
-- `heapUsed(year=50) - heapUsed(year=5) ≤ 50 MB` (Steady-State).
-- `saveSize(year=50) / saveSize(year=5) ≤ 3.0`.
-- `narrative.templateBurnRate ≤ 0.4` (max 40 % Templates verbraucht).
-- `shannon_entropy(tactic_distribution) ≥ 1.8 bits` an jedem Jahresende.
-- Baseline: `golden-soak-summary.json` committed. CI: Mahalanobis-Distance gegen Baseline > 3σ → fail.
-- Runtime-Budget: ≤ 15 min auf `ubuntu-latest` (4 vCPU). Tier-3 (nightly + release).
+- `heapUsed(year=50) - heapUsed(year=5) â‰¤ 50 MB` (Steady-State).
+- `saveSize(year=50) / saveSize(year=5) â‰¤ 3.0`.
+- `narrative.templateBurnRate â‰¤ 0.4` (max 40 % Templates verbraucht).
+- `shannon_entropy(tactic_distribution) â‰¥ 1.8 bits` an jedem Jahresende.
+- Baseline: `golden-soak-summary.json` committed. CI: Mahalanobis-Distance gegen Baseline > 3Ïƒ â†’ fail.
+- Runtime-Budget: â‰¤ 15 min auf `ubuntu-latest` (4 vCPU). Tier-3 (nightly + release).
 
 **Verifikation.** `pnpm soak:50y --baseline=goldens/soak-baseline-v{engine}.json` reproduziert lokal < 15 min. Drift-Report als PR-Artifact.
 
-### PM-2026-05-20-16-F-07 — Visual-Regression: Argos (OSS, $19) statt Chromatic ($179+); Pseudo-Loc + RTL als Variants
+### PM-2026-05-20-16-F-07 â€” Visual-Regression: Argos (OSS, $19) statt Chromatic ($179+); Pseudo-Loc + RTL als Variants
 
 ```yaml
 id: PM-2026-05-20-16-F-07
@@ -301,7 +313,7 @@ score: 9
 confidence: high
 early_warning:
   - metric: "Visual-Regression False-Positive-Rate"
-    threshold: "> 5 % Quartärlicher Audit"
+    threshold: "> 5 % QuartÃ¤rlicher Audit"
 mitigation_summary: "Argos als visual-regression spine; Pseudo-Loc + RTL als Story-Decorators (nicht separate Runs); Mask dynamic content"
 linked_adrs: []
 linked_specs: [[[PM-2026-05-20-09-i18n-and-localization]]]
@@ -322,23 +334,25 @@ sources:
     accessed: "2026-05-20"
     publisher: "Bug0"
     confidence: medium
-verification_notes: "Jede Story 3 Locales × 2 Direction × 3 Viewport = 18 Snapshots ohne Maskierung von dynamic-content = False-Positives → Tool deaktiviert. Argos Hobby-Free, Team $19. Chromatic Starter $179."
-status: open
+verification_notes: "Jede Story 3 Locales Ã— 2 Direction Ã— 3 Viewport = 18 Snapshots ohne Maskierung von dynamic-content = False-Positives â†’ Tool deaktiviert. Argos Hobby-Free, Team $19. Chromatic Starter $179."
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: tech-lead
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Mitigation.** **Argos** als Visual-Backbone (OSS, Hobby-Free, Team $19/Mo). Storybook + `@storybook/test-runner` rendert headless → `argos upload`. Discipline:
+**Mitigation.** **Argos** als Visual-Backbone (OSS, Hobby-Free, Team $19/Mo). Storybook + `@storybook/test-runner` rendert headless â†’ `argos upload`. Discipline:
 - `animations: 'disabled'`, `caret: 'hide'`, `mask: [time-elements, avatar-randomized]`.
 - Pseudo-Loc + RTL als Story-Decorators (1 Job, mehr Stories).
 - Per-component-Threshold `maxDiffPixelRatio: 0.001` Engine-Vis, `0.005` Marketing.
-- Baselines in Argos hosted, NICHT git → spart Repo-Bloat.
+- Baselines in Argos hosted, NICHT git â†’ spart Repo-Bloat.
 
-**Verifikation.** False-Positive-Rate ≤ 5 % Quartärlicher Audit (100 Argos-Builds-Sample). Diff-Review-SLA ≤ 24 h.
+**Verifikation.** False-Positive-Rate â‰¤ 5 % QuartÃ¤rlicher Audit (100 Argos-Builds-Sample). Diff-Review-SLA â‰¤ 24 h.
 
-### PM-2026-05-20-16-F-08 — Chaos-Engineering: Toxiproxy + Bespoke SW-Chaos
+### PM-2026-05-20-16-F-08 â€” Chaos-Engineering: Toxiproxy + Bespoke SW-Chaos
 
 ```yaml
 id: PM-2026-05-20-16-F-08
@@ -367,16 +381,18 @@ sources:
     publisher: "Chaos Toolkit"
     confidence: high
 verification_notes: "Football-Manager-PWA muss offline-first. Wenn nur Happy-Path getestet, fallen 5xx vom Sync-Backend + 200-aber-corrupt-JSON + slow-3G + abrupte SW-Transitionen durchs Raster und korrumpieren Saves."
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: tech-lead
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Mitigation.** Toxiproxy in `docker-compose.test.yml`. CI-Job „chaos-network" injiziert: latency 2000 ms, bandwidth 50 KB/s, slicer, timeout 30 %. SW-Chaos via Playwright `context.setOffline(true/false)` Zufallsmuster während long-session. Tier: chaos nightly, nicht PR. Beginnt klein (1 Toxic), Skalierung nur nach Green-Pass.
+**Mitigation.** Toxiproxy in `docker-compose.test.yml`. CI-Job â€žchaos-network" injiziert: latency 2000 ms, bandwidth 50 KB/s, slicer, timeout 30 %. SW-Chaos via Playwright `context.setOffline(true/false)` Zufallsmuster wÃ¤hrend long-session. Tier: chaos nightly, nicht PR. Beginnt klein (1 Toxic), Skalierung nur nach Green-Pass.
 
-### PM-2026-05-20-16-F-09 — Cross-Browser für Solo: Playwright `--project` + LambdaTest $15 für RealDevice
+### PM-2026-05-20-16-F-09 â€” Cross-Browser fÃ¼r Solo: Playwright `--project` + LambdaTest $15 fÃ¼r RealDevice
 
 ```yaml
 id: PM-2026-05-20-16-F-09
@@ -388,7 +404,7 @@ score: 9
 confidence: high
 early_warning:
   - signal: "iOS-Safari-Bug erst bei Beta-Tester sichtbar"
-mitigation_summary: "Playwright --project=chromium,firefox,webkit als CI-Default; LambdaTest $15 als manual Real-Device-Verifikation 1×/Release"
+mitigation_summary: "Playwright --project=chromium,firefox,webkit als CI-Default; LambdaTest $15 als manual Real-Device-Verifikation 1Ã—/Release"
 linked_adrs: []
 linked_specs: []
 linked_code: []
@@ -409,18 +425,20 @@ sources:
     publisher: "Playwright"
     confidence: high
 verification_notes: "BrowserStack Automate $129+ ist nicht solo-budget. Selenium-Grid self-host Wartungs-Black-Hole. Playwright deckt Chromium/Firefox/WebKit headless. iOS-Safari (echte Touch-Events, PWA-Install-Banner) + Samsung Internet = blinde Flecken."
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: tech-lead
 effort: S
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Mitigation.** Playwright `--project=chromium,firefox,webkit` als CI-Default. Mobile-Emulation `Pixel 7`, `iPhone 15`. LambdaTest Live $15/Mo („TestMu AI" seit 2026-01) für manuelle Real-Device-Verifikation iOS Safari + Samsung Internet 1×/Release. **Kein BrowserStack Automate-Slot** — Kosten/Nutzen schlecht für Solo.
+**Mitigation.** Playwright `--project=chromium,firefox,webkit` als CI-Default. Mobile-Emulation `Pixel 7`, `iPhone 15`. LambdaTest Live $15/Mo (â€žTestMu AI" seit 2026-01) fÃ¼r manuelle Real-Device-Verifikation iOS Safari + Samsung Internet 1Ã—/Release. **Kein BrowserStack Automate-Slot** â€” Kosten/Nutzen schlecht fÃ¼r Solo.
 
 **Verifikation.** Pre-Release-Checklist (`docs/40-Quality/release-checklist.md`) listet Real-Device-Smoke.
 
-### PM-2026-05-20-16-F-10 — CI-Budget für Solo: Hybrid (GH PR-Hot + Hetzner Nightly), Break-Even ~15k min/Mo
+### PM-2026-05-20-16-F-10 â€” CI-Budget fÃ¼r Solo: Hybrid (GH PR-Hot + Hetzner Nightly), Break-Even ~15k min/Mo
 
 ```yaml
 id: PM-2026-05-20-16-F-10
@@ -433,7 +451,7 @@ confidence: medium
 early_warning:
   - metric: "GitHub Actions monthly CI-minutes"
     threshold: "Approaching free tier 2000 min"
-mitigation_summary: "GitHub-hosted für PR-Hot-Path (≤ 25 min/PR); Hetzner self-hosted für nightly+release; Break-Even ~15.000 min/Mo"
+mitigation_summary: "GitHub-hosted fÃ¼r PR-Hot-Path (â‰¤ 25 min/PR); Hetzner self-hosted fÃ¼r nightly+release; Break-Even ~15.000 min/Mo"
 linked_adrs: []
 linked_specs: []
 linked_code: [".github/workflows/ci.yml"]
@@ -453,18 +471,20 @@ sources:
     accessed: "2026-05-20"
     publisher: "TestFlows"
     confidence: high
-verification_notes: "Free-Tier 2000 min/Mo Linux private; Overage $0.008/min. Bei allen Layern auf GitHub-hosted: ~7.000 min/Mo (60 PRs × 119 billed-min). Self-hosted-Fee $0.002/min ab 2026-03 für private repos."
-status: open
+verification_notes: "Free-Tier 2000 min/Mo Linux private; Overage $0.008/min. Bei allen Layern auf GitHub-hosted: ~7.000 min/Mo (60 PRs Ã— 119 billed-min). Self-hosted-Fee $0.002/min ab 2026-03 fÃ¼r private repos."
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: tech-lead
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
 **Mitigation.** Hybrid CI:
-- **PR-Pfad (hot)**: GitHub-hosted `ubuntu-latest`. Ziel ≤ 25 min/PR (parallel-shard).
-- **Nightly + Release (cold)**: Hetzner-Cloud autoscaling self-hosted Runner (`testflows/testflows-github-hetzner-runners`). CX32 (4 vCPU/8 GB) ~€7/Mo idle + on-demand.
-- **GH self-hosted Platform-Fee** $0.002/min ab 2026-03-01 für private repos. Bei 50k min/Mo = +$100. **Public-Repo wäre exempt** — relevant falls Engine open-sourced.
+- **PR-Pfad (hot)**: GitHub-hosted `ubuntu-latest`. Ziel â‰¤ 25 min/PR (parallel-shard).
+- **Nightly + Release (cold)**: Hetzner-Cloud autoscaling self-hosted Runner (`testflows/testflows-github-hetzner-runners`). CX32 (4 vCPU/8 GB) ~â‚¬7/Mo idle + on-demand.
+- **GH self-hosted Platform-Fee** $0.002/min ab 2026-03-01 fÃ¼r private repos. Bei 50k min/Mo = +$100. **Public-Repo wÃ¤re exempt** â€” relevant falls Engine open-sourced.
 
 **Verifikation.** Monatlicher CI-Spend-Report. Dashboard `docs/40-Quality/ci-budget.md`. Break-Even ~15k min/Mo: ab da Hetzner billiger.
 
@@ -472,23 +492,23 @@ updated: 2026-05-20
 
 | Layer | Tool | Coverage-Target | CI-Time | Trigger |
 |---|---|---|---|---|
-| Unit (Vitest 3) | `vitest` (node-pool, jsdom) | ≥ 85 % Line, ≥ 80 % Branch | ≤ 3 min/PR (shard 4) | every PR |
-| Property-based | `fast-check` 4.x | All 5 Core-Engine-Invariants + Save-Roundtrip + Attribute-Generator | ≤ 2 min/PR (200 runs/prop) | every PR |
-| Mutation (engine-only) | `@stryker-mutator/vitest-runner` incremental | Tier-A `src/engine/**` ≥ 70 break / 80 low / 90 high | ≤ 8 min nightly | nightly + release |
-| Component (browser) | `vitest 3 --browser` + `@vitest/browser-playwright` Chromium | All `*.stories.tsx` interaction-test | ≤ 6 min/PR | every PR |
-| Visual Regression | Argos + Storybook Test Runner | All Stories × {default, pseudo-loc, RTL} | ≤ 5 min/PR (parallel upload) | every PR |
-| Integration | Vitest + msw + in-memory adapters | Save/load, command-log, sync-protocol | ≤ 4 min/PR | every PR |
-| E2E (Playwright) | `@playwright/test` matrix Chromium/Firefox/WebKit | 12 critical user-journeys (Onboarding, Match-Day, Save-Import, BYOC) | ≤ 10 min/PR (shard 3) | every PR |
-| A11y (axe-core) | `@axe-core/playwright` + Storybook a11y addon | All Routes + Stories, WCAG 2.2 AA | ≤ 3 min/PR | every PR |
-| Determinism-Replay | Custom + `sha256(event-log)` | Tier 32 smoke / 1000 nightly / 10.000 release | ≤ 2 min/PR / 25 min nightly / 60 min release | tiered |
-| Save-Forward-Compat | Migration-Replay-Matrix N×N | Saves last 3 Engine-MAJORs | ≤ 8 min nightly | nightly |
-| Long-Run-Soak (50y) | Headless-Engine-Harness | Memory, save-size, narrative-burn, tactic-entropy | ≤ 15 min nightly | nightly |
+| Unit (Vitest 3) | `vitest` (node-pool, jsdom) | â‰¥ 85 % Line, â‰¥ 80 % Branch | â‰¤ 3 min/PR (shard 4) | every PR |
+| Property-based | `fast-check` 4.x | All 5 Core-Engine-Invariants + Save-Roundtrip + Attribute-Generator | â‰¤ 2 min/PR (200 runs/prop) | every PR |
+| Mutation (engine-only) | `@stryker-mutator/vitest-runner` incremental | Tier-A `src/engine/**` â‰¥ 70 break / 80 low / 90 high | â‰¤ 8 min nightly | nightly + release |
+| Component (browser) | `vitest 3 --browser` + `@vitest/browser-playwright` Chromium | All `*.stories.tsx` interaction-test | â‰¤ 6 min/PR | every PR |
+| Visual Regression | Argos + Storybook Test Runner | All Stories Ã— {default, pseudo-loc, RTL} | â‰¤ 5 min/PR (parallel upload) | every PR |
+| Integration | Vitest + msw + in-memory adapters | Save/load, command-log, sync-protocol | â‰¤ 4 min/PR | every PR |
+| E2E (Playwright) | `@playwright/test` matrix Chromium/Firefox/WebKit | 12 critical user-journeys (Onboarding, Match-Day, Save-Import, BYOC) | â‰¤ 10 min/PR (shard 3) | every PR |
+| A11y (axe-core) | `@axe-core/playwright` + Storybook a11y addon | All Routes + Stories, WCAG 2.2 AA | â‰¤ 3 min/PR | every PR |
+| Determinism-Replay | Custom + `sha256(event-log)` | Tier 32 smoke / 1000 nightly / 10.000 release | â‰¤ 2 min/PR / 25 min nightly / 60 min release | tiered |
+| Save-Forward-Compat | Migration-Replay-Matrix NÃ—N | Saves last 3 Engine-MAJORs | â‰¤ 8 min nightly | nightly |
+| Long-Run-Soak (50y) | Headless-Engine-Harness | Memory, save-size, narrative-burn, tactic-entropy | â‰¤ 15 min nightly | nightly |
 | Cross-Browser | Playwright `--project` + LambdaTest manual | Chromium/Firefox/WebKit headless + iOS/Samsung real pre-release | in E2E + manual | every PR + manual pre-release |
-| Chaos (network + SW) | Toxiproxy + Playwright SW chaos | 5 Toxics enabled, expand 1/quarter | ≤ 10 min nightly | nightly |
-| Performance/Perf-Budget | Lighthouse-CI + size-limit | LCP p75 ≤ 2.5 s, INP p75 ≤ 200 ms (TBT proxy), CLS p75 ≤ 0.1, Bundle main ≤ 180 KB gz | ≤ 4 min/PR | every PR |
-| Security/Tampering | Semgrep + `pnpm audit` + CycloneDX + Tampering-Suite (Iter-2-Report-05) | OWASP top-10 SAST clean, no high-sev deps, SBOM signed (cosign) | ≤ 3 min/PR (Semgrep incremental) | every PR + weekly full SCA |
-| Load (k6) | `grafana/k6` OSS | „Saturday match tick" 400 CCU, „Week Advance" batch | ≤ 12 min weekly | weekly + release |
-| OWASP-ZAP DAST | ZAP baseline-scan GHA | Preview-deploy auf Release-Candidate URL | ≤ 8 min release | release-tag |
+| Chaos (network + SW) | Toxiproxy + Playwright SW chaos | 5 Toxics enabled, expand 1/quarter | â‰¤ 10 min nightly | nightly |
+| Performance/Perf-Budget | Lighthouse-CI + size-limit | LCP p75 â‰¤ 2.5 s, INP p75 â‰¤ 200 ms (TBT proxy), CLS p75 â‰¤ 0.1, Bundle main â‰¤ 180 KB gz | â‰¤ 4 min/PR | every PR |
+| Security/Tampering | Semgrep + `pnpm audit` + CycloneDX + Tampering-Suite (Iter-2-Report-05) | OWASP top-10 SAST clean, no high-sev deps, SBOM signed (cosign) | â‰¤ 3 min/PR (Semgrep incremental) | every PR + weekly full SCA |
+| Load (k6) | `grafana/k6` OSS | â€žSaturday match tick" 400 CCU, â€žWeek Advance" batch | â‰¤ 12 min weekly | weekly + release |
+| OWASP-ZAP DAST | ZAP baseline-scan GHA | Preview-deploy auf Release-Candidate URL | â‰¤ 8 min release | release-tag |
 
 ## CI-Pipeline-Composition (CORE OUTPUT)
 
@@ -567,7 +587,7 @@ jobs:
     runs-on: ubuntu-latest      # CycloneDX + cosign
 ```
 
-**Caching:** `actions/setup-node` cache:'pnpm'; `actions/cache` für `~/.cache/ms-playwright` keyed by `hashFiles('**/pnpm-lock.yaml')`; Stryker `.stryker-tmp/` + `reports/stryker-incremental.json` cached on main.
+**Caching:** `actions/setup-node` cache:'pnpm'; `actions/cache` fÃ¼r `~/.cache/ms-playwright` keyed by `hashFiles('**/pnpm-lock.yaml')`; Stryker `.stryker-tmp/` + `reports/stryker-incremental.json` cached on main.
 
 ## Tool-Cost-Comparison (CORE OUTPUT)
 
@@ -578,79 +598,78 @@ jobs:
 | Stryker | OSS | $0 | Yes, scoped /engine |
 | fast-check | OSS | $0 | Yes (mandatory) |
 | axe-core / `@axe-core/playwright` | OSS | $0 | Yes (mandatory BFSG) |
-| **Argos** | Hobby free, Team $19 | $0 → $19 | Yes (Team plan ab Collaboratoren) |
+| **Argos** | Hobby free, Team $19 | $0 â†’ $19 | Yes (Team plan ab Collaboratoren) |
 | Chromatic | Starter $179, Pro $399 | $179+ | No (Cost-Cliff Solo) |
-| Percy | $39 starter, ramps to $5,649 | $39 → $$$ | No |
-| Lighthouse-CI self-hosted | OSS | $0 (~€4 Hetzner CX11) | Yes |
-| size-limit | OSS | $0 | Yes (5× Adoption vs bundlewatch) |
+| Percy | $39 starter, ramps to $5,649 | $39 â†’ $$$ | No |
+| Lighthouse-CI self-hosted | OSS | $0 (~â‚¬4 Hetzner CX11) | Yes |
+| size-limit | OSS | $0 | Yes (5Ã— Adoption vs bundlewatch) |
 | Toxiproxy | OSS (Shopify) | $0 | Yes (nightly only) |
-| k6 OSS | OSS | $0 (Grafana k6 Cloud $0 starter / $25 Pro für Dashboards) | Yes (OSS only) |
+| k6 OSS | OSS | $0 (Grafana k6 Cloud $0 starter / $25 Pro fÃ¼r Dashboards) | Yes (OSS only) |
 | OWASP ZAP | OSS | $0 | Yes (release-only) |
-| Semgrep CE | Free OSS | $0 | Yes (Pro $40/Mo per dev nicht nötig MVP) |
+| Semgrep CE | Free OSS | $0 | Yes (Pro $40/Mo per dev nicht nÃ¶tig MVP) |
 | CycloneDX (cdxgen) | OSS | $0 | Yes (release-only) |
 | BrowserStack Automate | $129+ per parallel | $129+ | No |
 | **LambdaTest Live** | $15/Mo | $15 | Yes (manual pre-release only) |
-| **Hetzner CX32 runner** | self-hosted | €7–15/Mo | Yes (nightly + release) |
-| GitHub Actions Linux private | 2000 free min then $0.008/min | $0 → ~$30 | Yes |
+| **Hetzner CX32 runner** | self-hosted | â‚¬7â€“15/Mo | Yes (nightly + release) |
+| GitHub Actions Linux private | 2000 free min then $0.008/min | $0 â†’ ~$30 | Yes |
 | GitHub self-hosted Platform-Fee 2026-03+ | $0.002/min | ~$20/Mo @10k min | Be aware |
-| **MVP Total Recurring** | — | **~$45–60/Mo** | (Argos $19 + LambdaTest $15 + Hetzner $15 + GH overage $10) |
+| **MVP Total Recurring** | â€” | **~$45â€“60/Mo** | (Argos $19 + LambdaTest $15 + Hetzner $15 + GH overage $10) |
 
 ## Quantitatives Modell
 
-**CI-min per PR (billed wall-time × instances):**
+**CI-min per PR (billed wall-time Ã— instances):**
 
 | Job | Wall | Cells | Billed-min |
 |---|---|---|---|
 | lint-typecheck | 2 | 1 | 2 |
 | unit+prop (shard 4) | 3 | 4 | 12 |
 | component-browser | 6 | 1 | 6 |
-| e2e (3 browser × 3 shard) | 10 | 9 | 90 |
+| e2e (3 browser Ã— 3 shard) | 10 | 9 | 90 |
 | perf-budget | 4 | 1 | 4 |
 | determinism-smoke | 2 | 1 | 2 |
 | security-incremental | 3 | 1 | 3 |
 | **PR total** | **~12 wall** | | **~119 billed** |
 
-**Monthly:** 60 PRs × 119 = **7.140 min/Mo PR-Path GitHub-hosted**. Free 2000 → overage 5.140 × $0.008 = **$41/Mo**. Optimierung: e2e webkit (~30 min billed) auf Hetzner → −1.800 min/Mo (~$14).
+**Monthly:** 60 PRs Ã— 119 = **7.140 min/Mo PR-Path GitHub-hosted**. Free 2000 â†’ overage 5.140 Ã— $0.008 = **$41/Mo**. Optimierung: e2e webkit (~30 min billed) auf Hetzner â†’ âˆ’1.800 min/Mo (~$14).
 
-**Nightly+Release Hetzner self-hosted:** 30 nightlies × (mutation 8 + det-1000 25 + soak 20 + fwd-compat 8 + chaos 10) ≈ **2.130 min/Mo**. Hetzner CX32 ~€0.011/h = $0.0002/min compute → ~$0.40 raw + €7/Mo idle = **~$8/Mo total**. GH Platform-Fee 2026-03+: 2.130 × $0.002 = **$4.26/Mo**.
+**Nightly+Release Hetzner self-hosted:** 30 nightlies Ã— (mutation 8 + det-1000 25 + soak 20 + fwd-compat 8 + chaos 10) â‰ˆ **2.130 min/Mo**. Hetzner CX32 ~â‚¬0.011/h = $0.0002/min compute â†’ ~$0.40 raw + â‚¬7/Mo idle = **~$8/Mo total**. GH Platform-Fee 2026-03+: 2.130 Ã— $0.002 = **$4.26/Mo**.
 
-**Self-hosted Break-Even**: ~15.000 GH-hosted billed-min/Mo. Solo unter PR-Path-Schwelle, aber über Nightly — Hybrid korrekt.
+**Self-hosted Break-Even**: ~15.000 GH-hosted billed-min/Mo. Solo unter PR-Path-Schwelle, aber Ã¼ber Nightly â€” Hybrid korrekt.
 
-## SLO-Vorschläge
+## SLO-VorschlÃ¤ge
 
 | SLO | Ziel |
 |---|---|
-| Unit-test line-coverage `src/engine/**` | ≥ 85 % |
-| Unit-test line-coverage `src/ui/**` | ≥ 60 % |
+| Unit-test line-coverage `src/engine/**` | â‰¥ 85 % |
+| Unit-test line-coverage `src/ui/**` | â‰¥ 60 % |
 | Mutation-Score `src/engine/**` | break 70 / low 80 / high 90 |
-| Property-test invariant count `src/engine/**` | ≥ 5 core props (wachsend) |
-| Determinism-Replay failure rate | 0 über 30-Tage-Fenster |
-| Save-Forward-Compat replay rate | 100 % across N-2 → N |
-| 50-y-Soak success rate (nightly) | ≥ 28/30 nights grün |
-| 50-y-Soak runtime | p95 ≤ 15 min |
-| CI PR wall-time (median) | ≤ 15 min |
-| CI PR wall-time (p95) | ≤ 25 min |
+| Property-test invariant count `src/engine/**` | â‰¥ 5 core props (wachsend) |
+| Determinism-Replay failure rate | 0 Ã¼ber 30-Tage-Fenster |
+| Save-Forward-Compat replay rate | 100 % across N-2 â†’ N |
+| 50-y-Soak success rate (nightly) | â‰¥ 28/30 nights grÃ¼n |
+| 50-y-Soak runtime | p95 â‰¤ 15 min |
+| CI PR wall-time (median) | â‰¤ 15 min |
+| CI PR wall-time (p95) | â‰¤ 25 min |
 | A11y critical+serious violations | 0 |
-| Lighthouse Perf (median, mobile) | ≥ 85 |
+| Lighthouse Perf (median, mobile) | â‰¥ 85 |
 | LCP p75 / INP p75 / CLS p75 | 2.5 s / 200 ms / 0.1 |
-| Bundle main entry gzip | ≤ 180 KB |
-| Visual-Regression False-Positive-Rate | ≤ 5 % (Argos Sample-Audit) |
-| Total CI Spend | ≤ $60/Mo MVP, ≤ $150/Mo post-launch |
+| Bundle main entry gzip | â‰¤ 180 KB |
+| Visual-Regression False-Positive-Rate | â‰¤ 5 % (Argos Sample-Audit) |
+| Total CI Spend | â‰¤ $60/Mo MVP, â‰¤ $150/Mo post-launch |
 
-## Offene Fragen
-
-1. Engine open-sourced? Wenn ja, GH-Actions public-repo = self-hosted-fee exempt, Hetzner ggf. nicht nötig.
+## Future-scope decisions (classified future-scope)
+1. Engine open-sourced? Wenn ja, GH-Actions public-repo = self-hosted-fee exempt, Hetzner ggf. nicht nÃ¶tig.
 2. Storybook `@storybook/test-runner` (Jest-Playwright) oder Vitest-Browser-Storybook-Integration (Storybook 8.4+)? Tendenz Vitest-Browser.
-3. Save-Fixtures-Lagerung: Git-LFS (>1 MB)? In-Repo (versioniert, Bloat)? S3 mit git-annex? Empfehlung: in-repo bis ≤ 5 MB total, sonst LFS.
-4. BYOC (Bring-Your-Own-Compute) Worker — wie testet man Bypass-Suite (Report 13) gegen Moderation? Adversarial-Fuzz-Corpus committed?
-5. Visual-Regression-Diff im PR: Founder allein oder Argos „auto-approve auf trivial diff < 0.1 %"?
+3. Save-Fixtures-Lagerung: Git-LFS (>1 MB)? In-Repo (versioniert, Bloat)? S3 mit git-annex? Empfehlung: in-repo bis â‰¤ 5 MB total, sonst LFS.
+4. BYOC (Bring-Your-Own-Compute) Worker â€” wie testet man Bypass-Suite (Report 13) gegen Moderation? Adversarial-Fuzz-Corpus committed?
+5. Visual-Regression-Diff im PR: Founder allein oder Argos â€žauto-approve auf trivial diff < 0.1 %"?
 6. k6 Cloud Free-Tier oder Grafana-Cloud-Stack mit gemeinsamem Lighthouse-Dashboard?
 
 ## "Wenn wir nur 3 Dinge tun"-Liste
 
-1. **Determinism-CI-Gate dieses Sprint stehen** — selbst 32-Seed Smoke + Hash-Diff reicht zum Start. Ohne ist jeder andere Test-Layer downstream einer instabilen Foundation. Tier N upward as confidence grows (32 → 1000 → 10.000).
-2. **`fast-check` für 5 Engine-Invariants vor Unit-Test-Wachstum adoptieren** — Property-Tests früh applied multiplizieren Coverage per LoC of Test. Retrofit kostet, jetzt-Add compoundet across every refactor.
-3. **Save-Forward-Compat-Matrix sobald Engine v1.1 shipped** — checked-in `v{N-2}/canonical.save` + Migration-Replay-Test ist 4-Std-Investment. Differenz zwischen „silent corruption on v2.0 launch" und „green-light migration path". **Single most-likely silent-failure mode des Projekts.**
+1. **Determinism-CI-Gate dieses Sprint stehen** â€” selbst 32-Seed Smoke + Hash-Diff reicht zum Start. Ohne ist jeder andere Test-Layer downstream einer instabilen Foundation. Tier N upward as confidence grows (32 â†’ 1000 â†’ 10.000).
+2. **`fast-check` fÃ¼r 5 Engine-Invariants vor Unit-Test-Wachstum adoptieren** â€” Property-Tests frÃ¼h applied multiplizieren Coverage per LoC of Test. Retrofit kostet, jetzt-Add compoundet across every refactor.
+3. **Save-Forward-Compat-Matrix sobald Engine v1.1 shipped** â€” checked-in `v{N-2}/canonical.save` + Migration-Replay-Test ist 4-Std-Investment. Differenz zwischen â€žsilent corruption on v2.0 launch" und â€žgreen-light migration path". **Single most-likely silent-failure mode des Projekts.**
 
 ## Verfolgung & Verkettung
 
@@ -658,6 +677,6 @@ IDs `PM-2026-05-20-16-F-NN`. Aggregat: [[findings-registry]].
 
 ## Related
 
-- [[00-index]] · [[findings-registry]]
-- [[PM-2026-05-20-02-tech-and-ops]] · [[PM-2026-05-20-05-security-and-integrity]] (Determinismus-Foundation) · [[PM-2026-05-20-10-accessibility-and-inclusion]] (axe-core-Layer) · [[PM-2026-05-20-12-long-term-balance-and-meta]] (50-y-Soak + Balance-Constants)
+- [[00-index]] Â· [[findings-registry]]
+- [[PM-2026-05-20-02-tech-and-ops]] Â· [[PM-2026-05-20-05-security-and-integrity]] (Determinismus-Foundation) Â· [[PM-2026-05-20-10-accessibility-and-inclusion]] (axe-core-Layer) Â· [[PM-2026-05-20-12-long-term-balance-and-meta]] (50-y-Soak + Balance-Constants)
 - [[../determinism-and-replay]]

@@ -1,4 +1,4 @@
----
+﻿---
 title: Youth Academy and Player Development
 status: approved
 tags: [game-design, youth, development, academy]
@@ -56,7 +56,7 @@ the player learns more about it.
 | Infrastructure | Injury prevention, recovery |
 | Morale / status | Training efficiency multiplier |
 | Coach specialisation | Targeted role development |
-| Loan environment | See §6 |
+| Loan environment | See Â§6 |
 
 ## 3. Development phases
 
@@ -90,7 +90,7 @@ Intake quality depends on:
 - Youth scout regional coverage.
 - Investment level (per season).
 - DNA `philosophy` (youth-focused clubs get +1 intake quality tier).
-- Academy infrastructure ([[stadium-and-campus]] §5).
+- Academy infrastructure ([[stadium-and-campus]] Â§5).
 
 ## 5. Intake event
 
@@ -168,7 +168,7 @@ Effects:
 
 - Slow movement of hidden/meta tendencies such as professionalism,
   determination, pressure handling and adaptability.
-- Personality-label transfer (e.g. mercenary mentor → mercenary protégé)
+- Personality-label transfer (e.g. mercenary mentor â†’ mercenary protÃ©gÃ©)
   as an emergent outcome, not an instant tag copy.
 - Faster integration.
 - Reduced morale shocks.
@@ -180,7 +180,7 @@ solvable "perfect mentoring tree".
 
 Mentoring pairs are surfaced as suggested cards; player can override.
 
-## 10. Open questions
+## 10. Future-scope notes (classified future-scope)
 
 - Should release of academy players carry a small "former club" sell-on
   clause? Yes - it gives a slow long-tail revenue stream.

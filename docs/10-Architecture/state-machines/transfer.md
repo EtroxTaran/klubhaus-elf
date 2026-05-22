@@ -1,4 +1,4 @@
----
+﻿---
 title: State Machine - Transfer Negotiation
 status: draft
 tags: [architecture, state-machine, transfer, ddd]
@@ -87,7 +87,7 @@ Effects (in order, applied per follow-on event):
 5. Media leak / supporter unrest in target's club.
 
 Detail in [[../../50-Game-Design/transfer-market-and-contracts]] and
-[[../../50-Game-Design/transfer-negotiations-p2p]] §3.
+[[../../50-Game-Design/transfer-negotiations-p2p]] Â§3.
 
 ## 5. Persistence
 
@@ -160,7 +160,7 @@ When threshold exceeded, league admin sees a flag and can sanction.
 - Player terms: club-agreed package can still collapse when player / agent
   rejects terms.
 
-## 9. Open questions
+## 9. Future-scope notes (classified future-scope)
 
 - Counter-offer infinite loop prevention - tentative: maximum 3
   counter-rounds per chain.

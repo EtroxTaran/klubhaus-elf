@@ -1,4 +1,4 @@
----
+﻿---
 title: Scouting and Recruitment - Funnel, Scout Attributes, Market Dynamics
 status: draft
 tags: [game-design, scouting, recruitment, transfers]
@@ -98,7 +98,7 @@ openness and seller preferences.
 Prices rise with:
 
 - Competition (multiple clubs interested).
-- Remaining contract length (shorter → cheaper).
+- Remaining contract length (shorter â†’ cheaper).
 - Wage demands.
 - Agent relations.
 - Other clubs' squad needs.
@@ -172,7 +172,7 @@ by cash-equivalent value.
 | Standard | Short list + scout reports + recommend transfer |
 | Expert | Long list, regional heat map, scout coverage map, deep flags |
 
-## 10. Open questions
+## 10. Future-scope notes (classified future-scope)
 
 - Should there be a "Recruitment Hub" page (FM26 pattern) that consolidates
   needs + budget + scout coverage? Yes - it is the Standard-tier home.

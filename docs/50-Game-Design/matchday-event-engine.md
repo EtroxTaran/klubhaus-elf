@@ -1,4 +1,4 @@
----
+﻿---
 title: Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prevention
 status: approved
 tags: [game-design, events, matchday, weather, sanctions]
@@ -73,7 +73,7 @@ The engine reads this declarative schema; no per-event code is needed.
 
 | Field | Value |
 |---|---|
-| Trigger | Temperature < 0 °C, ageing infrastructure, low maintenance |
+| Trigger | Temperature < 0 Â°C, ageing infrastructure, low maintenance |
 | Effect | Beer revenue -80 %, fan frustration +, hospitality - |
 | Prevention | Winterising, maintenance, mobile bars |
 
@@ -81,7 +81,7 @@ The engine reads this declarative schema; no per-event code is needed.
 
 | Field | Value |
 |---|---|
-| Trigger | 38-40 °C, sold-out stadium, low shade |
+| Trigger | 38-40 Â°C, sold-out stadium, low shade |
 | Effect | Multiple medical incidents, match interruption, reputation damage, extra cost |
 | Prevention | Water stations, shade, medical upgrade |
 
@@ -129,7 +129,7 @@ flowchart LR
 ## 6. Sanction chain
 
 Match-day security events feed into the **sanction chain** (sourced from
-[[../60-Research/fan-culture-segmentation-research]] §6):
+[[../60-Research/fan-culture-segmentation-research]] Â§6):
 
 1. Fine.
 2. Partial sector closure.
@@ -146,12 +146,12 @@ manages this chain.
 
 Events feed into other systems, not just inbox cards:
 
-- Catering & infrastructure events ↔ [[economy-system]] revenue and KPIs.
-- Security events ↔ [[regulations-and-compliance]] sanction chain.
-- Medical events ↔ [[training-load-and-medicine]] injury record.
-- Fan events ↔ [[fan-ecology]] segment mood.
-- Media events ↔ [[club-dna-and-governance]] media image.
-- Pitch and venue conflicts ↔ [[stadium-and-campus]] venue calendar,
+- Catering & infrastructure events â†” [[economy-system]] revenue and KPIs.
+- Security events â†” [[regulations-and-compliance]] sanction chain.
+- Medical events â†” [[training-load-and-medicine]] injury record.
+- Fan events â†” [[fan-ecology]] segment mood.
+- Media events â†” [[club-dna-and-governance]] media image.
+- Pitch and venue conflicts â†” [[stadium-and-campus]] venue calendar,
   pitch wear and setup/teardown windows.
 
 Domain ownership:
@@ -189,7 +189,7 @@ Authoring rules:
 - narrative copy references [[../60-Research/narrative-content-pipeline]]
   event families and never creates facts not present in the event payload.
 
-## 10. Open questions
+## 10. Future-scope notes (classified future-scope)
 
 - Recurring multi-match events (e.g. pyro investigation across 3 matches)
   - modelled as a parent event that spawns child events per match.

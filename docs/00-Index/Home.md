@@ -3,7 +3,7 @@ title: Vault Home
 status: current
 tags: [meta]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-05-22
 type: index
 binding: true
 ---
@@ -26,7 +26,7 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
 - [[Vision]] — goals
 - [[MVP-Scope]] — canonical MVP scope
 - [[Non-Goals]] — explicit exclusions
-- [[Glossary]] · [[Decision-Log]]
+- [[Glossary]] · [[Decision-Log]] · [[Documentation-Baseline-2026-05-22]]
 - [[Repository]] — README, Contributing, Agent & Claude guides (repo-root docs)
 - [[UI-Showcase]] — the live Storybook design-system showcase
 - [[../90-Meta/conventions]] — how the vault is written and organised
@@ -70,8 +70,9 @@ ADRs are the source for technical shape.
 ## Research
 
 - [[../60-Research/00-summary]] — start here, then [[Research-Map]] for
-  locked Wave 3 notes, including narrative, AI managers, match/runtime,
-  performance, player strength, transfer market and systemic events.
+  current research notes, including narrative, AI managers, match/runtime,
+  performance, player strength, transfer market, systemic events and the
+  2026-05-22 documentation baseline.
 - [[../60-Research/pre-mortem/00-index]] — Pre-Mortem 2026-05-20 (3 Iterationen,
   14 Reports + Threat-Model + Registry, ~191 Findings). **Iter 1**: 4 Original-
   Reports (Architecture, Tech-Ops, Gameplay, Monetization). **Iter 2**: Security
@@ -84,7 +85,10 @@ ADRs are the source for technical shape.
   Priorität), [[../60-Research/pre-mortem/threat-model]] für Trust-Boundaries,
   [[../60-Research/pre-mortem/prioritization-matrix]] für Hebel/Cluster und
   [[../60-Research/pre-mortem/execution-index]] für 15 Expertise-Kategorien
-  (Briefings für frische Agenten zur Erarbeitung der Lösungen).
+  (Briefings für frische Agenten). [[../60-Research/pre-mortem/gap-closure-concept-2026-05-22]]
+  und [[Documentation-Baseline-2026-05-22]] schließen den Konzept- und
+  Dokumentations-Gap-Stand vom 2026-05-22; verbleibende Evidence-Gates laufen
+  über Umsetzung, Tests, Runbooks, Legal Sign-off oder Produktionstelemetrie.
 
 ## Meta & process
 

@@ -1,9 +1,9 @@
----
-title: "Pre-Mortem 2026-05-20 · 04 · Monetization"
-status: draft
+﻿---
+title: "Pre-Mortem 2026-05-20 Â· 04 Â· Monetization"
+status: current
 tags: [research, pre-mortem, monetization, analytics, retention, compliance, 2026-Q2]
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 type: research
 binding: false
 report_id: PM-2026-05-20-04
@@ -24,18 +24,18 @@ related:
   - [[../../00-Index/Current-State]]
 ---
 
-# Pre-Mortem 2026-05-20 · 04 · Monetization
+# Pre-Mortem 2026-05-20 Â· 04 Â· Monetization
 
 > **Pre-Mortem-Hypothese (Failure-Headline):**
-> "In sechs Monaten waren wir gescheitert, weil 10.000 Spieler 0 € Umsatz produziert haben — wir hatten keine Monetarisierungs-Hypothese, keine Product-Analytics, keine Feature-Flags, kein Retention-Loop, und der nachgeschobene Battlepass produzierte Community-Backlash."
+> "In sechs Monaten waren wir gescheitert, weil 10.000 Spieler 0 â‚¬ Umsatz produziert haben â€” wir hatten keine Monetarisierungs-Hypothese, keine Product-Analytics, keine Feature-Flags, kein Retention-Loop, und der nachgeschobene Battlepass produzierte Community-Backlash."
 
 ## Scope
 
-Dieser Report adressiert **Monetarisierungs-, Compliance- und Live-Ops-Risiken** unter der Annahme von 10k Spielern in 6 Monaten. Ausgangslage: **Monetarisierung ist heute zu 0 % implementiert** (keine Payment-Lib, keine Product-Analytics, keine Feature-Flags, keine Push/E-Mail, keine Helpdesk). Wave-3 Gaps G3 (KPIs), G4 (Monetisation Strategy), G5 (Pricing), G6 (Beta), G7 (Marketing), G8 (Support), H5 (Feature-Flags), H6 (A/B), H7 (Analytics), H8 (Live-Ops) sind alle offen.
+Dieser Report adressiert **Monetarisierungs-, Compliance- und Live-Ops-Risiken** unter der Annahme von 10k Spielern in 6 Monaten. Ausgangslage: **Monetarisierung ist heute zu 0 % implementiert** (keine Payment-Lib, keine Product-Analytics, keine Feature-Flags, keine Push/E-Mail, keine Helpdesk). Wave-3 Gaps G3 (KPIs), G4 (Monetisation Strategy), G5 (Pricing), G6 (Beta), G7 (Marketing), G8 (Support), H5 (Feature-Flags), H6 (A/B), H7 (Analytics), H8 (Live-Ops) waren zum Reportzeitpunkt unclassified; 2026-05-22 concept-closed.
 
 ## Top Failure-Hypothesen
 
-### PM-2026-05-20-04-F-01 — Keine Monetarisierungs-Hypothese vor Launch committed
+### PM-2026-05-20-04-F-01 â€” Keine Monetarisierungs-Hypothese vor Launch committed
 
 ```yaml
 id: PM-2026-05-20-04-F-01
@@ -53,15 +53,16 @@ linked_adrs: []
 linked_specs: []
 linked_code: []
 linked_issues: []
-resolved_by: []
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: product+founder
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Hypothese.** Ohne ratifizierte Monetarisierungs-Hypothese (F2P + Cosmetics? One-time-Premium? Saison-Pass? Abo? Hybrid?) gibt es keine Conversion-Mechanik, kein Pricing, keinen Payment-Provider — und Nachreichen verursacht Backlash.
+**Hypothese.** Ohne ratifizierte Monetarisierungs-Hypothese (F2P + Cosmetics? One-time-Premium? Saison-Pass? Abo? Hybrid?) gibt es keine Conversion-Mechanik, kein Pricing, keinen Payment-Provider â€” und Nachreichen verursacht Backlash.
 
 **Mitigation.**
 1. **Decision-Workshop bis Monat -4 vor Launch:** F2P-mit-Cosmetics ist sehr wahrscheinlich richtig, aber explizit entscheiden.
@@ -72,7 +73,7 @@ updated: 2026-05-20
 
 ---
 
-### PM-2026-05-20-04-F-02 — Kein Product-Analytics → Conversion-Blindheit
+### PM-2026-05-20-04-F-02 â€” Kein Product-Analytics â†’ Conversion-Blindheit
 
 ```yaml
 id: PM-2026-05-20-04-F-02
@@ -93,27 +94,28 @@ linked_specs:
   - [[../../30-Implementation/privacy-and-consent]]
 linked_code: []
 linked_issues: []
-resolved_by: []
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: data+platform
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Hypothese.** OTel + Loki/Prometheus + GlitchTip messen Performance und Crashes — keine Conversion. Ohne Product-Analytics (PostHog/Mixpanel) sind wir bei 10k Spielern blind: warum kauft niemand? Wo droppen die Spieler?
+**Hypothese.** OTel + Loki/Prometheus + GlitchTip messen Performance und Crashes â€” keine Conversion. Ohne Product-Analytics (PostHog/Mixpanel) sind wir bei 10k Spielern blind: warum kauft niemand? Wo droppen die Spieler?
 
 **Mitigation.**
-1. **PostHog self-hosted** (DSGVO-konform, kein EU-US-Transfer) oder ähnlich.
+1. **PostHog self-hosted** (DSGVO-konform, kein EU-US-Transfer) oder Ã¤hnlich.
 2. **Event-Taxonomie**: Mindest-Events `signup`, `onboarding_step_{n}`, `first_match_started`, `first_match_completed`, `purchase_initiated`, `purchase_completed`, `purchase_failed{reason}`, `refund_requested`, `entitlement_granted`.
-3. **Funnel-Dashboards** Reg → D1 → D7 → D30 → First-Purchase → Repeat.
-4. **Consent-Gate** für Analytics gemäß `privacy-and-consent.md`.
+3. **Funnel-Dashboards** Reg â†’ D1 â†’ D7 â†’ D30 â†’ First-Purchase â†’ Repeat.
+4. **Consent-Gate** fÃ¼r Analytics gemÃ¤ÃŸ `privacy-and-consent.md`.
 
 **Verifikation.** Funnel-Heatmap zeigt jeden Schritt; Drop-Offs identifizierbar.
 
 ---
 
-### PM-2026-05-20-04-F-03 — Keine Feature-Flags / A/B → keine gefahrlosen Experimente
+### PM-2026-05-20-04-F-03 â€” Keine Feature-Flags / A/B â†’ keine gefahrlosen Experimente
 
 ```yaml
 id: PM-2026-05-20-04-F-03
@@ -131,21 +133,22 @@ linked_adrs: []
 linked_specs: []
 linked_code: []
 linked_issues: []
-resolved_by: []
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: platform
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Hypothese.** Ohne Feature-Flags ist jeder Monetarisierungs-Test eine harte Deploy-Entscheidung. Pricing-A/B, neuer Storefront, Trial-Period → alles muss flaggable sein.
+**Hypothese.** Ohne Feature-Flags ist jeder Monetarisierungs-Test eine harte Deploy-Entscheidung. Pricing-A/B, neuer Storefront, Trial-Period â†’ alles muss flaggable sein.
 
-**Mitigation.** GrowthBook self-hosted (DSGVO + offline-fit) oder Unleash. Killswitch für jede neue Feature-Flag. SDK in Server + Client.
+**Mitigation.** GrowthBook self-hosted (DSGVO + offline-fit) oder Unleash. Killswitch fÃ¼r jede neue Feature-Flag. SDK in Server + Client.
 
 ---
 
-### PM-2026-05-20-04-F-04 — Kein Soft-Launch / Beta → Skalierungs- und Pricing-Schock direkt im Hard-Launch
+### PM-2026-05-20-04-F-04 â€” Kein Soft-Launch / Beta â†’ Skalierungs- und Pricing-Schock direkt im Hard-Launch
 
 ```yaml
 id: PM-2026-05-20-04-F-04
@@ -158,26 +161,27 @@ confidence: medium
 early_warning:
   - metric: "weeks_of_beta_pre_hard_launch"
     threshold: "<4"
-mitigation_summary: "Soft-Launch in 1 Land (DE oder CH) 4–6 Wochen + Beta-Programm + öffentlich kommuniziert"
+mitigation_summary: "Soft-Launch in 1 Land (DE oder CH) 4â€“6 Wochen + Beta-Programm + Ã¶ffentlich kommuniziert"
 linked_adrs: []
 linked_specs: []
 linked_code: []
 linked_issues: []
-resolved_by: []
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: product+marketing
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
 **Hypothese.** Hard-Launch ohne Soft-Launch ist Russisches Roulette: Lasttests sind synthetisch, echte Spieler verhalten sich anders, Pricing-Resonanz unbekannt.
 
-**Mitigation.** Beta-Programm (TestFlight-Equivalent / PWA-Invite); Pricing erst im Soft-Launch enthüllen; Telemetrie-Hard-Validierung.
+**Mitigation.** Beta-Programm (TestFlight-Equivalent / PWA-Invite); Pricing erst im Soft-Launch enthÃ¼llen; Telemetrie-Hard-Validierung.
 
 ---
 
-### PM-2026-05-20-04-F-05 — Payment-Provider-Lock-In / Sperre-Risiko
+### PM-2026-05-20-04-F-05 â€” Payment-Provider-Lock-In / Sperre-Risiko
 
 ```yaml
 id: PM-2026-05-20-04-F-05
@@ -197,12 +201,13 @@ linked_adrs: []
 linked_specs: []
 linked_code: []
 linked_issues: []
-resolved_by: []
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: backend+finance
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
 **Hypothese.** Gaming gilt bei Stripe als Risiko-Branche; eine Welle Chargebacks oder ein automatisierter Review kann Auszahlungen wochenlang einfrieren. Ohne Backup-Provider keine Aussteuerung.
@@ -211,7 +216,7 @@ updated: 2026-05-20
 
 ---
 
-### PM-2026-05-20-04-F-06 — DSGVO-/Verbraucherschutz-Lücken beim Bezahlen
+### PM-2026-05-20-04-F-06 â€” DSGVO-/Verbraucherschutz-LÃ¼cken beim Bezahlen
 
 ```yaml
 id: PM-2026-05-20-04-F-06
@@ -233,21 +238,22 @@ linked_specs:
   - [[../../30-Implementation/privacy-and-consent]]
 linked_code: []
 linked_issues: []
-resolved_by: []
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: legal+product
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Hypothese.** DSGVO ist sauber (locked). Bezahlung bringt zusätzliche Pflichten: AGB, Widerrufsrecht (mit ausdrücklichem Verzicht für digitale Inhalte), Impressum, MOSS/OSS-VAT-Reporting, DPA mit Payment-Provider. Eine Verbraucherschutz-Abmahnung kostet Geld und Image.
+**Hypothese.** DSGVO ist sauber (locked). Bezahlung bringt zusÃ¤tzliche Pflichten: AGB, Widerrufsrecht (mit ausdrÃ¼cklichem Verzicht fÃ¼r digitale Inhalte), Impressum, MOSS/OSS-VAT-Reporting, DPA mit Payment-Provider. Eine Verbraucherschutz-Abmahnung kostet Geld und Image.
 
 **Mitigation.** Legal-Review vor Soft-Launch; Templates aus iubenda/Termly oder dezidierter Kanzlei. Paddle erleichtert via Merchant-of-Record-Modell.
 
 ---
 
-### PM-2026-05-20-04-F-07 — Retention-Loop fehlt → D7/D30 katastrophal
+### PM-2026-05-20-04-F-07 â€” Retention-Loop fehlt â†’ D7/D30 katastrophal
 
 ```yaml
 id: PM-2026-05-20-04-F-07
@@ -268,21 +274,22 @@ linked_specs:
   - [[../../30-Implementation/privacy-and-consent]]
 linked_code: []
 linked_issues: []
-resolved_by: []
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: product+marketing
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Hypothese.** Ohne aktive Re-Engagement (E-Mail-Welcome-Series, Match-Result-Push, Saison-Übergangs-Digest) verlieren wir 60+ % der Spieler in der ersten Woche.
+**Hypothese.** Ohne aktive Re-Engagement (E-Mail-Welcome-Series, Match-Result-Push, Saison-Ãœbergangs-Digest) verlieren wir 60+ % der Spieler in der ersten Woche.
 
-**Mitigation.** Brevo (bereits in DPA-Scope) für E-Mail; Web-Push opt-in mit klarer Privacy-Erklärung; Digest "Was ist letzte Woche in deinem Save passiert?".
+**Mitigation.** Brevo (bereits in DPA-Scope) fÃ¼r E-Mail; Web-Push opt-in mit klarer Privacy-ErklÃ¤rung; Digest "Was ist letzte Woche in deinem Save passiert?".
 
 ---
 
-### PM-2026-05-20-04-F-08 — Kein Customer-Support → Reviews-Tornado
+### PM-2026-05-20-04-F-08 â€” Kein Customer-Support â†’ Reviews-Tornado
 
 ```yaml
 id: PM-2026-05-20-04-F-08
@@ -302,21 +309,22 @@ linked_adrs: []
 linked_specs: []
 linked_code: []
 linked_issues: []
-resolved_by: []
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: support
 effort: S
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Hypothese.** Lost-Account, Falsche-Abbuchung, Bugs — ohne Support-Pfad gehen Beschwerden in Store-Reviews und Twitter. Rating-Drop = Discoverability-Drop.
+**Hypothese.** Lost-Account, Falsche-Abbuchung, Bugs â€” ohne Support-Pfad gehen Beschwerden in Store-Reviews und Twitter. Rating-Drop = Discoverability-Drop.
 
 **Mitigation.** Light-Helpdesk (FreeScout self-hosted oder Plain free-tier); In-Game-Feedback-Sheet; FAQ-Seite.
 
 ---
 
-### PM-2026-05-20-04-F-09 — Kosten-Explosion durch viralen Spike (Marketing-DDoS)
+### PM-2026-05-20-04-F-09 â€” Kosten-Explosion durch viralen Spike (Marketing-DDoS)
 
 ```yaml
 id: PM-2026-05-20-04-F-09
@@ -336,21 +344,22 @@ linked_adrs: []
 linked_specs: []
 linked_code: []
 linked_issues: []
-resolved_by: []
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: platform+finance
 effort: S
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Hypothese.** Erfolgreicher Reddit/TikTok-Post zieht 50k neue Nutzer in 24 h. Cloud-Autoscale bläht die Bill um 10× auf, ohne dass Conversion folgt.
+**Hypothese.** Erfolgreicher Reddit/TikTok-Post zieht 50k neue Nutzer in 24 h. Cloud-Autoscale blÃ¤ht die Bill um 10Ã— auf, ohne dass Conversion folgt.
 
 **Mitigation.** Hard-Cap auf Autoscale; Cloud-Budget-Alerts (50/80/100 %); WAF rate-limit; Notfall-Queue-Wartescreen.
 
 ---
 
-### PM-2026-05-20-04-F-10 — Refund-/Chargeback-Welle bricht Unit-Economics
+### PM-2026-05-20-04-F-10 â€” Refund-/Chargeback-Welle bricht Unit-Economics
 
 ```yaml
 id: PM-2026-05-20-04-F-10
@@ -370,25 +379,26 @@ linked_adrs: []
 linked_specs: []
 linked_code: []
 linked_issues: []
-resolved_by: []
-status: open
+resolved_by:
+  - [[gap-closure-concept-2026-05-22]]
+status: mitigated
 owner_suggested: backend+finance
 effort: M
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-22
 ```
 
-**Hypothese.** Wenn Käufer das Spiel nicht versteht oder Kauf zu früh erfolgt, kommen Refund-Requests. Chargeback-Stürme können Stripe-Konto-Review triggern (siehe F-05).
+**Hypothese.** Wenn KÃ¤ufer das Spiel nicht versteht oder Kauf zu frÃ¼h erfolgt, kommen Refund-Requests. Chargeback-StÃ¼rme kÃ¶nnen Stripe-Konto-Review triggern (siehe F-05).
 
-**Mitigation.** Receipt-Verification, klar erklärte Entitlements, UX für Refund (eigeninitiativ via Helpdesk), Fraud-Patterns (gleicher Card, viele Accounts).
+**Mitigation.** Receipt-Verification, klar erklÃ¤rte Entitlements, UX fÃ¼r Refund (eigeninitiativ via Helpdesk), Fraud-Patterns (gleicher Card, viele Accounts).
 
 ---
 
 ## Quantitatives Modell
 
-### Revenue-Sensitivität (10k registriert ⇒ 2.500 DAU)
+### Revenue-SensitivitÃ¤t (10k registriert â‡’ 2.500 DAU)
 
-| Conversion (% DAU zahlend) | ARPPU (€) | Bruttoumsatz/Monat (€) |
+| Conversion (% DAU zahlend) | ARPPU (â‚¬) | Bruttoumsatz/Monat (â‚¬) |
 |---|---|---|
 | 0,5 % (12,5 Payer) | 8 | 100 |
 | 0,5 % | 15 | 188 |
@@ -398,44 +408,44 @@ updated: 2026-05-20
 | 5,0 % (125 Payer) | 15 | 1.875 |
 | 5,0 % | 30 | 3.750 |
 
-⇒ Bei 2 % × 15 € ≈ 750 €/Monat brutto. Davon abzuziehen:
-- Payment-Fees ~5 % (Paddle) bis ~3 % + 0,30 €/Transaktion (Stripe) ≈ 30–50 € entfallen.
+â‡’ Bei 2 % Ã— 15 â‚¬ â‰ˆ 750 â‚¬/Monat brutto. Davon abzuziehen:
+- Payment-Fees ~5 % (Paddle) bis ~3 % + 0,30 â‚¬/Transaktion (Stripe) â‰ˆ 30â€“50 â‚¬ entfallen.
 - EU-VAT je nach MoR-Modell.
 
 **Break-Even-Heuristik:**
 
 | Szenario | Infra-Kosten/Monat | Break-Even-Bruttoumsatz |
 |---|---|---|
-| A (Hetzner) | ~100 € | erreichbar ab ~0,5 % Conv × 15 € ARPPU |
-| B (Cloud) | ~360–400 $ ≈ 330–370 € | erreicht ab ~2 % Conv × 15 € ARPPU |
+| A (Hetzner) | ~100 â‚¬ | erreichbar ab ~0,5 % Conv Ã— 15 â‚¬ ARPPU |
+| B (Cloud) | ~360â€“400 $ â‰ˆ 330â€“370 â‚¬ | erreicht ab ~2 % Conv Ã— 15 â‚¬ ARPPU |
 
-⇒ Im Cloud-Setup ist 2 % Conversion *Mindest*-Anspruch, nicht Stretch-Goal.
+â‡’ Im Cloud-Setup ist 2 % Conversion *Mindest*-Anspruch, nicht Stretch-Goal.
 
 ### Funnel-Mathematik (zu schaffen)
 
 ```
-10k Reg → 70 % Onboarding-Completion → 7.000 D1
-       → 30 % D7                     → 2.100 D7
-       → 15 % D30                    → 1.050 D30
-       → 2 % Payer von D30           → 21 erste Käufer/Monat
-       → 1,5 € durchschn. Re-Buy/Monat → +50 € MRR
+10k Reg â†’ 70 % Onboarding-Completion â†’ 7.000 D1
+       â†’ 30 % D7                     â†’ 2.100 D7
+       â†’ 15 % D30                    â†’ 1.050 D30
+       â†’ 2 % Payer von D30           â†’ 21 erste KÃ¤ufer/Monat
+       â†’ 1,5 â‚¬ durchschn. Re-Buy/Monat â†’ +50 â‚¬ MRR
 ```
 
-⇒ Selbst optimistisch braucht es viele Marketing-Kohorten / Wachstum, um 1.000+ € MRR zu erreichen. **Pre-Mortem:** Monetarisierung im MVP ist Validierungs-Vehikel, nicht Cashflow-Quelle.
+â‡’ Selbst optimistisch braucht es viele Marketing-Kohorten / Wachstum, um 1.000+ â‚¬ MRR zu erreichen. **Pre-Mortem:** Monetarisierung im MVP ist Validierungs-Vehikel, nicht Cashflow-Quelle.
 
 ---
 
-## SLO-Vorschläge
+## SLO-VorschlÃ¤ge
 
 | Indikator | Ziel |
 |---|---|
-| Payment-Success-Rate | ≥ 98 % |
+| Payment-Success-Rate | â‰¥ 98 % |
 | Receipt-to-Entitlement-Latency P99 | < 30 s |
 | Refund-Response-Time | < 48 h |
-| DSGVO-DSAR-Export | ≤ 30 Tage |
+| DSGVO-DSAR-Export | â‰¤ 30 Tage |
 | Cloud-Budget-Burn-Alert | bei 50 / 80 / 100 % Monatslimit |
-| D7-Retention | ≥ 18 % |
-| D30-Retention | ≥ 8 % |
+| D7-Retention | â‰¥ 18 % |
+| D30-Retention | â‰¥ 8 % |
 
 ---
 
@@ -443,8 +453,8 @@ updated: 2026-05-20
 
 - **Pflicht-Events:** siehe F-02 Liste.
 - **A/B-Frame:** GrowthBook live, mindestens 1 Pricing-A/B-Test im Soft-Launch.
-- **Compliance-Checklist:** Impressum, AGB, Widerruf, Datenschutz, Cookie-Banner (ggf. nicht nötig — siehe `privacy-and-consent`), Altersprüfung 16+.
-- **Pricing-A/B-Design:** mindestens 2 Varianten pro Bündel; Sample-Size-Tabelle (~500 Conv. pro Arm für signifikante Aussage).
+- **Compliance-Checklist:** Impressum, AGB, Widerruf, Datenschutz, Cookie-Banner (ggf. nicht nÃ¶tig â€” siehe `privacy-and-consent`), AltersprÃ¼fung 16+.
+- **Pricing-A/B-Design:** mindestens 2 Varianten pro BÃ¼ndel; Sample-Size-Tabelle (~500 Conv. pro Arm fÃ¼r signifikante Aussage).
 
 ---
 
@@ -452,40 +462,40 @@ updated: 2026-05-20
 
 ### RB-M1: Stripe sperrt Konto
 1. Backup-Provider (Paddle) aktivieren via Adapter-Switch.
-2. Kommunikation: Status-Page + E-Mail an Käufer.
+2. Kommunikation: Status-Page + E-Mail an KÃ¤ufer.
 3. Stripe-Eskalation parallel.
 
 ### RB-M2: Chargeback-Welle
 1. Detection-Schwelle: > 0,5 % oder 5 Chargebacks/Tag.
 2. Receipt-Audit, betroffene Accounts identifizieren.
-3. Stripe-Radar / Paddle-Fraud-Tools verschärfen.
+3. Stripe-Radar / Paddle-Fraud-Tools verschÃ¤rfen.
 
 ### RB-M3: EU-VAT-Audit
 1. Aus Paddle / Stripe-Tax die VAT-Berichte ziehen.
 2. Buchhalter-Workflow folgen.
 3. Datenherausgabe innerhalb 7 Tagen.
 
-### RB-M4: Cloud-Budget über 80 %
-1. Alert prüft, ob viraler Traffic (gut) oder Bug (schlecht).
+### RB-M4: Cloud-Budget Ã¼ber 80 %
+1. Alert prÃ¼ft, ob viraler Traffic (gut) oder Bug (schlecht).
 2. Wenn Bug: Feature-Flag dis-armen, Rollback.
-3. Wenn echte Last: Autoscale-Cap erhöhen, ggf. Wartelisten-Screen.
+3. Wenn echte Last: Autoscale-Cap erhÃ¶hen, ggf. Wartelisten-Screen.
 
 ---
 
-## Offene Fragen / Decisions Needed
+## Future-scope decisions (classified future-scope)
 
 1. **Monetarisierungs-Modell:** F2P-Cosmetic? Premium-OneTime? Saison-Pass? Hybrid?
 2. **Payment-Provider:** Stripe direkt oder Paddle (MoR)?
 3. **Analytics-Stack:** PostHog self-hosted vs SaaS?
 4. **Soft-Launch-Land:** DE, CH, AT? Auswahl der Reichweite.
-5. **Beta-Programm-Tool:** TestFlight (iOS) entfällt für PWA — Invite-only via E-Mail + URL?
+5. **Beta-Programm-Tool:** TestFlight (iOS) entfÃ¤llt fÃ¼r PWA â€” Invite-only via E-Mail + URL?
 
 ---
 
-## „Wenn-wir-nur-3-Dinge-tun"-Liste
+## â€žWenn-wir-nur-3-Dinge-tun"-Liste
 
 1. **Monetarisierungs-Hypothese committen** (GDDR + Pricing-ADR) vor Soft-Launch-Beta.
-2. **PostHog (oder ähnlich) + Funnel-Events von Tag 1.**
+2. **PostHog (oder Ã¤hnlich) + Funnel-Events von Tag 1.**
 3. **Retention-Loop bauen** (E-Mail-Welcome-Series + Match-Push + Digest).
 
 ---
@@ -494,24 +504,24 @@ updated: 2026-05-20
 
 IDs `PM-2026-05-20-04-F-NN`. Aggregat: [[findings-registry]].
 
-## Iteration 2 Addendum (2026-05-20) — Security & Single-Player-Foundation
+## Iteration 2 Addendum (2026-05-20) â€” Security & Single-Player-Foundation
 
-> Ergänzt diesen Monetarisierungs-Report. Cross-Refs: [[threat-model]], [[PM-2026-05-20-05-security-and-integrity]].
+> ErgÃ¤nzt diesen Monetarisierungs-Report. Cross-Refs: [[threat-model]], [[PM-2026-05-20-05-security-and-integrity]].
 
 ### Security & Tamper-Resistance (Monetization)
 
-- **Receipt-Replay.** Derselbe Stripe-Receipt mehrfach eingereicht → Server-Side-Idempotenz via `eventId` aus Webhook-Payload (30-Tage-Replay-Window). Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-07|05-F-07]].
-- **Refund-Abuse.** Kauf → Entitlement-Grant → Refund → Entitlement bleibt. **Mitigation:** Webhook `charge.refunded` → automatischer Entitlement-Revoke mit Karenz für Disputes.
-- **Webhook-Forgery.** Stripe-Webhook-Endpoint signiert prüfen (`stripe-signature` Header + Webhook-Secret); IP-Allow-List wo möglich.
-- **Currency-Manipulation.** Client schlägt Preis vor → Server akzeptiert. **Mitigation:** Preise serverseitig autoritativ; Client zeigt nur an.
-- **GDPR-Conflict.** Account-Löschung vs steuerliche Aufbewahrung (10 Jahre). **Mitigation:** Pseudonymisierung + Aufbewahrung der Steuer-Records; Account-Daten gelöscht. Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-09|05-F-09]] und Runbook RB-S3.
-- **Chargeback-Fraud-Detection-Signale.** Rapider Kauf+Refund+Re-Kauf, mehrere Accounts ein Gerät, VPN/Geo-Mismatch → Manual-Review-Queue.
-- **Hijacked-Entitlements.** Account-Übernahme transferiert Käufe. Verweis auf Auth-Hardening in [[PM-2026-05-20-02-tech-and-ops]] und [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-10|05-F-10]].
+- **Receipt-Replay.** Derselbe Stripe-Receipt mehrfach eingereicht â†’ Server-Side-Idempotenz via `eventId` aus Webhook-Payload (30-Tage-Replay-Window). Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-07|05-F-07]].
+- **Refund-Abuse.** Kauf â†’ Entitlement-Grant â†’ Refund â†’ Entitlement bleibt. **Mitigation:** Webhook `charge.refunded` â†’ automatischer Entitlement-Revoke mit Karenz fÃ¼r Disputes.
+- **Webhook-Forgery.** Stripe-Webhook-Endpoint signiert prÃ¼fen (`stripe-signature` Header + Webhook-Secret); IP-Allow-List wo mÃ¶glich.
+- **Currency-Manipulation.** Client schlÃ¤gt Preis vor â†’ Server akzeptiert. **Mitigation:** Preise serverseitig autoritativ; Client zeigt nur an.
+- **GDPR-Conflict.** Account-LÃ¶schung vs steuerliche Aufbewahrung (10 Jahre). **Mitigation:** Pseudonymisierung + Aufbewahrung der Steuer-Records; Account-Daten gelÃ¶scht. Cross-Ref: [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-09|05-F-09]] und Runbook RB-S3.
+- **Chargeback-Fraud-Detection-Signale.** Rapider Kauf+Refund+Re-Kauf, mehrere Accounts ein GerÃ¤t, VPN/Geo-Mismatch â†’ Manual-Review-Queue.
+- **Hijacked-Entitlements.** Account-Ãœbernahme transferiert KÃ¤ufe. Verweis auf Auth-Hardening in [[PM-2026-05-20-02-tech-and-ops]] und [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-10|05-F-10]].
 
 ### Single-Player-Foundation-Check (Monetization)
 
-- **Monetarisierungs-Layer ist trust-aware.** Premium-Features (z. B. Carry-Slots) sind in `cloud-verified`-Saves explizit verfügbar; in `unverified`-Saves grayed-out oder mit Hinweis „Premium aktiv, Save nicht synchronisiert". Verhindert Refund-Argument „meine Premium-Features waren weg" und schützt vor Cheat-Argument „ich habe Premium von einem geforgten Save geerbt".
-- **SP-Käufer ist MP-fähig.** Premium-Käufe an Account, nicht an Save. SP-Spieler, der später in MP wechselt, behält Entitlements ohne Sync-Problem.
+- **Monetarisierungs-Layer ist trust-aware.** Premium-Features (z. B. Carry-Slots) sind in `cloud-verified`-Saves explizit verfÃ¼gbar; in `unverified`-Saves grayed-out oder mit Hinweis â€žPremium aktiv, Save nicht synchronisiert". Verhindert Refund-Argument â€žmeine Premium-Features waren weg" und schÃ¼tzt vor Cheat-Argument â€žich habe Premium von einem geforgten Save geerbt".
+- **SP-KÃ¤ufer ist MP-fÃ¤hig.** Premium-KÃ¤ufe an Account, nicht an Save. SP-Spieler, der spÃ¤ter in MP wechselt, behÃ¤lt Entitlements ohne Sync-Problem.
 
 ---
 

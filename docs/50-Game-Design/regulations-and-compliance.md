@@ -1,4 +1,4 @@
----
+﻿---
 title: Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
 status: draft
 tags: [game-design, regulations, compliance, leagues, promotion]
@@ -37,11 +37,11 @@ Implemented as: `LeagueRegulationService` returns merged rule set for
 
 | Country | Coverage | Source |
 |---|---|---|
-| Germany | Bundesliga → Verbandsliga | [[../60-Research/regulations-and-pyramids-research]] §3 |
-| England | Premier League → Step 7 | [[../60-Research/regulations-and-pyramids-research]] §4 |
-| France | Ligue 1 + 2 | [[../60-Research/regulations-and-pyramids-research]] §5 |
-| Italy | Serie A + B | [[../60-Research/regulations-and-pyramids-research]] §6 |
-| Spain | LaLiga 1 + 2 | [[../60-Research/regulations-and-pyramids-research]] §7 |
+| Germany | Bundesliga â†’ Verbandsliga | [[../60-Research/regulations-and-pyramids-research]] Â§3 |
+| England | Premier League â†’ Step 7 | [[../60-Research/regulations-and-pyramids-research]] Â§4 |
+| France | Ligue 1 + 2 | [[../60-Research/regulations-and-pyramids-research]] Â§5 |
+| Italy | Serie A + B | [[../60-Research/regulations-and-pyramids-research]] Â§6 |
+| Spain | LaLiga 1 + 2 | [[../60-Research/regulations-and-pyramids-research]] Â§7 |
 | Other | Abstract licence profile | League + licence profile only |
 
 Community packs ([[community-editor-and-datasets]]) can extend.
@@ -82,7 +82,7 @@ flowchart TD
 
 ### 6.1 Crash-build
 
-- Cost: 1.5-2.5× normal build cost.
+- Cost: 1.5-2.5Ã— normal build cost.
 - Time: half the normal time.
 - Risk: temporary capacity drop (existing stand torn down).
 - Side effect: Fan zone disrupted for the season.
@@ -102,7 +102,7 @@ flowchart TD
 ### 6.4 Refuse promotion (Create-a-Club Roguelite mode only)
 
 - Run gets a "compliance failure" badge.
-- May trigger DNA `tradition ↓` (refusing is unusual).
+- May trigger DNA `tradition â†“` (refusing is unusual).
 - League stays at current tier.
 
 ## 7. Squad registration rules
@@ -153,7 +153,7 @@ Community packs ([[community-editor-and-datasets]]) can override:
 
 Manifest must declare which countries it modifies, to allow safe layering.
 
-## 12. Open questions
+## 12. Future-scope notes (classified future-scope)
 
 - "Special permit" odds: should the board decide or is it always
   available? Always available but with cost - the league regulator is the

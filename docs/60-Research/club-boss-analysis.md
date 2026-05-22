@@ -1,4 +1,4 @@
----
+﻿---
 title: Club Boss Analysis
 status: draft
 tags: [research, competitor, ux, gameplay]
@@ -302,13 +302,13 @@ content. All takeaways must be implemented with our own naming/IP per
   rating ranges, persistent club records, dynamic world rating drift, single
   cheap IAP - these are common-genre mechanics, not protected.
 - **Trademarks**: "Club Boss", "Football Chairman", "Football Manager",
-  "Anstoß" are trademarks of their respective owners; never reference inside
+  "AnstoÃŸ" are trademarks of their respective owners; never reference inside
   product UI or marketing.
 - **Direct lift to avoid**: do not name our product anything containing
   "Boss", "Chairman", or "Manager" as the dominant noun. Pick a distinct
   family that aligns with our own brand (TBD in Phase 2 ADRs).
 
-## Open questions for follow-up research
+## Future-scope notes (classified future-scope)
 
 - Confirmed monetisation depth: are there tiers above the 3 EUR unlock, or is
   it truly one-shot? (Listing says "in-app purchases" plural.) Verify in
@@ -319,7 +319,7 @@ content. All takeaways must be implemented with our own naming/IP per
   in [[pwa-offline-patterns]].
 - Cross-check IP boundaries with [[ip-and-licensing]] before any visual
   prototype borrows hub-tile layout.
-- Compare match-narration depth against the Anstoß text-feed style in
+- Compare match-narration depth against the AnstoÃŸ text-feed style in
   [[anstoss-series-deep-dive]] to decide our own match-engine MVP scope.
 
 ## Sources
@@ -340,6 +340,6 @@ paraphrased from public listings and reviews.
 
 ## Related
 
-- [[00-summary]] — research MOC (hub)
-- [[anstoss-series-deep-dive]] · [[competitor-matrix]] · [[ip-and-licensing]] — research siblings
-- [[pwa-offline-patterns]] — mobile loop tech · [[feature-gap-analysis]] — feeds scope
+- [[00-summary]] â€” research MOC (hub)
+- [[anstoss-series-deep-dive]] Â· [[competitor-matrix]] Â· [[ip-and-licensing]] â€” research siblings
+- [[pwa-offline-patterns]] â€” mobile loop tech Â· [[feature-gap-analysis]] â€” feeds scope

@@ -1,4 +1,4 @@
----
+﻿---
 title: Set Pieces - Corners, Free Kicks, Penalties, Throw-ins
 status: draft
 tags: [game-design, tactics, set-pieces]
@@ -54,7 +54,7 @@ attributes in isolation from open-play attribute math.
 
 ## 4. Coaching
 
-A **Set-Piece Coach** (see [[squad-and-club-structure]] §1) multiplies the
+A **Set-Piece Coach** (see [[squad-and-club-structure]] Â§1) multiplies the
 training block effectiveness. Without one, set-piece variants take more
 weeks to learn.
 
@@ -65,7 +65,7 @@ Penalties have a small psychological layer:
 - Composure attribute (shooter).
 - Big-match temperament (hidden attribute).
 - Crowd context (home / away / neutral).
-- Atmosphere ([[fan-ecology]] §3).
+- Atmosphere ([[fan-ecology]] Â§3).
 - Recent miss memory (per-player).
 
 These combine into a small probability shift. Not a slot-machine - the
@@ -93,7 +93,7 @@ on set_piece_event(type):
 Set-piece outcomes are tracked separately in match statistics so the
 player can analyse efficiency.
 
-## 8. Open questions
+## 8. Future-scope notes (classified future-scope)
 
 - Throw-in routines for non-long-throw clubs - light template; depth Phase 2.
 - Substitutes only for set pieces (specialist taker shifts) - in scope

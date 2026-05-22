@@ -1,4 +1,4 @@
----
+﻿---
 title: Squad and Club Structure - Sporting Organisation and Squad Design
 status: approved
 tags: [game-design, squad, staff, organisation]
@@ -39,10 +39,10 @@ staff outperforms one who hoards transfers.
 
 Each role is part of a pipeline. Isolated buffs underdeliver:
 
-- Strong chief scout without analyst → many names, poor comparability.
-- Strong medical without fitness coach → shorter rehab, no peak-load
+- Strong chief scout without analyst â†’ many names, poor comparability.
+- Strong medical without fitness coach â†’ shorter rehab, no peak-load
   prevention.
-- Strong head of youth without U-team coaches → great intake, poor
+- Strong head of youth without U-team coaches â†’ great intake, poor
   progression.
 
 The game shows pipeline coverage explicitly so the player can see *where*
@@ -98,7 +98,7 @@ Each player carries:
   homesick, etc.) derived from the hidden meta attributes, squad context
   and event history. They are not a second hidden-attribute schema.
 - **Tendencies** (5-10 traits: drifts to centre, shoots from distance,
-  tries first-time passes, …).
+  tries first-time passes, â€¦).
 - **Contract**: length, wage, bonuses, clauses, agent.
 - **Fitness / form / morale** state.
 - **Injury profile and history** owned by Squad & Player; load and match
@@ -151,7 +151,7 @@ Player strength presentation follows
 - Unscouted external players show ranges, labels and trust levels rather than
   false precision.
 
-## 10. Open questions
+## 10. Future-scope notes (classified future-scope)
 
 - How many position slots per player? Recommendation: 1 primary + up to 2
   secondaries; a "natural" badge for the primary.

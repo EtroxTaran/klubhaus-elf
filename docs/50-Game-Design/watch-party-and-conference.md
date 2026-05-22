@@ -1,4 +1,4 @@
----
+﻿---
 title: Watch Party and Conference Mode
 status: draft
 tags: [game-design, mode, multiplayer, watch-party, conference]
@@ -38,7 +38,7 @@ Group or admin confirms or rejects.
 ## 3. Scheduling
 
 Polls with the standard pattern from
-[[../60-Research/async-multiplayer-research]] §5:
+[[../60-Research/async-multiplayer-research]] Â§5:
 
 - System proposes 2-4 slot suggestions in next 7 days.
 - Members vote within a clear deadline.
@@ -132,7 +132,7 @@ others. Conference is *additive* viewing, not replacement.
 | Standard | Pitch view + chat + key event list |
 | Expert | Multi-feed conference, heat-maps, predictive overlays, manager intervention timeline |
 
-## 10. Open questions
+## 10. Future-scope notes (classified future-scope)
 
 - Max watch-parties per week - tentative 1 to avoid scheduling fatigue.
 - Spectator can rejoin mid-match? Yes, with delay applied from the joining
@@ -140,5 +140,5 @@ others. Conference is *additive* viewing, not replacement.
 - Recording / replay availability post-match - yes, replay always
   available to group members.
 - Auto-proposal trigger: which fixture properties qualify as
-  "highlightable"? Documented in [[../50-Game-Design/rivalry-system]] §5
+  "highlightable"? Documented in [[../50-Game-Design/rivalry-system]] Â§5
   and per match-day in [[../50-Game-Design/matchday-event-engine]].
