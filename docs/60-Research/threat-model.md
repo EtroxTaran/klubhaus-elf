@@ -7,7 +7,7 @@ updated: 2026-05-18
 type: research
 binding: true
 related:
-  - "[[wave-3-gap-analysis]]"
+  - "[[../95-Archive/gap-reports/wave-3-gap-analysis]]"
   - "[[../10-Architecture/09-Decisions/ADR-0002-offline-first]]"
   - "[[../10-Architecture/09-Decisions/ADR-0005-save-format]]"
   - "[[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]"

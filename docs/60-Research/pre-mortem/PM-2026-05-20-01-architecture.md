@@ -14,7 +14,7 @@ scenarios: [single-node-hetzner, cloud-autoscaling]
 related:
   - [[00-index]]
   - [[findings-registry]]
-  - [[../wave-3-gap-analysis]]
+  - [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
   - [[../match-engine-runtime-strategy]]
   - [[../surrealdb-schema-patterns]]
   - [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]
@@ -81,7 +81,7 @@ linked_code:
   - "apps/web/src/"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: architecture
 effort: M
@@ -128,7 +128,7 @@ linked_code:
   - "db/schema.surql"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: L
@@ -136,7 +136,7 @@ created: 2026-05-20
 updated: 2026-05-22
 ```
 
-**Hypothese.** SurrealDB ist bei 10k Spielern noch nicht erprobt; RocksDB single-node hat keinen Failover, keine eingebaute Read-Replica, und Schema-Migrationen ohne Downtime sind nicht dokumentiert. Ein Disk-Voll-Event, Kernel-Update, oder Lock-Storm bringt das gesamte Spiel offline. Die `db:migrate`-Pipeline ist heute ein Placeholder (siehe `[[../wave-3-gap-analysis]]` Gap H4).
+**Hypothese.** SurrealDB ist bei 10k Spielern noch nicht erprobt; RocksDB single-node hat keinen Failover, keine eingebaute Read-Replica, und Schema-Migrationen ohne Downtime sind nicht dokumentiert. Ein Disk-Voll-Event, Kernel-Update, oder Lock-Storm bringt das gesamte Spiel offline. Die `db:migrate`-Pipeline ist heute ein Placeholder (siehe `[[../../95-Archive/gap-reports/wave-3-gap-analysis]]` Gap H4).
 
 **FrÃ¼hwarnindikatoren.** Query-P99 > 500 ms, Disk-IO-Wait > 30 %, Lock-Wait-Time wachsend Woche Ã¼ber Woche.
 
@@ -175,7 +175,7 @@ linked_code:
   - "packages/match-engine/src/"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -222,7 +222,7 @@ linked_code:
   - "packages/match-engine/src/"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend+backend
 effort: M
@@ -266,7 +266,7 @@ linked_specs:
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -310,7 +310,7 @@ linked_code:
   - "scripts/db-migrate-placeholder.mjs"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -353,7 +353,7 @@ linked_specs:
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -389,7 +389,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: S
@@ -426,7 +426,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -461,7 +461,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -626,7 +626,7 @@ Jedes Finding in diesem Report hat eine immutable ID (`PM-2026-05-20-01-F-NN`).
 - [[PM-2026-05-20-04-monetization]] â€” Kosten-Implikationen pro Szenario
 - [[PM-2026-05-20-05-security-and-integrity]] â€” Security-Querschnitt
 - [[PM-2026-05-20-06-distributed-match-compute]] â€” BYOC-Future-Scope
-- [[../wave-3-gap-analysis]] â€” Quelle der P0/P1-Coverage
+- [[../../95-Archive/gap-reports/wave-3-gap-analysis]] â€” Quelle der P0/P1-Coverage
 - [[../match-engine-runtime-strategy]] â€” Polyglot-Gate-Kontext
 - [[../surrealdb-schema-patterns]]
 - [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]

@@ -120,7 +120,7 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 ## After slice 6
 
 Deeper systems (transfers, training depth, async MP) follow
-[[../60-Research/feature-gap-analysis]] Phase 2+ — not this roadmap.
+[[../95-Archive/gap-reports/feature-gap-analysis]] Phase 2+ — not this roadmap.
 
 ## Phase 2 — Presentation polish (post-MVP)
 

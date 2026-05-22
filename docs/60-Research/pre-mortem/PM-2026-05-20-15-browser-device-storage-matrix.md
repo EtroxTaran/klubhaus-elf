@@ -71,7 +71,7 @@ sources:
     confidence: high
 verification_notes: "Safari lÃ¶scht IndexedDB/Cache/OPFS nach 7 Tagen ohne User-Interaction (ITP-2.3, iOS 17/18 fortgefÃ¼hrt). Home-Screen-installierte PWAs haben eigenen 7-Tage-Counter und sind exempt â€” solange via Home-Icon gestartet. persist() unter Safari ist Heuristik, kein User-Prompt."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend+ux
 effort: M
@@ -125,7 +125,7 @@ sources:
     confidence: high
 verification_notes: "Chromium 'up to 60 % disk' Soft-Cap, aber estimate() padded (MDN). Floor-Tier (3 GB RAM, < 2 GB frei): gemeldete Quota 9 GB, Write-Erfolg aber bei 80 MB scheitert wegen 80 % Gesamt-Disk-Pressure â†’ LRU-Eviction."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend+platform
 effort: M
@@ -179,7 +179,7 @@ sources:
     confidence: medium
 verification_notes: "Safari 18.4 (April 2025) shipped Brotli in CompressionStream; Firefox 147 release notes (late 2025) hat Brotli. Chromium hat Brotli-Content-Encoding seit Jahren, CompressionStream-API mit Brotli erst in jÃ¼ngsten Versionen. WASM-Brotli ~681 KB Bundle-Cost."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend
 effort: S
@@ -229,7 +229,7 @@ sources:
     confidence: medium
 verification_notes: "Android System WebView ist single-process; OOM-Kill auf OS-Level bei free RAM Drop. Workers laufen im Renderer-Prozess â†’ mit-killed."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: match-engine+platform
 effort: M
@@ -272,7 +272,7 @@ sources:
     confidence: high
 verification_notes: "MDN: 'Firefox and Safari don't implement [deviceMemory] â€” calling returns undefined.' Chromium rundet auf Power-of-2 fÃ¼r Fingerprint-Resistance."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend
 effort: S
@@ -316,7 +316,7 @@ sources:
     confidence: high
 verification_notes: "Aktuelle SW: skipWaiting:true. Neuer SW Ã¼bernimmt sofort, gecachte HTMLs ersetzen live laufenden â€” Update mitten im Spiel reiÃŸt unsaved State ab."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend
 effort: S
@@ -358,7 +358,7 @@ sources:
     confidence: high
 verification_notes: "navigator.onLine notoriously unreliable (true bei Captive-Portals). effectiveType in NetInfo gibt ECT Signal aber Safari/Firefox shippen es nicht."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend
 effort: S
@@ -405,7 +405,7 @@ sources:
     confidence: high
 verification_notes: "iOS 16 erste Version mit Passkeys; iOS 18+/Android 14+ third-party passkey-providers + conditional create. Conditional-UI Chrome/Edge/Safari/Firefox 122+."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: auth+frontend
 effort: M
@@ -441,7 +441,7 @@ sources:
     confidence: high
 verification_notes: "Cross-Ref Report 05 05-F-02: AES-256-GCM-Envelope authentisiert 'Kenntnis des Keys' (im Bundle), nicht 'Herkunft'. DevTools â†’ Application â†’ IndexedDB editiert Save trivial."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform+security
 effort: M

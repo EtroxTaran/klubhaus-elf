@@ -31,14 +31,14 @@ related:
   - [[PM-2026-05-20-18-responsible-gaming-and-open-source]]
   - [[threat-model]]
   - [[findings-registry]]
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
   - [[prioritization-matrix]]
   - [[execution-index]]
-  - [[../wave-3-gap-analysis]]
+  - [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
   - [[../../00-Index/Current-State]]
   - [[../../00-Index/Research-Map]]
   - [[../../00-Index/Home]]
-  - [[../../00-Index/Documentation-Baseline-2026-05-22]]
+  - [[../../00-Index/Documentation-V1]]
 ---
 
 # Pre-Mortem 2026-05-20 Â· Cluster Index
@@ -51,7 +51,7 @@ Diese Pre-Mortem ist ein **Intent-Layer**-Dokument (`binding: false`). Empfehlun
 > - **[[execution-index]]** â€” 15 Expertise-Kategorien mit Briefings, Findings-Listen und erwarteten Output-Artefakten (ADRs / GDDRs / Implementation-Specs / Runbooks). Jede Kategorie ist self-contained genug fÃ¼r einen einzelnen Agent.
 > - **[[prioritization-matrix]]** â€” Risiko-Heatmap (PÃ—I), ScoreÃ—Effort-Hebel, Cross-Cutting-Cluster Aâ€“G, regulatorische Deadlines, Sprint-Belegung T-90â†’T-0.
 > - **[[findings-registry]]** — Status aller ~191 Findings, sortiert nach P0–P4.
-> - **[[gap-closure-concept-2026-05-22]]** — Konzept-Closure für alle ehemals offenen Findings: 15 Solution Tracks, externe Best-Practice-Quellen, Differenzierung gegen den Markt, `mitigated` vs `verified` Semantik.
+> - **[[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]** — Konzept-Closure für alle ehemals offenen Findings: 15 Solution Tracks, externe Best-Practice-Quellen, Differenzierung gegen den Markt, `mitigated` vs `verified` Semantik.
 
 ## Cluster (3 Iterationen, 14 Reports + Threat-Model + Registry)
 
@@ -227,7 +227,8 @@ Iter-2-Findings (Security/Report 05 + BYOC/Report 06) sind **fett markiert**. BY
 ## Decision Register (classified 2026-05-22)
 
 This table is historical pre-mortem planning context. The active closure state is
-[[gap-closure-concept-2026-05-22]] plus [[../../00-Index/Documentation-Baseline-2026-05-22]].
+[[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]] plus
+[[../../00-Index/Documentation-V1]].
 No row below is an unclassified documentation gap.
 
 | Entscheidung | Owner | Temporal class | 2026-05-22 Status |
@@ -272,7 +273,7 @@ No row below is an unclassified documentation gap.
 ## Verifikation der Pre-Mortem selbst
 
 - **Cross-Reference-Check:** alle Wikilinks und Code-Pfade mÃ¼ssen auflÃ¶sbar sein (`grep`-Skript).
-- **Wave-3-Coverage:** alle P0/P1-Gaps aus [[../wave-3-gap-analysis]] sind mindestens einmal abgedeckt (siehe Abdeckungs-Notiz unten).
+- **Wave-3-Coverage:** alle P0/P1-Gaps aus [[../../95-Archive/gap-reports/wave-3-gap-analysis]] sind mindestens einmal abgedeckt (siehe Abdeckungs-Notiz unten).
 - **Peer-Review:** Index + 2 zufÃ¤llig gewÃ¤hlte Reports von externer Person signiert.
 - **Tabletop:** mindestens ein Runbook pro Report mÃ¼ndlich simuliert vor Launch.
 
@@ -316,8 +317,8 @@ No row below is an unclassified documentation gap.
 - [[threat-model]]
 - [[findings-registry]]
 - [[../00-summary]]
-- [[../wave-3-gap-analysis]]
-- [[../feature-gap-analysis]]
+- [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
+- [[../../95-Archive/gap-reports/feature-gap-analysis]]
 - [[../../00-Index/Current-State]]
 - [[../../00-Index/Research-Map]]
 - [[../../00-Index/Home]]

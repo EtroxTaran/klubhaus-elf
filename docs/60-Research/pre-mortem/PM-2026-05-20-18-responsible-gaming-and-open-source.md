@@ -67,7 +67,7 @@ sources:
     confidence: medium
 verification_notes: "Dark-Patterns-Forschung trennt deceptive design (intent to manipulate against player interest) von difficulty/loss-aversion (player-known, opt-in, no hidden monetization). Roguelites Hades/Slay-the-Spire/Dead Cells nutzen identische loss-of-progress als Kern-Loop ohne als dark-pattern klassifiziert â€” weil (1) transparent, (2) keine Monetization-Kopplung, (3) meta-Progression sichtbar."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: game-design
 effort: M
@@ -112,7 +112,7 @@ sources:
     confidence: high
 verification_notes: "Aktuell `EtroxTaran/football-manager-x` ohne LICENSE = default 'All Rights Reserved' (Berner Konvention). Public lesbar, rechtlich nicht nutzbar. Worst of both worlds: discoverable but not contributable, untrusted."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: M
@@ -164,7 +164,7 @@ sources:
     confidence: medium
 verification_notes: "AT-OGH 18.12.2025: FIFA-Lootboxes NOT gambling, 'kann nicht isoliert betrachtet werden vom Spiel-Kontext'. Aligned mit NL Raad van State 2022. BE Gaming Commission 12/2024: 'generalized ban proved difficult to enforce'; 82 % der Top-100-iPhone-Games BE verkaufen Lootboxen. UK: government NICHT Gambling Act extended; Reform-Evaluation 2026. DE: GlÃ¼StV 2021 unverÃ¤ndert."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal+product
 effort: M
@@ -212,7 +212,7 @@ sources:
     confidence: high
 verification_notes: "DSA Art. 25 (in force 2024-02-17): 'providers shall not design interfaces that deceive or manipulate'. EuComm 2025-12-05 fine on X â‚¬120M. DSA Schwellen (>= 50 employees OR > â‚¬10M turnover fÃ¼r Art. 25) â€” solo unter Schwelle, aber DFA 2026 senkt Bar."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: design+founder
 effort: M
@@ -252,7 +252,7 @@ sources:
     confidence: high
 verification_notes: "ICD-11 6C51: 'impaired control' + 'priority over other activities' + 12+ months trotz harm. Apple Screen Time API: keine direkte Game-Integration, system-wide. PWA: navigator.userActivation + Visibility API + own session-timer reicht. Prevalenz 1â€“10 % gamers; vulnerable: Adoleszente, ADHD-comorbid."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: product
 effort: S
@@ -299,7 +299,7 @@ sources:
     confidence: high
 verification_notes: "GDPR Art. 8(1): Member States may lower to 13; DE BDSG Â§8(1): 16. EuComm Q&A 2024: 'reasonable verification methods proportionate to risk'. Apple 2025-02 age-check + EU Digital Identity Wallet 2026 = Landschaft shifting. USK 0/6/12 likely fÃ¼r text-only Manager mit Insolvency-Drama; USK 12 conservative. IARC questionnaire frei; USK paid â‚¬1.200 nur fÃ¼r Retail/Console. JMStV/BzKJ: Jugendschutzbeauftragten ab > 50k MAU."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder+legal
 effort: M
@@ -341,7 +341,7 @@ sources:
     confidence: high
 verification_notes: "Mastodon: client+server beide AGPL-3.0, aber Mastodon gGmbH Trademark restricts brand-fork. Mindustry/Endless-Sky (GPLv3): forks existieren aber nie displaced original â€” community + maintainer-velocity + Steam-presence won. Football-Manager X server-authoritative (Determinismus + Anti-Cheat) â€” Server ist irreplaceable component."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: M
@@ -392,7 +392,7 @@ sources:
     confidence: medium
 verification_notes: "28.65M secrets leaked on GitHub in 2025 (TruffleHog State of Secrets). GitHub Push Protection (free, all repos seit 2024-04) scans pre-push fÃ¼r 200+ secret-types. gitleaks <1s execution, 700+ regex patterns. TruffleHog verifies secrets against live APIs (FP reduction)."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -429,7 +429,7 @@ sources:
     confidence: high
 verification_notes: "OpenSSF Scorecard 18 automated checks, 0â€“10 each, weighted. Quick wins fÃ¼r Solo (~7.0 score): Branch-Protection (main), Code-Review, Pinned-Deps, Signed-Releases (sigstore cosign), CI-Tests, License-Check, SAST, Dangerous-Workflow check, Security-Policy, Token-Permissions. Nicht realistisch fÃ¼r Solo: Fuzzing (8.5+), Maintained-criteria (>= 1 commit/week 90 days)."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: S
@@ -471,7 +471,7 @@ sources:
     confidence: high
 verification_notes: "DCO Linux Foundation v1.1: sign-off-line on commit = legal certification. CLA gibt copyright-assignment (enables license-change), aber signing-barrier + distrust-signal. DCO zero-friction, retain-copyright. Strapi case-study: switched DCO â†’ CLA bei commercial pivot."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -500,7 +500,7 @@ linked_code: []
 sources: []
 verification_notes: "Discourse (radical-open): grosse Community kompensiert Roadmap-Diskussions-Overhead. Penpot: roadmap opaque, deliberate priorisation hidden = solo/small-team-pragma. GitHub-Issues + Milestones reichen fÃ¼r Solo."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -533,7 +533,7 @@ sources:
     confidence: high
 verification_notes: "Indie-Precedent: Concerned Ape (Stardew Valley) hat solchen Statement nicht; commercial AAA (Riot, Supercell) haben detaillierte Player-Wellness-Pages. Voluntary code-of-conduct = positive DSA/DFA Signal unter 'reasonable steps'."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S

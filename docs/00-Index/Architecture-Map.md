@@ -6,18 +6,17 @@ created: 2026-05-16
 updated: 2026-05-22
 type: map
 binding: false
-related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-Baseline-2026-05-22]]
+related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]]
 ---
 
 # Architecture Map
 
 Use this map before architecture or cross-cutting implementation work.
+[[Documentation-V1]] is the current architecture classification baseline. If a
+note is not `accepted`, `current` or explicitly promoted there, treat it as
+future-scope or historical context.
 
-[[Documentation-Baseline-2026-05-22]] classifies all historical draft/proposed
-architecture items. If a note is not `accepted`, `current` or explicitly
-promoted by the baseline, treat it as future-scope or historical context.
-
-## Arc42 Chapters
+## arc42 Chapters
 
 - [Introduction](../10-Architecture/01-Introduction.md)
 - [Constraints](../10-Architecture/02-Constraints.md)
@@ -27,65 +26,88 @@ promoted by the baseline, treat it as future-scope or historical context.
 - [Runtime](../10-Architecture/06-Runtime.md)
 - [Deployment](../10-Architecture/07-Deployment.md)
 - [Crosscutting](../10-Architecture/08-Crosscutting.md)
+- [Design System](../10-Architecture/09-Design-System.md)
 - [Quality](../10-Architecture/10-Quality.md)
 - [Risks](../10-Architecture/11-Risks.md)
 
-## DDD bounded context map (Wave 2)
+## DDD and Modules
 
-- [[../10-Architecture/bounded-context-map]] - 11 contexts.
-- [[../10-Architecture/transfer-market-architecture]] - Transfer context services, storage, RNG streams and tiered simulation.
+- [[../10-Architecture/bounded-context-map]] - 11 bounded contexts, service-ready modular monolith.
+- [[../10-Architecture/05-Building-Blocks]] - module map.
+- [[../10-Architecture/modules/web]]
+- [[../10-Architecture/modules/ui]]
+- [[../10-Architecture/modules/db]]
+- [[../10-Architecture/modules/db-schema]]
+- [[../10-Architecture/modules/game-data]]
+- [[../10-Architecture/modules/match-engine]]
+- [[../10-Architecture/transfer-market-architecture]]
 
-## State machines (Wave 2)
+## State Machines
 
-- [[../10-Architecture/state-machines/README]] - index.
+- [[../10-Architecture/state-machines/README]]
 - [[../10-Architecture/state-machines/league-week]]
 - [[../10-Architecture/state-machines/transfer]]
 - [[../10-Architecture/state-machines/watch-party]]
 - [[../10-Architecture/state-machines/match]]
 
-## Decisions
+State-machine notes are current planning references. Runtime orchestration
+changes that depend on them require ADR-0014 promotion or a superseding ADR.
 
-- [Decision Log](Decision-Log.md)
+## Current Binding ADRs
 
-### Accepted / drafted (Wave 1)
-
-- [ADR-0001 Tech Stack](../10-Architecture/09-Decisions/ADR-0001-tech-stack.md)
-- [ADR-0002 Offline-first](../10-Architecture/09-Decisions/ADR-0002-offline-first.md) — superseded by ADR-0020 for MVP scope
 - [ADR-0003 Match Engine](../10-Architecture/09-Decisions/ADR-0003-match-engine.md)
-- [ADR-0004 Data Model](../10-Architecture/09-Decisions/ADR-0004-data-model.md)
 - [ADR-0005 Save Format](../10-Architecture/09-Decisions/ADR-0005-save-format.md)
-- [ADR-0006 i18n](../10-Architecture/09-Decisions/ADR-0006-i18n.md)
 - [ADR-0007 Naming Schema](../10-Architecture/09-Decisions/ADR-0007-naming-schema.md)
-- [ADR-0008 Mobile-first UI](../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui.md)
 - [ADR-0009 Cursor Orchestration](../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration.md)
+- [ADR-0010 Design System](../10-Architecture/09-Decisions/ADR-0010-design-system.md)
+- [ADR-0011 Server-Authoritative Multiplayer](../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer.md)
+- [ADR-0017 Observability and Logging](../10-Architecture/09-Decisions/ADR-0017-observability-logging.md)
+- [ADR-0018 Systemic Events and Player Lifecycle Architecture](../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle.md)
+- [ADR-0019 Service-ready Modular Monolith + DDD](../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd.md)
 - [ADR-0020 Hybrid-online MVP, Offline-ready Architecture](../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready.md)
+- [ADR-0021 Revised Tech Stack](../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack.md)
+- [ADR-0022 Animation and Game Feel](../10-Architecture/09-Decisions/ADR-0022-animation-game-feel.md)
+- [ADR-0023 Realtime Transport](../10-Architecture/09-Decisions/ADR-0023-realtime-transport.md)
+- [ADR-0024 Match Renderer Abstraction](../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction.md)
+- [ADR-0025 Mobile Delivery](../10-Architecture/09-Decisions/ADR-0025-mobile-delivery.md)
+- [ADR-0026 Match Frame Contract](../10-Architecture/09-Decisions/ADR-0026-match-frame-contract.md)
+- [ADR-0027 Postgres Data Model](../10-Architecture/09-Decisions/ADR-0027-postgres-data-model.md)
+- [ADR-0028 Postgres Transactional Outbox](../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox.md)
+- [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
+- [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 
-### Accepted (Wave 2 → Wave 3 promotion track)
+## Current Binding Research and Specs
 
-- [ADR-0004 Data Model](../10-Architecture/09-Decisions/ADR-0004-data-model.md) — **accepted 2026-05-16** (hybrid per-save isolation + hybrid schema + TS-first generator + per-relationship modelling + integer numeric model + save quotas + encrypted saves + Phase-2 hybrid cloud-sync + gender-eligibility additivity)
-- [ADR-0005 Save Format](../10-Architecture/09-Decisions/ADR-0005-save-format.md) — **accepted 2026-05-16** (two export modes + AES-GCM 256 + PBKDF2-SHA256 @ 600k + gzip + three independent version fields + AAD-bound header + RNG snapshot)
-- [ADR-0020 Hybrid-online MVP, Offline-ready Architecture](../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready.md) — **accepted 2026-05-18** (supersedes ADR-0002 for MVP scope; server-confirmed MVP progression; Dexie cache/drafts/staging; full selective offline and export/import post-MVP but reserved by contracts)
-- [ADR-0002 Offline-first](../10-Architecture/09-Decisions/ADR-0002-offline-first.md) — **superseded 2026-05-18** by ADR-0020 (historical full offline-first MVP capability matrix)
-- [ADR-0003 Match Engine](../10-Architecture/09-Decisions/ADR-0003-match-engine.md) — **accepted 2026-05-16** (framework-agnostic packages/match-engine; hybrid Markov + attribute rolls; per-event tick; TS-literal formation zone weights + JSON community overrides; set-piece routine library + Phase-2 per-club editor; namespaced-slug IDs; Worker bridge; ≤ 50 ms perf gate; engine version pinning)
-- [Match Engine Runtime Strategy](../60-Research/match-engine-runtime-strategy.md) — **current 2026-05-17** (TypeScript MVP engine remains binding; post-MVP Rust/polyglot extraction requires measured need, stable contract, golden/statistical/determinism parity and operational readiness; defines `competitive-full` / `interactive-standard` / `background-detailed` / `background-fast` profiles)
-- [Performance Budgets](../60-Research/performance-budgets.md) — **locked 2026-05-17, refined 2026-05-22** (D9; four-tier device matrix, CWV product targets, JS / DOM / heap / storage / SW budgets, world-size presets, no interactive/authoritative browser 3D match policy, phased CI test-rig strategy; carried into [arc42 §Crosscutting](../10-Architecture/08-Crosscutting.md))
-- [ADR-0007 IP-clean Naming Schema + Data Generators](../10-Architecture/09-Decisions/ADR-0007-naming-schema.md) — **accepted 2026-05-17** (D2; fully procedural worldgen from single seed; hybrid wordlist + phonotactic names across 7 Tier-1 locale buckets; Wikidata CC0 + national open-data + GeoNames CC-BY 4.0 corpora; living-person filter; real-region + fictional-city policy; grammar-based crest generation with lazy SVG render + IndexedDB cache; 5-tier × 10-country club finance matrix; 16+4+8 player attribute schema; hybrid archetype + CA-budget + lazy-expansion player gen; adds GeneratorRng as RNG stream #9)
-- [Data Generators - Names, Crests, Cities, Clubs, Players](../60-Research/data-generators.md) — **locked 2026-05-17** (D2 binding research note; full implementation reference for ADR-0007)
-- [AI Manager Behaviour](../60-Research/ai-manager-behaviour.md) — **locked 2026-05-17** (D4 binding research note; utility-AI + FSM + heuristics architecture; 8 personality traits + 10 archetypes; 4 difficulty modes; in-match trigger-based decisions; out-of-match weekly tick with ~7 ms/club budget; world drift mechanics; AI career arcs; phased late-game content)
-- [Narrative Content Pipeline](../60-Research/narrative-content-pipeline.md) — **locked 2026-05-17** (D15 binding research note; Markdown + frontmatter authoring → compiled locale-split JSON + typed TS message IDs; FormatJS / intl-messageformat ICU; 106 event families across 10 groups; 6 story arc state machines; 5-tone press conferences; auto-generated newspaper; multi-layer voice consistency with CI lint rules; personal life events toggleable; build-time-only LLM assistance; Git + Markdown + custom preview workflow; deterministic seeded variant selection)
-- [Late-Game Systems](../60-Research/late-game-systems.md) — **locked 2026-05-17** (D6 binding research note; 3-tier continental cup stack per continent + IFC Club World Masters with IP-safe naming; dual-role Bundestrainer with 3 engagement levels + tournament management UX; Make Your Career manager creator + 5-branch talent tree + region-based reputation; 6-archetype ownership transitions + bankruptcy/administration; 3-layer Hall of Fame; 3-option Legacy mode with 3-tier cross-save Legacy perks; full 50-year save longevity stack including newspaper archive + records book + career phases UI + generational regens + Year-X events + continental power shifts)
-- [Onboarding Strategy](../60-Research/onboarding-strategy.md) — **locked 2026-05-17** (D5 binding research note; 60-second FTUE + 4-step flow with mode-picker upfront + Advanced-setup escape; 12-message first-season inbox tutorial arc + 10-sender cast + per-sender voice cards; configurable Assistant Manager "Alex" + per-difficulty intensity scaling + sticky "Ask Assistant" button; feed-card daily action queue as Home primary UI with Gmail-style swipe; tutorial overlay hierarchy; returning-user recap; veteran skip + safety net; WCAG 2.2 AA / BITV 2.0 accessibility; PWA install prompt timing; achievement celebrations; onboarding-state IndexedDB schema)
-- [Tactics & Formations](../60-Research/tactics-and-formations.md) — **locked 2026-05-17** (D3 binding research note; 20 formations + 50 roles + per-tier exposure 0/6/18 player instructions + 1/5/8 team instructions; FM-style tactical familiarity with squad-continuity factor + new-manager Similarity; 3-layer opposition template system with manager-signature templates + emergent club character; 3 universal touchline shouts; URL-encoded tactic share codes; touch-first UI patterns)
-- [Player Strength Presentation](../60-Research/player-strength-presentation.md) — **locked 2026-05-17** (Impact Lens; no global OVR / universal stars; Role Impact + category scores + status signals + scouting confidence; Squad-owned `ImpactLensProjection` via `queryGateway`, cacheable in Dexie, no cross-context JOINs)
-- [ADR-0041 Two-Renderer Presentation Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md) — **accepted 2026-05-22** (MVP remains Text & Stats + Canvas 2D; optional post-MVP 2.5D/3D presentation scenes are non-authoritative, lazy-loaded and fallback-safe; Three.js/R3F is the only planned optional 3D stack; PixiJS/Babylon.js/PlayCanvas require a superseding ADR)
-- [ADR-0019 Service-ready Modular Monolith + DDD](../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd.md) — **accepted 2026-05-16**
-- [ADR-0011 Server-Authoritative Multiplayer](../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer.md) — **accepted 2026-05-16** (with hotseat handoff + hybrid AI-match policy including quality-profile persistence + encrypted saves)
-- [ADR-0013 Transactional Outbox](../10-Architecture/09-Decisions/ADR-0013-transactional-outbox.md) — **accepted 2026-05-16** (SurrealDB outbox + Redis Streams + UUIDv7 + tiered retention + Zod forward-compat)
-- [ADR-0017 Observability and Logging](../10-Architecture/09-Decisions/ADR-0017-observability-logging.md) — **accepted 2026-05-17** (OpenTelemetry + Grafana Loki/Prometheus/Tempo/Alloy + GlitchTip, privacy-aware client diagnostics, capped offline crash queues)
-- [ADR-0018 Systemic Events and Player Lifecycle Architecture](../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle.md) — **accepted 2026-05-17** (domain-owned policies for player development, mentoring, injuries, match-day events and venue operations; `WorldEventDirector` as orchestration over existing contexts, not a new bounded context; narrative remains deterministic projection over structured facts)
+- [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md)
+- [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md)
+- [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
+- [Match Engine Runtime Strategy](../60-Research/match-engine-runtime-strategy.md)
+- [Match Engine Simulation Model](../60-Research/match-engine-simulation-model.md)
+- [Presentation Renderer Strategy](../60-Research/presentation-renderer-strategy.md)
+- [Performance Budgets](../60-Research/performance-budgets.md)
+- [Determinism and Replay](../60-Research/determinism-and-replay.md)
+- [Data Generators](../60-Research/data-generators.md)
+- [AI Manager Behaviour](../60-Research/ai-manager-behaviour.md)
+- [Narrative Content Pipeline](../60-Research/narrative-content-pipeline.md)
+- [Late-Game Systems](../60-Research/late-game-systems.md)
+- [Onboarding Strategy](../60-Research/onboarding-strategy.md)
+- [Tactics and Formations](../60-Research/tactics-and-formations.md)
+- [Player Strength Presentation](../60-Research/player-strength-presentation.md)
+- [Threat Model](../60-Research/threat-model.md)
 
-### Classified future-scope / optional promotion
+## Superseded Historical Decisions
 
+- [ADR-0001 Tech Stack](../10-Architecture/09-Decisions/ADR-0001-tech-stack.md) - superseded by ADR-0021.
+- [ADR-0002 Offline-first](../10-Architecture/09-Decisions/ADR-0002-offline-first.md) - superseded by ADR-0020 for MVP scope.
+- [ADR-0004 Data Model](../10-Architecture/09-Decisions/ADR-0004-data-model.md) - superseded by ADR-0027.
+- [ADR-0013 Transactional Outbox](../10-Architecture/09-Decisions/ADR-0013-transactional-outbox.md) - superseded by ADR-0028.
+- [SurrealDB Integration](../30-Implementation/surrealdb-integration.md) - superseded by Postgres + Drizzle implementation.
+- [SurrealDB Schema Patterns](../60-Research/surrealdb-schema-patterns.md) - historical substrate research carried forward into ADR-0027.
+
+## Classified Future-Scope / Optional Promotion
+
+- [ADR-0006 i18n](../10-Architecture/09-Decisions/ADR-0006-i18n.md) - future-scope depth pass; promote when implementation starts.
+- [ADR-0008 Mobile-first UI](../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui.md) - covered by current design-system/a11y baseline; promote only for cleanup or new mobile UI decisions.
 - [ADR-0012 Async Cadence Models](../10-Architecture/09-Decisions/ADR-0012-async-cadence-models.md) - product rules already approved in game design; ADR promotion is optional cleanup.
 - [ADR-0014 State Machines](../10-Architecture/09-Decisions/ADR-0014-state-machines.md) - promote before changing runtime orchestration.
 - [ADR-0015 Spectator Snapshot Streaming](../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming.md) - post-MVP watch-party layer.
@@ -94,5 +116,5 @@ promoted by the baseline, treat it as future-scope or historical context.
 ## Rule
 
 Implement from accepted ADRs and current implementation specs. Draft/proposed
-ADRs are planning context classified by [[Documentation-Baseline-2026-05-22]],
-not open gaps. Superseded ADRs are historical only.
+ADRs are planning context classified by [[Documentation-V1]], not open gaps.
+Superseded ADRs are historical only.

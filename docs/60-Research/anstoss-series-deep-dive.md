@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-05-17
 type: research
 linear: AKOM-113
-related: [[00-summary]], [[club-boss-analysis]], [[competitor-matrix]], [[ip-and-licensing]], [[feature-gap-analysis]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+related: [[00-summary]], [[club-boss-analysis]], [[competitor-matrix]], [[ip-and-licensing]], [[../95-Archive/gap-reports/feature-gap-analysis]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
 ---
 
 # Anstoss Series Deep Dive
@@ -66,7 +66,7 @@ Across retrospectives and reviews five qualities recur:
 
 The table groups the canonical Anstoss subsystems and the mechanics that, per
 sources, define them. We use this as a checklist for our own MoSCoW scope work
-in [[feature-gap-analysis]].
+in [[../95-Archive/gap-reports/feature-gap-analysis]].
 
 | Subsystem | Core mechanics | Sources |
 |---|---|---|
@@ -311,4 +311,4 @@ text.
 
 - [[00-summary]] â€” research MOC (hub)
 - [[club-boss-analysis]] Â· [[competitor-matrix]] Â· [[ip-and-licensing]] â€” research siblings
-- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] â€” IP rules this fed Â· [[feature-gap-analysis]] â€” feeds scope
+- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] â€” IP rules this fed Â· [[../95-Archive/gap-reports/feature-gap-analysis]] â€” feeds scope

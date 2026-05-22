@@ -6,7 +6,7 @@ tags: [research, match-engine, runtime, typescript, rust, wasm, web-worker, offl
 created: 2026-05-17
 updated: 2026-05-17
 type: research
-related: [[raw-perplexity/raw-match-engine-runtime-technology]], [[match-engine-simulation-model]], [[determinism-and-replay]], [[performance-budgets]], [[ai-manager-behaviour]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0010-modular-monolith-ddd]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../50-Game-Design/match-engine]]
+related: [[raw-perplexity/raw-match-engine-runtime-technology]], [[match-engine-simulation-model]], [[determinism-and-replay]], [[performance-budgets]], [[ai-manager-behaviour]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../50-Game-Design/match-engine]]
 ---
 
 # Match Engine Runtime Strategy - TypeScript MVP with Polyglot Extraction Gate
@@ -173,7 +173,7 @@ Not allowed:
   research input, 2026-05-17.
 - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] - accepted MVP
   match-engine architecture.
-- [[../10-Architecture/09-Decisions/ADR-0010-modular-monolith-ddd]] - service
+- [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]] - service
   readiness and Match worker extraction order.
 - [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
   - server authority and AI-vs-AI replay policy.

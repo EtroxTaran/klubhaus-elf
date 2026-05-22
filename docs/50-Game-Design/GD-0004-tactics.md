@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-05-17
 type: game-design
 binding: true
-related: [[README]], [[GD-0002-match-engine]], [[GD-0016-mobile-ux-loop]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+related: [[README]], [[GD-0002-match-engine]], [[GD-0016-mobile-ux-loop]], [[../60-Research/anstoss-series-deep-dive]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
 ---
 
 # GD-0004: Tactics & Formations
@@ -77,5 +77,5 @@ None
 
 ## Related
 
-- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/research-wave-2-gaps]] · [[../60-Research/ip-and-licensing]]
+- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../95-Archive/gap-reports/research-wave-2-gaps]] · [[../60-Research/ip-and-licensing]]
 - [[README]] — hub · siblings: [[GD-0002-match-engine]] · [[GD-0005-training]] · [[GD-0016-mobile-ux-loop]]

@@ -13,7 +13,7 @@ adr:
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
 related:
   - "[[../60-Research/threat-model]]"
-  - "[[../60-Research/wave-3-gap-analysis]]"
+  - "[[../95-Archive/gap-reports/wave-3-gap-analysis]]"
   - "[[../10-Architecture/bounded-context-map]]"
   - "[[audit-trail]]"
   - "[[observability-runbook]]"

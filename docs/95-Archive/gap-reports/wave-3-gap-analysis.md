@@ -7,14 +7,14 @@ updated: 2026-05-22
 type: research-backlog
 binding: false
 supersedes: [[research-wave-2-gaps]]
-superseded_by: [[../00-Index/Documentation-Baseline-2026-05-22]]
-related: [[00-summary]], [[../00-Index/Current-State]], [[../00-Index/Research-Map]], [[../00-Index/Decision-Log]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/Documentation-Baseline-2026-05-22]]
+superseded_by: [[../00-Index/Documentation-V1]]
+related: [[00-summary]], [[../00-Index/Current-State]], [[../00-Index/Research-Map]], [[../00-Index/Decision-Log]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/Documentation-V1]]
 ---
 
 # Wave 3 Gap Analysis and Execution Backlog
 
 > **Superseded 2026-05-22.** This document is no longer the active backlog of
-> record. [[../00-Index/Documentation-Baseline-2026-05-22]] classifies and closes
+> record. [[../00-Index/Documentation-V1]] classifies and closes
 > the documentation-level gap state. Keep the W3 IDs here for traceability only.
 > Do not open implementation work from this document unless a current issue,
 > accepted ADR, approved GDDR or current implementation spec re-promotes it.

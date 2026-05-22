@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-05-22
 type: protocol
 binding: true
-related: [[agent-memory-protocol]], [[../00-Index/Documentation-Baseline-2026-05-22]]
+related: [[agent-memory-protocol]], [[../00-Index/Documentation-V1]]
 ---
 
 # Vault Governance
@@ -79,7 +79,7 @@ collection**, not noise to skip. Agents:
   content as settled.
 - Treat a draft as "the current best thinking, not yet ratified". Moving a
   draft to `accepted`/`approved` is a deliberate decision (often gated, e.g. on
-  research) - see [[../00-Index/Documentation-Baseline-2026-05-22]] and [[../00-Index/Current-State]] for the current temporal classification.
+  research) - see [[../00-Index/Documentation-V1]] and [[../00-Index/Current-State]] for the current temporal classification.
 
 `superseded` / `archived` are different: not the idea layer â€” replaced or
 retired. Read only to understand history, never for direction.
@@ -87,7 +87,7 @@ retired. Read only to understand history, never for direction.
 Discoverability: draft ADRs are listed with status in
 [[../00-Index/Decision-Log]]; current intent and gap classifications are
 summarized in [[../00-Index/Current-State]] and
-[[../00-Index/Documentation-Baseline-2026-05-22]].
+[[../00-Index/Documentation-V1]].
 
 ## Same-PR rule
 

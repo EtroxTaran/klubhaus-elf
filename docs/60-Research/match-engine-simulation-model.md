@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-17
 type: research
 binding: true
-related: [[research-wave-2-gaps]], [[wave-3-gap-analysis]], [[determinism-and-replay]], [[match-engine-runtime-strategy]], [[performance-budgets]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/state-machines/match]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/tactics-system]], [[../50-Game-Design/progressive-disclosure-ui]]
+related: [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[determinism-and-replay]], [[match-engine-runtime-strategy]], [[performance-budgets]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/state-machines/match]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/tactics-system]], [[../50-Game-Design/progressive-disclosure-ui]]
 ---
 
 # Match Engine Simulation Model - Locked Decisions
@@ -528,7 +528,7 @@ values are baked into the match's pre-match-setup snapshot per
 
 - Target: **≤ 50 ms** for a full match on a 2022 mid-range Android
   in a Web Worker (locked from
-  [[research-wave-2-gaps]] R2-09 tentative).
+  [[../95-Archive/gap-reports/research-wave-2-gaps]] R2-09 tentative).
 - Soft alert: 30-40 ms (CI alerts before we hit the hard cap).
 - AI vs AI batch simulation (no narrative output): **≤ 30 ms** per
   match (less event narrative work).

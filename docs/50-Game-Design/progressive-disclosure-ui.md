@@ -113,7 +113,7 @@ The user can change tier at any time in user settings:
 
 ## 8. Onboarding
 
-The first-run onboarding (per [[../60-Research/research-wave-2-gaps]]
+The first-run onboarding (per [[../95-Archive/gap-reports/research-wave-2-gaps]]
 R2-05) asks one question: "How deep do you want to manage?" with three
 illustrated options. The user can change it later.
 
@@ -134,4 +134,4 @@ illustrated options. The user can change it later.
   acceptable.
 - Tutorial copy per tier - yes; three tone variants per topic.
 - A11y tier alignment - all tiers must meet WCAG 2.2 AA;
-  see [[../60-Research/research-wave-2-gaps]] R2-07.
+  see [[../95-Archive/gap-reports/research-wave-2-gaps]] R2-07.

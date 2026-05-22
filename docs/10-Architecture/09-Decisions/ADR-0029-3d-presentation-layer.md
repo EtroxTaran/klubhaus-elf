@@ -318,7 +318,7 @@ None. This ADR precises the locked 2026-05-17 "no 3D" decision; it does
 not replace any ADR. The original wording is amended in
 [[../../60-Research/performance-budgets]] §6, [[../08-Crosscutting]]
 §Match render policy, [[../../00-Index/Current-State]] §Performance
-Budgets, and [[../../60-Research/wave-3-gap-analysis]] §gap D9 in the
+Budgets, and [[../../95-Archive/gap-reports/wave-3-gap-analysis]] §gap D9 in the
 same PR as this ADR.
 
 ## Design source
@@ -349,4 +349,4 @@ beats in [[../../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]].
 - [[../bounded-context-map]]
 - [[../08-Crosscutting]]
 - [[../../00-Index/Current-State]]
-- [[../../60-Research/wave-3-gap-analysis]]
+- [[../../95-Archive/gap-reports/wave-3-gap-analysis]]

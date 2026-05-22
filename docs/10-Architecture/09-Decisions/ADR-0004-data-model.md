@@ -33,7 +33,7 @@ related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-mult
 
 Superseded (2026-05-19 by [[ADR-0027-postgres-data-model]]).
 Accepted historically on 2026-05-16, gap A4 of
-[[../../60-Research/wave-3-gap-analysis]].
+[[../../95-Archive/gap-reports/wave-3-gap-analysis]].
 MVP timing amended historically by
 [[ADR-0020-hybrid-online-mvp-offline-ready]] (server-confirmed state is
 authoritative in MVP; Dexie stores cache/drafts/staging).
@@ -67,7 +67,7 @@ Gap A4 Q&A (2026-05-16) settled all four after Perplexity research.
 
 The Data Model has six top-level rules. Detail goes into
 [[../../60-Research/surrealdb-schema-patterns]] (schema sketches per
-context) and [[../30-Implementation/surrealdb-integration]]
+context) and [[../../30-Implementation/surrealdb-integration]]
 (implementation guide, gap E1).
 
 ### 1. Storage topology — hybrid per-save isolation

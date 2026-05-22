@@ -72,7 +72,7 @@ sources:
     confidence: high
 verification_notes: "Â§ 327f Satz 2 BGB: 'Zeitraum, den der Verbraucher erwarten kann' â€” Auslegungsfrage. Kostenloses MVP = kÃ¼rzere Erwartung, Premium = lÃ¤ngere."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal+product
 effort: M
@@ -118,7 +118,7 @@ sources:
     confidence: high
 verification_notes: "F2P-MVP nicht akut; kritisch ab erstem Verkauf. Â§ 356 Abs. 5 BGB fÃ¼r digitale Inhalte erfordert exakte Verzichts-Sequenz."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: product+legal
 effort: S
@@ -159,7 +159,7 @@ sources:
     confidence: high
 verification_notes: "Â§ 309 Nr. 7 BGB: pauschaler Haftungsausschluss fÃ¼r Leben/KÃ¶rper/Gesundheit nichtig. US-EULAs ('AS IS, no warranties') in DE-B2C reihenweise unwirksam."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal
 effort: M
@@ -205,7 +205,7 @@ sources:
     confidence: high
 verification_notes: "Â§ 33 DDG BuÃŸgeld bis 50 k â‚¬. In Praxis Wettbewerbs-Abmahnungen, Streitwerte 5â€“15 k â‚¬, Anwaltskosten 800â€“1.500 â‚¬."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal
 effort: S
@@ -256,7 +256,7 @@ sources:
     confidence: high
 verification_notes: "TMview-Suche 'Football Manager' Nice 9/41 EU: >40 aktive Marken Sports Interactive. '-x'-Suffix beseitigt Verwechslungsgefahr NICHT (BGH-Linie)."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder+legal
 effort: M
@@ -307,7 +307,7 @@ sources:
     confidence: high
 verification_notes: "Host-Privileg Art. 6 DSA / Â§ 10 DDG: nur ohne Kenntnis. Ohne Notice-and-Action-Mechanismus geht Privileg verloren. Streitwert 50â€“100 k â‚¬ pro Logo."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal+product+engineering
 effort: L
@@ -348,7 +348,7 @@ sources:
     confidence: high
 verification_notes: "DE: Â§ 12 BGB PersÃ¶nlichkeitsrecht + Â§ 22 KUG. Reine Namen ohne Bild nicht per se geschÃ¼tzt, aber Prominente + kommerziell + Verwechslung â†’ Â§ 12 BGB greift."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal+engineering
 effort: M
@@ -399,7 +399,7 @@ sources:
     confidence: medium
 verification_notes: "10 k â‚¬/Jahr EU-Schwelle seit 01.07.2021 fÃ¼r elektronische B2C-Dienstleistungen. OSS via BZSt-BOP = quartÃ¤rlicher Single-Filing."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: finance+legal
 effort: M
@@ -445,7 +445,7 @@ sources:
     confidence: high
 verification_notes: "DAC7 erfasst Plattform-Betreiber, die VerkÃ¤ufer mit KÃ¤ufern verbinden. B2C-SaaS direkt an Endkunden nicht erfasst. PStTG-Umsetzung: BuÃŸgeld bis 50 k â‚¬."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal+finance
 effort: S
@@ -492,7 +492,7 @@ sources:
     confidence: high
 verification_notes: "GlÃ¼StV 2021 Â§ 3 Abs. 1: 'entgeltliche Gewinnchance + Zufall Ã¼berwiegend' = GlÃ¼cksspiel. h.M.: Lootboxen ohne Cash-Out kein VermÃ¶gensvorteil iSd Â§ 3. NL-Berufungsgericht 2022 + AT-OGH 18.12.2025 entwarnten FIFA-FUT-Packs. Reform-Druck in DE besteht."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal+product
 effort: M
@@ -543,7 +543,7 @@ sources:
     confidence: high
 verification_notes: "DSA voll anwendbar seit 17.02.2024. Wir = Hosting-Service (User-Saves, UGC-Clubs); wahrscheinlich auch Online-Platform (Multiplayer). Art. 16 fÃ¼r alle; Art. 20/22/24 entfallen bei < 50 employees + < â‚¬ 10 M Umsatz (Art. 19)."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal+engineering
 effort: M
@@ -589,7 +589,7 @@ sources:
     confidence: high
 verification_notes: "Art. 50 gilt ab 02.08.2026 (Bestand bis 02.12.2026). Penalty bis â‚¬ 7,5 M / 1,5 % global turnover. MVP deterministisch â†’ Art. 50 nicht anwendbar."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal+product
 effort: S
@@ -633,7 +633,7 @@ sources:
     confidence: high
 verification_notes: "DBA D-US Art. 7 GeschÃ¤ftsgewinne ohne US-BetriebsstÃ¤tte â†’ 0 % Withholding. W-8BEN-E 3 Jahre gÃ¼ltig."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: finance
 effort: S

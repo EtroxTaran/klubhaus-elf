@@ -22,7 +22,7 @@ related: [[ADR-0004-data-model]], [[ADR-0011-server-authoritative-multiplayer]],
 
 ## Status
 
-Accepted (2026-05-16, gap A5 of [[../../60-Research/wave-3-gap-analysis]]).
+Accepted (2026-05-16, gap A5 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]).
 MVP timing amended by [[ADR-0020-hybrid-online-mvp-offline-ready]].
 
 ## Context

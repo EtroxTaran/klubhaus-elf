@@ -31,7 +31,7 @@ related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-mult
 
 Superseded (2026-05-19 by [[ADR-0028-postgres-transactional-outbox]]).
 Accepted historically on 2026-05-16, gap B4 of
-[[../../60-Research/wave-3-gap-analysis]].
+[[../../95-Archive/gap-reports/wave-3-gap-analysis]].
 
 ## Context
 

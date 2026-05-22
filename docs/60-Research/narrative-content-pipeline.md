@@ -11,7 +11,7 @@ related: [[onboarding-strategy]], [[late-game-systems]], [[ai-manager-behaviour]
 
 # Narrative Content & Authoring Pipeline — Events, Story Arcs, Voice, Press, Newspaper
 
-> Gap D15 of [[wave-3-gap-analysis]]. Locks the narrative authoring
+> Gap D15 of [[../95-Archive/gap-reports/wave-3-gap-analysis]]. Locks the narrative authoring
 > pipeline for an offline-first PWA football manager: Markdown +
 > frontmatter source → compiled locale-split JSON catalogues + typed
 > TS message IDs; FormatJS / `intl-messageformat` for ICU; 106

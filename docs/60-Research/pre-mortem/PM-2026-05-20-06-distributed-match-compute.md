@@ -91,7 +91,7 @@ linked_specs: [[[threat-model]]]
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: accepted-risk
 owner_suggested: backend
 effort: L
@@ -128,7 +128,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: accepted-risk
 owner_suggested: backend
 effort: M
@@ -165,7 +165,7 @@ linked_specs: [[[PM-2026-05-20-05-security-and-integrity]]]
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: accepted-risk
 owner_suggested: backend
 effort: M
@@ -201,7 +201,7 @@ linked_specs: [[[PM-2026-05-20-05-security-and-integrity]]]
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: accepted-risk
 owner_suggested: backend
 effort: M
@@ -241,7 +241,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: accepted-risk
 owner_suggested: backend
 effort: M
@@ -279,7 +279,7 @@ linked_specs: [[[../../30-Implementation/privacy-and-consent]]]
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: accepted-risk
 owner_suggested: product
 effort: S
@@ -317,7 +317,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: accepted-risk
 owner_suggested: backend
 effort: M
@@ -356,7 +356,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: accepted-risk
 owner_suggested: product
 effort: S
@@ -394,7 +394,7 @@ linked_specs: [[[../gdpr-compliance]], [[../../30-Implementation/privacy-and-con
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: accepted-risk
 owner_suggested: product
 effort: M
@@ -431,7 +431,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: accepted-risk
 owner_suggested: product
 effort: â€”
@@ -577,7 +577,7 @@ Diese Foundation kostet nichts extra (sie ist sowieso Security/Anti-Cheat-Founda
 
 ## Verfolgung & Verkettung (Finding â†’ Fix)
 
-Jedes Finding hat eine immutable ID (`PM-2026-05-20-06-F-NN`). Da BYOC Future-Scope ist, sind Findings hier **vorerst `accepted-risk` und durch [[gap-closure-concept-2026-05-22]] konzeptionell geschlossen** â€” sie werden aktiviert, sobald Decision-Gate erfÃ¼llt ist und Implementierung beginnt.
+Jedes Finding hat eine immutable ID (`PM-2026-05-20-06-F-NN`). Da BYOC Future-Scope ist, sind Findings hier **vorerst `accepted-risk` und durch [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]] konzeptionell geschlossen** â€” sie werden aktiviert, sobald Decision-Gate erfÃ¼llt ist und Implementierung beginnt.
 
 ## Related
 

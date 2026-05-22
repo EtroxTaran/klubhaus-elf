@@ -18,7 +18,7 @@ related:
   - "[[audit-trail]]"
   - "[[observability-runbook]]"
   - "[[../60-Research/threat-model]]"
-  - "[[../60-Research/wave-3-gap-analysis]]"
+  - "[[../95-Archive/gap-reports/wave-3-gap-analysis]]"
 ---
 
 # Session Management

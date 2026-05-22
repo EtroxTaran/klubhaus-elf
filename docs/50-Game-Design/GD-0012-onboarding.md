@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-05-18
 type: game-design
 binding: true
-related: [[README]], [[GD-0008-finance-economy]], [[GD-0016-mobile-ux-loop]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]]
+related: [[README]], [[GD-0008-finance-economy]], [[GD-0016-mobile-ux-loop]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]]
 ---
 
 # GD-0012: Onboarding & New Game
@@ -79,5 +79,5 @@ None
 
 ## Related
 
-- Research: [[../60-Research/club-boss-analysis]] · [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/research-wave-2-gaps]]
+- Research: [[../60-Research/club-boss-analysis]] · [[../60-Research/anstoss-series-deep-dive]] · [[../95-Archive/gap-reports/research-wave-2-gaps]]
 - [[README]] — hub · siblings: [[GD-0008-finance-economy]] · [[GD-0016-mobile-ux-loop]] · [[GD-0013-narrative-inbox]]

@@ -15,7 +15,7 @@ related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0016-community
 ## Status
 
 Accepted (2026-05-17, gap D2 of
-[[../../60-Research/wave-3-gap-analysis]]).
+[[../../95-Archive/gap-reports/wave-3-gap-analysis]]).
 
 ## Context
 

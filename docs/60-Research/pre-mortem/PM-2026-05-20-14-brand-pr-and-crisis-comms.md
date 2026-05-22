@@ -73,7 +73,7 @@ sources:
     confidence: high
 verification_notes: "TMview > 40 aktive Marken Sports Interactive in Nice 9/41 EU. '-x'-Suffix beseitigt Verwechslungsgefahr NICHT (BGH-Linie). Streitwert 50â€“100 k â‚¬."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: M
@@ -122,7 +122,7 @@ sources:
     confidence: medium
 verification_notes: "Starbreeze 2018, Sony PSN/Helldivers-2 2024: defensive Reaktion ist der Schaden, nicht das Event."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -163,7 +163,7 @@ sources:
     confidence: high
 verification_notes: "Indie-Football-Games werden von Football-Bloggern (FM Blog, FMHub), YouTubern (LOLLUJO, ZEALAND, FM Stag), Reddit-Mods aktiv gesucht â€” gerade weil FM26 Backlash hat."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -198,7 +198,7 @@ sources:
     confidence: medium
 verification_notes: "r/footballmanagergames + r/gamedev wittern Astroturfing in Millisekunden. Sock-Puppet = Permaban der Brand."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: XS
@@ -238,7 +238,7 @@ sources:
     confidence: high
 verification_notes: "presskit() seit ~2017 nicht gewartet (PHP 5/FTP). Alternativen: presskit.gg, eigenes statisches Pressekit via Astro/Next.js."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -276,7 +276,7 @@ sources:
     confidence: medium
 verification_notes: "Brand24 Preisanstieg Q4-2025: 79$ â†’ 199â€“249$ Einstieg. Mentionlytics 69$. Talkwalker Enterprise 12k$/Jahr. Free-Stack ist machbar."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: XS
@@ -317,7 +317,7 @@ sources:
     confidence: high
 verification_notes: "Atlassian-Vorlagen battle-tested, aber B2B-flavored. FÃ¼r Indie-Game-Audience emotionaler/persÃ¶nlicher umformulieren."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -346,7 +346,7 @@ linked_code: []
 sources: []
 verification_notes: "Testimonials = Marketing-Asset-Goldstandard fÃ¼r Soft-Launch-to-Launch-Ãœbergang."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: XS
@@ -386,7 +386,7 @@ sources:
     confidence: high
 verification_notes: "GitLab-DB-Loss-Postmortem 2017: brutale Ehrlichkeit + Failure-Modes + Fix-Plan = Reputation-Gewinn."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: XS

@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-05-17
 type: game-design
 binding: true
-related: [[README]], [[GD-0006-transfers]], [[GD-0015-ip-clean-data]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+related: [[README]], [[GD-0006-transfers]], [[GD-0015-ip-clean-data]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
 ---
 
 # GD-0013: Narrative, Inbox & Events
@@ -80,5 +80,5 @@ None
 
 ## Related
 
-- Research: [[../60-Research/club-boss-analysis]] · [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/research-wave-2-gaps]]
+- Research: [[../60-Research/club-boss-analysis]] · [[../60-Research/anstoss-series-deep-dive]] · [[../95-Archive/gap-reports/research-wave-2-gaps]]
 - [[README]] — hub · siblings: [[GD-0006-transfers]] · [[GD-0015-ip-clean-data]] · [[GD-0011-career-progression]]

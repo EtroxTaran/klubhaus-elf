@@ -68,7 +68,7 @@ with our own IP-clean fictional universe.
 
 A single inventory of every concrete mechanic referenced across the
 products. Each line is a candidate for our own scope decisions (see
-[[feature-gap-analysis]]).
+[[../95-Archive/gap-reports/feature-gap-analysis]]).
 
 ### 3.1 Squad and attributes
 

@@ -1,20 +1,27 @@
 ﻿---
 title: Documentation Baseline 2026-05-22
-status: current
+status: superseded
 tags: [meta, baseline, gap-closure, architecture, research]
 created: 2026-05-22
 updated: 2026-05-22
 type: baseline
-binding: true
+binding: false
+superseded_by: [[Documentation-V1]]
 related:
   - [[Current-State]]
   - [[Decision-Log]]
   - [[Research-Map]]
-  - [[../60-Research/pre-mortem/gap-closure-concept-2026-05-22]]
+  - [[Documentation-V1]]
+  - [[../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
   - [[../60-Research/pre-mortem/findings-registry]]
 ---
 
 # Documentation Baseline 2026-05-22
+
+> **SUPERSEDED on 2026-05-22 by [[Documentation-V1]].**
+> Old way: this note was the temporal/structural closure baseline. New way:
+> [[Documentation-V1]] is the single V1 documentation baseline. Kept for history
+> - do not implement from this note.
 
 This note is the canonical temporal and structural baseline for the vault as of
 2026-05-22. It closes the documentation-level gap work that was previously

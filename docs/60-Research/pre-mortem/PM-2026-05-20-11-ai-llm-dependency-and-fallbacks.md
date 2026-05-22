@@ -76,7 +76,7 @@ sources:
     confidence: medium
 verification_notes: "Anthropic > 1.251 Incidents in 2 Jahren laut Aggregator-Daten, MTTR ~177 min. Letzter Major-Outage 2026-05-19 (Opus 4.7)."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: M
@@ -117,7 +117,7 @@ sources:
     confidence: high
 verification_notes: "Pre-Mortem Report 05 etabliert Determinismus als Anti-Cheat-Foundation; AI-Act-Art-50-Befreiung hÃ¤ngt davon ab."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: S
@@ -163,7 +163,7 @@ sources:
     confidence: high
 verification_notes: "Opus-4.7-Tokenizer kann +35 % Kosten bei gleichem Text verursachen. Mistral Small 3.1 ist ~25Ã— gÃ¼nstiger pro Output-Token als Opus 4.7."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: M
@@ -214,7 +214,7 @@ sources:
     confidence: medium
 verification_notes: "Anthropic 2026: KEIN natives EU-Residency, nur via AWS Bedrock Frankfurt oder Vertex EU; Foundry EU 'Coming 2026'. OpenAI: Per-Project EU + ZDR (Zero Data Retention). Mistral: Paris/EU nativ."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder+dpo
 effort: M
@@ -265,7 +265,7 @@ sources:
     confidence: high
 verification_notes: "Art. 50 angewendet ab 2026-08-02; Bestandssysteme bis 2026-12-02. Penalty bis â‚¬ 7,5 M / 1,5 % global turnover. MVP-Templates = nicht kennzeichnungspflichtig."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead+founder
 effort: S
@@ -309,7 +309,7 @@ sources:
     confidence: medium
 verification_notes: "Halluzinationen bei Frontier-Modellen bei kreativen Tasks signifikant; Sport-Domain (Spielergeburtstage, VereinsgrÃ¼ndungen) hÃ¤ufige Halluzinationsquelle."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: M
@@ -355,7 +355,7 @@ sources:
     confidence: medium
 verification_notes: "GEX44 â‚¬184/Mo, RTX 4000 SFF Ada 20 GB, Qwen2.5-32B @ IQ4_XS ~16,9 tok/s. Genug fÃ¼r 1â€“2 parallele User, NICHT fÃ¼r 10k DAU synchron."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: M
@@ -390,7 +390,7 @@ sources:
     confidence: high
 verification_notes: "OpenRouter erlaubt Failover-Arrays von Modell-IDs; passthrough-pricing + 5,5 % Platform-Fee."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: M
@@ -425,7 +425,7 @@ sources:
     confidence: high
 verification_notes: "Llama 3.3 Community License erlaubt commercial bis 700M MAU; Qwen 2.5 Apache 2.0; DeepSeek MIT-Style; Phi 3 MIT. Mistral via API proprietÃ¤r."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -459,7 +459,7 @@ sources:
     confidence: medium
 verification_notes: "Claude Code via Anthropic Pro $20/Mo - Max-Tier $100-125/Mo. Claude Code ~5,5Ã— token-effizienter als Cursor fÃ¼r gleiche Tasks."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -492,7 +492,7 @@ sources:
     confidence: high
 verification_notes: "Falsche AuskÃ¼nfte zu DSGVO-Rechten oder Refund-Policy = direkte Compliance- und Reputationsrisiken."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder+dpo
 effort: M
@@ -528,7 +528,7 @@ sources:
     confidence: high
 verification_notes: "OpenAI/Anthropic verbieten 'Building competing models'. Solange LLM-Outputs nur Display-Text: low risk."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S

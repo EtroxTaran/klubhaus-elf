@@ -214,7 +214,7 @@ stateDiagram-v2
 - Match-day duration in Fixed cadence - typically a full day (00:00-23:59
   local) so human-vs-human matches can be played at convenience.
 - Should the cadence picker explain the trade-offs in plain copy? Yes -
-  inline help with tone aligned to [[../60-Research/research-wave-2-gaps]] R2-10.
+  inline help with tone aligned to [[../95-Archive/gap-reports/research-wave-2-gaps]] R2-10.
 - Can a group migrate between Fixed and Dynamic mid-season as an
   emergency? No - only at season boundary. Emergency = admin force-close +
   next-season switch.

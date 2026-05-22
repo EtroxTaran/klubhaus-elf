@@ -14,7 +14,7 @@ related: [[ADR-0003-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-001
 
 ## Status
 
-Accepted (2026-05-16, gap B2 of [[../../60-Research/wave-3-gap-analysis]]).
+Accepted (2026-05-16, gap B2 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]).
 Confirmed by [[ADR-0020-hybrid-online-mvp-offline-ready]]: multiplayer is
 post-MVP and remains server-authoritative; offline multiplayer effects are never
 finalised locally.

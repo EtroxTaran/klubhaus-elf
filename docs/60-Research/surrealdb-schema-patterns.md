@@ -7,7 +7,7 @@ updated: 2026-05-19
 superseded_by: [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]
 type: research
 binding: false
-related: [[research-wave-2-gaps]], [[wave-3-gap-analysis]], [[determinism-and-replay]], [[player-strength-presentation]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]], [[../10-Architecture/bounded-context-map]]
+related: [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[determinism-and-replay]], [[player-strength-presentation]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]], [[../10-Architecture/bounded-context-map]]
 ---
 
 # SurrealDB Schema Patterns - Historical Context

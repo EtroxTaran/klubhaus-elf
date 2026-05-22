@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-22
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-Baseline-2026-05-22]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]]
 ---
 
 # Current State
@@ -20,7 +20,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 
 ## Documentation Baseline (2026-05-22)
 
-[[Documentation-Baseline-2026-05-22]] is the current vault-wide closure
+[[Documentation-V1]] is the current vault-wide closure
 baseline. As of 2026-05-22 there are no known undocumented or unclassified
 documentation/architecture gaps. Historical `open`, `draft`, `proposal` and
 `Future-scope notes` text is not implementation authority unless re-listed in this
@@ -187,7 +187,7 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
 
 The Wave 2 proposal layer is no longer an active backlog list. Items that remain
 draft/proposed are classified future-scope or optional cleanup by
-[[Documentation-Baseline-2026-05-22]]. Highlights:
+[[Documentation-V1]]. Highlights:
 
 - DDD modular monolith with 11 bounded contexts
   ([[../10-Architecture/bounded-context-map]]) is binding through ADR-0019.
@@ -233,7 +233,7 @@ heat-map, ScoreÃ—Effort levers, Cross-Cutting-Cluster Aâ€“G and Sprint a
 T-90 â†’ T-0.
 
 **Gap closure concept (2026-05-22):**
-[[../60-Research/pre-mortem/gap-closure-concept-2026-05-22]] closes the
+[[../95-Archive/gap-reports/gap-closure-concept-2026-05-22]] closes the
 research/concept gap for all formerly open Pre-Mortem findings through 15
 Solution Tracks, current external best-practice sources and explicit
 competition differentiation. Registry/source-report status is now `mitigated`
@@ -278,7 +278,7 @@ all 10 BYOC findings are `accepted-risk` until gate passes (compute > 500 â‚�
 
 Cluster entry: [[../60-Research/pre-mortem/00-index]]. Threat-model:
 [[../60-Research/pre-mortem/threat-model]]. Aggregated status mit
-P0â€“P4-Sortierung: [[../60-Research/pre-mortem/findings-registry]]. Concept closure: [[../60-Research/pre-mortem/gap-closure-concept-2026-05-22]].
+P0â€“P4-Sortierung: [[../60-Research/pre-mortem/findings-registry]]. Concept closure: [[../95-Archive/gap-reports/gap-closure-concept-2026-05-22]].
 
 ## Active Vault Rules
 
@@ -298,10 +298,10 @@ P0â€“P4-Sortierung: [[../60-Research/pre-mortem/findings-registry]]. Concep
 
 ## Documentation Gap Closure (2026-05-22)
 
-[[../60-Research/wave-3-gap-analysis]] is superseded as an active backlog by
-[[Documentation-Baseline-2026-05-22]]. Its IDs remain traceability anchors, but
+[[../95-Archive/gap-reports/wave-3-gap-analysis]] is superseded as an active backlog by
+[[Documentation-V1]]. Its IDs remain traceability anchors, but
 not open work. The pre-mortem findings registry is concept-closed through
-[[../60-Research/pre-mortem/gap-closure-concept-2026-05-22]]:
+[[../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]:
 
 - Pre-mortem findings are `mitigated` at research/concept level or
   `accepted-risk` for gated BYOC.
@@ -331,7 +331,7 @@ the project (Wave 3 gap F1). It locks:
 
 Anchors downstream F2 / F3 / F5 / F6 / F10 / F11 / F12 / F13 /
 C6 / C8 / D18. Product-owner questions in the note are historical Q&A unless
-promoted by [[Documentation-Baseline-2026-05-22]] or a current issue.
+promoted by [[Documentation-V1]] or a current issue.
 
 ## Auth flows locked (2026-05-18)
 
@@ -376,8 +376,8 @@ Surfaces 7 product-owner Q&A questions and 9 follow-up tasks
 the server-side session and refresh-token lifecycle (Wave 3 gap F3).
 It locks:
 
-- **Redis hot store + SurrealDB outbox audit mirror** as the
-  persistence model; AOF + RDB on the Hetzner box; SurrealDB never
+- **Redis hot store + PostgreSQL-backed outbox/audit events** as the
+  persistence model; AOF + RDB on the Hetzner box; PostgreSQL never
   rehydrates Redis on cold start (force re-sign-in is the simplest
   safe behaviour).
 - **Lifetimes**: 30 min idle / 12 h absolute on `session_id`;
@@ -457,7 +457,7 @@ the user-visible secret; only the small envelope is re-wrapped.
   one-shot save re-encryption inside the migration transaction
   (~1-2 s for a typical user); idempotent; offline-compatible.
 - **Atomic rotation algorithm** with Redis `rotation_lock` + 60-s
-  TTL + idempotency-key replay protection + SurrealDB transaction
+  TTL + idempotency-key replay protection + PostgreSQL transaction
   wrapping `accountSecret` update + `env_user` swap +
   `account_secret_version++` + `envelope_version` bump +
   `token_version++` + cache wipe + outbox emission.
@@ -562,7 +562,7 @@ runbook for the full secrets surface. Highlights:
   (D / G / N) with 7-30 d overlap; `accountSecret` column-
   encryption key (E) with per-row version + online migration +
   90 d old-key escrow; age key (A) via `sops updatekeys` +
-  cosign re-sign; dual-user SurrealDB (B) with 7-14 d overlap.
+  cosign re-sign; dual-user PostgreSQL (B) with 7-14 d overlap.
 - **Zero-secret CI + Dokploy local decryption + tmpfs runtime
   injection** (NIST SP 800-190 + CIS Docker Benchmark). The
   only static CI secret is the bounded-scope `DOKPLOY_WEBHOOK_SECRET`.
@@ -583,12 +583,12 @@ runbook for the full secrets surface. Highlights:
 - **SLSA Level 2 target** at MVP with cosign provenance + Syft
   SBOM.
 - **Backup + recovery drill schedule**: Redis-only restore
-  monthly (closes F3 FU-6); SurrealDB-only semi-annually;
+  monthly (closes F3 FU-6); PostgreSQL restore semi-annually;
   age-key recovery annually; full-system snapshot restore
   quarterly. RTO < 2 h, RPO â‰¤ 24 h.
 - **6 DR tabletop scenarios** annually.
 - **Audit integration**: every rotation / leak-response /
-  drill emits an outbox event per ADR-0013.
+  drill emits an outbox event per ADR-0028.
 - **`SecretsProvider` interface** in `apps/web/src/server/secrets/`
   for future-proof migration to Bitwarden SM / Infisical /
   1Password Connect when graduation triggers hit (â‰¥ 5 devs,
@@ -1707,20 +1707,18 @@ Implementation should start from
     object-identity branching, cross-browser CI gate.
   - **CI gate**: Chromium-only at MVP; WebKit + Firefox added in
     Phase-2 hardening.
-- **ADR-0013 Transactional Outbox** (accepted 2026-05-16, gap B4).
-  Five decisions locked via Perplexity research + Nico Q&A:
-  - **Storage**: SurrealDB outbox (atomic with state) + **Redis Streams**
-    for fan-out via consumer groups. Source of truth = SurrealDB;
-    Redis is a rebuildable hot buffer.
-  - **Idempotency**: UUIDv7 event IDs + per-consumer
-    `consumer_event_offset` table (60-day retention).
-  - **Retention**: tiered hot 60 days + monthly-partitioned cold
-    archive **forever**. The outbox **is** the audit trail.
-  - **Schema versioning**: JSON + Zod + forward-compat (consumers
-    ignore unknown fields). Optional `schema_version` metadata.
-  - **Backpressure**: time-based lag alerting (warning > 1 min,
-    critical > 5 min) + count fallback (> 10 k pending). MVP =
-    monitoring only.
+- **ADR-0028 Postgres Transactional Outbox** (accepted 2026-05-19,
+  supersedes ADR-0013).
+  - **Storage**: outbox rows are written in the same PostgreSQL
+    transaction as state changes.
+  - **Publisher**: hybrid polling floor + `LISTEN/NOTIFY`; polling is
+    the correctness floor, NOTIFY is a latency hint.
+  - **Retention**: native declarative range partitioning by month for
+    the cold archive.
+  - **Fan-out**: publish through ADR-0023 realtime transport (SSE now,
+    Centrifugo planned), never direct DB coupling.
+  - **Historical note**: ADR-0013's SurrealDB + Redis Streams substrate
+    is superseded; only the transactional-outbox intent carries forward.
 - **ADR-0017 Observability and Logging** (accepted 2026-05-17, gap
   D11/C6/E3). Self-hosted operational monitoring is the default:
   OpenTelemetry JS instrumentation; Grafana Loki, Prometheus, Tempo,
@@ -1744,7 +1742,7 @@ Implementation should start from
 ## Closed Documentation Gap State (2026-05-22)
 
 Former promotion items are classified by
-[[Documentation-Baseline-2026-05-22]]:
+[[Documentation-V1]]:
 
 - ADR-0012 / 0014 / 0015 / 0016 are future-scope or optional cleanup until an
   owner decision promotes them.

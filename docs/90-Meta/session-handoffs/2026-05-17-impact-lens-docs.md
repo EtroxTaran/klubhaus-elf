@@ -84,7 +84,7 @@ related:
 - [[../../00-Index/Architecture-Map]]
 - [[../../50-Game-Design/README]]
 - [[../../60-Research/progressive-disclosure-research]]
-- [[../../60-Research/feature-gap-analysis]]
+- [[../../../95-Archive/gap-reports/feature-gap-analysis]]
 - [[../../60-Research/ai-manager-behaviour]]
 
 ## Promotion Needed

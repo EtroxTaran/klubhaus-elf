@@ -22,7 +22,7 @@ related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-au
 
 ## Status
 
-Accepted (2026-05-16, gap A3 of [[../../60-Research/wave-3-gap-analysis]]).
+Accepted (2026-05-16, gap A3 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]).
 Render-seam contract added 2026-05-19 by [[ADR-0026-match-frame-contract]].
 
 ## Context

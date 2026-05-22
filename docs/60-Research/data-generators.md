@@ -11,7 +11,7 @@ related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Arch
 
 # Data Generators â€” Names, Crests, Cities, Clubs, Players
 
-> Gap D2 of [[wave-3-gap-analysis]]. Locks the procedural-generation
+> Gap D2 of [[../95-Archive/gap-reports/wave-3-gap-analysis]]. Locks the procedural-generation
 > architecture for fictional names, crests, cities, clubs (with finances
 > + stadium + prestige), and players (with attribute schema + archetype
 > + lazy expansion) for an offline-first PWA football manager. All

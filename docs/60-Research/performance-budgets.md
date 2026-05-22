@@ -11,7 +11,7 @@ related: [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Arc
 
 # Performance Budgets — Device Matrix, CWV Targets, CI Strategy
 
-> Gap D9 of [[wave-3-gap-analysis]]. Locks the device matrix, per-subsystem
+> Gap D9 of [[../95-Archive/gap-reports/wave-3-gap-analysis]]. Locks the device matrix, per-subsystem
 > performance budgets, Core Web Vitals product targets, JS bundle budgets,
 > match render-mode policy, world-size presets, and the CI perf-gating
 > strategy for a 2026 offline-first PWA football manager.

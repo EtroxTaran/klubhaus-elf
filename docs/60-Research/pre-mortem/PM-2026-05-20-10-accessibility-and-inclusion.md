@@ -67,7 +67,7 @@ sources:
     confidence: high
 verification_notes: "WCAG 2.2 verlangt seit 10/2023 Level AA, dass jede Dragging-Geste Single-Pointer-Alternative hat. 'Essential'-Ausnahme greift NICHT, weil Aufstellung trivial via Liste/MenÃ¼ umsetzbar."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: design+frontend
 effort: M
@@ -118,7 +118,7 @@ sources:
     confidence: medium
 verification_notes: "Mikrounternehmens-Ausnahme (<10 MA, <â‚¬2M) gilt nur fÃ¼r DIENSTLEISTUNGEN, nicht fÃ¼r Produkte. Sobald E-Commerce-Komponente (Subscription, Premium-Slot, Plattform-Vertragsschluss) â†’ App ist 'Dienstleistung im elektronischen GeschÃ¤ftsverkehr' iSd Â§ 1 Abs. 3 BFSG."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder+frontend
 effort: M
@@ -164,7 +164,7 @@ sources:
     confidence: medium
 verification_notes: "Naive aria-live=assertive: NVDA/JAWS halt-vorlesen jeden Pass. Dynamisch eingefÃ¼gter Knoten ohne Live-Region: gar keine Ansage."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend
 effort: S
@@ -206,7 +206,7 @@ sources:
     confidence: medium
 verification_notes: "VestibulÃ¤r empfindliche Nutzer (~35 % MigrÃ¤ne-PrÃ¤valenz EU, Meniere) reagieren mit Ãœbelkeit auf Pan-Ticker. Spec sagt 'reduce', nicht 'none'."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend
 effort: S
@@ -243,7 +243,7 @@ sources:
     confidence: high
 verification_notes: "8 % der MÃ¤nner (Zielgruppe!) haben Rot-GrÃ¼n-SchwÃ¤che. Klassische FM-Patterns (Form-Ampel, Verletzung-rot, Moral-Smileys) verlieren jede Information."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: design+frontend
 effort: S
@@ -290,7 +290,7 @@ sources:
     confidence: high
 verification_notes: "TanStack-Table mit divs ohne ARIA-Grid: Header-Zuordnung unklar, virtualisierte Zeilen fehlen im a11y-Tree. Roselli: 'wenn es echte Tabellendaten sind, native <table> immer vorziehen'."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend
 effort: M
@@ -332,7 +332,7 @@ sources:
     confidence: high
 verification_notes: "Eigenbau-Modal: Focus-Trap fragil. Halbzeit-Modal ist DER kritische Punkt â€” wenn Sub-Flow defekt, ganzes Spiel unbedienbar fÃ¼r Tastatur-User."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend
 effort: S
@@ -369,7 +369,7 @@ sources:
     confidence: high
 verification_notes: "Dichte Tabellen mit 16Ã—16 Icon-Aktionen verstoÃŸen 2.5.8. Mobile ist Hauptmarkt (PWA), Daumen-Trefferquote leidet."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: design+frontend
 effort: S
@@ -406,7 +406,7 @@ sources:
     confidence: medium
 verification_notes: "shadcn/ui-Standard (slate/zinc) bewegt sich knapp Ã¼ber 4.5:1; muted-foreground + Placeholder fallen auf Cards/Hover oft drunter."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: design
 effort: S
@@ -446,7 +446,7 @@ sources:
     confidence: medium
 verification_notes: "Klassisches reCAPTCHA v2 + Passwort verletzt 3.3.8: kognitive Funktion erforderlich, keine Alternative."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend+backend
 effort: S
@@ -490,7 +490,7 @@ sources:
     confidence: high
 verification_notes: "Aktuell lÃ¤uft Lighthouse-CI nur fÃ¼r Performance. Ohne axe-core-Coverage schleichen Regressionen ein. Deque: 57 % automatisch erkennbar."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend
 effort: M

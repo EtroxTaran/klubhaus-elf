@@ -26,7 +26,7 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
 - [[Vision]] — goals
 - [[MVP-Scope]] — canonical MVP scope
 - [[Non-Goals]] — explicit exclusions
-- [[Glossary]] · [[Decision-Log]] · [[Documentation-Baseline-2026-05-22]]
+- [[Glossary]] · [[Decision-Log]] · [[Documentation-V1]]
 - [[Repository]] — README, Contributing, Agent & Claude guides (repo-root docs)
 - [[UI-Showcase]] — the live Storybook design-system showcase
 - [[../90-Meta/conventions]] — how the vault is written and organised
@@ -63,16 +63,16 @@ ADRs are the source for technical shape.
 - [[../30-Implementation/deployment-dokploy]] ·
   [[../30-Implementation/design-sync-workflow]] ·
   [[../30-Implementation/linear-task-tracking]]
-- [[../30-Implementation/pwa-offline-strategy]] ·
-  [[../30-Implementation/secrets-rotation]] ·
-  [[../30-Implementation/surrealdb-integration]]
+- [[../30-Implementation/hybrid-online-pwa-strategy]] ?
+  [[../30-Implementation/postgres-drizzle-integration]] ?
+  [[../30-Implementation/secrets-management]]
 
 ## Research
 
 - [[../60-Research/00-summary]] — start here, then [[Research-Map]] for
   current research notes, including narrative, AI managers, match/runtime,
   performance, player strength, transfer market, systemic events and the
-  2026-05-22 documentation baseline.
+  2026-05-22 V1 baseline.
 - [[../60-Research/pre-mortem/00-index]] — Pre-Mortem 2026-05-20 (3 Iterationen,
   14 Reports + Threat-Model + Registry, ~191 Findings). **Iter 1**: 4 Original-
   Reports (Architecture, Tech-Ops, Gameplay, Monetization). **Iter 2**: Security
@@ -85,8 +85,8 @@ ADRs are the source for technical shape.
   Priorität), [[../60-Research/pre-mortem/threat-model]] für Trust-Boundaries,
   [[../60-Research/pre-mortem/prioritization-matrix]] für Hebel/Cluster und
   [[../60-Research/pre-mortem/execution-index]] für 15 Expertise-Kategorien
-  (Briefings für frische Agenten). [[../60-Research/pre-mortem/gap-closure-concept-2026-05-22]]
-  und [[Documentation-Baseline-2026-05-22]] schließen den Konzept- und
+  (Briefings für frische Agenten). [[../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
+  und [[Documentation-V1]] schließen den Konzept- und
   Dokumentations-Gap-Stand vom 2026-05-22; verbleibende Evidence-Gates laufen
   über Umsetzung, Tests, Runbooks, Legal Sign-off oder Produktionstelemetrie.
 

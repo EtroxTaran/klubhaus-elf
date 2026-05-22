@@ -160,7 +160,7 @@ Manifest must declare which countries it modifies, to allow safe layering.
   fictional decider.
 - Should women's leagues have their own rule set? Yes - additive overlay
   on top of country rules. See R2-13 in
-  [[../60-Research/research-wave-2-gaps]].
+  [[../95-Archive/gap-reports/research-wave-2-gaps]].
 - Continental cups compliance is separate per UEFA-analogue body -
   modelled as a competition-layer rule set. Full continental cup
   design locked in [[../60-Research/late-game-systems]] (gap D6,

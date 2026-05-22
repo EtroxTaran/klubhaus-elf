@@ -19,7 +19,7 @@ updated: 2026-05-22
 
 ## Phase 1 â€” Research Synthesis (Milestone M1.2)
 
-- [[feature-gap-analysis]] â€” MoSCoW scope MVP â†’ M8, **populated by Wave 2**.
+- [[../95-Archive/gap-reports/feature-gap-analysis]] â€” MoSCoW scope MVP â†’ M8, **populated by Wave 2**.
 - Phase 1 consolidation rewrite of this file - this version covers Wave 2.
 
 ## Phase 2 â€” Research Wave 2 (2026-05-16)
@@ -44,14 +44,15 @@ ADR-0010..ADR-0016 - see [[../00-Index/Decision-Log]].
 
 ## Phase 1 â€” Identified Wave 2 gaps
 
-See [[research-wave-2-gaps]] for the prioritised list of deeper research that
-Wave 1 surfaced but did not cover. Most items resolved in Wave 2; remainder
-listed there.
+See [[../95-Archive/gap-reports/research-wave-2-gaps]] for the historical
+prioritised list of deeper research that Wave 1 surfaced but did not cover.
+Most items resolved in Wave 2; the archived note is traceability only.
 
 ## Phase 3 - Documentation baseline (2026-05-22)
 
-[[../00-Index/Documentation-Baseline-2026-05-22]] supersedes
-[[wave-3-gap-analysis]] as the active documentation/architecture gap baseline.
+[[../00-Index/Documentation-V1]] supersedes
+[[../95-Archive/gap-reports/wave-3-gap-analysis]] as the active
+documentation/architecture gap baseline.
 Wave 3 remains a historical planning backlog with stable W3 IDs and is no longer active.
 
 The current state is:
@@ -120,7 +121,7 @@ covering all major domains across **3 iterations** for the
 priority tagging**. Cite via `Addresses PM-â€¦` in commits, PRs, ADR-Frontmatter.
 Aggregated status sorted by priority lives in [[pre-mortem/findings-registry]].
 
-**Gap Closure (2026-05-22).** [[pre-mortem/gap-closure-concept-2026-05-22]]
+**Gap Closure (2026-05-22).** [[../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 closes the research/concept layer for every formerly open Pre-Mortem finding
 through 15 Solution Tracks, external best-practice sources and explicit market
 differentiation. `mitigated` means concept closure; `verified` still requires

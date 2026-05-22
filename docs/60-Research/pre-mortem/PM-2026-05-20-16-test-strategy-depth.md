@@ -68,7 +68,7 @@ sources:
     confidence: medium
 verification_notes: "Vitest 3.x browser mode matured 2025â€“2026, Playwright-provider recommended. Sharding via --shard=N/M + --reporter=blob; CI wall-time -4Ã— auf 500-test suite."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: M
@@ -110,7 +110,7 @@ sources:
     confidence: high
 verification_notes: "Example-Based-Tests Ã¼bersehen Edge-Cases (Ball verschwindet bei equal-vector collisions, Score nicht monoton, Attribute-Boundary). Property-Tests finden mit > 99 % Wahrscheinlichkeit in < 100 Iterationen."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: M
@@ -157,7 +157,7 @@ sources:
     confidence: medium
 verification_notes: "Default-Konfig auf gesamtem Repo: > 45 min CI/PR + Mutation-Fatigue. Solo-Founder schaltet ab. Scope-Tier nÃ¶tig."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: M
@@ -202,7 +202,7 @@ sources:
     confidence: medium
 verification_notes: "1000 Seeds Ã— 90-Min-Match Ã— 8 RNG-Streams pro PR ~12 min CI bei optimaler Parallelisierung. Tiered N reduziert auf 2 min PR / 25 min nightly / 60 min release."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -246,7 +246,7 @@ sources:
     confidence: medium
 verification_notes: "Ohne versionierte Save-Fixtures ist 'Forward-Compat' Behauptung ohne Test. Erste Engine-MAJOR-Migration korrumpiert silent Player-Saves."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -283,7 +283,7 @@ sources:
     confidence: medium
 verification_notes: "Wenn Soak nur 'terminate without throw' prÃ¼ft, Ã¼bersieht das eigentliche Risiko: lineare Memory-Growth (10 KB/Saison Ã— 50 Jahre = 500 MB), Save-File-Bloat, Narrative-Exhaustion, AI-Entropy-Collapse."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -336,7 +336,7 @@ sources:
     confidence: medium
 verification_notes: "Jede Story 3 Locales Ã— 2 Direction Ã— 3 Viewport = 18 Snapshots ohne Maskierung von dynamic-content = False-Positives â†’ Tool deaktiviert. Argos Hobby-Free, Team $19. Chromatic Starter $179."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: M
@@ -382,7 +382,7 @@ sources:
     confidence: high
 verification_notes: "Football-Manager-PWA muss offline-first. Wenn nur Happy-Path getestet, fallen 5xx vom Sync-Backend + 200-aber-corrupt-JSON + slow-3G + abrupte SW-Transitionen durchs Raster und korrumpieren Saves."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: M
@@ -426,7 +426,7 @@ sources:
     confidence: high
 verification_notes: "BrowserStack Automate $129+ ist nicht solo-budget. Selenium-Grid self-host Wartungs-Black-Hole. Playwright deckt Chromium/Firefox/WebKit headless. iOS-Safari (echte Touch-Events, PWA-Install-Banner) + Samsung Internet = blinde Flecken."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: S
@@ -473,7 +473,7 @@ sources:
     confidence: high
 verification_notes: "Free-Tier 2000 min/Mo Linux private; Overage $0.008/min. Bei allen Layern auf GitHub-hosted: ~7.000 min/Mo (60 PRs Ã— 119 billed-min). Self-hosted-Fee $0.002/min ab 2026-03 fÃ¼r private repos."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: M

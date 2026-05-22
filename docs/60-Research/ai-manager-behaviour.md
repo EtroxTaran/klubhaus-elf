@@ -11,7 +11,7 @@ related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Arch
 
 # AI Manager Behaviour — Architecture, Personalities, Difficulty, World Drift
 
-> Gap D4 of [[wave-3-gap-analysis]]. Locks the AI manager decision system
+> Gap D4 of [[../95-Archive/gap-reports/wave-3-gap-analysis]]. Locks the AI manager decision system
 > for an offline-first PWA football manager: utility-AI core + FSM
 > situation classifier + heuristic constraints; 8-trait personality
 > vector with 10 archetypes; in-match + out-of-match decision pipelines;

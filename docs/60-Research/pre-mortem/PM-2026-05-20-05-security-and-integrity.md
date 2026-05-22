@@ -75,7 +75,7 @@ linked_code:
   - "apps/web/src/save/import.ts (geplant)"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: L
@@ -116,7 +116,7 @@ linked_code:
   - "apps/web/src/server/command-router.ts (geplant)"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: L
@@ -160,7 +160,7 @@ linked_code:
   - ".github/workflows/ci.yml"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -204,7 +204,7 @@ linked_code:
   - "apps/web/src/save/import.ts (geplant)"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -252,7 +252,7 @@ linked_code:
   - "package.json"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -294,7 +294,7 @@ linked_code:
   - "apps/web/src/contexts/**/handlers/*.ts (geplant)"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -331,7 +331,7 @@ linked_code:
   - "apps/web/src/server/webhooks/* (geplant)"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: S
@@ -367,7 +367,7 @@ linked_code:
   - "apps/web/src/contexts/audit-security/*"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -403,7 +403,7 @@ linked_code:
   - "tests/security/pii-leak.test.ts (geplant)"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -442,7 +442,7 @@ linked_code:
   - "apps/web/src/contexts/identity-access/*"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -478,7 +478,7 @@ linked_code:
   - "apps/web/src/contexts/league-orchestration/*"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -512,7 +512,7 @@ linked_code:
   - "packages/match-engine/"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -711,7 +711,7 @@ Jedes Finding hat eine immutable ID (`PM-2026-05-20-05-F-NN`).
 - [[PM-2026-05-20-01-architecture]] Â· [[PM-2026-05-20-02-tech-and-ops]] Â· [[PM-2026-05-20-03-gameplay]] Â· [[PM-2026-05-20-04-monetization]] Â· [[PM-2026-05-20-06-distributed-match-compute]]
 - [[../determinism-and-replay]]
 - [[../gdpr-compliance]]
-- [[../wave-3-gap-analysis]]
+- [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
 - [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]
 - [[../../10-Architecture/09-Decisions/ADR-0005-save-format]]
 - [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]

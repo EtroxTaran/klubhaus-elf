@@ -69,7 +69,7 @@ sources:
     confidence: medium
 verification_notes: "Welle-1-Report-08 hat Pflicht nominal anerkannt, aber kein vollstÃ¤ndiges Notice-Formular spezifiziert. Penalty bis 6 % weltweiter Jahresumsatz (Art. 52). SME-Ausnahme Art. 19 entlastet von Risk-Assessment, NICHT von Art. 16."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal+platform
 effort: M
@@ -113,7 +113,7 @@ sources:
     confidence: high
 verification_notes: "Â§ 86a StGB Freiheitsstrafe bis 3 Jahre. Plattform-Privileg (Â§Â§ 7â€“10 DDG) greift erst ab positiver Kenntnis. Bei viralem Hakenkreuz-Wappen kann StA gegen Founder ermitteln. Custom-SVG ist XSS-Vektor."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder+legal
 effort: L
@@ -152,7 +152,7 @@ sources:
     confidence: high
 verification_notes: "Naive Exact-Match scheitert: User tippen `FCBayern2026`, `Bayern_Munich_88`, `FC Ð’ayern` (kyrillisches Ð’), `B@yern Munchen`. Ohne Fuzzy+Confusable+Token = nutzlos."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform+legal
 effort: M
@@ -192,7 +192,7 @@ sources:
     confidence: medium
 verification_notes: "Founder ohne Mod-Team kann 7-Tage-DSA-SLA nur halten bei (a) â‰¤ 5 Notices/Tag und (b) keinen Urlaub. Bei 10k DAU mit 5â€“15 Notices/Tag realistisch."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: M
@@ -241,7 +241,7 @@ sources:
     confidence: medium
 verification_notes: "Spieler umgehen Wordlist trivial: FuÃŸba11, SÑhei$$e (kyrill. Ñ), f u c k (Padding), fuuuuck (Repetition), ðŸ…µðŸ†„ðŸ…²ðŸ…º (Emoji-Stems)."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -278,7 +278,7 @@ sources:
     confidence: high
 verification_notes: "Art. 23 (1) DSA: 'hÃ¤ufig offensichtlich illegale Inhalte' â†’ Suspension. Ohne dokumentierte Policy juristisch angreifbar (Art. 54 Schadenersatz)."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal+platform
 effort: S
@@ -313,7 +313,7 @@ sources:
     confidence: high
 verification_notes: "Italienische Ãœbersetzung mit faschistischen Slogans in obskuren Tooltips. Ohne 2-of-N-Reviewer geht das in Production."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: M
@@ -350,7 +350,7 @@ sources:
     confidence: medium
 verification_notes: "Art. 16 strittig fÃ¼r private Nachrichten, aber sicherheitshalber Notice-Mechanismus unabhÃ¤ngig von Ã–ffentlichkeit."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: L
@@ -387,7 +387,7 @@ sources:
     confidence: high
 verification_notes: "Reporter stellt Art-17-Antrag. DSA verlangt Audit-Trail (Art. 24 (1) implizit + nationale DDG-Beweispflichten). Direkter Konflikt."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: privacy+legal
 effort: M
@@ -424,7 +424,7 @@ sources:
     confidence: medium
 verification_notes: "User wÃ¤hlt `Lewandowski` als Manager-Bio â†’ wir verbreiten Player-Likeness ohne Lizenz. FIFPro-Anwaltsschreiben droht."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: S
@@ -454,7 +454,7 @@ linked_code: []
 sources: []
 verification_notes: "Save-Sharing erbt UGC-Risiken + addiert Save-Title-Feld. Cheat-Saves = Integrity, Hate-Saves = Moderation."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M

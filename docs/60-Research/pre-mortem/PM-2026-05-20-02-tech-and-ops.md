@@ -15,7 +15,7 @@ related:
   - [[00-index]]
   - [[findings-registry]]
   - [[PM-2026-05-20-01-architecture]]
-  - [[../wave-3-gap-analysis]]
+  - [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
   - [[../determinism-and-replay]]
   - [[../../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
   - [[../../30-Implementation/auth-flows]]
@@ -61,7 +61,7 @@ linked_code:
   - "package.json"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend
 effort: M
@@ -105,7 +105,7 @@ linked_code:
   - "packages/match-engine/src/"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -148,7 +148,7 @@ linked_specs:
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -187,7 +187,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -229,7 +229,7 @@ linked_code:
   - ".github/workflows/ci.yml"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -267,7 +267,7 @@ linked_specs:
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend+security
 effort: M
@@ -306,7 +306,7 @@ linked_specs:
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend+security
 effort: M
@@ -340,7 +340,7 @@ linked_specs:
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform+security
 effort: S
@@ -377,7 +377,7 @@ linked_code:
   - "packages/match-engine/src/"
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: tech-lead
 effort: S
@@ -413,7 +413,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -554,7 +554,7 @@ IDs `PM-2026-05-20-02-F-NN` zitierbar in Commits/PRs/ADRs (`Addresses PM-2026-05
 - [[PM-2026-05-20-04-monetization]]
 - [[PM-2026-05-20-05-security-and-integrity]]
 - [[PM-2026-05-20-06-distributed-match-compute]]
-- [[../wave-3-gap-analysis]]
+- [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
 - [[../determinism-and-replay]]
 - [[../../10-Architecture/09-Decisions/ADR-0001-tech-stack]]
 - [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]

@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-05-22
 type: index
 binding: false
-related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-Baseline-2026-05-22]]
+related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-V1]]
 ---
 
 # Features
@@ -20,12 +20,13 @@ Each feature spec note is a focused, implementable slice. It links to:
 
 Specs are `draft` until tied to an implementation beat. Promotion to
 `approved` happens after Nico + the implementing agent agree on scope.
-[[../00-Index/Documentation-Baseline-2026-05-22]] classifies the remaining
+[[../00-Index/Documentation-V1]] classifies the remaining
 stubs as future-scope planning, not open documentation gaps.
 
 ## Active MVP feature
 
 - [[feature-roguelite-mvp-first-playable]] — approved first playable scope.
+- [[feature-transfer-market-ai-and-contracts]] - approved transfer-market foundation and explanation layer.
 
 Older feature stubs may contain historical "In scope (MVP)" headings. The
 canonical MVP scope is [[../00-Index/MVP-Scope]]; use it before interpreting
@@ -46,5 +47,4 @@ those headings.
 - [[feature-rivalry-system]] — Emergent five-sub-score rivalry graph.
 - [[feature-matchday-event-engine]] — Rule-based events at match-days.
 - [[feature-community-editor]] — post-MVP override-pack editor + importer.
-- [[feature-transfer-market-ai-and-contracts]] — AI transfer market, valuations, clauses, player terms and tiered simulation.
 - [[feature-p2p-transfer-negotiation]] — post-MVP human-to-human transfers with escalation.

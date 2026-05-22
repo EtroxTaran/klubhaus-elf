@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-05-22
 type: index
 binding: true
-related: [[../90-Meta/agent-memory-protocol]], [[Documentation-Baseline-2026-05-22]]
+related: [[../90-Meta/agent-memory-protocol]], [[Documentation-V1]]
 ---
 
 # Agent Onboarding
@@ -19,7 +19,7 @@ The vault (`docs/`) is durable project memory. `AGENTS.md` / `CLAUDE.md` and the
 
 1. This note.
 2. [[Current-State]] - what is being built, stable and temporally classified.
-3. [[Documentation-Baseline-2026-05-22]] - current gap-closure baseline.
+3. [[Documentation-V1]] - current gap-closure baseline.
 4. Relevant maps from [[Home]] (Glossary, Decision-Log, Architecture).
 5. `accepted` ADRs and `approved` game design / feature specs for the task.
 6. The linked Linear issue when one exists.

@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-17
 type: research
 binding: true
-related: [[research-wave-2-gaps]], [[wave-3-gap-analysis]], [[match-engine-runtime-strategy]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+related: [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[match-engine-runtime-strategy]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
 ---
 
 # Determinism, RNG and Replay - Locked Decisions
@@ -56,7 +56,7 @@ across engines and versions; not seedable.
 ### 1.2 Library: `pure-rand`
 
 Source: [npm pure-rand](https://www.npmjs.com/package/pure-rand), used
-internally by `fast-check` (which we will use in [[wave-3-gap-analysis]]
+internally by `fast-check` (which we will use in [[../95-Archive/gap-reports/wave-3-gap-analysis]]
 E11 test strategy for property-based tests).
 
 - TS-first, functional, well-typed.

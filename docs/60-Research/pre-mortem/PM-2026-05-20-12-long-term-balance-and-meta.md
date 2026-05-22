@@ -73,7 +73,7 @@ sources:
     confidence: medium
 verification_notes: "FM-Celtic-37-Saison-Analyse zeigt Wage-Budget-Drift; OOTP 17 hat optional Inflation-Toggle â€” Branchen-Erkennung."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: game-design+backend
 effort: M
@@ -121,7 +121,7 @@ sources:
     confidence: high
 verification_notes: "FM-Community-Signal: 'all AI tactics eventually become identical'. FM23 Bug-Tracker bestÃ¤tigt Regen-Stagnation."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: game-design+ai
 effort: L
@@ -174,7 +174,7 @@ sources:
     confidence: high
 verification_notes: "30 Jahre Ã— 50 Wochen Ã— 20 Events = 30k Events. Roh-JSON ~200 B/Event â†’ 6 MB; Brotli-Q5 ~6Ã— â†’ ~1 MB Events + 500 KB Snapshot. Mobile (Pixel 4a, 4 GB) 3 s fÃ¼r 800 MB DB-Load."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend+platform
 effort: M
@@ -220,7 +220,7 @@ sources:
     confidence: medium
 verification_notes: "Carry-Slot wÃ¤chst mit Run-Length; bei 10 Runs Ã— Ã˜ 12 Saisons â†’ 120 Slot-Earning-Events. Selbst harte Cap 1 Slot/6 Saisons = 20 Slots. Compound trivializes Run 10."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: game-design
 effort: M
@@ -264,7 +264,7 @@ sources:
     confidence: medium
 verification_notes: "80â€“120 Templates Ã· ~50 Events/Saison = 2 Saisons bis statistisch jedes Template einmal gesehen. Mit Cooldown 3â€“4 Saisons. 50-Jahres-Saves erleben 10â€“15Ã— Wiederholung."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: game-design+content
 effort: L
@@ -308,7 +308,7 @@ sources:
     confidence: medium
 verification_notes: "Real-Bankruptcy-Rate Europa: ~3â€“5 %/Jahr. Spiel-Ziel: 8â€“15 %/Jahr (Roguelite-Druck). Variance via Slot-Compound zu hoch."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: game-design+backend
 effort: M
@@ -343,7 +343,7 @@ sources:
     confidence: low
 verification_notes: "Spekulativ; basiert auf FM/EA-FC-Career-Mode-Pattern."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: game-design
 effort: M
@@ -387,7 +387,7 @@ sources:
     confidence: medium
 verification_notes: "Mechabellum, Factorio, Hearts of Iron â€” alle Patterns. Temporal-Workflow-Versioning ist direkt Ã¼bertragbar."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend+game-design
 effort: L
@@ -433,7 +433,7 @@ sources:
     confidence: medium
 verification_notes: "FM23 Bug-Tracker bestÃ¤tigt 'regens come through with very low mental + decent technicals'. 3.75 Mio Spieler-Lifetimes Ã¼ber 50 Saisons = kombinatorische Tiefe."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend+game-design
 effort: M
@@ -477,7 +477,7 @@ sources:
     confidence: high
 verification_notes: "Sim-genre D1 45â€“60 %, D30 20â€“30 % (GameAnalytics). Save-2-Retention nicht Ã¶ffentlich. CK3 Dynasty-Legacies + Civ Hall-of-Fame als Inspiration."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: game-design+product
 effort: L

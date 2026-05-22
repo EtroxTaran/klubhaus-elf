@@ -11,7 +11,7 @@ related: [[ai-manager-behaviour]], [[data-generators]], [[onboarding-strategy]],
 
 # Late-Game Systems — Continental Cups, Bundestrainer, Ownership, Hall of Fame, Legacy
 
-> Gap D6 of [[wave-3-gap-analysis]]. Locks the late-game / endgame
+> Gap D6 of [[../95-Archive/gap-reports/wave-3-gap-analysis]]. Locks the late-game / endgame
 > meta layer for an offline-first PWA football manager: 3-tier
 > continental cup stack per continent + IFC Club World Masters;
 > dual-role Bundestrainer arc with 3 engagement levels; full Make

@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-05-22
 type: index
 binding: false
-related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-Baseline-2026-05-22]]
+related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]]
 ---
 
 # Game Design Hub
@@ -14,7 +14,7 @@ related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00
 Working game-design notes for soccer-manager. Treat this folder as the GDD:
 one note per system + mode + emergent system. Notes are `draft` unless the
 status field says otherwise; `approved` notes are binding for implementation.
-[[../00-Index/Documentation-Baseline-2026-05-22]] classifies non-approved notes
+[[../00-Index/Documentation-V1]] classifies non-approved notes
 as future-scope or historical planning unless they are promoted in
 [[../00-Index/Current-State]].
 
@@ -113,7 +113,7 @@ are not active work.
 
 - `approved` - binding. Implementation must follow.
 - `draft` - future-scope or historical planning; not implementation authority
-  and not active work unless re-opened by [[../00-Index/Documentation-Baseline-2026-05-22]].
+  and not active work unless re-opened by [[../00-Index/Documentation-V1]].
 - `superseded` - historical only; never implement from.
 
 When status changes, also update [[../00-Index/Current-State]] and

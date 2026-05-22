@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-05-17
 type: game-design
 binding: true
-related: [[README]], [[GD-0001-core-loop]], [[GD-0010-ai-world]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../60-Research/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+related: [[README]], [[GD-0001-core-loop]], [[GD-0010-ai-world]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
 ---
 
 # GD-0011: Career Progression, Board & Objectives
@@ -75,5 +75,5 @@ None
 
 ## Related
 
-- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/club-boss-analysis]] · [[../60-Research/research-wave-2-gaps]]
+- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/club-boss-analysis]] · [[../95-Archive/gap-reports/research-wave-2-gaps]]
 - [[README]] — hub · siblings: [[GD-0001-core-loop]] · [[GD-0010-ai-world]] · [[GD-0008-finance-economy]]

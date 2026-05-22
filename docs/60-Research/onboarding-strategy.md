@@ -11,7 +11,7 @@ related: [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[ai-mana
 
 # Onboarding Strategy — FTUE, Inbox Tutorial, Feed-Cards, Accessibility
 
-> Gap D5 of [[wave-3-gap-analysis]]. Locks the strategic onboarding
+> Gap D5 of [[../95-Archive/gap-reports/wave-3-gap-analysis]]. Locks the strategic onboarding
 > system for an offline-ready PWA football manager: 60-second FTUE
 > with single experience question + mode picker + Advanced-setup
 > escape; 12-message first-season inbox tutorial arc with 10-sender

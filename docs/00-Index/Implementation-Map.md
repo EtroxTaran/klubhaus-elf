@@ -6,16 +6,16 @@ created: 2026-05-16
 updated: 2026-05-22
 type: map
 binding: false
-related: [[Architecture-Map]], [[Current-State]], [[Documentation-Baseline-2026-05-22]]
+related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]]
 ---
 
 # Implementation Map
 
 Use this map for operational, deployment, data, and agent workflow work.
 
-[[Documentation-Baseline-2026-05-22]] is the implementation-facing closure
-baseline: current specs below are implementable; historical Wave 3 gap IDs are
-traceability only unless re-opened by a current issue or accepted ADR.
+[[Documentation-V1]] is the implementation-facing closure baseline: current
+specs below are implementable; historical Wave 3 gap IDs are traceability only
+unless re-opened by a current issue or accepted ADR.
 
 ## Implementation Notes
 
@@ -23,8 +23,8 @@ traceability only unless re-opened by a current issue or accepted ADR.
 - [Linear Task Tracking](../30-Implementation/linear-task-tracking.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md) - current MVP PWA/offline-ready implementation stance.
-- [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md)
-- [SurrealDB Integration](../30-Implementation/surrealdb-integration.md) - superseded historical substrate note.
+- [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md) - current persistence implementation stance.
+- [SurrealDB Integration](../30-Implementation/surrealdb-integration.md) - superseded historical substrate note; do not implement.
 - [Deployment Dokploy](../30-Implementation/deployment-dokploy.md)
 - [Observability Runbook](../30-Implementation/observability-runbook.md)
 - [Client Telemetry](../30-Implementation/client-telemetry.md)
@@ -130,9 +130,9 @@ traceability only unless re-opened by a current issue or accepted ADR.
   outage contingency; **quarterly Tier-A dependency audit
   runbook** (closes F1 FU-4); **backup + recovery drill
   schedule** with concrete recipes (Redis monthly closes F3
-  FU-6; SurrealDB semi-annually; age key annually; full system
-  quarterly); 6 DR tabletop scenarios annually; outbox audit
-  integration; future-proof `SecretsProvider` interface for
+  FU-6; PostgreSQL restore semi-annually; age key annually; full
+  system quarterly); 6 DR tabletop scenarios annually; outbox audit
+  integration through ADR-0028; future-proof `SecretsProvider` interface for
   Bitwarden Secrets Manager / Infisical / 1Password Connect
   graduation. Closes F1 FU-4 + F1 FU-6 + F3 FU-6.
 - [Secrets Rotation](../30-Implementation/secrets-rotation.md) —

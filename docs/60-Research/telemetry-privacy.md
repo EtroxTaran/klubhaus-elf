@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-05-17
 type: research
 binding: true
-related: [[wave-3-gap-analysis]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
+related: [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
 ---
 
 # Telemetry, Privacy and GDPR - Locked Decisions

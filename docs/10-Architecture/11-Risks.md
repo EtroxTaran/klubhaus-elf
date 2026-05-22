@@ -63,5 +63,5 @@ risk — fixed in the ADR-0021 PR (all deps pinned + Renovate).
 ## Related
 
 - [[09-Decisions/ADR-0001-tech-stack]] — TanStack Start risk owner · [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] — hybrid-online staging · [[09-Decisions/ADR-0007-naming-schema]] — IP-safe naming gate
-- [[../60-Research/research-wave-2-gaps]] — open research risk · [[../00-Index/Current-State]] — live blockers
+- [[../95-Archive/gap-reports/research-wave-2-gaps]] — open research risk · [[../00-Index/Current-State]] — live blockers
 - [[10-Quality]] — arc42 sibling

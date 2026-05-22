@@ -7,7 +7,7 @@ updated: 2026-05-17
 type: research
 linear: AKOM-114
 sources_retrieved: 2026-05-15
-related: [[00-summary]], [[anstoss-series-deep-dive]], [[competitor-matrix]], [[ip-and-licensing]], [[pwa-offline-patterns]], [[feature-gap-analysis]]
+related: [[00-summary]], [[anstoss-series-deep-dive]], [[competitor-matrix]], [[ip-and-licensing]], [[pwa-offline-patterns]], [[../95-Archive/gap-reports/feature-gap-analysis]]
 ---
 
 # Club Boss Analysis
@@ -342,4 +342,4 @@ paraphrased from public listings and reviews.
 
 - [[00-summary]] â€” research MOC (hub)
 - [[anstoss-series-deep-dive]] Â· [[competitor-matrix]] Â· [[ip-and-licensing]] â€” research siblings
-- [[pwa-offline-patterns]] â€” mobile loop tech Â· [[feature-gap-analysis]] â€” feeds scope
+- [[pwa-offline-patterns]] â€” mobile loop tech Â· [[../95-Archive/gap-reports/feature-gap-analysis]] â€” feeds scope

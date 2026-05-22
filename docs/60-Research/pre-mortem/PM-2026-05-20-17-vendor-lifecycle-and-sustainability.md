@@ -67,7 +67,7 @@ sources:
     confidence: high
 verification_notes: "Game-Server-Hosting ist erlaubt, aber Football-Manager-PWA = normale Web-App. Spam-Flag (Brevo via Hetzner-IPs) kann gesamten Cloud-Account suspendieren. Cloud-Console + Robot unter einem Auth-Konto."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder+platform
 effort: M
@@ -121,7 +121,7 @@ sources:
     confidence: high
 verification_notes: "SurrealDB 3.0-GA mit $23 M Series A (Feb 2026), 31k Stars, Referenzkunden (Verizon, Walmart, ING, Samsung). Monthly Release-Cadence (2. Dienstag) erhÃ¶ht Drift-Risiko. 1.xâ†’2.x verlangte explizite Daten-Transformation."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform+architecture
 effort: L
@@ -168,7 +168,7 @@ sources:
     confidence: medium
 verification_notes: "v1.0-RC im MÃ¤rz 2026 (Beta-Risk teilweise mitigiert). 16 Partner-Sponsoren finanzieren; Wegfall 2â€“3 in Recession-Year gefÃ¤hrdet Linsley-Vollzeit-Salary. Tanner Linsley = primary Bus-Factor (Router + Query + Form + Start + 9 weitere Libs)."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: L
@@ -215,7 +215,7 @@ sources:
     confidence: medium
 verification_notes: "Stripe listet Gaming explizit als High-Risk-Category. 70 % High-Risk-Merchants unaware der no-warning-closure-Risiken. Football-Manager mit Auction-House gerne als gambling-adjacent geflagged. Paddle MoR: Sub-Migration laut Anekdoten 4 Monate (Tax-Records exportieren schwierig). Crossover ~$50â€“100k MRR."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder+finance
 effort: M
@@ -258,7 +258,7 @@ sources:
     confidence: high
 verification_notes: "GlitchTip 6.0 erschien Feb 2026 (positiv); primÃ¤r von Burke Software (David Burke) als Side-Project. Enterprise-Support-Offering ($15/User/Mo) deutet auf Monetisierungs-Druck â†’ mÃ¶gliche BSL/SSPL-Pivot wie Sentry 2019."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: S
@@ -298,7 +298,7 @@ sources:
     confidence: medium
 verification_notes: "Cloudflare-Workers + Page-Rules + R2 sind proprietÃ¤r ohne Migration. bunny.net (Slovenien, DSGVO-nativ) gÃ¼nstiger ohne Workers-Lock, aber Edge-Compute 'Magic Containers' weniger reif."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -357,7 +357,7 @@ sources:
     confidence: medium
 verification_notes: "EU CRA volle Anwendbarkeit 11.12.2027 fÃ¼r 'products with digital elements'. F2P-PWA mit Mikrotransaktionen fÃ¤llt NICHT unter Non-Commercial-OSS-Exempt. Pflichten: (a) maschinenlesbare SBOM (CycloneDX 1.6 / SPDX 3.0.1 per BSI TR-03183-2), (b) Vulnerability-Reporting an ENISA in 24 h ab 11.09.2026 (< 4 Monate!), (c) Update-Pflichten 5 Jahre. License-Risk: AGPL-3.0 viral bei Server-Use, SSPL-1.0 viral auf Service-Stack."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform+legal
 effort: M
@@ -403,7 +403,7 @@ sources:
     confidence: medium
 verification_notes: "Grafana Labs 2021 von Apache-2.0 zu AGPLv3 (Grafana, Loki, Tempo). Mimir, Alloy gemischt. Erneute Pivot zu BSL/SSPL (wie HashiCorp 2023, Redis 2024) nicht ausgeschlossen."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -450,7 +450,7 @@ sources:
     confidence: medium
 verification_notes: "Domain-Hijacking (Social-Engineering Registrar-Support, unbezahlte VerlÃ¤ngerung). Hetzner-DNS hÃ¤ngt am Hetzner-Account (Coupling F-01). **GoDaddy EU-untauglich seit Feb 2026** (Reclassifizierung als 'Business Customers'). INWX (Berlin) hat eigene ICANN-Akkreditierung, DSGVO-nativ, akzeptiert Hardware-Key-2FA."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder+platform
 effort: S
@@ -502,7 +502,7 @@ sources:
     confidence: medium
 verification_notes: "sops 2015 Mozilla, 2023 CNCF-Sandbox; aktive Maintenance Mai 2026. age = Filippo Valsorda Solo, 'professional independent full-time maintainer' Modell â€” formal positiv, faktisch Bus-Factor 1. v1.1.0-rc.1 mit YubiKey-Plugin-Support."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: S
@@ -550,7 +550,7 @@ sources:
     confidence: medium
 verification_notes: "Hetzner DE 100 % Hydropower (Eigenangabe); PUE 1.13 best-in-class. HT Clean Energy GmbH 2024 fÃ¼r Solar-Parks. 2025-CSRD-pflichtig. FI-Nordischer Mix ~50â€“70 gCOâ‚‚eq/kWh vs DE-Grid 328 gCOâ‚‚eq/kWh. Football-PWA + Match-Sim CPU-light â†’ Footprint < 5 kg COâ‚‚eq/Monat MVP."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -596,7 +596,7 @@ sources:
     confidence: high
 verification_notes: "Nach EU-Omnibus-I-Reform 2026: CSRD-Scope > 1.000 MA AND > â‚¬450M Net-Turnover. Wir = Single-Founder + F2P < â‚¬1M â†’ out-of-scope. LkSG/CSDDD erst ab 1.000 MA. B2B-Tier-2-Anfragen via VSME-Standard abblockbar."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S

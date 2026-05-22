@@ -108,7 +108,7 @@ non-predatory**.
 
 Where competitors have anchored expectations the MVP can credibly miss only if
 we frame the scope explicitly. The risks below should feed
-[[feature-gap-analysis]] when we pick the MoSCoW list.
+[[../95-Archive/gap-reports/feature-gap-analysis]] when we pick the MoSCoW list.
 
 - **Match visualisation.** FM26, Top Eleven, Soccer Manager, EA FuMa, and We
   Are Football all advertise 3D match views. A text/2D MVP must signal this is
@@ -142,7 +142,7 @@ we frame the scope explicitly. The risks below should feed
 
 - [[club-boss-analysis]] — deep dive on Club Boss; this matrix only profiles it.
 - [[anstoss-series-deep-dive]] — mechanic/pacing/humor patterns from the Anstoß lineage.
-- [[feature-gap-analysis]] — MoSCoW classification consumes the risks above.
+- [[../95-Archive/gap-reports/feature-gap-analysis]] — MoSCoW classification consumes the risks above.
 - [[ip-and-licensing]] — drives ADR-0007 (fictional naming).
 - [[pwa-offline-patterns]] — anchors the "offline-first" differentiation claim.
 - [[feature-library-synthesis]] — Wave 2 deeper feature inventory across all competitors.

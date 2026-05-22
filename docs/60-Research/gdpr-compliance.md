@@ -7,7 +7,7 @@ updated: 2026-05-18
 type: research
 binding: true
 related:
-  - "[[wave-3-gap-analysis]]"
+  - "[[../95-Archive/gap-reports/wave-3-gap-analysis]]"
   - "[[telemetry-privacy]]"
   - "[[threat-model]]"
   - "[[../30-Implementation/privacy-and-consent]]"

@@ -6,14 +6,14 @@ created: 2026-05-16
 updated: 2026-05-22
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-Baseline-2026-05-22]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]]
 ---
 
 # Game Design Map
 
 Use this map for gameplay, economy, progression, and player experience work.
 
-[[Documentation-Baseline-2026-05-22]] classifies draft game-design notes as
+[[Documentation-V1]] classifies draft game-design notes as
 future-scope or historical planning unless they are listed as approved/current
 below. This means old `Future-scope notes` sections are not active work by default.
 
@@ -93,7 +93,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/anstoss-series-deep-dive]]
 - [[../60-Research/club-boss-analysis]]
 - [[../60-Research/feature-library-synthesis]]
-- [[../60-Research/feature-gap-analysis]]
+- [[../95-Archive/gap-reports/feature-gap-analysis]] - historical Wave 1 gap traceability only.
 
 ## Binding Rule
 

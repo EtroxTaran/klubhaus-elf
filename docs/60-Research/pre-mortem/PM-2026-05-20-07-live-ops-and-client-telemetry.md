@@ -82,7 +82,7 @@ sources:
     confidence: medium
 verification_notes: "INP ersetzt FID seit MÃ¤rz 2024 als Core Web Vital. web-vitals v5 Attribution-Build liefert interactionTarget, inputDelay, processingDuration, presentationDelay fÃ¼r gezielte Mitigation."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend
 effort: M
@@ -132,7 +132,7 @@ sources:
     confidence: medium
 verification_notes: "GlitchTip akzeptiert Sentry-JS-SDK-userFeedback-Protokoll â‰¥ 7.85. Schema-Bruch erfordert explizite Migration."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend+frontend
 effort: M
@@ -183,7 +183,7 @@ sources:
     confidence: high
 verification_notes: "Industrielle Konvention: 3- oder 5-Stufen-SEV mit â€žim Zweifel niedrigere Zahl = hÃ¶here Severity, im Postmortem korrigieren"."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -229,7 +229,7 @@ sources:
     confidence: high
 verification_notes: "Atlassian: â€žAlways be communicating"; Discord allein erreicht ~30 % der Spielerschaft und ist nicht durchsuchbar."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform+founder
 effort: S
@@ -275,7 +275,7 @@ sources:
     confidence: medium
 verification_notes: "TypeScript-Floats sind theoretisch deterministisch in einer V8-Version, cross-browser oder cross-engine-version aber Drift-Risiko."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: L
@@ -316,7 +316,7 @@ sources:
     confidence: high
 verification_notes: "Design-by-Contract-Pattern. Konkret fÃ¼r Game: cash >= -10M, no future-dated finished matches, age 16-50, stadium-capacity >= sold-tickets."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend
 effort: M
@@ -359,7 +359,7 @@ sources:
     confidence: high
 verification_notes: "OTel docs: browser instrumentation experimental; Sampling empfohlen wegen Volumen."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -410,7 +410,7 @@ sources:
     confidence: medium
 verification_notes: "Konsens aller Quellen: Teams < 3 Personen kÃ¶nnen kein 24/7-Coverage tragen ohne Burnout."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -455,7 +455,7 @@ sources:
     confidence: medium
 verification_notes: "GlitchTip kann Session Replay nicht. Self-Hosted Sentry-Stack 10+ Container = unverhÃ¤ltnismÃ¤ÃŸig teuer fÃ¼r Solo-Founder."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S
@@ -501,7 +501,7 @@ sources:
     confidence: high
 verification_notes: "â€žAlways be communicating" (Atlassian). Solo-Founder fokussiert Fix, vergisst Comms."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: founder
 effort: S

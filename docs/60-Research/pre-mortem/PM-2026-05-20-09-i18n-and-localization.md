@@ -73,7 +73,7 @@ sources:
     confidence: high
 verification_notes: "ICU MF1 deckt Plural/Gender/Select/Number/Date. MF2 produktionsreif aber Tooling/Translator-Support Mai 2026 lÃ¼ckenhaft. Flektierte Klubnamen sind Daten-Modell-Frage, kein ICU-Feature."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: content+frontend+data
 effort: M
@@ -122,7 +122,7 @@ sources:
     confidence: medium
 verification_notes: "Paraglide: 47 KB fÃ¼r 5 locales/100 used messages vs i18next 205 KB. react-intl 17.8 KB Runtime. TanStack Start hat seit Jan 2026 offiziellen Paraglide-Adapter."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend+architecture
 effort: M
@@ -171,7 +171,7 @@ sources:
     confidence: high
 verification_notes: "Tailwind 3.3+ unterstÃ¼tzt logische Properties. shadcn/ui-Komponenten nutzen idR logische Variants; Custom-Cards/Tables Hotspots."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: design+frontend
 effort: M
@@ -215,7 +215,7 @@ sources:
     confidence: medium
 verification_notes: "Pseudo-Loc-Standard: 30â€“60 % String-VerlÃ¤ngerung, Diakritika, eckige Klammern als Boundary-Marker."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend+qa
 effort: S
@@ -264,7 +264,7 @@ sources:
     confidence: high
 verification_notes: "ECMAScript 2018+ und alle modernen Browser unterstÃ¼tzen \\p{} mit u-Flag. Erlaubt: \\p{L}, \\p{N}, \\p{M}, \\p{Pd}, \\p{Zs}. Verbieten: \\p{Cc}, \\p{Cs}, RTL-Override-Marks (Spoof-Vektor)."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend+security
 effort: S
@@ -313,7 +313,7 @@ sources:
     confidence: medium
 verification_notes: "Tolgee Apache-2.0 self-hosted, Docker, eigener Postgres. Crowdin Free fÃ¼r OSS (60k hosted words), Lokalise $140+/Monat per seat."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: ops+content
 effort: M
@@ -360,7 +360,7 @@ sources:
     confidence: high
 verification_notes: "TanStack Router unterstÃ¼tzt locale-param {-$locale}. Cookie nur fÃ¼r persisted-override. IP-Geo ist Consent-Banner-pflichtig (DSGVO)."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend+seo
 effort: M
@@ -399,7 +399,7 @@ sources:
     confidence: high
 verification_notes: "Latin Extended + Cyrillic Subsets je ~30â€“50 KB WOFF2. Arabisch ~80â€“120 KB. CJK Pan-Variable unsubsetted: 5â€“20 MB. Google Fonts splittet automatisch via unicode-range."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: design+performance
 effort: M
@@ -441,7 +441,7 @@ sources:
     confidence: medium
 verification_notes: "Gaming-Standard DACH: Du (Steam, Riot, EA Sports, Anstoss). Sie wirkt distanziert. Glossar-Lock essentiell, weil MT Markenbegriffe zerschieÃŸt."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: content+design
 effort: M
@@ -483,7 +483,7 @@ sources:
     confidence: high
 verification_notes: "PWA mit offline-first muss Locale-Bundles im SW precachen, aber Hotfix erfordert Cache-Bust â†’ Content-Hash + Manifest-Pattern."
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: frontend+ops
 effort: M

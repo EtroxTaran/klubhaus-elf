@@ -11,7 +11,7 @@ related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Arch
 
 # Tactics & Formations — Mobile-first Manager Game Tactics Depth
 
-> Gap D3 of [[wave-3-gap-analysis]]. Locks the user-facing tactics
+> Gap D3 of [[../95-Archive/gap-reports/wave-3-gap-analysis]]. Locks the user-facing tactics
 > system for an offline-first PWA football manager: 20 formations,
 > 50 roles, per-tier player + team instructions (0/6/18 + 1/5/8),
 > light Expert phase logic, full FM-style familiarity model, 3-layer

@@ -18,7 +18,7 @@ related:
   - [[PM-2026-05-20-02-tech-and-ops]]
   - [[PM-2026-05-20-03-gameplay]]
   - [[../gdpr-compliance]]
-  - [[../wave-3-gap-analysis]]
+  - [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
   - [[../../30-Implementation/privacy-and-consent]]
   - [[../../30-Implementation/auth-flows]]
   - [[../../00-Index/Current-State]]
@@ -54,7 +54,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: product+founder
 effort: M
@@ -95,7 +95,7 @@ linked_specs:
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: data+platform
 effort: M
@@ -134,7 +134,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform
 effort: M
@@ -167,7 +167,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: product+marketing
 effort: M
@@ -202,7 +202,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend+finance
 effort: M
@@ -239,7 +239,7 @@ linked_specs:
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: legal+product
 effort: M
@@ -275,7 +275,7 @@ linked_specs:
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: product+marketing
 effort: M
@@ -310,7 +310,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: support
 effort: S
@@ -345,7 +345,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: platform+finance
 effort: S
@@ -380,7 +380,7 @@ linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
-  - [[gap-closure-concept-2026-05-22]]
+  - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
 owner_suggested: backend+finance
 effort: M
@@ -536,7 +536,7 @@ IDs `PM-2026-05-20-04-F-NN`. Aggregat: [[findings-registry]].
 - [[PM-2026-05-20-05-security-and-integrity]]
 - [[PM-2026-05-20-06-distributed-match-compute]]
 - [[../gdpr-compliance]]
-- [[../wave-3-gap-analysis]]
+- [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
 - [[../../30-Implementation/privacy-and-consent]]
 - [[../../30-Implementation/auth-flows]]
 - [[../../30-Implementation/client-telemetry]]

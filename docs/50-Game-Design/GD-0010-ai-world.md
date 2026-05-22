@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-05-17
 type: game-design
 binding: false
-related: [[README]], [[GD-0006-transfers]], [[GD-0011-career-progression]], [[../60-Research/club-boss-analysis]], [[../60-Research/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]]
+related: [[README]], [[GD-0006-transfers]], [[GD-0011-career-progression]], [[../60-Research/club-boss-analysis]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]]
 ---
 
 # GD-0010: AI Managers & World Simulation
@@ -70,5 +70,5 @@ None
 
 ## Related
 
-- Research: [[../60-Research/club-boss-analysis]] · [[../60-Research/research-wave-2-gaps]]
+- Research: [[../60-Research/club-boss-analysis]] · [[../95-Archive/gap-reports/research-wave-2-gaps]]
 - [[README]] — hub · siblings: [[GD-0006-transfers]] · [[GD-0011-career-progression]] · [[GD-0002-match-engine]]
