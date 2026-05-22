@@ -1,4 +1,4 @@
-﻿---
+---
 title: Club DNA and Governance
 status: draft
 tags: [game-design, club, governance, identity]
@@ -24,8 +24,8 @@ seasons, after big events) but never per-week:
 
 | Parameter | Range | In-game effect |
 |---|---|---|
-| `club_size` | 1-10 | Higher â†’ bigger table / transfer / squad-depth expectations |
-| `tradition` | 1-10 | Higher â†’ fans react harder to style-breaks, selling icons, sponsor switches |
+| `club_size` | 1-10 | Higher → bigger table / transfer / squad-depth expectations |
+| `tradition` | 1-10 | Higher → fans react harder to style-breaks, selling icons, sponsor switches |
 | `region_score` | derived | Sponsor potential, attendance base, talent pool |
 | `board_profile` | enum | Cautious / Aggressive / Youth-focused / Profit-driven / Owner-vanity |
 | `philosophy` | enum | Pressing / Possession / Counter / Youth / Selling club / Defensive |
@@ -59,7 +59,7 @@ KPIs combine into **Board Confidence** (0-100). See split confidence in
 flowchart LR
     Sport["Sporting result"] --> Mood
     Cost["Cost base"] --> Mood["Board mood"]
-    Mood -->|"Confidence â†“"| Pressure["Pressure events:<br/>budget freeze,<br/>transfer veto,<br/>media demand"]
+    Mood -->|"Confidence ↓"| Pressure["Pressure events:<br/>budget freeze,<br/>transfer veto,<br/>media demand"]
     Pressure --> Manager["Manager decision"]
     Manager --> Sport
     Manager --> Cost
@@ -71,7 +71,7 @@ cash-flow.
 
 ## 4. Expectation profile per club
 
-Different DNA â†’ different acceptable performance bands. A tradition club
+Different DNA → different acceptable performance bands. A tradition club
 with high `tradition` and modest `club_size` accepts 8th place if youth
 minutes are high and identity intact. A sugar-daddy owner-vanity club with
 high `club_size` and low `tradition` does not.

@@ -1,9 +1,9 @@
-﻿---
+---
 title: State Machine - Watch Party
-status: draft
+status: current
 tags: [architecture, state-machine, watch-party, multiplayer]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-22
 type: state-machine
 binding: false
 related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/watch-party-and-conference]], [[../09-Decisions/ADR-0015-spectator-snapshot-streaming]]
@@ -88,21 +88,34 @@ holds an array instead of a single match record.
 
 ## 7. Persistence
 
+Per [[../09-Decisions/ADR-0027-postgres-data-model]]: a strongly-typed
+`watch_party` table in the per-save schema; cross-context references as opaque
+branded UUIDv7 columns (no cross-context `references()`). Participants are a
+RELATE-style edge with lifecycle, modelled as a junction table with a surrogate
+UUIDv7 PK (`watch_party_participant`); embedded scalar lists stay `jsonb`.
+
 ```text
-watch_party {
-  id: record(watch_party),
-  league: record(league),
-  state: enum(state_names),
-  target_matches: array<record(match)>,
-  proposed_at: datetime,
-  poll_slots: array<datetime>?,
-  poll_deadline: datetime?,
-  scheduled_at: datetime?,
-  broadcast_at: datetime?,
-  setup_lock_at: datetime?,
-  participants: array<record(member)>,
-  spectator_delay_s: int,
-  chat_enabled: bool
+watch_party {                            # strongly-typed (typed cols + CHECK)
+  id: uuid (UUIDv7, app-generated, PK),
+  league_id: uuid (LeagueId, opaque branded ref),
+  state: text + CHECK IN (state_names),
+  target_match_ids: uuid[] (MatchId, opaque branded refs),
+  proposed_at: timestamptz,
+  poll_slots: jsonb (array of timestamptz)?,
+  poll_deadline: timestamptz?,
+  scheduled_at: timestamptz?,
+  broadcast_at: timestamptz?,
+  setup_lock_at: timestamptz?,
+  spectator_delay_s: integer,
+  chat_enabled: boolean
+}
+
+watch_party_participant {                # junction table (surrogate PK)
+  id: uuid (UUIDv7, app-generated, PK),
+  watch_party_id: uuid (intra-context FK to watch_party),
+  member_id: uuid (MemberId, opaque branded ref),
+  joined_at: timestamptz,
+  left_at: timestamptz?
 }
 ```
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Gap Closure Concept Handoff
 status: wrapped
 tags: [meta, execution, handoff, pre-mortem, gap-closure]
@@ -7,7 +7,7 @@ updated: 2026-05-22
 type: handoff
 binding: false
 related:
-  - [[../gap-closure-concept-2026-05-22]]
+  - [[gap-closure-concept-2026-05-22]]
   - [[../../60-Research/pre-mortem/findings-registry]]
   - [[../../00-Index/Current-State]]
   - [[../../00-Index/Documentation-V1]]
@@ -24,7 +24,7 @@ related:
 - Ran required Intent skill check; no intent-enabled packages found.
 - Followed vault-memory workflow and read onboarding/current-state/research entry points.
 - Researched current external best practices for CRA/ENISA, WCAG 2.2, WebKit storage eviction, web storage quotas, Core Web Vitals, NIST 800-63-4, OWASP API/security supply chain, CycloneDX, Sigstore, DSA, EAA/BFSG, EU AI Act and current competitor positioning.
-- Created [[../gap-closure-concept-2026-05-22]] with 15 Solution Tracks covering all Pre-Mortem report ranges and the BYOC accepted-risk gate.
+- Created [[gap-closure-concept-2026-05-22]] with 15 Solution Tracks covering all Pre-Mortem report ranges and the BYOC accepted-risk gate.
 - Updated [[../../60-Research/pre-mortem/findings-registry]] from `open` to `mitigated` where the concept closes the research/concept gap; BYOC stays `accepted-risk`.
 - Updated source report finding YAML blocks with `resolved_by: [[gap-closure-concept-2026-05-22]]` and `status: mitigated` / `accepted-risk`.
 - Updated [[../../00-Index/Research-Map]], [[../../60-Research/00-summary]], [[../../60-Research/pre-mortem/00-index]] and [[../../00-Index/Current-State]] entry points.

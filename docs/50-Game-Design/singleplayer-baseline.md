@@ -1,4 +1,4 @@
-﻿---
+---
 title: Singleplayer Baseline
 status: approved
 tags: [game-design, mode, singleplayer, baseline]
@@ -33,7 +33,7 @@ In the long-term singleplayer baseline:
 - Both content modes are fully available after their rollout
   ([[mode-create-a-club-roguelite]] and [[mode-manage-a-club-career]]).
 - All sub-systems are fully exposed.
-- The game is **fully pausable** and **accelerable** (1Ã—, 2Ã—, 4Ã—,
+- The game is **fully pausable** and **accelerable** (1×, 2×, 4×,
   match-only mode).
 - All actions are **delegable** to assistants where the player chooses.
 - The user can **save at any moment**.

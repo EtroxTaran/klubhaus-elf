@@ -1,4 +1,4 @@
-﻿---
+---
 title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-22
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[05-Building-Blocks]], [[context-contracts/README]], [[../../30-Implementation/mvp-implementation-roadmap]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]]
 ---
 
 # Bounded Context Map
@@ -17,12 +17,12 @@ its state machine(s), its database tables, and a thin public contract
 (commands + queries + domain events) that is JSON-serialisable and
 network-transparent.
 
-> Decision authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]] â€”
+> Decision authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]] —
 > accepted 2026-05-16.
 
-Per-context public contracts and code paths:
-[[context-contracts/README]]. MVP build order:
-[[../../30-Implementation/mvp-implementation-roadmap]].
+Per-context public contracts and code paths (`context-contracts/`, planned).
+MVP build order:
+[[../30-Implementation/mvp-implementation-roadmap]].
 
 **Service-ready** means: although MVP ships as one process, every
 context's contract is designed as if it could be running on its own
@@ -197,12 +197,12 @@ scaling signal forces a split.
 This is the explicit user requirement that drove this map: maximum
 service-architecture readiness so individual systems can be
 re-developed independently and scaled independently. See ADR-0019
-Â§Decision.
+§Decision.
 
 ## 6. Storage isolation
 
 Each context owns its own PostgreSQL tables (per
-[[09-Decisions/ADR-0027-postgres-data-model]] â€” supersedes the SurrealDB
+[[09-Decisions/ADR-0027-postgres-data-model]] — supersedes the SurrealDB
 mechanics in [[09-Decisions/ADR-0004-data-model]]). Tables live in
 `public` (platform contexts) or in a `save_<uuidv7hex>` schema (per-save
 contexts); access is routed through `QueryGateway.withPlatform` /

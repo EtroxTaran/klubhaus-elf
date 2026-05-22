@@ -1,9 +1,9 @@
 ---
 title: Introduction
-status: draft
+status: current
 tags: [architecture]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-05-22
 type: arch
 related: [[02-Constraints]], [[03-Context]], [[04-Solution-Strategy]], [[../00-Index/Vision]]
 ---

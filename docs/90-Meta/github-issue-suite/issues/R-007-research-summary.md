@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 id: R-007
 title: [research] Consolidate Phase 1 findings and MVP recommendation
 labels: type:research, area:research, prio:critical, size:m, parallel:after-research

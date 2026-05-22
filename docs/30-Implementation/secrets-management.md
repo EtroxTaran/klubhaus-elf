@@ -518,11 +518,14 @@ the F5 master key `K` — that lives only client-side, never on
 the server. The column-encryption key rotates independently of
 the F5 envelope rotation.
 
-**Schema** (already provisioned per F2 §2.1):
+**Schema** (already provisioned per F2 §2.1; Drizzle columns on the
+platform `public.user` table —
+[[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] §1):
 
-```surql
-DEFINE FIELD account_secret_ciphertext       ON user TYPE bytes;
-DEFINE FIELD account_secret_column_key_version ON user TYPE int VALUE 1;
+```ts
+// columns on packages/db/src/schema/platform/identity.ts → user
+accountSecretCiphertext: customBytea('account_secret_ciphertext').notNull(),
+accountSecretColumnKeyVersion: integer('account_secret_column_key_version').notNull().default(1),
 ```
 
 **Config shape** (in `apps/web/src/server/secrets/account-secret-keyring.ts`):

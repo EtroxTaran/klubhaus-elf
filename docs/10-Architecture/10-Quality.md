@@ -1,9 +1,9 @@
 ---
 title: Quality
-status: draft
+status: current
 tags: [architecture, quality]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-05-22
 type: arch
 related: [[08-Crosscutting]], [[../30-Implementation/ci-and-review-process]], [[09-Decisions/ADR-0001-tech-stack]]
 ---

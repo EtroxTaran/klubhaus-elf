@@ -45,8 +45,8 @@ already-locked foundations:
   [[../50-Game-Design/mode-create-a-club-roguelite]] (Create-a-Club
   Roguelite — permadeath + meta-progression).
 - **Wave 1 research**: [[club-boss-analysis]] documented the inbox-
-  as-narrative pattern from Club Boss; D5 builds on it. [[anstoss-
-  series-deep-dive]] documented Anstoss's inbox-driven storytelling.
+  as-narrative pattern from Club Boss; D5 builds on it.
+  [[anstoss-series-deep-dive]] documented Anstoss's inbox-driven storytelling.
 
 This note adds: complete FTUE flow, mode-picker design, inbox
 tutorial sender cast + 12-message arc + voice guides, feed-card

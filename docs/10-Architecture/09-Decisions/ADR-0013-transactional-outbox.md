@@ -13,19 +13,7 @@ related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-mult
 
 # ADR-0013: Transactional Outbox for Domain Events
 
-> **SUPERSEDED on 2026-05-19 by [[ADR-0028-postgres-transactional-outbox]].**
-> Old way: SurrealDB outbox table + Redis Streams fan-out (atomic in DB,
-> at-least-once to Redis). New way: PostgreSQL outbox written in the **same
-> Postgres transaction** as the domain change (strictly stronger guarantee);
-> publisher learns of new rows via a **polling-floor + `LISTEN/NOTIFY` hybrid**
-> (polling is the correctness floor, NOTIFY a latency hint); cold archive via
-> **native declarative range partitioning** by month; fan-out via the
-> [[ADR-0023-realtime-transport]] interface (SSE now, Centrifugo planned).
-> The transactional-outbox *pattern* (UUIDv7 event IDs, idempotent consumers
-> via `consumer_event_offset` UNIQUE, hot 60d + cold archive forever,
-> outbox-is-audit-trail, lag SLOs warn>60s/>1000 + crit>300s/>10000) is
-> **preserved** in [[ADR-0028-postgres-transactional-outbox]]. Kept for
-> history — do not implement the SurrealDB/Redis-Streams substrate here.
+> **Superseded — historical memory only.** This document is superseded by [[ADR-0028-postgres-transactional-outbox]] and must not be implemented. The current decision/spec lives there; see also [[../../00-Index/Decision-Log]] for the authoritative index. Retained for historical context per the vault's supersede discipline.
 
 ## Status
 

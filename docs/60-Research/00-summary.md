@@ -1,4 +1,4 @@
-﻿---
+---
 title: Research Summary
 status: current
 tags: [research, summary]
@@ -7,22 +7,22 @@ updated: 2026-05-22
 
 # Research Summary
 
-## Phase 1 â€” Research Wave 1 (Milestone M1.1, 100 %)
+## Phase 1 — Research Wave 1 (Milestone M1.1, 100 %)
 
 | # | Doc | Linear | Status |
 |---|---|---|---|
-| 1 | [[anstoss-series-deep-dive]] â€” Anstoss design DNA, weekly heartbeat, mechanics map, IP boundaries, 17 MVP/post-MVP recommendations | [AKOM-113](https://linear.app/coding-x/issue/AKOM-113) | Done |
-| 2 | [[club-boss-analysis]] â€” Mobile chairman loop, inbox-as-narrative, 14 product takeaways, IP risk notes | [AKOM-114](https://linear.app/coding-x/issue/AKOM-114) | Done |
-| 3 | [[competitor-matrix]] â€” 8 products, feature coverage, differentiation quadrant, MVP-expectation risks | [AKOM-112](https://linear.app/coding-x/issue/AKOM-112) | Done (extended in Wave 2) |
-| 4 | [[ip-and-licensing]] â€” License matrix, hard-stop list, fictional naming schema, ADR-0007 direct input, 5 needs-decision items | [AKOM-111](https://linear.app/coding-x/issue/AKOM-111) | Done |
-| 5 | [[pwa-offline-patterns]] â€” Dexie 4 architecture, migrations, SW update strategy, outbox, iOS/Android quotas, ADR-0002 + ADR-0005 inputs | [AKOM-110](https://linear.app/coding-x/issue/AKOM-110) | Done |
+| 1 | [[anstoss-series-deep-dive]] — Anstoss design DNA, weekly heartbeat, mechanics map, IP boundaries, 17 MVP/post-MVP recommendations | [AKOM-113](https://linear.app/coding-x/issue/AKOM-113) | Done |
+| 2 | [[club-boss-analysis]] — Mobile chairman loop, inbox-as-narrative, 14 product takeaways, IP risk notes | [AKOM-114](https://linear.app/coding-x/issue/AKOM-114) | Done |
+| 3 | [[competitor-matrix]] — 8 products, feature coverage, differentiation quadrant, MVP-expectation risks | [AKOM-112](https://linear.app/coding-x/issue/AKOM-112) | Done (extended in Wave 2) |
+| 4 | [[ip-and-licensing]] — License matrix, hard-stop list, fictional naming schema, ADR-0007 direct input, 5 needs-decision items | [AKOM-111](https://linear.app/coding-x/issue/AKOM-111) | Done |
+| 5 | [[pwa-offline-patterns]] — Dexie 4 architecture, migrations, SW update strategy, outbox, iOS/Android quotas, ADR-0002 + ADR-0005 inputs | [AKOM-110](https://linear.app/coding-x/issue/AKOM-110) | Done |
 
-## Phase 1 â€” Research Synthesis (Milestone M1.2)
+## Phase 1 — Research Synthesis (Milestone M1.2)
 
-- [[../95-Archive/gap-reports/feature-gap-analysis]] â€” MoSCoW scope MVP â†’ M8, **populated by Wave 2**.
+- [[../95-Archive/gap-reports/feature-gap-analysis]] — MoSCoW scope MVP → M8, **populated by Wave 2**.
 - Phase 1 consolidation rewrite of this file - this version covers Wave 2.
 
-## Phase 2 â€” Research Wave 2 (2026-05-16)
+## Phase 2 — Research Wave 2 (2026-05-16)
 
 Raw Perplexity transcripts preserved in [[raw-perplexity/README|raw-perplexity/]];
 synthesised research outputs:
@@ -42,7 +42,7 @@ ADR-0004 (data model via Bounded Context Map), ADR-0008 (mobile-first UI via
 progressive-disclosure), and the M2-M8 seed epics. It also proposes new ADRs
 ADR-0010..ADR-0016 - see [[../00-Index/Decision-Log]].
 
-## Phase 1 â€” Identified Wave 2 gaps
+## Phase 1 — Identified Wave 2 gaps
 
 See [[../95-Archive/gap-reports/research-wave-2-gaps]] for the historical
 prioritised list of deeper research that Wave 1 surfaced but did not cover.
@@ -96,13 +96,13 @@ superseding ADR instead of being planned migration paths.
 covering all major domains across **3 iterations** for the
 6-month / 10.000-player horizon (single-node Hetzner vs. cloud autoscaling).
 
-- **Iteration 1**: 4 original reports â€” architecture, tech & ops, gameplay,
+- **Iteration 1**: 4 original reports — architecture, tech & ops, gameplay,
   monetization (40 findings).
 - **Iteration 2**: [[pre-mortem/PM-2026-05-20-05-security-and-integrity|Security
   & Integrity]], future-scope [[pre-mortem/PM-2026-05-20-06-distributed-match-compute|BYOC]],
   cross-cutting [[pre-mortem/threat-model|threat-model]], Single-Player-
   Foundation-Addenda in original reports (+22 findings).
-- **Iteration 3**: 12 deep-dive reports â€”
+- **Iteration 3**: 12 deep-dive reports —
   [[pre-mortem/PM-2026-05-20-07-live-ops-and-client-telemetry|Live-Ops]],
   [[pre-mortem/PM-2026-05-20-08-legal-consumer-law-and-tax|Legal/Tax (beyond DSGVO)]],
   [[pre-mortem/PM-2026-05-20-09-i18n-and-localization|i18n]],
@@ -117,8 +117,8 @@ covering all major domains across **3 iterations** for the
   [[pre-mortem/PM-2026-05-20-18-responsible-gaming-and-open-source|Responsible-Gaming/OSS]]
   (+129 findings, each with verified sources + accessed-dates).
 
-**~191 findings total** with stable IDs (`PM-2026-05-20-XX-F-NN`) + **P0â€“P4
-priority tagging**. Cite via `Addresses PM-â€¦` in commits, PRs, ADR-Frontmatter.
+**~191 findings total** with stable IDs (`PM-2026-05-20-XX-F-NN`) + **P0–P4
+priority tagging**. Cite via `Addresses PM-…` in commits, PRs, ADR-Frontmatter.
 Aggregated status sorted by priority lives in [[pre-mortem/findings-registry]].
 
 **Gap Closure (2026-05-22).** [[../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
@@ -131,6 +131,6 @@ downstream implementation evidence.
 finding into 15 expertise categories (SEC, BACKEND, PLATFORM, FRONTEND,
 DETERMINISM, GAMEDESIGN, TEST, A11Y, LEGAL, PRODUCT, AI, COMM, BRAND, FOUNDER,
 SUSTAIN), each with self-contained briefing + finding list + expected output
-artefacts. [[pre-mortem/prioritization-matrix]] gives PÃ—I-heatmap,
-ScoreÃ—Effort-lever, Cross-Cutting-Cluster Aâ€“G, regulatory deadlines and the
-T-90 â†’ T-0 sprint allocation.
+artefacts. [[pre-mortem/prioritization-matrix]] gives P×I-heatmap,
+Score×Effort-lever, Cross-Cutting-Cluster A–G, regulatory deadlines and the
+T-90 → T-0 sprint allocation.

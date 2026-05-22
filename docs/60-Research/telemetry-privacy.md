@@ -1,4 +1,4 @@
-﻿---
+---
 title: Telemetry, Privacy and GDPR - Locked Decisions
 status: current
 tags: [research, telemetry, privacy, gdpr, observability, pwa]

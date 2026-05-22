@@ -1,4 +1,4 @@
-﻿---
+---
 title: Sponsorship Portfolio - Asset-level Sponsor Inventory
 status: draft
 tags: [game-design, sponsors, finance]
@@ -81,7 +81,7 @@ constrain other decisions:
 - Player conduct clauses (disciplinary triggers).
 - Stadium-name retention (no name change for X years).
 
-Breaking a side-condition â†’ contract renegotiation, fine or termination.
+Breaking a side-condition → contract renegotiation, fine or termination.
 
 ## 5. Sponsor management UI tiers
 

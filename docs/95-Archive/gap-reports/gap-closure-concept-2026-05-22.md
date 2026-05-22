@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Gap Closure Concept 2026-05-22"
 status: current
 tags: [research, pre-mortem, gap-closure, concept, 2026-Q2]
@@ -22,12 +22,12 @@ related:
 
 # Gap Closure Concept 2026-05-22
 
-Dieses Dokument schlieÃŸt die **Research- und KonzeptlÃ¼cke** fÃ¼r alle offenen
-Findings aus dem Pre-Mortem-Cluster 2026-05-20. Es ist kein Ersatz fÃ¼r
-Implementierung, RechtsprÃ¼fung, Pen-Test, Restore-Drill oder CI-Nachweis.
+Dieses Dokument schließt die **Research- und Konzeptlücke** für alle offenen
+Findings aus dem Pre-Mortem-Cluster 2026-05-20. Es ist kein Ersatz für
+Implementierung, Rechtsprüfung, Pen-Test, Restore-Drill oder CI-Nachweis.
 Status-Semantik ab 2026-05-22:
 
-- `mitigated`: Es gibt eine dokumentierte, projektkompatible LÃ¶sungslinie mit
+- `mitigated`: Es gibt eine dokumentierte, projektkompatible Lösungslinie mit
   klaren Folge-Artefakten.
 - `verified`: bleibt fuer objektive Evidenz reserviert.
 - `accepted-risk`: Future-Scope bleibt bewusst nicht gebaut, aber ist mit Gate
@@ -35,14 +35,14 @@ Status-Semantik ab 2026-05-22:
 
 ## Executive Decision
 
-Wir schlieÃŸen die Gaps nicht durch 191 isolierte EinzelmaÃŸnahmen, sondern durch
+Wir schließen die Gaps nicht durch 191 isolierte Einzelmaßnahmen, sondern durch
 15 Solution Tracks. Jeder Track hat eine klare DDD-/Vault-Heimat, eine
 Best-Practice-Basis, ein Differenzierungsziel und eine Verifikationsform. Das
 passt zur Vision: **IP-clean, mobile-first, offline-ready, deterministisch,
-trust-aware, zugÃ¤nglich, nicht exploitativ monetarisiert**.
+trust-aware, zugänglich, nicht exploitativ monetarisiert**.
 
-Die wichtigste Produktdifferenzierung gegenÃ¼ber Football Manager, Top Eleven,
-OSM und Soccer Manager ist nicht "mehr Daten". Die LÃ¼cke im Markt ist:
+Die wichtigste Produktdifferenzierung gegenüber Football Manager, Top Eleven,
+OSM und Soccer Manager ist nicht "mehr Daten". Die Lücke im Markt ist:
 
 1. **Anstoss-Charme + modernes Systemdesign**: inbox-driven, Zeitung/Narrative,
    aber deterministisch und testbar.
@@ -56,22 +56,22 @@ OSM und Soccer Manager ist nicht "mehr Daten". Die LÃ¼cke im Markt ist:
    Stat-Boosts; bezahlbar sind kosmetische/komfortorientierte, trust-aware
    Entitlements.
 6. **IP-clean generated football universe**: keine reale Club-/Spieler-
-   AbhÃ¤ngigkeit, dadurch weniger Lizenzkosten, mehr Mod-/Scenario-FlexibilitÃ¤t.
+   Abhängigkeit, dadurch weniger Lizenzkosten, mehr Mod-/Scenario-Flexibilität.
 
 ## Source Baseline
 
 Aktuelle externe Research-Basis, Stand 2026-05-22:
 
-- EU CRA: ab **2026-09-11** mÃ¼ssen aktiv ausgenutzte Schwachstellen und schwere
-  SicherheitsvorfÃ¤lle Ã¼ber die ENISA Single Reporting Platform gemeldet werden;
-  Early Warning 24 h, vollstÃ¤ndige Meldung 72 h. Quellen:
+- EU CRA: ab **2026-09-11** müssen aktiv ausgenutzte Schwachstellen und schwere
+  Sicherheitsvorfälle über die ENISA Single Reporting Platform gemeldet werden;
+  Early Warning 24 h, vollständige Meldung 72 h. Quellen:
   [EU Commission CRA reporting](https://digital-strategy.ec.europa.eu/en/policies/cra-reporting),
   [ENISA SRP](https://www.enisa.europa.eu/topics/product-security-and-certification/single-reporting-platform-srp).
 - WCAG 2.2 ist W3C Recommendation seit 2023-10-05; relevant sind insbesondere
   2.5.7 Dragging Movements, 2.5.8 Target Size, 3.3.8 Accessible Authentication.
   Quelle: [W3C WCAG 2.2](https://www.w3.org/WAI/standards-guidelines/wcag/new-in-22/).
 - WebKit ITP kann script-writable storage inklusive IndexedDB, Service Worker
-  und Cache nach 7 Tagen ohne Nutzerinteraktion lÃ¶schen. Quelle:
+  und Cache nach 7 Tagen ohne Nutzerinteraktion löschen. Quelle:
   [WebKit Tracking Prevention](https://webkit.org/tracking-prevention/).
 - Web Storage bleibt "best effort", wenn Persistent Storage nicht erfolgreich
   beantragt wurde; QuotaExceededError muss explizit behandelt werden. Quelle:

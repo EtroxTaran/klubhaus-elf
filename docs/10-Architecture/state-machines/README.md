@@ -1,9 +1,9 @@
 ---
 title: State Machines Index
-status: draft
+status: current
 tags: [architecture, state-machine, ddd]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-22
 type: index
 binding: false
 related: [[../bounded-context-map]], [[../09-Decisions/ADR-0014-state-machines]]
@@ -32,6 +32,7 @@ Each state machine note has:
 - Mermaid diagram of states + transitions.
 - Trigger sources (commands, timers, external events).
 - Effect on other contexts.
-- Persistence model (SurrealDB tables).
+- Persistence model (PostgreSQL + Drizzle tables per
+  [[../09-Decisions/ADR-0027-postgres-data-model]]).
 - Failure / recovery cases.
 - Test strategy.

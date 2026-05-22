@@ -1,32 +1,32 @@
-﻿---
-title: Research Wave 2 â€” Gap Analysis & Backlog Proposal
+---
+title: Research Wave 2 — Gap Analysis & Backlog Proposal
 status: superseded
 superseded_by: wave-3-gap-analysis
 tags: [research, planning, gap-analysis, superseded]
 updated: 2026-05-16
 ---
 
-# Research Wave 2 â€” Gap Analysis & Backlog Proposal
+# Research Wave 2 — Gap Analysis & Backlog Proposal
 
 > **Superseded by [[wave-3-gap-analysis]] (2026-05-16). Historical context
 > only.** The 19 R2-01..R2-19 IDs are preserved verbatim under group **D**
 > of the Wave 3 backlog so any reference from Linear issues / PRs still
-> resolves. Do not implement from this note â€” implement from Wave 3.
+> resolves. Do not implement from this note — implement from Wave 3.
 
 > Prerequisite reading: [[anstoss-series-deep-dive]], [[club-boss-analysis]],
 > [[competitor-matrix]], [[ip-and-licensing]], [[pwa-offline-patterns]].
 >
 > This document audits Wave 1 (Milestone M1.1) and proposes the topics where we
-> must dig deeper **before** the Phase 2 ADRs (AKOM-117â€¦126) and the M2-M8 seed
+> must dig deeper **before** the Phase 2 ADRs (AKOM-117…126) and the M2-M8 seed
 > epics can be finalised without guesswork. Each item is sized so that it can
 > ship as a single, parallel-safe Linear issue with one Markdown output file.
 >
-> **Backlog size:** 19 follow-up research items (R2-01â€¦R2-19) covering engine
+> **Backlog size:** 19 follow-up research items (R2-01…R2-19) covering engine
 > foundations, product & UX, and platform/cross-cutting concerns. The first
-> wave of 13 was created as Linear issues `AKOM-136`â€¦`AKOM-148`; the additional
-> six (R2-14â€¦R2-19) extend it.
+> wave of 13 was created as Linear issues `AKOM-136`…`AKOM-148`; the additional
+> six (R2-14…R2-19) extend it.
 
-## 2026-05-16 update â€” partial coverage from product-design Wave 2
+## 2026-05-16 update — partial coverage from product-design Wave 2
 
 A separate research wave focused on **product design** (not technical depth)
 landed on 2026-05-16 and populated seven synthesis notes plus six raw
@@ -40,15 +40,15 @@ technical R2 items below - those remain valid - but it *touches* a few:
 | R2-07 Mobile UX, IA & a11y | [[progressive-disclosure-research]] gives the 3-tier IA principle | Route map, components, a11y commitments |
 | R2-12 Hotseat & async friend leagues | [[async-multiplayer-research]] gives Fixed/Dynamic cadence + watch-party design | Hotseat-specific UX, conflict resolution |
 | R2-13 Women's football | Not touched | Still open |
-| **New R2-20** Environment, regulations, rivalries, sanctions, match-day events | NEW research lane introduced by [[regulations-and-pyramids-research]], [[fan-culture-segmentation-research]] and [[../50-Game-Design/matchday-event-engine]] | DFB/FA/LFP/FIGC tier-by-tier obligation tables, sanction chain calibration, event probability tuning |
+| **New R2-20** Environment, regulations, rivalries, sanctions, match-day events | NEW research lane introduced by [[regulations-and-pyramids-research]], [[fan-culture-segmentation-research]] and [[matchday-event-engine]] | DFB/FA/LFP/FIGC tier-by-tier obligation tables, sanction chain calibration, event probability tuning |
 
 The product-design wave also proposed seven new ADRs (ADR-0010..ADR-0016)
-which are tracked in [[../00-Index/Decision-Log]]. Two of these have
+which are tracked in [[Decision-Log]]. Two of these have
 research dependencies that should map to the R2 backlog:
 
-- ADR-0011 (server-authoritative MP) â†” R2-08 (determinism / replay), R2-12.
-- ADR-0013 (transactional outbox) â†” R2-08, R2-09.
-- ADR-0015 (spectator snapshot streaming) â†” R2-09 (perf budgets), R2-16
+- ADR-0011 (server-authoritative MP) ←” R2-08 (determinism / replay), R2-12.
+- ADR-0013 (transactional outbox) ←” R2-08, R2-09.
+- ADR-0015 (spectator snapshot streaming) ←” R2-09 (perf budgets), R2-16
   (match presentation rendering).
 
 ## Method
@@ -58,8 +58,8 @@ For every Wave 1 doc we asked three questions:
 1. Which Acceptance Criteria were satisfied at the survey level only and would
    collapse if we tried to turn them into an ADR decision or a unit-tested
    implementation today?
-2. Which Future-scope notes were explicitly parked in `Â§Future-scope notes` /
-   `Â§Needs-decision` sections?
+2. Which Future-scope notes were explicitly parked in `§Future-scope notes` /
+   `§Needs-decision` sections?
 3. Which dependencies that downstream ADRs and M2-M8 epics declare
    (`area:match-engine`, `area:gamedata`, `area:squad`, `area:training`,
    `area:finance`, `area:youth`, `area:transfer`, `area:league`, `area:save`)
@@ -67,7 +67,7 @@ For every Wave 1 doc we asked three questions:
 
 The intersection is the Wave 2 backlog below.
 
-## Wave 1 audit â€” Acceptance vs. ADR-readiness
+## Wave 1 audit — Acceptance vs. ADR-readiness
 
 | Wave 1 doc | Strong (ADR-ready) | Weak (needs Wave 2) |
 |---|---|---|
@@ -76,21 +76,21 @@ The intersection is the Wave 2 backlog below.
 | `competitor-matrix` | Differentiation quadrant, MVP risks | Women's football data shape, async/hotseat multiplayer feasibility, annual cadence vs. living world |
 | `ip-and-licensing` | License matrix, hard-stop list, ADR-0007 input | Behind-the-Name CC BY-SA share-alike risk in our build pipeline; Wikidata-bloom-filter cost & FP rate; heraldic SVG generator algorithms; sponsor-brand collision check (Interbrand top-500 dataset) |
 | `pwa-offline-patterns` | Dexie schema, SW update flow, outbox, iOS quotas | Determinism / RNG choice, replay format, perf budget on low-end Android, push/re-engagement, save encryption, OPFS path, telemetry/privacy/GDPR, SurrealDB schema patterns + per-save isolation, client-state management without Redux/Zustand |
-| Vault structure (stubs to fill) | Decision-Log, ADR skeletons | `docs/00-Index/Glossary.md` (4 entries), `docs/10-Architecture/11-Risks.md` (4 bullets), `docs/30-Implementation/surrealdb-integration.md` (2 paragraphs) â€” all need researched inputs |
+| Vault structure (stubs to fill) | Decision-Log, ADR skeletons | `docs/00-Index/Glossary.md` (4 entries), `docs/10-Architecture/11-Risks.md` (4 bullets), `docs/30-Implementation/surrealdb-integration.md` (2 paragraphs) — all need researched inputs |
 
 ## Prioritised Wave 2 backlog
 
 Priorities use the existing Linear scheme (`prio:critical` = blocks an ADR or
 M2 work, `prio:high` = blocks an M2-M8 seed epic, `prio:medium` = unblocks
-post-MVP). All items are `parallel:safe` by default â€” they each produce a
+post-MVP). All items are `parallel:safe` by default — they each produce a
 single Markdown file under `docs/60-Research/`.
 
-### R2-01 â€” Deterministic match-engine simulation model â€” `prio:critical` â€” RESOLVED 2026-05-16
+### R2-01 — Deterministic match-engine simulation model — `prio:critical` — RESOLVED 2026-05-16
 
 > **Resolved by [[match-engine-simulation-model]] (Wave 3 gap D1,
 > 2026-05-16).** Locked: hybrid Markov + attribute rolls; per-event
 > tick; event schema with typed payloads; hybrid zone+role formation
-> influence; strict MatchCoreRng/MatchAiRng separation; â‰¤ 50 ms /
+> influence; strict MatchCoreRng/MatchAiRng separation; ≤ 50 ms /
 > match budget; full test pyramid with 10 canonical golden replays.
 
 **Why now.** ADR-0003 (AKOM-119) and AKOM-130 (Match Engine v1) both depend on
@@ -106,17 +106,17 @@ calibration, no formation interaction model.
 - Recommendation for v1: event schema, tick granularity, formation/mentality
   effect curves, RNG choice (xoroshiro128+ / PCG / sfc32), seed handling for
   replay determinism, edge cases (red cards, injuries, set pieces).
-- Performance budget: target â‰¤ 50 ms per match on a 2022 mid-range Android in
-  Workers; â‰¤ 5 ms per league-round AI matches (background-batch tick).
+- Performance budget: target ≤ 50 ms per match on a 2022 mid-range Android in
+  Workers; ≤ 5 ms per league-round AI matches (background-batch tick).
 - Test strategy: property-based tests (fast-check) for determinism,
   golden-replay fixtures, statistical envelope (goals per match, home advantage).
 
 **Output.** `docs/60-Research/match-engine-simulation-model.md`.
 **Acceptance.** Recommended event schema, formation-effect curves, RNG choice,
-â‰¥ 10 cited public references, ADR-0003 direct-input block, links to AKOM-119
+≥ 10 cited public references, ADR-0003 direct-input block, links to AKOM-119
 and AKOM-130.
 
-### R2-02 â€” Player & club generator algorithms â€” `prio:critical`
+### R2-02 — Player & club generator algorithms — `prio:critical`
 
 **Why now.** ADR-0004 (AKOM-120, data model) and ADR-0007 (AKOM-125, naming)
 need an algorithmic foundation. Wave 1 (`ip-and-licensing`) gave us the
@@ -142,7 +142,7 @@ crest synthesiser, the league budget tiers, or the migration model.
 **Acceptance.** Algorithm choices + rationale, bundle-size estimate per asset
 type, FP-rate target for the bloom filter, ADR-0004 / ADR-0007 input blocks.
 
-### R2-03 â€” Tactics & formation depth on mobile â€” `prio:high`
+### R2-03 — Tactics & formation depth on mobile — `prio:high`
 
 **Why now.** Anstoss deep dive recommended a halftime modal with formation /
 mentality / one-tap sub; Club Boss reviews flagged shallow tactics. ADR-0008
@@ -155,7 +155,7 @@ contract for the match engine.
   bands, player-role definitions; how FM Touch, Soccer Manager, Top Eleven
   expose them on phones.
 - Mobile UX patterns for set pieces, marking, pressing, defensive line.
-- Recommended MVP slice: 5â€“8 formations, 3 mentalities, 4 instructions, plus a
+- Recommended MVP slice: 5–8 formations, 3 mentalities, 4 instructions, plus a
   *team chemistry* multiplier (Anstoss "Eingespielt").
 - Tactics contract feeding the match engine (R2-01) and the training plan.
 
@@ -163,7 +163,7 @@ contract for the match engine.
 **Acceptance.** Recommended MVP tactics slice, mobile UX patterns, ADR-0003
 and ADR-0008 input blocks, links to AKOM-129 (training) and AKOM-130.
 
-### R2-04 â€” AI manager / opponent behaviour â€” `prio:high`
+### R2-04 — AI manager / opponent behaviour — `prio:high`
 
 **Why now.** AKOM-131 (league), AKOM-134 (transfers) and AKOM-129 (training)
 all assume the rest of the world has plausible AI managers. Wave 1 explicitly
@@ -179,10 +179,10 @@ parked this.
 - Deterministic seeds, world-drift cycles (fallen giants, rising rivals).
 
 **Output.** `docs/60-Research/ai-manager-behaviour.md`.
-**Acceptance.** Recommended AI architecture, 4â€“6 archetypes, difficulty levers,
+**Acceptance.** Recommended AI architecture, 4–6 archetypes, difficulty levers,
 ADR-0003 / ADR-0009 input blocks.
 
-### R2-05 â€” Strategic onboarding & first-session design â€” `prio:high`
+### R2-05 — Strategic onboarding & first-session design — `prio:high`
 
 **Why now.** Club Boss reviews show that tutorials *teach controls but not
 strategy*, and Anstoss is widely criticised for hostile menus. Skipping this
@@ -191,7 +191,7 @@ research is the single biggest churn risk in MVP.
 **Scope.**
 
 - Onboarding patterns from Top Eleven, OSM, SM24, We Are Football.
-- Recommended 60-second start (pick country â†’ pick fictional club â†’ optional
+- Recommended 60-second start (pick country → pick fictional club → optional
   manager avatar) plus a guided first season teaching financial sustainability
   (ticket pricing, sponsorship, wage budget).
 - Empty-state and re-engagement copy, feed-card primary actions.
@@ -201,11 +201,11 @@ research is the single biggest churn risk in MVP.
 **Acceptance.** Recommended flow, copy outline, ADR-0008 input block, links to
 AKOM-115 (MoSCoW) and ADR-0006 (i18n / tone).
 
-### R2-06 â€” Late-game / end-game systems â€” `prio:high`
+### R2-06 — Late-game / end-game systems — `prio:high`
 
 **Why now.** Both Club Boss and Anstoss flatline at the top of the pyramid.
 Without a designed late-game loop, dynasty saves stop being interesting around
-season 4â€“6 â€” which is exactly the cohort we want to retain.
+season 4–6 — which is exactly the cohort we want to retain.
 
 **Scope.**
 
@@ -220,7 +220,7 @@ season 4â€“6 â€” which is exactly the cohort we want to retain.
 **Acceptance.** Recommended systems, rough numeric tuning, ADR-0003 / ADR-0009
 input blocks, link to AKOM-131 (league) and AKOM-133 (finance).
 
-### R2-07 â€” Mobile UX, information architecture & accessibility â€” `prio:high`
+### R2-07 — Mobile UX, information architecture & accessibility — `prio:high`
 
 **Why now.** ADR-0008 (AKOM-124) requires a defensible mobile-first IA. Wave 1
 gives us patterns (office hub, inbox feed, pre-match comparison) but not a
@@ -238,7 +238,7 @@ route map, navigation pattern, or WCAG 2.2 commitments.
 **Output.** `docs/60-Research/mobile-ux-ia-a11y.md`.
 **Acceptance.** Route map, IA diagram, a11y commitments, ADR-0008 input block.
 
-### R2-08 â€” Determinism, RNG, replay & save-determinism contract â€” `prio:critical` â€” RESOLVED 2026-05-16
+### R2-08 — Determinism, RNG, replay & save-determinism contract — `prio:critical` — RESOLVED 2026-05-16
 
 > **Resolved by [[determinism-and-replay]] (Wave 3 gap D8, 2026-05-16).**
 > Locked: PCG32 via pure-rand; 8 named RNG streams; hybrid replay
@@ -264,10 +264,10 @@ and replay format unspecified.
 **Acceptance.** PRNG recommendation, stream-isolation design, replay format,
 ADR-0003 / ADR-0005 input blocks.
 
-### R2-09 â€” Performance budgets on low-end Android & iOS â€” `prio:high`
+### R2-09 — Performance budgets on low-end Android & iOS — `prio:high`
 
 **Why now.** PWA research gave us storage quotas but no compute budgets. The
-match engine, league tick and SurrealDB queries must fit a â‰¤ 2 GB RAM, mid-tier
+match engine, league tick and SurrealDB queries must fit a ≤ 2 GB RAM, mid-tier
 Android target (the modal device in our market). Without numbers, ADR-0003 and
 AKOM-130 will guess.
 
@@ -275,9 +275,9 @@ AKOM-130 will guess.
 
 - Target devices (Snapdragon 6-class, A12-class iPhone), browser engines,
   Lighthouse performance budgets.
-- Match engine target: â‰¤ 50 ms per match in a Web Worker; league round
-  â‰¤ 800 ms wall clock; first-paint â‰¤ 1.5 s on 3G Fast.
-- Memory headroom: â‰¤ 80 MB JS heap on phone, â‰¤ 30 MB IDB working set.
+- Match engine target: ≤ 50 ms per match in a Web Worker; league round
+  ≤ 800 ms wall clock; first-paint ≤ 1.5 s on 3G Fast.
+- Memory headroom: ≤ 80 MB JS heap on phone, ≤ 30 MB IDB working set.
 - Bundle budgets per route (initial JS, on-demand chunks).
 - Profiling and CI gate strategy (Lighthouse CI, custom perf tests).
 
@@ -285,7 +285,7 @@ AKOM-130 will guess.
 **Acceptance.** Device matrix, per-subsystem budgets, CI gate proposal, link to
 AKOM-127 (infra checklist).
 
-### R2-10 â€” i18n, copy tone & localisation strategy â€” `prio:medium`
+### R2-10 — i18n, copy tone & localisation strategy — `prio:medium`
 
 **Why now.** ADR-0006 (AKOM-123) requires a finalised i18n decision. Wave 1
 parked "Anstoss humour vs. dry FM tone" and never picked a library, namespace
@@ -306,7 +306,7 @@ name pools (R2-02).
 **Acceptance.** Library choice + rationale, namespace map, tone guide, ADR-0006
 input block.
 
-### R2-11 â€” Telemetry, privacy, GDPR for an offline-first PWA â€” `prio:medium`
+### R2-11 — Telemetry, privacy, GDPR for an offline-first PWA — `prio:medium`
 
 **Why now.** ADR-0002 (offline-first) and ADR-0009 (Cursor orchestration) both
 imply analytics for SW-update telemetry, perf telemetry, error reporting. We
@@ -317,7 +317,7 @@ have no policy on what we collect, where it lives, and how a user opts in.
 - Threat model: what we should *not* know (career save contents, names typed
   in editor, navigation traces tied to identity).
 - Recommended stack: self-hosted Plausible / PostHog OSS / Umami / OpenTelemetry
-  â†’ file-only sink; tradeoffs in cost, GDPR posture, offline buffering.
+  → file-only sink; tradeoffs in cost, GDPR posture, offline buffering.
 - Error reporting: Sentry self-hosted vs. third-party; PII scrubbing for
   fictional-but-user-edited content.
 - Consent banner / settings UX; per-category opt-in.
@@ -327,7 +327,7 @@ have no policy on what we collect, where it lives, and how a user opts in.
 **Acceptance.** Recommended stack, data inventory, consent UX, ADR-0002 /
 ADR-0009 input blocks.
 
-### R2-12 â€” Hotseat & async friend leagues feasibility â€” `prio:medium`
+### R2-12 — Hotseat & async friend leagues feasibility — `prio:medium`
 
 **Why now.** Competitor matrix flagged hotseat as a clear differentiation
 opportunity (only We Are Football has it; trivial on Dexie). ADR-0004 may need
@@ -335,18 +335,18 @@ a multi-manager-per-save shape; we should know before locking the data model.
 
 **Scope.**
 
-- Pass-and-play UX on a phone (lock screen â†’ manager A â†’ handoff â†’ manager B).
+- Pass-and-play UX on a phone (lock screen → manager A → handoff → manager B).
 - Async friend leagues via save export/import (no infra) vs. minimal
   cloud-relay via SurrealDB Cloud (post-MVP).
 - Conflict resolution when two managers in the same save save offline (extends
-  the model in `pwa-offline-patterns` Â§8).
+  the model in `pwa-offline-patterns` §8).
 - Anti-cheat constraints for friend leagues (replay verification).
 
 **Output.** `docs/60-Research/multiplayer-feasibility.md`.
 **Acceptance.** MVP recommendation (hotseat? async? both?), data-model
 implications for ADR-0004, post-MVP path.
 
-### R2-13 â€” Women's football data model readiness â€” `prio:medium`
+### R2-13 — Women's football data model readiness — `prio:medium`
 
 **Why now.** FM26 and We Are Football 2024 ship women's competitions as a
 headline. Competitor matrix flagged that *skipping is acceptable, but the
@@ -359,13 +359,13 @@ not have to re-do schemas in M5.
   cross-league transfer constraints.
 - Calendar shape (women's leagues often offset from men's by 3 months).
 - Wage / value distribution differences and how to surface them honestly.
-- IP boundaries (no FIFPRO women's data, no real club mirrors â€” same rules).
+- IP boundaries (no FIFPRO women's data, no real club mirrors — same rules).
 
 **Output.** `docs/60-Research/womens-football-data-model.md`.
 **Acceptance.** Schema recommendation that's additive-only at MVP, calendar
 notes, ADR-0004 input block.
 
-### R2-14 â€” SurrealDB schema patterns for offline-first game data â€” `prio:critical` â€” RESOLVED 2026-05-16
+### R2-14 — SurrealDB schema patterns for offline-first game data — `prio:critical` — RESOLVED 2026-05-16
 
 > **Resolved by [[surrealdb-schema-patterns]] (Wave 3 gap D14, 2026-05-16).**
 > Locked: hybrid per-save isolation (platform DB + DB per save);
@@ -395,7 +395,7 @@ fixture, event-log, AI state, narrative-event content). The stub at
   per-save isolation strategy (one namespace? one database per save?
   one record-scoped prefix?), and how this maps onto the IDB/Dexie save
   envelope from `pwa-offline-patterns.md`.
-- Migration discipline: forward-only, idempotent `DEFINE â€¦ IF NOT EXISTS`;
+- Migration discipline: forward-only, idempotent `DEFINE … IF NOT EXISTS`;
   package mirror in `packages/db-schema`; type-gen integration.
 - Embedded SurrealDB (WASM) for offline reads alongside the Dexie envelope:
   is it worth shipping, or is Dexie the only client store with SurrealDB
@@ -407,7 +407,7 @@ table schema sketch, record-link vs. embedded decisions, query examples
 respecting `src/db/client.ts`, ADR-0004 input block, link to the
 implementation stub `surrealdb-integration.md`.
 
-### R2-15 â€” Narrative event content & authoring pipeline â€” `prio:high`
+### R2-15 — Narrative event content & authoring pipeline — `prio:high`
 
 **Why now.** Anstoss shipped 600+ interview prompts and 2 400+ keyed
 responses, the heart of its tone. Club Boss uses email-as-narrative. The
@@ -437,7 +437,7 @@ de-DE primary tone (R2-10) is a runtime puzzle.
 ICU key schema, deterministic-seeding contract with R2-08, ADR-0006 +
 ADR-0003 input blocks, link to ADR-0007 IP-clean rules.
 
-### R2-16 â€” Match-presentation rendering tech â€” `prio:high`
+### R2-16 — Match-presentation rendering tech — `prio:high`
 
 **Why now.** R2-01 is the simulation; R2-16 is how a phone *renders* the
 result. Three tiers in scope per Anstoss research (highlights, 2D ticker,
@@ -462,7 +462,7 @@ breaks the perf budget (R2-09) or the bundle size budget.
 `prefers-reduced-motion` & a11y guarantees, ADR-0008 input block, links
 to R2-01 (simulation contract) and R2-09 (perf budget).
 
-### R2-17 â€” React + TanStack client state without Redux/Zustand â€” `prio:high`
+### R2-17 — React + TanStack client state without Redux/Zustand — `prio:high`
 
 **Why now.** Workspace rule explicitly forbids Redux and Zustand. AGENTS.md
 mandates functional React + TanStack Router/Start with SSR. We have no
@@ -482,7 +482,7 @@ the match engine.
   observable?).
 - Match-engine Worker bridge: `postMessage` patterns, message-port
   fan-out, structured-clone constraints, replay scrubbing.
-- Persistent UI preferences (locale, theme, motion, sound) â€” IndexedDB,
+- Persistent UI preferences (locale, theme, motion, sound) — IndexedDB,
   not `localStorage`.
 - Testing strategy: store-free tests, Vitest patterns, Playwright with
   controlled stores.
@@ -492,7 +492,7 @@ the match engine.
 Worker-bridge pattern, ADR-0001 (tech-stack) + ADR-0008 input blocks,
 explicit non-goals (no Redux, no Zustand, no MobX).
 
-### R2-18 â€” Risk register & consolidated threat model â€” `prio:medium`
+### R2-18 — Risk register & consolidated threat model — `prio:medium`
 
 **Why now.** `docs/10-Architecture/11-Risks.md` is four bullets today.
 Wave 1 + Wave 2 surface a wide set of cross-cutting risks (IP, perf, privacy,
@@ -503,7 +503,7 @@ prevents each ADR from re-inventing its own risk language.
 **Scope.**
 
 - Risk taxonomy (legal, technical, product, operational, security).
-- Likelihood Ã— impact scoring, plus mitigation owner per row.
+- Likelihood × impact scoring, plus mitigation owner per row.
 - Consolidate from: `ip-and-licensing` precedents, `pwa-offline-patterns`
   iOS ITP eviction, performance budgets (R2-09), telemetry threat model
   (R2-11), Anstoss-tone PR risks, FM25-style cancellation precedent.
@@ -515,7 +515,7 @@ trigger conditions, input block for arc42 chapter 11
 (`docs/10-Architecture/11-Risks.md`), link to all open `needs-decision`
 items.
 
-### R2-19 â€” Game domain glossary & terminology â€” `prio:medium`
+### R2-19 — Game domain glossary & terminology — `prio:medium`
 
 **Why now.** `docs/00-Index/Glossary.md` has four entries. Engineers,
 designers, and AI agents are about to write code, ADRs, and content that
@@ -536,24 +536,24 @@ own term.
 
 **Output.** `docs/60-Research/game-glossary.md` (plus a follow-up that
 expands `docs/00-Index/Glossary.md`).
-**Acceptance.** â‰¥ 60 terms with de/en lemmas, subsystem owners, links to
+**Acceptance.** ≥ 60 terms with de/en lemmas, subsystem owners, links to
 the Wave 1/2 doc that introduces each, AKOM-126 (arc42) input block.
 
 ## Suggested Linear setup
 
 A **Milestone "M1.5 Research Wave 2"** has been created in the
-`soccer-manager â€” Research & Architecture` project. The 19 items above
-translate into 19 Linear issues (`AKOM-136`â€¦`AKOM-148` for R2-01â€¦R2-13;
-additional IDs assigned for R2-14â€¦R2-19). All are `type:research`, all
+`soccer-manager — Research & Architecture` project. The 19 items above
+translate into 19 Linear issues (`AKOM-136`…`AKOM-148` for R2-01…R2-13;
+additional IDs assigned for R2-14…R2-19). All are `type:research`, all
 `parallel:safe`. Critical-priority items are R2-01, R2-02, R2-08, R2-14.
 
 Suggested ordering (rough waves; sequential only inside a wave):
 
-- **W2.A â€” Engine foundations**: R2-08 â†’ (R2-01, R2-02, R2-14 in parallel) â†’
+- **W2.A — Engine foundations**: R2-08 → (R2-01, R2-02, R2-14 in parallel) →
   (R2-03, R2-04, R2-15 in parallel).
-- **W2.B â€” Product & UX**: R2-05, R2-06, R2-07, R2-10, R2-16, R2-17 in
+- **W2.B — Product & UX**: R2-05, R2-06, R2-07, R2-10, R2-16, R2-17 in
   parallel.
-- **W2.C â€” Platform**: R2-09, R2-11, R2-12, R2-13, R2-18, R2-19 in parallel.
+- **W2.C — Platform**: R2-09, R2-11, R2-12, R2-13, R2-18, R2-19 in parallel.
 
 The four `prio:critical` items (R2-01, R2-02, R2-08, R2-14) are the only ones
 that block ADRs already in M1.3 (`AKOM-117`, `AKOM-119`, `AKOM-120`,
@@ -562,21 +562,21 @@ work.
 
 ## Cross-references
 
-- AKOM-115 (`feature-gap-analysis.md`, stub today) â€” MoSCoW will reference
+- AKOM-115 (`feature-gap-analysis.md`, stub today) — MoSCoW will reference
   Wave 2 outputs once they land.
-- AKOM-116 (`00-summary.md` rewrite) â€” will absorb Wave 2 takeaways for the
+- AKOM-116 (`00-summary.md` rewrite) — will absorb Wave 2 takeaways for the
   Phase 2 ADR kickoff packet.
-- ADR-0001 (`AKOM-118`) â€” blocked by R2-14, R2-17.
-- ADR-0002 (`AKOM-121`) â€” blocked by R2-08, R2-11.
-- ADR-0003 (`AKOM-119`) â€” blocked by R2-01, R2-04, R2-08, R2-15.
-- ADR-0004 (`AKOM-120`) â€” blocked by R2-02, R2-12, R2-13, R2-14.
-- ADR-0005 (`AKOM-117`) â€” blocked by R2-08.
-- ADR-0006 (`AKOM-123`) â€” blocked by R2-10, R2-15.
-- ADR-0007 (`AKOM-125`) â€” blocked by R2-02.
-- ADR-0008 (`AKOM-124`) â€” blocked by R2-03, R2-05, R2-07, R2-16, R2-17.
-- ADR-0009 (`AKOM-122`) â€” blocked by R2-11.
-- AKOM-126 (arc42) â€” blocked by R2-07, R2-14, R2-17, R2-18, R2-19.
-- AKOM-130 (Match Engine v1) â€” blocked by R2-01, R2-03, R2-08, R2-09, R2-15,
+- ADR-0001 (`AKOM-118`) — blocked by R2-14, R2-17.
+- ADR-0002 (`AKOM-121`) — blocked by R2-08, R2-11.
+- ADR-0003 (`AKOM-119`) — blocked by R2-01, R2-04, R2-08, R2-15.
+- ADR-0004 (`AKOM-120`) — blocked by R2-02, R2-12, R2-13, R2-14.
+- ADR-0005 (`AKOM-117`) — blocked by R2-08.
+- ADR-0006 (`AKOM-123`) — blocked by R2-10, R2-15.
+- ADR-0007 (`AKOM-125`) — blocked by R2-02.
+- ADR-0008 (`AKOM-124`) — blocked by R2-03, R2-05, R2-07, R2-16, R2-17.
+- ADR-0009 (`AKOM-122`) — blocked by R2-11.
+- AKOM-126 (arc42) — blocked by R2-07, R2-14, R2-17, R2-18, R2-19.
+- AKOM-130 (Match Engine v1) — blocked by R2-01, R2-03, R2-08, R2-09, R2-15,
   R2-16.
-- AKOM-127 (infra checklist) â€” informed by R2-09, R2-11.
-- AKOM-128 (M1-M8 backlog generator) â€” informed by R2-19.
+- AKOM-127 (infra checklist) — informed by R2-09, R2-11.
+- AKOM-128 (M1-M8 backlog generator) — informed by R2-19.

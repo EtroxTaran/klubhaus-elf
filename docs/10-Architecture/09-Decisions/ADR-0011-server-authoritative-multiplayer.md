@@ -213,9 +213,11 @@ frequency.
   in the outbox to detect replays.
 - Server-issued state transitions write events through the transactional
   outbox ([[ADR-0013-transactional-outbox]]).
-- Read models project to SurrealDB tables that clients read directly via
-  the public query layer of the owning context (per
-  [[ADR-0019-modular-monolith-ddd]] §6).
+- Read models project to Postgres tables ([[ADR-0027-postgres-data-model]])
+  that clients read directly via the public query layer of the owning
+  context (per [[ADR-0019-modular-monolith-ddd]] §6); an optional
+  SurrealDB live-graph projection may sit behind the same query layer
+  post-launch ([[ADR-0021-revised-tech-stack]], [[ADR-0043-notification-and-messaging-platform]]).
 - Match worker emits a *summary stream* for AI vs AI matches (result +
   key stats only) and a *full stream* for human-involving matches.
 - Re-sim service exposes a `replayMatch(matchId)` command on the Match

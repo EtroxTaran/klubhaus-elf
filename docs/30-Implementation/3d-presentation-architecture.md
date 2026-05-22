@@ -307,7 +307,7 @@ Preconditions kept in place:
 
 ## 10. Test strategy
 
-Reference: [[testing-strategy]].
+Reference: `testing-strategy` (planned).
 
 | Layer | What | Tool |
 |---|---|---|

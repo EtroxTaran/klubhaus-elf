@@ -24,7 +24,7 @@ flowchart TB
   Web --> Engine[packages/match-engine]
   Web --> Dexie[Dexie / IndexedDB cache + drafts]
   Web --> Postgres[PostgreSQL + Drizzle system of record]
-  Web --> Surreal[SurrealDB projection/live graph]
+  Web -. deferred additive projection/live graph .-> Surreal[SurrealDB]
   Dexie -. future local SP adapter .-> Engine
 ```
 

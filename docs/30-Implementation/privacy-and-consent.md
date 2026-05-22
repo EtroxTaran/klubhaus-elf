@@ -544,7 +544,7 @@ sequenceDiagram
   participant U as User
   participant B as PWA client
   participant S as Server
-  participant DB as SurrealDB
+  participant DB as PostgreSQL
   participant J as Background job
   participant E as Email vendor
 

@@ -1,8 +1,8 @@
 ---
 title: Design System — Aurelia Premier
-status: draft
+status: current
 tags: [architecture, design, ui, accessibility]
-updated: 2026-05-17
+updated: 2026-05-22
 ---
 
 # Design System — Aurelia Premier

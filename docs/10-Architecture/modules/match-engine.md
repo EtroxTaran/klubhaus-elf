@@ -40,5 +40,5 @@ from team state plus tactics.
 ## Dependencies
 
 - [[../09-Decisions/ADR-0003-match-engine]] (draft — do not implement yet)
-- [[../09-Decisions/ADR-0004-data-model]] (draft)
+- [[../09-Decisions/ADR-0027-postgres-data-model]] (data model; supersedes ADR-0004)
 - Consumed by [[web]].

@@ -38,5 +38,5 @@ and league structures.
 ## Dependencies
 
 - [[../09-Decisions/ADR-0007-naming-schema]]
-- [[../09-Decisions/ADR-0004-data-model]] (draft)
+- [[../09-Decisions/ADR-0027-postgres-data-model]] (data model; supersedes ADR-0004)
 - Consumed by [[web]]; shares shapes with [[db-schema]].

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Training, Load and Medicine
 status: approved
 tags: [game-design, training, load, medical]
@@ -24,14 +24,14 @@ roster availability.
 
 | Block | Purpose | Side effects |
 |---|---|---|
-| Match Preparation | Tactical drills, opponent prep | Tactical familiarity â†‘ |
-| Team Cohesion | Eingespielt-Chemistry | Familiarity â†‘, morale â†‘ |
-| Tactical Familiarity | Role automation | Tactic exec â†‘, fatigue â†‘ |
-| Position-specific | Per-position attribute | Per-position growth â†‘ |
-| Set-Piece Sessions | Routines | Set-piece efficiency â†‘ |
-| Recovery | Regen | Fatigue â†“, growth = 0 |
-| Physical Loading | Conditioning | Stamina â†‘, injury risk â†‘ |
-| Individual Focus | 1-1 attribute | Per-attribute growth â†‘ |
+| Match Preparation | Tactical drills, opponent prep | Tactical familiarity ↑ |
+| Team Cohesion | Eingespielt-Chemistry | Familiarity ↑, morale ↑ |
+| Tactical Familiarity | Role automation | Tactic exec ↑, fatigue ↑ |
+| Position-specific | Per-position attribute | Per-position growth ↑ |
+| Set-Piece Sessions | Routines | Set-piece efficiency ↑ |
+| Recovery | Regen | Fatigue ↓, growth = 0 |
+| Physical Loading | Conditioning | Stamina ↑, injury risk ↑ |
+| Individual Focus | 1-1 attribute | Per-attribute growth ↑ |
 
 A week is a budgeted set of blocks. Stuffing too many high-intensity blocks
 breaks the load model below.
@@ -43,12 +43,12 @@ Load comes from:
 - Match minutes.
 - Training intensity.
 - Training block type.
-- Travel time (long away trips â†‘).
-- Weather (heat / cold â†‘).
+- Travel time (long away trips ↑).
+- Weather (heat / cold ↑).
 - Pitch/surface quality.
 - Role demands (pressing, sprint exposure, duel volume).
-- Fitness state (poor fitness â†‘ load per same activity).
-- Medical history (chronic risk â†‘).
+- Fitness state (poor fitness ↑ load per same activity).
+- Medical history (chronic risk ↑).
 
 Outputs:
 
@@ -59,7 +59,7 @@ Outputs:
 - **Sharpness** - rises with appropriate match exposure and falls with long
   absence.
 
-High intensity briefly â†‘ pressing and fitness but â†‘ injury + form risk.
+High intensity briefly ↑ pressing and fitness but ↑ injury + form risk.
 This makes rotation a real resource-management decision across the season.
 
 ## 3. Per-player weekly fatigue
@@ -113,7 +113,7 @@ develop juniors more stably.
 | Sprain / pull | 1-8 weeks | rehab |
 | Tear | 2-6 months | rehab + medical centre tier |
 | Season-threatening | 6+ months | specialist + recurrence risk |
-| Chronic flag | indefinite | permanent `injury_proneness` â†‘ possible |
+| Chronic flag | indefinite | permanent `injury_proneness` ↑ possible |
 
 Medical centre tier reduces durations 10-25 %.
 

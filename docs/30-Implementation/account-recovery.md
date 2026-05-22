@@ -584,19 +584,25 @@ and the params for verification; old envelopes with
 
 ## 5. Server-side schema
 
-### 5.1 `user` table additions (SCHEMAFULL extensions)
+### 5.1 `user` table additions (typed-column extensions)
 
-Building on the F2 §2.1 `user` table:
+Building on the F2 §2.1 `user` table — added as Drizzle columns on the
+platform `public.user` table
+([[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] §1, §4):
 
-```surql
-DEFINE FIELD env_user             ON user TYPE option<bytes>;            -- Env_user binary blob
-DEFINE FIELD env_user_iv          ON user TYPE option<bytes>;            -- denormalised for replay protection scan
-DEFINE FIELD env_user_key_id      ON user TYPE option<string>;           -- ULID of K (constant for K's life)
-DEFINE FIELD user_salt            ON user TYPE option<bytes>;            -- 32 bytes; stable for the account's life
-DEFINE FIELD envelope_version     ON user TYPE int VALUE 0;              -- 0 = F2 baseline (pre-envelope); ≥ 1 = F5 envelope
-DEFINE FIELD account_secret_version ON user TYPE int VALUE 0;            -- bumps on each rotation
-DEFINE FIELD account_secret_rotated_at ON user TYPE option<datetime>;
+```ts
+// additions to packages/db/src/schema/platform/identity.ts → user
+envUser: customBytea('env_user'),                          // Env_user binary blob (nullable)
+envUserIv: customBytea('env_user_iv'),                     // denormalised for replay protection scan
+envUserKeyId: text('env_user_key_id'),                     // ULID of K (constant for K's life)
+userSalt: customBytea('user_salt'),                        // 32 bytes; stable for the account's life
+envelopeVersion: integer('envelope_version').notNull().default(0), // 0 = F2 baseline (pre-envelope); >= 1 = F5 envelope
+accountSecretVersion: integer('account_secret_version').notNull().default(0), // bumps on each rotation
+accountSecretRotatedAt: timestamp('account_secret_rotated_at', { withTimezone: true }),
 ```
+
+(`customBytea` is the project's `bytea` column helper; `option<bytes>`
+fields map to nullable `bytea`.)
 
 `user.accountSecret` itself stays column-encrypted at rest with
 the deployment's sops-managed at-rest key (F2 §2.1, F11 secrets
@@ -605,14 +611,20 @@ policy.
 
 ### 5.2 `user_credential` (kind=`recovery_code`) extensions
 
-Building on F2 §2.1:
+Building on F2 §2.1. The `recovery_code` rows use the SCHEMALESS
+`user_credential.payload jsonb` column (ADR-0027 §4); these keys are
+validated by the `recovery_code` Zod schema at the boundary (bytes are
+base64-encoded inside the JSON payload):
 
-```surql
-DEFINE FIELD payload.salt              ON user_credential TYPE option<bytes>;          -- 32 bytes; argon2id salt for code verification AND KDF input for KEK_recovery_i
-DEFINE FIELD payload.code_hash         ON user_credential TYPE option<bytes>;          -- Argon2id hash for authentication
-DEFINE FIELD payload.env_recovery      ON user_credential TYPE option<bytes>;          -- Env_recovery_i binary blob
-DEFINE FIELD payload.env_recovery_iv   ON user_credential TYPE option<bytes>;          -- denormalised
-DEFINE FIELD payload.envelope_version  ON user_credential TYPE option<int>;
+```ts
+// Zod shape for user_credential.payload when kind = 'recovery_code'
+const recoveryCodePayload = z.object({
+  salt: z.string(),            // base64; 32 bytes; argon2id salt for code verification AND KDF input for KEK_recovery_i
+  code_hash: z.string(),       // base64; Argon2id hash for authentication
+  env_recovery: z.string(),    // base64; Env_recovery_i binary blob
+  env_recovery_iv: z.string(), // base64; denormalised
+  envelope_version: z.number().int(),
+})
 ```
 
 Each of the 10 recovery codes per user is one row. On signup
@@ -626,11 +638,15 @@ exchange.
 
 ### 5.3 `device.env_device` (optional cache)
 
-```surql
-DEFINE FIELD env_device              ON device TYPE option<bytes>;
-DEFINE FIELD env_device_iv           ON device TYPE option<bytes>;
-DEFINE FIELD env_device_version      ON device TYPE option<int>;        -- equals user.envelope_version at the time this cache was minted
-DEFINE FIELD env_device_minted_at    ON device TYPE option<datetime>;
+Added as Drizzle columns on the platform `public.device` table
+([[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] §1, §4):
+
+```ts
+// additions to packages/db/src/schema/platform/device.ts → device
+envDevice: customBytea('env_device'),
+envDeviceIv: customBytea('env_device_iv'),
+envDeviceVersion: integer('env_device_version'),           // equals user.envelope_version at the time this cache was minted
+envDeviceMintedAt: timestamp('env_device_minted_at', { withTimezone: true }),
 ```
 
 This row is `NULL` after rotation; the device repopulates it
@@ -680,7 +696,7 @@ sequenceDiagram
   participant U as User
   participant A as Device A (logged in)
   participant S as Server
-  participant DB as SurrealDB
+  participant DB as PostgreSQL
   participant R as Redis
   participant Aud as Outbox/Audit
 
@@ -696,7 +712,7 @@ sequenceDiagram
   A->>A: derive KEK_user_new = PBKDF2(accountSecret_new, userSalt)
   A->>A: wrap K → env_user_new
   A->>S: PUT /api/auth/rotate-account-secret/commit { env_user_new, idem }
-  S->>DB: BEGIN; check version; UPDATE user SET accountSecret=enc(accountSecret_new), accountSecret_version++, env_user=env_user_new, envelope_version=max(envelope_version,1), token_version++; UPDATE device SET env_device=NULL WHERE user=$user_id; COMMIT
+  S->>DB: BEGIN; check version; UPDATE user SET accountSecret=enc(accountSecret_new), accountSecret_version++, env_user=env_user_new, envelope_version=max(envelope_version,1), token_version++; UPDATE device SET env_device=NULL WHERE user_id=$user_id; COMMIT
   S->>Aud: emit auth.account_secret_rotated outbox event
   S->>R: DEL rotation_lock:<user_id>
   S-->>A: 200 OK { new_account_secret_version }
@@ -707,7 +723,7 @@ sequenceDiagram
 
 Atomicity:
 
-- The SurrealDB transaction encompasses the `accountSecret`
+- The PostgreSQL transaction encompasses the `accountSecret`
   update, `env_user` update, `envelope_version` bump,
   `token_version` bump (which triggers F3 §8.2 hybrid revocation
   on every session except the current one — the current session
@@ -729,7 +745,7 @@ sequenceDiagram
   participant U as User
   participant B as Device B (fresh, not yet authenticated)
   participant S as Server
-  participant DB as SurrealDB
+  participant DB as PostgreSQL
 
   U->>B: login screen — "Use a recovery code"
   U->>B: enter email + recovery_code_plaintext
@@ -765,7 +781,7 @@ sequenceDiagram
   participant U as User
   participant A as Device A (logged in)
   participant S as Server
-  participant DB as SurrealDB
+  participant DB as PostgreSQL
 
   Note over U,DB: First login after F5 deploy.
   A->>S: standard login per F2 §4

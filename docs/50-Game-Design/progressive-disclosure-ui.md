@@ -1,4 +1,4 @@
-﻿---
+---
 title: Progressive Disclosure UI - Three Tier Model (Quick / Standard / Expert)
 status: approved
 tags: [game-design, ux, progressive-disclosure, tactics, casual, expert]
@@ -27,7 +27,7 @@ level.
 
 | Tier | Target user | Session length |
 |---|---|---|
-| **Quick** | "Did I win?" | â‰¤ 5 min / week |
+| **Quick** | "Did I win?" | ≤ 5 min / week |
 | **Standard** | Default manager player | 10-15 min / week |
 | **Expert** | Tactics + data enthusiast | 25+ min / week |
 
@@ -101,7 +101,7 @@ Match reports adapt:
   efficiency, fatigue curves, opponent spike windows.
 
 All tiers consume the *same event log* from
-[[match-engine]] Â§5.
+[[match-engine]] §5.
 
 ## 7. Tier switching
 

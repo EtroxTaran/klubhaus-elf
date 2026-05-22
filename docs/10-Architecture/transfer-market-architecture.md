@@ -68,7 +68,9 @@ Public exports stay contract-only through `index.ts` per ADR-0010.
 
 ## 4. Persistence Shape
 
-Core SCHEMAFULL tables in the Transfer context:
+Core strongly-typed tables in the Transfer context (typed Drizzle columns +
+`NOT NULL` + `CHECK`, per the governance split in
+[[09-Decisions/ADR-0027-postgres-data-model]] §4):
 
 ```text
 transfer_market_snapshot

@@ -10,6 +10,9 @@ const ignoredPathParts = [
   `${path.sep}.obsidian${path.sep}`,
   `${path.sep}90-Meta${path.sep}templates${path.sep}`,
   `${path.sep}90-Meta${path.sep}github-issue-suite${path.sep}issues${path.sep}`,
+  // 95-Archive is frozen Historical Memory: its internal planning links point at
+  // artefacts the superseded waves never created. Not maintained, not gating.
+  `${path.sep}95-Archive${path.sep}`,
 ]
 
 const secretPatterns = [
@@ -181,8 +184,11 @@ if (!existsSync(docsRoot)) {
   process.exit(1)
 }
 
-const files = walk(docsRoot).filter((file) => !isIgnored(file))
-const filesByBasename = new Set(files.map(basenameWithoutExt))
+// Ignored files (templates, issue mirrors, frozen archive) are not validated as
+// sources, but they remain valid link *targets* so active notes may reference them.
+const allFiles = walk(docsRoot)
+const files = allFiles.filter((file) => !isIgnored(file))
+const filesByBasename = new Set(allFiles.map(basenameWithoutExt))
 
 for (const file of files) {
   const content = readFileSync(file, 'utf8')

@@ -14,7 +14,7 @@ related: [[README]], [[../../10-Architecture/bounded-context-map]], [[../../10-A
 > Source: private Perplexity transcripts (2026-05-16), Doc 2 sections 4354-7013.
 > Four parallel architecture iterations and one final consolidated blueprint.
 > Feeds the proposed ADRs ADR-0010..ADR-0016, the bounded-context map and the
-> state-machine notes under [[../../10-Architecture/state-machines/]].
+> state-machine notes under [[../../10-Architecture/state-machines/README]].
 
 ## English summary
 

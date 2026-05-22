@@ -104,47 +104,59 @@ F2 does not change the F1 residual-risk acceptance.
 ### 2.1 Account record (Identity & Access context)
 
 The Identity & Access bounded context owns the platform-DB tables.
-Schema is generated from the TS-first mirror in `packages/db-schema`
-per ADR-0004; the SCHEMAFULL shape is locked here.
+Drizzle is the single source of truth; these tables live in the `public`
+schema as platform data ([[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]
+§1). Typed columns + `NOT NULL` + `CHECK` express the former ASSERT rules;
+cross-table refs within this context are intra-context FKs on opaque branded
+`uuid` columns (ADR-0027 §4–§6). IDs are app-generated UUIDv7, never
+`gen_random_uuid()`.
 
-```surql
-DEFINE TABLE user SCHEMAFULL;
-DEFINE FIELD id ON user TYPE record<user>;                -- UUIDv7
-DEFINE FIELD primary_email ON user TYPE string ASSERT $value != NONE;
-DEFINE FIELD primary_email_lower ON user TYPE string;     -- citext-style
-DEFINE FIELD email_verified_at ON user TYPE option<datetime>;
-DEFINE FIELD display_name ON user TYPE string ASSERT string::len($value) <= 64;
-DEFINE FIELD locale ON user TYPE string;                  -- BCP-47, e.g. "de-DE"
-DEFINE FIELD timezone ON user TYPE string;                -- IANA, e.g. "Europe/Berlin"
-DEFINE FIELD created_at ON user TYPE datetime VALUE time::now();
-DEFINE FIELD updated_at ON user TYPE datetime VALUE time::now();
-DEFINE FIELD deleted_at ON user TYPE option<datetime>;    -- soft delete; 30-day grace
-DEFINE INDEX user_primary_email_lower ON user FIELDS primary_email_lower UNIQUE;
+```ts
+// packages/db/src/schema/platform/identity.ts
+export const user = pgTable('user', {
+  id: uuid('id').$type<UserId>().primaryKey(),            // app-generated UUIDv7
+  primaryEmail: text('primary_email').notNull(),
+  primaryEmailLower: text('primary_email_lower').notNull(), // citext-style
+  emailVerifiedAt: timestamp('email_verified_at', { withTimezone: true }),
+  displayName: text('display_name').notNull(),
+  locale: text('locale').notNull(),                       // BCP-47, e.g. "de-DE"
+  timezone: text('timezone').notNull(),                   // IANA, e.g. "Europe/Berlin"
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).notNull(),
+  deletedAt: timestamp('deleted_at', { withTimezone: true }), // soft delete; 30-day grace
+}, (t) => ({
+  displayNameLen: check('user_display_name_len', sql`char_length(${t.displayName}) <= 64`),
+  primaryEmailLowerUq: uniqueIndex('user_primary_email_lower').on(t.primaryEmailLower),
+}))
 
-DEFINE TABLE user_credential SCHEMAFULL;
-DEFINE FIELD id ON user_credential TYPE record<user_credential>;
-DEFINE FIELD user_id ON user_credential TYPE record<user>;
-DEFINE FIELD kind ON user_credential TYPE string
-  ASSERT $value IN ['password', 'passkey', 'totp', 'recovery_code'];
-DEFINE FIELD payload ON user_credential FLEXIBLE TYPE object;  -- kind-specific
-DEFINE FIELD label ON user_credential TYPE option<string>;     -- user-visible nickname
-DEFINE FIELD enrolled_at ON user_credential TYPE datetime VALUE time::now();
-DEFINE FIELD last_used_at ON user_credential TYPE option<datetime>;
-DEFINE FIELD revoked_at ON user_credential TYPE option<datetime>;
-DEFINE INDEX user_credential_by_user ON user_credential FIELDS user_id;
+export const userCredential = pgTable('user_credential', {
+  id: uuid('id').$type<UserCredentialId>().primaryKey(),
+  userId: uuid('user_id').$type<UserId>().notNull().references(() => user.id), // intra-context FK
+  kind: text('kind').notNull(),                           // see CHECK below
+  payload: jsonb('payload').notNull(),                    // SCHEMALESS, kind-specific; Zod at boundary
+  label: text('label'),                                   // user-visible nickname
+  enrolledAt: timestamp('enrolled_at', { withTimezone: true }).notNull(),
+  lastUsedAt: timestamp('last_used_at', { withTimezone: true }),
+  revokedAt: timestamp('revoked_at', { withTimezone: true }),
+}, (t) => ({
+  kindCheck: check('user_credential_kind', sql`${t.kind} IN ('password','passkey','totp','recovery_code')`),
+  byUser: index('user_credential_by_user').on(t.userId),
+}))
 
--- Future-proofing for F2 §3.6 social IdP linking (no rows at MVP).
-DEFINE TABLE user_identity SCHEMAFULL;
-DEFINE FIELD id ON user_identity TYPE record<user_identity>;
-DEFINE FIELD user_id ON user_identity TYPE record<user>;
-DEFINE FIELD provider ON user_identity TYPE string
-  ASSERT $value IN ['google', 'apple', 'discord'];
-DEFINE FIELD provider_subject ON user_identity TYPE string;
-DEFINE FIELD provider_email ON user_identity TYPE option<string>;
-DEFINE FIELD provider_email_verified ON user_identity TYPE option<bool>;
-DEFINE FIELD linked_at ON user_identity TYPE datetime VALUE time::now();
-DEFINE FIELD last_login_at ON user_identity TYPE option<datetime>;
-DEFINE INDEX user_identity_provider_subject ON user_identity FIELDS provider, provider_subject UNIQUE;
+// Future-proofing for F2 §3.6 social IdP linking (no rows at MVP).
+export const userIdentity = pgTable('user_identity', {
+  id: uuid('id').$type<UserIdentityId>().primaryKey(),
+  userId: uuid('user_id').$type<UserId>().notNull().references(() => user.id),
+  provider: text('provider').notNull(),                   // see CHECK below
+  providerSubject: text('provider_subject').notNull(),
+  providerEmail: text('provider_email'),
+  providerEmailVerified: boolean('provider_email_verified'),
+  linkedAt: timestamp('linked_at', { withTimezone: true }).notNull(),
+  lastLoginAt: timestamp('last_login_at', { withTimezone: true }),
+}, (t) => ({
+  providerCheck: check('user_identity_provider', sql`${t.provider} IN ('google','apple','discord')`),
+  providerSubjectUq: uniqueIndex('user_identity_provider_subject').on(t.provider, t.providerSubject),
+}))
 ```
 
 `user_credential.payload` shape per `kind`:
