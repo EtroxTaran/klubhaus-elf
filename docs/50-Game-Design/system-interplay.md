@@ -1,4 +1,4 @@
-﻿---
+---
 title: System Interplay - The Five Master Feedback Loops
 status: draft
 tags: [game-design, system-design, feedback-loop]
@@ -15,7 +15,7 @@ The single design principle of the game: **no system is implemented in
 isolation**. Every mechanic that changes a state must declare which other
 systems read that state. The loops below are the contracts.
 
-## 1. Loop 1: Fans â†’ Atmosphere â†’ Sport â†’ Marketing
+## 1. Loop 1: Fans → Atmosphere → Sport → Marketing
 
 ```mermaid
 flowchart LR
@@ -35,11 +35,11 @@ flowchart LR
 
 Detail:
 
-- [[fan-ecology]] Â§3 atmosphere engine
-- [[match-engine]] Â§1.1 home advantage input
-- [[sponsorship-portfolio]] Â§3 valuation factors
+- [[fan-ecology]] §3 atmosphere engine
+- [[match-engine]] §1.1 home advantage input
+- [[sponsorship-portfolio]] §3 valuation factors
 
-## 2. Loop 2: Infrastructure â†’ Development â†’ Squad Value â†’ Finance
+## 2. Loop 2: Infrastructure → Development → Squad Value → Finance
 
 ```mermaid
 flowchart LR
@@ -56,13 +56,13 @@ flowchart LR
 
 Detail:
 
-- [[stadium-and-campus]] Â§5 campus modifiers
-- [[youth-academy-and-development]] Â§7 development math
-- [[economy-system]] Â§2 revenue
-- [[scouting-and-recruitment]] Â§10 free agents
-- [[transfer-market-and-contracts]] Â§9 economy integration
+- [[stadium-and-campus]] §5 campus modifiers
+- [[youth-academy-and-development]] §7 development math
+- [[economy-system]] §2 revenue
+- [[scouting-and-recruitment]] §10 free agents
+- [[transfer-market-and-contracts]] §9 economy integration
 
-## 3. Loop 3: Sponsors â†’ Stadium â†’ Experience â†’ Sponsors
+## 3. Loop 3: Sponsors → Stadium → Experience → Sponsors
 
 ```mermaid
 flowchart LR
@@ -79,11 +79,11 @@ flowchart LR
 
 Detail:
 
-- [[sponsorship-portfolio]] Â§2 asset inventory
-- [[stadium-and-campus]] Â§4 modules
-- [[fan-ecology]] Â§4 per-cap revenue math
+- [[sponsorship-portfolio]] §2 asset inventory
+- [[stadium-and-campus]] §4 modules
+- [[fan-ecology]] §4 per-cap revenue math
 
-## 4. Loop 4: Tactics â†’ Squad Need â†’ Recruitment â†’ Tactics
+## 4. Loop 4: Tactics → Squad Need → Recruitment → Tactics
 
 ```mermaid
 flowchart LR
@@ -98,22 +98,22 @@ flowchart LR
 
 Detail:
 
-- [[tactics-system]] Â§6 familiarity
-- [[scouting-and-recruitment]] Â§1 funnel
-- [[match-engine]] Â§3 familiarity multiplier
+- [[tactics-system]] §6 familiarity
+- [[scouting-and-recruitment]] §1 funnel
+- [[match-engine]] §3 familiarity multiplier
 
-## 5. Loop 5: Risk â†’ Debt â†’ Pressure â†’ Decisions
+## 5. Loop 5: Risk → Debt → Pressure → Decisions
 
 ```mermaid
 flowchart LR
-    Invest["Aggressive investment"] --> Liquidity["Liquidity â†“"]
-    Liquidity --> Risk["Risk reserve â†“"]
-    Invest --> Wage["Wage ratio â†‘"]
-    Wage --> Operating["Operating result â†“"]
-    Operating --> Pressure["Board pressure â†‘"]
+    Invest["Aggressive investment"] --> Liquidity["Liquidity ↓"]
+    Liquidity --> Risk["Risk reserve ↓"]
+    Invest --> Wage["Wage ratio ↑"]
+    Wage --> Operating["Operating result ↓"]
+    Operating --> Pressure["Board pressure ↑"]
     Risk --> Pressure
     Pressure --> Panic["Panic transfers /<br/>icon sale"]
-    Panic --> Fans["Fan anger â†‘"]
+    Panic --> Fans["Fan anger ↑"]
     Panic --> Squad["Squad weakening"]
     Squad --> Sport["Bad results"]
     Sport --> Pressure
@@ -128,10 +128,10 @@ offers a genuinely exceptional package.
 
 Detail:
 
-- [[economy-system]] Â§6 spiral mechanics
-- [[club-dna-and-governance]] Â§3 pressure loop
-- [[fan-ecology]] Â§5 protest events
-- [[transfer-market-and-contracts]] Â§8 AI club behaviour
+- [[economy-system]] §6 spiral mechanics
+- [[club-dna-and-governance]] §3 pressure loop
+- [[fan-ecology]] §5 protest events
+- [[transfer-market-and-contracts]] §8 AI club behaviour
 
 ## 6. Cross-cutting rules
 
@@ -146,7 +146,7 @@ Detail:
 
 - Are there additional emergent loops we should track? Examples flagged
   for Phase 2:
-  - Rivalry â†’ Security events â†’ Sanctions â†’ Fan attendance â†’ Atmosphere.
-  - Sponsor side-condition breach â†’ Fines â†’ Liquidity â†’ Investment cap.
+  - Rivalry → Security events → Sanctions → Fan attendance → Atmosphere.
+  - Sponsor side-condition breach → Fines → Liquidity → Investment cap.
 - Do we expose loop visualisations in the UI? In the Expert tier as a
   "club health" diagram, yes; not in Quick / Standard.

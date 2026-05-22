@@ -1,4 +1,4 @@
-﻿---
+---
 title: Documentation Baseline 2026-05-22
 status: superseded
 tags: [meta, baseline, gap-closure, architecture, research]
@@ -6,7 +6,7 @@ created: 2026-05-22
 updated: 2026-05-22
 type: baseline
 binding: false
-superseded_by: [[Documentation-V1]]
+superseded_by: Documentation-V1
 related:
   - [[Current-State]]
   - [[Decision-Log]]

@@ -45,7 +45,7 @@ offline-first singleplayer later.
 In the MVP, persisted game progression is authoritative only after a server
 command succeeds.
 
-SurrealDB-backed server functions / command handlers own authoritative state for:
+Postgres-backed server functions / command handlers ([[ADR-0027-postgres-data-model]]) own authoritative state for:
 
 - save/run creation;
 - day/week advancement;

@@ -1,16 +1,17 @@
 ---
 title: Runtime
-status: draft
+status: current
 tags: [architecture]
-updated: 2026-05-18
+updated: 2026-05-22
 ---
 
 # Runtime
 
 The MVP runtime is a **hybrid-online PWA** for the Create-a-Club Roguelite
 first playable. TanStack Start handles SSR, server routes, and server
-functions; SurrealDB-backed server commands confirm authoritative progression.
-Dexie / IndexedDB stores cached read models, drafts and local UI state. Future
+functions; PostgreSQL + Drizzle-backed server commands confirm authoritative
+progression. Dexie / IndexedDB stores cached read models, drafts and local UI
+state. Future
 selective offline-first singleplayer can add a local-authoritative adapter
 without changing public bounded-context contracts.
 
@@ -94,7 +95,7 @@ sequenceDiagram
     participant C as Client
     participant IDB as Dexie / IndexedDB
     participant S as Server command
-    participant DB as SurrealDB
+    participant DB as PostgreSQL + Drizzle
     C->>IDB: Store draft/cache with freshness metadata
     C->>S: Submit command when online
     S->>DB: Validate preconditions + persist
@@ -111,11 +112,14 @@ the new state and a redo affordance; it does not auto-rebase gameplay actions.
 
 ## Storage
 
-- **SurrealDB** (server) - canonical MVP store, projections, live queries.
+- **PostgreSQL + Drizzle** (server) - canonical MVP system of record
+  (schema-per-save isolation, transactional outbox). SurrealDB is deferred and
+  may return only as an additive realtime/graph projection engine behind the
+  [[09-Decisions/ADR-0023-realtime-transport]] interface.
 - **Dexie / IndexedDB** (client) - read caches, drafts, onboarding/local UI
   state, and future local-save/export staging.
 
-Per [[09-Decisions/ADR-0004-data-model]] and
+Per [[09-Decisions/ADR-0027-postgres-data-model]] and
 [[09-Decisions/ADR-0005-save-format]].
 
 ## Deployment

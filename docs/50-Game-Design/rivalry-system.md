@@ -1,4 +1,4 @@
-﻿---
+---
 title: Rivalry System - Emergent Five-sub-score Rivalry Graph
 status: draft
 tags: [game-design, rivalry, fans, history]
@@ -18,7 +18,7 @@ the obvious derbies.
 
 ## 1. Rivalry score
 
-For each ordered pair (A â†’ B) the system maintains a `rivalry_score`
+For each ordered pair (A → B) the system maintains a `rivalry_score`
 (0-100). The score is a weighted aggregate of five sub-scores:
 
 | Sub-score | Source signals | Decay rate |
@@ -40,7 +40,7 @@ rivalry_score = clamp(
 )
 ```
 
-Symmetry: `rivalry_score(Aâ†’B) â‰ˆ rivalry_score(Bâ†’A)` but the underlying
+Symmetry: `rivalry_score(A→B) ≈ rivalry_score(B→A)` but the underlying
 sub-scores can differ (e.g. A has bigger sporting grievance against B
 than vice versa).
 
@@ -94,7 +94,7 @@ Modified by: shared region cultural / linguistic markers (modest +5).
 
 ## 4. Effects on match-day
 
-Per [[fan-ecology]] Â§6 and [[matchday-event-engine]]:
+Per [[fan-ecology]] §6 and [[matchday-event-engine]]:
 
 - Higher atmosphere multiplier in the engine.
 - Higher security event probability.

@@ -6,7 +6,7 @@ created: 2026-05-19
 updated: 2026-05-19
 type: implementation
 binding: true
-related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[hybrid-online-pwa-strategy]], [[auth-mvp-launch-slice]], [[testing-strategy]], [[../10-Architecture/context-contracts/README]]
+related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[hybrid-online-pwa-strategy]]
 ---
 
 # MVP Implementation Roadmap
@@ -16,7 +16,7 @@ playable. Product scope lives in [[../00-Index/MVP-Scope]]; this note defines
 **how** to ship it in small, clickable slices.
 
 Each slice must ship with: vault delta (if behaviour changes), tests per
-[[testing-strategy]], Storybook for touched UI, and green CI per
+`testing-strategy` (planned), Storybook for touched UI, and green CI per
 [[ci-and-review-process]].
 
 ## Slice template
@@ -39,7 +39,7 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 |---|---|
 | Goal | User can register, verify email, log in, log out; game routes require auth |
 | Contexts | Identity & Access |
-| Vault | [[auth-mvp-launch-slice]], [[auth-flows]], [[session-management]] |
+| Vault | `auth-mvp-launch-slice` (planned), [[auth-flows]], [[session-management]] |
 | UI | Sign-up, verify-email, login screens + stories |
 | Tests | Unit (validators), integration (auth API), e2e: register → verify → login |
 | Authority | Server (Identity) — sessions via F3 |
@@ -63,9 +63,9 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 |---|---|
 | Goal | Create fictional club; server-confirmed roguelite run exists |
 | Contexts | Club, Squad (starter), League (minimal), Identity |
-| Vault | [[../50-Game-Design/mode-create-a-club-roguelite]], [[../10-Architecture/context-contracts/club]] |
+| Vault | [[../50-Game-Design/mode-create-a-club-roguelite]], `context-contracts/club` (planned) |
 | UI | Onboarding steps 2–4, club identity — stories |
-| Tests | Contract (CreateRun command), integration (SurrealDB), e2e: complete onboarding → run id |
+| Tests | Contract (CreateRun command), integration (PostgreSQL), e2e: complete onboarding → run id |
 | Authority | Server-confirmed; Dexie may cache read model after confirm |
 | DoD | No real club names; reload shows confirmed run |
 
@@ -87,7 +87,7 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 |---|---|
 | Goal | Edit tactic; local draft when offline; confirm requires connection |
 | Contexts | Match (tactic lock draft), Offline Sync |
-| Vault | [[hybrid-online-pwa-strategy]], [[../10-Architecture/context-contracts/sync]] |
+| Vault | [[hybrid-online-pwa-strategy]], `context-contracts/sync` (planned) |
 | UI | Tactics screen + `ConnectionBanner` — stories |
 | Tests | Unit (`saveTacticDraft`), e2e: offline edit shows draft copy |
 | Authority | Dexie draft → server command on confirm |
@@ -99,7 +99,7 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 |---|---|
 | Goal | Start and resolve first match via authoritative command |
 | Contexts | Match, League (fixture) |
-| Vault | [[../50-Game-Design/match-engine]], [[../10-Architecture/context-contracts/match]] |
+| Vault | [[../50-Game-Design/match-engine]], `context-contracts/match` (planned) |
 | UI | Match flow / report — stories |
 | Tests | Contract (ResolveMatch), integration; e2e: play first match |
 | Authority | Server-confirmed (stub engine acceptable for slice) |
@@ -176,10 +176,10 @@ skippable + 2D-fallback rules as 7c.
 ## Related
 
 - [[../00-Index/MVP-Scope]] — what is in/out of MVP
-- [[auth-mvp-launch-slice]] — Slice 0 detail
-- [[testing-strategy]] — test matrix per slice
-- [[team-ownership-matrix]] — parallel ownership
-- [[../10-Architecture/context-contracts/README]] — per-context contracts
+- `auth-mvp-launch-slice` (planned) — Slice 0 detail
+- `testing-strategy` (planned) — test matrix per slice
+- `team-ownership-matrix` (planned) — parallel ownership
+- `context-contracts/` (planned) — per-context contracts
 - [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] — Phase 2 presentation polish authority
 - [[3d-presentation-architecture]] — Phase 2 implementation detail
 - [[../20-Features/feature-3d-presentation-layer]] — Phase 2 feature spec

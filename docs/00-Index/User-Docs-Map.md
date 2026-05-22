@@ -16,7 +16,7 @@ player's point of view.
 
 ## Current Hub
 
-- [User Docs README](../40-User-Docs/README.md)
+- [User Docs README](../70-User-Docs/README.md)
 
 ## Future Structure
 

@@ -11,10 +11,7 @@ related: [[../10-Architecture/06-Runtime]], [[../60-Research/pwa-offline-pattern
 
 # PWA Offline Strategy
 
-> **SUPERSEDED on 2026-05-18 by [[hybrid-online-pwa-strategy]].** Old way:
-> full offline-first MVP implementation. New way: hybrid-online MVP with
-> offline-ready app shell, read caches and drafts; full selective offline and
-> export/import are post-MVP. Kept for history — do not implement for MVP.
+> **Superseded — historical memory only.** This document is superseded by [[hybrid-online-pwa-strategy]] and must not be implemented. The current decision/spec lives there; see also [[../00-Index/Decision-Log]] for the authoritative index. Retained for historical context per the vault's supersede discipline.
 
 Bootstrap uses `vite-plugin-pwa` with an injected service worker. Game saves will
 use Dexie-backed IndexedDB. Mutating HTTP responses must not be cached.

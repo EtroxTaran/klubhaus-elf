@@ -1,9 +1,9 @@
-﻿---
+---
 title: State Machine - Transfer Negotiation
-status: draft
+status: current
 tags: [architecture, state-machine, transfer, ddd]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-22
 type: state-machine
 binding: false
 related: [[README]], [[../bounded-context-map]], [[../transfer-market-architecture]], [[../../50-Game-Design/transfer-market-and-contracts]], [[../../50-Game-Design/transfer-negotiations-p2p]], [[../09-Decisions/ADR-0014-state-machines]]
@@ -87,41 +87,47 @@ Effects (in order, applied per follow-on event):
 5. Media leak / supporter unrest in target's club.
 
 Detail in [[../../50-Game-Design/transfer-market-and-contracts]] and
-[[../../50-Game-Design/transfer-negotiations-p2p]] Â§3.
+[[../../50-Game-Design/transfer-negotiations-p2p]] §3.
 
 ## 5. Persistence
 
+Per [[../09-Decisions/ADR-0027-postgres-data-model]]: strongly-typed tables in
+the per-save schema; cross-context references (`player`, `*_club`) as opaque
+branded UUIDv7 columns (no cross-context `references()`); intra-context refs
+(`case`, `parent_offer`) as `uuid` columns with intra-context FKs; integer-only
+money in cents; embedded lists as `jsonb`.
+
 ```text
-transfer_negotiation_case {
-  id: record(transfer_negotiation_case),
-  player: record(player),
-  seller_club: record(club),
-  buyer_club: record(club)?,
-  state: enum(state_names),
-  opportunity_reason: string,
-  seller_reservation_cash_equivalent: number,
-  buyer_max_cash_equivalent: number?,
-  player_terms_state: string?,
-  response_deadline: datetime?,
-  competing_bid_count: number,
-  relationship_temperature: number,
-  media_leak_risk: number,
-  history: array<event>
+transfer_negotiation_case {                  # strongly-typed (typed cols + CHECK)
+  id: uuid (UUIDv7, app-generated, PK),
+  player_id: uuid (PlayerId, opaque branded ref),
+  seller_club_id: uuid (ClubId, opaque branded ref),
+  buyer_club_id: uuid (ClubId, opaque branded ref)?,
+  state: text + CHECK IN (state_names),
+  opportunity_reason: text,
+  seller_reservation_cash_equivalent: bigint (cents),
+  buyer_max_cash_equivalent: bigint (cents)?,
+  player_terms_state: text?,
+  response_deadline: timestamptz?,
+  competing_bid_count: integer,
+  relationship_temperature: integer,
+  media_leak_risk: integer,
+  history: jsonb (array of events)
 }
 
-transfer_offer {
-  id: record(transfer_offer),
-  case: record(transfer_negotiation_case),
-  from_club: record(club),
-  to_club: record(club),
-  base_fee: number,
-  installments: array<object>,
-  bonuses: array<object>,
-  clauses: array<record(transfer_clause)>,
-  cash_equivalent: number,
-  response_deadline: datetime,
-  state: enum(offer_state),
-  parent_offer: record(transfer_offer)?
+transfer_offer {                             # strongly-typed (typed cols + CHECK)
+  id: uuid (UUIDv7, app-generated, PK),
+  case_id: uuid (intra-context FK to transfer_negotiation_case),
+  from_club_id: uuid (ClubId, opaque branded ref),
+  to_club_id: uuid (ClubId, opaque branded ref),
+  base_fee: bigint (cents),
+  installments: jsonb (array),
+  bonuses: jsonb (array),
+  clause_ids: uuid[] (intra-context refs to transfer_clause),
+  cash_equivalent: bigint (cents),
+  response_deadline: timestamptz,
+  state: text + CHECK IN (offer_state),
+  parent_offer_id: uuid (intra-context FK to transfer_offer)?
 }
 ```
 

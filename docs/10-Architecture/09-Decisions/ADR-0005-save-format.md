@@ -47,7 +47,9 @@ foundation in five upstream gaps:
 - **B2** — encryption mandatory (AES-GCM 256, AEAD tag).
 - **D8** — RNG state schema, integer numeric model, 12 save-
   determinism rules, engine-version pinning.
-- **D14** — TS-first schema generator, per-save DB isolation.
+- **D14** — schema source of truth (now Drizzle `pgTable`,
+  [[ADR-0027-postgres-data-model]] §3), per-save Postgres schema
+  isolation.
 - **A4** — soft 10 / hard 50 save quota, archive state machine,
   envelope shape sketch, Phase-2 hybrid cloud-sync direction.
 - **B4** — Transactional outbox stays in the platform DB (not in
@@ -188,7 +190,8 @@ deferred to E18; both forms wrap the same envelope).
 ### 6. Payload contents
 
 The decrypted plaintext is a JSON object representing a single save
-snapshot. Structure mirrors the per-save SurrealDB DB:
+snapshot. Structure mirrors the per-save Postgres schema
+([[ADR-0027-postgres-data-model]]):
 
 ```ts
 type SavePayload = {
@@ -217,13 +220,14 @@ type SavePayload = {
     notifications: NotificationContextSnapshot
   }
   // Note: outbox + audit are NOT inside the save (they live in
-  // platform DB, per ADR-0013 + ADR-0004 §1).
+  // platform DB `public`, per ADR-0028 + [[ADR-0027-postgres-data-model]] §1).
 }
 ```
 
-Each context's `*Snapshot` is the union of its SCHEMAFULL +
-SCHEMALESS table rows scoped to this save. Per D14 §1 the platform
-DB's outbox/audit are explicitly excluded.
+Each context's `*Snapshot` is the union of its typed-column
+(SCHEMAFULL-governance) + `jsonb`-payload (SCHEMALESS-governance) table
+rows scoped to this save ([[ADR-0027-postgres-data-model]] §4). Per
+D14 §1 the platform DB's outbox/audit are explicitly excluded.
 
 ### 7. RNG state in save (per D8)
 
@@ -273,8 +277,9 @@ When `saveVersion` increases, migrations follow A4 §6.3:
 3. Switch reads + writes to the new field (code release).
 4. Drop the old field (migration N+M, several releases later).
 
-Destructive migrations live in their own `.surql` file with a
-`# WARNING: DESTRUCTIVE` header (per D14 §4).
+Destructive migrations live in their own forward-only numbered SQL
+migration file (drizzle-kit `generate`) with a
+`-- WARNING: DESTRUCTIVE` header ([[ADR-0027-postgres-data-model]] §12).
 
 When `envelopeVersion` increases, the loader has explicit per-
 version decoders. An envelope-v1 save loaded into a v2-aware build
@@ -293,7 +298,9 @@ module (per D8 §3.6). No silent re-simulation under a new engine.
   archived).
 - **Archive** is reversible (just a state flip in `save_registry`).
 - **Delete** is one-way with a 30-day grace period before the per-
-  save DB is dropped. During grace the user can restore.
+  save Postgres schema is dropped (`DROP SCHEMA … CASCADE`,
+  [[ADR-0027-postgres-data-model]] §1). During grace the user can
+  restore.
 
 The encrypted at-rest save in IndexedDB stays as long as the
 `save_registry` row references it. Drop is irreversible.
@@ -338,7 +345,7 @@ flowchart TB
   parse --> quota{"Quota check (server)"}
   quota -- over --> err3["Show 'Archive a save first'"]
   quota -- ok --> create["Create new save_registry row"]
-  create --> import["Provision per-save DB; insert decrypted contexts"]
+  create --> import["Provision per-save Postgres schema; insert decrypted contexts"]
   import --> ready["Save now available in user's list"]
 ```
 
@@ -427,15 +434,18 @@ CI enforcement:
 
 ## Sources
 
-- [[ADR-0004-data-model]] (gap A4) — envelope shape sketch, save
-  lifecycle, Phase-2 cloud-sync direction.
+- [[ADR-0004-data-model]] → substrate now [[ADR-0027-postgres-data-model]]
+  (gap A4) — envelope shape sketch, save lifecycle, Phase-2 cloud-sync
+  direction.
 - [[ADR-0011-server-authoritative-multiplayer]] (gap B2) —
   encryption mandate, hotseat → MP handoff, AI vs AI seed-only
   storage.
 - [[../../60-Research/determinism-and-replay]] (gap D8) — RNG state
   schema, engine-version pinning, 12 save-determinism rules.
-- [[../../60-Research/surrealdb-schema-patterns]] (gap D14) —
-  per-save DB isolation, TS-first generator, phased rename pattern.
+- [[../../60-Research/surrealdb-schema-patterns]] (gap D14, original
+  research; substrate reworked to Postgres in
+  [[ADR-0027-postgres-data-model]]) — per-save isolation, schema source
+  of truth, phased rename pattern.
 - [[ADR-0013-transactional-outbox]] (gap B4) — outbox lives in
   platform DB, NOT inside saves.
 - Perplexity research, 2026-05-16 (gap A5). Two-question Q&A:

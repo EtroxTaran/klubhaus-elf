@@ -1,4 +1,4 @@
-﻿---
+---
 title: Game Design Map
 status: current
 tags: [game-design, meta]

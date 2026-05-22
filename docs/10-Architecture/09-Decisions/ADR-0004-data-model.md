@@ -14,20 +14,7 @@ related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-mult
 
 # ADR-0004: Data Model — Domain Entities, Schemas, Saves
 
-> **SUPERSEDED on 2026-05-19 by [[ADR-0027-postgres-data-model]].**
-> Old way: SurrealDB namespace + database-per-save, `.surql` schema generator,
-> SCHEMAFULL/SCHEMALESS directives, `RELATE` edges, `record<player>` typed
-> cross-table pointers. New way: PostgreSQL **schema-per-save** (one `save_<…>`
-> schema per save in one database), Drizzle schema-as-TypeScript as the single
-> source of truth + drizzle-zod + a generated standalone Zod mirror, typed
-> columns + CHECK / `jsonb` + Zod for the SCHEMAFULL/SCHEMALESS split,
-> junction tables with surrogate UUIDv7 PK for RELATE-style edges, branded
-> opaque `uuid` columns (no cross-context FKs) for cross-context refs.
-> Substrate-agnostic invariants (per-save isolation; quotas 10/50; UUIDv7;
-> integer-only numerics; encrypted save envelope per [[ADR-0005-save-format]];
-> hard-reject offline contract; forward-additive `gender_eligibility`) are
-> **preserved** in [[ADR-0027-postgres-data-model]]. Kept for history — do not
-> implement the SurrealDB-specific mechanics here.
+> **Superseded — historical memory only.** This document is superseded by [[ADR-0027-postgres-data-model]] and must not be implemented. The current decision/spec lives there; see also [[../../00-Index/Decision-Log]] for the authoritative index. Retained for historical context per the vault's supersede discipline.
 
 ## Status
 

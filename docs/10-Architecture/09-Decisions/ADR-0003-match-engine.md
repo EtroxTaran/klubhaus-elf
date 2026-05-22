@@ -47,8 +47,10 @@ locked all upstream design:
 - **D8 ([[../../60-Research/determinism-and-replay]])** — PCG32 via
   `pure-rand`; 8 named RNG streams; integer-only branching; 12
   save-determinism rules; engine-version pinning.
-- **A4 (ADR-0004)** — SCHEMAFULL match row + SCHEMALESS match_event
-  rows; integer-mm coordinates; record-link to lineups + tactics.
+- **A4 (ADR-0004, substrate now [[ADR-0027-postgres-data-model]])** —
+  typed Drizzle `match` row + `jsonb`-payload (SCHEMALESS-governance)
+  `match_event` rows; integer-mm coordinates; opaque branded-`uuid`
+  refs to lineups + tactics.
 - **B2 (ADR-0011)** — server-authoritative for MP; AI-vs-AI seed-only
   storage with on-demand re-sim; engine_version + match_type stored on
   every match.
@@ -194,9 +196,11 @@ Per [[../../60-Research/match-engine-simulation-model]] §3:
   TacticalChangePayload, InjuryPayload, MiscPayload).
 - Optional `rng_trace` for debug builds only.
 
-Storage: `match_event` lives in the per-save SurrealDB DB as a
-SCHEMALESS table (per A4 §2). For AI-vs-AI matches the table is empty
-by default; events are re-generated on demand (per ADR-0011).
+Storage: `match_event` lives in the per-save Postgres schema as a
+`jsonb`-payload (SCHEMALESS-governance) table validated by per-event
+Zod ([[ADR-0027-postgres-data-model]] §4). For AI-vs-AI matches the
+table is empty by default; events are re-generated on demand (per
+ADR-0011).
 
 ### 6. Formation zone weights — TS literal canonical + JSON community overrides
 
@@ -307,20 +311,23 @@ in-game routine authoring at MVP.
 
 When the Expert-tier authoring layer ships:
 
-- Per-club routines stored in the per-save SurrealDB DB under
-  `club_set_piece_routine` (SCHEMAFULL, per A4 §2):
+- Per-club routines stored in the per-save Postgres schema as a typed
+  Drizzle table `club_set_piece_routine` (typed columns + NOT NULL +
+  CHECK, with the routine definition embedded as `jsonb`;
+  [[ADR-0027-postgres-data-model]] §4–6):
 
-  ```text
-  club_set_piece_routine {
-    id: record(club_set_piece_routine),
-    club: record(club),
-    user_slug: string,              // user-chosen, e.g. 'overload_far_post'
-    base_routine: record(set_piece_routine)?,  // optional inheritance
-    definition: object,              // SetPieceRoutine structure
-    revision: int,
-    created_at: datetime,
-    locked_for_replays: bool         // true once used in any match
-  }
+  ```ts
+  // packages/db/src/schema/save/club-set-piece-routine.ts
+  export const clubSetPieceRoutine = pgTable('club_set_piece_routine', {
+    id: uuid('id').$type<ClubSetPieceRoutineId>().primaryKey(),        // UUIDv7, app-generated
+    clubId: uuid('club_id').$type<ClubId>().notNull(),                 // opaque branded ref, no cross-context FK
+    userSlug: text('user_slug').notNull(),                            // user-chosen, e.g. 'overload_far_post'
+    baseRoutineId: uuid('base_routine_id').$type<SetPieceRoutineId>(), // optional inheritance, nullable
+    definition: jsonb('definition').notNull(),                        // SetPieceRoutine structure, per-event Zod
+    revision: integer('revision').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull(),
+    lockedForReplays: boolean('locked_for_replays').notNull(),        // true once used in any match
+  })
   ```
 
 - Replay safety: when a club uses a custom routine, the engine writes
@@ -351,8 +358,9 @@ Rules:
   compatibility stub for replays.
 - Mod packs MUST namespace under `mod.<pack_id>.*` to prevent
   collisions.
-- Per-club routine IDs are scoped to their save DB; cross-save
-  references are impossible by construction.
+- Per-club routine IDs are scoped to their per-save Postgres schema
+  ([[ADR-0027-postgres-data-model]]); cross-save references are
+  impossible by construction.
 
 ### 9. Worker bridge + performance contract
 
@@ -485,8 +493,9 @@ CI enforcement:
 - [[../../60-Research/determinism-and-replay]] (gap D8) — PCG32, RNG
   streams, integer-only branching, 12 save-determinism rules,
   engine-version pinning.
-- [[ADR-0004-data-model]] (gap A4) — SCHEMAFULL match + SCHEMALESS
-  match_event; integer-mm coordinates; per-save DB isolation.
+- [[ADR-0027-postgres-data-model]] (gap A4, supersedes ADR-0004) —
+  typed Drizzle `match` + `jsonb`-payload `match_event`; integer-mm
+  coordinates; per-save Postgres schema isolation.
 - [[ADR-0011-server-authoritative-multiplayer]] (gap B2) — server-side
   simulation; AI-vs-AI seed-only with on-demand re-sim.
 - [[ADR-0005-save-format]] (gap A5) — save envelope carries

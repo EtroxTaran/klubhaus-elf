@@ -1,4 +1,4 @@
-﻿---
+---
 title: Scouting and Recruitment - Funnel, Scout Attributes, Market Dynamics
 status: draft
 tags: [game-design, scouting, recruitment, transfers]
@@ -98,7 +98,7 @@ openness and seller preferences.
 Prices rise with:
 
 - Competition (multiple clubs interested).
-- Remaining contract length (shorter â†’ cheaper).
+- Remaining contract length (shorter → cheaper).
 - Wage demands.
 - Agent relations.
 - Other clubs' squad needs.

@@ -13,15 +13,7 @@ related: [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-s
 
 # ADR-0001: Tech Stack
 
-> **SUPERSEDED on 2026-05-19 by [[ADR-0021-revised-tech-stack]].**
-> Old way: SurrealDB authoritative for MVP progression; React Context for
-> state; "minimal Tailwind keyframes" for animation; SurrealDB outbox is the
-> realtime substrate. New way: PostgreSQL + Drizzle is the system of record
-> (SurrealDB deferred to an optional additive realtime/graph engine behind an
-> interface); TanStack Query + Zustand for state; Motion + GSAP for game-feel;
-> SSE→Centrifugo realtime behind a transport interface. TanStack Start, React,
-> Tailwind, Dexie, Biome, Vitest, Playwright, pnpm are **retained unchanged**.
-> Kept for history — do not implement the SurrealDB-as-primary parts.
+> **Superseded — historical memory only.** This document is superseded by [[ADR-0021-revised-tech-stack]] and must not be implemented. The current decision/spec lives there; see also [[../../00-Index/Decision-Log]] for the authoritative index. Retained for historical context per the vault's supersede discipline.
 
 ## Status
 

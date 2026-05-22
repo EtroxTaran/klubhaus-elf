@@ -13,11 +13,7 @@ related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-forma
 
 # ADR-0002: Offline-first Strategy
 
-> **SUPERSEDED on 2026-05-18 by [[ADR-0020-hybrid-online-mvp-offline-ready]].**
-> Old way: full offline-first singleplayer was required for MVP. New way:
-> hybrid-online MVP with offline-ready app shell, caches and drafts; selective
-> offline-first singleplayer is a future stage. Kept for history — do not
-> implement for MVP.
+> **Superseded — historical memory only.** This document is superseded by [[ADR-0020-hybrid-online-mvp-offline-ready]] and must not be implemented. The current decision/spec lives there; see also [[../../00-Index/Decision-Log]] for the authoritative index. Retained for historical context per the vault's supersede discipline.
 
 ## Status
 

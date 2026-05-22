@@ -17,8 +17,10 @@ overbuilding the full system in one pass.
 ## Phase 0 - Schema and Contracts
 
 - Add transfer context contracts: commands, events, queries and Zod schemas.
-- Add SCHEMAFULL tables for negotiation cases, offers, clauses, opportunities
-  and market snapshots.
+- Add typed Drizzle `pgTable`s (typed columns + `CHECK`) for negotiation
+  cases, offers, clauses, opportunities and market snapshots, provisioned in
+  the per-save schema
+  ([[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] §1, §4).
 - Add clause-package schema for every MVP clause family, including sell-on,
   profit share, buy-back, matching right, loans, options, obligations, release
   clauses, agent fees, loyalty bonuses and training rewards.

@@ -4,7 +4,7 @@ status: superseded
 tags: [research, surrealdb, schema, data-model, persistence, wave-3, historical]
 created: 2026-05-16
 updated: 2026-05-19
-superseded_by: [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]
+superseded_by: ADR-0027-postgres-data-model
 type: research
 binding: false
 related: [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[determinism-and-replay]], [[player-strength-presentation]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]], [[../10-Architecture/bounded-context-map]]
@@ -12,13 +12,7 @@ related: [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../95-Archive/gap
 
 # SurrealDB Schema Patterns - Historical Context
 
-> **HISTORICAL — superseded 2026-05-19 by [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]
-> (driven by [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]).**
-> SurrealDB is no longer the system of record; PostgreSQL + Drizzle is.
-> The *intent* recorded here (per-save isolation, schema split, RELATE-style
-> edges, integer numerics) was carried forward into ADR-0027 with Postgres
-> mechanics; the SurrealDB-specific patterns below are kept for history
-> only — **do not implement**.
+> **Superseded — historical memory only.** This document is superseded by [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] and [[../30-Implementation/postgres-drizzle-integration]] and must not be implemented. The current decision/spec lives there; see also [[../00-Index/Decision-Log]] for the authoritative index. Retained for historical context per the vault's supersede discipline.
 
 This note resolves Wave 3 gap **D14** (R2-14: SurrealDB schema patterns
 for offline-first game data). It is the **binding** reference for how

@@ -4,20 +4,14 @@ status: superseded
 tags: [database, implementation]
 created: 2026-05-15
 updated: 2026-05-19
-superseded_by: [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]
+superseded_by: postgres-drizzle-integration
 type: implementation
 related: [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/modules/db-schema]], [[../60-Research/offline-mvp-scope-and-sync-strategy]], [[hybrid-online-pwa-strategy]], [[deployment-dokploy]]
 ---
 
 # SurrealDB Integration
 
-> **SUPERSEDED on 2026-05-19 by [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]].**
-> Old way: SurrealDB is the authoritative persistence (`db/schema.surql`,
-> forward-only `.surql` migrations). New way: PostgreSQL + Drizzle is the
-> system of record; SurrealDB may return only as an optional additive
-> realtime/graph engine behind the [[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]]
-> interface. A Postgres+Drizzle integration note replaces this in the next
-> engineering wave. Kept for history — do not implement.
+> **Superseded — historical memory only.** This document is superseded by [[postgres-drizzle-integration]] and must not be implemented. The current decision/spec lives there; see also [[../00-Index/Decision-Log]] for the authoritative index. Retained for historical context per the vault's supersede discipline.
 
 Local development uses `docker-compose.dev.yml`. Schemas are kept in `db/schema.surql`
 and forward-only migrations in `db/migrations/`.

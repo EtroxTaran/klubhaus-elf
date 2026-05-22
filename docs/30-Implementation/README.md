@@ -28,7 +28,6 @@ operational runbooks. Current implementable notes are classified by
 - [[deployment-dokploy]] - Dokploy/Hetzner deployment.
 - [[postgres-drizzle-integration]] - current persistence, migrations, query gateway and outbox integration.
 - [[hybrid-online-pwa-strategy]] - current MVP online/offline posture.
-- [[pwa-offline-strategy]] - PWA/offline implementation.
 - [[observability-runbook]] - operational monitoring and response.
 - [[client-telemetry]] - privacy-aware diagnostics.
 - [[jobs-and-scheduler]] - scheduled work, matchday dispatch and future worker hooks.
@@ -45,7 +44,8 @@ operational runbooks. Current implementable notes are classified by
 
 ## Historical Notes
 
-- [[surrealdb-integration]] - superseded historical substrate note; do not implement.
+- [[surrealdb-integration]] - superseded by [[postgres-drizzle-integration]]; do not implement.
+- [[pwa-offline-strategy]] - superseded by [[hybrid-online-pwa-strategy]]; do not implement.
 
 ## Up
 

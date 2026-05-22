@@ -135,9 +135,10 @@ Initial operational metrics:
   worker registration failures, IndexedDB errors;
 - offline sync: pending/failed command counts, retry exhaustion, replay
   duration;
-- outbox: `outbox_pending_count`, `outbox_oldest_age_seconds`,
+- outbox: `outbox_pending_count`, `outbox_oldest_pending_age_seconds`,
   `outbox_publish_total`, `outbox_publish_failures_total`,
-  `redis_stream_lag_per_consumer_group`;
+  `outbox_publisher_attempts_exceeded_total`, realtime-transport fan-out lag
+  per consumer (ADR-0028);
 - telemetry pipeline: ingest failures, disk pressure, retention-job
   failures and alert-delivery failures.
 
@@ -208,7 +209,7 @@ Cross-cutting enforcement:
 - Web Vitals sampling under the telemetry / privacy rules (per
   [[../60-Research/telemetry-privacy]]);
 - p95 / p99 server-function latency dashboards;
-- slow SurrealDB query spans and logs;
+- slow PostgreSQL query spans and logs (via the query gateway);
 - long task / worker duration diagnostics for client simulation.
 
 ## PWA and Offline-ready MVP

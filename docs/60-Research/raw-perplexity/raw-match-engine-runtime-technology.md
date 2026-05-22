@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-05-17
 type: research-raw
 binding: false
-related: [[README]], [[../match-engine-runtime-strategy]], [[../match-engine-simulation-model]], [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../../10-Architecture/09-Decisions/ADR-0010-modular-monolith-ddd]], [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+related: [[README]], [[../match-engine-runtime-strategy]], [[../match-engine-simulation-model]], [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]], [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
 ---
 
 # Raw - Match Engine Runtime Technology and Scaling Research

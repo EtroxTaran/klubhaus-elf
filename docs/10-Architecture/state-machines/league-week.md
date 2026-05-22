@@ -1,9 +1,9 @@
-﻿---
+---
 title: State Machine - League Week
-status: draft
+status: current
 tags: [architecture, state-machine, league, async, ddd]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-22
 type: state-machine
 binding: false
 related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/async-multiplayer-private-group]], [[../09-Decisions/ADR-0012-async-cadence-models]]
@@ -49,7 +49,7 @@ stateDiagram-v2
 | From | To | Trigger | Condition |
 |---|---|---|---|
 | `week_open` | `quorum_reached` | Fixed mode: scheduled timer | Specific weekday + time |
-| `week_open` | `quorum_reached` | Dynamic mode: `CompleteWeek` events | `count(complete) â‰¥ quorum %` |
+| `week_open` | `quorum_reached` | Dynamic mode: `CompleteWeek` events | `count(complete) ≥ quorum %` |
 | `quorum_reached` | `pre_match_countdown` | System event | Countdown job created |
 | `pre_match_countdown` | `matchday_open` | Timer event | Configured countdown elapsed |
 | `matchday_open` | `matchday_locked` | Timer event | Match-day lock time reached |
@@ -61,24 +61,30 @@ stateDiagram-v2
 
 ## 4. Persistence
 
+Per [[../09-Decisions/ADR-0027-postgres-data-model]]: a strongly-typed
+`league_week` table in the per-save schema; cross-context references as opaque
+branded UUIDv7 columns (no cross-context `references()`); membership edges as a
+junction table; embedded lists as `jsonb` where read-together.
+
 ```text
-league_week {
-  id: record(league_week),
-  league: record(league),
-  season: int,
-  week_number: int,
-  state: enum(state_names),
-  quorum_pct: int,
-  countdown_minutes: int,
-  max_week_days: int,
-  state_entered_at: datetime,
-  next_state_at: datetime?,
-  managers_complete: array<record(member)>,
-  paused_until: datetime?
+league_week {                            # strongly-typed (typed cols + CHECK)
+  id: uuid (UUIDv7, app-generated, PK),
+  league_id: uuid (LeagueId, opaque branded ref),
+  season: integer,
+  week_number: integer,
+  state: text + CHECK IN (state_names),
+  quorum_pct: integer + CHECK 0..100,
+  countdown_minutes: integer,
+  max_week_days: integer,
+  state_entered_at: timestamptz,
+  next_state_at: timestamptz?,
+  managers_complete: jsonb (array of MemberId),
+  paused_until: timestamptz?
 }
 ```
 
-Stored in SurrealDB per [[../09-Decisions/ADR-0004-data-model]].
+Stored in PostgreSQL per [[../09-Decisions/ADR-0027-postgres-data-model]]
+(supersedes the SurrealDB mechanics in ADR-0004).
 
 ## 5. Events emitted
 
@@ -104,7 +110,7 @@ All events route through the transactional outbox
 | Quorum never reached | Max-week-length timer forces `quorum_reached` with current count |
 | Match worker crash | Idempotent retry; lock prevents double-execution |
 | Lost timer | Scheduler reconciliation rebuilds from `state_entered_at` |
-| Pause vote in mid-state | Vote queued; applied at safe boundary (next `post_match_reports` â†’ `week_open`) |
+| Pause vote in mid-state | Vote queued; applied at safe boundary (next `post_match_reports` → `week_open`) |
 
 ## 7. Test strategy
 

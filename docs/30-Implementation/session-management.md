@@ -191,31 +191,31 @@ Persistence:
 - Both files included in the Dokploy backup runbook (F11 will own
   the rotation schedule + restore drill).
 
-### 3.2 Cold store: SurrealDB audit mirror via outbox
+### 3.2 Cold store: PostgreSQL audit mirror via outbox
 
 Per ADR-0013, every session-lifecycle event (`auth.login_*`,
 `auth.session_revoked`, `auth.logout_everywhere`, `auth.refresh_rotated`,
 `auth.refresh_reuse_detected`, `auth.device_*`) is appended to the
 outbox in the same transaction as the Redis state change. The
-async outbox worker writes the events to the SurrealDB
+async outbox worker writes the events to the PostgreSQL
 `outbox_event` table per ADR-0013, available in cold archive
 forever.
 
-SurrealDB **does not** rehydrate Redis on cold start. If Redis
+PostgreSQL **does not** rehydrate Redis on cold start. If Redis
 loses state, all sessions are invalidated and the next request
 from each user forces a fresh sign-in. This is the simplest safe
 behaviour for our scale.
 
 ### 3.3 What lives where
 
-| Concern                                | Hot (Redis)                      | Cold (SurrealDB via outbox)       |
+| Concern                                | Hot (Redis)                      | Cold (PostgreSQL via outbox)      |
 | ---                                    | ---                              | ---                               |
 | Active session lookup                  | `sess:<id>` (HASH)               | — (audit events only)             |
 | User → sessions index                  | `user_sess:<user_id>` (SET)      | — (rebuildable from session rows) |
 | Refresh-token family lookup            | `rtfam:<family_id>` (HASH)       | `outbox_event` with full history  |
 | Refresh-token individual records       | `rt:<token_id>` (HASH)           | `outbox_event` `auth.refresh_rotated` |
-| Device records (long-lived metadata)   | optional cache `dev:<device_id>` | `device` SCHEMAFULL table         |
-| User → devices index                   | `user_dev:<user_id>` (SET)       | indexed by `device.user`          |
+| Device records (long-lived metadata)   | optional cache `dev:<device_id>` | `device` typed-column table       |
+| User → devices index                   | `user_dev:<user_id>` (SET)       | indexed by `device.user_id`       |
 | Audit events                           | —                                | `outbox_event` per ADR-0013       |
 
 ### 3.4 Why opaque (not JWT) — restated F2 §5.2 in storage terms
@@ -347,7 +347,7 @@ detection still sees recently-consumed tokens.
 ### 4.5 Optional auxiliary index — `user_dev:<user_id>` (SET)
 
 `SADD user_dev:<user_id> <device_id>` on first device bootstrap.
-Cheap; mirrors the SurrealDB `device` table for fast "list active
+Cheap; mirrors the PostgreSQL `device` table for fast "list active
 devices" calls without a DB round-trip.
 
 ## 5. Refresh-token rotation algorithm
@@ -765,34 +765,44 @@ incognito-end. That is acceptable and honest UX: the next visit
 shows as a new device, the user re-authenticates, and a fresh
 device row is created.
 
-### 9.2 SurrealDB `device` table
+### 9.2 `device` table (Drizzle, platform `public` schema)
 
-```surql
-DEFINE TABLE device SCHEMAFULL;
-DEFINE FIELD id              ON device TYPE record<device>;
-DEFINE FIELD user            ON device TYPE record<user>;
-DEFINE FIELD first_seen_at   ON device TYPE datetime VALUE time::now();
-DEFINE FIELD last_seen_at    ON device TYPE datetime VALUE time::now();
-DEFINE FIELD last_ip_prefix  ON device TYPE string;          -- /24 IPv4, /56 IPv6
-DEFINE FIELD last_country    ON device TYPE option<string>;  -- ISO 3166-1 alpha-2
-DEFINE FIELD last_city       ON device TYPE option<string>;  -- approximate
-DEFINE FIELD ua_summary      ON device TYPE string;          -- "macOS · Chrome"
-DEFINE FIELD ua_full         ON device TYPE option<string>;  -- audit only; 180-day retention
-DEFINE FIELD os_name         ON device TYPE option<string>;
-DEFINE FIELD os_version      ON device TYPE option<string>;
-DEFINE FIELD browser_name    ON device TYPE option<string>;
-DEFINE FIELD browser_version ON device TYPE option<string>;
-DEFINE FIELD nickname        ON device TYPE option<string>;  -- user-editable
-DEFINE FIELD trust_level     ON device TYPE string
-  ASSERT $value IN ['new', 'known', 'trusted', 'revoked'];
-DEFINE FIELD mfa_trust_expires_at ON device TYPE option<datetime>;
-DEFINE FIELD last_auth_method     ON device TYPE option<string>;
-DEFINE FIELD last_auth_at         ON device TYPE option<datetime>;
-DEFINE FIELD anomaly_flags        ON device TYPE object;     -- { new_device, impossible_travel, new_country }
-DEFINE FIELD last_anomaly_at      ON device TYPE option<datetime>;
-DEFINE FIELD revoked_at           ON device TYPE option<datetime>;
-DEFINE INDEX device_by_user           ON device FIELDS user;
-DEFINE INDEX device_by_user_last_seen ON device FIELDS user, last_seen_at;
+Platform table; Drizzle is the source of truth
+([[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] §1).
+Typed columns + `CHECK` express the former ASSERT; `user_id` is an
+intra-context FK on a branded `uuid`; `anomaly_flags` is a SCHEMALESS
+`jsonb` payload validated by Zod at the boundary (ADR-0027 §4). IDs are
+app-generated UUIDv7.
+
+```ts
+// packages/db/src/schema/platform/device.ts
+export const device = pgTable('device', {
+  id: uuid('id').$type<DeviceId>().primaryKey(),          // app-generated UUIDv7
+  userId: uuid('user_id').$type<UserId>().notNull().references(() => user.id),
+  firstSeenAt: timestamp('first_seen_at', { withTimezone: true }).notNull(),
+  lastSeenAt: timestamp('last_seen_at', { withTimezone: true }).notNull(),
+  lastIpPrefix: text('last_ip_prefix').notNull(),         // /24 IPv4, /56 IPv6
+  lastCountry: text('last_country'),                      // ISO 3166-1 alpha-2
+  lastCity: text('last_city'),                            // approximate
+  uaSummary: text('ua_summary').notNull(),                // "macOS · Chrome"
+  uaFull: text('ua_full'),                                // audit only; 180-day retention
+  osName: text('os_name'),
+  osVersion: text('os_version'),
+  browserName: text('browser_name'),
+  browserVersion: text('browser_version'),
+  nickname: text('nickname'),                             // user-editable
+  trustLevel: text('trust_level').notNull(),              // see CHECK below
+  mfaTrustExpiresAt: timestamp('mfa_trust_expires_at', { withTimezone: true }),
+  lastAuthMethod: text('last_auth_method'),
+  lastAuthAt: timestamp('last_auth_at', { withTimezone: true }),
+  anomalyFlags: jsonb('anomaly_flags').notNull(),         // { new_device, impossible_travel, new_country }
+  lastAnomalyAt: timestamp('last_anomaly_at', { withTimezone: true }),
+  revokedAt: timestamp('revoked_at', { withTimezone: true }),
+}, (t) => ({
+  trustLevelCheck: check('device_trust_level', sql`${t.trustLevel} IN ('new','known','trusted','revoked')`),
+  byUser: index('device_by_user').on(t.userId),
+  byUserLastSeen: index('device_by_user_last_seen').on(t.userId, t.lastSeenAt),
+}))
 ```
 
 ### 9.3 Separation: user-visible devices vs operational sessions
@@ -837,7 +847,7 @@ When user clicks "Sign out from device X" in the device list:
 1. F3 server iterates Redis families for `(user_id, device_id=X)`:
    - For each family: `HSET rtfam status=revoked, revoke_reason=device_logout, revoked_at=now`.
    - For each session under the family: `HSET sess revoked=1; DEL sess; SREM user_sess`.
-2. `HSET device:X revoked_at=now, trust_level=revoked, mfa_trust_expires_at=NULL` (mirrored to SurrealDB).
+2. `HSET device:X revoked_at=now, trust_level=revoked, mfa_trust_expires_at=NULL` (mirrored to PostgreSQL).
 3. Emit `auth.device_logout` outbox event with `affected_device_ids: [X]` and `affected_session_ids`.
 4. `accountSecret` is **not** rotated by default. Device-local
    IndexedDB saves remain decryptable on the device until the user

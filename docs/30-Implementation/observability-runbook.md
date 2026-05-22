@@ -30,7 +30,7 @@ ADR-0017 selects:
 - OpenTelemetry JS for instrumentation.
 
 Until implementation lands, `/healthz`, Docker health checks, CI
-artifacts and SurrealDB stdout logs are the available signals.
+artifacts and PostgreSQL stdout logs are the available signals.
 
 ## Dashboards
 
@@ -48,7 +48,7 @@ Minimum dashboards before beta:
 - **Telemetry pipeline**: Alloy ingest, Loki write failures, Prometheus
   scrape health, Tempo ingest, GlitchTip queue health, disk usage.
 - **Performance**: Web Vitals sample, server p95/p99 latency, slow
-  SurrealDB spans, match worker duration.
+  PostgreSQL spans, match worker duration.
 
 ## Alerts
 

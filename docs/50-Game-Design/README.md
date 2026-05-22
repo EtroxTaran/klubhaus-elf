@@ -1,4 +1,4 @@
-﻿---
+---
 title: Game Design Hub
 status: current
 tags: [game-design, index]
@@ -18,41 +18,65 @@ status field says otherwise; `approved` notes are binding for implementation.
 as future-scope or historical planning unless they are promoted in
 [[../00-Index/Current-State]].
 
-Research input for every note lives in [[../60-Research/]]; raw research
-transcripts in [[../60-Research/raw-perplexity/README]].
+Research input for every note lives in [[../60-Research/00-summary]]; raw
+research transcripts in [[../60-Research/raw-perplexity/README]].
 
 ## Authority and decision records
 
-Implement gameplay only from `approved` game-design records. This folder now has
-two complementary record shapes:
+Implement gameplay only from `approved` game-design records. This folder has two
+complementary record shapes:
 
-- system and mode notes such as [[core-loop]], [[match-engine]], and
-  [[transfer-market-and-contracts]];
-- GDDRs (`GD-0001`...`GD-0016`), which preserve the decision-record chain from
-  research into ADRs.
+- **GDDRs** (`GD-0001`...`GD-0017`) — the decision-record chain from research into
+  ADRs (the *what was decided and why*);
+- **system and mode notes** such as [[core-loop]], [[match-engine]], and
+  [[transfer-market-and-contracts]] — the detailed system specs (the *how it
+  works in depth*).
 
-When an approved GDDR and an approved system note disagree, stop and supersede
-one explicitly before implementation. `draft` records are planning context only.
-As of 2026-05-22, the MVP gameplay surface is covered by the approved/current
-notes listed in [[../00-Index/Game-Design-Map]]; remaining draft status labels
-are not active work.
+### Which document is binding (precedence)
+
+A junior should never have to guess. Apply this order:
+
+1. **Status wins first.** An `approved` record is binding; a `draft`/`superseded`
+   record is never implementation authority — even on the same topic. So if a
+   GDDR is `draft` but its system note is `approved` (or vice-versa), the
+   **`approved` one is binding** regardless of shape.
+2. **If both are `approved`**, the **GDDR is the decision of record** and the
+   **system note is the detailed spec**; read both, and they must agree. A
+   conflict between two `approved` records is a **stop condition** — escalate and
+   supersede one explicitly before implementing; do not average them.
+3. The authoritative list of what is currently approved/binding lives in
+   [[../00-Index/Game-Design-Map]].
+
+**Known overlapping topics (read this so you are not surprised):**
+
+| Topic | Binding document | Do NOT implement from |
+|---|---|---|
+| Match engine & simulation | [[match-engine]] (`approved`) | [[GD-0002-match-engine]] (`draft`, Wave-2 gated) |
+| Core career loop | [[GD-0001-core-loop]] (`approved`) | [[core-loop]] (`draft` context note) |
+| AI managers & world | — (none binding yet) | [[GD-0010-ai-world]] (`draft`, Wave-2 gated) |
+
+For every other topic both records are `approved` and complementary (GDDR =
+decision, system note = spec). `draft` records are planning context only; as of
+2026-05-22 the MVP gameplay surface is fully covered by the approved/current
+notes in [[../00-Index/Game-Design-Map]], so remaining `draft` labels are not
+active work.
 
 | GDDR | System | Status | Feeds ADR |
 |---|---|---|---|
 | [[GD-0001-core-loop]] | Core career loop & weekly rhythm | approved | ADR-0003, ADR-0008 |
 | [[GD-0002-match-engine]] | Match engine & simulation model | draft (Wave 2 gated) | ADR-0003, ADR-0005 |
-| [[GD-0003-squad-players]] | Squad, players & attributes | approved | ADR-0004, ADR-0003 |
+| [[GD-0003-squad-players]] | Squad, players & attributes | approved | ADR-0027, ADR-0003 |
 | [[GD-0004-tactics]] | Tactics & formations | approved | ADR-0003, ADR-0008 |
 | [[GD-0005-training]] | Training & development | approved | ADR-0003 |
-| [[GD-0006-transfers]] | Transfers & scouting | approved | ADR-0004 |
-| [[GD-0007-youth]] | Youth academy | approved | ADR-0004, ADR-0007 |
-| [[GD-0008-finance-economy]] | Finance, economy & stadium | approved | ADR-0004 |
-| [[GD-0009-league-structure]] | League & competition structure | approved | ADR-0007, ADR-0004 |
+| [[GD-0006-transfers]] | Transfers & scouting | approved | ADR-0027 |
+| [[GD-0007-youth]] | Youth academy | approved | ADR-0027, ADR-0007 |
+| [[GD-0008-finance-economy]] | Finance, economy & stadium | approved | ADR-0027 |
+| [[GD-0009-league-structure]] | League & competition structure | approved | ADR-0007, ADR-0027 |
 | [[GD-0010-ai-world]] | AI managers & world simulation | draft (Wave 2 gated) | ADR-0003, ADR-0009 |
 | [[GD-0011-career-progression]] | Career progression, board & objectives | approved | ADR-0003 |
 | [[GD-0012-onboarding]] | Onboarding & new game | approved | ADR-0008, ADR-0006 |
 | [[GD-0013-narrative-inbox]] | Narrative, inbox & events | approved | ADR-0006, ADR-0003 |
-| [[GD-0014-save-career-model]] | Save & career model | approved | ADR-0002, ADR-0005 |
+| [[GD-0014-save-career-model]] | Save & career model | approved | ADR-0020, ADR-0005 |
 | [[GD-0015-ip-clean-data]] | IP-clean data generation | approved | ADR-0007 |
 | [[GD-0016-mobile-ux-loop]] | Mobile UX gameplay loop | approved | ADR-0008, ADR-0010 |
 | [[GD-0017-mvp-scope-and-mode-sequencing]] | MVP scope & mode sequencing | approved | ADR-0020 |

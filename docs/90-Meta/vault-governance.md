@@ -1,4 +1,4 @@
-﻿---
+---
 title: Vault Governance
 status: current
 tags: [meta, agents, vault, governance]
@@ -39,7 +39,7 @@ must be answerable from [[../00-Index/Decision-Log]] alone, without opening any
 note, and from the old note itself in one banner.
 
 Accepted/approved notes are append-only in spirit. When an approach changes
-(e.g. a technology swap), do **not** edit the old decision â€” create a new ADR:
+(e.g. a technology swap), do **not** edit the old decision — create a new ADR:
 
 1. Create the replacement note (new ADR/decision), `created` = today.
 2. Set the old note `status: superseded`, bump its `updated` date.
@@ -48,23 +48,23 @@ Accepted/approved notes are append-only in spirit. When an approach changes
 4. Paste the standard banner directly under the old note's H1, keeping old
    content intact:
 
-   > **SUPERSEDED on YYYY-MM-DD by [[ADR-MMMM-...]].**
-   > Old way: `<one line>`. New way: `<one line>`. Kept for history â€” do not
+   > **SUPERSEDED on YYYY-MM-DD by \[\[ADR-MMMM-...\]\].**
+   > Old way: `<one line>`. New way: `<one line>`. Kept for history — do not
    > implement.
 
 5. Update the old row in [[../00-Index/Decision-Log]] (status + Superseded-by)
-   and the new row (Supersedes), so the oldâ†’new chain is visible at the index.
+   and the new row (Supersedes), so the old→new chain is visible at the index.
 6. Update [[../00-Index/Current-State]] and any affected maps/module notes.
 
 All of the above happens in the **same PR** as the technology/approach change.
-Never silently rewrite an `accepted` ADR or `approved` design note â€” that
+Never silently rewrite an `accepted` ADR or `approved` design note — that
 destroys the history and breaks temporal awareness. A chain of three swaps must
-read as three linked ADRs (oldest `superseded` â†’ â€¦ â†’ newest `accepted`), fully
+read as three linked ADRs (oldest `superseded` → … → newest `accepted`), fully
 traceable from the Decision-Log table.
 
 ## Status values
 
-Controlled per note type â€” see [[templates/README]]. Implement only from
+Controlled per note type — see [[templates/README]]. Implement only from
 `current` / `accepted` / `approved`. Never from `draft` / `superseded` /
 `archived`.
 
@@ -81,7 +81,7 @@ collection**, not noise to skip. Agents:
   draft to `accepted`/`approved` is a deliberate decision (often gated, e.g. on
   research) - see [[../00-Index/Documentation-V1]] and [[../00-Index/Current-State]] for the current temporal classification.
 
-`superseded` / `archived` are different: not the idea layer â€” replaced or
+`superseded` / `archived` are different: not the idea layer — replaced or
 retired. Read only to understand history, never for direction.
 
 Discoverability: draft ADRs are listed with status in
@@ -106,11 +106,11 @@ architecture-relevant change to a module updates it. Template:
 
 The causal chain for this project is:
 
-`research (60-Research) â†’ game design (50-Game-Design) â†’ architecture (ADRs) â†’ implementation`
+`research (60-Research) → game design (50-Game-Design) → architecture (ADRs) → implementation`
 
 Game design is a **first-class decision layer, peer to ADRs**, recorded as
 Game Design Decision Records (GDDRs) in `50-Game-Design/`, indexed by
-[[../50-Game-Design/README]] (the Game Design Log â€” status + lineage, like
+[[../50-Game-Design/README]] (the Game Design Log — status + lineage, like
 [[../00-Index/Decision-Log]] for ADRs). Template: [[templates/game-design]].
 
 Rules every agent follows:
@@ -119,17 +119,17 @@ Rules every agent follows:
   the recognized intent layer (read for direction, do not implement).
 - **Scoped approval.** In an `approved` GDDR only the **Decided / strong**
   section is ratified. Its **Open (Wave 2)** section is never approved and not
-  implementable until that research closes â€” `approved` status does not make
+  implementable until that research closes — `approved` status does not make
   the whole note buildable. A GDDR whose entire core is Wave-2-gated stays
-  `draft` (e.g. GD-0002, GD-0010) â€” do not promote it just to look complete.
+  `draft` (e.g. GD-0002, GD-0010) — do not promote it just to look complete.
 - **An ADR must not contradict an `approved` GDDR.** ADRs *implement* game
   design; each gameplay ADR carries a "Design source" link to its GDDR(s).
 - **Same-PR rule (gameplay):** a PR that changes gameplay, a game system, or
   player-facing behavior updates the relevant GDDR in the same PR (and the
-  ADR/Current-State if affected) â€” exactly like the architecture same-PR rule.
+  ADR/Current-State if affected) — exactly like the architecture same-PR rule.
 - **Supersede discipline applies** to GDDRs identically to ADRs (status,
   two-way links, banner, Game Design Log row).
-- New game system â‡’ new GDDR. A gameplay change with no GDDR is a defect
+- New game system ⇒ new GDDR. A gameplay change with no GDDR is a defect
   (Bugbot flags it).
 
 ## Knowledge connectivity
@@ -139,16 +139,16 @@ to is invisible to the graph, to backlinks, and to an agent navigating by
 relationships. Connectivity is mandatory, not decorative.
 
 Rules for every **content** note (architecture, implementation, research,
-feature, design â€” not templates or archival mirrors):
+feature, design — not templates or archival mirrors):
 
 - **Link its decisions.** Name the ADRs it depends on or realizes with
-  `[[wikilinks]]`. If it implements an architectural choice, it links that ADR.
+  wiki-links. If it implements an architectural choice, it links that ADR.
 - **Link its modules.** If it concerns a package/app, link the
   `10-Architecture/modules/*` note.
 - **Link its inputs.** Research that fed a decision links that decision;
   implementation that realizes a strategy links the arc42 note.
 - **Carry a `## Related` section** at the end with those wikilinks, and mirror
-  the key ones in a `related:` frontmatter list. One direction is enough â€”
+  the key ones in a `related:` frontmatter list. One direction is enough —
   Obsidian/Quartz backlinks make the edge bidirectional automatically.
 - **Hub-and-spoke.** Every domain has a Map of Content (MOC) hub that links its
   children and is reachable from [[../00-Index/Home]]: `00-Index/Home`
@@ -162,17 +162,17 @@ out of the graph view via the documented Obsidian/Quartz filter
 ([[obsidian-config]]). Do not add new links from canonical notes into them;
 the few existing D-001/D-002 references are tolerated legacy.
 
-Orphan check: a content note with zero inbound or outbound `[[wikilinks]]` is a
+Orphan check: a content note with zero inbound or outbound wiki-links is a
 defect. The monthly review greps for it.
 
 ## Review cadence
 
-- **Per session** â€” update [[../00-Index/Current-State]], write a handoff.
-- **Monthly** â€” mark stale notes, link superseded ADRs **and GDDRs**, prune
+- **Per session** — update [[../00-Index/Current-State]], write a handoff.
+- **Monthly** — mark stale notes, link superseded ADRs **and GDDRs**, prune
   the glossary, confirm the entry chain has zero dangling links, and grep for
-  orphan content notes (zero inbound/outbound `[[wikilinks]]`) â€” connect or
+  orphan content notes (zero inbound/outbound wiki-links) — connect or
   archive each.
-- **Quarterly** â€” review `AGENTS.md`, `CLAUDE.md`, and the `.cursor` rules
+- **Quarterly** — review `AGENTS.md`, `CLAUDE.md`, and the `.cursor` rules
   against this note and [[agent-memory-protocol]].
 
 ## Agent entry-point conformance
@@ -184,7 +184,7 @@ way".
 | Entry point | Must guarantee |
 |---|---|
 | `CLAUDE.md` | One-line pointer to `AGENTS.md`. No duplicated content. |
-| `AGENTS.md` | Entry chain â†’ Agent-Onboarding â†’ Current-State â†’ Home â†’ agent-memory-protocol â†’ vault-governance. Names the `vault-memory` and `linear-issue-creation` skills. |
+| `AGENTS.md` | Entry chain → Agent-Onboarding → Current-State → Home → agent-memory-protocol → vault-governance. Names the `vault-memory` and `linear-issue-creation` skills. |
 | `docs/90-Meta/agent-memory-protocol.md` | Canonical session start / during-work / update / wrap-up steps. |
 | `.cursor/rules/10-vault-memory.mdc` | Same start/update/wrap-up semantics as the protocol; orchestrator only. |
 | `.cursor/rules/15-linear-ticket-operating-system.mdc` | Linear = operational truth; vault = durable truth; points at linear-task-tracking. |

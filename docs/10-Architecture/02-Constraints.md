@@ -1,9 +1,9 @@
 ---
 title: Constraints
-status: draft
+status: current
 tags: [architecture]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-05-22
 type: arch
 related: [[01-Introduction]], [[04-Solution-Strategy]], [[09-Decisions/ADR-0001-tech-stack]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../00-Index/MVP-Scope]]
 ---

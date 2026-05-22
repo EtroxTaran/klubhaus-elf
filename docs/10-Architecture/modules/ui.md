@@ -31,7 +31,7 @@ Shared, presentational React component library consumed by `apps/web`.
 
 ## Invariants
 
-- Presentational only — no data access, no SurrealDB/Dexie, no server logic.
+- Presentational only — no data access, no Postgres/Drizzle/Dexie, no server logic.
 - Named exports, functional components, no default exports, no class components.
 - shadcn primitives are generated; update with shadcn tooling, do not hand-edit.
 

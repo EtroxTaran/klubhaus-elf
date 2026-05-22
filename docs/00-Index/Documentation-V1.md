@@ -6,7 +6,7 @@ created: 2026-05-22
 updated: 2026-05-22
 type: baseline
 binding: true
-supersedes: [[Documentation-Baseline-2026-05-22]]
+supersedes: Documentation-Baseline-2026-05-22
 related:
   - [[Agent-Onboarding]]
   - [[Current-State]]

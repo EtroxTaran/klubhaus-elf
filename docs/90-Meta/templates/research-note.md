@@ -1,4 +1,4 @@
-﻿---
+---
 title: Research Title
 status: draft
 tags: [research]

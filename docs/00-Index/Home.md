@@ -14,6 +14,13 @@ The documentation single source of truth for the `soccer-manager` project, and
 the front door to every area. Agents start at [[Agent-Onboarding]]; humans can
 read top-to-bottom or use the left **Explorer** to browse the full tree.
 
+> **New here? Read these five, in order, and ignore the rest until a task needs
+> it:** [[Agent-Onboarding]] → [[Current-State]] → [[Documentation-V1]] →
+> [[Decision-Log]] → [[MVP-Scope]]. [[Documentation-V1]] is the single
+> ground-truth baseline (current stack, MVP, and what is binding vs. historical).
+> The wider vault (~160 files: features, game design, research, pre-mortem) is
+> reference material, not required reading.
+
 ## Start here (agents)
 
 - [[Agent-Onboarding]] — first read every session
@@ -39,17 +46,23 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
   [[../10-Architecture/07-Deployment]] · [[../10-Architecture/08-Crosscutting]]
 - [[../10-Architecture/09-Design-System]] · [[../10-Architecture/10-Quality]] ·
   [[../10-Architecture/11-Risks]]
-- **Decisions:** ADR-0001 … ADR-0020 in `10-Architecture/09-Decisions/`
-  (tech stack, hybrid-online MVP, match engine, data model, save format, i18n,
-  naming, mobile-first UI, cursor orchestration, design system, DDD,
-  multiplayer, outbox, observability and systemic events).
+- **Decisions:** the canonical ADR index with status and lineage is
+  [[Decision-Log]] (covering ADR-0001 … ADR-0043 in
+  `10-Architecture/09-Decisions/`). Current binding set includes the revised
+  tech stack (ADR-0021), PostgreSQL data model + transactional outbox
+  (ADR-0027/0028), hybrid-online MVP (ADR-0020), match engine (ADR-0003),
+  realtime transport (ADR-0023), renderer + frame contract
+  (ADR-0024/0026/0041), DDD modular monolith (ADR-0019), multiplayer
+  (ADR-0011), design system (ADR-0010), observability (ADR-0017), systemic
+  events (ADR-0018) and notification/messaging (ADR-0043). Superseded
+  predecessors (ADR-0001/0002/0004/0013) are kept as historical memory only.
 
 ## Product
 
 - [[../20-Features/README]] — feature specifications.
 - [[../50-Game-Design/README]] — game-design specifications, including the
-  GDDR decision-record set (`GD-0001`...`GD-0016`).
-- [[../40-User-Docs/README]] — player-facing documentation.
+  GDDR decision-record set (`GD-0001`...`GD-0017`).
+- [[../70-User-Docs/README]] — player-facing documentation.
 
 Product authority flows research -> game design -> ADRs -> implementation.
 Approved game-design records are the source for gameplay behaviour; accepted
@@ -63,8 +76,8 @@ ADRs are the source for technical shape.
 - [[../30-Implementation/deployment-dokploy]] ·
   [[../30-Implementation/design-sync-workflow]] ·
   [[../30-Implementation/linear-task-tracking]]
-- [[../30-Implementation/hybrid-online-pwa-strategy]] ?
-  [[../30-Implementation/postgres-drizzle-integration]] ?
+- [[../30-Implementation/hybrid-online-pwa-strategy]] ·
+  [[../30-Implementation/postgres-drizzle-integration]] ·
   [[../30-Implementation/secrets-management]]
 
 ## Research

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Agent Onboarding
 status: current
 tags: [meta, agents, vault]
@@ -13,7 +13,13 @@ related: [[../90-Meta/agent-memory-protocol]], [[Documentation-V1]]
 
 First read for every agent (Claude Code, Cursor local, Cursor Cloud, Bugbot).
 The vault (`docs/`) is durable project memory. `AGENTS.md` / `CLAUDE.md` and the
-`.cursor/rules` are orchestrators only â€” durable context lives in vault notes.
+`.cursor/rules` are orchestrators only — durable context lives in vault notes.
+
+> **Start here (minimum reading set).** To understand the current state you only
+> need five notes: this one → [[Current-State]] → [[Documentation-V1]] →
+> [[Decision-Log]] → [[MVP-Scope]]. Everything else (the ~160-file vault,
+> pre-mortem, raw research) is reference you pull on demand for a specific task —
+> do **not** read it all. The single ground-truth baseline is [[Documentation-V1]].
 
 ## Read in this order
 
@@ -28,11 +34,11 @@ The vault (`docs/`) is durable project memory. `AGENTS.md` / `CLAUDE.md` and the
 
 ## Memory classes
 
-- **Cold** â€” durable, rarely changes, often referenced: `accepted` ADRs,
+- **Cold** — durable, rarely changes, often referenced: `accepted` ADRs,
   `10-Architecture/**`, `00-Index/Vision`, `Glossary`, approved design notes.
-- **Warm** â€” changes regularly: [[Current-State]], active feature specs,
+- **Warm** — changes regularly: [[Current-State]], active feature specs,
   module notes, gap classifications.
-- **Hot** â€” changes every session: `40-Execution/session-handoffs/*`, the
+- **Hot** — changes every session: `40-Execution/session-handoffs/*`, the
   linked Linear issue, current branch context.
 
 Load the minimum depth the task needs. Never "read the whole vault".

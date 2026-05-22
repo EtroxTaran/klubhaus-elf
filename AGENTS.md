@@ -19,9 +19,17 @@ Offline-ready PWA football manager game in the style of the Anstoß series. The
 current MVP is hybrid-online and Create-a-Club Roguelite first; selective
 offline-first singleplayer, Manage-a-Club Career, export/import and
 server-authoritative multiplayer are planned future capabilities.
-TanStack Start (file-based routing, server functions, SSR) + shadcn/ui + Tailwind
-+ SurrealDB (document/graph/relational) + TypeScript strict + Vitest + Playwright
-+ Biome + pnpm + mise + sops+age+direnv + Docker + Dokploy on Hetzner.
+
+TanStack Start (file-based routing, server functions, SSR) + React + shadcn/ui +
+Tailwind + the TanStack data layer (Query, Table, Virtual, Form) + Zustand v5
+(client/sim state) + Zod 4 + **PostgreSQL 17 + Drizzle ORM** (system of record) +
+Dexie/IndexedDB (client cache/drafts) + TypeScript strict + Vitest + Playwright +
+fast-check + Stryker + Biome + pnpm + mise + sops+age+direnv + Docker + Dokploy on
+Hetzner. Match rendering is **Canvas 2D** (Three.js/React Three Fiber is a
+post-MVP presentation layer, never match-authoritative); realtime is **SSE for the
+MVP → Centrifugo at scale**, behind a transport interface. **SurrealDB is deferred
+— it is not the database** — and may return post-launch only as an additive
+realtime/graph engine behind that interface (see ADR-0021).
 
 ## Workflow Pattern
 
@@ -73,7 +81,7 @@ closing Linear tickets.
 mise install
 direnv allow
 pnpm install --frozen-lockfile
-docker compose -f docker-compose.dev.yml up -d surrealdb
+docker compose -f docker-compose.dev.yml up -d   # postgres:17 on :5432
 pnpm db:migrate
 pnpm dev
 ```
@@ -98,9 +106,16 @@ pnpm dev
 
 - Server-only secrets MUST go through `createServerFn` or `createServerOnlyFn` -
   never read `process.env.*` inside a route loader.
-- All SurrealDB access flows through `src/db/client.ts`. Always parameterize:
-  `db.query("SELECT * FROM player WHERE id = $id", { id })`.
-- Tables are `DEFINE TABLE ... SCHEMAFULL`. Use record links (`player:ulid`) and `RELATE`, not joins.
+- All database access flows through the typed `QueryGateway` exported from
+  `@soccer-manager/db` (`gateway.withPlatform` / `gateway.withSave`). Domain code
+  never imports the raw `pg.Pool` or `drizzle()` (lint-enforced). Queries are
+  parameterized through Drizzle; never string-concatenate SQL.
+- Drizzle is the single source of truth: `pgTable` declarations in
+  `packages/db/src/schema/{platform,save}/**`. Each save lives in its own
+  `save_<uuidv7hex>` Postgres schema (schema-per-save isolation, ADR-0027).
+- Cross-context references are opaque `uuid` columns + branded TS types — never
+  `references()` across bounded-context folders (ADR-0019 §6). IDs are
+  app-generated UUIDv7, never the database's `gen_random_uuid()`.
 - Service worker lives in `src/workers/`; the bootstrap shell registers it through `apps/web/public/sw-register.js` until interactive client hydration is introduced.
 - shadcn primitives in `src/components/ui/**` are generated; update them with shadcn tooling.
 - UI uses the design system only: tokens in `apps/web/src/styles/app.css`, `cn()`
@@ -132,9 +147,17 @@ pnpm dev
 
 ## Database & Migrations
 
-- Schemas in `db/schema.surql` and package mirrors in `packages/db-schema`.
-- Migrations are forward-only and idempotent (`DEFINE ... IF NOT EXISTS`).
-- Type generation runs in CI; never commit stale generated types.
+- Drizzle `pgTable` schema lives in `packages/db/src/schema/**`; the standalone,
+  zero-dependency Zod validation mirror is generated into
+  `packages/db-schema/src/generated/**`.
+- `drizzle-kit generate` emits forward-only numbered SQL into
+  `packages/db/migrations/{platform,save}/` (committed). Never `drizzle-kit push`
+  against shared envs. `pnpm db:migrate` runs the node-postgres migrator against
+  `DATABASE_URL`.
+- Per-save migrations apply lazily on save-open via `QueryGateway.withSave`
+  (A2 lazy, ADR-0027 §2); the `__drizzle_migrations` table is per-schema.
+- CI drift gate: `pnpm db:generate && git diff --exit-code`. Never commit stale
+  generated schema/types.
 
 ## PWA Rules
 
@@ -180,7 +203,7 @@ The docs vault remains the durable knowledge base.
 - Do not switch package managers (npm/yarn forbidden - pnpm only).
 - Do not reintroduce ESLint or Prettier - Biome is canonical.
 - Do not hand-edit shadcn/ui primitives or `routeTree.gen.ts`.
-- Do not bypass `src/db/client.ts`.
+- Do not bypass the `QueryGateway` (`@soccer-manager/db`) or import the raw pg pool / `drizzle()` outside `packages/db`.
 - Do not use class components, default exports for React components, or enums.
 - Do not use real Bundesliga/EPL club names/logos/player names; see ADR-0007.
 - Do not invent styling/layout or add one-off styled components when a
@@ -196,14 +219,14 @@ The docs vault remains the durable knowledge base.
 | Service | How to start | Port |
 |---|---|---|
 | TanStack Start dev server | `pnpm dev` | 3000 |
-| SurrealDB (in-memory) | `sudo dockerd &>/dev/null & sleep 2 && sudo docker compose -f docker-compose.dev.yml up -d surrealdb` | 8000 |
+| PostgreSQL 17 | `sudo dockerd &>/dev/null & sleep 2 && sudo docker compose -f docker-compose.dev.yml up -d` | 5432 |
 
 ### Gotchas
 
-- **Docker requires sudo** in the Cloud VM. The daemon isn't auto-started; run `sudo dockerd` before any `docker compose` commands.
+- **Docker requires sudo** in the Cloud VM. The daemon isn't auto-started; run `sudo dockerd` before any `docker compose` commands. The dev compose file starts `postgres:17-alpine` on `:5432`.
 - **`pnpm typecheck` builds `apps/web` first** (via `pnpm --filter @soccer-manager/web build && tsc --build`). This is intentional—TanStack Start generates route types during build.
 - **E2e tests build and preview automatically.** Playwright's `webServer` config runs `pnpm build && vite preview --port 3000`. Stop any running dev server on port 3000 before `pnpm test:e2e`.
-- **`db:migrate` is a placeholder.** It only prints a message; no actual migration runs yet.
-- **`.env` file** is needed at root. Copy from `.env.example` (`cp .env.example .env`). Default credentials: `root`/`root` for SurrealDB on localhost:8000.
+- **`db:migrate` is currently a placeholder.** It only prints a message; the real `drizzle-orm/node-postgres` migrator (ADR-0027 §12) lands with the data-layer engineering wave.
+- **`.env` file** is needed at root. Copy from `.env.example` (`cp .env.example .env`). Default dev Postgres credentials: `soccer_manager`/`soccer_manager`, database `soccer_manager` on `localhost:5432`; the app reads `DATABASE_URL`.
 - **Playwright browsers:** Install with `npx playwright install --with-deps chromium webkit` (both chromium and mobile-safari/webkit are tested).
 - Standard lint/test/build commands are documented in the Setup and Build & Test sections above.

@@ -84,7 +84,7 @@ Agent usage:
  competitive analysis). Use Context7 / Ref first for library/framework docs.
 - Substantial research output belongs in the vault under
  `docs/60-Research/`. Raw transcripts go under
- [[../60-Research/raw-perplexity]] with `status: raw`; synthesised notes sit
+ [[../60-Research/raw-perplexity/README]] with `status: raw`; synthesised notes sit
  alongside other research notes with proper status, related links, and chain
  back to the raw transcript.
 - Do not paste API responses verbatim into Linear comments or PR descriptions

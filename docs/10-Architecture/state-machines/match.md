@@ -1,9 +1,9 @@
-﻿---
+---
 title: State Machine - Match
-status: draft
+status: current
 tags: [architecture, state-machine, match]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-22
 type: state-machine
 binding: false
 related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/match-engine]], [[../../60-Research/match-engine-runtime-strategy]], [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]]
@@ -82,39 +82,54 @@ Per [[../09-Decisions/ADR-0003-match-engine]] and
 
 ## 6. Persistence
 
+Per [[../09-Decisions/ADR-0027-postgres-data-model]]: a strongly-typed
+`match` table in the per-save schema (typed Drizzle columns + `CHECK`),
+cross-context references as opaque branded UUIDv7 columns (no cross-context
+`references()`), embedded read-together objects as `jsonb`, and the
+high-volume event log as a child table keyed by the parent match id.
+
 ```text
-match {
-  id: record(match),
-  league: record(league),
-  home_club: record(club),
-  away_club: record(club),
-  scheduled_at: datetime,
-  lineup_open_at: datetime,
-  lineup_lock_at: datetime,
-  state: enum(state_names),
-  seed: string,                  # set at lineup_locked
-  engine_version: string,        # for deterministic re-sim
-  home_lineup: object,
-  away_lineup: object,
-  home_tactic: object,
-  away_tactic: object,
-  quality_profile: enum(competitive_full | interactive_standard | background_detailed | background_fast),
-  match_type: enum(human_vs_human | human_vs_ai | ai_vs_ai),
-  events: array<event>?,         # full log for human-involving; null until re-sim for AI vs AI
-  summary: object,               # always present: result + key stats
-  result: object?,
-  reports: object?
+match {                          # strongly-typed (typed cols + CHECK)
+  id: uuid (UUIDv7, app-generated, PK),
+  league_id: uuid (LeagueId, opaque branded ref),
+  home_club_id: uuid (ClubId, opaque branded ref),
+  away_club_id: uuid (ClubId, opaque branded ref),
+  scheduled_at: timestamptz,
+  lineup_open_at: timestamptz,
+  lineup_lock_at: timestamptz,
+  state: text + CHECK IN (state_names),
+  seed: text,                    # set at lineup_locked
+  engine_version: text,          # for deterministic re-sim
+  home_lineup: jsonb,
+  away_lineup: jsonb,
+  home_tactic: jsonb,
+  away_tactic: jsonb,
+  quality_profile: text + CHECK IN (competitive_full | interactive_standard | background_detailed | background_fast),
+  match_type: text + CHECK IN (human_vs_human | human_vs_ai | ai_vs_ai),
+  summary: jsonb,                # always present: result + key stats
+  result: jsonb?,
+  reports: jsonb?
+}
+
+match_event {                    # child table; high-volume event log
+  id: uuid (UUIDv7, app-generated, PK),
+  match_id: uuid (intra-context FK to match, indexed),
+  payload: jsonb (per-event Zod at producer + consumer)
 }
 ```
 
+The full event log lives in `match_event` rows for human-involving matches;
+for AI vs AI it stays unwritten until re-sim (see below).
+
 ### AI vs AI storage policy
 
-Per [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]] Â§AI vs AI
+Per [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]] §AI vs AI
 match policy:
 
 - AI vs AI matches store `seed + lineups + tactics + quality_profile +
   summary` by default.
-- `events` stays null until a watch-party / audit triggers re-simulation.
+- No `match_event` rows are written until a watch-party / audit triggers
+  re-simulation.
 - Re-simulation runs the deterministic engine with the stored seed +
   `engine_version` + `quality_profile` to produce the full event log on
   demand.

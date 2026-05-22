@@ -1,6 +1,6 @@
 ---
 title: Risks
-status: draft
+status: current
 tags: [architecture, risk]
 created: 2026-05-15
 updated: 2026-05-22

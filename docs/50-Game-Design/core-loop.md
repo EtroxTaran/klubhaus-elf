@@ -1,4 +1,4 @@
-﻿---
+---
 title: Core Loop - Season Arc and Weekly Heartbeat
 status: draft
 tags: [game-design, core-loop, pacing]
@@ -54,7 +54,7 @@ flowchart LR
     J --> A
 ```
 
-Source pattern: [[../60-Research/anstoss-series-deep-dive]] Â§4 (Anstoss
+Source pattern: [[../60-Research/anstoss-series-deep-dive]] §4 (Anstoss
 7-week pre-season + winter break) consolidated with FM weekly model.
 
 ## 3. Standard league week
@@ -148,8 +148,8 @@ match-day differs.
 
 ## 9. Future-scope notes (classified future-scope)
 
-- How long is a "default" Quick-tier session? Target â‰¤ 5 min for a normal
-  week, â‰¤ 15 min for a match-day with halftime tweaks.
+- How long is a "default" Quick-tier session? Target ≤ 5 min for a normal
+  week, ≤ 15 min for a match-day with halftime tweaks.
 - Should the season length be configurable per scenario pack
   ([[community-editor-and-datasets]])? Recommendation: yes, with a sensible
   default per league.

@@ -311,7 +311,8 @@ CI enforcement:
 - [[../../60-Research/performance-budgets]] (gap D9) — world-size
   presets + perf budgets; lazy expansion sized to meet ≤ 5-8 s
   world-gen on Snapdragon 695.
-- [[ADR-0004-data-model]] — `player` + `club` SCHEMAFULL definitions.
+- [[ADR-0027-postgres-data-model]] (supersedes ADR-0004) — `player` +
+  `club` typed Drizzle table (SCHEMAFULL-governance) definitions.
 - [[ADR-0005-save-format]] — compressed binary save envelope; gen
   outputs are part of the save payload.
 - [[ADR-0016-community-dataset-overrides]] — override pack pipeline

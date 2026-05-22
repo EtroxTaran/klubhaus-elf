@@ -60,10 +60,11 @@ Three rules together encode "service-ready":
    abstraction. In MVP the transport is an in-process bus; the same
    contract can be carried by HTTP, gRPC or a message broker without
    touching domain code.
-3. **Storage isolation.** Each context owns its own SurrealDB tables.
-   Cross-context reads go through the *queries* layer of the owning
-   context. No JOIN across context boundaries. No "shared lookup tables"
-   that bypass the rule.
+3. **Storage isolation.** Each context owns its own Postgres tables
+   ([[ADR-0027-postgres-data-model]]). Cross-context reads go through
+   the *queries* layer of the owning context. No JOIN across context
+   boundaries (no cross-context FKs; opaque branded-`uuid` refs only).
+   No "shared lookup tables" that bypass the rule.
 
 ### The eleven bounded contexts
 
@@ -150,7 +151,8 @@ The following compliance rules apply to all new code touching
 
 - New code MUST live in exactly one context folder.
 - Imports from another context MUST go through `index.ts` only.
-- No raw SurrealDB query may cross a context boundary.
+- No raw Postgres query may cross a context boundary
+  ([[ADR-0027-postgres-data-model]] §8 `QueryGateway`).
 - All commands, events and queries MUST be JSON-serialisable (Zod
   schemas).
 - Bus + QueryGateway abstractions MUST be used; direct function calls

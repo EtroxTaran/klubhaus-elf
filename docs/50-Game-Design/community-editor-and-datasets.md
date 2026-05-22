@@ -1,4 +1,4 @@
-﻿---
+---
 title: Community Editor and Dataset Override Packs
 status: draft
 tags: [game-design, editor, datasets, modding, community]
@@ -33,7 +33,7 @@ own dataset packs without breaking versioning or saves.
 | **Scenario pack** | Alternative start years, historical worlds, fantasy | "1990 start", "World War scenario" |
 
 Packs are stacked in priority order. Conflicts are surfaced in the import
-preview (see Â§5).
+preview (see §5).
 
 ## 3. Manifest schema
 
@@ -98,11 +98,11 @@ The preview shows:
 
 A save records which packs were active when created. On save load:
 
-- If all packs available + same version â†’ load.
-- If pack missing â†’ user offered "load without pack" (entities revert to
+- If all packs available + same version → load.
+- If pack missing → user offered "load without pack" (entities revert to
   core/base) or "abort".
-- If pack version newer â†’ migration check (per pack's `migrations.yaml`).
-- If pack version older â†’ block; user must reinstall correct version.
+- If pack version newer → migration check (per pack's `migrations.yaml`).
+- If pack version older → block; user must reinstall correct version.
 
 ## 7. Editor UI
 
@@ -124,7 +124,7 @@ The editor's input forms remind the user:
 - The game ships fictional names; using real ones is your choice.
 - We do not distribute community packs that include real-world data.
 
-This is consistent with [[../60-Research/ip-and-licensing]] Â§IP hard
+This is consistent with [[../60-Research/ip-and-licensing]] §IP hard
 stops.
 
 ## 9. Distribution
