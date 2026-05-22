@@ -42,6 +42,9 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-22-vault-consistency-pass]] - vault-wide consistency + link-health
+  pass: Postgres/Drizzle realignment, supersede/front-door/authority hygiene,
+  structure renames, mojibake/BOM repair, broken-link fixes; docs-check green.
 - [[2026-05-22-documentation-v1-cleanup]] - consolidated the documentation V1
   baseline.
 - [[2026-05-22-notification-messaging-platform]] - locked the notification &

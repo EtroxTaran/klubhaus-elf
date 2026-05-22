@@ -27,6 +27,13 @@ documentation/architecture gaps. Historical `open`, `draft`, `proposal` and
 page, the baseline, an accepted ADR, an approved GDDR or a current
 implementation spec.
 
+A vault-wide **consistency + link-health pass** ran on 2026-05-22
+([[../40-Execution/session-handoffs/2026-05-22-vault-consistency-pass]]): the
+entry chain, arc42, accepted ADRs and current implementation specs were realigned
+to PostgreSQL + Drizzle (SurrealDB stays the deferred additive option), superseded
+notes self-announce, encoding/mojibake and broken wikilinks were repaired, and
+`docs-check` passes with zero issues.
+
 Use the temporal layers from the baseline:
 
 - MVP Binding: implementable now.
