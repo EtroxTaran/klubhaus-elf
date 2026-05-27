@@ -30,15 +30,24 @@ RUN set -eu; \
   find /usr/share/nginx/html -maxdepth 1 -name '*.html' \
     -exec sed -i 's|Stadium 3D\.html|Stadium 3D Babylon.html|g' {} +; \
   # Overlay (hub + isometric scene + shared assets) copied OVER/ALONGSIDE the
-  # export. The snapshot in /ctx is never edited; the served copy only gains
-  # files. The export's real canvas index.html is preserved (NO clobber);
-  # nginx serves hub.html as the landing page via its `index` directive.
+  # export. The snapshot in /ctx is never edited; the served copy only gains files.
   cp -r /ctx/tools/styleguide/overlay/. /usr/share/nginx/html/; \
   rm -rf /ctx; \
-  # Sanity (blind-build safety): fail the build if any of these are missing.
+  # The entry page must be a clear, fast landing — NOT the heavy 34-script design
+  # canvas. Restore the proven "landing lives AT index.html" pattern (robust under
+  # any nginx default): 1) rename the slow canvas → canvas.html, 2) repoint every
+  # reference to it (export .html + the one .jsx link), 3) make index.html the hub.
+  # The canvas navigates via hash anchors only, so it needs no internal change.
+  mv "/usr/share/nginx/html/index.html" "/usr/share/nginx/html/canvas.html"; \
+  find /usr/share/nginx/html -maxdepth 1 \( -name '*.html' -o -name '*.jsx' \) \
+    -exec sed -i 's|index\.html|canvas.html|g' {} +; \
+  cp "/usr/share/nginx/html/hub.html" "/usr/share/nginx/html/index.html"; \
+  # Sanity (blind-build safety): entry = hub, canvas reachable, repoint done.
   test -f /usr/share/nginx/html/hub.html; \
   test -f /usr/share/nginx/html/isometric.html; \
-  test -f /usr/share/nginx/html/index.html; \
-  test -f "/usr/share/nginx/html/Handoff Overview.html"
+  test -f /usr/share/nginx/html/canvas.html; \
+  grep -q 'hub-body' /usr/share/nginx/html/index.html; \
+  grep -q 'text/babel' /usr/share/nginx/html/canvas.html; \
+  ! grep -q 'index\.html#' "/usr/share/nginx/html/Handoff Overview.html"
 COPY tools/styleguide/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80

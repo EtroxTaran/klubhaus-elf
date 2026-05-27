@@ -213,3 +213,14 @@ This feeds draft
 [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
 and amends draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 for key-event match ticker commentary.
+
+## Isometric Stadium & Campus Presentation (2026-05-27)
+
+[[isometric-stadium-campus-research]] grounds the interactive styleguide's
+isometric club-campus 3D scene (Anstoss-style stadium + infrastructure): what such
+a view shows — mapped to [[../50-Game-Design/stadium-and-campus]] and
+[[anstoss-series-deep-dive]] — Babylon.js isometric best-practices, an asset / AI
+text-to-3D appendix (with prompt templates) for an optional future pass, and the
+decision to build the demo scene **procedurally** under
+[[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]] /
+[[presentation-renderer-strategy]].

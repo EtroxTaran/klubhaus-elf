@@ -14,8 +14,10 @@ related: [[09-Design-System]], [[09-Decisions/ADR-0010-design-system]], [[09-Dec
 > see `tools/styleguide/` + `docker-compose.docs.yml`): the claude.ai/design export
 > served clickable & responsive, **Babylon-only** (no Three.js). The landing page is a
 > **clickable hub** (`hub.html`) that links every part — canvas, component library,
-> component-states, both prototypes, the Babylon stadium, the new **isometric scene**
-> (`isometric.html`), the maps and the docs; the design canvas stays at `/index.html`.
+> component-states, both prototypes, the Babylon stadium, the new **isometric club-campus
+> scene** (`isometric.html` — Anstoss-style stadium + infrastructure), the maps and the
+> docs. The hub IS the landing at `/` (served as `index.html`); the heavy design canvas
+> moved to `/canvas.html`.
 > The hub + isometric scene live in a build-time **overlay** (`tools/styleguide/overlay/`)
 > so the export snapshot stays byte-for-byte untouched
 > ([[09-Decisions/ADR-0048-design-update-and-migration-path]]). This vault page is the
@@ -80,9 +82,10 @@ The component layers (12 atoms, 10 composites, layout, screens) and the full
 45-screen catalogue live in [[09-Design-System]] §5/§10. Post-MVP isometric /
 3D stadium scenes render via **Babylon.js**
 ([[09-Decisions/ADR-0047-babylon-3d-presentation-engine]]); the styleguide
-deployment ships a live, fallback-safe **isometric Babylon demo** (`isometric.html`,
-orthographic camera at the true 35.264°/45° isometric angle) alongside the
-free-orbit stadium studio.
+deployment ships a live, fallback-safe **isometric club-campus demo**
+(`isometric.html`, procedural Anstoss-style stadium + infrastructure, orthographic
+camera at the true 35.264°/45° iso angle, token-driven) alongside the free-orbit
+stadium studio. Research + element list: [[../60-Research/isometric-stadium-campus-research]].
 
 ## Related
 

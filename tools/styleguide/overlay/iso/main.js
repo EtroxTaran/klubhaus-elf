@@ -1,9 +1,9 @@
-// main.js — isometric Babylon scene for the styleguide overlay.
+// main.js — isometric club-campus Babylon scene for the styleguide overlay.
 // Orthographic ArcRotateCamera locked to the true isometric elevation; azimuth
-// rotates, wheel/keys zoom the ortho frustum. Graceful static fallback when
-// Babylon or WebGL is unavailable. Lives outside the export snapshot.
-import { CLUBS, SCARLET, ISO, hexToColor3, clamp } from './config.js';
-import { buildCampus } from './grid.js';
+// rotates, wheel/keys zoom the ortho frustum. Builds an Anstoss-style campus
+// (campus.js). Graceful static fallback when Babylon/WebGL is unavailable.
+import { CLUBS, clubColor, ISO, clamp } from './config.js';
+import { buildCampus } from './campus.js';
 
 const canvas     = document.getElementById('js-canvas');
 const stageEl    = document.getElementById('js-stage');
@@ -17,7 +17,6 @@ function showFallback(reason) {
   console.warn('[iso] static fallback —', reason);
 }
 
-// Guard: engine + context must exist, else show the static fallback.
 if (typeof BABYLON === 'undefined' || typeof BABYLON.Engine === 'undefined'
     || (BABYLON.Engine.isSupported && !BABYLON.Engine.isSupported())) {
   showFallback('babylon-or-webgl-unavailable');
@@ -49,14 +48,16 @@ function boot() {
   const cam = new BABYLON.ArcRotateCamera('iso', ISO.alpha, ISO.beta, ISO.radius, BABYLON.Vector3.Zero(), scene);
   cam.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA;
   cam.lowerBetaLimit = cam.upperBetaLimit = ISO.beta;     // lock elevation = true iso
-  cam.minZ = -2000; cam.maxZ = 4000;                      // ortho clip planes
-  cam.panningSensibility = 40;
+  cam.minZ = -2000; cam.maxZ = 4000;
+  cam.panningSensibility = 30;
   cam.inertia = 0.82;
   cam.attachControl(canvas, true);
-  // ortho ignores radius for scale → drive zoom via the ortho frustum, not wheel-radius
   if (cam.inputs.attached.mousewheel) cam.inputs.removeByType('ArcRotateCameraMouseWheelInput');
 
-  const state = { club: 'hafenstadt', half: ISO.orthoHalfHeight, auto: !reduceMotion, targetAlpha: null };
+  const state = {
+    club: 'hafenstadt', half: ISO.orthoHalfHeight, auto: !reduceMotion, targetAlpha: null,
+    layers: { outdoor: true, training: true, buildings: true },
+  };
 
   function setOrtho() {
     const w = canvas.clientWidth || canvas.width || 1;
@@ -69,33 +70,34 @@ function boot() {
 
   // ── Lights ────────────────────────────────────────────────────
   const hemi = new BABYLON.HemisphericLight('iso-hemi', new BABYLON.Vector3(0.35, 1, 0.25), scene);
-  hemi.intensity = 0.9;
-  hemi.diffuse = hexToColor3(0xfff6e6);
-  hemi.groundColor = hexToColor3(0x6b5d49);
+  hemi.intensity = 0.92;
+  hemi.diffuse = new BABYLON.Color3(1, 0.97, 0.9);
+  hemi.groundColor = new BABYLON.Color3(0.42, 0.36, 0.29);
   const dir = new BABYLON.DirectionalLight('iso-dir', new BABYLON.Vector3(-1, -1.7, -0.8), scene);
-  dir.intensity = 0.55;
-  dir.position = new BABYLON.Vector3(180, 280, 140);
+  dir.intensity = 0.5;
+  dir.position = new BABYLON.Vector3(220, 320, 180);
 
   // ── Build campus ──────────────────────────────────────────────
-  const campus = buildCampus(scene, { accent: CLUBS[state.club].primary });
+  const campus = buildCampus(scene, { accent: clubColor(state.club) });
 
   // ── UI: club accent swatches ──────────────────────────────────
   const sw = document.getElementById('js-swatches');
   if (sw) {
     for (const [id, c] of Object.entries(CLUBS)) {
+      const hex = clubColor(id);
       const b = document.createElement('button');
       b.className = 'iso-swatch' + (id === state.club ? ' is-active' : '');
-      b.style.background = '#' + c.primary.toString(16).padStart(6, '0');
+      b.style.background = '#' + hex.toString(16).padStart(6, '0');
       b.title = c.name;
       b.setAttribute('aria-label', 'Vereinsakzent ' + c.name);
       b.innerHTML = `<span class="iso-swatch-lbl">${c.name.slice(0, 3)}</span>`;
       b.addEventListener('click', () => {
         state.club = id;
-        campus.setAccent(c.primary);
+        campus.setAccent(clubColor(id));
         for (const s of sw.children) s.classList.remove('is-active');
         b.classList.add('is-active');
         const sub = document.getElementById('js-mast-sub');
-        if (sub) sub.textContent = `Isometrischer Campus · ${c.name} · ${c.tag}`;
+        if (sub) sub.textContent = `Vereinsgelände · ${c.name} · ${c.tag}`;
       });
       sw.appendChild(b);
     }
@@ -125,21 +127,27 @@ function boot() {
     }
   }
 
-  // ── UI: toggles (auto-spin, reset) ────────────────────────────
+  // ── UI: toggles (auto-spin, reset, layers) ────────────────────
   function syncAuto() {
     const t = document.getElementById('js-t-auto');
     if (t) t.classList.toggle('is-on', state.auto);
   }
-  syncAuto();
+  function syncLayer(name) {
+    const t = document.getElementById('js-t-' + name);
+    if (t) t.classList.toggle('is-on', state.layers[name]);
+  }
+  syncAuto(); ['outdoor', 'training', 'buildings'].forEach(syncLayer);
+
   document.querySelectorAll('[data-toggle]').forEach(el => {
     el.addEventListener('click', () => {
       const k = el.dataset.toggle;
       if (k === 'auto')  { state.auto = !state.auto; state.targetAlpha = null; syncAuto(); }
-      if (k === 'reset') { state.targetAlpha = ISO.alpha; state.half = ISO.orthoHalfHeight; setOrtho(); state.auto = false; syncAuto(); }
+      else if (k === 'reset') { state.targetAlpha = ISO.alpha; state.half = ISO.orthoHalfHeight; setOrtho(); state.auto = false; syncAuto(); }
+      else if (state.layers[k] !== undefined) { state.layers[k] = !state.layers[k]; campus.setLayer(k, state.layers[k]); syncLayer(k); }
     });
   });
 
-  // ── Zoom: wheel + pinch via ortho frustum ─────────────────────
+  // ── Zoom: wheel via ortho frustum ─────────────────────────────
   canvas.addEventListener('wheel', (e) => {
     e.preventDefault();
     state.half = clamp(state.half * (e.deltaY > 0 ? 1.08 : 0.92), ISO.orthoMin, ISO.orthoMax);
@@ -165,7 +173,7 @@ function boot() {
     e.preventDefault();
   });
 
-  // ── Perf: freeze once the scene is ready ──────────────────────
+  // ── Perf: freeze once ready ───────────────────────────────────
   scene.executeWhenReady(() => {
     scene.render();
     try { scene.freezeActiveMeshes(); } catch (_) { /* non-fatal */ }
@@ -173,7 +181,7 @@ function boot() {
   });
 
   // ── Render loop ───────────────────────────────────────────────
-  const AUTO_SPEED = 0.12;   // rad/sec
+  const AUTO_SPEED = 0.12;
   const fpsEl = document.getElementById('js-fps');
   const meshEl = document.getElementById('js-meshes');
   const triEl = document.getElementById('js-tris');
@@ -215,6 +223,5 @@ function boot() {
   window.addEventListener('resize', onResize);
   if (stageEl && 'ResizeObserver' in window) new ResizeObserver(onResize).observe(stageEl);
 
-  // Recover gracefully from a lost WebGL context (mobile GPU reclaim).
   canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); }, false);
 }

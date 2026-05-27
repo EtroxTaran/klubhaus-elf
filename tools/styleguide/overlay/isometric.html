@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Aurelia Premier — Isometrische Campus-Ansicht</title>
+  <title>Aurelia Premier — Vereinsgelände (isometrisch)</title>
   <meta name="description" content="Dedizierte isometrische 3D-Szene (Babylon.js): orthographische Kamera im echten Isometrie-Winkel, prozedurales Kachel-Raster, responsiv, Reduced-Motion + statischer Fallback.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
         <span class="iso-mark">AP</span>
         <div>
           <div class="iso-title">Aurelia <em>Premier</em> · Isometrie<span class="iso-badge">Babylon</span></div>
-          <div class="iso-sub" id="js-mast-sub">Isometrischer Campus · Hafenstadt · Marineblau · Gold</div>
+          <div class="iso-sub" id="js-mast-sub">Vereinsgelände · Hafenstadt · Marineblau · Gold</div>
         </div>
       </div>
       <div class="iso-mast-actions">
@@ -39,12 +39,12 @@
 
       <!-- Static fallback: shown when WebGL/Babylon is unavailable or JS is off -->
       <div class="iso-fallback" id="js-fallback" hidden>
-        <img src="assets/iso-fallback.svg" alt="Isometrische Vorschau des Aurelia-Campus: Kachel-Raster mit zentralem Spielfeld und vier Tribünenblöcken.">
+        <img src="assets/iso-fallback.svg" alt="Isometrische Vorschau des Aurelia-Vereinsgeländes: Stadion mit Tribünen, Flutlicht und Anzeigetafel, Vorplatz, Parkplätze und umliegende Campus-Gebäude.">
         <p>3D-Ansicht nicht verfügbar — statische Vorschau. Zurück zum <a href="hub.html">Hub</a> oder zum <a href="Stadium 3D Babylon.html">Stadion-Studio</a>.</p>
       </div>
       <noscript>
         <div class="iso-fallback">
-          <img src="assets/iso-fallback.svg" alt="Isometrische Vorschau des Aurelia-Campus.">
+          <img src="assets/iso-fallback.svg" alt="Isometrische Vorschau des Aurelia-Vereinsgeländes.">
           <p>JavaScript ist deaktiviert — statische Vorschau. Zurück zum <a href="hub.html">Hub</a>.</p>
         </div>
       </noscript>
@@ -59,14 +59,28 @@
 
       <!-- Control panel -->
       <aside class="iso-panel">
-        <div class="iso-panel-kicker">Aurelia · Campus</div>
-        <div class="iso-panel-title">Isometrische Ansicht</div>
+        <div class="iso-panel-kicker">Aurelia · Vereinsgelände</div>
+        <div class="iso-panel-title">Stadion & Infrastruktur</div>
 
         <div class="iso-section-lbl">Drehung (Elevation fix)</div>
         <div class="iso-cams" id="js-cams"></div>
 
         <div class="iso-section-lbl">Verein · Akzent</div>
         <div class="iso-swatches" id="js-swatches"></div>
+
+        <div class="iso-section-lbl">Ebenen</div>
+        <div class="iso-toggle-row" data-toggle="buildings">
+          <span>Campus-Gebäude</span>
+          <span class="iso-toggle is-on" id="js-t-buildings"></span>
+        </div>
+        <div class="iso-toggle-row" data-toggle="training">
+          <span>Trainingsgelände</span>
+          <span class="iso-toggle is-on" id="js-t-training"></span>
+        </div>
+        <div class="iso-toggle-row" data-toggle="outdoor">
+          <span>Außenanlage (Parken · Bäume)</span>
+          <span class="iso-toggle is-on" id="js-t-outdoor"></span>
+        </div>
 
         <div class="iso-section-lbl">Steuerung</div>
         <div class="iso-toggle-row" data-toggle="auto">
