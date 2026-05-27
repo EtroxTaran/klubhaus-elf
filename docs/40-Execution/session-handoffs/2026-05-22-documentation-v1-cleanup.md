@@ -6,7 +6,10 @@ created: 2026-05-22
 updated: 2026-05-22
 type: handoff
 binding: false
-related: [[../../00-Index/Documentation-V1]], [[../../00-Index/Current-State]], [[../../00-Index/Decision-Log]]
+related:
+  - [[../../00-Index/Documentation-V1]]
+  - [[../../00-Index/Current-State]]
+  - [[../../00-Index/Decision-Log]]
 ---
 
 # Handoff: Documentation V1 Cleanup (2026-05-22)
@@ -77,3 +80,8 @@ related: [[../../00-Index/Documentation-V1]], [[../../00-Index/Current-State]], 
 
 - None. This was a documentation baseline cleanup, not a new architecture
   decision.
+## Related
+
+- [[../../00-Index/Documentation-V1]]
+- [[../../00-Index/Current-State]]
+- [[../../00-Index/Decision-Log]]

@@ -5,8 +5,12 @@ tags: [security, implementation, cloud-agents]
 created: 2026-05-15
 updated: 2026-05-18
 type: implementation
-binding: true
-related: [[secrets-management]], [[../10-Architecture/08-Crosscutting]], [[deployment-dokploy]], [[agent-workflow-pattern]]
+binding: false
+related:
+  - [[secrets-management]]
+  - [[../10-Architecture/08-Crosscutting]]
+  - [[deployment-dokploy]]
+  - [[agent-workflow-pattern]]
 ---
 
 # Secrets Rotation — Cloud-Agent Credential Boundary
@@ -44,12 +48,9 @@ NEVER receive production credentials. The boundary:
 - Any token that has been pasted into a Cloud-Agent message,
   log, or stack trace: **immediately**.
 - Trigger via the §6 procedures in [[secrets-management]].
-
 ## Related
 
-- [[secrets-management]] (F11) — full runbook this note is a
-  subset of.
-- [[../10-Architecture/08-Crosscutting]] — security concern.
-- [[deployment-dokploy]] — where staging tokens live.
-- [[agent-workflow-pattern]] — agent credential boundary.
-- [[../00-Index/Non-Goals]] — no prod credentials in agents.
+- [[secrets-management]]
+- [[../10-Architecture/08-Crosscutting]]
+- [[deployment-dokploy]]
+- [[agent-workflow-pattern]]

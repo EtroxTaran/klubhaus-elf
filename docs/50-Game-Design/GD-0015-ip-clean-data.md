@@ -5,11 +5,20 @@ tags: [game-design, gddr, ip, gamedata]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[GD-0009-league-structure]], [[GD-0003-squad-players]], [[../60-Research/ip-and-licensing]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/modules/game-data]], [[../00-Index/Non-Goals]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0009-league-structure]]
+  - [[GD-0003-squad-players]]
+  - [[../60-Research/ip-and-licensing]]
+  - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+  - [[../10-Architecture/modules/game-data]]
+  - [[../00-Index/Non-Goals]]
 ---
 
 # GD-0015: IP-clean Data Generation
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -86,9 +95,12 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] (accepted)
 - [[../10-Architecture/09-Decisions/ADR-0004-data-model]] (generator-backed schema)
-
 ## Related
 
-- Research: [[../60-Research/ip-and-licensing]]
-- Module: [[../10-Architecture/modules/game-data]]
-- [[README]] — hub · siblings: [[GD-0009-league-structure]] · [[GD-0003-squad-players]] · [[GD-0014-save-career-model]]
+- [[README]]
+- [[GD-0009-league-structure]]
+- [[GD-0003-squad-players]]
+- [[../60-Research/ip-and-licensing]]
+- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+- [[../10-Architecture/modules/game-data]]
+- [[../00-Index/Non-Goals]]

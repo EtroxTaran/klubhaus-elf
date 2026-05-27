@@ -5,11 +5,19 @@ tags: [game-design, youth, development, academy]
 created: 2026-05-16
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[squad-and-club-structure]], [[training-load-and-medicine]], [[scouting-and-recruitment]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+binding: false
+related:
+  - [[README]]
+  - [[squad-and-club-structure]]
+  - [[training-load-and-medicine]]
+  - [[scouting-and-recruitment]]
+  - [[../60-Research/systemic-events-player-development-venue-ops]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Youth Academy and Player Development
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Player development is the slowest-moving system and the most rewarding one
 when it works. Modelled as a *portfolio* - not every cohort delivers, but
@@ -188,3 +196,11 @@ Mentoring pairs are surfaced as suggested cards; player can override.
   editor can author them).
 - "Wonderkid" tagging - explicit or emergent? Emergent: tag is applied
   when the public PA-range overlaps an exceptional band.
+## Related
+
+- [[README]]
+- [[squad-and-club-structure]]
+- [[training-load-and-medicine]]
+- [[scouting-and-recruitment]]
+- [[../60-Research/systemic-events-player-development-venue-ops]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]

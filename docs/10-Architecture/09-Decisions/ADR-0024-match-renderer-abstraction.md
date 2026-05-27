@@ -4,15 +4,22 @@ status: draft
 tags: [adr, architecture, ui, match-view]
 created: 2026-05-19
 updated: 2026-05-22
-accepted_at: 2026-05-19
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-19
 supersedes:
 superseded_by:
-related: [[ADR-0021-revised-tech-stack]], [[ADR-0022-animation-game-feel]], [[ADR-0003-match-engine]], [[ADR-0026-match-frame-contract]], [[ADR-0041-presentation-renderer-strategy]]
+related:
+  - [[ADR-0021-revised-tech-stack]]
+  - [[ADR-0022-animation-game-feel]]
+  - [[ADR-0003-match-engine]]
+  - [[ADR-0026-match-frame-contract]]
+  - [[ADR-0041-presentation-renderer-strategy]]
 ---
 
 # ADR-0024: Match Renderer Abstraction
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 > **AMENDED 2026-05-22 by [[ADR-0041-presentation-renderer-strategy]].** The
 > renderer abstraction and Canvas 2D-first decision remain binding. PixiJS is no
@@ -88,8 +95,7 @@ Negative:
 ## Supersedes
 
 None.
-
-## Related Docs
+## Related
 
 - [[ADR-0021-revised-tech-stack]]
 - [[ADR-0022-animation-game-feel]]

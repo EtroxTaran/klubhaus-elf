@@ -5,7 +5,8 @@ tags: [database, implementation, postgresql, drizzle]
 created: 2026-05-19
 updated: 2026-05-19
 type: implementation
-binding: true
+binding: false
+supersedes: surrealdb-integration
 adr:
   - "[[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]"
   - "[[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]"
@@ -13,12 +14,12 @@ adr:
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
   - "[[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]"
 related:
-  - "[[../10-Architecture/modules/db]]"
-  - "[[../10-Architecture/modules/db-schema]]"
-  - "[[secrets-management]]"
-  - "[[deployment-dokploy]]"
-  - "[[audit-trail]]"
-  - "[[hybrid-online-pwa-strategy]]"
+  - [[../10-Architecture/modules/db]]
+  - [[../10-Architecture/modules/db-schema]]
+  - [[secrets-management]]
+  - [[deployment-dokploy]]
+  - [[audit-trail]]
+  - [[hybrid-online-pwa-strategy]]
 ---
 
 # PostgreSQL + Drizzle Integration
@@ -171,12 +172,11 @@ If it returns later, it does so only as an additive realtime/graph engine
 **behind** [[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]]
 — never as the system of record. This integration note never imports
 SurrealDB SDKs and Drizzle never connects to anything but PostgreSQL.
-
 ## Related
 
-- [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] ·
-  [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]] ·
-  [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]
-- [[../10-Architecture/modules/db]] · [[../10-Architecture/modules/db-schema]]
-- [[secrets-management]] (Category B — `DATABASE_URL` + roles)
-- [[audit-trail]] (outbox is the audit trail)
+- [[../10-Architecture/modules/db]]
+- [[../10-Architecture/modules/db-schema]]
+- [[secrets-management]]
+- [[deployment-dokploy]]
+- [[audit-trail]]
+- [[hybrid-online-pwa-strategy]]

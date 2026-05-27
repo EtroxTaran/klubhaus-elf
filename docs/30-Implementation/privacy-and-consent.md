@@ -5,7 +5,7 @@ tags: [implementation, gdpr, eprivacy, privacy, consent, dsar, deletion, age-gat
 created: 2026-05-18
 updated: 2026-05-22
 type: implementation
-binding: true
+binding: false
 adr:
   - "[[../10-Architecture/09-Decisions/ADR-0002-offline-first]]"
   - "[[../10-Architecture/09-Decisions/ADR-0005-save-format]]"
@@ -13,15 +13,15 @@ adr:
   - "[[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]"
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
 related:
-  - "[[../60-Research/gdpr-compliance]]"
-  - "[[../60-Research/telemetry-privacy]]"
-  - "[[../60-Research/threat-model]]"
-  - "[[auth-flows]]"
-  - "[[session-management]]"
-  - "[[account-recovery]]"
-  - "[[audit-trail]]"
-  - "[[notification-messaging-platform]]"
-  - "[[incident-response]]"
+  - [[../60-Research/gdpr-compliance]]
+  - [[../60-Research/telemetry-privacy]]
+  - [[../60-Research/threat-model]]
+  - [[auth-flows]]
+  - [[session-management]]
+  - [[account-recovery]]
+  - [[audit-trail]]
+  - [[notification-messaging-platform]]
+  - [[incident-response]]
 ---
 
 # Privacy and Consent — implementation surface
@@ -975,3 +975,14 @@ Default: **confirmed**.
   tiered retention.
 - [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
   retention per observability tier.
+## Related
+
+- [[../60-Research/gdpr-compliance]]
+- [[../60-Research/telemetry-privacy]]
+- [[../60-Research/threat-model]]
+- [[auth-flows]]
+- [[session-management]]
+- [[account-recovery]]
+- [[audit-trail]]
+- [[notification-messaging-platform]]
+- [[incident-response]]

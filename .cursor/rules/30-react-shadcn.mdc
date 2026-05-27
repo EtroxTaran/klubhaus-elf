@@ -5,8 +5,7 @@ alwaysApply: false
 ---
 # React + shadcn/ui
 
-- Use functional React components with named exports.
-- Generated shadcn primitives live in `src/components/ui/**`; update with shadcn tooling.
-- Keep layouts mobile-first, accessible, keyboard navigable, and WCAG 2.1 AA oriented.
-- Use Lucide icons via named imports when icons are needed.
-- Keep UI text in i18n resource files unless it is test-only copy.
+Implementation code was removed in the 2026-05-27 reset. Use this rule only as
+a pointer to the pre-reopen design-system memory in
+`docs/10-Architecture/09-Design-System.md` and the current decision status in
+`docs/00-Index/Decision-Log.md`.

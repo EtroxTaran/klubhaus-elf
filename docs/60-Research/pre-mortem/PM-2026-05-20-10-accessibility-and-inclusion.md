@@ -555,11 +555,10 @@ updated: 2026-05-22
 ## Verfolgung & Verkettung
 
 IDs `PM-2026-05-20-10-F-NN`. Aggregat: [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]] · [[threat-model]]
-- [[PM-2026-05-20-09-i18n-and-localization]] (RTL + Unicode-Validation)
-- [[PM-2026-05-20-13-community-moderation-and-ugc]] (CAPTCHA + barrierefreie Moderation)
-- [[PM-2026-05-20-16-test-strategy-depth]] (axe-core CI-Layer)
+- [[00-index]]
+- [[findings-registry]]
+- [[PM-2026-05-20-09-i18n-and-localization]]
+- [[PM-2026-05-20-16-test-strategy-depth]]
 - [[../../10-Architecture/09-Design-System]]

@@ -5,9 +5,16 @@ tags: [research, competitor, ux, gameplay]
 created: 2026-05-15
 updated: 2026-05-17
 type: research
+binding: false
 linear:
 sources_retrieved: 2026-05-15
-related: [[00-summary]], [[anstoss-series-deep-dive]], [[competitor-matrix]], [[ip-and-licensing]], [[pwa-offline-patterns]], [[../95-Archive/gap-reports/feature-gap-analysis]]
+related:
+  - [[00-summary]]
+  - [[anstoss-series-deep-dive]]
+  - [[competitor-matrix]]
+  - [[ip-and-licensing]]
+  - [[pwa-offline-patterns]]
+  - [[../95-Archive/gap-reports/feature-gap-analysis]]
 ---
 
 # Club Boss Analysis
@@ -337,9 +344,11 @@ paraphrased from public listings and reviews.
 - whatoplay aggregate: <https://whatoplay.com/games/club-boss-football-game/>
 - Sample of Google Play user reviews accessed via the Play listing above
   (quoted excerpts paraphrased; star counts as of retrieval date).
-
 ## Related
 
-- [[00-summary]] — research MOC (hub)
-- [[anstoss-series-deep-dive]] · [[competitor-matrix]] · [[ip-and-licensing]] — research siblings
-- [[pwa-offline-patterns]] — mobile loop tech · [[../95-Archive/gap-reports/feature-gap-analysis]] — feeds scope
+- [[00-summary]]
+- [[anstoss-series-deep-dive]]
+- [[competitor-matrix]]
+- [[ip-and-licensing]]
+- [[pwa-offline-patterns]]
+- [[../95-Archive/gap-reports/feature-gap-analysis]]

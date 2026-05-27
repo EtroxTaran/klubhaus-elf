@@ -5,33 +5,7 @@ alwaysApply: false
 ---
 # PostgreSQL + Drizzle
 
-- The Drizzle schema in `packages/db/src/schema/**` is the **single source of
-  truth**. Never hand-edit SQL migrations or `packages/db-schema/src/generated/**`.
-- All application data access flows through `QueryGateway` exported from
-  `@soccer-manager/db` (`withPlatform(fn)` for `public`; `withSave(saveId,
-  fn)` for per-save schemas). **No raw `pg.Pool` or `drizzle()` outside
-  `packages/db`.**
-- **No cross-context foreign keys** — cross-context references are `uuid`
-  columns + branded TS types (`type PlayerId = string & { __brand: 'PlayerId' }`).
-  Intra-context FKs are fine. See ADR-0019 §6 + ADR-0027 §5.
-- **Schema-per-save** isolation is enforced mechanically by `LOCAL search_path`
-  in `withSave`. Never set `search_path` outside the gateway.
-- Migrations are **forward-only**, drizzle-kit-generated, committed. `pnpm
-  db:generate && git diff --exit-code` is the CI drift gate. Never
-  `drizzle-kit push` against shared envs.
-- The `outbox_event_archive` partitioning migration is the **one** hand-SQL
-  exception (ADR-0028 §4). Keep it in the forward-only sequence.
-- **Same-transaction outbox**: emit domain events via the typed
-  `withOutbox(tx, event)` helper inside the same transaction as the domain
-  change (ADR-0028 §1). No raw `db.insert(outbox_event)` calls.
-- **UUIDv7** is app-generated for ID columns (not `gen_random_uuid()`, which
-  is v4 and breaks time-ordering).
-- Use parameterised queries everywhere via Drizzle or `sql\`…\`` templates;
-  **never concatenate user input** into raw SQL.
-- Integer-only numerics: money = `bigint` (cents), probabilities = `integer`
-  basis points 0–10000, attributes = `smallint` 0–100, coordinates =
-  `integer` mm; CHECK constraints in the schema mirror the Zod bounds
-  (ADR-0027 §7).
-- Schema changes require: a drizzle-kit migration, drizzle-zod runtime
-  schemas, the regenerated `packages/db-schema/src/generated/**` mirror,
-  and the CI drift gate to pass.
+Implementation code was removed in the 2026-05-27 reset. The PostgreSQL/Drizzle
+notes are pre-reopen draft architecture inventory, not current build authority.
+Review `docs/00-Index/Decision-Log.md` and the relevant ADRs before applying
+any data-access rule.

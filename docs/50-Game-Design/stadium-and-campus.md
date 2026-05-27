@@ -5,11 +5,23 @@ tags: [game-design, stadium, infrastructure, anstoss]
 created: 2026-05-16
 updated: 2026-05-22
 type: game-design
-binding: true
-related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[economy-system]], [[fan-ecology]], [[regulations-and-compliance]]
+binding: false
+related:
+  - [[README]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[../60-Research/systems-design-synthesis]]
+  - [[../60-Research/systemic-events-player-development-venue-ops]]
+  - [[../60-Research/presentation-renderer-strategy]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+  - [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+  - [[economy-system]]
+  - [[fan-ecology]]
+  - [[regulations-and-compliance]]
 ---
 
 # Stadium and Club Campus - Build-out and On-grounds Economy
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 > Approved by the systemic events / player lifecycle pass (2026-05-17).
 > Venue operations are a Club Management system with football consequences,
@@ -203,3 +215,15 @@ checks the current stadium against the destination tier. Player options:
 - Manual venue booking depth - start with policy presets + highlighted
   accept/reject decisions; consider Expert manual booking only after the
   first stadium prototype proves the added depth is fun.
+## Related
+
+- [[README]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[../60-Research/systems-design-synthesis]]
+- [[../60-Research/systemic-events-player-development-venue-ops]]
+- [[../60-Research/presentation-renderer-strategy]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+- [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+- [[economy-system]]
+- [[fan-ecology]]
+- [[regulations-and-compliance]]

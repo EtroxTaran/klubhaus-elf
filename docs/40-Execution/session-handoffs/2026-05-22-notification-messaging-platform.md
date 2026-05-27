@@ -6,7 +6,9 @@ created: 2026-05-22
 updated: 2026-05-22
 type: handoff
 binding: false
-related: [[../../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]], [[../../30-Implementation/notification-messaging-platform]]
+related:
+  - [[../../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
+  - [[../../30-Implementation/notification-messaging-platform]]
 ---
 
 # Handoff: Notification Messaging Platform (2026-05-22)
@@ -66,3 +68,7 @@ related: [[../../10-Architecture/09-Decisions/ADR-0043-notification-and-messagin
 ## Needs promotion
 
 - None. ADR-0043 is already accepted and the implementation note is current.
+## Related
+
+- [[../../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
+- [[../../30-Implementation/notification-messaging-platform]]

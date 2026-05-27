@@ -6,7 +6,8 @@ created: 2026-05-17
 updated: 2026-05-17
 type: raw-research
 binding: false
-related: [[../transfer-market-simulation]]
+related:
+  - [[../transfer-market-simulation]]
 ---
 
 # Raw Transfer Market Research Prompt
@@ -78,3 +79,6 @@ Promoted into:
 - [[../../50-Game-Design/transfer-market-and-contracts]]
 - [[../../10-Architecture/transfer-market-architecture]]
 - [[../../20-Features/feature-transfer-market-ai-and-contracts]]
+## Related
+
+- [[../transfer-market-simulation]]

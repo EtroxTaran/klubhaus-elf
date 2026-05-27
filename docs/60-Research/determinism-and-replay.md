@@ -5,8 +5,14 @@ tags: [research, determinism, rng, replay, match-engine, save-format]
 created: 2026-05-16
 updated: 2026-05-17
 type: research
-binding: true
-related: [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[match-engine-runtime-strategy]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+binding: false
+related:
+  - [[../95-Archive/gap-reports/research-wave-2-gaps]]
+  - [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+  - [[match-engine-runtime-strategy]]
+  - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+  - [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
+  - [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
 ---
 
 # Determinism, RNG and Replay - Locked Decisions
@@ -334,3 +340,11 @@ The following Wave 3 gaps inherit constraints from this note:
 - Wave 3 gap D8 Q&A with Nico (2026-05-16): selected PCG32,
   `pure-rand`, 8 named streams, full event log for human matches,
   integers / basis-points, Chromium-only CI gate.
+## Related
+
+- [[../95-Archive/gap-reports/research-wave-2-gaps]]
+- [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+- [[match-engine-runtime-strategy]]
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+- [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
+- [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]

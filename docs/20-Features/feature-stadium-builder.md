@@ -6,10 +6,17 @@ created: 2026-05-16
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/stadium-and-campus]], [[../50-Game-Design/regulations-and-compliance]], [[feature-venue-operations]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+related:
+  - [[README]]
+  - [[../50-Game-Design/stadium-and-campus]]
+  - [[../50-Game-Design/regulations-and-compliance]]
+  - [[feature-venue-operations]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Feature - Stadium Builder
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -75,4 +82,11 @@ render remains 2D-only.
 - [[../50-Game-Design/stadium-and-campus]]
 - [[../50-Game-Design/regulations-and-compliance]]
 - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+## Related
+
+- [[README]]
+- [[../50-Game-Design/stadium-and-campus]]
+- [[../50-Game-Design/regulations-and-compliance]]
+- [[feature-venue-operations]]
 - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]

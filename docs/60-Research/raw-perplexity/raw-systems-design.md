@@ -4,9 +4,12 @@ status: raw
 tags: [research, raw, perplexity, systems, gameplay]
 created: 2026-05-16
 updated: 2026-05-16
-type: research-raw
+type: raw-research
 binding: false
-related: [[README]], [[../systems-design-synthesis]], [[../fan-culture-segmentation-research]]
+related:
+  - [[README]]
+  - [[../systems-design-synthesis]]
+  - [[../fan-culture-segmentation-research]]
 ---
 
 # Raw - Core Club-Simulation Systems and Their Interplay
@@ -564,3 +567,8 @@ Pioneer Group fan-zone paper, FM Scout supporter-confidence, ekkonocoaching
 set pieces, expectinggoals set-piece analytics, Premier League stadium-fund
 papers, Cambridge ultras-culture paper. Full URL list lives in the source
 `.md`; we expose new URLs only via [[../systems-design-synthesis]] §Sources.
+## Related
+
+- [[README]]
+- [[../systems-design-synthesis]]
+- [[../fan-culture-segmentation-research]]

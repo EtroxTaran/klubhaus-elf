@@ -5,7 +5,7 @@ tags: [implementation, rate-limiting, anti-abuse, anti-griefing, waf, ddos, bot-
 created: 2026-05-18
 updated: 2026-05-22
 type: implementation
-binding: true
+binding: false
 adr:
   - "[[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]"
   - "[[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]"
@@ -13,18 +13,18 @@ adr:
   - "[[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]"
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
 related:
-  - "[[../60-Research/threat-model]]"
-  - "[[../60-Research/gdpr-compliance]]"
-  - "[[../60-Research/transfer-market-simulation]]"
-  - "[[auth-flows]]"
-  - "[[session-management]]"
-  - "[[account-recovery]]"
-  - "[[privacy-and-consent]]"
-  - "[[notification-messaging-platform]]"
-  - "[[secrets-management]]"
-  - "[[audit-trail]]"
-  - "[[incident-response]]"
-  - "[[observability-runbook]]"
+  - [[../60-Research/threat-model]]
+  - [[../60-Research/gdpr-compliance]]
+  - [[../60-Research/transfer-market-simulation]]
+  - [[auth-flows]]
+  - [[session-management]]
+  - [[account-recovery]]
+  - [[privacy-and-consent]]
+  - [[notification-messaging-platform]]
+  - [[secrets-management]]
+  - [[audit-trail]]
+  - [[incident-response]]
+  - [[observability-runbook]]
 ---
 
 # Rate Limiting and Anti-Abuse
@@ -1127,3 +1127,17 @@ Six focused Perplexity-sonar-pro queries, 2026-05-18, total
 Raw transcripts not committed (ephemeral); citations
 preserved inline in §14 above + per-section anchors
 throughout the note.
+## Related
+
+- [[../60-Research/threat-model]]
+- [[../60-Research/gdpr-compliance]]
+- [[../60-Research/transfer-market-simulation]]
+- [[auth-flows]]
+- [[session-management]]
+- [[account-recovery]]
+- [[privacy-and-consent]]
+- [[notification-messaging-platform]]
+- [[secrets-management]]
+- [[audit-trail]]
+- [[incident-response]]
+- [[observability-runbook]]

@@ -4,10 +4,19 @@ status: superseded
 tags: [research, surrealdb, schema, data-model, persistence, wave-3, historical]
 created: 2026-05-16
 updated: 2026-05-19
-superseded_by: ADR-0027-postgres-data-model
 type: research
 binding: false
-related: [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[determinism-and-replay]], [[player-strength-presentation]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]], [[../10-Architecture/bounded-context-map]]
+superseded_by: ADR-0027-postgres-data-model
+related:
+  - [[../95-Archive/gap-reports/research-wave-2-gaps]]
+  - [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+  - [[determinism-and-replay]]
+  - [[player-strength-presentation]]
+  - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+  - [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
+  - [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]
+  - [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]
+  - [[../10-Architecture/bounded-context-map]]
 ---
 
 # SurrealDB Schema Patterns - Historical Context
@@ -579,3 +588,14 @@ audit_log                # sensitive admin actions
   - JavaScript SDK + WASM bundle considerations.
 - Wave 3 gap D14 Q&A with Nico (2026-05-16): all recommendations
   accepted; SurrealDB WASM kept as post-MVP research track.
+## Related
+
+- [[../95-Archive/gap-reports/research-wave-2-gaps]]
+- [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+- [[determinism-and-replay]]
+- [[player-strength-presentation]]
+- [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+- [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
+- [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]
+- [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]
+- [[../10-Architecture/bounded-context-map]]

@@ -6,10 +6,18 @@ created: 2026-05-17
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[feature-stadium-builder]], [[../50-Game-Design/stadium-and-campus]], [[../50-Game-Design/matchday-event-engine]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+related:
+  - [[README]]
+  - [[feature-stadium-builder]]
+  - [[../50-Game-Design/stadium-and-campus]]
+  - [[../50-Game-Design/matchday-event-engine]]
+  - [[../60-Research/systemic-events-player-development-venue-ops]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Feature - Venue Operations
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -54,4 +62,12 @@ signals needed by the Roguelite first playable.
 
 - [[../50-Game-Design/stadium-and-campus]]
 - [[feature-stadium-builder]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+## Related
+
+- [[README]]
+- [[feature-stadium-builder]]
+- [[../50-Game-Design/stadium-and-campus]]
+- [[../50-Game-Design/matchday-event-engine]]
+- [[../60-Research/systemic-events-player-development-venue-ops]]
 - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]

@@ -7,7 +7,12 @@ updated: 2026-05-22
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
-related: [[client-telemetry]], [[deployment-dokploy]], [[jobs-and-scheduler]], [[audit-trail]], [[incident-response]]
+related:
+  - [[client-telemetry]]
+  - [[deployment-dokploy]]
+  - [[jobs-and-scheduler]]
+  - [[audit-trail]]
+  - [[incident-response]]
 ---
 
 # Observability Runbook
@@ -132,3 +137,10 @@ to maintainers who can triage production crashes.
 ## Change History
 
 - 2026-05-17: Created for ADR-0017.
+## Related
+
+- [[client-telemetry]]
+- [[deployment-dokploy]]
+- [[jobs-and-scheduler]]
+- [[audit-trail]]
+- [[incident-response]]

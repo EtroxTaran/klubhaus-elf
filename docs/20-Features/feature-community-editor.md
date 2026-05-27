@@ -6,10 +6,16 @@ created: 2026-05-16
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/community-editor-and-datasets]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]
+related:
+  - [[README]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../50-Game-Design/community-editor-and-datasets]]
+  - [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]
 ---
 
 # Feature - Community Editor
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -66,3 +72,9 @@ added later.
 - [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]
 - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+## Related
+
+- [[README]]
+- [[../00-Index/MVP-Scope]]
+- [[../50-Game-Design/community-editor-and-datasets]]
+- [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]

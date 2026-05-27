@@ -5,17 +5,17 @@ tags: [research, gdpr, eprivacy, privacy, ropa, dpia, compliance]
 created: 2026-05-18
 updated: 2026-05-18
 type: research
-binding: true
+binding: false
 related:
-  - "[[../95-Archive/gap-reports/wave-3-gap-analysis]]"
-  - "[[telemetry-privacy]]"
-  - "[[threat-model]]"
-  - "[[../30-Implementation/privacy-and-consent]]"
-  - "[[../30-Implementation/auth-flows]]"
-  - "[[../30-Implementation/session-management]]"
-  - "[[../30-Implementation/account-recovery]]"
-  - "[[../30-Implementation/audit-trail]]"
-  - "[[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]"
+  - [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+  - [[telemetry-privacy]]
+  - [[threat-model]]
+  - [[../30-Implementation/privacy-and-consent]]
+  - [[../30-Implementation/auth-flows]]
+  - [[../30-Implementation/session-management]]
+  - [[../30-Implementation/account-recovery]]
+  - [[../30-Implementation/audit-trail]]
+  - [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
 ---
 
 # GDPR Compliance — RoPA, lawful basis, retention, DPIA, DPO
@@ -944,3 +944,14 @@ Seven focused Perplexity-sonar-pro queries, 2026-05-18, total
 
 Raw transcripts not committed (ephemeral); citations preserved
 inline in §16 above + per-section anchors throughout the note.
+## Related
+
+- [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+- [[telemetry-privacy]]
+- [[threat-model]]
+- [[../30-Implementation/privacy-and-consent]]
+- [[../30-Implementation/auth-flows]]
+- [[../30-Implementation/session-management]]
+- [[../30-Implementation/account-recovery]]
+- [[../30-Implementation/audit-trail]]
+- [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]

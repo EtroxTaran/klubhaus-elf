@@ -3,10 +3,12 @@ title: User Docs Map
 status: current
 tags: [user-docs, meta]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-27
 type: map
 binding: false
-related: [[Feature-Map]], [[Game-Design-Map]]
+related:
+  - [[Feature-Map]]
+  - [[Game-Design-Map]]
 ---
 
 # User Docs Map
@@ -30,5 +32,9 @@ player's point of view.
 ## Rule
 
 Do not infer implementation behavior from user docs. Generate or update user
-docs from accepted ADRs, approved game design notes, approved feature specs, and
-shipped code.
+docs from re-accepted ADRs, re-approved game design notes, re-approved feature
+specs, and shipped code.
+## Related
+
+- [[Feature-Map]]
+- [[Game-Design-Map]]

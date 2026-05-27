@@ -6,7 +6,12 @@ created: 2026-05-16
 updated: 2026-05-16
 type: research
 binding: false
-related: [[raw-perplexity/raw-systems-design]], [[../50-Game-Design/system-interplay]], [[../50-Game-Design/club-dna-and-governance]], [[../50-Game-Design/economy-system]], [[fan-culture-segmentation-research]]
+related:
+  - [[raw-perplexity/raw-systems-design]]
+  - [[../50-Game-Design/system-interplay]]
+  - [[../50-Game-Design/club-dna-and-governance]]
+  - [[../50-Game-Design/economy-system]]
+  - [[fan-culture-segmentation-research]]
 ---
 
 # Core Club-Simulation Systems and Feedback Loops
@@ -110,3 +115,10 @@ All retrieved 2026-05-16 via Perplexity.
 - Sport science: home-advantage atmospherics - [sage 1527002516665794](https://journals.sagepub.com/doi/10.1177/1527002516665794)
 - Set pieces analytics - [expectinggoals.com set-piece prediction](https://www.expectinggoals.com/p/predicting-set-piece-goals-and-assists)
 - Match-engine event-based explanation - [Reddit how-does-match-engine-work](https://www.reddit.com/r/footballmanagergames/comments/1bpdest/how_does_the_match_engine_work_what_is_the/)
+## Related
+
+- [[raw-perplexity/raw-systems-design]]
+- [[../50-Game-Design/system-interplay]]
+- [[../50-Game-Design/club-dna-and-governance]]
+- [[../50-Game-Design/economy-system]]
+- [[fan-culture-segmentation-research]]

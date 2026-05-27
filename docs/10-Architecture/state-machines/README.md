@@ -6,7 +6,9 @@ created: 2026-05-16
 updated: 2026-05-22
 type: index
 binding: false
-related: [[../bounded-context-map]], [[../09-Decisions/ADR-0014-state-machines]]
+related:
+  - [[../bounded-context-map]]
+  - [[../09-Decisions/ADR-0014-state-machines]]
 ---
 
 # State Machines Index
@@ -36,3 +38,7 @@ Each state machine note has:
   [[../09-Decisions/ADR-0027-postgres-data-model]]).
 - Failure / recovery cases.
 - Test strategy.
+## Related
+
+- [[../bounded-context-map]]
+- [[../09-Decisions/ADR-0014-state-machines]]

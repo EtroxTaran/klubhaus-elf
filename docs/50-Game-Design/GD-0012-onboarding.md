@@ -5,11 +5,23 @@ tags: [game-design, gddr, onboarding]
 created: 2026-05-17
 updated: 2026-05-18
 type: game-design
-binding: true
-related: [[README]], [[GD-0008-finance-economy]], [[GD-0016-mobile-ux-loop]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0008-finance-economy]]
+  - [[GD-0016-mobile-ux-loop]]
+  - [[GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../60-Research/club-boss-analysis]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[../95-Archive/gap-reports/research-wave-2-gaps]]
+  - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+  - [[../10-Architecture/09-Decisions/ADR-0006-i18n]]
 ---
 
 # GD-0012: Onboarding & New Game
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -76,8 +88,15 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] (R2-05 input block)
 - [[../10-Architecture/09-Decisions/ADR-0006-i18n]] (onboarding copy/tone)
-
 ## Related
 
-- Research: [[../60-Research/club-boss-analysis]] · [[../60-Research/anstoss-series-deep-dive]] · [[../95-Archive/gap-reports/research-wave-2-gaps]]
-- [[README]] — hub · siblings: [[GD-0008-finance-economy]] · [[GD-0016-mobile-ux-loop]] · [[GD-0013-narrative-inbox]]
+- [[README]]
+- [[GD-0008-finance-economy]]
+- [[GD-0016-mobile-ux-loop]]
+- [[GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../00-Index/MVP-Scope]]
+- [[../60-Research/club-boss-analysis]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[../95-Archive/gap-reports/research-wave-2-gaps]]
+- [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+- [[../10-Architecture/09-Decisions/ADR-0006-i18n]]

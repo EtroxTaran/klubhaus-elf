@@ -5,11 +5,19 @@ tags: [game-design, gddr, transfers]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[GD-0013-narrative-inbox]], [[GD-0010-ai-world]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0013-narrative-inbox]]
+  - [[GD-0010-ai-world]]
+  - [[../60-Research/club-boss-analysis]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 ---
 
 # GD-0006: Transfers & Scouting
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -75,8 +83,11 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0004-data-model]] (`transfer_offer`, RELATE graph)
 - [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]] (AI behaviour epics)
-
 ## Related
 
-- Research: [[../60-Research/club-boss-analysis]] · [[../60-Research/anstoss-series-deep-dive]]
-- [[README]] — hub · siblings: [[GD-0013-narrative-inbox]] · [[GD-0010-ai-world]] · [[GD-0007-youth]]
+- [[README]]
+- [[GD-0013-narrative-inbox]]
+- [[GD-0010-ai-world]]
+- [[../60-Research/club-boss-analysis]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[../10-Architecture/09-Decisions/ADR-0004-data-model]]

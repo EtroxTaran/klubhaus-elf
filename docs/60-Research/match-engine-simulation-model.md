@@ -5,8 +5,18 @@ tags: [research, match-engine, simulation, markov, attributes, wave-3, binding]
 created: 2026-05-16
 updated: 2026-05-17
 type: research
-binding: true
-related: [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[determinism-and-replay]], [[match-engine-runtime-strategy]], [[performance-budgets]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/state-machines/match]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/tactics-system]], [[../50-Game-Design/progressive-disclosure-ui]]
+binding: false
+related:
+  - [[../95-Archive/gap-reports/research-wave-2-gaps]]
+  - [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+  - [[determinism-and-replay]]
+  - [[match-engine-runtime-strategy]]
+  - [[performance-budgets]]
+  - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+  - [[../10-Architecture/state-machines/match]]
+  - [[../50-Game-Design/match-engine]]
+  - [[../50-Game-Design/tactics-system]]
+  - [[../50-Game-Design/progressive-disclosure-ui]]
 ---
 
 # Match Engine Simulation Model - Locked Decisions
@@ -812,3 +822,15 @@ fouls/cards. Run in Node CI on every PR. Cross-browser perf checks
 - `fast-check` — property-based testing library (E11).
 - Wave 3 gap D1 Q&A with Nico (2026-05-16): all six locked decisions
   accepted.
+## Related
+
+- [[../95-Archive/gap-reports/research-wave-2-gaps]]
+- [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+- [[determinism-and-replay]]
+- [[match-engine-runtime-strategy]]
+- [[performance-budgets]]
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+- [[../10-Architecture/state-machines/match]]
+- [[../50-Game-Design/match-engine]]
+- [[../50-Game-Design/tactics-system]]
+- [[../50-Game-Design/progressive-disclosure-ui]]

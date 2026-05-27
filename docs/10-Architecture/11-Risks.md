@@ -4,8 +4,19 @@ status: current
 tags: [architecture, risk]
 created: 2026-05-15
 updated: 2026-05-22
-type: arch
-related: [[10-Quality]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[09-Decisions/ADR-0001-tech-stack]], [[09-Decisions/ADR-0007-naming-schema]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0023-realtime-transport]], [[09-Decisions/ADR-0024-match-renderer-abstraction]], [[09-Decisions/ADR-0025-mobile-delivery]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[09-Decisions/ADR-0010-design-system]]
+type: architecture
+binding: false
+related:
+  - [[10-Quality]]
+  - [[09-Decisions/ADR-0021-revised-tech-stack]]
+  - [[09-Decisions/ADR-0001-tech-stack]]
+  - [[09-Decisions/ADR-0007-naming-schema]]
+  - [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[09-Decisions/ADR-0023-realtime-transport]]
+  - [[09-Decisions/ADR-0024-match-renderer-abstraction]]
+  - [[09-Decisions/ADR-0025-mobile-delivery]]
+  - [[09-Decisions/ADR-0041-presentation-renderer-strategy]]
+  - [[09-Decisions/ADR-0010-design-system]]
 ---
 
 # Risks
@@ -59,9 +70,15 @@ the risk only where it lands on irreversible, money-critical state.**
 
 `"latest"` dependency pinning was a reliability **defect**, not an accepted
 risk — fixed in the ADR-0021 PR (all deps pinned + Renovate).
-
 ## Related
 
-- [[09-Decisions/ADR-0001-tech-stack]] — TanStack Start risk owner · [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] — hybrid-online staging · [[09-Decisions/ADR-0007-naming-schema]] — IP-safe naming gate
-- [[../95-Archive/gap-reports/research-wave-2-gaps]] — open research risk · [[../00-Index/Current-State]] — live blockers
-- [[10-Quality]] — arc42 sibling
+- [[10-Quality]]
+- [[09-Decisions/ADR-0021-revised-tech-stack]]
+- [[09-Decisions/ADR-0001-tech-stack]]
+- [[09-Decisions/ADR-0007-naming-schema]]
+- [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[09-Decisions/ADR-0023-realtime-transport]]
+- [[09-Decisions/ADR-0024-match-renderer-abstraction]]
+- [[09-Decisions/ADR-0025-mobile-delivery]]
+- [[09-Decisions/ADR-0041-presentation-renderer-strategy]]
+- [[09-Decisions/ADR-0010-design-system]]

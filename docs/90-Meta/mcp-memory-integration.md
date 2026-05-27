@@ -3,10 +3,12 @@ title: MCP Integration
 status: current
 tags: [meta, agents, mcp]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-05-27
 type: protocol
 binding: true
-related: [[agent-memory-protocol]]
+related:
+  - [[agent-memory-protocol]]
+  - [[vault-governance]]
 ---
 
 # MCP Integration
@@ -95,7 +97,7 @@ Agent usage:
 - Durable memory belongs in vault notes per [[agent-memory-protocol]] and
  [[vault-governance]], not in an external MCP store.
 - Linear holds operational/hot state; the vault holds durable/cold state.
-- Do not add an MCP **memory** server without an accepted ADR and an update to
+- Do not add an MCP **memory** server without a re-accepted ADR and an update to
  the allowlist hook in the same PR.
 - Adding any new MCP server requires updating `.cursor/hooks/mcp-allowlist.js`
  and this note in the same PR. Workspace-scoped configs go in
@@ -104,3 +106,7 @@ Agent usage:
 
 If a memory MCP server is ever adopted, this note becomes the integration
 contract and must be promoted accordingly.
+## Related
+
+- [[agent-memory-protocol]]
+- [[vault-governance]]

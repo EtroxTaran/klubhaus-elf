@@ -5,11 +5,23 @@ tags: [game-design, squad, staff, organisation]
 created: 2026-05-16
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/player-strength-presentation]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/transfer-market-simulation]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[scouting-and-recruitment]], [[transfer-market-and-contracts]], [[training-load-and-medicine]], [[tactics-system]]
+binding: false
+related:
+  - [[README]]
+  - [[../60-Research/systems-design-synthesis]]
+  - [[../60-Research/player-strength-presentation]]
+  - [[../60-Research/systemic-events-player-development-venue-ops]]
+  - [[../60-Research/transfer-market-simulation]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+  - [[scouting-and-recruitment]]
+  - [[transfer-market-and-contracts]]
+  - [[training-load-and-medicine]]
+  - [[tactics-system]]
 ---
 
 # Squad and Club Structure - Sporting Organisation and Squad Design
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 > Approved by the systemic events / player lifecycle pass (2026-05-17).
 > The player record must stay aligned with [[../60-Research/data-generators]]
@@ -160,3 +172,15 @@ Player strength presentation follows
   budget.
 - Reserve-team match modelling - full sim or abstract result? Abstract for
   MVP; full sim Phase 2+.
+## Related
+
+- [[README]]
+- [[../60-Research/systems-design-synthesis]]
+- [[../60-Research/player-strength-presentation]]
+- [[../60-Research/systemic-events-player-development-venue-ops]]
+- [[../60-Research/transfer-market-simulation]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+- [[scouting-and-recruitment]]
+- [[transfer-market-and-contracts]]
+- [[training-load-and-medicine]]
+- [[tactics-system]]

@@ -6,7 +6,11 @@ created: 2026-05-15
 updated: 2026-05-22
 type: index
 binding: true
-related: [[Documentation-V1]], [[Current-State]], [[Architecture-Map]], [[../50-Game-Design/README]]
+related:
+  - [[Documentation-V1]]
+  - [[Current-State]]
+  - [[Architecture-Map]]
+  - [[../50-Game-Design/README]]
 ---
 
 # Decision Log
@@ -18,13 +22,12 @@ related: [[Documentation-V1]], [[Current-State]], [[Architecture-Map]], [[../50-
 > reads `draft`; ADRs will be re-ratified individually after review. Superseded
 > ADRs stay superseded.
 
-ADR index with status and lineage. Implement only from `accepted` ADRs or
-`current binding` research/implementation notes explicitly promoted here or in
-[[Documentation-V1]]. Draft/proposed ADRs are planning context only.
+ADR index with status and lineage. As of 2026-05-27 there are no accepted ADRs;
+all non-superseded ADRs are `draft` planning context until Nico re-ratifies them.
+Do not implement from the pre-reopen binding language preserved in linked notes.
 
-ADRs decide how the game is built. Game-design notes and GDDRs in
-[[../50-Game-Design/README]] decide how the game works. ADRs must not
-contradict an `approved` game-design record.
+ADRs decide how the game is built once accepted. Game-design notes and GDDRs in
+[[../50-Game-Design/README]] decide how the game works once approved.
 
 ## ADRs (reopened to draft 2026-05-27)
 
@@ -69,13 +72,16 @@ PR as the work that needs them.
 | ADR | V1 classification | Handling |
 |---|---|---|
 | [[../10-Architecture/09-Decisions/ADR-0006-i18n]] | Future-scope depth pass | Promote when i18n implementation starts. |
-| [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] | Covered by design-system/a11y baseline | Use design-system docs and approved UX notes; promote only for cleanup or new mobile delivery/UI decisions. |
-| [[../10-Architecture/09-Decisions/ADR-0012-async-cadence-models]] | Product rules already approved | Implement cadence from game-design notes; ADR promotion is optional cleanup. |
+| [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] | Covered by design-system/a11y baseline | Review design-system docs and pre-reopen UX notes; promote only for cleanup or new mobile delivery/UI decisions. |
+| [[../10-Architecture/09-Decisions/ADR-0012-async-cadence-models]] | Product rules approved pre-reopen | Review cadence against game-design notes; ADR promotion is optional cleanup. |
 | [[../10-Architecture/09-Decisions/ADR-0014-state-machines]] | Future runtime-orchestration decision | Promote before changing league/week, transfer, watch-party or match state orchestration. |
 | [[../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming]] | Post-MVP social layer | Keep behind watch-party gate. |
 | [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]] | Future UGC/data governance | Do not host or execute untrusted packs until moderation/security gates exist. |
 
-## Current Binding Non-ADR Inputs
+## Pre-Reopen Non-ADR Inputs (Not Binding Now)
+
+These notes were listed as current inputs before the 2026-05-27 reopen. They are
+kept for traceability and review order, not as current implementation authority.
 
 - [[../30-Implementation/postgres-drizzle-integration]] - implementation spec for ADR-0027/0028.
 - [[../30-Implementation/notification-messaging-platform]] - implementation spec for ADR-0043 notification, messaging, delivery and provider boundaries.
@@ -90,6 +96,11 @@ PR as the work that needs them.
 
 ## Rule
 
-If a current implementation need is not covered by a current binding ADR,
-approved GDDR, current implementation spec or [[Documentation-V1]], open a gap
-and escalate before implementation.
+If research or future implementation needs a decision that is not covered by a
+re-ratified ADR/GDDR/spec, open a gap and escalate before implementation.
+## Related
+
+- [[Documentation-V1]]
+- [[Current-State]]
+- [[Architecture-Map]]
+- [[../50-Game-Design/README]]

@@ -4,11 +4,13 @@ status: superseded
 tags: [adr, architecture]
 created: 2026-05-15
 updated: 2026-05-19
-accepted_at: 2026-05-15
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-15
 superseded_by: ADR-0021-revised-tech-stack
-related: [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-stack]]
+related:
+  - [[ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[ADR-0021-revised-tech-stack]]
 ---
 
 # ADR-0001: Tech Stack
@@ -69,9 +71,7 @@ Negative:
 ## Supersedes
 
 None
+## Related
 
-## Related Docs
-
-- [[../01-Introduction]]
-- [[../02-Constraints]]
 - [[ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[ADR-0021-revised-tech-stack]]

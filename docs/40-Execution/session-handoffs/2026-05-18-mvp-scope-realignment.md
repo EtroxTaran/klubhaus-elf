@@ -1,12 +1,16 @@
 ---
 title: Handoff - MVP Scope Realignment
-status: current
+status: wrapped
 tags: [handoff, mvp, scope, offline-ready, roguelite]
 created: 2026-05-18
 updated: 2026-05-18
 type: handoff
 binding: false
-related: [[../../00-Index/MVP-Scope]], [[../../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../../20-Features/feature-roguelite-mvp-first-playable]]
+related:
+  - [[../../00-Index/MVP-Scope]]
+  - [[../../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[../../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../../20-Features/feature-roguelite-mvp-first-playable]]
 ---
 
 # Handoff: MVP Scope Realignment (2026-05-18)
@@ -78,3 +82,9 @@ related: [[../../00-Index/MVP-Scope]], [[../../10-Architecture/09-Decisions/ADR-
 
 - None. The scope change was promoted into current/accepted/approved notes in
   this session.
+## Related
+
+- [[../../00-Index/MVP-Scope]]
+- [[../../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[../../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../../20-Features/feature-roguelite-mvp-first-playable]]

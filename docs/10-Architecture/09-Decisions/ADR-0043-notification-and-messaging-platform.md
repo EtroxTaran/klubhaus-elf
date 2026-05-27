@@ -4,15 +4,25 @@ status: draft
 tags: [adr, architecture, notification, messaging, realtime, email, push, gdpr]
 created: 2026-05-22
 updated: 2026-05-22
-accepted_at: 2026-05-22
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-22
 supersedes:
 superseded_by:
-related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0021-revised-tech-stack]], [[ADR-0023-realtime-transport]], [[ADR-0025-mobile-delivery]], [[ADR-0028-postgres-transactional-outbox]], [[../../30-Implementation/notification-messaging-platform]], [[../../30-Implementation/privacy-and-consent]], [[../../30-Implementation/rate-limiting-anti-abuse]]
+related:
+  - [[ADR-0019-modular-monolith-ddd]]
+  - [[ADR-0021-revised-tech-stack]]
+  - [[ADR-0023-realtime-transport]]
+  - [[ADR-0025-mobile-delivery]]
+  - [[ADR-0028-postgres-transactional-outbox]]
+  - [[../../30-Implementation/notification-messaging-platform]]
+  - [[../../30-Implementation/privacy-and-consent]]
+  - [[../../30-Implementation/rate-limiting-anti-abuse]]
 ---
 
 # ADR-0043: Notification and Messaging Platform
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -160,11 +170,13 @@ Negative / follow-up:
   <https://help.brevo.com/hc/en-us/articles/7924148470546-How-can-I-send-transactional-emails-with-Brevo>
 - Brevo webhooks: <https://developers.brevo.com/docs/how-to-use-webhooks>
 - Centrifugo engines/scaling: <https://centrifugal.dev/docs/server/engines>
+## Related
 
-## Related Docs
-
-- [[../../30-Implementation/notification-messaging-platform]]
+- [[ADR-0019-modular-monolith-ddd]]
+- [[ADR-0021-revised-tech-stack]]
 - [[ADR-0023-realtime-transport]]
+- [[ADR-0025-mobile-delivery]]
 - [[ADR-0028-postgres-transactional-outbox]]
+- [[../../30-Implementation/notification-messaging-platform]]
 - [[../../30-Implementation/privacy-and-consent]]
 - [[../../30-Implementation/rate-limiting-anti-abuse]]

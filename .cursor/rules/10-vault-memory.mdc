@@ -4,42 +4,8 @@ alwaysApply: true
 ---
 # Vault Memory
 
-- Treat `docs/` as the durable project memory and Obsidian vault.
-- Canonical workflow: `docs/90-Meta/agent-memory-protocol.md`. Governance
-  (memory classes, canonical-location rule, supersede discipline,
-  entry-point conformance): `docs/90-Meta/vault-governance.md`. This rule is an
-  orchestrator; if it disagrees with those notes, the vault wins.
-- Session start: read `docs/00-Index/Agent-Onboarding.md`, then
-  `docs/00-Index/Current-State.md`, then relevant maps, accepted ADRs, approved
-  specs, and the latest `docs/40-Execution/session-handoffs/*` if continuing.
-- Use the `vault-memory` skill (`.cursor/skills/vault-memory/SKILL.md`) for the
-  repeatable start/update/wrap-up checklist.
-- Prefer `current`, `accepted`, `approved` notes. Never implement from `draft`,
-  `superseded`, or `archived` notes.
-- `draft`/`idea` notes are the recognized intent layer: read for direction and
-  to avoid re-deciding, but do not implement from or cite them as settled
-  (see `docs/90-Meta/vault-governance.md` § Draft / idea layer).
-- Keep AGENTS/CLAUDE/rules as orchestrators; one canonical location per fact —
-  no duplicated vault content in config or README.
-- Game design is a decision layer peer to ADRs: research → game design
-  (`docs/50-Game-Design/`, indexed by its README) → architecture (ADRs) →
-  implementation. Implement gameplay only from `approved` GDDRs; an ADR must
-  not contradict one; a gameplay/system change updates its GDDR in the same PR.
-- On approach change: supersede, do not silently overwrite (replacement note,
-  `status: superseded`, two-way `supersedes`/`superseded_by`, banner, update
-  `Current-State`). Applies to ADRs and GDDRs identically.
-- Update vault docs in the same PR when code changes architecture, product
-  scope, gameplay, operations, or user-facing behavior.
-- Session wrap-up: write/update a handoff under
-  `docs/40-Execution/session-handoffs/` and update `Current-State.md`.
-- Operational tracking is Linear (team FMX,
-  https://linear.app/coding-x/team/FMX/active); no issues exist yet and there is
-  no task-tracking process doc — agree lightweight conventions first.
-- User docs are player-facing output, not authoritative implementation specs.
-- MCP usage: follow `docs/90-Meta/mcp-memory-integration.md`. Allowlist is
- enforced by `.cursor/hooks/mcp-allowlist.js`. Context7 / Ref for library docs,
- Linear for ops, Figma for design, Perplexity for external research. Perplexity
- is wired via `.cursor/mcp.json` with the `perplexity-key` cloud secret so
- every cloud agent and local Cursor session discovers it automatically.
-- Never store secrets, credentials, API keys, private Obsidian state, or local
-  workspace state in the vault.
+Canonical workflow: `docs/90-Meta/agent-memory-protocol.md`. Governance
+(memory classes, canonical-location rule, supersede discipline, entry-point
+conformance): `docs/90-Meta/vault-governance.md`. Use
+`.cursor/skills/vault-memory/SKILL.md` for the checklist. This rule is an
+orchestrator only.

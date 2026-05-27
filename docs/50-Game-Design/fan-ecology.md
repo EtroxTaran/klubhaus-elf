@@ -6,10 +6,18 @@ created: 2026-05-16
 updated: 2026-05-16
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]]
+related:
+  - [[README]]
+  - [[../60-Research/fan-culture-segmentation-research]]
+  - [[stadium-and-campus]]
+  - [[rivalry-system]]
+  - [[matchday-event-engine]]
+  - [[mode-manage-a-club-career]]
 ---
 
 # Fan Ecology - Six Segments and Atmosphere Engine
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Fan culture must produce *sporting, economic and political* effects all at
 once. A single "mood" gauge is too coarse - real fans split into segments
@@ -142,3 +150,11 @@ population:
   N years of attendance.
 - Should fan-zone modules generate Family loyalty bumps? Yes (modest +1
   per season).
+## Related
+
+- [[README]]
+- [[../60-Research/fan-culture-segmentation-research]]
+- [[stadium-and-campus]]
+- [[rivalry-system]]
+- [[matchday-event-engine]]
+- [[mode-manage-a-club-career]]

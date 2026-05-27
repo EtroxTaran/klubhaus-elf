@@ -6,7 +6,9 @@ created: 2026-05-17
 updated: 2026-05-27
 type: protocol
 binding: true
-related: [[agent-memory-protocol]], [[../00-Index/Documentation-V1]]
+related:
+  - [[agent-memory-protocol]]
+  - [[../00-Index/Documentation-V1]]
 ---
 
 # Vault Governance
@@ -64,9 +66,10 @@ traceable from the Decision-Log table.
 
 ## Status values
 
-Controlled per note type — see [[templates/README]]. Implement only from
-`current` / `accepted` / `approved`. Never from `draft` / `superseded` /
-`archived`.
+Controlled per note type — see [[templates/README]]. During the 2026-05-27
+reopen, implement only from current process/meta notes and decisions Nico
+re-ratifies to `accepted` / `approved`. Never implement from `draft` /
+`superseded` / `archived`.
 
 ## Draft / idea layer
 
@@ -115,8 +118,9 @@ Game Design Decision Records (GDDRs) in `50-Game-Design/`, indexed by
 
 Rules every agent follows:
 
-- **Implement gameplay only from `approved` GDDRs.** `idea`/`draft` GDDRs are
-  the recognized intent layer (read for direction, do not implement).
+- **Implement gameplay only from re-approved GDDRs.** As of the 2026-05-27
+  reopen, all GDDRs are `draft`; `idea`/`draft` GDDRs are the recognized intent
+  layer (read for direction, do not implement).
 - **Scoped approval.** In an `approved` GDDR only the **Decided / strong**
   section is ratified. Its **Open (Wave 2)** section is never approved and not
   implementable until that research closes — `approved` status does not make
@@ -184,13 +188,19 @@ way".
 | Entry point | Must guarantee |
 |---|---|
 | `CLAUDE.md` | One-line pointer to `AGENTS.md`. No duplicated content. |
-| `AGENTS.md` | Entry chain → Agent-Onboarding → Current-State → Home → agent-memory-protocol → vault-governance. Points to collaboration-and-decision-protocol; names the `vault-memory` skill. |
+| `AGENTS.md` | Entry chain -> Agent-Onboarding -> Current-State -> collaboration-and-decision-protocol -> Home -> agent-memory-protocol -> vault-governance. Names the `vault-memory` skill. Orchestrator only. |
 | `docs/90-Meta/agent-memory-protocol.md` | Canonical session start / during-work / update / wrap-up steps. |
 | `docs/90-Meta/collaboration-and-decision-protocol.md` | Canonical roles, ask-first decision gate, and current project phase. |
 | `.cursor/rules/10-vault-memory.mdc` | Same start/update/wrap-up semantics as the protocol; orchestrator only. |
 | `.cursor/rules/01-collaboration.mdc` | Same roles / decision-gate / phase semantics; orchestrator only. |
+| `.cursor/rules/*` | Pointers to the relevant vault note; no duplicated durable stack, code, gameplay or architecture facts. |
+| `README.md` | Short human entry point to AGENTS and the vault; no implementation commands beyond docs-only validation/preview. |
 | `.cursor/skills/vault-memory/SKILL.md` | Repeatable start/update/wrap-up workflow matching the protocol. |
 | `.cursor/BUGBOT.md` | Flags missing same-PR vault updates. |
 
 Changing one entry point's memory semantics means updating this table and every
 row it affects in the same PR.
+## Related
+
+- [[agent-memory-protocol]]
+- [[../00-Index/Documentation-V1]]

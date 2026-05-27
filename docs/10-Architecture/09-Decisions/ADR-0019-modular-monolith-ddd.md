@@ -4,13 +4,20 @@ status: draft
 tags: [adr, architecture, ddd, modular-monolith, service-architecture]
 created: 2026-05-16
 updated: 2026-05-16
-accepted_at: 2026-05-16
 type: adr
-binding: true
-related: [[../bounded-context-map]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0014-state-machines]], [[../../60-Research/raw-perplexity/raw-architecture]]
+binding: false
+accepted_at: 2026-05-16
+related:
+  - [[../bounded-context-map]]
+  - [[ADR-0011-server-authoritative-multiplayer]]
+  - [[ADR-0013-transactional-outbox]]
+  - [[ADR-0014-state-machines]]
+  - [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
 # ADR-0019: Service-ready Modular Monolith with DDD Bounded Contexts
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 > **History**: This ADR was originally numbered 0010 during Wave 3 work.
 > It was renumbered to 0019 on merge into main when an existing
@@ -177,3 +184,10 @@ CI enforcement:
 - Wave 3 gap B1 Q&A with Nico (2026-05-16): Nico requested *maximum
   service-architecture readiness* for future scalability and
   independent re-development of individual systems.
+## Related
+
+- [[../bounded-context-map]]
+- [[ADR-0011-server-authoritative-multiplayer]]
+- [[ADR-0013-transactional-outbox]]
+- [[ADR-0014-state-machines]]
+- [[../../60-Research/raw-perplexity/raw-architecture]]

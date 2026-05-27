@@ -6,10 +6,17 @@ created: 2026-05-16
 updated: 2026-05-16
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/late-game-systems]], [[stadium-and-campus]], [[matchday-event-engine]]
+related:
+  - [[README]]
+  - [[../60-Research/regulations-and-pyramids-research]]
+  - [[../60-Research/late-game-systems]]
+  - [[stadium-and-campus]]
+  - [[matchday-event-engine]]
 ---
 
 # Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Promotion must mean **infrastructure + operations obligations**, not just
 better opponents and TV money. The compliance gameplay loop turns sporting
@@ -169,3 +176,10 @@ Manifest must declare which countries it modifies, to allow safe layering.
   safe naming via fictional governing bodies (IFC / EFC / AFU /
   APFC / AFA); FFP-style penalties for Petrol-State + Murky owner
   archetypes.
+## Related
+
+- [[README]]
+- [[../60-Research/regulations-and-pyramids-research]]
+- [[../60-Research/late-game-systems]]
+- [[stadium-and-campus]]
+- [[matchday-event-engine]]

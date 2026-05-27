@@ -6,7 +6,11 @@ created: 2026-05-22
 updated: 2026-05-22
 type: handoff
 binding: false
-related: [[../../00-Index/Documentation-V1]], [[../../00-Index/Current-State]], [[../../00-Index/Decision-Log]], [[2026-05-22-documentation-v1-cleanup]]
+related:
+  - [[../../00-Index/Documentation-V1]]
+  - [[../../00-Index/Current-State]]
+  - [[../../00-Index/Decision-Log]]
+  - [[2026-05-22-documentation-v1-cleanup]]
 ---
 
 # Handoff: Vault Consistency & Link-Health Pass (2026-05-22)
@@ -82,3 +86,9 @@ vault link-health beat" left open by [[2026-05-22-documentation-v1-cleanup]].
 - None. This was a documentation consistency + link-health pass, not a new
   architecture decision. All accepted ADRs / approved GDDRs are unchanged in
   substance.
+## Related
+
+- [[../../00-Index/Documentation-V1]]
+- [[../../00-Index/Current-State]]
+- [[../../00-Index/Decision-Log]]
+- [[2026-05-22-documentation-v1-cleanup]]

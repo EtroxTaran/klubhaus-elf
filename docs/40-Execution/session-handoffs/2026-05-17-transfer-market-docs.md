@@ -1,12 +1,16 @@
 ---
 title: Session Handoff - Transfer Market Documentation
-status: current
+status: wrapped
 tags: [handoff, transfers, documentation]
 created: 2026-05-17
 updated: 2026-05-17
 type: handoff
 binding: false
-related: [[../../60-Research/transfer-market-simulation]], [[../../50-Game-Design/transfer-market-and-contracts]], [[../../10-Architecture/transfer-market-architecture]], [[../../20-Features/feature-transfer-market-ai-and-contracts]]
+related:
+  - [[../../60-Research/transfer-market-simulation]]
+  - [[../../50-Game-Design/transfer-market-and-contracts]]
+  - [[../../10-Architecture/transfer-market-architecture]]
+  - [[../../20-Features/feature-transfer-market-ai-and-contracts]]
 ---
 
 # Session Handoff - Transfer Market Documentation
@@ -48,3 +52,9 @@ Resolved by Nico:
   `feature-transfer-market-ai-and-contracts` were promoted to `approved`.
 - `transfer-market-simulation` remains `current` + `binding` as the research
   authority for future implementation planning.
+## Related
+
+- [[../../60-Research/transfer-market-simulation]]
+- [[../../50-Game-Design/transfer-market-and-contracts]]
+- [[../../10-Architecture/transfer-market-architecture]]
+- [[../../20-Features/feature-transfer-market-ai-and-contracts]]

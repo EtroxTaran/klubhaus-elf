@@ -6,10 +6,17 @@ created: 2026-05-16
 updated: 2026-05-16
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[../60-Research/ip-and-licensing]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+related:
+  - [[README]]
+  - [[../60-Research/raw-perplexity/raw-environment-events]]
+  - [[../60-Research/ip-and-licensing]]
+  - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+  - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 ---
 
 # Community Editor and Dataset Override Packs
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 The base game ships with a fictional, IP-clean universe per
 [[../60-Research/ip-and-licensing]] and
@@ -153,3 +160,10 @@ material.
 - League editor depth: at MVP, structure editor (tiers, promotion rules,
   fixture format) is in scope; per-team historical results editor is
   Phase 2.
+## Related
+
+- [[README]]
+- [[../60-Research/raw-perplexity/raw-environment-events]]
+- [[../60-Research/ip-and-licensing]]
+- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+- [[../10-Architecture/09-Decisions/ADR-0004-data-model]]

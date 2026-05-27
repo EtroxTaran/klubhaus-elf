@@ -6,7 +6,10 @@ created: 2026-05-16
 updated: 2026-05-16
 type: research
 binding: false
-related: [[raw-perplexity/raw-environment-events]], [[../50-Game-Design/fan-ecology]], [[../50-Game-Design/rivalry-system]]
+related:
+  - [[raw-perplexity/raw-environment-events]]
+  - [[../50-Game-Design/fan-ecology]]
+  - [[../50-Game-Design/rivalry-system]]
 ---
 
 # Fan Culture Segmentation and Atmosphere Research
@@ -130,3 +133,8 @@ All retrieved 2026-05-16.
 - Sage paper on ultras crowd modalities - [cambridge.org ultras crowd modalities](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/DCB80D3B01F003D5BE121D4E03F721EE/S0145553224000282a.pdf/why_so_antisocial_football_ultras_crowd_modalities_and_atmospherics_of_discontent_in_public_space.pdf)
 - UEFA Sennferrero decisions (sanctions) - [sennferrero.com UEFA decisions 2023-09-20](https://www.sennferrero.com/wp-content/uploads/2023/10/Decisions-of-20-September-2023-UEFA.pdf)
 - UEFA disciplinary regulations 2024 (via RFEF) - [rfef.es UEFA Disciplinary 2024](https://rfef.es/sites/default/files/2026-02/UEFA_Disciplinary_Regulations_2024.pdf)
+## Related
+
+- [[raw-perplexity/raw-environment-events]]
+- [[../50-Game-Design/fan-ecology]]
+- [[../50-Game-Design/rivalry-system]]

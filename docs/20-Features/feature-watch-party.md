@@ -6,10 +6,17 @@ created: 2026-05-16
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/watch-party-and-conference]], [[../10-Architecture/state-machines/watch-party]], [[../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming]]
+related:
+  - [[README]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../50-Game-Design/watch-party-and-conference]]
+  - [[../10-Architecture/state-machines/watch-party]]
+  - [[../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming]]
 ---
 
 # Feature - Watch Party
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -53,3 +60,10 @@ Watch parties are post-MVP per [[../00-Index/MVP-Scope]].
 
 - [[../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming]]
 - [[../50-Game-Design/match-engine]]
+## Related
+
+- [[README]]
+- [[../00-Index/MVP-Scope]]
+- [[../50-Game-Design/watch-party-and-conference]]
+- [[../10-Architecture/state-machines/watch-party]]
+- [[../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming]]

@@ -7,7 +7,20 @@ updated: 2026-05-27
 type: research
 binding: false
 sourceType: external
-related: [[raw-perplexity/raw-player-and-staff-values]], [[raw-perplexity/raw-character-personality-and-dialogue]], [[raw-perplexity/raw-ai-llm-usage]], [[raw-perplexity/raw-roguelite-meta-progression]], [[raw-perplexity/raw-club-economy-simulation]], [[raw-perplexity/raw-match-engine-offline-and-disconnect]], [[data-generators]], [[narrative-content-pipeline]], [[ai-manager-behaviour]], [[late-game-systems]], [[systems-design-synthesis]], [[match-engine-runtime-strategy]], [[offline-mvp-scope-and-sync-strategy]]
+related:
+  - [[raw-perplexity/raw-player-and-staff-values]]
+  - [[raw-perplexity/raw-character-personality-and-dialogue]]
+  - [[raw-perplexity/raw-ai-llm-usage]]
+  - [[raw-perplexity/raw-roguelite-meta-progression]]
+  - [[raw-perplexity/raw-club-economy-simulation]]
+  - [[raw-perplexity/raw-match-engine-offline-and-disconnect]]
+  - [[data-generators]]
+  - [[narrative-content-pipeline]]
+  - [[ai-manager-behaviour]]
+  - [[late-game-systems]]
+  - [[systems-design-synthesis]]
+  - [[match-engine-runtime-strategy]]
+  - [[offline-mvp-scope-and-sync-strategy]]
 ---
 
 # Incoming Design Research Triage — 2026-05-27
@@ -224,25 +237,18 @@ corrections:
 - To act on any item, open the relevant GDDR/ADR, reconcile against the locked
   knowledge base, and get owner sign-off — then this note's raw inputs can be
   cited as `Design source` in the resulting record.
-
 ## Related
 
-- Raw inputs: [[raw-perplexity/raw-player-and-staff-values]],
-  [[raw-perplexity/raw-character-personality-and-dialogue]],
-  [[raw-perplexity/raw-ai-llm-usage]],
-  [[raw-perplexity/raw-roguelite-meta-progression]],
-  [[raw-perplexity/raw-club-economy-simulation]],
-  [[raw-perplexity/raw-match-engine-offline-and-disconnect]]
-- Locked synthesis targets: [[data-generators]], [[narrative-content-pipeline]],
-  [[ai-manager-behaviour]], [[late-game-systems]], [[mode-design-research]],
-  [[systems-design-synthesis]], [[match-engine-runtime-strategy]],
-  [[offline-mvp-scope-and-sync-strategy]], [[player-strength-presentation]],
-  [[systemic-events-player-development-venue-ops]]
-- Decision records touched conceptually: [[../50-Game-Design/mode-create-a-club-roguelite]],
-  [[../50-Game-Design/economy-system]], [[../50-Game-Design/GD-0008-finance-economy]],
-  [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]],
-  [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]],
-  [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]],
-  [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]],
-  [[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]]
-- Governance: [[../90-Meta/vault-governance]], [[../90-Meta/agent-memory-protocol]]
+- [[raw-perplexity/raw-player-and-staff-values]]
+- [[raw-perplexity/raw-character-personality-and-dialogue]]
+- [[raw-perplexity/raw-ai-llm-usage]]
+- [[raw-perplexity/raw-roguelite-meta-progression]]
+- [[raw-perplexity/raw-club-economy-simulation]]
+- [[raw-perplexity/raw-match-engine-offline-and-disconnect]]
+- [[data-generators]]
+- [[narrative-content-pipeline]]
+- [[ai-manager-behaviour]]
+- [[late-game-systems]]
+- [[systems-design-synthesis]]
+- [[match-engine-runtime-strategy]]
+- [[offline-mvp-scope-and-sync-strategy]]

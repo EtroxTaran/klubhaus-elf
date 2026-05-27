@@ -7,7 +7,10 @@ updated: 2026-05-27
 type: raw-research
 binding: false
 sourceType: external
-related: [[../incoming-design-research-2026-05-27]], [[../narrative-content-pipeline]], [[../ai-manager-behaviour]]
+related:
+  - [[../incoming-design-research-2026-05-27]]
+  - [[../narrative-content-pipeline]]
+  - [[../ai-manager-behaviour]]
 ---
 
 > Lossless import of Nico's external research report (Perplexity-style), filed
@@ -256,4 +259,8 @@ Zum Weiterarbeiten: Soll ich dir als nächstes ein konkretes **Datenmodell + Int
 [^21]: https://www.ijraset.com/best-journal/llmdriven-npc-interaction-for-enhanced-immersion-in-videogame-environments
 
 [^22]: https://air.unimi.it/retrieve/5d784da4-df07-4a44-a3c7-453cf73c5f5c/CoG2022_paper_62.pdf
+## Related
 
+- [[../incoming-design-research-2026-05-27]]
+- [[../narrative-content-pipeline]]
+- [[../ai-manager-behaviour]]

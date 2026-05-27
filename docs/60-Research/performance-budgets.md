@@ -1,12 +1,22 @@
 ---
 title: Performance Budgets — Device Matrix, CWV Targets, CI Strategy
 status: current
-binding: true
 tags: [research, performance, mobile, pwa, ci, web-vitals, lighthouse, budgets]
 created: 2026-05-17
 updated: 2026-05-22
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/08-Crosscutting]], [[match-engine-simulation-model]], [[determinism-and-replay]], [[presentation-renderer-strategy]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/progressive-disclosure-ui]]
+binding: false
+related:
+  - [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]
+  - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+  - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+  - [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+  - [[../10-Architecture/08-Crosscutting]]
+  - [[match-engine-simulation-model]]
+  - [[determinism-and-replay]]
+  - [[presentation-renderer-strategy]]
+  - [[../50-Game-Design/match-engine]]
+  - [[../50-Game-Design/progressive-disclosure-ui]]
 ---
 
 # Performance Budgets — Device Matrix, CWV Targets, CI Strategy
@@ -708,3 +718,15 @@ For copy-paste reference and future arc42 §Performance update.
   [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]:
   optional 3D/2.5D scenes stay outside the match renderer and require fallback
   plus device-tier gates.
+## Related
+
+- [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+- [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+- [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+- [[../10-Architecture/08-Crosscutting]]
+- [[match-engine-simulation-model]]
+- [[determinism-and-replay]]
+- [[presentation-renderer-strategy]]
+- [[../50-Game-Design/match-engine]]
+- [[../50-Game-Design/progressive-disclosure-ui]]

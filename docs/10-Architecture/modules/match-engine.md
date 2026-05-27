@@ -5,8 +5,9 @@ tags: [architecture, module]
 created: 2026-05-17
 updated: 2026-05-17
 type: module
-binding: true
-related: [[../05-Building-Blocks]]
+binding: false
+related:
+  - [[../05-Building-Blocks]]
 ---
 
 # packages/match-engine (`@soccer-manager/match-engine`)
@@ -42,3 +43,6 @@ from team state plus tactics.
 - [[../09-Decisions/ADR-0003-match-engine]] (draft — do not implement yet)
 - [[../09-Decisions/ADR-0027-postgres-data-model]] (data model; supersedes ADR-0004)
 - Consumed by [[web]].
+## Related
+
+- [[../05-Building-Blocks]]

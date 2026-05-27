@@ -6,7 +6,13 @@ created: 2026-05-16
 updated: 2026-05-22
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../transfer-market-architecture]], [[../../50-Game-Design/transfer-market-and-contracts]], [[../../50-Game-Design/transfer-negotiations-p2p]], [[../09-Decisions/ADR-0014-state-machines]]
+related:
+  - [[README]]
+  - [[../bounded-context-map]]
+  - [[../transfer-market-architecture]]
+  - [[../../50-Game-Design/transfer-market-and-contracts]]
+  - [[../../50-Game-Design/transfer-negotiations-p2p]]
+  - [[../09-Decisions/ADR-0014-state-machines]]
 ---
 
 # State Machine - Transfer Negotiation
@@ -175,3 +181,11 @@ When threshold exceeded, league admin sees a flag and can sanction.
   agreement and player / agent agency are separate gates.
 - AI-club counter-party - same state machine; trigger source is the AI,
   not a human.
+## Related
+
+- [[README]]
+- [[../bounded-context-map]]
+- [[../transfer-market-architecture]]
+- [[../../50-Game-Design/transfer-market-and-contracts]]
+- [[../../50-Game-Design/transfer-negotiations-p2p]]
+- [[../09-Decisions/ADR-0014-state-machines]]

@@ -4,9 +4,11 @@ status: raw
 tags: [research, raw, perplexity, modes, roguelite, multiplayer]
 created: 2026-05-16
 updated: 2026-05-16
-type: research-raw
+type: raw-research
 binding: false
-related: [[README]], [[../mode-design-research]]
+related:
+  - [[README]]
+  - [[../mode-design-research]]
 ---
 
 # Raw - Game Mode Patterns and Best Practices
@@ -268,3 +270,7 @@ tips), Reddit r/roguelites (meta-progression debates), pinglestudio.com
 (roguelike thesis), sortitoutsi.net (FM23 supporter confidence). Full URL
 list in source `.md`; new URLs surface only via
 [[../mode-design-research]] §Sources.
+## Related
+
+- [[README]]
+- [[../mode-design-research]]

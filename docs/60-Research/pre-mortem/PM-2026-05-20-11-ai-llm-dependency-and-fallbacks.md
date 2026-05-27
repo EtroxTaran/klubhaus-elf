@@ -708,12 +708,14 @@ Bei 30 % Cache-Hit-Rate + Prompt-Caching (âˆ’90 % Anthropic / âˆ’50 % Mi
 ## Verfolgung & Verkettung
 
 IDs `PM-2026-05-20-11-F-NN`. Aggregat: [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]] · [[threat-model]]
-- [[PM-2026-05-20-05-security-and-integrity]] (Determinismus + Tampering-Boundary)
-- [[PM-2026-05-20-08-legal-consumer-law-and-tax]] (AI-Act-Art-50)
-- [[PM-2026-05-20-13-community-moderation-and-ugc]] (Llama-Guard für Moderation)
-- [[../narrative-content-pipeline]] · [[../ai-manager-behaviour]]
+- [[00-index]]
+- [[findings-registry]]
+- [[threat-model]]
+- [[PM-2026-05-20-05-security-and-integrity]]
+- [[PM-2026-05-20-08-legal-consumer-law-and-tax]]
+- [[PM-2026-05-20-13-community-moderation-and-ugc]]
+- [[../narrative-content-pipeline]]
+- [[../ai-manager-behaviour]]
 - [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]

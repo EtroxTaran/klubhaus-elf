@@ -5,8 +5,9 @@ tags: [architecture, module]
 created: 2026-05-17
 updated: 2026-05-17
 type: module
-binding: true
-related: [[../05-Building-Blocks]]
+binding: false
+related:
+  - [[../05-Building-Blocks]]
 ---
 
 # packages/ui (`@soccer-manager/ui`)
@@ -40,3 +41,6 @@ Shared, presentational React component library consumed by `apps/web`.
 - [[../09-Decisions/ADR-0001-tech-stack]]
 - [[../09-Decisions/ADR-0008-mobile-first-ui]] (draft)
 - Consumed by [[web]].
+## Related
+
+- [[../05-Building-Blocks]]

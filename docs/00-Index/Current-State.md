@@ -6,17 +6,25 @@ created: 2026-05-16
 updated: 2026-05-27
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]]
+related:
+  - [[Agent-Onboarding]]
+  - [[Project-Goals]]
+  - [[MVP-Scope]]
+  - [[Decision-Log]]
+  - [[../30-Implementation/mvp-implementation-roadmap]]
+  - [[Documentation-V1]]
+  - [[../90-Meta/collaboration-and-decision-protocol]]
 ---
 
 # Current State
 
 Hot-memory snapshot. Update this in the same PR as any change to architecture,
-scope, operations, or status. Move durable detail into ADRs, approved specs, or
-current research notes.
+scope, operations, or status. Move durable detail into ADRs/GDDRs/specs once
+Nico re-ratifies them, or into current research notes.
 
 This page is the first stop for active project context. If another note conflicts
-with this page, prefer the accepted ADR or approved/current note linked here.
+with this page, prefer the re-ratified accepted/approved note linked here; during
+the reopen, escalate unresolved conflicts to Nico.
 
 > **2026-05-27 — Decisions reopened.** All previously `accepted` ADRs and
 > `approved` GDDRs/system notes were reset to `status: draft` for re-evaluation
@@ -35,23 +43,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 
 ## Documentation Baseline (2026-05-22)
 
-[[Documentation-V1]] is the current vault-wide closure
-baseline. As of 2026-05-22 there are no known undocumented or unclassified
-documentation/architecture gaps. Historical `open`, `draft`, `proposal` and
-`Future-scope notes` text is not implementation authority unless re-listed in this
-page, the baseline, an accepted ADR, an approved GDDR or a current
-implementation spec.
+[[Documentation-V1]] is the pre-reopen vault-wide closure baseline. As of
+2026-05-22 there were no known undocumented or unclassified documentation /
+architecture gaps. Historical `open`, `draft`, `proposal` and
+`Future-scope notes` text is not implementation authority unless re-listed in
+this page or re-ratified in an ADR/GDDR/spec.
 
 A vault-wide **consistency + link-health pass** ran on 2026-05-22
 ([[../40-Execution/session-handoffs/2026-05-22-vault-consistency-pass]]): the
-entry chain, arc42, accepted ADRs and current implementation specs were realigned
-to PostgreSQL + Drizzle (SurrealDB stays the deferred additive option), superseded
-notes self-announce, encoding/mojibake and broken wikilinks were repaired, and
-`docs-check` passes with zero issues.
+entry chain, arc42, ADRs and implementation specs were realigned in the
+pre-reopen baseline, superseded notes self-announce, encoding/mojibake and
+broken wikilinks were repaired, and `docs-check` passed with zero issues.
 
 Use the temporal layers from the baseline:
 
-- MVP Binding: implementable now.
+- MVP Binding: pre-reopen implementable layer; now review inventory.
 - Pre-Launch Hardening: required launch evidence.
 - Post-MVP Planned: additive after first playable.
 - Future-Scope Gate: do not implement until the gate passes.
@@ -67,9 +73,9 @@ Use the temporal layers from the baseline:
   architecture.
 - German is the primary UI language.
 - User-facing docs are output documentation, not implementation authority.
-- Game design lives in approved system notes and the GDDR decision-record set in
-  [[../50-Game-Design/README]]. Implement only from approved records; conflicts
-  between approved game-design records are stop conditions until superseded.
+- Game design lives in the GDDR/system-note set in
+  [[../50-Game-Design/README]]. Implement only after Nico re-approves records;
+  conflicts between draft records are open review questions.
 
 ## Active MVP Scope (2026-05-18)
 
@@ -673,7 +679,7 @@ product Q&A (all defaults confirmed) + 9 follow-ups
 calendar / when-triggered.
 ## Transfer market blueprint active (2026-05-17)
 
-[[../60-Research/transfer-market-simulation]] is the current binding
+[[../60-Research/transfer-market-simulation]] is the pre-reopen current binding
 research synthesis for the active transfer market. It promotes Nico's attached
 research into the project model:
 
@@ -1782,3 +1788,12 @@ Former promotion items are classified by
   playable mechanics exist, not an architecture gap.
 - Per-system "Future-scope notes" text in historical/draft notes is a tuning
   parking lot unless re-opened by the baseline, this page or a current issue.
+## Related
+
+- [[Agent-Onboarding]]
+- [[Project-Goals]]
+- [[MVP-Scope]]
+- [[Decision-Log]]
+- [[../30-Implementation/mvp-implementation-roadmap]]
+- [[Documentation-V1]]
+- [[../90-Meta/collaboration-and-decision-protocol]]

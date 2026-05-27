@@ -6,7 +6,11 @@ created: 2026-05-17
 updated: 2026-05-17
 type: implementation
 binding: false
-related: [[../60-Research/transfer-market-simulation]], [[../10-Architecture/transfer-market-architecture]], [[../50-Game-Design/transfer-market-and-contracts]], [[../20-Features/feature-transfer-market-ai-and-contracts]]
+related:
+  - [[../60-Research/transfer-market-simulation]]
+  - [[../10-Architecture/transfer-market-architecture]]
+  - [[../50-Game-Design/transfer-market-and-contracts]]
+  - [[../20-Features/feature-transfer-market-ai-and-contracts]]
 ---
 
 # Transfer Market Implementation Plan
@@ -95,3 +99,9 @@ standard device profile.
 - State-machine tests for all negotiation states.
 - Perf tests for weekly AI transfer planning.
 - Integration tests for outbox events and narrative projections.
+## Related
+
+- [[../60-Research/transfer-market-simulation]]
+- [[../10-Architecture/transfer-market-architecture]]
+- [[../50-Game-Design/transfer-market-and-contracts]]
+- [[../20-Features/feature-transfer-market-ai-and-contracts]]

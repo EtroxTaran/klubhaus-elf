@@ -13,7 +13,15 @@ adr:
   - "[[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]"
   - "[[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]]"
   - "[[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]"
-related: [[observability-runbook]], [[audit-trail]], [[deployment-dokploy]], [[notification-messaging-platform]], [[../00-Index/MVP-Scope]], [[../60-Research/match-engine-runtime-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/systemic-events-player-development-venue-ops]]
+related:
+  - [[observability-runbook]]
+  - [[audit-trail]]
+  - [[deployment-dokploy]]
+  - [[notification-messaging-platform]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../60-Research/match-engine-runtime-strategy]]
+  - [[../60-Research/performance-budgets]]
+  - [[../60-Research/systemic-events-player-development-venue-ops]]
 ---
 
 # Jobs and Scheduler
@@ -254,3 +262,13 @@ Dokploy should restart crashed workers. Workers must handle shutdown by:
 - 2026-05-22: Rewritten for ADR-0028 Postgres outbox and ADR-0043
   Notification/Messaging platform; removed SurrealDB-outbox and Redis Streams
   as durable pipeline.
+## Related
+
+- [[observability-runbook]]
+- [[audit-trail]]
+- [[deployment-dokploy]]
+- [[notification-messaging-platform]]
+- [[../00-Index/MVP-Scope]]
+- [[../60-Research/match-engine-runtime-strategy]]
+- [[../60-Research/performance-budgets]]
+- [[../60-Research/systemic-events-player-development-venue-ops]]

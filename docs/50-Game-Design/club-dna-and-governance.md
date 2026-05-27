@@ -6,10 +6,15 @@ created: 2026-05-16
 updated: 2026-05-16
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[mode-manage-a-club-career]]
+related:
+  - [[README]]
+  - [[../60-Research/systems-design-synthesis]]
+  - [[mode-manage-a-club-career]]
 ---
 
 # Club DNA and Governance
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Every club has a measurable identity that shapes how the board, fans and
 sponsors interpret the same management decisions. Two managers can produce
@@ -114,3 +119,8 @@ In [[mode-create-a-club-roguelite]] the player chooses DNA at run creation
 - How does community editor handle DNA? See
   [[community-editor-and-datasets]]; DNA is part of the override pack
   schema.
+## Related
+
+- [[README]]
+- [[../60-Research/systems-design-synthesis]]
+- [[mode-manage-a-club-career]]

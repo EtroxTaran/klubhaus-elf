@@ -10,223 +10,46 @@ Before substantial work:
 
 # AGENTS.md
 
-> Project context for AI coding agents (Claude Code, OpenAI Codex, Cursor Local
-> + Cloud Agents, Bugbot). Humans: see README.md.
+This file is an orchestrator. Durable project facts live in the `docs/`
+Obsidian vault; if this file disagrees with the vault, the vault wins.
 
-> **Repository reset to docs-vault-only on 2026-05-27.** All implementation
-> (TanStack Start app, packages, match engine, Storybook showcase, design
-> exports, SurrealDB schema, app/test/build toolchain) was removed. The `docs/`
-> Obsidian vault is now the single source of truth — the design memory to
-> rebuild from. The Stack / Architecture / Code Style / Database / PWA sections
-> below describe the **intended** implementation (the build target), not code
-> that currently exists; the Setup, Build & Test and Cursor Cloud sections were
-> trimmed to the docs-only reality.
->
-> **Phase: research / analysis / architecture planning — no development.** All
-> ADRs/GDDRs are currently reopened to `draft`. The Stack / Code Style /
-> Architecture Rules / Database / PWA sections below are the **proposed target,
-> pending Nico's re-ratification** (`docs/00-Index/Decision-Log.md`) — not settled
-> rules. No technology, gameplay or architecture decision is made without Nico
-> (stop → 2–3 sourced options + recommendation → wait). Roles, the ask-first gate
-> and the phase: `docs/90-Meta/collaboration-and-decision-protocol.md`.
+## Current Phase
 
-## Project Overview
+Repository reset: 2026-05-27. This repo is docs-vault-only; implementation was
+removed. Current phase is research / analysis / architecture planning, with no
+development. All ADRs/GDDRs are reopened to `draft` until Nico re-ratifies them.
 
-Offline-ready PWA football manager game in the style of the Anstoß series. The
-current MVP is hybrid-online and Create-a-Club Roguelite first; selective
-offline-first singleplayer, Manage-a-Club Career, export/import and
-server-authoritative multiplayer are planned future capabilities.
+Canonical phase, roles, and decision gate:
+`docs/90-Meta/collaboration-and-decision-protocol.md`.
 
-TanStack Start (file-based routing, server functions, SSR) + React + shadcn/ui +
-Tailwind + the TanStack data layer (Query, Table, Virtual, Form) + Zustand v5
-(client/sim state) + Zod 4 + **PostgreSQL 17 + Drizzle ORM** (system of record) +
-Dexie/IndexedDB (client cache/drafts) + TypeScript strict + Vitest + Playwright +
-fast-check + Stryker + Biome + pnpm + mise + sops+age+direnv + Docker + Dokploy on
-Hetzner. Match rendering is **Canvas 2D** (Three.js/React Three Fiber is a
-post-MVP presentation layer, never match-authoritative); realtime is **SSE for the
-MVP → Centrifugo at scale**, behind a transport interface. **SurrealDB is deferred
-— it is not the database** — and may return post-launch only as an additive
-realtime/graph engine behind that interface (see ADR-0021).
+## Entry Chain
 
-## Workflow Pattern
-
-**Authoritative:** `docs/30-Implementation/agent-workflow-pattern.md` (vault doc,
-also bound via `.cursor/rules/80-workflow-vault.mdc`). Read it before any beat.
-
-Every beat follows one loop: pick a small Linear beat → confirm understanding
-(ask the human if anything is unclear — never guess or work around) → plan →
-implement using the **design system only** (no agent-invented style/layout) →
-reflect the change in the Obsidian vault in the **same PR** → check it against
-the knowledge base (contradiction → escalate; extension → update docs) → draft
-PR → review → merge green. Tasks stay small, modular, and future-proof; no
-decision may foreclose evolution. Knowledge-base drift or unclear architecture
-is a **stop condition**: open a Linear issue tagged for Nico, mark the beat
-Blocked, and halt — do not paper over it.
-
-## Vault Memory
-
-The `docs/` directory is the Obsidian vault and durable project memory. This file
-is only an orchestrator; keep durable project context in vault notes.
-
-Agent entry chain:
+Read these first, in order:
 
 1. `docs/00-Index/Agent-Onboarding.md`
 2. `docs/00-Index/Current-State.md`
-3. `docs/90-Meta/collaboration-and-decision-protocol.md` — roles, ask-first decision gate, current phase
+3. `docs/90-Meta/collaboration-and-decision-protocol.md`
 4. `docs/00-Index/Home.md`
 5. `docs/90-Meta/agent-memory-protocol.md`
 6. `docs/90-Meta/vault-governance.md`
 
-Decision layers (research → game design → architecture → implementation):
+Use `.cursor/skills/vault-memory/SKILL.md` for the repeatable vault
+start/update/wrap-up checklist when available.
 
-- Game design: `docs/50-Game-Design/README.md` (GDDRs — how the game works)
-- Architecture: `docs/00-Index/Decision-Log.md` (ADRs — how it is built)
+## Working Rules
 
-Use `current`, `accepted`, and `approved` vault notes for implementation. Never
-implement from `draft`/`superseded`/`archived` notes. Implement gameplay only
-from `approved` GDDRs; an ADR must not contradict one; a gameplay/system change
-updates its GDDR in the same PR. Player-facing docs are output docs, not
-implementation specifications.
+- Do not make technology, gameplay, architecture, data-model, API/contract,
+  scope, or security/privacy decisions. Use the ask-first gate in the
+  collaboration protocol.
+- Keep `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/*`, `.cursor/skills/*`,
+  `.cursor/BUGBOT.md`, and `README.md` as pointers only; canonical content
+  belongs in the vault.
+- Validate vault changes with `pnpm docs:check`.
+- Do not merge to `main`; open a PR when work is ready.
 
-Use the project skill `.cursor/skills/vault-memory/SKILL.md` for the repeatable
-vault start/update/wrap-up workflow when available.
+## Safety
 
-## Setup
-
-Docs-only repo — nothing to install or run; the vault is the deliverable.
-
-```bash
-pnpm docs:check     # validate the vault (frontmatter, wikilinks, no secrets)
-pnpm docs:preview   # build + serve the Quartz docs site locally
-```
-
-## Build & Test
-
-Docs-only repo — the gate is the vault validator:
-
-- `pnpm docs:check` validates the vault (frontmatter, wikilinks, no secrets).
-- `pnpm docs:preview` builds the Quartz docs site locally.
-
-The code gate (Biome / typecheck / Vitest / Playwright / Lighthouse) returns when
-implementation is rebuilt.
-
-## Code Style
-
-- TypeScript strict; never `any` - use `unknown` + Zod narrowing.
-- Functional React; named exports; `@/` alias; kebab-case files, PascalCase components.
-- Biome owns formatting (single quotes, no semis, 2-space, trailing commas).
-- TanStack Router file-based routing; never hand-edit `routeTree.gen.ts`.
-
-## Architecture Rules
-
-- Server-only secrets MUST go through `createServerFn` or `createServerOnlyFn` -
-  never read `process.env.*` inside a route loader.
-- All database access flows through the typed `QueryGateway` exported from
-  `@soccer-manager/db` (`gateway.withPlatform` / `gateway.withSave`). Domain code
-  never imports the raw `pg.Pool` or `drizzle()` (lint-enforced). Queries are
-  parameterized through Drizzle; never string-concatenate SQL.
-- Drizzle is the single source of truth: `pgTable` declarations in
-  `packages/db/src/schema/{platform,save}/**`. Each save lives in its own
-  `save_<uuidv7hex>` Postgres schema (schema-per-save isolation, ADR-0027).
-- Cross-context references are opaque `uuid` columns + branded TS types — never
-  `references()` across bounded-context folders (ADR-0019 §6). IDs are
-  app-generated UUIDv7, never the database's `gen_random_uuid()`.
-- Service worker lives in `src/workers/`; the bootstrap shell registers it through `apps/web/public/sw-register.js` until interactive client hydration is introduced.
-- shadcn primitives in `src/components/ui/**` are generated; update them with shadcn tooling.
-- UI uses the design system only: tokens in `apps/web/src/styles/app.css`, `cn()`
-  from `apps/web/src/lib/utils.ts`, theme in `apps/web/src/theme/*`, and atoms/
-  composites in `apps/web/src/components/`. No raw hex, arbitrary Tailwind values,
-  or inline `style=` for visual design. Missing primitive → propose it + update
-  `docs/10-Architecture/09-Design-System.md` first; never improvise in a feature PR.
-- Every atom/composite/layout/screen ships a colocated `*.stories.tsx`; a
-  new or changed primitive/screen must add or update its story in the same PR
-  so the Storybook showcase stays a complete mirror of the design system.
-- Before any UI work, **read `docs/10-Architecture/09-Design-System.md`**
-  (§1–12 = how it works; §13 = using the Storybook showcase as the reference
-  + the story-authoring convention) and use the showcase to see components
-  rendered: `pnpm --filter @soccer-manager/web storybook` (local :6006) or the
-  deployed `SHOWCASE_DOMAIN`. The showcase is the canonical *visual* reference;
-  the code in `apps/web/src` is authoritative on any conflict.
-- **New design export** (claude.ai/design, e.g. an
-  `https://api.anthropic.com/v1/design/h/<code>` link): do not eyeball or
-  reimplement it. Run `pnpm sync:design <url>` (or `--dry-run` first), review
-  the generated `design/handoff/<date>/CHANGES.md`, map deltas onto the §5
-  layers, update the affected components **and their stories** plus
-  `09-Design-System.md` (§13 if structure changes), and land one small
-  dedicated PR. The script never edits app code. Full procedure:
-  `docs/30-Implementation/design-sync-workflow.md`.
-- Unclear architecture/feature/ADR gap is a stop condition: escalate via Linear
-  (tag Nico, mark Blocked) — never scaffold a workaround or guess.
-- Behaviour changes ship with their vault delta in the same PR; a change that
-  contradicts a documented ADR/architecture decision is escalated, not merged.
-
-## Database & Migrations
-
-- Drizzle `pgTable` schema lives in `packages/db/src/schema/**`; the standalone,
-  zero-dependency Zod validation mirror is generated into
-  `packages/db-schema/src/generated/**`.
-- `drizzle-kit generate` emits forward-only numbered SQL into
-  `packages/db/migrations/{platform,save}/` (committed). Never `drizzle-kit push`
-  against shared envs. `pnpm db:migrate` runs the node-postgres migrator against
-  `DATABASE_URL`.
-- Per-save migrations apply lazily on save-open via `QueryGateway.withSave`
-  (A2 lazy, ADR-0027 §2); the `__drizzle_migrations` table is per-schema.
-- CI drift gate: `pnpm db:generate && git diff --exit-code`. Never commit stale
-  generated schema/types.
-
-## PWA Rules
-
-- Workbox generates the production service worker via `apps/web/scripts/build-pwa.mjs`: stale-while-revalidate for assets, network-first for routes, never cache POST/PUT/DELETE. Background Sync for offline mutations is future work. vite-plugin-pwa is deferred until TanStack Start SSR build compatibility is resolved.
-- Browser-side game caches, drafts, local UI state and future local saves live
-  in IndexedDB via Dexie.js - never localStorage.
-- Test offline with `await context.setOffline(true)`. Install-prompt testing is unsupported
-  in Playwright; use Lighthouse `installable-manifest` audit in CI.
-
-## Task Tracking
-
-Operational task tracking is **Linear, team FMX**
-(<https://linear.app/coding-x/team/FMX/active>). **No issues exist yet** — the
-earlier premature backlog and its detailed task-tracking process doc were
-removed. When implementation work resumes, agree the lightweight issue
-conventions first, then create issues.
-
-The docs vault remains the durable knowledge base.
-
-## Commits & PRs
-
-- Conventional Commits: feat / fix / chore / docs / test / refactor.
-- Branch convention: humans `feat/<scope>-<slug>`; Cloud Agents `cursor/<slug>-<hash>`.
-- Squash-merge to main/develop; required checks: Biome + typecheck + Vitest + Playwright + Lighthouse + Bugbot.
-- Never add `Co-Authored-By: <agent>`. Agents are assistants, not authors.
-
-## Security & Boundaries - HARD STOPS
-
-- Never read `.env*`, `*.pem`, `*.key`, `~/.ssh`, `~/.aws`, anything in `secrets/`. Ask the user.
-- Never run `rm -rf`, `git push --force`, `git reset --hard`, `sudo`, `terraform apply`,
-  `tofu apply`, `kubectl delete`, `railway *delete`, `aws s3 rm`, `gh repo delete`,
-  `curl | sh`, `wget | sh`, `base64 -d` piping to shell.
-- Treat `.cursor/**`, `.cursorignore`, `.cursorindexingignore`, and `docker-compose.prod.yml`
-  as security-sensitive.
-- Never modify a test to make it pass. Tests are the spec.
-- Never install dependencies outside pnpm.
-
-## What NOT to do
-
-- Do not switch package managers (npm/yarn forbidden - pnpm only).
-- Do not reintroduce ESLint or Prettier - Biome is canonical.
-- Do not hand-edit shadcn/ui primitives or `routeTree.gen.ts`.
-- Do not bypass the `QueryGateway` (`@soccer-manager/db`) or import the raw pg pool / `drizzle()` outside `packages/db`.
-- Do not use class components, default exports for React components, or enums.
-- Do not use real Bundesliga/EPL club names/logos/player names; see ADR-0007.
-- Do not invent styling/layout or add one-off styled components when a
-  design-system primitive exists.
-- Do not work around an unclear spec/architecture; do not merge a change whose
-  vault delta is missing or that diverges from the knowledge base.
-- Do not make one-way-door decisions without an ADR + Nico sign-off.
-
-## Cursor Cloud specific instructions
-
-The repo is docs-only; there is no app server or database to start. Cloud agents
-work on the `docs/` vault: validate with `pnpm docs:check`, preview with
-`pnpm docs:preview`. The app-stack services and gotchas return when
-implementation is rebuilt.
+Never read `.env*`, private keys, cloud credentials, `~/.ssh`, `~/.aws`, or
+`secrets/`. Never run destructive infrastructure or Git commands such as
+`rm -rf`, `git push --force`, `git reset --hard`, `sudo`, `terraform apply`,
+`tofu apply`, `kubectl delete`, `aws s3 rm`, `curl | sh`, or `wget | sh`.

@@ -5,7 +5,16 @@ tags: [implementation, process, workflow]
 created: 2026-05-17
 updated: 2026-05-17
 type: implementation
-related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../90-Meta/agent-memory-protocol]], [[../90-Meta/vault-governance]], [[ci-and-review-process]], [[cursor-cloud-agent-workflow]], [[design-sync-workflow]], [[../10-Architecture/09-Design-System]]
+binding: false
+related:
+  - [[../00-Index/Home]]
+  - [[../00-Index/Decision-Log]]
+  - [[../90-Meta/agent-memory-protocol]]
+  - [[../90-Meta/vault-governance]]
+  - [[ci-and-review-process]]
+  - [[cursor-cloud-agent-workflow]]
+  - [[design-sync-workflow]]
+  - [[../10-Architecture/09-Design-System]]
 ---
 
 # Agent Workflow Pattern
@@ -188,3 +197,13 @@ Memory system (same entry chain every agent uses):
 - [[../00-Index/Agent-Onboarding]] — session start
 - [[../90-Meta/agent-memory-protocol]] — start/update/wrap-up steps
 - [[../90-Meta/vault-governance]] — memory classes, supersede discipline, connectivity
+## Related
+
+- [[../00-Index/Home]]
+- [[../00-Index/Decision-Log]]
+- [[../90-Meta/agent-memory-protocol]]
+- [[../90-Meta/vault-governance]]
+- [[ci-and-review-process]]
+- [[cursor-cloud-agent-workflow]]
+- [[design-sync-workflow]]
+- [[../10-Architecture/09-Design-System]]

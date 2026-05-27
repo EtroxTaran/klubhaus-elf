@@ -5,7 +5,13 @@ tags: [pwa, implementation, mvp, offline-ready]
 created: 2026-05-18
 updated: 2026-05-18
 type: implementation
-related: [[../00-Index/MVP-Scope]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../60-Research/offline-mvp-scope-and-sync-strategy]], [[pwa-offline-strategy]]
+binding: false
+supersedes: pwa-offline-strategy
+related:
+  - [[../00-Index/MVP-Scope]]
+  - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[../60-Research/offline-mvp-scope-and-sync-strategy]]
+  - [[pwa-offline-strategy]]
 ---
 
 # Hybrid-online PWA Strategy
@@ -87,10 +93,9 @@ Before enabling local-authoritative singleplayer or export/import:
       exports use passphrases.
 - [ ] Add Playwright offline E2E for app shell, draft survival and later
       local-authoritative flows.
-
 ## Related
 
 - [[../00-Index/MVP-Scope]]
 - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
 - [[../60-Research/offline-mvp-scope-and-sync-strategy]]
-- [[pwa-offline-strategy]] — superseded full offline-first implementation note
+- [[pwa-offline-strategy]]

@@ -7,7 +7,9 @@ updated: 2026-05-17
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]
-related: [[../60-Research/telemetry-privacy]], [[observability-runbook]]
+related:
+  - [[../60-Research/telemetry-privacy]]
+  - [[observability-runbook]]
 ---
 
 # Client Telemetry
@@ -158,3 +160,7 @@ protected operational artifacts:
 ## Change History
 
 - 2026-05-17: Created for ADR-0017.
+## Related
+
+- [[../60-Research/telemetry-privacy]]
+- [[observability-runbook]]

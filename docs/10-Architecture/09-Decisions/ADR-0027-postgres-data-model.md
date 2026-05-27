@@ -4,15 +4,26 @@ status: draft
 tags: [adr, architecture, data, postgresql, drizzle, schema, saves]
 created: 2026-05-19
 updated: 2026-05-19
-accepted_at: 2026-05-19
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-19
 supersedes: ADR-0004-data-model
 superseded_by:
-related: [[ADR-0004-data-model]], [[ADR-0021-revised-tech-stack]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../bounded-context-map]]
+related:
+  - [[ADR-0004-data-model]]
+  - [[ADR-0021-revised-tech-stack]]
+  - [[ADR-0019-modular-monolith-ddd]]
+  - [[ADR-0011-server-authoritative-multiplayer]]
+  - [[ADR-0028-postgres-transactional-outbox]]
+  - [[ADR-0005-save-format]]
+  - [[ADR-0007-naming-schema]]
+  - [[ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[../bounded-context-map]]
 ---
 
 # ADR-0027: PostgreSQL Data Model (per-save schema isolation, Drizzle source of truth)
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -290,11 +301,14 @@ Negative / follow-up:
 
 [[ADR-0004-data-model]] (the SurrealDB-specific mechanics; substrate-agnostic
 invariants are preserved here).
+## Related
 
-## Related Docs
-
-- [[ADR-0004-data-model]] — superseded predecessor
-- [[ADR-0028-postgres-transactional-outbox]] — sibling rework
-- [[ADR-0021-revised-tech-stack]] · [[ADR-0019-modular-monolith-ddd]] ·
-  [[ADR-0011-server-authoritative-multiplayer]] · [[ADR-0005-save-format]]
-- [[../../30-Implementation/postgres-drizzle-integration]] (next engineering wave)
+- [[ADR-0004-data-model]]
+- [[ADR-0021-revised-tech-stack]]
+- [[ADR-0019-modular-monolith-ddd]]
+- [[ADR-0011-server-authoritative-multiplayer]]
+- [[ADR-0028-postgres-transactional-outbox]]
+- [[ADR-0005-save-format]]
+- [[ADR-0007-naming-schema]]
+- [[ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[../bounded-context-map]]

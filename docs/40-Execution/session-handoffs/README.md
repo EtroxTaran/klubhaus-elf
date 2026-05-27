@@ -3,10 +3,11 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-05-27
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]]
+related:
+  - [[../../90-Meta/agent-memory-protocol]]
 ---
 
 # Session Handoffs
@@ -15,8 +16,8 @@ Hot working memory. One note per substantial session, named
 `YYYY-MM-DD-<slug>.md`, created from [[../../90-Meta/templates/handoff]].
 
 Handoffs are working memory, not durable decisions. Promote durable outcomes
-into [[../../00-Index/Current-State]], accepted ADRs, approved design notes,
-feature specs, or implementation docs — then the handoff may be marked
+into [[../../00-Index/Current-State]], re-accepted ADRs, re-approved design
+notes, feature specs, or implementation docs — then the handoff may be marked
 `status: promoted` or `archived`.
 
 Start-of-session: read the latest handoff if continuing a prior thread.
@@ -42,6 +43,9 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-27-vault-baseline-consolidation]] - docs-vault-only baseline
+  normalization after the 2026-05-27 reopen: frontmatter, status/binding,
+  Related sections, orchestrator pointers, graph audit, and docs-check green.
 - [[2026-05-22-vault-consistency-pass]] - vault-wide consistency + link-health
   pass: Postgres/Drizzle realignment, supersede/front-door/authority hygiene,
   structure renames, mojibake/BOM repair, broken-link fixes; docs-check green.
@@ -60,3 +64,6 @@ This is the **single** canonical handoff location. (An older
   promoted into architecture, gameplay, implementation and index docs.
 - [[2026-05-17-transfer-market-docs]] - transfer-market research promoted into
   the transfer-market architecture, gameplay and implementation docs.
+## Related
+
+- [[../../90-Meta/agent-memory-protocol]]

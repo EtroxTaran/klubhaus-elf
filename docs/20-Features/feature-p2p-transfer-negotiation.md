@@ -6,10 +6,18 @@ created: 2026-05-16
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../00-Index/MVP-Scope]], [[feature-transfer-market-ai-and-contracts]], [[../50-Game-Design/transfer-market-and-contracts]], [[../50-Game-Design/transfer-negotiations-p2p]], [[../10-Architecture/state-machines/transfer]]
+related:
+  - [[README]]
+  - [[../00-Index/MVP-Scope]]
+  - [[feature-transfer-market-ai-and-contracts]]
+  - [[../50-Game-Design/transfer-market-and-contracts]]
+  - [[../50-Game-Design/transfer-negotiations-p2p]]
+  - [[../10-Architecture/state-machines/transfer]]
 ---
 
 # Feature - Player-to-Player Transfer Negotiation
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -68,3 +76,11 @@ Human-to-human transfer negotiation is post-MVP per [[../00-Index/MVP-Scope]].
 - [[../10-Architecture/state-machines/transfer]]
 - [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
 - [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+## Related
+
+- [[README]]
+- [[../00-Index/MVP-Scope]]
+- [[feature-transfer-market-ai-and-contracts]]
+- [[../50-Game-Design/transfer-market-and-contracts]]
+- [[../50-Game-Design/transfer-negotiations-p2p]]
+- [[../10-Architecture/state-machines/transfer]]

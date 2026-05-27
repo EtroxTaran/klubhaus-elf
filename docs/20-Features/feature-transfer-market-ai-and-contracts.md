@@ -1,15 +1,22 @@
 ---
 title: Feature - AI Transfer Market and Contracts
-status: approved
+status: draft
 tags: [feature, transfers, contracts, ai, scouting, economy]
 created: 2026-05-17
 updated: 2026-05-18
 type: feature
-binding: true
-related: [[README]], [[../50-Game-Design/transfer-market-and-contracts]], [[../60-Research/transfer-market-simulation]], [[../10-Architecture/transfer-market-architecture]], [[../10-Architecture/state-machines/transfer]]
+binding: false
+related:
+  - [[README]]
+  - [[../50-Game-Design/transfer-market-and-contracts]]
+  - [[../60-Research/transfer-market-simulation]]
+  - [[../10-Architecture/transfer-market-architecture]]
+  - [[../10-Architecture/state-machines/transfer]]
 ---
 
 # Feature - AI Transfer Market and Contracts
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -80,3 +87,10 @@ Full market depth can phase in after the first loop is playable.
 - [[../60-Research/performance-budgets]]
 - [[../50-Game-Design/scouting-and-recruitment]]
 - [[../50-Game-Design/economy-system]]
+## Related
+
+- [[README]]
+- [[../50-Game-Design/transfer-market-and-contracts]]
+- [[../60-Research/transfer-market-simulation]]
+- [[../10-Architecture/transfer-market-architecture]]
+- [[../10-Architecture/state-machines/transfer]]

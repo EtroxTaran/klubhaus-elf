@@ -6,25 +6,29 @@ created: 2026-05-16
 updated: 2026-05-22
 type: map
 binding: false
-related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]]
+related:
+  - [[Architecture-Map]]
+  - [[Current-State]]
+  - [[Documentation-V1]]
 ---
 
 # Implementation Map
 
 Use this map for operational, deployment, data, and agent workflow work.
 
-[[Documentation-V1]] is the implementation-facing closure baseline: current
-specs below are implementable; historical Wave 3 gap IDs are traceability only
-unless re-opened by a current issue or accepted ADR.
+[[Documentation-V1]] is the pre-reopen implementation-facing closure baseline.
+The specs below are review inventory during the 2026-05-27 research /
+architecture phase, not current implementation authority unless explicitly
+re-ratified.
 
 ## Implementation Notes
 
 - [Cursor Cloud Agent Workflow](../30-Implementation/cursor-cloud-agent-workflow.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
-- [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md) - current MVP PWA/offline-ready implementation stance.
-- [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md) - current persistence implementation stance.
+- [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md) - pre-reopen MVP PWA/offline-ready implementation stance.
+- [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md) - pre-reopen persistence implementation stance.
 - [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md)
-  - current ADR-0043 implementation stance: first-party Notification
+  - pre-reopen ADR-0043 implementation stance: first-party Notification
   bounded context; Postgres durable truth; SurrealDB projection/live graph;
   Dexie offline mirror; SSE MVP; Centrifugo scale path; Brevo default with
   Mailjet fallback; Web Push/native push prepared behind adapters.
@@ -37,7 +41,7 @@ unless re-opened by a current issue or accepted ADR.
   `match-worker` observability hooks.
 - [Audit Trail](../30-Implementation/audit-trail.md)
 - [Auth Flows](../30-Implementation/auth-flows.md) — F2 (2026-05-18,
-  `current binding`). Passkey-first sign-up + login with password
+  `pre-reopen current binding`). Passkey-first sign-up + login with password
   fallback; opt-in TOTP / WebAuthn-as-MFA; 10 single-use recovery
   codes; step-up MFA on the sensitive-op catalogue; opaque
   session + refresh cookies (Lax + Strict) with refresh-token
@@ -49,7 +53,7 @@ unless re-opened by a current issue or accepted ADR.
   and ADR-0005; binds inputs for F3 (sessions), F5 (recovery),
   F6 (GDPR), F12 (rate limits).
 - [Session Management](../30-Implementation/session-management.md) — F3
-  (2026-05-18, `current binding`). Redis-based opaque session +
+  (2026-05-18, `pre-reopen current binding`). Redis-based opaque session +
   refresh-token store; 15-second rotation grace window with strict
   reuse detection outside it; 30 min idle / 12 h absolute on
   `session_id`; 30 d refresh-family absolute cap; slide-on-meaningful-
@@ -67,7 +71,7 @@ unless re-opened by a current issue or accepted ADR.
   [[../30-Implementation/auth-flows]] (F2); binds inputs for F5
   (envelope), F6 (DSAR + DPIA), F12 (edge WAF).
 - [Account Recovery](../30-Implementation/account-recovery.md) — F5
-  (2026-05-18, `current binding`). Introduces the **stable inner
+  (2026-05-18, `pre-reopen current binding`). Introduces the **stable inner
   master key `K`** + **canonical user-level envelope
   `Env_user = AES-GCM-256(K, KEK_user)`** with
   `KEK_user = PBKDF2(accountSecret, userSalt, 600 000)`. Per-device
@@ -87,7 +91,7 @@ unless re-opened by a current issue or accepted ADR.
   ASVS v5 V6 + V11 + NIST 800-130 + 800-63B §6 + 800-132 + 800-38D
   mapping. Anchors on F1 + F2 + F3; closes F2 FU-1 + F3 FU-7.
 - [Privacy and Consent](../30-Implementation/privacy-and-consent.md) — F6
-  (2026-05-18, `current binding`). Implementation surface for GDPR
+  (2026-05-18, `pre-reopen current binding`). Implementation surface for GDPR
   compliance: Privacy Notice content + cookie inventory; signup
   consent moment (single mandatory checkbox, no dark patterns); 16+
   self-declaration age gate with refusal flow; **no cookie banner**
@@ -103,7 +107,7 @@ unless re-opened by a current issue or accepted ADR.
   maintenance cadence. Companion to [[../60-Research/gdpr-compliance]].
   Closes F2 FU-6 + F2 FU-7 + F3 FU-8 + F5 FU-8 + F5 FU-9.
 - [Rate Limiting and Anti-Abuse](../30-Implementation/rate-limiting-anti-abuse.md)
-  — F12 (2026-05-18, `current binding`). 3-phase edge-WAF
+  — F12 (2026-05-18, `pre-reopen current binding`). 3-phase edge-WAF
   graduation pathway (Phase 1 no WAF at MVP → Phase 2 Bunny.net
   Shield when triggered → Phase 3 Cloudflare-only-if-forced
   with TIA); full per-endpoint quota catalogue across 7 groups
@@ -120,7 +124,7 @@ unless re-opened by a current issue or accepted ADR.
   F1 Q5 + F2 FU-5 + F3 FU-9.
 - [Incident Response](../30-Implementation/incident-response.md)
 - [Secrets Management](../30-Implementation/secrets-management.md) — F11
-  (2026-05-18, `current binding`). Full runbook for sops + age +
+  (2026-05-18, `pre-reopen current binding`). Full runbook for sops + age +
   direnv repo layout + 15-category secret inventory (A-O) with
   per-category rotation cadence + zero-downtime rotation recipes
   (versioned HMAC pepper, `accountSecret` column-key online
@@ -153,4 +157,9 @@ unless re-opened by a current issue or accepted ADR.
 ## Binding Rule
 
 Implementation notes describe current process and system behavior. If they
-conflict with an accepted ADR, the ADR wins and the note should be updated.
+conflict with a re-accepted ADR, the ADR wins and the note should be updated.
+## Related
+
+- [[Architecture-Map]]
+- [[Current-State]]
+- [[Documentation-V1]]

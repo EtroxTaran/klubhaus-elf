@@ -66,6 +66,6 @@ Negative:
 
 None
 
-## Related Docs
+## Related
 
 - <../10-Architecture/...>

@@ -4,9 +4,11 @@ status: raw
 tags: [research, raw, perplexity, async, multiplayer, watch-party]
 created: 2026-05-16
 updated: 2026-05-16
-type: research-raw
+type: raw-research
 binding: false
-related: [[README]], [[../async-multiplayer-research]]
+related:
+  - [[README]]
+  - [[../async-multiplayer-research]]
 ---
 
 # Raw - Async Multiplayer Cadence, Watch Parties and Transfer Escalation
@@ -262,3 +264,7 @@ delay), Unity discussions (spectator/replay), Unreal Engine forums
 (replication delay), refactoring.guru + game programming patterns + game
 dev forums (state machines). Full URL list in source `.md`; new URLs
 surface via [[../async-multiplayer-research]] §Sources.
+## Related
+
+- [[README]]
+- [[../async-multiplayer-research]]

@@ -5,8 +5,6 @@ alwaysApply: false
 ---
 # PWA + Service Worker
 
-- Service worker source lives in `src/workers/`; bootstrap registration lives in `apps/web/public/sw-register.js` until interactive client hydration is introduced.
-- Never cache POST, PUT, PATCH, or DELETE responses.
-- Use IndexedDB via Dexie for game saves; never localStorage.
-- E2E offline tests must use Playwright `context.setOffline(true)`.
-- Keep manifest installable and run Lighthouse PWA audits in CI.
+Implementation code was removed in the 2026-05-27 reset. Treat PWA/service
+worker guidance as pre-reopen draft inventory until re-ratified in the vault.
+Start with `docs/00-Index/Decision-Log.md` and `docs/00-Index/Architecture-Map.md`.

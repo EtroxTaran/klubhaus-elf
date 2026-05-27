@@ -1,12 +1,22 @@
 ---
 title: Onboarding Strategy — FTUE, Inbox Tutorial, Feed-Cards, Accessibility
 status: current
-binding: true
 tags: [research, onboarding, ftue, tutorial, inbox, feed-cards, accessibility, mobile-ux]
 created: 2026-05-17
 updated: 2026-05-18
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[ai-manager-behaviour]], [[tactics-and-formations]], [[data-generators]], [[performance-budgets]], [[progressive-disclosure-research]], [[club-boss-analysis]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/mode-manage-a-club-career]], [[../50-Game-Design/mode-create-a-club-roguelite]]
+binding: false
+related:
+  - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+  - [[ai-manager-behaviour]]
+  - [[tactics-and-formations]]
+  - [[data-generators]]
+  - [[performance-budgets]]
+  - [[progressive-disclosure-research]]
+  - [[club-boss-analysis]]
+  - [[../50-Game-Design/progressive-disclosure-ui]]
+  - [[../50-Game-Design/mode-manage-a-club-career]]
+  - [[../50-Game-Design/mode-create-a-club-roguelite]]
 ---
 
 # Onboarding Strategy — FTUE, Inbox Tutorial, Feed-Cards, Accessibility
@@ -1318,3 +1328,15 @@ All well within D9's frame budget (p95 main-thread ≤ 12 ms).
   as-is historically; FTUE 60s flow refined to single-question PLUS visible
   Advanced-setup escape hatch; mode step promoted to upfront. 2026-05-18 MVP
   scope changes launch behavior to Roguelite playable and Career "comes later".
+## Related
+
+- [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+- [[ai-manager-behaviour]]
+- [[tactics-and-formations]]
+- [[data-generators]]
+- [[performance-budgets]]
+- [[progressive-disclosure-research]]
+- [[club-boss-analysis]]
+- [[../50-Game-Design/progressive-disclosure-ui]]
+- [[../50-Game-Design/mode-manage-a-club-career]]
+- [[../50-Game-Design/mode-create-a-club-roguelite]]

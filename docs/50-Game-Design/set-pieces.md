@@ -6,10 +6,17 @@ created: 2026-05-16
 updated: 2026-05-17
 type: game-design
 binding: false
-related: [[README]], [[tactics-system]], [[match-engine]], [[squad-and-club-structure]], [[../60-Research/tactics-and-formations]]
+related:
+  - [[README]]
+  - [[tactics-system]]
+  - [[match-engine]]
+  - [[squad-and-club-structure]]
+  - [[../60-Research/tactics-and-formations]]
 ---
 
 # Set Pieces - Corners, Free Kicks, Penalties, Throw-ins
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Set pieces deliver a disproportionate share of goals in real football and
 must be a first-class sub-system. The user explicitly wanted "deep tactic
@@ -100,3 +107,10 @@ player can analyse efficiency.
   but expert-only.
 - Opposition-specific set-piece pre-match preview - yes, as a brief in the
   match-day report.
+## Related
+
+- [[README]]
+- [[tactics-system]]
+- [[match-engine]]
+- [[squad-and-club-structure]]
+- [[../60-Research/tactics-and-formations]]

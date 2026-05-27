@@ -7,7 +7,11 @@ updated: 2026-05-22
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
-related: [[jobs-and-scheduler]], [[observability-runbook]], [[notification-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+related:
+  - [[jobs-and-scheduler]]
+  - [[observability-runbook]]
+  - [[notification-messaging-platform]]
+  - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 ---
 
 # Audit Trail
@@ -130,3 +134,9 @@ tamper evidence. Until decided, the minimum control is:
 
 - 2026-05-17: Created to separate ADR-0013 audit from ADR-0017 operational logs.
 - 2026-05-18: Concrete `auth.*` event catalogue added (F2 [[auth-flows]]).
+## Related
+
+- [[jobs-and-scheduler]]
+- [[observability-runbook]]
+- [[notification-messaging-platform]]
+- [[../10-Architecture/09-Decisions/ADR-0004-data-model]]

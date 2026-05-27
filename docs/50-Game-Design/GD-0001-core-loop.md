@@ -5,11 +5,19 @@ tags: [game-design, gddr, loop]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[GD-0011-career-progression]], [[GD-0016-mobile-ux-loop]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0011-career-progression]]
+  - [[GD-0016-mobile-ux-loop]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[../60-Research/club-boss-analysis]]
+  - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
 ---
 
 # GD-0001: Core Career Loop & Weekly Rhythm
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -79,8 +87,11 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] (match-tick model)
 - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] (single advance verb)
-
 ## Related
 
-- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/club-boss-analysis]]
-- [[README]] — Game Design Log (hub) · siblings: [[GD-0011-career-progression]] · [[GD-0016-mobile-ux-loop]] · [[GD-0002-match-engine]]
+- [[README]]
+- [[GD-0011-career-progression]]
+- [[GD-0016-mobile-ux-loop]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[../60-Research/club-boss-analysis]]
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]

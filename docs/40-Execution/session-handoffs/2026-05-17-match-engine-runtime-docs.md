@@ -1,12 +1,15 @@
 ---
 title: Match Engine Runtime Documentation Handoff
-status: current
+status: wrapped
 tags: [handoff, match-engine, documentation, runtime, architecture]
 created: 2026-05-17
 updated: 2026-05-17
 type: handoff
 binding: false
-related: [[../../60-Research/match-engine-runtime-strategy]], [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../../50-Game-Design/match-engine]]
+related:
+  - [[../../60-Research/match-engine-runtime-strategy]]
+  - [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+  - [[../../50-Game-Design/match-engine]]
 ---
 
 # Match Engine Runtime Documentation Handoff
@@ -73,3 +76,8 @@ Final direction:
 
 Run docs/lint checks after this handoff. No code or package dependency changes
 were intended.
+## Related
+
+- [[../../60-Research/match-engine-runtime-strategy]]
+- [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+- [[../../50-Game-Design/match-engine]]

@@ -2,10 +2,18 @@
 title: ADR-0010 Aurelia Premier Design System
 status: draft
 tags: [adr, design, ui]
+created: 2026-05-16
 updated: 2026-05-16
+type: adr
+binding: false
+related:
+  - [[../../00-Index/Decision-Log]]
+  - [[../09-Design-System]]
 ---
 
 # ADR-0010: Aurelia Premier Design System
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Context
 
@@ -52,3 +60,7 @@ Recreate the design in the production stack rather than copying the prototype:
   [[../../30-Implementation/design-sync-workflow]].
 - Mobile-first/WCAG intent from [[ADR-0008-mobile-first-ui]] and the i18n
   contract from [[ADR-0006-i18n]] are realised by this system.
+## Related
+
+- [[../../00-Index/Decision-Log]]
+- [[../09-Design-System]]

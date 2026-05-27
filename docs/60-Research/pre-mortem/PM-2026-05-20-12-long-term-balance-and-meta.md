@@ -218,7 +218,7 @@ sources:
     accessed: "2026-05-20"
     publisher: "ResetEra"
     confidence: medium
-verification_notes: "Carry-Slot wächst mit Run-Length; bei 10 Runs × Ã˜ 12 Saisons → 120 Slot-Earning-Events. Selbst harte Cap 1 Slot/6 Saisons = 20 Slots. Compound trivializes Run 10."
+verification_notes: "Carry-Slot wächst mit Run-Length; bei 10 Runs x Ø 12 Saisons -> 120 Slot-Earning-Events. Selbst harte Cap 1 Slot/6 Saisons = 20 Slots. Compound trivializes Run 10."
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
@@ -566,10 +566,14 @@ Mit Event-Tiering (cold ≤ 10 % warm-rate): @ y30 ≈ 1.0 MB compressed total.
 ## Verfolgung & Verkettung
 
 IDs `PM-2026-05-20-12-F-NN`. Aggregat: [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]]
-- [[PM-2026-05-20-03-gameplay]] · [[PM-2026-05-20-05-security-and-integrity]] (Determinismus) · [[PM-2026-05-20-15-browser-device-storage-matrix]] (Save-Storage) · [[PM-2026-05-20-16-test-strategy-depth]] (50-y-Soak-Test)
-- [[../late-game-systems]] · [[../narrative-content-pipeline]] · [[../determinism-and-replay]]
-- [[../../50-Game-Design/GD-0008-finance-economy]] · [[../../50-Game-Design/mode-create-a-club-roguelite]]
+- [[00-index]]
+- [[findings-registry]]
+- [[PM-2026-05-20-03-gameplay]]
+- [[PM-2026-05-20-05-security-and-integrity]]
+- [[PM-2026-05-20-15-browser-device-storage-matrix]]
+- [[PM-2026-05-20-16-test-strategy-depth]]
+- [[../late-game-systems]]
+- [[../../50-Game-Design/GD-0008-finance-economy]]
+- [[../../50-Game-Design/mode-create-a-club-roguelite]]

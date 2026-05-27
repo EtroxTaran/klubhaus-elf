@@ -4,9 +4,15 @@ status: raw
 tags: [research, raw, perplexity, match-engine, runtime, rust, typescript, wasm, offline-first]
 created: 2026-05-17
 updated: 2026-05-17
-type: research-raw
+type: raw-research
 binding: false
-related: [[README]], [[../match-engine-runtime-strategy]], [[../match-engine-simulation-model]], [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]], [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+related:
+  - [[README]]
+  - [[../match-engine-runtime-strategy]]
+  - [[../match-engine-simulation-model]]
+  - [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+  - [[../../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]
+  - [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
 ---
 
 # Raw - Match Engine Runtime Technology and Scaling Research
@@ -224,3 +230,11 @@ raw iteration:
   seed/replay contract and golden parity tests.
 - The gameplay model adopts explicit match-depth profiles and no-long-loading
   UX rules from the raw report.
+## Related
+
+- [[README]]
+- [[../match-engine-runtime-strategy]]
+- [[../match-engine-simulation-model]]
+- [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+- [[../../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]
+- [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]

@@ -4,16 +4,27 @@ status: draft
 tags: [adr, architecture, rendering, pwa, 3d, stadium]
 created: 2026-05-22
 updated: 2026-05-22
-accepted_at: 2026-05-22
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-22
 supersedes:
 superseded_by:
 amends: [[ADR-0024-match-renderer-abstraction]], [[ADR-0029-3d-presentation-layer]]
-related: [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[ADR-0029-3d-presentation-layer]], [[ADR-0025-mobile-delivery]], [[ADR-0019-modular-monolith-ddd]], [[../../60-Research/presentation-renderer-strategy]], [[../../60-Research/performance-budgets]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/stadium-and-campus]]
+related:
+  - [[ADR-0024-match-renderer-abstraction]]
+  - [[ADR-0026-match-frame-contract]]
+  - [[ADR-0029-3d-presentation-layer]]
+  - [[ADR-0025-mobile-delivery]]
+  - [[ADR-0019-modular-monolith-ddd]]
+  - [[../../60-Research/presentation-renderer-strategy]]
+  - [[../../60-Research/performance-budgets]]
+  - [[../../50-Game-Design/match-engine]]
+  - [[../../50-Game-Design/stadium-and-campus]]
 ---
 
 # ADR-0041: Two-Renderer Presentation Strategy
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -137,14 +148,14 @@ Negative:
 - No gameplay buffs from visual fidelity; 3D is presentation only.
 - All 3D/cinematic work requires a feature spec, story/fallback states and
   perf verification on Standard-tier mobile targets.
+## Related
 
-## Related Docs
-
-- [[../../60-Research/presentation-renderer-strategy]]
 - [[ADR-0024-match-renderer-abstraction]]
 - [[ADR-0026-match-frame-contract]]
+- [[ADR-0029-3d-presentation-layer]]
 - [[ADR-0025-mobile-delivery]]
 - [[ADR-0019-modular-monolith-ddd]]
+- [[../../60-Research/presentation-renderer-strategy]]
 - [[../../60-Research/performance-budgets]]
 - [[../../50-Game-Design/match-engine]]
 - [[../../50-Game-Design/stadium-and-campus]]

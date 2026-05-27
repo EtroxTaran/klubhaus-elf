@@ -5,12 +5,21 @@ tags: [implementation, presentation, 3d, three-js, r3f, stadium, cutscene, pwa, 
 created: 2026-05-20
 updated: 2026-05-20
 type: implementation
-binding: true
+binding: false
 linear:
 adr: [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]
-related: [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]], [[../20-Features/feature-3d-presentation-layer]], [[../60-Research/performance-budgets]], [[../10-Architecture/08-Crosscutting]], [[../10-Architecture/bounded-context-map]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]], [[mvp-implementation-roadmap]]
 supersedes:
 superseded_by:
+related:
+  - [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]
+  - [[../20-Features/feature-3d-presentation-layer]]
+  - [[../60-Research/performance-budgets]]
+  - [[../10-Architecture/08-Crosscutting]]
+  - [[../10-Architecture/bounded-context-map]]
+  - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+  - [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
+  - [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]
+  - [[mvp-implementation-roadmap]]
 ---
 
 # 3D Presentation Architecture
@@ -356,7 +365,6 @@ registry); not the ADR.
 - 2026-05-20: Initial. Authored alongside
   [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]
   and [[../20-Features/feature-3d-presentation-layer]].
-
 ## Related
 
 - [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]
@@ -364,5 +372,7 @@ registry); not the ADR.
 - [[../60-Research/performance-budgets]]
 - [[../10-Architecture/08-Crosscutting]]
 - [[../10-Architecture/bounded-context-map]]
+- [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
 - [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
+- [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]
 - [[mvp-implementation-roadmap]]

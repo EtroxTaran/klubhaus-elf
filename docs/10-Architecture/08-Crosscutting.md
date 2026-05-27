@@ -6,7 +6,17 @@ created: 2026-05-15
 updated: 2026-05-22
 type: architecture
 binding: false
-related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0003-match-engine]], [[09-Decisions/ADR-0013-transactional-outbox]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/telemetry-privacy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/client-telemetry]]
+related:
+  - [[09-Decisions/ADR-0017-observability-logging]]
+  - [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[09-Decisions/ADR-0003-match-engine]]
+  - [[09-Decisions/ADR-0013-transactional-outbox]]
+  - [[09-Decisions/ADR-0041-presentation-renderer-strategy]]
+  - [[../60-Research/performance-budgets]]
+  - [[../60-Research/presentation-renderer-strategy]]
+  - [[../60-Research/telemetry-privacy]]
+  - [[../30-Implementation/observability-runbook]]
+  - [[../30-Implementation/client-telemetry]]
 ---
 
 # Crosscutting Concerns
@@ -244,3 +254,15 @@ may be dropped before they risk save durability or storage pressure.
   banners must be keyboard-accessible and screen-reader friendly.
 - German is the primary UI language; internal logs remain English for
   operational consistency.
+## Related
+
+- [[09-Decisions/ADR-0017-observability-logging]]
+- [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[09-Decisions/ADR-0003-match-engine]]
+- [[09-Decisions/ADR-0013-transactional-outbox]]
+- [[09-Decisions/ADR-0041-presentation-renderer-strategy]]
+- [[../60-Research/performance-budgets]]
+- [[../60-Research/presentation-renderer-strategy]]
+- [[../60-Research/telemetry-privacy]]
+- [[../30-Implementation/observability-runbook]]
+- [[../30-Implementation/client-telemetry]]

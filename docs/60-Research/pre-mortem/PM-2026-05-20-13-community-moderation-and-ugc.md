@@ -150,7 +150,7 @@ sources:
     accessed: "2026-05-20"
     publisher: "Bundesliga"
     confidence: high
-verification_notes: "Naive Exact-Match scheitert: User tippen `FCBayern2026`, `Bayern_Munich_88`, `FC Ð’ayern` (kyrillisches Ð’), `B@yern Munchen`. Ohne Fuzzy+Confusable+Token = nutzlos."
+verification_notes: "Naive Exact-Match scheitert: User tippen `FCNordstadt2026`, `Nordstadt_88`, `FC [cyrillic Ve]ordstadt`, `N0rdstadt`. Ohne Fuzzy+Confusable+Token = nutzlos."
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
@@ -239,7 +239,7 @@ sources:
     accessed: "2026-05-20"
     publisher: "DeepStrike"
     confidence: medium
-verification_notes: "Spieler umgehen Wordlist trivial: Fußba11, SÑhei$$e (kyrill. Ñ), f u c k (Padding), fuuuuck (Repetition), ðŸ…µðŸ†„ðŸ…²ðŸ…º (Emoji-Stems)."
+verification_notes: "Spieler umgehen Wordlist trivial: Fußba11, S[cyrillic c]hei$$e, f u c k (Padding), fuuuuck (Repetition), [emoji-letter stems]."
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
@@ -528,7 +528,7 @@ function checkClubName(userInput: string): MatchResult {
   }
   // Stage 1: Unicode NFKC + confusables decode
   let normalized = userInput.normalize("NFKC");
-  normalized = confusableHomoglyphs.toAscii(normalized); // kyrill. Ð¾ → o
+  normalized = confusableHomoglyphs.toAscii(normalized); // cyrillic o -> o
   // Stage 2: Leet decode (light: 0→o, 1→i/l, 3→e, 5→s, $→s, @→a)
   const deLeetVariants = leetDecode(normalized);
   // Stage 3: Strip "fc|fc1|sc|tsv|vfb|borussia|real|fc bayern münchen" prefixes
@@ -562,13 +562,13 @@ function checkClubName(userInput: string): MatchResult {
 
 | Bypass | Beispiel | Stage |
 |---|---|---|
-| Unicode-confusable | `FÐ¡ Bayern` (kyrill. Ð¡) | 1 |
+| Unicode-confusable | `F[cyrillic Es] Nordstadt` | 1 |
 | Leet | `FC B4yern` | 2 |
 | Padding | `F C B a y e r n` | 3 (Tokenize) |
 | Suffix-Spam | `FC Bayern 2026` | 4 (Token-Subset) |
 | Typo/Anagram-light | `Bayren Munich` | 5 (Jaro-Winkler) |
 | Phonetic-EN | `Bayern Mootnik` | 6 (Metaphone) |
-| Emoji-Spam | `ðŸ”¥FCBayernðŸ”¥` | 0 Charset |
+| Emoji-Spam | `[fire]FCBayern[fire]` | 0 Charset |
 | ZWJ / RTL-Override | `FC Bayern”‹` | 1 NFKC |
 
 ### Strike-System
@@ -692,9 +692,12 @@ Synthetic-Attack-Suite (21 Test-Cases): Profanity Plain/Leet/Padding/Unicode/Rep
 ## Verfolgung & Verkettung
 
 IDs `PM-2026-05-20-13-F-NN`. Aggregat: [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]] · [[threat-model]]
-- [[PM-2026-05-20-05-security-and-integrity]] (Save-Trust-Level) · [[PM-2026-05-20-08-legal-consumer-law-and-tax]] (DSA-Recht) · [[PM-2026-05-20-09-i18n-and-localization]] (Unicode-Validation)
-- [[../gdpr-compliance]] · [[../async-multiplayer-research]] · [[../ip-and-licensing]]
+- [[00-index]]
+- [[findings-registry]]
+- [[threat-model]]
+- [[PM-2026-05-20-05-security-and-integrity]]
+- [[PM-2026-05-20-08-legal-consumer-law-and-tax]]
+- [[PM-2026-05-20-09-i18n-and-localization]]
+- [[../gdpr-compliance]]

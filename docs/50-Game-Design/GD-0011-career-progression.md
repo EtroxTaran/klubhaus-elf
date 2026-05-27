@@ -5,11 +5,20 @@ tags: [game-design, gddr, progression]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[GD-0001-core-loop]], [[GD-0010-ai-world]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0001-core-loop]]
+  - [[GD-0010-ai-world]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[../60-Research/club-boss-analysis]]
+  - [[../95-Archive/gap-reports/research-wave-2-gaps]]
+  - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
 ---
 
 # GD-0011: Career Progression, Board & Objectives
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -72,8 +81,12 @@ None
 ## Feeds ADRs
 
 - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] / [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]] (R2-06 input blocks)
-
 ## Related
 
-- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/club-boss-analysis]] · [[../95-Archive/gap-reports/research-wave-2-gaps]]
-- [[README]] — hub · siblings: [[GD-0001-core-loop]] · [[GD-0010-ai-world]] · [[GD-0008-finance-economy]]
+- [[README]]
+- [[GD-0001-core-loop]]
+- [[GD-0010-ai-world]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[../60-Research/club-boss-analysis]]
+- [[../95-Archive/gap-reports/research-wave-2-gaps]]
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]

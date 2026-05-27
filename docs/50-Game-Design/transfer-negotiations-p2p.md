@@ -6,10 +6,19 @@ created: 2026-05-16
 updated: 2026-05-17
 type: game-design
 binding: false
-related: [[README]], [[transfer-market-and-contracts]], [[../60-Research/transfer-market-simulation]], [[../60-Research/async-multiplayer-research]], [[scouting-and-recruitment]], [[async-multiplayer-private-group]], [[../10-Architecture/state-machines/transfer]]
+related:
+  - [[README]]
+  - [[transfer-market-and-contracts]]
+  - [[../60-Research/transfer-market-simulation]]
+  - [[../60-Research/async-multiplayer-research]]
+  - [[scouting-and-recruitment]]
+  - [[async-multiplayer-private-group]]
+  - [[../10-Architecture/state-machines/transfer]]
 ---
 
 # Player-to-Player Transfer Negotiations
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Human-to-human transfers are the most strategic interaction in async
 groups. The design rule is **silence must not be the strongest strategy**.
@@ -130,3 +139,12 @@ Group rule sets can override.
   internal formula stays hidden by default.
 - Auction mode for free agents (group-wide draft) - Phase 2.
 - Cross-group transfer? Out of scope - groups are sealed.
+## Related
+
+- [[README]]
+- [[transfer-market-and-contracts]]
+- [[../60-Research/transfer-market-simulation]]
+- [[../60-Research/async-multiplayer-research]]
+- [[scouting-and-recruitment]]
+- [[async-multiplayer-private-group]]
+- [[../10-Architecture/state-machines/transfer]]

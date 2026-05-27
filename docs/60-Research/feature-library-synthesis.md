@@ -6,7 +6,12 @@ created: 2026-05-16
 updated: 2026-05-16
 type: research
 binding: false
-related: [[competitor-matrix]], [[anstoss-series-deep-dive]], [[club-boss-analysis]], [[raw-perplexity/raw-feature-library]], [[../00-Index/Research-Map]]
+related:
+  - [[competitor-matrix]]
+  - [[anstoss-series-deep-dive]]
+  - [[club-boss-analysis]]
+  - [[raw-perplexity/raw-feature-library]]
+  - [[../00-Index/Research-Map]]
 ---
 
 # Feature Library Synthesis Across Football Manager Products
@@ -199,3 +204,10 @@ union of footnotes from Doc 1 and Doc 2 sections 1-1080).
 - Nutmeg deck-builder review - [rogueliker.com nutmeg-review](https://rogueliker.com/nutmeg-review/)
 - Capacitor PWA docs - [capacitorjs.com/docs/web/progressive-web-apps](https://capacitorjs.com/docs/web/progressive-web-apps)
 - Capgo transform-PWA-to-Native - [capgo.app/blog/transform-pwa-to-native-app-with-capacitor](https://capgo.app/blog/transform-pwa-to-native-app-with-capacitor/)
+## Related
+
+- [[competitor-matrix]]
+- [[anstoss-series-deep-dive]]
+- [[club-boss-analysis]]
+- [[raw-perplexity/raw-feature-library]]
+- [[../00-Index/Research-Map]]

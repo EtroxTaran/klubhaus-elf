@@ -5,11 +5,23 @@ tags: [game-design, mode, multiplayer, async]
 created: 2026-05-16
 updated: 2026-05-22
 type: game-design
-binding: true
-related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/match-engine-runtime-strategy]], [[singleplayer-baseline]], [[match-engine]], [[watch-party-and-conference]], [[transfer-negotiations-p2p]], [[../10-Architecture/state-machines/league-week]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
+binding: false
+related:
+  - [[README]]
+  - [[../60-Research/async-multiplayer-research]]
+  - [[../60-Research/match-engine-runtime-strategy]]
+  - [[singleplayer-baseline]]
+  - [[match-engine]]
+  - [[watch-party-and-conference]]
+  - [[transfer-negotiations-p2p]]
+  - [[../10-Architecture/state-machines/league-week]]
+  - [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+  - [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
 ---
 
 # Async Multiplayer - Private Group with Two Cadence Models
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 The flagship multiplayer mode. Invite-only friend groups, server-paced,
 with **two configurable cadence models** (Fixed and Dynamic) sharing one
@@ -224,3 +236,15 @@ stateDiagram-v2
 - Can a group migrate between Fixed and Dynamic mid-season as an
   emergency? No - only at season boundary. Emergency = admin force-close +
   next-season switch.
+## Related
+
+- [[README]]
+- [[../60-Research/async-multiplayer-research]]
+- [[../60-Research/match-engine-runtime-strategy]]
+- [[singleplayer-baseline]]
+- [[match-engine]]
+- [[watch-party-and-conference]]
+- [[transfer-negotiations-p2p]]
+- [[../10-Architecture/state-machines/league-week]]
+- [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+- [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]

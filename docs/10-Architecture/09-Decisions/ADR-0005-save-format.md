@@ -4,14 +4,23 @@ status: draft
 tags: [adr, save, encryption, compression, versioning, e2ee]
 created: 2026-05-15
 updated: 2026-05-18
-accepted_at: 2026-05-16
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-16
 amended_by: [[ADR-0020-hybrid-online-mvp-offline-ready]]
-related: [[ADR-0004-data-model]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0002-offline-first]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/surrealdb-schema-patterns]]
+related:
+  - [[ADR-0004-data-model]]
+  - [[ADR-0011-server-authoritative-multiplayer]]
+  - [[ADR-0013-transactional-outbox]]
+  - [[ADR-0002-offline-first]]
+  - [[ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[../../60-Research/determinism-and-replay]]
+  - [[../../60-Research/surrealdb-schema-patterns]]
 ---
 
 # ADR-0005: Save Format and Versioning
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 > **MVP SCOPE AMENDED on 2026-05-18 by
 > [[ADR-0020-hybrid-online-mvp-offline-ready]].** The envelope, encryption,
@@ -456,3 +465,12 @@ CI enforcement:
   Standard Notes + Cryptee export models.
 - Wave 3 gap A5 Q&A with Nico (2026-05-16): all four
   recommendations accepted as-is.
+## Related
+
+- [[ADR-0004-data-model]]
+- [[ADR-0011-server-authoritative-multiplayer]]
+- [[ADR-0013-transactional-outbox]]
+- [[ADR-0002-offline-first]]
+- [[ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[../../60-Research/determinism-and-replay]]
+- [[../../60-Research/surrealdb-schema-patterns]]

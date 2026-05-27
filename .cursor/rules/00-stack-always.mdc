@@ -4,7 +4,7 @@ alwaysApply: true
 ---
 # Stack Baseline
 
-Use pnpm, TypeScript strict, TanStack Start/Router, React, shadcn/ui + Tailwind,
-SurrealDB, Dexie IndexedDB caches/drafts/future saves, Vitest, Playwright,
-Biome, Docker, and Dokploy. No npm/yarn, ESLint, Prettier, Redux, Zustand, real
-club/player names, or localStorage game state/cache/drafts.
+This rule is an orchestrator only. The implementation stack was removed in the
+2026-05-27 docs-vault-only reset, and all ADRs are reopened to `draft`. Read
+`docs/00-Index/Current-State.md` and `docs/00-Index/Decision-Log.md` before
+treating any stack note as current.

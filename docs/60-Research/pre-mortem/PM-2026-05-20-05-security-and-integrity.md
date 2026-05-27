@@ -704,23 +704,21 @@ Jedes Finding hat eine immutable ID (`PM-2026-05-20-05-F-NN`).
 - **Im Vault:** neue ADRs tragen `addresses: [PM-2026-05-20-05-F-NN]` Frontmatter.
 - **Status-Übergänge:** `open → mitigating → mitigated → verified`.
 - **Aggregat:** [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]] · [[threat-model]]
-- [[PM-2026-05-20-01-architecture]] · [[PM-2026-05-20-02-tech-and-ops]] · [[PM-2026-05-20-03-gameplay]] · [[PM-2026-05-20-04-monetization]] · [[PM-2026-05-20-06-distributed-match-compute]]
+- [[00-index]]
+- [[findings-registry]]
+- [[threat-model]]
+- [[PM-2026-05-20-01-architecture]]
+- [[PM-2026-05-20-02-tech-and-ops]]
+- [[PM-2026-05-20-03-gameplay]]
+- [[PM-2026-05-20-04-monetization]]
+- [[PM-2026-05-20-06-distributed-match-compute]]
 - [[../determinism-and-replay]]
 - [[../gdpr-compliance]]
-- [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
-- [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]
 - [[../../10-Architecture/09-Decisions/ADR-0005-save-format]]
 - [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
-- [[../../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
-- [[../../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
-- [[../../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]
 - [[../../30-Implementation/auth-flows]]
 - [[../../30-Implementation/session-management]]
-- [[../../30-Implementation/privacy-and-consent]]
 - [[../../30-Implementation/rate-limiting-anti-abuse]]
-- [[../../30-Implementation/secrets-management]]
-- [[../../00-Index/Current-State]]
+- [[../../30-Implementation/privacy-and-consent]]

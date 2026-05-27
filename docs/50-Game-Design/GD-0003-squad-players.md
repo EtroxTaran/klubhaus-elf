@@ -5,11 +5,20 @@ tags: [game-design, gddr, squad]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[GD-0005-training]], [[GD-0006-transfers]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/modules/db-schema]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0005-training]]
+  - [[GD-0006-transfers]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[../60-Research/club-boss-analysis]]
+  - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+  - [[../10-Architecture/modules/db-schema]]
 ---
 
 # GD-0003: Squad, Players & Attributes
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -75,9 +84,12 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] (attribute inputs)
-
 ## Related
 
-- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/club-boss-analysis]]
-- Module: [[../10-Architecture/modules/db-schema]]
-- [[README]] — hub · siblings: [[GD-0005-training]] · [[GD-0006-transfers]] · [[GD-0007-youth]]
+- [[README]]
+- [[GD-0005-training]]
+- [[GD-0006-transfers]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[../60-Research/club-boss-analysis]]
+- [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+- [[../10-Architecture/modules/db-schema]]

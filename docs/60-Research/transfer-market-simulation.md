@@ -1,12 +1,20 @@
 ---
 title: Transfer Market Simulation - Valuation, AI Selling, Clauses and Negotiation
 status: current
-binding: true
 tags: [research, transfers, contracts, valuation, ai, economy, narrative, determinism]
 created: 2026-05-17
 updated: 2026-05-17
 type: research
-related: [[ai-manager-behaviour]], [[determinism-and-replay]], [[performance-budgets]], [[data-generators]], [[narrative-content-pipeline]], [[../50-Game-Design/transfer-market-and-contracts]], [[../10-Architecture/transfer-market-architecture]], [[../20-Features/feature-transfer-market-ai-and-contracts]]
+binding: false
+related:
+  - [[ai-manager-behaviour]]
+  - [[determinism-and-replay]]
+  - [[performance-budgets]]
+  - [[data-generators]]
+  - [[narrative-content-pipeline]]
+  - [[../50-Game-Design/transfer-market-and-contracts]]
+  - [[../10-Architecture/transfer-market-architecture]]
+  - [[../20-Features/feature-transfer-market-ai-and-contracts]]
 ---
 
 # Transfer Market Simulation - Valuation, AI Selling, Clauses and Negotiation
@@ -369,3 +377,13 @@ Still to validate during implementation benchmarking:
   Floor devices;
 - final numeric thresholds for when a league is promoted from Tier 2 to Tier 1;
 - final training reward percentages for fictional association rule profiles.
+## Related
+
+- [[ai-manager-behaviour]]
+- [[determinism-and-replay]]
+- [[performance-budgets]]
+- [[data-generators]]
+- [[narrative-content-pipeline]]
+- [[../50-Game-Design/transfer-market-and-contracts]]
+- [[../10-Architecture/transfer-market-architecture]]
+- [[../20-Features/feature-transfer-market-ai-and-contracts]]

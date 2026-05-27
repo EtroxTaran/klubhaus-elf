@@ -6,10 +6,19 @@ created: 2026-05-16
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/matchday-event-engine]], [[../50-Game-Design/regulations-and-compliance]], [[../50-Game-Design/rivalry-system]], [[feature-systemic-event-director]], [[feature-venue-operations]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+related:
+  - [[README]]
+  - [[../50-Game-Design/matchday-event-engine]]
+  - [[../50-Game-Design/regulations-and-compliance]]
+  - [[../50-Game-Design/rivalry-system]]
+  - [[feature-systemic-event-director]]
+  - [[feature-venue-operations]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Feature - Match-day Event Engine
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -63,4 +72,13 @@ needed for the first match tutorial or run-risk feedback.
 - [[../50-Game-Design/matchday-event-engine]]
 - [[../50-Game-Design/regulations-and-compliance]]
 - [[../50-Game-Design/community-editor-and-datasets]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+## Related
+
+- [[README]]
+- [[../50-Game-Design/matchday-event-engine]]
+- [[../50-Game-Design/regulations-and-compliance]]
+- [[../50-Game-Design/rivalry-system]]
+- [[feature-systemic-event-director]]
+- [[feature-venue-operations]]
 - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]

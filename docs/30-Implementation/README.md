@@ -5,8 +5,12 @@ tags: [implementation, moc]
 created: 2026-05-17
 updated: 2026-05-22
 type: index
-binding: true
-related: [[../00-Index/Home]], [[agent-workflow-pattern]], [[../10-Architecture/README]], [[../00-Index/Documentation-V1]]
+binding: false
+related:
+  - [[../00-Index/Home]]
+  - [[agent-workflow-pattern]]
+  - [[../10-Architecture/README]]
+  - [[../00-Index/Documentation-V1]]
 ---
 
 # Implementation - Map of Content
@@ -53,3 +57,9 @@ operational runbooks. Current implementable notes are classified by
 - [[../10-Architecture/README]] - architecture MOC.
 - [[../60-Research/00-summary]] - research MOC.
 - [[../90-Meta/agent-memory-protocol]] - memory protocol.
+## Related
+
+- [[../00-Index/Home]]
+- [[agent-workflow-pattern]]
+- [[../10-Architecture/README]]
+- [[../00-Index/Documentation-V1]]

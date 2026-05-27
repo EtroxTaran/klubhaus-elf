@@ -4,21 +4,7 @@ alwaysApply: true
 ---
 # Workflow Pattern
 
-Authoritative: `docs/30-Implementation/agent-workflow-pattern.md`. Every beat
-follows its loop: small Linear beat, confirm understanding, plan, implement,
-reflect in vault, alignment check, draft PR, review, merge green.
-
-Design system only — tokens in `apps/web/src/styles/app.css`, `cn()` from
-`apps/web/src/lib/utils.ts`, theme in `apps/web/src/theme/*`, atoms/composites
-in `apps/web/src/components/`. No agent-invented style/layout, no raw hex, no
-arbitrary Tailwind values, no inline visual `style=`.
-
-Ask, don't work around. Unclear architecture/feature, missing ADR, or missing
-design primitive is a stop condition: open a Linear issue tagged for Nico, mark
-the beat Blocked, halt — never guess, stub, or shortcut. Reuses the escalation
-path in `.cursor/rules/99-safety.mdc`.
-
-Vault is living documentation. Code and its vault delta ship in the same PR. A
-change contradicting a documented ADR/architecture decision is escalated, not
-merged. Keep every decision modular and future-proof; one-way doors need an
-ADR + Nico sign-off.
+Authoritative workflow note: `docs/30-Implementation/agent-workflow-pattern.md`.
+Current phase and ask-first stops: `docs/90-Meta/collaboration-and-decision-protocol.md`.
+Vault reflection and supersede rules: `docs/90-Meta/vault-governance.md`. This
+rule is an orchestrator only.

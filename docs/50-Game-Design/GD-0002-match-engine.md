@@ -6,10 +6,19 @@ created: 2026-05-17
 updated: 2026-05-17
 type: game-design
 binding: false
-related: [[README]], [[GD-0004-tactics]], [[GD-0010-ai-world]], [[../60-Research/anstoss-series-deep-dive]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/modules/match-engine]]
+related:
+  - [[README]]
+  - [[GD-0004-tactics]]
+  - [[GD-0010-ai-world]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[../95-Archive/gap-reports/research-wave-2-gaps]]
+  - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+  - [[../10-Architecture/modules/match-engine]]
 ---
 
 # GD-0002: Match Engine & Simulation Model
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -74,9 +83,12 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
 - [[../10-Architecture/09-Decisions/ADR-0005-save-format]] (replay/determinism)
-
 ## Related
 
-- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../95-Archive/gap-reports/research-wave-2-gaps]]
-- Module: [[../10-Architecture/modules/match-engine]]
-- [[README]] — hub · siblings: [[GD-0001-core-loop]] · [[GD-0004-tactics]] · [[GD-0010-ai-world]]
+- [[README]]
+- [[GD-0004-tactics]]
+- [[GD-0010-ai-world]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[../95-Archive/gap-reports/research-wave-2-gaps]]
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+- [[../10-Architecture/modules/match-engine]]

@@ -4,12 +4,23 @@ status: superseded
 tags: [adr, architecture, data, surrealdb, dexie, schema, saves]
 created: 2026-05-15
 updated: 2026-05-19
-accepted_at: 2026-05-16
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-16
 amended_by: [[ADR-0020-hybrid-online-mvp-offline-ready]]
 superseded_by: ADR-0027-postgres-data-model
-related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-stack]], [[ADR-0027-postgres-data-model]], [[../bounded-context-map]], [[../../60-Research/surrealdb-schema-patterns]], [[../../60-Research/determinism-and-replay]]
+related:
+  - [[ADR-0019-modular-monolith-ddd]]
+  - [[ADR-0011-server-authoritative-multiplayer]]
+  - [[ADR-0013-transactional-outbox]]
+  - [[ADR-0005-save-format]]
+  - [[ADR-0007-naming-schema]]
+  - [[ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[ADR-0021-revised-tech-stack]]
+  - [[ADR-0027-postgres-data-model]]
+  - [[../bounded-context-map]]
+  - [[../../60-Research/surrealdb-schema-patterns]]
+  - [[../../60-Research/determinism-and-replay]]
 ---
 
 # ADR-0004: Data Model — Domain Entities, Schemas, Saves
@@ -391,3 +402,16 @@ CI enforcement:
   format, women's football data-model additivity.
 - Wave 3 gap A4 Q&A with Nico (2026-05-16): all four recommendations
   accepted as-is.
+## Related
+
+- [[ADR-0019-modular-monolith-ddd]]
+- [[ADR-0011-server-authoritative-multiplayer]]
+- [[ADR-0013-transactional-outbox]]
+- [[ADR-0005-save-format]]
+- [[ADR-0007-naming-schema]]
+- [[ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[ADR-0021-revised-tech-stack]]
+- [[ADR-0027-postgres-data-model]]
+- [[../bounded-context-map]]
+- [[../../60-Research/surrealdb-schema-patterns]]
+- [[../../60-Research/determinism-and-replay]]

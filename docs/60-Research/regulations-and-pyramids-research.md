@@ -6,7 +6,10 @@ created: 2026-05-16
 updated: 2026-05-16
 type: research
 binding: false
-related: [[raw-perplexity/raw-environment-events]], [[../50-Game-Design/regulations-and-compliance]], [[ip-and-licensing]]
+related:
+  - [[raw-perplexity/raw-environment-events]]
+  - [[../50-Game-Design/regulations-and-compliance]]
+  - [[ip-and-licensing]]
 ---
 
 # League Regulations and Football Pyramids Research
@@ -159,3 +162,8 @@ All retrieved 2026-05-16.
 - LaLiga transparency - [laliga.com transparency institutional-information](https://www.laliga.com/en-GB/transparency/institutional-information)
 - The Drinks Business Euro 2024 booze ban - [thedrinksbusiness.com Euro 2024 booze](https://www.thedrinksbusiness.com/2023/12/england-fans-face-booze-ban-at-euro-2024/)
 - Mirror England-Serbia beer ban - [mirror.co.uk England Serbia beer ban](https://www.mirror.co.uk/sport/football/news/england-v-serbia-beer-banned-33010452)
+## Related
+
+- [[raw-perplexity/raw-environment-events]]
+- [[../50-Game-Design/regulations-and-compliance]]
+- [[ip-and-licensing]]

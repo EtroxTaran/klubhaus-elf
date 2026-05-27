@@ -1,11 +1,11 @@
-# soccer-manager
+# football-manager-x
 
-Offline-first football manager PWA in the style of the classic Anstoß series.
+Docs-vault-only repository for an offline-ready football manager PWA concept in
+the style of the classic Anstoß series.
 
-> **Docs-vault-only repository (reset 2026-05-27).** The prior implementation
-> (app, packages, match engine, Storybook showcase, toolchain) was removed; this
-> repo now holds only the `docs/` Obsidian vault — the design memory the game is
-> rebuilt from. See `AGENTS.md` for the full context.
+> **Reset 2026-05-27.** The prior implementation was removed. The `docs/`
+> Obsidian vault is the single source of truth and design memory. See
+> `AGENTS.md` and `docs/00-Index/Home.md` for the entry points.
 
 ## Quick start
 
@@ -14,8 +14,8 @@ pnpm docs:check     # validate the vault (frontmatter, wikilinks, no secrets)
 pnpm docs:preview   # build + serve the Quartz docs site locally
 ```
 
-See `AGENTS.md` for agent rules and `docs/00-Index/Home.md` for the Obsidian
-Vault entry point.
+See `AGENTS.md` for agent orchestration and `docs/00-Index/Home.md` for the
+Obsidian Vault entry point.
 
 ## Docs vault preview
 
@@ -24,12 +24,6 @@ Open `docs/` as a vault in the Obsidian app, or preview it in a browser
 
 ```bash
 pnpm docs:preview   # http://localhost:8080
-```
-
-## UI showcase (Storybook)
-
-```bash
-pnpm storybook      # http://localhost:6006
 ```
 
 See `docs/90-Meta/obsidian-config.md` for vault details.

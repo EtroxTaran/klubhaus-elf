@@ -2,7 +2,14 @@
 title: Competitor Matrix
 status: draft
 tags: [research, competitor, product]
+created: 2026-05-16
 updated: 2026-05-16
+type: research
+binding: false
+related:
+  - [[00-summary]]
+  - [[../00-Index/Research-Map]]
+  - [[../20-Features/README]]
 ---
 
 # Competitor Matrix
@@ -181,3 +188,8 @@ All retrieved on **2026-05-15**.
 26. App Store. *Club Boss - Football Game.* https://apps.apple.com/gb/app/club-boss-football-game/id6455041452
 27. Google Play. *Club Boss - Football Game.* https://play.google.com/store/apps/details?id=com.GamesbyJoe.ClubBoss
 28. Droid Gamers. *This Game Could Become Your Next Football Management Addiction* (Club Boss profile). https://droidgamers.com/news/this-game-could-become-your-next-football-management-addiction
+## Related
+
+- [[00-summary]]
+- [[../00-Index/Research-Map]]
+- [[../20-Features/README]]

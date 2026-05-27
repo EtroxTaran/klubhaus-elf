@@ -5,8 +5,9 @@ tags: [architecture, module]
 created: 2026-05-17
 updated: 2026-05-17
 type: module
-binding: true
-related: [[../05-Building-Blocks]]
+binding: false
+related:
+  - [[../05-Building-Blocks]]
 ---
 
 # packages/game-data (`@soccer-manager/game-data`)
@@ -40,3 +41,6 @@ and league structures.
 - [[../09-Decisions/ADR-0007-naming-schema]]
 - [[../09-Decisions/ADR-0027-postgres-data-model]] (data model; supersedes ADR-0004)
 - Consumed by [[web]]; shares shapes with [[db-schema]].
+## Related
+
+- [[../05-Building-Blocks]]

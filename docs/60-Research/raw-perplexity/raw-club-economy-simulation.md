@@ -7,7 +7,11 @@ updated: 2026-05-27
 type: raw-research
 binding: false
 sourceType: external
-related: [[../incoming-design-research-2026-05-27]], [[../systems-design-synthesis]], [[../../50-Game-Design/economy-system]], [[../../50-Game-Design/GD-0008-finance-economy]]
+related:
+  - [[../incoming-design-research-2026-05-27]]
+  - [[../systems-design-synthesis]]
+  - [[../../50-Game-Design/economy-system]]
+  - [[../../50-Game-Design/GD-0008-finance-economy]]
 ---
 
 > Lossless import of Nico's external research report (Perplexity-style), filed
@@ -652,4 +656,9 @@ So bleibt jede Liga für sich herausfordernd, ohne dass feste Zahlen hart-gecode
 20. [Premier League Fallschirm- und Solidaritätszahlungen](https://deutsch.wikibrief.org/wiki/Premier_League_parachute_and_solidarity_payments) - Die Premier League zahlt jede Saison eine formelhaft abgeleitete finanzielle Zahlung an jeden Club d...
 
 21. [What are Premier League parachute payments & how much do ...](https://www.goal.com/en/news/what-premier-league-parachute-payments-how-much-teams-get/ndpbojgz6szj1ojgn3p7jlbuo) - Things can quickly spiral out of control for relegated clubs, but the Premier League now gives them ...
+## Related
 
+- [[../incoming-design-research-2026-05-27]]
+- [[../systems-design-synthesis]]
+- [[../../50-Game-Design/economy-system]]
+- [[../../50-Game-Design/GD-0008-finance-economy]]

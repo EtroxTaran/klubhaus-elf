@@ -5,7 +5,7 @@ tags: [meta, baseline, v1, planning, architecture]
 created: 2026-05-22
 updated: 2026-05-22
 type: baseline
-binding: true
+binding: false
 supersedes: Documentation-Baseline-2026-05-22
 related:
   - [[Agent-Onboarding]]
@@ -21,6 +21,11 @@ related:
 ---
 
 # Documentation V1 Baseline
+
+> **PRE-REOPEN BASELINE.** This note captures the 2026-05-22 V1 closure
+> snapshot. Since 2026-05-27, all ADRs/GDDRs and previously approved system
+> notes are reopened to `draft`; treat the binding/approved language below as
+> historical context until Nico re-ratifies the relevant records.
 
 This note is the single V1 reference point for the project documentation as of
 2026-05-22. It consolidates the latest planning, architecture, game-design,
@@ -77,7 +82,7 @@ Linear beat.
 | Future-Scope Gate | Only after explicit trigger | High-risk or costly options. | BYOC/distributed match compute, runtime LLMs, community pack hosting, extracted services. |
 | Historical Memory | Always read-only | Why earlier options existed. | Superseded ADRs, archived Wave 2/3 reports, raw research transcripts. |
 
-## 4. V1 Binding Facts
+## 4. Pre-Reopen V1 Facts
 
 ### Product and MVP
 
@@ -226,8 +231,7 @@ these is true:
 When a gap is opened, update [[Current-State]], the relevant map and the source
 note in the same PR. Otherwise, old open-question text remains historical
 context.
-
-## 8. Related
+## Related
 
 - [[Agent-Onboarding]]
 - [[Current-State]]

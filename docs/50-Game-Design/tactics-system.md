@@ -5,11 +5,23 @@ tags: [game-design, tactics, match, mobile-ux]
 created: 2026-05-16
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/data-generators]], [[../60-Research/player-strength-presentation]], [[../60-Research/match-engine-simulation-model]], [[match-engine]], [[set-pieces]], [[progressive-disclosure-ui]]
+binding: false
+related:
+  - [[README]]
+  - [[../60-Research/progressive-disclosure-research]]
+  - [[../60-Research/ai-manager-behaviour]]
+  - [[../60-Research/tactics-and-formations]]
+  - [[../60-Research/data-generators]]
+  - [[../60-Research/player-strength-presentation]]
+  - [[../60-Research/match-engine-simulation-model]]
+  - [[match-engine]]
+  - [[set-pieces]]
+  - [[progressive-disclosure-ui]]
 ---
 
 # Tactics System - Position, Role, Duty, Instructions, Traits
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Tactics is the single most-played UI of a manager game. We adopt a
 layered model so 5-min/week casual users and 25-min/week experts can
@@ -304,3 +316,15 @@ Per [[../60-Research/performance-budgets]] (D9):
   succession + tactical evolution). Deferred Phase 2.
 - **Tactic AI scout** ("how would the AI grade this tactic against
   this opponent?"). Deferred Phase 2.
+## Related
+
+- [[README]]
+- [[../60-Research/progressive-disclosure-research]]
+- [[../60-Research/ai-manager-behaviour]]
+- [[../60-Research/tactics-and-formations]]
+- [[../60-Research/data-generators]]
+- [[../60-Research/player-strength-presentation]]
+- [[../60-Research/match-engine-simulation-model]]
+- [[match-engine]]
+- [[set-pieces]]
+- [[progressive-disclosure-ui]]

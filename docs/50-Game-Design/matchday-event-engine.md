@@ -5,11 +5,21 @@ tags: [game-design, events, matchday, weather, sanctions]
 created: 2026-05-16
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[fan-ecology]], [[rivalry-system]], [[stadium-and-campus]], [[regulations-and-compliance]]
+binding: false
+related:
+  - [[README]]
+  - [[../60-Research/raw-perplexity/raw-environment-events]]
+  - [[../60-Research/systemic-events-player-development-venue-ops]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+  - [[fan-ecology]]
+  - [[rivalry-system]]
+  - [[stadium-and-campus]]
+  - [[regulations-and-compliance]]
 ---
 
 # Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prevention
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 > Approved by the systemic events / player lifecycle pass (2026-05-17).
 > Match-day events are part of the wider systemic event architecture, but
@@ -198,3 +208,13 @@ Authoring rules:
 - Counter-event prevention (e.g. "we tested the floodlight last week" auto
   -prevents floodlight outage for X matches) - yes, as a side effect of
   the prevention action itself.
+## Related
+
+- [[README]]
+- [[../60-Research/raw-perplexity/raw-environment-events]]
+- [[../60-Research/systemic-events-player-development-venue-ops]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+- [[fan-ecology]]
+- [[rivalry-system]]
+- [[stadium-and-campus]]
+- [[regulations-and-compliance]]

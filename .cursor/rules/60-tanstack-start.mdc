@@ -5,8 +5,5 @@ alwaysApply: false
 ---
 # TanStack Start
 
-- Use file-based routes and keep route modules small.
-- Do not read `process.env.*` in route loaders or components.
-- Server-only behavior belongs in server functions or server-only modules.
-- Never hand-edit `routeTree.gen.ts`; let TanStack tooling generate it.
-- Prefer TanStack Query/Form/Table/Store for their respective concerns.
+Implementation code was removed in the 2026-05-27 reset. Treat framework
+guidance as pre-reopen draft inventory until Nico re-ratifies the relevant ADRs.

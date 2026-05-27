@@ -6,7 +6,12 @@ created: 2026-05-16
 updated: 2026-05-16
 type: research
 binding: false
-related: [[raw-perplexity/raw-game-modes]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[../50-Game-Design/mode-manage-a-club-career]], [[../50-Game-Design/singleplayer-baseline]], [[../50-Game-Design/async-multiplayer-private-group]]
+related:
+  - [[raw-perplexity/raw-game-modes]]
+  - [[../50-Game-Design/mode-create-a-club-roguelite]]
+  - [[../50-Game-Design/mode-manage-a-club-career]]
+  - [[../50-Game-Design/singleplayer-baseline]]
+  - [[../50-Game-Design/async-multiplayer-private-group]]
 ---
 
 # Game Mode Patterns - Roguelite, Career, Singleplayer, Async Group
@@ -187,3 +192,10 @@ All retrieved 2026-05-16.
 - Theseus roguelike thesis - [theseus.fi roguelike thesis](https://www.theseus.fi/bitstream/handle/10024/881994/Kammonen_Eino.pdf?sequence=2)
 - Pingle Studio multiplayer essentials - [pinglestudio.com multiplayer essentials 2024](https://pinglestudio.com/blog/multiplayer-game-development-essentials-in-2024)
 - Reddit r/roguelites meta-progression debate - [reddit roguelites meta-progression](https://www.reddit.com/r/roguelites/comments/1s1y1fh/if_a_game_with_permadeath_rng_and_metaprogression/)
+## Related
+
+- [[raw-perplexity/raw-game-modes]]
+- [[../50-Game-Design/mode-create-a-club-roguelite]]
+- [[../50-Game-Design/mode-manage-a-club-career]]
+- [[../50-Game-Design/singleplayer-baseline]]
+- [[../50-Game-Design/async-multiplayer-private-group]]

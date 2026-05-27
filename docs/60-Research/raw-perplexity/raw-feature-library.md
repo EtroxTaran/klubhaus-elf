@@ -4,9 +4,14 @@ status: raw
 tags: [research, raw, perplexity, competitors, features]
 created: 2026-05-16
 updated: 2026-05-16
-type: research-raw
+type: raw-research
 binding: false
-related: [[README]], [[../feature-library-synthesis]], [[../competitor-matrix]], [[../anstoss-series-deep-dive]], [[../club-boss-analysis]]
+related:
+  - [[README]]
+  - [[../feature-library-synthesis]]
+  - [[../competitor-matrix]]
+  - [[../anstoss-series-deep-dive]]
+  - [[../club-boss-analysis]]
 ---
 
 # Raw - Feature Library Across Football Manager Products
@@ -337,3 +342,10 @@ fmscout, FourFourTwo, Reddit football-manager subreddits, sportitoutsi,
 operationsports, footballgpt, fm-base, capacitorjs and capgo. Full URL list lives
 in the source `.md`; only URLs new to this vault are listed in
 [[../feature-library-synthesis]] §Sources.
+## Related
+
+- [[README]]
+- [[../feature-library-synthesis]]
+- [[../competitor-matrix]]
+- [[../anstoss-series-deep-dive]]
+- [[../club-boss-analysis]]

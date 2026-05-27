@@ -6,7 +6,9 @@ created: 2026-05-17
 updated: 2026-05-18
 type: index
 binding: true
-related: [[Vision]], [[MVP-Scope]]
+related:
+  - [[Vision]]
+  - [[MVP-Scope]]
 ---
 
 # Non-Goals
@@ -32,3 +34,7 @@ Explicitly out of scope for the MVP. Changing any of these requires an ADR.
 - **Desktop-first or separate desktop UI** — one mobile-first responsive UI.
 
 See [[Vision]] for goals.
+## Related
+
+- [[Vision]]
+- [[MVP-Scope]]

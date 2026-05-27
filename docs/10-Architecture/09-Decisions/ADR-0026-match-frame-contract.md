@@ -4,15 +4,25 @@ status: draft
 tags: [adr, architecture, match-engine, match-view, contract, determinism]
 created: 2026-05-19
 updated: 2026-05-22
-accepted_at: 2026-05-19
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-19
 supersedes:
 superseded_by:
-related: [[ADR-0003-match-engine]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0041-presentation-renderer-strategy]], [[ADR-0004-data-model]], [[ADR-0022-animation-game-feel]], [[ADR-0021-revised-tech-stack]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/match-engine-simulation-model]]
+related:
+  - [[ADR-0003-match-engine]]
+  - [[ADR-0024-match-renderer-abstraction]]
+  - [[ADR-0041-presentation-renderer-strategy]]
+  - [[ADR-0004-data-model]]
+  - [[ADR-0022-animation-game-feel]]
+  - [[ADR-0021-revised-tech-stack]]
+  - [[../../60-Research/determinism-and-replay]]
+  - [[../../60-Research/match-engine-simulation-model]]
 ---
 
 # ADR-0026: Match Frame Contract
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -233,10 +243,13 @@ Negative:
 ## Supersedes
 
 None.
+## Related
 
-## Related Docs
-
-- [[ADR-0003-match-engine]] · [[ADR-0024-match-renderer-abstraction]] ·
-  [[ADR-0022-animation-game-feel]] · [[ADR-0021-revised-tech-stack]]
-- [[../../60-Research/determinism-and-replay]] ·
-  [[../../60-Research/match-engine-simulation-model]]
+- [[ADR-0003-match-engine]]
+- [[ADR-0024-match-renderer-abstraction]]
+- [[ADR-0041-presentation-renderer-strategy]]
+- [[ADR-0004-data-model]]
+- [[ADR-0022-animation-game-feel]]
+- [[ADR-0021-revised-tech-stack]]
+- [[../../60-Research/determinism-and-replay]]
+- [[../../60-Research/match-engine-simulation-model]]

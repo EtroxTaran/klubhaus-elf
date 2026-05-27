@@ -1,11 +1,22 @@
 ---
 title: GitHub Issue Suite
-status: draft
+status: archived
 tags: [meta, backlog]
-updated: 2026-05-15
+created: 2026-05-15
+updated: 2026-05-27
+type: protocol
+binding: false
+related:
+  - "[[../README]]"
+  - "[[../../00-Index/Feature-Map]]"
+  - "[[implementation-backlog]]"
+  - "[[labels]]"
 ---
 
 # GitHub Issue Suite
+
+> Archived pre-reset planning artefact. It is retained as historical context and
+> is not current task-tracking authority.
 
 This directory contains ready-to-create GitHub issue bodies for Phase 1 research, Phase 2 architecture/ADRs, and seed epics for the post-architecture implementation backlog.
 
@@ -62,3 +73,10 @@ node scripts/prepare-github-issues.mjs --execute
 ```
 
 The Cloud Agent did not run `--execute`; this is for a human or explicitly authorized environment.
+
+## Related
+
+- [[../README]]
+- [[../../00-Index/Feature-Map]]
+- [[implementation-backlog]]
+- [[labels]]

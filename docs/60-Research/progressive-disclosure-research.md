@@ -6,7 +6,11 @@ created: 2026-05-16
 updated: 2026-05-17
 type: research
 binding: false
-related: [[raw-perplexity/raw-environment-events]], [[player-strength-presentation]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/tactics-system]]
+related:
+  - [[raw-perplexity/raw-environment-events]]
+  - [[player-strength-presentation]]
+  - [[../50-Game-Design/progressive-disclosure-ui]]
+  - [[../50-Game-Design/tactics-system]]
 ---
 
 # Progressive Disclosure for Tactical Depth (Casual + Power-User)
@@ -135,3 +139,9 @@ All retrieved 2026-05-16.
 - Passion4FM pressing detail - [passion4fm.com pressing in football manager](https://www.passion4fm.com/pressing-in-football-manager/)
 - Tactical familiarity discussion (Reddit) - [reddit fmgames tactics building blocks](https://www.reddit.com/r/footballmanagergames/comments/15kvew2/what_formations_roles_and_instructions_can_you/)
 - FM26 mobile UI conventions - [footballmanager.com/fm26/features/mobile](https://www.footballmanager.com/fm26/features/mobile)
+## Related
+
+- [[raw-perplexity/raw-environment-events]]
+- [[player-strength-presentation]]
+- [[../50-Game-Design/progressive-disclosure-ui]]
+- [[../50-Game-Design/tactics-system]]

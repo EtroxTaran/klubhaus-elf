@@ -4,15 +4,29 @@ status: draft
 tags: [adr, architecture, database, state, validation]
 created: 2026-05-19
 updated: 2026-05-22
-accepted_at: 2026-05-19
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-19
 supersedes: ADR-0001-tech-stack
 superseded_by:
-related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0022-animation-game-feel]], [[ADR-0023-realtime-transport]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0025-mobile-delivery]], [[ADR-0043-notification-and-messaging-platform]], [[../11-Risks]]
+related:
+  - [[ADR-0001-tech-stack]]
+  - [[ADR-0004-data-model]]
+  - [[ADR-0005-save-format]]
+  - [[ADR-0011-server-authoritative-multiplayer]]
+  - [[ADR-0013-transactional-outbox]]
+  - [[ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[ADR-0022-animation-game-feel]]
+  - [[ADR-0023-realtime-transport]]
+  - [[ADR-0024-match-renderer-abstraction]]
+  - [[ADR-0025-mobile-delivery]]
+  - [[ADR-0043-notification-and-messaging-platform]]
+  - [[../11-Risks]]
 ---
 
 # ADR-0021: Revised Tech Stack
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -139,11 +153,17 @@ Negative / follow-up:
 ## Supersedes
 
 [[ADR-0001-tech-stack]]
+## Related
 
-## Related Docs
-
-- [[ADR-0001-tech-stack]] — superseded predecessor
-- [[ADR-0004-data-model]] · [[ADR-0013-transactional-outbox]] — substrate rework follows
-- [[ADR-0022-animation-game-feel]] · [[ADR-0023-realtime-transport]] · [[ADR-0024-match-renderer-abstraction]] · [[ADR-0025-mobile-delivery]]
-- [[../11-Risks]] — accepted-risk register
-- [[../../30-Implementation/auth-flows]] — Argon2id correction (F2)
+- [[ADR-0001-tech-stack]]
+- [[ADR-0004-data-model]]
+- [[ADR-0005-save-format]]
+- [[ADR-0011-server-authoritative-multiplayer]]
+- [[ADR-0013-transactional-outbox]]
+- [[ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[ADR-0022-animation-game-feel]]
+- [[ADR-0023-realtime-transport]]
+- [[ADR-0024-match-renderer-abstraction]]
+- [[ADR-0025-mobile-delivery]]
+- [[ADR-0043-notification-and-messaging-platform]]
+- [[../11-Risks]]

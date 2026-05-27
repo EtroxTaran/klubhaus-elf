@@ -5,11 +5,20 @@ tags: [game-design, gddr, youth]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[GD-0006-transfers]], [[GD-0003-squad-players]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0006-transfers]]
+  - [[GD-0003-squad-players]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[../60-Research/club-boss-analysis]]
+  - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+  - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
 ---
 
 # GD-0007: Youth Academy
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -70,8 +79,12 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0004-data-model]] (youth/prospect schema, scouting RELATE)
 - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] (generated youth names)
-
 ## Related
 
-- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/club-boss-analysis]]
-- [[README]] — hub · siblings: [[GD-0006-transfers]] · [[GD-0003-squad-players]] · [[GD-0008-finance-economy]]
+- [[README]]
+- [[GD-0006-transfers]]
+- [[GD-0003-squad-players]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[../60-Research/club-boss-analysis]]
+- [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]

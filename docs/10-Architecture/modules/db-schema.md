@@ -5,8 +5,12 @@ tags: [architecture, module]
 created: 2026-05-17
 updated: 2026-05-19
 type: module
-binding: true
-related: [[../05-Building-Blocks]], [[db]], [[../09-Decisions/ADR-0021-revised-tech-stack]], [[../09-Decisions/ADR-0027-postgres-data-model]]
+binding: false
+related:
+  - [[../05-Building-Blocks]]
+  - [[db]]
+  - [[../09-Decisions/ADR-0021-revised-tech-stack]]
+  - [[../09-Decisions/ADR-0027-postgres-data-model]]
 ---
 
 # packages/db-schema (`@soccer-manager/db-schema`)
@@ -57,3 +61,9 @@ files into `src/generated/`). The mirror has **zero runtime dependency** on
 - [[../09-Decisions/ADR-0005-save-format]] — save-envelope contracts.
 - Consumed by [[web]] and (planned) [[match-engine]] /
   `@soccer-manager/match-contract`.
+## Related
+
+- [[../05-Building-Blocks]]
+- [[db]]
+- [[../09-Decisions/ADR-0021-revised-tech-stack]]
+- [[../09-Decisions/ADR-0027-postgres-data-model]]

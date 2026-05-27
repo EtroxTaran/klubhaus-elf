@@ -305,7 +305,6 @@ No row below is an unclassified documentation gap.
 | I11 Roguelite Carry / Insolvency Tuning | 03-F-04 |
 
 (Vollständige Abdeckung wird im Verifikations-Pass nachgezogen.)
-
 ## Related
 
 - [[PM-2026-05-20-01-architecture]]
@@ -314,13 +313,25 @@ No row below is an unclassified documentation gap.
 - [[PM-2026-05-20-04-monetization]]
 - [[PM-2026-05-20-05-security-and-integrity]]
 - [[PM-2026-05-20-06-distributed-match-compute]]
+- [[PM-2026-05-20-07-live-ops-and-client-telemetry]]
+- [[PM-2026-05-20-08-legal-consumer-law-and-tax]]
+- [[PM-2026-05-20-09-i18n-and-localization]]
+- [[PM-2026-05-20-10-accessibility-and-inclusion]]
+- [[PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
+- [[PM-2026-05-20-12-long-term-balance-and-meta]]
+- [[PM-2026-05-20-13-community-moderation-and-ugc]]
+- [[PM-2026-05-20-14-brand-pr-and-crisis-comms]]
+- [[PM-2026-05-20-15-browser-device-storage-matrix]]
+- [[PM-2026-05-20-16-test-strategy-depth]]
+- [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability]]
+- [[PM-2026-05-20-18-responsible-gaming-and-open-source]]
 - [[threat-model]]
 - [[findings-registry]]
-- [[../00-summary]]
+- [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
+- [[prioritization-matrix]]
+- [[execution-index]]
 - [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
-- [[../../95-Archive/gap-reports/feature-gap-analysis]]
 - [[../../00-Index/Current-State]]
 - [[../../00-Index/Research-Map]]
 - [[../../00-Index/Home]]
-- [[../../90-Meta/vault-governance]]
-- [[../../90-Meta/agent-memory-protocol]]
+- [[../../00-Index/Documentation-V1]]

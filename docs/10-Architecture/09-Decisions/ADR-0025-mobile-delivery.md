@@ -4,15 +4,22 @@ status: draft
 tags: [adr, architecture, mobile, pwa, capacitor]
 created: 2026-05-19
 updated: 2026-05-19
-accepted_at: 2026-05-19
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-19
 supersedes:
 superseded_by:
-related: [[ADR-0021-revised-tech-stack]], [[ADR-0008-mobile-first-ui]], [[ADR-0023-realtime-transport]], [[ADR-0002-offline-first]], [[../11-Risks]]
+related:
+  - [[ADR-0021-revised-tech-stack]]
+  - [[ADR-0008-mobile-first-ui]]
+  - [[ADR-0023-realtime-transport]]
+  - [[ADR-0002-offline-first]]
+  - [[../11-Risks]]
 ---
 
 # ADR-0025: Mobile Delivery (PWA + Capacitor)
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -74,7 +81,10 @@ Negative:
 ## Supersedes
 
 None.
+## Related
 
-## Related Docs
-
-- [[ADR-0021-revised-tech-stack]] · [[ADR-0008-mobile-first-ui]] · [[ADR-0023-realtime-transport]] · [[ADR-0002-offline-first]] · [[../11-Risks]]
+- [[ADR-0021-revised-tech-stack]]
+- [[ADR-0008-mobile-first-ui]]
+- [[ADR-0023-realtime-transport]]
+- [[ADR-0002-offline-first]]
+- [[../11-Risks]]

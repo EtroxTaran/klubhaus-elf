@@ -386,13 +386,28 @@ addresses: [PM-2026-05-20-XX-F-NN, PM-2026-05-20-XX-F-MM]
 - **Quartärlich**: Cluster-Index aktualisieren, Heatmap.
 - **Nach Soft-Launch**: Neues Pre-Mortem-Bündel `PM-<soft-launch-date>-*` erstellen, dieses ggf. `superseded` wenn massiv überholt.
 - **Bei Regulatory-Update**: 2026-08-02 (AI-Act-Art-50), 2026-09-11 (CRA-Vuln-Reporting), 2027-12-11 (CRA-volle Anwendbarkeit) — Registry erneut prüfen.
-
 ## Related
 
+- [[00-index]]
+- [[threat-model]]
+- [[PM-2026-05-20-01-architecture]]
+- [[PM-2026-05-20-02-tech-and-ops]]
+- [[PM-2026-05-20-03-gameplay]]
+- [[PM-2026-05-20-04-monetization]]
+- [[PM-2026-05-20-05-security-and-integrity]]
+- [[PM-2026-05-20-06-distributed-match-compute]]
+- [[PM-2026-05-20-07-live-ops-and-client-telemetry]]
+- [[PM-2026-05-20-08-legal-consumer-law-and-tax]]
+- [[PM-2026-05-20-09-i18n-and-localization]]
+- [[PM-2026-05-20-10-accessibility-and-inclusion]]
+- [[PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
+- [[PM-2026-05-20-12-long-term-balance-and-meta]]
+- [[PM-2026-05-20-13-community-moderation-and-ugc]]
+- [[PM-2026-05-20-14-brand-pr-and-crisis-comms]]
+- [[PM-2026-05-20-15-browser-device-storage-matrix]]
+- [[PM-2026-05-20-16-test-strategy-depth]]
+- [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability]]
+- [[PM-2026-05-20-18-responsible-gaming-and-open-source]]
 - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
-- [[00-index]] · [[threat-model]]
-- Iter 1: [[PM-2026-05-20-01-architecture]] · [[PM-2026-05-20-02-tech-and-ops]] · [[PM-2026-05-20-03-gameplay]] · [[PM-2026-05-20-04-monetization]]
-- Iter 2: [[PM-2026-05-20-05-security-and-integrity]] · [[PM-2026-05-20-06-distributed-match-compute]]
-- Iter 3: [[PM-2026-05-20-07-live-ops-and-client-telemetry]] · [[PM-2026-05-20-08-legal-consumer-law-and-tax]] · [[PM-2026-05-20-09-i18n-and-localization]] · [[PM-2026-05-20-10-accessibility-and-inclusion]] · [[PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]] · [[PM-2026-05-20-12-long-term-balance-and-meta]] · [[PM-2026-05-20-13-community-moderation-and-ugc]] · [[PM-2026-05-20-14-brand-pr-and-crisis-comms]] · [[PM-2026-05-20-15-browser-device-storage-matrix]] · [[PM-2026-05-20-16-test-strategy-depth]] · [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability]] · [[PM-2026-05-20-18-responsible-gaming-and-open-source]]
 - [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
 - [[../../00-Index/Current-State]]

@@ -6,10 +6,16 @@ created: 2026-05-16
 updated: 2026-05-17
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/transfer-market-simulation]], [[transfer-market-and-contracts]]
+related:
+  - [[README]]
+  - [[../60-Research/systems-design-synthesis]]
+  - [[../60-Research/transfer-market-simulation]]
+  - [[transfer-market-and-contracts]]
 ---
 
 # System Interplay - The Five Master Feedback Loops
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 The single design principle of the game: **no system is implemented in
 isolation**. Every mechanic that changes a state must declare which other
@@ -150,3 +156,9 @@ Detail:
   - Sponsor side-condition breach → Fines → Liquidity → Investment cap.
 - Do we expose loop visualisations in the UI? In the Expert tier as a
   "club health" diagram, yes; not in Quick / Standard.
+## Related
+
+- [[README]]
+- [[../60-Research/systems-design-synthesis]]
+- [[../60-Research/transfer-market-simulation]]
+- [[transfer-market-and-contracts]]

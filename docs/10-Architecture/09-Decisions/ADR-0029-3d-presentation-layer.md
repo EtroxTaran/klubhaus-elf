@@ -4,16 +4,34 @@ status: draft
 tags: [adr, presentation, 3d, three-js, r3f, stadium, cutscene, pwa, mobile]
 created: 2026-05-20
 updated: 2026-05-22
-accepted_at: 2026-05-20
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-20
 supersedes:
 amends: []
 amended_by: [[ADR-0041-presentation-renderer-strategy]]
-related: [[../../60-Research/performance-budgets]], [[../../20-Features/feature-stadium-builder]], [[../../20-Features/feature-3d-presentation-layer]], [[../../30-Implementation/3d-presentation-architecture]], [[ADR-0008-mobile-first-ui]], [[ADR-0010-design-system]], [[ADR-0017-observability-logging]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-stack]], [[ADR-0022-animation-game-feel]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[ADR-0041-presentation-renderer-strategy]], [[../08-Crosscutting]], [[../bounded-context-map]]
+related:
+  - [[../../60-Research/performance-budgets]]
+  - [[../../20-Features/feature-stadium-builder]]
+  - [[../../20-Features/feature-3d-presentation-layer]]
+  - [[../../30-Implementation/3d-presentation-architecture]]
+  - [[ADR-0008-mobile-first-ui]]
+  - [[ADR-0010-design-system]]
+  - [[ADR-0017-observability-logging]]
+  - [[ADR-0019-modular-monolith-ddd]]
+  - [[ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[ADR-0021-revised-tech-stack]]
+  - [[ADR-0022-animation-game-feel]]
+  - [[ADR-0024-match-renderer-abstraction]]
+  - [[ADR-0026-match-frame-contract]]
+  - [[ADR-0041-presentation-renderer-strategy]]
+  - [[../08-Crosscutting]]
+  - [[../bounded-context-map]]
 ---
 
 # ADR-0029: 3D Presentation Layer (Stadium, Cutscenes, Backdrop)
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -339,14 +357,21 @@ beats in [[../../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]].
 - [[ADR-0019-modular-monolith-ddd]] — bounded-context discipline.
 - [[ADR-0020-hybrid-online-mvp-offline-ready]] — MVP authority and
   Phase-2 polish staging.
-
 ## Related
 
-- [[../../20-Features/feature-3d-presentation-layer]]
+- [[../../60-Research/performance-budgets]]
 - [[../../20-Features/feature-stadium-builder]]
+- [[../../20-Features/feature-3d-presentation-layer]]
 - [[../../30-Implementation/3d-presentation-architecture]]
-- [[../../30-Implementation/mvp-implementation-roadmap]]
-- [[../bounded-context-map]]
+- [[ADR-0008-mobile-first-ui]]
+- [[ADR-0010-design-system]]
+- [[ADR-0017-observability-logging]]
+- [[ADR-0019-modular-monolith-ddd]]
+- [[ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[ADR-0021-revised-tech-stack]]
+- [[ADR-0022-animation-game-feel]]
+- [[ADR-0024-match-renderer-abstraction]]
+- [[ADR-0026-match-frame-contract]]
+- [[ADR-0041-presentation-renderer-strategy]]
 - [[../08-Crosscutting]]
-- [[../../00-Index/Current-State]]
-- [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
+- [[../bounded-context-map]]

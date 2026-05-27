@@ -5,11 +5,21 @@ tags: [game-design, gddr, save]
 created: 2026-05-17
 updated: 2026-05-18
 type: game-design
-binding: true
-related: [[README]], [[GD-0002-match-engine]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../60-Research/pwa-offline-patterns]], [[../60-Research/offline-mvp-scope-and-sync-strategy]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../00-Index/Non-Goals]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0002-match-engine]]
+  - [[GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../60-Research/pwa-offline-patterns]]
+  - [[../60-Research/offline-mvp-scope-and-sync-strategy]]
+  - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
+  - [[../00-Index/Non-Goals]]
 ---
 
 # GD-0014: Save & Career Model
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -87,8 +97,13 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] (accepted)
 - [[../10-Architecture/09-Decisions/ADR-0005-save-format]] (accepted)
-
 ## Related
 
-- Research: [[../60-Research/pwa-offline-patterns]]
-- [[README]] — hub · siblings: [[GD-0002-match-engine]] · [[GD-0010-ai-world]] · [[GD-0015-ip-clean-data]]
+- [[README]]
+- [[GD-0002-match-engine]]
+- [[GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../60-Research/pwa-offline-patterns]]
+- [[../60-Research/offline-mvp-scope-and-sync-strategy]]
+- [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
+- [[../00-Index/Non-Goals]]
