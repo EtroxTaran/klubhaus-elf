@@ -7,6 +7,12 @@ updated: 2026-05-22
 
 # UI Showcase (Storybook)
 
+> **2026-05-27 — the live showcase is currently the INTERACTIVE design styleguide**
+> (the claude.ai/design export, **Babylon-only**), deployed as its own auth-gated site
+> (`tools/styleguide/`, `docker-compose.docs.yml`, `STYLEGUIDE_DOMAIN`). The Storybook
+> description below is the **eventual** app's component showcase and returns when the
+> app is rebuilt. Durable token reference: [[../10-Architecture/09-Design-Styleguide]].
+
 The **UI showcase** is the canonical *visual* reference for the project's
 design system. The code in `apps/web/src` stays authoritative on any conflict
 (see [[../10-Architecture/09-Design-System]] §13); the showcase is where you

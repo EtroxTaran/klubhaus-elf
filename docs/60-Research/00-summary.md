@@ -86,9 +86,9 @@ follow-up architecture review into durable research and feeds
 [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]].
 The conclusion: keep MVP match presentation Text & Stats + Canvas 2D; permit
 optional post-MVP 2.5D/3D presentation scenes only as non-authoritative,
-lazy-loaded, device-gated modules with fallback. Three.js + React Three Fiber is
-the only planned optional 3D stack; PixiJS, Babylon.js and PlayCanvas require a
-superseding ADR instead of being planned migration paths.
+lazy-loaded, device-gated modules with fallback. **Babylon.js** is the planned
+optional 3D engine ([[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]]);
+Three.js/R3F (the earlier choice), PixiJS and PlayCanvas are not planned.
 
 ## Pre-Mortem Cluster (2026-05-20, 3 Iterationen)
 

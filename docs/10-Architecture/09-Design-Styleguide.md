@@ -10,6 +10,12 @@ related: [[09-Design-System]], [[09-Decisions/ADR-0010-design-system]], [[09-Dec
 
 # Design Styleguide — Aurelia Premier
 
+> **The live, interactive styleguide is a separate deployment** (`STYLEGUIDE_DOMAIN`,
+> see `tools/styleguide/` + `docker-compose.docs.yml`): the claude.ai/design export
+> served clickable & responsive, **Babylon-only** (no Three.js). This vault page is the
+> durable **token reference** (one current truth); the deployed site is the explorable
+> design system. The Quartz wiki is intentionally untouched.
+
 Rendered, at-a-glance styleguide for the **Aurelia Premier** design system
 ("Sonntagszeitung", Direction A). The **source of truth** is
 [[09-Design-System]] §2–4 (synced from claude.ai/design via
