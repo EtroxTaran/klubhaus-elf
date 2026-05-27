@@ -53,6 +53,7 @@ contradict an `approved` game-design record.
 | [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]] | draft | MVP Text & Stats + Canvas 2D; optional post-MVP Three/R3F presentation scenes only. | Current. |
 | [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]] | draft | First-party Notification bounded context; Postgres durable truth, SurrealDB projection, Dexie offline mirror, Brevo/Mailjet email, Web Push/native push prepared. | Amends ADR-0021/0023/0028 for notification delivery. |
 | [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]] | draft | Babylon.js = optional 3D/iso presentation engine (replaces Three.js/R3F) behind the unchanged SceneDescriptor/CapabilityGate; match render stays Canvas 2D. | New 2026-05-27; amends ADR-0029 §2 + ADR-0041. |
+| [[../10-Architecture/09-Decisions/ADR-0048-design-update-and-migration-path]] | draft | Design-update/migration path: token single-source (wiki+app derive), versioned snapshots, diff-driven sync, one current truth, supersede for breaking changes; each update = issue+PR+auto-merge. | New 2026-05-27; amends ADR-0010. |
 
 ## Process & Workflow ADRs (proposed 2026-05-27, draft)
 

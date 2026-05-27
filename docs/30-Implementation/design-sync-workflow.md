@@ -1,11 +1,12 @@
 ---
 title: Design Sync Workflow
-status: draft
-tags: [implementation, design, workflow]
+status: current
+tags: [implementation, design, workflow, migration]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-27
 type: implementation
-related: [[../10-Architecture/09-Design-System]], [[../10-Architecture/09-Decisions/ADR-0010-design-system]], [[ci-and-review-process]], [[agent-workflow-pattern]]
+binding: true
+related: [[../10-Architecture/09-Design-System]], [[../10-Architecture/09-Decisions/ADR-0010-design-system]], [[../10-Architecture/09-Decisions/ADR-0048-design-update-and-migration-path]], [[ci-and-review-process]], [[agent-workflow-pattern]]
 ---
 
 # Design Sync Workflow
@@ -39,6 +40,23 @@ and diff it so an update is a *targeted patch*, not a 45-screen re-read.
    script **never edits `apps/web`** — patching is deliberately manual.
 6. If the architecture shifted, update
    [[../10-Architecture/09-Design-System]] (and an ADR if a decision changed).
+
+## Migration path (recurring updates)
+
+The repeatable, low-chaos path for future updates — decision:
+[[../10-Architecture/09-Decisions/ADR-0048-design-update-and-migration-path]]:
+
+- **Token single source.** Tokens are canonicalised once ([[../10-Architecture/09-Design-System]]
+  §2); the **Quartz wiki theme and the future app derive from them** — one update propagates,
+  never hand-copy values.
+- **Versioned lineage.** Each export = dated `design/handoff/<date>/` + `manifest.json`
+  (`code`/`sha256`/`baseline`); old snapshots are history, never edited.
+- **One current truth.** [[../10-Architecture/09-Design-System]] is the only current spec;
+  **breaking changes** follow the vault **supersede discipline** (banner + migration note).
+- **Docs-phase target:** until the app exists, deltas map to the design-system doc + the
+  Quartz wiki theme; component/screen mapping (step 4 paths) resumes when the app returns.
+- **Each update = one Linear issue + PR** (`Closes FMX-<n>`) → auto-merges on green; tooling
+  stays a portable repo script. Same flow with multiple leads.
 
 ## Dry run
 
