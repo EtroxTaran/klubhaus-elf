@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: tools/docs-preview/Dockerfile
       args:
-        QUARTZ_REF: ${QUARTZ_REF:-v4}
+        QUARTZ_REF: ${QUARTZ_REF:-v4.5.2}
         DOCS_DOMAIN: ${DOCS_DOMAIN:-docs.soccer-manager.etrox.de}
     labels:
       traefik.enable: "true"

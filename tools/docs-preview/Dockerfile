@@ -17,7 +17,7 @@
 FROM node:22 AS build
 WORKDIR /build
 
-ARG QUARTZ_REF=v4
+ARG QUARTZ_REF=v4.5.2
 ARG DOCS_DOMAIN=docs.soccer-manager.etrox.de
 ARG SHOWCASE_DOMAIN=showcase.soccer-manager.etrox.de
 RUN git clone --depth 1 --branch "${QUARTZ_REF}" https://github.com/jackyzha0/quartz.git .
