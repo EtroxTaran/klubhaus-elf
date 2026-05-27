@@ -1,11 +1,22 @@
 ---
 title: Implementation Backlog Seed
-status: draft
+status: archived
 tags: [meta, backlog]
-updated: 2026-05-15
+created: 2026-05-15
+updated: 2026-05-27
+type: implementation
+binding: false
+related:
+  - "[[README]]"
+  - "[[../../00-Index/Feature-Map]]"
+  - "[[../../30-Implementation/ci-and-review-process]]"
+  - "[[../../30-Implementation/design-sync-workflow]]"
 ---
 
 # Implementation Backlog Seed
+
+> Archived pre-reset planning artefact. It is retained as historical context and
+> is not current task-tracking authority.
 
 Create detailed implementation beat issues only after Phase 2 ADRs are reviewed. The seed epics in `issues/M*-*.md` define the first milestone-sized containers. Split each epic into smaller red/green/refactor beats before implementation.
 
@@ -22,3 +33,10 @@ Create detailed implementation beat issues only after Phase 2 ADRs are reviewed.
 - E2E specs that target stable user flows.
 - Game-data generators that use approved naming schema.
 - Docs/user guides for implemented flows.
+
+## Related
+
+- [[README]]
+- [[../../00-Index/Feature-Map]]
+- [[../../30-Implementation/ci-and-review-process]]
+- [[../../30-Implementation/design-sync-workflow]]

@@ -1,11 +1,21 @@
 ---
 title: GitHub Labels and Milestones
-status: draft
+status: archived
 tags: [meta, backlog]
-updated: 2026-05-15
+created: 2026-05-15
+updated: 2026-05-27
+type: registry
+binding: false
+related:
+  - "[[README]]"
+  - "[[../../00-Index/Feature-Map]]"
+  - "[[implementation-backlog]]"
 ---
 
 # GitHub Labels and Milestones
+
+> Archived pre-reset planning artefact. It is retained as historical context and
+> is not current task-tracking authority.
 
 ## Milestones
 
@@ -84,3 +94,9 @@ updated: 2026-05-15
 - parallel:after-data-model
 - parallel:after-schema-contract
 - parallel:after-M4
+
+## Related
+
+- [[README]]
+- [[../../00-Index/Feature-Map]]
+- [[implementation-backlog]]
