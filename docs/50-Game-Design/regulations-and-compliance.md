@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-16
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/late-game-systems]], [[stadium-and-campus]], [[matchday-event-engine]]
+related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/late-game-systems]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[stadium-and-campus]], [[matchday-event-engine]], [[economy-system]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
 ---
 
 # Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
@@ -14,6 +14,11 @@ related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../
 Promotion must mean **infrastructure + operations obligations**, not just
 better opponents and TV money. The compliance gameplay loop turns sporting
 success into investment pressure.
+
+FMX-13 adds a finance-compliance layer: country profiles also define payment
+cadence, parachute/solidarity patterns, financial licence checks and squad-cost
+style ratios. Infrastructure compliance and finance compliance are evaluated
+separately but surface in one licence readiness view.
 
 ## 1. Product rule
 
@@ -63,6 +68,7 @@ threshold per tier.
 | **Pitch + infra** | drainage, turf, irrigation, undersoil heating |
 | **Connectivity** | WiFi, app infrastructure, broadcasting cables |
 | **Squad** | home-grown minimum, work-permit, age-band quotas |
+| **Finance** | squad cost, debt, cash runway, arrears, reporting readiness |
 
 ## 5. Promotion compliance check
 

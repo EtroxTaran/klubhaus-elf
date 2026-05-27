@@ -1,162 +1,228 @@
 ---
-title: Economy System - Cash-flow, Budgets and KPIs
+title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance]
+tags: [game-design, economy, finance, accounting, club-management, fmx-13]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-27
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/transfer-market-simulation]], [[sponsorship-portfolio]], [[stadium-and-campus]], [[transfer-market-and-contracts]], [[mode-create-a-club-roguelite]]
+linear: FMX-13
+related:
+  - [[README]]
+  - [[GD-0008-finance-economy]]
+  - [[../60-Research/club-economy-blueprint-2026-05-27]]
+  - [[../20-Features/feature-club-economy-mvp-pillar]]
+  - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+  - [[sponsorship-portfolio]]
+  - [[stadium-and-campus]]
+  - [[transfer-market-and-contracts]]
+  - [[mode-create-a-club-roguelite]]
 ---
 
-# Economy System - Cash-flow, Budgets and KPIs
+# Economy System - Weekly Ledger, Accounting and Club Risk
 
-The economy is a **monthly cash-flow simulator**, not a single bank balance.
-A club can look healthy in P&L and still fail short-term if instalments,
-wages, building projects and credit duties stack up unhelpfully. This is
-where the roguelite "death spiral" originates.
+The economy is a **weekly ledger and accounting simulator**. The player sees
+simple risk surfaces first, but the simulation tracks cash timing, accounting
+result, liabilities and compliance separately.
 
-## 1. Six account layers
+## 1. Canonical model
 
 ```mermaid
-flowchart LR
-    Liquidity["Liquidity<br/>(cash available now)"]
-    Operating["Operating result<br/>(monthly P&L)"]
-    Transfer["Transfer budget<br/>(board-released)"]
-    Wages["Wage budget<br/>(weekly ceiling)"]
-    Debt["Debt<br/>(loans + instalments)"]
-    Reserve["Risk reserve<br/>(cushion)"]
-    Liquidity --- Operating
-    Operating --- Reserve
-    Transfer --- Liquidity
-    Wages --- Liquidity
-    Debt --- Liquidity
+flowchart TB
+    Ledger["Club finance ledger<br/>append-only facts"]
+    Cash["Cash runway<br/>liquidity"]
+    Pnl["P&L<br/>income and expense"]
+    Balance["Balance-sheet view<br/>assets, debt, reserves"]
+    Liability["Liability schedule<br/>instalments, wages, debt"]
+    Compliance["Compliance ratios<br/>squad cost, debt, licence"]
+    Crisis["Insolvency crisis state"]
+
+    Ledger --> Cash
+    Ledger --> Pnl
+    Ledger --> Balance
+    Ledger --> Liability
+    Ledger --> Compliance
+    Cash --> Crisis
+    Compliance --> Crisis
 ```
 
-| Account | Purpose | Action levers |
+The ledger is owned by Club Management. Other systems contribute facts through
+contracts; they do not write finance state directly.
+
+## 2. Weekly tick
+
+Each in-game week:
+
+1. Recurring obligations are posted: wages, staff, facility upkeep, debt,
+   scheduled transfer instalments, insurance and levies.
+2. Event-based entries are posted: matchday revenue/cost, sponsor payments,
+   merchandise spikes, prize payments, facility commitments, fines.
+3. Accounting projections update.
+4. Thresholds are evaluated.
+5. Warnings, board pressure and insolvency-stage changes emit structured facts.
+
+Monthly and season screens aggregate the weekly facts; they are not separate
+sources of truth.
+
+## 3. Account layers
+
+| Layer | Purpose | Example decisions |
 |---|---|---|
-| Liquidity | Immediate cash | Loan draw, transfer sale, sponsor advance |
-| Operating result | Monthly P&L | Ticket price, wage adjust, sponsor terms |
-| Transfer budget | Board investment cap | Negotiate with board, sell to raise |
-| Wage budget | Weekly wage ceiling | Wage policy, squad trimming |
-| Debt | Loans + instalments + interest | Refinancing, early repayment |
-| Risk reserve | Unallocated cushion | Set aside in good months |
+| Cash | Can the club pay this week? | Sell player, defer project, take overdraft. |
+| Operating P&L | Is the club structurally profitable? | Cut wages, raise prices, grow sponsors. |
+| Transfer budget | Board-approved spending envelope. | Spend now or preserve liquidity. |
+| Wage budget | Weekly squad/staff wage ceiling. | Renegotiate, release, add relegation clauses. |
+| Debt | Loans, overdraft, instalments, interest. | Refinance, repay early, accept risk. |
+| Reserves | Risk buffer and restricted funds. | Hold cash or invest in infrastructure. |
+| Assets | Squad book value, stadium/campus value. | Develop youth, amortise fees, renovate. |
 
-Important rule: **Transfer budget ≠ cash.** The board may release a budget
-that the club can only spend if liquidity allows or extra credit is taken.
-Transfer packages therefore affect both immediate liquidity and future
-liabilities: instalments, bonuses, wage subsidies and sell-on obligations must
-flow into cash-flow projections.
+Important rule: **budget is permission, not cash**.
 
-## 2. Revenue taxonomy
+## 4. Revenue taxonomy
 
-| Source | Primary drivers | Secondary drivers |
+| Source | Primary drivers | Timing |
 |---|---|---|
-| Ticketing | League, opponent, table, price tiers | Weather, kickoff time, form, rivalry |
-| Season tickets | Bonding, price strategy | Comfort, queueing, expectation profile |
-| Catering | Dwell time, fan zones, stand density | Quality, family share, weather |
-| Hospitality / VIP | Business demand, premium plates | Sponsor portfolio, stadium quality |
-| Merchandise | Brand strength, stars, success | Fan identification, campaigns |
-| Sponsoring | Reach, utilisation, image | Fan profile, hospitality, naming potential |
-| Media rights | League tier, table | TV pool, cup runs |
-| Transfers | Talent development, contract length | Market activity, agents, timing |
-| Events / tours | Stadium flex, free days | Location, logistics, noise rules |
-| Stadium attractions | Anstoss-style on-grounds revenue | See [[stadium-and-campus]] |
+| Ticketing | League, opponent, table, price, weather, fan loyalty | Matchday / season ticket pre-sale |
+| Catering | Attendance, dwell time, fan mix, risk policy | Matchday + venue events |
+| Hospitality | Corporate demand, premium capacity, sponsor portfolio | Matchday / contract |
+| Merchandise | Brand, stars, success, campaigns | Seasonal spikes |
+| Sponsoring | Reach, image, fan fit, assets, league | Contract cadence |
+| Media rights | Country profile, league tier, table | Profile-specific lump/periodic |
+| Transfers | Player value, contract, buyer pressure | Upfront + instalments |
+| Prizes | Cup, promotion, title, continental progress | Competition-specific |
+| Venue events | Stadium flexibility, calendar, location | Event boundary |
+| Academy/funding | Country profile, youth setup | Annual / seasonal |
 
-## 3. Cost taxonomy
+## 5. Cost taxonomy
 
-- Player wages.
-- Staff wages.
-- Bonuses (appearance, match-win, qualification).
-- Transfer amortisation + instalments.
-- Stadium operation + maintenance.
-- Academy + scouting network.
-- Medicine + sport science.
-- Travel.
-- Debt service.
-- Match-day security + operations.
-- Insurance.
+- Player and staff wages.
+- Signing fees, loyalty bonuses, agent fees.
+- Transfer amortisation and instalments.
+- Matchday security, stewarding, cleaning and officials.
+- Stadium energy, pitch, maintenance and insurance.
+- Travel and accommodation.
+- Academy, scouting, medicine and training operations.
+- Debt service and overdraft interest.
+- League/federation levy, fines and licence penalties.
+- Facility build cost and renovation cost.
 
-## 4. KPIs that drive management style
+## 6. Full accounting surfaces
 
-Instead of "balance: green/red" the UI surfaces 8 KPIs:
+| View | Purpose |
+|---|---|
+| Cashflow statement | What cash moved this week/month/season. |
+| P&L | Recognised revenue and cost by period. |
+| Balance-sheet view | Cash, debt, assets, reserves and obligations. |
+| Amortisation schedule | Transfer fee recognition over contract length. |
+| Liability schedule | Future cash obligations and due dates. |
+| Receivable schedule | Future incoming cash and risk. |
+| Compliance view | Squad cost, debt, runway and licence readiness. |
 
-| KPI | Healthy range (mid club) | Levers |
-|---|---|---|
-| Wage ratio (wages / revenue) | 50-65 % | Wage policy, squad trim, revenue grow |
-| Transfer ratio (net spend / revenue) | < 25 % | Buying / selling balance |
-| Match-day dependency | 25-40 % | Stadium attractions, hospitality |
-| Sponsor dependency | 20-35 % | Diversify portfolio |
-| Merch per fan | derived | Brand campaigns, store layout |
-| Hospitality utilisation | > 80 % at top end | Suite upgrades, business outreach |
-| Home-grown share | > 25 % desired | Academy, philosophy |
-| Squad value vs book value | > 1.0 | Smart recruitment, dev |
+Expert players can inspect these. Quick players see only the decision impact:
+runway, risk card, next best actions.
 
-A small club can be sustainable by developing + selling. A big club can be
-fragile despite high turnover if wages and debt outrun revenue.
+## 7. KPIs
 
-## 5. Financial Fair Play / sanctions
+| KPI | Meaning |
+|---|---|
+| Cash runway | Weeks the club survives at current forecast. |
+| Wage ratio | Wages over recognised revenue. |
+| Squad cost ratio | Wages + transfer amortisation + agent/transaction cost over revenue. |
+| Debt ratio | Debt and obligations over annual revenue. |
+| Matchday dependency | Share of income tied to home fixtures. |
+| Sponsor dependency | Share of income tied to sponsor portfolio. |
+| Transfer dependency | Reliance on player sales to stay liquid. |
+| Reserve coverage | Reserve over next-N-week fixed obligations. |
+| Compliance readiness | Pass/fail/at-risk per country and tier profile. |
 
-Two budget breaches across two seasons trigger:
+## 8. Staged insolvency
 
-- Transfer ban (single window).
-- Wage cap reduction.
-- Fines.
-- Continental competition exclusion.
+```mermaid
+stateDiagram-v2
+    [*] --> Healthy
+    Healthy --> Watch: forecast breach
+    Watch --> Overdraft: cash below zero
+    Overdraft --> Freeze: credit line exhausted or board acts
+    Freeze --> Arrears: obligation missed
+    Arrears --> LicenceReview: repeated arrears or licence breach
+    LicenceReview --> Recovery: restructuring accepted
+    LicenceReview --> RunEnd: licence lost / control loss
+    Recovery --> Healthy
+```
 
-In [[mode-create-a-club-roguelite]] persistent breaches → loss of control →
-run ends.
+Run end is not instant. The drama is the recovery window:
 
-## 6. Roguelite implications
+- sell a player;
+- cut wages;
+- renegotiate debt;
+- accept sponsor advance;
+- defer facility work;
+- accept board restrictions;
+- in future-scope SP only, consider an Investor rescue event.
 
-The roguelite "death spiral" runs *through* this system:
+## 9. Country economy profiles
 
-1. Bad scouting → bad signings on big wages.
-2. Wage ratio breaches > 75 % → sponsor concern.
-3. Operating result negative → cash reserve drains.
-4. Risk reserve empty → forced sales at discount.
-5. Sales hurt squad strength → bad results.
-6. Bad results → board demand cost cuts + sponsor withdrawal.
-7. Insolvency → run ends.
+Country profiles define data, not code branches:
 
-The drama is built into the cascade.
+| Profile | Draft coverage |
+|---|---|
+| Germany | Deep professional-to-amateur boundary, licence/compliance and lower-tier matchday relevance. |
+| England | Pyramid/ground-grade profile plus parachute-payment style relegation smoothing. |
+| France | Top-tier licence, sustainability and economic stability profile. |
+| Italy | Top-tier licence/stadium obligations and amortisation/compliance defaults. |
+| Spain | Top-tier licence and media/commercial profile; lower tiers abstract initially. |
+| Abstract | Generic generated-country profile and community-pack fallback. |
 
-## 7. Transfer-Market Finance Rules
+Each profile owns payment cadence, league levies, media distribution style,
+parachute/solidarity rules, licence checks, tax/fee assumptions and calibration
+ranges.
 
-Transfer finance uses the model in [[transfer-market-and-contracts]]:
+## 10. Roguelite implications
 
-- `cashEquivalent` compares complex offers, but accounting still stores each
-  component separately.
-- Upfront fees reduce liquidity immediately.
-- Instalments become dated liabilities.
-- Performance bonuses are probability-weighted for planning and become hard
-  liabilities when triggered.
-- Sell-on / profit-share clauses reduce expected net proceeds on future sales.
-- Loan wage-share and wage-contribution terms affect monthly wage outflow.
-- Forced sales can repair liquidity, but they damage squad value, fan sentiment
-  and board trust unless the context clearly justifies them.
+The death spiral runs through this system:
 
-Board / owner pressure can set transfer directives:
+1. Over-aggressive wage / transfer spending creates fixed obligations.
+2. Sporting failure reduces attendance, sponsor confidence and prize odds.
+3. Cash runway falls.
+4. Board freezes discretionary spend.
+5. Forced sales hurt squad strength and fan trust.
+6. Arrears trigger licence review.
+7. Licence loss, forced dissolution or control loss ends the run.
 
-- raise cash by selling one high-value player;
-- cut wage ratio by moving top earners;
-- protect academy assets unless an offer includes sell-on / buy-back upside;
-- block long instalment chains when liquidity is urgent.
+Good play is not hoarding cash forever. It is managing risk while still
+investing enough to grow.
 
-## 8. UI surfaces
+## 11. UI tiers
 
-Per progressive disclosure ([[progressive-disclosure-ui]]):
+| Tier | Surface |
+|---|---|
+| Quick | Runway badge, weekly cash delta, one to three action cards. |
+| Standard | KPI dashboard, 13-week forecast, upcoming obligations and risk explanations. |
+| Expert | Statements, amortisation, liability schedule, country profile, sensitivity analysis. |
 
-- **Quick**: "Bank: green / amber / red" badge, 3 actionable cards.
-- **Standard**: KPI summary screen with the 8 KPIs.
-- **Expert**: Full P&L, cash-flow projection, contract liability schedule.
+## 12. Calibration rules
 
-## 9. Future-scope notes (classified future-scope)
+- Store ranges, formulas and profile multipliers in data.
+- Do not hard-code final economy constants in docs before balance evidence.
+- Long-save balance tests must track wage inflation, debt growth, insolvency
+  frequency, runaway cash and promotion/relegation shocks.
+- Real external numbers calibrate scale only; shipped content stays IP-clean and
+  fictional.
 
-- Should currency be fictional (e.g. "credits") or per-country real
-  currency in fictional clubs? Recommendation: per-country fictional
-  currency (€/£/etc.) for realism without licensing.
-- Inflation: do prices drift per season? Yes - modest 1-3 % per season to
-  push the player to grow revenue with the squad.
-- Owner injection: should a sugar-daddy owner be able to clear debt? Yes,
-  but it has DNA cost (`tradition ↓`, `brand_strength ↑`).
+## 13. Future-scope notes
+
+- Investor rescue: SP-only monetisation review; never multiplayer advantage.
+- Manual accounting controls: not planned.
+- Deep tax modelling: only if it creates player-facing decisions.
+- Full country-specific lower-tier profiles: add after the initial Top-5 +
+  abstract baseline proves useful.
+
+## Related
+
+- Decision record: [[GD-0008-finance-economy]]
+- Research: [[../60-Research/club-economy-blueprint-2026-05-27]]
+- Feature: [[../20-Features/feature-club-economy-mvp-pillar]]
+- Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+- Linked systems: [[sponsorship-portfolio]] · [[stadium-and-campus]] ·
+  [[fan-ecology]] · [[transfer-market-and-contracts]] ·
+  [[mode-create-a-club-roguelite]]

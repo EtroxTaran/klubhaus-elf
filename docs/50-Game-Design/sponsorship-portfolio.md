@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-16
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[economy-system]], [[stadium-and-campus]], [[fan-ecology]]
+related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[economy-system]], [[stadium-and-campus]], [[fan-ecology]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
 ---
 
 # Sponsorship Portfolio - Asset-level Sponsor Inventory
@@ -15,6 +15,11 @@ Sponsoring is **not** a single annual contract. Real clubs sell jersey
 front, sleeve, training kit, naming rights, hospitality areas, LED boards,
 app inventory and fan-zone activations as separate inventories. The game
 models the same.
+
+FMX-13 anchors sponsorship into the Club Management accounting ledger:
+contracts may be recognised as revenue over time while cash arrives upfront,
+periodically or as performance bonuses. Sponsor side-conditions are gameplay
+constraints, not just flavour.
 
 ## 1. Sponsor categories
 
@@ -82,6 +87,19 @@ constrain other decisions:
 - Stadium-name retention (no name change for X years).
 
 Breaking a side-condition → contract renegotiation, fine or termination.
+
+## 4.1 Accounting and timing
+
+Sponsor contracts define:
+
+- cash cadence (upfront, monthly, seasonal, milestone);
+- recognised revenue period;
+- performance bonuses and penalties;
+- termination and repayment clauses;
+- category exclusivity and side-condition risk.
+
+The finance ledger receives the cash and accrual entries; this note owns the
+valuation and side-condition design.
 
 ## 5. Sponsor management UI tiers
 

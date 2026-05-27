@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-18
 type: game-design
 binding: true
-related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/onboarding-strategy]], [[mode-manage-a-club-career]], [[onboarding-and-tutorial]], [[economy-system]], [[club-dna-and-governance]]
+related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/onboarding-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[mode-manage-a-club-career]], [[onboarding-and-tutorial]], [[economy-system]], [[club-dna-and-governance]], [[../20-Features/feature-club-economy-mvp-pillar]]
 ---
 
 # Mode - Create a Club Roguelite
@@ -38,7 +38,8 @@ MVP includes:
 - first Home dashboard/feed-card;
 - starter tactic choice;
 - first match and report;
-- cash/run-risk feedback; and
+- economy-pillar foundation: opening cash state, weekly ledger, runway/risk
+  feedback and staged crisis recovery; and
 - server-confirmed progression with local drafts/caches only.
 
 Deep legacy carries, advanced meta-progression, multi-run narrative echoes and
@@ -83,7 +84,7 @@ A run ends when **any** of these occur:
 
 | End condition | Trigger |
 |---|---|
-| Insolvency | Liquidity ≤ 0 for N consecutive months |
+| Insolvency | [[economy-system]] staged crisis reaches licence loss / run-end state |
 | Control loss | Board veto for N consecutive failed seasons |
 | Forced dissolution | League expulsion (compliance failure post grace period) |
 | Deliberate retirement | Player chooses to retire |
@@ -138,13 +139,13 @@ This is the Roguelite "staged tutorial" pattern from
 
 Detailed in [[economy-system]] §6. Summary:
 
-1. Bad scouting → bad signings on big wages.
-2. Wage ratio breach → sponsor concern.
-3. Operating result negative → cash reserve drains.
-4. Risk reserve empty → forced sales at discount.
-5. Sales hurt squad → bad results.
-6. Bad results → board demand cost cuts + sponsor withdrawal.
-7. Insolvency → run ends.
+1. Bad scouting → bad signings on wages and future instalments.
+2. Wage / squad-cost ratio breach → board and sponsor concern.
+3. Operating result negative → cash runway drains.
+4. Forecast breach → crisis warning and board pressure.
+5. Freeze / arrears → forced sales, sponsor penalties, fan anger.
+6. Sales hurt squad → bad results and weaker future cashflow.
+7. Licence loss, forced dissolution or control loss → run ends.
 
 Each step is reversible until the previous one *closes*. The player can
 fight back at any point, but the system has momentum.

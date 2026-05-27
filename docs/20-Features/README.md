@@ -27,6 +27,8 @@ stubs as future-scope planning, not open documentation gaps.
 
 - [[feature-roguelite-mvp-first-playable]] — approved first playable scope.
 - [[feature-transfer-market-ai-and-contracts]] - approved transfer-market foundation and explanation layer.
+- [[feature-club-economy-mvp-pillar]] - draft FMX-13 economy MVP pillar:
+  weekly ledger, full accounting and staged insolvency.
 
 Older feature stubs may contain historical "In scope (MVP)" headings. The
 canonical MVP scope is [[../00-Index/MVP-Scope]]; use it before interpreting
@@ -36,6 +38,7 @@ those headings.
 
 - [[feature-async-week-loop]] — post-MVP server-driven week cycle with two cadence rule sets.
 - [[feature-stadium-builder]] — Anstoss-style on-grounds attractions + capacity tiers.
+- [[feature-club-economy-mvp-pillar]] — Club Economy MVP pillar.
 - [[feature-venue-operations]] — Non-matchday arena calendar with pitch, sponsor and fan trade-offs.
 - [[feature-player-lifecycle]] — Weekly player development, PA uncertainty and mentoring.
 - [[feature-training-medicine]] — Training load, readiness, multifactor injury risk and rehab.

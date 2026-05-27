@@ -163,6 +163,19 @@ Reports #4 (Roguelite meta) and #5 (economy) are additive enrichment for
 [[../50-Game-Design/economy-system]]; report #6 otherwise **confirms**
 ADR-0011/0020/0024/0026 and [[match-engine-runtime-strategy]].
 
+## Club Economy Blueprint (2026-05-27)
+
+[[club-economy-blueprint-2026-05-27]] promotes report #5 into a sourced FMX-13
+draft path. Nico's current direction is: Economy as an MVP pillar, weekly
+ledger, full accounting, staged insolvency, Germany/England/France/Italy/Spain
+country profiles plus abstract fallback, ranges/formulas instead of final
+balance constants, Progressive UI, and Investor rescue as SP-only future-scope.
+
+This feeds draft [[../50-Game-Design/GD-0008-finance-economy]], draft
+[[../20-Features/feature-club-economy-mvp-pillar]], draft
+[[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
+draft [[../30-Implementation/club-economy-accounting-ledger]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 [[ai-narrative-runtime-integration]] synthesizes the two narrative/LLM reports

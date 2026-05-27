@@ -28,7 +28,7 @@ Drive flavour and management depth from rule-based match-day events
 ## Post-MVP depth scope
 
 Matchday events are post-MVP depth unless a minimal deterministic event is
-needed for the first match tutorial or run-risk feedback.
+needed for the first match tutorial or staged economy-crisis feedback.
 
 - YAML-authored event schema (trigger / probability / effect /
   prevention).

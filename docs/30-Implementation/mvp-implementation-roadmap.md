@@ -6,7 +6,7 @@ created: 2026-05-19
 updated: 2026-05-19
 type: implementation
 binding: true
-related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[hybrid-online-pwa-strategy]]
+related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[hybrid-online-pwa-strategy]], [[club-economy-accounting-ledger]]
 ---
 
 # MVP Implementation Roadmap
@@ -109,11 +109,11 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 
 | Field | Value |
 |---|---|
-| Goal | Cash / run-risk feedback after match |
+| Goal | Club Economy MVP pillar: weekly ledger, runway and staged crisis feedback after match/week |
 | Contexts | Club (finance signals), Notification |
-| Vault | [[../50-Game-Design/mode-create-a-club-roguelite]] |
+| Vault | [[../50-Game-Design/mode-create-a-club-roguelite]], [[../20-Features/feature-club-economy-mvp-pillar]], [[club-economy-accounting-ledger]] |
 | UI | Home or post-match summary — stories |
-| Tests | e2e: see cash/run-risk after first match |
+| Tests | e2e: see runway/risk and first ledger explanation after first match/week |
 | Authority | Server read model |
 | DoD | Completes first playable loop per feature spec |
 

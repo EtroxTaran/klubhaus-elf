@@ -18,7 +18,9 @@ related:
   - [[Research-Map]]
   - [[Implementation-Map]]
   - [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+  - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
+  - [[../60-Research/club-economy-blueprint-2026-05-27]]
   - [[../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 ---
 
@@ -40,6 +42,16 @@ below.
 > and [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]] as the
 > proposed replacement direction; implementation still waits for Nico's
 > architecture sign-off.
+
+> FMX-13 update, 2026-05-27: the V1 economy baseline was expanded from
+> cash/run-risk feedback into a draft Club Economy MVP pillar. Use
+> [[../60-Research/club-economy-blueprint-2026-05-27]],
+> [[../50-Game-Design/GD-0008-finance-economy]],
+> [[../50-Game-Design/economy-system]],
+> [[../20-Features/feature-club-economy-mvp-pillar]] and
+> [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+> as the proposed replacement direction; final approval and balance constants
+> remain Nico-gated.
 
 ## 1. Authority
 
@@ -92,6 +104,9 @@ Linear beat.
 
 - The MVP is a hybrid-online, offline-ready PWA.
 - The first playable mode is [[../50-Game-Design/mode-create-a-club-roguelite|Create-a-Club Roguelite]].
+- The first playable now includes a draft Club Economy pillar: weekly ledger,
+  full-accounting projections, staged insolvency, country economy profiles and
+  progressive UI.
 - [[../50-Game-Design/mode-manage-a-club-career|Manage-a-Club Career]] is visible as a future promise, not playable in MVP.
 - Server-confirmed progression is the MVP authority model.
 - Offline in MVP means app shell, safe cached reads, local drafts and local UI
@@ -112,6 +127,8 @@ Linear beat.
   additive realtime/graph role behind an interface.
 - The project uses a service-ready DDD modular monolith before service
   extraction.
+- Club Management owns the draft economy ledger and accounting projections per
+  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]].
 - Database access goes through the project DB client/query gateway; queries are
   parameterized and scoped.
 - Browser-side game caches, drafts, local UI state and future local saves live

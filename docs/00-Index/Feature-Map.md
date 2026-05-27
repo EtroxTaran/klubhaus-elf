@@ -24,6 +24,7 @@ documentation gaps.
 ## Active MVP feature
 
 - [[../20-Features/feature-roguelite-mvp-first-playable]] — Create-a-Club Roguelite first playable.
+- [[../20-Features/feature-club-economy-mvp-pillar]] — draft FMX-13 Club Economy pillar for weekly ledger, accounting and staged insolvency.
 
 ## Seed Epics
 
@@ -42,6 +43,7 @@ documentation gaps.
   Impact Lens player-strength presentation; no global OVR.
 - [[../20-Features/feature-async-week-loop]]
 - [[../20-Features/feature-stadium-builder]]
+- [[../20-Features/feature-club-economy-mvp-pillar]]
 - [[../20-Features/feature-venue-operations]]
 - [[../20-Features/feature-player-lifecycle]]
 - [[../20-Features/feature-training-medicine]]

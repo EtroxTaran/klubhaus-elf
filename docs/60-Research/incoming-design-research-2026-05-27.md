@@ -219,6 +219,11 @@ corrections:
   accepted and does not authorize implementation.
 - **Promotion follow-up created 2026-05-27:** [[ai-narrative-runtime-integration]]
   synthesizes the two narrative/LLM reports and feeds GD-0018 + ADR-0030.
+- **Economy promotion follow-up created 2026-05-27 (FMX-13):**
+  [[club-economy-blueprint-2026-05-27]] synthesizes the club-economy report and
+  feeds [[../50-Game-Design/GD-0008-finance-economy]],
+  [[../20-Features/feature-club-economy-mvp-pillar]] and
+  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]].
 
 ## How to use this note
 
@@ -240,7 +245,8 @@ corrections:
   [[ai-manager-behaviour]], [[late-game-systems]], [[mode-design-research]],
   [[systems-design-synthesis]], [[match-engine-runtime-strategy]],
   [[offline-mvp-scope-and-sync-strategy]], [[player-strength-presentation]],
-  [[systemic-events-player-development-venue-ops]]
+  [[systemic-events-player-development-venue-ops]],
+  [[club-economy-blueprint-2026-05-27]]
 - Decision records touched conceptually: [[../50-Game-Design/mode-create-a-club-roguelite]],
   [[../50-Game-Design/economy-system]], [[../50-Game-Design/GD-0008-finance-economy]],
   [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]],
