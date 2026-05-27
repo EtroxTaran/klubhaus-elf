@@ -3,9 +3,9 @@ title: Hybrid-online PWA Strategy
 status: current
 tags: [pwa, implementation, mvp, offline-ready]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-05-27
 type: implementation
-related: [[../00-Index/MVP-Scope]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../60-Research/offline-mvp-scope-and-sync-strategy]], [[pwa-offline-strategy]]
+related: [[../00-Index/MVP-Scope]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../60-Research/offline-mvp-scope-and-sync-strategy]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[pwa-offline-strategy]]
 ---
 
 # Hybrid-online PWA Strategy
@@ -13,6 +13,9 @@ related: [[../00-Index/MVP-Scope]], [[../10-Architecture/09-Decisions/ADR-0020-h
 This note implements [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
 for the MVP. It replaces the old full offline-first MVP implementation stance
 in [[pwa-offline-strategy]].
+
+FMX-10 confirms the path as **A -> C**: hybrid-online MVP now, command-shaped
+offline manager-week later. Local match simulation is not authoritative in MVP.
 
 ## MVP responsibilities
 
@@ -62,6 +65,14 @@ Every command that may later become a queued intent already needs:
 - typed rejection reason; and
 - safe retry semantics.
 
+The future offline manager-week outbox must use these command contracts rather
+than browser Background Sync as the domain source of truth. Background Sync can
+be a best-effort wake/retry helper only.
+
+Match-resolution commands are server-confirmed in MVP. Any local engine run is
+a preview/what-if and must be labelled as non-binding until a future ADR/GDDR
+approves selective offline match authority.
+
 ## Offline copy rules
 
 Use consistent copy:
@@ -83,6 +94,10 @@ Before enabling local-authoritative singleplayer or export/import:
 - [ ] Add local repository adapter tests against the same command/query
       contracts used by the server.
 - [ ] Define conflict/replay policy per command family.
+- [ ] Define the offline manager-week command outbox, queue caps, replay order
+      and conflict copy.
+- [ ] Decide whether any local-authoritative match flow is allowed; if yes,
+      reuse ADR-0049's engine port and replay contracts.
 - [ ] Add export/import UI with "forgot passphrase = lost" copy if portable
       exports use passphrases.
 - [ ] Add Playwright offline E2E for app shell, draft survival and later

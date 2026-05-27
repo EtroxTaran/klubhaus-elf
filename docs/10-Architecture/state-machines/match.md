@@ -3,16 +3,17 @@ title: State Machine - Match
 status: current
 tags: [architecture, state-machine, match]
 created: 2026-05-16
-updated: 2026-05-22
+updated: 2026-05-27
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/match-engine]], [[../../60-Research/match-engine-runtime-strategy]], [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/match-engine]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
 ---
 
 # State Machine - Match
 
-Owns the lifecycle of an individual match from line-up lock to final
-result. Server-authoritative in multiplayer; local in singleplayer.
+Owns the lifecycle of an individual match from line-up lock to final result.
+MVP canonical matches are server-authoritative. Future local/offline authority
+requires a separate ADR/GDDR and must still use the same engine contract.
 
 ## 1. States
 
@@ -71,7 +72,7 @@ stateDiagram-v2
 
 ## 5. Determinism contract
 
-Per [[../09-Decisions/ADR-0003-match-engine]] and
+Per [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]] and
 [[../../60-Research/determinism-and-replay]]:
 
 - Match RNG seeded at `lineup_locked`.
@@ -99,7 +100,10 @@ match {                          # strongly-typed (typed cols + CHECK)
   lineup_lock_at: timestamptz,
   state: text + CHECK IN (state_names),
   seed: text,                    # set at lineup_locked
+  engine_id: text,               # concrete adapter/service used
   engine_version: text,          # for deterministic re-sim
+  contract_version: text,        # MatchEnginePort DTO contract
+  rng_version: text,             # PRNG algorithm/version
   home_lineup: jsonb,
   away_lineup: jsonb,
   home_tactic: jsonb,
@@ -136,6 +140,20 @@ match policy:
 - Engine upgrades that change determinism require a forward migration
   of stored matches (re-sim and re-store seeds).
 
+### Reconnect and pause policy
+
+Disconnect handling is part of the match state, not the engine core.
+
+| Scenario | Policy |
+|---|---|
+| Singleplayer/live coaching disconnect | Server pauses the watched match for a reconnect window; default 5 minutes. After the deadline it auto-continues from the last valid intervention state. |
+| Async match viewer disconnect | Match continues; reconnect resumes from the latest event cursor if live, otherwise opens replay. |
+| Watch-party active manager disconnect | Delegated to the watch-party group rule; match may pause only for configured active participants. |
+| Passive spectator disconnect | Never pauses the match; reconnect resumes live stream or replay. |
+
+Pause windows are operational timers. They must not enter the deterministic
+engine as wall-clock time; only accepted interventions become replay events.
+
 ## 7. Events emitted
 
 - `MatchScheduled`
@@ -152,8 +170,8 @@ match policy:
 
 | Failure | Recovery |
 |---|---|
-| Match worker crash | Restart from last committed tick (snapshot every N events) |
-| Player disconnects during live coaching | Last submitted state used; auto-coach proceeds |
+| Match worker crash | Restart from last committed event/checkpoint; verify replay hash before continuing |
+| Player disconnects during live coaching | Pause for reconnect window, then continue from last submitted state |
 | Race on lineup submission | Server-authoritative latest-wins until `lineup_locked` |
 
 ## 9. Future-scope notes (classified future-scope)

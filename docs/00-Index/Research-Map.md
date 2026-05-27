@@ -102,7 +102,7 @@ Tagging** in `findings-registry.md`.
 - [Transfer Market Simulation - Valuation, AI Selling, Clauses and Negotiation](../60-Research/transfer-market-simulation.md) — ad-hoc locked synthesis (2026-05-17). Market value is a reference range, not final price; AI selling uses `sellPressure` vs `protectionScore`; offer packages are priced via cash-equivalent clause pricing; player / agent agency is separate from club agreement; full negotiation depth is tiered by world proximity for D9 budgets; plugs into D4 AI, D15 Transfer Saga and the Transfer bounded context.
 - [Determinism, RNG and Replay - Locked Decisions](../60-Research/determinism-and-replay.md) — D8 (2026-05-16). PCG32, 8 RNG streams, hybrid replay format, integers/basis-points, 12 save-determinism rules, Chromium-only CI gate.
 - [SurrealDB Schema Patterns](../60-Research/surrealdb-schema-patterns.md) — D14 (2026-05-16), **superseded** by [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]. Historical SurrealDB-substrate research; its substrate-agnostic invariants (per-save isolation, typed-vs-jsonb governance split, per-relationship modelling, standalone `packages/db-schema` Zod mirror, Dexie-only browser at MVP, query-gateway abstraction) were carried forward into the PostgreSQL + Drizzle model. Do not implement from this note.
-- [Match Engine Simulation Model - Locked Decisions](../60-Research/match-engine-simulation-model.md) — D1 (2026-05-16). Hybrid Markov + attribute rolls; per-event tick with integer-second simClock; event schema with typed payloads; hybrid zone+role formation influence; MatchCoreRng/MatchAiRng strict separation; ≤ 50 ms / match perf budget; full test pyramid with 10 golden replays + statistical envelopes + property-based + perf gate.
+- [Match Engine Simulation Model - Historical Input](../60-Research/match-engine-simulation-model.md) — D1 (2026-05-16, reopened by FMX-10 on 2026-05-27). Hybrid Markov + attribute rolls; per-event tick with integer-second simClock; event schema with typed payloads; hybrid zone+role formation influence; MatchCoreRng/MatchAiRng strict separation; old Web Worker/runtime assumptions superseded by the swappable spatial-event engine research.
 - [Match Engine Runtime Strategy - TypeScript MVP with Polyglot Extraction Gate](../60-Research/match-engine-runtime-strategy.md) — 2026-05-17. Challenges the attached runtime technology report against accepted ADRs. Locks TypeScript as MVP authority, defines the post-MVP Rust/polyglot extraction gate, match quality profiles, interactive chunking and AI-adapter boundaries.
 - [Telemetry, Privacy and GDPR - Locked Decisions](../60-Research/telemetry-privacy.md) — D11 (2026-05-17). Self-hosted diagnostics, consent categories, PII redaction, capped offline telemetry queues, retention, DSAR impact and ADR-0017 inputs.
 - [GDPR Compliance — RoPA, lawful basis, retention, DPIA, DPO](../60-Research/gdpr-compliance.md) — F6 (2026-05-18, `current binding`). Full Article 30 Record of Processing Activities (8 activities × 6 data categories); lawful basis per activity (Art. 6(1)(b) contract for the core service + Art. 6(1)(f) legitimate interest for security + observability with two formal LIAs); confirmed **no Art. 9 special categories** (passkey credentials are public-key material, not biometric); 16+ self-declaration age gate (no parental-consent flow at MVP, no DOB collected); **no third-country transfers** (sidesteps Chapter V SCC / TIA / DPF paperwork entirely; GitHub explicitly assessed as non-processor for user data); processor Art. 28 DPA list (Hetzner + transactional email vendor only); full per-category retention schedule with permanent-audit-but-pseudonymised-on-Art.17 policy and cryptographic erasure via F5 envelope burn; **voluntary DPIA** with three-part legitimate-interest assessments (security anomaly + observability); **DPO not required** (Art. 37 + § 38 BDSG thresholds both below — founder designated as Privacy Lead); compliance overhead estimate (~7-15 founder days launch + ~3-5 days/year ongoing); legal-landscape framing (GDPR yes / ePrivacy yes / DSA de minimis / DMA no / AI Act low-risk / NIS2 no); future-proof triggers documented (payments / analytics / external IdP / scaling). Companion to [[../30-Implementation/privacy-and-consent]]. Anchors on D11 telemetry-privacy + F1 threat-model + F2 / F3 / F5; closes F2 FU-6 + F2 FU-7 + F3 FU-8 + F5 FU-8 + F5 FU-9.
@@ -145,6 +145,18 @@ before any promotion.
   press, player talks and media-persona story depth. Feeds draft
   [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] and draft
   [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
+
+## Swappable Spatial-Event Match Engine (2026-05-27)
+
+- [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]] —
+  synthesized FMX-10 follow-up for match-engine exchangeability, spatial-event
+  model, runtime strategy, OSS due diligence, disconnect handling, offline
+  staging and LLM ticker boundary. Captures Nico's current direction:
+  swappable engine boundary, **Spike, Rust-default**, study/spike-only OSS
+  usage, server-authoritative canonical matches and 2D/ticker/replay from
+  committed event/spatial facts. Feeds draft
+  [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+  and amends draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
 
 ## Raw Perplexity transcripts (Wave 2)
 

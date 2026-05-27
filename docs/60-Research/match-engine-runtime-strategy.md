@@ -1,50 +1,57 @@
 ---
-title: Match Engine Runtime Strategy - TypeScript MVP with Polyglot Extraction Gate
+title: Match Engine Runtime Strategy - Swappable Runtime Spike with Rust Default
 status: current
-binding: true
+binding: false
 tags: [research, match-engine, runtime, typescript, rust, wasm, web-worker, offline-first, multiplayer, wave-3]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-27
 type: research
-related: [[raw-perplexity/raw-match-engine-runtime-technology]], [[match-engine-simulation-model]], [[determinism-and-replay]], [[performance-budgets]], [[ai-manager-behaviour]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../50-Game-Design/match-engine]]
+related: [[raw-perplexity/raw-match-engine-runtime-technology]], [[raw-perplexity/raw-swappable-spatial-event-match-engine-runtime]], [[swappable-spatial-event-match-engine-2026-05-27]], [[match-engine-simulation-model]], [[determinism-and-replay]], [[performance-budgets]], [[ai-manager-behaviour]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../50-Game-Design/match-engine]]
 ---
 
-# Match Engine Runtime Strategy - TypeScript MVP with Polyglot Extraction Gate
+# Match Engine Runtime Strategy - Swappable Runtime Spike with Rust Default
 
-This note reconciles the attached runtime technology research with the accepted
-vault decisions. It answers one narrow question: should the match engine remain
-TypeScript, move to Rust, or split by runtime?
+This note was originally written on 2026-05-17 as "TypeScript MVP with
+Polyglot Extraction Gate". FMX-10 reopens that stance after Nico's 2026-05-27
+decision that the match engine must be planned as the most replaceable and
+scalable component in the system.
+
+This note is now a research/runtime strategy input for draft
+[[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]].
+It is not binding implementation authority while ADRs are reopened.
 
 ## Decision Summary
 
-For MVP, the match engine remains a **framework-agnostic TypeScript package**
-shared by:
+The prior TypeScript-first conclusion no longer stands as the planning target.
+FMX will not commit the first authoritative engine runtime before a small
+contract-identical spike.
 
-- local singleplayer PWA simulation in a Web Worker;
-- server-side authoritative multiplayer Match Worker;
-- deterministic replay and AI-vs-AI re-simulation.
+Current direction:
 
-Post-MVP, the Match Worker may be extracted into a separate runtime, including
-Rust, **only** behind a formal polyglot extraction gate. This is an evidence
-gate, not a default roadmap commitment.
+- **Model:** server-authoritative spatial-event engine.
+- **Boundary:** versioned `MatchEnginePort`; all consumers use event/spatial
+  contracts, never concrete engine internals.
+- **Runtime posture:** **Spike, Rust-default**. Build a small TypeScript and
+  Rust-native vertical slice against the same fixtures, RNG vectors, event log
+  and spatial samples. Choose Rust native as first authoritative production
+  runtime unless the spike shows clear disadvantages.
+- **WASM:** future replay/sandbox option, not the authoritative server default.
 
-The accepted target is therefore:
+The target table becomes:
 
 | Phase | Runtime | Binding rule |
 |---|---|---|
-| MVP | TypeScript in `packages/match-engine` | One canonical implementation shared by client Worker and server worker |
-| Post-MVP scale trigger | Separate Match Worker process | Same API and deterministic contract; still may be TypeScript |
-| Post-MVP evidence trigger | Rust implementation allowed | Must pass cross-runtime parity, replay and statistical tests before authority |
+| Spike | TypeScript reference + Rust native slice | Same port, seed, fixtures, event log and spatial samples |
+| First authority | Rust native service by default | Unless spike proves TS is safer without losing determinism/scaling headroom |
+| Future client reuse | Rust/WASM or lightweight replay adapter | Only for browser replay/sandbox, never hidden authority |
 
-This keeps ADR-0003 stable while acknowledging Nico's service-architecture
-requirement: the Match context can later be replaced or extracted without
-changing product semantics.
+This updates ADR-0003's TypeScript-first stance and feeds ADR-0049.
 
 ## Why the Raw Research Was Challenged
 
 The raw research correctly identifies that Rust becomes more attractive when the
-match engine is considered as a horizontally scaled CPU service. However, it
-underweights three current project constraints:
+match engine is considered as a horizontally scaled CPU service. The original
+2026-05-17 conclusion weighted these constraints more heavily:
 
 - **Offline-first PWA is a product promise.** Singleplayer must run locally,
   including on mobile, without server dependency.
@@ -53,44 +60,45 @@ underweights three current project constraints:
 - **MVP velocity matters.** The current architecture intentionally gets one
   tested simulation semantics working before introducing cross-language parity.
 
-The best conclusion is not "Rust now" or "Rust never". It is: TypeScript is the
-MVP authority; Rust is a possible extracted implementation after profiling and
-contract hardening.
+FMX-10 changes the weighting:
+
+- the MVP is hybrid-online and server-confirmed, so local match authority is no
+  longer the runtime anchor;
+- Nico explicitly prioritizes engine exchangeability and scaling risk;
+- spatial-event depth increases the value of Rust's CPU/memory headroom;
+- TypeScript remains useful for a reference/prototype, but not as the default
+  production commitment.
+
+The best current conclusion is: **spike both, default to Rust native if it clears
+the contract gate**.
 
 ## Runtime Comparison
 
 | Technology | Strong fit | Weak fit | Project decision |
 |---|---|---|---|
-| TypeScript | Browser/PWA/offline, shared client/server implementation, fast iteration, Zod contracts, existing stack | Lower raw CPU ceiling than Rust; Node Worker communication costs for large object graphs | **Binding MVP runtime** |
-| Rust native service | CPU-bound matchday batches, low memory, predictable latency, scale efficiency | Cross-language parity, team cost, deployment complexity, no direct PWA reuse | **Allowed post-MVP behind gate** |
-| Rust/WASM | Shared Rust kernel possible in browser + server; strong for coarse numeric batches | JS/WASM boundary and packaging complexity; not automatically faster; browser compatibility/build constraints | **Research option, not MVP** |
+| TypeScript | Fast iteration, schema/tooling fit, useful reference adapter | Lower CPU ceiling than Rust; GC/JIT variability; not ideal as long-term engine authority | **Spike/reference candidate** |
+| Rust native service | CPU-bound matchday batches, low memory, predictable latency, scale efficiency, data-oriented modelling | Team/tooling cost, no direct browser reuse | **Default production candidate after spike** |
+| Rust/WASM | Shared Rust kernel possible in browser + server; strong for coarse replay/sandbox calls | JS/WASM boundary and packaging complexity; not automatically faster; server-native Rust is cleaner | **Future replay/sandbox option** |
 | Python | AI/data/content pipelines, experiments, offline authoring tools | Browser/mobile runtime payload, startup, determinism and performance risks | **Not allowed in core path** |
 | Go/C# | Viable services in isolation | No strong advantage over TypeScript/Rust for this stack and PWA reuse | **No current role** |
 
-## Polyglot Extraction Gate
+## Runtime Spike Gate
 
-A Rust Match Worker can become authoritative only when all conditions are true:
+The spike must be intentionally small. It is not a dual-engine V1.
 
-1. **Measured need**: production or synthetic load shows the TypeScript worker is
-   the limiting factor after algorithmic profiling and batching improvements.
-2. **Stable wire contract**: `MatchInputs`, `MatchResult`, `MatchEventCore`,
-   `MatchSummary`, RNG state and `engine_version` are versioned, JSON/Zod
-   compatible and documented as the service boundary.
-3. **Golden parity**: canonical matches produce byte-identical event logs, or a
-   deliberately versioned event-log change with migration/replay policy.
-4. **Statistical parity**: 1k-5k match envelopes stay within accepted bands for
-   goals, xG, shots, pass completion, cards, injuries and tactical effects.
-5. **Determinism parity**: Rust and TypeScript PRNG/reference math match for the
-   locked seed streams or the Rust engine ships as a new `engineVersion` with old
-   TS modules retained for previous saves.
-6. **Operational readiness**: health checks, structured logs, metrics, tracing,
-   backpressure and worker shutdown behaviour exist before the service owns
-   multiplayer authority.
-7. **Fallback policy**: replay and audit tooling can still load historical engine
-   modules by `engineVersion`.
+1. Same fixtures: equal teams, star attacker, high press vs low block, red
+   card/injury/substitution, high-xG chance.
+2. Same `MatchInput`, `MatchEventLog`, `SpatialSample`, `MatchSummary` and
+   `EngineCapabilities` schemas.
+3. Same PRNG test vectors and deterministic ordering rules.
+4. Same output expectations for golden fixtures.
+5. Benchmark p50/p95 simulation time, memory, event count, spatial sample count
+   and serialized output size.
+6. Record debugging, observability, build and deployment friction.
 
-Until those are true, Rust can be used only for experiments, benchmarks or
-non-authoritative comparison runs.
+Rust native becomes authoritative only after the spike confirms the contract and
+ADR-0049 is ratified. TypeScript remains allowed as a comparison adapter or
+non-authoritative prototype.
 
 ## Match Quality Profiles
 
@@ -157,22 +165,30 @@ Not allowed:
 
 ## Implementation Implications
 
-- Keep `packages/match-engine` pure TypeScript for MVP.
-- Keep event and summary DTOs JSON-serialisable and stable enough for a future
-  process boundary.
+- Define `MatchEnginePort` and versioned DTOs before engine implementation.
+- Keep event, spatial and summary DTOs serialisable and stable enough for a
+  service/process boundary from day one.
 - Treat engine data (`formationZoneWeights`, set-piece routines, profiles) as
   versioned inputs, not local implementation details.
 - Add perf tests that record not only milliseconds per match, but also fixture
   profile, output depth and device tier.
-- Plan a later `match-worker` container/process as the first extraction
-  candidate, but do not choose Rust until measured evidence exists.
+- Plan the Match Worker as the first extracted/scaled service boundary.
+- Do not introduce a direct UI, persistence, LLM or renderer dependency on the
+  concrete engine package/service.
 
 ## Sources
 
 - [[raw-perplexity/raw-match-engine-runtime-technology]] - attached private
   research input, 2026-05-17.
-- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] - accepted MVP
-  match-engine architecture.
+- [[raw-perplexity/raw-swappable-spatial-event-match-engine-runtime]] -
+  2026-05-27 runtime, model, OSS and replacement research digest.
+- [[swappable-spatial-event-match-engine-2026-05-27]] - current synthesis for
+  the swappable spatial-event direction.
+- [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+  - draft replacement target for ADR-0003.
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] - historical
+  TypeScript-first match-engine architecture, reopened and superseded as a
+  planning target by ADR-0049.
 - [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]] - service
   readiness and Match worker extraction order.
 - [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]

@@ -2,14 +2,16 @@
 title: Building Blocks
 status: current
 tags: [architecture]
-updated: 2026-05-22
+updated: 2026-05-27
 ---
 
 # Building Blocks
 
-The application is a **modular monolith** with eleven bounded contexts in
-TypeScript. Each context owns its domain logic, state machine(s), storage
-isolation, and contracts (commands / queries / domain events).
+The application is a **modular monolith** with eleven bounded contexts,
+primarily implemented in TypeScript. Each context owns its domain logic, state
+machine(s), storage isolation, and contracts (commands / queries / domain
+events). The match engine is deliberately behind a runtime-neutral port so it
+can move to Rust without changing caller contracts.
 
 > Authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]]. Full map at
 > [[bounded-context-map]].
@@ -21,7 +23,7 @@ flowchart TB
   Web[apps/web] --> UI[packages/ui]
   Web --> Data[packages/game-data]
   Web --> Schema[packages/db-schema]
-  Web --> Engine[packages/match-engine]
+  Web --> Engine[MatchEnginePort adapter]
   Web --> Dexie[Dexie / IndexedDB cache + drafts]
   Web --> Postgres[PostgreSQL + Drizzle system of record]
   Web -. deferred additive projection/live graph .-> Surreal[SurrealDB]
@@ -112,8 +114,9 @@ Each folder owns `commands.ts`, `events.ts`, `queries.ts`,
 - **Notification platform** ([[09-Decisions/ADR-0043-notification-and-messaging-platform]])
   for inbox, preferences, delivery attempts, email, push preparation and
   offline notification projections.
-- **Match worker** for server-authoritative simulation
-  ([[09-Decisions/ADR-0011-server-authoritative-multiplayer]]).
+- **Match worker** for server-authoritative simulation behind
+  `MatchEnginePort` ([[09-Decisions/ADR-0011-server-authoritative-multiplayer]],
+  [[09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]).
 - **Spectator service** for watch parties
   ([[09-Decisions/ADR-0015-spectator-snapshot-streaming]]).
 - **Hybrid-online PWA seam** ([[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]])

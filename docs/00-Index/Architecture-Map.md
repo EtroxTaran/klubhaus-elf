@@ -3,7 +3,7 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-05-22
+updated: 2026-05-27
 type: map
 binding: false
 related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]]
@@ -55,7 +55,8 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 
 ## Current Binding ADRs
 
-- [ADR-0003 Match Engine](../10-Architecture/09-Decisions/ADR-0003-match-engine.md)
+- [ADR-0003 Match Engine](../10-Architecture/09-Decisions/ADR-0003-match-engine.md) - historical TypeScript-first target, superseded as planning target by ADR-0049.
+- [ADR-0049 Swappable Spatial-Event Match Engine](../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine.md) - draft replacement target for match-engine boundary/runtime.
 - [ADR-0005 Save Format](../10-Architecture/09-Decisions/ADR-0005-save-format.md)
 - [ADR-0007 Naming Schema](../10-Architecture/09-Decisions/ADR-0007-naming-schema.md)
 - [ADR-0009 Cursor Orchestration](../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration.md)
@@ -84,6 +85,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
 - [Match Engine Runtime Strategy](../60-Research/match-engine-runtime-strategy.md)
+- [Swappable Spatial-Event Match Engine Research](../60-Research/swappable-spatial-event-match-engine-2026-05-27.md)
 - [Match Engine Simulation Model](../60-Research/match-engine-simulation-model.md)
 - [Presentation Renderer Strategy](../60-Research/presentation-renderer-strategy.md)
 - [Performance Budgets](../60-Research/performance-budgets.md)

@@ -10,6 +10,7 @@ supersedes:
 superseded_by:
 related:
   - [[../../60-Research/ai-narrative-runtime-integration]]
+  - [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../../60-Research/narrative-content-pipeline]]
   - [[../../60-Research/determinism-and-replay]]
   - [[../../60-Research/pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
@@ -65,6 +66,7 @@ Choose **B** as the only candidate worth evaluating.
 
 Runtime LLM may be evaluated for **non-blocking async narrative flavour** only:
 
+- key-event match ticker wording after the match event is committed;
 - post-match newspaper snippets;
 - injury and event reports;
 - weekly summaries;
@@ -84,6 +86,26 @@ Runtime LLM must stay outside authoritative state:
 OpenRouter is the preferred experimental provider path, behind an adapter and
 feature flags. The adapter remains provider-agnostic enough to replace routing
 later.
+
+### Match ticker special case
+
+The FMX-10 match-engine re-evaluation adds a narrow runtime LLM candidate for
+live ticker flavour. This is allowed only as display wording over committed
+events:
+
+- input is `CommentaryInput` built from `MatchEventLog` key events, selected
+  `SpatialSample` context, locale, tone and fallback template ID;
+- eligible events are goals, big chances, cards, injuries, substitutions,
+  halftime and full-time;
+- routine passes, duels and possession changes stay template-based by default;
+- output is `CommentaryLine` with `source: 'llm' | 'template'`, provenance,
+  model metadata, cache key and validation status;
+- the engine never awaits, imports or calls the LLM layer;
+- if OpenRouter times out, errors, exceeds budget or fails validation, the
+  template line is used.
+
+Runtime flag posture for MVP evaluation: beta default-on only for a small
+monitored cohort, with immediate kill switch.
 
 ## Required Runtime Contract
 
@@ -165,6 +187,11 @@ Negative:
   request.
 - Cost-cap tests: feature disables LLM and falls back to templates when budget
   is exceeded.
+- Match-ticker tests: key-event inputs cannot introduce facts absent from the
+  committed `MatchEventLog`.
+- Monitoring from day one: calls, input/output tokens, estimated cost, latency,
+  provider errors, fallback rate, safety rejections and per-match budget
+  exhaustion.
 - Disclosure/provenance tests: every AI-generated result stores
   `aiGenerated: true` and model metadata.
 - Docs gate: legal/compliance review recorded before status can move to

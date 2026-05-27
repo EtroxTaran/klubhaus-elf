@@ -3,13 +3,13 @@ title: ADR-0020 Hybrid-online MVP, Offline-ready Architecture
 status: draft
 tags: [adr, pwa, mvp, offline-ready, indexeddb, sync]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-05-27
 accepted_at: 2026-05-18
 type: adr
 binding: true
 supersedes: ADR-0002-offline-first
 amends: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]]
-related: [[../../00-Index/MVP-Scope]], [[../../60-Research/offline-mvp-scope-and-sync-strategy]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0004-data-model]], [[ADR-0005-save-format]]
+related: [[../../00-Index/MVP-Scope]], [[../../60-Research/offline-mvp-scope-and-sync-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0049-swappable-spatial-event-match-engine]]
 ---
 
 # ADR-0020: Hybrid-online MVP, Offline-ready Architecture
@@ -37,6 +37,10 @@ the staging:
 The new goal is not "online-only forever". It is the least irreversible path:
 ship a hybrid-online MVP while preserving the contracts needed for selective
 offline-first singleplayer later.
+
+FMX-10 reaffirms this as an **A -> C** path: keep the MVP hybrid-online, but
+shape commands now so a later offline manager-week command outbox can be added.
+Do not use local match simulation as an MVP authority shortcut.
 
 ## Decision
 
@@ -107,6 +111,11 @@ To preserve the future path, all bounded contexts must keep:
   adapter later; and
 - deterministic match inputs and engine versions.
 
+For match resolution specifically, future offline support must go through the
+same `MatchEnginePort`, `MatchInput`, replay and version contracts as the
+server engine. Local runs are non-binding previews until a future ADR/GDDR
+explicitly grants local-authoritative singleplayer.
+
 ### 5. Export/import is post-MVP but designed now
 
 User-facing export/import moves after MVP. However, [[ADR-0005-save-format]]
@@ -158,9 +167,11 @@ Phase 2+ can add selective offline in this order:
 
 1. richer read-model caches and offline help;
 2. local drafts with server revalidation;
-3. user-facing export/import using the reserved envelope;
-4. local-authoritative singleplayer adapter for safe flows;
-5. queued intents where conflict rules are explicit; and
+3. command-first manager-week intents with idempotency keys, base versions and
+   explicit rejection/conflict UX;
+4. user-facing export/import using the reserved envelope;
+5. local-authoritative singleplayer adapter for safe flows only after a
+   separate authority decision; and
 6. multiplayer drafts/intents only, with hard server validation.
 
 ## Compliance
@@ -176,6 +187,7 @@ Phase 2+ can add selective offline in this order:
 - Export/import implementation MAY be deferred, but save-envelope assumptions
   MUST NOT be broken.
 - Multiplayer effects MUST remain server-confirmed only.
+- Local match simulation MUST NOT become authoritative in MVP.
 
 ## Design source
 

@@ -3,14 +3,21 @@ title: ADR-0003 Match Engine Architecture
 status: draft
 tags: [adr, match-engine, simulation, web-worker, deterministic]
 created: 2026-05-15
-updated: 2026-05-16
+updated: 2026-05-27
 accepted_at: 2026-05-16
 type: adr
-binding: true
-related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0016-community-dataset-overrides]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[../state-machines/match]], [[../../60-Research/match-engine-simulation-model]], [[../../60-Research/determinism-and-replay]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/tactics-system]]
+binding: false
+superseded_by: ADR-0049-swappable-spatial-event-match-engine
+related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0016-community-dataset-overrides]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[ADR-0049-swappable-spatial-event-match-engine]], [[../state-machines/match]], [[../../60-Research/match-engine-simulation-model]], [[../../60-Research/determinism-and-replay]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/tactics-system]]
 ---
 
 # ADR-0003: Match Engine Architecture
+
+> **2026-05-27 re-evaluation:** This draft is no longer the proposed
+> match-engine planning target. [[ADR-0049-swappable-spatial-event-match-engine]]
+> supersedes it as a draft replacement with a swappable spatial-event boundary
+> and Rust-default runtime spike. Keep this ADR for historical context and for
+> rules that are explicitly carried forward by ADR-0049.
 
 > **CROSS-LINK 2026-05-19: render seam pinned by [[ADR-0026-match-frame-contract]].**
 > The engine emits a typed **event log** only — never frame snapshots, never

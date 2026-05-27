@@ -4,9 +4,9 @@ status: current
 binding: true
 tags: [research, performance, mobile, pwa, ci, web-vitals, lighthouse, budgets]
 created: 2026-05-17
-updated: 2026-05-22
+updated: 2026-05-27
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/08-Crosscutting]], [[match-engine-simulation-model]], [[determinism-and-replay]], [[presentation-renderer-strategy]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/progressive-disclosure-ui]]
+related: [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/08-Crosscutting]], [[match-engine-simulation-model]], [[swappable-spatial-event-match-engine-2026-05-27]], [[determinism-and-replay]], [[presentation-renderer-strategy]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/progressive-disclosure-ui]]
 ---
 
 # Performance Budgets — Device Matrix, CWV Targets, CI Strategy
@@ -16,25 +16,31 @@ related: [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Arc
 > match render-mode policy, world-size presets, and the CI perf-gating
 > strategy for a 2026 offline-first PWA football manager.
 
+> FMX-10 update, 2026-05-27: the general PWA, UI, storage and renderer budgets
+> remain useful. Match-engine runtime and per-match CPU budgets are reopened by
+> [[swappable-spatial-event-match-engine-2026-05-27]] and ADR-0049. Do not treat
+> the historical 50 ms TypeScript Web Worker target as the current production
+> engine target.
+
 ## 1. Context and inputs
 
 This note is mostly assembly + new policy on top of decisions already
 locked elsewhere:
 
-- **Match engine** (D1, [[match-engine-simulation-model]]): ≤ 50 ms /
-  match in Web Worker on 2022 mid-range Android; soft alert 30-40 ms;
-  AI-vs-AI batch ≤ 30 ms (no narrative); heavy-scenario CI perf gate
-  already specified.
-- **Runtime strategy** ([[match-engine-runtime-strategy]]): TypeScript MVP
-  engine with a post-MVP polyglot/Rust extraction gate, plus explicit match
-  quality profiles.
+- **Match engine** (D1, [[match-engine-simulation-model]]): historical
+  Web Worker budget source. FMX-10 moves authoritative engine CPU budgets to
+  the TS-vs-Rust runtime spike in [[swappable-spatial-event-match-engine-2026-05-27]].
+- **Runtime strategy** ([[match-engine-runtime-strategy]]): reopened by FMX-10.
+  The current proposed direction is a swappable spatial-event engine with a
+  TS-vs-Rust spike and Rust-native default if no clear disadvantage appears.
 - **Storage** (A2, [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]):
   ~300 MB soft cap; warn at 70 %; persistent storage requested.
 - **Determinism** (D8, [[determinism-and-replay]]): Chromium-only CI
   determinism gate at MVP; WebKit + Firefox in Phase-2 hardening.
 - **Match engine package** (A3, [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]):
-  framework-agnostic `packages/match-engine/`; Worker bridge contract;
-  ~80-100 KB minified canonical data bundle.
+  historical framework-agnostic `packages/match-engine/` and Worker bridge
+  budget source. ADR-0049 replaces this as proposed target with a runtime-neutral
+  `MatchEnginePort`.
 - **arc42 §Performance** ([[../10-Architecture/08-Crosscutting]]):
   placeholder "Lighthouse mobile ≥ 90 until D9 defines the full device
   matrix"; explicit pointer that D9 owns the device matrix + match-engine

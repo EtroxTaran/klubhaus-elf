@@ -14,6 +14,7 @@ related:
   - [[narrative-content-pipeline]]
   - [[ai-manager-behaviour]]
   - [[determinism-and-replay]]
+  - [[swappable-spatial-event-match-engine-2026-05-27]]
   - [[pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
   - [[../50-Game-Design/GD-0013-narrative-inbox]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
@@ -64,7 +65,7 @@ of truth.
 
 Nico wants the MVP Runtime-LLM line re-checked. The safest candidate is:
 
-**Async flavour only.**
+**Async flavour plus key-event match ticker wording.**
 
 Allowed as a draft MVP candidate:
 
@@ -72,6 +73,8 @@ Allowed as a draft MVP candidate:
 - injury and event reports;
 - weekly or matchday summary paragraphs;
 - transfer negotiation flavour after the negotiation result is already fixed.
+- selected match ticker key events after the match engine has committed the
+  event/spatial facts.
 
 Not included in the MVP candidate:
 
@@ -80,6 +83,7 @@ Not included in the MVP candidate:
 - LLM-driven opponent tactics;
 - LLM-driven transfer decisions;
 - free-form user chat.
+- routine pass/duel/possession narration.
 
 Press, journalist personas, player talks and media ecosystems remain important
 future tracks, but they carry higher UX, balance, latency and legal risk than
@@ -93,6 +97,16 @@ The durable game-design rule should be:
 - selected **intents** may influence mechanics deterministically;
 - generated **text** never influences mechanics;
 - generated text never creates or corrects simulation facts.
+
+Match ticker special case:
+
+- eligible inputs are goals, big chances, cards, injuries, substitutions,
+  half-time and full-time, plus selected spatial context from the committed
+  event/spatial log;
+- routine match flow remains template-only;
+- output carries provenance (`llm` vs `template`), provider/model/version,
+  cache key and validation status;
+- the match engine never imports, awaits or calls an LLM provider.
 
 Examples:
 

@@ -2,7 +2,7 @@
 title: Runtime
 status: current
 tags: [architecture]
-updated: 2026-05-22
+updated: 2026-05-27
 ---
 
 # Runtime
@@ -17,7 +17,8 @@ without changing public bounded-context contracts.
 
 > Authority: [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]],
 > [[09-Decisions/ADR-0011-server-authoritative-multiplayer]],
-> [[09-Decisions/ADR-0014-state-machines]].
+> [[09-Decisions/ADR-0014-state-machines]],
+> [[09-Decisions/ADR-0049-swappable-spatial-event-match-engine]].
 
 ## Async week progression
 
@@ -64,20 +65,24 @@ Detail: [[state-machines/match]] and
 
 ## Match worker runtime modes
 
-The same match contract supports four runtime modes:
+FMX-10 reopens the old client-Web-Worker authority model. The match contract
+must support multiple runtimes, but MVP canonical match resolution is planned as
+server-authoritative unless ADR-0049 is superseded before implementation.
 
 | Mode | Runtime | Authority | Output depth |
 |---|---|---|---|
-| Singleplayer active match | Client Web Worker | Local client | `competitive-full` or `interactive-standard` by device/profile |
-| Singleplayer background fixtures | Client Web Worker batch | Local client | `background-detailed` / `background-fast` |
+| MVP singleplayer active match | Server Match Worker behind `MatchEnginePort` | Server | `competitive-full` or `interactive-standard` by device/profile |
+| MVP singleplayer background fixtures | Server Match Worker batch | Server | `background-detailed` / `background-fast` |
 | Async multiplayer human-involving match | Server Match Worker | Server | `competitive-full` |
 | Async multiplayer AI-vs-AI fixture | Server Match Worker batch | Server | Summary by default; deterministic full replay on demand |
+| Future local preview / what-if | Client Web Worker or WASM adapter behind the same port | Non-authoritative unless future ADR/GDDR promotes it | Same event/spatial contract |
+| Future selective-offline singleplayer | Local adapter behind the same port | Future decision only | Must pass replay/parity/migration gates |
 
-MVP uses the TypeScript `packages/match-engine` implementation everywhere.
-Post-MVP extraction can move the server Match Worker into a separate process.
-A Rust implementation is allowed only after
-[[../60-Research/match-engine-runtime-strategy]]'s polyglot extraction gate
-passes.
+The authoritative runtime is decided by the ADR-0049 TS-vs-Rust spike. A
+pragmatic TypeScript implementation is allowed as a spike/reference adapter, but
+the public contract must force a later engine swap. Rust-native is the default
+production candidate if the spike finds no clear disadvantage. WASM remains a
+future replay/sandbox adapter, not the default MVP authority.
 
 Interactive human matches are not required to know the full result at kickoff.
 They may buffer deterministic event chunks and apply substitutions, tactics and

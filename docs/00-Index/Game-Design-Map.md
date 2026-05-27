@@ -3,7 +3,7 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-05-22
+updated: 2026-05-27
 type: map
 binding: false
 related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]]
@@ -51,6 +51,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../50-Game-Design/tactics-system]]
 - [[../50-Game-Design/set-pieces]]
 - [[../50-Game-Design/match-engine]]
+- [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
 
 ## Modes
 
@@ -95,6 +96,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/progressive-disclosure-research]]
 - [[../60-Research/player-strength-presentation]]
 - [[../60-Research/presentation-renderer-strategy]]
+- [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
 - [[../60-Research/regulations-and-pyramids-research]]
 - [[../60-Research/anstoss-series-deep-dive]]
 - [[../60-Research/club-boss-analysis]]
@@ -119,3 +121,4 @@ the `approved` notes are:
 - [[../60-Research/player-strength-presentation]] (binding research synthesis)
 - [[../50-Game-Design/tactics-system]]
 - [[../50-Game-Design/match-engine]]
+- [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]] (current research input)

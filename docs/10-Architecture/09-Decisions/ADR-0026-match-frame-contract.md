@@ -3,13 +3,13 @@ title: ADR-0026 Match Frame Contract
 status: draft
 tags: [adr, architecture, match-engine, match-view, contract, determinism]
 created: 2026-05-19
-updated: 2026-05-22
+updated: 2026-05-27
 accepted_at: 2026-05-19
 type: adr
 binding: true
 supersedes:
 superseded_by:
-related: [[ADR-0003-match-engine]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0041-presentation-renderer-strategy]], [[ADR-0004-data-model]], [[ADR-0022-animation-game-feel]], [[ADR-0021-revised-tech-stack]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/match-engine-simulation-model]]
+related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-engine]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0041-presentation-renderer-strategy]], [[ADR-0004-data-model]], [[ADR-0022-animation-game-feel]], [[ADR-0021-revised-tech-stack]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/match-engine-simulation-model]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
 ---
 
 # ADR-0026: Match Frame Contract
@@ -24,7 +24,14 @@ accepted
 
 ## Context
 
-[[ADR-0003-match-engine]] locks a deterministic, Web-Worker, **event-emitting**
+FMX-10 update, 2026-05-27: this ADR remains the 2D presentation seam, but its
+engine-side producer is now the runtime-neutral event/spatial log from ADR-0049
+rather than a concrete TypeScript `packages/match-engine` package. `MatchFrame`
+is still a derived projection; canonical match authority stays in the engine
+event log and spatial samples.
+
+[[ADR-0003-match-engine]] originally locked a deterministic, Web-Worker,
+**event-emitting**
 match engine: integer-millimetre coordinates on a 105000×68000 grid, ~17 event
 types, batched `postMessage`, **no persisted intermediate snapshots** —
 resim-from-kickoff is the replay model
@@ -43,8 +50,9 @@ packages. `packages/match-engine` is still a `'planned'` stub, so the contract
 can be defined cleanly **now**, before either side implements against a wrong
 assumption.
 
-This ADR is the single contract both ADR-0003 and ADR-0024 reference. It does
-not re-decide the engine model or the renderer abstraction; it pins the seam.
+This ADR is the single 2D frame contract both the engine boundary and ADR-0024
+reference. It does not re-decide the engine model or the renderer abstraction;
+it pins the projection seam.
 
 ## Decision
 
@@ -57,10 +65,10 @@ pure utilities shared across the engine ↔ renderer seam. It depends on nothing
 but TypeScript (mirrors `packages/db-schema`'s posture). It is consumed via the
 existing path mapping `@soccer-manager/match-contract` (→
 `packages/match-contract/src`). It is referenced from the root `tsconfig.json`
-project list and imported by both `packages/match-engine` and `apps/web`.
+project list and imported by the selected engine adapter and `apps/web`.
 
 Rationale: a contract owned by the engine package would force `apps/web` to
-depend on the full engine bundle to see one type; a contract owned by
+depend on a full engine bundle to see one type; a contract owned by
 `apps/web` would violate [[ADR-0003-match-engine]]'s "engine is framework-
 agnostic, callers go through the public interface". A neutral leaf package is
 the only option that keeps both ADR-0003's import rule and ADR-0024's
@@ -174,7 +182,8 @@ frame.
 
 Only `competitive-full` and `interactive-standard` produce renderable frames at
 MVP. `background-detailed` and `background-fast` are summary-only / no-spatial
-([[ADR-0003-match-engine]] quality profiles). The contract exposes
+([[ADR-0049-swappable-spatial-event-match-engine]] carries the replacement
+quality-profile boundary). The contract exposes
 `isRenderableProfile(profile)`; the `apps/web` renderer factory
 `getMatchRenderer(profile)` returns `null` for non-renderable profiles. The
 factory itself lives in `apps/web` (renderer construction is app-side); the

@@ -3,11 +3,11 @@ title: ADR-0011 Server-Authoritative Multiplayer
 status: draft
 tags: [adr, architecture, multiplayer, security]
 created: 2026-05-16
-updated: 2026-05-18
+updated: 2026-05-27
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[ADR-0003-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0013-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/raw-perplexity/raw-architecture]]
+related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0013-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
 # ADR-0011: Server-Authoritative Multiplayer
@@ -97,7 +97,8 @@ server-sim with on-demand replay** pattern (Perplexity research,
 | AI ↔ AI | `background-detailed` or `background-fast` by fixture relevance | RNG seed + lineups + tactics + quality profile + summary (result + key stats); **no event log by default** |
 
 The engine is deterministic given seed + lineups + tactics (per
-[[ADR-0003-match-engine]] and Wave 3 gap D8). Therefore an AI vs AI
+[[ADR-0003-match-engine]] as historical input and ADR-0049 as proposed
+replacement target, plus Wave 3 gap D8). Therefore an AI vs AI
 match can be **re-simulated on demand** to produce a full event log
 whenever a user wants to watch the match (e.g. via a watch-party
 proposal in [[ADR-0015-spectator-snapshot-streaming]]).
@@ -120,16 +121,15 @@ worker still runs the full engine but emits only the summary stream by
 default. Promotion to "full log" is triggered by either (a) a
 watch-party referencing this match, or (b) an admin audit request.
 
-Match worker version pinning: every match record stores
-`engine_version`. Re-sim must use the same version. Engine upgrades
-that change determinism require a forward migration of stored matches
-(re-sim and re-store seeds when needed).
+Match worker version pinning: every match record stores `engine_id`,
+`contract_version`, `rng_version`, input hash and engine version. Re-sim must
+use the same compatible adapter. Engine upgrades that change determinism require
+old-engine replay fallback, golden replay parity and an explicit migration path.
 
-Runtime note: MVP multiplayer simulation uses the TypeScript
-`packages/match-engine` implementation from [[ADR-0003-match-engine]]. A
-future extracted Rust Match Worker may become authoritative only after the
-polyglot extraction gate in
-[[../../60-Research/match-engine-runtime-strategy]] passes. This keeps the
+Runtime note: FMX-10 replaces the old TypeScript-only multiplayer runtime
+assumption with the ADR-0049 `MatchEnginePort` boundary. The first authoritative
+runtime is decided by the TS-vs-Rust spike; Rust-native is the default
+production candidate if the spike shows no clear disadvantage. This keeps the
 AI-vs-AI policy from drifting into a separate balance model.
 
 ### Save integrity (gap B2 outcome)
