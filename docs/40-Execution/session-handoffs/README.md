@@ -42,6 +42,9 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-27-fmx-13-club-economy-blueprint]] - anchored the club-economy
+  raw report into research synthesis, draft GDDR/system notes, feature spec,
+  ADR-0050 and implementation-contract notes.
 - [[2026-05-27-ai-narrative-runtime-integration]] - promoted the two
   narrative/LLM raw reports into AI narrative runtime research, draft GD-0018
   and draft ADR-0030.

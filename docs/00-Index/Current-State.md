@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-27
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
 ---
 
 # Current State
@@ -40,6 +40,19 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `MatchEnginePort`, 2D/ticker/replay from committed event/spatial facts, and a
 > **Spike, Rust-default** runtime posture. The older TypeScript-MVP runtime
 > stance is no longer the proposed target.
+
+> **FMX-13 Club Economy re-evaluation (2026-05-27).** Nico directed that the
+> club-economy blueprint should be fully anchored, not left as raw research.
+> Draft [[../60-Research/club-economy-blueprint-2026-05-27]],
+> [[../50-Game-Design/GD-0008-finance-economy]],
+> [[../50-Game-Design/economy-system]],
+> [[../20-Features/feature-club-economy-mvp-pillar]],
+> [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+> and [[../30-Implementation/club-economy-accounting-ledger]] now capture the
+> proposed target: Economy as an MVP pillar, weekly ledger, full accounting,
+> staged insolvency, Top-5 country profiles + abstract fallback, ranges/formulas
+> before final constants, Progressive UI and Investor rescue as SP-only
+> future-scope.
 
 ## Documentation Baseline (2026-05-22)
 
@@ -202,6 +215,14 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   consumers and Rust-default runtime spike. ([[../50-Game-Design/match-engine]],
   [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]],
   [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]])
+- **Club economy gameplay profile (draft)**: MVP economy pillar with weekly
+  Club Management ledger, full-accounting projections, staged insolvency,
+  country economy profiles and progressive finance UI. Final constants and
+  approval remain Nico-gated. ([[../60-Research/club-economy-blueprint-2026-05-27]],
+  [[../50-Game-Design/GD-0008-finance-economy]],
+  [[../50-Game-Design/economy-system]],
+  [[../20-Features/feature-club-economy-mvp-pillar]],
+  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]])
 - **Player lifecycle and systemic events**: squad structure, player
   development, training/medicine, stadium/campus and match-day event
   specs are approved. Development is weekly and causal; PA is true hidden

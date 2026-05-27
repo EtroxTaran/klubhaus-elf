@@ -76,7 +76,7 @@ active work.
 | [[GD-0005-training]] | Training & development | draft | ADR-0003 |
 | [[GD-0006-transfers]] | Transfers & scouting | draft | ADR-0027 |
 | [[GD-0007-youth]] | Youth academy | draft | ADR-0027, ADR-0007 |
-| [[GD-0008-finance-economy]] | Finance, economy & stadium | draft | ADR-0027 |
+| [[GD-0008-finance-economy]] | Finance, economy & stadium; FMX-13 weekly ledger / full-accounting draft | draft | ADR-0027, ADR-0050 |
 | [[GD-0009-league-structure]] | League & competition structure | draft | ADR-0007, ADR-0027 |
 | [[GD-0010-ai-world]] | AI managers & world simulation | draft (Wave 2 gated) | ADR-0003, ADR-0009 |
 | [[GD-0011-career-progression]] | Career progression, board & objectives | draft | ADR-0003 |
@@ -99,6 +99,7 @@ active work.
 - [[economy-system]] - cash-flow, budget pots, KPIs.
 - [[sponsorship-portfolio]] - 4-tier sponsor inventory at asset level.
 - [[stadium-and-campus]] - stadium tiers + Anstoss-style attractions + club campus.
+- [[../20-Features/feature-club-economy-mvp-pillar]] - draft MVP economy pillar for weekly ledger, full accounting and staged insolvency.
 
 ## Fans and brand
 

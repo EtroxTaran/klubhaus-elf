@@ -41,6 +41,8 @@ operational runbooks. Current implementable notes are classified by
 - [[secrets-management]] - full secrets and restore-drill runbook.
 - [[secrets-rotation]] - narrow Cloud-Agent credential boundary policy.
 - [[transfer-market-implementation-plan]] - transfer-market implementation slice.
+- [[club-economy-accounting-ledger]] - draft Club Economy ledger contracts,
+  read models and staged insolvency implementation surface.
 
 ## Historical Notes
 

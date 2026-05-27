@@ -3,7 +3,7 @@ title: Project Goals
 status: current
 tags: [product, meta]
 created: 2026-05-16
-updated: 2026-05-18
+updated: 2026-05-27
 type: project
 binding: true
 related: [[Current-State]], [[MVP-Scope]], [[Glossary]]
@@ -38,7 +38,7 @@ future capability.
 5. M4 League System and Schedule.
 6. M5 Squad and Player Attributes.
 7. M6 Training and Transfer foundations.
-8. M7 Finance, Stadium and run-risk feedback.
+8. M7 Club Economy MVP pillar, Stadium and staged economy-crisis feedback.
 9. M8 Youth Academy and deeper long-run systems.
 
 ## Source Links

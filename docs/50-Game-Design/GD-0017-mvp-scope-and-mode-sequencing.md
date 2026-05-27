@@ -75,7 +75,8 @@ The first playable includes:
 - starting country/region and low-tier starting context;
 - weekly heartbeat with one advance verb;
 - basic squad/tactics/match loop;
-- cash/run-risk feedback;
+- Club Economy MVP pillar foundation: weekly ledger, runway/risk feedback and
+  staged crisis visibility;
 - first match and match report;
 - feed-card tutorial guidance; and
 - visible "requires connection" states for final authoritative actions.

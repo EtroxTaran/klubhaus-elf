@@ -13,6 +13,11 @@ machine(s), storage isolation, and contracts (commands / queries / domain
 events). The match engine is deliberately behind a runtime-neutral port so it
 can move to Rust without changing caller contracts.
 
+FMX-13 adds a second load-bearing domain port: Club Management owns the
+accounting ledger and economy read models behind
+[[09-Decisions/ADR-0050-club-economy-accounting-ledger]]. Finance remains inside
+Club Management, not a shared utility package.
+
 > Authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]]. Full map at
 > [[bounded-context-map]].
 
@@ -106,6 +111,10 @@ Each folder owns `commands.ts`, `events.ts`, `queries.ts`,
 
 - **Transactional outbox** ([[09-Decisions/ADR-0028-postgres-transactional-outbox]])
   for same-Postgres-transaction domain-event publication.
+- **Club Economy accounting ledger**
+  ([[09-Decisions/ADR-0050-club-economy-accounting-ledger]]) for weekly finance
+  facts, accounting projections, budget envelopes, country economy profiles and
+  insolvency state.
 - **Job queue + scheduler** for timers, reminders, escalation,
   auto-resolves.
 - **Realtime channel** ([[09-Decisions/ADR-0023-realtime-transport]])

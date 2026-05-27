@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-17
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/transfer-market-simulation]], [[transfer-market-and-contracts]]
+related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/transfer-market-simulation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[transfer-market-and-contracts]], [[economy-system]]
 ---
 
 # System Interplay - The Five Master Feedback Loops
@@ -125,6 +125,11 @@ The transfer market is where the pressure becomes visible: boards can demand
 wage cuts, owners can force sales, players can become wantaway and protected
 stars only move when `sellPressure` exceeds `protectionScore` or the buyer
 offers a genuinely exceptional package.
+
+FMX-13 extends the loop with full accounting: aggressive investment may look
+legal in transfer-budget terms while creating scheduled cash obligations,
+amortisation and compliance pressure. The loop is evaluated through
+[[economy-system]] ledger projections, not through a single cash balance.
 
 Detail:
 

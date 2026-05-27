@@ -153,7 +153,10 @@ Transfer budget and cash are separate:
 
 - A high transfer budget can still fail if liquidity cannot support upfront
   payment, wages and instalments.
-- Instalments create future liabilities and affect financial health.
+- Instalments create future liabilities in the [[economy-system]] ledger and
+  affect cash runway.
+- Transfer fees create amortisation in Expert accounting views; this is distinct
+  from cash timing.
 - Sell-on and bonus obligations reduce expected net proceeds.
 - Training rewards and solidarity-style deductions reduce seller net proceeds
   and can create small academy income for former clubs.

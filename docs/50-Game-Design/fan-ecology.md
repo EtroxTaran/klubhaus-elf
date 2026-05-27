@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-16
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]]
+related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]]
 ---
 
 # Fan Ecology - Six Segments and Atmosphere Engine
@@ -14,6 +14,11 @@ related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[sta
 Fan culture must produce *sporting, economic and political* effects all at
 once. A single "mood" gauge is too coarse - real fans split into segments
 that react to *different* things and pull the club in opposing directions.
+
+FMX-13 makes fan ecology a direct economy input: fan segments drive attendance,
+season-ticket renewal, catering, merchandise, hospitality demand and sponsor
+fit. They never post money directly; Club Management reads their public outputs
+when producing [[economy-system]] ledger entries.
 
 ## 1. Six supporter segments
 
@@ -94,6 +99,10 @@ per_capita_revenue = base
 
 This is why fan-zone build-out has cascading effects (see
 [[stadium-and-campus]] §4).
+
+The revenue model feeds the weekly ledger as matchday and non-matchday facts.
+Expert finance views may show which fan segment moved a revenue component, but
+the segment state remains owned by this system.
 
 ## 5. Fan politics events
 

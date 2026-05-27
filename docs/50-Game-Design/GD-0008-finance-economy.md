@@ -1,86 +1,119 @@
 ---
 title: GD-0008 Finance, Economy & Stadium
 status: draft
-tags: [game-design, gddr, finance, economy]
+tags: [game-design, gddr, finance, economy, accounting, fmx-13]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-27
 type: game-design
-binding: true
-related: [[README]], [[GD-0011-career-progression]], [[GD-0012-onboarding]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../60-Research/competitor-matrix]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+binding: false
+linear: FMX-13
+related:
+  - [[README]]
+  - [[economy-system]]
+  - [[stadium-and-campus]]
+  - [[sponsorship-portfolio]]
+  - [[mode-create-a-club-roguelite]]
+  - [[../60-Research/club-economy-blueprint-2026-05-27]]
+  - [[../20-Features/feature-club-economy-mvp-pillar]]
+  - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
 ---
 
 # GD-0008: Finance, Economy & Stadium
 
 ## Status
 
-approved
+draft
 
-> **Approved** — the **Decided / strong** section is ratified design
-> direction; an ADR or implementation must not contradict it. The
-> **Open (Wave 2)** items are NOT approved and not implementable until
-> Wave 2 research closes.
+All game-design decisions are reopened. This record captures the FMX-13 draft
+direction and must be ratified by Nico before implementation authority.
 
 ## Date
 
-2026-05-17
+2026-05-27
 
 ## Player experience goal
 
-Money as a strategic constraint the player learns to manage — operating budget
-vs investment budget — never an opaque number that just goes down.
+Money should feel like a real club constraint, not a decorative balance. The
+player should understand the next few dangerous weeks, see how sporting
+ambition creates liabilities, and recover from financial pressure through clear
+choices before the run collapses.
 
-## Decided / strong
+## Decided / strong draft direction
 
-- **Two-layer finance (MVP-blocking)**: separate operating P&L (wages, gate,
-  sponsor, federation levy) from investment budget (transfers, stadium)
-  (anstoss-series-deep-dive §7 rec. 7, §3 "Finance").
-- Anstoss model drawn from: operating revenue vs expenses incl. **federation
-  levy ≈4% of monthly income**; **presidential spending freeze on negative
-  balance** (anstoss-series-deep-dive §3 "Finance").
-- Stadium economy: capacity + on-grounds buildings each with ROI;
-  **per-match ticket pricing** by prestige; amenities affect mood. Attractions
-  sub-economy is **post-MVP** (anstoss-series-deep-dive §3, §7 post-MVP 12).
-- Player levers (adopt): ticket pricing, sponsor recurring revenue, transfer
-  P&L, stadium upgrades, staff facility slots (club-boss-analysis "Finances").
-- **Starting cash / starting team rating are tunable constants** and a pacing
-  lever; **patch-note transparency** about such tuning is a trust mechanic
-  (club-boss-analysis takeaway 11).
-- **MVP must ship *some* stadium economy** (≥ an upgrade tree)
-  (competitor-matrix "MVP-expectation risks").
-- All finance actions work **fully offline** (anstoss-series-deep-dive §5
-  takeaway 8; ADR-0002 accepted).
+- **Economy is an MVP pillar.** The first playable needs more than a
+  post-match cash badge: it needs the finance spine that makes Create-a-Club
+  Roguelite stakes credible.
+- **Weekly ledger is the target tick.** Every week posts deterministic finance
+  facts; monthly and season reports are projections.
+- **Full accounting is the long-term model.** Cash, P&L, balance-sheet-like
+  statements, amortisation, liabilities, receivables, reserves and compliance
+  ratios are separate views over one Club-owned ledger.
+- **Liquidity, profit and compliance are distinct.** A club can be cash-poor
+  but profitable, profitable but non-compliant, or solvent while violating board
+  risk policy.
+- **Insolvency is staged.** Negative cash starts a crisis path: warning,
+  overdraft/freeze, arrears, licence review and finally run end or control loss.
+- **Transfer budget is not cash.** Transfer packages create immediate cash
+  movements, scheduled liabilities, amortisation, wage obligations and future
+  contingent events.
+- **Country economy profiles are data.** Germany, England, France, Italy and
+  Spain get profile-specific payment cadence, licence/compliance and economy
+  rules, with an abstract fallback.
+- **Ranges and formulas beat final constants.** This record defines invariants
+  and calibration ranges; final numbers require soak tests and owner sign-off.
+- **Progressive disclosure stays mandatory.** Quick shows runway and action
+  cards; Standard shows KPIs and forecast; Expert shows accounting statements
+  and schedules.
+- **Investor rescue is not MVP.** It remains an SP-only future-scope
+  monetisation decision, not a finance-system requirement.
 
-## Open (Wave 2)
+## Open before approval
 
-- **R2-06 (high)** — board-ambition escalations, ownership transitions,
-  prestige/legacy metrics, the "cash pile, nothing to spend" end-game plateau.
-- **R2-02 (critical)** — budget/wage/attendance tier model parameterised by
-  fictional-country macro indicators. Economy calibration is Weak in Wave-1.
+- Final thresholds for staged insolvency and licence loss.
+- Which accounting read models appear in the very first playable.
+- Country-profile ranges for lower tiers.
+- Balance-test targets for healthy insolvency rate, wage ratio and runaway cash.
+- Monetisation decision for Investor rescue, including legal and community risk.
 
 ## Rationale
 
-The two-budget split is the core financial decision and the onboarding teaching
-target (anstoss-series-deep-dive §7 rec. 7; club-boss-analysis takeaway 7).
+The raw economy report and external sources both point to the same design
+lesson: football finance is mostly timing, obligation and risk, not one bank
+number. FMX's differentiator is the feedback loop between club building, sport,
+fans, stadium and debt. A weekly ledger plus full accounting keeps that loop
+auditable, testable and explainable.
 
 ## Consequences
 
 Positive:
 
-- Sustainable-club fantasy with a clear learnable model.
+- Economy can carry Roguelite tension from the first playable onward.
+- Transfer, stadium, sponsor and fan decisions get real cost surfaces.
+- Expert depth can grow without changing the underlying model.
+- Long-save balance tests can target ledger projections instead of UI strings.
 
 Negative / constraints:
 
-- All economy numbers deferred to Wave 2 (R2-02/R2-06).
+- More modelling work than a cash-only MVP.
+- Requires Club Management contracts before code.
+- Requires careful onboarding so first-run players are not buried in accounting.
+- Final constants cannot be guessed; they need simulation evidence.
 
 ## Supersedes
 
-None
+None. This updates the reopened draft record; no approved decision is being
+silently superseded.
 
 ## Feeds ADRs
 
-- [[../10-Architecture/09-Decisions/ADR-0004-data-model]] (club/finance schema)
+- [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+- [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]
 
 ## Related
 
-- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/club-boss-analysis]] · [[../60-Research/competitor-matrix]]
-- [[README]] — hub · siblings: [[GD-0011-career-progression]] · [[GD-0012-onboarding]] · [[GD-0009-league-structure]]
+- Research: [[../60-Research/club-economy-blueprint-2026-05-27]] ·
+  [[../60-Research/raw-perplexity/raw-club-economy-simulation]]
+- System note: [[economy-system]]
+- Feature: [[../20-Features/feature-club-economy-mvp-pillar]]
+- Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+- [[README]] — Game Design Log

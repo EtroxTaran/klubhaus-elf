@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-22
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[economy-system]], [[fan-ecology]], [[regulations-and-compliance]]
+related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[economy-system]], [[fan-ecology]], [[regulations-and-compliance]]
 ---
 
 # Stadium and Club Campus - Build-out and On-grounds Economy
@@ -20,6 +20,12 @@ proved that buildings on the grounds (Würstchenbude, Bierzelt, Fanshop,
 Disco) carry more long-term player engagement than any tactic screen. This
 is one of our three flagship differentiators - see
 [[../60-Research/systems-design-synthesis]] §4.
+
+FMX-13 clarifies the accounting boundary: stadium and campus decisions do not
+own their own money model. They emit facility, matchday and venue-operation
+facts that Club Management posts into [[economy-system]] through the accounting
+ledger described in
+[[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]].
 
 ## 1. Three stadium layers
 
@@ -128,6 +134,15 @@ maintenance_cost_per_year = base_maintenance * age_factor
 
 Buildings age. Without renovation, modifiers decay over 5-10 years. This
 forces the player to keep reinvesting, not just hoard upgrades.
+
+Accounting effects:
+
+- Build commitments create scheduled cash obligations and a capitalised
+  facility asset in the Expert view.
+- Maintenance is a recurring weekly cost.
+- Renovation resets decay and posts both cash and asset-value effects.
+- Crash-build for promotion compliance posts a premium cost and may temporarily
+  reduce capacity.
 
 ## 7. Match-day revenue calculation
 

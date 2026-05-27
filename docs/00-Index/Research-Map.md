@@ -135,6 +135,16 @@ before any promotion.
   [[../60-Research/raw-perplexity/raw-club-economy-simulation]] (economy detail),
   [[../60-Research/raw-perplexity/raw-match-engine-offline-and-disconnect]] (confirms ADR-0011/0020/0024/0026).
 
+## Club Economy Blueprint (2026-05-27)
+
+- [[../60-Research/club-economy-blueprint-2026-05-27]] — FMX-13 synthesis of the
+  club-economy raw report into the draft Economy MVP pillar: weekly ledger, full
+  accounting, staged insolvency, Top-5 country profiles + abstract fallback and
+  SP-only investor future-scope. Feeds draft
+  [[../50-Game-Design/GD-0008-finance-economy]],
+  [[../20-Features/feature-club-economy-mvp-pillar]] and
+  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 - [[../60-Research/ai-narrative-runtime-integration]] — synthesized follow-up

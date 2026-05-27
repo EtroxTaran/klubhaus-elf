@@ -77,11 +77,13 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 - [ADR-0043 Notification and Messaging Platform](../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform.md)
+- [ADR-0050 Club Economy Accounting Ledger](../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger.md) - draft Club Management finance ledger, accounting projections, country economy profiles and staged insolvency boundary.
 
 ## Current Binding Research and Specs
 
 - [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md)
 - [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md)
+- [Club Economy Accounting Ledger](../30-Implementation/club-economy-accounting-ledger.md) - draft implementation contracts for weekly ledger entries, economy read models and insolvency state.
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
 - [Match Engine Runtime Strategy](../60-Research/match-engine-runtime-strategy.md)

@@ -6,7 +6,7 @@ created: 2026-05-18
 updated: 2026-05-18
 type: feature
 binding: true
-related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[feature-club-economy-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
 ---
 
 # Feature - Roguelite MVP First Playable
@@ -36,7 +36,8 @@ In scope:
 - First Home dashboard with feed-card guidance.
 - Basic tactics choice from starter presets.
 - First match resolution and report.
-- Cash/run-risk feedback after the match.
+- Club Economy MVP pillar foundation: weekly ledger, runway/risk feedback and
+  staged crisis visibility.
 - Server-confirmed progression; Dexie cache/drafts only.
 - Offline shell/read/draft behavior with explicit "requires connection" copy
   for final actions.
@@ -48,6 +49,7 @@ Out of scope:
 - Save export/import UI.
 - Async multiplayer, P2P transfers and watch parties.
 - Deep multi-run legacy economy beyond minimum first-run flags.
+- Final economy balance constants and payment/IAP systems.
 
 ## Gherkin scenarios
 
@@ -107,4 +109,5 @@ Feature: Roguelite MVP first playable
 - [[../00-Index/MVP-Scope]]
 - [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
 - [[../50-Game-Design/mode-create-a-club-roguelite]]
+- [[feature-club-economy-mvp-pillar]]
 - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]

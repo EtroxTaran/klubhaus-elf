@@ -33,6 +33,8 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../50-Game-Design/economy-system]]
 - [[../50-Game-Design/sponsorship-portfolio]]
 - [[../50-Game-Design/stadium-and-campus]]
+- [[../20-Features/feature-club-economy-mvp-pillar]]
+- [[../60-Research/club-economy-blueprint-2026-05-27]]
 
 ## Fans + brand
 
@@ -90,6 +92,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[Project-Goals]]
 - [[../60-Research/00-summary]]
 - [[../60-Research/systems-design-synthesis]]
+- [[../60-Research/club-economy-blueprint-2026-05-27]]
 - [[../60-Research/mode-design-research]]
 - [[../60-Research/async-multiplayer-research]]
 - [[../60-Research/fan-culture-segmentation-research]]

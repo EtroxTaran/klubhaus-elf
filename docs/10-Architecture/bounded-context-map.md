@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-22
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]]
 ---
 
 # Bounded Context Map
@@ -35,7 +35,7 @@ change, not a refactor.
 |---|---|---|
 | **Identity & Access** | User, sessions, roles, device state | Auth claims, membership context |
 | **League Orchestration** | Season, week, match-day, mode, pause, quorum | League status, deadlines, lifecycle events |
-| **Club Management** | Finances, infrastructure, sponsors, board, fans | Club state, board pressure, facility modifiers |
+| **Club Management** | Finance ledger, accounting projections, budgets, infrastructure, sponsors, board, fans, insolvency state | Club state, economy snapshots, board pressure, facility modifiers |
 | **Squad & Player** | Player base data, fitness, morale, contracts, injuries | Impact Lens projections, squad projections, player state |
 | **Training** | Training plan, load, development signals | Training outcomes, fatigue signals, growth deltas |
 | **Transfer** | Market valuation, opportunities, offers, clause packages, negotiation cases, deadlines, escalation | Transfer state, valuation bands, pressure signals, completed deals |
@@ -117,6 +117,12 @@ Training may emit `TrainingWeekProcessed` and `InjuryRiskUpdated`, Squad &
 Player may emit `PlayerDevelopmentDeltaApplied` and `TrainingInjuryOccurred`,
 Club Management may emit `VenueEventBooked` and `MatchdayEventTriggered`,
 and Notification may render deterministic projections from those facts.
+
+FMX-13 adds the Club Economy accounting boundary
+([[09-Decisions/ADR-0050-club-economy-accounting-ledger]]): Transfer, Match,
+League, Squad and Stadium/Fan systems may produce facts that affect money, but
+only Club Management posts ledger entries and exposes finance read models. No
+other context writes finance tables or recalculates accounting state.
 
 ### 3.1 Impact Lens projection
 
