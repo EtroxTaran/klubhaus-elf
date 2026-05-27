@@ -55,7 +55,7 @@ the risk only where it lands on irreversible, money-critical state.**
 | **Native partitioning requires app nightly job** *(Wave 2)* | `pg_partman` would add a Postgres extension dep on the Hetzner box | Nightly job creates next-month partition + moves >60d rows; alert on missing partition (would block outbox insert) |
 | **Generated `db-schema` mirror drift** *(Wave 2)* | Hand-keeping a mirror is fragile; cross-package `.ts` imports are composite-build-incompatible | `pnpm db:generate && git diff --exit-code` CI gate |
 | **`packages/match-contract` is one more composite root** *(Wave 2)* | Leaf-package size is trivial; alternative homes (engine or web) violate ADR-0003 framework-agnostic rule | Mirrors `db-schema` posture (zero runtime deps); one root tsconfig reference |
-| **Optional 3D/2.5D presentation renderer scope creep** *(2026-05-22)* | Stadium, ceremony and highlight scenes can create WebGL/WebGPU, asset and mobile GPU risk if mistaken for core gameplay | ADR-0041 keeps it presentation-only, post-MVP, lazy-loaded, device-gated and fallback-safe; no renderer-side authority; Three.js/R3F is the only planned optional 3D stack, not a dependency now |
+| **Optional 3D/2.5D presentation renderer scope creep** *(2026-05-22)* | Stadium, ceremony and highlight scenes can create WebGL/WebGPU, asset and mobile GPU risk if mistaken for core gameplay | ADR-0041 keeps it presentation-only, post-MVP, lazy-loaded, device-gated and fallback-safe; no renderer-side authority; Babylon.js is the planned optional 3D engine (ADR-0047), not a dependency now |
 
 `"latest"` dependency pinning was a reliability **defect**, not an accepted
 risk — fixed in the ADR-0021 PR (all deps pinned + Renovate).
