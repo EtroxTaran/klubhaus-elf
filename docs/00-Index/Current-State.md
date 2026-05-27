@@ -127,10 +127,12 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   & Stats + Canvas 2D; no interactive/authoritative browser 3D match view.
   Optional post-MVP 2.5D/3D stadium, campus, trophy, celebration or curated
   highlight scenes are presentation-only, lazy-loaded and fallback-safe.
-  Three.js + React Three Fiber is the only planned optional 3D stack; PixiJS,
-  Babylon.js and PlayCanvas require a superseding ADR.
+  **Babylon.js** is the optional 3D/iso presentation engine
+  ([[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]], supersedes
+  the earlier Three.js/R3F choice); PixiJS/PlayCanvas/Three.js are not planned. Live match
+  render stays Canvas 2D.
 - **Mobile:** PWA + planned Capacitor shell ([[../10-Architecture/09-Decisions/ADR-0025-mobile-delivery]]).
-- **Presentation 3D layer (post-MVP, Phase 2):** Three.js + React Three Fiber
+- **Presentation 3D layer (post-MVP, Phase 2):** **Babylon.js** (ADR-0047)
   for isometric stadium / campus view + kuratierte Event-Cutscenes (walkout,
   trophy lift, goal celebration) + static highlight backdrops
   ([[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]). Lives

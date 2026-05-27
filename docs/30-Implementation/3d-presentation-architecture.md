@@ -15,6 +15,8 @@ superseded_by:
 
 # 3D Presentation Architecture
 
+> **2026-05-27 — engine = Babylon.js per [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]]** (replaces Three.js/R3F). The `SceneDescriptor` / `SceneRenderer` / `CapabilityGate` design and the 2D fallback below are unchanged; only the renderer implementation is Babylon. Title/`three-js` tags are historical.
+
 > Authority: [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]
 > Feature: [[../20-Features/feature-3d-presentation-layer]]
 > Roadmap: Phase 2 (after MVP slice 6) — see [[mvp-implementation-roadmap]].

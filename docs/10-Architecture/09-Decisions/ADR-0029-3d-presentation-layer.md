@@ -9,7 +9,7 @@ type: adr
 binding: true
 supersedes:
 amends: []
-amended_by: [[ADR-0041-presentation-renderer-strategy]]
+amended_by: [[ADR-0041-presentation-renderer-strategy]], [[ADR-0047-babylon-3d-presentation-engine]]
 related: [[../../60-Research/performance-budgets]], [[../../20-Features/feature-stadium-builder]], [[../../20-Features/feature-3d-presentation-layer]], [[../../30-Implementation/3d-presentation-architecture]], [[ADR-0008-mobile-first-ui]], [[ADR-0010-design-system]], [[ADR-0017-observability-logging]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-stack]], [[ADR-0022-animation-game-feel]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[ADR-0041-presentation-renderer-strategy]], [[../08-Crosscutting]], [[../bounded-context-map]]
 ---
 
@@ -36,6 +36,11 @@ contributors who would otherwise stop at the literal "no 3D ever" wording.
 > Three.js/R3F 3D Presentation Layer remains accepted. ADR-0041 tightens the
 > renderer portfolio: PixiJS is no longer a planned match-view upgrade, and
 > Babylon.js / PlayCanvas are not planned fallback engines.
+
+> **AMENDED 2026-05-27 by [[ADR-0047-babylon-3d-presentation-engine]].** §2's framework
+> choice is superseded: the optional 3D engine is now **Babylon.js** (not Three.js/R3F).
+> The `SceneDescriptor`/`CapabilityGate` contract, fallbacks and perf budgets are
+> unchanged; live match render stays Canvas 2D.
 
 ## Date
 
