@@ -24,6 +24,14 @@ historical artifact — **the code and this doc win** on any conflict).
 > wiki theme derives from. Update procedure & recurring-migration path:
 > [[../30-Implementation/design-sync-workflow]].
 
+> **Tokenized · Reusable · Responsive — immer.** One token source (semantic
+> `--color-*` → runtime `--c-*`; never hardcode hex, see §2), reusable components,
+> responsive by default. This holds beyond the app: the styleguide deployment's hub
+> **and** the isometric 3D scene consume the *same* token layer
+> (`tools/styleguide/overlay/assets/aurelia.css` `:root`; the Babylon scene reads the
+> CSS tokens at runtime). Iso club-campus research:
+> [[../60-Research/isometric-stadium-campus-research]].
+
 ## 1. Direction & rationale
 
 Direction **A — "Sonntagszeitung"**: a tabloid-warm football manager — soft

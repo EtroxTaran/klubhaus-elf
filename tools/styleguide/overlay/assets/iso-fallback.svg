@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img"
-     aria-label="Isometrische Vorschau des Aurelia-Campus: Kachel-Raster mit zentralem Spielfeld und Tribünenblöcken.">
+     aria-label="Isometrische Vorschau des Aurelia-Vereinsgeländes: Stadion mit Tribünen, Flutlicht und Anzeigetafel, Vorplatz, Parkplätze und umliegende Campus-Gebäude.">
   <defs>
     <radialGradient id="bg" cx="50%" cy="42%" r="70%">
       <stop offset="0%" stop-color="#2a221c"/>
@@ -8,50 +8,71 @@
   </defs>
   <rect width="800" height="520" fill="url(#bg)"/>
 
-  <!-- ground rhombus -->
-  <polygon points="400,70 720,250 400,430 80,250" fill="#efe6d4" stroke="#d9cdb4" stroke-width="2"/>
+  <!-- ground -->
+  <polygon points="400,52 760,250 400,448 40,250" fill="#e8dfcb" stroke="#d9cdb4" stroke-width="2"/>
 
-  <!-- scattered campus tiles (two cream tones) -->
-  <g stroke="#d9cdb4" stroke-width="1.2">
-    <polygon points="220,170 260,192 220,214 180,192" fill="#f4ede0"/>
-    <polygon points="300,140 340,162 300,184 260,162" fill="#e9dfc8"/>
-    <polygon points="170,250 210,272 170,294 130,272" fill="#e9dfc8"/>
-    <polygon points="250,300 290,322 250,344 210,322" fill="#f4ede0"/>
-    <polygon points="560,150 600,172 560,194 520,172" fill="#e9dfc8"/>
-    <polygon points="630,250 670,272 630,294 590,272" fill="#f4ede0"/>
-    <polygon points="560,360 600,382 560,404 520,382" fill="#e9dfc8"/>
-    <polygon points="480,360 520,382 480,404 440,382" fill="#f4ede0"/>
+  <!-- back-left building (Akademie): cream walls + ink roof -->
+  <g>
+    <polygon points="150,196 196,222 150,248 104,222" fill="#2a221c"/>
+    <polygon points="104,222 150,248 150,286 104,260" fill="#e9dfc8"/>
+    <polygon points="150,248 196,222 196,260 150,286" fill="#f4ede0"/>
+  </g>
+  <!-- back-right building (Hotel, taller) -->
+  <g>
+    <polygon points="650,196 688,218 650,240 612,218" fill="#2a221c"/>
+    <polygon points="612,218 650,240 650,300 612,278" fill="#e9dfc8"/>
+    <polygon points="650,240 688,218 688,278 650,300" fill="#f4ede0"/>
   </g>
 
-  <!-- back stand (navy iso box) -->
+  <!-- back stand -->
   <g>
-    <polygon points="400,128 552,210 400,236 248,210" fill="#1f3d6b"/>
-    <polygon points="248,210 400,236 400,252 248,226" fill="#163056"/>
-    <polygon points="552,210 400,236 400,252 552,226" fill="#24477c"/>
+    <polygon points="400,120 552,202 400,228 248,202" fill="#1f3d6b"/>
+    <polygon points="248,202 400,228 400,244 248,218" fill="#163056"/>
+    <polygon points="552,202 400,228 400,244 552,218" fill="#24477c"/>
   </g>
 
-  <!-- pitch (green rhombus + markings) -->
-  <polygon points="400,170 560,250 400,330 240,250" fill="#3f6b3a" stroke="#f0ead9" stroke-width="2"/>
-  <polygon points="400,184 540,254 400,316 260,254" fill="none" stroke="#f0ead9" stroke-width="1.4" opacity="0.8"/>
-  <line x1="400" y1="184" x2="400" y2="316" stroke="#f0ead9" stroke-width="1.4" opacity="0.8"/>
-  <ellipse cx="400" cy="250" rx="34" ry="17" fill="none" stroke="#f0ead9" stroke-width="1.6" opacity="0.85"/>
+  <!-- pitch -->
+  <polygon points="400,162 560,242 400,322 240,242" fill="#3f6b3a" stroke="#f0ead9" stroke-width="2"/>
+  <polygon points="400,176 540,246 400,308 260,246" fill="none" stroke="#f0ead9" stroke-width="1.4" opacity="0.8"/>
+  <line x1="400" y1="176" x2="400" y2="308" stroke="#f0ead9" stroke-width="1.4" opacity="0.8"/>
+  <ellipse cx="400" cy="242" rx="34" ry="17" fill="none" stroke="#f0ead9" stroke-width="1.6" opacity="0.85"/>
 
-  <!-- front stand (navy iso box, drawn after pitch) -->
+  <!-- scoreboard (scarlet accent) -->
   <g>
-    <polygon points="400,320 552,402 400,428 248,402" fill="#1f3d6b"/>
-    <polygon points="248,402 400,428 400,444 248,418" fill="#163056"/>
-    <polygon points="552,402 400,428 400,444 552,418" fill="#24477c"/>
+    <polygon points="640,150 678,172 640,194 602,172" fill="#b7301b"/>
+    <polygon points="602,172 640,194 640,210 602,188" fill="#8a2210"/>
+    <polygon points="678,172 640,194 640,210 678,188" fill="#cf4a32"/>
   </g>
 
-  <!-- scarlet scoreboard accent -->
+  <!-- front stand -->
   <g>
-    <polygon points="648,212 686,234 648,256 610,234" fill="#b7301b"/>
-    <polygon points="610,234 648,256 648,272 610,250" fill="#8a2210"/>
-    <polygon points="686,234 648,256 648,272 686,250" fill="#cf4a32"/>
+    <polygon points="400,312 552,394 400,420 248,394" fill="#1f3d6b"/>
+    <polygon points="248,394 400,420 400,436 248,410" fill="#163056"/>
+    <polygon points="552,394 400,420 400,436 552,410" fill="#24477c"/>
+  </g>
+
+  <!-- parking patch (asphalt) + cars -->
+  <g>
+    <polygon points="180,330 250,370 180,410 110,370" fill="#39342f" stroke="#2a241f" stroke-width="1.5"/>
+    <polygon points="165,360 181,369 165,378 149,369" fill="#9a9088"/>
+    <polygon points="192,366 208,375 192,384 176,375" fill="#b7301b"/>
+    <polygon points="178,348 194,357 178,366 162,357" fill="#9a9088"/>
+  </g>
+
+  <!-- floodlight mast -->
+  <line x1="250" y1="196" x2="250" y2="150" stroke="#5a4f44" stroke-width="3"/>
+  <rect x="242" y="142" width="18" height="8" fill="#fbf6ea"/>
+
+  <!-- trees -->
+  <g>
+    <line x1="560" y1="330" x2="560" y2="316" stroke="#5a4f44" stroke-width="3"/>
+    <polygon points="560,300 570,322 550,322" fill="#456b3a"/>
+    <line x1="595" y1="345" x2="595" y2="331" stroke="#5a4f44" stroke-width="3"/>
+    <polygon points="595,316 605,338 585,338" fill="#456b3a"/>
   </g>
 
   <!-- caption -->
-  <text x="400" y="498" text-anchor="middle"
+  <text x="400" y="500" text-anchor="middle"
         font-family="'JetBrains Mono', ui-monospace, monospace" font-size="13"
-        letter-spacing="2" fill="#9a8c78">AURELIA · ISOMETRIC CAMPUS · STATIC PREVIEW</text>
+        letter-spacing="2" fill="#9a8c78">AURELIA · VEREINSGELÄNDE · STATISCHE VORSCHAU</text>
 </svg>

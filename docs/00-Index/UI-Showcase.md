@@ -11,9 +11,11 @@ updated: 2026-05-27
 > (the claude.ai/design export, **Babylon-only**), deployed as its own auth-gated site
 > (`tools/styleguide/`, `docker-compose.docs.yml`, `STYLEGUIDE_DOMAIN`). Its landing page
 > is a **clickable hub** that links every part — the design canvas, component library,
-> component-states, both prototypes, the Babylon stadium, a dedicated **isometric Babylon
-> scene**, the maps and the `.md` docs (hub + iso scene added via a build-time overlay,
-> so the export snapshot stays untouched). The Storybook description below is the
+> component-states, both prototypes, the Babylon stadium, a dedicated **isometric
+> club-campus scene** (Anstoss-style stadium + infrastructure), the maps and the `.md`
+> docs (hub + iso scene added via a build-time overlay, so the export snapshot stays
+> untouched). The hub is the landing at `/`; the heavy design canvas is at `/canvas.html`.
+> The Storybook description below is the
 > **eventual** app's component showcase and returns when the app is rebuilt. Durable
 > token reference: [[../10-Architecture/09-Design-Styleguide]].
 

@@ -20,11 +20,17 @@
   --muted:#5a4f44;
   --scarlet:#b7301b;
   --scarlet-deep:#8a2210;
-  /* club accents — identical hexes to stadium-babylon/config.js CLUBS */
-  --hafenstadt:#1f3d6b;
-  --kaltenbach:#7a1c2f;
-  --auerbach:#3b6e3e;
-  --sauveterre:#2e4a3a;
+  /* club accents — identical hexes to stadium-babylon/config.js CLUBS.
+     Single token source: the isometric 3D scene reads these at runtime. */
+  --club-hafenstadt:#1f3d6b;
+  --club-kaltenbach:#7a1c2f;
+  --club-auerbach:#3b6e3e;
+  --club-sauveterre:#2e4a3a;
+  /* 3D scene tones (single source for the isometric campus) */
+  --grass:#4f7a44;
+  --grass-2:#456b3a;
+  --asphalt:#39342f;
+  --ground:#e8dfcb;
   --serif:'Newsreader', Georgia, serif;
   --ui:'Inter', system-ui, -apple-system, sans-serif;
   --mono:'JetBrains Mono', ui-monospace, monospace;
