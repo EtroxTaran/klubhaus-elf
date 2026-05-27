@@ -1,0 +1,19 @@
+---
+description: Dependency & tooling currency — latest stable versions, docs-first (context7 + Ref), HITL for exceptions
+alwaysApply: true
+---
+# Dependencies & Tooling Currency
+
+- Canonical note: `docs/90-Meta/collaboration-and-decision-protocol.md`
+  (§ Dependencies & tooling currency). This rule is an orchestrator; the vault wins.
+- **Binding, never optional.** Use the **latest stable** version of every library,
+  framework and tool, and stay current — for features, future-proofing and security.
+- **Docs-first:** before adding *or upgrading* anything, read current docs + best
+  practices via **context7** and **Ref (ref.tools)** (plus Perplexity/Web). Verify
+  the real latest version (release notes / `git ls-remote --tags` / default branch);
+  never assume an API, default, or which version is "latest".
+- **Pin exact, update regularly:** exact pins, no floating `latest`/ranges (ADR-0021);
+  currency via regular reviewed bumps (Renovate).
+- **HITL:** staying on an outdated version, or any upgrade/migration that cannot be
+  done without major complications, is escalated to Nico — an agent never decides it
+  alone; record the outcome (ADR / Decision-Log).
