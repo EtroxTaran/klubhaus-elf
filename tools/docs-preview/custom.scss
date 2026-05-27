@@ -1,15 +1,16 @@
 // Wiki theme — Aurelia Premier ("Sonntagszeitung") design tokens applied to the
-// Quartz docs/styleguide site. Source of truth for the values:
-// docs/10-Architecture/09-Design-System.md §2-4 (synced from claude.ai/design,
-// ADR-0010 + ADR-0048). This file is copied into the vendored Quartz checkout at
-// quartz/styles/custom.scss by tools/docs-preview/preview.mjs and the Dockerfile,
-// where Quartz imports it last so these overrides win. Additive CSS only — a wrong
-// value degrades to a default, it never breaks the build.
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=JetBrains+Mono:wght@400;500&display=swap');
+// Quartz docs site. Source of truth for the values:
+// docs/10-Architecture/09-Design-System.md §2 (synced from claude.ai/design,
+// ADR-0010 + ADR-0048). Copied into the vendored Quartz checkout at
+// quartz/styles/custom.scss by tools/docs-preview/{preview.mjs,Dockerfile}, where
+// Quartz imports it last so these overrides win.
+//
+// COLOURS ONLY. Do NOT add `@import url(...)` here: Quartz concatenates this file
+// into one stylesheet, so an @import lands mid-sheet and breaks the build
+// ("@import rules must precede all rules"). Fonts are handled by Quartz's own
+// theme.typography (a follow-up), never via @import in this file.
 
 :root {
-  // Quartz colour variables (light) ← Aurelia Premier light scheme
   --light: #f4ede0;       // page paper (bg)
   --lightgray: #d9cdb4;   // hairline / borders
   --gray: #7a6f63;        // muted / graph links
@@ -17,14 +18,8 @@
   --dark: #1a1410;        // body / headers ink
   --secondary: #b7301b;   // scarlet accent — links, active node
   --tertiary: #9b1f0a;    // hover / deeper accent
-  --highlight: rgba(183, 48, 27, 0.10);  // internal-link / search wash
-  --textHighlight: #fbe9a8;               // ==mark== highlight
-
-  // Fonts
-  --titleFont: 'Newsreader', 'Source Serif 4', Georgia, serif;
-  --headerFont: 'Newsreader', 'Source Serif 4', Georgia, serif;
-  --bodyFont: 'Inter', system-ui, sans-serif;
-  --codeFont: 'JetBrains Mono', ui-monospace, monospace;
+  --highlight: rgba(183, 48, 27, 0.10);
+  --textHighlight: #fbe9a8;
 }
 
 :root[saved-theme='dark'] {
@@ -33,7 +28,7 @@
   --gray: #8a8072;
   --darkgray: #b4a896;
   --dark: #f3e8d4;
-  --secondary: #e8553b;   // scarletDark
+  --secondary: #e8553b;
   --tertiary: #e8553b;
   --highlight: rgba(232, 85, 59, 0.14);
   --textHighlight: #6b5a1f;
