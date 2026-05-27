@@ -29,9 +29,8 @@ const quartzDir = join(here, '.quartz')
 const contentDir = join(quartzDir, 'content')
 
 // Pinned to a fixed Quartz release for a reproducible **default** skin/layout
-// (the rolling `v4` branch drifts over time). Override with QUARTZ_REF (a newer
-// tag, or `v4` for the rolling branch).
-const quartzRef = process.env.QUARTZ_REF ?? 'v4.5.2'
+// (the rolling `v5` branch drifts over time). Override with QUARTZ_REF.
+const quartzRef = process.env.QUARTZ_REF ?? 'v5.0.0'
 const quartzRepo = 'https://github.com/jackyzha0/quartz.git'
 
 function run(cmd, args, cwd) {
@@ -112,23 +111,20 @@ if (existsSync(showcaseDoc)) {
   )
 }
 
-// Shrink Quartz's default ignorePatterns so the vault's 90-Meta/templates
-// notes are not silently dropped (.obsidian is excluded from the copy above).
-const quartzConfig = join(quartzDir, 'quartz.config.ts')
-let cfg = readFileSync(quartzConfig, 'utf8').replace(
-  /ignorePatterns:\s*\[[^\]]*\]/,
-  'ignorePatterns: ["private"]',
-)
+// Quartz v5 config is YAML. Start from the shipped default (= default skin/
+// layout) and apply only deploy tweaks (baseUrl from DOCS_DOMAIN, keep
+// 90-Meta/templates, and the OFM parseTags workaround) via configure-quartz.mjs.
+// Copy the configurer into the checkout so its `import 'yaml'` resolves to
+// Quartz's bundled dependency.
+const configurer = join(quartzDir, 'configure-quartz.mjs')
+cpSync(join(here, 'configure-quartz.mjs'), configurer)
+const cfgYaml = join(quartzDir, 'quartz.config.yaml')
+cpSync(join(quartzDir, 'quartz.config.default.yaml'), cfgYaml)
+run('node', [configurer, cfgYaml], quartzDir)
 
-// Parity with the deployable image: when DOCS_DOMAIN is set, point Quartz's
-// baseUrl at it so previewed sitemap/RSS/OG URLs match production.
-const docsDomain = process.env.DOCS_DOMAIN
-if (docsDomain) {
-  cfg = cfg.replace(/baseUrl:\s*['"][^'"]*['"]/, `baseUrl: "${docsDomain}"`)
-  console.log(`Set Quartz baseUrl to ${docsDomain}`)
-}
-
-writeFileSync(quartzConfig, cfg)
+// v5: install community plugins pinned in quartz.lock.json, then build + serve.
+console.log('Restoring Quartz community plugins (v5, from lockfile) ...')
+run('npx', ['quartz', 'plugin', 'restore'], quartzDir)
 
 console.log(
   `Serving ${readdirSync(contentDir).length} top-level vault entries at http://localhost:8080`,
