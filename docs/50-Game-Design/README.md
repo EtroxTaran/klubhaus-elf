@@ -32,7 +32,7 @@ research transcripts in [[../60-Research/raw-perplexity/README]].
 Implement gameplay only from `approved` game-design records. This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0017`) — the decision-record chain from research into
+- **GDDRs** (`GD-0001`...`GD-0018`) — the decision-record chain from research into
   ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -86,6 +86,7 @@ active work.
 | [[GD-0015-ip-clean-data]] | IP-clean data generation | draft | ADR-0007 |
 | [[GD-0016-mobile-ux-loop]] | Mobile UX gameplay loop | draft | ADR-0008, ADR-0010 |
 | [[GD-0017-mvp-scope-and-mode-sequencing]] | MVP scope & mode sequencing | draft | ADR-0020 |
+| [[GD-0018-ai-narrative-personas-and-dialogue]] | AI narrative personas, intent dialogue & Runtime-LLM evaluation | draft | ADR-0030 |
 
 ## Core loop
 
@@ -132,6 +133,11 @@ active work.
 - [[rivalry-system]] - emergent rivalry score with 5 sub-scores.
 - [[matchday-event-engine]] - rule-based events with trigger / probability / effect / prevention.
 - [[community-editor-and-datasets]] - override pack model with manifests.
+
+## Narrative and AI
+
+- [[GD-0013-narrative-inbox]] - inbox-as-feed, narrative events and press/newspaper baseline.
+- [[GD-0018-ai-narrative-personas-and-dialogue]] - draft persona, intent-dialogue and Runtime-LLM evaluation layer.
 
 ## UX
 

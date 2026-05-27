@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-27
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 ---
 
 # Current State
@@ -70,6 +70,12 @@ Use the temporal layers from the baseline:
 - Game design lives in approved system notes and the GDDR decision-record set in
   [[../50-Game-Design/README]]. Implement only from approved records; conflicts
   between approved game-design records are stop conditions until superseded.
+- **AI narrative re-evaluation (2026-05-27):** Nico wants Runtime-LLM reconsidered
+  for the MVP, but only as a draft path. [[../60-Research/ai-narrative-runtime-integration]]
+  and [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] capture the
+  product intent: async flavour may be evaluated first; press, player talks and
+  media personas are important future story surfaces; actor traits/intents may
+  affect mechanics deterministically, generated prose may not.
 
 ## Active MVP Scope (2026-05-18)
 
@@ -230,6 +236,12 @@ draft/proposed are classified future-scope or optional cleanup by
 - Watch parties via spectator snapshot streaming with delay are post-MVP.
 - Community datasets via versioned override packs are future-scope until
   moderation/security gates exist.
+- Runtime LLM is reopened only as a draft evaluation via
+  [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
+  Until accepted, no implementation may use it. The candidate is async narrative
+  flavour outside authoritative state, with OpenRouter behind an adapter, no
+  clear user data / PII / raw free text in prompts and template fallback as the
+  baseline.
 
 ## Active Risks (Pre-Mortem 2026-05-20, 3 Iterationen)
 
@@ -293,7 +305,9 @@ drills, legal sign-off or production evidence. BYOC remains `accepted-risk`.
 Command-Pfad und jede State-Übergangsfunktion wird so entworfen, dass sie auch
 unter dem strengeren Vertrauensmodell von async Multiplayer und (zukünftig)
 Distributed Match Compute trägt. **Ein Stack mit zuschaltbarem Trust-Level.**
-**MVP-Linie** (deliberate omissions): kein Runtime-LLM, kein Image-Upload, kein
+**MVP-Linie** (deliberate omissions): kein Runtime-LLM unless
+[[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]] is
+explicitly accepted for async flavour only; kein Image-Upload, kein
 Free-Form-Chat, kein aktives Marketing, kein Cloudflare-Workers-Lock, keine
 Lootboxes, keine Daily-Login-Streaks.
 

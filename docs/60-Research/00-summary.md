@@ -162,3 +162,27 @@ Reports #4 (Roguelite meta) and #5 (economy) are additive enrichment for
 [[../50-Game-Design/mode-create-a-club-roguelite]] / [[late-game-systems]] and
 [[../50-Game-Design/economy-system]]; report #6 otherwise **confirms**
 ADR-0011/0020/0024/0026 and [[match-engine-runtime-strategy]].
+
+## AI Narrative Runtime Integration (2026-05-27)
+
+[[ai-narrative-runtime-integration]] synthesizes the two narrative/LLM reports
+into a promotion path. It records Nico's product intent: the long-term goal is a
+save that produces a personal, retellable football story, with recurring
+players, journalists, board personalities, fan reps and media arcs.
+
+Current draft direction:
+
+- MVP Runtime-LLM may be re-evaluated for async flavour only (post-match
+  newspaper, injury/event reports, weekly summaries, fixed transfer-result
+  flavour).
+- Press conferences and player one-to-one talks are important future tracks,
+  not the first Runtime-LLM candidate.
+- Actor traits and selected intents may affect mechanics deterministically;
+  generated prose never creates facts or changes state.
+- OpenRouter is the preferred experimental provider path, behind an adapter.
+- Clear user data, PII, secrets and raw free text are not sent to LLMs.
+- Nico prefers central info/settings disclosure; legal sufficiency remains
+  unresolved until the Article 50 release gate.
+
+This feeds draft [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+and draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].

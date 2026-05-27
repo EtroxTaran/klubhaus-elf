@@ -1406,7 +1406,14 @@ deterministic** because:
 
 Runtime AI-generated story text is not approved by this note or by
 [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]].
-If investigated later, it needs a separate research/ADR pass covering:
+The 2026-05-27 Runtime-LLM question is now being re-evaluated in
+[[ai-narrative-runtime-integration]],
+[[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] and
+[[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
+Those notes are draft/proposed only; until ratified, this deterministic
+template pipeline remains the runtime baseline.
+
+Any future runtime AI pass must cover:
 
 - deterministic replay and save compatibility;
 - offline-first behaviour and fallback copy;
@@ -1602,6 +1609,10 @@ interface EventThrottleRecord {
   format need ADR-level lock.
 - **A8 Mobile-first UI**: inbox screen layout + press-conference
   modal layout from D5 §7.5 + newspaper archive view from D6.
+- **Runtime-LLM re-evaluation (2026-05-27)**: see
+  [[ai-narrative-runtime-integration]],
+  [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] and
+  [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
 
 ## 18. Sources
 

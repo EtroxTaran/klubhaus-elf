@@ -53,8 +53,8 @@ the triage note [[../incoming-design-research-2026-05-27]].
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-player-and-staff-values]] | Player/staff value systems competitor sweep + "EOS" attribute proposal | [[../data-generators]] · [[../incoming-design-research-2026-05-27]] |
-| [[raw-character-personality-and-dialogue]] | Personality model for all actors + intent-based player dialogue layer | [[../narrative-content-pipeline]] · [[../incoming-design-research-2026-05-27]] |
-| [[raw-ai-llm-usage]] | LLM use-case matrix, cost model, offline fallback architecture | [[../narrative-content-pipeline]] · [[../incoming-design-research-2026-05-27]] |
+| [[raw-character-personality-and-dialogue]] | Personality model for all actors + intent-based player dialogue layer | [[../narrative-content-pipeline]] · [[../incoming-design-research-2026-05-27]] · [[../ai-narrative-runtime-integration]] |
+| [[raw-ai-llm-usage]] | LLM use-case matrix, cost model, offline fallback architecture | [[../narrative-content-pipeline]] · [[../incoming-design-research-2026-05-27]] · [[../ai-narrative-runtime-integration]] |
 | [[raw-roguelite-meta-progression]] | Run/meta split, behaviour-based perk unlocks, legacy world-carry | [[../late-game-systems]] · [[../incoming-design-research-2026-05-27]] |
 | [[raw-club-economy-simulation]] | Full club economy model: cashflow, revenue/cost, insolvency, infrastructure | [[../../50-Game-Design/economy-system]] · [[../incoming-design-research-2026-05-27]] |
 | [[raw-match-engine-offline-and-disconnect]] | Where match computes, offline PWA scope, disconnect/reconnect handling | [[../match-engine-runtime-strategy]] · [[../incoming-design-research-2026-05-27]] |
