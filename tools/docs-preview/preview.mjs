@@ -28,9 +28,10 @@ const vaultDir = join(repoRoot, 'docs')
 const quartzDir = join(here, '.quartz')
 const contentDir = join(quartzDir, 'content')
 
-// Quartz keeps `v4` as its rolling stable branch; override with a tag for a
-// fully reproducible pin (e.g. QUARTZ_REF=v4.5.1).
-const quartzRef = process.env.QUARTZ_REF ?? 'v4'
+// Pinned to a fixed Quartz release for a reproducible **default** skin/layout
+// (the rolling `v4` branch drifts over time). Override with QUARTZ_REF (a newer
+// tag, or `v4` for the rolling branch).
+const quartzRef = process.env.QUARTZ_REF ?? 'v4.5.2'
 const quartzRepo = 'https://github.com/jackyzha0/quartz.git'
 
 function run(cmd, args, cwd) {
