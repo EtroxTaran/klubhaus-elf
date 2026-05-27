@@ -1,35 +1,10 @@
-// Wiki theme — Aurelia Premier ("Sonntagszeitung") design tokens applied to the
-// Quartz docs site. Source of truth for the values:
-// docs/10-Architecture/09-Design-System.md §2 (synced from claude.ai/design,
-// ADR-0010 + ADR-0048). Copied into the vendored Quartz checkout at
-// quartz/styles/custom.scss by tools/docs-preview/{preview.mjs,Dockerfile}, where
-// Quartz imports it last so these overrides win.
+// Intentionally empty — the docs wiki uses the DEFAULT Quartz styling.
 //
-// COLOURS ONLY. Do NOT add `@import url(...)` here: Quartz concatenates this file
-// into one stylesheet, so an @import lands mid-sheet and breaks the build
-// ("@import rules must precede all rules"). Fonts are handled by Quartz's own
-// theme.typography (a follow-up), never via @import in this file.
-
-:root {
-  --light: #f4ede0;       // page paper (bg)
-  --lightgray: #d9cdb4;   // hairline / borders
-  --gray: #7a6f63;        // muted / graph links
-  --darkgray: #5a4f44;    // secondary text
-  --dark: #1a1410;        // body / headers ink
-  --secondary: #b7301b;   // scarlet accent — links, active node
-  --tertiary: #9b1f0a;    // hover / deeper accent
-  --highlight: rgba(183, 48, 27, 0.10);
-  --textHighlight: #fbe9a8;
-}
-
-:root[saved-theme='dark'] {
-  --light: #16110d;
-  --lightgray: #3b3024;
-  --gray: #8a8072;
-  --darkgray: #b4a896;
-  --dark: #f3e8d4;
-  --secondary: #e8553b;
-  --tertiary: #e8553b;
-  --highlight: rgba(232, 85, 59, 0.14);
-  --textHighlight: #6b5a1f;
-}
+// A custom Aurelia Premier colour theme lived here briefly but was reverted on
+// request to keep the wiki on stock Quartz. The build still copies this file over
+// Quartz's default quartz/styles/custom.scss, so an empty file == stock Quartz.
+//
+// If a wiki theme is wanted again later: add colour-variable overrides here
+// (e.g. `:root { --secondary: #b7301b; }`). NEVER add `@import url(...)` — Quartz
+// concatenates this file into one stylesheet and an @import would break the build
+// ("@import rules must precede all rules"); load fonts via Quartz theme.typography.
