@@ -7,7 +7,7 @@ updated: 2026-05-27
 type: research
 binding: false
 sourceType: external
-related: [[raw-perplexity/raw-player-and-staff-values]], [[raw-perplexity/raw-character-personality-and-dialogue]], [[raw-perplexity/raw-ai-llm-usage]], [[raw-perplexity/raw-roguelite-meta-progression]], [[raw-perplexity/raw-club-economy-simulation]], [[raw-perplexity/raw-match-engine-offline-and-disconnect]], [[data-generators]], [[narrative-content-pipeline]], [[ai-narrative-runtime-integration]], [[ai-manager-behaviour]], [[late-game-systems]], [[systems-design-synthesis]], [[match-engine-runtime-strategy]], [[offline-mvp-scope-and-sync-strategy]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
+related: [[raw-perplexity/raw-player-and-staff-values]], [[raw-perplexity/raw-character-personality-and-dialogue]], [[raw-perplexity/raw-ai-llm-usage]], [[raw-perplexity/raw-roguelite-meta-progression]], [[raw-perplexity/raw-club-economy-simulation]], [[raw-perplexity/raw-match-engine-offline-and-disconnect]], [[data-generators]], [[narrative-content-pipeline]], [[ai-narrative-runtime-integration]], [[manager-archetype-roguelite-2026-05-27]], [[ai-manager-behaviour]], [[late-game-systems]], [[systems-design-synthesis]], [[match-engine-runtime-strategy]], [[offline-mvp-scope-and-sync-strategy]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
 ---
 
 # Incoming Design Research Triage — 2026-05-27
@@ -219,6 +219,11 @@ corrections:
   accepted and does not authorize implementation.
 - **Promotion follow-up created 2026-05-27:** [[ai-narrative-runtime-integration]]
   synthesizes the two narrative/LLM reports and feeds GD-0018 + ADR-0030.
+- **Roguelite meta promotion follow-up created 2026-05-27 (FMX-16):**
+  [[manager-archetype-roguelite-2026-05-27]] synthesizes report #4 and feeds
+  [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]],
+  [[../20-Features/feature-roguelite-mvp-first-playable]] and
+  [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]].
 - **Economy promotion follow-up created 2026-05-27 (FMX-13):**
   [[club-economy-blueprint-2026-05-27]] synthesizes the club-economy report and
   feeds [[../50-Game-Design/GD-0008-finance-economy]],
@@ -246,12 +251,15 @@ corrections:
   [[systems-design-synthesis]], [[match-engine-runtime-strategy]],
   [[offline-mvp-scope-and-sync-strategy]], [[player-strength-presentation]],
   [[systemic-events-player-development-venue-ops]],
+  [[manager-archetype-roguelite-2026-05-27]],
   [[club-economy-blueprint-2026-05-27]]
 - Decision records touched conceptually: [[../50-Game-Design/mode-create-a-club-roguelite]],
+  [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]],
   [[../50-Game-Design/economy-system]], [[../50-Game-Design/GD-0008-finance-economy]],
   [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]],
   [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]],
   [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]],
   [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]],
-  [[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]]
+  [[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]],
+  [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
 - Governance: [[../90-Meta/vault-governance]], [[../90-Meta/agent-memory-protocol]]

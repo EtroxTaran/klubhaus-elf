@@ -56,6 +56,7 @@ contradict an `approved` game-design record.
 | [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]] | draft | Babylon.js = optional 3D/iso presentation engine (replaces Three.js/R3F) behind the unchanged SceneDescriptor/CapabilityGate; match render stays Canvas 2D. | New 2026-05-27; amends ADR-0029 §2 + ADR-0041. |
 | [[../10-Architecture/09-Decisions/ADR-0048-design-update-and-migration-path]] | draft | Design-update/migration path: token single-source (wiki+app derive), versioned snapshots, diff-driven sync, one current truth, supersede for breaking changes; each update = issue+PR+auto-merge. | New 2026-05-27; amends ADR-0010. |
 | [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] | draft | Club Management owns the weekly finance ledger, full-accounting projections, budget envelopes, country economy profiles and staged insolvency state. | New FMX-13 draft; feeds economy MVP pillar. |
+| [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]] | draft | Proposed Manager & Legacy context owns manager identity, run analysis, style signals, archetype candidates, legacy setup and prestige selection. | New FMX-16 draft; feeds Manager-Archetype Roguelite hooks. |
 
 ## Process & Workflow ADRs (proposed 2026-05-27, draft)
 
@@ -99,6 +100,7 @@ PR as the work that needs them.
 - [[../60-Research/match-engine-runtime-strategy]] - reopened runtime strategy: swappable runtime spike with Rust-native default candidate.
 - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]] - FMX-10 synthesis for engine exchangeability, spatial-event model, runtime spike, OSS due diligence, disconnect/offline and LLM ticker boundaries.
 - [[../60-Research/club-economy-blueprint-2026-05-27]] - FMX-13 synthesis for the Club Economy MVP pillar, weekly ledger, full accounting, staged insolvency, country economy profiles and investor future-scope.
+- [[../60-Research/manager-archetype-roguelite-2026-05-27]] - FMX-16 synthesis for Manager-Archetype Roguelite progression, MVP run-analysis hooks, proposed Manager & Legacy context, playtest-tunable taxonomy and prestige counterweight.
 - [[../60-Research/presentation-renderer-strategy]] - research basis for ADR-0041.
 - [[../60-Research/determinism-and-replay]] - deterministic simulation and replay rules.
 - [[../60-Research/performance-budgets]] - device, bundle, memory, storage and match-render budgets.

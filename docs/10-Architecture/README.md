@@ -35,6 +35,9 @@ baseline for architecture-gap classification.
 - [[../00-Index/Decision-Log]] — **ADR index + lineage (hub)**
 - [[09-Decisions/ADR-0050-club-economy-accounting-ledger]] — draft Club Economy
   accounting ledger and Club Management contract boundary.
+- [[09-Decisions/ADR-0051-manager-and-legacy-context]] — draft proposed Manager
+  & Legacy context for manager identity, run analysis and legacy/prestige
+  contracts.
 
 ## Modules
 

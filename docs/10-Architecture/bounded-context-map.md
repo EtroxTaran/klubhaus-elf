@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-22
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]]
 ---
 
 # Bounded Context Map
@@ -49,6 +49,18 @@ Player lifecycle and systemic world events are specialised by
 [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]. They do not
 add a twelfth bounded context. The `WorldEventDirector` is an orchestration
 policy over the existing contexts.
+
+### 1.1 Proposed FMX-16 context
+
+[[09-Decisions/ADR-0051-manager-and-legacy-context]] proposes a twelfth bounded
+context, **Manager & Legacy**, for manager identity, run analysis, style
+signals, archetype candidates, legacy setup and prestige selection.
+
+This is not accepted yet. Until ratified, the existing eleven-context map
+remains the baseline and implementation may only preserve MVP hooks. If ADR-0051
+is accepted, Manager & Legacy becomes the owner of cross-run manager
+progression; League, Club Management, Match, Transfer, Squad & Player and
+Training provide facts through public contracts.
 
 ## 2. Context map (high-level)
 

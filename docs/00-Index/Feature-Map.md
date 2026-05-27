@@ -23,7 +23,7 @@ documentation gaps.
 
 ## Active MVP feature
 
-- [[../20-Features/feature-roguelite-mvp-first-playable]] — Create-a-Club Roguelite first playable.
+- [[../20-Features/feature-roguelite-mvp-first-playable]] — Create-a-Club Roguelite first playable, including FMX-16 manager-archetype run-analysis hooks.
 - [[../20-Features/feature-club-economy-mvp-pillar]] — draft FMX-13 Club Economy pillar for weekly ledger, accounting and staged insolvency.
 
 ## Seed Epics

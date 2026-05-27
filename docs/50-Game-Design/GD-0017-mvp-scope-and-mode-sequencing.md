@@ -6,7 +6,7 @@ created: 2026-05-18
 updated: 2026-05-18
 type: game-design
 binding: true
-related: [[README]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]], [[singleplayer-baseline]], [[onboarding-and-tutorial]], [[../00-Index/MVP-Scope]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+related: [[README]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]], [[GD-0019-manager-archetype-roguelite-progression]], [[singleplayer-baseline]], [[onboarding-and-tutorial]], [[../00-Index/MVP-Scope]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
 ---
 
 # GD-0017: MVP Scope and Mode Sequencing
@@ -77,13 +77,15 @@ The first playable includes:
 - basic squad/tactics/match loop;
 - Club Economy MVP pillar foundation: weekly ledger, runway/risk feedback and
   staged crisis visibility;
+- manager-archetype run-analysis hooks: end-of-run facts, coarse style signals
+  and post-run reflection scaffolding;
 - first match and match report;
 - feed-card tutorial guidance; and
 - visible "requires connection" states for final authoritative actions.
 
-Detailed tuning of legacy carries, late-game ownership shocks, deep stadium
-systems and multi-run meta progression may ship after the first playable if the
-core run loop is not blocked.
+Detailed tuning of legacy carries, final manager-archetype taxonomy/perks,
+late-game ownership shocks, deep stadium systems and multi-run meta progression
+may ship after the first playable if the core run loop is not blocked.
 
 ## What older notes this amends
 

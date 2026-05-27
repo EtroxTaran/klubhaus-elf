@@ -6,7 +6,7 @@ created: 2026-05-18
 updated: 2026-05-18
 type: feature
 binding: true
-related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[feature-club-economy-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[feature-club-economy-mvp-pillar]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
 ---
 
 # Feature - Roguelite MVP First Playable
@@ -38,6 +38,9 @@ In scope:
 - First match resolution and report.
 - Club Economy MVP pillar foundation: weekly ledger, runway/risk feedback and
   staged crisis visibility.
+- Manager-archetype MVP hooks: run-end fact capture, coarse style signals and a
+  post-run reflection contract. Full perk selection, final taxonomy and
+  cross-save legacy progression are not active MVP gameplay.
 - Server-confirmed progression; Dexie cache/drafts only.
 - Offline shell/read/draft behavior with explicit "requires connection" copy
   for final actions.
@@ -49,6 +52,8 @@ Out of scope:
 - Save export/import UI.
 - Async multiplayer, P2P transfers and watch parties.
 - Deep multi-run legacy economy beyond minimum first-run flags.
+- Full Manager & Legacy meta-progression, final archetype families, perk
+  thresholds and prestige ladders beyond the MVP hook contract.
 - Final economy balance constants and payment/IAP systems.
 
 ## Gherkin scenarios
@@ -90,6 +95,13 @@ Feature: Roguelite MVP first playable
     Given I open save management in the MVP
     Then export/import is not an active flow
     But the product copy may label it as coming later
+
+  Scenario: End a run with analysis hooks
+    Given my Create-a-Club Roguelite run ends
+    When the run-end flow is saved
+    Then the system records the run end reason and coarse style signals
+    And the post-run reflection may summarize my style
+    But it does not promise final archetype unlocks or fixed perk thresholds
 ```
 
 ## Acceptance criteria
@@ -103,6 +115,8 @@ Feature: Roguelite MVP first playable
   does not build full export/import.
 - UI and docs keep the long-term mode matrix visible without expanding MVP
   scope.
+- Run-end analysis hooks preserve future Manager & Legacy progression while
+  keeping final thresholds, labels and perk strength playtest-tunable.
 
 ## Related
 
