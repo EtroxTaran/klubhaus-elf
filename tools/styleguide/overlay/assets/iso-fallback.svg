@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img"
+     aria-label="Isometrische Vorschau des Aurelia-Campus: Kachel-Raster mit zentralem Spielfeld und Tribünenblöcken.">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#2a221c"/>
+      <stop offset="100%" stop-color="#0a0807"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg)"/>
+
+  <!-- ground rhombus -->
+  <polygon points="400,70 720,250 400,430 80,250" fill="#efe6d4" stroke="#d9cdb4" stroke-width="2"/>
+
+  <!-- scattered campus tiles (two cream tones) -->
+  <g stroke="#d9cdb4" stroke-width="1.2">
+    <polygon points="220,170 260,192 220,214 180,192" fill="#f4ede0"/>
+    <polygon points="300,140 340,162 300,184 260,162" fill="#e9dfc8"/>
+    <polygon points="170,250 210,272 170,294 130,272" fill="#e9dfc8"/>
+    <polygon points="250,300 290,322 250,344 210,322" fill="#f4ede0"/>
+    <polygon points="560,150 600,172 560,194 520,172" fill="#e9dfc8"/>
+    <polygon points="630,250 670,272 630,294 590,272" fill="#f4ede0"/>
+    <polygon points="560,360 600,382 560,404 520,382" fill="#e9dfc8"/>
+    <polygon points="480,360 520,382 480,404 440,382" fill="#f4ede0"/>
+  </g>
+
+  <!-- back stand (navy iso box) -->
+  <g>
+    <polygon points="400,128 552,210 400,236 248,210" fill="#1f3d6b"/>
+    <polygon points="248,210 400,236 400,252 248,226" fill="#163056"/>
+    <polygon points="552,210 400,236 400,252 552,226" fill="#24477c"/>
+  </g>
+
+  <!-- pitch (green rhombus + markings) -->
+  <polygon points="400,170 560,250 400,330 240,250" fill="#3f6b3a" stroke="#f0ead9" stroke-width="2"/>
+  <polygon points="400,184 540,254 400,316 260,254" fill="none" stroke="#f0ead9" stroke-width="1.4" opacity="0.8"/>
+  <line x1="400" y1="184" x2="400" y2="316" stroke="#f0ead9" stroke-width="1.4" opacity="0.8"/>
+  <ellipse cx="400" cy="250" rx="34" ry="17" fill="none" stroke="#f0ead9" stroke-width="1.6" opacity="0.85"/>
+
+  <!-- front stand (navy iso box, drawn after pitch) -->
+  <g>
+    <polygon points="400,320 552,402 400,428 248,402" fill="#1f3d6b"/>
+    <polygon points="248,402 400,428 400,444 248,418" fill="#163056"/>
+    <polygon points="552,402 400,428 400,444 552,418" fill="#24477c"/>
+  </g>
+
+  <!-- scarlet scoreboard accent -->
+  <g>
+    <polygon points="648,212 686,234 648,256 610,234" fill="#b7301b"/>
+    <polygon points="610,234 648,256 648,272 610,250" fill="#8a2210"/>
+    <polygon points="686,234 648,256 648,272 686,250" fill="#cf4a32"/>
+  </g>
+
+  <!-- caption -->
+  <text x="400" y="498" text-anchor="middle"
+        font-family="'JetBrains Mono', ui-monospace, monospace" font-size="13"
+        letter-spacing="2" fill="#9a8c78">AURELIA · ISOMETRIC CAMPUS · STATIC PREVIEW</text>
+</svg>
