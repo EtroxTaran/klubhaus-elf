@@ -57,6 +57,15 @@ if (!existsSync(quartzDir)) {
   console.log('Reusing existing Quartz checkout (delete tools/docs-preview/.quartz to refresh).')
 }
 
+// Apply the Aurelia Premier wiki theme (design tokens). Quartz imports
+// quartz/styles/custom.scss last, so these overrides win. Additive — safe.
+const themeSrc = join(here, 'custom.scss')
+const themeDest = join(quartzDir, 'quartz', 'styles', 'custom.scss')
+if (existsSync(themeSrc)) {
+  cpSync(themeSrc, themeDest)
+  console.log('Applied design-token theme to Quartz (custom.scss).')
+}
+
 // Mirror the vault into Quartz's content directory, excluding Obsidian's
 // private workspace state. The archival GitHub issue-suite is kept in the
 // build (a few canonical notes link D-001/D-002), but is filtered out of the
