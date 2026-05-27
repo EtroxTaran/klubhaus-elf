@@ -1,5 +1,5 @@
 <!-- PR title must start with [FMX-<n>] -->
-**Linear:** `Closes FMX-<n>` &nbsp;(use `Part of FMX-<n>` for docs/non-closing PRs)
+**Linear:** `Closes FMX-<n>` &nbsp;<!-- 1 PR ↔ 1 issue; merge auto-closes it. Use `Part of FMX-<n>` only when one issue genuinely needs several PRs. -->
 **Agent:** Claude Code | OpenAI Codex | Cursor | human
 
 ## Summary

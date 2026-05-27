@@ -193,10 +193,14 @@ Linear holds operational status; the docs vault remains the durable knowledge ba
 ## Commits & PRs
 
 - Conventional Commits: feat / fix / chore / docs / test / refactor.
-- Branch carries the Linear issue ID (auto-link key): humans `feat/fmx-<n>-<slug>`;
+- One issue ↔ one git worktree ↔ one branch (ADR-0045): humans `feat/fmx-<n>-<slug>`;
   agents `claude|codex|cursor/fmx-<n>-<slug>`. PR title `[FMX-<n>] …`; PR body first
-  line `Closes FMX-<n>` (docs/non-closing: `Part of FMX-<n>`).
-- Squash-merge to main/develop; required checks: Biome + typecheck + Vitest + Playwright + Lighthouse + Bugbot (code gate returns when implementation is rebuilt).
+  line **`Closes FMX-<n>`** (1 PR ↔ 1 issue; merge auto-closes it).
+- **Auto-merge when green** (ADR-0044): squash to main; docs/low-risk merge on green
+  with no review (required checks `docs-check` + `linear-id`); code → main needs ≥1
+  CODEOWNER review (activates with code-CI). No manual Nico-merge for green PRs. The
+  code gate (Biome / typecheck / Vitest / Playwright / Lighthouse / Bugbot) returns
+  when implementation is rebuilt.
 - Never add `Co-Authored-By: <agent>`. Agents are assistants, not authors; which
   agent worked is shown by the branch prefix + a PR `Agent:` line.
 

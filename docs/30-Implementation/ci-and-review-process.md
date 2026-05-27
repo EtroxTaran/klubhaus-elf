@@ -3,12 +3,20 @@ title: CI & Review Process
 status: draft
 tags: [implementation, ci, process, quality]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-27
 type: implementation
-related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../00-Index/Current-State]]
+related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../00-Index/Current-State]]
 ---
 
 # CI & Review Process
+
+> **2026-05-27 — Merge/CI policy now in [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]].**
+> This note describes the **code-phase** target (required `quality`/`e2e`/`lighthouse`/
+> `cursor-smoke` + 1 review). In the current **docs-phase** the required checks are
+> `docs-check` + `linear-id`, and green docs PRs **auto-merge without review** (no
+> manual Nico-merge); the review requirement returns as **CODEOWNER review on code
+> paths** with code-CI. CI logic stays in portable repo scripts (the workflow is a thin
+> trigger — no GitHub-Actions lock-in).
 
 **Principle: `main` and `develop` are always green.** A red required check
 is an incident, not a backlog item. Overruling a red check is reserved for
