@@ -5,14 +5,14 @@ tags: [research, competitor, ux, gameplay]
 created: 2026-05-15
 updated: 2026-05-17
 type: research
-linear: AKOM-114
+linear:
 sources_retrieved: 2026-05-15
 related: [[00-summary]], [[anstoss-series-deep-dive]], [[competitor-matrix]], [[ip-and-licensing]], [[pwa-offline-patterns]], [[../95-Archive/gap-reports/feature-gap-analysis]]
 ---
 
 # Club Boss Analysis
 
-> Phase 1 research output for [AKOM-114](https://linear.app/coding-x/issue/AKOM-114).
+> Phase 1 research output (Wave 1).
 > Goal: extract transferable mechanics and UX patterns from Club Boss as the
 > closest mobile reference, without copying IP, assets, naming, or UI. All
 > observations are paraphrased from public sources; no protected screenshots,

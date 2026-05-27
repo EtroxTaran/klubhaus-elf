@@ -1,6 +1,6 @@
 ---
 title: ADR-0021 Revised Tech Stack
-status: accepted
+status: draft
 tags: [adr, architecture, database, state, validation]
 created: 2026-05-19
 updated: 2026-05-22

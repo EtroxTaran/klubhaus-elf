@@ -1,6 +1,6 @@
 ---
 title: GD-0015 IP-clean Data Generation
-status: approved
+status: draft
 tags: [game-design, gddr, ip, gamedata]
 created: 2026-05-17
 updated: 2026-05-17

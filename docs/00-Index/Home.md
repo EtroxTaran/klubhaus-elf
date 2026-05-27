@@ -74,8 +74,7 @@ ADRs are the source for technical shape.
   [[../30-Implementation/ci-and-review-process]] ·
   [[../30-Implementation/cursor-cloud-agent-workflow]]
 - [[../30-Implementation/deployment-dokploy]] ·
-  [[../30-Implementation/design-sync-workflow]] ·
-  [[../30-Implementation/linear-task-tracking]]
+  [[../30-Implementation/design-sync-workflow]]
 - [[../30-Implementation/hybrid-online-pwa-strategy]] ·
   [[../30-Implementation/postgres-drizzle-integration]] ·
   [[../30-Implementation/secrets-management]]

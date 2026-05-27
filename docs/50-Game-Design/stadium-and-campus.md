@@ -1,6 +1,6 @@
 ---
 title: Stadium and Club Campus - Build-out and On-grounds Economy
-status: approved
+status: draft
 tags: [game-design, stadium, infrastructure, anstoss]
 created: 2026-05-16
 updated: 2026-05-22

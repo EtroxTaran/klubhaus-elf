@@ -1,6 +1,6 @@
 ---
 title: Mode - Manage a Club Career
-status: approved
+status: draft
 tags: [game-design, mode, career, anstoss]
 created: 2026-05-16
 updated: 2026-05-18

@@ -1,6 +1,6 @@
 ---
 title: Squad and Club Structure - Sporting Organisation and Squad Design
-status: approved
+status: draft
 tags: [game-design, squad, staff, organisation]
 created: 2026-05-16
 updated: 2026-05-17

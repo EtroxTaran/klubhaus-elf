@@ -1,6 +1,6 @@
 ---
 title: Youth Academy and Player Development
-status: approved
+status: draft
 tags: [game-design, youth, development, academy]
 created: 2026-05-16
 updated: 2026-05-17

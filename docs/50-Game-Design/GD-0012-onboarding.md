@@ -1,6 +1,6 @@
 ---
 title: GD-0012 Onboarding & New Game
-status: approved
+status: draft
 tags: [game-design, gddr, onboarding]
 created: 2026-05-17
 updated: 2026-05-18

@@ -5,7 +5,7 @@ tags: [research, pwa, save, offline-first, indexeddb, service-worker, sync]
 created: 2026-05-15
 updated: 2026-05-18
 type: research
-linear: AKOM-110
+linear:
 related:
   - "[[00-summary]]"
   - "[[../10-Architecture/09-Decisions/ADR-0002-offline-first]]"
@@ -733,7 +733,7 @@ These do not block MVP but should be resolved before cloud sync ships:
 
 ### Status
 
-Proposed — pending ADR-0002 finalization (AKOM-121).
+Proposed — pending ADR-0002 finalization.
 
 ---
 
@@ -795,7 +795,7 @@ Proposed — pending ADR-0002 finalization (AKOM-121).
 
 ### Status
 
-Proposed — pending ADR-0005 finalization (AKOM-117).
+Proposed — pending ADR-0005 finalization.
 
 ---
 

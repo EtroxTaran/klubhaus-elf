@@ -1,6 +1,6 @@
 ---
 title: Mode - Create a Club Roguelite
-status: approved
+status: draft
 tags: [game-design, mode, roguelite, create-a-club]
 created: 2026-05-16
 updated: 2026-05-18

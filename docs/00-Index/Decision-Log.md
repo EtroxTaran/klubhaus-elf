@@ -11,6 +11,13 @@ related: [[Documentation-V1]], [[Current-State]], [[Architecture-Map]], [[../50-
 
 # Decision Log
 
+> **2026-05-27 — All decisions reopened for re-evaluation.** Every ADR
+> previously `accepted` was reset to `status: draft` (the implementation was
+> removed and the design is being re-questioned with additional topics).
+> **Nothing in this log is currently binding.** The Status column below now
+> reads `draft`; ADRs will be re-ratified individually after review. Superseded
+> ADRs stay superseded.
+
 ADR index with status and lineage. Implement only from `accepted` ADRs or
 `current binding` research/implementation notes explicitly promoted here or in
 [[Documentation-V1]]. Draft/proposed ADRs are planning context only.
@@ -19,31 +26,31 @@ ADRs decide how the game is built. Game-design notes and GDDRs in
 [[../50-Game-Design/README]] decide how the game works. ADRs must not
 contradict an `approved` game-design record.
 
-## Current Binding ADRs
+## ADRs (reopened to draft 2026-05-27)
 
 | ADR | Status | Decision | Lineage |
 |---|---|---|---|
-| [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] | accepted | Deterministic TypeScript match engine, event-first simulation, replay contracts. | Current. |
-| [[../10-Architecture/09-Decisions/ADR-0005-save-format]] | accepted | Encrypted save/export envelope, versioning, RNG state snapshot. | Current; timing amended by ADR-0020. |
-| [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] | accepted | IP-clean naming and data generation. | Current. |
-| [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]] | accepted | Agent and Cursor orchestration. | Current. |
-| [[../10-Architecture/09-Decisions/ADR-0010-design-system]] | accepted | Design system and Storybook showcase as UI source. | Current. |
-| [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]] | accepted | Server authority for multiplayer state. | Current; post-MVP MP constraints. |
-| [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]] | accepted/amended | OpenTelemetry, Loki, Prometheus, Grafana, Alloy and GlitchTip profile. | Tempo/Mimir deferred 2026-05-19. |
-| [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]] | accepted | Domain-owned policies coordinated by deterministic orchestration. | Current. |
-| [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]] | accepted | Service-ready modular monolith with 11 bounded contexts. | Current. |
-| [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] | accepted | Hybrid-online MVP, offline-ready architecture. | Supersedes ADR-0002 for MVP scope. |
-| [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]] | accepted | PostgreSQL + Drizzle system of record, SurrealDB deferred, Zustand v5, Zod 4, all-in TanStack data layer. | Supersedes ADR-0001. |
-| [[../10-Architecture/09-Decisions/ADR-0022-animation-game-feel]] | accepted | Motion + GSAP + Tailwind micro-states. | Amends old minimal-keyframes stance. |
-| [[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]] | accepted | RealtimeTransport abstraction; SSE MVP, Centrifugo planned. | Current. |
-| [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]] | accepted/amended | MatchRenderer abstraction; Canvas 2D first. | Amended by ADR-0041; PixiJS no longer planned. |
-| [[../10-Architecture/09-Decisions/ADR-0025-mobile-delivery]] | accepted | Responsive PWA source of truth, planned thin Capacitor shell. | Current. |
-| [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]] | accepted | Engine/renderer frame contract in `packages/match-contract`. | Current. |
-| [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] | accepted | PostgreSQL schema-per-save, Drizzle source of truth, lazy migrations, opaque UUID refs. | Supersedes ADR-0004. |
-| [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]] | accepted | Same-Postgres-transaction outbox, polling floor plus `LISTEN/NOTIFY`, partitioned archive. | Supersedes ADR-0013. |
-| [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] | accepted/amended | Post-MVP non-authoritative Three/R3F presentation scenes. | Tightened by ADR-0041. |
-| [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]] | accepted | MVP Text & Stats + Canvas 2D; optional post-MVP Three/R3F presentation scenes only. | Current. |
-| [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]] | accepted | First-party Notification bounded context; Postgres durable truth, SurrealDB projection, Dexie offline mirror, Brevo/Mailjet email, Web Push/native push prepared. | Amends ADR-0021/0023/0028 for notification delivery. |
+| [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] | draft | Deterministic TypeScript match engine, event-first simulation, replay contracts. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0005-save-format]] | draft | Encrypted save/export envelope, versioning, RNG state snapshot. | Current; timing amended by ADR-0020. |
+| [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] | draft | IP-clean naming and data generation. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]] | draft | Agent and Cursor orchestration. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0010-design-system]] | draft | Design system and Storybook showcase as UI source. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]] | draft | Server authority for multiplayer state. | Current; post-MVP MP constraints. |
+| [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]] | draft | OpenTelemetry, Loki, Prometheus, Grafana, Alloy and GlitchTip profile. | Tempo/Mimir deferred 2026-05-19. |
+| [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]] | draft | Domain-owned policies coordinated by deterministic orchestration. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]] | draft | Service-ready modular monolith with 11 bounded contexts. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] | draft | Hybrid-online MVP, offline-ready architecture. | Supersedes ADR-0002 for MVP scope. |
+| [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]] | draft | PostgreSQL + Drizzle system of record, SurrealDB deferred, Zustand v5, Zod 4, all-in TanStack data layer. | Supersedes ADR-0001. |
+| [[../10-Architecture/09-Decisions/ADR-0022-animation-game-feel]] | draft | Motion + GSAP + Tailwind micro-states. | Amends old minimal-keyframes stance. |
+| [[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]] | draft | RealtimeTransport abstraction; SSE MVP, Centrifugo planned. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]] | draft | MatchRenderer abstraction; Canvas 2D first. | Amended by ADR-0041; PixiJS no longer planned. |
+| [[../10-Architecture/09-Decisions/ADR-0025-mobile-delivery]] | draft | Responsive PWA source of truth, planned thin Capacitor shell. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]] | draft | Engine/renderer frame contract in `packages/match-contract`. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] | draft | PostgreSQL schema-per-save, Drizzle source of truth, lazy migrations, opaque UUID refs. | Supersedes ADR-0004. |
+| [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]] | draft | Same-Postgres-transaction outbox, polling floor plus `LISTEN/NOTIFY`, partitioned archive. | Supersedes ADR-0013. |
+| [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] | draft | Post-MVP non-authoritative Three/R3F presentation scenes. | Tightened by ADR-0041. |
+| [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]] | draft | MVP Text & Stats + Canvas 2D; optional post-MVP Three/R3F presentation scenes only. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]] | draft | First-party Notification bounded context; Postgres durable truth, SurrealDB projection, Dexie offline mirror, Brevo/Mailjet email, Web Push/native push prepared. | Amends ADR-0021/0023/0028 for notification delivery. |
 
 ## Superseded ADRs
 

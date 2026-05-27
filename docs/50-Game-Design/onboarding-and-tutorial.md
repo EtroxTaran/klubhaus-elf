@@ -1,6 +1,6 @@
 ---
 title: Onboarding & Tutorial — FTUE, Inbox Arc, Feed-Cards, Assistant Manager
-status: approved
+status: draft
 tags: [game-design, onboarding, ftue, tutorial, inbox, feed-cards, assistant, mobile-ux]
 created: 2026-05-17
 updated: 2026-05-18

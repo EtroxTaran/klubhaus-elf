@@ -5,13 +5,13 @@ tags: [research, ip, gamedata, legal]
 created: 2026-05-15
 updated: 2026-05-17
 type: research
-linear: AKOM-111
+linear:
 related: [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[00-summary]], [[anstoss-series-deep-dive]], [[competitor-matrix]], [[../10-Architecture/modules/game-data]], [[../95-Archive/gap-reports/feature-gap-analysis]]
 ---
 
 # IP and Licensing
 
-> Phase 1 research output for [AKOM-111](https://linear.app/coding-x/issue/AKOM-111/research-define-ip-licensing-and-naming-constraints).
+> Phase 1 research output (Wave 1).
 > Defines the legal and product constraints for IP-clean club, player, league,
 > crest, and stadium generation in the offline-first PWA football manager.
 >
@@ -407,7 +407,7 @@ Examples (rejected):
 
 ## 8. Needs-decision (Nico)
 
-These items are flagged `needs-decision` on AKOM-111. Recommendations are
+These items are flagged `needs-decision`. Recommendations are
 provided; please confirm before ADR-0007 is finalised.
 
 1. **Community datapack opt-in.**

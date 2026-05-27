@@ -18,6 +18,13 @@ current research notes.
 This page is the first stop for active project context. If another note conflicts
 with this page, prefer the accepted ADR or approved/current note linked here.
 
+> **2026-05-27 — Decisions reopened.** All previously `accepted` ADRs and
+> `approved` GDDRs/system notes were reset to `status: draft` for re-evaluation
+> (implementation removed; the design is being re-questioned with additional
+> topics). Treat **nothing** below as binding until re-ratified — the
+> "accepted/approved/locked" language in the sections that follow reflects the
+> pre-reopen state. See [[Decision-Log]] and [[../50-Game-Design/README]].
+
 ## Documentation Baseline (2026-05-22)
 
 [[Documentation-V1]] is the current vault-wide closure

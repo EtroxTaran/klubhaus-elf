@@ -1,6 +1,6 @@
 ---
 title: ADR-0005 Save Format and Versioning
-status: accepted
+status: draft
 tags: [adr, save, encryption, compression, versioning, e2ee]
 created: 2026-05-15
 updated: 2026-05-18

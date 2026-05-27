@@ -1,0 +1,31 @@
+name: Redeploy docs site
+
+# The docs vault is a static Quartz build baked into a Dokploy image — it does
+# NOT update when a PR merges. This pings its Dokploy deploy webhook on every
+# push to main so the deployed docs site stays current automatically. Set the
+# webhook URL as a repo secret (Dokploy → service → Deployments → Webhook). If
+# the secret is unset, the redeploy is skipped.
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: redeploy-docs
+  cancel-in-progress: false
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger docs (Quartz vault) redeploy
+        env:
+          HOOK: ${{ secrets.DOKPLOY_DOCS_WEBHOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "DOKPLOY_DOCS_WEBHOOK not set — skipping docs redeploy."
+            exit 0
+          fi
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -X POST "$HOOK")
+          echo "Docs redeploy webhook → HTTP $code"
+          case "$code" in 2*) ;; *) echo "::error::docs webhook failed ($code)"; exit 1;; esac

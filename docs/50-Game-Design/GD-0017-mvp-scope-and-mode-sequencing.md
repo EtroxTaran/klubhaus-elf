@@ -1,6 +1,6 @@
 ---
 title: GD-0017 MVP Scope and Mode Sequencing
-status: approved
+status: draft
 tags: [game-design, gddr, mvp, scope, roguelite]
 created: 2026-05-18
 updated: 2026-05-18

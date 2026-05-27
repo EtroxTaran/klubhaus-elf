@@ -1,6 +1,6 @@
 ---
 title: Progressive Disclosure UI - Three Tier Model (Quick / Standard / Expert)
-status: approved
+status: draft
 tags: [game-design, ux, progressive-disclosure, tactics, casual, expert]
 created: 2026-05-16
 updated: 2026-05-17

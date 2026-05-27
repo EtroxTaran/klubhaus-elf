@@ -1,6 +1,6 @@
 ---
 title: GD-0009 League & Competition Structure
-status: approved
+status: draft
 tags: [game-design, gddr, league]
 created: 2026-05-17
 updated: 2026-05-17

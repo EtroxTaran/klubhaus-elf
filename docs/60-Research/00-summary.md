@@ -2,20 +2,20 @@
 title: Research Summary
 status: current
 tags: [research, summary]
-updated: 2026-05-22
+updated: 2026-05-27
 ---
 
 # Research Summary
 
 ## Phase 1 — Research Wave 1 (Milestone M1.1, 100 %)
 
-| # | Doc | Linear | Status |
-|---|---|---|---|
-| 1 | [[anstoss-series-deep-dive]] — Anstoss design DNA, weekly heartbeat, mechanics map, IP boundaries, 17 MVP/post-MVP recommendations | [AKOM-113](https://linear.app/coding-x/issue/AKOM-113) | Done |
-| 2 | [[club-boss-analysis]] — Mobile chairman loop, inbox-as-narrative, 14 product takeaways, IP risk notes | [AKOM-114](https://linear.app/coding-x/issue/AKOM-114) | Done |
-| 3 | [[competitor-matrix]] — 8 products, feature coverage, differentiation quadrant, MVP-expectation risks | [AKOM-112](https://linear.app/coding-x/issue/AKOM-112) | Done (extended in Wave 2) |
-| 4 | [[ip-and-licensing]] — License matrix, hard-stop list, fictional naming schema, ADR-0007 direct input, 5 needs-decision items | [AKOM-111](https://linear.app/coding-x/issue/AKOM-111) | Done |
-| 5 | [[pwa-offline-patterns]] — Dexie 4 architecture, migrations, SW update strategy, outbox, iOS/Android quotas, ADR-0002 + ADR-0005 inputs | [AKOM-110](https://linear.app/coding-x/issue/AKOM-110) | Done |
+| # | Doc | Status |
+|---|---|---|
+| 1 | [[anstoss-series-deep-dive]] — Anstoss design DNA, weekly heartbeat, mechanics map, IP boundaries, 17 MVP/post-MVP recommendations | Done |
+| 2 | [[club-boss-analysis]] — Mobile chairman loop, inbox-as-narrative, 14 product takeaways, IP risk notes | Done |
+| 3 | [[competitor-matrix]] — 8 products, feature coverage, differentiation quadrant, MVP-expectation risks | Done (extended in Wave 2) |
+| 4 | [[ip-and-licensing]] — License matrix, hard-stop list, fictional naming schema, ADR-0007 direct input, 5 needs-decision items | Done |
+| 5 | [[pwa-offline-patterns]] — Dexie 4 architecture, migrations, SW update strategy, outbox, iOS/Android quotas, ADR-0002 + ADR-0005 inputs | Done |
 
 ## Phase 1 — Research Synthesis (Milestone M1.2)
 
@@ -134,3 +134,31 @@ SUSTAIN), each with self-contained briefing + finding list + expected output
 artefacts. [[pre-mortem/prioritization-matrix]] gives P×I-heatmap,
 Score×Effort-lever, Cross-Cutting-Cluster A–G, regulatory deadlines and the
 T-90 → T-0 sprint allocation.
+
+## Incoming Design Research Triage (2026-05-27)
+
+[[incoming-design-research-2026-05-27]] files six external research reports
+(Perplexity-style, German) Nico provided on 2026-05-27 and maps each to the
+decision layer. Verbatim `status: raw` copies live in
+[[raw-perplexity/README|raw-perplexity/]]. The reports cover player & staff
+value systems ("EOS" attributes), an actor-personality + player-dialogue layer,
+an AI/LLM use-case matrix, Roguelite meta-progression, a club economy model, and
+match-engine offline/disconnect handling.
+
+The triage records four **divergences from locked decisions** that need owner
+decisions before any promotion — none are implemented by being filed:
+
+1. **Attribute count** — report #1's 20–24 visible vs. the locked **16+4+8**
+   schema (D2 [[data-generators]] / ADR-0007 / ADR-0018). Locked schema stands.
+2. **Runtime LLM (dialogue)** — report #2's runtime dialogue service vs. the
+   **no-runtime-LLM** MVP line (D8/D15). Build the intent/persona/template
+   skeleton LLM-free; runtime phrasing is Future-Scope-Gate.
+3. **Runtime LLM (narrative)** — report #3's runtime OpenRouter calls; same
+   gate. Its calc-first / deterministic-fallback *principle* confirms D8/D15.
+4. **Realtime transport** — report #6's Colyseus/Nakama vs. the locked
+   **SSE → Centrifugo** (ADR-0023). Tooling illustrative only.
+
+Reports #4 (Roguelite meta) and #5 (economy) are additive enrichment for
+[[../50-Game-Design/mode-create-a-club-roguelite]] / [[late-game-systems]] and
+[[../50-Game-Design/economy-system]]; report #6 otherwise **confirms**
+ADR-0011/0020/0024/0026 and [[match-engine-runtime-strategy]].

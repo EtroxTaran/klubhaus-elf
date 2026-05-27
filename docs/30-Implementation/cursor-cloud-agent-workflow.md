@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-05-17
 type: index
 binding: true
-related: [[agent-workflow-pattern]], [[linear-task-tracking]], [[../00-Index/Agent-Onboarding]], [[../00-Index/Current-State]], [[../90-Meta/agent-memory-protocol]]
+related: [[agent-workflow-pattern]], [[../00-Index/Agent-Onboarding]], [[../00-Index/Current-State]], [[../90-Meta/agent-memory-protocol]]
 ---
 
 # Cursor Cloud Agent Workflow
@@ -16,10 +16,10 @@ Start every session via the vault entry chain: [[../00-Index/Agent-Onboarding]]
 `vault-memory` skill (`.cursor/skills/vault-memory/SKILL.md`) for the
 start/update/wrap-up checklist.
 
-Operational task tracking happens in Linear. See [[linear-task-tracking]] for the
-project link, issue wave plan, and required progress-comment conventions. Use
-`.cursor/skills/linear-issue-creation/SKILL.md` for repeatable issue quality and
-closure checks.
+Operational task tracking is Linear, team FMX
+(<https://linear.app/coding-x/team/FMX/active>). No issues exist yet and there is
+no task-tracking process doc; agree lightweight conventions before creating
+issues.
 
 1. Create or update a plan in `.cursor/plans/`.
 2. Check file exclusivity, interface stability, and config exclusivity.
@@ -32,5 +32,5 @@ closure checks.
 ## Related
 
 - [[agent-workflow-pattern]] — the full workflow this operationalizes
-- [[linear-task-tracking]] — operational tracker · [[../00-Index/Agent-Onboarding]] — session start
+- [[../00-Index/Agent-Onboarding]] — session start
 - [[../90-Meta/agent-memory-protocol]] — memory steps

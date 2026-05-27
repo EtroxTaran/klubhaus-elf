@@ -1,6 +1,6 @@
 ---
 title: ADR-0022 Animation & Game-Feel Stack
-status: accepted
+status: draft
 tags: [adr, architecture, ui, animation]
 created: 2026-05-19
 updated: 2026-05-22

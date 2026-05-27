@@ -54,9 +54,7 @@ documentation gaps.
 - [[../20-Features/feature-community-editor]]
 - [[../20-Features/feature-p2p-transfer-negotiation]] - post-MVP multiplayer layer.
 
-Operational issue seeds are documented in
-[../30-Implementation/linear-task-tracking.md](../30-Implementation/linear-task-tracking.md)
-and archival issue mirrors exist under
+Archival issue mirrors exist under
 [../90-Meta/github-issue-suite/](../90-Meta/github-issue-suite/).
 
 ## Binding Rule

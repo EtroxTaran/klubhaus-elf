@@ -1,6 +1,6 @@
 ---
 title: ADR-0043 Notification and Messaging Platform
-status: accepted
+status: draft
 tags: [adr, architecture, notification, messaging, realtime, email, push, gdpr]
 created: 2026-05-22
 updated: 2026-05-22

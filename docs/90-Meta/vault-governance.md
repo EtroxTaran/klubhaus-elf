@@ -184,12 +184,10 @@ way".
 | Entry point | Must guarantee |
 |---|---|
 | `CLAUDE.md` | One-line pointer to `AGENTS.md`. No duplicated content. |
-| `AGENTS.md` | Entry chain → Agent-Onboarding → Current-State → Home → agent-memory-protocol → vault-governance. Names the `vault-memory` and `linear-issue-creation` skills. |
+| `AGENTS.md` | Entry chain → Agent-Onboarding → Current-State → Home → agent-memory-protocol → vault-governance. Names the `vault-memory` skill. |
 | `docs/90-Meta/agent-memory-protocol.md` | Canonical session start / during-work / update / wrap-up steps. |
 | `.cursor/rules/10-vault-memory.mdc` | Same start/update/wrap-up semantics as the protocol; orchestrator only. |
-| `.cursor/rules/15-linear-ticket-operating-system.mdc` | Linear = operational truth; vault = durable truth; points at linear-task-tracking. |
 | `.cursor/skills/vault-memory/SKILL.md` | Repeatable start/update/wrap-up workflow matching the protocol. |
-| `.cursor/skills/linear-issue-creation/SKILL.md` | Issue quality + vault links on closure. |
 | `.cursor/BUGBOT.md` | Flags missing same-PR vault updates. |
 
 Changing one entry point's memory semantics means updating this table and every

@@ -19,9 +19,6 @@ Project process, conventions, and Obsidian configuration live here.
 - [[mcp-memory-integration]]
 - [[obsidian-config]]
 - [[conventions]]
-- [[../30-Implementation/linear-task-tracking]]
-- [[templates/linear-issue]]
-- [[templates/linear-issue-examples]]
 
 ## Archival Notes
 

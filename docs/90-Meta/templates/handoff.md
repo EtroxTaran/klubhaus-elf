@@ -18,7 +18,7 @@ status: open -> wrapped -> promoted -> archived
 
 ## Linear
 
-- Issue: <AKOM-### or none>
+- Issue: <FMX-### or none>
 
 ## Done this session
 

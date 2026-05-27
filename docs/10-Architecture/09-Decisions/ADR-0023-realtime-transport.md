@@ -1,6 +1,6 @@
 ---
 title: ADR-0023 Realtime Transport
-status: accepted
+status: draft
 tags: [adr, architecture, realtime, messaging]
 created: 2026-05-19
 updated: 2026-05-22

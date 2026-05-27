@@ -19,7 +19,6 @@ operational runbooks. Current implementable notes are classified by
 
 - [[agent-workflow-pattern]] - single source of truth for how agents work.
 - [[cursor-cloud-agent-workflow]] - cloud-agent operational steps.
-- [[linear-task-tracking]] - operational task tracker.
 - [[ci-and-review-process]] - green-by-default enforcement.
 - [[design-sync-workflow]] - design export to codebase.
 

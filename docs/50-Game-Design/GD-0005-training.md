@@ -1,6 +1,6 @@
 ---
 title: GD-0005 Training & Development
-status: approved
+status: draft
 tags: [game-design, gddr, training]
 created: 2026-05-17
 updated: 2026-05-17

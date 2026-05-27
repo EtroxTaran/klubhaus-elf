@@ -1,6 +1,6 @@
 ---
 title: ADR-0009 Cursor Cloud Agent Orchestration
-status: accepted
+status: draft
 tags: [adr, meta]
 created: 2026-05-15
 updated: 2026-05-17
@@ -63,4 +63,3 @@ None
 ## Related Docs
 
 - [[../../30-Implementation/cursor-cloud-agent-workflow]]
-- [[../../30-Implementation/linear-task-tracking]]

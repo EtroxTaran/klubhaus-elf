@@ -11,6 +11,12 @@ related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00
 
 # Game Design Hub
 
+> **2026-05-27 — All game-design decisions reopened.** Every GDDR and system
+> note previously `approved` was reset to `status: draft` for re-evaluation.
+> **Nothing here is currently binding;** records will be re-approved
+> individually after review. The Status column and "approved" wording below
+> reflect the pre-reopen state and are being revisited.
+
 Working game-design notes for soccer-manager. Treat this folder as the GDD:
 one note per system + mode + emergent system. Notes are `draft` unless the
 status field says otherwise; `approved` notes are binding for implementation.
@@ -63,23 +69,23 @@ active work.
 
 | GDDR | System | Status | Feeds ADR |
 |---|---|---|---|
-| [[GD-0001-core-loop]] | Core career loop & weekly rhythm | approved | ADR-0003, ADR-0008 |
+| [[GD-0001-core-loop]] | Core career loop & weekly rhythm | draft | ADR-0003, ADR-0008 |
 | [[GD-0002-match-engine]] | Match engine & simulation model | draft (Wave 2 gated) | ADR-0003, ADR-0005 |
-| [[GD-0003-squad-players]] | Squad, players & attributes | approved | ADR-0027, ADR-0003 |
-| [[GD-0004-tactics]] | Tactics & formations | approved | ADR-0003, ADR-0008 |
-| [[GD-0005-training]] | Training & development | approved | ADR-0003 |
-| [[GD-0006-transfers]] | Transfers & scouting | approved | ADR-0027 |
-| [[GD-0007-youth]] | Youth academy | approved | ADR-0027, ADR-0007 |
-| [[GD-0008-finance-economy]] | Finance, economy & stadium | approved | ADR-0027 |
-| [[GD-0009-league-structure]] | League & competition structure | approved | ADR-0007, ADR-0027 |
+| [[GD-0003-squad-players]] | Squad, players & attributes | draft | ADR-0027, ADR-0003 |
+| [[GD-0004-tactics]] | Tactics & formations | draft | ADR-0003, ADR-0008 |
+| [[GD-0005-training]] | Training & development | draft | ADR-0003 |
+| [[GD-0006-transfers]] | Transfers & scouting | draft | ADR-0027 |
+| [[GD-0007-youth]] | Youth academy | draft | ADR-0027, ADR-0007 |
+| [[GD-0008-finance-economy]] | Finance, economy & stadium | draft | ADR-0027 |
+| [[GD-0009-league-structure]] | League & competition structure | draft | ADR-0007, ADR-0027 |
 | [[GD-0010-ai-world]] | AI managers & world simulation | draft (Wave 2 gated) | ADR-0003, ADR-0009 |
-| [[GD-0011-career-progression]] | Career progression, board & objectives | approved | ADR-0003 |
-| [[GD-0012-onboarding]] | Onboarding & new game | approved | ADR-0008, ADR-0006 |
-| [[GD-0013-narrative-inbox]] | Narrative, inbox & events | approved | ADR-0006, ADR-0003 |
-| [[GD-0014-save-career-model]] | Save & career model | approved | ADR-0020, ADR-0005 |
-| [[GD-0015-ip-clean-data]] | IP-clean data generation | approved | ADR-0007 |
-| [[GD-0016-mobile-ux-loop]] | Mobile UX gameplay loop | approved | ADR-0008, ADR-0010 |
-| [[GD-0017-mvp-scope-and-mode-sequencing]] | MVP scope & mode sequencing | approved | ADR-0020 |
+| [[GD-0011-career-progression]] | Career progression, board & objectives | draft | ADR-0003 |
+| [[GD-0012-onboarding]] | Onboarding & new game | draft | ADR-0008, ADR-0006 |
+| [[GD-0013-narrative-inbox]] | Narrative, inbox & events | draft | ADR-0006, ADR-0003 |
+| [[GD-0014-save-career-model]] | Save & career model | draft | ADR-0020, ADR-0005 |
+| [[GD-0015-ip-clean-data]] | IP-clean data generation | draft | ADR-0007 |
+| [[GD-0016-mobile-ux-loop]] | Mobile UX gameplay loop | draft | ADR-0008, ADR-0010 |
+| [[GD-0017-mvp-scope-and-mode-sequencing]] | MVP scope & mode sequencing | draft | ADR-0020 |
 
 ## Core loop
 

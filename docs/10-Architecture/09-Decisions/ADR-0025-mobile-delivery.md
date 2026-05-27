@@ -1,6 +1,6 @@
 ---
 title: ADR-0025 Mobile Delivery (PWA + Capacitor)
-status: accepted
+status: draft
 tags: [adr, architecture, mobile, pwa, capacitor]
 created: 2026-05-19
 updated: 2026-05-19

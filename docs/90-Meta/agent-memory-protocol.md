@@ -41,10 +41,10 @@ Before substantial work:
 - Use Ref for library/framework documentation.
 - Use Perplexity for external research; it is wired automatically via
   `.cursor/mcp.json` (see [mcp-memory-integration.md](mcp-memory-integration.md)).
-- Follow [../30-Implementation/linear-task-tracking.md](../30-Implementation/linear-task-tracking.md) for Linear ticket quality and execution tracking.
-- Use [templates/linear-issue.md](templates/linear-issue.md) (and
-  [templates/linear-issue-examples.md](templates/linear-issue-examples.md))
-  when creating or refining substantial Linear issues.
+- Operational tracking is Linear (team FMX,
+  <https://linear.app/coding-x/team/FMX/active>). No issues exist yet and there
+  is no task-tracking process doc — agree lightweight conventions before
+  creating issues.
 - Follow [mcp-memory-integration.md](mcp-memory-integration.md) for approved MCP usage.
 - Follow [vault-governance.md](vault-governance.md) for memory classes, the
   canonical-location rule, and supersede discipline.

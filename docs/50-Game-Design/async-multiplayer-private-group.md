@@ -1,6 +1,6 @@
 ---
 title: Async Multiplayer - Private Group with Two Cadence Models
-status: approved
+status: draft
 tags: [game-design, mode, multiplayer, async]
 created: 2026-05-16
 updated: 2026-05-22

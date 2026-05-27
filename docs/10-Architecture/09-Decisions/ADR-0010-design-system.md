@@ -1,6 +1,6 @@
 ---
 title: ADR-0010 Aurelia Premier Design System
-status: accepted
+status: draft
 tags: [adr, design, ui]
 updated: 2026-05-16
 ---

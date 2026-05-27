@@ -1,6 +1,6 @@
 ---
 title: ADR-0027 PostgreSQL Data Model (per-save schema isolation, Drizzle source of truth)
-status: accepted
+status: draft
 tags: [adr, architecture, data, postgresql, drizzle, schema, saves]
 created: 2026-05-19
 updated: 2026-05-19

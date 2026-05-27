@@ -1,6 +1,6 @@
 ---
 title: Transfer Market and Contracts
-status: approved
+status: draft
 tags: [game-design, transfers, contracts, ai, economy, scouting, narrative]
 created: 2026-05-17
 updated: 2026-05-17

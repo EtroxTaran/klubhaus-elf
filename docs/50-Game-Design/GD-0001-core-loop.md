@@ -1,6 +1,6 @@
 ---
 title: GD-0001 Core Career Loop & Weekly Rhythm
-status: approved
+status: draft
 tags: [game-design, gddr, loop]
 created: 2026-05-17
 updated: 2026-05-17

@@ -13,6 +13,15 @@ Before substantial work:
 > Project context for AI coding agents (Cursor Local + Cloud Agents, Bugbot).
 > Humans: see README.md.
 
+> **Repository reset to docs-vault-only on 2026-05-27.** All implementation
+> (TanStack Start app, packages, match engine, Storybook showcase, design
+> exports, SurrealDB schema, app/test/build toolchain) was removed. The `docs/`
+> Obsidian vault is now the single source of truth — the design memory to
+> rebuild from. The Stack / Architecture / Code Style / Database / PWA sections
+> below describe the **intended** implementation (the build target), not code
+> that currently exists; the Setup, Build & Test and Cursor Cloud sections were
+> trimmed to the docs-only reality.
+
 ## Project Overview
 
 Offline-ready PWA football manager game in the style of the Anstoß series. The
@@ -72,28 +81,25 @@ implementation specifications.
 
 Use the project skill `.cursor/skills/vault-memory/SKILL.md` for the repeatable
 vault start/update/wrap-up workflow when available.
-Use `.cursor/skills/linear-issue-creation/SKILL.md` when creating, triaging, or
-closing Linear tickets.
 
 ## Setup
 
+Docs-only repo — nothing to install or run; the vault is the deliverable.
+
 ```bash
-mise install
-direnv allow
-pnpm install --frozen-lockfile
-docker compose -f docker-compose.dev.yml up -d   # postgres:17 on :5432
-pnpm db:migrate
-pnpm dev
+pnpm docs:check     # validate the vault (frontmatter, wikilinks, no secrets)
+pnpm docs:preview   # build + serve the Quartz docs site locally
 ```
 
 ## Build & Test
 
-- `pnpm check` Biome lint + format + import-sort (replaces ESLint + Prettier)
-- `pnpm typecheck` tsc --noEmit / project references
-- `pnpm test` Vitest with coverage ratchets
-- `pnpm test:e2e` Playwright with service workers enabled
-- `pnpm build && pnpm start` TanStack Start production build
-- CI gate: `pnpm check && pnpm typecheck && pnpm test && pnpm test:e2e`
+Docs-only repo — the gate is the vault validator:
+
+- `pnpm docs:check` validates the vault (frontmatter, wikilinks, no secrets).
+- `pnpm docs:preview` builds the Quartz docs site locally.
+
+The code gate (Biome / typecheck / Vitest / Playwright / Lighthouse) returns when
+implementation is rebuilt.
 
 ## Code Style
 
@@ -169,14 +175,11 @@ pnpm dev
 
 ## Task Tracking
 
-Linear is the operational task tracker. Use project `soccer-manager — Research & Architecture` for Phase 1 research, Phase 2 ADRs, and seed backlog work.
-
-Linear ticket operating system:
-
-- Follow `docs/30-Implementation/linear-task-tracking.md` for issue quality, workflow, labels, dependencies, and closure rules.
-- Create issue bodies from `docs/90-Meta/templates/linear-issue.md` and adapt from `docs/90-Meta/templates/linear-issue-examples.md`.
-- Include user story, Gherkin scenarios, acceptance criteria, dependencies, and verification notes on substantial tickets.
-- Agents must comment progress, blockers, PR links, and final vault paths on the Linear issue before marking it done.
+Operational task tracking is **Linear, team FMX**
+(<https://linear.app/coding-x/team/FMX/active>). **No issues exist yet** — the
+earlier premature backlog and its detailed task-tracking process doc were
+removed. When implementation work resumes, agree the lightweight issue
+conventions first, then create issues.
 
 The docs vault remains the durable knowledge base.
 
@@ -214,19 +217,7 @@ The docs vault remains the durable knowledge base.
 
 ## Cursor Cloud specific instructions
 
-### Services overview
-
-| Service | How to start | Port |
-|---|---|---|
-| TanStack Start dev server | `pnpm dev` | 3000 |
-| PostgreSQL 17 | `sudo dockerd &>/dev/null & sleep 2 && sudo docker compose -f docker-compose.dev.yml up -d` | 5432 |
-
-### Gotchas
-
-- **Docker requires sudo** in the Cloud VM. The daemon isn't auto-started; run `sudo dockerd` before any `docker compose` commands. The dev compose file starts `postgres:17-alpine` on `:5432`.
-- **`pnpm typecheck` builds `apps/web` first** (via `pnpm --filter @soccer-manager/web build && tsc --build`). This is intentional—TanStack Start generates route types during build.
-- **E2e tests build and preview automatically.** Playwright's `webServer` config runs `pnpm build && vite preview --port 3000`. Stop any running dev server on port 3000 before `pnpm test:e2e`.
-- **`db:migrate` is currently a placeholder.** It only prints a message; the real `drizzle-orm/node-postgres` migrator (ADR-0027 §12) lands with the data-layer engineering wave.
-- **`.env` file** is needed at root. Copy from `.env.example` (`cp .env.example .env`). Default dev Postgres credentials: `soccer_manager`/`soccer_manager`, database `soccer_manager` on `localhost:5432`; the app reads `DATABASE_URL`.
-- **Playwright browsers:** Install with `npx playwright install --with-deps chromium webkit` (both chromium and mobile-safari/webkit are tested).
-- Standard lint/test/build commands are documented in the Setup and Build & Test sections above.
+The repo is docs-only; there is no app server or database to start. Cloud agents
+work on the `docs/` vault: validate with `pnpm docs:check`, preview with
+`pnpm docs:preview`. The app-stack services and gotchas return when
+implementation is rebuilt.

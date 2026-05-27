@@ -1,6 +1,6 @@
 ---
 title: Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prevention
-status: approved
+status: draft
 tags: [game-design, events, matchday, weather, sanctions]
 created: 2026-05-16
 updated: 2026-05-17

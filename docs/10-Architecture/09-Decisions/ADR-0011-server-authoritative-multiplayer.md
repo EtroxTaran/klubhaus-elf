@@ -1,6 +1,6 @@
 ---
 title: ADR-0011 Server-Authoritative Multiplayer
-status: accepted
+status: draft
 tags: [adr, architecture, multiplayer, security]
 created: 2026-05-16
 updated: 2026-05-18

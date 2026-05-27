@@ -1,6 +1,6 @@
 ---
 title: ADR-0020 Hybrid-online MVP, Offline-ready Architecture
-status: accepted
+status: draft
 tags: [adr, pwa, mvp, offline-ready, indexeddb, sync]
 created: 2026-05-18
 updated: 2026-05-18

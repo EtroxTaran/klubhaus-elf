@@ -27,7 +27,7 @@ Library / docs:
 
 Operational:
 
-- **Linear** — issue tracking; see [[../30-Implementation/linear-task-tracking]].
+- **Linear** — issue tracking (team FMX, <https://linear.app/coding-x/team/FMX/active>); no issues created yet.
 - **Figma** — design references.
 
 External research:

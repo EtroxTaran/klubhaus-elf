@@ -1,6 +1,6 @@
 ---
 title: ADR-0026 Match Frame Contract
-status: accepted
+status: draft
 tags: [adr, architecture, match-engine, match-view, contract, determinism]
 created: 2026-05-19
 updated: 2026-05-22

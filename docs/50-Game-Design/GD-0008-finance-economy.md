@@ -1,6 +1,6 @@
 ---
 title: GD-0008 Finance, Economy & Stadium
-status: approved
+status: draft
 tags: [game-design, gddr, finance, economy]
 created: 2026-05-17
 updated: 2026-05-17

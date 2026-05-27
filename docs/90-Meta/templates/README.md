@@ -16,8 +16,6 @@ Obsidian, Dataview, and docs checks can identify current guidance.
 
 ## Active Templates
 
-- [linear-issue.md](linear-issue.md)
-- [linear-issue-examples.md](linear-issue-examples.md)
 - [handoff.md](handoff.md)
 - [adr.md](adr.md)
 - [game-design.md](game-design.md)

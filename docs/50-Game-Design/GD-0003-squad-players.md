@@ -1,6 +1,6 @@
 ---
 title: GD-0003 Squad, Players & Attributes
-status: approved
+status: draft
 tags: [game-design, gddr, squad]
 created: 2026-05-17
 updated: 2026-05-17

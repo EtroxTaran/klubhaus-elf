@@ -1,6 +1,6 @@
 ---
 title: ADR-0017 Self-hosted Observability and Logging
-status: accepted
+status: draft
 tags: [adr, architecture, observability, logging, monitoring, telemetry, gdpr]
 created: 2026-05-17
 updated: 2026-05-22

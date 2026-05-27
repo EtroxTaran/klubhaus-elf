@@ -5,7 +5,7 @@ tags: [implementation, process, workflow]
 created: 2026-05-17
 updated: 2026-05-17
 type: implementation
-related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../90-Meta/agent-memory-protocol]], [[../90-Meta/vault-governance]], [[linear-task-tracking]], [[ci-and-review-process]], [[cursor-cloud-agent-workflow]], [[design-sync-workflow]], [[../10-Architecture/09-Design-System]]
+related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../90-Meta/agent-memory-protocol]], [[../90-Meta/vault-governance]], [[ci-and-review-process]], [[cursor-cloud-agent-workflow]], [[design-sync-workflow]], [[../10-Architecture/09-Design-System]]
 ---
 
 # Agent Workflow Pattern
@@ -36,8 +36,7 @@ It exists to make seven principles inescapable rather than scattered:
 
 Every beat follows this cycle. Do not skip a step; do not reorder.
 
-1. **Pick** one small beat from Linear
-   (`soccer-manager — Research & Architecture`). Not ad-hoc chat work.
+1. **Pick** one small beat from Linear (team FMX). Not ad-hoc chat work.
 2. **Confirm understanding.** Re-state the beat's intent and acceptance
    criteria. If anything is unclear → **stop and escalate** (see *Ask, don't
    work around*). Do not proceed on a guess.
@@ -50,7 +49,7 @@ Every beat follows this cycle. Do not skip a step; do not reorder.
 7. **Draft PR** → self-check green → **review phase** (Bugbot + human) →
    green required checks → squash-merge.
 8. **Close Linear** only after merge: comment outcome, PR link, and final
-   vault paths (per [[linear-task-tracking]]).
+   vault paths.
 
 ## Beat sizing
 
@@ -104,8 +103,7 @@ blocked beat. Blocked-and-escalated is the correct state.
 
 When a stop condition is hit:
 
-1. Open or comment a Linear issue in
-   `soccer-manager — Research & Architecture`, tagged for **Nico**, describing
+1. Open or comment a Linear issue (team FMX), tagged for **Nico**, describing
    the ambiguity and the options considered (do not pick one).
 2. Set the beat status to **Blocked** in Linear.
 3. If a PR exists, keep it a **draft** and add an `## ALIGNMENT` section
@@ -181,7 +179,6 @@ holds: a red required check is an incident, never a backlog item.
 
 - [[ci-and-review-process]]
 - [[cursor-cloud-agent-workflow]]
-- [[linear-task-tracking]]
 - [[design-sync-workflow]]
 - [[../10-Architecture/09-Design-System]]
 - [[../00-Index/Decision-Log]]

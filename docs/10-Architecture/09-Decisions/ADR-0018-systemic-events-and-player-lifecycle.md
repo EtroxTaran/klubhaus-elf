@@ -1,6 +1,6 @@
 ---
 title: ADR-0018 Systemic Events and Player Lifecycle Architecture
-status: accepted
+status: draft
 tags: [adr, architecture, events, player-development, injuries, narrative, venue]
 created: 2026-05-17
 updated: 2026-05-17

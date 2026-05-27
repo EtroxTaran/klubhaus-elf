@@ -1,6 +1,6 @@
 ---
 title: ADR-0019 Service-ready Modular Monolith with DDD Bounded Contexts
-status: accepted
+status: draft
 tags: [adr, architecture, ddd, modular-monolith, service-architecture]
 created: 2026-05-16
 updated: 2026-05-16

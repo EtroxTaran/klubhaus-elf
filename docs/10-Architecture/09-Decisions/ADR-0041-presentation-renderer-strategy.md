@@ -1,6 +1,6 @@
 ---
 title: ADR-0041 Two-Renderer Presentation Strategy
-status: accepted
+status: draft
 tags: [adr, architecture, rendering, pwa, 3d, stadium]
 created: 2026-05-22
 updated: 2026-05-22

@@ -5,13 +5,13 @@ tags: [research, game-design, anstoss, inspiration, ip]
 created: 2026-05-15
 updated: 2026-05-17
 type: research
-linear: AKOM-113
+linear:
 related: [[00-summary]], [[club-boss-analysis]], [[competitor-matrix]], [[ip-and-licensing]], [[../95-Archive/gap-reports/feature-gap-analysis]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
 ---
 
 # Anstoss Series Deep Dive
 
-> Phase 1 research output for [AKOM-113](https://linear.app/coding-x/issue/AKOM-113/research-deep-dive-classic-anstoss-design-patterns).
+> Phase 1 research output (Wave 1).
 > Captures the design DNA of the Anstoß lineage as inspiration for our offline-first
 > PWA football manager. IP-clean: no copyrighted manual text is reproduced; quotes
 > are limited to short references for design analysis. Fonts, crests, real club and

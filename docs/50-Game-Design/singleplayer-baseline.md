@@ -1,6 +1,6 @@
 ---
 title: Singleplayer Baseline
-status: approved
+status: draft
 tags: [game-design, mode, singleplayer, baseline]
 created: 2026-05-16
 updated: 2026-05-18

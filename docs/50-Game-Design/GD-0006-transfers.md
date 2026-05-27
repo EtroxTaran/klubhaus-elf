@@ -1,6 +1,6 @@
 ---
 title: GD-0006 Transfers & Scouting
-status: approved
+status: draft
 tags: [game-design, gddr, transfers]
 created: 2026-05-17
 updated: 2026-05-17

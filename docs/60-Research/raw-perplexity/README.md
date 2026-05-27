@@ -3,10 +3,10 @@ title: Raw Perplexity Research Transcripts
 status: raw
 tags: [research, raw, perplexity, wave-2, player-strength]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-27
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -41,6 +41,23 @@ of points raised across runs.
 | [[raw-environment-events]] | Fan ecology, regulations, rivalries, sanctions, matchday events, progressive disclosure | [[../regulations-and-pyramids-research]], [[../fan-culture-segmentation-research]] |
 | [[raw-transfer-market-research]] | Active transfer market, AI club selling, valuations, clauses, loans and player / agent pressure | [[../transfer-market-simulation]] |
 | [[raw-player-strength-overview]] | Player strength presentation in squad overview; role/tactic-adaptive Impact, category scores, status icons | [[../player-strength-presentation]] |
+
+## Ad-hoc report imports (2026-05-27)
+
+Six external research reports (Perplexity-style, German) Nico provided on
+2026-05-27. Unlike the Wave-2 transcripts above, these are **committed** to the
+vault as verbatim copies (each carries `status: raw` frontmatter + a
+provenance banner). Their analysis, vault mapping and divergence flags live in
+the triage note [[../incoming-design-research-2026-05-27]].
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-player-and-staff-values]] | Player/staff value systems competitor sweep + "EOS" attribute proposal | [[../data-generators]] · [[../incoming-design-research-2026-05-27]] |
+| [[raw-character-personality-and-dialogue]] | Personality model for all actors + intent-based player dialogue layer | [[../narrative-content-pipeline]] · [[../incoming-design-research-2026-05-27]] |
+| [[raw-ai-llm-usage]] | LLM use-case matrix, cost model, offline fallback architecture | [[../narrative-content-pipeline]] · [[../incoming-design-research-2026-05-27]] |
+| [[raw-roguelite-meta-progression]] | Run/meta split, behaviour-based perk unlocks, legacy world-carry | [[../late-game-systems]] · [[../incoming-design-research-2026-05-27]] |
+| [[raw-club-economy-simulation]] | Full club economy model: cashflow, revenue/cost, insolvency, infrastructure | [[../../50-Game-Design/economy-system]] · [[../incoming-design-research-2026-05-27]] |
+| [[raw-match-engine-offline-and-disconnect]] | Where match computes, offline PWA scope, disconnect/reconnect handling | [[../match-engine-runtime-strategy]] · [[../incoming-design-research-2026-05-27]] |
 
 ## Rules
 

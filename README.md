@@ -2,19 +2,16 @@
 
 Offline-first football manager PWA in the style of the classic Anstoß series.
 
-This repository is bootstrapped for Cursor Local/Cloud Agents with deterministic
-safety hooks, pnpm, Biome, Vitest, Playwright, TanStack Start, shadcn/ui-ready
-Tailwind foundations, Docker, and Dokploy deployment notes.
+> **Docs-vault-only repository (reset 2026-05-27).** The prior implementation
+> (app, packages, match engine, Storybook showcase, toolchain) was removed; this
+> repo now holds only the `docs/` Obsidian vault — the design memory the game is
+> rebuilt from. See `AGENTS.md` for the full context.
 
 ## Quick start
 
 ```bash
-mise install
-pnpm install --frozen-lockfile
-pnpm check
-pnpm typecheck
-pnpm test
-pnpm --filter @soccer-manager/web dev
+pnpm docs:check     # validate the vault (frontmatter, wikilinks, no secrets)
+pnpm docs:preview   # build + serve the Quartz docs site locally
 ```
 
 See `AGENTS.md` for agent rules and `docs/00-Index/Home.md` for the Obsidian

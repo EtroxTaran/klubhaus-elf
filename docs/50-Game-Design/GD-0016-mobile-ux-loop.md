@@ -1,6 +1,6 @@
 ---
 title: GD-0016 Mobile UX Gameplay Loop
-status: approved
+status: draft
 tags: [game-design, gddr, ux, mobile]
 created: 2026-05-17
 updated: 2026-05-18

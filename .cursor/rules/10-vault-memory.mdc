@@ -32,10 +32,9 @@ alwaysApply: true
   scope, gameplay, operations, or user-facing behavior.
 - Session wrap-up: write/update a handoff under
   `docs/40-Execution/session-handoffs/` and update `Current-State.md`.
-- Follow `docs/30-Implementation/linear-task-tracking.md` for Linear ticket
-  quality, workflow states, labels, and closure requirements.
-- Use `docs/90-Meta/templates/linear-issue.md` (and `linear-issue-examples.md`)
-  when creating or refining Linear issues.
+- Operational tracking is Linear (team FMX,
+  https://linear.app/coding-x/team/FMX/active); no issues exist yet and there is
+  no task-tracking process doc — agree lightweight conventions first.
 - User docs are player-facing output, not authoritative implementation specs.
 - MCP usage: follow `docs/90-Meta/mcp-memory-integration.md`. Allowlist is
  enforced by `.cursor/hooks/mcp-allowlist.js`. Context7 / Ref for library docs,
