@@ -48,6 +48,18 @@ MVP → Centrifugo at scale**, behind a transport interface. **SurrealDB is defe
 — it is not the database** — and may return post-launch only as an additive
 realtime/graph engine behind that interface (see ADR-0021).
 
+## Dependencies & Tooling Currency
+
+Binding, **never optional**. Use the **latest stable** version of every library,
+framework and tool and stay current (features, future-proofing, security). Before
+adding *or upgrading* anything, read its current docs + best practices via
+**context7** and **Ref (ref.tools)** and verify the real latest version (release
+notes / tags / default branch) — never assume. Pin exact versions (no floating
+`latest`; ADR-0021) but update regularly (Renovate). Staying on an outdated
+version, or any upgrade/migration with **major complications**, is a **HITL
+decision (ask Nico) — never an agent's**. Canonical rule:
+`docs/90-Meta/collaboration-and-decision-protocol.md` (§ Dependencies & tooling currency).
+
 ## Workflow Pattern
 
 **Authoritative:** `docs/30-Implementation/agent-workflow-pattern.md` (vault doc,

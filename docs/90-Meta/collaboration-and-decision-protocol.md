@@ -63,6 +63,30 @@ coherent, every decision future-proof. The concrete architecture is
 [[../10-Architecture/bounded-context-map]] (both currently `draft`, pending
 re-ratification). Follow them; do not duplicate their content here.
 
+## Dependencies & tooling currency
+
+Binding, **never optional**, for every library, framework or tool:
+
+- **Latest stable, kept current.** Use the newest stable version and update
+  regularly — for **features, future-proofing and security**. Running an outdated
+  version is not a default; it is an exception that needs explicit Nico/HITL
+  sign-off.
+- **Docs-first, grounded.** Before adding *or upgrading* anything, read its
+  **current** docs + best practices via **context7** and **Ref (ref.tools)** (plus
+  Perplexity/Web where useful). Never assume an API, a default, or which version is
+  "latest" — verify the real latest (release notes, `git ls-remote --tags`, the
+  repo's default branch via `--symref HEAD`).
+- **Pin exact, update deliberately.** Versions are pinned exactly (no floating
+  `latest`/ranges) per
+  [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]; currency comes
+  from regular, reviewed bumps (Renovate), not from floating ranges.
+- **HITL for staying behind or hard migrations.** Any reason to stay on an
+  outdated version — or any upgrade/migration that cannot be done without **major
+  complications** — is escalated to Nico (HITL) via the decision gate above. An
+  agent **never** decides this alone; record the outcome (ADR / Decision-Log).
+
+Approved MCP servers + research wiring: [[mcp-memory-integration]].
+
 ## Knowledge & traceability
 
 - **One canonical truth per fact**; decisions and discussions are traceable;
@@ -70,9 +94,10 @@ re-ratification). Follow them; do not duplicate their content here.
 - **Decisions** are indexed in [[../00-Index/Decision-Log]] (ADRs) and
   [[../50-Game-Design/README]] (GDDRs); the vault is a knowledge graph, not a
   folder of essays (connectivity is mandatory).
-- **Research is grounded and filed**: use Perplexity / Ref / Web; raw transcripts
-  under `60-Research/raw-perplexity/` (`status: raw`), synthesized into research
-  notes. MCP usage: [[mcp-memory-integration]].
+- **Research is grounded and filed**: use **context7** + **Ref (ref.tools)** for
+  library/tool docs, Perplexity / Web for the rest; raw transcripts under
+  `60-Research/raw-perplexity/` (`status: raw`), synthesized into research notes.
+  See § Dependencies & tooling currency above. MCP usage: [[mcp-memory-integration]].
 
 ## Global ↔ project split
 
