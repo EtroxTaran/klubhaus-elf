@@ -2,7 +2,7 @@
 title: Design System — Aurelia Premier
 status: current
 tags: [architecture, design, ui, accessibility]
-updated: 2026-05-22
+updated: 2026-05-27
 ---
 
 # Design System — Aurelia Premier
@@ -12,6 +12,17 @@ Code-authoritative reference for the UI. The decision record is
 [[../30-Implementation/design-sync-workflow]]; the archived prototype export
 lives under `design/handoff/<date>/` (the `project/*` sources are the
 historical artifact — **the code and this doc win** on any conflict).
+
+> **Synced 2026-05-27 from the claude.ai/design export `XP8K00C56OrBxyU0uxch7Q`**
+> (`design/handoff/2026-05-27/`). The token system below (Aurelia Premier, Direction A)
+> is confirmed by the export's `tailwind.config.ts`. New in this export: **Babylon.js
+> stadium 3D** (`stadium-babylon/*` — see
+> [[09-Decisions/ADR-0047-babylon-3d-presentation-engine]]), adaptive responsive screens
+> (hub / finance / match / squad / tactics / inbox) and a Championship-Celebration
+> cinematic. **No app exists yet** (docs-only phase): the `apps/web/src/*` paths below
+> are the **intended build target**; the tokens/theme here are the canonical spec the
+> wiki theme derives from. Update procedure & recurring-migration path:
+> [[../30-Implementation/design-sync-workflow]].
 
 ## 1. Direction & rationale
 

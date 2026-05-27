@@ -1,0 +1,128 @@
+# Design Handoff Snapshot — 2026-05-27 (baseline seed)
+
+Source: https://api.anthropic.com/v1/design/h/XP8K00C56OrBxyU0uxch7Q
+SHA-256: `9e0b87da86ff595c8198575997a9d38e3296b144134df4812018dd7ffcf6cdd6`
+
+This is the seeded baseline (no previous snapshot to diff against). Future
+`pnpm sync:design` runs diff against this snapshot.
+
+## Bundle inventory (118 files)
+
+- README.md
+- chats/chat1.md
+- chats/chat2.md
+- chats/chat3.md
+- chats/chat4.md
+- chats/chat5.md
+- chats/chat6.md
+- project/.design-canvas.state.json
+- project/.thumbnail
+- project/ACCESSIBILITY.md
+- project/COMPONENTS.md
+- project/Championship Celebration.html
+- project/ChampionshipCelebration.jsx
+- project/RATIONALE.md
+- project/TASKS.md
+- project/a11y.jsx
+- project/app.jsx
+- project/celebration-host.jsx
+- project/cinematic.jsx
+- project/compare.jsx
+- project/components.json
+- project/data.jsx
+- project/depth-data.jsx
+- project/depth.jsx
+- project/design-canvas.jsx
+- project/design_handoff_aurelia_premier/ACCESSIBILITY.md
+- project/design_handoff_aurelia_premier/COMPONENTS.md
+- project/design_handoff_aurelia_premier/Component States.html
+- project/design_handoff_aurelia_premier/Football Manager Map.html
+- project/design_handoff_aurelia_premier/FootballManagerMap.jsx
+- project/design_handoff_aurelia_premier/Handoff Overview.html
+- project/design_handoff_aurelia_premier/Match-Day Prototype.html
+- project/design_handoff_aurelia_premier/Onboarding Prototype.html
+- project/design_handoff_aurelia_premier/RATIONALE.md
+- project/design_handoff_aurelia_premier/README.md
+- project/design_handoff_aurelia_premier/Stadium 3D Babylon.html
+- project/design_handoff_aurelia_premier/Stadium 3D.html
+- project/design_handoff_aurelia_premier/Stadium Upgrade Timeline.html
+- project/design_handoff_aurelia_premier/TASKS.md
+- project/design_handoff_aurelia_premier/a11y.jsx
+- project/design_handoff_aurelia_premier/adaptive-finance.jsx
+- project/design_handoff_aurelia_premier/adaptive-hub.jsx
+- project/design_handoff_aurelia_premier/adaptive-inbox.jsx
+- project/design_handoff_aurelia_premier/adaptive-match.jsx
+- project/design_handoff_aurelia_premier/adaptive-squad.jsx
+- project/design_handoff_aurelia_premier/adaptive-tactics.jsx
+- project/design_handoff_aurelia_premier/adaptive.jsx
+- project/design_handoff_aurelia_premier/app.jsx
+- project/design_handoff_aurelia_premier/cinematic.jsx
+- project/design_handoff_aurelia_premier/compare.jsx
+- project/design_handoff_aurelia_premier/component-states.jsx
+- project/design_handoff_aurelia_premier/components.json
+- project/design_handoff_aurelia_premier/components.jsx
+- project/design_handoff_aurelia_premier/data.jsx
+- project/design_handoff_aurelia_premier/depth-data.jsx
+- project/design_handoff_aurelia_premier/depth.jsx
+- project/design_handoff_aurelia_premier/design-canvas.jsx
+- project/design_handoff_aurelia_premier/directions.jsx
+- project/design_handoff_aurelia_premier/identity.jsx
+- project/design_handoff_aurelia_premier/index.html
+- project/design_handoff_aurelia_premier/library.jsx
+- project/design_handoff_aurelia_premier/live-demo.jsx
+- project/design_handoff_aurelia_premier/more.jsx
+- project/design_handoff_aurelia_premier/negotiations.jsx
+- project/design_handoff_aurelia_premier/onboarding-app.jsx
+- project/design_handoff_aurelia_premier/plan.md
+- project/design_handoff_aurelia_premier/prototype-app.jsx
+- project/design_handoff_aurelia_premier/prototype-shell.jsx
+- project/design_handoff_aurelia_premier/responsive.jsx
+- project/design_handoff_aurelia_premier/screens-part1.jsx
+- project/design_handoff_aurelia_premier/screens-part2.jsx
+- project/design_handoff_aurelia_premier/settings.jsx
+- project/design_handoff_aurelia_premier/sponsor.jsx
+- project/design_handoff_aurelia_premier/stadium-3d/bowl.js
+- project/design_handoff_aurelia_premier/stadium-3d/cameras.js
+- project/design_handoff_aurelia_premier/stadium-3d/config.js
+- project/design_handoff_aurelia_premier/stadium-3d/infra.js
+- project/design_handoff_aurelia_premier/stadium-3d/lights.js
+- project/design_handoff_aurelia_premier/stadium-3d/main.js
+- project/design_handoff_aurelia_premier/stadium-3d/pitch.js
+- project/design_handoff_aurelia_premier/stadium-babylon/bowl.js
+- project/design_handoff_aurelia_premier/stadium-babylon/cameras.js
+- project/design_handoff_aurelia_premier/stadium-babylon/config.js
+- project/design_handoff_aurelia_premier/stadium-babylon/infra.js
+- project/design_handoff_aurelia_premier/stadium-babylon/landscape.js
+- project/design_handoff_aurelia_premier/stadium-babylon/lights.js
+- project/design_handoff_aurelia_premier/stadium-babylon/main.js
+- project/design_handoff_aurelia_premier/stadium-babylon/pitch.js
+- project/design_handoff_aurelia_premier/stadium.jsx
+- project/design_handoff_aurelia_premier/system.jsx
+- project/design_handoff_aurelia_premier/tactics.jsx
+- project/design_handoff_aurelia_premier/tailwind.config.ts
+- project/design_handoff_aurelia_premier/team.jsx
+- project/design_handoff_aurelia_premier/tweaks-host.jsx
+- project/design_handoff_aurelia_premier/tweaks-panel.jsx
+- project/design_handoff_aurelia_premier/ui.jsx
+- project/directions.jsx
+- project/identity.jsx
+- project/index.html
+- project/library.jsx
+- project/live-demo.jsx
+- project/more.jsx
+- project/negotiations.jsx
+- project/responsive.jsx
+- project/scratch/babylon-campus.png
+- project/scratch/babylon-drone.png
+- project/scratch/babylon-heli.png
+- project/scratch/babylon-noUI.png
+- project/scratch/celeb-check.png
+- project/screens-part1.jsx
+- project/screens-part2.jsx
+- project/settings.jsx
+- project/sponsor.jsx
+- project/stadium.jsx
+- project/tactics.jsx
+- project/tailwind.config.ts
+- project/team.jsx
+- project/ui.jsx

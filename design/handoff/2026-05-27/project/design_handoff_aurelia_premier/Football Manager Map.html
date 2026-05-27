@@ -1,0 +1,1327 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aurelia Premier — Football Manager Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --paper:#f4ede0; --rule:#d9cdb4; --ink:#1a1410; --muted:#5a4f44;
+      --scarlet:#b7301b; --serif:'Newsreader',Georgia,serif;
+      --ui:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;height:100%;background:#a9c9d6;color:#f0e7d4;
+      font-family:var(--ui);overflow:hidden;-webkit-font-smoothing:antialiased}
+
+    .fm-root{position:fixed;inset:0;display:grid;grid-template-rows:auto 1fr;}
+    .fm-stage{position:relative;overflow:hidden;background:#a9c9d6;}
+    .fm-stage canvas{display:block;width:100%;height:100%;cursor:grab;}
+
+    /* Masthead */
+    .fm-mast{display:flex;align-items:center;justify-content:space-between;
+      padding:14px 22px;background:rgba(0,0,0,.45);backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(240,231,212,.08);z-index:5;}
+    .fm-mast-left{display:flex;align-items:center;gap:12px}
+    .fm-mark{width:34px;height:34px;border-radius:50%;background:var(--scarlet);color:#fff;
+      display:grid;place-items:center;font-family:var(--serif);font-weight:800;font-size:15px;
+      box-shadow:inset 0 -2px 0 rgba(0,0,0,.18);letter-spacing:-.4px;}
+    .fm-title{font-family:var(--serif);font-weight:700;font-size:18px;line-height:1;
+      color:#f6efdc;letter-spacing:-.3px;}
+    .fm-title em{font-style:italic;font-weight:600}
+    .fm-sub{font-weight:500;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;
+      color:rgba(240,231,212,.55);margin-top:3px;}
+    .fm-mast-actions{display:flex;gap:8px;align-items:center}
+    .fm-mast-btn{padding:7px 13px;border:1px solid rgba(240,231,212,.18);
+      background:transparent;color:#f0e7d4;border-radius:18px;font-size:11.5px;
+      font-weight:500;cursor:pointer;font-family:inherit;text-decoration:none;
+      transition:all .15s ease;}
+    .fm-mast-btn:hover{background:rgba(240,231,212,.08);border-color:rgba(240,231,212,.32)}
+
+    /* Selection panel — bottom-left */
+    .fm-panel{position:absolute;bottom:18px;left:18px;width:320px;
+      background:rgba(20,16,12,.82);backdrop-filter:blur(14px);
+      border:1px solid rgba(240,231,212,.12);border-radius:12px;
+      padding:18px;z-index:4;color:#f0e7d4;
+      box-shadow:0 24px 60px -20px rgba(0,0,0,.6);
+      transition:transform .2s ease, opacity .2s ease;}
+    .fm-panel.is-hidden{opacity:0;transform:translateY(20px);pointer-events:none}
+    .fm-panel-kicker{font-weight:700;font-size:9.5px;letter-spacing:1.6px;
+      text-transform:uppercase;color:var(--scarlet);}
+    .fm-panel-title{font-family:var(--serif);font-weight:700;font-size:22px;
+      letter-spacing:-.3px;margin:4px 0 8px;line-height:1.05;}
+    .fm-panel-meta{display:flex;gap:14px;font-family:var(--mono);font-size:11px;
+      color:rgba(240,231,212,.7);margin-bottom:8px}
+    .fm-panel-meta b{color:#f6efdc;font-weight:600}
+    .fm-panel-body{font-family:var(--serif);font-size:13px;font-style:italic;
+      color:rgba(240,231,212,.85);line-height:1.4;margin-bottom:12px}
+    .fm-panel-cta{display:flex;gap:8px;}
+    .fm-panel-cta button{flex:1;appearance:none;border:none;border-radius:6px;
+      padding:8px 12px;font-size:11.5px;font-weight:600;letter-spacing:.2px;
+      cursor:pointer;font-family:inherit;transition:all .15s ease;}
+    .fm-cta-primary{background:var(--scarlet);color:#fff}
+    .fm-cta-primary:hover{background:#8a2210}
+    .fm-cta-ghost{background:transparent;border:1px solid rgba(240,231,212,.18)!important;color:#f0e7d4}
+    .fm-cta-ghost:hover{background:rgba(240,231,212,.08)}
+
+    /* Performance HUD */
+    .fm-hud{position:absolute;top:18px;left:18px;z-index:4;
+      background:rgba(20,16,12,.78);backdrop-filter:blur(10px);
+      border:1px solid rgba(240,231,212,.10);border-radius:8px;
+      padding:8px 12px;display:flex;gap:14px;font-family:var(--mono);font-size:11px;
+      color:rgba(240,231,212,.85);}
+    .fm-hud b{color:#f6efdc;font-weight:600;margin-left:4px}
+    .fm-hud-lbl{color:rgba(240,231,212,.45)}
+
+    /* Stadium development stages — top center */
+    .fm-stages{position:absolute;top:18px;left:50%;transform:translateX(-50%);z-index:4;
+      background:rgba(20,16,12,.82);backdrop-filter:blur(14px);
+      border:1px solid rgba(240,231,212,.12);border-radius:14px;
+      padding:10px 14px 10px 18px;display:flex;gap:8px;align-items:center;
+      box-shadow:0 24px 60px -20px rgba(0,0,0,.5);}
+    .fm-stages-lbl{font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:1.6px;
+      text-transform:uppercase;color:rgba(240,231,212,.55);margin-right:6px;
+      border-right:1px solid rgba(240,231,212,.12);padding-right:14px;}
+    .fm-stage-btn{appearance:none;border:1px solid rgba(240,231,212,.12);
+      background:rgba(240,231,212,.04);color:#f0e7d4;
+      padding:8px 14px 8px 10px;border-radius:8px;font-size:12px;font-weight:600;
+      cursor:pointer;font-family:inherit;letter-spacing:.1px;
+      transition:all .15s ease;display:flex;align-items:center;gap:8px;}
+    .fm-stage-btn:hover{background:rgba(240,231,212,.10);border-color:rgba(240,231,212,.25)}
+    .fm-stage-btn.is-active{background:var(--scarlet);color:#fff;border-color:var(--scarlet);
+      box-shadow:0 4px 12px -4px rgba(183,48,27,.6);}
+    .fm-stage-num{font-family:var(--serif);font-size:13px;font-weight:700;font-style:italic;
+      opacity:.7;min-width:18px;text-align:center;}
+    .fm-stage-btn.is-active .fm-stage-num{opacity:1;color:rgba(255,255,255,.85)}
+    .fm-stage-cap{font-family:var(--mono);font-size:10px;opacity:.6;margin-left:6px;
+      letter-spacing:.4px;}
+
+    /* Building list (top-right) */
+    .fm-list{position:absolute;top:18px;right:18px;width:240px;
+      background:rgba(20,16,12,.78);backdrop-filter:blur(14px);
+      border:1px solid rgba(240,231,212,.12);border-radius:12px;
+      padding:14px 16px;z-index:4;color:#f0e7d4;
+      max-height:calc(100vh - 180px);overflow-y:auto;}
+    .fm-list::-webkit-scrollbar{width:5px}
+    .fm-list::-webkit-scrollbar-thumb{background:rgba(240,231,212,.15);border-radius:3px}
+    .fm-list-kicker{font-weight:700;font-size:9.5px;letter-spacing:1.6px;
+      text-transform:uppercase;color:var(--scarlet);margin-bottom:8px}
+    .fm-list-item{display:flex;justify-content:space-between;align-items:center;
+      padding:6px 0;font-family:var(--serif);font-size:13px;color:rgba(240,231,212,.85);
+      border-bottom:1px dotted rgba(240,231,212,.1);cursor:pointer;}
+    .fm-list-item:last-child{border-bottom:0}
+    .fm-list-item:hover{color:#fff}
+    .fm-list-item .badge{font-family:var(--mono);font-size:10px;color:rgba(240,231,212,.5);
+      letter-spacing:.4px;padding:1px 6px;background:rgba(240,231,212,.06);border-radius:2px;}
+
+    /* Hint */
+    .fm-hint{position:absolute;bottom:18px;right:18px;z-index:4;
+      font-family:var(--mono);font-size:10.5px;color:rgba(240,231,212,.55);
+      letter-spacing:.4px;text-align:right;line-height:1.55;}
+    .fm-hint kbd{font-family:var(--mono);font-size:10px;background:rgba(240,231,212,.1);
+      padding:1px 5px;border-radius:3px;color:rgba(240,231,212,.85);margin:0 1px;}
+
+    /* Loading splash */
+    .fm-load{position:absolute;inset:0;display:grid;place-items:center;z-index:6;
+      background:radial-gradient(800px 400px at 50% 50%, #2a3f4c 0%, #0f1c25 100%);
+      color:rgba(240,231,212,.85);font-family:var(--serif);font-size:18px;
+      font-style:italic;letter-spacing:-.2px;pointer-events:none;opacity:1;
+      transition:opacity .4s ease;}
+    .fm-load.is-done{opacity:0}
+    .fm-load span{display:inline-block;animation:fmPulse 1.6s ease-in-out infinite}
+    @keyframes fmPulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+    @media (max-width: 720px){
+      .fm-list{width:auto;right:12px;left:12px;top:auto;bottom:140px;max-height:30vh}
+      .fm-panel{width:auto;right:12px;left:12px;bottom:12px}
+      .fm-hint{display:none}
+      .fm-hud{font-size:10px;padding:6px 10px}
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://esm.sh/three@0.160.0",
+      "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="fm-root">
+    <header class="fm-mast">
+      <div class="fm-mast-left">
+        <span class="fm-mark">AP</span>
+        <div>
+          <div class="fm-title">Aurelia <em>Premier</em> · Club-Campus</div>
+          <div class="fm-sub">Tycoon Map · 3D Procedural · Stadium &amp; Infrastruktur</div>
+        </div>
+      </div>
+      <div class="fm-mast-actions">
+        <a class="fm-mast-btn" href="Handoff Overview.html">← Overview</a>
+        <a class="fm-mast-btn" href="Stadium 3D.html">Stadium 3D</a>
+        <a class="fm-mast-btn" href="FootballManagerMap.jsx" download>Download .jsx</a>
+      </div>
+    </header>
+
+    <div class="fm-stage" id="js-stage">
+      <div class="fm-load" id="js-load"><span>Club-Campus wird geplant …</span></div>
+
+      <!-- Stadium development stages -->
+      <div class="fm-stages">
+        <span class="fm-stages-lbl">Ausbau</span>
+        <button class="fm-stage-btn" data-stage="1">
+          <span class="fm-stage-num">I</span>Bezirksliga<span class="fm-stage-cap">5k</span>
+        </button>
+        <button class="fm-stage-btn" data-stage="2">
+          <span class="fm-stage-num">II</span>2. Liga<span class="fm-stage-cap">12k</span>
+        </button>
+        <button class="fm-stage-btn is-active" data-stage="3">
+          <span class="fm-stage-num">III</span>1. Liga<span class="fm-stage-cap">25k</span>
+        </button>
+        <button class="fm-stage-btn" data-stage="4">
+          <span class="fm-stage-num">IV</span>Europacup<span class="fm-stage-cap">45k</span>
+        </button>
+      </div>
+
+      <div class="fm-hud">
+        <span><span class="fm-hud-lbl">FPS</span><b id="js-fps">—</b></span>
+        <span><span class="fm-hud-lbl">Draws</span><b id="js-draws">—</b></span>
+        <span><span class="fm-hud-lbl">Buildings</span><b id="js-bcount">—</b></span>
+      </div>
+
+      <aside class="fm-list">
+        <div class="fm-list-kicker">Anlagen · Klicke zum Anvisieren</div>
+        <div id="js-buildings"></div>
+      </aside>
+
+      <aside class="fm-panel is-hidden" id="js-panel">
+        <div class="fm-panel-kicker" id="js-panel-kick">Anlage</div>
+        <div class="fm-panel-title" id="js-panel-title">—</div>
+        <div class="fm-panel-meta" id="js-panel-meta"></div>
+        <div class="fm-panel-body" id="js-panel-body"></div>
+        <div class="fm-panel-cta">
+          <button class="fm-cta-primary" id="js-upgrade">Anlage ausbauen</button>
+          <button class="fm-cta-ghost" id="js-dismiss">Schließen</button>
+        </div>
+      </aside>
+
+      <div class="fm-hint">
+        <kbd>Drag</kbd> drehen ·
+        <kbd>Scroll</kbd> Zoom ·
+        <kbd>Rechte Maustaste</kbd> verschieben ·
+        Gebäude klicken für Details
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // ── Palette ──
+    const C = {
+      grass: 0x4a8a3b, grassDark: 0x3f7831, grassLight: 0x5fa64e,
+      concrete: 0xcfc5b1, concreteDark: 0x9c9180,
+      road: 0x454035, sky: 0xa9c9d6,
+      scarlet: 0xb7301b, ink: 0x1a1410, paper: 0xf4ede0,
+      glass: 0x7fb4d3, glassDark: 0x3c5b78,
+      tree: 0x2d5a2c, treeAlt: 0x3f7838, treeLight: 0x5fa64e,
+      treeTrunk: 0x5a3a22, roof: 0x1c1814,
+      carColors: [0x9c9180, 0x1f3d6b, 0x7a1c2f, 0x3b6e3e, 0xe8c66a, 0xf0e7d4],
+    };
+
+    // ── Building registry — populated as we build the scene ──
+    const buildings = [];   // { name, type, group, hoverScale, info, cap?, status? }
+    function registerBuilding(b) { buildings.push(b); return b; }
+
+    // ── Stage / renderer / scene / camera ──
+    const stageEl = document.getElementById('js-stage');
+    const loadEl  = document.getElementById('js-load');
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.8));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    stageEl.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(C.sky);
+    scene.fog = new THREE.Fog(C.sky, 200, 600);
+
+    const camera = new THREE.PerspectiveCamera(28, 1, 1, 600);
+    camera.position.set(80, 70, 80);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 4, 0);
+    controls.minDistance = 40;
+    controls.maxDistance = 220;
+    controls.minPolarAngle = Math.PI * 0.18;
+    controls.maxPolarAngle = Math.PI * 0.42;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.18;
+    controls.addEventListener('start', () => { controls.autoRotate = false; });
+
+    function resize() {
+      const w = stageEl.clientWidth, h = stageEl.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', resize);
+    new ResizeObserver(resize).observe(stageEl);
+    resize();
+
+    // ── Lighting ──
+    scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+    scene.add(new THREE.HemisphereLight(0xfff2d6, 0x3b6e3e, 0.55));
+    const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+    sun.position.set(60, 100, 40);
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.camera.left = -150; sun.shadow.camera.right = 150;
+    sun.shadow.camera.top = 150; sun.shadow.camera.bottom = -150;
+    sun.shadow.camera.near = 1; sun.shadow.camera.far = 300;
+    sun.shadow.bias = -0.0005;
+    scene.add(sun);
+
+    // ── Ground ──
+    const groundMat = new THREE.MeshStandardMaterial({ color: C.grass, roughness: 1 });
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(400, 400), groundMat);
+    ground.rotation.x = -Math.PI / 2; ground.position.y = -0.01;
+    ground.receiveShadow = true;
+    scene.add(ground);
+
+    // Grass variation patches
+    for (const [x, z, r, alt] of [[-40,-50,18,0],[60,-60,16,1],[70,60,22,0],[-70,50,20,1]]) {
+      const patch = new THREE.Mesh(new THREE.CircleGeometry(r, 24),
+        new THREE.MeshStandardMaterial({ color: alt ? C.grassLight : C.grassDark, roughness: 1 }));
+      patch.rotation.x = -Math.PI / 2;
+      patch.position.set(x, 0.005, z);
+      patch.receiveShadow = true;
+      scene.add(patch);
+    }
+
+    // ── Pitch builder (reusable) ──
+    function buildPitch(w, d, stripes = true) {
+      const g = new THREE.Group();
+      const base = new THREE.Mesh(new THREE.PlaneGeometry(w, d),
+        new THREE.MeshStandardMaterial({ color: C.grass, roughness: 0.95 }));
+      base.rotation.x = -Math.PI / 2; base.position.y = 0.01;
+      base.receiveShadow = true;
+      g.add(base);
+      if (stripes) {
+        for (let i = 0; i < 12; i++) {
+          const s = new THREE.Mesh(new THREE.PlaneGeometry(w - 0.05, d / 12 - 0.05),
+            new THREE.MeshStandardMaterial({ color: i % 2 === 0 ? C.grass : C.grassLight, roughness: 0.95 }));
+          s.rotation.x = -Math.PI / 2;
+          s.position.set(0, 0.015, -d / 2 + i * (d / 12) + d / 24);
+          g.add(s);
+        }
+      }
+      // Markings
+      const lineMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.9 });
+      const hw = w / 2, hd = d / 2;
+      const addLine = (pts) => {
+        const buf = new THREE.BufferGeometry().setFromPoints(pts.map(p => new THREE.Vector3(p[0], 0.025, p[1])));
+        g.add(new THREE.Line(buf, lineMat));
+      };
+      addLine([[-hw,-hd],[hw,-hd],[hw,hd],[-hw,hd],[-hw,-hd]]);
+      addLine([[-hw,0],[hw,0]]);
+      const circ = []; const r = Math.min(w, d) * 0.13;
+      for (let i = 0; i <= 32; i++) { const a = (i/32)*Math.PI*2; circ.push([Math.cos(a)*r, Math.sin(a)*r]); }
+      addLine(circ);
+      const pbW = w * 0.55, pbD = d * 0.15;
+      for (const s of [-1, 1]) {
+        const ze = s * hd, zi = ze - s * pbD;
+        addLine([[-pbW/2,ze],[-pbW/2,zi],[pbW/2,zi],[pbW/2,ze]]);
+      }
+      return g;
+    }
+
+    // ── Floodlight (height-parameterized) ──
+    function buildFloodlight(mastH = 10) {
+      const g = new THREE.Group();
+      const mast = new THREE.Mesh(new THREE.CylinderGeometry(mastH * 0.018, mastH * 0.028, mastH, 8),
+        new THREE.MeshStandardMaterial({ color: 0x2a261f, roughness: 0.7, metalness: 0.4 }));
+      mast.position.y = mastH / 2; mast.castShadow = true; g.add(mast);
+      const housing = new THREE.Mesh(new THREE.BoxGeometry(mastH * 0.13, 0.5, 0.9),
+        new THREE.MeshStandardMaterial({ color: C.ink, roughness: 0.6 }));
+      housing.position.y = mastH + 0.2; housing.castShadow = true; g.add(housing);
+      const bulb = new THREE.Mesh(new THREE.PlaneGeometry(mastH * 0.11, 0.35),
+        new THREE.MeshStandardMaterial({ color: 0xffd87a, emissive: 0xffd87a, emissiveIntensity: 1.8 }));
+      bulb.position.set(0, mastH, 0.51); g.add(bulb);
+      return g;
+    }
+
+    // ── Stadium development stages ────────────────────────────
+    // Each stage describes the visual buildout: which sides have stands,
+    // which have roofs, how tall, scoreboard presence, floodlight scale.
+    const STAGES = {
+      1: {
+        name: 'Bezirksliga',
+        capacity: '~5.000',
+        info: 'Karrierebeginn: eine kleine Haupttribüne im Norden, drei einfache Stehkurven außenherum. Kein Flutlicht.',
+        stands: ['N'],                       // proper structure
+        terraces: ['S', 'E', 'W'],           // simple stepped terraces
+        roofSides: ['N'],                    // partial roof on the home stand only
+        standDepth: 3.5,
+        standHeight: 2.6,
+        floodlight: null,
+        scoreboard: null,
+        tier2: false,
+      },
+      2: {
+        name: '2. Liga',
+        capacity: '~12.000',
+        info: 'Vier Tribünen, Halbdach auf Nord/Süd. Erste kleine Flutlichtmasten in den Ecken.',
+        stands: ['N', 'S', 'E', 'W'],
+        terraces: [],
+        roofSides: ['N', 'S'],
+        standDepth: 4.2,
+        standHeight: 3.2,
+        floodlight: 7,
+        scoreboard: null,
+        tier2: false,
+      },
+      3: {
+        name: '1. Liga',
+        capacity: '~25.000',
+        info: 'Vollumdach, vier vollausgebaute Tribünen, kompakte Anzeigetafel hinter der Nordkurve, mittlere Flutlichtmasten.',
+        stands: ['N', 'S', 'E', 'W'],
+        terraces: [],
+        roofSides: ['N', 'S', 'E', 'W'],
+        standDepth: 5.2,
+        standHeight: 4.2,
+        floodlight: 11,
+        scoreboard: 'small',
+        tier2: false,
+      },
+      4: {
+        name: 'Europacup',
+        capacity: '~45.000',
+        info: 'Premium-Schüssel: zweistöckige Tribünen mit VIP-Ring, durchgehendes Dach, Pylon-Anzeigetafel hinter dem Südtor.',
+        stands: ['N', 'S', 'E', 'W'],
+        terraces: [],
+        roofSides: ['N', 'S', 'E', 'W'],
+        standDepth: 6.5,
+        standHeight: 5.6,
+        floodlight: 16,
+        scoreboard: 'large',
+        tier2: true,
+      },
+    };
+
+    // ── Stand segment ──
+    // Builds one side's stand. side ∈ N/S/E/W. Stand is positioned with its
+    // pitch-facing edge at the clearance ring; +z in local space points away
+    // from the pitch (since we rotate the group to face inward).
+    function buildStandSeg({ side, pitchW, pitchD, depth, height, hasRoof, accent }) {
+      const g = new THREE.Group();
+      const isNS = side === 'N' || side === 'S';
+      const longEdge = isNS ? pitchW : pitchD;
+      const clearance = 2.5;
+      const offset = (isNS ? pitchD / 2 : pitchW / 2) + clearance + depth / 2;
+
+      if (side === 'N')      { g.position.set(0, 0, -offset); g.rotation.y = 0; }
+      else if (side === 'S') { g.position.set(0, 0,  offset); g.rotation.y = Math.PI; }
+      else if (side === 'E') { g.position.set( offset, 0, 0); g.rotation.y = -Math.PI / 2; }
+      else if (side === 'W') { g.position.set(-offset, 0, 0); g.rotation.y =  Math.PI / 2; }
+
+      // In local space, the pitch is in the +z direction. So the stand's
+      // FRONT (facing pitch) is at +z = depth/2, BACK at -z.
+      const length = longEdge + 7;
+
+      // Lower-tier base (concrete)
+      const lower = new THREE.Mesh(
+        new THREE.BoxGeometry(length, height * 0.55, depth),
+        new THREE.MeshStandardMaterial({ color: C.concrete, roughness: 0.9 })
+      );
+      lower.position.set(0, height * 0.275, 0);
+      lower.castShadow = lower.receiveShadow = true;
+      g.add(lower);
+
+      // Front seat band (accent — scarlet)
+      const seats = new THREE.Mesh(
+        new THREE.BoxGeometry(length - 1, 0.45, 1.0),
+        new THREE.MeshStandardMaterial({ color: accent, roughness: 0.7 })
+      );
+      seats.position.set(0, height * 0.55 + 0.22, depth / 2 - 0.55);
+      seats.castShadow = true;
+      g.add(seats);
+
+      // Upper terrace (concrete dark, slanted back)
+      const upper = new THREE.Mesh(
+        new THREE.BoxGeometry(length, height * 0.42, depth * 0.55),
+        new THREE.MeshStandardMaterial({ color: C.concreteDark, roughness: 0.85 })
+      );
+      upper.position.set(0, height * 0.82, -depth * 0.18);
+      upper.castShadow = true;
+      g.add(upper);
+
+      // Roof — angled cantilever
+      if (hasRoof) {
+        const roof = new THREE.Mesh(
+          new THREE.BoxGeometry(length + 1.2, 0.22, depth + 0.8),
+          new THREE.MeshStandardMaterial({ color: C.roof, roughness: 0.6, metalness: 0.2 })
+        );
+        roof.position.set(0, height + 0.65, -depth * 0.1);
+        roof.rotation.x = 0.08;   // tilts the front edge slightly down toward pitch
+        roof.castShadow = true;
+        g.add(roof);
+
+        // Two support struts at the back corners
+        for (const sx of [-1, 1]) {
+          const strut = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.13, 0.13, height + 0.6, 6),
+            new THREE.MeshStandardMaterial({ color: C.roof, roughness: 0.7 })
+          );
+          strut.position.set(sx * length * 0.42, (height + 0.6) / 2, -depth / 2 + 0.3);
+          strut.castShadow = true;
+          g.add(strut);
+        }
+      }
+
+      return g;
+    }
+
+    // ── Simple stepped terrace (no proper structure) — for Stage 1 ──
+    function buildTerrace({ side, pitchW, pitchD }) {
+      const g = new THREE.Group();
+      const isNS = side === 'N' || side === 'S';
+      const longEdge = isNS ? pitchW : pitchD;
+      const clearance = 2.5;
+      const depth = 2.5;
+      const offset = (isNS ? pitchD / 2 : pitchW / 2) + clearance + depth / 2;
+
+      if (side === 'N')      { g.position.set(0, 0, -offset); g.rotation.y = 0; }
+      else if (side === 'S') { g.position.set(0, 0,  offset); g.rotation.y = Math.PI; }
+      else if (side === 'E') { g.position.set( offset, 0, 0); g.rotation.y = -Math.PI / 2; }
+      else if (side === 'W') { g.position.set(-offset, 0, 0); g.rotation.y =  Math.PI / 2; }
+
+      const length = longEdge + 4;
+
+      // 3 stepped concrete bands going up + back
+      for (let i = 0; i < 3; i++) {
+        const step = new THREE.Mesh(
+          new THREE.BoxGeometry(length, 0.35, 0.85),
+          new THREE.MeshStandardMaterial({ color: i === 1 ? C.concrete : C.concreteDark, roughness: 0.9 })
+        );
+        step.position.set(0, 0.175 + i * 0.4, depth / 2 - 0.42 - i * 0.85);
+        step.castShadow = step.receiveShadow = true;
+        g.add(step);
+      }
+      // Front rail (handrail near pitch)
+      const rail = new THREE.Mesh(
+        new THREE.BoxGeometry(length, 0.08, 0.08),
+        new THREE.MeshStandardMaterial({ color: C.ink, roughness: 0.7 })
+      );
+      rail.position.set(0, 1.0, depth / 2 - 0.05);
+      g.add(rail);
+
+      return g;
+    }
+
+    // ── Scoreboard (simple/large variants) ──
+    function buildScoreboardSimple(size = 'small') {
+      const g = new THREE.Group();
+      const large = size === 'large';
+      const panelW = large ? 22 : 12;
+      const panelH = large ? 9 : 5;
+      const mastH = large ? 22 : 14;
+
+      // Mast
+      const mast = new THREE.Mesh(
+        new THREE.CylinderGeometry(large ? 0.32 : 0.18, large ? 0.55 : 0.3, mastH - 1, 10),
+        new THREE.MeshStandardMaterial({ color: C.roof, roughness: 0.55, metalness: 0.45 })
+      );
+      mast.position.y = (mastH - 1) / 2;
+      mast.castShadow = true;
+      g.add(mast);
+
+      // Backing slab
+      const back = new THREE.Mesh(
+        new THREE.BoxGeometry(panelW, panelH, 0.4),
+        new THREE.MeshStandardMaterial({ color: 0x0a0807, roughness: 0.5 })
+      );
+      back.position.y = mastH;
+      back.castShadow = true;
+      g.add(back);
+
+      // Screen face (canvas-rendered)
+      const c = document.createElement('canvas');
+      c.width = 880; c.height = 360;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#0a0807';
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.font = '700 ' + (large ? 200 : 160) + 'px Newsreader, Georgia, serif';
+      ctx.fillStyle = '#f6efdc';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(large ? '2 — 1' : '1 — 0', c.width / 2, c.height / 2 - 8);
+      ctx.font = '600 36px Inter, sans-serif';
+      ctx.fillStyle = '#b7301b'; ctx.textAlign = 'left';
+      ctx.fillText('AURELIA', 60, 60);
+      ctx.textAlign = 'right'; ctx.fillStyle = '#cbb98a';
+      ctx.fillText('AUERBACH', c.width - 60, 60);
+      ctx.font = '700 40px JetBrains Mono, monospace';
+      ctx.fillStyle = '#f6efdc'; ctx.textAlign = 'center';
+      ctx.fillText("78'", c.width / 2, c.height - 46);
+      const tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      const face = new THREE.Mesh(
+        new THREE.PlaneGeometry(panelW - 0.6, panelH - 0.4),
+        new THREE.MeshBasicMaterial({ map: tex })
+      );
+      face.position.set(0, mastH, 0.21);
+      g.add(face);
+
+      return g;
+    }
+
+    // ── Stadium (parameterized by stage) ──
+    function buildStadium(stageId) {
+      const g = new THREE.Group();
+      const cfg = STAGES[stageId];
+      const pitchW = 24, pitchD = 36;
+      g.add(buildPitch(pitchW, pitchD, true));
+
+      // Stands per side
+      for (const side of ['N', 'S', 'E', 'W']) {
+        if (cfg.stands.includes(side)) {
+          g.add(buildStandSeg({
+            side, pitchW, pitchD,
+            depth: cfg.standDepth,
+            height: cfg.standHeight,
+            hasRoof: cfg.roofSides.includes(side),
+            accent: C.scarlet,
+          }));
+          // Stage 4: a second upper tier nudged back + up
+          if (cfg.tier2) {
+            const t2Depth = cfg.standDepth * 0.7;
+            const t2Height = cfg.standHeight * 0.55;
+            const t2 = buildStandSeg({
+              side, pitchW, pitchD,
+              depth: t2Depth,
+              height: t2Height,
+              hasRoof: false,
+              accent: C.scarlet,
+            });
+            // Push tier-2 BACK so its front edge sits cleanly behind tier-1's
+            // back edge (auto-positioned via the buildStandSeg offset formula).
+            const back = cfg.standDepth + 0.5;
+            if (side === 'N') t2.position.z -= back;
+            if (side === 'S') t2.position.z += back;
+            if (side === 'E') t2.position.x += back;
+            if (side === 'W') t2.position.x -= back;
+            // Lift it onto the lower tier's back wall
+            t2.position.y += cfg.standHeight + 0.3;
+            g.add(t2);
+
+            // VIP-Ring — emissive band between the two tiers
+            const isNSv = side === 'N' || side === 'S';
+            const vipLen = (isNSv ? pitchW : pitchD) + 5;
+            const vipBand = new THREE.Mesh(
+              new THREE.BoxGeometry(vipLen, 1.5, 0.5),
+              new THREE.MeshStandardMaterial({
+                color: 0xfff2b8, emissive: 0xfff2b8, emissiveIntensity: 0.5,
+                roughness: 0.5,
+              })
+            );
+            const vipZ = (isNSv ? pitchD/2 : pitchW/2) + 2.5 + cfg.standDepth + 0.05;
+            const vipY = cfg.standHeight + 0.05;
+            if (side === 'N') vipBand.position.set(0, vipY, -vipZ);
+            if (side === 'S') vipBand.position.set(0, vipY,  vipZ);
+            if (side === 'E') { vipBand.position.set( vipZ, vipY, 0); vipBand.rotation.y = Math.PI/2; }
+            if (side === 'W') { vipBand.position.set(-vipZ, vipY, 0); vipBand.rotation.y = Math.PI/2; }
+            g.add(vipBand);
+          }
+        } else if (cfg.terraces.includes(side)) {
+          g.add(buildTerrace({ side, pitchW, pitchD }));
+        }
+      }
+
+      // Floodlights
+      if (cfg.floodlight) {
+        for (const [x, z] of [
+          [-(pitchW/2+6), -(pitchD/2+6)], [(pitchW/2+6), -(pitchD/2+6)],
+          [-(pitchW/2+6), (pitchD/2+6)],  [(pitchW/2+6), (pitchD/2+6)],
+        ]) {
+          const fl = buildFloodlight(cfg.floodlight);
+          fl.position.set(x, 0, z);
+          g.add(fl);
+        }
+      }
+
+      // Scoreboard — behind south goal
+      if (cfg.scoreboard) {
+        const sb = buildScoreboardSimple(cfg.scoreboard);
+        const zOff = pitchD / 2 + cfg.standDepth + 4;
+        sb.position.set(0, 0, zOff);
+        sb.rotation.y = Math.PI;  // panel faces inward toward pitch
+        g.add(sb);
+      }
+
+      // Goals (always)
+      const goalMat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+      for (const s of [-1, 1]) {
+        const goal = new THREE.Group();
+        goal.position.z = s * pitchD / 2;
+        const p1 = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.4, 6), goalMat);
+        p1.position.set(-2, 0.7, 0); p1.castShadow = true; goal.add(p1);
+        const p2 = p1.clone(); p2.position.set(2, 0.7, 0); goal.add(p2);
+        const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 4, 6), goalMat);
+        bar.rotation.z = Math.PI/2; bar.position.set(0, 1.4, 0); bar.castShadow = true;
+        goal.add(bar);
+        g.add(goal);
+      }
+
+      // Dugouts (always)
+      for (const s of [-1, 1]) {
+        const dug = new THREE.Group();
+        dug.position.set(-(pitchW/2 + 1.4), 0.4, s * 6);
+        const body = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.7, 3),
+          new THREE.MeshStandardMaterial({ color: C.ink, roughness: 0.5 }));
+        body.position.y = 0.35; body.castShadow = true; dug.add(body);
+        const top = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.08, 3.2),
+          new THREE.MeshStandardMaterial({ color: C.scarlet }));
+        top.position.y = 0.8; top.castShadow = true; dug.add(top);
+        g.add(dug);
+      }
+      return g;
+    }
+
+    // ── Building (boxy tycoon building) ──
+    function buildBuilding({ w, h, d, color, roofColor, accent, glass = true }) {
+      const g = new THREE.Group();
+      const bodyMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.7 });
+      const body = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), bodyMat);
+      body.position.y = h / 2; body.castShadow = body.receiveShadow = true;
+      g.add(body);
+      const roof = new THREE.Mesh(new THREE.BoxGeometry(w + 0.4, 0.25, d + 0.4),
+        new THREE.MeshStandardMaterial({ color: roofColor || C.roof, roughness: 0.6, metalness: 0.15 }));
+      roof.position.y = h + 0.1; roof.castShadow = true; g.add(roof);
+      if (glass) {
+        const glassEl = new THREE.Mesh(new THREE.PlaneGeometry(w * 0.85, h * 0.4),
+          new THREE.MeshStandardMaterial({ color: C.glass, roughness: 0.2, metalness: 0.4,
+            emissive: C.glassDark, emissiveIntensity: 0.05 }));
+        glassEl.position.set(0, h * 0.55, d/2 + 0.01);
+        g.add(glassEl);
+      }
+      if (accent != null) {
+        const stripe = new THREE.Mesh(new THREE.PlaneGeometry(w, 0.2),
+          new THREE.MeshStandardMaterial({ color: accent }));
+        stripe.position.set(0, 0.1, d/2 + 0.011);
+        g.add(stripe);
+      }
+      // Track the body material for hover-emissive
+      g.userData.bodyMat = bodyMat;
+      return g;
+    }
+
+    // ── Parking lot ──
+    function buildParkingLot({ rows = 4, cols = 8 }) {
+      const g = new THREE.Group();
+      const w = cols * 1.6 + 1.2, d = rows * 2.6 + 1.2;
+      const pad = new THREE.Mesh(new THREE.PlaneGeometry(w, d),
+        new THREE.MeshStandardMaterial({ color: 0x3a3530, roughness: 0.95 }));
+      pad.rotation.x = -Math.PI/2; pad.position.y = 0.01; pad.receiveShadow = true;
+      g.add(pad);
+      // Lane stripes
+      for (let i = 0; i <= cols; i++) {
+        const s = new THREE.Mesh(new THREE.PlaneGeometry(0.06, rows * 2.6),
+          new THREE.MeshStandardMaterial({ color: 0xbbb59c }));
+        s.rotation.x = -Math.PI/2;
+        s.position.set((i - cols/2) * 1.6, 0.012, 0);
+        g.add(s);
+      }
+      // Cars (InstancedMesh)
+      const carGeo = new THREE.BoxGeometry(1.0, 0.4, 2.2);
+      const carMat = new THREE.MeshStandardMaterial({ roughness: 0.5, metalness: 0.25 });
+      const max = rows * cols;
+      const im = new THREE.InstancedMesh(carGeo, carMat, max);
+      im.castShadow = true;
+      const tmpM = new THREE.Matrix4();
+      let count = 0;
+      for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+        if (Math.random() < 0.18) continue;
+        const x = (c - cols/2 + 0.5) * 1.6;
+        const z = (r - rows/2 + 0.5) * 2.6;
+        tmpM.makeTranslation(x, 0.2, z);
+        im.setMatrixAt(count, tmpM);
+        im.setColorAt(count, new THREE.Color(C.carColors[(Math.random() * C.carColors.length) | 0]));
+        count++;
+      }
+      im.count = count;
+      im.instanceMatrix.needsUpdate = true;
+      if (im.instanceColor) im.instanceColor.needsUpdate = true;
+      g.add(im);
+      return g;
+    }
+
+    // ── Tree ──
+    function buildTree(scale = 1) {
+      const g = new THREE.Group();
+      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.15, 0.6, 6),
+        new THREE.MeshStandardMaterial({ color: C.treeTrunk, roughness: 0.9 }));
+      trunk.position.y = 0.3; trunk.castShadow = true; g.add(trunk);
+      const leafColor = Math.random() < 0.18 ? C.treeAlt : Math.random() < 0.10 ? C.treeLight : C.tree;
+      const leafMat = new THREE.MeshStandardMaterial({ color: leafColor, roughness: 0.85 });
+      const c1 = new THREE.Mesh(new THREE.ConeGeometry(0.7, 1.6, 7), leafMat);
+      c1.position.y = 1.1; c1.castShadow = true; g.add(c1);
+      const c2 = new THREE.Mesh(new THREE.ConeGeometry(0.45, 0.9, 7), leafMat);
+      c2.position.y = 1.8; c2.castShadow = true; g.add(c2);
+      g.scale.setScalar(scale);
+      return g;
+    }
+
+    // ── Food trucks ──
+    function buildFoodTrucks(count = 4) {
+      const g = new THREE.Group();
+      const palette = [C.scarlet, 0xd9b04a, 0x3b6e3e, 0x1f3d6b];
+      for (let i = 0; i < count; i++) {
+        const truck = new THREE.Group();
+        truck.position.x = i * 3.6 - count * 1.8;
+        const body = new THREE.Mesh(new THREE.BoxGeometry(3, 1.4, 1.5),
+          new THREE.MeshStandardMaterial({ color: palette[i % palette.length], roughness: 0.6 }));
+        body.position.y = 0.7; body.castShadow = true; truck.add(body);
+        const cab = new THREE.Mesh(new THREE.BoxGeometry(0.9, 1.0, 1.4),
+          new THREE.MeshStandardMaterial({ color: C.ink, roughness: 0.7 }));
+        cab.position.set(-1.8, 0.5, 0); cab.castShadow = true; truck.add(cab);
+        const awning = new THREE.Mesh(new THREE.BoxGeometry(2, 0.06, 1.8),
+          new THREE.MeshStandardMaterial({ color: C.paper, roughness: 0.7 }));
+        awning.position.set(0.3, 1.6, 0); awning.rotation.z = -0.2; awning.castShadow = true;
+        truck.add(awning);
+        for (const wx of [-1, 1]) {
+          const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 0.3, 10),
+            new THREE.MeshStandardMaterial({ color: C.ink }));
+          wheel.position.set(wx, 0.2, 0.7); wheel.rotation.x = Math.PI/2;
+          wheel.castShadow = true; truck.add(wheel);
+        }
+        truck.userData.bodyMat = body.material;
+        registerBuilding({ name: `Foodtruck ${i+1}`, type: 'Foodtruck',
+          group: truck, info: 'Crêpe, Wurst, Pommes — Matchday-Klassiker.',
+          cap: '~120 / Tag', status: 'Pacht: 800 €/Spieltag' });
+        g.add(truck);
+      }
+      return g;
+    }
+
+    // ── Road ──
+    function buildRoad(from, to, width = 4) {
+      const dx = to[0] - from[0], dz = to[2] - from[2];
+      const len = Math.hypot(dx, dz);
+      const cx = (from[0] + to[0]) / 2, cz = (from[2] + to[2]) / 2;
+      const ang = Math.atan2(dx, dz);
+      const g = new THREE.Group();
+      g.position.set(cx, 0.005, cz); g.rotation.y = ang;
+      const pad = new THREE.Mesh(new THREE.PlaneGeometry(width, len),
+        new THREE.MeshStandardMaterial({ color: C.road, roughness: 0.95 }));
+      pad.rotation.x = -Math.PI/2; pad.receiveShadow = true;
+      g.add(pad);
+      const dashCount = Math.floor(len / 3);
+      for (let i = 0; i < dashCount; i++) {
+        const dash = new THREE.Mesh(new THREE.PlaneGeometry(0.2, 1.2),
+          new THREE.MeshStandardMaterial({ color: 0xcbb98a }));
+        dash.rotation.x = -Math.PI/2;
+        dash.position.set(0, 0.005, -len/2 + i * 3 + 1.2);
+        g.add(dash);
+      }
+      return g;
+    }
+
+    // ── Tram station ──
+    function buildTramStation() {
+      const g = new THREE.Group();
+      const plat = new THREE.Mesh(new THREE.BoxGeometry(18, 0.6, 4),
+        new THREE.MeshStandardMaterial({ color: C.concrete, roughness: 0.9 }));
+      plat.position.y = 0.3; plat.castShadow = plat.receiveShadow = true; g.add(plat);
+      const canopy = new THREE.Mesh(new THREE.BoxGeometry(18, 0.2, 4.4),
+        new THREE.MeshStandardMaterial({ color: C.scarlet, roughness: 0.55, metalness: 0.2 }));
+      canopy.position.y = 3; canopy.castShadow = true; g.add(canopy);
+      for (const x of [-6, -2, 2, 6]) {
+        const col = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 2.7, 8),
+          new THREE.MeshStandardMaterial({ color: C.ink }));
+        col.position.set(x, 1.65, -1.7); col.castShadow = true;
+        g.add(col);
+      }
+      // Tram car
+      const tramBody = new THREE.Mesh(new THREE.BoxGeometry(15, 1.8, 2.4),
+        new THREE.MeshStandardMaterial({ color: C.glass, emissive: C.glassDark, emissiveIntensity: 0.08,
+          roughness: 0.3, metalness: 0.4 }));
+      tramBody.position.set(0, 1.2, 2.6); tramBody.castShadow = true; g.add(tramBody);
+      const tramTop = new THREE.Mesh(new THREE.BoxGeometry(15.2, 0.2, 2.6),
+        new THREE.MeshStandardMaterial({ color: C.ink }));
+      tramTop.position.set(0, 2.05, 2.6); g.add(tramTop);
+      for (const z of [2.0, 3.2]) {
+        const rail = new THREE.Mesh(new THREE.PlaneGeometry(26, 0.1),
+          new THREE.MeshStandardMaterial({ color: C.concreteDark, metalness: 0.6, roughness: 0.4 }));
+        rail.rotation.x = -Math.PI/2; rail.position.set(0, 0.04, z);
+        g.add(rail);
+      }
+      g.userData.bodyMat = tramBody.material;
+      return g;
+    }
+
+    // ── Training grounds ──
+    function buildTrainingGrounds() {
+      const g = new THREE.Group();
+      // Pitch A
+      const pA = buildPitch(18, 28, false);
+      pA.position.set(-12, 0, 0);
+      pA.userData.label = 'Trainingsplatz A';
+      registerBuilding({ name: 'Trainingsplatz A', type: 'Training', group: pA,
+        info: 'Rasen 1. Mannschaft. Vormittags belegt, nachmittags U23.',
+        cap: '36 Spieler', status: 'In Top-Zustand' });
+      g.add(pA);
+      // Pitch B
+      const pB = buildPitch(18, 28, false);
+      pB.position.set(12, 0, 0);
+      registerBuilding({ name: 'Trainingsplatz B', type: 'Training', group: pB,
+        info: 'Kunstrasen, ganzjährig nutzbar. U23 + U17.',
+        cap: '40 Spieler', status: 'Kunstrasen 2024 erneuert' });
+      g.add(pB);
+      // Fitness grid
+      const fit = new THREE.Group();
+      fit.position.set(0, 0, 20);
+      const pad = new THREE.Mesh(new THREE.PlaneGeometry(14, 8),
+        new THREE.MeshStandardMaterial({ color: 0xc8baa0, roughness: 0.95 }));
+      pad.rotation.x = -Math.PI/2; pad.position.y = 0.01;
+      pad.receiveShadow = true; fit.add(pad);
+      const fitBodies = [];
+      for (const [x, z] of [[-4,-2],[-4,2],[0,-2],[0,2],[4,-2],[4,2]]) {
+        const m = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.6, 1.2),
+          new THREE.MeshStandardMaterial({ color: C.scarlet, roughness: 0.6 }));
+        m.position.set(x, 0.3, z); m.castShadow = true;
+        fit.add(m); fitBodies.push(m);
+      }
+      fit.userData.bodyMat = fitBodies[0].material;
+      registerBuilding({ name: 'Fitness-Arena', type: 'Fitness', group: fit,
+        info: 'Kraftstationen, Sprintbahn, Reha-Pool.',
+        cap: '24 Geräte', status: 'Voll ausgestattet' });
+      g.add(fit);
+      return g;
+    }
+
+    // ── Concourse ring around stadium ──
+    function buildConcourse(innerR, outerR) {
+      const g = new THREE.Group();
+      const ring = new THREE.Mesh(
+        new THREE.RingGeometry(innerR, outerR, 80),
+        new THREE.MeshStandardMaterial({ color: 0xc8baa0, roughness: 0.95, side: THREE.DoubleSide })
+      );
+      ring.rotation.x = -Math.PI / 2;
+      ring.position.y = 0.008;
+      ring.receiveShadow = true;
+      g.add(ring);
+      // 4 cardinal entrance gaps (paved approach radials)
+      const inset = new THREE.MeshStandardMaterial({ color: 0xb5a78d, roughness: 0.95 });
+      for (const ang of [0, Math.PI/2, Math.PI, -Math.PI/2]) {
+        const wedge = new THREE.Mesh(new THREE.PlaneGeometry(8, outerR - innerR), inset);
+        wedge.rotation.x = -Math.PI / 2;
+        const cx = Math.cos(ang) * (innerR + outerR) / 2;
+        const cz = Math.sin(ang) * (innerR + outerR) / 2;
+        wedge.position.set(cx, 0.012, cz);
+        wedge.rotation.z = -ang + Math.PI / 2;
+        wedge.receiveShadow = true;
+        g.add(wedge);
+      }
+      return g;
+    }
+
+    // ── Build the scene ──
+    // Concourse first (so other things sit on top of it)
+    scene.add(buildConcourse(28, 40));
+
+    // ── Initial stadium (stage 3) ──
+    let currentStadium = null;
+    const stadiumEntry = registerBuilding({
+      name: 'Aurelia Arena',
+      type: 'Stadion',
+      group: null,  // filled by setStage
+      info: '', cap: '', status: '',
+    });
+
+    function setStage(n) {
+      const cfg = STAGES[n];
+      if (currentStadium) {
+        scene.remove(currentStadium);
+        currentStadium.traverse(o => {
+          if (o.geometry) o.geometry.dispose();
+          if (o.material) {
+            if (Array.isArray(o.material)) o.material.forEach(m => m.dispose());
+            else o.material.dispose();
+          }
+        });
+      }
+      currentStadium = buildStadium(n);
+      scene.add(currentStadium);
+      // Refresh entry
+      stadiumEntry.group = currentStadium;
+      stadiumEntry.cap = cfg.capacity;
+      stadiumEntry.status = `Stufe ${['I','II','III','IV'][n-1]} · ${cfg.name}`;
+      stadiumEntry.info = cfg.info;
+      currentStadium.traverse(c => { c.userData.building = stadiumEntry; });
+      // Button states
+      for (const btn of document.querySelectorAll('.fm-stage-btn')) {
+        btn.classList.toggle('is-active', parseInt(btn.dataset.stage) === n);
+      }
+      // Re-show panel if stadium currently selected
+      const panel = document.getElementById('js-panel');
+      if (!panel.classList.contains('is-hidden') &&
+          document.getElementById('js-panel-title').textContent === 'Aurelia Arena') {
+        selectBuilding(stadiumEntry);
+      }
+    }
+
+    // ── North quadrant · Training & Youth ─────────────────────
+    // Two training pitches side by side + fitness arena + youth academy
+    {
+      const trA = buildPitch(18, 28, false);
+      trA.position.set(-14, 0, -68);
+      registerBuilding({
+        name: 'Trainingsplatz A', type: 'Training', group: trA,
+        info: 'Rasen 1. Mannschaft. Vormittags belegt, nachmittags U23.',
+        cap: '36 Spieler', status: 'In Top-Zustand'
+      });
+      scene.add(trA);
+
+      const trB = buildPitch(18, 28, false);
+      trB.position.set(14, 0, -68);
+      registerBuilding({
+        name: 'Trainingsplatz B', type: 'Training', group: trB,
+        info: 'Kunstrasen, ganzjährig nutzbar. U23 + U17.',
+        cap: '40 Spieler', status: 'Kunstrasen 2024 erneuert'
+      });
+      scene.add(trB);
+
+      // Fitness arena (concrete pad + scarlet equipment cubes)
+      const fit = new THREE.Group();
+      fit.position.set(0, 0, -50);
+      const pad = new THREE.Mesh(new THREE.PlaneGeometry(16, 9),
+        new THREE.MeshStandardMaterial({ color: 0xc8baa0, roughness: 0.95 }));
+      pad.rotation.x = -Math.PI/2; pad.position.y = 0.01;
+      pad.receiveShadow = true; fit.add(pad);
+      for (const [x, z] of [[-5,-2.5],[-5,2.5],[-1.5,-2.5],[-1.5,2.5],[1.5,-2.5],[1.5,2.5],[5,-2.5],[5,2.5]]) {
+        const m = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.6, 1.2),
+          new THREE.MeshStandardMaterial({ color: C.scarlet, roughness: 0.6 }));
+        m.position.set(x, 0.3, z); m.castShadow = true;
+        fit.add(m);
+      }
+      registerBuilding({
+        name: 'Fitness-Arena', type: 'Fitness', group: fit,
+        info: 'Kraftstationen, Sprintbahn, Reha-Pool. Direkt zwischen Stadion und Trainingsplätzen.',
+        cap: '24 Geräte', status: 'Voll ausgestattet'
+      });
+      scene.add(fit);
+
+      const academy = buildBuilding({ w: 12, h: 9, d: 9, color: C.concrete, roofColor: C.scarlet, accent: C.scarlet });
+      academy.position.set(-44, 0, -65);
+      registerBuilding({
+        name: 'Jugendakademie', type: 'Akademie', group: academy,
+        info: 'Internat, Klassenräume, U17–U21. Sechs eigene Erstmannschafts-Profis kamen aus diesem Haus.',
+        cap: '120 Spieler', status: 'Ausbau Phase 2/3 geplant'
+      });
+      scene.add(academy);
+    }
+
+    // ── East quadrant · Administration & Premium ──────────────
+    {
+      const clubhouse = buildBuilding({ w: 14, h: 12, d: 12, color: C.concrete, roofColor: C.roof, accent: C.scarlet });
+      clubhouse.position.set(60, 0, -8);
+      registerBuilding({
+        name: 'Klubhaus', type: 'Verwaltung', group: clubhouse,
+        info: 'Geschäftsstelle, Vorstand, Pressetrakt im obersten Stock. Eingang nach Westen Richtung Stadion.',
+        cap: '85 Büros', status: 'Sanierung 2026'
+      });
+      scene.add(clubhouse);
+
+      const press = buildBuilding({ w: 9, h: 7, d: 7, color: C.ink, roofColor: C.scarlet, accent: C.scarlet });
+      press.position.set(60, 0, -30);
+      registerBuilding({
+        name: 'Medien-Pavillon', type: 'Presse', group: press,
+        info: 'TV-Übertragungswagen-Stellplatz, Interview-Studio, Eingang für akkreditierte Journalisten.',
+        cap: '24 Plätze', status: 'Glasfaser 10G'
+      });
+      scene.add(press);
+
+      const vipLot = buildParkingLot({ rows: 3, cols: 6 });
+      vipLot.position.set(60, 0, 18);
+      registerBuilding({
+        name: 'VIP-Parking', type: 'Parking', group: vipLot,
+        info: 'Mitarbeiter und VIP. Schranke, Kamera, direkter Zugang zum Klubhaus.',
+        cap: '18 Plätze', status: 'Reserviert'
+      });
+      scene.add(vipLot);
+    }
+
+    // ── West quadrant · Commercial ────────────────────────────
+    {
+      const shop = buildBuilding({ w: 16, h: 7, d: 10, color: C.scarlet, roofColor: C.roof, accent: C.paper });
+      shop.position.set(-60, 0, -8);
+      registerBuilding({
+        name: 'Fanshop', type: 'Retail', group: shop,
+        info: 'Megastore mit Trikot-Druck vor Ort, eigene Eintrittssäule, Glaspassage zum Stadion.',
+        cap: '450 m²', status: 'Umsatz: 2,4 Mio. € / Saison'
+      });
+      scene.add(shop);
+
+      const trucks = buildFoodTrucks(4);
+      trucks.position.set(-58, 0, 16);
+      scene.add(trucks);
+
+      const tickets = buildBuilding({ w: 6, h: 4, d: 5, color: C.ink, roofColor: C.scarlet, accent: C.scarlet, glass: false });
+      tickets.position.set(-58, 0, 34);
+      registerBuilding({
+        name: 'Ticket-Kassen', type: 'Ticketing', group: tickets,
+        info: 'Tageskassen für Heimspiele. Drei Schalter, Cash + Karte. Voll digital ab 2026.',
+        cap: '3 Schalter', status: 'Cash + Karte'
+      });
+      scene.add(tickets);
+    }
+
+    // ── South quadrant · Public Access ────────────────────────
+    {
+      // Plaza gate — wide low pavilion as the main public entrance
+      const gate = new THREE.Group();
+      gate.position.set(0, 0, 48);
+      const body = new THREE.Mesh(new THREE.BoxGeometry(26, 5, 5),
+        new THREE.MeshStandardMaterial({ color: C.concrete, roughness: 0.85 }));
+      body.position.y = 2.5; body.castShadow = body.receiveShadow = true;
+      gate.add(body);
+      const roof = new THREE.Mesh(new THREE.BoxGeometry(27, 0.3, 6),
+        new THREE.MeshStandardMaterial({ color: C.scarlet, roughness: 0.5, metalness: 0.2 }));
+      roof.position.y = 5.3; roof.castShadow = true; gate.add(roof);
+      // 3 entrance pillars (open archways)
+      for (const x of [-8, 0, 8]) {
+        const arch = new THREE.Mesh(new THREE.BoxGeometry(2, 5, 5.4),
+          new THREE.MeshStandardMaterial({ color: C.concreteDark, roughness: 0.9 }));
+        arch.position.set(x, 2.5, 0); arch.castShadow = true;
+        gate.add(arch);
+      }
+      registerBuilding({
+        name: 'Haupteingang Plaza', type: 'Zugang', group: gate,
+        info: 'Drei Drehkreuze-Reihen, integrierter Ticket-Scan, Wetterschutz-Vordach.',
+        cap: '12 Drehkreuze', status: 'Spieltags 90 Min. vor Anpfiff offen'
+      });
+      scene.add(gate);
+
+      const pubW = buildParkingLot({ rows: 4, cols: 9 });
+      pubW.position.set(-32, 0, 72);
+      registerBuilding({
+        name: 'Besucher-West', type: 'Parking', group: pubW,
+        info: 'Großparkplatz für die Westkurve. Direktanschluss B14.',
+        cap: '36 Plätze', status: 'Voll an Spieltagen'
+      });
+      scene.add(pubW);
+
+      const pubE = buildParkingLot({ rows: 4, cols: 9 });
+      pubE.position.set(32, 0, 72);
+      registerBuilding({
+        name: 'Besucher-Ost', type: 'Parking', group: pubE,
+        info: 'Großparkplatz für die Ostkurve. Bahnhof-Shuttle-Halt.',
+        cap: '36 Plätze', status: 'Voll an Spieltagen'
+      });
+      scene.add(pubE);
+
+      const tram = buildTramStation();
+      tram.position.set(0, 0, 92);
+      registerBuilding({
+        name: 'Tram-Station', type: 'ÖPNV', group: tram,
+        info: 'Linie 14 alle 6 Min. an Spieltagen. Anbindung Hbf 12 Min., direkter Plaza-Zugang über Brücke.',
+        cap: 'Linie 14', status: 'Spieltags 4er-Takt'
+      });
+      scene.add(tram);
+    }
+
+    // ── Roads — proper grid pattern ───────────────────────────
+    // Cardinal axes (stadium concourse → quadrant centres)
+    scene.add(buildRoad([0, 0, -32], [0, 0, -85], 5));   // N axis
+    scene.add(buildRoad([0, 0,  32], [0, 0,  98], 5));   // S axis
+    scene.add(buildRoad([ 32, 0, 0], [ 80, 0, 0], 4.5));  // E axis
+    scene.add(buildRoad([-32, 0, 0], [-80, 0, 0], 4.5));  // W axis
+    // Side roads parallel to the axes
+    scene.add(buildRoad([ 60, 0, -32], [ 60, 0,  22], 3));  // East side
+    scene.add(buildRoad([-58, 0, -8],  [-58, 0,  38], 3));  // West side
+    scene.add(buildRoad([-44, 0, -56], [-44, 0, -80], 3));  // Academy spur
+    scene.add(buildRoad([-18, 0, 72],  [ 18, 0, 72], 3));   // South cross
+    scene.add(buildRoad([-32, 0, 72],  [-50, 0, 72], 2.5));  // South cross W
+    scene.add(buildRoad([ 32, 0, 72],  [ 50, 0, 72], 2.5));  // South cross E
+
+    // Crosswalk between fitness and training (north)
+    scene.add(buildRoad([-15, 0, -58], [ 15, 0, -58], 2.5));
+
+    // ── Trees — outer ring + scattered ────────────────────────
+    for (let i = 0; i < 64; i++) {
+      const a = (i / 64) * Math.PI * 2;
+      const r = 130 + Math.random() * 20;
+      const t = buildTree(1 + Math.random() * 0.7);
+      t.position.set(Math.cos(a) * r, 0, Math.sin(a) * r);
+      scene.add(t);
+    }
+    for (let i = 0; i < 30; i++) {
+      const x = (Math.random() - 0.5) * 220;
+      const z = (Math.random() - 0.5) * 220;
+      if (Math.hypot(x, z) < 95) continue;  // keep central area clear
+      // Avoid road footprints (rough check — skip near the cardinal axes)
+      if (Math.abs(x) < 6 && z > 30) continue;
+      if (Math.abs(z) < 6 && x > 30) continue;
+      const t = buildTree(0.8 + Math.random() * 0.9);
+      t.position.set(x, 0, z);
+      scene.add(t);
+    }
+
+    // ── Wire up the stage selector now that the stadium entry exists ──
+    setStage(3);  // start at 1. Liga
+    for (const btn of document.querySelectorAll('.fm-stage-btn')) {
+      btn.addEventListener('click', () => setStage(parseInt(btn.dataset.stage)));
+    }
+
+    // Track userData on each registered building so raycaster can identify hits.
+    for (const b of buildings) {
+      if (b.group) b.group.traverse((c) => { c.userData.building = b; });
+    }
+
+    // ── HUD: building count ──
+    document.getElementById('js-bcount').textContent = buildings.length;
+
+    // ── Building list (sidebar) ──
+    const listEl = document.getElementById('js-buildings');
+    for (const b of buildings) {
+      const div = document.createElement('div');
+      div.className = 'fm-list-item';
+      div.innerHTML = `<span>${b.name}</span><span class="badge">${b.type}</span>`;
+      div.addEventListener('click', () => focusBuilding(b));
+      listEl.appendChild(div);
+    }
+
+    // ── Hover + click hit-testing ──
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    let hoveredBuilding = null;
+
+    function buildingFromPointer(e) {
+      const rect = renderer.domElement.getBoundingClientRect();
+      pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(scene.children, true);
+      for (const h of hits) {
+        if (h.object.userData.building) return h.object.userData.building;
+      }
+      return null;
+    }
+
+    function setHovered(b) {
+      if (hoveredBuilding === b) return;
+      // Clear previous
+      if (hoveredBuilding) {
+        hoveredBuilding.group.scale.setScalar(1);
+        hoveredBuilding.group.traverse((c) => {
+          if (c.isMesh && c.material && c.material.emissive && c.userData._origEmissive !== undefined) {
+            c.material.emissive.setHex(c.userData._origEmissive);
+            c.userData._origEmissive = undefined;
+          }
+        });
+      }
+      hoveredBuilding = b;
+      if (b) {
+        b.group.scale.setScalar(1.025);
+        b.group.traverse((c) => {
+          if (c.isMesh && c.material && c.material.emissive) {
+            if (c.userData._origEmissive === undefined) c.userData._origEmissive = c.material.emissive.getHex();
+            // Tint with scarlet glow
+            c.material.emissive.setHex(0x6a1810);
+          }
+        });
+      }
+      renderer.domElement.style.cursor = b ? 'pointer' : 'grab';
+    }
+
+    function selectBuilding(b) {
+      const panel = document.getElementById('js-panel');
+      if (!b) { panel.classList.add('is-hidden'); return; }
+      panel.classList.remove('is-hidden');
+      document.getElementById('js-panel-kick').textContent = b.type;
+      document.getElementById('js-panel-title').textContent = b.name;
+      document.getElementById('js-panel-meta').innerHTML =
+        (b.cap ? `<span>Kap. <b>${b.cap}</b></span>` : '') +
+        (b.status ? `<span><b>${b.status}</b></span>` : '');
+      document.getElementById('js-panel-body').textContent = b.info;
+      console.log(`[click] ${b.type} · ${b.name}`);
+    }
+
+    function focusBuilding(b) {
+      // Move camera to look at this building from a tycoon angle
+      const target = new THREE.Vector3();
+      b.group.getWorldPosition(target);
+      controls.target.copy(target);
+      const offset = new THREE.Vector3(40, 35, 40);
+      const camPos = target.clone().add(offset);
+      // Smooth-ish: lerp over a few frames using setTimeout
+      const startCam = camera.position.clone();
+      const startTgt = controls.target.clone();
+      let t = 0;
+      const dur = 0.8;
+      const tStart = performance.now();
+      function step() {
+        t = Math.min(1, (performance.now() - tStart) / (dur * 1000));
+        const e = t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2;
+        camera.position.lerpVectors(startCam, camPos, e);
+        controls.target.lerpVectors(startTgt, target, e);
+        if (t < 1) requestAnimationFrame(step);
+      }
+      step();
+      selectBuilding(b);
+      controls.autoRotate = false;
+    }
+
+    renderer.domElement.addEventListener('pointermove', (e) => {
+      const b = buildingFromPointer(e);
+      setHovered(b);
+    });
+    renderer.domElement.addEventListener('click', (e) => {
+      const b = buildingFromPointer(e);
+      selectBuilding(b);
+    });
+    document.getElementById('js-dismiss').addEventListener('click', () => selectBuilding(null));
+    document.getElementById('js-upgrade').addEventListener('click', () => {
+      if (hoveredBuilding) console.log('[upgrade]', hoveredBuilding.name);
+      const t = document.getElementById('js-panel-title').textContent;
+      console.log('[upgrade]', t);
+    });
+
+    // ── Render loop + HUD ──
+    const fpsEl = document.getElementById('js-fps');
+    const drwEl = document.getElementById('js-draws');
+    let fpsAcc = 0, fpsFrames = 0;
+    const clock = new THREE.Clock();
+    function tick() {
+      const dt = Math.min(0.05, clock.getDelta());
+      controls.update();
+      renderer.render(scene, camera);
+      fpsAcc += dt; fpsFrames++;
+      if (fpsAcc >= 0.5) {
+        fpsEl.textContent = Math.round(fpsFrames / fpsAcc);
+        drwEl.textContent = renderer.info.render.calls;
+        fpsAcc = 0; fpsFrames = 0;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    // Hide splash on first paint
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      loadEl.classList.add('is-done');
+      setTimeout(() => loadEl.remove(), 600);
+    }));
+  </script>
+</body>
+</html>
