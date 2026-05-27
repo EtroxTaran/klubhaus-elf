@@ -185,19 +185,20 @@ implementation is rebuilt.
 ## Task Tracking
 
 Operational task tracking is **Linear, team FMX**
-(<https://linear.app/coding-x/team/FMX/active>). **No issues exist yet** — the
-earlier premature backlog and its detailed task-tracking process doc were
-removed. When implementation work resumes, agree the lightweight issue
-conventions first, then create issues.
-
-The docs vault remains the durable knowledge base.
+(<https://linear.app/coding-x/team/FMX/active>). Conventions — labels, workflow
+states, project/milestones, issue + branch/PR rules, agent rules and the GitHub
+integration — are canonical in `docs/30-Implementation/linear-task-tracking.md`.
+Linear holds operational status; the docs vault remains the durable knowledge base.
 
 ## Commits & PRs
 
 - Conventional Commits: feat / fix / chore / docs / test / refactor.
-- Branch convention: humans `feat/<scope>-<slug>`; Cloud Agents `cursor/<slug>-<hash>`.
-- Squash-merge to main/develop; required checks: Biome + typecheck + Vitest + Playwright + Lighthouse + Bugbot.
-- Never add `Co-Authored-By: <agent>`. Agents are assistants, not authors.
+- Branch carries the Linear issue ID (auto-link key): humans `feat/fmx-<n>-<slug>`;
+  agents `claude|codex|cursor/fmx-<n>-<slug>`. PR title `[FMX-<n>] …`; PR body first
+  line `Closes FMX-<n>` (docs/non-closing: `Part of FMX-<n>`).
+- Squash-merge to main/develop; required checks: Biome + typecheck + Vitest + Playwright + Lighthouse + Bugbot (code gate returns when implementation is rebuilt).
+- Never add `Co-Authored-By: <agent>`. Agents are assistants, not authors; which
+  agent worked is shown by the branch prefix + a PR `Agent:` line.
 
 ## Security & Boundaries - HARD STOPS
 
