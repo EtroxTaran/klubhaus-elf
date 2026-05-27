@@ -45,8 +45,8 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
   [[../10-Architecture/03-Context]] · [[../10-Architecture/04-Solution-Strategy]]
 - [[../10-Architecture/05-Building-Blocks]] · [[../10-Architecture/06-Runtime]] ·
   [[../10-Architecture/07-Deployment]] · [[../10-Architecture/08-Crosscutting]]
-- [[../10-Architecture/09-Design-System]] · [[../10-Architecture/10-Quality]] ·
-  [[../10-Architecture/11-Risks]]
+- [[../10-Architecture/09-Design-System]] · [[../10-Architecture/09-Design-Styleguide]] ·
+  [[../10-Architecture/10-Quality]] · [[../10-Architecture/11-Risks]]
 - **Decisions:** the canonical ADR index with status and lineage is
   [[Decision-Log]] (covering ADR-0001 … ADR-0043 in
   `10-Architecture/09-Decisions/`). Current binding set includes the revised

@@ -1,6 +1,11 @@
 # Standalone internal docs site, deployed independently (its redeploys/outages
-# never touch anything else). Serves ONE auth-gated site:
-#   - docs → the Obsidian vault (Quartz build) at DOCS_DOMAIN
+# never touch anything else). Serves ONE auth-gated site at DOCS_DOMAIN:
+#   - docs + styleguide → the Obsidian vault (Quartz build), themed with the
+#     Aurelia Premier design tokens (tools/docs-preview/custom.scss) and the
+#     graph view. The styleguide is the in-vault page
+#     docs/10-Architecture/09-Design-Styleguide.md (rendered like any wiki page).
+#     A separate Storybook showcase returns when the app is rebuilt (see
+#     09-Design-System.md §13).
 #
 #   docker compose -f docker-compose.docs.yml up -d --build
 #

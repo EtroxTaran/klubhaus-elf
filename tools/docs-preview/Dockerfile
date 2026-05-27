@@ -41,6 +41,8 @@ RUN cp -r /ctx/docs/. ./content/ \
      done \
   && cp /ctx/tools/docs-preview/nginx.conf /build/nginx.conf \
   && cp /ctx/tools/docs-preview/sanitize-frontmatter.mjs /build/sanitize-frontmatter.mjs \
+  # Aurelia Premier wiki theme (design tokens) — Quartz imports custom.scss last.
+  && cp /ctx/tools/docs-preview/custom.scss /build/quartz/styles/custom.scss \
   && rm -rf content/.obsidian /ctx \
   && cp content/00-Index/Home.md content/index.md \
   && sed -i -E "s|baseUrl: \"[^\"]*\"|baseUrl: \"${DOCS_DOMAIN}\"|; s|baseUrl: '[^']*'|baseUrl: \"${DOCS_DOMAIN}\"|" quartz.config.ts \
