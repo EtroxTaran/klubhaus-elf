@@ -163,6 +163,21 @@ Reports #4 (Roguelite meta) and #5 (economy) are additive enrichment for
 [[../50-Game-Design/economy-system]]; report #6 otherwise **confirms**
 ADR-0011/0020/0024/0026 and [[match-engine-runtime-strategy]].
 
+## Manager Archetype Roguelite Progression (2026-05-27)
+
+[[manager-archetype-roguelite-2026-05-27]] promotes report #4 into a sourced
+FMX-16 draft path. Nico's current direction is: MVP-relevant hooks only,
+emergent-hybrid manager identity, proposed Manager & Legacy context ownership,
+balance-corridor perks with a mandatory prestige counterweight, no in-run grind
+checklists, and explicit playtest tunability for thresholds, taxonomy, perk
+strength and UI emphasis.
+
+This feeds draft
+[[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], amends
+[[../20-Features/feature-roguelite-mvp-first-playable]] and
+[[../50-Game-Design/mode-create-a-club-roguelite]], and creates draft
+[[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]].
+
 ## Club Economy Blueprint (2026-05-27)
 
 [[club-economy-blueprint-2026-05-27]] promotes report #5 into a sourced FMX-13

@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-18
 type: game-design
 binding: true
-related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/onboarding-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[mode-manage-a-club-career]], [[onboarding-and-tutorial]], [[economy-system]], [[club-dna-and-governance]], [[../20-Features/feature-club-economy-mvp-pillar]]
+related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0019-manager-archetype-roguelite-progression]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/onboarding-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[mode-manage-a-club-career]], [[onboarding-and-tutorial]], [[economy-system]], [[club-dna-and-governance]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
 ---
 
 # Mode - Create a Club Roguelite
@@ -40,11 +40,14 @@ MVP includes:
 - first match and report;
 - economy-pillar foundation: opening cash state, weekly ledger, runway/risk
   feedback and staged crisis recovery; and
+- manager-archetype hooks: run-end facts, coarse style signals and post-run
+  reflection scaffolding; and
 - server-confirmed progression with local drafts/caches only.
 
 Deep legacy carries, advanced meta-progression, multi-run narrative echoes and
-full local-authoritative offline play are future phases unless they directly
-block the first playable loop.
+full local-authoritative offline play are future phases. The MVP captures enough
+facts to enable them later; it does not promise final perks, thresholds or a
+fixed archetype taxonomy.
 
 ## 2. Run lifecycle
 
@@ -109,6 +112,27 @@ Persisted between runs:
 A new run starts with **1 carry slot** by default. Slot count grows with
 *total run length across all prior runs*, not with successes alone. This
 rewards perseverance without rewarding gaming the failure state.
+
+### 5.1 Manager-archetype hooks (FMX-16 draft)
+
+Detailed design: [[GD-0019-manager-archetype-roguelite-progression]].
+
+The Roguelite mode should emit enough end-of-run information for future
+Manager & Legacy progression without locking final taxonomy or balance during
+MVP:
+
+- run end records why the run ended, how long it lasted and which crisis/recovery
+  path occurred;
+- Club Economy, Match, Transfer, Squad & Player and Training contribute coarse
+  summaries through public contracts;
+- the post-run reflection can explain observed style signals, but does not show
+  grind checklists or final perk thresholds;
+- named archetypes remain provisional until playtests show stable recurring
+  player styles.
+
+Playtests may change signal weights, labels, thresholds and UI emphasis. Changes
+to MVP scope, domain ownership or cross-save determinism require a new Nico
+decision.
 
 ## 6. What is NOT carried
 
@@ -179,3 +203,5 @@ When a private async group runs Create-a-Club mode
   slot per ~50 in-game seasons summed across runs.
 - Should achievements unlock kit patterns visible to other players in
   async groups? Yes - lightly badged.
+- Manager-archetype taxonomy and thresholds - intentionally not locked before
+  playtests; use style signals first, names later.

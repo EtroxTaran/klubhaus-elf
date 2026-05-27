@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-27
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -55,7 +55,7 @@ the triage note [[../incoming-design-research-2026-05-27]].
 | [[raw-player-and-staff-values]] | Player/staff value systems competitor sweep + "EOS" attribute proposal | [[../data-generators]] · [[../incoming-design-research-2026-05-27]] |
 | [[raw-character-personality-and-dialogue]] | Personality model for all actors + intent-based player dialogue layer | [[../narrative-content-pipeline]] · [[../incoming-design-research-2026-05-27]] · [[../ai-narrative-runtime-integration]] |
 | [[raw-ai-llm-usage]] | LLM use-case matrix, cost model, offline fallback architecture | [[../narrative-content-pipeline]] · [[../incoming-design-research-2026-05-27]] · [[../ai-narrative-runtime-integration]] |
-| [[raw-roguelite-meta-progression]] | Run/meta split, behaviour-based perk unlocks, legacy world-carry | [[../late-game-systems]] · [[../incoming-design-research-2026-05-27]] |
+| [[raw-roguelite-meta-progression]] | Run/meta split, behaviour-based perk unlocks, legacy world-carry | [[../late-game-systems]] · [[../incoming-design-research-2026-05-27]] · [[../manager-archetype-roguelite-2026-05-27]] |
 | [[raw-club-economy-simulation]] | Full club economy model: cashflow, revenue/cost, insolvency, infrastructure | [[../../50-Game-Design/economy-system]] · [[../incoming-design-research-2026-05-27]] |
 | [[raw-match-engine-offline-and-disconnect]] | Where match computes, offline PWA scope, disconnect/reconnect handling | [[../match-engine-runtime-strategy]] · [[../incoming-design-research-2026-05-27]] |
 

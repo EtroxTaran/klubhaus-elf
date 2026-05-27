@@ -18,6 +18,11 @@ accounting ledger and economy read models behind
 [[09-Decisions/ADR-0050-club-economy-accounting-ledger]]. Finance remains inside
 Club Management, not a shared utility package.
 
+FMX-16 proposes a future twelfth bounded context, **Manager & Legacy**, behind
+[[09-Decisions/ADR-0051-manager-and-legacy-context]]. Until that ADR is accepted,
+it is planning context only: the MVP should preserve run-analysis hooks without
+shipping the full meta-progression system.
+
 > Authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]]. Full map at
 > [[bounded-context-map]].
 
@@ -61,6 +66,8 @@ flowchart TB
   end
   subgraph Audit[Audit & Security]
   end
+  subgraph ManagerLegacy[Manager & Legacy (draft)]
+  end
 
   Identity --> Orch
   Identity --> Club
@@ -84,6 +91,9 @@ flowchart TB
   Audit --> Transfer
   Audit --> Match
   Audit --> Orch
+  Orch -. run ended .-> ManagerLegacy
+  Club -. economy summary .-> ManagerLegacy
+  Match -. style summary .-> ManagerLegacy
 ```
 
 ## Source folder convention

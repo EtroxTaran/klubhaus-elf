@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-27
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
 ---
 
 # Current State
@@ -54,6 +54,18 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > before final constants, Progressive UI and Investor rescue as SP-only
 > future-scope.
 
+> **FMX-16 Manager-Archetype Roguelite progression (2026-05-27).** Nico directed
+> that the manager-archetype report should be anchored as MVP-relevant hooks, not
+> as a full MVP perk/legacy system. Draft
+> [[../60-Research/manager-archetype-roguelite-2026-05-27]],
+> [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]],
+> amended [[../20-Features/feature-roguelite-mvp-first-playable]] and draft
+> [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]] now
+> capture the proposed target: emergent-hybrid manager identity, proposed
+> Manager & Legacy context, run-analysis hooks, reflected-not-grinded post-run
+> progression, balance-corridor perks with mandatory prestige counterweight, and
+> explicit playtest tunability for taxonomy, thresholds, labels and perk values.
+
 ## Documentation Baseline (2026-05-22)
 
 [[Documentation-V1]] is the current vault-wide closure
@@ -97,6 +109,10 @@ Use the temporal layers from the baseline:
   product intent: async flavour may be evaluated first; press, player talks and
   media personas are important future story surfaces; actor traits/intents may
   affect mechanics deterministically, generated prose may not.
+- **Manager-Archetype Roguelite re-evaluation (2026-05-27):** Nico wants the
+  report anchored for the MVP, but as hooks only. The first playable should
+  capture run-end facts and style signals; final archetype families, thresholds,
+  perk strength and prestige ladders remain playtest-tunable draft design.
 
 ## Active MVP Scope (2026-05-18)
 
@@ -223,6 +239,14 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   [[../50-Game-Design/economy-system]],
   [[../20-Features/feature-club-economy-mvp-pillar]],
   [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]])
+- **Manager & Legacy gameplay profile (draft)**: MVP run-analysis hooks for
+  Manager-Archetype Roguelite progression; emergent style signals before fixed
+  archetype taxonomy; balance-corridor perks only with prestige counterweight;
+  full meta-progression post-MVP unless Nico expands scope.
+  ([[../60-Research/manager-archetype-roguelite-2026-05-27]],
+  [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]],
+  [[../20-Features/feature-roguelite-mvp-first-playable]],
+  [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]])
 - **Player lifecycle and systemic events**: squad structure, player
   development, training/medicine, stadium/campus and match-day event
   specs are approved. Development is weekly and causal; PA is true hidden
@@ -258,7 +282,9 @@ draft/proposed are classified future-scope or optional cleanup by
 [[Documentation-V1]]. Highlights:
 
 - DDD modular monolith with 11 bounded contexts
-  ([[../10-Architecture/bounded-context-map]]) is binding through ADR-0019.
+  ([[../10-Architecture/bounded-context-map]]) is the historical baseline
+  through ADR-0019; FMX-16 proposes Manager & Legacy as a draft twelfth context
+  via [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]].
 - Server-authoritative multiplayer with command-only clients is binding through
   ADR-0011 and current multiplayer game-design notes.
 - Both async cadence models, switchable at season boundary.
@@ -754,6 +780,8 @@ Implementation should start from
   isolation, network-transparent contracts. The MVP ships as one
   process but every context is extractable into its own service
   without code changes - only deployment / infra changes.
+  FMX-16 proposes Manager & Legacy as a draft twelfth context; this is not
+  accepted until ADR-0051 is ratified.
   See [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]
   and [[../10-Architecture/bounded-context-map]].
 - **ADR-0020 Hybrid-online MVP, Offline-ready Architecture** (accepted

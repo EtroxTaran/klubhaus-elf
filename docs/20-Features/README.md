@@ -25,7 +25,8 @@ stubs as future-scope planning, not open documentation gaps.
 
 ## Active MVP feature
 
-- [[feature-roguelite-mvp-first-playable]] — approved first playable scope.
+- [[feature-roguelite-mvp-first-playable]] — approved first playable scope,
+  amended with FMX-16 manager-archetype run-analysis hooks.
 - [[feature-transfer-market-ai-and-contracts]] - approved transfer-market foundation and explanation layer.
 - [[feature-club-economy-mvp-pillar]] - draft FMX-13 economy MVP pillar:
   weekly ledger, full accounting and staged insolvency.

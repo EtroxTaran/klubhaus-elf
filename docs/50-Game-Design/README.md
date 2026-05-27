@@ -32,7 +32,7 @@ research transcripts in [[../60-Research/raw-perplexity/README]].
 Implement gameplay only from `approved` game-design records. This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0018`) — the decision-record chain from research into
+- **GDDRs** (`GD-0001`...`GD-0019`) — the decision-record chain from research into
   ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -87,6 +87,7 @@ active work.
 | [[GD-0016-mobile-ux-loop]] | Mobile UX gameplay loop | draft | ADR-0008, ADR-0010 |
 | [[GD-0017-mvp-scope-and-mode-sequencing]] | MVP scope & mode sequencing | draft | ADR-0020 |
 | [[GD-0018-ai-narrative-personas-and-dialogue]] | AI narrative personas, intent dialogue & Runtime-LLM evaluation | draft | ADR-0030 |
+| [[GD-0019-manager-archetype-roguelite-progression]] | Manager archetype roguelite progression; FMX-16 hooks, playtest-tunable taxonomy and prestige counterweight | draft | ADR-0051 |
 
 ## Core loop
 
@@ -122,6 +123,8 @@ active work.
 ## Modes
 
 - [[mode-create-a-club-roguelite]] - MVP first playable; permadeath + soft carries.
+- [[GD-0019-manager-archetype-roguelite-progression]] - draft Manager & Legacy
+  progression hooks for Create-a-Club Roguelite.
 - [[mode-manage-a-club-career]] - Anstoss-2 "real manager career" + split confidence; visible as "comes later" in MVP.
 - [[singleplayer-baseline]] - the full reference experience.
 - [[async-multiplayer-private-group]] - 2 cadence rule sets + transfer escalation.

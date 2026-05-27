@@ -32,7 +32,7 @@ future-scope or historical context.
 
 ## DDD and Modules
 
-- [[../10-Architecture/bounded-context-map]] - 11 bounded contexts, service-ready modular monolith.
+- [[../10-Architecture/bounded-context-map]] - 11 bounded contexts, service-ready modular monolith; FMX-16 proposes Manager & Legacy as a draft twelfth context.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -78,6 +78,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 - [ADR-0043 Notification and Messaging Platform](../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform.md)
 - [ADR-0050 Club Economy Accounting Ledger](../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger.md) - draft Club Management finance ledger, accounting projections, country economy profiles and staged insolvency boundary.
+- [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft proposed Manager & Legacy context for manager identity, run analysis, archetype candidates and prestige/legacy selection.
 
 ## Current Binding Research and Specs
 
@@ -88,6 +89,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
 - [Match Engine Runtime Strategy](../60-Research/match-engine-runtime-strategy.md)
 - [Swappable Spatial-Event Match Engine Research](../60-Research/swappable-spatial-event-match-engine-2026-05-27.md)
+- [Manager Archetype Roguelite Research](../60-Research/manager-archetype-roguelite-2026-05-27.md)
 - [Match Engine Simulation Model](../60-Research/match-engine-simulation-model.md)
 - [Presentation Renderer Strategy](../60-Research/presentation-renderer-strategy.md)
 - [Performance Budgets](../60-Research/performance-budgets.md)
@@ -119,6 +121,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0015 Spectator Snapshot Streaming](../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming.md) - post-MVP watch-party layer.
 - [ADR-0016 Community Dataset Overrides](../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides.md) - future-scope until UGC moderation/security gates are implemented.
 - [ADR-0030 LLM Out Of Authoritative State Boundary](../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state.md) - draft Runtime-LLM re-evaluation; no implementation until accepted.
+- [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft context-map change; no implementation until accepted.
 
 ## Rule
 

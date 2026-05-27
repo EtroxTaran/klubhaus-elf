@@ -135,6 +135,17 @@ before any promotion.
   [[../60-Research/raw-perplexity/raw-club-economy-simulation]] (economy detail),
   [[../60-Research/raw-perplexity/raw-match-engine-offline-and-disconnect]] (confirms ADR-0011/0020/0024/0026).
 
+## Manager Archetype Roguelite Progression (2026-05-27)
+
+- [[../60-Research/manager-archetype-roguelite-2026-05-27]] — FMX-16
+  synthesis of the Roguelite meta-progression raw report into the draft
+  Manager-Archetype path: MVP hooks only, emergent-hybrid identity, proposed
+  Manager & Legacy context, balance-corridor perks, mandatory prestige
+  counterweight and playtest-tunable taxonomy/thresholds. Feeds draft
+  [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]],
+  [[../20-Features/feature-roguelite-mvp-first-playable]] and
+  [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]].
+
 ## Club Economy Blueprint (2026-05-27)
 
 - [[../60-Research/club-economy-blueprint-2026-05-27]] — FMX-13 synthesis of the

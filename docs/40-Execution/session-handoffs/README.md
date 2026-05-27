@@ -42,6 +42,9 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-27-fmx-16-manager-archetype-roguelite]] - anchored the
+  Manager-Archetype Roguelite raw report into research synthesis, draft GDDR,
+  draft ADR-0051, MVP hook updates and index/current-state links.
 - [[2026-05-27-fmx-13-club-economy-blueprint]] - anchored the club-economy
   raw report into research synthesis, draft GDDR/system notes, feature spec,
   ADR-0050 and implementation-contract notes.

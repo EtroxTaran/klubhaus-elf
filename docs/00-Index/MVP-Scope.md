@@ -6,7 +6,7 @@ created: 2026-05-18
 updated: 2026-05-18
 type: product
 binding: true
-related: [[Current-State]], [[Project-Goals]], [[Vision]], [[Decision-Log]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]]
+related: [[Current-State]], [[Project-Goals]], [[Vision]], [[Decision-Log]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]]
 ---
 
 # MVP Scope
@@ -35,7 +35,7 @@ long-save depth. The MVP must not block those futures.
 | Local persistence | Dexie / IndexedDB for app-shell metadata, read caches, drafts, UI state and future export/sync staging. |
 | Offline behavior | App shell, static assets, safe cached read models and local drafts. |
 | Online-required behavior | Save creation/commit, day/week advancement, match resolution, finance/economy mutations and any competitive or authoritative effect. |
-| Core systems | Weekly heartbeat, fictional club creation, basic squad, tactics, first match loop, Club Economy MVP pillar, feed-card guidance. |
+| Core systems | Weekly heartbeat, fictional club creation, basic squad, tactics, first match loop, Club Economy MVP pillar, manager-archetype run-analysis hooks, feed-card guidance. |
 | Future seams | Versioned contracts, precondition-aware commands, freshness metadata, save-envelope design and storage abstractions. |
 
 ## Explicitly out of MVP
@@ -49,6 +49,7 @@ long-save depth. The MVP must not block those futures.
 | User-facing save export/import | Post-MVP, but contract and data boundaries are reserved from day one. |
 | Complex sync conflict engine | Post-MVP, only after real flows justify it. |
 | Community pack marketplace / hosted sharing | Post-MVP. |
+| Full Manager & Legacy meta-progression, final archetype families, perk selection and prestige ladders | Post-MVP unless Nico explicitly expands scope after playtests. |
 
 ## Mode sequencing
 
@@ -76,6 +77,7 @@ flowchart LR
 | Day/week advancement | Requires connection. | Local-authoritative singleplayer adapter. |
 | Match resolution | Requires server-confirmed command in MVP. | Client Worker local authority for singleplayer. |
 | Economy week / ledger | Requires server-confirmed command in MVP. | Future local-authoritative singleplayer adapter with replayable ledger checks. |
+| Manager-archetype analysis | MVP may record run-end facts and style signals after confirmed run events. | Future Manager & Legacy progression, perks and prestige at save creation only. |
 | Save export/import | Not user-facing. | Use reserved envelope/versioning contract. |
 | Multiplayer effects | Not in MVP; future server-confirmed only. | Draft/intents only; never offline-finalised. |
 
@@ -114,5 +116,6 @@ A future implementation beat is MVP-aligned only if it:
 - [[Project-Goals]] · [[Vision]] · [[Non-Goals]] — product boundaries
 - [[Decision-Log]] · [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] — architecture decision
 - [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]] — game-design sequencing
+- [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]] — draft Manager-Archetype Roguelite hooks
 - [[../20-Features/feature-roguelite-mvp-first-playable]] — first playable feature slice
 - [[../20-Features/feature-club-economy-mvp-pillar]] — draft Economy MVP pillar

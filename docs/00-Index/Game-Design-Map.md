@@ -58,6 +58,8 @@ below. This means old `Future-scope notes` sections are not active work by defau
 ## Modes
 
 - [[../50-Game-Design/mode-create-a-club-roguelite]] - MVP first playable.
+- [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]] - draft
+  Manager-Archetype Roguelite progression hooks.
 - [[../50-Game-Design/mode-manage-a-club-career]] - visible as "comes later"; post-MVP playable.
 - [[../50-Game-Design/singleplayer-baseline]]
 - [[../50-Game-Design/async-multiplayer-private-group]]
@@ -93,6 +95,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/00-summary]]
 - [[../60-Research/systems-design-synthesis]]
 - [[../60-Research/club-economy-blueprint-2026-05-27]]
+- [[../60-Research/manager-archetype-roguelite-2026-05-27]]
 - [[../60-Research/mode-design-research]]
 - [[../60-Research/async-multiplayer-research]]
 - [[../60-Research/fan-culture-segmentation-research]]

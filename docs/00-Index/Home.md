@@ -48,12 +48,13 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
 - [[../10-Architecture/09-Design-System]] · [[../10-Architecture/09-Design-Styleguide]] ·
   [[../10-Architecture/10-Quality]] · [[../10-Architecture/11-Risks]]
 - **Decisions:** the canonical ADR index with status and lineage is
-  [[Decision-Log]] (covering ADR-0001 … ADR-0050 in
+  [[Decision-Log]] (covering ADR-0001 … ADR-0051 in
   `10-Architecture/09-Decisions/`). Current binding set includes the revised
   tech stack (ADR-0021), PostgreSQL data model + transactional outbox
   (ADR-0027/0028), hybrid-online MVP (ADR-0020), and the reopened match-engine
   line (ADR-0049 proposed; ADR-0003 historical),
   Club Economy accounting ledger (ADR-0050 draft),
+  Manager & Legacy context proposal (ADR-0051 draft),
   realtime transport (ADR-0023), renderer + frame contract
   (ADR-0024/0026/0041), DDD modular monolith (ADR-0019), multiplayer
   (ADR-0011), design system (ADR-0010), observability (ADR-0017), systemic
@@ -64,7 +65,7 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
 
 - [[../20-Features/README]] — feature specifications.
 - [[../50-Game-Design/README]] — game-design specifications, including the
-  GDDR decision-record set (`GD-0001`...`GD-0017`).
+  GDDR decision-record set (`GD-0001`...`GD-0019`).
 - [[../70-User-Docs/README]] — player-facing documentation.
 
 Product authority flows research -> game design -> ADRs -> implementation.
@@ -87,8 +88,8 @@ ADRs are the source for technical shape.
 
 - [[../60-Research/00-summary]] — start here, then [[Research-Map]] for
   current research notes, including narrative, AI managers, match/runtime,
-  club economy, performance, player strength, transfer market, systemic events
-  and the 2026-05-22 V1 baseline.
+  club economy, manager-archetype Roguelite progression, performance, player
+  strength, transfer market, systemic events and the 2026-05-22 V1 baseline.
 - [[../60-Research/pre-mortem/00-index]] — Pre-Mortem 2026-05-20 (3 Iterationen,
   14 Reports + Threat-Model + Registry, ~191 Findings). **Iter 1**: 4 Original-
   Reports (Architecture, Tech-Ops, Gameplay, Monetization). **Iter 2**: Security
