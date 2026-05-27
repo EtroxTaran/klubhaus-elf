@@ -53,6 +53,11 @@ copy, never in the mechanics.
   taxonomy → feed-card actions, deterministic seeding (ties R2-08), translator
   hand-off, Anstoss-tone portable-vs-toxic audit.
 - **R2-10 (medium)** — de-DE tabloid tone vs en-GB drier register.
+- **2026-05-27 Runtime-LLM re-evaluation** — draft
+  [[GD-0018-ai-narrative-personas-and-dialogue]] and draft
+  [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
+  evaluate whether async AI flavour can be allowed outside authoritative state.
+  Until ratified, this record remains template-first.
 
 ## Rationale
 
@@ -81,4 +86,4 @@ None
 ## Related
 
 - Research: [[../60-Research/club-boss-analysis]] · [[../60-Research/anstoss-series-deep-dive]] · [[../95-Archive/gap-reports/research-wave-2-gaps]]
-- [[README]] — hub · siblings: [[GD-0006-transfers]] · [[GD-0015-ip-clean-data]] · [[GD-0011-career-progression]]
+- [[README]] — hub · siblings: [[GD-0006-transfers]] · [[GD-0015-ip-clean-data]] · [[GD-0011-career-progression]] · [[GD-0018-ai-narrative-personas-and-dialogue]]

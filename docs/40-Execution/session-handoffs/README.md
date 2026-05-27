@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-05-27
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -42,6 +42,9 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-27-ai-narrative-runtime-integration]] - promoted the two
+  narrative/LLM raw reports into AI narrative runtime research, draft GD-0018
+  and draft ADR-0030.
 - [[2026-05-22-vault-consistency-pass]] - vault-wide consistency + link-health
   pass: Postgres/Drizzle realignment, supersede/front-door/authority hygiene,
   structure renames, mojibake/BOM repair, broken-link fixes; docs-check green.

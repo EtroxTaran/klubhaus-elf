@@ -68,6 +68,12 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../50-Game-Design/matchday-event-engine]]
 - [[../50-Game-Design/community-editor-and-datasets]]
 
+## Narrative & AI
+
+- [[../50-Game-Design/GD-0013-narrative-inbox]]
+- [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+- [[../60-Research/ai-narrative-runtime-integration]]
+
 ## UX
 
 - [[../50-Game-Design/progressive-disclosure-ui]]

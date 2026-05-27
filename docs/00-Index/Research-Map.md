@@ -135,6 +135,17 @@ before any promotion.
   [[../60-Research/raw-perplexity/raw-club-economy-simulation]] (economy detail),
   [[../60-Research/raw-perplexity/raw-match-engine-offline-and-disconnect]] (confirms ADR-0011/0020/0024/0026).
 
+## AI Narrative Runtime Integration (2026-05-27)
+
+- [[../60-Research/ai-narrative-runtime-integration]] — synthesized follow-up
+  for the two narrative/LLM raw reports. Captures Nico's current preferences:
+  OpenRouter as the experimental provider path, no clear user data / PII / raw
+  free text in prompts, central info/settings disclosure preference, MVP
+  Runtime-LLM re-evaluation limited to async flavour, and future tracks for
+  press, player talks and media-persona story depth. Feeds draft
+  [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] and draft
+  [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
+
 ## Raw Perplexity transcripts (Wave 2)
 
 - [[../60-Research/raw-perplexity/README]] - lossless input preservation; not authoritative. Includes [[../60-Research/raw-perplexity/raw-player-strength-overview]] as the source input for the Impact Lens synthesis.

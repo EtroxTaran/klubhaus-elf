@@ -7,7 +7,7 @@ updated: 2026-05-27
 type: research
 binding: false
 sourceType: external
-related: [[raw-perplexity/raw-player-and-staff-values]], [[raw-perplexity/raw-character-personality-and-dialogue]], [[raw-perplexity/raw-ai-llm-usage]], [[raw-perplexity/raw-roguelite-meta-progression]], [[raw-perplexity/raw-club-economy-simulation]], [[raw-perplexity/raw-match-engine-offline-and-disconnect]], [[data-generators]], [[narrative-content-pipeline]], [[ai-manager-behaviour]], [[late-game-systems]], [[systems-design-synthesis]], [[match-engine-runtime-strategy]], [[offline-mvp-scope-and-sync-strategy]]
+related: [[raw-perplexity/raw-player-and-staff-values]], [[raw-perplexity/raw-character-personality-and-dialogue]], [[raw-perplexity/raw-ai-llm-usage]], [[raw-perplexity/raw-roguelite-meta-progression]], [[raw-perplexity/raw-club-economy-simulation]], [[raw-perplexity/raw-match-engine-offline-and-disconnect]], [[data-generators]], [[narrative-content-pipeline]], [[ai-narrative-runtime-integration]], [[ai-manager-behaviour]], [[late-game-systems]], [[systems-design-synthesis]], [[match-engine-runtime-strategy]], [[offline-mvp-scope-and-sync-strategy]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 ---
 
 # Incoming Design Research Triage — 2026-05-27
@@ -208,14 +208,17 @@ corrections:
 
 ## Inputs for decisions (if/when promoted)
 
-- **Game design (GDDR candidates):** a Staff/coaching attribute GDDR and a
-  Media/journalist-persona GDDR (from #1 + #2); a behaviour-based meta-perk
-  extension to the Roguelite/late-game GDDRs (#4); economy mechanics enrichment
-  for [[../50-Game-Design/economy-system]] / [[../50-Game-Design/GD-0008-finance-economy]] (#5).
-- **Architecture (ADR candidates):** none required now — #6 corroborates
-  existing ADRs; #2/#3 only become ADR-relevant if the runtime-LLM Future-Scope
-  Gate opens.
-- **No ADR/GDDR is created or amended by this note.** It is triage only.
+- **Game design (GDDR candidates):** [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+  now covers the #2/#3 persona/dialogue/runtime-narrative follow-up as a draft.
+  Remaining candidates: a Staff/coaching attribute GDDR (from #1), a
+  behaviour-based meta-perk extension to the Roguelite/late-game GDDRs (#4), and
+  economy mechanics enrichment for [[../50-Game-Design/economy-system]] /
+  [[../50-Game-Design/GD-0008-finance-economy]] (#5).
+- **Architecture (ADR candidates):** [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
+  now captures the #2/#3 Runtime-LLM re-evaluation as a draft. It is not
+  accepted and does not authorize implementation.
+- **Promotion follow-up created 2026-05-27:** [[ai-narrative-runtime-integration]]
+  synthesizes the two narrative/LLM reports and feeds GD-0018 + ADR-0030.
 
 ## How to use this note
 
