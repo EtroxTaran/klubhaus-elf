@@ -1,0 +1,35 @@
+name: Linear link check
+
+# Ensures every PR is traceable to a Linear issue (team FMX): the branch carries
+# fmx-<n> (Linear's auto-link key) and the PR title/body references FMX-<n>.
+# Convention: docs/30-Implementation/linear-task-tracking.md
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  linear-id:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require a Linear FMX-<n> reference
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          set -euo pipefail
+          ok=1
+          if ! printf '%s' "$HEAD_REF" | grep -Eq 'fmx-[0-9]+'; then
+            echo "::error::Branch '$HEAD_REF' has no 'fmx-<n>' — Linear cannot auto-link it. Rename to e.g. claude/fmx-1-slug."
+            ok=0
+          fi
+          if ! printf '%s\n%s' "$PR_TITLE" "$PR_BODY" | grep -Eoq 'FMX-[0-9]+'; then
+            echo "::error::PR title/body must reference a Linear issue (FMX-<n>), e.g. 'Closes FMX-1' or 'Part of FMX-1'."
+            ok=0
+          fi
+          if [ "$ok" -eq 1 ]; then echo "Linear link OK."; fi
+          exit $((1 - ok))

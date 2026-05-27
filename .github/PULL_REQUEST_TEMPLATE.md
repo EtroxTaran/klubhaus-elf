@@ -1,3 +1,7 @@
+<!-- PR title must start with [FMX-<n>] -->
+**Linear:** `Closes FMX-<n>` &nbsp;(use `Part of FMX-<n>` for docs/non-closing PRs)
+**Agent:** Claude Code | OpenAI Codex | Cursor | human
+
 ## Summary
 
 -

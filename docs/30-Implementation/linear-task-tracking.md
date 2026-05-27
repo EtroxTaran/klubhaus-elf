@@ -74,6 +74,7 @@ The Linear issue ID in the **branch name** is the auto-link key.
   `Nico <dev@etrox.de>` (repo rule: agents are assistants, not authors). Which
   agent did the work is shown by the **branch prefix** + a PR `Agent:` line.
 - **GitHub Sync** (2-way issue sync) stays **off** — Linear is the source of truth.
+- **Enforcement:** `.github/PULL_REQUEST_TEMPLATE.md` pre-fills `Closes/Part of FMX-<n>` + the `Agent:` line; `.github/workflows/linear-link-check.yml` fails a PR whose branch lacks `fmx-<n>` or whose title/body lacks `FMX-<n>`.
 
 ## Setup status
 
