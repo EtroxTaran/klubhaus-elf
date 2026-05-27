@@ -1,6 +1,6 @@
 # docs-preview
 
-Browser preview of the Obsidian vault (`docs/`) using [Quartz v4].
+Browser preview of the Obsidian vault (`docs/`) using [Quartz v5].
 
 ```bash
 pnpm docs:preview
@@ -14,23 +14,28 @@ Obsidian.
 
 `preview.mjs`:
 
-1. Clones Quartz v4 into `.quartz/` (gitignored) on first run.
+1. Clones Quartz v5 into `.quartz/` (gitignored) on first run.
 2. Installs Quartz's own dependencies **inside that checkout only** — Quartz
    uses npm internally. This is a vendored tool, isolated from the pnpm
    workspace, so the repo's pnpm-only rule is not violated.
 3. Mirrors `docs/` into `.quartz/content/` (excluding `.obsidian/`), and also
    mirrors the repo-root onboarding docs (`README.md`, `CONTRIBUTING.md`,
    `AGENTS.md`, `CLAUDE.md`) into `00-Index/` so the wiki is self-contained.
-4. Copies `00-Index/Home.md` to `content/index.md` as the landing page,
-   widens Quartz `ignorePatterns` (keeps `private`, drops the `templates`
-   default-ignore), and resolves the `UI-Showcase` link to `SHOWCASE_DOMAIN`.
-5. Runs `npx quartz build --serve`.
+4. Copies `00-Index/Home.md` to `content/index.md` as the landing page, and
+   resolves the `UI-Showcase` link to `SHOWCASE_DOMAIN`.
+5. Creates `quartz.config.yaml` from Quartz's default and applies deploy tweaks
+   via `configure-quartz.mjs`: `baseUrl`, keep `90-Meta/templates` (drop it from
+   the default `ignorePatterns`), and `parseTags: false` on
+   obsidian-flavored-markdown — a v5.0.0 tag-parser workaround (we use
+   frontmatter `tags:`, not inline `#tags`).
+6. Restores the community plugins (`npx quartz plugin restore`) and runs
+   `npx quartz build --serve`.
 
 ## Notes
 
 - Refresh the Quartz checkout: delete `tools/docs-preview/.quartz/` and re-run.
-- Pin a reproducible Quartz version: `QUARTZ_REF=v4.5.1 pnpm docs:preview`
-  (defaults to Quartz's rolling `v4` stable branch).
+- Pin a reproducible Quartz version: `QUARTZ_REF=<tag> pnpm docs:preview`
+  (defaults to the pinned `v5.0.0` release; the rolling `v5` branch drifts).
 - Nothing here is tracked by Git — see the root `.gitignore`.
 
 ## Deploying (one stack, two internal sites)
@@ -90,8 +95,8 @@ To intentionally make a site public, remove its `...-auth` middleware labels
 from `docker-compose.docs.yml`.
 
 `DOCS_DOMAIN` drives both the Traefik host rule and Quartz's `baseUrl` (patched
-into `quartz.config.ts` at build time), so a single value keeps routing and
+into `quartz.config.yaml` at build time), so a single value keeps routing and
 generated absolute URLs in sync. Locally, `DOCS_DOMAIN=... pnpm docs:preview`
 applies the same patch.
 
-[Quartz v4]: https://github.com/jackyzha0/quartz
+[Quartz v5]: https://github.com/jackyzha0/quartz
