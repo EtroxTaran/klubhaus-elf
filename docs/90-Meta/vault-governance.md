@@ -3,7 +3,7 @@ title: Vault Governance
 status: current
 tags: [meta, agents, vault, governance]
 created: 2026-05-17
-updated: 2026-05-22
+updated: 2026-05-27
 type: protocol
 binding: true
 related: [[agent-memory-protocol]], [[../00-Index/Documentation-V1]]
@@ -184,9 +184,11 @@ way".
 | Entry point | Must guarantee |
 |---|---|
 | `CLAUDE.md` | One-line pointer to `AGENTS.md`. No duplicated content. |
-| `AGENTS.md` | Entry chain → Agent-Onboarding → Current-State → Home → agent-memory-protocol → vault-governance. Names the `vault-memory` skill. |
+| `AGENTS.md` | Entry chain → Agent-Onboarding → Current-State → Home → agent-memory-protocol → vault-governance. Points to collaboration-and-decision-protocol; names the `vault-memory` skill. |
 | `docs/90-Meta/agent-memory-protocol.md` | Canonical session start / during-work / update / wrap-up steps. |
+| `docs/90-Meta/collaboration-and-decision-protocol.md` | Canonical roles, ask-first decision gate, and current project phase. |
 | `.cursor/rules/10-vault-memory.mdc` | Same start/update/wrap-up semantics as the protocol; orchestrator only. |
+| `.cursor/rules/01-collaboration.mdc` | Same roles / decision-gate / phase semantics; orchestrator only. |
 | `.cursor/skills/vault-memory/SKILL.md` | Repeatable start/update/wrap-up workflow matching the protocol. |
 | `.cursor/BUGBOT.md` | Flags missing same-PR vault updates. |
 

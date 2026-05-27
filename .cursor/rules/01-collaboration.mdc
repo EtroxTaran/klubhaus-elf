@@ -1,0 +1,26 @@
+---
+description: Roles, ask-first decision gate, and current project phase
+alwaysApply: true
+---
+# Collaboration & Decision Protocol
+
+- Canonical note: `docs/90-Meta/collaboration-and-decision-protocol.md`. This
+  rule is an orchestrator; if it disagrees with that note, the vault wins.
+- **Nico = Projektleitung / Lead Architect** — decides architecture, scope,
+  technology, gameplay and priorities, and is the only authority that ratifies
+  decisions. Agents **support** shaping, research and elaboration (research,
+  game-loop analysis, game/engine design, technical analysis) and produce vault
+  notes and proposals, never unilateral decisions.
+- **Current phase: research / analysis / architecture planning — no
+  development.** Do not implement code or create premature versions until Nico
+  changes the phase. Decisions are currently reopened (see
+  `docs/00-Index/Current-State.md`).
+- **Ask-first gate:** before any decision on technology, gameplay, architecture,
+  data model, module boundaries, public APIs/contracts, scope, or
+  security/privacy — stop, present 2–3 options with sourced best-practice
+  rationale + a recommendation, and wait for Nico. This is the FMX expression of
+  the stop conditions in `docs/30-Implementation/agent-workflow-pattern.md`.
+- **Never shorten a path because it is faster or easier** — thoroughness before
+  speed; development does not stop once an MVP exists.
+- Research is grounded (Perplexity/Ref/Web) and filed in the vault; see
+  `docs/90-Meta/mcp-memory-integration.md`.

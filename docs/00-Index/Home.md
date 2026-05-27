@@ -3,7 +3,7 @@ title: Vault Home
 status: current
 tags: [meta]
 created: 2026-05-15
-updated: 2026-05-22
+updated: 2026-05-27
 type: index
 binding: true
 ---
@@ -25,6 +25,7 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
 
 - [[Agent-Onboarding]] — first read every session
 - [[Current-State]] — hot snapshot: building / stable / blocked
+- [[../90-Meta/collaboration-and-decision-protocol]] — roles, ask-first decision gate, current phase
 - [[../90-Meta/agent-memory-protocol]] — session start/update/wrap-up steps
 - [[../90-Meta/vault-governance]] — memory classes, supersede discipline
 
