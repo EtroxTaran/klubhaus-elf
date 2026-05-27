@@ -3,10 +3,10 @@ title: Current State
 status: current
 tags: [meta, current-state, execution, hot]
 created: 2026-05-16
-updated: 2026-05-22
+updated: 2026-05-27
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]]
 ---
 
 # Current State
@@ -24,6 +24,14 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > topics). Treat **nothing** below as binding until re-ratified — the
 > "accepted/approved/locked" language in the sections that follow reflects the
 > pre-reopen state. See [[Decision-Log]] and [[../50-Game-Design/README]].
+
+> **Active phase: research / analysis / architecture planning — no development.**
+> Deliverables are vault notes (research, `draft` GDDRs/ADRs), not code. Roles,
+> the ask-first decision gate, and this phase are defined in
+> [[../90-Meta/collaboration-and-decision-protocol]]. The tech-stack details in
+> the sections below are **proposed / under re-evaluation** (see [[Decision-Log]]),
+> not ratified — no technology, gameplay or architecture decision is made without
+> Nico (2–3 sourced options + recommendation).
 
 ## Documentation Baseline (2026-05-22)
 

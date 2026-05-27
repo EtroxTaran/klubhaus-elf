@@ -3,7 +3,7 @@ title: Meta README
 status: current
 tags: [meta]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-05-27
 type: index
 binding: false
 ---
@@ -14,6 +14,7 @@ Project process, conventions, and Obsidian configuration live here.
 
 ## Active Meta Notes
 
+- [[collaboration-and-decision-protocol]]
 - [[vault-governance]]
 - [[agent-memory-protocol]]
 - [[mcp-memory-integration]]

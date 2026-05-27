@@ -10,8 +10,8 @@ Before substantial work:
 
 # AGENTS.md
 
-> Project context for AI coding agents (Cursor Local + Cloud Agents, Bugbot).
-> Humans: see README.md.
+> Project context for AI coding agents (Claude Code, OpenAI Codex, Cursor Local
+> + Cloud Agents, Bugbot). Humans: see README.md.
 
 > **Repository reset to docs-vault-only on 2026-05-27.** All implementation
 > (TanStack Start app, packages, match engine, Storybook showcase, design
@@ -21,6 +21,14 @@ Before substantial work:
 > below describe the **intended** implementation (the build target), not code
 > that currently exists; the Setup, Build & Test and Cursor Cloud sections were
 > trimmed to the docs-only reality.
+>
+> **Phase: research / analysis / architecture planning — no development.** All
+> ADRs/GDDRs are currently reopened to `draft`. The Stack / Code Style /
+> Architecture Rules / Database / PWA sections below are the **proposed target,
+> pending Nico's re-ratification** (`docs/00-Index/Decision-Log.md`) — not settled
+> rules. No technology, gameplay or architecture decision is made without Nico
+> (stop → 2–3 sourced options + recommendation → wait). Roles, the ask-first gate
+> and the phase: `docs/90-Meta/collaboration-and-decision-protocol.md`.
 
 ## Project Overview
 
@@ -64,9 +72,10 @@ Agent entry chain:
 
 1. `docs/00-Index/Agent-Onboarding.md`
 2. `docs/00-Index/Current-State.md`
-3. `docs/00-Index/Home.md`
-4. `docs/90-Meta/agent-memory-protocol.md`
-5. `docs/90-Meta/vault-governance.md`
+3. `docs/90-Meta/collaboration-and-decision-protocol.md` — roles, ask-first decision gate, current phase
+4. `docs/00-Index/Home.md`
+5. `docs/90-Meta/agent-memory-protocol.md`
+6. `docs/90-Meta/vault-governance.md`
 
 Decision layers (research → game design → architecture → implementation):
 
