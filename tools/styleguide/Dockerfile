@@ -29,6 +29,9 @@ RUN set -eu; \
   # Repoint any nav link to the removed Three.js page → the Babylon stadium.
   find /usr/share/nginx/html -maxdepth 1 -name '*.html' \
     -exec sed -i 's|Stadium 3D\.html|Stadium 3D Babylon.html|g' {} +; \
+  # Babylon-only: drop the leftover "three.js Variante" masthead button on the
+  # Babylon stadium page (the three.js variant no longer exists).
+  sed -i 's#<a class="s3-mast-btn is-alt"[^>]*>three\.js Variante</a>##' "/usr/share/nginx/html/Stadium 3D Babylon.html"; \
   # Overlay (hub + isometric scene + shared assets) copied OVER/ALONGSIDE the
   # export. The snapshot in /ctx is never edited; the served copy only gains files.
   cp -r /ctx/tools/styleguide/overlay/. /usr/share/nginx/html/; \
