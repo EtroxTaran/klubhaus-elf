@@ -66,7 +66,9 @@ The Linear issue ID in the **branch name** is the auto-link key.
   docs/non-closing PRs: `Part of FMX-<n>`).
 - **Team automations:** PR opened → `In Progress`; PR merged → `Done`. (Merge is
   Nico's action, so the human-only `Done` rule is preserved.)
-- **Merge:** squash-merge to `main`; required checks + ≥1 human review.
+- **Merge:** squash-merge to `main` via PR (branch-protected: PR required, no
+  force-push/deletion, linear history). Required CI checks / review-requirement are
+  added once CI returns.
 - **Attribution:** Linear **assignee = responsible human (Nico)**. Agents are
   **GitHub-only actors**, not mapped to Linear users; commits stay authored as
   `Nico <dev@etrox.de>` (repo rule: agents are assistants, not authors). Which
@@ -75,11 +77,15 @@ The Linear issue ID in the **branch name** is the auto-link key.
 
 ## Setup status
 
-Done via Linear MCP (2026-05-27, [[../00-Index/Current-State|FMX-1]]): project
+Done by agent (2026-05-27, [[../00-Index/Current-State|FMX-1]]): project
 *Phase 1 — Research & Architecture* + 4 milestones, and the target labels
 (`type:game-design|bug|refactor`, `area:match|squad-club|platform|notification|ui-ux|meta`,
-`needs:nico-decision`, `risk:security|legal|data-loss`). Existing good labels
-kept: `type:chore|research|adr|doc`, `area:transfer`.
+`needs:nico-decision`, `risk:security|legal|data-loss`) via Linear MCP. Existing
+good labels kept: `type:chore|research|adr|doc`, `area:transfer`. On GitHub (via
+`gh`): merge method set to **squash-only** (+ delete-branch-on-merge), and `main`
+**branch-protected** (PR required, 0 approvals, no force-push/deletion, linear
+history, admin-bypass on — the solo merger is not locked out). Issue ⇄ branch ⇄
+commit ⇄ PR auto-link is confirmed working.
 
 ### One-time cleanup & wiring — Nico (UI/OAuth; the MCP cannot do these)
 
@@ -95,8 +101,9 @@ kept: `type:chore|research|adr|doc`, `area:transfer`.
    grant `EtroxTaran/football-manager-x`, enable **PR linking**, set
    **Branch format = identifier-title**, add automations *PR opened → In Progress*
    and *PR merged → Done*. Leave **GitHub Sync off**.
-4. **GitHub:** branch-protect `main` (PR required, required checks, ≥1 review,
-   squash-merge default).
+4. **GitHub (later, optional):** add required status checks to the `main`
+   protection once CI returns, and decide whether to require ≥1 review (left off
+   now — solo merger). Squash-only + base branch protection are already applied.
 
 ## Related
 
