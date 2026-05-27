@@ -79,6 +79,7 @@ ADRs are the source for technical shape.
 - [[../30-Implementation/hybrid-online-pwa-strategy]] ·
   [[../30-Implementation/postgres-drizzle-integration]] ·
   [[../30-Implementation/secrets-management]]
+- [[../30-Implementation/linear-task-tracking]] — Linear (team FMX) conventions + GitHub tracking
 
 ## Research
 

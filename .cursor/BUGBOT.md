@@ -42,6 +42,9 @@
   notes break the knowledge graph. See `docs/90-Meta/vault-governance.md`
   § Knowledge connectivity. (Templates and `90-Meta/github-issue-suite/**` are
   exempt.)
+- A branch or PR that omits its Linear issue ID (`fmx-<n>` in the branch,
+  `FMX-<n>` in the PR title/body) so Linear cannot auto-link it. See
+  `docs/30-Implementation/linear-task-tracking.md`.
 
 ## What to leave alone
 

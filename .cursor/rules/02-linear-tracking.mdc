@@ -1,0 +1,21 @@
+---
+description: Linear (team FMX) issue conventions and GitHub branch/PR linking
+alwaysApply: true
+---
+# Linear Task Tracking
+
+- Canonical note: `docs/30-Implementation/linear-task-tracking.md`. This rule is an
+  orchestrator; if it disagrees with that note, the vault wins.
+- Tracker: **Linear, team FMX** (<https://linear.app/coding-x/team/FMX/active>),
+  project *Phase 1 — Research & Architecture*. Linear = operational status, vault =
+  durable knowledge — never duplicate.
+- Issues: title `Verb + area + object`; body Summary / Context (+vault links) /
+  Requirements / Acceptance; mandatory one `type:` + one `area:` label; link the
+  canonical vault note. Agents create only in `Backlog`, search for duplicates
+  first, max 3 new issues/session, and never change labels/states.
+- Status moves by agents: `Todo → In Progress → In Review`, or `→ Blocked` (with a
+  comment). **Never** move to `Done`/`Canceled` — Nico only.
+- Branch carries the Linear ID: `feat/fmx-<n>-<slug>` (human),
+  `claude|codex|cursor/fmx-<n>-<slug>` (agent). PR title `[FMX-<n>] …`; PR body
+  first line `Closes FMX-<n>` (docs/non-closing: `Part of FMX-<n>`).
+- Priority = Linear's native field, not a label.
