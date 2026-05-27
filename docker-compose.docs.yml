@@ -1,7 +1,7 @@
 # Standalone internal docs stack, deployed independently (its redeploys/outages
 # never touch anything else). Two auth-gated sites:
-#   - docs       → the Obsidian vault (Quartz build) at DOCS_DOMAIN, themed with
-#                  the Aurelia Premier tokens (tools/docs-preview/custom.scss) + graph.
+#   - docs       → the Obsidian vault (Quartz build) at DOCS_DOMAIN — default Quartz
+#                  styling + graph view (the design lives in the styleguide, below).
 #   - styleguide → the INTERACTIVE Aurelia Premier design styleguide (claude.ai/design
 #                  export, Babylon-only) at STYLEGUIDE_DOMAIN — see tools/styleguide/.
 #                  This is the design system, served separately from the wiki (Quartz
