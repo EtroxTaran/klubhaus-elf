@@ -5,11 +5,24 @@ tags: [game-design, mode, career, anstoss]
 created: 2026-05-16
 updated: 2026-05-18
 type: game-design
-binding: true
-related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/onboarding-strategy]], [[../60-Research/late-game-systems]], [[mode-create-a-club-roguelite]], [[onboarding-and-tutorial]], [[club-dna-and-governance]], [[fan-ecology]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../60-Research/mode-design-research]]
+  - [[../60-Research/ai-manager-behaviour]]
+  - [[../60-Research/onboarding-strategy]]
+  - [[../60-Research/late-game-systems]]
+  - [[mode-create-a-club-roguelite]]
+  - [[onboarding-and-tutorial]]
+  - [[club-dna-and-governance]]
+  - [[fan-ecology]]
 ---
 
 # Mode - Manage a Club Career
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 The classical mode: apply for a job, take over an existing club, can be
 sacked. The Anstoss-2 "real manager career" pattern with FM-style split
@@ -190,3 +203,16 @@ once per season.
   global aggregate.
 - "Resign in protest" option - yes; affects reputation positively for
   fans, negatively for other boards.
+## Related
+
+- [[README]]
+- [[GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../00-Index/MVP-Scope]]
+- [[../60-Research/mode-design-research]]
+- [[../60-Research/ai-manager-behaviour]]
+- [[../60-Research/onboarding-strategy]]
+- [[../60-Research/late-game-systems]]
+- [[mode-create-a-club-roguelite]]
+- [[onboarding-and-tutorial]]
+- [[club-dna-and-governance]]
+- [[fan-ecology]]

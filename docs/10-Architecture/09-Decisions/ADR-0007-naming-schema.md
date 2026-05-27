@@ -4,13 +4,21 @@ status: draft
 tags: [adr, ip, data-generation, names, crests, worldgen]
 created: 2026-05-15
 updated: 2026-05-17
-accepted_at: 2026-05-17
 type: adr
-binding: true
-related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0016-community-dataset-overrides]], [[../../60-Research/data-generators]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/performance-budgets]]
+binding: false
+accepted_at: 2026-05-17
+related:
+  - [[ADR-0004-data-model]]
+  - [[ADR-0005-save-format]]
+  - [[ADR-0016-community-dataset-overrides]]
+  - [[../../60-Research/data-generators]]
+  - [[../../60-Research/determinism-and-replay]]
+  - [[../../60-Research/performance-budgets]]
 ---
 
 # ADR-0007: IP-clean Naming Schema + Data Generators
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -321,3 +329,11 @@ CI enforcement:
   Etalab Open Licence (INSEE), GeoNames CC-BY 4.0, Game-Icons.net
   CC-BY 3.0.
 - D2 Q&A with Nico (2026-05-17): all 8 recommendations accepted.
+## Related
+
+- [[ADR-0004-data-model]]
+- [[ADR-0005-save-format]]
+- [[ADR-0016-community-dataset-overrides]]
+- [[../../60-Research/data-generators]]
+- [[../../60-Research/determinism-and-replay]]
+- [[../../60-Research/performance-budgets]]

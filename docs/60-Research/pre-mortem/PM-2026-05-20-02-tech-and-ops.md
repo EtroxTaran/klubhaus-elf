@@ -543,24 +543,16 @@ IDs `PM-2026-05-20-02-F-NN` zitierbar in Commits/PRs/ADRs (`Addresses PM-2026-05
 - **Auth funktioniert auch lokal.** Passkey-Erstellung darf nicht zwingend Online-Roundtrip benötigen (Erst-Use offline aktivierbar); Sync passiert bei nächster Online-Verbindung.
 
 ---
-
 ## Related
 
 - [[00-index]]
 - [[findings-registry]]
-- [[threat-model]]
 - [[PM-2026-05-20-01-architecture]]
-- [[PM-2026-05-20-03-gameplay]]
-- [[PM-2026-05-20-04-monetization]]
-- [[PM-2026-05-20-05-security-and-integrity]]
-- [[PM-2026-05-20-06-distributed-match-compute]]
 - [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
 - [[../determinism-and-replay]]
-- [[../../10-Architecture/09-Decisions/ADR-0001-tech-stack]]
-- [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]
 - [[../../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
 - [[../../30-Implementation/auth-flows]]
 - [[../../30-Implementation/session-management]]
-- [[../../30-Implementation/client-telemetry]]
 - [[../../30-Implementation/rate-limiting-anti-abuse]]
+- [[../../30-Implementation/client-telemetry]]
 - [[../../00-Index/Current-State]]

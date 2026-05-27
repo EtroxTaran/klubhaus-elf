@@ -6,10 +6,17 @@ created: 2026-05-16
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/async-multiplayer-private-group]], [[../10-Architecture/state-machines/league-week]], [[../10-Architecture/09-Decisions/ADR-0012-async-cadence-models]]
+related:
+  - [[README]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../50-Game-Design/async-multiplayer-private-group]]
+  - [[../10-Architecture/state-machines/league-week]]
+  - [[../10-Architecture/09-Decisions/ADR-0012-async-cadence-models]]
 ---
 
 # Feature - Async Week Loop
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -61,3 +68,10 @@ private groups are not in the first playable.
 - [[../10-Architecture/09-Decisions/ADR-0012-async-cadence-models]]
 - [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
 - [[../10-Architecture/09-Decisions/ADR-0014-state-machines]]
+## Related
+
+- [[README]]
+- [[../00-Index/MVP-Scope]]
+- [[../50-Game-Design/async-multiplayer-private-group]]
+- [[../10-Architecture/state-machines/league-week]]
+- [[../10-Architecture/09-Decisions/ADR-0012-async-cadence-models]]

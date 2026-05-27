@@ -6,7 +6,11 @@ created: 2026-05-15
 updated: 2026-05-17
 type: index
 binding: true
-related: [[agent-workflow-pattern]], [[../00-Index/Agent-Onboarding]], [[../00-Index/Current-State]], [[../90-Meta/agent-memory-protocol]]
+related:
+  - [[agent-workflow-pattern]]
+  - [[../00-Index/Agent-Onboarding]]
+  - [[../00-Index/Current-State]]
+  - [[../90-Meta/agent-memory-protocol]]
 ---
 
 # Cursor Cloud Agent Workflow
@@ -28,9 +32,9 @@ issues.
 5. Commit, push, and create a draft PR before testing; update the PR after fixes.
 6. Keep Vault docs and code changes in the same PR.
 7. Comment final outcome and Vault/PR links on the Linear issue before marking done.
-
 ## Related
 
-- [[agent-workflow-pattern]] — the full workflow this operationalizes
-- [[../00-Index/Agent-Onboarding]] — session start
-- [[../90-Meta/agent-memory-protocol]] — memory steps
+- [[agent-workflow-pattern]]
+- [[../00-Index/Agent-Onboarding]]
+- [[../00-Index/Current-State]]
+- [[../90-Meta/agent-memory-protocol]]

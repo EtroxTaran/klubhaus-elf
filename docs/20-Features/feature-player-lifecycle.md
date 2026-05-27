@@ -6,10 +6,17 @@ created: 2026-05-17
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/squad-and-club-structure]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+related:
+  - [[README]]
+  - [[../50-Game-Design/youth-academy-and-development]]
+  - [[../50-Game-Design/squad-and-club-structure]]
+  - [[../60-Research/systemic-events-player-development-venue-ops]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Feature - Player Lifecycle and Development
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -51,4 +58,11 @@ squad/run loop; deeper lifecycle depth can follow after MVP.
 
 - [[../50-Game-Design/youth-academy-and-development]]
 - [[../50-Game-Design/squad-and-club-structure]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+## Related
+
+- [[README]]
+- [[../50-Game-Design/youth-academy-and-development]]
+- [[../50-Game-Design/squad-and-club-structure]]
+- [[../60-Research/systemic-events-player-development-venue-ops]]
 - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]

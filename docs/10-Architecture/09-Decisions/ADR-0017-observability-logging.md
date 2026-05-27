@@ -4,13 +4,23 @@ status: draft
 tags: [adr, architecture, observability, logging, monitoring, telemetry, gdpr]
 created: 2026-05-17
 updated: 2026-05-22
-accepted_at: 2026-05-17
 type: adr
-binding: true
-related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[ADR-0013-transactional-outbox]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0043-notification-and-messaging-platform]], [[../08-Crosscutting]], [[../../30-Implementation/observability-runbook]], [[../../30-Implementation/client-telemetry]]
+binding: false
+accepted_at: 2026-05-17
+related:
+  - [[../../60-Research/telemetry-privacy]]
+  - [[ADR-0002-offline-first]]
+  - [[ADR-0013-transactional-outbox]]
+  - [[ADR-0028-postgres-transactional-outbox]]
+  - [[ADR-0043-notification-and-messaging-platform]]
+  - [[../08-Crosscutting]]
+  - [[../../30-Implementation/observability-runbook]]
+  - [[../../30-Implementation/client-telemetry]]
 ---
 
 # ADR-0017: Self-hosted Observability and Logging
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 > **AMENDED 2026-05-19 by [[ADR-0021-revised-tech-stack]] (MVP scope trim, not a
 > supersede).** The decision (self-hosted EU observability, GDPR/no-third-country)
@@ -278,3 +288,13 @@ triage.
 - Related research: [[../../60-Research/telemetry-privacy]]
 - Related architecture: [[../08-Crosscutting]], [[ADR-0002-offline-first]], [[ADR-0013-transactional-outbox]]
 - Related implementation: [[../../30-Implementation/observability-runbook]], [[../../30-Implementation/client-telemetry]], [[../../30-Implementation/deployment-dokploy]]
+## Related
+
+- [[../../60-Research/telemetry-privacy]]
+- [[ADR-0002-offline-first]]
+- [[ADR-0013-transactional-outbox]]
+- [[ADR-0028-postgres-transactional-outbox]]
+- [[ADR-0043-notification-and-messaging-platform]]
+- [[../08-Crosscutting]]
+- [[../../30-Implementation/observability-runbook]]
+- [[../../30-Implementation/client-telemetry]]

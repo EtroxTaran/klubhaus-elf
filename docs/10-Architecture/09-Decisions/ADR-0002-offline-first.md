@@ -4,11 +4,18 @@ status: superseded
 tags: [adr, pwa, offline-first, service-worker, workbox, indexeddb, dexie, sync]
 created: 2026-05-15
 updated: 2026-05-18
-accepted_at: 2026-05-16
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-16
 superseded_by: ADR-0020-hybrid-online-mvp-offline-ready
-related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[../../60-Research/pwa-offline-patterns]], [[../../60-Research/determinism-and-replay]]
+related:
+  - [[ADR-0001-tech-stack]]
+  - [[ADR-0004-data-model]]
+  - [[ADR-0005-save-format]]
+  - [[ADR-0011-server-authoritative-multiplayer]]
+  - [[ADR-0013-transactional-outbox]]
+  - [[../../60-Research/pwa-offline-patterns]]
+  - [[../../60-Research/determinism-and-replay]]
 ---
 
 # ADR-0002: Offline-first Strategy
@@ -394,3 +401,12 @@ CI enforcement:
   vendored per version.
 - Wave 3 gap A2 Q&A with Nico (2026-05-16): five recommendations
   accepted; update strategy diverged to "hybrid smart".
+## Related
+
+- [[ADR-0001-tech-stack]]
+- [[ADR-0004-data-model]]
+- [[ADR-0005-save-format]]
+- [[ADR-0011-server-authoritative-multiplayer]]
+- [[ADR-0013-transactional-outbox]]
+- [[../../60-Research/pwa-offline-patterns]]
+- [[../../60-Research/determinism-and-replay]]

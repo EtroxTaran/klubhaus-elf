@@ -1,12 +1,25 @@
 ---
 title: Tactics & Formations — Mobile-first Manager Game Tactics Depth
 status: current
-binding: true
 tags: [research, tactics, formations, roles, instructions, familiarity, opposition, mobile-ux, touch]
 created: 2026-05-17
 updated: 2026-05-17
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]], [[ai-manager-behaviour]], [[match-engine-simulation-model]], [[data-generators]], [[player-strength-presentation]], [[performance-budgets]], [[progressive-disclosure-research]], [[../50-Game-Design/tactics-system]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/set-pieces]]
+binding: false
+related:
+  - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+  - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+  - [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]
+  - [[ai-manager-behaviour]]
+  - [[match-engine-simulation-model]]
+  - [[data-generators]]
+  - [[player-strength-presentation]]
+  - [[performance-budgets]]
+  - [[progressive-disclosure-research]]
+  - [[../50-Game-Design/tactics-system]]
+  - [[../50-Game-Design/progressive-disclosure-ui]]
+  - [[../50-Game-Design/match-engine]]
+  - [[../50-Game-Design/set-pieces]]
 ---
 
 # Tactics & Formations — Mobile-first Manager Game Tactics Depth
@@ -1110,3 +1123,18 @@ Fits easily within D9's 200 MB total IndexedDB budget.
   system with sub-archetypes + manager-signature templates + emergent
   club character; touchline shouts simplified to 3 universal (no tier
   gating).
+## Related
+
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+- [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+- [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]
+- [[ai-manager-behaviour]]
+- [[match-engine-simulation-model]]
+- [[data-generators]]
+- [[player-strength-presentation]]
+- [[performance-budgets]]
+- [[progressive-disclosure-research]]
+- [[../50-Game-Design/tactics-system]]
+- [[../50-Game-Design/progressive-disclosure-ui]]
+- [[../50-Game-Design/match-engine]]
+- [[../50-Game-Design/set-pieces]]

@@ -2,7 +2,14 @@
 title: Design System — Aurelia Premier
 status: current
 tags: [architecture, design, ui, accessibility]
+created: 2026-05-22
 updated: 2026-05-22
+type: architecture
+binding: false
+related:
+  - [[README]]
+  - [[09-Decisions/ADR-0010-design-system]]
+  - [[../30-Implementation/design-sync-workflow]]
 ---
 
 # Design System — Aurelia Premier
@@ -277,3 +284,8 @@ Rules that keep the showcase green and complete:
   `tags: ['!autodocs']`.
 - A new/changed atom, composite, layout or screen **must** add/extend its
   story in the same PR — CI `build-storybook` fails otherwise.
+## Related
+
+- [[README]]
+- [[09-Decisions/ADR-0010-design-system]]
+- [[../30-Implementation/design-sync-workflow]]

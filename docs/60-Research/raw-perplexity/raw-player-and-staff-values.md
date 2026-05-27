@@ -7,7 +7,12 @@ updated: 2026-05-27
 type: raw-research
 binding: false
 sourceType: external
-related: [[../incoming-design-research-2026-05-27]], [[../data-generators]], [[../player-strength-presentation]], [[../systemic-events-player-development-venue-ops]], [[../ai-manager-behaviour]]
+related:
+  - [[../incoming-design-research-2026-05-27]]
+  - [[../data-generators]]
+  - [[../player-strength-presentation]]
+  - [[../systemic-events-player-development-venue-ops]]
+  - [[../ai-manager-behaviour]]
 ---
 
 > Lossless import of Nico's external research report (Perplexity-style), filed
@@ -828,4 +833,10 @@ Ein Spieler ist schlecht als Mentor (oder sogar schädlich), wenn:
 46. [Secondary qualities - NodeBB](https://forum.onlinesoccermanager.com/topic/68343/secondary-qualities) - Players have 3 attributes (attack, defense, overall), and for each line in the formation one of thes...
 
 47. [Curious about player stats : r/onlinesoccermanager - Reddit](https://www.reddit.com/r/onlinesoccermanager/comments/d4s6e1/curious_about_player_stats/) - Anything above 105 should be good, but just keep training your players. The RNG super-training can b...
+## Related
 
+- [[../incoming-design-research-2026-05-27]]
+- [[../data-generators]]
+- [[../player-strength-presentation]]
+- [[../systemic-events-player-development-venue-ops]]
+- [[../ai-manager-behaviour]]

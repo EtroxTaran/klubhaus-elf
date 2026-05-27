@@ -788,10 +788,11 @@ Vergleich: ~27 kg/Mo = ~100 km Auto (Benzin) pro Monat für 10k aktive Spieler. 
 ## Verfolgung & Verkettung
 
 IDs `PM-2026-05-20-17-F-NN`. Aggregat: [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]]
-- [[PM-2026-05-20-02-tech-and-ops]] · [[PM-2026-05-20-04-monetization]] · [[PM-2026-05-20-08-legal-consumer-law-and-tax]] (CRA-SBOM) · [[PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]] (Anthropic-Bus-Faktor)
-- [[../../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
-- [[../../30-Implementation/secrets-management]]
+- [[00-index]]
+- [[findings-registry]]
+- [[PM-2026-05-20-02-tech-and-ops]]
+- [[PM-2026-05-20-04-monetization]]
+- [[PM-2026-05-20-08-legal-consumer-law-and-tax]]
+- [[PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]

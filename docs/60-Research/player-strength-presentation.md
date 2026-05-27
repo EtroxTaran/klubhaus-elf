@@ -1,11 +1,11 @@
 ---
 title: Player Strength Presentation - Impact Lens
 status: current
-binding: true
 tags: [research, player-strength, squad-ui, tactics, scouting, ux, read-model]
 created: 2026-05-17
 updated: 2026-05-17
 type: research
+binding: false
 related:
   - [[raw-perplexity/raw-player-strength-overview]]
   - [[data-generators]]
@@ -347,3 +347,13 @@ These are tuning tasks, not blockers for the direction:
   qualitative bands.
 - Whether transfer-market search should default to current tactic Impact or
   role-neutral category filters.
+## Related
+
+- [[raw-perplexity/raw-player-strength-overview]]
+- [[data-generators]]
+- [[tactics-and-formations]]
+- [[surrealdb-schema-patterns]]
+- [[../50-Game-Design/progressive-disclosure-ui]]
+- [[../50-Game-Design/tactics-system]]
+- [[../50-Game-Design/squad-and-club-structure]]
+- [[../50-Game-Design/scouting-and-recruitment]]

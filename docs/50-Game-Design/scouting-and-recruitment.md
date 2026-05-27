@@ -6,10 +6,18 @@ created: 2026-05-16
 updated: 2026-05-17
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/player-strength-presentation]], [[squad-and-club-structure]], [[tactics-system]], [[transfer-market-and-contracts]], [[transfer-negotiations-p2p]]
+related:
+  - [[README]]
+  - [[../60-Research/player-strength-presentation]]
+  - [[squad-and-club-structure]]
+  - [[tactics-system]]
+  - [[transfer-market-and-contracts]]
+  - [[transfer-negotiations-p2p]]
 ---
 
 # Scouting and Recruitment - Funnel, Scout Attributes, Market Dynamics
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Recruitment is a seven-step funnel. Each step has a cost, an information
 quality and a different kind of failure mode. The single biggest gameplay
@@ -180,3 +188,11 @@ by cash-equivalent value.
   Simple cost at MVP; relationship Phase 2+.
 - Free agent market: do agents proactively offer free agents to the club?
   Yes, weighted by scout network + brand strength.
+## Related
+
+- [[README]]
+- [[../60-Research/player-strength-presentation]]
+- [[squad-and-club-structure]]
+- [[tactics-system]]
+- [[transfer-market-and-contracts]]
+- [[transfer-negotiations-p2p]]

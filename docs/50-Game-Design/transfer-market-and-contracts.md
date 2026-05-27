@@ -5,11 +5,21 @@ tags: [game-design, transfers, contracts, ai, economy, scouting, narrative]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[scouting-and-recruitment]], [[squad-and-club-structure]], [[economy-system]], [[transfer-negotiations-p2p]], [[../60-Research/transfer-market-simulation]], [[../10-Architecture/transfer-market-architecture]], [[../20-Features/feature-transfer-market-ai-and-contracts]]
+binding: false
+related:
+  - [[README]]
+  - [[scouting-and-recruitment]]
+  - [[squad-and-club-structure]]
+  - [[economy-system]]
+  - [[transfer-negotiations-p2p]]
+  - [[../60-Research/transfer-market-simulation]]
+  - [[../10-Architecture/transfer-market-architecture]]
+  - [[../20-Features/feature-transfer-market-ai-and-contracts]]
 ---
 
 # Transfer Market and Contracts
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 > Approved 2026-05-17 after Nico resolved clause depth, Expert UI, transfer
 > scope, training rewards and MVP agent depth. Research authority:
@@ -206,3 +216,13 @@ Transfers feed D15 narrative systems:
 - Clauses are priced internally as cash equivalents.
 - Full simulation depth is tiered by world proximity.
 - UI explains causes without exposing all hidden formulas.
+## Related
+
+- [[README]]
+- [[scouting-and-recruitment]]
+- [[squad-and-club-structure]]
+- [[economy-system]]
+- [[transfer-negotiations-p2p]]
+- [[../60-Research/transfer-market-simulation]]
+- [[../10-Architecture/transfer-market-architecture]]
+- [[../20-Features/feature-transfer-market-ai-and-contracts]]

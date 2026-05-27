@@ -6,10 +6,17 @@ created: 2026-05-17
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/training-load-and-medicine]], [[../50-Game-Design/squad-and-club-structure]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+related:
+  - [[README]]
+  - [[../50-Game-Design/training-load-and-medicine]]
+  - [[../50-Game-Design/squad-and-club-structure]]
+  - [[../60-Research/systemic-events-player-development-venue-ops]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Feature - Training, Medicine and Availability
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -54,3 +61,10 @@ training signal and readiness impact needed for the first-week loop.
 - [[../50-Game-Design/training-load-and-medicine]]
 - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 - [[../60-Research/determinism-and-replay]]
+## Related
+
+- [[README]]
+- [[../50-Game-Design/training-load-and-medicine]]
+- [[../50-Game-Design/squad-and-club-structure]]
+- [[../60-Research/systemic-events-player-development-venue-ops]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]

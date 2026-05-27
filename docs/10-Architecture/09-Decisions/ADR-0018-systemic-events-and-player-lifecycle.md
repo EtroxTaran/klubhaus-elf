@@ -4,13 +4,21 @@ status: draft
 tags: [adr, architecture, events, player-development, injuries, narrative, venue]
 created: 2026-05-17
 updated: 2026-05-17
-accepted_at: 2026-05-17
 type: adr
-binding: true
-related: [[../../60-Research/systemic-events-player-development-venue-ops]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0013-transactional-outbox]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/narrative-content-pipeline]], [[../bounded-context-map]]
+binding: false
+accepted_at: 2026-05-17
+related:
+  - [[../../60-Research/systemic-events-player-development-venue-ops]]
+  - [[ADR-0019-modular-monolith-ddd]]
+  - [[ADR-0013-transactional-outbox]]
+  - [[../../60-Research/determinism-and-replay]]
+  - [[../../60-Research/narrative-content-pipeline]]
+  - [[../bounded-context-map]]
 ---
 
 # ADR-0018: Systemic Events and Player Lifecycle Architecture
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -177,3 +185,11 @@ Implementation must provide:
 
 This ADR does not supersede ADR-0010, ADR-0013, D8 or D15. It specializes
 them for player lifecycle and systemic events.
+## Related
+
+- [[../../60-Research/systemic-events-player-development-venue-ops]]
+- [[ADR-0019-modular-monolith-ddd]]
+- [[ADR-0013-transactional-outbox]]
+- [[../../60-Research/determinism-and-replay]]
+- [[../../60-Research/narrative-content-pipeline]]
+- [[../bounded-context-map]]

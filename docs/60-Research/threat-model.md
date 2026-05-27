@@ -5,16 +5,16 @@ tags: [research, security, threat-model, stride, owasp-asvs, anti-cheat, pwa]
 created: 2026-05-18
 updated: 2026-05-18
 type: research
-binding: true
+binding: false
 related:
-  - "[[../95-Archive/gap-reports/wave-3-gap-analysis]]"
-  - "[[../10-Architecture/09-Decisions/ADR-0002-offline-first]]"
-  - "[[../10-Architecture/09-Decisions/ADR-0005-save-format]]"
-  - "[[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]"
-  - "[[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]"
-  - "[[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]"
-  - "[[../10-Architecture/bounded-context-map]]"
-  - "[[telemetry-privacy]]"
+  - [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+  - [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]
+  - [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
+  - [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+  - [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
+  - [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
+  - [[../10-Architecture/bounded-context-map]]
+  - [[telemetry-privacy]]
 ---
 
 # Threat Model
@@ -572,3 +572,13 @@ Six focused Perplexity-sonar-pro queries, 2026-05-18:
 Raw transcripts not committed (ephemeral); citations preserved
 inline in §10 above. If a future agent needs to re-run them, the
 prompts are reproduced in this PR's description.
+## Related
+
+- [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+- [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]
+- [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
+- [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+- [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
+- [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
+- [[../10-Architecture/bounded-context-map]]
+- [[telemetry-privacy]]

@@ -1,15 +1,22 @@
 ---
 title: Feature - Roguelite MVP First Playable
-status: approved
+status: draft
 tags: [feature, mvp, roguelite, first-playable]
 created: 2026-05-18
 updated: 2026-05-18
 type: feature
-binding: true
-related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+binding: false
+related:
+  - [[README]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../50-Game-Design/mode-create-a-club-roguelite]]
+  - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
 ---
 
 # Feature - Roguelite MVP First Playable
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 This is the focused feature slice for the MVP. It translates
 [[../00-Index/MVP-Scope]] and
@@ -101,9 +108,9 @@ Feature: Roguelite MVP first playable
   does not build full export/import.
 - UI and docs keep the long-term mode matrix visible without expanding MVP
   scope.
-
 ## Related
 
+- [[README]]
 - [[../00-Index/MVP-Scope]]
 - [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
 - [[../50-Game-Design/mode-create-a-club-roguelite]]

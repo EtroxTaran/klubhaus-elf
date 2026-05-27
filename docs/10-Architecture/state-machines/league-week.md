@@ -6,7 +6,11 @@ created: 2026-05-16
 updated: 2026-05-22
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/async-multiplayer-private-group]], [[../09-Decisions/ADR-0012-async-cadence-models]]
+related:
+  - [[README]]
+  - [[../bounded-context-map]]
+  - [[../../50-Game-Design/async-multiplayer-private-group]]
+  - [[../09-Decisions/ADR-0012-async-cadence-models]]
 ---
 
 # State Machine - League Week
@@ -129,3 +133,9 @@ All events route through the transactional outbox
   configurable delay (group setting) so groups can pause between weeks.
 - Mid-state pause - currently queued. Better UX may be immediate pause
   with state preserved; needs concurrency model decision.
+## Related
+
+- [[README]]
+- [[../bounded-context-map]]
+- [[../../50-Game-Design/async-multiplayer-private-group]]
+- [[../09-Decisions/ADR-0012-async-cadence-models]]

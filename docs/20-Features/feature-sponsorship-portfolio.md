@@ -6,10 +6,16 @@ created: 2026-05-16
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/sponsorship-portfolio]], [[../50-Game-Design/economy-system]], [[../50-Game-Design/fan-ecology]]
+related:
+  - [[README]]
+  - [[../50-Game-Design/sponsorship-portfolio]]
+  - [[../50-Game-Design/economy-system]]
+  - [[../50-Game-Design/fan-ecology]]
 ---
 
 # Feature - Sponsorship Portfolio
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -60,4 +66,10 @@ signals and simple choices. Full portfolio depth can follow after MVP.
 ## Dependencies
 
 - [[../50-Game-Design/sponsorship-portfolio]]
+- [[../50-Game-Design/fan-ecology]]
+## Related
+
+- [[README]]
+- [[../50-Game-Design/sponsorship-portfolio]]
+- [[../50-Game-Design/economy-system]]
 - [[../50-Game-Design/fan-ecology]]

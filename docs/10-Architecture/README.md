@@ -5,8 +5,12 @@ tags: [architecture, moc]
 created: 2026-05-17
 updated: 2026-05-22
 type: index
-binding: true
-related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[05-Building-Blocks]], [[../00-Index/Documentation-V1]]
+binding: false
+related:
+  - [[../00-Index/Home]]
+  - [[../00-Index/Decision-Log]]
+  - [[05-Building-Blocks]]
+  - [[../00-Index/Documentation-V1]]
 ---
 
 # Architecture — Map of Content
@@ -42,3 +46,9 @@ baseline for architecture-gap classification.
 
 - [[../00-Index/Home]] — vault hub · [[../00-Index/Vision]] — goals
 - [[../30-Implementation/README]] — implementation MOC · [[../60-Research/00-summary]] — research MOC
+## Related
+
+- [[../00-Index/Home]]
+- [[../00-Index/Decision-Log]]
+- [[05-Building-Blocks]]
+- [[../00-Index/Documentation-V1]]

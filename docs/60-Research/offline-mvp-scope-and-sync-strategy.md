@@ -1,12 +1,17 @@
 ---
 title: Offline MVP Scope and Future Sync Strategy
 status: current
-binding: true
 tags: [research, offline, pwa, mvp, sync, indexeddb]
 created: 2026-05-18
 updated: 2026-05-18
 type: research
-related: [[00-summary]], [[pwa-offline-patterns]], [[../00-Index/MVP-Scope]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
+binding: false
+related:
+  - [[00-summary]]
+  - [[pwa-offline-patterns]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
 ---
 
 # Offline MVP Scope and Future Sync Strategy
@@ -137,11 +142,10 @@ The MVP should keep the future path open through the following rules:
 Adopt [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
 as the MVP architecture and treat [[pwa-offline-patterns]] as the deeper
 Phase-2 implementation reference for selective offline-first and export/import.
-
 ## Related
 
-- [[00-summary]] — research hub
-- [[../00-Index/MVP-Scope]] — canonical MVP scope
-- [[pwa-offline-patterns]] — earlier full offline-first research, now future input
-- [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] — decision
-- [[../10-Architecture/09-Decisions/ADR-0005-save-format]] — reserved save/export contract
+- [[00-summary]]
+- [[pwa-offline-patterns]]
+- [[../00-Index/MVP-Scope]]
+- [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[../10-Architecture/09-Decisions/ADR-0005-save-format]]

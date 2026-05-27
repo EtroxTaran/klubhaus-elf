@@ -6,22 +6,26 @@ created: 2026-05-16
 updated: 2026-05-22
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-V1]]
+related:
+  - [[Project-Goals]]
+  - [[MVP-Scope]]
+  - [[Game-Design-Map]]
+  - [[Documentation-V1]]
 ---
 
 # Feature Map
 
-Use this map for feature planning and implementation beats.
+Use this map for feature planning and future implementation beats.
 
-[[Documentation-V1]] classifies feature stubs as future-scope
-planning unless listed below as approved/current. They are not active
-documentation gaps.
+[[Documentation-V1]] classifies the pre-reopen feature baseline. As of
+2026-05-27, feature notes are draft planning context until Nico re-approves
+them.
 
 ## Current Hub
 
 - [Features README](../20-Features/README.md)
 
-## Active MVP feature
+## Pre-Reopen MVP Feature Candidate
 
 - [[../20-Features/feature-roguelite-mvp-first-playable]] — Create-a-Club Roguelite first playable.
 
@@ -59,10 +63,12 @@ Archival issue mirrors exist under
 
 ## Binding Rule
 
-Feature implementation needs an approved or current feature spec, accepted ADR
-context, and tests. User docs are not feature specs.
+Feature implementation needs a re-approved feature spec, re-accepted ADR context,
+and tests. User docs are not feature specs. Today there are no approved feature
+specs after the 2026-05-27 reopen.
+## Related
 
-Approved feature specs:
-
-- [[../20-Features/feature-roguelite-mvp-first-playable]]
-- [[../20-Features/feature-transfer-market-ai-and-contracts]]
+- [[Project-Goals]]
+- [[MVP-Scope]]
+- [[Game-Design-Map]]
+- [[Documentation-V1]]

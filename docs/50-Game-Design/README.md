@@ -6,7 +6,10 @@ created: 2026-05-15
 updated: 2026-05-22
 type: index
 binding: false
-related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]]
+related:
+  - [[../00-Index/Game-Design-Map]]
+  - [[../00-Index/Current-State]]
+  - [[../00-Index/Documentation-V1]]
 ---
 
 # Game Design Hub
@@ -17,19 +20,19 @@ related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00
 > individually after review. The Status column and "approved" wording below
 > reflect the pre-reopen state and are being revisited.
 
-Working game-design notes for soccer-manager. Treat this folder as the GDD:
-one note per system + mode + emergent system. Notes are `draft` unless the
-status field says otherwise; `approved` notes are binding for implementation.
-[[../00-Index/Documentation-V1]] classifies non-approved notes
-as future-scope or historical planning unless they are promoted in
-[[../00-Index/Current-State]].
+Working game-design notes for football-manager-x. Treat this folder as the GDD:
+one note per system + mode + emergent system. As of the 2026-05-27 reopen, every
+GDDR and game-design system note is `draft`; historical `approved` wording in
+older sections is pre-reopen context only. [[../00-Index/Documentation-V1]]
+classifies the pre-reopen baseline for review, but it is not current
+implementation authority.
 
 Research input for every note lives in [[../60-Research/00-summary]]; raw
 research transcripts in [[../60-Research/raw-perplexity/README]].
 
 ## Authority and decision records
 
-Implement gameplay only from `approved` game-design records. This folder has two
+Implement gameplay only from records Nico re-approves. This folder has two
 complementary record shapes:
 
 - **GDDRs** (`GD-0001`...`GD-0017`) — the decision-record chain from research into
@@ -42,30 +45,26 @@ complementary record shapes:
 
 A junior should never have to guess. Apply this order:
 
-1. **Status wins first.** An `approved` record is binding; a `draft`/`superseded`
-   record is never implementation authority — even on the same topic. So if a
-   GDDR is `draft` but its system note is `approved` (or vice-versa), the
-   **`approved` one is binding** regardless of shape.
-2. **If both are `approved`**, the **GDDR is the decision of record** and the
+1. **Status wins first.** A `draft`/`superseded` record is never implementation
+   authority — even on the same topic. During the reopen, all game-design records
+   are `draft`.
+2. **After re-approval**, the **GDDR is the decision of record** and the
    **system note is the detailed spec**; read both, and they must agree. A
-   conflict between two `approved` records is a **stop condition** — escalate and
+   conflict between two approved records is a **stop condition** — escalate and
    supersede one explicitly before implementing; do not average them.
 3. The authoritative list of what is currently approved/binding lives in
-   [[../00-Index/Game-Design-Map]].
+   [[../00-Index/Game-Design-Map]]; today it intentionally lists none.
 
 **Known overlapping topics (read this so you are not surprised):**
 
 | Topic | Binding document | Do NOT implement from |
 |---|---|---|
-| Match engine & simulation | [[match-engine]] (`approved`) | [[GD-0002-match-engine]] (`draft`, Wave-2 gated) |
-| Core career loop | [[GD-0001-core-loop]] (`approved`) | [[core-loop]] (`draft` context note) |
+| Match engine & simulation | None during reopen | [[match-engine]] and [[GD-0002-match-engine]] until re-approved |
+| Core career loop | None during reopen | [[GD-0001-core-loop]] and [[core-loop]] until re-approved |
 | AI managers & world | — (none binding yet) | [[GD-0010-ai-world]] (`draft`, Wave-2 gated) |
 
-For every other topic both records are `approved` and complementary (GDDR =
-decision, system note = spec). `draft` records are planning context only; as of
-2026-05-22 the MVP gameplay surface is fully covered by the approved/current
-notes in [[../00-Index/Game-Design-Map]], so remaining `draft` labels are not
-active work.
+For every other topic, old `approved` wording is pre-reopen history. `draft`
+records are planning context only until Nico re-approves them.
 
 | GDDR | System | Status | Feeds ADR |
 |---|---|---|---|
@@ -137,14 +136,19 @@ active work.
 
 - [[progressive-disclosure-ui]] - 3-tier UX (Quick / Standard / Expert).
 - [[../60-Research/player-strength-presentation]] - Impact Lens player-strength model; no global OVR.
-- [[GD-0017-mvp-scope-and-mode-sequencing]] - binding MVP mode sequencing.
+- [[GD-0017-mvp-scope-and-mode-sequencing]] - pre-reopen MVP mode sequencing draft.
 
 ## Status legend
 
-- `approved` - binding. Implementation must follow.
+- `approved` - binding only after Nico re-approves a record.
 - `draft` - future-scope or historical planning; not implementation authority
   and not active work unless re-opened by [[../00-Index/Documentation-V1]].
 - `superseded` - historical only; never implement from.
 
 When status changes, also update [[../00-Index/Current-State]] and
 [[../00-Index/Game-Design-Map]].
+## Related
+
+- [[../00-Index/Game-Design-Map]]
+- [[../00-Index/Current-State]]
+- [[../00-Index/Documentation-V1]]

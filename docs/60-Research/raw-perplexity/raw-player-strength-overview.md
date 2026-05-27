@@ -6,8 +6,12 @@ created: 2026-05-17
 updated: 2026-05-17
 type: research
 binding: false
-related: [[README]], [[../player-strength-presentation]], [[../../50-Game-Design/progressive-disclosure-ui]], [[../../50-Game-Design/tactics-system]]
 source_path: "C:\\Users\\nico.rimmele\\Downloads\\Bitte rechachiere was ist die Beste Methode Spiele.md"
+related:
+  - [[README]]
+  - [[../player-strength-presentation]]
+  - [[../../50-Game-Design/progressive-disclosure-ui]]
+  - [[../../50-Game-Design/tactics-system]]
 ---
 
 # Raw Player Strength Overview Research
@@ -330,3 +334,9 @@ The original source referenced these public or project-local inputs:
 
 These citations were not enough by themselves to become binding design. The
 challenged and corrected synthesis is in [[../player-strength-presentation]].
+## Related
+
+- [[README]]
+- [[../player-strength-presentation]]
+- [[../../50-Game-Design/progressive-disclosure-ui]]
+- [[../../50-Game-Design/tactics-system]]

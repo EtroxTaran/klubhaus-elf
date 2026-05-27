@@ -4,9 +4,13 @@ status: raw
 tags: [research, raw, perplexity, regulations, fans, events, rivalry, ux]
 created: 2026-05-16
 updated: 2026-05-16
-type: research-raw
+type: raw-research
 binding: false
-related: [[README]], [[../regulations-and-pyramids-research]], [[../fan-culture-segmentation-research]], [[../progressive-disclosure-research]]
+related:
+  - [[README]]
+  - [[../regulations-and-pyramids-research]]
+  - [[../fan-culture-segmentation-research]]
+  - [[../progressive-disclosure-research]]
 ---
 
 # Raw - Environment, Regulations, Rivalries, Sanctions, Match-day Events, Progressive Disclosure
@@ -365,3 +369,9 @@ stadium revenue, premierleaguestadiumfund accreditation, expectinggoals
 set-piece analytics, footballbenchmark match-day, FA safety/weather
 considerations. Full URL list in source `.md`; new URLs surface via the
 respective synthesis notes.
+## Related
+
+- [[README]]
+- [[../regulations-and-pyramids-research]]
+- [[../fan-culture-segmentation-research]]
+- [[../progressive-disclosure-research]]

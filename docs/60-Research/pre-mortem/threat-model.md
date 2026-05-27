@@ -155,18 +155,21 @@ Aufgenommen in Loki-Stream `stream=audit` und `stream=auth`, mit Grafana-Alerts:
 - **OQ-TM-03.** Verifiziert der Client serverseitige `CommandReceipt`s tatsächlich? Wenn nein: Server kann Commands ”žverlieren" und Spieler hat keinen Beweis.
 - **OQ-TM-04.** Wie modellieren wir ”žAccount-Wechsel auf neuem Gerät" sodass das alte Gerät keine gefälschten Commands mehr senden kann? (Session-Revoke ist Pflichtschritt.)
 - **OQ-TM-05.** Welche Loki-Felder dürfen unredigiert bleiben, welche müssen gehasht werden? Konkrete Allow-List statt Deny-List.
-
 ## Related
 
-- [[00-index]] — Pre-Mortem-Cluster-Hub mit Heatmap und Cross-Cutting-Risks
-- [[findings-registry]] — Status-Tracking für alle Findings
-- [[PM-2026-05-20-01-architecture]] · [[PM-2026-05-20-02-tech-and-ops]] · [[PM-2026-05-20-03-gameplay]] · [[PM-2026-05-20-04-monetization]] · [[PM-2026-05-20-05-security-and-integrity]] · [[PM-2026-05-20-06-distributed-match-compute]]
-- [[../determinism-and-replay]] — Replay als Anti-Cheat-Anker
-- [[../gdpr-compliance]] — Privacy-Kontext
+- [[00-index]]
+- [[findings-registry]]
+- [[PM-2026-05-20-01-architecture]]
+- [[PM-2026-05-20-02-tech-and-ops]]
+- [[PM-2026-05-20-03-gameplay]]
+- [[PM-2026-05-20-04-monetization]]
+- [[PM-2026-05-20-05-security-and-integrity]]
+- [[PM-2026-05-20-06-distributed-match-compute]]
+- [[../determinism-and-replay]]
+- [[../gdpr-compliance]]
 - [[../../10-Architecture/09-Decisions/ADR-0005-save-format]]
 - [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
 - [[../../30-Implementation/auth-flows]]
 - [[../../30-Implementation/session-management]]
 - [[../../30-Implementation/rate-limiting-anti-abuse]]
 - [[../../30-Implementation/privacy-and-consent]]
-- [[../../00-Index/Current-State]]

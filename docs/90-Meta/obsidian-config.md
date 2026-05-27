@@ -1,8 +1,14 @@
 ---
 title: Obsidian Config
-status: draft
+status: current
 tags: [meta]
-updated: 2026-05-17
+created: 2026-05-17
+updated: 2026-05-27
+type: protocol
+binding: false
+related:
+  - [[README]]
+  - [[vault-governance]]
 ---
 
 # Obsidian Config
@@ -31,18 +37,21 @@ gitignored, vendored checkout; details in `tools/docs-preview/README.md`.
 
 ## Graph hygiene
 
-The `90-Meta/github-issue-suite/` notes are archival, non-canonical issue
-mirrors (~33 unlinked files). They are **kept in the build** (a few canonical
-notes legitimately link D-001/D-002), but filtered out of the *graph view* so
-they don't pollute it.
+The `90-Meta/github-issue-suite/` notes and `95-Archive/` are archival,
+non-canonical history. They are kept as traceability but filtered out of the
+graph view so they do not pollute the active knowledge web.
 
 Apply this filter in **Graph view → Filters → Search** (Obsidian desktop) — the
 local graph on any note already excludes them via the same string:
 
 ```
--path:"90-Meta/github-issue-suite" -path:"90-Meta/templates"
+-path:"90-Meta/github-issue-suite" -path:"90-Meta/templates" -path:"95-Archive"
 ```
 
-This drops the archival mirrors and the empty templates so the graph shows the
-real, connected knowledge web. Connectivity expectations for content notes are
-defined in [[vault-governance]] § Knowledge connectivity.
+This drops archival mirrors, frozen historical notes and templates so the graph
+shows the active connected knowledge web. Connectivity expectations for content
+notes are defined in [[vault-governance]] § Knowledge connectivity.
+## Related
+
+- [[README]]
+- [[vault-governance]]

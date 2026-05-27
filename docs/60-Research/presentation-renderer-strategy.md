@@ -1,12 +1,19 @@
 ---
 title: Presentation Renderer Strategy - Canvas 2D plus Three/R3F
 status: current
-binding: true
 tags: [research, rendering, pwa, 3d, stadium, presentation]
 created: 2026-05-22
 updated: 2026-05-22
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[performance-budgets]], [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]], [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/stadium-and-campus]], [[systemic-events-player-development-venue-ops]]
+binding: false
+related:
+  - [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+  - [[performance-budgets]]
+  - [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]]
+  - [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]]
+  - [[../50-Game-Design/match-engine]]
+  - [[../50-Game-Design/stadium-and-campus]]
+  - [[systemic-events-player-development-venue-ops]]
 ---
 
 # Presentation Renderer Strategy - Canvas 2D plus Three/R3F
@@ -247,7 +254,6 @@ migrations in advance.
 - [PlayCanvas engine README](https://github.com/playcanvas/engine):
   PlayCanvas is a full web game engine with WebGL2/WebGPU graphics, animation,
   physics, sound, input and asset streaming.
-
 ## Related
 
 - [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]

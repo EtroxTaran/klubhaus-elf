@@ -6,7 +6,10 @@ created: 2026-05-22
 updated: 2026-05-22
 type: handoff
 binding: false
-related: [[../../60-Research/presentation-renderer-strategy]], [[../../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../../00-Index/Current-State]]
+related:
+  - [[../../60-Research/presentation-renderer-strategy]]
+  - [[../../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+  - [[../../00-Index/Current-State]]
 ---
 
 # Handoff: Presentation Renderer Strategy (2026-05-22)
@@ -70,3 +73,8 @@ related: [[../../60-Research/presentation-renderer-strategy]], [[../../10-Archit
 
 - None. The decision is already promoted as ADR-0041 and linked from the active
   maps.
+## Related
+
+- [[../../60-Research/presentation-renderer-strategy]]
+- [[../../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+- [[../../00-Index/Current-State]]

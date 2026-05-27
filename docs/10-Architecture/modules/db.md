@@ -5,8 +5,13 @@ tags: [architecture, module, postgresql, drizzle]
 created: 2026-05-19
 updated: 2026-05-19
 type: module
-binding: true
-related: [[../05-Building-Blocks]], [[db-schema]], [[../09-Decisions/ADR-0021-revised-tech-stack]], [[../09-Decisions/ADR-0027-postgres-data-model]], [[../09-Decisions/ADR-0028-postgres-transactional-outbox]]
+binding: false
+related:
+  - [[../05-Building-Blocks]]
+  - [[db-schema]]
+  - [[../09-Decisions/ADR-0021-revised-tech-stack]]
+  - [[../09-Decisions/ADR-0027-postgres-data-model]]
+  - [[../09-Decisions/ADR-0028-postgres-transactional-outbox]]
 ---
 
 # packages/db (`@soccer-manager/db`)
@@ -92,3 +97,10 @@ ADR-0013).
 - Consumed by every server-side context (Identity, Game, MP, Outbox publisher,
   Match Worker) via the gateway.
 - Drives [[db-schema]] via the mirror emitter.
+## Related
+
+- [[../05-Building-Blocks]]
+- [[db-schema]]
+- [[../09-Decisions/ADR-0021-revised-tech-stack]]
+- [[../09-Decisions/ADR-0027-postgres-data-model]]
+- [[../09-Decisions/ADR-0028-postgres-transactional-outbox]]

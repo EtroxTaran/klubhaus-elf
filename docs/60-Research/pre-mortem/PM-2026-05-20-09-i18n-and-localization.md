@@ -28,7 +28,8 @@ related:
 > - ”žDE-User sehen 50 % der Texte als schlechte MT — DeepL-Fast-Track überspringt Glossar, Markenbegriffe falsch."
 > - ”žRTL-Layout bricht bei Tabellen, weil 4 von 87 Komponenten noch `ml-2`/`pr-4` statt `ms-2`/`pe-4` benutzen."
 > - ”žBundle-Bloat: Initial-Load zieht alle 8 Locale-Bundles à 120 KB — Lighthouse fällt von 92 auf 51."
-> - ”žRU-UI zeigt `Bayern München Ð² Ð¼Ð°Ñ‚Ñ‡Ðµ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð² Borussia Dortmund` ohne Genitiv `Ð‘Ð°Ð²Ð°Ñ€Ð¸Ð¸` — fühlt sich Maschinen-generiert an."
+> - RU-UI zeigt einen Vereinsnamen ohne locale-spezifischen Genitiv und fühlt
+>   sich dadurch maschinell generiert an.
 
 ## Scope
 
@@ -81,7 +82,7 @@ created: 2026-05-20
 updated: 2026-05-22
 ```
 
-**Hypothese.** ICU löst Plural/Gender/Select. Nicht Flexion von Eigennamen in Slawischen Sprachen und Deutsch. ”ž1 Spieler von Bayern München" trivial im DE, im RU braucht Klubname Genitiv (`Ð¸Ð· Ð‘Ð°Ð²Ð°Ñ€Ð¸Ð¸ ÐœÑŽÐ½Ñ…ÐµÐ½`), im PL Akkusativ. Daten-Modell speichert nur `clubName: "Bayern München"` → jede locale-spezifische Konjugation = tote Strings.
+**Hypothese.** ICU löst Plural/Gender/Select. Nicht Flexion von Eigennamen in Slawischen Sprachen und Deutsch. "1 Spieler von FC Nordstadt" ist im DE trivial, im RU braucht der Klubname einen Genitiv, im PL Akkusativ. Speichert das Datenmodell nur `clubName: "FC Nordstadt"`, entstehen locale-spezifische Konjugationen als tote Strings.
 
 **Mitigation.** Club-Schema: optionales `localizedNames: { de: {nom, gen, dat, akk}, ru: {...}, pl: {...} }`. ICU-Strings nur über Casus-System: `{club_gen}` statt `{club}`. Translator-Glossar fixiert Top-100-Klubs alle Casus manuell. Build-Time-Tool (DeepL Pro + Glossar) generiert Vorschläge, Human-Review. MF2 als 2027-Item.
 
@@ -586,11 +587,11 @@ updated: 2026-05-22
 ## Verfolgung & Verkettung
 
 IDs `PM-2026-05-20-09-F-NN`. Aggregat: [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]]
-- [[PM-2026-05-20-10-accessibility-and-inclusion]] (Cross-Ref: Unicode Validation + RTL überlappend mit a11y)
-- [[PM-2026-05-20-13-community-moderation-and-ugc]] (Cross-Ref: Unicode-aware Hate-Speech-Filter)
-- [[../narrative-content-pipeline]] · [[../performance-budgets]]
-- [[../../10-Architecture/09-Design-System]]
+- [[00-index]]
+- [[findings-registry]]
+- [[PM-2026-05-20-10-accessibility-and-inclusion]]
+- [[PM-2026-05-20-13-community-moderation-and-ugc]]
+- [[../narrative-content-pipeline]]
+- [[../performance-budgets]]

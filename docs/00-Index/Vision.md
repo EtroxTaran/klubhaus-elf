@@ -3,17 +3,22 @@ title: Vision
 status: current
 tags: [context, vision]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-05-27
 type: index
 binding: true
-related: [[Non-Goals]], [[MVP-Scope]]
+related:
+  - [[Non-Goals]]
+  - [[MVP-Scope]]
 ---
 
 # Vision
 
-`soccer-manager` is an offline-ready football management PWA in the Anstoß
+`football-manager-x` is an offline-ready football management PWA in the Anstoß
 tradition: roguelite club-building first, long single-player careers later,
 deterministic simulation, and IP-clean generated game data.
+
+> The implementation path is reopened as of 2026-05-27; linked ADR/GDDR details
+> are draft review inputs until re-ratified.
 
 ## Goals
 
@@ -34,3 +39,7 @@ deterministic simulation, and IP-clean generated game data.
   ([[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]]).
 
 See [[Non-Goals]] for explicit exclusions.
+## Related
+
+- [[Non-Goals]]
+- [[MVP-Scope]]

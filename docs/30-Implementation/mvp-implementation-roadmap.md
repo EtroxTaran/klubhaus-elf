@@ -5,8 +5,13 @@ tags: [implementation, mvp, roadmap, roguelite, slices]
 created: 2026-05-19
 updated: 2026-05-19
 type: implementation
-binding: true
-related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[hybrid-online-pwa-strategy]]
+binding: false
+related:
+  - [[../00-Index/MVP-Scope]]
+  - [[../20-Features/feature-roguelite-mvp-first-playable]]
+  - [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[hybrid-online-pwa-strategy]]
 ---
 
 # MVP Implementation Roadmap
@@ -172,14 +177,10 @@ build on top of the loop validated by slices 0–6.
 
 Decide before starting whether ROI is there given asset cost. Same
 skippable + 2D-fallback rules as 7c.
-
 ## Related
 
-- [[../00-Index/MVP-Scope]] — what is in/out of MVP
-- `auth-mvp-launch-slice` (planned) — Slice 0 detail
-- `testing-strategy` (planned) — test matrix per slice
-- `team-ownership-matrix` (planned) — parallel ownership
-- `context-contracts/` (planned) — per-context contracts
-- [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] — Phase 2 presentation polish authority
-- [[3d-presentation-architecture]] — Phase 2 implementation detail
-- [[../20-Features/feature-3d-presentation-layer]] — Phase 2 feature spec
+- [[../00-Index/MVP-Scope]]
+- [[../20-Features/feature-roguelite-mvp-first-playable]]
+- [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[hybrid-online-pwa-strategy]]

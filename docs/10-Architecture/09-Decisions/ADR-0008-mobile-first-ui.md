@@ -8,7 +8,11 @@ type: adr
 binding: false
 supersedes:
 superseded_by:
-related: [[../../95-Archive/gap-reports/research-wave-2-gaps]], [[ADR-0021-revised-tech-stack]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0025-mobile-delivery]]
+related:
+  - [[../../95-Archive/gap-reports/research-wave-2-gaps]]
+  - [[ADR-0021-revised-tech-stack]]
+  - [[ADR-0024-match-renderer-abstraction]]
+  - [[ADR-0025-mobile-delivery]]
 ---
 
 > **DRAFT — do not implement from this ADR.** Blocked on Research Wave 2
@@ -24,6 +28,8 @@ related: [[../../95-Archive/gap-reports/research-wave-2-gaps]], [[ADR-0021-revis
 > Disposition: **keep parked** (owner directive 2026-05-19).
 
 # ADR-0008: Mobile-first UI Approach
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -75,10 +81,9 @@ None
 This ADR **implements** game-design decisions — it must not contradict them:
 
 - [[../../50-Game-Design/GD-0016-mobile-ux-loop]] (primary) · [[../../50-Game-Design/GD-0001-core-loop]] (advance verb) · [[../../50-Game-Design/GD-0004-tactics]] (tactics UX) · [[../../50-Game-Design/GD-0012-onboarding]]
+## Related
 
-## Related Docs
-
-- [[../../50-Game-Design/README]] — Game Design Log
-- [[../../60-Research/club-boss-analysis]]
 - [[../../95-Archive/gap-reports/research-wave-2-gaps]]
-- [[ADR-0006-i18n]]
+- [[ADR-0021-revised-tech-stack]]
+- [[ADR-0024-match-renderer-abstraction]]
+- [[ADR-0025-mobile-delivery]]

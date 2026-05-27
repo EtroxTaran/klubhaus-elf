@@ -6,16 +6,20 @@ created: 2026-05-16
 updated: 2026-05-22
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]]
+related:
+  - [[Project-Goals]]
+  - [[MVP-Scope]]
+  - [[Feature-Map]]
+  - [[Documentation-V1]]
 ---
 
 # Game Design Map
 
 Use this map for gameplay, economy, progression, and player experience work.
 
-[[Documentation-V1]] classifies draft game-design notes as
-future-scope or historical planning unless they are listed as approved/current
-below. This means old `Future-scope notes` sections are not active work by default.
+[[Documentation-V1]] classifies the pre-reopen game-design baseline. As of
+2026-05-27, all game-design notes are `draft`; use this map as review inventory,
+not implementation authority.
 
 ## Hub
 
@@ -71,7 +75,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 ## UX
 
 - [[../50-Game-Design/progressive-disclosure-ui]]
-- [[../60-Research/player-strength-presentation]] - binding Impact Lens model for player strength presentation; no global OVR.
+- [[../60-Research/player-strength-presentation]] - pre-reopen Impact Lens input; no global OVR.
 - [[../50-Game-Design/squad-and-club-structure]]
 - [[../50-Game-Design/youth-academy-and-development]]
 - [[../50-Game-Design/training-load-and-medicine]]
@@ -97,19 +101,13 @@ below. This means old `Future-scope notes` sections are not active work by defau
 
 ## Binding Rule
 
-Only `approved` game design or feature notes are binding for
+Only game-design or feature notes Nico re-approves become binding for
 implementation. Draft gameplay ideas can be used for planning but not as
-implementation specs. As of the 2026-05-22 baseline, the current MVP/gameplay
-surface is covered; non-approved notes are future-scope, not open gaps. Today
-the `approved` notes are:
+implementation specs. Today there are no approved game-design records after the
+2026-05-27 reopen.
+## Related
 
-- [[../50-Game-Design/mode-create-a-club-roguelite]] (product rule)
-- [[../50-Game-Design/mode-manage-a-club-career]] (product rule)
-- [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]] (MVP sequencing)
-- [[../50-Game-Design/singleplayer-baseline]]
-- [[../50-Game-Design/async-multiplayer-private-group]] (product rules)
-- [[../50-Game-Design/progressive-disclosure-ui]]
-- [[../50-Game-Design/transfer-market-and-contracts]]
-- [[../60-Research/player-strength-presentation]] (binding research synthesis)
-- [[../50-Game-Design/tactics-system]]
-- [[../50-Game-Design/match-engine]]
+- [[Project-Goals]]
+- [[MVP-Scope]]
+- [[Feature-Map]]
+- [[Documentation-V1]]

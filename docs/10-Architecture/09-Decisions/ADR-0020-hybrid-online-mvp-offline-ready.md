@@ -4,15 +4,22 @@ status: draft
 tags: [adr, pwa, mvp, offline-ready, indexeddb, sync]
 created: 2026-05-18
 updated: 2026-05-18
-accepted_at: 2026-05-18
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-18
 supersedes: ADR-0002-offline-first
 amends: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]]
-related: [[../../00-Index/MVP-Scope]], [[../../60-Research/offline-mvp-scope-and-sync-strategy]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0004-data-model]], [[ADR-0005-save-format]]
+related:
+  - [[../../00-Index/MVP-Scope]]
+  - [[../../60-Research/offline-mvp-scope-and-sync-strategy]]
+  - [[ADR-0019-modular-monolith-ddd]]
+  - [[ADR-0004-data-model]]
+  - [[ADR-0005-save-format]]
 ---
 
 # ADR-0020: Hybrid-online MVP, Offline-ready Architecture
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -190,11 +197,10 @@ Implements [[../../00-Index/MVP-Scope]] and
 - [[ADR-0011-server-authoritative-multiplayer]] — multiplayer authority and
   hard-reject conflict stance.
 - [[ADR-0005-save-format]] — future save/export envelope.
-
 ## Related
 
 - [[../../00-Index/MVP-Scope]]
 - [[../../60-Research/offline-mvp-scope-and-sync-strategy]]
+- [[ADR-0019-modular-monolith-ddd]]
 - [[ADR-0004-data-model]]
 - [[ADR-0005-save-format]]
-- [[ADR-0011-server-authoritative-multiplayer]]

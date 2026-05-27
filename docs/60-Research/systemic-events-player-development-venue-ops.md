@@ -1,12 +1,21 @@
 ---
 title: Systemic Events, Player Development, Injuries and Venue Operations
 status: current
-binding: true
 tags: [research, player-development, injuries, events, narrative, venue, training]
 created: 2026-05-17
 updated: 2026-05-17
 type: research
-related: [[data-generators]], [[determinism-and-replay]], [[narrative-content-pipeline]], [[ai-manager-behaviour]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/training-load-and-medicine]], [[../50-Game-Design/stadium-and-campus]], [[../50-Game-Design/matchday-event-engine]]
+binding: false
+related:
+  - [[data-generators]]
+  - [[determinism-and-replay]]
+  - [[narrative-content-pipeline]]
+  - [[ai-manager-behaviour]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+  - [[../50-Game-Design/youth-academy-and-development]]
+  - [[../50-Game-Design/training-load-and-medicine]]
+  - [[../50-Game-Design/stadium-and-campus]]
+  - [[../50-Game-Design/matchday-event-engine]]
 ---
 
 # Systemic Events, Player Development, Injuries and Venue Operations
@@ -321,3 +330,14 @@ Standard / Expert progressive disclosure.
   proven insufficient in playtests.
 - Venue depth: decide after first stadium builder prototype whether Expert
   tier needs manual booking or only policy presets.
+## Related
+
+- [[data-generators]]
+- [[determinism-and-replay]]
+- [[narrative-content-pipeline]]
+- [[ai-manager-behaviour]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+- [[../50-Game-Design/youth-academy-and-development]]
+- [[../50-Game-Design/training-load-and-medicine]]
+- [[../50-Game-Design/stadium-and-campus]]
+- [[../50-Game-Design/matchday-event-engine]]

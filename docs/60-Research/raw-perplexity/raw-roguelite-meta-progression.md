@@ -7,7 +7,11 @@ updated: 2026-05-27
 type: raw-research
 binding: false
 sourceType: external
-related: [[../incoming-design-research-2026-05-27]], [[../mode-design-research]], [[../late-game-systems]], [[../../50-Game-Design/mode-create-a-club-roguelite]]
+related:
+  - [[../incoming-design-research-2026-05-27]]
+  - [[../mode-design-research]]
+  - [[../late-game-systems]]
+  - [[../../50-Game-Design/mode-create-a-club-roguelite]]
 ---
 
 > Lossless import of Nico's external research report (Perplexity-style), filed
@@ -392,4 +396,9 @@ Das Spiel löst damit das zentrale Problem aller bisherigen Roguelites mit Meta-
 26. [Meta-progression is a mostly bad design - Game Observatory](https://gameobservatory.neocities.org/opinions/ontopic21) - Normally, meta-progression exists to trick player into playing for longer and buy microtransactions,...
 
 27. [More games should handle difficulty like Slay the Spire](https://frostilyte.ca/2020/04/16/more-games-should-handle-difficulty-like-slay-the-spire/) - Once you've beaten a full run on the default difficulty you're able to turn on ascension levels to a...
+## Related
 
+- [[../incoming-design-research-2026-05-27]]
+- [[../mode-design-research]]
+- [[../late-game-systems]]
+- [[../../50-Game-Design/mode-create-a-club-roguelite]]

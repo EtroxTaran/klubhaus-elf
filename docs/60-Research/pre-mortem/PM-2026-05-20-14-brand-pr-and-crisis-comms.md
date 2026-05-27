@@ -566,10 +566,11 @@ updated: 2026-05-22
 ## Verfolgung & Verkettung
 
 IDs `PM-2026-05-20-14-F-NN`. Aggregat: [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]]
-- [[PM-2026-05-20-04-monetization]] · [[PM-2026-05-20-07-live-ops-and-client-telemetry]] (Statuspage/Postmortem) · [[PM-2026-05-20-08-legal-consumer-law-and-tax]] (Markenrechts-Kollision F-08-05)
-- [[../competitor-matrix]] · [[../club-boss-analysis]]
-- [[../../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+- [[00-index]]
+- [[findings-registry]]
+- [[PM-2026-05-20-04-monetization]]
+- [[PM-2026-05-20-07-live-ops-and-client-telemetry]]
+- [[PM-2026-05-20-08-legal-consumer-law-and-tax]]
+- [[../competitor-matrix]]

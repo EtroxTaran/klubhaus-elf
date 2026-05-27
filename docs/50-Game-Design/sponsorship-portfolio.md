@@ -6,10 +6,17 @@ created: 2026-05-16
 updated: 2026-05-16
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[economy-system]], [[stadium-and-campus]], [[fan-ecology]]
+related:
+  - [[README]]
+  - [[../60-Research/systems-design-synthesis]]
+  - [[economy-system]]
+  - [[stadium-and-campus]]
+  - [[fan-ecology]]
 ---
 
 # Sponsorship Portfolio - Asset-level Sponsor Inventory
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Sponsoring is **not** a single annual contract. Real clubs sell jersey
 front, sleeve, training kit, naming rights, hospitality areas, LED boards,
@@ -127,3 +134,10 @@ trade-offs.
   3-year, side conditions reset annually.
 - Should fan campaigns directly modify sponsor `media_resonance_factor`?
   Yes - a club-led campaign can raise it +5 % for the season.
+## Related
+
+- [[README]]
+- [[../60-Research/systems-design-synthesis]]
+- [[economy-system]]
+- [[stadium-and-campus]]
+- [[fan-ecology]]

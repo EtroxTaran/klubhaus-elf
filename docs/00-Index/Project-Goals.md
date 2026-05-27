@@ -6,7 +6,10 @@ created: 2026-05-16
 updated: 2026-05-18
 type: project
 binding: true
-related: [[Current-State]], [[MVP-Scope]], [[Glossary]]
+related:
+  - [[Current-State]]
+  - [[MVP-Scope]]
+  - [[Glossary]]
 ---
 
 # Project Goals
@@ -46,3 +49,8 @@ future capability.
 - [../../product/mission.md](../../product/mission.md)
 - [../../product/roadmap.md](../../product/roadmap.md)
 - [../../product/tech-stack.md](../../product/tech-stack.md)
+## Related
+
+- [[Current-State]]
+- [[MVP-Scope]]
+- [[Glossary]]

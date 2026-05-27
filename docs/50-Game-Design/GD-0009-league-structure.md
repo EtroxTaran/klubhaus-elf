@@ -5,11 +5,20 @@ tags: [game-design, gddr, league]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[GD-0015-ip-clean-data]], [[GD-0010-ai-world]], [[../60-Research/ip-and-licensing]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0015-ip-clean-data]]
+  - [[GD-0010-ai-world]]
+  - [[../60-Research/ip-and-licensing]]
+  - [[../60-Research/club-boss-analysis]]
+  - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+  - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 ---
 
 # GD-0009: League & Competition Structure
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -75,8 +84,12 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] (fictional competition names)
 - [[../10-Architecture/09-Decisions/ADR-0004-data-model]] (league/competition/fixture schema)
-
 ## Related
 
-- Research: [[../60-Research/ip-and-licensing]] · [[../60-Research/club-boss-analysis]]
-- [[README]] — hub · siblings: [[GD-0015-ip-clean-data]] · [[GD-0010-ai-world]] · [[GD-0011-career-progression]]
+- [[README]]
+- [[GD-0015-ip-clean-data]]
+- [[GD-0010-ai-world]]
+- [[../60-Research/ip-and-licensing]]
+- [[../60-Research/club-boss-analysis]]
+- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+- [[../10-Architecture/09-Decisions/ADR-0004-data-model]]

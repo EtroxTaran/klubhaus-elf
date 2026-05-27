@@ -1,12 +1,22 @@
 ---
 title: Narrative Content & Authoring Pipeline — Events, Story Arcs, Voice, Press, Newspaper
 status: current
-binding: true
 tags: [research, narrative, authoring, i18n, icu, events, story-arcs, voice, press-conference, newspaper]
 created: 2026-05-17
 updated: 2026-05-17
 type: research
-related: [[onboarding-strategy]], [[late-game-systems]], [[ai-manager-behaviour]], [[data-generators]], [[determinism-and-replay]], [[performance-budgets]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[club-boss-analysis]], [[anstoss-series-deep-dive]]
+binding: false
+related:
+  - [[onboarding-strategy]]
+  - [[late-game-systems]]
+  - [[ai-manager-behaviour]]
+  - [[data-generators]]
+  - [[determinism-and-replay]]
+  - [[performance-budgets]]
+  - [[../10-Architecture/09-Decisions/ADR-0006-i18n]]
+  - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+  - [[club-boss-analysis]]
+  - [[anstoss-series-deep-dive]]
 ---
 
 # Narrative Content & Authoring Pipeline — Events, Story Arcs, Voice, Press, Newspaper
@@ -1642,3 +1652,15 @@ interface EventThrottleRecord {
   reference), [[anstoss-series-deep-dive]] (Zeitung + Bundestrainer).
 - D15 Q&A with Nico (2026-05-17): **all 9 recommendations accepted
   as-is**. Maximum scope locked.
+## Related
+
+- [[onboarding-strategy]]
+- [[late-game-systems]]
+- [[ai-manager-behaviour]]
+- [[data-generators]]
+- [[determinism-and-replay]]
+- [[performance-budgets]]
+- [[../10-Architecture/09-Decisions/ADR-0006-i18n]]
+- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+- [[club-boss-analysis]]
+- [[anstoss-series-deep-dive]]

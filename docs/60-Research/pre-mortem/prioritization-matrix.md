@@ -251,10 +251,9 @@ Subtotal: ~22 PT für 30+ Findings.
 - **Nach Expertise (für Agent-Briefing)**: [[execution-index]].
 - **Nach Trust-Boundary**: [[threat-model]] § STRIDE-Matrix.
 - **Nach Cross-Cutting**: dieser Report § Cluster A–G.
-
 ## Related
 
-- [[00-index]] — Cluster-Hub
-- [[execution-index]] — Expertise-Kategorien für Agent-Briefing
-- [[findings-registry]] — Priorisierte Status-Tabelle
-- [[threat-model]] — Trust-Boundaries + STRIDE-Matrix
+- [[00-index]]
+- [[execution-index]]
+- [[findings-registry]]
+- [[threat-model]]

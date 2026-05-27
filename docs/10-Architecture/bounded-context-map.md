@@ -5,8 +5,16 @@ tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
 updated: 2026-05-22
 type: architecture
-binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]]
+binding: false
+related:
+  - [[../60-Research/raw-perplexity/raw-architecture]]
+  - [[../60-Research/player-strength-presentation]]
+  - [[09-Decisions/ADR-0019-modular-monolith-ddd]]
+  - [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+  - [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[09-Decisions/ADR-0043-notification-and-messaging-platform]]
+  - [[05-Building-Blocks]]
+  - [[../30-Implementation/mvp-implementation-roadmap]]
 ---
 
 # Bounded Context Map
@@ -257,3 +265,13 @@ not MVP requirements.
   objects produced by `apps/web/src/lib/scene-mapper/*` adapters; no
   domain command, query, event or storage is owned by the renderer.
   The match renderer itself is governed by [[09-Decisions/ADR-0024-match-renderer-abstraction]] (Canvas 2D first behind [[09-Decisions/ADR-0026-match-frame-contract]]; PixiJS no longer planned per [[09-Decisions/ADR-0041-presentation-renderer-strategy]]) — not by ADR-0029.
+## Related
+
+- [[../60-Research/raw-perplexity/raw-architecture]]
+- [[../60-Research/player-strength-presentation]]
+- [[09-Decisions/ADR-0019-modular-monolith-ddd]]
+- [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+- [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[09-Decisions/ADR-0043-notification-and-messaging-platform]]
+- [[05-Building-Blocks]]
+- [[../30-Implementation/mvp-implementation-roadmap]]

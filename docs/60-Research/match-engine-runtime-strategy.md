@@ -1,12 +1,21 @@
 ---
 title: Match Engine Runtime Strategy - TypeScript MVP with Polyglot Extraction Gate
 status: current
-binding: true
 tags: [research, match-engine, runtime, typescript, rust, wasm, web-worker, offline-first, multiplayer, wave-3]
 created: 2026-05-17
 updated: 2026-05-17
 type: research
-related: [[raw-perplexity/raw-match-engine-runtime-technology]], [[match-engine-simulation-model]], [[determinism-and-replay]], [[performance-budgets]], [[ai-manager-behaviour]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../50-Game-Design/match-engine]]
+binding: false
+related:
+  - [[raw-perplexity/raw-match-engine-runtime-technology]]
+  - [[match-engine-simulation-model]]
+  - [[determinism-and-replay]]
+  - [[performance-budgets]]
+  - [[ai-manager-behaviour]]
+  - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+  - [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]
+  - [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+  - [[../50-Game-Design/match-engine]]
 ---
 
 # Match Engine Runtime Strategy - TypeScript MVP with Polyglot Extraction Gate
@@ -182,3 +191,14 @@ Not allowed:
 - rustwasm / wasm-bindgen, [Wasm in Web Worker](https://github.com/rustwasm/wasm-bindgen/blob/main/guide/src/examples/wasm-in-web-worker.md?plain=1#L1#wasm-in-web-worker) - Rust/WASM can run in Workers, with build/compatibility caveats.
 - web.dev, [Offline data](https://web.dev/learn/pwa/offline-data) - IndexedDB and Cache Storage are the durable browser storage tools for offline PWAs.
 - Kevin Karsopawiro, [WebAssembly won't magically make your code faster](https://kevin.rs/blog/webassembly-in-the-browser) - WASM gains depend on batching and avoiding excessive JS/WASM boundary crossings.
+## Related
+
+- [[raw-perplexity/raw-match-engine-runtime-technology]]
+- [[match-engine-simulation-model]]
+- [[determinism-and-replay]]
+- [[performance-budgets]]
+- [[ai-manager-behaviour]]
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+- [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]
+- [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+- [[../50-Game-Design/match-engine]]

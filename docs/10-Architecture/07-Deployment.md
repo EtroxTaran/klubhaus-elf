@@ -6,7 +6,12 @@ created: 2026-05-15
 updated: 2026-05-22
 type: architecture
 binding: false
-related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[../30-Implementation/deployment-dokploy]], [[../30-Implementation/observability-runbook]]
+related:
+  - [[09-Decisions/ADR-0017-observability-logging]]
+  - [[09-Decisions/ADR-0028-postgres-transactional-outbox]]
+  - [[09-Decisions/ADR-0043-notification-and-messaging-platform]]
+  - [[../30-Implementation/deployment-dokploy]]
+  - [[../30-Implementation/observability-runbook]]
 ---
 
 # Deployment
@@ -121,3 +126,10 @@ priority:
 Implementation details live in [[../30-Implementation/deployment-dokploy]]
 and operational procedures live in
 [[../30-Implementation/observability-runbook]].
+## Related
+
+- [[09-Decisions/ADR-0017-observability-logging]]
+- [[09-Decisions/ADR-0028-postgres-transactional-outbox]]
+- [[09-Decisions/ADR-0043-notification-and-messaging-platform]]
+- [[../30-Implementation/deployment-dokploy]]
+- [[../30-Implementation/observability-runbook]]

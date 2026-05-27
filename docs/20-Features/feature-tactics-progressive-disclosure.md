@@ -6,10 +6,17 @@ created: 2026-05-16
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/tactics-system]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/player-strength-presentation]]
+related:
+  - [[README]]
+  - [[../50-Game-Design/progressive-disclosure-ui]]
+  - [[../50-Game-Design/tactics-system]]
+  - [[../60-Research/progressive-disclosure-research]]
+  - [[../60-Research/player-strength-presentation]]
 ---
 
 # Feature - Tactics with Progressive Disclosure
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -57,3 +64,10 @@ to the first tactic choice and starter presets before deeper Expert tuning.
 - [[../50-Game-Design/tactics-system]]
 - [[../50-Game-Design/match-engine]]
 - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+## Related
+
+- [[README]]
+- [[../50-Game-Design/progressive-disclosure-ui]]
+- [[../50-Game-Design/tactics-system]]
+- [[../60-Research/progressive-disclosure-research]]
+- [[../60-Research/player-strength-presentation]]

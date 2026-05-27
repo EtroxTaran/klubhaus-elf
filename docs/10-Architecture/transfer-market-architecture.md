@@ -1,12 +1,19 @@
 ---
 title: Transfer Market Architecture
 status: current
-binding: true
 tags: [architecture, transfers, contracts, ddd, state-machine, determinism]
 created: 2026-05-17
 updated: 2026-05-17
 type: architecture
-related: [[bounded-context-map]], [[state-machines/transfer]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[09-Decisions/ADR-0013-transactional-outbox]], [[../60-Research/transfer-market-simulation]], [[../50-Game-Design/transfer-market-and-contracts]]
+binding: false
+related:
+  - [[bounded-context-map]]
+  - [[state-machines/transfer]]
+  - [[09-Decisions/ADR-0019-modular-monolith-ddd]]
+  - [[09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+  - [[09-Decisions/ADR-0013-transactional-outbox]]
+  - [[../60-Research/transfer-market-simulation]]
+  - [[../50-Game-Design/transfer-market-and-contracts]]
 ---
 
 # Transfer Market Architecture
@@ -254,3 +261,12 @@ Rules:
 - confidence narrows with scout quality, analyst quality, regional knowledge,
   direct match exposure and repeated reports;
 - UI must never label an inferred hidden value as exact.
+## Related
+
+- [[bounded-context-map]]
+- [[state-machines/transfer]]
+- [[09-Decisions/ADR-0019-modular-monolith-ddd]]
+- [[09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+- [[09-Decisions/ADR-0013-transactional-outbox]]
+- [[../60-Research/transfer-market-simulation]]
+- [[../50-Game-Design/transfer-market-and-contracts]]

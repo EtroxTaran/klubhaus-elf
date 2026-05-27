@@ -4,13 +4,27 @@ status: draft
 tags: [adr, match-engine, simulation, web-worker, deterministic]
 created: 2026-05-15
 updated: 2026-05-16
-accepted_at: 2026-05-16
 type: adr
-binding: true
-related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0016-community-dataset-overrides]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[../state-machines/match]], [[../../60-Research/match-engine-simulation-model]], [[../../60-Research/determinism-and-replay]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/tactics-system]]
+binding: false
+accepted_at: 2026-05-16
+related:
+  - [[ADR-0004-data-model]]
+  - [[ADR-0005-save-format]]
+  - [[ADR-0011-server-authoritative-multiplayer]]
+  - [[ADR-0013-transactional-outbox]]
+  - [[ADR-0016-community-dataset-overrides]]
+  - [[ADR-0024-match-renderer-abstraction]]
+  - [[ADR-0026-match-frame-contract]]
+  - [[../state-machines/match]]
+  - [[../../60-Research/match-engine-simulation-model]]
+  - [[../../60-Research/determinism-and-replay]]
+  - [[../../50-Game-Design/match-engine]]
+  - [[../../50-Game-Design/tactics-system]]
 ---
 
 # ADR-0003: Match Engine Architecture
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 > **CROSS-LINK 2026-05-19: render seam pinned by [[ADR-0026-match-frame-contract]].**
 > The engine emits a typed **event log** only — never frame snapshots, never
@@ -508,3 +522,17 @@ CI enforcement:
   set-piece routines + ID naming.
 - Wave 3 gap A3 Q&A with Nico (2026-05-16): all three recommendations
   accepted as-is.
+## Related
+
+- [[ADR-0004-data-model]]
+- [[ADR-0005-save-format]]
+- [[ADR-0011-server-authoritative-multiplayer]]
+- [[ADR-0013-transactional-outbox]]
+- [[ADR-0016-community-dataset-overrides]]
+- [[ADR-0024-match-renderer-abstraction]]
+- [[ADR-0026-match-frame-contract]]
+- [[../state-machines/match]]
+- [[../../60-Research/match-engine-simulation-model]]
+- [[../../60-Research/determinism-and-replay]]
+- [[../../50-Game-Design/match-engine]]
+- [[../../50-Game-Design/tactics-system]]

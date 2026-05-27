@@ -6,7 +6,12 @@ created: 2026-05-16
 updated: 2026-05-16
 type: research
 binding: false
-related: [[raw-perplexity/raw-async-multiplayer]], [[mode-design-research]], [[../50-Game-Design/async-multiplayer-private-group]], [[../50-Game-Design/watch-party-and-conference]], [[../50-Game-Design/transfer-negotiations-p2p]]
+related:
+  - [[raw-perplexity/raw-async-multiplayer]]
+  - [[mode-design-research]]
+  - [[../50-Game-Design/async-multiplayer-private-group]]
+  - [[../50-Game-Design/watch-party-and-conference]]
+  - [[../50-Game-Design/transfer-negotiations-p2p]]
 ---
 
 # Async Multiplayer Research - Cadence, Watch Parties, Transfer Escalation
@@ -204,3 +209,10 @@ All retrieved 2026-05-16.
 - Unity discussions spectator mode + streaming - [discussions.unity.com spectator + streaming](https://discussions.unity.com/t/spectator-mode-and-streaming/938940)
 - Unreal Engine replication delay for spectators - [forums.unrealengine.com delay replication spectators](https://forums.unrealengine.com/t/delay-replication-for-spectators/381186)
 - Reddit r/leagueoflegends spectator delay context - [reddit lol spectator delay](https://www.reddit.com/r/leagueoflegends/comments/fcd51y/how_to_deal_with_3_minute_spectator_delay_as_a/)
+## Related
+
+- [[raw-perplexity/raw-async-multiplayer]]
+- [[mode-design-research]]
+- [[../50-Game-Design/async-multiplayer-private-group]]
+- [[../50-Game-Design/watch-party-and-conference]]
+- [[../50-Game-Design/transfer-negotiations-p2p]]

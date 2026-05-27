@@ -6,10 +6,17 @@ created: 2026-05-17
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/narrative-content-pipeline]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[feature-matchday-event-engine]]
+related:
+  - [[README]]
+  - [[../60-Research/systemic-events-player-development-venue-ops]]
+  - [[../60-Research/narrative-content-pipeline]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+  - [[feature-matchday-event-engine]]
 ---
 
 # Feature - Systemic Event Director
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -52,3 +59,10 @@ follow after MVP.
 - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 - [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
 - [[../60-Research/narrative-content-pipeline]]
+## Related
+
+- [[README]]
+- [[../60-Research/systemic-events-player-development-venue-ops]]
+- [[../60-Research/narrative-content-pipeline]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+- [[feature-matchday-event-engine]]

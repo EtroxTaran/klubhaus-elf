@@ -5,8 +5,12 @@ tags: [research, telemetry, privacy, gdpr, observability, pwa]
 created: 2026-05-17
 updated: 2026-05-17
 type: research
-binding: true
-related: [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
+binding: false
+related:
+  - [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+  - [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
+  - [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]
+  - [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
 ---
 
 # Telemetry, Privacy and GDPR - Locked Decisions
@@ -231,3 +235,9 @@ Incident handling must document:
   <https://docs.sentry.io/platforms/javascript/data-management/sensitive-data>
 - Sentry JavaScript offline caching:
   <https://docs.sentry.io/platforms/javascript/best-practices/offline-caching>
+## Related
+
+- [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+- [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
+- [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]
+- [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]

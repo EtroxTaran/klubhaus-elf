@@ -2,7 +2,14 @@
 title: Building Blocks
 status: current
 tags: [architecture]
+created: 2026-05-22
 updated: 2026-05-22
+type: architecture
+binding: false
+related:
+  - [[README]]
+  - [[09-Decisions/ADR-0019-modular-monolith-ddd]]
+  - [[bounded-context-map]]
 ---
 
 # Building Blocks
@@ -119,3 +126,8 @@ Each folder owns `commands.ts`, `events.ts`, `queries.ts`,
 - **Hybrid-online PWA seam** ([[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]])
   keeps Dexie scoped to caches/drafts/staging in MVP while preserving a future
   local-authoritative singleplayer adapter.
+## Related
+
+- [[README]]
+- [[09-Decisions/ADR-0019-modular-monolith-ddd]]
+- [[bounded-context-map]]

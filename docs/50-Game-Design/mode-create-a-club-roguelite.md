@@ -5,11 +5,22 @@ tags: [game-design, mode, roguelite, create-a-club]
 created: 2026-05-16
 updated: 2026-05-18
 type: game-design
-binding: true
-related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/onboarding-strategy]], [[mode-manage-a-club-career]], [[onboarding-and-tutorial]], [[economy-system]], [[club-dna-and-governance]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../60-Research/mode-design-research]]
+  - [[../60-Research/onboarding-strategy]]
+  - [[mode-manage-a-club-career]]
+  - [[onboarding-and-tutorial]]
+  - [[economy-system]]
+  - [[club-dna-and-governance]]
 ---
 
 # Mode - Create a Club Roguelite
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 The signature mode of soccer-manager. Permadeath on insolvency, but each
 run leaves *legacy* that makes the next run *different* (not easier).
@@ -178,3 +189,14 @@ When a private async group runs Create-a-Club mode
   slot per ~50 in-game seasons summed across runs.
 - Should achievements unlock kit patterns visible to other players in
   async groups? Yes - lightly badged.
+## Related
+
+- [[README]]
+- [[GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../00-Index/MVP-Scope]]
+- [[../60-Research/mode-design-research]]
+- [[../60-Research/onboarding-strategy]]
+- [[mode-manage-a-club-career]]
+- [[onboarding-and-tutorial]]
+- [[economy-system]]
+- [[club-dna-and-governance]]

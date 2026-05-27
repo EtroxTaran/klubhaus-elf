@@ -5,11 +5,20 @@ tags: [game-design, gddr, mvp, scope, roguelite]
 created: 2026-05-18
 updated: 2026-05-18
 type: game-design
-binding: true
-related: [[README]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]], [[singleplayer-baseline]], [[onboarding-and-tutorial]], [[../00-Index/MVP-Scope]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+binding: false
+related:
+  - [[README]]
+  - [[mode-create-a-club-roguelite]]
+  - [[mode-manage-a-club-career]]
+  - [[singleplayer-baseline]]
+  - [[onboarding-and-tutorial]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
 ---
 
 # GD-0017: MVP Scope and Mode Sequencing
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -121,10 +130,12 @@ Negative:
 ## Feeds ADRs
 
 - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
-
 ## Related
 
-- [[../00-Index/MVP-Scope]] — canonical MVP definition
-- [[mode-create-a-club-roguelite]] — first playable mode
-- [[mode-manage-a-club-career]] — first-class post-MVP mode
-- [[onboarding-and-tutorial]] — FTUE changes
+- [[README]]
+- [[mode-create-a-club-roguelite]]
+- [[mode-manage-a-club-career]]
+- [[singleplayer-baseline]]
+- [[onboarding-and-tutorial]]
+- [[../00-Index/MVP-Scope]]
+- [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]

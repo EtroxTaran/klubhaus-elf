@@ -1,12 +1,23 @@
 ---
 title: Data Generators — Names, Crests, Cities, Clubs, Players
 status: current
-binding: true
 tags: [research, data-generation, worldgen, names, crests, players, clubs, determinism, ip-safe]
 created: 2026-05-17
 updated: 2026-05-17
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]], [[determinism-and-replay]], [[performance-budgets]], [[surrealdb-schema-patterns]], [[../50-Game-Design/scouting-and-recruitment]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/club-dna-and-governance]]
+binding: false
+related:
+  - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+  - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+  - [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
+  - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+  - [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]
+  - [[determinism-and-replay]]
+  - [[performance-budgets]]
+  - [[surrealdb-schema-patterns]]
+  - [[../50-Game-Design/scouting-and-recruitment]]
+  - [[../50-Game-Design/youth-academy-and-development]]
+  - [[../50-Game-Design/club-dna-and-governance]]
 ---
 
 # Data Generators — Names, Crests, Cities, Clubs, Players
@@ -1229,3 +1240,16 @@ Crest SVG strings are generated **lazily**, not at world genesis:
   ADR-0007 (naming schema), [[determinism-and-replay]] (D8 RNG
   streams), [[performance-budgets]] (D9 world-size + perf budgets),
   [[match-engine-simulation-model]] (basis-points contest math).
+## Related
+
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+- [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+- [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
+- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+- [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]
+- [[determinism-and-replay]]
+- [[performance-budgets]]
+- [[surrealdb-schema-patterns]]
+- [[../50-Game-Design/scouting-and-recruitment]]
+- [[../50-Game-Design/youth-academy-and-development]]
+- [[../50-Game-Design/club-dna-and-governance]]

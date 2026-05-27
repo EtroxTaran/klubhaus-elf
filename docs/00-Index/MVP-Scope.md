@@ -6,7 +6,14 @@ created: 2026-05-18
 updated: 2026-05-18
 type: product
 binding: true
-related: [[Current-State]], [[Project-Goals]], [[Vision]], [[Decision-Log]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../20-Features/feature-roguelite-mvp-first-playable]]
+related:
+  - [[Current-State]]
+  - [[Project-Goals]]
+  - [[Vision]]
+  - [[Decision-Log]]
+  - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../20-Features/feature-roguelite-mvp-first-playable]]
 ---
 
 # MVP Scope
@@ -106,11 +113,12 @@ A future implementation beat is MVP-aligned only if it:
 - updates the relevant ADR/GDDR/feature note in the same PR; and
 - does not introduce one-way storage, contract or UI choices that block
   selective offline, export/import or server-authoritative multiplayer later.
-
 ## Related
 
-- [[Current-State]] — active hot-memory summary
-- [[Project-Goals]] · [[Vision]] · [[Non-Goals]] — product boundaries
-- [[Decision-Log]] · [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] — architecture decision
-- [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]] — game-design sequencing
-- [[../20-Features/feature-roguelite-mvp-first-playable]] — first playable feature slice
+- [[Current-State]]
+- [[Project-Goals]]
+- [[Vision]]
+- [[Decision-Log]]
+- [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../20-Features/feature-roguelite-mvp-first-playable]]

@@ -7,7 +7,10 @@ updated: 2026-05-22
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
-related: [[../10-Architecture/07-Deployment]], [[observability-runbook]], [[client-telemetry]]
+related:
+  - [[../10-Architecture/07-Deployment]]
+  - [[observability-runbook]]
+  - [[client-telemetry]]
 ---
 
 # Dokploy Deployment
@@ -197,3 +200,8 @@ only after:
 - `docker-compose.yml`: current app + Postgres production-like stack.
 - `docker-compose.dev.yml`: local Postgres for development.
 - `apps/web/src/routes/healthz.ts`: app health response.
+## Related
+
+- [[../10-Architecture/07-Deployment]]
+- [[observability-runbook]]
+- [[client-telemetry]]

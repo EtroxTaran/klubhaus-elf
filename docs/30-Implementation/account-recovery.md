@@ -5,7 +5,7 @@ tags: [implementation, account-recovery, master-key-envelope, key-rotation, web-
 created: 2026-05-18
 updated: 2026-05-18
 type: implementation
-binding: true
+binding: false
 adr:
   - "[[../10-Architecture/09-Decisions/ADR-0002-offline-first]]"
   - "[[../10-Architecture/09-Decisions/ADR-0004-data-model]]"
@@ -14,11 +14,11 @@ adr:
   - "[[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]"
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
 related:
-  - "[[auth-flows]]"
-  - "[[session-management]]"
-  - "[[audit-trail]]"
-  - "[[../60-Research/threat-model]]"
-  - "[[../95-Archive/gap-reports/wave-3-gap-analysis]]"
+  - [[auth-flows]]
+  - [[session-management]]
+  - [[audit-trail]]
+  - [[../60-Research/threat-model]]
+  - [[../95-Archive/gap-reports/wave-3-gap-analysis]]
 ---
 
 # Account Recovery
@@ -1266,3 +1266,10 @@ Five focused Perplexity-sonar-pro queries, 2026-05-18, total
 Raw transcripts not committed (ephemeral); citations preserved
 inline in §14 above. If a future agent needs to re-run them,
 the prompts live in this repo's PR history.
+## Related
+
+- [[auth-flows]]
+- [[session-management]]
+- [[audit-trail]]
+- [[../60-Research/threat-model]]
+- [[../95-Archive/gap-reports/wave-3-gap-analysis]]

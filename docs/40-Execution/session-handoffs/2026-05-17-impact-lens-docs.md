@@ -1,6 +1,6 @@
 ---
 title: Impact Lens Documentation Handoff
-status: current
+status: wrapped
 tags: [meta, handoff, player-strength, impact-lens]
 created: 2026-05-17
 updated: 2026-05-17
@@ -92,3 +92,9 @@ related:
 - No new ADR is required yet. If implementation makes the projection table or
   event invalidation contract materially more specific, add an ADR-0004
   addendum or implementation note.
+## Related
+
+- [[../../60-Research/player-strength-presentation]]
+- [[../../60-Research/raw-perplexity/raw-player-strength-overview]]
+- [[../../50-Game-Design/progressive-disclosure-ui]]
+- [[../../10-Architecture/bounded-context-map]]

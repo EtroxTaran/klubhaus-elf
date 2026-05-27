@@ -3,9 +3,7 @@ description: Internationalization conventions
 globs: apps/web/src/i18n/**, apps/web/src/locales/**
 alwaysApply: false
 ---
-# i18n
+# Internationalization
 
-- German is the primary UI language; English resources are kept ready for post-MVP.
-- Add new user-facing strings to locale resource files.
-- Use stable translation keys grouped by feature namespace.
-- Avoid concatenating translated fragments; pass variables to interpolation instead.
+Implementation code was removed in the 2026-05-27 reset. Treat i18n guidance as
+pre-reopen draft inventory until the relevant ADR/GDDR/spec is re-ratified.

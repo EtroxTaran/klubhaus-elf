@@ -615,19 +615,12 @@ Jedes Finding in diesem Report hat eine immutable ID (`PM-2026-05-20-01-F-NN`).
 - **Bounded-Context-Boundaries gelten auch SP.** Selbst lokal trennt die Architektur Contexts — sonst gewinnen wir die DDD-Erträge nicht, wenn wir später Multi-Player skalieren.
 
 ---
-
 ## Related
 
-- [[00-index]] — Pre-Mortem-Cluster-Hub mit Heatmap und Cross-Cutting-Risks
-- [[findings-registry]] — Status-Tracking für alle Findings
-- [[threat-model]] — Trust-Boundaries und STRIDE-Matrix
-- [[PM-2026-05-20-02-tech-and-ops]] — Technische und operative Sicht (Cross-Cutting)
-- [[PM-2026-05-20-03-gameplay]] — Gameplay-Auswirkungen architektonischer Entscheidungen
-- [[PM-2026-05-20-04-monetization]] — Kosten-Implikationen pro Szenario
-- [[PM-2026-05-20-05-security-and-integrity]] — Security-Querschnitt
-- [[PM-2026-05-20-06-distributed-match-compute]] — BYOC-Future-Scope
-- [[../../95-Archive/gap-reports/wave-3-gap-analysis]] — Quelle der P0/P1-Coverage
-- [[../match-engine-runtime-strategy]] — Polyglot-Gate-Kontext
+- [[00-index]]
+- [[findings-registry]]
+- [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
+- [[../match-engine-runtime-strategy]]
 - [[../surrealdb-schema-patterns]]
 - [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]
 - [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]

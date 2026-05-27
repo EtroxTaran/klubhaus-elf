@@ -6,7 +6,8 @@ created: 2026-05-16
 updated: 2026-05-17
 type: protocol
 binding: true
-related: [[vault-governance]]
+related:
+  - [[vault-governance]]
 ---
 
 # Agent Memory Protocol
@@ -22,17 +23,19 @@ Before substantial work:
 1. Read [../00-Index/Agent-Onboarding.md](../00-Index/Agent-Onboarding.md).
 2. Read [../00-Index/Current-State.md](../00-Index/Current-State.md).
 3. Read relevant maps from [../00-Index/Home.md](../00-Index/Home.md).
-4. Read accepted ADRs ([../00-Index/Decision-Log.md](../00-Index/Decision-Log.md))
-   and approved game-design specs
-   ([../50-Game-Design/README.md](../50-Game-Design/README.md)) for the task.
-   Implement gameplay only from `approved` GDDRs; an ADR must not contradict
-   one. Chain: research → game design → architecture → implementation.
+4. Read the decision indexes
+   ([../00-Index/Decision-Log.md](../00-Index/Decision-Log.md),
+   [../50-Game-Design/README.md](../50-Game-Design/README.md)) for the task.
+   As of the 2026-05-27 reopen, ADRs/GDDRs are `draft`; implement only after
+   Nico re-ratifies a record to `accepted` / `approved`. Chain: research →
+   game design → architecture → implementation.
 5. Read the linked Linear issue when one exists.
 6. Read the latest session handoff if the work continues a prior thread.
 
 ## During Work
 
-- Prefer `current`, `accepted`, and `approved` notes.
+- Prefer `current` process/meta notes and re-ratified `accepted` / `approved`
+  decisions.
 - Do not implement from `draft`, `superseded`, `archived`, old plans, old issue mirrors, or chat history.
 - `draft`/`idea` notes are the recognized intent layer: read them for
   direction and to avoid re-deciding, but never implement from or cite them as
@@ -84,5 +87,8 @@ Before handing off substantial work:
 4. Link the final vault paths from Linear when a Linear issue exists.
 
 Session handoffs are working memory. Durable decisions must be promoted into
-current-state pages, accepted ADRs, approved game design notes, feature specs, or
-implementation docs.
+current-state pages, re-accepted ADRs, re-approved game design notes, feature
+specs, or implementation docs.
+## Related
+
+- [[vault-governance]]

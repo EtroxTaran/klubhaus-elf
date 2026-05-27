@@ -1,12 +1,24 @@
 ---
 title: AI Manager Behaviour — Architecture, Personalities, Difficulty, World Drift
 status: current
-binding: true
 tags: [research, ai, utility-ai, manager-personality, difficulty, world-drift, dynasty, determinism]
 created: 2026-05-17
 updated: 2026-05-17
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/bounded-context-map]], [[determinism-and-replay]], [[match-engine-simulation-model]], [[data-generators]], [[performance-budgets]], [[../50-Game-Design/tactics-system]], [[../50-Game-Design/mode-manage-a-club-career]], [[../50-Game-Design/scouting-and-recruitment]], [[../50-Game-Design/squad-and-club-structure]]
+binding: false
+related:
+  - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+  - [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+  - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+  - [[../10-Architecture/bounded-context-map]]
+  - [[determinism-and-replay]]
+  - [[match-engine-simulation-model]]
+  - [[data-generators]]
+  - [[performance-budgets]]
+  - [[../50-Game-Design/tactics-system]]
+  - [[../50-Game-Design/mode-manage-a-club-career]]
+  - [[../50-Game-Design/scouting-and-recruitment]]
+  - [[../50-Game-Design/squad-and-club-structure]]
 ---
 
 # AI Manager Behaviour — Architecture, Personalities, Difficulty, World Drift
@@ -1255,3 +1267,17 @@ first interaction.
   10 archetypes; 4 difficulty tiers FM-style; moderate world drift
   with explicit mechanics; rising rival + giant collapse events;
   full career arcs at MVP; phased late-game content rollout).
+## Related
+
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+- [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+- [[../10-Architecture/bounded-context-map]]
+- [[determinism-and-replay]]
+- [[match-engine-simulation-model]]
+- [[data-generators]]
+- [[performance-budgets]]
+- [[../50-Game-Design/tactics-system]]
+- [[../50-Game-Design/mode-manage-a-club-career]]
+- [[../50-Game-Design/scouting-and-recruitment]]
+- [[../50-Game-Design/squad-and-club-structure]]

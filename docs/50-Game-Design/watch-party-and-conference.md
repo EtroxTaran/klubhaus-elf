@@ -6,10 +6,16 @@ created: 2026-05-16
 updated: 2026-05-16
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/async-multiplayer-research]], [[async-multiplayer-private-group]], [[../10-Architecture/state-machines/watch-party]]
+related:
+  - [[README]]
+  - [[../60-Research/async-multiplayer-research]]
+  - [[async-multiplayer-private-group]]
+  - [[../10-Architecture/state-machines/watch-party]]
 ---
 
 # Watch Party and Conference Mode
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 A **synchronous spike** sitting on top of the async multiplayer model.
 Targets emotional highlights (human-vs-human matches, finals, derbies,
@@ -142,3 +148,9 @@ others. Conference is *additive* viewing, not replacement.
 - Auto-proposal trigger: which fixture properties qualify as
   "highlightable"? Documented in [[../50-Game-Design/rivalry-system]] §5
   and per match-day in [[../50-Game-Design/matchday-event-engine]].
+## Related
+
+- [[README]]
+- [[../60-Research/async-multiplayer-research]]
+- [[async-multiplayer-private-group]]
+- [[../10-Architecture/state-machines/watch-party]]

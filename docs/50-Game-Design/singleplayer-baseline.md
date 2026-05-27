@@ -5,11 +5,22 @@ tags: [game-design, mode, singleplayer, baseline]
 created: 2026-05-16
 updated: 2026-05-18
 type: game-design
-binding: true
-related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/match-engine-runtime-strategy]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]], [[match-engine]], [[async-multiplayer-private-group]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../60-Research/mode-design-research]]
+  - [[../60-Research/match-engine-runtime-strategy]]
+  - [[mode-create-a-club-roguelite]]
+  - [[mode-manage-a-club-career]]
+  - [[match-engine]]
+  - [[async-multiplayer-private-group]]
 ---
 
 # Singleplayer Baseline
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Singleplayer is the **full reference experience**, not the lite mode.
 Multiplayer rules are derived from singleplayer by *adding* constraints
@@ -117,3 +128,14 @@ in async groups):
   modelled as scenario packs.
 - Cross-save persistence (e.g. a player from a previous singleplayer save
   appears in a new save's transfer market)? Out of scope at MVP.
+## Related
+
+- [[README]]
+- [[GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../00-Index/MVP-Scope]]
+- [[../60-Research/mode-design-research]]
+- [[../60-Research/match-engine-runtime-strategy]]
+- [[mode-create-a-club-roguelite]]
+- [[mode-manage-a-club-career]]
+- [[match-engine]]
+- [[async-multiplayer-private-group]]

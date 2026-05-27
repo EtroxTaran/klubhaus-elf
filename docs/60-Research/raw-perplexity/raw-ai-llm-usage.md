@@ -7,7 +7,10 @@ updated: 2026-05-27
 type: raw-research
 binding: false
 sourceType: external
-related: [[../incoming-design-research-2026-05-27]], [[../narrative-content-pipeline]], [[../pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
+related:
+  - [[../incoming-design-research-2026-05-27]]
+  - [[../narrative-content-pipeline]]
+  - [[../pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
 ---
 
 > Lossless import of Nico's external research report (Perplexity-style), filed
@@ -277,3 +280,8 @@ GameContext {
 - KI-Texte werden nach Generierung **gecacht** (IndexedDB), sodass sie offline lesbar bleiben
 - Neue KI-Texte nur bei aktiver Verbindung; ansonsten Template-Fallback
 - Für SP vollständig offline spielbar ohne jede KI-Funktion
+## Related
+
+- [[../incoming-design-research-2026-05-27]]
+- [[../narrative-content-pipeline]]
+- [[../pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]

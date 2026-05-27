@@ -5,11 +5,21 @@ tags: [game-design, ux, progressive-disclosure, tactics, casual, expert]
 created: 2026-05-16
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/tactics-and-formations]], [[../60-Research/onboarding-strategy]], [[../60-Research/player-strength-presentation]], [[tactics-system]], [[onboarding-and-tutorial]], [[match-engine]]
+binding: false
+related:
+  - [[README]]
+  - [[../60-Research/progressive-disclosure-research]]
+  - [[../60-Research/tactics-and-formations]]
+  - [[../60-Research/onboarding-strategy]]
+  - [[../60-Research/player-strength-presentation]]
+  - [[tactics-system]]
+  - [[onboarding-and-tutorial]]
+  - [[match-engine]]
 ---
 
 # Progressive Disclosure UI - Three Tier Model (Quick / Standard / Expert)
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 The user explicitly wanted Football-Manager-grade tactical depth *and* a
 five-minutes-per-week casual session in the same product. The answer is
@@ -135,3 +145,13 @@ illustrated options. The user can change it later.
 - Tutorial copy per tier - yes; three tone variants per topic.
 - A11y tier alignment - all tiers must meet WCAG 2.2 AA;
   see [[../95-Archive/gap-reports/research-wave-2-gaps]] R2-07.
+## Related
+
+- [[README]]
+- [[../60-Research/progressive-disclosure-research]]
+- [[../60-Research/tactics-and-formations]]
+- [[../60-Research/onboarding-strategy]]
+- [[../60-Research/player-strength-presentation]]
+- [[tactics-system]]
+- [[onboarding-and-tutorial]]
+- [[match-engine]]

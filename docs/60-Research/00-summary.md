@@ -2,7 +2,13 @@
 title: Research Summary
 status: current
 tags: [research, summary]
+created: 2026-05-27
 updated: 2026-05-27
+type: research
+binding: false
+related:
+  - [[../00-Index/Research-Map]]
+  - [[../00-Index/Documentation-V1]]
 ---
 
 # Research Summary
@@ -162,3 +168,7 @@ Reports #4 (Roguelite meta) and #5 (economy) are additive enrichment for
 [[../50-Game-Design/mode-create-a-club-roguelite]] / [[late-game-systems]] and
 [[../50-Game-Design/economy-system]]; report #6 otherwise **confirms**
 ADR-0011/0020/0024/0026 and [[match-engine-runtime-strategy]].
+## Related
+
+- [[../00-Index/Research-Map]]
+- [[../00-Index/Documentation-V1]]

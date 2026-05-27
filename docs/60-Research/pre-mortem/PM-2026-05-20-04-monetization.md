@@ -524,20 +524,15 @@ IDs `PM-2026-05-20-04-F-NN`. Aggregat: [[findings-registry]].
 - **SP-Käufer ist MP-fähig.** Premium-Käufe an Account, nicht an Save. SP-Spieler, der später in MP wechselt, behält Entitlements ohne Sync-Problem.
 
 ---
-
 ## Related
 
 - [[00-index]]
 - [[findings-registry]]
-- [[threat-model]]
 - [[PM-2026-05-20-01-architecture]]
 - [[PM-2026-05-20-02-tech-and-ops]]
 - [[PM-2026-05-20-03-gameplay]]
-- [[PM-2026-05-20-05-security-and-integrity]]
-- [[PM-2026-05-20-06-distributed-match-compute]]
 - [[../gdpr-compliance]]
 - [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
 - [[../../30-Implementation/privacy-and-consent]]
 - [[../../30-Implementation/auth-flows]]
-- [[../../30-Implementation/client-telemetry]]
 - [[../../00-Index/Current-State]]

@@ -7,7 +7,12 @@ updated: 2026-05-27
 type: raw-research
 binding: false
 sourceType: external
-related: [[../incoming-design-research-2026-05-27]], [[../match-engine-runtime-strategy]], [[../offline-mvp-scope-and-sync-strategy]], [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+related:
+  - [[../incoming-design-research-2026-05-27]]
+  - [[../match-engine-runtime-strategy]]
+  - [[../offline-mvp-scope-and-sync-strategy]]
+  - [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+  - [[../../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
 ---
 
 > Lossless import of Nico's external research report (Perplexity-style), filed
@@ -257,4 +262,10 @@ Pausiert das Match, wenn ein Zuschauer (nicht Teilnehmer) die Verbindung verlier
 16. [How should a player rejoin a match after reconnecting? - Heroic Labs](https://forum.heroiclabs.com/t/how-should-a-player-rejoin-a-match-after-reconnecting/2601) - The server keeps the matches going just fine and the client authenticates ok, but match data doesn't...
 
 17. [Match Engine / Simulation - EHM The Blue Line](https://www.ehmtheblueline.com/forums/viewtopic.php?t=5490) - The reason I ask is that if the game is simulating every second of the match then technically you'll...
+## Related
 
+- [[../incoming-design-research-2026-05-27]]
+- [[../match-engine-runtime-strategy]]
+- [[../offline-mvp-scope-and-sync-strategy]]
+- [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+- [[../../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]

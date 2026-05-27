@@ -779,13 +779,9 @@ Wenn mehrere frische Agenten parallel arbeiten, hier die Empfehlungen für minim
 - **COMM** rollt Moderation-Pipeline aus
 - **AI** kommt erst bei erstem Runtime-LLM-Use-Case
 - **FOUNDER** + **SUSTAIN** = laufende strategische Decisions
-
 ## Related
 
-- [[00-index]] — Cluster-Hub
-- [[prioritization-matrix]] — P × I Heatmap + Score × Effort + Cluster A–G
-- [[findings-registry]] — vollständige Priorisierungs-Tabelle
-- [[threat-model]] — Trust-Boundaries + STRIDE-Matrix
-- [[../../90-Meta/templates/adr]] — ADR-Template
-- [[../../90-Meta/templates/game-design]] — GDDR-Template
-- [[../../90-Meta/templates/implementation-note]] — Implementation-Spec-Template
+- [[00-index]]
+- [[prioritization-matrix]]
+- [[findings-registry]]
+- [[threat-model]]

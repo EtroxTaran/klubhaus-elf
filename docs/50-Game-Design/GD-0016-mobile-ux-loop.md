@@ -5,11 +5,24 @@ tags: [game-design, gddr, ux, mobile]
 created: 2026-05-17
 updated: 2026-05-18
 type: game-design
-binding: true
-related: [[README]], [[GD-0001-core-loop]], [[GD-0013-narrative-inbox]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0010-design-system]], [[../10-Architecture/09-Design-System]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0001-core-loop]]
+  - [[GD-0013-narrative-inbox]]
+  - [[GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[../60-Research/club-boss-analysis]]
+  - [[../95-Archive/gap-reports/research-wave-2-gaps]]
+  - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+  - [[../10-Architecture/09-Decisions/ADR-0010-design-system]]
+  - [[../10-Architecture/09-Design-System]]
 ---
 
 # GD-0016: Mobile UX Gameplay Loop
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -89,9 +102,16 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] (interaction model)
 - [[../10-Architecture/09-Decisions/ADR-0010-design-system]] (accepted — realises it)
-
 ## Related
 
-- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/club-boss-analysis]] · [[../95-Archive/gap-reports/research-wave-2-gaps]]
-- Architecture: [[../10-Architecture/09-Design-System]]
-- [[README]] — hub · siblings: [[GD-0001-core-loop]] · [[GD-0013-narrative-inbox]] · [[GD-0012-onboarding]]
+- [[README]]
+- [[GD-0001-core-loop]]
+- [[GD-0013-narrative-inbox]]
+- [[GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../00-Index/MVP-Scope]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[../60-Research/club-boss-analysis]]
+- [[../95-Archive/gap-reports/research-wave-2-gaps]]
+- [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+- [[../10-Architecture/09-Decisions/ADR-0010-design-system]]
+- [[../10-Architecture/09-Design-System]]

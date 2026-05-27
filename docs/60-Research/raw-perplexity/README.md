@@ -6,7 +6,10 @@ created: 2026-05-16
 updated: 2026-05-27
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]]
+related:
+  - [[../00-summary]]
+  - [[../../00-Index/Research-Map]]
+  - [[../incoming-design-research-2026-05-27]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -67,3 +70,8 @@ the triage note [[../incoming-design-research-2026-05-27]].
 - When a raw point is promoted into a synthesis, design, or ADR note, link both
   ways so future agents can trace the chain.
 - Treat anything here as `status: raw`: not binding, never the only source.
+## Related
+
+- [[../00-summary]]
+- [[../../00-Index/Research-Map]]
+- [[../incoming-design-research-2026-05-27]]

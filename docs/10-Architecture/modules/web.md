@@ -5,8 +5,10 @@ tags: [architecture, module]
 created: 2026-05-17
 updated: 2026-05-18
 type: module
-binding: true
-related: [[../05-Building-Blocks]], [[../09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+binding: false
+related:
+  - [[../05-Building-Blocks]]
+  - [[../09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
 ---
 
 # apps/web (`@soccer-manager/web`)
@@ -49,3 +51,7 @@ and the UI composition layer for the player.
 - [[../09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
 - [[../09-Decisions/ADR-0008-mobile-first-ui]] (draft)
 - [[ui]], [[game-data]], [[db-schema]], [[match-engine]]
+## Related
+
+- [[../05-Building-Blocks]]
+- [[../09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]

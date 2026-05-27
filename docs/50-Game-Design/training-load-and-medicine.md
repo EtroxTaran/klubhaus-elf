@@ -5,11 +5,20 @@ tags: [game-design, training, load, medical]
 created: 2026-05-16
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[../60-Research/player-strength-presentation]], [[youth-academy-and-development]], [[tactics-system]], [[match-engine]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+binding: false
+related:
+  - [[README]]
+  - [[../60-Research/player-strength-presentation]]
+  - [[youth-academy-and-development]]
+  - [[tactics-system]]
+  - [[match-engine]]
+  - [[../60-Research/systemic-events-player-development-venue-ops]]
+  - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Training, Load and Medicine
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 > Approved by the systemic events / player lifecycle pass (2026-05-17).
 > This note uses a multifactor risk model. Do not implement injuries from
@@ -182,3 +191,12 @@ reduces block effectiveness.
   cancellation; an indoor facility ([[stadium-and-campus]]) negates it.
 - Wellness / sleep tracking - flavour-only feed cards (no real attribute
   effects beyond fatigue model).
+## Related
+
+- [[README]]
+- [[../60-Research/player-strength-presentation]]
+- [[youth-academy-and-development]]
+- [[tactics-system]]
+- [[match-engine]]
+- [[../60-Research/systemic-events-player-development-venue-ops]]
+- [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]

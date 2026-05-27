@@ -6,7 +6,12 @@ created: 2026-05-16
 updated: 2026-05-22
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/match-engine]], [[../../60-Research/match-engine-runtime-strategy]], [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+related:
+  - [[README]]
+  - [[../bounded-context-map]]
+  - [[../../50-Game-Design/match-engine]]
+  - [[../../60-Research/match-engine-runtime-strategy]]
+  - [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]]
 ---
 
 # State Machine - Match
@@ -162,3 +167,10 @@ match policy:
   minute, max 60 events / batch.
 - Should AI-only matches use a faster code path? Yes - same engine,
   reduced narrative output, no spectator stream.
+## Related
+
+- [[README]]
+- [[../bounded-context-map]]
+- [[../../50-Game-Design/match-engine]]
+- [[../../60-Research/match-engine-runtime-strategy]]
+- [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]]

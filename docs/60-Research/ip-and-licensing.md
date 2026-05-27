@@ -5,8 +5,15 @@ tags: [research, ip, gamedata, legal]
 created: 2026-05-15
 updated: 2026-05-17
 type: research
+binding: false
 linear:
-related: [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[00-summary]], [[anstoss-series-deep-dive]], [[competitor-matrix]], [[../10-Architecture/modules/game-data]], [[../95-Archive/gap-reports/feature-gap-analysis]]
+related:
+  - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+  - [[00-summary]]
+  - [[anstoss-series-deep-dive]]
+  - [[competitor-matrix]]
+  - [[../10-Architecture/modules/game-data]]
+  - [[../95-Archive/gap-reports/feature-gap-analysis]]
 ---
 
 # IP and Licensing
@@ -563,9 +570,11 @@ generator and editor for graceful future licensing.
 [[anstoss-series-deep-dive]] | [[competitor-matrix]] |
 [[../95-Archive/gap-reports/feature-gap-analysis]] | [[pwa-offline-patterns]] |
 [[../10-Architecture/09-Decisions/ADR-0007-naming-schema|ADR-0007]].
-
 ## Related
 
-- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] — the decision this directly produced
-- [[../10-Architecture/modules/game-data]] — module bound by these IP rules
-- [[00-summary]] — research MOC · [[anstoss-series-deep-dive]] · [[competitor-matrix]] — siblings
+- [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]]
+- [[00-summary]]
+- [[anstoss-series-deep-dive]]
+- [[competitor-matrix]]
+- [[../10-Architecture/modules/game-data]]
+- [[../95-Archive/gap-reports/feature-gap-analysis]]

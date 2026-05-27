@@ -5,11 +5,26 @@ tags: [game-design, onboarding, ftue, tutorial, inbox, feed-cards, assistant, mo
 created: 2026-05-17
 updated: 2026-05-18
 type: game-design
-binding: true
-related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/onboarding-strategy]], [[../60-Research/narrative-content-pipeline]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[progressive-disclosure-ui]], [[mode-manage-a-club-career]], [[mode-create-a-club-roguelite]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../60-Research/onboarding-strategy]]
+  - [[../60-Research/narrative-content-pipeline]]
+  - [[../60-Research/progressive-disclosure-research]]
+  - [[../60-Research/ai-manager-behaviour]]
+  - [[../60-Research/tactics-and-formations]]
+  - [[../60-Research/club-boss-analysis]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[progressive-disclosure-ui]]
+  - [[mode-manage-a-club-career]]
+  - [[mode-create-a-club-roguelite]]
 ---
 
 # Onboarding & Tutorial - FTUE, Inbox Arc, Feed-Cards, Assistant Manager
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Approved 2026-05-17 (gap D5). Binding implementation reference is
 [[../60-Research/onboarding-strategy]]. This GDD captures the
@@ -376,3 +391,18 @@ Key fields:
 - **K1 Player onboarding docs**: external help-centre content
   referenced from inbox CTAs.
 - **K3 Tutorial scripts**: full body copy for the 12-message arc.
+## Related
+
+- [[README]]
+- [[GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../00-Index/MVP-Scope]]
+- [[../60-Research/onboarding-strategy]]
+- [[../60-Research/narrative-content-pipeline]]
+- [[../60-Research/progressive-disclosure-research]]
+- [[../60-Research/ai-manager-behaviour]]
+- [[../60-Research/tactics-and-formations]]
+- [[../60-Research/club-boss-analysis]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[progressive-disclosure-ui]]
+- [[mode-manage-a-club-career]]
+- [[mode-create-a-club-roguelite]]

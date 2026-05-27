@@ -7,7 +7,11 @@ updated: 2026-05-22
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
-related: [[observability-runbook]], [[deployment-dokploy]], [[audit-trail]], [[../60-Research/telemetry-privacy]]
+related:
+  - [[observability-runbook]]
+  - [[deployment-dokploy]]
+  - [[audit-trail]]
+  - [[../60-Research/telemetry-privacy]]
 ---
 
 # Incident Response
@@ -123,3 +127,9 @@ Every SEV1/SEV2 needs a short review:
 ## Change History
 
 - 2026-05-17: Created for ADR-0017 observability rollout.
+## Related
+
+- [[observability-runbook]]
+- [[deployment-dokploy]]
+- [[audit-trail]]
+- [[../60-Research/telemetry-privacy]]

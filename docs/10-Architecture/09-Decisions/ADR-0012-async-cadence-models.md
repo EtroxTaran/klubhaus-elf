@@ -1,15 +1,21 @@
 ---
 title: ADR-0012 Async Multiplayer Cadence Models (Fixed + Dynamic)
-status: proposed
+status: draft
 tags: [adr, architecture, async, multiplayer, cadence]
 created: 2026-05-16
 updated: 2026-05-19
 type: adr
 binding: false
-related: [[../../60-Research/async-multiplayer-research]], [[../../50-Game-Design/async-multiplayer-private-group]], [[../state-machines/league-week]], [[ADR-0021-revised-tech-stack]]
+related:
+  - [[../../60-Research/async-multiplayer-research]]
+  - [[../../50-Game-Design/async-multiplayer-private-group]]
+  - [[../state-machines/league-week]]
+  - [[ADR-0021-revised-tech-stack]]
 ---
 
 # ADR-0012: Async Multiplayer Cadence Models (Fixed + Dynamic)
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 > **STACK-REVISION IMPACT 2026-05-19 ([[ADR-0021-revised-tech-stack]] + ADR-0023/0024/0025).**
 > Informational only — status (`proposed`) and decision are **unchanged**; do not
@@ -98,3 +104,9 @@ Default: Fixed Cadence (lower complexity, friendlier onboarding).
 - [[../../60-Research/raw-perplexity/raw-async-multiplayer]]
 - gamedeveloper.com asynchronicity in game design
 - wayline.io async multiplayer
+## Related
+
+- [[../../60-Research/async-multiplayer-research]]
+- [[../../50-Game-Design/async-multiplayer-private-group]]
+- [[../state-machines/league-week]]
+- [[ADR-0021-revised-tech-stack]]

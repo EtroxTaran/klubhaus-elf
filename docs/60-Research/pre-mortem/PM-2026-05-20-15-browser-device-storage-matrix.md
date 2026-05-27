@@ -625,10 +625,12 @@ Postmortem: > 2 % rate > 24 h.
 ## Verfolgung & Verkettung
 
 IDs `PM-2026-05-20-15-F-NN`. Aggregat: [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]]
-- [[PM-2026-05-20-05-security-and-integrity]] (Save-Trust-Level + DevTools-Tampering) · [[PM-2026-05-20-07-live-ops-and-client-telemetry]] (IndexedDB-Quota-Runbook RB-07-C cross-ref) · [[PM-2026-05-20-12-long-term-balance-and-meta]] (Save-Size-Growth)
-- [[../performance-budgets]] · [[../pwa-offline-patterns]] · [[../offline-mvp-scope-and-sync-strategy]]
-- [[../../10-Architecture/09-Decisions/ADR-0002-offline-first]] · [[../../10-Architecture/09-Decisions/ADR-0005-save-format]] · [[../../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+- [[00-index]]
+- [[findings-registry]]
+- [[PM-2026-05-20-05-security-and-integrity]]
+- [[PM-2026-05-20-07-live-ops-and-client-telemetry]]
+- [[PM-2026-05-20-12-long-term-balance-and-meta]]
+- [[../performance-budgets]]
+- [[../pwa-offline-patterns]]

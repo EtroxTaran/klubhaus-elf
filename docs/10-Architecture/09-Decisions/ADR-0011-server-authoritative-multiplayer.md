@@ -4,13 +4,25 @@ status: draft
 tags: [adr, architecture, multiplayer, security]
 created: 2026-05-16
 updated: 2026-05-18
-accepted_at: 2026-05-16
 type: adr
-binding: true
-related: [[ADR-0003-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0013-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/raw-perplexity/raw-architecture]]
+binding: false
+accepted_at: 2026-05-16
+related:
+  - [[ADR-0003-match-engine]]
+  - [[ADR-0019-modular-monolith-ddd]]
+  - [[ADR-0013-transactional-outbox]]
+  - [[ADR-0014-state-machines]]
+  - [[ADR-0015-spectator-snapshot-streaming]]
+  - [[ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[../state-machines/league-week]]
+  - [[../state-machines/match]]
+  - [[../../60-Research/match-engine-runtime-strategy]]
+  - [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
 # ADR-0011: Server-Authoritative Multiplayer
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -258,3 +270,15 @@ CI enforcement:
   reduction at zero trust cost.
 - Wave 3 gap B2 Q&A with Nico (2026-05-16): hotseat handoff, AI-match
   hybrid, encrypted saves, hard-reject offline conflict.
+## Related
+
+- [[ADR-0003-match-engine]]
+- [[ADR-0019-modular-monolith-ddd]]
+- [[ADR-0013-transactional-outbox]]
+- [[ADR-0014-state-machines]]
+- [[ADR-0015-spectator-snapshot-streaming]]
+- [[ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[../state-machines/league-week]]
+- [[../state-machines/match]]
+- [[../../60-Research/match-engine-runtime-strategy]]
+- [[../../60-Research/raw-perplexity/raw-architecture]]

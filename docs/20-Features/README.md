@@ -6,7 +6,11 @@ created: 2026-05-15
 updated: 2026-05-22
 type: index
 binding: false
-related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-V1]]
+related:
+  - [[../00-Index/Feature-Map]]
+  - [[../00-Index/MVP-Scope]]
+  - [[../50-Game-Design/README]]
+  - [[../00-Index/Documentation-V1]]
 ---
 
 # Features
@@ -48,3 +52,9 @@ those headings.
 - [[feature-matchday-event-engine]] — Rule-based events at match-days.
 - [[feature-community-editor]] — post-MVP override-pack editor + importer.
 - [[feature-p2p-transfer-negotiation]] — post-MVP human-to-human transfers with escalation.
+## Related
+
+- [[../00-Index/Feature-Map]]
+- [[../00-Index/MVP-Scope]]
+- [[../50-Game-Design/README]]
+- [[../00-Index/Documentation-V1]]

@@ -6,15 +6,19 @@ created: 2026-05-16
 updated: 2026-05-22
 type: map
 binding: false
-related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]]
+related:
+  - [[Decision-Log]]
+  - [[Current-State]]
+  - [[MVP-Scope]]
+  - [[Documentation-V1]]
 ---
 
 # Architecture Map
 
 Use this map before architecture or cross-cutting implementation work.
-[[Documentation-V1]] is the current architecture classification baseline. If a
-note is not `accepted`, `current` or explicitly promoted there, treat it as
-future-scope or historical context.
+[[Documentation-V1]] is the pre-reopen architecture classification baseline. As
+of 2026-05-27, all non-superseded ADRs are `draft`; treat the lists below as
+review inventory, not implementation authority.
 
 ## arc42 Chapters
 
@@ -53,7 +57,7 @@ future-scope or historical context.
 State-machine notes are current planning references. Runtime orchestration
 changes that depend on them require ADR-0014 promotion or a superseding ADR.
 
-## Current Binding ADRs
+## Reopened ADR Review Inventory
 
 - [ADR-0003 Match Engine](../10-Architecture/09-Decisions/ADR-0003-match-engine.md)
 - [ADR-0005 Save Format](../10-Architecture/09-Decisions/ADR-0005-save-format.md)
@@ -77,7 +81,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 - [ADR-0043 Notification and Messaging Platform](../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform.md)
 
-## Current Binding Research and Specs
+## Pre-Reopen Research and Spec Inputs
 
 - [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md)
 - [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md)
@@ -110,13 +114,19 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 
 - [ADR-0006 i18n](../10-Architecture/09-Decisions/ADR-0006-i18n.md) - future-scope depth pass; promote when implementation starts.
 - [ADR-0008 Mobile-first UI](../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui.md) - covered by current design-system/a11y baseline; promote only for cleanup or new mobile UI decisions.
-- [ADR-0012 Async Cadence Models](../10-Architecture/09-Decisions/ADR-0012-async-cadence-models.md) - product rules already approved in game design; ADR promotion is optional cleanup.
+- [ADR-0012 Async Cadence Models](../10-Architecture/09-Decisions/ADR-0012-async-cadence-models.md) - product rules were approved pre-reopen in game design; ADR promotion is optional cleanup after review.
 - [ADR-0014 State Machines](../10-Architecture/09-Decisions/ADR-0014-state-machines.md) - promote before changing runtime orchestration.
 - [ADR-0015 Spectator Snapshot Streaming](../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming.md) - post-MVP watch-party layer.
 - [ADR-0016 Community Dataset Overrides](../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides.md) - future-scope until UGC moderation/security gates are implemented.
 
 ## Rule
 
-Implement from accepted ADRs and current implementation specs. Draft/proposed
-ADRs are planning context classified by [[Documentation-V1]], not open gaps.
+Implement only after the relevant ADR/GDDR/spec is re-ratified. Draft ADRs are
+planning context classified by [[Documentation-V1]], not current authority.
 Superseded ADRs are historical only.
+## Related
+
+- [[Decision-Log]]
+- [[Current-State]]
+- [[MVP-Scope]]
+- [[Documentation-V1]]

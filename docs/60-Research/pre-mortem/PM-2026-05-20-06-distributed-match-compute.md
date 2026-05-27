@@ -578,15 +578,16 @@ Diese Foundation kostet nichts extra (sie ist sowieso Security/Anti-Cheat-Founda
 ## Verfolgung & Verkettung (Finding → Fix)
 
 Jedes Finding hat eine immutable ID (`PM-2026-05-20-06-F-NN`). Da BYOC Future-Scope ist, sind Findings hier **vorerst `accepted-risk` und durch [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]] konzeptionell geschlossen** — sie werden aktiviert, sobald Decision-Gate erfüllt ist und Implementierung beginnt.
-
 ## Related
 
-- [[00-index]] · [[findings-registry]] · [[threat-model]]
-- [[PM-2026-05-20-01-architecture]] · [[PM-2026-05-20-02-tech-and-ops]] · [[PM-2026-05-20-03-gameplay]] · [[PM-2026-05-20-04-monetization]] · [[PM-2026-05-20-05-security-and-integrity]]
-- [[../match-engine-runtime-strategy]] — Polyglot-Gate-Kontext für Match-Worker-Extraktion
-- [[../determinism-and-replay]] — Determinismus als Validator-Foundation
+- [[00-index]]
+- [[findings-registry]]
+- [[threat-model]]
+- [[PM-2026-05-20-01-architecture]]
+- [[PM-2026-05-20-02-tech-and-ops]]
+- [[PM-2026-05-20-03-gameplay]]
+- [[PM-2026-05-20-05-security-and-integrity]]
+- [[../match-engine-runtime-strategy]]
+- [[../determinism-and-replay]]
 - [[../../10-Architecture/09-Decisions/ADR-0003-match-engine]]
-- [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]] — Ergänzt, nicht ersetzt
-- [[../../30-Implementation/privacy-and-consent]]
-- [[../gdpr-compliance]]
-- [[../../00-Index/Current-State]]
+- [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]

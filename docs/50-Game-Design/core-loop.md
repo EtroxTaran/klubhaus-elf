@@ -6,10 +6,18 @@ created: 2026-05-16
 updated: 2026-05-18
 type: game-design
 binding: false
-related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]]
+related:
+  - [[README]]
+  - [[GD-0017-mvp-scope-and-mode-sequencing]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[../60-Research/systems-design-synthesis]]
+  - [[mode-create-a-club-roguelite]]
+  - [[mode-manage-a-club-career]]
 ---
 
 # Core Loop - Season Arc and Weekly Heartbeat
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 The single most important game-design decision: how often the player taps,
 what they tap on, and what happens between taps. Everything else - economy,
@@ -156,3 +164,11 @@ match-day differs.
 - Should the day tick be visualised as a calendar or as an "office clock"
   (Anstoss feel)? Both - calendar view is primary; office vignette is the
   flavour layer.
+## Related
+
+- [[README]]
+- [[GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[../60-Research/systems-design-synthesis]]
+- [[mode-create-a-club-roguelite]]
+- [[mode-manage-a-club-career]]

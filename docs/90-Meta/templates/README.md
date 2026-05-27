@@ -16,10 +16,17 @@ Obsidian, Dataview, and docs checks can identify current guidance.
 
 ## Active Templates
 
-- [handoff.md](handoff.md)
+- [agent-handoff.md](agent-handoff.md)
 - [adr.md](adr.md)
+- [daily-session-note.md](daily-session-note.md)
+- [feature-spec.md](feature-spec.md)
+- [game-design-note.md](game-design-note.md)
 - [game-design.md](game-design.md)
+- [handoff.md](handoff.md)
+- [implementation-note.md](implementation-note.md)
 - [module.md](module.md)
+- [open-question.md](open-question.md)
+- [research-note.md](research-note.md)
 
 ## Common Fields
 
@@ -38,7 +45,14 @@ Obsidian, Dataview, and docs checks can identify current guidance.
 
 - ADRs: `draft`, `accepted`, `superseded`.
 - Game design: `idea`, `draft`, `approved`, `superseded`.
-- Features: `idea`, `spec`, `in-progress`, `done`, `cancelled`, `superseded`.
+- Features: `idea`, `draft`, `spec`, `in-progress`, `done`, `cancelled`, `superseded`.
+- Architecture / implementation / module / state-machine notes: `draft`,
+  `current`, `superseded`, `archived`.
+- Research notes: `draft`, `in-review`, `review`, `ready`, `current`, `raw`,
+  `mitigated`, `verified`, `accepted-risk`, `superseded`, `archived`.
+- Raw research notes: `raw`, `archived`.
+- Open questions: `draft`, `current`, `answered`, `archived`.
 - User docs: `draft`, `published`, `outdated`, `archived`.
-- Session notes: `open`, `wrapped`, `promoted`, `archived`.
-- Meta/index notes: `draft`, `current`, `superseded`, `archived`.
+- Session / handoff notes: `open`, `wrapped`, `promoted`, `archived`.
+- Meta / index / map / baseline / protocol / project / product / registry notes:
+  `draft`, `current`, `superseded`, `archived`.

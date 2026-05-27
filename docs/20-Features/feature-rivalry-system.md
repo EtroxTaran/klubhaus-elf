@@ -6,10 +6,16 @@ created: 2026-05-16
 updated: 2026-05-18
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/rivalry-system]], [[../50-Game-Design/fan-ecology]], [[../50-Game-Design/matchday-event-engine]]
+related:
+  - [[README]]
+  - [[../50-Game-Design/rivalry-system]]
+  - [[../50-Game-Design/fan-ecology]]
+  - [[../50-Game-Design/matchday-event-engine]]
 ---
 
 # Feature - Rivalry System
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Goal
 
@@ -57,4 +63,10 @@ for the Roguelite first playable.
 ## Dependencies
 
 - [[../50-Game-Design/rivalry-system]]
+- [[../50-Game-Design/matchday-event-engine]]
+## Related
+
+- [[README]]
+- [[../50-Game-Design/rivalry-system]]
+- [[../50-Game-Design/fan-ecology]]
 - [[../50-Game-Design/matchday-event-engine]]

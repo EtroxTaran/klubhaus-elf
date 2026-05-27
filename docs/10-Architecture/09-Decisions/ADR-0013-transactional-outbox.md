@@ -4,11 +4,18 @@ status: superseded
 tags: [adr, architecture, events, reliability, outbox, redis-streams]
 created: 2026-05-16
 updated: 2026-05-19
-accepted_at: 2026-05-16
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-16
 superseded_by: ADR-0028-postgres-transactional-outbox
-related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0014-state-machines]], [[ADR-0021-revised-tech-stack]], [[ADR-0023-realtime-transport]], [[ADR-0028-postgres-transactional-outbox]], [[../../60-Research/raw-perplexity/raw-architecture]]
+related:
+  - [[ADR-0019-modular-monolith-ddd]]
+  - [[ADR-0011-server-authoritative-multiplayer]]
+  - [[ADR-0014-state-machines]]
+  - [[ADR-0021-revised-tech-stack]]
+  - [[ADR-0023-realtime-transport]]
+  - [[ADR-0028-postgres-transactional-outbox]]
+  - [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
 # ADR-0013: Transactional Outbox for Domain Events
@@ -343,3 +350,12 @@ CI enforcement:
   (idempotency / retention / versioning / backpressure).
 - Wave 3 gap B4 Q&A with Nico (2026-05-16): all five recommendations
   accepted as-is.
+## Related
+
+- [[ADR-0019-modular-monolith-ddd]]
+- [[ADR-0011-server-authoritative-multiplayer]]
+- [[ADR-0014-state-machines]]
+- [[ADR-0021-revised-tech-stack]]
+- [[ADR-0023-realtime-transport]]
+- [[ADR-0028-postgres-transactional-outbox]]
+- [[../../60-Research/raw-perplexity/raw-architecture]]

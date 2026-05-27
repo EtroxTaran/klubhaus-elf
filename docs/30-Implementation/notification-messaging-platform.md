@@ -5,19 +5,19 @@ tags: [implementation, notification, messaging, inbox, email, push, realtime, sc
 created: 2026-05-22
 updated: 2026-05-22
 type: implementation
-binding: true
+binding: false
 adr:
   - "[[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]"
   - "[[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]]"
   - "[[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]]"
   - "[[../10-Architecture/09-Decisions/ADR-0025-mobile-delivery]]"
 related:
-  - "[[privacy-and-consent]]"
-  - "[[rate-limiting-anti-abuse]]"
-  - "[[audit-trail]]"
-  - "[[jobs-and-scheduler]]"
-  - "[[../50-Game-Design/GD-0013-narrative-inbox]]"
-  - "[[../50-Game-Design/async-multiplayer-private-group]]"
+  - [[privacy-and-consent]]
+  - [[rate-limiting-anti-abuse]]
+  - [[audit-trail]]
+  - [[jobs-and-scheduler]]
+  - [[../50-Game-Design/GD-0013-narrative-inbox]]
+  - [[../50-Game-Design/async-multiplayer-private-group]]
 ---
 
 # Notification and Messaging Platform
@@ -332,3 +332,11 @@ Dependency updates:
   <https://help.brevo.com/hc/en-us/articles/7924148470546-How-can-I-send-transactional-emails-with-Brevo>
 - Brevo webhooks: <https://developers.brevo.com/docs/how-to-use-webhooks>
 - Centrifugo engines/scaling: <https://centrifugal.dev/docs/server/engines>
+## Related
+
+- [[privacy-and-consent]]
+- [[rate-limiting-anti-abuse]]
+- [[audit-trail]]
+- [[jobs-and-scheduler]]
+- [[../50-Game-Design/GD-0013-narrative-inbox]]
+- [[../50-Game-Design/async-multiplayer-private-group]]

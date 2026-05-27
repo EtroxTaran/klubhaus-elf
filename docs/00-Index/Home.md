@@ -6,20 +6,26 @@ created: 2026-05-15
 updated: 2026-05-27
 type: index
 binding: true
+related:
+  - [[Agent-Onboarding]]
+  - [[Current-State]]
+  - [[Documentation-V1]]
+  - [[Decision-Log]]
 ---
 
-# soccer-manager — Project Wiki
+# football-manager-x — Project Wiki
 
-The documentation single source of truth for the `soccer-manager` project, and
-the front door to every area. Agents start at [[Agent-Onboarding]]; humans can
-read top-to-bottom or use the left **Explorer** to browse the full tree.
+The documentation single source of truth for `football-manager-x`, and the front
+door to every area. Agents start at [[Agent-Onboarding]]; humans can read
+top-to-bottom or use the left **Explorer** to browse the full tree.
 
 > **New here? Read these five, in order, and ignore the rest until a task needs
 > it:** [[Agent-Onboarding]] → [[Current-State]] → [[Documentation-V1]] →
-> [[Decision-Log]] → [[MVP-Scope]]. [[Documentation-V1]] is the single
-> ground-truth baseline (current stack, MVP, and what is binding vs. historical).
-> The wider vault (~160 files: features, game design, research, pre-mortem) is
-> reference material, not required reading.
+> [[Decision-Log]] → [[MVP-Scope]]. [[Documentation-V1]] is the pre-reopen V1
+> baseline snapshot; [[Current-State]], [[Decision-Log]] and
+> [[../50-Game-Design/README]] state the current 2026-05-27 research /
+> re-evaluation phase. The wider vault (~160 files: features, game design,
+> research, pre-mortem) is reference material, not required reading.
 
 ## Start here (agents)
 
@@ -36,7 +42,7 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
 - [[Non-Goals]] — explicit exclusions
 - [[Glossary]] · [[Decision-Log]] · [[Documentation-V1]]
 - [[Repository]] — README, Contributing, Agent & Claude guides (repo-root docs)
-- [[UI-Showcase]] — the live Storybook design-system showcase
+- [[UI-Showcase]] — pre-reset Storybook/design-system memory
 - [[../90-Meta/conventions]] — how the vault is written and organised
 
 ## Architecture (arc42)
@@ -49,14 +55,9 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
   [[../10-Architecture/11-Risks]]
 - **Decisions:** the canonical ADR index with status and lineage is
   [[Decision-Log]] (covering ADR-0001 … ADR-0043 in
-  `10-Architecture/09-Decisions/`). Current binding set includes the revised
-  tech stack (ADR-0021), PostgreSQL data model + transactional outbox
-  (ADR-0027/0028), hybrid-online MVP (ADR-0020), match engine (ADR-0003),
-  realtime transport (ADR-0023), renderer + frame contract
-  (ADR-0024/0026/0041), DDD modular monolith (ADR-0019), multiplayer
-  (ADR-0011), design system (ADR-0010), observability (ADR-0017), systemic
-  events (ADR-0018) and notification/messaging (ADR-0043). Superseded
-  predecessors (ADR-0001/0002/0004/0013) are kept as historical memory only.
+  `10-Architecture/09-Decisions/`). The pre-reopen binding set is now draft
+  pending Nico's re-ratification; superseded predecessors
+  (ADR-0001/0002/0004/0013) remain historical memory only.
 
 ## Product
 
@@ -66,8 +67,8 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
 - [[../70-User-Docs/README]] — player-facing documentation.
 
 Product authority flows research -> game design -> ADRs -> implementation.
-Approved game-design records are the source for gameplay behaviour; accepted
-ADRs are the source for technical shape.
+During the current re-evaluation phase, game-design records and ADRs are draft
+planning context until Nico explicitly re-approves or re-accepts them.
 
 ## Implementation
 
@@ -118,3 +119,9 @@ ADRs are the source for technical shape.
 - [[Research-Map]]
 - [[Implementation-Map]]
 - [[User-Docs-Map]]
+## Related
+
+- [[Agent-Onboarding]]
+- [[Current-State]]
+- [[Documentation-V1]]
+- [[Decision-Log]]

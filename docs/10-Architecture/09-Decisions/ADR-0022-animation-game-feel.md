@@ -4,15 +4,20 @@ status: draft
 tags: [adr, architecture, ui, animation]
 created: 2026-05-19
 updated: 2026-05-22
-accepted_at: 2026-05-19
 type: adr
-binding: true
+binding: false
+accepted_at: 2026-05-19
 supersedes:
 superseded_by:
-related: [[ADR-0021-revised-tech-stack]], [[ADR-0010-design-system]], [[ADR-0024-match-renderer-abstraction]]
+related:
+  - [[ADR-0021-revised-tech-stack]]
+  - [[ADR-0010-design-system]]
+  - [[ADR-0024-match-renderer-abstraction]]
 ---
 
 # ADR-0022: Animation & Game-Feel Stack
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -74,7 +79,8 @@ Negative:
 
 None (supersedes the "minimal keyframes only" stance carried in
 [[ADR-0001-tech-stack]], now retired via [[ADR-0021-revised-tech-stack]]).
+## Related
 
-## Related Docs
-
-- [[ADR-0021-revised-tech-stack]] · [[ADR-0010-design-system]] · [[ADR-0024-match-renderer-abstraction]]
+- [[ADR-0021-revised-tech-stack]]
+- [[ADR-0010-design-system]]
+- [[ADR-0024-match-renderer-abstraction]]

@@ -5,13 +5,16 @@ tags: [adr, meta]
 created: 2026-05-15
 updated: 2026-05-17
 type: adr
-binding: true
+binding: false
 supersedes:
 superseded_by:
-related: []
+related:
+  - [[../../30-Implementation/cursor-cloud-agent-workflow]]
 ---
 
 # ADR-0009: Cursor Cloud Agent Orchestration
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 ## Status
 
@@ -59,7 +62,6 @@ Negative:
 ## Supersedes
 
 None
-
-## Related Docs
+## Related
 
 - [[../../30-Implementation/cursor-cloud-agent-workflow]]

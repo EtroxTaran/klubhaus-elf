@@ -6,7 +6,11 @@ created: 2026-05-16
 updated: 2026-05-22
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/watch-party-and-conference]], [[../09-Decisions/ADR-0015-spectator-snapshot-streaming]]
+related:
+  - [[README]]
+  - [[../bounded-context-map]]
+  - [[../../50-Game-Design/watch-party-and-conference]]
+  - [[../09-Decisions/ADR-0015-spectator-snapshot-streaming]]
 ---
 
 # State Machine - Watch Party
@@ -151,3 +155,9 @@ watch_party_participant {                # junction table (surrogate PK)
   `target_matches` array.
 - Recording / replay availability post-completion - replay always
   available; spectator delay does not apply on replay.
+## Related
+
+- [[README]]
+- [[../bounded-context-map]]
+- [[../../50-Game-Design/watch-party-and-conference]]
+- [[../09-Decisions/ADR-0015-spectator-snapshot-streaming]]

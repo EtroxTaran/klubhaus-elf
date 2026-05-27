@@ -151,3 +151,11 @@ A future gap may be opened only when at least one of these is true:
 When a new gap is opened, update [[Current-State]], the relevant map and the
 source note in the same PR. Otherwise, treat old open-question text as historical
 context, not active work.
+## Related
+
+- [[Current-State]]
+- [[Decision-Log]]
+- [[Research-Map]]
+- [[Documentation-V1]]
+- [[../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
+- [[../60-Research/pre-mortem/findings-registry]]

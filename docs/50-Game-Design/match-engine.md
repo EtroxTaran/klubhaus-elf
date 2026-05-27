@@ -5,11 +5,28 @@ tags: [game-design, match-engine, simulation]
 created: 2026-05-16
 updated: 2026-05-22
 type: game-design
-binding: true
-related: [[README]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/match-engine-simulation-model]], [[../60-Research/match-engine-runtime-strategy]], [[../60-Research/determinism-and-replay]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/tactics-and-formations]], [[tactics-system]], [[fan-ecology]], [[set-pieces]], [[singleplayer-baseline]], [[async-multiplayer-private-group]]
+binding: false
+related:
+  - [[README]]
+  - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+  - [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+  - [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+  - [[../60-Research/match-engine-simulation-model]]
+  - [[../60-Research/match-engine-runtime-strategy]]
+  - [[../60-Research/determinism-and-replay]]
+  - [[../60-Research/performance-budgets]]
+  - [[../60-Research/presentation-renderer-strategy]]
+  - [[../60-Research/tactics-and-formations]]
+  - [[tactics-system]]
+  - [[fan-ecology]]
+  - [[set-pieces]]
+  - [[singleplayer-baseline]]
+  - [[async-multiplayer-private-group]]
 ---
 
 # Match Engine - 2D Event-based Specification
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 The match engine is **event-based, not frame-by-frame**. Pre-match setup
 creates the starting probability space; in-engine events are resolved through
@@ -311,3 +328,20 @@ Implications:
   distance.
 - Which `background-detailed` AI fixtures should keep selected events by default
   instead of seed-only summaries.
+## Related
+
+- [[README]]
+- [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+- [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+- [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]
+- [[../60-Research/match-engine-simulation-model]]
+- [[../60-Research/match-engine-runtime-strategy]]
+- [[../60-Research/determinism-and-replay]]
+- [[../60-Research/performance-budgets]]
+- [[../60-Research/presentation-renderer-strategy]]
+- [[../60-Research/tactics-and-formations]]
+- [[tactics-system]]
+- [[fan-ecology]]
+- [[set-pieces]]
+- [[singleplayer-baseline]]
+- [[async-multiplayer-private-group]]

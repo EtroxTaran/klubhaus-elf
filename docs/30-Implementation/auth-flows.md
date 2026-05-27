@@ -5,18 +5,18 @@ tags: [implementation, auth, webauthn, passkeys, mfa, sessions, asvs, nist-800-6
 created: 2026-05-18
 updated: 2026-05-18
 type: implementation
-binding: true
+binding: false
 adr:
   - "[[../10-Architecture/09-Decisions/ADR-0005-save-format]]"
   - "[[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]"
   - "[[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]"
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
 related:
-  - "[[../60-Research/threat-model]]"
-  - "[[../95-Archive/gap-reports/wave-3-gap-analysis]]"
-  - "[[../10-Architecture/bounded-context-map]]"
-  - "[[audit-trail]]"
-  - "[[observability-runbook]]"
+  - [[../60-Research/threat-model]]
+  - [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+  - [[../10-Architecture/bounded-context-map]]
+  - [[audit-trail]]
+  - [[observability-runbook]]
 ---
 
 # Auth Flows
@@ -1290,3 +1290,10 @@ Six focused Perplexity-sonar-pro queries, 2026-05-18, total
 Raw transcripts not committed (ephemeral); citations preserved
 inline in §14 and per-section anchors above. If a future agent
 needs to re-run them, the prompts live in this repo's PR history.
+## Related
+
+- [[../60-Research/threat-model]]
+- [[../95-Archive/gap-reports/wave-3-gap-analysis]]
+- [[../10-Architecture/bounded-context-map]]
+- [[audit-trail]]
+- [[observability-runbook]]

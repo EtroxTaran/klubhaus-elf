@@ -10,12 +10,21 @@ priority: post-mvp
 milestone: phase-2-polish
 linear:
 adr: [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]
-related: [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]], [[../30-Implementation/3d-presentation-architecture]], [[feature-stadium-builder]], [[feature-venue-operations]], [[../50-Game-Design/stadium-and-campus]], [[../60-Research/performance-budgets]], [[../30-Implementation/mvp-implementation-roadmap]]
 supersedes:
 superseded_by:
+related:
+  - [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]
+  - [[../30-Implementation/3d-presentation-architecture]]
+  - [[feature-stadium-builder]]
+  - [[feature-venue-operations]]
+  - [[../50-Game-Design/stadium-and-campus]]
+  - [[../60-Research/performance-budgets]]
+  - [[../30-Implementation/mvp-implementation-roadmap]]
 ---
 
 # Feature — 3D Presentation Layer
+
+> **REOPENED on 2026-05-27:** This feature note is `draft` planning context again. Any `approved`, `binding`, or implementation-ready wording below is historical pre-reopen context until Nico re-approves it.
 
 > Authority: [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]
 > Architecture: [[../30-Implementation/3d-presentation-architecture]]
@@ -170,7 +179,6 @@ Compliance:
 - [[../60-Research/performance-budgets]] — device tiers, bundle caps,
   draw-call envelopes.
 - [[../30-Implementation/mvp-implementation-roadmap]] — Phase-2 slot.
-
 ## Related
 
 - [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]

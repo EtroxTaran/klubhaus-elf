@@ -3,9 +3,8 @@ description: SUPERSEDED — see 40-postgres-drizzle
 globs:
 alwaysApply: false
 ---
-# SurrealDB — SUPERSEDED 2026-05-19
+# SurrealDB
 
-This rule is **superseded** by `40-postgres-drizzle.mdc`. ADR-0021 swapped
-the system of record to PostgreSQL + Drizzle; ADR-0027/0028 deliver the
-Postgres data model and outbox substrate. Do not apply SurrealDB
-conventions to new code.
+Orchestrator pointer only. The pre-reopen Decision Log marks SurrealDB-primary
+work as superseded historical memory; verify current status in
+`docs/00-Index/Decision-Log.md` before using any database guidance.

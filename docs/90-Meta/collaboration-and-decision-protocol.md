@@ -6,7 +6,13 @@ created: 2026-05-27
 updated: 2026-05-27
 type: protocol
 binding: true
-related: [[vault-governance]], [[agent-memory-protocol]], [[../30-Implementation/agent-workflow-pattern]], [[../00-Index/Current-State]], [[../00-Index/Decision-Log]], [[../50-Game-Design/README]]
+related:
+  - [[vault-governance]]
+  - [[agent-memory-protocol]]
+  - [[../30-Implementation/agent-workflow-pattern]]
+  - [[../00-Index/Current-State]]
+  - [[../00-Index/Decision-Log]]
+  - [[../50-Game-Design/README]]
 ---
 
 # Collaboration & Decision Protocol
@@ -80,12 +86,11 @@ re-ratification). Follow them; do not duplicate their content here.
 - This note is the FMX-specific, canonical expression. **Cursor has no
   machine-global file** and receives the same baseline via the repo `AGENTS.md`
   and `.cursor/rules/01-collaboration.mdc`, which point here.
-
 ## Related
 
-- [[vault-governance]] — memory classes, canonical-location rule, supersede discipline
-- [[agent-memory-protocol]] — session start / during / wrap-up steps
-- [[../30-Implementation/agent-workflow-pattern]] — the beat loop and stop conditions
-- [[../00-Index/Current-State]] — current phase and reopened decisions
-- [[../00-Index/Decision-Log]] · [[../50-Game-Design/README]] — decision indexes
-- [[mcp-memory-integration]] — approved MCP servers and research wiring
+- [[vault-governance]]
+- [[agent-memory-protocol]]
+- [[../30-Implementation/agent-workflow-pattern]]
+- [[../00-Index/Current-State]]
+- [[../00-Index/Decision-Log]]
+- [[../50-Game-Design/README]]

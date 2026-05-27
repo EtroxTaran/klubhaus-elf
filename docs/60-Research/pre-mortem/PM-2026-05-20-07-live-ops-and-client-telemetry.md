@@ -583,14 +583,13 @@ updated: 2026-05-22
 ## Verfolgung & Verkettung
 
 IDs `PM-2026-05-20-07-F-NN`. Aggregat-Status: [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]] · [[threat-model]]
-- [[PM-2026-05-20-02-tech-and-ops]] — CI/CD- und Observability-Reife
-- [[PM-2026-05-20-05-security-and-integrity]] — Save-Schema-v2 + Determinismus-CI-Gate
-- [[PM-2026-05-20-15-browser-device-storage-matrix]] — Browser-Quirks (iOS-Safari, IndexedDB)
-- [[PM-2026-05-20-16-test-strategy-depth]] — Determinismus-Replay-CI-Tiering
-- [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+- [[00-index]]
+- [[findings-registry]]
+- [[threat-model]]
+- [[PM-2026-05-20-02-tech-and-ops]]
+- [[PM-2026-05-20-05-security-and-integrity]]
+- [[PM-2026-05-20-15-browser-device-storage-matrix]]
 - [[../../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
 - [[../../30-Implementation/client-telemetry]]

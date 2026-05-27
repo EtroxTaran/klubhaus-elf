@@ -4,9 +4,12 @@ status: raw
 tags: [research, raw, perplexity, architecture, ddd, offline-first, state-machine]
 created: 2026-05-16
 updated: 2026-05-16
-type: research-raw
+type: raw-research
 binding: false
-related: [[README]], [[../../10-Architecture/bounded-context-map]], [[../../10-Architecture/state-machines/league-week]]
+related:
+  - [[README]]
+  - [[../../10-Architecture/bounded-context-map]]
+  - [[../../10-Architecture/state-machines/league-week]]
 ---
 
 # Raw - Architecture, DDD, State Machines and Offline-First Blueprint
@@ -426,3 +429,8 @@ operation), dev.to (offline-first conflict resolution), objectbox.io
 dev.to (service worker best practices), pixelfreestudio.com (PWA
 security). Full URL list in source `.md`; new URLs surface in the
 relevant ADRs.
+## Related
+
+- [[README]]
+- [[../../10-Architecture/bounded-context-map]]
+- [[../../10-Architecture/state-machines/league-week]]

@@ -2,25 +2,32 @@
 title: UI Showcase
 status: current
 tags: [meta, ui, design]
+created: 2026-05-22
 updated: 2026-05-22
+type: index
+binding: false
+related:
+  - [[Home]]
+  - [[../10-Architecture/09-Design-System]]
+  - [[../30-Implementation/design-sync-workflow]]
 ---
 
 # UI Showcase (Storybook)
 
-The **UI showcase** is the canonical *visual* reference for the project's
-design system. The code in `apps/web/src` stays authoritative on any conflict
-(see [[../10-Architecture/09-Design-System]] §13); the showcase is where you
-*see and explore* every piece rendered in isolation.
+The **UI showcase** note preserves the pre-reset visual reference for the
+project's design system. The implementation and Storybook app were removed in
+the 2026-05-27 docs-vault-only reset; treat the details below as design memory
+for future re-ratification, not as a currently running app.
 
 ## Where it is
 
-It is deployed alongside this wiki — the **same** Dokploy stack, a separate
-subdomain, behind the **same** login as these docs:
+Pre-reset, it was deployed alongside this wiki — the **same** Dokploy stack, a
+separate subdomain, behind the **same** login as these docs:
 
-> ðŸ”— **<https://SHOWCASE_DOMAIN_PLACEHOLDER>**
+> Link placeholder: **<https://SHOWCASE_DOMAIN_PLACEHOLDER>**
 
-Run it locally instead with `pnpm --filter @soccer-manager/web storybook`
-(http://localhost:6006).
+Pre-reset local command: `pnpm --filter @soccer-manager/web storybook`
+(http://localhost:6006). It is not available in the docs-only repository.
 
 ## What's in it
 
@@ -51,3 +58,8 @@ CI fails the build if a story is missing or broken, and `autodocs` documents
 new components automatically. So the showcase is a complete mirror of the
 design system today and stays that way as deferred screens land (see
 [[../10-Architecture/09-Design-System]] §10 for the 45-screen catalogue).
+## Related
+
+- [[Home]]
+- [[../10-Architecture/09-Design-System]]
+- [[../30-Implementation/design-sync-workflow]]

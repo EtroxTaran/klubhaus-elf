@@ -5,11 +5,20 @@ tags: [game-design, gddr, finance, economy]
 created: 2026-05-17
 updated: 2026-05-17
 type: game-design
-binding: true
-related: [[README]], [[GD-0011-career-progression]], [[GD-0012-onboarding]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../60-Research/competitor-matrix]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+binding: false
+related:
+  - [[README]]
+  - [[GD-0011-career-progression]]
+  - [[GD-0012-onboarding]]
+  - [[../60-Research/anstoss-series-deep-dive]]
+  - [[../60-Research/club-boss-analysis]]
+  - [[../60-Research/competitor-matrix]]
+  - [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 ---
 
 # GD-0008: Finance, Economy & Stadium
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 ## Status
 
@@ -79,8 +88,12 @@ None
 ## Feeds ADRs
 
 - [[../10-Architecture/09-Decisions/ADR-0004-data-model]] (club/finance schema)
-
 ## Related
 
-- Research: [[../60-Research/anstoss-series-deep-dive]] · [[../60-Research/club-boss-analysis]] · [[../60-Research/competitor-matrix]]
-- [[README]] — hub · siblings: [[GD-0011-career-progression]] · [[GD-0012-onboarding]] · [[GD-0009-league-structure]]
+- [[README]]
+- [[GD-0011-career-progression]]
+- [[GD-0012-onboarding]]
+- [[../60-Research/anstoss-series-deep-dive]]
+- [[../60-Research/club-boss-analysis]]
+- [[../60-Research/competitor-matrix]]
+- [[../10-Architecture/09-Decisions/ADR-0004-data-model]]

@@ -577,7 +577,7 @@ updated: 2026-05-22
 | **Daily-Login-Streak** (NICHT in MVP) | FOMO / variable-reward | **dark-pattern-risk HIGH** | DO NOT IMPLEMENT in MVP. Falls post-MVP: streak-pause-on-illness, no streak-loss-on-30d-absence, no premium-recovery-purchase |
 | **Insolvency-Notification Push** (post-MVP) | guilt / nag-prompt | **dark-pattern-risk MEDIUM** | Frequency-Cap max 1/Woche pro Club; opt-in default OFF; ”žmanage notifications"-Link in jedem Push |
 | **Settings: default-opt-in toggles** | hidden-default / sunk-cost | **dark-pattern-risk HIGH if mishandled** | Alle Toggles default OFF except (a) accessibility (ON per WCAG), (b) wellness-prompt-<18 (ON); jedes data-sharing default OFF |
-| **Exit-Confirmation Dialog** | confirmshaming-risk | **borderline** | Wording neutral: ”žExit game?" — NICHT ”žSure? Your run will be lost forever! ðŸ˜­". Buttons symmetric, no green/red-coding |
+| **Exit-Confirmation Dialog** | confirmshaming-risk | **borderline** | Wording neutral: "Exit game?" - not "Sure? Your run will be lost forever!". Buttons symmetric, no green/red-coding |
 | **In-game store** (post-MVP) | hidden-cost / drip-pricing | **N/A MVP**; flag als dark-pattern-watch-item | (a) real-currency-Preise IMMER in User-Locale; (b) keine virtual-currency-bundle-mismatch; (c) keine "limited offer" ohne Scarcity-Proof |
 | **Push-Notification Re-Engagement 7d** | re-engagement-FOMO | **dark-pattern-risk MEDIUM** | Copy informational, nicht emotional (”ž3 matches this week" nicht ”žYour team misses you!"); user opt-out per channel |
 | **Age-Gate** | Compliance + UX-design | **legitimate** | NICHT remember false-age claim langfristig; suspicious-pattern (rapid birthdate-toggle) triggert re-verify |
@@ -656,10 +656,11 @@ Baseline football-manager-x bei 10k DAU, no marketing: **€50–200/Mo Jahr 1**
 ## Verfolgung & Verkettung
 
 IDs `PM-2026-05-20-18-F-NN`. Aggregat: [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]]
-- [[PM-2026-05-20-04-monetization]] · [[PM-2026-05-20-08-legal-consumer-law-and-tax]] (Lootbox-Recht F-10) · [[PM-2026-05-20-14-brand-pr-and-crisis-comms]] (Rebrand + Trademark) · [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability]] (License-CI-Gate)
-- [[../../10-Architecture/09-Design-System]] (Dark-Pattern-Constraint)
-- [[../gdpr-compliance]]
+- [[00-index]]
+- [[findings-registry]]
+- [[PM-2026-05-20-04-monetization]]
+- [[PM-2026-05-20-08-legal-consumer-law-and-tax]]
+- [[PM-2026-05-20-14-brand-pr-and-crisis-comms]]
+- [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability]]

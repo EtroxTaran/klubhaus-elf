@@ -6,10 +6,17 @@ created: 2026-05-16
 updated: 2026-05-16
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[matchday-event-engine]], [[fan-ecology]], [[watch-party-and-conference]]
+related:
+  - [[README]]
+  - [[../60-Research/fan-culture-segmentation-research]]
+  - [[matchday-event-engine]]
+  - [[fan-ecology]]
+  - [[watch-party-and-conference]]
 ---
 
 # Rivalry System - Emergent Five-sub-score Rivalry Graph
+
+> **REOPENED on 2026-05-27:** This game-design note is `draft` again. Any `approved`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-approves it.
 
 Rivalries are not just declared at scenario start. They **emerge** from
 geography, history, sporting events, fan incidents and transfer
@@ -133,3 +140,10 @@ ability to expand each into a relationship-history view.
   fan-incident scores.
 - Player can manually nominate a rival? No - the score is emergent only.
   The player can comment on a rival (media event) but cannot inject.
+## Related
+
+- [[README]]
+- [[../60-Research/fan-culture-segmentation-research]]
+- [[matchday-event-engine]]
+- [[fan-ecology]]
+- [[watch-party-and-conference]]

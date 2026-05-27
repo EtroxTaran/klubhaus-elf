@@ -2,7 +2,14 @@
 title: Runtime
 status: current
 tags: [architecture]
+created: 2026-05-22
 updated: 2026-05-22
+type: architecture
+binding: false
+related:
+  - [[README]]
+  - [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[state-machines/README]]
 ---
 
 # Runtime
@@ -126,3 +133,8 @@ Per [[09-Decisions/ADR-0027-postgres-data-model]] and
 
 PWA installed via Workbox manifest. Future native packaging via Capacitor
 (per [[09-Decisions/ADR-0008-mobile-first-ui]]).
+## Related
+
+- [[README]]
+- [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[state-machines/README]]

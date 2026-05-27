@@ -674,9 +674,12 @@ jobs:
 ## Verfolgung & Verkettung
 
 IDs `PM-2026-05-20-16-F-NN`. Aggregat: [[findings-registry]].
-
 ## Related
 
-- [[00-index]] · [[findings-registry]]
-- [[PM-2026-05-20-02-tech-and-ops]] · [[PM-2026-05-20-05-security-and-integrity]] (Determinismus-Foundation) · [[PM-2026-05-20-10-accessibility-and-inclusion]] (axe-core-Layer) · [[PM-2026-05-20-12-long-term-balance-and-meta]] (50-y-Soak + Balance-Constants)
+- [[00-index]]
+- [[findings-registry]]
+- [[PM-2026-05-20-02-tech-and-ops]]
+- [[PM-2026-05-20-05-security-and-integrity]]
+- [[PM-2026-05-20-10-accessibility-and-inclusion]]
+- [[PM-2026-05-20-12-long-term-balance-and-meta]]
 - [[../determinism-and-replay]]

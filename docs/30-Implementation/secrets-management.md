@@ -5,23 +5,23 @@ tags: [implementation, secrets, sops, age, direnv, key-rotation, leak-response, 
 created: 2026-05-18
 updated: 2026-05-19
 type: implementation
-binding: true
+binding: false
 adr:
   - "[[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]"
   - "[[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]"
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
   - "[[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]"
 related:
-  - "[[secrets-rotation]]"
-  - "[[deployment-dokploy]]"
-  - "[[audit-trail]]"
-  - "[[incident-response]]"
-  - "[[../60-Research/threat-model]]"
-  - "[[../60-Research/gdpr-compliance]]"
-  - "[[auth-flows]]"
-  - "[[session-management]]"
-  - "[[account-recovery]]"
-  - "[[privacy-and-consent]]"
+  - [[secrets-rotation]]
+  - [[deployment-dokploy]]
+  - [[audit-trail]]
+  - [[incident-response]]
+  - [[../60-Research/threat-model]]
+  - [[../60-Research/gdpr-compliance]]
+  - [[auth-flows]]
+  - [[session-management]]
+  - [[account-recovery]]
+  - [[privacy-and-consent]]
 ---
 
 # Secrets Management — sops + age + direnv, rotation, leak response, dep audit, backup drills
@@ -1410,3 +1410,15 @@ Six focused Perplexity-sonar-pro queries, 2026-05-18, total
 
 Raw transcripts not committed (ephemeral); citations preserved
 inline in §17 above + per-section anchors throughout the note.
+## Related
+
+- [[secrets-rotation]]
+- [[deployment-dokploy]]
+- [[audit-trail]]
+- [[incident-response]]
+- [[../60-Research/threat-model]]
+- [[../60-Research/gdpr-compliance]]
+- [[auth-flows]]
+- [[session-management]]
+- [[account-recovery]]
+- [[privacy-and-consent]]

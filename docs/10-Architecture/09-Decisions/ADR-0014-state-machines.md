@@ -1,15 +1,21 @@
 ---
 title: ADR-0014 Explicit State Machines for Time-critical Workflows
-status: proposed
+status: draft
 tags: [adr, architecture, state-machine, workflow]
 created: 2026-05-16
 updated: 2026-05-19
 type: adr
 binding: false
-related: [[../state-machines/README]], [[../../60-Research/raw-perplexity/raw-architecture]], [[ADR-0021-revised-tech-stack]], [[ADR-0013-transactional-outbox]]
+related:
+  - [[../state-machines/README]]
+  - [[../../60-Research/raw-perplexity/raw-architecture]]
+  - [[ADR-0021-revised-tech-stack]]
+  - [[ADR-0013-transactional-outbox]]
 ---
 
 # ADR-0014: Explicit State Machines for Time-critical Workflows
+
+> **REOPENED on 2026-05-27:** This ADR is `draft` again. Any `accepted`, `binding`, or `locked` wording below is historical pre-reopen context until Nico re-ratifies it.
 
 > **STACK-REVISION IMPACT 2026-05-19 ([[ADR-0021-revised-tech-stack]] + ADR-0023/0024/0025).**
 > Informational only — status (`proposed`) and decision are **unchanged**; do not
@@ -104,3 +110,9 @@ Each state machine declares:
 - gameprogrammingpatterns.com state.
 - oneuptime.com TypeScript type-safe state machines.
 - [[../../60-Research/raw-perplexity/raw-architecture]] §5.
+## Related
+
+- [[../state-machines/README]]
+- [[../../60-Research/raw-perplexity/raw-architecture]]
+- [[ADR-0021-revised-tech-stack]]
+- [[ADR-0013-transactional-outbox]]
