@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aurelia Premier — Isometrische Campus-Ansicht</title>
+  <meta name="description" content="Dedizierte isometrische 3D-Szene (Babylon.js): orthographische Kamera im echten Isometrie-Winkel, prozedurales Kachel-Raster, responsiv, Reduced-Motion + statischer Fallback.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/aurelia.css">
+
+  <!-- Babylon.js + earcut from the same CDN the export's stadium uses.
+       `defer` guarantees BABYLON is defined before the deferred ES module runs. -->
+  <script defer src="https://cdn.jsdelivr.net/npm/earcut@2.2.4/dist/earcut.min.js"></script>
+  <script defer src="https://cdn.babylonjs.com/babylon.js"></script>
+</head>
+<body class="iso-body">
+  <div class="iso-root">
+    <header class="iso-mast">
+      <div class="iso-mast-left">
+        <span class="iso-mark">AP</span>
+        <div>
+          <div class="iso-title">Aurelia <em>Premier</em> · Isometrie<span class="iso-badge">Babylon</span></div>
+          <div class="iso-sub" id="js-mast-sub">Isometrischer Campus · Hafenstadt · Marineblau · Gold</div>
+        </div>
+      </div>
+      <div class="iso-mast-actions">
+        <a class="iso-mast-btn is-alt" href="Stadium 3D Babylon.html">Stadion-Studio</a>
+        <a class="iso-mast-btn" href="hub.html">← Hub</a>
+      </div>
+    </header>
+
+    <div class="iso-stage" id="js-stage">
+      <div class="iso-load" id="js-load"><span>Isometrischer Campus wird mit Babylon.js aufgebaut …</span></div>
+
+      <canvas id="js-canvas" tabindex="0"
+        aria-label="Isometrische 3D-Campus-Ansicht. Pfeiltasten drehen und zoomen, Leertaste schaltet den Umlauf, R setzt zurück."></canvas>
+
+      <!-- Static fallback: shown when WebGL/Babylon is unavailable or JS is off -->
+      <div class="iso-fallback" id="js-fallback" hidden>
+        <img src="assets/iso-fallback.svg" alt="Isometrische Vorschau des Aurelia-Campus: Kachel-Raster mit zentralem Spielfeld und vier Tribünenblöcken.">
+        <p>3D-Ansicht nicht verfügbar — statische Vorschau. Zurück zum <a href="hub.html">Hub</a> oder zum <a href="Stadium 3D Babylon.html">Stadion-Studio</a>.</p>
+      </div>
+      <noscript>
+        <div class="iso-fallback">
+          <img src="assets/iso-fallback.svg" alt="Isometrische Vorschau des Aurelia-Campus.">
+          <p>JavaScript ist deaktiviert — statische Vorschau. Zurück zum <a href="hub.html">Hub</a>.</p>
+        </div>
+      </noscript>
+
+      <!-- Performance HUD -->
+      <div class="iso-hud">
+        <span class="iso-hud-engine">Babylon</span>
+        <span><span class="iso-hud-lbl">FPS</span><b id="js-fps">—</b></span>
+        <span><span class="iso-hud-lbl">Meshes</span><b id="js-meshes">—</b></span>
+        <span><span class="iso-hud-lbl">Tris</span><b id="js-tris">—</b></span>
+      </div>
+
+      <!-- Control panel -->
+      <aside class="iso-panel">
+        <div class="iso-panel-kicker">Aurelia · Campus</div>
+        <div class="iso-panel-title">Isometrische Ansicht</div>
+
+        <div class="iso-section-lbl">Drehung (Elevation fix)</div>
+        <div class="iso-cams" id="js-cams"></div>
+
+        <div class="iso-section-lbl">Verein · Akzent</div>
+        <div class="iso-swatches" id="js-swatches"></div>
+
+        <div class="iso-section-lbl">Steuerung</div>
+        <div class="iso-toggle-row" data-toggle="auto">
+          <span>Kamera-Umlauf</span>
+          <span class="iso-toggle" id="js-t-auto"></span>
+        </div>
+        <div class="iso-toggle-row" data-toggle="reset">
+          <span>Ansicht zurücksetzen</span>
+          <span style="font-family:var(--mono);font-size:11px;color:rgba(240,231,212,.6)">R</span>
+        </div>
+      </aside>
+
+      <div class="iso-hint">
+        <kbd>Drag</kbd> drehen ·
+        <kbd>Scroll</kbd> Zoom ·
+        <kbd>Rechte Maustaste</kbd> verschieben ·
+        <kbd>←</kbd><kbd>→</kbd> drehen · <kbd>Space</kbd> Umlauf
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="iso/main.js"></script>
+</body>
+</html>

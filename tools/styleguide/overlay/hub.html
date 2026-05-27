@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aurelia Premier — Styleguide Hub</title>
+  <meta name="description" content="Interaktiver Styleguide-Hub: Canvas, Komponentenbibliothek, Component-States, Prototypen, 3D-Stadion, isometrische Ansicht, Karten und Begleitdokumente.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,500;1,6..72,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/aurelia.css">
+</head>
+<body class="hub-body">
+  <div class="sheet">
+    <!-- Masthead -->
+    <header class="masthead">
+      <div class="mast-left">
+        <div class="mast-mark">AP</div>
+        <div>
+          <div class="mast-title">Aurelia <em>Premier</em></div>
+          <div class="mast-sub">Interaktiver Styleguide · Hub · Football Manager X</div>
+        </div>
+      </div>
+      <div class="mast-meta">
+        <span>Edition <b>v1.0</b> · Mai 2026</span>
+        <span>Direction: <b>A — Sonntagszeitung</b></span>
+        <span>Renderer: <b>Babylon.js</b></span>
+      </div>
+    </header>
+
+    <!-- Strap -->
+    <div class="strap">
+      <b>Inside</b>
+      <span>Canvas</span><span>·</span>
+      <span>Komponenten­bibliothek</span><span>·</span>
+      <span>Component-States</span><span>·</span>
+      <span>2 Prototypen</span><span>·</span>
+      <span>3D-Stadion</span><span>·</span>
+      <span>Isometrie</span><span>·</span>
+      <span>Karten</span><span>·</span>
+      <span>Docs</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-main">
+        <div class="kicker">Ein Einstieg in alles</div>
+        <h1>Jeder Teil, <em>ein Klick entfernt.</em></h1>
+        <p class="lede">
+          <span class="dropcap">D</span>ieser Hub verlinkt jede Fläche des Aurelia-Premier-Styleguides: den Bildschirm-Canvas mit allen Screens, die vollständige Komponenten­bibliothek, die QA-Zustände, beide klickbaren Prototypen, das interaktive 3D-Stadion, die neue isometrische Campus-Ansicht, die Karten — und alle Begleitdokumente. Alles statisch ausgeliefert, alles direkt anklickbar.
+        </p>
+        <div class="hero-cta">
+          <a class="btn primary" href="index.html#screens-a">Canvas öffnen <span class="arr">→</span></a>
+          <a class="btn" href="isometric.html">Isometrische Ansicht</a>
+          <a class="btn" href="Stadium 3D Babylon.html">Stadion-Studio</a>
+          <a class="btn" href="plan.md">Migrationsplan</a>
+        </div>
+      </div>
+      <aside class="hero-aside">
+        <div class="stat">
+          <div class="num"><em>45+</em></div>
+          <div class="lbl">Mobile-Screens</div>
+          <div class="sub">je hell + dunkel, 390×844</div>
+        </div>
+        <div class="stat">
+          <div class="num">2</div>
+          <div class="lbl">3D-Szenen</div>
+          <div class="sub">Stadion + isometrischer Campus</div>
+        </div>
+        <div class="stat">
+          <div class="num">6</div>
+          <div class="lbl">Begleitdokumente</div>
+          <div class="sub">Plan · README · Components · …</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Interaktive Flächen -->
+    <div class="sec-head">
+      <div>
+        <div class="kicker">Interaktive Flächen</div>
+        <h2>Screens, Komponenten & Prototypen</h2>
+      </div>
+      <div class="sec-meta">Klick zum Öffnen<br>§ I · II · III</div>
+    </div>
+    <div class="grid cols-2">
+      <a class="card" href="index.html#screens-a">
+        <span class="count">45+ Artboards</span>
+        <span class="tag"><span class="dot ok"></span>I · Bildschirm-Canvas</span>
+        <h3>Pan-Zoom-Karte aller Screens</h3>
+        <p>Alle Screens nebeneinander, klick zum Fokussieren, Pfeiltasten zum Durchblättern. Beste Surface für Stakeholder und Designreview.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="card" href="index.html#library">
+        <span class="count">7 Kategorien</span>
+        <span class="tag"><span class="dot ok"></span>II · Komponenten­bibliothek</span>
+        <h3>Atome, Composites, Patterns</h3>
+        <p>Jede wiederverwendbare Komponente in allen Varianten — Crest, PlayerCard, InboxCard, FormationPitch, TabloidCover. shadcn-Mapping in COMPONENTS.md.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="card" href="Component States.html">
+        <span class="count">QA-Matrix</span>
+        <span class="tag"><span class="dot ok"></span>Komponenten-Zustände</span>
+        <h3>Component States</h3>
+        <p>Strikte Zustands-Matrix für Atome und Composites: default, hover, focus, loading, empty, error — nebeneinander zum Abnehmen.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="card" href="index.html#adaptive-hub-poc">
+        <span class="count">6 POCs</span>
+        <span class="tag"><span class="dot ok"></span>Adaptive Layout-POCs</span>
+        <h3>Ein Code, drei Tiers</h3>
+        <p>Hub, Inbox, Squad, Match, Finance, Tactics: dieselbe React-Komponente, drei Viewport-Größen, kein JS-Sniffing.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="card" href="Match-Day Prototype.html">
+        <span class="count">6 Schritte</span>
+        <span class="tag"><span class="dot"></span>Klickbarer Prototyp</span>
+        <h3>Match-Day Prototype</h3>
+        <p>Match-Day-Weekend: Hub → Posteingang → Pre-Match → Spiel → Halbzeit → Tabloid. Echte Klicks, Sprung-Navigation, Restart.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="card" href="Onboarding Prototype.html">
+        <span class="count">5 Schritte</span>
+        <span class="tag"><span class="dot"></span>Klickbarer Prototyp</span>
+        <h3>Onboarding Prototype</h3>
+        <p>Vom Land über den Verein bis zum Manager und Welcome-Moment — der vollständige Erstkontakt-Fluss.</p>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <!-- 3D & Karten -->
+    <div class="sec-head">
+      <div>
+        <div class="kicker">3D & Karten · Babylon.js</div>
+        <h2>Räumliche Ansichten</h2>
+      </div>
+      <div class="sec-meta">Lazy-loaded · Fallback-safe<br>ADR-0047</div>
+    </div>
+    <div class="grid cols-2">
+      <a class="card" href="Stadium 3D Babylon.html">
+        <span class="count">Babylon</span>
+        <span class="tag"><span class="dot ok"></span>Stadion-Studio</span>
+        <h3>Aurelia Arena · 3D</h3>
+        <p>Interaktives Stadion-Mockup: Tageszeit, Dachring, Flutlicht, Zuschauer, Kamera-Presets, klickbare Tribünen. Free-Orbit-Kamera.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="card" href="isometric.html">
+        <span class="count new">Neu</span>
+        <span class="tag"><span class="dot ok"></span>Isometrie</span>
+        <h3>Isometrische Campus-Ansicht</h3>
+        <p>Dedizierte Iso-Szene: orthographische Kamera im echten 35,26°/45°-Winkel, prozedurales Kachel-Raster, Reduced-Motion + statischer Fallback, Tastatur-Steuerung.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="card" href="Football Manager Map.html">
+        <span class="count">3D</span>
+        <span class="tag"><span class="dot ok"></span>Karte</span>
+        <h3>Club-Campus Map</h3>
+        <p>Isometrische Stadion- und Liga-Karte: Vereinsstandorte und Campus-Geometrie als räumliche Übersicht.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="card" href="Stadium Upgrade Timeline.html">
+        <span class="count">Timeline</span>
+        <span class="tag"><span class="dot ok"></span>Ausbau</span>
+        <h3>Stadion-Ausbau-Zeitstrahl</h3>
+        <p>Slot-Progression des Stadionausbaus über die Zeit — wie sich Kapazität und Infrastruktur Stufe für Stufe entwickeln.</p>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <!-- Pull quote -->
+    <section class="hero" style="border-bottom:1px solid var(--rule)">
+      <div style="grid-column:1 / -1">
+        <div class="kicker">Aus der Design-Rationale · § Direction</div>
+        <p style="font-family:var(--serif);font-style:italic;font-weight:500;font-size:26px;line-height:1.25;letter-spacing:-.3px;color:var(--ink);margin:10px 0 0;max-width:30ch">
+          „Karte, nicht Tabelle. Anpfiff, nicht Start." Warm, ernst, mit trockenem Witz in der Kopie und ruhigem Chrom im Layout.
+        </p>
+      </div>
+    </section>
+
+    <!-- Anker-Verzeichnis -->
+    <div class="sec-head">
+      <div>
+        <div class="kicker">Direkt in den Canvas springen</div>
+        <h2>Bildschirm-Verzeichnis</h2>
+      </div>
+      <div class="sec-meta">Sprung zu Canvas-Sektion<br>index.html#&lt;id&gt;</div>
+    </div>
+    <section class="toc">
+      <div class="toc-col">
+        <h3>Kern-Loop</h3>
+        <ul class="toc-list">
+          <li><a href="index.html#screens-a"><span class="toc-num">01–08</span><span class="toc-label">Hub · Posteingang · Kader · Match · Halbzeit · Finanzen · Stadion</span><span class="toc-count">16</span></a></li>
+          <li><a href="index.html#screens-onb"><span class="toc-num">09–10</span><span class="toc-label">Onboarding & Karrieren</span><span class="toc-count">8</span></a></li>
+          <li><a href="index.html#screens-neg"><span class="toc-num">11–14</span><span class="toc-label">Verhandlungen · Vorstand · Sponsoren · Presse</span><span class="toc-count">8</span></a></li>
+          <li><a href="index.html#screens-tact"><span class="toc-num">15–17</span><span class="toc-label">Taktik · Aufstellung · Statistiken</span><span class="toc-count">6</span></a></li>
+          <li><a href="index.html#screens-team"><span class="toc-num">18–24</span><span class="toc-label">Spieler · Training · Medizin · Scouting · Stab</span><span class="toc-count">14</span></a></li>
+          <li><a href="index.html#screens-cmp"><span class="toc-num">25–28</span><span class="toc-label">Vergleiche & Profi-Modus</span><span class="toc-count">8</span></a></li>
+          <li><a href="index.html#screens-more"><span class="toc-num">29–34</span><span class="toc-label">Transfer · Tabelle · Pokal · Ticker · Rollen · Settings</span><span class="toc-count">12</span></a></li>
+        </ul>
+      </div>
+      <div class="toc-col">
+        <h3>Tiefe, Identität & System</h3>
+        <ul class="toc-list">
+          <li><a href="index.html#screens-depth"><span class="toc-num">35–38</span><span class="toc-label">Tabloid · PK · Halbzeit-Stimmen · Transfer-Loop</span><span class="toc-count">9</span></a></li>
+          <li><a href="index.html#screens-data-depth"><span class="toc-num">39–41</span><span class="toc-label">Heatmap · Karrierebogen · Saison-Album</span><span class="toc-count">6</span></a></li>
+          <li><a href="index.html#screens-final"><span class="toc-num">42–45</span><span class="toc-label">A11y-Audit · Sponsor-Pyramide · Tunnel · Trophy</span><span class="toc-count">6</span></a></li>
+          <li><a href="index.html#identity"><span class="toc-num">★</span><span class="toc-label">Trikot- & Wappen-Generator</span><span class="toc-count">6</span></a></li>
+          <li><a href="index.html#screens-clubs"><span class="toc-num">★</span><span class="toc-label">4 Klubthemen · adaptiver Akzent</span><span class="toc-count">4</span></a></li>
+          <li><a href="index.html#live"><span class="toc-num">★</span><span class="toc-label">Live-Demo · Tokens bei der Arbeit</span><span class="toc-count">1</span></a></li>
+          <li><a href="index.html#responsive"><span class="toc-num">★</span><span class="toc-label">Desktop-Showcase · 1440 × 900</span><span class="toc-count">7</span></a></li>
+          <li><a href="index.html#rationale"><span class="toc-num">§</span><span class="toc-label">Rationale im Canvas</span><span class="toc-count">→</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Docs -->
+    <div class="sec-head">
+      <div>
+        <div class="kicker">Begleitdokumente</div>
+        <h2>Lesematerial</h2>
+      </div>
+      <div class="sec-meta">Markdown · druckbar<br>für PR-Kommentare</div>
+    </div>
+    <section class="docs">
+      <a class="doc" href="plan.md">
+        <div class="icon scarlet"></div>
+        <h4>Migrations-Plan</h4>
+        <p>Roadmap mit Meilensteinen, TanStack-Slots.</p>
+        <span class="ext">plan.md</span>
+      </a>
+      <a class="doc" href="README.md">
+        <div class="icon"></div>
+        <h4>README</h4>
+        <p>Bundle-Übersicht, Stack-Vorgaben, Lieferumfang.</p>
+        <span class="ext">README.md</span>
+      </a>
+      <a class="doc" href="COMPONENTS.md">
+        <div class="icon"></div>
+        <h4>Komponenten-Index</h4>
+        <p>Props-Tabellen, shadcn-Mapping, Datei-Anker.</p>
+        <span class="ext">COMPONENTS.md</span>
+      </a>
+      <a class="doc" href="RATIONALE.md">
+        <div class="icon"></div>
+        <h4>Rationale</h4>
+        <p>Designabsicht je Screen, Empfehlung, was wir streichen.</p>
+        <span class="ext">RATIONALE.md</span>
+      </a>
+      <a class="doc" href="ACCESSIBILITY.md">
+        <div class="icon"></div>
+        <h4>A11y-Audit</h4>
+        <p>Kontrast-Stichproben, Engineering-To-Dos.</p>
+        <span class="ext">ACCESSIBILITY.md</span>
+      </a>
+      <a class="doc" href="TASKS.md">
+        <div class="icon"></div>
+        <h4>Depth-of-Play</h4>
+        <p>T1–T3 Roadmap, abgeschlossene Tracks.</p>
+        <span class="ext">TASKS.md</span>
+      </a>
+    </section>
+
+    <!-- Foot -->
+    <footer class="foot">
+      <div class="colophon">
+        Gesetzt in Newsreader, Inter und JetBrains Mono. Statisch ausgeliefert über nginx; React/Babel und Babylon.js kommen vom CDN. Alle Klubs, Spieler und Namen sind frei erfunden.
+      </div>
+      <div class="ed">
+        <div><b>Aurelia Premier · Styleguide-Hub</b></div>
+        <div>Overlay über dem claude.ai/design-Export</div>
+        <div style="margin-top:6px"><a href="Handoff Overview.html" style="color:var(--scarlet)">→ Original Handoff Overview</a></div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

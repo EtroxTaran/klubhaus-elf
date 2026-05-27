@@ -10,8 +10,15 @@ system, not our app; Quartz/`tools/docs-preview` is untouched.
 - **Babylon-only:** the Three.js stadium (`stadium-3d/` + `Stadium 3D.html`) is dropped at
   build time and stale links repoint to the Babylon stadium (ADR-0047). The committed
   handoff snapshot is never edited.
-- **No build step:** React/Babel/Fonts via CDN; local `.jsx` are Babel-transpiled in the
-  browser. nginx just serves the directory (the landing page is `Handoff Overview.html`).
+- **Overlay (`overlay/`):** a clickable **hub** (`hub.html`, the landing page) that links
+  every part, plus a dedicated **isometric Babylon scene** (`isometric.html` + `iso/`) and
+  shared `assets/` (Aurelia tokens + static fallback SVG). Copied over/alongside the export
+  at build — the snapshot stays byte-for-byte untouched (ADR-0048). The export's real design
+  canvas is preserved at `/index.html` (the old `index.html` clobber is gone); nginx serves
+  `hub.html` as `/` via its `index` directive.
+- **No build step:** React/Babel/Fonts and Babylon.js via CDN; local `.jsx` are
+  Babel-transpiled in the browser, `iso/*.js` are native ES modules. nginx just serves the
+  directory.
 
 ## Run
 
@@ -28,5 +35,8 @@ docker build -f tools/styleguide/Dockerfile -t fmx-styleguide . && \
 docker run --rm -p 8082:80 fmx-styleguide   # → http://localhost:8082
 ```
 
-Verify on deploy: the styleguide is clickable + responsive (Component States / adaptive
-screens), the Babylon stadium loads, and there is **no** Three.js "Stadium 3D" page.
+Verify on deploy: `/` is the hub and every card/link resolves; the design canvas is at
+`/index.html`; the isometric scene (`/isometric.html`) renders at the iso angle (drag
+rotates, scroll/keys zoom, elevation locked) with a static fallback when WebGL/JS is off;
+the Babylon stadium loads; layouts are responsive (sm/md/lg/xl); and there is **no**
+Three.js "Stadium 3D" page.

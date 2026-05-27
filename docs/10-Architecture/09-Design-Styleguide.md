@@ -12,17 +12,24 @@ related: [[09-Design-System]], [[09-Decisions/ADR-0010-design-system]], [[09-Dec
 
 > **The live, interactive styleguide is a separate deployment** (`STYLEGUIDE_DOMAIN`,
 > see `tools/styleguide/` + `docker-compose.docs.yml`): the claude.ai/design export
-> served clickable & responsive, **Babylon-only** (no Three.js). This vault page is the
+> served clickable & responsive, **Babylon-only** (no Three.js). The landing page is a
+> **clickable hub** (`hub.html`) that links every part — canvas, component library,
+> component-states, both prototypes, the Babylon stadium, the new **isometric scene**
+> (`isometric.html`), the maps and the docs; the design canvas stays at `/index.html`.
+> The hub + isometric scene live in a build-time **overlay** (`tools/styleguide/overlay/`)
+> so the export snapshot stays byte-for-byte untouched
+> ([[09-Decisions/ADR-0048-design-update-and-migration-path]]). This vault page is the
 > durable **token reference** (one current truth); the deployed site is the explorable
-> design system. The Quartz wiki is intentionally untouched.
+> design system. The Quartz wiki is intentionally untouched (default styling).
 
 Rendered, at-a-glance styleguide for the **Aurelia Premier** design system
 ("Sonntagszeitung", Direction A). The **source of truth** is
 [[09-Design-System]] §2–4 (synced from claude.ai/design via
 [[../30-Implementation/design-sync-workflow]], decision [[09-Decisions/ADR-0010-design-system]]);
 the recurring-update path is [[09-Decisions/ADR-0048-design-update-and-migration-path]].
-The deployed wiki itself is themed from exactly these tokens
-(`tools/docs-preview/custom.scss`).
+The deployed wiki uses **default Quartz styling** (the design system lives in the
+styleguide deployment, not the wiki); `tools/docs-preview/custom.scss` is
+intentionally empty.
 
 > Token values below are the export-confirmed set (`tailwind.config.ts`,
 > 2026-05-27). If they ever diverge from [[09-Design-System]], that note wins.
@@ -72,7 +79,10 @@ all neutralised under `prefers-reduced-motion`.
 The component layers (12 atoms, 10 composites, layout, screens) and the full
 45-screen catalogue live in [[09-Design-System]] §5/§10. Post-MVP isometric /
 3D stadium scenes render via **Babylon.js**
-([[09-Decisions/ADR-0047-babylon-3d-presentation-engine]]).
+([[09-Decisions/ADR-0047-babylon-3d-presentation-engine]]); the styleguide
+deployment ships a live, fallback-safe **isometric Babylon demo** (`isometric.html`,
+orthographic camera at the true 35.264°/45° isometric angle) alongside the
+free-orbit stadium studio.
 
 ## Related
 
