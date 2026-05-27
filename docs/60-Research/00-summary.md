@@ -186,3 +186,30 @@ Current draft direction:
 
 This feeds draft [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 and draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
+
+## Swappable Spatial-Event Match Engine (2026-05-27)
+
+[[swappable-spatial-event-match-engine-2026-05-27]] synthesizes the FMX-10
+follow-up research on match-engine runtime, exchangeability, spatial-event
+simulation, open-source candidates, offline/disconnect handling and LLM ticker
+boundaries.
+
+Current draft direction:
+
+- Match engine is planned as a **swappable spatial-event component**, not a
+  concrete TypeScript package.
+- Runtime posture is **Spike, Rust-default**: compare a small TS and Rust native
+  contract slice; choose Rust native as first authority if it shows no clear
+  disadvantage.
+- OpenFootball / OpenFootManager / RoboCup / Google Research Football and
+  physics/ECS libraries are **study + spike inputs only**; no code reuse without
+  separate license/code ADR.
+- 2D Canvas, ticker, replay and LLM commentary consume committed event/spatial
+  facts, never engine internals.
+- Offline remains A -> C: hybrid-online MVP now, command-first offline
+  manager-week later.
+
+This feeds draft
+[[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+and amends draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
+for key-event match ticker commentary.

@@ -3,10 +3,10 @@ title: State Machine - Watch Party
 status: current
 tags: [architecture, state-machine, watch-party, multiplayer]
 created: 2026-05-16
-updated: 2026-05-22
+updated: 2026-05-27
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/watch-party-and-conference]], [[../09-Decisions/ADR-0015-spectator-snapshot-streaming]]
+related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/watch-party-and-conference]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../09-Decisions/ADR-0015-spectator-snapshot-streaming]], [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
 ---
 
 # State Machine - Watch Party
@@ -80,6 +80,27 @@ rule.
 Architecture detail:
 [[../09-Decisions/ADR-0015-spectator-snapshot-streaming]].
 
+## 5.1 Disconnect pause rule
+
+Watch-party pause behavior is a group-level setting, not hard-coded per match.
+
+```text
+disconnectPauseMode = off | activeManagers | allManagers
+disconnectPauseWindowSeconds = 30..300, default 180
+disconnectPauseBudgetPerHalf = integer, default 1
+```
+
+Default: `activeManagers`.
+
+- Passive spectators never pause the underlying match.
+- Active managers may pause the shared broadcast only when the group rule allows
+  it and the pause budget is still available.
+- On reconnect, the service resumes from the current event cursor and reconciles
+  missed frames.
+- On timeout, the match continues using the last valid intervention state.
+- Abuse protection belongs here: pause budgets, cooldowns and audit events are
+  watch-party orchestration concerns, not match-engine logic.
+
 ## 6. Conference variant
 
 A conference watch-party subscribes to multiple match feeds
@@ -107,6 +128,9 @@ watch_party {                            # strongly-typed (typed cols + CHECK)
   broadcast_at: timestamptz?,
   setup_lock_at: timestamptz?,
   spectator_delay_s: integer,
+  disconnect_pause_mode: text + CHECK IN (off | active_managers | all_managers),
+  disconnect_pause_window_s: integer,
+  disconnect_pause_budget_per_half: integer,
   chat_enabled: boolean
 }
 
@@ -134,6 +158,8 @@ watch_party_participant {                # junction table (surrogate PK)
 | Failure | Recovery |
 |---|---|
 | Match worker crash mid-broadcast | Watch party stays `live`; spectator stream pauses; reconnect once match resumes |
+| Active manager disconnects | Apply group disconnect pause rule; auto-continue on timeout |
+| Passive spectator disconnects | No pause; reconnect to current cursor or replay |
 | Spectator delay queue overflow | Drop oldest frames; spectators see jump (logged) |
 | Poll deadline never reached (no votes) | Auto-cancel |
 
@@ -143,6 +169,8 @@ watch_party_participant {                # junction table (surrogate PK)
 - Poll quorum logic deterministic.
 - State machine never enters undefined state.
 - Spectator delay math holds under variable network conditions.
+- Disconnect pause mode respects passive-vs-active participants, timeout and
+  pause budget.
 
 ## 11. Future-scope notes (classified future-scope)
 

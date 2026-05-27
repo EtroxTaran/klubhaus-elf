@@ -33,6 +33,14 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > not ratified — no technology, gameplay or architecture decision is made without
 > Nico (2–3 sourced options + recommendation).
 
+> **FMX-10 match-engine re-evaluation (2026-05-27).** Nico directed that the
+> match engine must be planned as an exchangeable component from day one. Draft
+> [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+> is now the proposed target: server-authoritative spatial-event engine,
+> `MatchEnginePort`, 2D/ticker/replay from committed event/spatial facts, and a
+> **Spike, Rust-default** runtime posture. The older TypeScript-MVP runtime
+> stance is no longer the proposed target.
+
 ## Documentation Baseline (2026-05-22)
 
 [[Documentation-V1]] is the current vault-wide closure
@@ -188,10 +196,12 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   singleplayer; multiplayer rules are additive constraints. The MVP is a
   narrower Roguelite-first slice.
   ([[../50-Game-Design/singleplayer-baseline]])
-- **Match engine gameplay profile**: event-based 2D simulation with
-  intervention points, Result / Event / Spatial / Analytics output
-  layers, explicit match-depth profiles and server-authoritative MP.
-  ([[../50-Game-Design/match-engine]])
+- **Match engine gameplay profile**: swappable server-authoritative
+  spatial-event simulation with intervention points, Result / Event / Spatial /
+  Analytics output layers, explicit match-depth profiles, 2D/ticker/replay
+  consumers and Rust-default runtime spike. ([[../50-Game-Design/match-engine]],
+  [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]],
+  [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]])
 - **Player lifecycle and systemic events**: squad structure, player
   development, training/medicine, stadium/campus and match-day event
   specs are approved. Development is weekly and causal; PA is true hidden
@@ -1580,49 +1590,24 @@ Implementation should start from
   - **CI perf gate** (Phase 1, MVP, mandatory): Lighthouse CI + Playwright + injected `web-vitals` library on every PR; bundle-size CI per the budgets; match-engine perf gate per D1; storage assertion per A2.
   - **Phase 2** (post-MVP): add LambdaTest 1-slot weekly real-device job (~€1.5 k/yr) on Galaxy A54 / Pixel 7a / iPhone SE 3-class hardware.
   - **Phase 3** (optional, only if Phase 2 insufficient): build 5-device hardware rig (~€2.4 k one-off + €800/yr amortised).
-- **ADR-0003 Match Engine** (accepted 2026-05-16, gap A3) -
+  - **ADR-0003 Match Engine** (accepted 2026-05-16, gap A3) -
   [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]:
-  - **Package**: `packages/match-engine/` is framework-agnostic
-    (no React, no DOM, no `fetch`). Same engine runs in the client
-    Web Worker (singleplayer) and the server Match Worker (MP).
-  - **Public API**: `simulate(MatchInputs) → MatchResult`,
-    `simulateStreaming(MatchInputs) → AsyncIterable<MatchEvent>`,
-    `replay(MatchInputs) → AsyncIterable<MatchEvent>`. All
-    deterministic given the same seeds + lineups + tactics +
-    weather + referee_profile + engine_version.
-  - **Canonical data**: formation zone weights live as **TS
-    literals** in `packages/match-engine/src/data/formations/`
-    with strongly-typed `FormationId` × `RoleId` unions and
-    DRY pattern constants. Set-piece routines live as TS literals
-    in `data/set-piece-routines/` (canonical library, ~15-25
-    routines at MVP).
-  - **Community overrides** (per ADR-0016): packs may ship a
-    `formations` JSON section + library-grade routines, applied
-    at engine init. Determinism preserved via
-    `dataset_pack_version` in `engine_version`.
-  - **Set-piece routines hybrid**: MVP = canonical library only;
-    Phase 2 = per-club editor for Expert tier with full routine
-    definitions embedded in match records for replay stability.
-  - **ID naming**: namespaced slug pattern - `category/name` core,
-    `mod.<pack>.category/name` community, `club:<id>.<slug>`
-    per-club, `n-n-n` formations, short uppercase role IDs.
-    Stable forever; semantic changes = new ID + compatibility stub.
-  - **Worker bridge**: postMessage with discriminated-union types
-    (no comlink at MVP); events batched per virtual minute or
-    every 20 events; `abortSignal` in `MatchInputs` for streaming
-    cancellation.
-  - **Performance**: ≤ 50 ms / match on 2022 mid-range Android;
-    30-40 ms soft alert; ≤ 30 ms for AI-vs-AI batch (no
-    narrative).
-  - **Engine version**: semver (`2.3.0`) embedded in every match
-    record + save envelope; engine modules vendored per version
-    inside the PWA bundle for offline replay.
-  - **Runtime strategy update** (2026-05-17): TypeScript remains the MVP
-    authoritative engine for client Web Worker and server Match Worker.
-    Post-MVP Rust/polyglot extraction is allowed only after the gate in
-    [[../60-Research/match-engine-runtime-strategy]] passes: measured need,
-    stable DTO contract, golden replay parity, statistical parity,
-    determinism parity, operational readiness and old-engine replay fallback.
+  - Historical TypeScript-first target only. FMX-10 reopens this decision and
+    proposes [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+    as the replacement target.
+  - Current proposed rule: consumers depend on a versioned `MatchEnginePort`,
+    not on a concrete `packages/match-engine` runtime. The first implementation
+    may be TypeScript only as spike/reference adapter; Rust-native is the
+    default production candidate if the TS-vs-Rust spike shows no clear
+    disadvantage.
+  - Match output is committed event log + spatial samples + summary. Canvas 2D,
+    live ticker, reports and replay are projections of those facts.
+  - **Performance**: old ≤ 50 ms Web Worker budget is historical. ADR-0049
+    requires the runtime spike to set p95 budgets for each quality profile and
+    prove golden replay, statistical and adapter parity.
+  - **Engine version**: every canonical match record carries engine id, contract
+    version, RNG version and input hash; old-engine replay fallback is required
+    before replacing an engine.
   - **Quality profiles**: `competitive-full`,
     `interactive-standard`, `background-detailed`, `background-fast`.
     The selected profile is part of `MatchInputs` and replay inputs.
@@ -1648,13 +1633,10 @@ Implementation should start from
   - **RNG separation**: `MatchCoreRng` (physics + duration sampling
     + injuries) vs `MatchAiRng` (in-match AI tactical decisions).
     Allows AI refactor without breaking physical replays.
-  - **Performance budget**: ≤ 50 ms per full match in Web Worker
-    on 2022 mid-range Android; soft alert 30-40 ms. AI-vs-AI
-    batch ≤ 30 ms (no narrative).
-  - **Worker bridge**: `simulate(MatchInputs)` /
-    `simulateStreaming` / `replay`; postMessage with discriminated-
-    union types; events batched per virtual minute or every ~20
-    events.
+  - **Performance budget**: historical Web Worker target; FMX-10 moves the
+    authoritative match-engine budget to the runtime spike in ADR-0049.
+  - **Worker bridge**: historical client adapter source. Future client preview,
+    replay or offline adapters must still sit behind `MatchEnginePort`.
   - **Test pyramid**: full - unit + integration + 10 canonical
     golden replays + statistical envelope tests (1k-5k nightly
     matches) + property-based (fast-check + pure-rand) + CI perf

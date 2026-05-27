@@ -3,10 +3,10 @@ title: Watch Party and Conference Mode
 status: draft
 tags: [game-design, mode, multiplayer, watch-party, conference]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-27
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/async-multiplayer-research]], [[async-multiplayer-private-group]], [[../10-Architecture/state-machines/watch-party]]
+related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[async-multiplayer-private-group]], [[../10-Architecture/state-machines/watch-party]]
 ---
 
 # Watch Party and Conference Mode
@@ -103,10 +103,17 @@ For watch-party / human-vs-human matches the group rule set specifies:
 | Inputs at any time? | Always / Only fixed windows |
 | Coach view delay | Live / 5 s / 15 s |
 | Spectator view delay | 15 / 30 / 60 s |
+| Disconnect pause mode | Off / Active managers / All managers |
+| Disconnect pause window | 30-300 s, default 180 s |
 | Chat | Live / 10 s delayed for spectators |
 
 The delay rule ensures spectators with voice contact to a manager cannot
 feed real-time tactical info.
+
+Default disconnect behavior: only active managers may pause the shared
+broadcast, and only within the group's pause budget. Passive spectators never
+pause the match; reconnect puts them back on the current delayed stream or the
+replay.
 
 ## 8. Conference mode
 

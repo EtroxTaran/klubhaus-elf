@@ -4,9 +4,9 @@ status: current
 binding: true
 tags: [research, offline, pwa, mvp, sync, indexeddb]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-05-27
 type: research
-related: [[00-summary]], [[pwa-offline-patterns]], [[../00-Index/MVP-Scope]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
+related: [[00-summary]], [[pwa-offline-patterns]], [[swappable-spatial-event-match-engine-2026-05-27]], [[../00-Index/MVP-Scope]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
 ---
 
 # Offline MVP Scope and Future Sync Strategy
@@ -14,6 +14,11 @@ related: [[00-summary]], [[pwa-offline-patterns]], [[../00-Index/MVP-Scope]], [[
 This note promotes the May 2026 scope research into a binding synthesis for the
 MVP: build an **offline-ready hybrid-online PWA**, not a full offline-first
 domain model in the MVP.
+
+> FMX-10 update, 2026-05-27: the offline direction is A -> C. MVP remains
+> hybrid-online and server-confirmed. Future offline starts with command-shaped
+> manager-week intents and only later considers local match authority behind the
+> same `MatchEnginePort`.
 
 ## Question
 
@@ -99,7 +104,7 @@ The MVP chooses the first three levels and reserves the final two for Phase 2+.
 | Dashboard/read models | Cache last confirmed data; mark stale. | Deeper local projections. |
 | Tactics/training/lineup | Local drafts only. | Queued intents, then local-authoritative SP. |
 | Day/week progression | Online-confirmed command. | Local SP adapter with deterministic replay. |
-| Match simulation | Online-confirmed MVP command; deterministic engine contract retained. | Client Worker local authority for SP; server remains MP authority. |
+| Match simulation | Online-confirmed MVP command; deterministic engine contract retained. | Future local adapter behind `MatchEnginePort`; client authority only after a dedicated ADR/GDDR. |
 | Transfers/contracts | Online-confirmed. | Draft + revalidate first; SP local authority only when rules mature. |
 | Save export/import | Designed but not user-facing. | Full envelope, migrations, import/export UI. |
 | Async multiplayer | Out of MVP. | Server-authoritative; offline drafts/intents only. |

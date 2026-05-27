@@ -30,7 +30,8 @@ contradict an `approved` game-design record.
 
 | ADR | Status | Decision | Lineage |
 |---|---|---|---|
-| [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] | draft | Deterministic TypeScript match engine, event-first simulation, replay contracts. | Current. |
+| [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] | draft | Historical deterministic TypeScript match-engine target; reopened and superseded as planning target by ADR-0049. | Superseded by draft ADR-0049 if ratified. |
+| [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]] | draft | Swappable server-authoritative spatial-event match engine; TS-vs-Rust spike with Rust-native default. | Supersedes ADR-0003 as proposed target. |
 | [[../10-Architecture/09-Decisions/ADR-0005-save-format]] | draft | Encrypted save/export envelope, versioning, RNG state snapshot. | Current; timing amended by ADR-0020. |
 | [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] | draft | IP-clean naming and data generation. | Current. |
 | [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]] | draft | Agent and Cursor orchestration. | Current. |
@@ -94,7 +95,8 @@ PR as the work that needs them.
 - [[../30-Implementation/postgres-drizzle-integration]] - implementation spec for ADR-0027/0028.
 - [[../30-Implementation/notification-messaging-platform]] - implementation spec for ADR-0043 notification, messaging, delivery and provider boundaries.
 - [[../30-Implementation/hybrid-online-pwa-strategy]] - implementation stance for ADR-0020.
-- [[../60-Research/match-engine-runtime-strategy]] - TypeScript MVP engine and post-MVP extraction gate.
+- [[../60-Research/match-engine-runtime-strategy]] - reopened runtime strategy: swappable runtime spike with Rust-native default candidate.
+- [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]] - FMX-10 synthesis for engine exchangeability, spatial-event model, runtime spike, OSS due diligence, disconnect/offline and LLM ticker boundaries.
 - [[../60-Research/presentation-renderer-strategy]] - research basis for ADR-0041.
 - [[../60-Research/determinism-and-replay]] - deterministic simulation and replay rules.
 - [[../60-Research/performance-budgets]] - device, bundle, memory, storage and match-render budgets.

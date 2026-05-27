@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-27
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -58,6 +58,15 @@ the triage note [[../incoming-design-research-2026-05-27]].
 | [[raw-roguelite-meta-progression]] | Run/meta split, behaviour-based perk unlocks, legacy world-carry | [[../late-game-systems]] · [[../incoming-design-research-2026-05-27]] |
 | [[raw-club-economy-simulation]] | Full club economy model: cashflow, revenue/cost, insolvency, infrastructure | [[../../50-Game-Design/economy-system]] · [[../incoming-design-research-2026-05-27]] |
 | [[raw-match-engine-offline-and-disconnect]] | Where match computes, offline PWA scope, disconnect/reconnect handling | [[../match-engine-runtime-strategy]] · [[../incoming-design-research-2026-05-27]] |
+
+## FMX-10 follow-up Perplexity research (2026-05-27)
+
+Additional Perplexity research was run during FMX-10 after Nico re-questioned
+the match-engine runtime and exchangeability posture.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-swappable-spatial-event-match-engine-runtime]] | Runtime strategy, spatial-event model, OSS candidates and replacement/determinism contracts | [[../swappable-spatial-event-match-engine-2026-05-27]] · [[../../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]] |
 
 ## Rules
 

@@ -3,7 +3,7 @@ title: Documentation V1 Baseline
 status: current
 tags: [meta, baseline, v1, planning, architecture]
 created: 2026-05-22
-updated: 2026-05-22
+updated: 2026-05-27
 type: baseline
 binding: true
 supersedes: Documentation-Baseline-2026-05-22
@@ -17,6 +17,8 @@ related:
   - [[Feature-Map]]
   - [[Research-Map]]
   - [[Implementation-Map]]
+  - [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+  - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 ---
 
@@ -31,6 +33,13 @@ The project is still in the planning and architecture phase. That makes V1 a
 clean baseline, not a release freeze: future decisions may change it, but only
 through an explicit ADR/GDDR/spec update plus the same index updates described
 below.
+
+> FMX-10 update, 2026-05-27: the V1 match-engine runtime baseline was reopened.
+> The old TypeScript-first match-engine target is no longer the current planning
+> target. Use [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+> and [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]] as the
+> proposed replacement direction; implementation still waits for Nico's
+> architecture sign-off.
 
 ## 1. Authority
 
@@ -127,11 +136,17 @@ Linear beat.
 
 ### Match, Simulation and Presentation
 
-- The match engine is deterministic, framework-agnostic TypeScript at MVP.
-- Replays depend on seed, lineups, tactics, engine version and event logs where
-  human involvement requires audit/fast UI.
-- Match output is event-first. Renderer frames are derived, not persisted.
-- MVP match presentation is Text & Stats plus Canvas 2D.
+- The match engine must be planned as exchangeable from day one. The current
+  proposed target is a server-authoritative spatial-event engine behind a
+  versioned `MatchEnginePort`, with a TS-vs-Rust spike and Rust-native default
+  if the spike finds no clear disadvantage.
+- The old V1 TypeScript-first match-engine sentence is historical context only;
+  do not implement it as the current target.
+- Replays depend on seed, lineups, tactics, engine/runtime identifiers,
+  contract version and event logs where human involvement requires audit/fast UI.
+- Match output is event-first plus spatial samples. Renderer frames, ticker
+  lines and reports are derived, not authoritative.
+- MVP match presentation remains Text & Stats plus Canvas 2D.
 - There is no interactive or authoritative browser 3D match view.
 - Optional post-MVP 2.5D/3D presentation scenes are non-authoritative,
   lazy-loaded, fallback-safe and use Three.js + React Three Fiber only unless a

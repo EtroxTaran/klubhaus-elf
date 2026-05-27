@@ -1,19 +1,28 @@
 ---
-title: Match Engine Simulation Model - Locked Decisions
+title: Match Engine Simulation Model - Historical Input
 status: current
-tags: [research, match-engine, simulation, markov, attributes, wave-3, binding]
+tags: [research, match-engine, simulation, markov, attributes, wave-3, reopened]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-27
 type: research
-binding: true
-related: [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[determinism-and-replay]], [[match-engine-runtime-strategy]], [[performance-budgets]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/state-machines/match]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/tactics-system]], [[../50-Game-Design/progressive-disclosure-ui]]
+binding: false
+superseded_by: swappable-spatial-event-match-engine-2026-05-27
+related: [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[determinism-and-replay]], [[match-engine-runtime-strategy]], [[swappable-spatial-event-match-engine-2026-05-27]], [[performance-budgets]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../10-Architecture/state-machines/match]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/tactics-system]], [[../50-Game-Design/progressive-disclosure-ui]]
 ---
 
-# Match Engine Simulation Model - Locked Decisions
+# Match Engine Simulation Model - Historical Input
 
-This note resolves Wave 3 gap **D1** (R2-01: Deterministic match-engine
-simulation model). It is the **binding** reference for the match engine
-implementation in `packages/match-engine`.
+> FMX-10 update, 2026-05-27: this note remains useful research input for event
+> math, attributes, zones and deterministic replay, but it is no longer binding
+> as the implementation target. The current proposed target is
+> [[swappable-spatial-event-match-engine-2026-05-27]] and
+> [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]].
+> In particular, `packages/match-engine`, Web Worker authority and the 50 ms
+> TypeScript budget are historical assumptions until re-ratified.
+
+This note originally resolved Wave 3 gap **D1** (R2-01: deterministic
+match-engine simulation model). Treat it as source material for the new
+spatial-event model, not as a direct implementation specification.
 
 These rules feed Wave 3 gap **A3** (ADR-0003 Match Engine depth
 rewrite), **E13** (Worker bridge), **E11** (test strategy), **I8**
@@ -121,8 +130,8 @@ Per Perplexity research 2026-05-16, the alternatives were inferior:
   visualisation + intermediate states.
 - **Minute-by-minute Markov alone**: too coarse for short sequences
   (press → regain → shot).
-- **FM-style per-tick micro alone**: too expensive for our 50 ms
-  budget + Web Worker.
+- **FM-style per-tick micro alone**: too expensive for the historical 50 ms
+  Web Worker budget and still risky for an exchangeable runtime contract.
 
 Hybrid Markov + attribute rolls is what open-source TS football sims
 (e.g. `nutmeggame/football-sim`) and academic work
@@ -772,7 +781,7 @@ fouls/cards. Run in Node CI on every PR. Cross-browser perf checks
 | Event schema | Required core + typed optional payloads + optional tactical_context (delta-encoded) |
 | Formation interaction | Hybrid zone + role influence; per-zone deltas modulate Markov transitions + attribute thresholds |
 | RNG streams | Strict separation: `MatchCoreRng` (physics) + `MatchAiRng` (in-match AI) |
-| Performance budget | ≤ 50 ms per full match in Web Worker; soft alert 30-40 ms |
+| Performance budget | Historical Web Worker target; FMX-10 resets this through the TS-vs-Rust runtime spike |
 | Test strategy | Full pyramid: unit + integration + 10 golden + statistical envelopes + property-based + perf gate |
 | Storage policy | Match table SCHEMAFULL; match_event table SCHEMALESS; AI vs AI = seed-only (re-sim on demand) |
 | Worker bridge | postMessage with discriminated-union types; events batched per virtual minute or every 20 events |
@@ -780,12 +789,14 @@ fouls/cards. Run in Node CI on every PR. Cross-browser perf checks
 
 ## 11. Cross-references
 
-- **A3** (ADR-0003 Match Engine depth rewrite) — paste §10 + §1 + §3
-  into the Decision section.
-- **D9** (R2-09 performance budgets) — 50 ms target locked here;
-  cross-browser perf check is D9's scope.
-- **E13** (Worker bridge implementation guide) — concrete
-  postMessage protocol locked here.
+- **A3** (ADR-0003 Match Engine depth rewrite) — historical source for the
+  pre-FMX-10 TypeScript-first target.
+- **ADR-0049** — owns the replacement target, engine boundary, runtime spike
+  and replacement gates.
+- **D9** (R2-09 performance budgets) — old 50 ms Web Worker target was locked
+  here; FMX-10 moves the authoritative match-engine budget to the runtime spike.
+- **E13** (Worker bridge implementation guide) — old concrete postMessage
+  protocol source; future client adapters must still sit behind `MatchEnginePort`.
 - **E11** (test strategy implementation guide) — paste §8 verbatim.
 - **I8** (match-engine zone/tick) — locked: 18 zones, per-event tick.
 - **R2-04** (AI manager / opponent behaviour) — owns the

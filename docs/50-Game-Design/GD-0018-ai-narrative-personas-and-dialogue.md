@@ -11,8 +11,10 @@ superseded_by:
 related:
   - [[README]]
   - [[GD-0013-narrative-inbox]]
+  - [[match-engine]]
   - [[GD-0010-ai-world]]
   - [[../60-Research/ai-narrative-runtime-integration]]
+  - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../60-Research/raw-perplexity/raw-ai-llm-usage]]
   - [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]]
   - [[../60-Research/narrative-content-pipeline]]
@@ -53,10 +55,16 @@ remember what happened and react in ways that feel specific to the world.
   intents. Intent plus actor traits drives any morale, trust, pressure or
   transfer-readiness effect. The LLM, if enabled, only phrases lines. Source:
   [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]].
-- **MVP Runtime-LLM candidate is async flavour only.** Candidate surfaces:
-  post-match newspaper snippets, injury/event reports, weekly summaries and
-  transfer negotiation flavour after the result is fixed. Source:
+- **MVP Runtime-LLM candidate is key-event/asynchronous flavour only.**
+  Candidate surfaces: key-event match ticker wording after the event is
+  committed, post-match newspaper snippets, injury/event reports, weekly
+  summaries and transfer negotiation flavour after the result is fixed. Source:
   [[../60-Research/ai-narrative-runtime-integration]].
+- **Match ticker LLM is not match AI.** It may phrase goals, big chances,
+  cards, injuries, substitutions, halftime and full-time from the committed
+  event log. Routine lines remain template-first. The output never changes the
+  event, stat, rating or replay. Source:
+  [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]].
 - **Press and player talks are future tracks.** They are important for the
   long-term "my story" goal, but are not the first Runtime-LLM candidate due to
   session length, balance, UX, latency and disclosure risk.
@@ -75,6 +83,7 @@ remember what happened and react in ways that feel specific to the world.
 - Whether the info/settings-level AI disclosure preference satisfies EU AI Act
   Article 50 for the intended in-game surfaces.
 - Final OpenRouter model/provider routing, cost caps and cache policy.
+- Exact key-event list and per-match budget for LLM ticker beta.
 - Content volume targets for async flavour after the deterministic template
   baseline is updated.
 
