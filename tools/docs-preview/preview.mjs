@@ -57,13 +57,15 @@ if (!existsSync(quartzDir)) {
   console.log('Reusing existing Quartz checkout (delete tools/docs-preview/.quartz to refresh).')
 }
 
-// Apply the Aurelia Premier wiki theme (design tokens). Quartz imports
-// quartz/styles/custom.scss last, so these overrides win. Additive — safe.
+// Wiki uses DEFAULT Quartz styling: our custom.scss is intentionally empty
+// (FMX-11 revert), copied over Quartz's own (empty) quartz/styles/custom.scss.
+// Keep it empty / colour-variable-only — NEVER add `@import url(...)`, which
+// breaks the Quartz build ("@import rules must precede all rules").
 const themeSrc = join(here, 'custom.scss')
 const themeDest = join(quartzDir, 'quartz', 'styles', 'custom.scss')
 if (existsSync(themeSrc)) {
   cpSync(themeSrc, themeDest)
-  console.log('Applied design-token theme to Quartz (custom.scss).')
+  console.log('Copied custom.scss (empty = stock Quartz) into Quartz.')
 }
 
 // Mirror the vault into Quartz's content directory, excluding Obsidian's

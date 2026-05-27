@@ -41,7 +41,8 @@ RUN cp -r /ctx/docs/. ./content/ \
      done \
   && cp /ctx/tools/docs-preview/nginx.conf /build/nginx.conf \
   && cp /ctx/tools/docs-preview/sanitize-frontmatter.mjs /build/sanitize-frontmatter.mjs \
-  # Aurelia Premier wiki theme (design tokens) — Quartz imports custom.scss last.
+  # Default Quartz styling: custom.scss is intentionally empty (FMX-11), copied
+  # over Quartz's own empty custom.scss. NEVER add `@import url(...)` (breaks build).
   && cp /ctx/tools/docs-preview/custom.scss /build/quartz/styles/custom.scss \
   && rm -rf content/.obsidian /ctx \
   && cp content/00-Index/Home.md content/index.md \
