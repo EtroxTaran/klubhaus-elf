@@ -9,11 +9,17 @@ type: adr
 binding: true
 supersedes:
 superseded_by:
+amended_by: [[ADR-0047-babylon-3d-presentation-engine]]
 amends: [[ADR-0024-match-renderer-abstraction]], [[ADR-0029-3d-presentation-layer]]
 related: [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[ADR-0029-3d-presentation-layer]], [[ADR-0025-mobile-delivery]], [[ADR-0019-modular-monolith-ddd]], [[../../60-Research/presentation-renderer-strategy]], [[../../60-Research/performance-budgets]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/stadium-and-campus]]
 ---
 
 # ADR-0041: Two-Renderer Presentation Strategy
+
+> **AMENDED 2026-05-27 by [[ADR-0047-babylon-3d-presentation-engine]].** The optional
+> 3D engine is now **Babylon.js** (replaces Three.js/R3F in the Decision below); the
+> "no Babylon without a superseding ADR" guardrail is satisfied by ADR-0047. The
+> two-renderer principle and Canvas-2D match render are unchanged.
 
 ## Status
 

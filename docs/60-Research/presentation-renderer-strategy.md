@@ -11,6 +11,11 @@ related: [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strate
 
 # Presentation Renderer Strategy - Canvas 2D plus Three/R3F
 
+> **2026-05-27 — engine updated by [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]].**
+> The optional 3D/2.5D engine is now **Babylon.js** (not Three.js/R3F). This note's
+> reasoning about the *seam* (descriptor-driven, fallback-safe, presentation-only, one
+> optional 3D stack) stands; only the engine name changes. Match render stays Canvas 2D.
+
 This note promotes the attached May 2026 renderer report and the follow-up
 architecture review into durable vault memory. It does **not** re-open the MVP
 match-renderer decision. The MVP remains Text & Stats plus Canvas 2D.
