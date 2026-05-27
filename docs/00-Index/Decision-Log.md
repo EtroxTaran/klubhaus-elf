@@ -3,7 +3,7 @@ title: Decision Log
 status: current
 tags: [adr]
 created: 2026-05-15
-updated: 2026-05-22
+updated: 2026-05-27
 type: index
 binding: true
 related: [[Documentation-V1]], [[Current-State]], [[Architecture-Map]], [[../50-Game-Design/README]]
@@ -51,6 +51,17 @@ contradict an `approved` game-design record.
 | [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] | draft | Post-MVP non-authoritative Three/R3F presentation scenes. | Tightened by ADR-0041. |
 | [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]] | draft | MVP Text & Stats + Canvas 2D; optional post-MVP Three/R3F presentation scenes only. | Current. |
 | [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]] | draft | First-party Notification bounded context; Postgres durable truth, SurrealDB projection, Dexie offline mirror, Brevo/Mailjet email, Web Push/native push prepared. | Amends ADR-0021/0023/0028 for notification delivery. |
+
+## Process & Workflow ADRs (proposed 2026-05-27, draft)
+
+These decide *how the team works* (CI/CD, merge, agent workflow, scaling), not how the
+game is built. Draft until ratified.
+
+| ADR | Status | Decision | Lineage |
+|---|---|---|---|
+| [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]] | draft | Portable pipeline (check logic in repo scripts, thin CI) + auto-merge-when-green (docs: no review; code: CODEOWNER review); `Closes` ⇒ issue Done. | New; updates the "only Nico merges" stance. |
+| [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]] | draft | One issue ↔ one git worktree ↔ one branch per agent session; no work without an issue (override = Nico command). | New. |
+| [[../10-Architecture/09-Decisions/ADR-0046-team-topology-and-scaling]] | draft | Future-scope: Lead Architect + Domain Leads, CODEOWNERS-by-domain, activates when the 2nd lead joins. | New; future-scope. |
 
 ## Superseded ADRs
 

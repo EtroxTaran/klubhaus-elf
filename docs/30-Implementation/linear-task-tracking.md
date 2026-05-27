@@ -61,14 +61,17 @@ every issue.
 
 The Linear issue ID in the **branch name** is the auto-link key.
 
-- **Branch:** humans `feat/fmx-<n>-<slug>`; agents `claude|codex|cursor/fmx-<n>-<slug>`.
-- **PR title:** `[FMX-<n>] …`. **PR body first line:** `Closes FMX-<n>` (for
-  docs/non-closing PRs: `Part of FMX-<n>`).
+- **Branch + worktree:** one issue ↔ one git worktree ↔ one branch (ADR-0045).
+  Humans `feat/fmx-<n>-<slug>`; agents `claude|codex|cursor/fmx-<n>-<slug>`.
+- **PR title:** `[FMX-<n>] …`. **PR body first line:** `Closes FMX-<n>` — **1 PR ↔
+  1 issue**, merge auto-closes it (`Part of FMX-<n>` only when one issue truly needs
+  several PRs).
 - **Team automations:** PR opened → `In Progress`; PR merged → `Done`. (Merge is
   Nico's action, so the human-only `Done` rule is preserved.)
-- **Merge:** squash-merge to `main` via PR (branch-protected: PR required, no
-  force-push/deletion, linear history). Required CI checks / review-requirement are
-  added once CI returns.
+- **Merge:** **auto-merge-when-green** (ADR-0044) — squash to `main`, branch-protected
+  (PR required, no force-push/deletion, linear history). Docs/low-risk: green required
+  checks (`docs-check` + `linear-id`) → merges, **no review, no manual Nico-merge**.
+  Code → `main`: green checks **plus ≥1 CODEOWNER review** (activates with code-CI).
 - **Attribution:** Linear **assignee = responsible human (Nico)**. Agents are
   **GitHub-only actors**, not mapped to Linear users; commits stay authored as
   `Nico <dev@etrox.de>` (repo rule: agents are assistants, not authors). Which
@@ -113,3 +116,5 @@ commit ⇄ PR auto-link is confirmed working.
 - [[../90-Meta/vault-governance]] — canonical-location rule, supersede discipline
 - [[../00-Index/Current-State]] · [[../00-Index/Decision-Log]] · [[../50-Game-Design/README]]
 - [[../10-Architecture/bounded-context-map]] — source of the `area:` clusters
+- [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]] — CI/CD + auto-merge policy
+- [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]] — issue-first + worktree

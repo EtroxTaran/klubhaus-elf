@@ -3,9 +3,9 @@ title: Agent Workflow Pattern
 status: draft
 tags: [implementation, process, workflow]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-27
 type: implementation
-related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../90-Meta/agent-memory-protocol]], [[../90-Meta/vault-governance]], [[ci-and-review-process]], [[cursor-cloud-agent-workflow]], [[design-sync-workflow]], [[../10-Architecture/09-Design-System]]
+related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../90-Meta/agent-memory-protocol]], [[../90-Meta/vault-governance]], [[ci-and-review-process]], [[cursor-cloud-agent-workflow]], [[design-sync-workflow]], [[../10-Architecture/09-Design-System]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]]
 ---
 
 # Agent Workflow Pattern
@@ -36,7 +36,10 @@ It exists to make seven principles inescapable rather than scattered:
 
 Every beat follows this cycle. Do not skip a step; do not reorder.
 
-1. **Pick** one small beat from Linear (team FMX). Not ad-hoc chat work.
+1. **Pick** one small beat from Linear (team FMX) and work it in its **own git
+   worktree + branch** `‹tool›/fmx-‹n›-slug` — one issue ↔ one worktree ↔ one branch
+   ([[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow|ADR-0045]]).
+   **No work without an issue**; the only exception is an explicit Nico override.
 2. **Confirm understanding.** Re-state the beat's intent and acceptance
    criteria. If anything is unclear → **stop and escalate** (see *Ask, don't
    work around*). Do not proceed on a guess.
@@ -46,10 +49,12 @@ Every beat follows this cycle. Do not skip a step; do not reorder.
    mandatory*). Keep the change modular and within package boundaries.
 5. **Reflect in the vault** in the *same change* (see *Vault reflection*).
 6. **Knowledge-base alignment check** before review (see *Alignment gate*).
-7. **Draft PR** → self-check green → **review phase** (Bugbot + human) →
-   green required checks → squash-merge.
-8. **Close Linear** only after merge: comment outcome, PR link, and final
-   vault paths.
+7. **Open PR** (`Closes FMX-‹n›`, one PR ↔ one issue) → required checks green →
+   **auto-merge** ([[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy|ADR-0044]]):
+   docs/low-risk merge on green with no review; code needs ≥1 CODEOWNER review.
+   No manual Nico-merge for green PRs.
+8. **Linear closes itself** on merge via `Closes FMX-‹n›` (PR merged → Done); add
+   final vault paths to the issue if useful.
 
 ## Beat sizing
 

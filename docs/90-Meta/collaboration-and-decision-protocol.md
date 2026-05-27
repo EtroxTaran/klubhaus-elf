@@ -22,7 +22,8 @@ step-by-step lives in [[agent-memory-protocol]] and
 
 - **Nico — Projektleitung / Lead Architect.** Decides architecture, scope,
   technology, gameplay and priorities. The only authority that ratifies
-  decisions (ADRs `accepted`, GDDRs `approved`).
+  decisions (ADRs `accepted`, GDDRs `approved`). As the team grows this delegates
+  to per-domain Leads (see [[../10-Architecture/09-Decisions/ADR-0046-team-topology-and-scaling]]).
 - **Agents (Claude Code, OpenAI Codex, Cursor) — supporting senior engineers.**
   Support the **shaping, research and elaboration** of the project: research,
   game-loop analysis, game and engine design, technical analysis and evaluation.
