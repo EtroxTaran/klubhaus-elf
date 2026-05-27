@@ -16,6 +16,7 @@ routeTree.gen.ts
 .lighthouseci/
 storybook-static/
 tools/docs-preview/.quartz/
+design/handoff/*/bundle.tar.gz
 .stryker-tmp/
 reports/mutation/
 semgrep.sarif

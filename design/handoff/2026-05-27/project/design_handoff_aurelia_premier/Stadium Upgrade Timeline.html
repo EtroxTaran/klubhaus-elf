@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aurelia Premier — Stadium Upgrade Timeline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --paper:#f4ede0; --rule:#d9cdb4; --ink:#1a1410; --muted:#5a4f44;
+      --scarlet:#b7301b; --serif:'Newsreader',Georgia,serif;
+      --ui:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;height:100%;background:#a9c9d6;color:#f0e7d4;
+      font-family:var(--ui);overflow:hidden;-webkit-font-smoothing:antialiased}
+
+    .su-root{position:fixed;inset:0;display:grid;grid-template-rows:auto 1fr;}
+    .su-stage{position:relative;overflow:hidden;background:#a9c9d6;}
+    .su-stage canvas{display:block;width:100%;height:100%;cursor:grab;}
+
+    /* Masthead */
+    .su-mast{display:flex;align-items:center;justify-content:space-between;
+      padding:14px 22px;background:rgba(0,0,0,.42);backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(240,231,212,.08);z-index:5;}
+    .su-mast-left{display:flex;align-items:center;gap:12px}
+    .su-mark{width:34px;height:34px;border-radius:50%;background:var(--scarlet);color:#fff;
+      display:grid;place-items:center;font-family:var(--serif);font-weight:800;font-size:15px;
+      box-shadow:inset 0 -2px 0 rgba(0,0,0,.18);letter-spacing:-.4px;}
+    .su-title{font-family:var(--serif);font-weight:700;font-size:18px;line-height:1;
+      color:#f6efdc;letter-spacing:-.3px;}
+    .su-title em{font-style:italic;font-weight:600}
+    .su-sub{font-weight:500;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;
+      color:rgba(240,231,212,.55);margin-top:3px;}
+    .su-mast-actions{display:flex;gap:8px;align-items:center}
+    .su-mast-btn{padding:7px 13px;border:1px solid rgba(240,231,212,.18);
+      background:transparent;color:#f0e7d4;border-radius:18px;font-size:11.5px;
+      font-weight:500;cursor:pointer;font-family:inherit;text-decoration:none;
+      transition:all .15s ease;display:inline-flex;align-items:center;gap:6px;}
+    .su-mast-btn:hover{background:rgba(240,231,212,.08);border-color:rgba(240,231,212,.32)}
+
+    /* Stage info panel (top-right) */
+    .su-info{position:absolute;top:18px;right:18px;width:300px;
+      background:rgba(20,16,12,.82);backdrop-filter:blur(14px);
+      border:1px solid rgba(240,231,212,.12);border-radius:12px;
+      padding:18px;z-index:4;color:#f0e7d4;
+      box-shadow:0 24px 60px -20px rgba(0,0,0,.6);}
+    .su-info-kicker{font-weight:700;font-size:9.5px;letter-spacing:1.6px;
+      text-transform:uppercase;color:var(--scarlet);}
+    .su-info-num{font-family:var(--serif);font-weight:800;font-size:60px;font-style:italic;
+      line-height:.85;letter-spacing:-2px;color:#f6efdc;margin:6px 0 2px;}
+    .su-info-title{font-family:var(--serif);font-weight:700;font-size:22px;
+      letter-spacing:-.3px;margin:0 0 8px;line-height:1.05;}
+    .su-info-meta{display:flex;gap:14px;font-family:var(--mono);font-size:11px;
+      color:rgba(240,231,212,.7);margin-bottom:8px;padding:8px 0;
+      border-top:1px solid rgba(240,231,212,.1);border-bottom:1px solid rgba(240,231,212,.1);}
+    .su-info-meta b{color:#f6efdc;font-weight:600}
+    .su-info-body{font-family:var(--serif);font-size:13px;font-style:italic;
+      color:rgba(240,231,212,.85);line-height:1.45;}
+
+    /* Performance HUD */
+    .su-hud{position:absolute;top:18px;left:18px;z-index:4;
+      background:rgba(20,16,12,.78);backdrop-filter:blur(10px);
+      border:1px solid rgba(240,231,212,.10);border-radius:8px;
+      padding:8px 12px;display:flex;gap:14px;font-family:var(--mono);font-size:11px;
+      color:rgba(240,231,212,.85);}
+    .su-hud b{color:#f6efdc;font-weight:600;margin-left:4px}
+    .su-hud-lbl{color:rgba(240,231,212,.45)}
+
+    /* Bottom timeline */
+    .su-timeline{position:absolute;bottom:0;left:0;right:0;z-index:5;
+      background:linear-gradient(180deg, transparent 0%, rgba(0,0,0,.5) 30%, rgba(0,0,0,.78) 100%);
+      padding:60px 30px 22px;color:#f0e7d4;}
+    .su-tl-row{display:flex;align-items:center;gap:14px;max-width:1080px;margin:0 auto}
+    .su-play{appearance:none;border:none;background:var(--scarlet);color:#fff;
+      width:42px;height:42px;border-radius:50%;cursor:pointer;
+      display:grid;place-items:center;font-size:16px;font-family:inherit;
+      box-shadow:0 8px 20px -8px rgba(183,48,27,.6);transition:transform .12s ease;}
+    .su-play:hover{transform:scale(1.05)}
+    .su-play:active{transform:scale(.98)}
+    .su-tl-time{font-family:var(--mono);font-size:12px;color:rgba(240,231,212,.7);
+      min-width:60px;font-variant-numeric:tabular-nums;}
+    .su-tl-time b{color:#f6efdc;font-weight:600}
+
+    .su-tl-track{flex:1;position:relative;height:36px;cursor:pointer;display:flex;align-items:center}
+    .su-tl-bar{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);
+      height:4px;background:rgba(240,231,212,.14);border-radius:2px;}
+    .su-tl-fill{position:absolute;left:0;top:50%;transform:translateY(-50%);
+      height:4px;background:var(--scarlet);border-radius:2px;
+      box-shadow:0 0 14px rgba(183,48,27,.5);}
+    .su-tl-thumb{position:absolute;width:16px;height:16px;border-radius:50%;
+      background:#f6efdc;border:2px solid var(--scarlet);top:50%;
+      transform:translate(-50%, -50%);box-shadow:0 4px 12px rgba(0,0,0,.4);
+      pointer-events:none;}
+    .su-tl-mark{position:absolute;top:50%;transform:translate(-50%, -50%);
+      pointer-events:none;}
+    .su-tl-mark .dot{width:10px;height:10px;border-radius:50%;
+      background:rgba(240,231,212,.4);border:2px solid rgba(20,16,12,.8);}
+    .su-tl-mark.is-passed .dot{background:var(--scarlet);border-color:var(--scarlet);}
+    .su-tl-mark .lbl{position:absolute;top:-30px;left:50%;transform:translateX(-50%);
+      font-family:var(--mono);font-size:10px;letter-spacing:.6px;text-transform:uppercase;
+      color:rgba(240,231,212,.6);white-space:nowrap;font-weight:600;}
+    .su-tl-mark.is-current .lbl{color:#f6efdc}
+    .su-tl-mark.is-passed .lbl{color:rgba(240,231,212,.85)}
+
+    .su-controls{display:flex;gap:8px;align-items:center;margin-left:8px;}
+    .su-controls button{appearance:none;border:1px solid rgba(240,231,212,.16);
+      background:transparent;color:#f0e7d4;padding:7px 12px;border-radius:6px;
+      font-size:11.5px;font-weight:500;cursor:pointer;font-family:inherit;
+      transition:all .15s ease;}
+    .su-controls button:hover{background:rgba(240,231,212,.08);border-color:rgba(240,231,212,.3)}
+    .su-controls button.is-active{background:rgba(183,48,27,.85);border-color:var(--scarlet);}
+
+    /* Loading splash */
+    .su-load{position:absolute;inset:0;display:grid;place-items:center;z-index:6;
+      background:radial-gradient(800px 400px at 50% 50%, #2a3f4c 0%, #0f1c25 100%);
+      color:rgba(240,231,212,.85);font-family:var(--serif);font-size:18px;
+      font-style:italic;letter-spacing:-.2px;pointer-events:none;opacity:1;
+      transition:opacity .4s ease;}
+    .su-load.is-done{opacity:0}
+    .su-load span{display:inline-block;animation:suPulse 1.6s ease-in-out infinite}
+    @keyframes suPulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+    /* Mid-screen stage announce */
+    .su-announce{position:absolute;top:50%;left:50%;
+      transform:translate(-50%, -50%) scale(0.96);
+      pointer-events:none;z-index:3;opacity:0;
+      font-family:var(--serif);font-weight:800;font-style:italic;
+      font-size:96px;letter-spacing:-3px;color:#f6efdc;
+      text-shadow:0 8px 24px rgba(0,0,0,.6), 0 2px 0 rgba(0,0,0,.4);
+      transition:opacity .35s ease, transform .35s cubic-bezier(.2,.8,.2,1);}
+    .su-announce.is-shown{opacity:1;transform:translate(-50%, -50%) scale(1.0)}
+    .su-announce .sub{display:block;font-size:18px;font-weight:600;
+      letter-spacing:1.8px;text-transform:uppercase;color:var(--scarlet);
+      font-style:normal;margin-bottom:4px;}
+
+    @media (max-width: 900px){
+      .su-info{width:auto;left:18px;right:18px;top:auto;bottom:140px;max-height:35vh;overflow-y:auto}
+      .su-info-num{font-size:36px}
+      .su-announce{font-size:48px}
+      .su-controls{display:none}
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://esm.sh/three@0.160.0",
+      "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="su-root">
+    <header class="su-mast">
+      <div class="su-mast-left">
+        <span class="su-mark">AP</span>
+        <div>
+          <div class="su-title">Aurelia <em>Premier</em> · Stadion-Ausbau</div>
+          <div class="su-sub">Construction Timeline · Bezirksliga → Europacup</div>
+        </div>
+      </div>
+      <div class="su-mast-actions">
+        <a class="su-mast-btn" href="Handoff Overview.html">← Overview</a>
+        <a class="su-mast-btn" href="Football Manager Map.html">Campus</a>
+        <a class="su-mast-btn" href="Stadium 3D.html">Stadium 3D</a>
+      </div>
+    </header>
+
+    <div class="su-stage" id="js-stage">
+      <div class="su-load" id="js-load"><span>Bauplan wird geladen …</span></div>
+
+      <div class="su-hud">
+        <span><span class="su-hud-lbl">FPS</span><b id="js-fps">—</b></span>
+        <span><span class="su-hud-lbl">Stufe</span><b id="js-stage-n">—</b></span>
+        <span><span class="su-hud-lbl">Phase</span><b id="js-phase">Plan</b></span>
+      </div>
+
+      <aside class="su-info">
+        <div class="su-info-kicker">Ausbau-Stufe</div>
+        <div class="su-info-num" id="js-info-num">I</div>
+        <div class="su-info-title" id="js-info-title">Bezirksliga</div>
+        <div class="su-info-meta" id="js-info-meta">
+          <span>Kap. <b>~5.000</b></span><span>Tribünen <b>1+3</b></span>
+        </div>
+        <div class="su-info-body" id="js-info-body">
+          Karrierebeginn: eine kleine Haupttribüne im Norden, drei einfache Stehkurven außenherum. Kein Flutlicht.
+        </div>
+      </aside>
+
+      <div class="su-announce" id="js-announce"></div>
+
+      <div class="su-timeline">
+        <div class="su-tl-row">
+          <button class="su-play" id="js-play" aria-label="Abspielen">▶</button>
+          <div class="su-tl-time"><b id="js-tl-time">0:00</b> / 0:24</div>
+          <div class="su-tl-track" id="js-tl-track">
+            <div class="su-tl-bar"></div>
+            <div class="su-tl-fill" id="js-tl-fill"></div>
+            <div class="su-tl-thumb" id="js-tl-thumb"></div>
+            <!-- Stage markers populated by JS -->
+          </div>
+          <div class="su-controls">
+            <button id="js-restart">↺ Neu</button>
+            <button id="js-speed" data-speed="1">1×</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // ── Palette ──
+    const C = {
+      grass: 0x4a8a3b, grassDark: 0x3f7831, grassLight: 0x5fa64e,
+      concrete: 0xcfc5b1, concreteDark: 0x9c9180,
+      sky: 0xa9c9d6, road: 0x454035,
+      scarlet: 0xb7301b, ink: 0x1a1410, paper: 0xf4ede0,
+      glass: 0x7fb4d3, roof: 0x1c1814,
+      craneYellow: 0xe8c66a, craneDark: 0x1a1410,
+    };
+
+    // ── Stages (matches Football Manager Map but standalone) ──
+    const STAGES = {
+      1: {
+        name: 'Bezirksliga', capacity: '~5.000',
+        info: 'Karrierebeginn: eine kleine Haupttribüne im Norden, drei einfache Stehkurven außenherum. Kein Flutlicht.',
+        stands: ['N'], terraces: ['S', 'E', 'W'], roofSides: ['N'],
+        standDepth: 3.5, standHeight: 2.6, floodlight: null, scoreboard: null, tier2: false,
+        standCount: '1 + 3 Kurven',
+      },
+      2: {
+        name: '2. Liga', capacity: '~12.000',
+        info: 'Vier Tribünen, Halbdach auf Nord/Süd. Erste kleine Flutlichtmasten in den Ecken.',
+        stands: ['N','S','E','W'], terraces: [], roofSides: ['N','S'],
+        standDepth: 4.2, standHeight: 3.2, floodlight: 7, scoreboard: null, tier2: false,
+        standCount: '4 Tribünen',
+      },
+      3: {
+        name: '1. Liga', capacity: '~25.000',
+        info: 'Vollumdach, vier vollausgebaute Tribünen, kompakte Anzeigetafel hinter der Nordkurve, mittlere Flutlichtmasten.',
+        stands: ['N','S','E','W'], terraces: [], roofSides: ['N','S','E','W'],
+        standDepth: 5.2, standHeight: 4.2, floodlight: 11, scoreboard: 'small', tier2: false,
+        standCount: '4 vollgedeckt',
+      },
+      4: {
+        name: 'Europacup', capacity: '~45.000',
+        info: 'Premium-Schüssel: zweistöckige Tribünen mit VIP-Ring, durchgehendes Dach, Pylon-Anzeigetafel.',
+        stands: ['N','S','E','W'], terraces: [], roofSides: ['N','S','E','W'],
+        standDepth: 6.5, standHeight: 5.6, floodlight: 16, scoreboard: 'large', tier2: true,
+        standCount: '4 zweistöckig',
+      },
+    };
+
+    // ── Renderer ──
+    const stageEl = document.getElementById('js-stage');
+    const loadEl  = document.getElementById('js-load');
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.8));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    stageEl.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(C.sky);
+    scene.fog = new THREE.Fog(C.sky, 200, 600);
+
+    const camera = new THREE.PerspectiveCamera(28, 1, 1, 600);
+    camera.position.set(60, 45, 60);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 5, 0);
+    controls.minDistance = 35;
+    controls.maxDistance = 180;
+    controls.minPolarAngle = Math.PI * 0.16;
+    controls.maxPolarAngle = Math.PI * 0.45;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.07;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.35;
+    controls.addEventListener('start', () => { controls.autoRotate = false; });
+
+    function resize() {
+      const w = stageEl.clientWidth, h = stageEl.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', resize);
+    new ResizeObserver(resize).observe(stageEl);
+    resize();
+
+    // ── Lighting ──
+    scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+    scene.add(new THREE.HemisphereLight(0xfff2d6, 0x3b6e3e, 0.55));
+    const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+    sun.position.set(50, 90, 35);
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.camera.left = -100; sun.shadow.camera.right = 100;
+    sun.shadow.camera.top = 100; sun.shadow.camera.bottom = -100;
+    sun.shadow.camera.near = 1; sun.shadow.camera.far = 250;
+    sun.shadow.bias = -0.0005;
+    scene.add(sun);
+
+    // ── Ground ──
+    const ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(300, 300),
+      new THREE.MeshStandardMaterial({ color: C.grass, roughness: 1 })
+    );
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = -0.01;
+    ground.receiveShadow = true;
+    scene.add(ground);
+
+    // Outer concrete pad to give the stadium a footprint
+    const pad = new THREE.Mesh(
+      new THREE.CircleGeometry(45, 64),
+      new THREE.MeshStandardMaterial({ color: 0xc8baa0, roughness: 0.95 })
+    );
+    pad.rotation.x = -Math.PI / 2;
+    pad.position.y = 0.005;
+    pad.receiveShadow = true;
+    scene.add(pad);
+
+    // ── Pitch ──
+    function buildPitch(w, d) {
+      const g = new THREE.Group();
+      const base = new THREE.Mesh(new THREE.PlaneGeometry(w, d),
+        new THREE.MeshStandardMaterial({ color: C.grass, roughness: 0.95 }));
+      base.rotation.x = -Math.PI / 2; base.position.y = 0.01;
+      base.receiveShadow = true;
+      g.add(base);
+      for (let i = 0; i < 12; i++) {
+        const s = new THREE.Mesh(new THREE.PlaneGeometry(w - 0.05, d / 12 - 0.05),
+          new THREE.MeshStandardMaterial({ color: i % 2 === 0 ? C.grass : C.grassLight, roughness: 0.95 }));
+        s.rotation.x = -Math.PI / 2;
+        s.position.set(0, 0.015, -d / 2 + i * (d / 12) + d / 24);
+        g.add(s);
+      }
+      const lineMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.9 });
+      const hw = w / 2, hd = d / 2;
+      const addLine = (pts) => {
+        const buf = new THREE.BufferGeometry().setFromPoints(pts.map(p => new THREE.Vector3(p[0], 0.025, p[1])));
+        g.add(new THREE.Line(buf, lineMat));
+      };
+      addLine([[-hw,-hd],[hw,-hd],[hw,hd],[-hw,hd],[-hw,-hd]]);
+      addLine([[-hw,0],[hw,0]]);
+      const circ = []; const r = Math.min(w, d) * 0.13;
+      for (let i = 0; i <= 32; i++) { const a = (i/32)*Math.PI*2; circ.push([Math.cos(a)*r, Math.sin(a)*r]); }
+      addLine(circ);
+      const pbW = w * 0.55, pbD = d * 0.15;
+      for (const s of [-1, 1]) {
+        const ze = s * hd, zi = ze - s * pbD;
+        addLine([[-pbW/2,ze],[-pbW/2,zi],[pbW/2,zi],[pbW/2,ze]]);
+      }
+      return g;
+    }
+
+    // ── Floodlight ──
+    function buildFloodlight(mastH) {
+      const g = new THREE.Group();
+      const mast = new THREE.Mesh(new THREE.CylinderGeometry(mastH * 0.018, mastH * 0.028, mastH, 8),
+        new THREE.MeshStandardMaterial({ color: 0x2a261f, roughness: 0.7, metalness: 0.4 }));
+      mast.position.y = mastH / 2; mast.castShadow = true; g.add(mast);
+      const housing = new THREE.Mesh(new THREE.BoxGeometry(mastH * 0.13, 0.5, 0.9),
+        new THREE.MeshStandardMaterial({ color: C.ink, roughness: 0.6 }));
+      housing.position.y = mastH + 0.2; housing.castShadow = true; g.add(housing);
+      const bulb = new THREE.Mesh(new THREE.PlaneGeometry(mastH * 0.11, 0.35),
+        new THREE.MeshStandardMaterial({ color: 0xffd87a, emissive: 0xffd87a, emissiveIntensity: 1.8 }));
+      bulb.position.set(0, mastH, 0.51); g.add(bulb);
+      return g;
+    }
+
+    // ── Stand segment ──
+    function buildStandSeg({ side, pitchW, pitchD, depth, height, hasRoof, accent }) {
+      const g = new THREE.Group();
+      const isNS = side === 'N' || side === 'S';
+      const longEdge = isNS ? pitchW : pitchD;
+      const clearance = 2.5;
+      const offset = (isNS ? pitchD / 2 : pitchW / 2) + clearance + depth / 2;
+      if (side === 'N')      { g.position.set(0, 0, -offset); g.rotation.y = 0; }
+      else if (side === 'S') { g.position.set(0, 0,  offset); g.rotation.y = Math.PI; }
+      else if (side === 'E') { g.position.set( offset, 0, 0); g.rotation.y = -Math.PI / 2; }
+      else if (side === 'W') { g.position.set(-offset, 0, 0); g.rotation.y =  Math.PI / 2; }
+      const length = longEdge + 7;
+      const lower = new THREE.Mesh(new THREE.BoxGeometry(length, height * 0.55, depth),
+        new THREE.MeshStandardMaterial({ color: C.concrete, roughness: 0.9 }));
+      lower.position.set(0, height * 0.275, 0); lower.castShadow = lower.receiveShadow = true;
+      g.add(lower);
+      const seats = new THREE.Mesh(new THREE.BoxGeometry(length - 1, 0.45, 1.0),
+        new THREE.MeshStandardMaterial({ color: accent, roughness: 0.7 }));
+      seats.position.set(0, height * 0.55 + 0.22, depth / 2 - 0.55); seats.castShadow = true;
+      g.add(seats);
+      const upper = new THREE.Mesh(new THREE.BoxGeometry(length, height * 0.42, depth * 0.55),
+        new THREE.MeshStandardMaterial({ color: C.concreteDark, roughness: 0.85 }));
+      upper.position.set(0, height * 0.82, -depth * 0.18); upper.castShadow = true;
+      g.add(upper);
+      if (hasRoof) {
+        const roof = new THREE.Mesh(new THREE.BoxGeometry(length + 1.2, 0.22, depth + 0.8),
+          new THREE.MeshStandardMaterial({ color: C.roof, roughness: 0.6, metalness: 0.2 }));
+        roof.position.set(0, height + 0.65, -depth * 0.1); roof.rotation.x = 0.08;
+        roof.castShadow = true; g.add(roof);
+        for (const sx of [-1, 1]) {
+          const strut = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.13, 0.13, height + 0.6, 6),
+            new THREE.MeshStandardMaterial({ color: C.roof, roughness: 0.7 }));
+          strut.position.set(sx * length * 0.42, (height + 0.6) / 2, -depth / 2 + 0.3);
+          strut.castShadow = true; g.add(strut);
+        }
+      }
+      return g;
+    }
+
+    // ── Terrace (Stage I open kurven) ──
+    function buildTerrace({ side, pitchW, pitchD }) {
+      const g = new THREE.Group();
+      const isNS = side === 'N' || side === 'S';
+      const longEdge = isNS ? pitchW : pitchD;
+      const clearance = 2.5, depth = 2.5;
+      const offset = (isNS ? pitchD / 2 : pitchW / 2) + clearance + depth / 2;
+      if (side === 'N')      { g.position.set(0, 0, -offset); g.rotation.y = 0; }
+      else if (side === 'S') { g.position.set(0, 0,  offset); g.rotation.y = Math.PI; }
+      else if (side === 'E') { g.position.set( offset, 0, 0); g.rotation.y = -Math.PI / 2; }
+      else if (side === 'W') { g.position.set(-offset, 0, 0); g.rotation.y =  Math.PI / 2; }
+      const length = longEdge + 4;
+      for (let i = 0; i < 3; i++) {
+        const step = new THREE.Mesh(new THREE.BoxGeometry(length, 0.35, 0.85),
+          new THREE.MeshStandardMaterial({ color: i === 1 ? C.concrete : C.concreteDark, roughness: 0.9 }));
+        step.position.set(0, 0.175 + i * 0.4, depth / 2 - 0.42 - i * 0.85);
+        step.castShadow = step.receiveShadow = true;
+        g.add(step);
+      }
+      const rail = new THREE.Mesh(new THREE.BoxGeometry(length, 0.08, 0.08),
+        new THREE.MeshStandardMaterial({ color: C.ink, roughness: 0.7 }));
+      rail.position.set(0, 1.0, depth / 2 - 0.05);
+      g.add(rail);
+      return g;
+    }
+
+    // ── Scoreboard ──
+    function buildScoreboard(size) {
+      const g = new THREE.Group();
+      const large = size === 'large';
+      const panelW = large ? 22 : 12, panelH = large ? 9 : 5;
+      const mastH = large ? 22 : 14;
+      const mast = new THREE.Mesh(
+        new THREE.CylinderGeometry(large ? 0.32 : 0.18, large ? 0.55 : 0.3, mastH - 1, 10),
+        new THREE.MeshStandardMaterial({ color: C.roof, roughness: 0.55, metalness: 0.45 }));
+      mast.position.y = (mastH - 1) / 2; mast.castShadow = true; g.add(mast);
+      const back = new THREE.Mesh(new THREE.BoxGeometry(panelW, panelH, 0.4),
+        new THREE.MeshStandardMaterial({ color: 0x0a0807, roughness: 0.5 }));
+      back.position.y = mastH; back.castShadow = true; g.add(back);
+      const c = document.createElement('canvas');
+      c.width = 880; c.height = 360;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#0a0807'; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.font = '700 ' + (large ? 200 : 160) + 'px Newsreader, Georgia, serif';
+      ctx.fillStyle = '#f6efdc'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(large ? '2 — 1' : '1 — 0', c.width / 2, c.height / 2 - 8);
+      ctx.font = '600 36px Inter, sans-serif';
+      ctx.fillStyle = '#b7301b'; ctx.textAlign = 'left'; ctx.fillText('AURELIA', 60, 60);
+      ctx.textAlign = 'right'; ctx.fillStyle = '#cbb98a'; ctx.fillText('AUERBACH', c.width - 60, 60);
+      ctx.font = '700 40px JetBrains Mono, monospace';
+      ctx.fillStyle = '#f6efdc'; ctx.textAlign = 'center'; ctx.fillText("78'", c.width / 2, c.height - 46);
+      const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+      const face = new THREE.Mesh(new THREE.PlaneGeometry(panelW - 0.6, panelH - 0.4),
+        new THREE.MeshBasicMaterial({ map: tex }));
+      face.position.set(0, mastH, 0.21); g.add(face);
+      return g;
+    }
+
+    // ── Stadium ──
+    function buildStadium(stageId) {
+      const g = new THREE.Group();
+      const cfg = STAGES[stageId];
+      const pitchW = 24, pitchD = 36;
+      g.add(buildPitch(pitchW, pitchD));
+      for (const side of ['N','S','E','W']) {
+        if (cfg.stands.includes(side)) {
+          g.add(buildStandSeg({ side, pitchW, pitchD,
+            depth: cfg.standDepth, height: cfg.standHeight,
+            hasRoof: cfg.roofSides.includes(side), accent: C.scarlet }));
+          if (cfg.tier2) {
+            const t2Depth = cfg.standDepth * 0.7;
+            const t2Height = cfg.standHeight * 0.55;
+            const t2 = buildStandSeg({ side, pitchW, pitchD,
+              depth: t2Depth, height: t2Height, hasRoof: false, accent: C.scarlet });
+            const back = cfg.standDepth + 0.5;
+            if (side === 'N') t2.position.z -= back;
+            if (side === 'S') t2.position.z += back;
+            if (side === 'E') t2.position.x += back;
+            if (side === 'W') t2.position.x -= back;
+            t2.position.y += cfg.standHeight + 0.3;
+            g.add(t2);
+            // VIP band
+            const isNSv = side === 'N' || side === 'S';
+            const vipLen = (isNSv ? pitchW : pitchD) + 5;
+            const vipBand = new THREE.Mesh(
+              new THREE.BoxGeometry(vipLen, 1.5, 0.5),
+              new THREE.MeshStandardMaterial({ color: 0xfff2b8, emissive: 0xfff2b8,
+                emissiveIntensity: 0.5, roughness: 0.5 }));
+            const vipZ = (isNSv ? pitchD/2 : pitchW/2) + 2.5 + cfg.standDepth + 0.05;
+            const vipY = cfg.standHeight + 0.05;
+            if (side === 'N') vipBand.position.set(0, vipY, -vipZ);
+            if (side === 'S') vipBand.position.set(0, vipY,  vipZ);
+            if (side === 'E') { vipBand.position.set( vipZ, vipY, 0); vipBand.rotation.y = Math.PI/2; }
+            if (side === 'W') { vipBand.position.set(-vipZ, vipY, 0); vipBand.rotation.y = Math.PI/2; }
+            g.add(vipBand);
+          }
+        } else if (cfg.terraces.includes(side)) {
+          g.add(buildTerrace({ side, pitchW, pitchD }));
+        }
+      }
+      if (cfg.floodlight) {
+        for (const [x, z] of [
+          [-(pitchW/2+6), -(pitchD/2+6)], [(pitchW/2+6), -(pitchD/2+6)],
+          [-(pitchW/2+6), (pitchD/2+6)],  [(pitchW/2+6), (pitchD/2+6)],
+        ]) {
+          const fl = buildFloodlight(cfg.floodlight);
+          fl.position.set(x, 0, z);
+          g.add(fl);
+        }
+      }
+      if (cfg.scoreboard) {
+        const sb = buildScoreboard(cfg.scoreboard);
+        sb.position.set(0, 0, pitchD/2 + cfg.standDepth + 4);
+        sb.rotation.y = Math.PI;
+        g.add(sb);
+      }
+      // Goals
+      const goalMat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+      for (const s of [-1, 1]) {
+        const goal = new THREE.Group();
+        goal.position.z = s * pitchD / 2;
+        const p1 = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.4, 6), goalMat);
+        p1.position.set(-2, 0.7, 0); p1.castShadow = true; goal.add(p1);
+        const p2 = p1.clone(); p2.position.set(2, 0.7, 0); goal.add(p2);
+        const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 4, 6), goalMat);
+        bar.rotation.z = Math.PI/2; bar.position.set(0, 1.4, 0); bar.castShadow = true;
+        goal.add(bar);
+        g.add(goal);
+      }
+      return g;
+    }
+
+    // ── Construction crane ──
+    function buildCrane() {
+      const g = new THREE.Group();
+      const yMat = new THREE.MeshStandardMaterial({ color: C.craneYellow, roughness: 0.6, metalness: 0.2 });
+      const dMat = new THREE.MeshStandardMaterial({ color: C.craneDark, roughness: 0.5 });
+      // Base
+      const base = new THREE.Mesh(new THREE.BoxGeometry(2.5, 0.6, 2.5), dMat);
+      base.position.y = 0.3; base.castShadow = true; g.add(base);
+      // Vertical mast (lattice approximated as cylinder)
+      const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.45, 22, 6), yMat);
+      mast.position.y = 11.6; mast.castShadow = true; g.add(mast);
+      // Cab
+      const cab = new THREE.Mesh(new THREE.BoxGeometry(1.6, 1.4, 1.6), dMat);
+      cab.position.set(0, 22.5, 0); cab.castShadow = true; g.add(cab);
+      // Horizontal jib (long arm) — rotated around y to swing
+      const jibPivot = new THREE.Group();
+      jibPivot.position.y = 23;
+      g.add(jibPivot);
+      const jib = new THREE.Mesh(new THREE.BoxGeometry(18, 0.5, 0.7), yMat);
+      jib.position.set(5, 0, 0); jib.castShadow = true;
+      jibPivot.add(jib);
+      // Counter jib + weight
+      const cwArm = new THREE.Mesh(new THREE.BoxGeometry(4, 0.5, 0.7), yMat);
+      cwArm.position.set(-3, 0, 0); cwArm.castShadow = true;
+      jibPivot.add(cwArm);
+      const cw = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.2, 1), dMat);
+      cw.position.set(-4.3, 0, 0); cw.castShadow = true;
+      jibPivot.add(cw);
+      // Hook + cable
+      const hookGroup = new THREE.Group();
+      hookGroup.position.set(11, 0, 0);
+      jibPivot.add(hookGroup);
+      const cable = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 6, 4),
+        new THREE.MeshStandardMaterial({ color: 0x1a1410 }));
+      cable.position.y = -3; hookGroup.add(cable);
+      const hook = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.5), dMat);
+      hook.position.y = -6.2; hook.castShadow = true;
+      hookGroup.add(hook);
+      // Diagonal support cable (from mast top to jib end)
+      const support = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 8, 4),
+        new THREE.MeshStandardMaterial({ color: 0x1a1410 }));
+      support.position.set(2.5, 2, 0);
+      support.rotation.z = -Math.atan2(2, 12);
+      jibPivot.add(support);
+
+      g.userData.jibPivot = jibPivot;
+      g.userData.hookGroup = hookGroup;
+      return g;
+    }
+
+    // ── Build all stages up front, hide non-current ──
+    const stadiums = {};
+    for (const id of [1, 2, 3, 4]) {
+      stadiums[id] = buildStadium(id);
+      stadiums[id].visible = false;
+      stadiums[id].traverse(o => {
+        if (o.material && o.material.transparent === undefined) {
+          // Make material clonable for opacity animation
+        }
+      });
+      scene.add(stadiums[id]);
+    }
+    // Make every material transparent-ready so we can fade
+    for (const id of [1, 2, 3, 4]) {
+      stadiums[id].traverse(o => {
+        if (o.isMesh && o.material) {
+          o.material = o.material.clone();
+          o.material.transparent = true;
+          o.material.opacity = 1;
+        }
+      });
+    }
+
+    // Cranes (2 of them, used during transitions)
+    const crane1 = buildCrane(); crane1.position.set(-30, 0, -30); crane1.visible = false; scene.add(crane1);
+    const crane2 = buildCrane(); crane2.position.set( 30, 0,  30); crane2.visible = false; scene.add(crane2);
+
+    // ── Timeline state ──
+    const TIMELINE = {
+      duration: 24,         // seconds total
+      keyframes: [
+        // pct,   stage,  label,           announce
+        { t: 0.00, stage: 0, label: 'Plan',      ann: null },
+        { t: 0.08, stage: 1, label: 'Stufe I',   ann: { num: 'I',  sub: 'Bezirksliga',  title: 'Heimstätte gefunden' } },
+        { t: 0.32, stage: 2, label: 'Stufe II',  ann: { num: 'II', sub: '2. Liga',      title: 'Ausbau der Tribünen' } },
+        { t: 0.56, stage: 3, label: 'Stufe III', ann: { num: 'III',sub: '1. Liga',      title: 'Vollumdach errichtet' } },
+        { t: 0.80, stage: 4, label: 'Stufe IV',  ann: { num: 'IV', sub: 'Europacup',    title: 'Europa-Format eröffnet' } },
+        { t: 1.00, stage: 4, label: 'Eröffnung', ann: null },
+      ],
+    };
+
+    let progress = 0;
+    let playing = false;
+    let lastT = 0;
+    let speed = 1;
+    let currentStage = 0;
+    let lastAnnounceIdx = -1;
+    let craneVisibleUntil = 0;
+    let stageBuildStart = -999;   // time when current stage started "building"
+
+    function stageAtProgress(t) {
+      let last = TIMELINE.keyframes[0];
+      for (const kf of TIMELINE.keyframes) {
+        if (kf.t <= t) last = kf;
+      }
+      return last;
+    }
+
+    function setProgress(t) {
+      progress = Math.max(0, Math.min(1, t));
+      const kf = stageAtProgress(progress);
+
+      // Switch stage if changed
+      if (kf.stage !== currentStage) {
+        // Hide old
+        for (const id of [1, 2, 3, 4]) stadiums[id].visible = false;
+        if (kf.stage > 0) {
+          stadiums[kf.stage].visible = true;
+          stageBuildStart = progress;
+          craneVisibleUntil = progress + 0.06;  // ~1.5s of crane visibility
+          // Reset all stage materials to opacity 0 to fade in
+          stadiums[kf.stage].traverse(o => {
+            if (o.isMesh && o.material) o.material.opacity = 0;
+          });
+        }
+        currentStage = kf.stage;
+
+        // Update info panel
+        if (kf.stage > 0) {
+          const cfg = STAGES[kf.stage];
+          document.getElementById('js-info-num').textContent = ['I','II','III','IV'][kf.stage - 1];
+          document.getElementById('js-info-title').textContent = cfg.name;
+          document.getElementById('js-info-body').textContent = cfg.info;
+          document.getElementById('js-info-meta').innerHTML =
+            `<span>Kap. <b>${cfg.capacity}</b></span><span>Tribünen <b>${cfg.standCount}</b></span>`;
+          document.getElementById('js-stage-n').textContent = ['I','II','III','IV'][kf.stage - 1];
+        } else {
+          document.getElementById('js-info-num').textContent = '·';
+          document.getElementById('js-info-title').textContent = 'Bauphase';
+          document.getElementById('js-info-body').textContent = 'Grundstück vermessen, Pitch markiert. Erste Genehmigungen liegen vor.';
+          document.getElementById('js-info-meta').innerHTML = '<span>Kap. <b>—</b></span><span>Status <b>Plan</b></span>';
+          document.getElementById('js-stage-n').textContent = '—';
+        }
+
+        // Announce
+        const kfIdx = TIMELINE.keyframes.indexOf(kf);
+        if (kf.ann && kfIdx !== lastAnnounceIdx) {
+          showAnnounce(kf.ann);
+          lastAnnounceIdx = kfIdx;
+        }
+      }
+
+      // Drive build-up animation (scale Y for the current stage from 0 to 1 over 0.08 of t)
+      if (currentStage > 0 && stageBuildStart > -999) {
+        const buildDur = 0.06;
+        const buildT = Math.max(0, Math.min(1, (progress - stageBuildStart) / buildDur));
+        const eased = buildT < 0.5 ? 4*buildT*buildT*buildT : 1 - Math.pow(-2*buildT + 2, 3)/2;
+        const stadium = stadiums[currentStage];
+        // Scale Y (pitch stays at 0 always, but it'll scale with everything — instead fade in opacity)
+        stadium.traverse(o => {
+          if (o.isMesh && o.material) {
+            o.material.opacity = eased;
+          }
+        });
+      }
+
+      // Cranes visibility — show during the first ~1.5s of each new stage build-up
+      const showCranes = progress < craneVisibleUntil && currentStage > 0;
+      crane1.visible = showCranes;
+      crane2.visible = showCranes;
+
+      // Update phase HUD
+      document.getElementById('js-phase').textContent =
+        showCranes ? 'Bau' : (currentStage === 0 ? 'Plan' : 'Betrieb');
+
+      // Update timeline UI
+      updateTimelineUI();
+    }
+
+    // ── Crane animation (slow jib swing + hook bob) ──
+    function animateCranes(t) {
+      for (const c of [crane1, crane2]) {
+        if (!c.visible) continue;
+        const pivot = c.userData.jibPivot;
+        if (pivot) pivot.rotation.y = Math.sin(t * 0.5) * 0.6 + (c === crane1 ? 0 : Math.PI / 2);
+        const hook = c.userData.hookGroup;
+        if (hook) hook.position.y = Math.sin(t * 1.3) * 0.8;
+      }
+    }
+
+    // ── Announce text ──
+    const announceEl = document.getElementById('js-announce');
+    let announceHideTimer = null;
+    function showAnnounce({ num, sub, title }) {
+      announceEl.innerHTML = `<span class="sub">${sub}</span>${num}`;
+      announceEl.classList.add('is-shown');
+      clearTimeout(announceHideTimer);
+      announceHideTimer = setTimeout(() => announceEl.classList.remove('is-shown'), 2200);
+    }
+
+    // ── Timeline UI ──
+    const tlTrack = document.getElementById('js-tl-track');
+    const tlFill = document.getElementById('js-tl-fill');
+    const tlThumb = document.getElementById('js-tl-thumb');
+    const tlTime = document.getElementById('js-tl-time');
+
+    // Place markers at each stage transition
+    const stageMarkers = TIMELINE.keyframes.filter(k => k.stage > 0 || k.t === 0).slice(0, 5);
+    for (const kf of stageMarkers) {
+      const m = document.createElement('div');
+      m.className = 'su-tl-mark';
+      m.style.left = `${kf.t * 100}%`;
+      m.dataset.t = kf.t;
+      m.dataset.stage = kf.stage;
+      m.innerHTML = `<div class="lbl">${kf.label}</div><div class="dot"></div>`;
+      tlTrack.appendChild(m);
+    }
+
+    function updateTimelineUI() {
+      const pct = progress * 100;
+      tlFill.style.width = pct + '%';
+      tlThumb.style.left = pct + '%';
+      tlTime.textContent = formatTime(progress * TIMELINE.duration);
+      for (const m of tlTrack.querySelectorAll('.su-tl-mark')) {
+        const t = parseFloat(m.dataset.t);
+        m.classList.toggle('is-passed', progress >= t);
+        m.classList.toggle('is-current', Math.abs(progress - t) < 0.03);
+      }
+    }
+
+    function formatTime(s) {
+      const m = Math.floor(s / 60);
+      const ss = Math.floor(s % 60);
+      return `${m}:${ss.toString().padStart(2, '0')}`;
+    }
+
+    // Track interaction
+    let trackDragging = false;
+    function trackToProgress(e) {
+      const r = tlTrack.getBoundingClientRect();
+      return Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+    }
+    tlTrack.addEventListener('pointerdown', (e) => {
+      trackDragging = true;
+      tlTrack.setPointerCapture(e.pointerId);
+      setProgress(trackToProgress(e));
+    });
+    tlTrack.addEventListener('pointermove', (e) => {
+      if (!trackDragging) return;
+      setProgress(trackToProgress(e));
+    });
+    tlTrack.addEventListener('pointerup', (e) => {
+      trackDragging = false;
+      try { tlTrack.releasePointerCapture(e.pointerId); } catch {}
+    });
+
+    // Play / pause
+    const playBtn = document.getElementById('js-play');
+    function setPlaying(p) {
+      playing = p;
+      playBtn.textContent = playing ? '⏸' : '▶';
+    }
+    playBtn.addEventListener('click', () => {
+      // If at the end, restart
+      if (progress >= 0.999) { setProgress(0); lastAnnounceIdx = -1; }
+      setPlaying(!playing);
+    });
+
+    // Restart
+    document.getElementById('js-restart').addEventListener('click', () => {
+      setProgress(0);
+      lastAnnounceIdx = -1;
+      setPlaying(true);
+    });
+
+    // Speed
+    const speedBtn = document.getElementById('js-speed');
+    const speeds = [1, 0.5, 2];
+    let speedIdx = 0;
+    speedBtn.addEventListener('click', () => {
+      speedIdx = (speedIdx + 1) % speeds.length;
+      speed = speeds[speedIdx];
+      speedBtn.textContent = speed + '×';
+      speedBtn.classList.toggle('is-active', speed !== 1);
+    });
+
+    // ── HUD ──
+    const fpsEl = document.getElementById('js-fps');
+    let fpsAcc = 0, fpsFrames = 0;
+    const clock = new THREE.Clock();
+
+    function tick() {
+      const dt = Math.min(0.05, clock.getDelta());
+      const t = performance.now() / 1000;
+
+      // Advance timeline if playing
+      if (playing) {
+        const delta = dt * speed / TIMELINE.duration;
+        const next = progress + delta;
+        if (next >= 1) { setProgress(1); setPlaying(false); }
+        else setProgress(next);
+      }
+
+      animateCranes(t);
+      controls.update();
+      renderer.render(scene, camera);
+
+      fpsAcc += dt; fpsFrames++;
+      if (fpsAcc >= 0.5) {
+        fpsEl.textContent = Math.round(fpsFrames / fpsAcc);
+        fpsAcc = 0; fpsFrames = 0;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    // Initial state
+    setProgress(0);
+
+    // Hide splash on first paint
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      loadEl.classList.add('is-done');
+      setTimeout(() => loadEl.remove(), 600);
+    }));
+  </script>
+</body>
+</html>
