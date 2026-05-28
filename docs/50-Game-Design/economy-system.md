@@ -1,18 +1,22 @@
 ---
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance, accounting, club-management, fmx-13]
+tags: [game-design, economy, finance, accounting, commercial, club-management, fmx-13, fmx-41]
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-05-28
 type: game-design
 binding: false
 linear: FMX-13
 related:
   - [[README]]
   - [[GD-0008-finance-economy]]
+  - [[GD-0022-economy-commercial-impact-and-contracts]]
   - [[../60-Research/club-economy-blueprint-2026-05-27]]
+  - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+  - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+  - [[../30-Implementation/club-economy-commercial-contracts]]
   - [[sponsorship-portfolio]]
   - [[stadium-and-campus]]
   - [[transfer-market-and-contracts]]
@@ -209,9 +213,44 @@ investing enough to grow.
 - Real external numbers calibrate scale only; shipped content stays IP-clean and
   fictional.
 
-## 13. Future-scope notes
+## 13. Commercial impact graph
 
-- Investor rescue: SP-only monetisation review; never multiplayer advantage.
+FMX-41 extends the weekly ledger with a named commercial cause layer. The ledger
+still owns the money, but the causes come from contracts and public read models:
+
+| Cause | Source | Ledger effect |
+|---|---|---|
+| Season-ticket campaign | Ticketing policy + fan renewal forecast | Early cash, deferred revenue/accrual, reduced single-ticket inventory |
+| Single-ticket sales | Fixture commercial profile + price policy | Matchday ticket cash and top-match surcharge effect |
+| Catering | Stadium throughput + catering contract | In-house revenue/COGS/staff or concession/rent/share income |
+| Merchandise | Fan demand + merch contract + star/cup/rivalry signals | Retail cash, royalty, inventory cost, campaign profit/loss |
+| Sponsorship | Sponsor portfolio + commercial contract | Upfront cash, periodic accrual, bonuses, penalties |
+| Cup progression | Competition revenue profile | Prize/media/gate-share/travel/security entries |
+| Fan-service campaign | Fan event policy | Direct costs, sponsor contributions, loyalty/demand effects |
+| Investor entitlement | Singleplayer payment entitlement | Clean cash grant, no other state change |
+
+The same settlement supports Quick / Standard / Expert:
+
+- Quick: total cost/revenue and recommended action.
+- Standard: driver breakdown and 13-week forecast.
+- Expert: contract clauses, ranges, schedules and sensitivity analysis.
+
+## 14. Investor grant
+
+Investor is a singleplayer-only cash entitlement if activated. It posts cash to
+the ledger with clear provenance and has no gameplay penalty:
+
+- no owner-control change;
+- no debt;
+- no fan or sponsor backlash;
+- no multiplayer effect;
+- no change to wage, debt, compliance or demand formulas.
+
+It buys liquidity only. A club with a negative weekly operating loop will still
+burn through the grant.
+
+## 15. Future-scope notes
+
 - Manual accounting controls: not planned.
 - Deep tax modelling: only if it creates player-facing decisions.
 - Full country-specific lower-tier profiles: add after the initial Top-5 +
@@ -219,10 +258,13 @@ investing enough to grow.
 
 ## Related
 
-- Decision record: [[GD-0008-finance-economy]]
-- Research: [[../60-Research/club-economy-blueprint-2026-05-27]]
+- Decision records: [[GD-0008-finance-economy]] ·
+  [[GD-0022-economy-commercial-impact-and-contracts]]
+- Research: [[../60-Research/club-economy-blueprint-2026-05-27]] ·
+  [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 - Feature: [[../20-Features/feature-club-economy-mvp-pillar]]
-- Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+- Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
+  [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - Linked systems: [[sponsorship-portfolio]] · [[stadium-and-campus]] ·
   [[fan-ecology]] · [[transfer-market-and-contracts]] ·
   [[mode-create-a-club-roguelite]]

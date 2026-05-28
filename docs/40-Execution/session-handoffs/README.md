@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-28-fmx-41-economy-impact-map]] - FMX-41 economy impact map
+  and commercial-contract dossier: direct financial-success domains, Top-5
+  research anchors, season-ticket and ticket-pricing trade-offs, fan segment
+  demand, catering/merchandise/sponsorship contract families, cup revenue,
+  fan-service campaigns and Investor clean singleplayer cash. Added draft
+  GD-0022, draft ADR-0058 and draft commercial contract note; awaiting Nico
+  decisions on ADR-0058 boundary and Investor activation timing.
 - [[2026-05-28-fmx-34-rivalry-system]] - FMX-34 ownership dossier
   for the rivalry-edge graph + 5-sub-score formula (regional +
   historical + sporting + fan-incident + transfer-tension) +

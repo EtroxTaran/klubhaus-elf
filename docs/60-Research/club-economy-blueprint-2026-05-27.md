@@ -50,7 +50,10 @@ basis for the draft notes created in the same beat.
 - Calibration uses sourced ranges, ratios and formulas; final balance constants
   wait for simulation tests and Nico sign-off.
 - UI remains progressive: Quick / Standard / Expert.
-- Investor rescue is SP-only future-scope / monetisation review, not MVP scope.
+- Original FMX-13 note: Investor rescue was SP-only future-scope /
+  monetisation review, not MVP scope. FMX-41 amends this: if activated,
+  Investor is clean singleplayer cash with no debt, no owner-control effect, no
+  fan penalty and no multiplayer advantage.
 
 ## External Source Check
 
@@ -156,8 +159,8 @@ These must be separate because they create different player decisions.
 - Final thresholds for each insolvency stage.
 - Exact number of weeks/months before staged crisis becomes run end.
 - First playable's minimum accounting UI depth.
-- Whether an Investor rescue becomes a purchasable SP-only product, a purely
-  fictional owner event, or both.
+- Whether the clean-cash Investor entitlement activates in the first playable
+  or waits for platform/legal review.
 - Final country-profile ranges and multipliers after balance simulations.
 
 ## Source Links

@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-28
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/ai-narration-contract-testing-framework]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]]
 ---
 
 # Bounded Context Map
@@ -54,6 +54,17 @@ Player lifecycle and systemic world events are specialised by
 [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]. They do not
 add a thirteenth bounded context. The `WorldEventDirector` is an orchestration
 policy over the existing contexts.
+
+FMX-41 commercial economy planning is captured in draft
+[[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]. It does not
+add a seventeenth bounded context. The draft recommendation is a Club
+Management commercial sub-aggregate: Club owns ticketing policy, commercial
+contracts, fan-event campaign choices, Investor entitlement ledger posting and
+commercial settlement. Fan Ecology, Rivalry System, League/Competition, Match,
+Stadium/Campus, Regulations and other contexts provide public facts such as
+`FanDemandForecast`, `FixtureCommercialProfile`,
+`CompetitionRevenueProfile` and `StadiumCommercialSnapshot`; they never write
+Club ledger rows directly.
 
 Manager & Legacy was ratified 2026-05-28 via
 [[09-Decisions/ADR-0051-manager-and-legacy-context]] (FMX-25 dossier +

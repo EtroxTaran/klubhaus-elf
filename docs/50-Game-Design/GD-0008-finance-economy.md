@@ -1,9 +1,9 @@
 ---
 title: GD-0008 Finance, Economy & Stadium
 status: draft
-tags: [game-design, gddr, finance, economy, accounting, fmx-13]
+tags: [game-design, gddr, finance, economy, accounting, commercial, fmx-13, fmx-41]
 created: 2026-05-17
-updated: 2026-05-27
+updated: 2026-05-28
 type: game-design
 binding: false
 linear: FMX-13
@@ -14,8 +14,12 @@ related:
   - [[sponsorship-portfolio]]
   - [[mode-create-a-club-roguelite]]
   - [[../60-Research/club-economy-blueprint-2026-05-27]]
+  - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+  - [[GD-0022-economy-commercial-impact-and-contracts]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+  - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+  - [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # GD-0008: Finance, Economy & Stadium
@@ -64,8 +68,14 @@ choices before the run collapses.
 - **Progressive disclosure stays mandatory.** Quick shows runway and action
   cards; Standard shows KPIs and forecast; Expert shows accounting statements
   and schedules.
-- **Investor rescue is not MVP.** It remains an SP-only future-scope
-  monetisation decision, not a finance-system requirement.
+- **Commercial impact needs a first-class draft layer.** FMX-41 extends this
+  GDDR through [[GD-0022-economy-commercial-impact-and-contracts]]: fan demand,
+  tickets, season tickets, catering, merchandise, sponsorship, cup games and
+  fan-service campaigns feed the same Club Management ledger.
+- **Investor is clean SP cash if activated.** Nico rejected balance penalties
+  for the real-money Investor grant. It is a singleplayer-only cash entitlement:
+  no debt, no owner control, no fan backlash, no multiplayer advantage. It still
+  does not repair structural overspending.
 
 ## Open before approval
 
@@ -73,7 +83,29 @@ choices before the run collapses.
 - Which accounting read models appear in the very first playable.
 - Country-profile ranges for lower tiers.
 - Balance-test targets for healthy insolvency rate, wage ratio and runaway cash.
-- Monetisation decision for Investor rescue, including legal and community risk.
+- Investor activation timing and platform/legal review.
+- Commercial contract boundary approval via
+  [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
+
+## FMX-41 commercial impact amendment
+
+FMX-41 adds the commercial cause layer that was missing from the accounting
+spine:
+
+| Commercial input | Game-design consequence |
+|---|---|
+| Fan segment mix | Attendance stability, season-ticket renewal, per-capita catering, merch propensity and sponsor fit differ by club. |
+| Season-ticket policy | Early cash and loyalty versus discounted future yield and lost top-match upside. |
+| Rival/top match profile | Single-ticket surcharge, catering/merch spikes, security cost and fan-trust risk. |
+| Cup fixture profile | Prize, media, gate sharing, travel, sponsor bonuses and fixture-congestion costs. |
+| Catering model | In-house upside/risk versus concession stability or guarantee/share hybrids. |
+| Merchandise model | Own inventory, partner licence, kit-supplier guarantee, royalty and campaign-drop risk. |
+| Fan-service campaign | Paid loyalty/atmosphere lever with logistics, sponsor and incident risk. |
+| Investor entitlement | Clean SP cash grant with ledger provenance and unchanged weekly economics. |
+
+The player-facing rule is simple: every commercial decision must be readable in
+Quick mode and inspectable in Expert mode, but both modes use the same ledger
+facts.
 
 ## Rationale
 
@@ -112,8 +144,11 @@ silently superseded.
 ## Related
 
 - Research: [[../60-Research/club-economy-blueprint-2026-05-27]] ·
+  [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]] ·
   [[../60-Research/raw-perplexity/raw-club-economy-simulation]]
 - System note: [[economy-system]]
+- Commercial GDDR: [[GD-0022-economy-commercial-impact-and-contracts]]
 - Feature: [[../20-Features/feature-club-economy-mvp-pillar]]
-- Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+- Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
+  [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[README]] — Game Design Log

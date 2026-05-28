@@ -1,17 +1,21 @@
 ---
 title: Club Economy Accounting Ledger - Draft Contracts
 status: draft
-tags: [implementation, economy, accounting, club-management, contracts, fmx-13]
+tags: [implementation, economy, accounting, club-management, commercial, contracts, fmx-13, fmx-41]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-05-28
 type: implementation
 binding: false
 linear: FMX-13
 related:
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+  - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   - [[../50-Game-Design/GD-0008-finance-economy]]
+  - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../50-Game-Design/economy-system]]
+  - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
+  - [[club-economy-commercial-contracts]]
   - [[../10-Architecture/bounded-context-map]]
 ---
 
@@ -73,11 +77,21 @@ Minimum draft fields:
 | Source context | Input facts |
 |---|---|
 | League | Week advanced, season boundary, promotion/relegation, prize schedule. |
-| Match | Home match completed, attendance, risk/sanction result, matchday cost. |
+| Match | Home match completed, attendance, risk/sanction result, matchday cost, final matchday settlement inputs. |
 | Transfer | Contract committed, instalment due, sell-on due, wage subsidy, agent fee. |
 | Squad & Player | Wage contract active, bonus triggered, contract ended. |
 | Training | Camp booked, academy operating cost, medicine facility effect. |
+| Fan Ecology | Demand forecast, season-ticket renewal, spend propensity and fan-event effects. |
+| Rivalry System | Derby/top-match commercial signal and risk band. |
+| Regulations & Compliance | Competition revenue profile, licence checks and commercial constraints. |
+| Platform / entitlement boundary | Singleplayer Investor entitlement grants. |
 | Notification | Reads finance events only; it does not create finance facts. |
+
+FMX-41 adds detailed commercial contracts in
+[[club-economy-commercial-contracts]]. The ledger remains the accounting truth;
+commercial policy and settlement are a Club Management sub-aggregate unless
+[[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+is superseded.
 
 ## Read models
 
@@ -90,6 +104,10 @@ Minimum draft fields:
 | `BudgetEnvelope` | Transfer, squad and board UI. |
 | `InsolvencyCrisisState` | Roguelite economy-crisis UI. |
 | `LeagueEconomyProfile` | Setup, balancing and country profile inspector. |
+| `CommercialForecastSnapshot` | Quick/Standard commercial dashboard. |
+| `CommercialContractPortfolio` | Sponsorship, catering and merchandise contract board. |
+| `MatchdayCommercialSettlement` | Per-fixture ticket/catering/merch/security breakdown. |
+| `InvestorGrantAudit` | Singleplayer entitlement and ledger provenance. |
 
 ## Staged insolvency state
 
@@ -114,10 +132,16 @@ The state machine is deterministic and data-driven by country/profile thresholds
 - Promotion/relegation shock tests.
 - Transfer-instalment and wage-inflation long-save tests.
 - First-run tutorial test: player can explain why cash changed this week.
+- Commercial sensitivity tests for season-ticket share, top-match surcharge,
+  catering/merch contract models, cup progression and fan-service campaigns.
+- Investor grant idempotency and SP-only isolation tests.
 
 ## Related
 
 - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+- [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[../50-Game-Design/GD-0008-finance-economy]]
+- [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../50-Game-Design/economy-system]]
 - [[../20-Features/feature-club-economy-mvp-pillar]]
+- [[club-economy-commercial-contracts]]

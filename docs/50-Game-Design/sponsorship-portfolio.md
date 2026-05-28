@@ -1,12 +1,12 @@
 ---
 title: Sponsorship Portfolio - Asset-level Sponsor Inventory
 status: draft
-tags: [game-design, sponsors, finance]
+tags: [game-design, sponsors, finance, commercial, contracts, fmx-41]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-28
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[economy-system]], [[stadium-and-campus]], [[fan-ecology]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[stadium-and-campus]], [[fan-ecology]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Sponsorship Portfolio - Asset-level Sponsor Inventory
@@ -137,7 +137,24 @@ Some sponsor categories *fight* the fan segments
 The conflict surface is intentional - it provides decisions with
 trade-offs.
 
-## 8. Future-scope notes (classified future-scope)
+## 8. Shared commercial contract shell
+
+FMX-41 aligns sponsorship with catering and merchandise under the shared
+`CommercialContract` contract. Sponsorship remains asset-driven, but it now uses
+the same core fields as other commercial deals:
+
+- term, renewal window and break clauses;
+- cash cadence and accounting recognition schedule;
+- fixed guarantee, performance bonus and penalty rules;
+- exclusivity category;
+- side conditions;
+- fan/sponsor fit risk flags;
+- termination and repayment rules.
+
+This lets sponsors fund fan-service campaigns, catering exclusivity or
+merchandise drops without inventing separate finance mechanics for each case.
+
+## 9. Future-scope notes (classified future-scope)
 
 - Stadium naming - one slot per club or none for traditional clubs? Both;
   some clubs have `tradition` so high that naming is non-negotiable.

@@ -1,12 +1,12 @@
 ---
 title: Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
 status: draft
-tags: [game-design, regulations, compliance, leagues, promotion]
+tags: [game-design, regulations, compliance, leagues, promotion, economy, fmx-41]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-28
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/late-game-systems]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[stadium-and-campus]], [[matchday-event-engine]], [[economy-system]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/late-game-systems]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[stadium-and-campus]], [[matchday-event-engine]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
@@ -141,7 +141,21 @@ stand-roof collapse, safety officer resignation):
 - If unresolved, partial sanctions: alcohol ban, sector closure, fine.
 - If still unresolved at season end: forced relegation.
 
-## 10. UI tiers
+## 10. Competition revenue and commercial constraints
+
+FMX-41 adds two finance-facing outputs:
+
+- `CompetitionRevenueProfile`: prize schedule, gate-sharing rule, media-payment
+  cadence, solidarity/parachute support, settlement delay and travel obligation
+  per competition profile.
+- `LicenceCommercialConstraint`: rules that constrain matchday commerce, such
+  as alcohol bans, sector closures, ghost matches, away-fan restrictions,
+  hospitality requirements, safety staffing and financial-ratio checks.
+
+Regulations & Compliance owns the rule catalog. Club Management owns the
+commercial settlement and ledger posting caused by those rules.
+
+## 11. UI tiers
 
 | Tier | Compliance surface |
 |---|---|
@@ -149,7 +163,7 @@ stand-roof collapse, safety officer resignation):
 | Standard | Compliance dashboard with per-category status |
 | Expert | Full rule-set view, per-rule current state, planned-action timeline |
 
-## 11. Community editor hooks
+## 12. Community editor hooks
 
 Community packs ([[community-editor-and-datasets]]) can override:
 
@@ -159,7 +173,7 @@ Community packs ([[community-editor-and-datasets]]) can override:
 
 Manifest must declare which countries it modifies, to allow safe layering.
 
-## 12. Future-scope notes (classified future-scope)
+## 13. Future-scope notes (classified future-scope)
 
 - "Special permit" odds: should the board decide or is it always
   available? Always available but with cost - the league regulator is the

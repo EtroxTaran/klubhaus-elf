@@ -32,7 +32,7 @@ research transcripts in [[../60-Research/raw-perplexity/README]].
 Implement gameplay only from `approved` game-design records. This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0021`) — the decision-record chain from research into
+- **GDDRs** (`GD-0001`...`GD-0022`) — the decision-record chain from research into
   ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -90,6 +90,7 @@ active work.
 | [[GD-0019-manager-archetype-roguelite-progression]] | Manager archetype roguelite progression; FMX-16 hooks, playtest-tunable taxonomy and prestige counterweight | draft | ADR-0051 |
 | [[GD-0020-eos-player-skills-personas-and-people]] | EOS player skills/perks, staff target skills, personas and People-context planning | draft | ADR-0052 |
 | [[GD-0021-player-staff-development-and-decision-influence]] | Player/staff development and decision-influence factor matrices; staff-skill MVP gate | draft | ADR-0052, ADR-0053 |
+| [[GD-0022-economy-commercial-impact-and-contracts]] | Economy commercial impact map; ticketing, season tickets, catering, merchandise, cup revenue, fan events and Investor clean SP cash | draft | ADR-0050, ADR-0058 |
 
 ## Core loop
 
@@ -100,6 +101,9 @@ active work.
 ## Economy and infrastructure
 
 - [[economy-system]] - cash-flow, budget pots, KPIs.
+- [[GD-0022-economy-commercial-impact-and-contracts]] - draft commercial
+  impact layer for ticketing, season tickets, catering, merchandise, cup games,
+  fan events and Investor clean SP cash.
 - [[sponsorship-portfolio]] - 4-tier sponsor inventory at asset level.
 - [[stadium-and-campus]] - stadium tiers + Anstoss-style attractions + club campus.
 - [[../20-Features/feature-club-economy-mvp-pillar]] - draft MVP economy pillar for weekly ledger, full accounting and staged insolvency.

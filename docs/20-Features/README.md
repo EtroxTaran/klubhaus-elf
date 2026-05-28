@@ -29,7 +29,7 @@ stubs as future-scope planning, not open documentation gaps.
   amended with FMX-16 manager-archetype run-analysis hooks.
 - [[feature-transfer-market-ai-and-contracts]] - approved transfer-market foundation and explanation layer.
 - [[feature-club-economy-mvp-pillar]] - draft FMX-13 economy MVP pillar:
-  weekly ledger, full accounting and staged insolvency.
+  weekly ledger, full accounting, commercial contracts and staged insolvency.
 - [[feature-ai-narration-mvp-pillar]] - draft FMX-3 AI narration MVP pillar:
   Full Dialogue, All Active actor context, Narrative context framework,
   Playtest First, template fallback and Runtime-LLM gates.
@@ -45,7 +45,8 @@ those headings.
 
 - [[feature-async-week-loop]] — post-MVP server-driven week cycle with two cadence rule sets.
 - [[feature-stadium-builder]] — Anstoss-style on-grounds attractions + capacity tiers.
-- [[feature-club-economy-mvp-pillar]] — Club Economy MVP pillar.
+- [[feature-club-economy-mvp-pillar]] — Club Economy MVP pillar, including
+  FMX-41 commercial impact hooks.
 - [[feature-venue-operations]] — Non-matchday arena calendar with pitch, sponsor and fan trade-offs.
 - [[feature-player-lifecycle]] — Weekly player development, PA uncertainty,
   mentoring and GD-0021 development-factor explanations.

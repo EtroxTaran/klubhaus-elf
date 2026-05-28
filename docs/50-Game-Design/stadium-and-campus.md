@@ -1,12 +1,12 @@
 ---
 title: Stadium and Club Campus - Build-out and On-grounds Economy
 status: draft
-tags: [game-design, stadium, infrastructure, anstoss]
+tags: [game-design, stadium, infrastructure, anstoss, commercial, fmx-41]
 created: 2026-05-16
-updated: 2026-05-22
+updated: 2026-05-28
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[economy-system]], [[fan-ecology]], [[regulations-and-compliance]]
+related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[fan-ecology]], [[regulations-and-compliance]]
 ---
 
 # Stadium and Club Campus - Build-out and On-grounds Economy
@@ -173,7 +173,30 @@ High event density can reduce future match pitch quality or raise
 operational incident risk. Good hybrid turf, logistics, security and
 maintenance upgrades reduce the downside.
 
-## 8. UI tiers
+## 8. Commercial snapshot
+
+FMX-41 makes the stadium a structured input to ticketing, catering,
+merchandise, hospitality and fan-service campaigns. The venue layer publishes a
+`StadiumCommercialSnapshot` for [[economy-system]] and
+[[../30-Implementation/club-economy-commercial-contracts]].
+
+Minimum outputs:
+
+- capacity by seat class: standing, seated, family, premium, suites and away;
+- available capacity after construction, sanctions and allocations;
+- catering throughput and queue quality;
+- merch shop / fulfilment throughput;
+- hospitality quality and inventory;
+- fan-zone quality and sponsor-activation slots;
+- ownership or lease model;
+- fixed operating cost and matchday variable-cost bands;
+- event eligibility for concerts, conferences, fan parties and community days.
+
+The same stadium can therefore produce different financial results depending on
+fan composition and contract model: an in-house catering club has higher upside
+and cost risk; a concession club has lower upside and more stable cash.
+
+## 9. UI tiers
 
 | Tier | Surface |
 |---|---|
@@ -181,7 +204,7 @@ maintenance upgrades reduce the downside.
 | Standard | Tile map of grounds + module list |
 | Expert | SimCity-style grid, plot pricing, queueing, blueprint optimisation |
 
-## 8.1 Visual presentation direction
+## 9.1 Visual presentation direction
 
 Stadium/campus presentation starts as a readable management surface, not a
 free-build 3D game:
@@ -197,7 +220,7 @@ free-build 3D game:
 Free placement is not the default path. Slot-based or curated build fields are
 better for mobile, balance, DDD modelling and deterministic saves.
 
-## 9. Promotion compliance hooks
+## 10. Promotion compliance hooks
 
 When the team is promoted, the [[regulations-and-compliance]] system
 checks the current stadium against the destination tier. Player options:
@@ -207,7 +230,7 @@ checks the current stadium against the destination tier. Player options:
 - Ground-share with another club (rent cost, lower revenue).
 - Refuse promotion (only in roguelite mode - run consequence).
 
-## 10. Future-scope notes (classified future-scope)
+## 11. Future-scope notes (classified future-scope)
 
 - Should we model travel time inside the campus (Anstoss "Flugplatz" gave
   +20 % away wins)? Yes, but as a soft modifier (+5 % at most) so it can't

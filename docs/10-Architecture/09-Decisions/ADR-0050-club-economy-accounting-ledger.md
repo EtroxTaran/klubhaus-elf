@@ -1,9 +1,9 @@
 ---
 title: ADR-0050 Club Economy Accounting Ledger
 status: draft
-tags: [adr, architecture, economy, accounting, club-management, fmx-13]
+tags: [adr, architecture, economy, accounting, club-management, commercial, fmx-13, fmx-41]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-05-28
 type: adr
 binding: false
 supersedes:
@@ -13,9 +13,13 @@ related:
   - [[ADR-0027-postgres-data-model]]
   - [[ADR-0028-postgres-transactional-outbox]]
   - [[../../50-Game-Design/GD-0008-finance-economy]]
+  - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../../50-Game-Design/economy-system]]
   - [[../../60-Research/club-economy-blueprint-2026-05-27]]
+  - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../../30-Implementation/club-economy-accounting-ledger]]
+  - [[../../30-Implementation/club-economy-commercial-contracts]]
+  - [[ADR-0058-club-economy-commercial-impact-boundary]]
 ---
 
 # ADR-0050: Club Economy Accounting Ledger
@@ -34,6 +38,11 @@ FMX-13 promotes the club-economy blueprint from raw research into the planning
 baseline. Nico selected a high-fidelity target: Economy as an MVP pillar, weekly
 ledger, full accounting, staged insolvency crisis, country-specific profiles and
 progressive UI.
+
+FMX-41 extends the ledger target with the commercial impact graph: ticketing,
+season tickets, catering, merchandise, sponsorship, cup-game settlement,
+fan-service events and singleplayer Investor cash grants. ADR-0058 is the draft
+boundary proposal for those commercial contracts.
 
 The existing DDD map already places finances, infrastructure, sponsors, board
 and fans in the **Club Management** bounded context. The missing architecture
@@ -90,6 +99,8 @@ Draft events:
 - `SponsorConditionBreached`
 - `FacilityProjectCommitted`
 - `LeagueLicenceFinancialCheckFailed`
+- `MatchdayCommercialSettlementPosted`
+- `InvestorCashGrantPosted`
 
 Draft read models:
 
@@ -100,6 +111,9 @@ Draft read models:
 - `BudgetEnvelope`
 - `InsolvencyCrisisState`
 - `LeagueEconomyProfile`
+- `CommercialForecastSnapshot`
+- `CommercialContractPortfolio`
+- `MatchdayCommercialSettlement`
 
 ## Rationale
 
@@ -137,9 +151,13 @@ None
 ## Related Docs
 
 - [[../../60-Research/club-economy-blueprint-2026-05-27]]
+- [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 - [[../../50-Game-Design/GD-0008-finance-economy]]
+- [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../../50-Game-Design/economy-system]]
 - [[../../30-Implementation/club-economy-accounting-ledger]]
+- [[../../30-Implementation/club-economy-commercial-contracts]]
+- [[ADR-0058-club-economy-commercial-impact-boundary]]
 - [[ADR-0019-modular-monolith-ddd]]
 - [[ADR-0027-postgres-data-model]]
 - [[ADR-0028-postgres-transactional-outbox]]
