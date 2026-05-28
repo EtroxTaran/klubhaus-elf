@@ -7,7 +7,7 @@ updated: 2026-05-28
 
 # Building Blocks
 
-The application is a **modular monolith** with fourteen bounded contexts,
+The application is a **modular monolith** with fifteen bounded contexts,
 primarily implemented in TypeScript. Each context owns its domain logic, state
 machine(s), storage isolation, and contracts (commands / queries / domain
 events). The match engine is deliberately behind a runtime-neutral port so it
@@ -60,6 +60,31 @@ publishes `SetPieceCoachReadinessUpdated` for routine-quality
 multipliers. Cross-save preset sharing stays scoped to the FMX-33
 Community Overlay Pipeline territory per
 [[09-Decisions/ADR-0016-community-dataset-overrides]].
+
+FMX-30 / FMX-39 ratified the fifteenth bounded context, **Regulations &
+Compliance**, on 2026-05-28 via
+[[09-Decisions/ADR-0056-regulations-compliance-context]]. It owns the
+versioned multi-regulator rule catalog (UEFA-analogue + national
+league analogue + national association analogue per regulator scope ×
+competition profile × effective date), the transfer-window FSM (open
+→ countdown → closing → closed), the work-permit catalog, the
+sanction catalog and licence-tier facility requirements. Stock
+catalogs live in `packages/game-data`; per-save active rule set is
+copied into the save snapshot at creation per ADR-0051 determinism
+rule (no live reading of mutable global catalog during a save).
+Multi-context eligibility chains (transfer completion, squad
+registration, promotion compliance) run as **Vernon's Process Manager
+/ Saga** in the consuming BC: Transfer for signings, Squad & Player
+for registration, League Orchestration for promotion. Regulations owns
+the rule; each consumer owns its enforcement via Anticorruption Layer
+(canonical Stripe Tax / Avalara Tax-catalog pattern). Community-pack
+rule overrides flow through the FMX-33 Community Overlay Pipeline per
+[[09-Decisions/ADR-0016-community-dataset-overrides]]; Regulations BC
+owns schema + semantic validation per Vernon. IP-clean rule
+terminology hardline contained in one context per
+[[../50-Game-Design/GD-0015-ip-clean-data]] +
+[[09-Decisions/ADR-0007-naming-schema]]; `risk:legal` discipline
+applies.
 
 FMX-23 proposes **People / Persona & Skills** behind
 [[09-Decisions/ADR-0052-people-persona-and-skills-context]], and FMX-3 proposes

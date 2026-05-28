@@ -1,11 +1,11 @@
 ---
 title: ADR-0056 Regulations and Compliance Context
-status: proposed
-tags: [adr, architecture, ddd, regulations, compliance, ffp, work-permits, fmx-30, risk-legal]
+status: accepted
+tags: [adr, architecture, ddd, regulations, compliance, ffp, work-permits, fmx-30, fmx-39, risk-legal, accepted]
 created: 2026-05-28
 updated: 2026-05-28
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -34,11 +34,35 @@ related:
 
 ## Status
 
-proposed
+accepted
 
 ## Date
 
-2026-05-28
+2026-05-28 (proposed) · 2026-05-28 (FMX-39 accepted by Nico, Option B)
+
+## Ratification
+
+Nico accepted Option B on 2026-05-28 after reviewing the FMX-30 dossier
+(PR [#93](https://github.com/EtroxTaran/football-manager-x/pull/93)).
+The §Recommendation below names Option B; the synthesis at
+[[../../60-Research/regulations-compliance-bounded-context-2026-05-28]]
+documents the three converging arguments (DDD canonical Tax-catalog
+pattern from Vernon + Stripe Tax / Avalara analogues, real-world
+multi-regulator landscape 2024-2026, FM Advanced Rules editor genre
+precedent).
+
+Application:
+
+- Status flipped `proposed` → `accepted`; `binding: false` → `true`.
+- The §Map patch proposal that lived in this ADR was applied to
+  [[../bounded-context-map]] in the same PR (FMX-39). Regulations &
+  Compliance is now the **fifteenth bounded context** in the live map.
+- The §Map patch proposal section is removed from this ADR as a result -
+  its content lives in the map. Future amendments to the map go through
+  normal ADR supersession ([[../../90-Meta/vault-governance]]).
+- `risk:legal` label set on this ADR and the apply PR. IP-clean rule
+  terminology (GD-0015 + ADR-0007 hardline) applies to the entire
+  Regulations BC; periodic audit by Nico or external IP review.
 
 ## Context
 
@@ -474,145 +498,6 @@ Negative:
   domain-expert authoring (Nico + research input) per `risk:legal`.
 - Catalog versioning + future-changes pre-authoring is non-trivial
   data engineering; FM precedent shows the pattern works.
-
-## Map patch proposal
-
-Applies only on Nico's acceptance. Until then, the bounded-context map
-keeps the fourteen-context baseline. The patch is **order-tolerant** -
-ADR-0052 (People) and ADR-0054 (Narrative) may be accepted before or
-after this ADR.
-
-### Patch 1: §1 table
-
-Rename section header to reflect new count
-("Fifteen" / "Sixteen" / "Seventeen" bounded contexts depending on
-how many parallel drafts are accepted at apply-time). Insert one new
-row after Tactics (or wherever editorial position prefers; the table
-is unordered):
-
-```diff
- | **Tactics** | Tactic presets, set-piece routine variants, opposition templates, role/duty configurations, tactical-style signal aggregation | TacticSnapshot at lock-time, RoleProfileForPosition queries, OppositionTemplate lookups, SetPieceRoutineCatalog, TacticalIdentityFingerprint for Manager & Legacy |
-+| **Regulations & Compliance** | Regulatory profiles per regulator + competition + tier (versioned by effective date), transfer-window FSM, work-permit catalog, sanction catalog, licence-tier facility requirements, community-pack rule-override validation policy | EligibilityForTransfer / SquadRegistrationCheck / LicenceTierCompliance / FfpRatioCheck queries, CurrentTransferWindow status, EffectiveRuleSet snapshot at save creation, sanction escalation chain |
- | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
-```
-
-Add an explanatory paragraph after the table noting boundaries:
-"Regulations & Compliance consumes Club Management ledger facts
-(ADR-0050) for FFP / SCR ratio computation against rule thresholds;
-consumes League Orchestration season boundaries for rule-set
-activation + window state machine; consumes Squad & Player HG
-accumulation + registration state for HG / association-trained
-eligibility; consumes Staff Operations foreign-staff hires (when
-modelled) for work-permit checks; consumes Transfer offer acceptance
-to participate in transfer-eligibility Process Manager / Saga;
-consumes Community Overlay Pipeline rule-pack imports for schema +
-semantic override validation. It publishes rule definitions + window
-status + sanction escalation chains as read models + events. The
-multi-context eligibility chain (work permit + squad cap + HG +
-window status + financial-fit) runs as Process Manager / Saga in the
-BC owning the overall business process (Transfer for signings, Squad
-& Player for registration submission, League Orchestration for
-promotion validation) - Regulations owns the rule, each consumer
-owns its enforcement."
-
-### Patch 2: §2 Mermaid
-
-Insert `Reg` node + edges:
-
-```diff
-     Tactics["Tactics"]
-+    Reg["Regulations & Compliance"]
-     Offline["Offline Sync"]
-     Audit["Audit & Security"]
-
-     Identity --> League
-     Identity --> Club
-     Identity --> ML
-     Identity --> Staff
-     Identity --> Tactics
-+    Identity --> Reg
-     League --> Match
-     League --> Transfer
-     League --> WP
-     League --> ML
-     League --> Tactics
-+    League --> Reg
-     Club --> Squad
-     Club --> Match
-     Club --> ML
-     Club --> Staff
-+    Club --> Reg
-     Squad --> Training
-     Squad --> Transfer
-     Squad --> Match
-     Squad --> ML
-     Squad --> Tactics
-+    Squad --> Reg
-     Staff --> Training
-     Staff --> Transfer
-     Staff --> Squad
-     Staff --> Match
-     Staff --> Club
-     Staff --> Notif
-     Staff --> Tactics
-+    Staff --> Reg
-+    Transfer --> Reg
-+    Reg --> Transfer
-+    Reg --> Squad
-+    Reg --> Club
-+    Reg --> League
-+    Reg --> Staff
-+    Reg --> Match
-+    Reg --> Notif
-     Tactics --> Match
-     Tactics --> Training
-     Tactics --> Transfer
-     Tactics --> ML
-     Tactics --> WP
-     Training --> Squad
-     Training --> ML
-     Transfer --> ML
-     Match --> WP
-     Match --> Notif
-     Match --> ML
-     Match --> Tactics
-     Transfer --> Notif
-     League --> Notif
-     ML --> Notif
-```
-
-(`Reg` consumes facts from Identity (auth), League (season + windows),
-Club (ledger + facility state), Squad (HG + registration), Staff
-(foreign-staff hires), Transfer (offer-accepted trigger). It publishes
-rule definitions + window status + sanctions to Transfer, Squad, Club,
-League, Staff, Match (line-up eligibility), Notification (sanction
-announcements).)
-
-### Patch 3: §4 Source mapping
-
-Add `regulations/` to the per-context folder list:
-
-```diff
-   manager-legacy/
-   staff-operations/
-   tactics/
-+  regulations/
-   sync/
-   audit/
-```
-
-### Patch 4: §1.x sub-section update (if ADR-0052 / ADR-0054 are also
-proposed at apply-time)
-
-Cross-reference the parallel drafts. Regulations does not depend on
-ADR-0052 or ADR-0054 acceptance:
-
-- People (ADR-0052): if ratified, Regulations consumes
-  `ActorRegistered` for staff actor identity in work-permit checks.
-  Until ratified, Staff Operations supplies actor identity directly.
-- Narrative (ADR-0054): no direct boundary - Narrative may consume
-  sanction-announcement read models post-MVP but does not require
-  any contract change from Regulations for ratification.
 
 ## Supersedes
 
