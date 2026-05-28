@@ -3,7 +3,7 @@ title: Implementation (Map of Content)
 status: current
 tags: [implementation, moc]
 created: 2026-05-17
-updated: 2026-05-27
+updated: 2026-05-28
 type: index
 binding: true
 related: [[../00-Index/Home]], [[agent-workflow-pattern]], [[../10-Architecture/README]], [[../00-Index/Documentation-V1]]
@@ -22,6 +22,7 @@ operational runbooks. Current implementable notes are classified by
 - [[ci-and-review-process]] - green-by-default enforcement.
 - [[design-sync-workflow]] - design export to codebase.
 - [[linear-task-tracking]] - Linear (team FMX) conventions + GitHub branch/PR integration.
+- [[domain-research-workflow]] - canonical six-phase beat for closing bounded-context gaps in Phase 1.
 
 ## Infrastructure and Integration
 
