@@ -1,12 +1,12 @@
 ---
 title: Fan Ecology - Six Segments and Atmosphere Engine
 status: draft
-tags: [game-design, fans, atmosphere, ultras, economy, fmx-41]
+tags: [game-design, fans, atmosphere, ultras, economy, ticketing, price-elasticity, fmx-41, fmx-42]
 created: 2026-05-16
 updated: 2026-05-28
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Fan Ecology - Six Segments and Atmosphere Engine
@@ -15,10 +15,11 @@ Fan culture must produce *sporting, economic and political* effects all at
 once. A single "mood" gauge is too coarse - real fans split into segments
 that react to *different* things and pull the club in opposing directions.
 
-FMX-13 makes fan ecology a direct economy input: fan segments drive attendance,
-season-ticket renewal, catering, merchandise, hospitality demand and sponsor
-fit. They never post money directly; Club Management reads their public outputs
-when producing [[economy-system]] ledger entries.
+FMX-13, FMX-41 and FMX-42 make fan ecology a direct economy input: fan segments
+drive latent demand, attendance, season-ticket renewal, catering, merchandise,
+hospitality demand, sponsor fit and ticketing-trust risk. They never post money
+directly; Club Management reads their public outputs when producing
+[[economy-system]] ledger entries.
 
 ## 1. Six supporter segments
 
@@ -43,6 +44,9 @@ For each segment the system tracks:
 - `mood` (-100..+100) - current happiness.
 - `volatility` - how fast mood moves on news.
 - `attendance_probability` per match.
+- `attendance_floor` - bad-season floor before severe trust/identity shocks.
+- `price_sensitivity` - segment-specific reaction to ticket price and trip cost.
+- `ticketing_trust` - memory of perceived fairness, transparency and shocks.
 - `merch_propensity`, `catering_propensity`, `hospitality_demand`.
 
 A decision can move different segments in opposite directions. Examples:
@@ -154,9 +158,16 @@ post money. It publishes a `FanDemandForecast` for [[economy-system]] and
 
 The forecast includes:
 
-- segment-level attendance probability;
-- season-ticket renewal probability;
-- price elasticity and fan-trust guardrails;
+- segment-level latent demand before stadium capacity is applied;
+- segment-level actual attendance forecast after seat inventory and allocation;
+- season-ticket renewal probability by segment and seat class;
+- reference-price comparison by seat class and country/club profile;
+- price sensitivity by segment, not one global elasticity constant;
+- persistent `ticketingTrustState` and fan-trust guardrails;
+- fixture attractiveness from opponent draw, rivalry, stakes, form, star pull,
+  novelty, weather and kickoff convenience;
+- capacity pressure: underfilled, balanced, constrained or sold-out latent
+  demand state;
 - catering, merchandise and hospitality propensity;
 - sponsor-category fit and boycott risk;
 - expected effect of fan-service campaigns such as away trains, family days,
@@ -168,6 +179,30 @@ This preserves two club archetypes:
   bad sporting years, but punish identity and price shocks more strongly;
 - **success/event fans** generate bigger top-match/star/cup upside, but drop
   faster when form, hype or opponent appeal falls.
+
+### 7.1 FMX-42 fan-demand model
+
+Fan demand is calculated as **latent demand first, attendance second**. This
+prevents sold-out clubs from looking price-insensitive for the wrong reason:
+if latent demand is far above capacity, a price increase may keep attendance
+full while changing segment mix, revenue per seat, renewal risk and trust.
+
+Draft equation shape:
+
+```text
+latent_demand_s =
+  reachable_population_s
+  * loyalty_floor_s
+  * price_response_s(ticket_price, reference_price, fairness_state)
+  * sporting_context_response_s(form, table_context, long_term_trend)
+  * fixture_response_s(opponent_draw, rivalry_tier, fixture_stakes, star_pull)
+  * comfort_response_s(weather, kickoff_time, stadium_quality, safety)
+  * campaign_response_s(active_fan_events)
+```
+
+Club profile and country profile provide calibration ranges only. They do not
+create code branches: a Germany-style traditional club can still behave like an
+event-led club if the generated fan mix and commercial history support it.
 
 ## 8. UI tiers
 

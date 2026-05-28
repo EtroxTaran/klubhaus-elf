@@ -214,6 +214,21 @@ This feeds draft
 [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 and draft [[../30-Implementation/club-economy-commercial-contracts]].
 
+## Fan Demand and Price Elasticity (2026-05-28)
+
+[[fan-demand-price-elasticity-2026-05-28]] is the FMX-42 research synthesis for
+supporter demand, season-ticket renewal, price elasticity, top-match surcharges
+and ticketing-trust backlash. The recommended draft model is segment-specific
+latent demand before stadium capacity, then ticketing allocation and settlement.
+It rejects one global elasticity constant, keeps numbers as tunable profile
+ranges, and documents country-profile tendencies for Germany, England, Spain,
+Italy and France.
+
+This refines draft [[../50-Game-Design/fan-ecology]], draft
+[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
+[[../50-Game-Design/economy-system]] and draft
+[[../30-Implementation/club-economy-commercial-contracts]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 [[ai-narrative-runtime-integration]] synthesizes the two narrative/LLM reports

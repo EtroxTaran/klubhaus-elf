@@ -42,6 +42,15 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-28-fmx-42-fan-demand-price-elasticity]] - FMX-42 demand and pricing
+  dossier: segment-specific latent fan demand before capacity allocation,
+  season-ticket renewal versus single-ticket curves, top-match surcharge and
+  bounded dynamic-pricing risks, capacity pressure, country-profile demand
+  tendencies, and persistent ticketing trust feeding renewal, boycott,
+  atmosphere and sponsor-fit risk. Refined draft Fan Ecology, GD-0022,
+  Economy System and commercial-contract surfaces; awaiting Nico decisions on
+  dynamic-pricing scope, country guardrail hardness and Quick-mode trust
+  visibility.
 - [[2026-05-28-fmx-41-economy-impact-map]] - FMX-41 economy impact map
   and commercial-contract dossier: direct financial-success domains, Top-5
   research anchors, season-ticket and ticket-pricing trade-offs, fan segment
