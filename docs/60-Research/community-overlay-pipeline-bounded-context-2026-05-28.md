@@ -45,11 +45,11 @@ delegation as the residual concern.
 ## Status
 
 This is a sourced ownership dossier for FMX-33. It does not change the
-bounded-context map. The recommendation feeds a new draft ADR-0058
+bounded-context map. The recommendation feeds a new draft ADR-0059
 (`status: proposed`, `binding: false`) that Nico ratifies separately.
 `risk:legal` label set throughout.
 
-`raw research -> this synthesis -> ADR-0058 §Options + §Recommendation -> Nico decision`
+`raw research -> this synthesis -> ADR-0059 §Options + §Recommendation -> Nico decision`
 
 ## Summary
 
@@ -305,7 +305,7 @@ hardline contained in one BC.
 
 ## Inputs For Decisions
 
-If Option D is accepted, the following items encode in ADR-0058:
+If Option D is accepted, the following items encode in ADR-0059:
 
 - **Context owner:** Community Overlay Pipeline as the next bounded
   context (17th if accepted before ADR-0052 / ADR-0054; 18th / 19th
@@ -513,17 +513,17 @@ Per the FMX-33 plan and
 - This synthesis note.
 - The raw research at
   [[raw-perplexity/raw-community-overlay-pipeline-2026-05-28]].
-- A new draft ADR-0058 with four options (A platform service / B
+- A new draft ADR-0059 with four options (A platform service / B
   Identity sub-aggregate / C Offline Sync sub-aggregate / D own
   context) + Option E anti-pattern explicitly rejected,
   §Recommendation = Option D, Public-contract sketch, determinism +
   storage rules, §Map patch proposal as fenced diff. `risk:legal`
   label set.
 - Note: ADR-0016 (Community Dataset Overrides, proposed) becomes
-  the upstream scope/content definition that ADR-0058 implements.
-  ADR-0016 status updated to "implemented by ADR-0058 if accepted"
+  the upstream scope/content definition that ADR-0059 implements.
+  ADR-0016 status updated to "implemented by ADR-0059 if accepted"
   in the apply-PR.
-- Decision-Log row for ADR-0058 (`proposed`).
+- Decision-Log row for ADR-0059 (`proposed`).
 - Current-State FMX-33 anchor block.
 - Session handoff naming the ratify-ask:
   *"Accept Option D (recommended), choose A / B / C, or Defer?"*

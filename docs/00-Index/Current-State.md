@@ -127,7 +127,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > + Steam Workshop + CurseForge / Modrinth manifest-driven compliance
 > + EU DSA + Bethesda paid-mods + Steam policy trends converging on
 > upload gate + provenance + audit trail; medium) evidence. New draft
-> [[../10-Architecture/09-Decisions/ADR-0058-community-overlay-pipeline-context]]
+> [[../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]]
 > proposes **Community Overlay Pipeline as an additional bounded
 > context** (Option D) with four options + Option E anti-pattern +
 > §Recommendation + §Map patch proposal. **Six-of-six DDD criteria

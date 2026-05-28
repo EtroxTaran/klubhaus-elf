@@ -9,7 +9,7 @@ binding: false
 related:
   - [[../../60-Research/community-overlay-pipeline-bounded-context-2026-05-28]]
   - [[../../60-Research/raw-perplexity/raw-community-overlay-pipeline-2026-05-28]]
-  - [[../../10-Architecture/09-Decisions/ADR-0058-community-overlay-pipeline-context]]
+  - [[../../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]]
   - [[../../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]
   - [[../../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]]
   - [[../../10-Architecture/09-Decisions/ADR-0057-rivalry-system-context]]
@@ -71,7 +71,7 @@ related:
   [[../../60-Research/community-overlay-pipeline-bounded-context-2026-05-28]]
   with six numbered findings F1-F6 (each with source + confidence).
 - Authored new draft ADR
-  [[../../10-Architecture/09-Decisions/ADR-0058-community-overlay-pipeline-context]]:
+  [[../../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]]:
   `status: proposed`, `binding: false`. Four options (A platform
   service / B Identity sub-aggregate / C Offline Sync sub-aggregate
   / D own context) + Option E (cross-cutting policy service)
@@ -86,13 +86,13 @@ related:
   ADR-0051 + immutable per-save snapshot). §Map patch proposal as
   four fenced ```diff``` blocks (order-tolerant with parallel
   ADR-0052 / ADR-0054 drafts).
-- ADR number is **ADR-0058** (Narrative took ADR-0054, Tactics took
+- ADR number is **ADR-0059** (Narrative took ADR-0054, Tactics took
   ADR-0055, Regulations took ADR-0056, Rivalry took ADR-0057; this
   is next available).
 - **`risk:legal` label set** — IP-clean rule terminology + denylist +
   living-person filter + manifest IP disclaimer + audit trail all
   live inside Community Overlay BC.
-- Updated [[../../00-Index/Decision-Log]] with new ADR-0058 row
+- Updated [[../../00-Index/Decision-Log]] with new ADR-0059 row
   (`proposed`) and added the synthesis under "Current Binding Non-ADR
   Inputs".
 - Added FMX-33 anchor block to
@@ -101,28 +101,28 @@ related:
 ## Open / next step
 
 **Nico Accept Option D (recommended), choose A / B / C, or Defer
-call on ADR-0058 is the next gate.**
+call on ADR-0059 is the next gate.**
 
 - *Accept Option D (recommended)*: open a follow-up apply PR
   analogous to FMX-35 / FMX-36 / FMX-37 / FMX-39 / FMX-40. Flip
-  ADR-0058 `status: proposed` → `accepted` and `binding: false` →
+  ADR-0059 `status: proposed` → `accepted` and `binding: false` →
   `true`. Apply the §Map patch (four parts) to
   `bounded-context-map.md` in the same PR. Update Decision-Log status
   column. Update Architecture-Map / 05-Building-Blocks / Current-
   State "16 → 17 bounded contexts" prose. Optional editorial update
-  to ADR-0016 cross-reference (mark "implemented by ADR-0058").
+  to ADR-0016 cross-reference (mark "implemented by ADR-0059").
 - *Choose Option A (platform service outside the map)*: edit
-  ADR-0058 to record the choice; synthesis names "substantial domain
+  ADR-0059 to record the choice; synthesis names "substantial domain
   logic + own ubiquitous language + lifecycle + IP-safety governance
   + ADR-0056/0057 dangling references" as load-bearing arguments
   against.
-- *Choose Option B (Identity sub-aggregate)*: edit ADR-0058;
+- *Choose Option B (Identity sub-aggregate)*: edit ADR-0059;
   synthesis names "Identity's existing scope is account + auth, not
   content policy + multi-BC orchestration".
-- *Choose Option C (Offline Sync sub-aggregate)*: edit ADR-0058;
+- *Choose Option C (Offline Sync sub-aggregate)*: edit ADR-0059;
   synthesis names "Offline Sync owns storage hygiene + sync state,
   not orchestration of game-state BCs".
-- *Defer*: leave ADR-0058 `proposed`; document deferral on FMX-33.
+- *Defer*: leave ADR-0059 `proposed`; document deferral on FMX-33.
   Note: ADR-0056 + ADR-0057 dangling "FMX-33 Community Overlay
   Pipeline" references remain unresolved.
 
@@ -137,44 +137,44 @@ ratification call.
 ## Blockers
 
 - No implementation authority for Community Overlay Pipeline until
-  ADR-0058 is `accepted` and `binding: true`.
+  ADR-0059 is `accepted` and `binding: true`.
 - ADR-0056 + ADR-0057 dangling "FMX-33 Community Overlay Pipeline"
   references stay unresolved until decision lands.
 - ADR-0016 (proposed) stays in proposed-but-not-implemented limbo
-  until ADR-0058 lands.
+  until ADR-0059 lands.
 - Community editor UI work (post-MVP per
   community-editor-and-datasets.md) gated on Community Overlay BC
   contract surface.
 - FMX-27 / FMX-29 / FMX-31 do not have direct dependencies on
-  FMX-33 / ADR-0058.
+  FMX-33 / ADR-0059.
 - ADR-0052 (People) and ADR-0054 (Narrative) drafts are parallel;
-  the §Map patch in ADR-0058 is order-tolerant.
+  the §Map patch in ADR-0059 is order-tolerant.
 
 ## Changed vault paths
 
 - `docs/60-Research/raw-perplexity/raw-community-overlay-pipeline-2026-05-28.md` *(new)*
 - `docs/60-Research/community-overlay-pipeline-bounded-context-2026-05-28.md` *(new)*
-- `docs/10-Architecture/09-Decisions/ADR-0058-community-overlay-pipeline-context.md` *(new)*
-- `docs/00-Index/Decision-Log.md` *(ADR-0058 row + Current Binding Non-ADR Inputs)*
+- `docs/10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context.md` *(new)*
+- `docs/00-Index/Decision-Log.md` *(ADR-0059 row + Current Binding Non-ADR Inputs)*
 - `docs/00-Index/Current-State.md` *(FMX-33 anchor block)*
 - `docs/40-Execution/session-handoffs/2026-05-28-fmx-33-community-overlay-pipeline.md` *(this file, new)*
 - `docs/40-Execution/session-handoffs/README.md` *(new entry)*
 
 ## Needs promotion
 
-- ADR-0058 can move to `accepted` / `binding: true` only after Nico
+- ADR-0059 can move to `accepted` / `binding: true` only after Nico
   accepts Option D (or chooses A / B / C).
 - [[../../60-Research/community-overlay-pipeline-bounded-context-2026-05-28]]
   stays `draft` as a synthesis; not a promotion gate.
-- `bounded-context-map.md` patch applies only on ADR-0058 acceptance.
-- ADR-0016 may optionally be marked "implemented by ADR-0058" in
+- `bounded-context-map.md` patch applies only on ADR-0059 acceptance.
+- ADR-0016 may optionally be marked "implemented by ADR-0059" in
   the apply-PR; not status-changing.
 
 ## Ratify-ask
 
 **Accept Option D (recommended), choose Option A / B / C, or Defer?**
 
-§Recommendation in ADR-0058 names Option D (own bounded context) as
+§Recommendation in ADR-0059 names Option D (own bounded context) as
 the call. Synthesis F2 + F4 + F5 are the load-bearing arguments:
 
 - **F2 (strongest)**: ADR-0056 + ADR-0057 (both accepted, binding)

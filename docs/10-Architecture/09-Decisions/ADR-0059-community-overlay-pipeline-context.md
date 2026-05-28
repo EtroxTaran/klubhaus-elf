@@ -1,5 +1,5 @@
 ---
-title: ADR-0058 Community Overlay Pipeline Context
+title: ADR-0059 Community Overlay Pipeline Context
 status: proposed
 tags: [adr, architecture, ddd, community, overlay, import, fmx-33, risk-legal]
 created: 2026-05-28
@@ -28,7 +28,7 @@ related:
   - [[../../60-Research/raw-perplexity/raw-community-overlay-pipeline-2026-05-28]]
 ---
 
-# ADR-0058: Community Overlay Pipeline Context
+# ADR-0059: Community Overlay Pipeline Context
 
 ## Status
 
@@ -252,9 +252,9 @@ Three converging arguments:
   invariant + periodic Nico / external IP audit.
 - **Coordination with ADR-0016.** ADR-0016 (Community Dataset
   Overrides, proposed) defines the scope + content + manifest model.
-  ADR-0058 defines the bounded context that implements it. On
+  ADR-0059 defines the bounded context that implements it. On
   acceptance, ADR-0016 should be updated to "implemented by
-  ADR-0058" in the apply-PR or kept as the upstream content/scope
+  ADR-0059" in the apply-PR or kept as the upstream content/scope
   reference.
 - **Multi-BC orchestration complexity.** Process Manager / Saga
   coordinates manifest parsing + compatibility check + multi-BC
@@ -505,7 +505,7 @@ Negative:
   for transfer eligibility, ADR-0057 Process Manager inside
   rivalry); curve tuning is GDDR territory.
 - ADR-0016 needs cross-reference update after acceptance to mark
-  "implemented by ADR-0058" or stays as upstream content/scope
+  "implemented by ADR-0059" or stays as upstream content/scope
   reference.
 - Repeat-infringer / EU DSA compliance reporting features stay
   post-MVP; foundations (`IPSafetyAuditLog`, `RevokePack`) are
@@ -614,9 +614,9 @@ Add `community-overlay/` to the per-context folder list:
 ### Patch 4: ADR-0016 cross-reference update
 
 Update ADR-0016 (Community Dataset Overrides, currently proposed) to
-mark "implemented by ADR-0058 Community Overlay Pipeline Context"
+mark "implemented by ADR-0059 Community Overlay Pipeline Context"
 in its frontmatter `superseded_by:` or `related:` field. ADR-0016
-stays the upstream scope/content/manifest definition; ADR-0058
+stays the upstream scope/content/manifest definition; ADR-0059
 defines the bounded context that implements it. This is editorial /
 referential, not a status change for ADR-0016 itself.
 
@@ -631,7 +631,7 @@ None
 - [[../../60-Research/raw-perplexity/raw-community-overlay-pipeline-2026-05-28]]
   - FMX-33 raw research (genre / DDD / real-world surveys).
 - [[ADR-0016-community-dataset-overrides]] - upstream scope +
-  content + manifest definition; ADR-0058 implements its pipeline.
+  content + manifest definition; ADR-0059 implements its pipeline.
 - [[../../50-Game-Design/community-editor-and-datasets]] - GDDR;
   editor scope + validation pipeline.
 - [[../../50-Game-Design/GD-0015-ip-clean-data]] - IP-clean
