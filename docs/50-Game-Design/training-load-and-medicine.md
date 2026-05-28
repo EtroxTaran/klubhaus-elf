@@ -3,10 +3,10 @@ title: Training, Load and Medicine
 status: draft
 tags: [game-design, training, load, medical]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-28
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/player-strength-presentation]], [[youth-academy-and-development]], [[tactics-system]], [[match-engine]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+related: [[README]], [[../60-Research/player-strength-presentation]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[youth-academy-and-development]], [[tactics-system]], [[match-engine]], [[GD-0021-player-staff-development-and-decision-influence]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Training, Load and Medicine
@@ -173,6 +173,11 @@ between a poor role fit and a good fit who is currently tired or rusty.
 Coaches have specialisations (attacking / midfield / defensive / GK /
 fitness / set-piece). Assigning a coach outside their specialisation
 reduces block effectiveness.
+
+Staff Operations owns role assignment, pipeline coverage and specialisation
+metadata. Training consumes those facts through the GD-0021 factor matrix and
+applies bounded effects. Staff-skill profile effects remain gated until Nico
+approves a staff-skill MVP option.
 
 ## 10. Future-scope notes (classified future-scope)
 

@@ -15,8 +15,10 @@ related:
   - [[ADR-0030-llm-out-of-authoritative-state]]
   - [[ADR-0051-manager-and-legacy-context]]
   - [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+  - [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+  - [[../../60-Research/player-staff-development-decision-model-2026-05-28]]
   - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../../20-Features/feature-eos-player-skills-and-people-context]]
   - [[../../20-Features/feature-ai-narration-mvp-pillar]]
@@ -136,6 +138,8 @@ Draft read models:
 - `DialogueContextCard`
 - `NarrativeActorDirectory`
 - `PeopleImpactSummary`
+- `DevelopmentDecisionContext` contribution slice
+- `TransferDecisionContext` contribution slice
 
 Draft consumed facts:
 
@@ -160,6 +164,9 @@ Draft consumed facts:
   football/economy facts remain in the owning context.
 - Dialogue context cards contain only structured facts and allowed summaries.
   They include forbidden-claim lists for template/LLM consumers.
+- Development and Transfer decision contexts expose only derived, provenance-
+  backed slices needed by the consuming domain. Training, Squad and Transfer
+  apply their own rules and never duplicate People-owned social truth.
 - Runtime LLM output remains governed by ADR-0030: presentation only, no state
   mutation.
 - Narrative context cards for media/fan/board scenes include opaque refs and
@@ -218,8 +225,10 @@ None
 ## Related docs
 
 - [[../../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+- [[../../60-Research/player-staff-development-decision-model-2026-05-28]]
 - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+- [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../../20-Features/feature-eos-player-skills-and-people-context]]
 - [[../../20-Features/feature-ai-narration-mvp-pillar]]

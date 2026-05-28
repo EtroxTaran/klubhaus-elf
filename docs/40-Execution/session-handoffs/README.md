@@ -50,6 +50,11 @@ This is the **single** canonical handoff location. (An older
   archives), synthesis recommending Option C (own Tactics bounded
   context), draft ADR-0055 with four options + §Recommendation + §Map
   patch proposal (order-tolerant). Awaiting Nico decision.
+- [[2026-05-28-fmx-38-player-staff-development-decision-model]] - anchored
+  FMX-38 player/staff development and decision-influence analysis into research
+  synthesis, draft GD-0021, feature/game-design/ADR links and an explicit
+  staff-skill MVP option gate. Awaiting Nico decision on GD-0021 approval and
+  staff-skill option A/B/C.
 - [[2026-05-28-fmx-26-staff-backroom]] - FMX-26 ownership dossier for
   Staff & Backroom residual scope after ADR-0052. Three Perplexity
   queries (genre / DDD / real-world 2024-2026 Sporting Director model),

@@ -34,7 +34,8 @@ stubs as future-scope planning, not open documentation gaps.
   Full Dialogue, All Active actor context, Narrative context framework,
   Playtest First, template fallback and Runtime-LLM gates.
 - [[feature-eos-player-skills-and-people-context]] - draft FMX-23 feature
-  slice for player skills/perks, People context and persona context cards.
+  slice for player skills/perks, People context, persona context cards and
+  GD-0021 decision-influence hooks.
 
 Older feature stubs may contain historical "In scope (MVP)" headings. The
 canonical MVP scope is [[../00-Index/MVP-Scope]]; use it before interpreting
@@ -46,8 +47,10 @@ those headings.
 - [[feature-stadium-builder]] — Anstoss-style on-grounds attractions + capacity tiers.
 - [[feature-club-economy-mvp-pillar]] — Club Economy MVP pillar.
 - [[feature-venue-operations]] — Non-matchday arena calendar with pitch, sponsor and fan trade-offs.
-- [[feature-player-lifecycle]] — Weekly player development, PA uncertainty and mentoring.
-- [[feature-training-medicine]] — Training load, readiness, multifactor injury risk and rehab.
+- [[feature-player-lifecycle]] — Weekly player development, PA uncertainty,
+  mentoring and GD-0021 development-factor explanations.
+- [[feature-training-medicine]] — Training load, readiness, multifactor injury
+  risk, rehab and staff-pipeline quality hooks.
 - [[feature-eos-player-skills-and-people-context]] — Player skills/perks plus
   People/persona context planning.
 - [[feature-ai-narration-mvp-pillar]] — AI narration MVP pillar.

@@ -3,10 +3,10 @@ title: Feature - Training, Medicine and Availability
 status: draft
 tags: [feature, training, medicine, injuries, availability]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-05-28
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/training-load-and-medicine]], [[../50-Game-Design/squad-and-club-structure]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+related: [[README]], [[../50-Game-Design/training-load-and-medicine]], [[../50-Game-Design/squad-and-club-structure]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Feature - Training, Medicine and Availability
@@ -34,6 +34,9 @@ training signal and readiness impact needed for the first-week loop.
 - Training injuries and return-from-injury events.
 - Rehab quality and medical-centre duration modifiers.
 - Deterministic `InjuryRng` usage for long-term injury draws.
+- Staff pipeline-quality hooks consumed from Staff Operations only through the
+  GD-0021 factor matrix. Staff-skill profile effects remain gated until Nico
+  chooses a staff-skill MVP option.
 
 ## Out of first playable scope
 
@@ -48,9 +51,12 @@ training signal and readiness impact needed for the first-week loop.
   role demand or early return.
 - Injury occurrence and severity are separate draws.
 - Match injuries remain sourced from Match and persisted by Squad & Player.
+- Training/medical staff effects can be explained through pipeline coverage,
+  not hidden global buffs.
 
 ## Dependencies
 
 - [[../50-Game-Design/training-load-and-medicine]]
+- [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
 - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 - [[../60-Research/determinism-and-replay]]

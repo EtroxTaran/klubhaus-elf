@@ -3,10 +3,10 @@ title: Feature - AI Transfer Market and Contracts
 status: approved
 tags: [feature, transfers, contracts, ai, scouting, economy]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-05-28
 type: feature
 binding: true
-related: [[README]], [[../50-Game-Design/transfer-market-and-contracts]], [[../60-Research/transfer-market-simulation]], [[../10-Architecture/transfer-market-architecture]], [[../10-Architecture/state-machines/transfer]]
+related: [[README]], [[../50-Game-Design/transfer-market-and-contracts]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../60-Research/transfer-market-simulation]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../10-Architecture/transfer-market-architecture]], [[../10-Architecture/state-machines/transfer]]
 ---
 
 # Feature - AI Transfer Market and Contracts
@@ -44,10 +44,15 @@ Full market depth can phase in after the first loop is playable.
 - Transfer window regimes and deadline pressure.
 - Transfer Scope presets for tiered world simulation.
 - Inbox / feed / negotiation UI hooks for explanations.
+- `TransferDecisionContext` planning hook from
+  [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
+  connecting Impact Lens, PlayerMarketProfile, player agency, People
+  relationship context and Staff Operations recruitment-pipeline quality.
 
 ## Out of first playable scope
 
 - Full agent relationship game across multiple seasons.
+- People/agent relationship depth beyond GD-0021 hooks.
 - Full legal replication of every domestic transfer regulation.
 - Runtime ML valuation.
 - Cross-group transfers.
@@ -64,6 +69,8 @@ Full market depth can phase in after the first loop is playable.
   buy-back / matching rights, loan options / obligations, agent fees and
   training rewards.
 - Player acceptance can block a club-agreed deal.
+- People/persona and staff-pipeline factors, if used, are consumed through
+  named decision contexts and never duplicated as Transfer-owned social truth.
 - Tier 2/3 simulation does not persist full negotiation chains.
 - Transfer events emit through the outbox and can feed D15 narrative arcs.
 - Expert UI shows gross fee, net proceeds, cash-equivalent value, confidence and
@@ -75,6 +82,7 @@ Full market depth can phase in after the first loop is playable.
 
 - [[../10-Architecture/transfer-market-architecture]]
 - [[../10-Architecture/state-machines/transfer]]
+- [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
 - [[../60-Research/ai-manager-behaviour]]
 - [[../60-Research/determinism-and-replay]]
 - [[../60-Research/performance-budgets]]

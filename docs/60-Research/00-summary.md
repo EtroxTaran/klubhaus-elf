@@ -277,6 +277,34 @@ This feeds draft
 [[../20-Features/feature-eos-player-skills-and-people-context]] and draft
 [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]].
 
+## Player, Staff Development and Decision Influence (2026-05-28)
+
+[[player-staff-development-decision-model-2026-05-28]] promotes the FMX-38
+follow-up into a draft decision-influence model. The vault already had the
+pieces - 16+4+8 attributes, Impact Lens, weekly development, mentoring,
+multifactor injury risk, transfer valuation, People/persona/skills and Staff
+Operations - but lacked one owner/consumer matrix for how those factors affect
+gameplay decisions.
+
+Current draft direction:
+
+- Treat attributes, tendencies, player skills/perks, hidden meta, OCEAN
+  persona, relationship edges, staff attributes, staff skills and staff
+  pipeline coverage as separate layers.
+- Use factor matrices before formulas for player development, match/tactics,
+  transfer/squad planning, staff pipeline effects and mentoring.
+- Keep generated prose non-authoritative for relationships, transfers,
+  injuries, promises, development deltas and match effects.
+- Re-open staff-skill MVP activation as an explicit A/B/C decision. The
+  recommendation is Option B: narrow staff pipeline modifiers, not full staff
+  skill-card gameplay.
+
+This feeds draft
+[[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]],
+amends draft [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+and informs the player lifecycle, training medicine and transfer-market feature
+specs.
+
 ## Swappable Spatial-Event Match Engine (2026-05-27)
 
 [[swappable-spatial-event-match-engine-2026-05-27]] synthesizes the FMX-10
