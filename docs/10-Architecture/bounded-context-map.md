@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-28
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/ai-narration-contract-testing-framework]]
 ---
 
 # Bounded Context Map
@@ -89,6 +89,21 @@ Operations (accepted via ADR-0053) consumes People queries for actor
 identity and skill-profile snapshots when ADR-0052 is accepted; until
 then, Staff Operations sources identity from its own staff roster and
 treats skill-profile data as stub.
+
+### 1.3 Proposed FMX-3 context
+
+[[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] proposes
+an additional bounded context, **Narrative**, for scene/storylet selection,
+`NarrativeContextCard` assembly, fallback templates, optional LLM adapter
+boundary, validation, provenance, evaluation corpus, playtest evidence and
+narrative telemetry.
+
+This is not accepted yet. Until ratified, the existing eleven-context map
+remains the baseline and implementation may only preserve planning hooks. If
+ADR-0054 is accepted, Narrative becomes the owner of the narration framework.
+People remains the source of actor/persona truth, Notification remains the
+delivery owner, and Match/Squad/Club/Fan/Transfer contexts remain the
+authoritative fact owners.
 
 ## 2. Context map (high-level)
 
@@ -188,6 +203,14 @@ Match, Club, Transfer, Notification and Manager & Legacy may emit facts about
 people, but People owns persona projections, relationship edges, skill-profile
 snapshots and dialogue context cards. People does not write player attributes,
 match facts, finance state or notification delivery records.
+
+FMX-3 proposes the Narrative boundary
+([[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]):
+owning domains publish facts and read models; Narrative assembles
+`NarrativeContextCard`, renders fallbacks, optionally enhances presentation
+copy, validates output and emits display snapshots/provenance for
+Notification/UI delivery. Narrative does not mutate domain state and generated
+prose is never parsed into commands or facts.
 
 ### 3.1 Impact Lens projection
 

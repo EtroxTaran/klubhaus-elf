@@ -15,6 +15,7 @@ related:
   - [[GD-0010-ai-world]]
   - [[../60-Research/ai-narrative-runtime-integration]]
   - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
+  - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
   - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../60-Research/raw-perplexity/raw-ai-llm-usage]]
   - [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]]
@@ -22,8 +23,10 @@ related:
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
   - [[GD-0020-eos-player-skills-personas-and-people]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
+  - [[../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+  - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
 ---
 
 # GD-0018: AI Narrative Personas and Dialogue
@@ -103,6 +106,14 @@ reactions.
   narration/dialogue surface explains that some in-game text is AI-generated;
   settings/help keeps the persistent explanation. Each generated output still
   carries machine-readable provenance.
+- **Narrative needs its own context owner.** The draft architecture target is a
+  dedicated Narrative context for scenes, templates, context-card assembly,
+  validation, provenance, evaluation and provider adapters. People owns
+  personhood; Notification owns delivery.
+- **Playtest First is the quality posture.** Early MVP narration quality is
+  tuned through structured playtests and eval cases before hard numeric quality
+  thresholds are frozen. This does not relax the hard state-boundary,
+  fallback, safety, privacy or disclosure gates.
 
 ## Open
 
@@ -117,8 +128,9 @@ reactions.
 - Final OpenRouter model/provider routing, cost caps and cache policy.
 - Content volume targets for template-only fallback quality across the Full
   Dialogue surfaces.
-- Evaluation thresholds for contradiction rate, fallback rate, persona drift,
-  repetition and unsafe-output rejection before MVP launch.
+- Final quantitative thresholds for contradiction rate, fallback rate, persona
+  drift, repetition and unsafe-output rejection after the first playtest corpus
+  establishes a baseline.
 
 ## Rationale
 
@@ -156,14 +168,18 @@ None
 ## Feeds ADRs
 
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
+- [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
 
 ## Related
 
 - Research: [[../60-Research/ai-narrative-runtime-integration]] ·
   [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] ·
+  [[../60-Research/ai-narration-testing-framework-2026-05-28]] ·
   [[../60-Research/raw-perplexity/raw-ai-llm-usage]] ·
   [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]] ·
   [[../60-Research/narrative-content-pipeline]]
 - Decisions: [[GD-0013-narrative-inbox]] ·
-  [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
+  [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]] ·
+  [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+- Implementation: [[../30-Implementation/ai-narration-contract-testing-framework]]
 - [[README]] - Game Design Log

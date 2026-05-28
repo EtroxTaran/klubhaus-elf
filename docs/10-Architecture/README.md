@@ -3,7 +3,7 @@ title: Architecture (Map of Content)
 status: current
 tags: [architecture, moc]
 created: 2026-05-17
-updated: 2026-05-22
+updated: 2026-05-28
 type: index
 binding: true
 related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[05-Building-Blocks]], [[../00-Index/Documentation-V1]]
@@ -38,6 +38,12 @@ baseline for architecture-gap classification.
 - [[09-Decisions/ADR-0051-manager-and-legacy-context]] — draft proposed Manager
   & Legacy context for manager identity, run analysis and legacy/prestige
   contracts.
+- [[09-Decisions/ADR-0052-people-persona-and-skills-context]] — draft proposed
+  People / Persona & Skills context for actor personas, relationships and
+  skill profiles.
+- [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] —
+  draft proposed Narrative context for narration contracts, templates,
+  validation, provenance and evals.
 
 ## Modules
 

@@ -10,11 +10,14 @@ linear: FMX-3
 related:
   - [[README]]
   - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
+  - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
   - [[../60-Research/ai-narrative-runtime-integration]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+  - [[../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+  - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[feature-eos-player-skills-and-people-context]]
   - [[feature-fan-ecology-ui]]
 ---
@@ -48,6 +51,9 @@ In scope for the first active narration slice:
   machine-readable provenance on generated outputs.
 - Evaluation corpus for fact consistency, persona consistency, repetition,
   safety, latency, fallback rate and cost.
+- Playtest First quality loop: human review of emotional continuity, actor
+  recognisability, memory usefulness, repetition and disclosure clarity feeds
+  back into eval cases before final numeric thresholds are frozen.
 
 Out of MVP scope:
 
@@ -106,14 +112,21 @@ Feature: AI narration MVP pillar
   unmasked user-authored names.
 - Provider/model selection remains gated by ADR-0030, docs verification and
   Nico approval.
+- Narrative context ownership, framework structure and contract/eval tiers are
+  covered by ADR-0054 and the implementation framework note before code starts.
+- Playtest First may guide quality iteration, but cannot bypass template
+  fallback, state isolation, safety/privacy, provenance or disclosure gates.
 - `pnpm docs:check` passes after the vault update.
 
 ## Related
 
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
+- [[../60-Research/ai-narration-testing-framework-2026-05-28]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+- [[../30-Implementation/ai-narration-contract-testing-framework]]
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+- [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
 - [[feature-eos-player-skills-and-people-context]]
 - [[feature-fan-ecology-ui]]

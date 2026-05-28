@@ -3,9 +3,9 @@ title: Solution Strategy
 status: current
 tags: [architecture]
 created: 2026-05-15
-updated: 2026-05-27
+updated: 2026-05-28
 type: arch
-related: [[01-Introduction]], [[02-Constraints]], [[05-Building-Blocks]], [[09-Decisions/ADR-0001-tech-stack]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[../00-Index/MVP-Scope]]
+related: [[01-Introduction]], [[02-Constraints]], [[05-Building-Blocks]], [[09-Decisions/ADR-0001-tech-stack]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../00-Index/MVP-Scope]]
 ---
 
 # Solution Strategy
@@ -31,6 +31,9 @@ MVP runtime strategy:
 - Manager-archetype progression is MVP-relevant as hooks only: run-end analysis
   and style-signal capture may be preserved, while full Manager & Legacy
   meta-progression stays draft until ADR-0051/GD-0019 are ratified.
+- AI narration is MVP-relevant as an emotional world layer: Full Dialogue,
+  All Active actor context and Playtest First remain draft until
+  ADR-0030/ADR-0054/GD-0018 are ratified. Generated prose is presentation only.
 - Match results are server-confirmed in MVP; local client adapters are preview
   or future selective-offline surfaces unless a later ADR/GDDR promotes them.
 - Dexie / IndexedDB stores cached read models, drafts and local UI state.
@@ -40,6 +43,6 @@ MVP runtime strategy:
 ## Related
 
 - [[05-Building-Blocks]] — module map (hub) · [[09-Decisions/ADR-0001-tech-stack]] — stack decision
-- [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] — MVP runtime staging · [[09-Decisions/ADR-0049-swappable-spatial-event-match-engine]] — match-engine replacement boundary · [[09-Decisions/ADR-0050-club-economy-accounting-ledger]] — economy ledger boundary · [[09-Decisions/ADR-0051-manager-and-legacy-context]] — Manager & Legacy proposal · [[../00-Index/MVP-Scope]] — scope
+- [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]] — MVP runtime staging · [[09-Decisions/ADR-0049-swappable-spatial-event-match-engine]] — match-engine replacement boundary · [[09-Decisions/ADR-0050-club-economy-accounting-ledger]] — economy ledger boundary · [[09-Decisions/ADR-0051-manager-and-legacy-context]] — Manager & Legacy proposal · [[09-Decisions/ADR-0052-people-persona-and-skills-context]] — People proposal · [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] — Narrative proposal · [[../00-Index/MVP-Scope]] — scope
 - Modules: [[modules/web]] · [[modules/match-engine]] · [[modules/game-data]] · [[modules/db-schema]] · [[modules/ui]]
 - [[01-Introduction]] · [[02-Constraints]] — arc42 siblings

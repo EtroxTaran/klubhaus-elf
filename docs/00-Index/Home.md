@@ -48,13 +48,15 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
 - [[../10-Architecture/09-Design-System]] · [[../10-Architecture/09-Design-Styleguide]] ·
   [[../10-Architecture/10-Quality]] · [[../10-Architecture/11-Risks]]
 - **Decisions:** the canonical ADR index with status and lineage is
-  [[Decision-Log]] (covering ADR-0001 … ADR-0051 in
+  [[Decision-Log]] (covering ADR-0001 … ADR-0054 in
   `10-Architecture/09-Decisions/`). Current binding set includes the revised
   tech stack (ADR-0021), PostgreSQL data model + transactional outbox
   (ADR-0027/0028), hybrid-online MVP (ADR-0020), and the reopened match-engine
   line (ADR-0049 proposed; ADR-0003 historical),
   Club Economy accounting ledger (ADR-0050 draft),
   Manager & Legacy context proposal (ADR-0051 draft),
+  People / Persona & Skills context proposal (ADR-0052 draft),
+  Narrative context and AI narration framework proposal (ADR-0054 draft),
   realtime transport (ADR-0023), renderer + frame contract
   (ADR-0024/0026/0041), DDD modular monolith (ADR-0019), multiplayer
   (ADR-0011), design system (ADR-0010), observability (ADR-0017), systemic

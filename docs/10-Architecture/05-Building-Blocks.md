@@ -43,6 +43,14 @@ amendment is required. Consumes People queries (ADR-0052, draft) for
 actor identity when ratified; until then sources identity from own staff
 roster.
 
+FMX-23 proposes **People / Persona & Skills** behind
+[[09-Decisions/ADR-0052-people-persona-and-skills-context]], and FMX-3 proposes
+**Narrative** behind
+[[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]. Both are
+planning context only until ratified. People owns actor/persona truth;
+Narrative owns scene/context-card assembly, fallback templates, validation,
+provenance, evals and provider adapter boundaries.
+
 > Authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]]. Full map at
 > [[bounded-context-map]].
 
@@ -88,6 +96,10 @@ flowchart TB
   end
   subgraph ManagerLegacy[Manager & Legacy (draft)]
   end
+  subgraph People[People / Persona & Skills (draft)]
+  end
+  subgraph Narrative[Narrative (draft)]
+  end
 
   Identity --> Orch
   Identity --> Club
@@ -114,6 +126,13 @@ flowchart TB
   Orch -. run ended .-> ManagerLegacy
   Club -. economy summary .-> ManagerLegacy
   Match -. style summary .-> ManagerLegacy
+  Squad -. actor facts .-> People
+  Club -. board/fan facts .-> People
+  People -. actor cards .-> Narrative
+  Match -. committed key events .-> Narrative
+  Club -. authoritative facts .-> Narrative
+  Transfer -. fixed transfer facts .-> Narrative
+  Narrative -. display snapshots .-> Notif
 ```
 
 ## Source folder convention
@@ -131,6 +150,8 @@ src/domain/
   notifications/
   sync/
   audit/
+  people/          # draft if ADR-0052 is accepted
+  narrative/       # draft if ADR-0054 is accepted
 ```
 
 Each folder owns `commands.ts`, `events.ts`, `queries.ts`,

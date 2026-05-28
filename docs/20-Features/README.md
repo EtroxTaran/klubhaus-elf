@@ -31,8 +31,8 @@ stubs as future-scope planning, not open documentation gaps.
 - [[feature-club-economy-mvp-pillar]] - draft FMX-13 economy MVP pillar:
   weekly ledger, full accounting and staged insolvency.
 - [[feature-ai-narration-mvp-pillar]] - draft FMX-3 AI narration MVP pillar:
-  Full Dialogue, All Active actor context, template fallback and Runtime-LLM
-  gates.
+  Full Dialogue, All Active actor context, Narrative context framework,
+  Playtest First, template fallback and Runtime-LLM gates.
 - [[feature-eos-player-skills-and-people-context]] - draft FMX-23 feature
   slice for player skills/perks, People context and persona context cards.
 

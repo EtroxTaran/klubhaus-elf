@@ -182,6 +182,18 @@ before any promotion.
   draft [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   and [[../20-Features/feature-ai-narration-mvp-pillar]].
 
+## AI Narration Testing and Framework (2026-05-28)
+
+- [[../60-Research/ai-narration-testing-framework-2026-05-28]] — FMX-3
+  synthesis after Nico asked for remaining research, testing and clear
+  framework structures. Captures the chosen **Narrative Context** boundary and
+  **Playtest First** posture: contract-first `NarrativeContextCard`, storylet
+  and template fallback framework, eval corpus, Zod/Vitest/fast-check/
+  Playwright test tiers, OWASP/NIST/EU AI Act safety gates, season simulation,
+  and human playtest rubric. Feeds draft
+  [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+  and [[../30-Implementation/ai-narration-contract-testing-framework]].
+
 ## EOS Player, Staff, Skills and Personas (2026-05-28)
 
 - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]] — FMX-23
@@ -218,6 +230,15 @@ before any promotion.
 - [[../60-Research/raw-perplexity/raw-ai-world-persona-generation-2026-05-28]] -
   generated players, staff, board, media, fan groups, fan reps, values and
   relationship graph.
+- [[../60-Research/raw-perplexity/raw-ai-narration-evaluation-testing-2026-05-28]] -
+  eval corpus, structured output validation, fact grounding, CI tiers and
+  telemetry.
+- [[../60-Research/raw-perplexity/raw-ai-narration-security-testing-2026-05-28]] -
+  prompt injection, PII minimization, unsafe output, provider outage and
+  disclosure tests.
+- [[../60-Research/raw-perplexity/raw-ai-narration-interactive-narrative-qa-2026-05-28]] -
+  storylets, persona cards, relationship memory, deterministic fallbacks and
+  long-season narrative QA.
 
 ## Research Rules
 
