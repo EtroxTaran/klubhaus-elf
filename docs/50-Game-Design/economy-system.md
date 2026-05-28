@@ -1,7 +1,7 @@
 ---
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance, accounting, commercial, club-management, price-elasticity, season-tickets, fmx-13, fmx-41, fmx-42, fmx-43]
+tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44]
 created: 2026-05-16
 updated: 2026-05-28
 type: game-design
@@ -15,6 +15,7 @@ related:
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
+  - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -89,10 +90,10 @@ Important rule: **budget is permission, not cash**.
 | Source | Primary drivers | Timing |
 |---|---|---|
 | Ticketing | Segment latent demand, league, opponent, table, price, weather, fan loyalty, ticketing trust, season-ticket campaign lifecycle | Matchday / season-ticket pre-sale cash, with accrual recognition as matches are played |
-| Catering | Attendance, dwell time, fan mix, risk policy | Matchday + venue events |
-| Hospitality | Corporate demand, premium capacity, sponsor portfolio | Matchday / contract |
-| Merchandise | Brand, stars, success, campaigns | Seasonal spikes |
-| Sponsoring | Reach, image, fan fit, assets, league | Contract cadence |
+| Catering | Attendance, dwell time, fan mix, risk policy, catering contract model and service quality | Matchday + venue events, with contract cash/recognition schedule |
+| Hospitality | Corporate demand, premium capacity, sponsor portfolio, hospitality contract terms | Matchday / contract |
+| Merchandise | Brand, stars, success, campaigns, merch contract and fulfilment quality | Seasonal spikes, royalties/MAG/true-up schedule |
+| Sponsoring | Reach, image, fan fit, assets, league, exclusivity and activation delivery | Contract cadence with cash and recognition schedule |
 | Media rights | Country profile, league tier, table | Profile-specific lump/periodic |
 | Transfers | Player value, contract, buyer pressure | Upfront + instalments |
 | Prizes | Cup, promotion, title, continental progress | Competition-specific |
@@ -224,9 +225,9 @@ still owns the money, but the causes come from contracts and public read models:
 |---|---|---|
 | Season-ticket campaign | Ticketing policy + fan renewal forecast + stadium seat-class inventory | Early cash or receivables, deferred revenue/accrual, reduced single-ticket inventory |
 | Single-ticket sales | Fixture commercial profile + price policy | Matchday ticket cash and top-match surcharge effect |
-| Catering | Stadium throughput + catering contract | In-house revenue/COGS/staff or concession/rent/share income |
-| Merchandise | Fan demand + merch contract + star/cup/rivalry signals | Retail cash, royalty, inventory cost, campaign profit/loss |
-| Sponsorship | Sponsor portfolio + commercial contract | Upfront cash, periodic accrual, bonuses, penalties |
+| Catering | Stadium throughput + catering contract lifecycle + service levels | In-house revenue/COGS/staff or concession/rent/share income, penalties for SLA breach |
+| Merchandise | Fan demand + merch contract lifecycle + star/cup/rivalry signals | Retail cash, royalty/MAG true-up, inventory cost, campaign profit/loss, fulfilment penalties |
+| Sponsorship | Sponsor portfolio + commercial contract lifecycle | Upfront cash, periodic accrual, bonuses, penalties, make-goods and termination effects |
 | Cup progression | Competition revenue profile | Prize/media/gate-share/travel/security entries |
 | Fan-service campaign | Fan event policy | Direct costs, sponsor contributions, loyalty/demand effects |
 | Investor entitlement | Singleplayer payment entitlement | Clean cash grant, no other state change |
@@ -242,6 +243,16 @@ revenue, match-by-match recognition and aggregate credit/refund liabilities.
 No-show, release, transfer and compensation rules operate on fan-group cohorts,
 not individual supporters. A Quick player sees "cash now versus revenue earned
 later"; Standard and Expert expose the schedule.
+
+FMX-44 refines the commercial-contract layer: sponsorship, catering,
+merchandise, hospitality, supplier and venue-activation contracts share one
+lifecycle shell with family-specific schedules. The ledger must separate cash
+timing from recognition, and must post penalties, rebates, damages, make-goods,
+true-ups and termination payments as separate facts. Breaches are
+curable/material/critical; exclusivity conflicts are category/territory/asset
+overlaps, not prose notes. Quick mode sees cash/risk/conflict badges, while
+Expert mode can inspect the contract register, obligation log, breach cases,
+renewal calendar and exclusivity graph.
 
 The same settlement supports Quick / Standard / Expert:
 
@@ -297,7 +308,8 @@ burn through the grant.
 - Research: [[../60-Research/club-economy-blueprint-2026-05-27]] ·
   [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]] ·
   [[../60-Research/fan-demand-price-elasticity-2026-05-28]] ·
-  [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
+  [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]] ·
+  [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - Feature: [[../20-Features/feature-club-economy-mvp-pillar]]
 - Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]

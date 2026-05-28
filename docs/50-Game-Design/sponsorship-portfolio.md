@@ -1,12 +1,12 @@
 ---
 title: Sponsorship Portfolio - Asset-level Sponsor Inventory
 status: draft
-tags: [game-design, sponsors, finance, commercial, contracts, fmx-41]
+tags: [game-design, sponsors, finance, commercial, contracts, contract-lifecycle, breach, fan-fit, fmx-41, fmx-44]
 created: 2026-05-16
 updated: 2026-05-28
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[stadium-and-campus]], [[fan-ecology]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[stadium-and-campus]], [[fan-ecology]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Sponsorship Portfolio - Asset-level Sponsor Inventory
@@ -20,6 +20,11 @@ FMX-13 anchors sponsorship into the Club Management accounting ledger:
 contracts may be recognised as revenue over time while cash arrives upfront,
 periodically or as performance bonuses. Sponsor side-conditions are gameplay
 constraints, not just flavour.
+
+FMX-44 keeps sponsorship asset-driven but routes every signed deal through the
+shared `CommercialContract` lifecycle. Sponsor-specific schedules define asset
+packages, category exclusivity, activation obligations, fan-fit risk, renewal
+rights and breach remedies.
 
 ## 1. Sponsor categories
 
@@ -111,6 +116,10 @@ valuation and side-condition design.
 
 ## 6. Sponsor lifecycle
 
+This diagram is the sponsor-asset view. The signed finance/legal gameplay
+object follows the shared FMX-44 `CommercialContract` lifecycle in
+[[../30-Implementation/club-economy-commercial-contracts]].
+
 ```mermaid
 stateDiagram-v2
     [*] --> Available: Asset open
@@ -140,19 +149,41 @@ trade-offs.
 ## 8. Shared commercial contract shell
 
 FMX-41 aligns sponsorship with catering and merchandise under the shared
-`CommercialContract` contract. Sponsorship remains asset-driven, but it now uses
-the same core fields as other commercial deals:
+`CommercialContract` contract. FMX-44 expands that shell to all six commercial
+families: sponsorship, catering, merchandise, hospitality, supplier and
+venue-activation deals. Sponsorship remains asset-driven, but it now uses the
+same lifecycle and breach fields as other commercial deals:
 
-- term, renewal window and break clauses;
-- cash cadence and accounting recognition schedule;
-- fixed guarantee, performance bonus and penalty rules;
-- exclusivity category;
-- side conditions;
-- fan/sponsor fit risk flags;
-- termination and repayment rules.
+- lifecycle state and contract version;
+- term, renewal window, option periods and break clauses;
+- cash schedule and accounting recognition schedule;
+- fixed guarantee, performance bonus, make-good and penalty rules;
+- category/territory/asset exclusivity plus carve-outs;
+- activation obligations and fulfilment windows;
+- fan/sponsor fit and reputation risk flags;
+- curable/material/critical breach policy;
+- termination, repayment and category-cooldown rules.
 
 This lets sponsors fund fan-service campaigns, catering exclusivity or
 merchandise drops without inventing separate finance mechanics for each case.
+
+Exclusivity conflicts are structured, not free text:
+
+```text
+category x territory x asset x carve_outs
+```
+
+Draft sponsor-category risk bands:
+
+| Category profile | Fan-fit risk |
+|---|---|
+| Local community | Low risk, high identity fit. |
+| Regional brewery | Positive for some core/local fans, mixed family/alcohol risk. |
+| Betting/gambling | High family, legal and reputation risk. |
+| Energy-intensive | Medium-high reputation risk depending on generated profile. |
+| Bank/fintech | Medium conflict risk with payment or digital partners. |
+| Global tech/media | Reach upside, possible privacy/fan-trust risk. |
+| Controversial state/owner-linked | High reputation and protest risk; Nico-gated for first playable. |
 
 ## 9. Future-scope notes (classified future-scope)
 

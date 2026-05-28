@@ -1,7 +1,7 @@
 ---
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
-tags: [implementation, economy, commercial, contracts, tickets, fan-demand, price-elasticity, season-tickets, accounting, investor, fmx-41, fmx-42, fmx-43]
+tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44]
 created: 2026-05-28
 updated: 2026-05-28
 type: implementation
@@ -19,6 +19,7 @@ related:
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
+  - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[club-economy-accounting-ledger]]
   - [[../10-Architecture/bounded-context-map]]
 ---
@@ -30,7 +31,10 @@ related:
 Define the contract surface implied by FMX-41 before code exists. This note
 extends [[club-economy-accounting-ledger]] with ticketing, fan-demand
 elasticity, season-ticket lifecycle accounting, commercial contracts, cup
-settlement, fan-event campaigns and Investor entitlement inputs.
+settlement, fan-event campaigns and Investor entitlement inputs. FMX-44 adds
+the shared commercial contract lifecycle, obligation, exclusivity and breach
+surface for sponsorship, catering, merchandise, hospitality, suppliers and
+venue activations.
 
 This is draft planning only. It becomes implementation authority only after the
 relevant GDDR/ADR path is approved.
@@ -40,8 +44,8 @@ relevant GDDR/ADR path is approved.
 Club Management owns:
 
 - ticketing policies and season-ticket campaigns;
-- commercial contract portfolio for sponsorship, catering, merchandise and
-  venue activations;
+- commercial contract portfolio for sponsorship, catering, merchandise,
+  hospitality, supplier and venue-activation contracts;
 - fan-event campaign choices and budgets;
 - commercial forecasts and settlement;
 - ledger posting for all commercial outcomes;
@@ -220,21 +224,83 @@ Owned by Club Management.
 | Field | Meaning |
 |---|---|
 | `contractId` | UUIDv7 identity. |
-| `contractKind` | sponsorship, catering, merchandise, hospitality, venue-event, supplier. |
+| `contractVersion` | Version number; amendments and renewals create new versions and keep the old version in history. |
+| `contractKind` | sponsorship, catering, merchandise, hospitality, supplier or venue-activation. |
+| `lifecycleState` | draft, offered, negotiating, active, renewalDue, breached, suspended, terminated or expired. |
 | `counterpartyProfileId` | Fictional generated partner profile. |
-| `assetIds` | Sold assets: shirt front, beer rights, fan shop, LED board, etc. |
-| `term` | Start/end week, renewal window, break options. |
-| `cashCadence` | Upfront, monthly, seasonal, matchday, milestone. |
-| `recognitionSchedule` | Accounting period for revenue/cost recognition. |
+| `assetPackage` | Rights granted: shirt, sleeve, stand, shop, pouring rights, hospitality area, digital inventory, fan-zone slot, etc. |
+| `term` | Start/end week, renewal window, option periods and break clauses. |
+| `cashSchedule` | Upfront, monthly, seasonal, matchday, milestone or arrears payments. |
+| `recognitionSchedule` | Revenue/cost recognition period and performance-obligation basis. |
+| `commercialModel` | Fixed fee, revenue share, royalty, minimum guarantee, management fee, lease/rent, supplier rebate or hybrid. |
 | `fixedGuaranteeMinor` | Guaranteed amount, if any. |
+| `minimumGuaranteeMinor` | Minimum annual / seasonal guarantee to true up against share/royalty. |
 | `revenueShareBps` | Share rate in basis points, if any. |
 | `costShareBps` | COGS/staffing split, if any. |
 | `royaltyBps` | Merchandise/licence royalty, if any. |
-| `exclusivityCategory` | Beer, betting, kit, food, energy, banking, etc. |
-| `sideConditions` | Family image, fan activation, minimum attendance, premium capacity. |
+| `exclusivityScope` | Category, territory, asset scope and carve-outs. |
+| `obligationSchedule` | Club and counterparty obligations, due windows and fulfilment state. |
+| `serviceLevelPolicy` | Queue, stockout, open-stand, fulfilment, hospitality or quality thresholds. |
 | `performanceBonuses` | Promotion, cup, table, reach or attendance triggers. |
-| `penalties` | Breach, low reach, incident, early termination. |
-| `riskFlags` | Fan mismatch, legal restriction, inventory risk, service-quality risk. |
+| `penaltyPolicy` | Fee reduction, make-good, cash penalty, suspension or termination rule. |
+| `breachPolicy` | Severity, cure window, repeat threshold and termination rights. |
+| `renewalPolicy` | First negotiation, first refusal, auto-renew, matching right or open-market policy. |
+| `fanFitRisk` | IP-clean category risk and segment reaction band. |
+| `reputationRisk` | Counterparty, club and regulatory scandal hooks. |
+| `portfolioDependencies` | Conflicts or dependencies with other active contracts. |
+| `aiDecisionHints` | Read-only factors for FMX-51 AI club behaviour; not AI behaviour itself. |
+| `auditTrail` | Event log with actor, event type, week and summary payload. |
+| `provenance` | Source forecasts, snapshots and policy versions used. |
+
+Shared lifecycle:
+
+```text
+draft -> offered -> negotiating -> active -> renewalDue -> expired
+                                   active -> breached -> active
+                                   breached -> suspended -> terminated
+                                   active -> terminated
+```
+
+`renewed` is an event, not a long-lived state: it creates a successor
+`contractVersion` and returns the contract to `active`.
+
+Shared breach severities:
+
+| Severity | Meaning | Default game consequence |
+|---|---|---|
+| `curable` | Minor missed obligation, late report, one missed activation, small stockout. | Cure timer, make-good option, small fan/service hit. |
+| `material` | Repeated SLA failure, missed guarantee payment, exclusivity conflict, serious fulfilment miss. | Penalty, fee reduction, suspended rights, renegotiation and trust impact. |
+| `critical` | Fraud, regulatory ban, severe safety/health incident, major scandal or persistent uncured material breach. | Termination for cause, damages/repayment, reputation shock and category cooldown. |
+
+Family schedules:
+
+| Family | Family-specific schedule |
+|---|---|
+| Sponsorship | Asset inventory, category exclusivity, activation obligations, appearance/digital deliverables, morals/reputation hooks. |
+| Catering | POS/opening rules, queue/stockout/waste/service SLAs, supplier mandates, alcohol/food policy. |
+| Merchandise | Royalty/MAG, channel scope, stock/returns risk, campaign drops, fulfilment SLA. |
+| Hospitality | Seat/package inventory, service level, minimum spend/headcount, premium quality, sponsor overlap. |
+| Supplier | Mandatory supplier, rebates, volume targets, equipment support, exclusivity carve-outs. |
+| Venue activation | Event rights, staffing, safety, sponsor contribution, fulfilment model, cancellation policy. |
+
+Contract events that must be representable before implementation:
+
+- `CommercialOfferCreated`
+- `CommercialOfferIssued`
+- `CommercialContractActivated`
+- `CommercialContractAmended`
+- `CommercialRenewalWindowOpened`
+- `CommercialContractRenewed`
+- `CommercialContractExpired`
+- `CommercialObligationMissed`
+- `CommercialExclusivityConflictDetected`
+- `CommercialBreachOpened`
+- `CommercialBreachCured`
+- `CommercialMakeGoodGranted`
+- `CommercialPenaltyApplied`
+- `CommercialContractSuspended`
+- `CommercialContractTerminated`
+- `CommercialContractSuperseded`
 
 ### `CompetitionRevenueProfile`
 
@@ -322,7 +388,9 @@ sequenceDiagram
 | `TicketingPolicySnapshot` | Ticketing UI and explainability. |
 | `SeasonTicketCampaignSnapshot` | Lifecycle state, renewal, allocation, waitlist, utilisation, cash, discount and opportunity-cost view. |
 | `SeasonTicketAccountingSchedule` | Deferred revenue, receivables, credits and match-by-match recognition. |
-| `CommercialContractPortfolio` | Sponsor/catering/merchandise contract board. |
+| `CommercialContractPortfolio` | Sponsor/catering/merchandise/hospitality/supplier/activation contract board. |
+| `CommercialContractRegister` | Lifecycle state, contract version, renewal window, breach case and obligation status. |
+| `CommercialExclusivityGraph` | Category/territory/asset overlaps and blocked/narrowed offers. |
 | `MatchdayCommercialSettlement` | Per-fixture revenue/cost breakdown. |
 | `FanEventCampaignBoard` | Fan-service event choices and results. |
 | `CupRunRevenueForecast` | Expected cup cash/prize/travel and elimination shock. |
@@ -351,6 +419,20 @@ sequenceDiagram
 - Cup progression adds expected fixture/prize/sponsor revenue and cost.
 - Own catering has higher upside and cost risk than concession.
 - Merch campaign can profit or fail through inventory/fulfilment assumptions.
+- A sponsor exclusivity conflict is blocked, narrowed by carve-out or value
+  reduced before signature.
+- A curable missed activation creates a make-good instead of immediate
+  termination.
+- Repeated catering SLA failures escalate into material breach, ledger penalty
+  and fan-service impact.
+- Critical counterparty or safety breach can terminate a deal and post exit
+  cash separately from normal revenue.
+- Renewal windows enforce incumbent rights before a competing offer can be
+  accepted.
+- Upfront sponsor cash improves runway while recognition follows the delivery
+  schedule.
+- AI club hints are exposed as read-only factors, but FMX-44 does not implement
+  final AI behaviour.
 - Beer-per-goal campaign posts sponsor contribution and alcohol-policy risk.
 - Away-train subsidy improves loyalty/away atmosphere and posts real cost.
 - Investor grant is idempotent, SP-only and posts clean cash without side effects.
@@ -360,6 +442,7 @@ sequenceDiagram
 - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
+- [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[club-economy-accounting-ledger]]

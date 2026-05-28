@@ -1,7 +1,7 @@
 ---
 title: Feature - Club Economy MVP Pillar
 status: draft
-tags: [feature, mvp, economy, finance, accounting, commercial, club-management, season-tickets, fmx-13, fmx-41, fmx-43]
+tags: [feature, mvp, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, season-tickets, fmx-13, fmx-41, fmx-43, fmx-44]
 created: 2026-05-27
 updated: 2026-05-28
 type: feature
@@ -16,6 +16,7 @@ related:
   - [[../60-Research/club-economy-blueprint-2026-05-27]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
+  - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   - [[../30-Implementation/club-economy-commercial-contracts]]
@@ -46,8 +47,10 @@ visible economic consequence.
   revenue recognition, basic sponsor income, matchday catering, small
   merchandise, prize/bonus payments.
 - Minimum commercial policy: season-ticket lifecycle preset, single-ticket
-  price band, top-match surcharge preset, one catering contract model, one
-  merchandise contract model and one fan-service campaign choice.
+  price band, top-match surcharge preset, one commercial contract register,
+  stable/balanced/upside presets for the first catering, merchandise and
+  sponsorship contract models, conflict warnings, breach warnings and one
+  fan-service campaign choice.
 - Minimum costs: player/staff wages, stadium operations, travel, debt service,
   transfer instalments, maintenance and federation/league levy.
 - Staged insolvency crisis: warning -> overdraft/freeze -> arrears -> licence
@@ -81,6 +84,9 @@ visible economic consequence.
 - Commercial UI can show Quick totals and Expert assumptions for away travel,
   season-ticket cash/deferred accounting, catering/merch contracts, cup
   settlement and fan events.
+- Commercial UI can show contract lifecycle state, renewal window, exclusivity
+  conflict and breach severity at Quick/Standard/Expert depth without changing
+  the underlying settlement.
 - If Investor is activated later, it posts clean singleplayer cash without
   debt, owner-control, fan, sponsor or multiplayer side effects.
 - No real club, sponsor or player names are emitted into playable content.
@@ -93,6 +99,7 @@ visible economic consequence.
 - [[../60-Research/club-economy-blueprint-2026-05-27]]
 - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
+- [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[../30-Implementation/club-economy-commercial-contracts]]
