@@ -49,6 +49,9 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../50-Game-Design/training-load-and-medicine]]
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] -
   draft EOS player skills/perks, staff-skill target and People/persona model.
+- [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]] -
+  draft factor-matrix layer for player development, transfer decisions,
+  staff-pipeline influence and the staff-skill MVP gate.
 
 ## Tactics + match
 
@@ -102,6 +105,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/club-economy-blueprint-2026-05-27]]
 - [[../60-Research/manager-archetype-roguelite-2026-05-27]]
 - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+- [[../60-Research/player-staff-development-decision-model-2026-05-28]]
 - [[../60-Research/mode-design-research]]
 - [[../60-Research/async-multiplayer-research]]
 - [[../60-Research/fan-culture-segmentation-research]]

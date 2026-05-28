@@ -3,10 +3,10 @@ title: Feature - Player Lifecycle and Development
 status: draft
 tags: [feature, player-development, youth, mentoring]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-05-28
 type: feature
 binding: false
-related: [[README]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/squad-and-club-structure]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+related: [[README]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/squad-and-club-structure]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Feature - Player Lifecycle and Development
@@ -33,6 +33,10 @@ squad/run loop; deeper lifecycle depth can follow after MVP.
 - Explanation tags for development reports.
 - Mentoring groups with influence score, caps and conflict risk.
 - Loan-environment modifiers for development.
+- `DevelopmentDecisionContext` planning hook from
+  [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
+  so top causes come from the shared factor matrix instead of ad-hoc feature
+  logic.
 
 ## Out of first playable scope
 
@@ -43,7 +47,8 @@ squad/run loop; deeper lifecycle depth can follow after MVP.
 ## Acceptance
 
 - Same save state + same seed produces identical development deltas.
-- UI can explain the top 1-3 causes of a significant delta.
+- UI can explain the top 1-3 causes of a significant delta, mapped to the
+  GD-0021 development factor matrix.
 - Mentoring never applies instant direct attribute boosts.
 - PA true value is never exposed directly outside Expert/debug tooling.
 
@@ -51,4 +56,5 @@ squad/run loop; deeper lifecycle depth can follow after MVP.
 
 - [[../50-Game-Design/youth-academy-and-development]]
 - [[../50-Game-Design/squad-and-club-structure]]
+- [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
 - [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]

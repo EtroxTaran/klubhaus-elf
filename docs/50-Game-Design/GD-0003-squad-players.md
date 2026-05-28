@@ -3,22 +3,24 @@ title: GD-0003 Squad, Players & Attributes
 status: draft
 tags: [game-design, gddr, squad]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-28
 type: game-design
-binding: true
-related: [[README]], [[GD-0005-training]], [[GD-0006-transfers]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/modules/db-schema]]
+binding: false
+related: [[README]], [[GD-0005-training]], [[GD-0006-transfers]], [[GD-0021-player-staff-development-and-decision-influence]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../60-Research/data-generators]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/modules/db-schema]]
 ---
 
 # GD-0003: Squad, Players & Attributes
 
 ## Status
 
-approved
+draft
 
-> **Approved** — the **Decided / strong** section is ratified design
-> direction; an ADR or implementation must not contradict it. The
-> **Open (Wave 2)** items are NOT approved and not implementable until
-> Wave 2 research closes.
+> **Reopened draft.** This record contains historical pre-Wave-2 wording. The
+> current player data baseline is 16 visible outfield attributes + 4 GK extras
+> + 8 hidden meta on a 1-20 scale from [[../60-Research/data-generators]],
+> [[tactics-system]] and
+> [[GD-0021-player-staff-development-and-decision-influence]]. Do not implement
+> the older 1-10 strength compression language without a new owner decision.
 
 ## Date
 

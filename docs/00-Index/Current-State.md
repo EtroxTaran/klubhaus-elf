@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-28
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
 ---
 
 # Current State
@@ -105,6 +105,16 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > People / Persona & Skills context. All concrete catalogs, values, storage
 > shape and context acceptance remain Nico-gated draft decisions.
 
+> **FMX-38 Player/Staff development and decision influence (2026-05-28).**
+> Draft [[../60-Research/player-staff-development-decision-model-2026-05-28]]
+> and [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
+> now bridge attributes, hidden meta, player skills, personas, relationships,
+> Staff Operations, Training, Transfers and Impact Lens through factor matrices.
+> The goal is explainable development/transfer/staff decisions without formulas
+> or final balance constants. Staff-skill MVP activation is re-opened as an
+> explicit A/B/C decision; the documented recommendation is Option B, narrow
+> pipeline modifiers, but it is not approved.
+
 > **FMX-3 AI Narration MVP pillar expansion (2026-05-28).** Nico directed that
 > narration must be ready in the MVP as the world/emotion layer, not deferred
 > polish. Draft [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]],
@@ -171,6 +181,10 @@ Use the temporal layers from the baseline:
   deterministic context-card inputs. Actor traits/intents may affect mechanics
   deterministically; generated prose may not. The current framework direction
   is a dedicated Narrative context plus Playtest First quality loop.
+- **Player/staff decision-influence re-evaluation (2026-05-28):** FMX-38 adds
+  draft factor matrices for development, match, transfer and staff-pipeline
+  influence. Use GD-0021 as the planning map for owner/consumer relationships;
+  do not treat staff-skill Option B as approved until Nico decides.
 - **Manager-Archetype Roguelite re-evaluation (2026-05-27):** Nico wants the
   report anchored for the MVP, but as hooks only. The first playable should
   capture run-end facts and style signals; final archetype families, thresholds,

@@ -21,6 +21,8 @@ related:
   - [[../../50-Game-Design/GD-0005-training]]
   - [[../../50-Game-Design/GD-0007-youth]]
   - [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+  - [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
+  - [[../../60-Research/player-staff-development-decision-model-2026-05-28]]
   - [[../../60-Research/staff-backroom-bounded-context-2026-05-28]]
   - [[../../60-Research/raw-perplexity/raw-staff-backroom-2026-05-28]]
 ---
@@ -338,7 +340,10 @@ Negative:
 - Requires event consumption across Training, Transfer, Squad & Player,
   Match, Club Management and Notification. Coordination grows.
 - Staff-skill effect activation (GD-0020 post-MVP) needs follow-up
-  ADRs / GDDRs naming which consuming contexts apply which effects.
+  ADRs / GDDRs naming which consuming contexts apply which effects. FMX-38 now
+  tracks the MVP option gate in
+  [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]:
+  target-only, narrow pipeline modifiers or full staff skill-card gameplay.
 - Pipeline-coverage read-model schema is provisional until playtest.
 
 ## Supersedes
@@ -362,6 +367,10 @@ None
   wage→quality coupling.
 - [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
   - Staff target model; staff-skill effect activation post-MVP.
+- [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
+  - Factor matrices and staff-skill MVP option gate.
+- [[../../60-Research/player-staff-development-decision-model-2026-05-28]]
+  - FMX-38 research synthesis for player/staff decision influence.
 - [[ADR-0019-modular-monolith-ddd]] - modular monolith ground rules.
 - [[ADR-0027-postgres-data-model]] - per-save schema convention.
 - [[ADR-0028-postgres-transactional-outbox]] - event delivery

@@ -10,8 +10,10 @@ linear: FMX-23
 related:
   - [[README]]
   - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+  - [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+  - [[../60-Research/player-staff-development-decision-model-2026-05-28]]
   - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[feature-ai-narration-mvp-pillar]]
@@ -39,6 +41,9 @@ In scope for the first active slice:
 - Persona context cards for players and staff as structured template/LLM input.
 - Relationship provenance for mentoring/trust/conflict as planning model.
 - UI copy that explains skills as specializations, not raw power.
+- GD-0021 decision-influence hooks that define which skill/persona/
+  relationship facts may be consumed by development, match, transfer and staff
+  pipeline decisions.
 
 In scope as target model, not MVP-active gameplay:
 
@@ -103,6 +108,9 @@ Feature: EOS player skills and people context
 - MVP skill/perk slice is player-focused.
 - Staff skills are modeled as future target without accidental MVP scope
   expansion.
+- Staff-skill MVP activation stays behind the GD-0021 A/B/C decision gate.
+- Cross-system skill/persona effects point to GD-0021 factor matrices instead
+  of being duplicated in feature specs.
 - Non-player actors are context-card capable for MVP narration without granting
   them unratified mechanical skill effects.
 - Match, Training and Squad ownership stays clear.
@@ -112,8 +120,10 @@ Feature: EOS player skills and people context
 ## Related
 
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+- [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+- [[../60-Research/player-staff-development-decision-model-2026-05-28]]
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 - [[feature-ai-narration-mvp-pillar]]
