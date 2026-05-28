@@ -184,12 +184,35 @@ This feeds draft
 draft path. Nico's current direction is: Economy as an MVP pillar, weekly
 ledger, full accounting, staged insolvency, Germany/England/France/Italy/Spain
 country profiles plus abstract fallback, ranges/formulas instead of final
-balance constants, Progressive UI, and Investor rescue as SP-only future-scope.
+balance constants and Progressive UI. The original Investor line is amended by
+FMX-41: if activated, Investor is clean singleplayer cash with no debt,
+owner-control, fan-penalty or multiplayer effect.
 
 This feeds draft [[../50-Game-Design/GD-0008-finance-economy]], draft
 [[../20-Features/feature-club-economy-mvp-pillar]], draft
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
 draft [[../30-Implementation/club-economy-accounting-ledger]].
+
+## Club Economy Impact Map and Commercial Contracts (2026-05-28)
+
+[[club-economy-impact-map-and-commercial-contracts-2026-05-28]] extends the
+FMX-13 economy draft into FMX-41's direct financial impact map. It documents
+which domains cause ticketing, season-ticket, catering, merchandise,
+sponsorship, cup, fan-event and Investor effects, and which contracts keep those
+facts out of direct ledger writes.
+
+Nico's current direction is: Top-5 country research at equal depth, Realistic
+Rails, Club Management as the draft commercial settlement owner, fan segments as
+hard economy inputs, season tickets as upfront-cash-versus-upside trade-off,
+catering/merchandise as explicit contract families, cup games as full economy
+events, fan-service campaigns as paid loyalty/atmosphere levers, and Investor
+as clean singleplayer cash with no gameplay penalty beyond the unchanged weekly
+economy.
+
+This feeds draft
+[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
+[[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+and draft [[../30-Implementation/club-economy-commercial-contracts]].
 
 ## AI Narrative Runtime Integration (2026-05-27)
 

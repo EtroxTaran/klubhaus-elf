@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-28
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Current State
@@ -51,8 +51,28 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > and [[../30-Implementation/club-economy-accounting-ledger]] now capture the
 > proposed target: Economy as an MVP pillar, weekly ledger, full accounting,
 > staged insolvency, Top-5 country profiles + abstract fallback, ranges/formulas
-> before final constants, Progressive UI and Investor rescue as SP-only
-> future-scope.
+> before final constants and Progressive UI. FMX-41 amends the Investor line:
+> if activated, Investor is clean singleplayer cash with no balance penalty,
+> no debt, no ownership/control effect and no multiplayer advantage.
+
+> **FMX-41 Economy impact map and commercial contracts (2026-05-28).** Nico
+> asked for a deeper economy pass covering every direct financial-success
+> domain and the full research report surface. Draft
+> [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]],
+> [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+> [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+> and [[../30-Implementation/club-economy-commercial-contracts]] now capture the
+> proposed target: Club Management owns commercial policy, commercial contracts,
+> fan-event campaign choices, commercial settlement and Investor cash-grant
+> ledger posting; Fan Ecology / Rivalry / League / Match / Stadium /
+> Regulations provide causal facts. Ticketing models season-ticket certainty
+> versus single-ticket/top-match upside; fan segments drive attendance,
+> renewal, catering, merch, hospitality and sponsor fit; cup games become full
+> economy events; catering and merchandise support in-house, concession,
+> revenue-share, guarantee, royalty and partner models; paid fan-service
+> campaigns include away trains, family/summer events, choreo support and
+> beer-per-goal activations. All numbers remain ranges/profile data pending
+> calibration and Nico approval.
 
 > **FMX-16 Manager-Archetype Roguelite progression (2026-05-27).** Nico directed
 > that the manager-archetype report should be anchored as MVP-relevant hooks, not
@@ -387,12 +407,16 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]])
 - **Club economy gameplay profile (draft)**: MVP economy pillar with weekly
   Club Management ledger, full-accounting projections, staged insolvency,
-  country economy profiles and progressive finance UI. Final constants and
+  country economy profiles, commercial impact contracts, fan-service campaigns,
+  Investor clean SP cash planning and progressive finance UI. Final constants and
   approval remain Nico-gated. ([[../60-Research/club-economy-blueprint-2026-05-27]],
+  [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]],
   [[../50-Game-Design/GD-0008-finance-economy]],
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
   [[../50-Game-Design/economy-system]],
   [[../20-Features/feature-club-economy-mvp-pillar]],
-  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]])
+  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
+  [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]])
 - **Manager & Legacy gameplay profile (draft)**: MVP run-analysis hooks for
   Manager-Archetype Roguelite progression; emergent style signals before fixed
   archetype taxonomy; balance-corridor perks only with prestige counterweight;

@@ -6,7 +6,7 @@ created: 2026-05-18
 updated: 2026-05-28
 type: product
 binding: true
-related: [[Current-State]], [[Project-Goals]], [[Vision]], [[Decision-Log]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-ai-narration-mvp-pillar]]
+related: [[Current-State]], [[Project-Goals]], [[Vision]], [[Decision-Log]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-ai-narration-mvp-pillar]]
 ---
 
 # MVP Scope
@@ -121,6 +121,7 @@ A future implementation beat is MVP-aligned only if it:
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] — draft AI narration and Full Dialogue target
 - [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]] — draft Manager-Archetype Roguelite hooks
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] — draft People/persona context
+- [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] — draft commercial economy layer
 - [[../20-Features/feature-roguelite-mvp-first-playable]] — first playable feature slice
 - [[../20-Features/feature-club-economy-mvp-pillar]] — draft Economy MVP pillar
 - [[../20-Features/feature-ai-narration-mvp-pillar]] — draft AI Narration MVP pillar

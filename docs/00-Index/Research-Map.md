@@ -151,10 +151,21 @@ before any promotion.
 - [[../60-Research/club-economy-blueprint-2026-05-27]] — FMX-13 synthesis of the
   club-economy raw report into the draft Economy MVP pillar: weekly ledger, full
   accounting, staged insolvency, Top-5 country profiles + abstract fallback and
-  SP-only investor future-scope. Feeds draft
+  the original SP-only investor planning line. Feeds draft
   [[../50-Game-Design/GD-0008-finance-economy]],
   [[../20-Features/feature-club-economy-mvp-pillar]] and
   [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]].
+
+## Club Economy Impact Map and Commercial Contracts (2026-05-28)
+
+- [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+  — FMX-41 synthesis for direct financial-success domains: fan demand,
+  season tickets, single-ticket/top-match pricing, catering, merchandise,
+  sponsorship, cup revenue, fan-service campaigns and Investor clean
+  singleplayer cash. Feeds draft
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+  [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+  and [[../30-Implementation/club-economy-commercial-contracts]].
 
 ## AI Narrative Runtime Integration (2026-05-27)
 

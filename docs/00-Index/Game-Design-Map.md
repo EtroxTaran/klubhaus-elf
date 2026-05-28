@@ -31,10 +31,12 @@ below. This means old `Future-scope notes` sections are not active work by defau
 ## Economy + infrastructure
 
 - [[../50-Game-Design/economy-system]]
+- [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../50-Game-Design/sponsorship-portfolio]]
 - [[../50-Game-Design/stadium-and-campus]]
 - [[../20-Features/feature-club-economy-mvp-pillar]]
 - [[../60-Research/club-economy-blueprint-2026-05-27]]
+- [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 
 ## Fans + brand
 
@@ -103,6 +105,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/00-summary]]
 - [[../60-Research/systems-design-synthesis]]
 - [[../60-Research/club-economy-blueprint-2026-05-27]]
+- [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 - [[../60-Research/manager-archetype-roguelite-2026-05-27]]
 - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
 - [[../60-Research/player-staff-development-decision-model-2026-05-28]]

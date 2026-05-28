@@ -1,12 +1,12 @@
 ---
 title: Fan Ecology - Six Segments and Atmosphere Engine
 status: draft
-tags: [game-design, fans, atmosphere, ultras]
+tags: [game-design, fans, atmosphere, ultras, economy, fmx-41]
 created: 2026-05-16
 updated: 2026-05-28
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[../20-Features/feature-ai-narration-mvp-pillar]]
+related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Fan Ecology - Six Segments and Atmosphere Engine
@@ -146,7 +146,30 @@ The Fan Service consumes the `rivalry_score` from [[rivalry-system]]:
 - High score → atmosphere multiplier × 1.3.
 - High score → risk-event probabilities ↑ (see [[matchday-event-engine]]).
 
-## 7. UI tiers
+## 7. Commercial demand contract
+
+FMX-41 formalises the Fan Ecology output for the economy. Fan Ecology does not
+post money. It publishes a `FanDemandForecast` for [[economy-system]] and
+[[../30-Implementation/club-economy-commercial-contracts]].
+
+The forecast includes:
+
+- segment-level attendance probability;
+- season-ticket renewal probability;
+- price elasticity and fan-trust guardrails;
+- catering, merchandise and hospitality propensity;
+- sponsor-category fit and boycott risk;
+- expected effect of fan-service campaigns such as away trains, family days,
+  summer parties, choreo support and beer-per-goal promotions.
+
+This preserves two club archetypes:
+
+- **loyal/traditional fans** keep occupancy and season-ticket renewal higher in
+  bad sporting years, but punish identity and price shocks more strongly;
+- **success/event fans** generate bigger top-match/star/cup upside, but drop
+  faster when form, hype or opponent appeal falls.
+
+## 8. UI tiers
 
 | Tier | Surface |
 |---|---|
@@ -154,7 +177,7 @@ The Fan Service consumes the `rivalry_score` from [[rivalry-system]]:
 | Standard | Segment bar chart with 3 trend arrows |
 | Expert | Full per-segment grid with drivers and forecasts |
 
-## 8. Sanction chain effects on fans
+## 9. Sanction chain effects on fans
 
 A sanction chain item ([[matchday-event-engine]]) propagates into fan
 population:
@@ -164,7 +187,7 @@ population:
 - Alcohol ban → Casual + Ultras catering ↓.
 - Ghost match → all attendance = 0 + Core loyalty ↓ for one cycle.
 
-## 9. Future-scope notes (classified future-scope)
+## 10. Future-scope notes (classified future-scope)
 
 - Full fan-group UI and churn between groups remain future scope. The MVP only
   needs enough named group/rep context for narration and decision pressure.
