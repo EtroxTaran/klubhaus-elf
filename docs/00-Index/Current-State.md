@@ -66,6 +66,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
+> **FMX-28 Tactics ownership dossier (2026-05-28).** Match owns the
+> per-match `tactic lock` snapshot; the persistent tactics library
+> (templates, saved presets, set-piece routine variants, opposition
+> templates, role/duty configurations) was unattributed. Draft
+> [[../60-Research/tactics-persistence-bounded-context-2026-05-28]]
+> and [[../60-Research/raw-perplexity/raw-tactics-persistence-2026-05-28]]
+> consolidate genre (FM `.ftc` library + separately-saveable set-piece
+> library; OOTP manager strategy profiles; EA FC Custom Tactics), DDD
+> (Vernon Product Catalog vs Ordering analogue; Fowler / Evans
+> bounded-context discipline) and real-world (club-owned
+> data-platform-managed tactical archives 2023-2026; Brentford / Arsenal
+> / Brighton set-piece coaches maintaining seasonal 15-40 routine
+> libraries) evidence. New draft
+> [[../10-Architecture/09-Decisions/ADR-0055-tactics-context]] proposes
+> **Tactics as an additional bounded context** (Option C) with four
+> options + §Recommendation + §Map patch proposal. Ratify decision
+> pending; map itself not yet modified.
+
 > **FMX-26 + FMX-36 Staff Operations ratification applied (2026-05-28).**
 > Nico accepted Option B. [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]]
 > is now `status: accepted` and `binding: true`. Staff Operations is the
