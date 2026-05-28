@@ -192,6 +192,24 @@ before any promotion.
   [[../50-Game-Design/stadium-and-campus]] and
   [[../30-Implementation/club-economy-commercial-contracts]].
 
+## Commercial Contract Lifecycle and Breach Model (2026-05-28)
+
+- [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+  — FMX-44 synthesis for a shared commercial-contract lifecycle and breach
+  model across sponsorship, catering, merchandise, hospitality, supplier and
+  venue-activation deals. Recommends a shared `CommercialContract` shell with
+  family-specific schedules, cash/recognition separation,
+  category/territory/asset exclusivity, curable/material/critical breach
+  severity, renewal windows, Quick / Standard / Expert surfaces and AI-club
+  hooks reserved for FMX-51. Refines draft
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+  [[../50-Game-Design/economy-system]],
+  [[../50-Game-Design/sponsorship-portfolio]],
+  [[../50-Game-Design/stadium-and-campus]],
+  [[../20-Features/feature-club-economy-mvp-pillar]],
+  [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+  and [[../30-Implementation/club-economy-commercial-contracts]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 - [[../60-Research/ai-narrative-runtime-integration]] — synthesized follow-up

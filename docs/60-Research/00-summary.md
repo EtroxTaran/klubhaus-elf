@@ -260,6 +260,42 @@ This refines draft
 [[../50-Game-Design/stadium-and-campus]] and draft
 [[../30-Implementation/club-economy-commercial-contracts]].
 
+## Commercial Contract Lifecycle and Breach Model (2026-05-28)
+
+[[commercial-contract-lifecycle-and-breach-model-2026-05-28]] is the FMX-44
+research synthesis for sponsorship, catering, merchandise, hospitality,
+supplier and venue-activation contracts. Nico's current direction is realistic
+but game-adapted: a shared commercial contract lifecycle with family-specific
+schedules, not flat annual income and not separate state machines per family.
+
+Current draft direction:
+
+- Use `CommercialContract` as the shared Club Management shell for lifecycle
+  state, version history, cash schedule, recognition schedule, obligations,
+  exclusivity, breach policy, renewal policy and audit trail.
+- Keep sponsorship, catering, merchandise, hospitality, supplier and
+  venue-activation clauses in family-specific schedules.
+- Model breaches as curable/material/critical with cure windows, make-goods,
+  penalties, suspension and termination rights as profile data.
+- Detect exclusivity conflicts structurally as category × territory × asset ×
+  carve-outs before signature; active violations open breach cases.
+- Preserve cash-versus-recognition accounting: upfront commercial cash improves
+  runway but does not instantly become earned revenue.
+- Expose Quick / Standard / Expert: contract presets and risk badges in Quick,
+  offer comparison and 13-week schedule in Standard, contract register,
+  obligation log, breach cases, renewal calendar and exclusivity graph in
+  Expert.
+- Keep AI club behaviour to read-only hooks for FMX-51.
+
+This refines draft
+[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
+[[../50-Game-Design/economy-system]], draft
+[[../50-Game-Design/sponsorship-portfolio]], draft
+[[../50-Game-Design/stadium-and-campus]], draft
+[[../20-Features/feature-club-economy-mvp-pillar]], draft
+[[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+and draft [[../30-Implementation/club-economy-commercial-contracts]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 [[ai-narrative-runtime-integration]] synthesizes the two narrative/LLM reports

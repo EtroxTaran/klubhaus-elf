@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-28
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -76,6 +76,16 @@ player/staff skills, perks and clearer people/persona constellations.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-ea-fc26-fm-skills-persona-perplexity-2026-05-28]] | EA FC 26 / Football Manager skills, perks, staff and mixed OCEAN + football-domain persona model | [[../eos-player-staff-skills-and-personas-2026-05-28]] · [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] · [[../../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]] |
+
+## FMX-44 follow-up Perplexity research (2026-05-28)
+
+Additional Perplexity research was run during FMX-44 after Nico asked for the
+next economy issue to go deep on commercial contract lifecycle and breach
+patterns.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-commercial-contract-lifecycle-2026-05-28]] | Sports sponsorship, venue catering/concession/retail/hospitality/supplier contracts and CLM lifecycle best practices | [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]] · [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] · [[../../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]] |
 
 ## FMX-3 follow-up Perplexity research (2026-05-28)
 

@@ -1,7 +1,7 @@
 ---
 title: GD-0022 Economy Commercial Impact and Contracts
 status: draft
-tags: [game-design, gddr, economy, commercial, tickets, fans, fan-demand, price-elasticity, season-tickets, accounting, investor, fmx-41, fmx-42, fmx-43]
+tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44]
 created: 2026-05-28
 updated: 2026-05-28
 type: game-design
@@ -22,6 +22,7 @@ related:
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
+  - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -35,9 +36,10 @@ related:
 draft
 
 > Draft only. This record captures the FMX-41 commercial economy direction, the
-> FMX-42 fan-demand / price-elasticity refinement and the FMX-43
-> season-ticket lifecycle / accrual-accounting refinement. It needs Nico
-> approval before implementation authority.
+> FMX-42 fan-demand / price-elasticity refinement, the FMX-43 season-ticket
+> lifecycle / accrual-accounting refinement and the FMX-44 commercial contract
+> lifecycle / breach refinement. It needs Nico approval before implementation
+> authority.
 
 ## Date
 
@@ -75,6 +77,10 @@ ledger effects behind the same decision.
 - **Catering and merchandise need contract options.** Own operation, concession,
   revenue share, guarantees, royalties, licences and partner contracts must be
   modelled as explicit choices with duration and clauses.
+- **Commercial contracts have lifecycle and breach state.** Sponsorship,
+  catering, merchandise, hospitality, supplier and venue-activation deals share
+  one lifecycle shell with family-specific schedules, obligations, exclusivity,
+  renewal windows and curable/material/critical breach handling.
 - **Fan-service campaigns are paid levers.** Away trains, summer parties,
   family days, choreo support and goal-linked beer campaigns cost money and can
   improve loyalty, atmosphere, sponsor activation and demand.
@@ -94,7 +100,7 @@ ledger effects behind the same decision.
 flowchart TB
     Forecast["Demand forecast<br/>fans + fixture + venue + weather"]
     Policy["Commercial policy<br/>prices, season tickets, campaign choice"]
-    Contract["Commercial contracts<br/>catering, merch, sponsors"]
+    Contract["Commercial contracts<br/>sponsor, catering, merch, hospitality"]
     Settlement["Match/week settlement"]
     Ledger["Club ledger"]
     Feedback["Fan mood, sponsor image, board pressure"]
@@ -240,12 +246,58 @@ research shows trust and affordability risk.
 
 ## Commercial contract families
 
+FMX-44 recommends one shared `CommercialContract` lifecycle shell, not one
+state machine per family. Families add schedules and clause packs.
+
 | Family | Contract options | Key clauses |
 |---|---|---|
-| Catering | In-house, concession lease, revenue share, minimum guarantee plus share, exclusive supplier | term, fixed fee, revenue share, COGS, staffing, service quality, exclusivity, alcohol policy |
-| Merchandise | In-house store, licensed partner, kit supplier guarantee, royalty, e-commerce fulfilment, campaign drop | guarantee, royalty, inventory risk, fulfilment SLA, design window, termination |
-| Sponsorship | Main, secondary, infrastructure, matchday, digital, local | cash cadence, asset inventory, exclusivity, side conditions, bonuses, penalties |
-| Fan events | Away travel, summer party, family day, choreo support, beer-per-goal | direct cost, sponsor contribution, segment effect, incident risk, fulfilment |
+| Sponsorship | Main, sleeve, training kit, stadium/stand naming, digital, local, matchday | cash/recognition cadence, asset inventory, exclusivity, activation obligations, renewal rights, reputation hooks, bonuses, penalties |
+| Catering | In-house, concession lease, management fee, revenue share, minimum guarantee plus share, exclusive supplier | fixed fee, share, COGS/staffing, queue/stockout/waste/service SLAs, exclusivity, alcohol/food policy, termination |
+| Merchandise | In-house store, licensed partner, kit supplier guarantee, royalty, e-commerce fulfilment, campaign drop | guarantee, royalty/MAG, inventory risk, fulfilment SLA, design window, channel scope, termination |
+| Hospitality | Suite leases, lounge packages, corporate events, premium catering | package inventory, service level, minimum spend/headcount, premium quality, sponsor overlap |
+| Supplier | Beer, soft drink, food, equipment, POS, energy partner | mandatory supplier, rebate, volume target, equipment support, category carve-outs |
+| Venue activation | Away travel, summer party, family day, choreo support, beer-per-goal, fan zone, concert sponsor event | direct cost, sponsor contribution, segment effect, incident risk, fulfilment, cancellation policy |
+
+## FMX-44 commercial contract lifecycle and breach rules
+
+Draft lifecycle:
+
+1. `draft` - terms are assembled from offer/profile data.
+2. `offered` - offer is visible and can expire or be withdrawn.
+3. `negotiating` - counterparty proposes changes.
+4. `active` - signed contract is in force and posts cash/accrual events.
+5. `renewalDue` - incumbent right, option or open-market renewal window.
+6. `breached` - obligation, service, payment, exclusivity or reputation case is
+   open.
+7. `suspended` - rights/operation pause after material escalation.
+8. `terminated` - early exit by cause, convenience or mutual agreement.
+9. `expired` - term ended with no renewal.
+
+Contract value must be explained by more than yearly money:
+
+- asset package and category exclusivity;
+- obligations and activation delivery;
+- service quality and fulfilment risk;
+- cash schedule versus recognition schedule;
+- performance bonuses and penalties;
+- fan-fit and reputation risk;
+- renewal policy and break clauses.
+
+Breach handling uses three game severities:
+
+| Severity | Typical causes | Player-facing result |
+|---|---|---|
+| Curable | Late report, one missed digital activation, small payment delay, minor stockout. | Cure timer, make-good or small satisfaction hit. |
+| Material | Repeated SLA failures, missed guarantee, exclusivity conflict, failed activation. | Penalty, fee reduction, suspended rights, renegotiation, fan/sponsor trust impact. |
+| Critical | Fraud/misreporting, regulatory ban, severe safety incident, major scandal, uncured material breach. | Termination for cause, damages/repayment, reputation shock, category cooldown. |
+
+Exclusivity is structured as category × territory × asset × carve-outs. The
+game should block, narrow or devalue conflicting offers before signature; an
+active violation opens a material breach case.
+
+AI-club behaviour is not part of FMX-44. The contract register may expose
+read-only hooks such as `cashUrgency`, `fanFitWeight`, `serviceQualityWeight`
+and `renewalBias` for FMX-51.
 
 ## Cup and special-fixture settlement
 
@@ -284,8 +336,9 @@ business model.
 |---|---|---|---|
 | Away travel | Pick bus/train/flight and see total cost | See segment effects, travel fatigue and sponsor contribution | See capacity, subsidy per fan, security, damage reserve, sensitivity |
 | Season tickets | Pick safe/balanced/upside preset; see cash now vs earned later | See share, discount, renewal, waitlist, 13-week cash/deferred schedule | Edit lifecycle windows, cohorts, payment plans, utilisation and recognition schedule |
-| Catering | Pick stable/balanced/upside contract | Compare fixed rent, share, quality | Inspect clauses, COGS, service metrics, termination |
-| Merch | Pick own/partner campaign | See projected margin and stock risk | Edit royalty, guarantee, inventory, fulfilment |
+| Commercial contracts | Pick stable/balanced/upside contract preset; see cash, risk and conflict badge | Compare value, term, exclusivity, obligations, fan fit and 13-week cash/recognition forecast | Inspect lifecycle state, version history, obligations, breach cases, exclusivity graph, renewal calendar and schedules |
+| Catering | Pick stable/balanced/upside contract | Compare fixed rent, share, quality and SLA risk | Inspect clauses, COGS, service metrics, cure windows and termination |
+| Merch | Pick own/partner campaign | See projected margin, royalty/MAG and stock risk | Edit royalty, guarantee, inventory, fulfilment and true-up schedule |
 | Investor | Confirm exact cash amount | See ledger impact and runway change | See no long-term structural change in forecast |
 
 ## Acceptance scenarios
@@ -354,6 +407,24 @@ Feature: Commercial economy impact
     Then in-house posts higher possible upside and COGS/staff risk
     And concession posts more predictable fixed income
 
+  Scenario: Sponsor exclusivity conflict is visible before signature
+    Given a club has an active beer exclusivity deal
+    When a new beverage sponsor offer overlaps the locked category
+    Then the commercial contract register flags the conflict
+    And the player must block, narrow or devalue the offer before signing
+
+  Scenario: Contract breach has severity and cure rules
+    Given a catering operator repeatedly misses queue and stockout targets
+    When the breach policy reaches its material threshold
+    Then a material breach case opens
+    And a penalty or fee reduction posts separately from normal settlement
+    And fan-service quality is affected
+
+  Scenario: Renewal policy protects an incumbent
+    Given a main sponsor is inside its first-negotiation window
+    When a higher-value competing offer arrives
+    Then the club must respect the incumbent renewal policy before accepting it
+
   Scenario: Investor does not rebalance the save
     Given a singleplayer club buys an Investor cash grant
     When the entitlement is confirmed
@@ -383,13 +454,23 @@ Feature: Commercial economy impact
 - First contract presets for catering and merchandise.
 - Fan-service event catalog for first playable.
 - Guardrails for top-match surcharge and fan-trust damage.
+- Accept ADR-0058 Option C after the FMX-44 lifecycle/breach amendment, or
+  reopen the Commercial Operations bounded-context option.
+- Default stable/balanced/upside presets for each commercial contract family.
+- Quick-mode handling of exclusivity conflicts: hard block versus accept with
+  warning and value/risk penalty.
+- Whether controversial sponsor categories are first-playable content or
+  deferred until legal/reputation review.
+- Whether minimum guarantees, true-ups and clawbacks are Standard-visible or
+  Expert-only.
+- Whether auto-renewals require explicit player confirmation.
 
 ## Rationale
 
 This design makes money feel like football money: fans, fixtures, rivalries,
-stadium quality, contracts and sporting momentum create finance outcomes. The
-ledger from GD-0008 remains the accounting truth; GD-0022 explains the
-commercial causes that feed it.
+stadium quality, contracts, obligations, breach risk and sporting momentum
+create finance outcomes. The ledger from GD-0008 remains the accounting truth;
+GD-0022 explains the commercial causes that feed it.
 
 ## Consequences
 
@@ -400,6 +481,7 @@ Positive:
 - Quick players can still make simple decisions.
 - Expert players get the exact levers Nico asked for.
 - Investor is clear, clean and isolated from competitive fairness.
+- Commercial contracts can be realistic without becoming legal software.
 
 Negative / constraints:
 
@@ -407,6 +489,8 @@ Negative / constraints:
 - More balance-test scenarios are needed than a simple cash model.
 - Store and consumer-law compliance is mandatory before Investor activation.
 - Commercial contracts can become too broad if ADR-0058 is not enforced.
+- Lifecycle and breach state adds balance-test cases for penalties, renewals,
+  conflict warnings and fan-fit shocks.
 
 ## Supersedes
 

@@ -42,6 +42,18 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-28-fmx-44-commercial-contract-lifecycle]] - FMX-44 commercial
+  contract lifecycle and breach dossier: shared `CommercialContract` shell for
+  sponsorship, catering, merchandise, hospitality, supplier and
+  venue-activation deals; family-specific schedules; structured
+  category/territory/asset exclusivity; curable/material/critical breach
+  severity; renewal windows; cash-vs-recognition timing; Quick / Standard /
+  Expert contract surfaces and AI-club hooks reserved for FMX-51. Refined draft
+  GD-0022, Economy System, Sponsorship Portfolio, Stadium/Campus, Club Economy
+  MVP pillar, ADR-0058 and commercial-contract surfaces. Awaiting Nico
+  decisions on ADR-0058 acceptance, default presets, Quick conflict strictness,
+  controversial categories, Standard-vs-Expert true-ups and auto-renew
+  confirmation.
 - [[2026-05-28-fmx-43-season-ticket-lifecycle-accounting]] - FMX-43
   season-ticket lifecycle and accounting dossier: renewal, relocation,
   member-presale, waitlist, public-sale and in-season adjustment states;
