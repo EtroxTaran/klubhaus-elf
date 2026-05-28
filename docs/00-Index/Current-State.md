@@ -3,10 +3,10 @@ title: Current State
 status: current
 tags: [meta, current-state, execution, hot]
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-05-28
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 ---
 
 # Current State
@@ -65,6 +65,19 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > Manager & Legacy context, run-analysis hooks, reflected-not-grinded post-run
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
+
+> **FMX-23 EOS People / Skills / Personas (2026-05-28).** Nico directed that
+> the Player & Staff Values report should be anchored without expanding the
+> 16+4+8 attribute schema. Draft
+> [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]],
+> [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]],
+> [[../20-Features/feature-eos-player-skills-and-people-context]] and draft
+> [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+> now capture the proposed target: active MVP player skills/perks as a separate
+> visible layer, staff skills as target model, hidden OCEAN as internal persona
+> substrate, relationship constellations for character depth and a proposed
+> People / Persona & Skills context. All concrete catalogs, values, storage
+> shape and context acceptance remain Nico-gated draft decisions.
 
 ## Documentation Baseline (2026-05-22)
 

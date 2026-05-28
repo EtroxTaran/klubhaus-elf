@@ -3,10 +3,10 @@ title: Youth Academy and Player Development
 status: draft
 tags: [game-design, youth, development, academy]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-28
 type: game-design
 binding: true
-related: [[README]], [[squad-and-club-structure]], [[training-load-and-medicine]], [[scouting-and-recruitment]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
+related: [[README]], [[squad-and-club-structure]], [[training-load-and-medicine]], [[scouting-and-recruitment]], [[GD-0020-eos-player-skills-personas-and-people]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
 ---
 
 # Youth Academy and Player Development
@@ -173,6 +173,9 @@ Effects:
 - Faster integration.
 - Reduced morale shocks.
 - Optional player-tendency transfer when the football role context matches.
+- Optional player skill/perk candidate evidence when the role context,
+  training focus and mentor profile match the draft FMX-23 skill model in
+  [[GD-0020-eos-player-skills-personas-and-people]].
 
 Conflicts are allowed: a demanding mentor can improve professionalism while
 hurting morale or temperament. Caps and diminishing returns prevent a

@@ -3,10 +3,10 @@ title: Decision Log
 status: current
 tags: [adr]
 created: 2026-05-15
-updated: 2026-05-27
+updated: 2026-05-28
 type: index
 binding: true
-related: [[Documentation-V1]], [[Current-State]], [[Architecture-Map]], [[../50-Game-Design/README]]
+related: [[Documentation-V1]], [[Current-State]], [[Architecture-Map]], [[../50-Game-Design/README]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 ---
 
 # Decision Log
@@ -57,6 +57,7 @@ contradict an `approved` game-design record.
 | [[../10-Architecture/09-Decisions/ADR-0048-design-update-and-migration-path]] | draft | Design-update/migration path: token single-source (wiki+app derive), versioned snapshots, diff-driven sync, one current truth, supersede for breaking changes; each update = issue+PR+auto-merge. | New 2026-05-27; amends ADR-0010. |
 | [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] | draft | Club Management owns the weekly finance ledger, full-accounting projections, budget envelopes, country economy profiles and staged insolvency state. | New FMX-13 draft; feeds economy MVP pillar. |
 | [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]] | draft | Proposed Manager & Legacy context owns manager identity, run analysis, style signals, archetype candidates, legacy setup and prestige selection. | New FMX-16 draft; feeds Manager-Archetype Roguelite hooks. |
+| [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]] | draft | Proposed People / Persona & Skills context owns actor personas, relationship graph, player/staff skill profiles and deterministic dialogue context cards. | New FMX-23 draft; feeds EOS player skills/persona planning. |
 
 ## Process & Workflow ADRs (proposed 2026-05-27, draft)
 
@@ -101,6 +102,7 @@ PR as the work that needs them.
 - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]] - FMX-10 synthesis for engine exchangeability, spatial-event model, runtime spike, OSS due diligence, disconnect/offline and LLM ticker boundaries.
 - [[../60-Research/club-economy-blueprint-2026-05-27]] - FMX-13 synthesis for the Club Economy MVP pillar, weekly ledger, full accounting, staged insolvency, country economy profiles and investor future-scope.
 - [[../60-Research/manager-archetype-roguelite-2026-05-27]] - FMX-16 synthesis for Manager-Archetype Roguelite progression, MVP run-analysis hooks, proposed Manager & Legacy context, playtest-tunable taxonomy and prestige counterweight.
+- [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]] - FMX-23 synthesis for player skills/perks, staff-skill target model, mixed OCEAN + football-domain personas, relationship constellations and proposed People context.
 - [[../60-Research/presentation-renderer-strategy]] - research basis for ADR-0041.
 - [[../60-Research/determinism-and-replay]] - deterministic simulation and replay rules.
 - [[../60-Research/performance-budgets]] - device, bundle, memory, storage and match-render budgets.

@@ -3,7 +3,7 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-05-28
 type: map
 binding: false
 related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]]
@@ -32,7 +32,7 @@ future-scope or historical context.
 
 ## DDD and Modules
 
-- [[../10-Architecture/bounded-context-map]] - 11 bounded contexts, service-ready modular monolith; FMX-16 proposes Manager & Legacy as a draft twelfth context.
+- [[../10-Architecture/bounded-context-map]] - 11 bounded contexts, service-ready modular monolith; FMX-16 proposes Manager & Legacy and FMX-23 proposes People / Persona & Skills as draft additional contexts.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -79,6 +79,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0043 Notification and Messaging Platform](../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform.md)
 - [ADR-0050 Club Economy Accounting Ledger](../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger.md) - draft Club Management finance ledger, accounting projections, country economy profiles and staged insolvency boundary.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft proposed Manager & Legacy context for manager identity, run analysis, archetype candidates and prestige/legacy selection.
+- [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft proposed People context for actor personas, relationship graph, player/staff skill profiles and deterministic context cards.
 
 ## Current Binding Research and Specs
 
@@ -90,6 +91,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [Match Engine Runtime Strategy](../60-Research/match-engine-runtime-strategy.md)
 - [Swappable Spatial-Event Match Engine Research](../60-Research/swappable-spatial-event-match-engine-2026-05-27.md)
 - [Manager Archetype Roguelite Research](../60-Research/manager-archetype-roguelite-2026-05-27.md)
+- [EOS Player, Staff, Skills and Personas Research](../60-Research/eos-player-staff-skills-and-personas-2026-05-28.md)
 - [Match Engine Simulation Model](../60-Research/match-engine-simulation-model.md)
 - [Presentation Renderer Strategy](../60-Research/presentation-renderer-strategy.md)
 - [Performance Budgets](../60-Research/performance-budgets.md)
@@ -122,6 +124,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0016 Community Dataset Overrides](../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides.md) - future-scope until UGC moderation/security gates are implemented.
 - [ADR-0030 LLM Out Of Authoritative State Boundary](../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state.md) - draft Runtime-LLM re-evaluation; no implementation until accepted.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft context-map change; no implementation until accepted.
+- [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft context-map change; no implementation until accepted.
 
 ## Rule
 

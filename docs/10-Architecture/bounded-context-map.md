@@ -3,10 +3,10 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-05-22
+updated: 2026-05-28
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]]
 ---
 
 # Bounded Context Map
@@ -61,6 +61,19 @@ remains the baseline and implementation may only preserve MVP hooks. If ADR-0051
 is accepted, Manager & Legacy becomes the owner of cross-run manager
 progression; League, Club Management, Match, Transfer, Squad & Player and
 Training provide facts through public contracts.
+
+### 1.2 Proposed FMX-23 context
+
+[[09-Decisions/ADR-0052-people-persona-and-skills-context]] proposes an
+additional bounded context, **People / Persona & Skills**, for actor personas,
+the relationship graph, player/staff skill profiles and deterministic dialogue
+context cards.
+
+This is not accepted yet. Until ratified, the existing eleven-context map
+remains the baseline and implementation may only preserve planning hooks. If
+ADR-0052 is accepted, People owns personhood and skill/profile projections while
+Squad & Player, Training, Match, Club Management, Transfer, Notification and
+Manager & Legacy keep their own authoritative facts.
 
 ## 2. Context map (high-level)
 
@@ -135,6 +148,13 @@ FMX-13 adds the Club Economy accounting boundary
 League, Squad and Stadium/Fan systems may produce facts that affect money, but
 only Club Management posts ledger entries and exposes finance read models. No
 other context writes finance tables or recalculates accounting state.
+
+FMX-23 proposes the People / Persona & Skills boundary
+([[09-Decisions/ADR-0052-people-persona-and-skills-context]]): Squad, Training,
+Match, Club, Transfer, Notification and Manager & Legacy may emit facts about
+people, but People owns persona projections, relationship edges, skill-profile
+snapshots and dialogue context cards. People does not write player attributes,
+match facts, finance state or notification delivery records.
 
 ### 3.1 Impact Lens projection
 

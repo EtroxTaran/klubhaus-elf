@@ -3,7 +3,7 @@ title: GD-0018 AI Narrative Personas and Dialogue
 status: draft
 tags: [game-design, gddr, narrative, ai, llm, personas, dialogue]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-05-28
 type: game-design
 binding: false
 supersedes:
@@ -18,7 +18,10 @@ related:
   - [[../60-Research/raw-perplexity/raw-ai-llm-usage]]
   - [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]]
   - [[../60-Research/narrative-content-pipeline]]
+  - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+  - [[GD-0020-eos-player-skills-personas-and-people]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
+  - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 ---
 
 # GD-0018: AI Narrative Personas and Dialogue
@@ -55,6 +58,12 @@ remember what happened and react in ways that feel specific to the world.
   intents. Intent plus actor traits drives any morale, trust, pressure or
   transfer-readiness effect. The LLM, if enabled, only phrases lines. Source:
   [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]].
+- **Persona context cards come from structured People facts.** FMX-23 proposes
+  [[GD-0020-eos-player-skills-personas-and-people]] and
+  [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+  as the source for actor labels, relationship edges, recent facts, allowed
+  intents and forbidden claims. Dialogue consumes those cards; it does not own
+  persona or relationship state.
 - **MVP Runtime-LLM candidate is key-event/asynchronous flavour only.**
   Candidate surfaces: key-event match ticker wording after the event is
   committed, post-match newspaper snippets, injury/event reports, weekly

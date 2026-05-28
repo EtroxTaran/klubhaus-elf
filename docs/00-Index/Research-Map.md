@@ -3,7 +3,7 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-05-28
 type: map
 binding: false
 related: [[Current-State]]
@@ -166,6 +166,18 @@ before any promotion.
   press, player talks and media-persona story depth. Feeds draft
   [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] and draft
   [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
+
+## EOS Player, Staff, Skills and Personas (2026-05-28)
+
+- [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]] — FMX-23
+  synthesis of the Player & Staff Values report plus follow-up Perplexity/Web
+  research into a draft path: retain 16+4+8 attributes, add player skills/perks
+  as a separate visible layer, model staff skills as target system, use hidden
+  OCEAN as persona substrate and propose People / Persona & Skills as a new
+  bounded context. Feeds draft
+  [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]],
+  [[../20-Features/feature-eos-player-skills-and-people-context]] and
+  [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]].
 
 ## Swappable Spatial-Event Match Engine (2026-05-27)
 

@@ -3,10 +3,10 @@ title: Tactics System - Position, Role, Duty, Instructions, Traits
 status: draft
 tags: [game-design, tactics, match, mobile-ux]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-28
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/data-generators]], [[../60-Research/player-strength-presentation]], [[../60-Research/match-engine-simulation-model]], [[match-engine]], [[set-pieces]], [[progressive-disclosure-ui]]
+related: [[README]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/data-generators]], [[../60-Research/player-strength-presentation]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/match-engine-simulation-model]], [[match-engine]], [[set-pieces]], [[progressive-disclosure-ui]], [[GD-0020-eos-player-skills-personas-and-people]]
 ---
 
 # Tactics System - Position, Role, Duty, Instructions, Traits
@@ -145,6 +145,12 @@ Examples: drifts to centre when ball on opposite flank; tries to play
 through the lines; shoots from distance under pressure; steps up to
 mark tightly; cuts back rather than crossing first time; trades pace
 for positioning.
+
+FMX-23 adds a separate draft player skills/perks layer in
+[[GD-0020-eos-player-skills-personas-and-people]]. Tactics may consume a locked
+`PlayerSkillProfileSnapshot`, but skills/perks are not tendencies: tendencies
+change action choice probabilities; skills/perks apply bounded effects only
+when their declared trigger fires.
 
 ## 9. Attribute scale (RECONCILED with D2)
 

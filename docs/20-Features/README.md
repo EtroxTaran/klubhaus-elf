@@ -3,7 +3,7 @@ title: Features
 status: current
 tags: [feature, index]
 created: 2026-05-15
-updated: 2026-05-22
+updated: 2026-05-28
 type: index
 binding: false
 related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-V1]]
@@ -30,6 +30,8 @@ stubs as future-scope planning, not open documentation gaps.
 - [[feature-transfer-market-ai-and-contracts]] - approved transfer-market foundation and explanation layer.
 - [[feature-club-economy-mvp-pillar]] - draft FMX-13 economy MVP pillar:
   weekly ledger, full accounting and staged insolvency.
+- [[feature-eos-player-skills-and-people-context]] - draft FMX-23 feature
+  slice for player skills/perks, People context and persona context cards.
 
 Older feature stubs may contain historical "In scope (MVP)" headings. The
 canonical MVP scope is [[../00-Index/MVP-Scope]]; use it before interpreting
@@ -43,6 +45,8 @@ those headings.
 - [[feature-venue-operations]] — Non-matchday arena calendar with pitch, sponsor and fan trade-offs.
 - [[feature-player-lifecycle]] — Weekly player development, PA uncertainty and mentoring.
 - [[feature-training-medicine]] — Training load, readiness, multifactor injury risk and rehab.
+- [[feature-eos-player-skills-and-people-context]] — Player skills/perks plus
+  People/persona context planning.
 - [[feature-systemic-event-director]] — Deterministic event orchestration across owning domains.
 - [[feature-sponsorship-portfolio]] — Asset-level sponsor inventory + side conditions.
 - [[feature-fan-ecology-ui]] — 6-segment supporter dashboard.
