@@ -45,12 +45,22 @@ RUN set -eu; \
   find /usr/share/nginx/html -maxdepth 1 \( -name '*.html' -o -name '*.jsx' \) \
     -exec sed -i 's|index\.html|canvas.html|g' {} +; \
   cp "/usr/share/nginx/html/hub.html" "/usr/share/nginx/html/index.html"; \
+  # Hub deep-links target canvas.html#<section> but the React canvas only sets
+  # data-dc-section (not id), so native hash scroll never lands. Inject an
+  # overlay JS that mirrors data-dc-section → id, watches the React mount,
+  # adds a back-to-Hub control, and handles initial-hash + hashchange.
+  sed -i 's|</body>|  <script defer src="assets/dc-hash-anchors.js"></script>\n</body>|' "/usr/share/nginx/html/canvas.html"; \
+  # Empty state sidecar so the canvas's fetch('./.design-canvas.state.json') doesn't 404.
+  printf '{}\n' > /usr/share/nginx/html/.design-canvas.state.json; \
   # Sanity (blind-build safety): entry = hub, canvas reachable, repoint done.
   test -f /usr/share/nginx/html/hub.html; \
   test -f /usr/share/nginx/html/isometric.html; \
   test -f /usr/share/nginx/html/canvas.html; \
+  test -f /usr/share/nginx/html/.design-canvas.state.json; \
+  test -f /usr/share/nginx/html/assets/dc-hash-anchors.js; \
   grep -q 'hub-body' /usr/share/nginx/html/index.html; \
   grep -q 'text/babel' /usr/share/nginx/html/canvas.html; \
+  grep -q 'dc-hash-anchors.js' /usr/share/nginx/html/canvas.html; \
   ! grep -q 'index\.html#' "/usr/share/nginx/html/Handoff Overview.html"
 COPY tools/styleguide/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
