@@ -1,11 +1,11 @@
 ---
 title: ADR-0061 Club Management Sub-Aggregate Ownership Audit
-status: proposed
-tags: [adr, architecture, ddd, club-management, stadium, audience-and-atmosphere, fan-ecology, sponsorship, commercial-portfolio, ticketing, settlement, fmx-32, proposed]
+status: accepted
+tags: [adr, architecture, ddd, club-management, stadium, audience-and-atmosphere, fan-ecology, sponsorship, commercial-portfolio, ticketing, settlement, fmx-32, accepted]
 created: 2026-05-28
 updated: 2026-05-28
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -39,11 +39,60 @@ related:
 
 ## Status
 
-proposed
+accepted
 
 ## Date
 
-2026-05-28
+- Proposed: 2026-05-28
+- Accepted: 2026-05-28 by Nico
+
+## Ratification note
+
+Nico ratified the **best-practice landing** on 2026-05-28 after
+reviewing the FMX-32 dossier (PR #104). Per-candidate decision:
+
+- **Stadium / Venue Operations = Option C** (own bounded context
+  `Stadium Operations`) — Nico chose Option C over the dossier's
+  working Recommendation B. The departure rests on (a) real-world
+  organisational evidence (Bayern Allianz Arena München Stadion
+  GmbH + BVB Stadionmanagement GmbH + Tottenham venue business +
+  Real Madrid Bernabéu / Legends & Sixth Street JV — separate
+  legal entities with own P&L are the empirical baseline, not the
+  edge case); (b) cross-genre / DDD analogues (Hotel PMS + CMMS +
+  Theme Park + Anno) all promote venue ops to own context when
+  ops becomes core, and the FMX stadium scope IS core per
+  `stadium-and-campus.md` ("emotional and economic heart of the
+  club"); (c) matchday-FSM coupling to Match is event-based,
+  handled cleanly via Customer-Supplier + ACL — the dossier's
+  caution was conservative. The Option B published-contract
+  surface still applies (`StadiumCommercialSnapshot`,
+  `StadiumCapacitySnapshot`, `MatchdayTimelineAdvanced`,
+  `PitchConditionChanged`, `VenueEventBooked`,
+  `FacilityComplianceChecked`) — Stadium Operations BC simply
+  becomes the owner of that contract surface in its own per-save
+  schema rather than nesting inside Club Management.
+- **Audience & Atmosphere = Option C** (own bounded context, via
+  spin-off [[ADR-0062-audience-and-atmosphere-context]]).
+- **CommercialPortfolio = Option C** (own bounded context covering
+  sponsorship + catering + merchandise + hospitality + ticketing
+  & commercial settlement umbrella).
+- **Ticketing & Commercial Settlement = Option D** (sub-Aggregate
+  inside CommercialPortfolio).
+- **Concurrent ratification of draft ADR-0050 + ADR-0058** —
+  both flip to `accepted` / `binding: true` at the same
+  ratification event with the in-line amendment hunks proposed
+  by FMX-32 applied (see ADR-0050 + ADR-0058 §Ratification
+  notes).
+
+Result: **three new bounded contexts** (Stadium Operations,
+Audience & Atmosphere, CommercialPortfolio), bringing the
+16-context map to **19**. Combined with FMX-29 (ADR-0060 Youth
+Academy, still proposed) + FMX-33 (ADR-0059 Community Overlay
+Pipeline, still proposed) the map can grow to 21 if those land
+later.
+
+The §Map patch proposal section below documents the diff hunks
+applied to `bounded-context-map.md` by the FMX-32 apply-PR.
 
 ## Context
 

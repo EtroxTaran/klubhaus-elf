@@ -1,11 +1,11 @@
 ---
 title: ADR-0058 Club Economy Commercial Impact Boundary
-status: draft
-tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, cup, competition, fmx-41, fmx-44, fmx-45]
+status: accepted
+tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, commercial-portfolio, cup, competition, fmx-32, fmx-41, fmx-44, fmx-45, accepted]
 created: 2026-05-28
 updated: 2026-05-28
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -15,12 +15,15 @@ related:
   - [[ADR-0050-club-economy-accounting-ledger]]
   - [[ADR-0056-regulations-compliance-context]]
   - [[ADR-0057-rivalry-system-context]]
+  - [[ADR-0061-club-management-sub-aggregate-audit]]
+  - [[ADR-0062-audience-and-atmosphere-context]]
   - [[../../50-Game-Design/GD-0008-finance-economy]]
   - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../../50-Game-Design/economy-system]]
   - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+  - [[../../60-Research/club-management-sub-aggregate-audit-2026-05-28]]
   - [[../../30-Implementation/club-economy-accounting-ledger]]
   - [[../../30-Implementation/club-economy-commercial-contracts]]
   - [[../bounded-context-map]]
@@ -29,6 +32,54 @@ related:
 # ADR-0058: Club Economy Commercial Impact Boundary
 
 ## Status
+
+accepted
+
+## Ratification note
+
+Concurrent ratification with FMX-32 audit (ADR-0061 + ADR-0062) on
+2026-05-28 by Nico. **The original §Recommendation below (Option
+C = Club Management commercial sub-aggregate, no new BC) is
+superseded by the FMX-32 boundary audit.** Nico ratified the
+FMX-32 best-practice landing — the §Options "Option B — New
+Commercial Operations bounded context" that this ADR originally
+deferred is **now the accepted shape**, instantiated as the
+**CommercialPortfolio** bounded context (FMX-32 CommercialPortfolio
+= Option C, includes Ticketing & Commercial Settlement as Option D
+sub-Aggregate). The boundary rules below are amended accordingly:
+
+- **CommercialPortfolio bounded context** owns commercial policies
+  (ticketing, season-ticket strategy, commercial contract
+  portfolio, fan-event campaign choices) + commercial contract
+  lifecycle state + version history + obligation fulfilment +
+  breach cases + renewal policy + exclusivity graph + per-fixture
+  settlement Saga + IFRS 15 accrual schedule + credit / refund
+  liability pool + instalment receivables + Investor entitlement
+  grant policy.
+- **Club Management** owns the ledger entries caused by commercial
+  settlement; CommercialPortfolio emits settlement events
+  consumed via Customer-Supplier + ACL per Vernon canonical
+  pattern (ADR-0050 remains the sole writer of finance tables).
+- **Audience & Atmosphere** owns `FanDemandForecast` +
+  `TicketingTrustState` consumed by CommercialPortfolio (ADR-0062).
+- **Stadium Operations** owns `StadiumCommercialSnapshot` +
+  `StadiumCapacitySnapshot` consumed by CommercialPortfolio
+  (ADR-0061).
+- **Rivalry System** supplies `RivalryCommercialSignal` per
+  ADR-0057.
+- **League Orchestration** supplies `FixtureCommercialProfile` +
+  `CompetitionRevenueProfile`.
+- **Regulations & Compliance** supplies `EffectiveRuleSet`
+  (UEFA FSR + PL APT + La Liga PSR + GDPR + DSA + CRA + Late
+  Payment Directive + CEN-EN 17210 obligations).
+
+The §Public contract direction below is amended: commands +
+events + read models previously listed as "owned by Club
+Management" are now owned by **CommercialPortfolio**; the listed
+input facts are now consumed by CommercialPortfolio from their
+respective owning BCs.
+
+## Status (original draft text)
 
 draft
 

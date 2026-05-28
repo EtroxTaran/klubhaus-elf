@@ -1,28 +1,24 @@
 ---
-title: Fan Ecology - Six Segments and Atmosphere Engine
-status: superseded
-tags: [game-design, fans, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, fmx-32, fmx-41, fmx-42, fmx-43, superseded]
+title: Audience & Atmosphere - Six Segments and Atmosphere Engine
+status: draft
+tags: [game-design, fans, audience, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, fmx-32, fmx-41, fmx-42, fmx-43, fmx-54]
 created: 2026-05-16
 updated: 2026-05-28
 type: game-design
-binding: false
-superseded_by: audience-and-atmosphere
-related: [[README]], [[audience-and-atmosphere]], [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]]
+binding: true
+supersedes: fan-ecology
+related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
-# Fan Ecology - Six Segments and Atmosphere Engine
+> **Renamed 2026-05-28 from "Fan Ecology".** Audience & Atmosphere
+> was ratified as own bounded context by FMX-32 audit (ADR-0062
+> spin-off of ADR-0061). The old `fan-ecology.md` GDDR is
+> `status: superseded` and supersedes-linked back to this note.
+> Content unchanged below; only the binding owner shifts from the
+> Club Management "fans" sub-aggregate to the new Audience &
+> Atmosphere BC.
 
-> **SUPERSEDED on 2026-05-28 by [[audience-and-atmosphere]].**
-> Old way: Fan Ecology lived as a sub-aggregate of Club Management
-> with the "fans" responsibility per `bounded-context-map.md` §1
-> line 38 + draft ADR-0058 §Recommendation. New way: Audience &
-> Atmosphere is its own bounded context per FMX-32 audit
-> (ADR-0061 + ADR-0062 spin-off, both accepted + binding
-> 2026-05-28). The note was renamed (`fan-ecology.md` →
-> `audience-and-atmosphere.md`); content is unchanged in the
-> rename. Kept for history — do not implement from this file.
-
-(Original content preserved below for historical reference.)
+# Audience & Atmosphere - Six Segments and Atmosphere Engine
 
 Fan culture must produce *sporting, economic and political* effects all at
 once. A single "mood" gauge is too coarse - real fans split into segments

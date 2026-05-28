@@ -1,33 +1,57 @@
 ---
 title: ADR-0050 Club Economy Accounting Ledger
-status: draft
-tags: [adr, architecture, economy, accounting, club-management, commercial, cup, competition, fmx-13, fmx-41, fmx-45]
+status: accepted
+tags: [adr, architecture, economy, accounting, club-management, commercial, cup, competition, fmx-13, fmx-32, fmx-41, fmx-45, accepted]
 created: 2026-05-27
 updated: 2026-05-28
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
   - [[ADR-0019-modular-monolith-ddd]]
   - [[ADR-0027-postgres-data-model]]
   - [[ADR-0028-postgres-transactional-outbox]]
+  - [[ADR-0058-club-economy-commercial-impact-boundary]]
+  - [[ADR-0061-club-management-sub-aggregate-audit]]
+  - [[ADR-0062-audience-and-atmosphere-context]]
   - [[../../50-Game-Design/GD-0008-finance-economy]]
   - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../../50-Game-Design/economy-system]]
   - [[../../60-Research/club-economy-blueprint-2026-05-27]]
   - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+  - [[../../60-Research/club-management-sub-aggregate-audit-2026-05-28]]
   - [[../../30-Implementation/club-economy-accounting-ledger]]
   - [[../../30-Implementation/club-economy-commercial-contracts]]
-  - [[ADR-0058-club-economy-commercial-impact-boundary]]
 ---
 
 # ADR-0050: Club Economy Accounting Ledger
 
 ## Status
 
-draft
+accepted
+
+## Ratification note
+
+Concurrent ratification with FMX-32 audit (ADR-0061 + ADR-0062)
+on 2026-05-28 by Nico. The FMX-32 audit refines the Club Management
+ownership scope: **stadium economics** moves to the new **Stadium
+Operations** bounded context (FMX-32 Stadium = Option C);
+**commercial sub-aggregate ownership** (sponsor / catering /
+merchandise / hospitality contracts + ticketing & commercial
+settlement) moves to the new **CommercialPortfolio** bounded
+context (FMX-32 CommercialPortfolio = Option C, includes
+Ticketing & Settlement as Option D sub-Aggregate); **fan signals**
+(segment demand + atmosphere + trust state + politics events) move
+to the new **Audience & Atmosphere** bounded context (ADR-0062).
+Club Management remains the **sole writer of finance ledger
+entries** + owner of budget envelopes + board pressure + insolvency
+state; all four FMX-32 contexts (Stadium Operations, Audience &
+Atmosphere, CommercialPortfolio with Ticketing & Settlement nested)
+emit fact events that Club Management consumes via Customer-
+Supplier + ACL per Vernon canonical pattern. §Decision below is
+amended accordingly.
 
 ## Date
 
@@ -76,8 +100,15 @@ Key rules:
 - Cashflow, P&L, balance-sheet-like summaries, amortisation schedules,
   liabilities, budget pots and compliance ratios are projections derived from
   the ledger plus Club-owned policy tables.
-- Club Management owns finance, budget, sponsor, stadium economics, board
-  pressure and insolvency stage.
+- Club Management owns the **finance ledger** (sole writer), budget envelopes,
+  board pressure and insolvency stage. **Stadium economics** is owned by the
+  Stadium Operations BC (FMX-32, ADR-0061); **sponsor + catering +
+  merchandise + hospitality contracts + ticketing & commercial settlement**
+  are owned by the CommercialPortfolio BC (FMX-32, ADR-0061); **fan signals**
+  (segment demand, atmosphere, trust state, politics events) are owned by the
+  Audience & Atmosphere BC (FMX-32, ADR-0062). All four contexts emit fact
+  events consumed by Club Management via Customer-Supplier + ACL; Club
+  Management posts the resulting ledger entries.
 - Other contexts never write finance tables directly. They emit or request
   domain facts through public commands/events.
 - Money values are integer minor units; ratios use basis points.
