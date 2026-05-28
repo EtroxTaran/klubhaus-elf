@@ -344,6 +344,8 @@ html:has(body.iso-body){height:100%}
 .iso-fallback img{width:min(560px,82vw);height:auto;border:1px solid rgba(240,231,212,.12);border-radius:10px}
 .iso-fallback p{font-family:var(--serif);font-style:italic;font-size:15px;color:rgba(240,231,212,.8);max-width:48ch;margin:0;line-height:1.5}
 .iso-fallback a{color:#e8b09f;text-decoration:underline}
+/* `.iso-fallback{display:flex}` above ties specificity with UA `[hidden]{display:none}` and wins by source order; restore the hide. */
+.iso-fallback[hidden]{display:none}
 
 @media (prefers-reduced-motion: reduce){
   .iso-load span{animation:none;opacity:.8}
