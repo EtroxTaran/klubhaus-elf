@@ -6,7 +6,7 @@ tags: [research, data-generation, worldgen, names, crests, players, clubs, deter
 created: 2026-05-17
 updated: 2026-05-28
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[determinism-and-replay]], [[performance-budgets]], [[surrealdb-schema-patterns]], [[eos-player-staff-skills-and-personas-2026-05-28]], [[../50-Game-Design/scouting-and-recruitment]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/club-dna-and-governance]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[determinism-and-replay]], [[performance-budgets]], [[surrealdb-schema-patterns]], [[eos-player-staff-skills-and-personas-2026-05-28]], [[ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../50-Game-Design/scouting-and-recruitment]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/club-dna-and-governance]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 ---
 
 # Data Generators — Names, Crests, Cities, Clubs, Players
@@ -848,6 +848,13 @@ does **not** expand this attribute schema: skills/perks are generated and
 balanced as separate sparse specializations, and internal OCEAN persona values
 are a People-context substrate, not additional player attributes.
 
+FMX-3 adds draft MVP narration-world generation in
+[[ai-narration-world-and-dialogue-mvp-2026-05-28]]. That layer extends worldgen
+with active narrative actors - staff, board contacts, media outlets,
+journalists, fan groups, fan reps and agents - but still follows this note's
+determinism and IP-clean rules. The LLM never generates canonical actors or
+facts at runtime; it only phrases scenes from generated context cards.
+
 ### 10.3 Physical metadata
 
 Per player, generate:
@@ -1180,15 +1187,40 @@ Crest SVG strings are generated **lazily**, not at world genesis:
 - 24 px thumbnail render: ~5 KB SVG per crest × N visible clubs in a
   league table = ~100 KB per page; cheap.
 
-## 14. Open follow-ups
+## 14. Narrative actor generation extension
+
+For the AI narration MVP pillar, world creation should also produce stable
+fictional social-world records:
+
+- media outlets: generated name, outlet type, reach, audience, cadence,
+  reliability, sensationalism and editorial stance;
+- journalists: generated name, outlet link, beat, tone, fairness, stance and
+  relationship seed to club/manager;
+- fan groups: generated name, represented segment, identity, red lines,
+  mobilization style and influence band;
+- fan reps: generated name, group link, role, temperament, agenda and trust
+  seed;
+- board contacts: generated name, role, patience, risk tolerance, time horizon
+  and communication style;
+- agents: generated name, negotiation style, client tendency, leakage risk and
+  trust seed;
+- staff personas: generated role, expertise, authority, work style and football
+  philosophy.
+
+These records use the same `GeneratorRng` hierarchy and opaque IDs as the rest
+of worldgen. They are canonical inputs for People and Narrative context cards,
+not generated prose.
+
+## 15. Open follow-ups
 
 - **D13 Women's football data model readiness**: this generator
   initially produces only male players (`gender: 'M'`). When D13 is
   closed, the locale corpora + archetypes need female variants.
   Schema is forward-compatible (`gender` is already in the schema).
-- **D15 Narrative event content**: club founding stories, manager
-  bios, journalist profiles. Phase 2 work; uses the same RNG stream
-  with different labels.
+- **D15 Narrative event content**: club founding stories and manager bios still
+  need authoring depth. Journalist profiles, media outlets, fan groups, fan
+  reps, board contacts and agents are now draft MVP narration inputs via
+  FMX-3.
 - **I4 Youth: partner schools + wonderkid tagging**: wonderkid
   detection (PA ≥ 150 + low reputation) feeds the scouting hype
   system.

@@ -15,8 +15,11 @@ related:
   - [[ADR-0030-llm-out-of-authoritative-state]]
   - [[ADR-0051-manager-and-legacy-context]]
   - [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+  - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+  - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../../20-Features/feature-eos-player-skills-and-people-context]]
+  - [[../../20-Features/feature-ai-narration-mvp-pillar]]
 ---
 
 # ADR-0052: People, Persona and Skills Context
@@ -32,19 +35,23 @@ draft
 ## Context
 
 FMX-23 promotes the EOS player/staff/persona research into a draft planning
-path. The design cuts across several existing contexts:
+path. FMX-3 now expands the narrative target to Full Dialogue and All Active
+actor classes for MVP. The design cuts across several existing contexts:
 
 - Squad & Player owns player base data, attributes, contracts, injury state and
   squad projections.
 - Training owns training plans, load and development outcomes.
 - Match owns line-up locks, match simulation, match events and results.
 - Notification owns durable messages and delivery.
+- Fan Ecology owns fan segment facts and atmosphere/economy outputs.
+- Club/Governance owns board KPIs, authority and decisions.
+- Transfer/Contracts owns agent/deal facts.
 - Manager & Legacy, if ADR-0051 is ratified, owns cross-save manager identity
   and run/legacy progression.
 
 No existing context cleanly owns save-scope personhood across players, staff,
-board, journalists, fan reps, relationship constellations, persona context
-cards and visible player skill/perk profiles.
+board contacts, journalists, fan reps, agents, relationship constellations,
+persona context cards and visible player skill/perk profiles.
 
 ## Options considered
 
@@ -67,9 +74,10 @@ Propose a dedicated **People / Persona & Skills** bounded context.
 If ratified, People owns:
 
 - actor registry for save-scope people: players, staff, board contacts,
-  journalists, fan reps and other non-playing characters;
+  journalists, fan reps, agents and other non-playing characters;
 - internal persona substrate, including OCEAN vector and derived
   football-domain labels;
+- role values, motivators, conflict style and stress triggers;
 - relationship graph and relationship provenance;
 - player skill/perk profile and staff skill/perk target profile;
 - skill/perk catalog metadata;
@@ -83,8 +91,15 @@ People does **not** own:
 - training plans or development deltas;
 - match facts, ratings, goals, xG, fatigue or result events;
 - club finances, board decisions or fan segment facts;
+- media outlet publication cadence, article delivery or inbox persistence;
+- fan group population/mood/economic outputs owned by Fan Ecology;
+- agent negotiation state owned by Transfer/Contracts;
 - message delivery, inbox persistence or notification provider state;
 - cross-save manager legacy progression.
+
+People may represent a generated media outlet or fan group as a non-person
+`ActorRef` only for relationship/context addressing. The owning domain remains
+the source of truth for outlet publication rules or fan segment facts.
 
 ## Public contract direction
 
@@ -92,6 +107,7 @@ Draft commands:
 
 - `RegisterActor`
 - `ImportManagerPersonaSnapshot`
+- `RegisterNonPersonNarrativeActor`
 - `RecordPersonaObservation`
 - `RecordRelationshipSignal`
 - `AssignPlayerSkillCandidate`
@@ -108,6 +124,7 @@ Draft events:
 - `PlayerSkillProfileChanged`
 - `StaffSkillCandidateDetected`
 - `PersonaContextCardBuilt`
+- `NarrativeActorRegistered`
 
 Draft read models:
 
@@ -117,6 +134,7 @@ Draft read models:
 - `RelationshipGraphSlice`
 - `MentoringConstellation`
 - `DialogueContextCard`
+- `NarrativeActorDirectory`
 - `PeopleImpactSummary`
 
 Draft consumed facts:
@@ -126,6 +144,9 @@ Draft consumed facts:
 - training attendance, focus and development facts from Training;
 - match performance aggregates and line-up facts from Match;
 - run/manager snapshot facts from Manager & Legacy if ADR-0051 is ratified;
+- board KPI and governance facts from Club/Governance;
+- fan segment/group facts from Fan Ecology;
+- agent/deal facts from Transfer/Contracts;
 - notification delivery outcomes from Notification only as social feedback
   inputs, not as message ownership.
 
@@ -141,6 +162,9 @@ Draft consumed facts:
   They include forbidden-claim lists for template/LLM consumers.
 - Runtime LLM output remains governed by ADR-0030: presentation only, no state
   mutation.
+- Narrative context cards for media/fan/board scenes include opaque refs and
+  summaries only. They do not expose internal IDs, raw user text or provider
+  secrets.
 - The manager-as-person inside a save is represented by an opaque actor ref.
   Cross-save manager identity remains with Manager & Legacy.
 
@@ -154,6 +178,9 @@ Draft consumed facts:
   version used to compute their snapshot.
 - OCEAN values are internal and never exposed directly in public UI or exported
   as user-facing labels without derivation.
+- Media outlets and fan groups need stable generated identity, but their
+  operational state is not stored in People unless it is relationship/context
+  metadata.
 
 ## Rationale
 
@@ -173,6 +200,8 @@ Positive:
 - Keeps 16+4+8 attributes in Squad & Player while allowing visible skills.
 - Makes relationship provenance explicit.
 - Creates a clean boundary between deterministic context and optional prose.
+- Gives the MVP Full Dialogue target a deterministic source for every active
+  actor class.
 
 Negative:
 
@@ -189,8 +218,11 @@ None
 ## Related docs
 
 - [[../../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+- [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+- [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../../20-Features/feature-eos-player-skills-and-people-context]]
+- [[../../20-Features/feature-ai-narration-mvp-pillar]]
 - [[ADR-0019-modular-monolith-ddd]]
 - [[ADR-0018-systemic-events-and-player-lifecycle]]
 - [[ADR-0027-postgres-data-model]]

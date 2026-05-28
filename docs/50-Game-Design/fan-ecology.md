@@ -3,10 +3,10 @@ title: Fan Ecology - Six Segments and Atmosphere Engine
 status: draft
 tags: [game-design, fans, atmosphere, ultras]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-28
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]]
+related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[../20-Features/feature-ai-narration-mvp-pillar]]
 ---
 
 # Fan Ecology - Six Segments and Atmosphere Engine
@@ -117,6 +117,27 @@ Triggered when segment moods reach thresholds. Examples:
 
 Events are surfaced as inbox cards with Accept / Decline / Defer actions.
 
+## 5a. Named fan groups and reps for MVP narration
+
+The six segments remain the source of truth for population, mood, volatility,
+attendance and economic outputs. For the AI narration MVP pillar, each club also
+generates a small named fan-group overlay:
+
+- `fan_group_id` and IP-clean generated name;
+- represented segment: Ultras, Core, Family, Fair Weather, Corporate or Casual;
+- identity: tradition, local pride, youth-first, anti-owner, results-first,
+  style-first or community-first;
+- red lines: ticket prices, rival transfers, selling icons, sponsor category,
+  defensive football, academy neglect or security restrictions;
+- mobilization style: choreo, banners, social campaign, boycott, meeting or
+  delegation;
+- influence band and public visibility.
+
+Fan reps are People actors attached to those groups. They can appear in
+controlled dialogue scenes and media stories, but they do not own fan facts.
+Any mood, protest or attendance effect still comes from Fan Ecology rules and
+the selected deterministic intent, not from generated prose.
+
 ## 6. Rivalry-driven fan loading
 
 The Fan Service consumes the `rivalry_score` from [[rivalry-system]]:
@@ -145,8 +166,8 @@ population:
 
 ## 9. Future-scope notes (classified future-scope)
 
-- Should ultras have *individual* groups (named) or as one aggregate
-  segment? Recommendation: aggregate at MVP; named groups Phase 2+.
+- Full fan-group UI and churn between groups remain future scope. The MVP only
+  needs enough named group/rep context for narration and decision pressure.
 - Do fans churn between segments? Yes, but slowly - Family → Core after
   N years of attendance.
 - Should fan-zone modules generate Family loyalty bumps? Yes (modest +1

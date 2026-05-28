@@ -14,12 +14,14 @@ related:
   - [[match-engine]]
   - [[GD-0010-ai-world]]
   - [[../60-Research/ai-narrative-runtime-integration]]
+  - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../60-Research/raw-perplexity/raw-ai-llm-usage]]
   - [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]]
   - [[../60-Research/narrative-content-pipeline]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
   - [[GD-0020-eos-player-skills-personas-and-people]]
+  - [[../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 ---
@@ -31,8 +33,8 @@ related:
 draft
 
 > Draft only. This record captures the current best design direction for AI
-> narrative personas and Runtime-LLM evaluation. It is not implementable until
-> Nico approves it and the linked ADR is accepted.
+> narrative personas, Full Dialogue and Runtime-LLM evaluation. It is not
+> implementable until Nico approves it and the linked ADR is accepted.
 
 ## Date
 
@@ -43,6 +45,11 @@ draft
 The player should feel that a save generated *their* football story: recurring
 journalists, difficult players, board personalities, fan groups and media arcs
 remember what happened and react in ways that feel specific to the world.
+
+For the MVP, AI narration is not decorative polish. It is a proposed emotional
+pillar: the system should generate enough structured world context that the
+first playable can already produce memorable characters, conflicts and media/fan
+reactions.
 
 ## Decided / strong
 
@@ -64,37 +71,54 @@ remember what happened and react in ways that feel specific to the world.
   as the source for actor labels, relationship edges, recent facts, allowed
   intents and forbidden claims. Dialogue consumes those cards; it does not own
   persona or relationship state.
-- **MVP Runtime-LLM candidate is key-event/asynchronous flavour only.**
-  Candidate surfaces: key-event match ticker wording after the event is
-  committed, post-match newspaper snippets, injury/event reports, weekly
-  summaries and transfer negotiation flavour after the result is fixed. Source:
-  [[../60-Research/ai-narrative-runtime-integration]].
+- **MVP Runtime-LLM candidate is Full Dialogue plus async flavour.** Candidate
+  surfaces: player one-to-one, staff advice/disagreement, board meetings,
+  press/journalist questions, fan-rep scenes, post-match newspaper snippets,
+  injury/event reports, weekly summaries, transfer/agent flavour after the
+  result is fixed, and selected match ticker key-event wording after committed
+  facts. Source:
+  [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]].
+- **All active actor classes need generated persona context in MVP.** The first
+  implementation wave should cover players, staff, board contacts, media
+  outlets, journalists, fan segments, named fan groups, fan reps and agents.
+  These actors can appear in templates/LLM scenes from the first playable.
 - **Match ticker LLM is not match AI.** It may phrase goals, big chances,
   cards, injuries, substitutions, halftime and full-time from the committed
   event log. Routine lines remain template-first. The output never changes the
   event, stat, rating or replay. Source:
   [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]].
-- **Press and player talks are future tracks.** They are important for the
-  long-term "my story" goal, but are not the first Runtime-LLM candidate due to
-  session length, balance, UX, latency and disclosure risk.
+- **Fan groups are active story actors, not only aggregate mood.** Fan Ecology
+  still owns segment facts, but MVP narrative should generate named fan groups
+  and representatives so fan pressure can become personal and repeatable.
+- **Media is a generated ecosystem.** Outlets have reach, cadence, reliability,
+  audience and editorial stance. Journalists have beat, tone, stance, fairness
+  and relationships. The LLM phrases articles/questions; it does not decide
+  whether a rumour, scandal or board-pressure event exists.
 - **Template fallback stays mandatory.** Every AI-enhanced line has a
   deterministic local template fallback and the game remains complete without
   provider access.
 - **No raw user data or PII goes to LLMs.** User-authored names and free text are
   replaced with placeholders. MVP avoids free-form user input entirely.
+- **First-exposure disclosure is the draft product posture.** The first AI
+  narration/dialogue surface explains that some in-game text is AI-generated;
+  settings/help keeps the persistent explanation. Each generated output still
+  carries machine-readable provenance.
 
 ## Open
 
-- Whether Runtime-LLM is allowed in MVP at all; see
-  [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
-- Exact persona trait list for players, journalists, board and fan reps.
+- Exact MVP actor counts per world size: outlets, journalists, named fan groups,
+  fan reps and agents.
+- Exact persona trait list and scale for players, staff, board contacts,
+  journalists, fan reps and agents.
 - Exact mechanics affected by each trait and intent.
-- Whether the info/settings-level AI disclosure preference satisfies EU AI Act
-  Article 50 for the intended in-game surfaces.
+- Exact `DialogueIntent` taxonomy per surface.
+- Whether first-exposure plus central disclosure satisfies EU AI Act Article 50
+  for the intended in-game surfaces.
 - Final OpenRouter model/provider routing, cost caps and cache policy.
-- Exact key-event list and per-match budget for LLM ticker beta.
-- Content volume targets for async flavour after the deterministic template
-  baseline is updated.
+- Content volume targets for template-only fallback quality across the Full
+  Dialogue surfaces.
+- Evaluation thresholds for contradiction rate, fallback rate, persona drift,
+  repetition and unsafe-output rejection before MVP launch.
 
 ## Rationale
 
@@ -111,6 +135,8 @@ Positive:
 - Stronger long-save identity and better "tell a story about my save" value.
 - Reuses the existing inbox, newspaper, event-family and voice-card direction.
 - Keeps LLM optional because personas/intents/templates exist without it.
+- Makes media, fan groups, staff and board emotionally present in the MVP rather
+  than deferring them to a later narrative pass.
 
 Negative / constraints:
 
@@ -120,6 +146,8 @@ Negative / constraints:
   generated narrative.
 - Requires strict architecture guards so generated text never becomes gameplay
   state.
+- Adds a larger test matrix before MVP because Full Dialogue must be evaluated
+  across actor classes and a season-long memory loop.
 
 ## Supersedes
 
@@ -132,6 +160,7 @@ None
 ## Related
 
 - Research: [[../60-Research/ai-narrative-runtime-integration]] ·
+  [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] ·
   [[../60-Research/raw-perplexity/raw-ai-llm-usage]] ·
   [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]] ·
   [[../60-Research/narrative-content-pipeline]]

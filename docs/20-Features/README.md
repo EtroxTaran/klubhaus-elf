@@ -30,6 +30,9 @@ stubs as future-scope planning, not open documentation gaps.
 - [[feature-transfer-market-ai-and-contracts]] - approved transfer-market foundation and explanation layer.
 - [[feature-club-economy-mvp-pillar]] - draft FMX-13 economy MVP pillar:
   weekly ledger, full accounting and staged insolvency.
+- [[feature-ai-narration-mvp-pillar]] - draft FMX-3 AI narration MVP pillar:
+  Full Dialogue, All Active actor context, template fallback and Runtime-LLM
+  gates.
 - [[feature-eos-player-skills-and-people-context]] - draft FMX-23 feature
   slice for player skills/perks, People context and persona context cards.
 
@@ -47,6 +50,7 @@ those headings.
 - [[feature-training-medicine]] — Training load, readiness, multifactor injury risk and rehab.
 - [[feature-eos-player-skills-and-people-context]] — Player skills/perks plus
   People/persona context planning.
+- [[feature-ai-narration-mvp-pillar]] — AI narration MVP pillar.
 - [[feature-systemic-event-director]] — Deterministic event orchestration across owning domains.
 - [[feature-sponsorship-portfolio]] — Asset-level sponsor inventory + side conditions.
 - [[feature-fan-ecology-ui]] — 6-segment supporter dashboard.

@@ -17,8 +17,11 @@ related:
   - [[systemic-events-player-development-venue-ops]]
   - [[player-strength-presentation]]
   - [[ai-narrative-runtime-integration]]
+  - [[ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+  - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../20-Features/feature-eos-player-skills-and-people-context]]
+  - [[../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 ---
 
@@ -55,6 +58,10 @@ traceable draft path for ratification.
   and relationship states as the visible/usable language.
 - Use the model to create clearer individual players and people, especially for
   deterministic dialogue context and later LLM phrasing.
+- FMX-3 now expands the MVP narration target to **All Active** actor context:
+  staff, board contacts, journalists/media outlets, fan groups/fan reps and
+  agents need generated persona/context cards in MVP, even where their skill
+  gameplay remains target-model only.
 
 ## External source check
 
@@ -211,6 +218,21 @@ The context card is deterministic simulation output. Generated prose is
 presentation only and remains governed by
 [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
 
+## FMX-3 narration expansion
+
+The original FMX-23 synthesis kept MVP activation player-focused for mechanical
+skills. That still holds for skill gameplay. The FMX-3 narration expansion
+changes the context-card activation target:
+
+- player skill/perk gameplay remains the first active mechanical slice;
+- staff skills remain target gameplay unless separately ratified;
+- staff, board, journalist, media, fan-group, fan-rep and agent personas are
+  active MVP narration inputs;
+- People may own persona and relationship interpretation for those actors, but
+  owning domains keep the facts: Fan Ecology for fan state, Club/Governance for
+  board decisions, Transfer/Contracts for agents and Narrative/Notification for
+  message delivery.
+
 ## Open decisions
 
 - Final player skill catalog and MVP subset.
@@ -220,8 +242,8 @@ presentation only and remains governed by
 - Whether OCEAN may ever directly affect mechanics, or only derived football
   labels and relationship policies.
 - Relationship graph thresholds and decay rules.
-- Which actor classes are in the first implementation wave beyond players and
-  staff.
+- Actor counts per world size for media outlets, journalists, fan groups, fan
+  reps and agents.
 
 ## Source links
 
@@ -247,7 +269,10 @@ presentation only and remains governed by
   [[raw-perplexity/raw-ea-fc26-fm-skills-persona-perplexity-2026-05-28]]
 - Existing foundations: [[data-generators]] ·
   [[systemic-events-player-development-venue-ops]] ·
-  [[player-strength-presentation]] · [[ai-narrative-runtime-integration]]
-- Game design: [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
-- Feature: [[../20-Features/feature-eos-player-skills-and-people-context]]
+  [[player-strength-presentation]] · [[ai-narrative-runtime-integration]] ·
+  [[ai-narration-world-and-dialogue-mvp-2026-05-28]]
+- Game design: [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] ·
+  [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+- Feature: [[../20-Features/feature-eos-player-skills-and-people-context]] ·
+  [[../20-Features/feature-ai-narration-mvp-pillar]]
 - Architecture: [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]

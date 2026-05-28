@@ -161,11 +161,26 @@ before any promotion.
 - [[../60-Research/ai-narrative-runtime-integration]] — synthesized follow-up
   for the two narrative/LLM raw reports. Captures Nico's current preferences:
   OpenRouter as the experimental provider path, no clear user data / PII / raw
-  free text in prompts, central info/settings disclosure preference, MVP
-  Runtime-LLM re-evaluation limited to async flavour, and future tracks for
-  press, player talks and media-persona story depth. Feeds draft
+  free text in prompts, Runtime-LLM outside authoritative state, and the
+  original async-flavour re-evaluation path. Superseded for current MVP scope by
+  the 2026-05-28 Full Dialogue synthesis. Feeds draft
   [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] and draft
   [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
+
+## AI Narration, World and Dialogue MVP (2026-05-28)
+
+- [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] — FMX-3
+  synthesis after Nico selected **Full Dialogue**, **All Active** actor context
+  and **First Exposure** disclosure as the draft MVP direction. Captures
+  deterministic world/persona generation for players, staff, board, media,
+  journalists, fan groups, fan reps and agents; `NarrativeContextCard`;
+  OpenRouter provider gates; AI Act/GDPR/OWASP/NIST safety gates; and the
+  test/evaluation matrix. Feeds draft
+  [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], draft
+  [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]],
+  draft [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]],
+  draft [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+  and [[../20-Features/feature-ai-narration-mvp-pillar]].
 
 ## EOS Player, Staff, Skills and Personas (2026-05-28)
 
@@ -195,6 +210,14 @@ before any promotion.
 
 - [[../60-Research/raw-perplexity/README]] - lossless input preservation; not authoritative. Includes [[../60-Research/raw-perplexity/raw-player-strength-overview]] as the source input for the Impact Lens synthesis.
 - [[../60-Research/raw-perplexity/raw-transfer-market-research]] - Nico's attached transfer-market research prompt; promoted into [[../60-Research/transfer-market-simulation]].
+- [[../60-Research/raw-perplexity/raw-ai-narration-mvp-research-2026-05-28]] -
+  Runtime LLM narration/dialogue best practices, fallback, validation,
+  cache/cost/latency and season memory.
+- [[../60-Research/raw-perplexity/raw-ai-narration-compliance-safety-2026-05-28]] -
+  EU AI Act, GDPR, OWASP, monitoring, kill switch and release gates.
+- [[../60-Research/raw-perplexity/raw-ai-world-persona-generation-2026-05-28]] -
+  generated players, staff, board, media, fan groups, fan reps, values and
+  relationship graph.
 
 ## Research Rules
 

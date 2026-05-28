@@ -3,7 +3,7 @@ title: AI Narrative Runtime Integration Research
 status: current
 tags: [research, ai, llm, narrative, persona, dialogue, openrouter, ai-act]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-05-28
 type: research
 binding: false
 sourceType: synthesis
@@ -16,12 +16,20 @@ related:
   - [[determinism-and-replay]]
   - [[swappable-spatial-event-match-engine-2026-05-27]]
   - [[pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
+  - [[ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../50-Game-Design/GD-0013-narrative-inbox]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 ---
 
 # AI Narrative Runtime Integration Research
+
+> **2026-05-28 scope update:** Nico expanded the draft MVP target from
+> "async flavour plus key-event wording" to **Full Dialogue** with **All Active**
+> actor classes. The deeper synthesis is
+> [[ai-narration-world-and-dialogue-mvp-2026-05-28]]. This note remains the
+> original Runtime-LLM integration synthesis, but its older async-first MVP
+> candidate is no longer the current draft target.
 
 ## Question
 
@@ -61,33 +69,37 @@ of truth.
 - **Personas matter beyond text.** Players, journalists, board members and fan
   reps need stable traits so repeated appearances feel coherent.
 
-## MVP re-evaluation candidate
+## MVP re-evaluation target
 
-Nico wants the MVP Runtime-LLM line re-checked. The safest candidate is:
+Nico re-checked the MVP Runtime-LLM line on 2026-05-28 and selected a broader
+draft target:
 
-**Async flavour plus key-event match ticker wording.**
+**Full controlled dialogue plus async narrative flavour.**
 
-Allowed as a draft MVP candidate:
+In scope for the revised draft MVP target:
 
-- post-match newspaper snippets;
-- injury and event reports;
-- weekly or matchday summary paragraphs;
-- transfer negotiation flavour after the negotiation result is already fixed.
-- selected match ticker key events after the match engine has committed the
-  event/spatial facts.
+- post-match newspaper snippets, injury/event reports, weekly summaries and
+  matchday summaries;
+- selected match ticker key-event wording after the match engine has committed
+  event/spatial facts;
+- player one-to-one dialogue through explicit intents;
+- staff advice and staff disagreement scenes;
+- board expectation, warning and pressure scenes;
+- press/journalist questions through recurring generated media personas;
+- fan-rep scenes for named fan groups over the six supporter segments;
+- transfer/agent flavour after the underlying negotiation state is already
+  computed.
 
-Not included in the MVP candidate:
+Still excluded from the MVP target:
 
-- press conference mechanics;
-- player one-to-one talks;
 - LLM-driven opponent tactics;
 - LLM-driven transfer decisions;
 - free-form user chat.
 - routine pass/duel/possession narration.
 
-Press, journalist personas, player talks and media ecosystems remain important
-future tracks, but they carry higher UX, balance, latency and legal risk than
-async flavour.
+Dialogue may feel conversational in the UI, but the interaction model is
+choice- and intent-based. The selected `DialogueIntent` plus deterministic
+actor/domain policies can affect mechanics; the generated text never does.
 
 ## Gameplay boundary
 
@@ -155,9 +167,9 @@ abuse controls and release review.
 
 ## Disclosure posture
 
-Nico prefers an info/settings-level disclosure rather than a visible label on
-every generated in-game text. This is a product preference, not yet a legal
-conclusion.
+Nico's current product direction is **first-exposure disclosure** plus a central
+info/settings surface, rather than a visible label on every generated in-game
+text. This is a product direction, not yet a legal conclusion.
 
 As of 2026-05-27, EU AI Act transparency rules are expected to apply from
 2026-08-02 for relevant systems, and European Commission guidance says
@@ -167,7 +179,8 @@ legal review before Runtime-LLM ships.
 
 Therefore:
 
-- product preference: central information surface, not per-card visual label;
+- product preference: clear first-use notice and central information surface,
+  not per-card visual label by default;
 - architecture requirement: every generated output still carries machine-readable
   provenance metadata;
 - release gate: legal review confirms whether central disclosure is enough.
@@ -177,7 +190,16 @@ Therefore:
 These are planning contracts, not implementation API decisions.
 
 ```ts
-type PersonaRole = 'player' | 'journalist' | 'board' | 'fan_rep'
+type PersonaRole =
+  | 'player'
+  | 'staff'
+  | 'board_contact'
+  | 'journalist'
+  | 'media_outlet'
+  | 'fan_segment'
+  | 'fan_group'
+  | 'fan_rep'
+  | 'agent'
 
 type PersonaProfile = {
   id: string
@@ -196,10 +218,13 @@ type DialogueIntent = {
 
 type NarrativeEnhancementRequest = {
   requestId: string
+  sceneId: string
   eventFamilyId: string
   locale: string
   facts: Record<string, string | number | boolean>
   personas: PersonaProfile[]
+  allowedIntents: DialogueIntent[]
+  forbiddenClaims: string[]
   tone: string
   fallbackTemplateId: string
 }

@@ -3,10 +3,10 @@ title: Club DNA and Governance
 status: draft
 tags: [game-design, club, governance, identity]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-28
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[mode-manage-a-club-career]]
+related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[mode-manage-a-club-career]], [[GD-0018-ai-narrative-personas-and-dialogue]]
 ---
 
 # Club DNA and Governance
@@ -52,6 +52,11 @@ The board is not a popup. It evaluates the manager monthly on eight KPIs:
 
 KPIs combine into **Board Confidence** (0-100). See split confidence in
 [[mode-manage-a-club-career]].
+
+For the AI narration MVP pillar, the board also exposes at least one generated
+`board_contact` actor to People/Narrative context cards. Club/Governance still
+owns KPI truth and board decisions; the generated board contact only gives
+those decisions a stable voice, patience/risk profile and relationship memory.
 
 ## 3. Pressure loop
 

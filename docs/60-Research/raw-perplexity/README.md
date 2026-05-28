@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-28
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -76,6 +76,18 @@ player/staff skills, perks and clearer people/persona constellations.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-ea-fc26-fm-skills-persona-perplexity-2026-05-28]] | EA FC 26 / Football Manager skills, perks, staff and mixed OCEAN + football-domain persona model | [[../eos-player-staff-skills-and-personas-2026-05-28]] · [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] · [[../../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]] |
+
+## FMX-3 follow-up Perplexity research (2026-05-28)
+
+Additional Perplexity research was run after Nico expanded the Runtime-LLM
+narration target from async flavour to Full Dialogue and All Active actor
+context.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-ai-narration-mvp-research-2026-05-28]] | Runtime LLM narration/dialogue best practices, fallback, validation, cache/cost/latency and season memory | [[../ai-narration-world-and-dialogue-mvp-2026-05-28]] |
+| [[raw-ai-narration-compliance-safety-2026-05-28]] | EU AI Act, GDPR, OWASP, monitoring, kill switch and release gates | [[../ai-narration-world-and-dialogue-mvp-2026-05-28]] |
+| [[raw-ai-world-persona-generation-2026-05-28]] | Generated players, staff, board, media, fan groups, fan reps, values and relationship graph | [[../ai-narration-world-and-dialogue-mvp-2026-05-28]] |
 
 ## Rules
 

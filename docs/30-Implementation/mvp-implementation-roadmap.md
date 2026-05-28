@@ -3,10 +3,10 @@ title: MVP Implementation Roadmap
 status: current
 tags: [implementation, mvp, roadmap, roguelite, slices]
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-05-28
 type: implementation
 binding: true
-related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[hybrid-online-pwa-strategy]], [[club-economy-accounting-ledger]]
+related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[hybrid-online-pwa-strategy]], [[club-economy-accounting-ledger]]
 ---
 
 # MVP Implementation Roadmap
@@ -69,6 +69,18 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 | Authority | Server-confirmed; Dexie may cache read model after confirm |
 | DoD | No real club names; reload shows confirmed run |
 
+### Slice 2a — Narrative world seed
+
+| Field | Value |
+|---|---|
+| Goal | Run creation also creates deterministic narration actors: staff, board contacts, media outlets, journalists, named fan groups, fan reps and agents |
+| Contexts | People, Club/Governance, Fan Ecology, Transfer/Contracts, Narrative |
+| Vault | [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]] |
+| UI | None beyond existing create-run confirmation; debug/dev read model acceptable in early slice |
+| Tests | Contract: generated actors are deterministic from world seed; no real-world names; actor counts match world-size config |
+| Authority | Server-confirmed worldgen; Dexie may cache read model |
+| DoD | A new run has stable actor refs and persona/context-card inputs without any LLM call |
+
 ### Slice 3 — Home dashboard
 
 | Field | Value |
@@ -80,6 +92,18 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 | Tests | e2e: land on home with feed-card after run create |
 | Authority | Cached read + server refresh |
 | DoD | Stale cache labelled if offline |
+
+### Slice 3a — Narrative Orchestrator and first disclosure
+
+| Field | Value |
+|---|---|
+| Goal | Home/inbox can render template-first narrative cards and show the first AI narration disclosure when Runtime-LLM is enabled |
+| Contexts | Narrative Orchestrator, Notification, People |
+| Vault | [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] |
+| UI | AI info/settings surface, narrative card states, fallback/provenance debug state |
+| Tests | Contract: `NarrativeContextCard`; e2e: first-exposure notice; unit: template fallback and provenance |
+| Authority | Presentation only; no domain command reads generated prose |
+| DoD | LLM disabled/offline/over-budget paths show complete template copy |
 
 ### Slice 4 — Tactics draft
 
@@ -105,6 +129,18 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 | Authority | Server-confirmed (stub engine acceptable for slice) |
 | DoD | Match report visible; deterministic seed documented |
 
+### Slice 5a — Key-event narration beta
+
+| Field | Value |
+|---|---|
+| Goal | Match report/ticker key events can be enhanced from committed facts, with template fallback |
+| Contexts | Match, Narrative Orchestrator, Notification |
+| Vault | [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]] |
+| UI | Match ticker/report provenance and fallback states |
+| Tests | Fact validator for scores/cards/injuries/substitutions; timeout/429/schema fallback tests |
+| Authority | Match facts are server-confirmed before narration |
+| DoD | Generated wording cannot change event log, stats, ratings or replay |
+
 ### Slice 6 — Run feedback
 
 | Field | Value |
@@ -116,6 +152,18 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 | Tests | e2e: see runway/risk and first ledger explanation after first match/week |
 | Authority | Server read model |
 | DoD | Completes first playable loop per feature spec |
+
+### Slice 6a — Full Dialogue MVP scenes
+
+| Field | Value |
+|---|---|
+| Goal | Controlled dialogue scenes exist for player, staff, board, press, fan rep and agent surfaces |
+| Contexts | People, Narrative Orchestrator, Notification, owning domain per scene |
+| Vault | [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] |
+| UI | Dialogue scene component stories for all actor classes |
+| Tests | Intent determinism, fact validation, persona consistency, prompt-injection, safety rejection, cost-cap fallback |
+| Authority | Selected intent plus deterministic policy can affect mechanics; generated prose cannot |
+| DoD | One complete first-season smoke path covers all actor classes with LLM on and off |
 
 ## After slice 6
 
@@ -176,6 +224,7 @@ skippable + 2D-fallback rules as 7c.
 ## Related
 
 - [[../00-Index/MVP-Scope]] — what is in/out of MVP
+- [[../20-Features/feature-ai-narration-mvp-pillar]] — AI Narration MVP pillar
 - `auth-mvp-launch-slice` (planned) — Slice 0 detail
 - `testing-strategy` (planned) — test matrix per slice
 - `team-ownership-matrix` (planned) — parallel ownership
