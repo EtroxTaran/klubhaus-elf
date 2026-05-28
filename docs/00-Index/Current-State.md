@@ -66,6 +66,29 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
+> **FMX-30 Regulations & Compliance ownership dossier (2026-05-28).**
+> Regulations - FFP/PSR/SCR, work permits / GBE, home-grown quotas,
+> transfer windows, license-tier facility requirements, sanction
+> catalog - are designed in
+> [[../50-Game-Design/regulations-and-compliance]] (including a named
+> `LeagueRegulationService.check()` call surface) but the 14-context
+> map has no owner. Draft
+> [[../60-Research/regulations-compliance-bounded-context-2026-05-28]]
+> and [[../60-Research/raw-perplexity/raw-regulations-compliance-2026-05-28]]
+> consolidate genre (FM Advanced Rules editor + Test Rules validator
+> as closest direct precedent), DDD (Vernon canonical Tax-catalog
+> pattern with Open Host Service + Published Language + Anticorruption
+> Layer + Process Manager / Saga for multi-context eligibility), and
+> real-world 2024-2026 multi-regulator landscape (UEFA SCR 70% +
+> Premier League PSR £105m + La Liga cost control + Bundesliga
+> licensing + GBE post-Brexit + UEFA HG 3-years-15-to-21) evidence.
+> New draft [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]]
+> proposes **Regulations & Compliance as an additional bounded
+> context** (Option B) with four options + §Recommendation + §Map
+> patch proposal. IP-safety surface contained in one context per
+> GD-0015 + ADR-0007; `risk:legal` label set. Ratify decision pending;
+> map itself not yet modified.
+
 > **FMX-28 + FMX-37 Tactics ratification applied (2026-05-28).** Nico
 > accepted Option C. [[../10-Architecture/09-Decisions/ADR-0055-tactics-context]]
 > is now `status: accepted` and `binding: true`. Tactics is the

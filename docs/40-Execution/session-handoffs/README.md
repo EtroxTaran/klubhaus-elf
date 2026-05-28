@@ -42,6 +42,19 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-28-fmx-30-regulations-compliance]] - FMX-30 ownership
+  dossier for the regulatory rule catalog (FFP/SCR/PSR, work permits
+  / GBE, home-grown quotas, transfer windows, license-tier facility
+  requirements, sanction catalog). Three Perplexity queries (genre
+  FM Advanced Rules editor + Test Rules validator / DDD Vernon
+  Tax-catalog pattern Stripe Tax + Avalara / real-world 2024-2026
+  multi-regulator landscape UEFA SCR + Premier League PSR + La Liga
+  cost control + Bundesliga licensing + GBE), synthesis recommending
+  Option B (own Regulations & Compliance bounded context), draft
+  ADR-0056 with four options + §Recommendation + §Map patch proposal
+  (order-tolerant). `risk:legal` label set - IP-clean surface
+  contained in one context per GD-0015 + ADR-0007. Awaiting Nico
+  decision.
 - [[2026-05-28-fmx-28-tactics-persistence]] - FMX-28 ownership dossier
   for the persistent tactics library (presets, set-piece routines,
   opposition templates, role/duty configurations) distinct from
