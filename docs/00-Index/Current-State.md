@@ -66,6 +66,32 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
+> **FMX-34 Rivalry System ownership dossier (2026-05-28).** Rivalry
+> - 5-sub-score emergent formula (regional + historical + sporting +
+> fan-incident + transfer-tension) with threshold tiers
+> (None/Mild/Strong/High/Volatile) + per-season decay + cross-system
+> consumers (Fan Ecology atmosphere multiplier, Matchday-Event-Engine
+> Pyro trigger, Regulations sanction-chain downstream, Watch Party
+> auto-proposal, Manager & Legacy future archetype signal,
+> Notification derby copy, Match derby classification, Tactics future
+> opposition awareness, future People + Narrative derby framing) -
+> are designed in [[../50-Game-Design/rivalry-system]] but the
+> 15-context map has no owner. Draft
+> [[../60-Research/rivalry-system-bounded-context-2026-05-28]] and
+> [[../60-Research/raw-perplexity/raw-rivalry-system-2026-05-28]]
+> consolidate genre (FM pre-authored rivalry DB; thin source set),
+> DDD (Vernon canonical scoring-context pattern with CQRS read
+> models + Process Manager / Saga + Domain Service; credit-rating /
+> customer-affinity / recommendation real-world analogues) and
+> real-world 2023-2026 evidence (UEFA risk-match classification,
+> Premier League SGSA Category A/B/C, Bundesliga DFL Rotspiel; derby
+> attendance + revenue premiums documented). New draft
+> [[../10-Architecture/09-Decisions/ADR-0057-rivalry-system-context]]
+> proposes **Rivalry System as an additional bounded context**
+> (Option C) with three options + Option D anti-pattern + §Recommendation
+> + §Map patch proposal. Ratify decision pending; map itself not yet
+> modified.
+
 > **FMX-30 + FMX-39 Regulations & Compliance ratification applied
 > (2026-05-28).** Nico accepted Option B.
 > [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]]

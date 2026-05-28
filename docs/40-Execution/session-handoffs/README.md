@@ -42,6 +42,19 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-28-fmx-34-rivalry-system]] - FMX-34 ownership dossier
+  for the rivalry-edge graph + 5-sub-score formula (regional +
+  historical + sporting + fan-incident + transfer-tension) +
+  threshold-tier FSM + per-season decay. Three Perplexity queries
+  (genre source-thin; DDD Vernon scoring-context pattern with
+  credit-rating / customer-affinity / recommendation analogues;
+  real-world UEFA risk-match + Premier League Category A/B/C +
+  Bundesliga DFL Rotspiel), synthesis recommending Option C (own
+  Rivalry System bounded context), draft ADR-0057 with three options
+  + Option D anti-pattern + §Recommendation + §Map patch proposal
+  (order-tolerant). Smallest carve in the wave (lighter scope than
+  Tactics / Regulations) - cross-cutting consumer count + Vernon
+  pattern tip it toward separate context. Awaiting Nico decision.
 - [[2026-05-28-fmx-30-regulations-compliance]] - FMX-30 ownership
   dossier for the regulatory rule catalog (FFP/SCR/PSR, work permits
   / GBE, home-grown quotas, transfer windows, license-tier facility
