@@ -1,11 +1,11 @@
 ---
 title: ADR-0055 Tactics Context
-status: proposed
-tags: [adr, architecture, ddd, tactics, set-pieces, fmx-28]
+status: accepted
+tags: [adr, architecture, ddd, tactics, set-pieces, fmx-28, fmx-37, accepted]
 created: 2026-05-28
 updated: 2026-05-28
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -33,11 +33,31 @@ related:
 
 ## Status
 
-proposed
+accepted
 
 ## Date
 
-2026-05-28
+2026-05-28 (proposed) · 2026-05-28 (FMX-37 accepted by Nico, Option C)
+
+## Ratification
+
+Nico accepted Option C on 2026-05-28 after reviewing the FMX-28 dossier
+(PR [#90](https://github.com/EtroxTaran/football-manager-x/pull/90)).
+The §Recommendation below names Option C; the synthesis at
+[[../../60-Research/tactics-persistence-bounded-context-2026-05-28]]
+documents the three converging arguments (DDD canonical split criteria,
+real-world Sporting-Director-controlled-playbook precedent, FM `.ftc` +
+separately-saveable set-piece library genre precedent).
+
+Application:
+
+- Status flipped `proposed` → `accepted`; `binding: false` → `true`.
+- The §Map patch proposal that lived in this ADR was applied to
+  [[../bounded-context-map]] in the same PR (FMX-37). Tactics is now
+  the **fourteenth bounded context** in the live map.
+- The §Map patch proposal section is removed from this ADR as a result -
+  its content lives in the map. Future amendments to the map go through
+  normal ADR supersession ([[../../90-Meta/vault-governance]]).
 
 ## Context
 
@@ -418,126 +438,6 @@ Negative:
   which templates) is a separate beat.
 - Cross-save preset sharing (ADR-0016) is FMX-33 Community Overlay's
   territory; explicit boundary.
-
-## Map patch proposal
-
-Applies only on Nico's acceptance. Until then, the bounded-context map
-keeps the thirteen-context baseline. The patch is **order-tolerant** -
-ADR-0052 (People) and ADR-0054 (Narrative) may be accepted before or
-after this ADR; Tactics is inserted as an additional row regardless of
-position.
-
-### Patch 1: §1 table
-
-Rename section header to reflect new count
-("Fourteen" / "Fifteen" / "Sixteen" bounded contexts depending on how
-many parallel drafts are accepted at apply-time). Insert one new row
-after Staff Operations (or wherever editorial position prefers; the
-table is unordered):
-
-```diff
- | **Staff Operations** | Staff contract lifecycle, role assignment, pipeline coverage, wage schedule, specialisation metadata | Staff roster + role-assignment board projections, pipeline-coverage snapshots, wage events for the Club Management ledger |
-+| **Tactics** | Tactic presets, set-piece routine variants, opposition templates, role/duty configurations, tactical-style signal aggregation | TacticSnapshot at lock-time, RoleProfileForPosition queries, OppositionTemplate lookups, SetPieceRoutineCatalog, TacticalIdentityFingerprint for Manager & Legacy |
- | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
-```
-
-Add an explanatory paragraph after the table noting boundaries:
-"Tactics consumes Squad & Player attributes via query for role-fit
-projections; consumes People (ADR-0052) skill profiles when ratified;
-consumes Staff Operations (ADR-0053) `SetPieceCoachReadinessUpdated`
-for routine-quality multipliers. Match consumes `TacticSnapshot` at
-`lineup_locked`; after lock, the live tactic preset may be edited
-without affecting the in-flight match. Manager & Legacy consumes
-`TacticalIdentityFingerprint` for archetype-style signal aggregation."
-
-### Patch 2: §2 Mermaid
-
-Insert `Tactics` node + edges:
-
-```diff
-     ML["Manager & Legacy"]
-     Staff["Staff Operations"]
-+    Tactics["Tactics"]
-     Offline["Offline Sync"]
-     Audit["Audit & Security"]
-
-     Identity --> League
-     Identity --> Club
-     Identity --> ML
-     Identity --> Staff
-+    Identity --> Tactics
-     League --> Match
-     League --> Transfer
-     League --> WP
-     League --> ML
-+    League --> Tactics
-     Club --> Squad
-     Club --> Match
-     Club --> ML
-     Club --> Staff
-     Squad --> Training
-     Squad --> Transfer
-     Squad --> Match
-     Squad --> ML
-+    Squad --> Tactics
-+    Tactics --> Match
-+    Tactics --> Training
-+    Tactics --> Transfer
-+    Tactics --> ML
-+    Tactics --> WP
-     Staff --> Training
-     Staff --> Transfer
-     Staff --> Squad
-     Staff --> Match
-     Staff --> Club
-     Staff --> Notif
-+    Staff --> Tactics
-     Training --> Squad
-     Training --> ML
-     Transfer --> ML
-     Match --> WP
-     Match --> Notif
-     Match --> ML
-+    Match --> Tactics
-     Transfer --> Notif
-     League --> Notif
-     ML --> Notif
-```
-
-(`Tactics` consumes Identity (auth), League (run boundaries), Squad
-(player attributes), Staff (Set-Piece Coach readiness) and Match
-(run-end style-signal contributions). It publishes to Match (snapshot
-at lock-time), Training (role profiles), Transfer (target-role
-profiles), Manager & Legacy (style-signal fingerprint) and Watch Party
-(post-MVP commentary). Note: Squad & Transfer downstream from Tactics
-is also valid for role-profile reads; the existing Mermaid pattern
-keeps the upstream-downstream arrows readable.)
-
-### Patch 3: §4 Source mapping
-
-Add `tactics/` to the per-context folder list:
-
-```diff
-   manager-legacy/
-   staff-operations/
-+  tactics/
-   sync/
-   audit/
-```
-
-### Patch 4: §1.x sub-section update (if ADR-0052 / ADR-0054 are also
-proposed at apply-time)
-
-Cross-reference the parallel drafts so the §1 sub-sections stay
-coherent. Tactics does not depend on ADR-0052 or ADR-0054 acceptance:
-
-- People (ADR-0052): if ratified, Tactics consumes
-  `PlayerSkillProfileUpdated` for role-fit projections. Until ratified,
-  Tactics reads role-fit from Squad attributes directly. No-op
-  reference from Tactics until ADR-0052 ratifies.
-- Narrative (ADR-0054): no direct boundary - Narrative may consume
-  Tactical commentary read models post-MVP but does not require any
-  contract change from Tactics for ratification.
 
 ## Supersedes
 

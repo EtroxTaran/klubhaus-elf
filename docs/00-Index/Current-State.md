@@ -66,23 +66,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
-> **FMX-28 Tactics ownership dossier (2026-05-28).** Match owns the
-> per-match `tactic lock` snapshot; the persistent tactics library
-> (templates, saved presets, set-piece routine variants, opposition
-> templates, role/duty configurations) was unattributed. Draft
-> [[../60-Research/tactics-persistence-bounded-context-2026-05-28]]
-> and [[../60-Research/raw-perplexity/raw-tactics-persistence-2026-05-28]]
-> consolidate genre (FM `.ftc` library + separately-saveable set-piece
-> library; OOTP manager strategy profiles; EA FC Custom Tactics), DDD
-> (Vernon Product Catalog vs Ordering analogue; Fowler / Evans
-> bounded-context discipline) and real-world (club-owned
-> data-platform-managed tactical archives 2023-2026; Brentford / Arsenal
-> / Brighton set-piece coaches maintaining seasonal 15-40 routine
-> libraries) evidence. New draft
-> [[../10-Architecture/09-Decisions/ADR-0055-tactics-context]] proposes
-> **Tactics as an additional bounded context** (Option C) with four
-> options + §Recommendation + §Map patch proposal. Ratify decision
-> pending; map itself not yet modified.
+> **FMX-28 + FMX-37 Tactics ratification applied (2026-05-28).** Nico
+> accepted Option C. [[../10-Architecture/09-Decisions/ADR-0055-tactics-context]]
+> is now `status: accepted` and `binding: true`. Tactics is the
+> **fourteenth bounded context** in
+> [[../10-Architecture/bounded-context-map]] (table row + Mermaid +
+> `tactics/` source folder). Decision basis:
+> [[../60-Research/tactics-persistence-bounded-context-2026-05-28]].
+> Tactics owns the persistent library: presets, set-piece routine
+> variants, opposition templates, role/duty configurations and
+> tactical-style signal aggregation. Match consumes a `TacticSnapshot`
+> at `lineup_locked` (canonical Reference + Snapshot pattern - live
+> preset may be edited after lock without affecting the in-flight
+> match). Training and Transfer read `RoleProfileForPosition`; Manager
+> & Legacy consumes `TacticalIdentityFingerprint` for archetype-style
+> signal aggregation; Staff Operations publishes
+> `SetPieceCoachReadinessUpdated` for routine-quality multipliers.
+> Cross-save preset sharing remains FMX-33 Community Overlay Pipeline
+> territory (ADR-0016).
 
 > **FMX-26 + FMX-36 Staff Operations ratification applied (2026-05-28).**
 > Nico accepted Option B. [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]]
@@ -361,12 +362,13 @@ The Wave 2 proposal layer is no longer an active backlog list. Items that remain
 draft/proposed are classified future-scope or optional cleanup by
 [[Documentation-V1]]. Highlights:
 
-- DDD modular monolith with 13 bounded contexts
+- DDD modular monolith with 14 bounded contexts
   ([[../10-Architecture/bounded-context-map]]); ADR-0019 set the original
   eleven-context modular monolith; ADR-0051 ratified Manager & Legacy as
   the twelfth context on 2026-05-28 (FMX-25 + FMX-35); ADR-0053 ratified
   Staff Operations as the thirteenth context on 2026-05-28 (FMX-26 +
-  FMX-36).
+  FMX-36); ADR-0055 ratified Tactics as the fourteenth context on
+  2026-05-28 (FMX-28 + FMX-37).
 - Server-authoritative multiplayer with command-only clients is binding through
   ADR-0011 and current multiplayer game-design notes.
 - Both async cadence models, switchable at season boundary.
