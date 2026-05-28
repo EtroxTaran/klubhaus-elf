@@ -32,7 +32,7 @@ research transcripts in [[../60-Research/raw-perplexity/README]].
 Implement gameplay only from `approved` game-design records. This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0020`) — the decision-record chain from research into
+- **GDDRs** (`GD-0001`...`GD-0021`) — the decision-record chain from research into
   ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -89,6 +89,7 @@ active work.
 | [[GD-0018-ai-narrative-personas-and-dialogue]] | AI narrative personas, Full Dialogue, All Active actor context, Narrative context and Playtest First evaluation | draft | ADR-0030, ADR-0054 |
 | [[GD-0019-manager-archetype-roguelite-progression]] | Manager archetype roguelite progression; FMX-16 hooks, playtest-tunable taxonomy and prestige counterweight | draft | ADR-0051 |
 | [[GD-0020-eos-player-skills-personas-and-people]] | EOS player skills/perks, staff target skills, personas and People-context planning | draft | ADR-0052 |
+| [[GD-0021-player-staff-development-and-decision-influence]] | Player/staff development and decision-influence factor matrices; staff-skill MVP gate | draft | ADR-0052, ADR-0053 |
 
 ## Core loop
 
@@ -116,6 +117,8 @@ active work.
 - [[training-load-and-medicine]] - training blocks, load model, medical pipeline.
 - [[GD-0020-eos-player-skills-personas-and-people]] - draft EOS player
   skills/perks, staff target skills and persona/relationship model.
+- [[GD-0021-player-staff-development-and-decision-influence]] - draft factor
+  matrices for development, match, transfer and staff-pipeline decisions.
 
 ## Tactics and match
 

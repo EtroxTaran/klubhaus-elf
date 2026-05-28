@@ -29,7 +29,8 @@ documentation gaps.
   MVP pillar for Full Dialogue, All Active actor context, Narrative context
   framework, Playtest First quality loop and Runtime-LLM gates.
 - [[../20-Features/feature-eos-player-skills-and-people-context]] — draft
-  FMX-23 player-skill/perk and People/persona slice for MVP planning.
+  FMX-23 player-skill/perk and People/persona slice for MVP planning, now
+  linked to GD-0021 decision-influence hooks.
 
 ## Seed Epics
 
@@ -50,8 +51,10 @@ documentation gaps.
 - [[../20-Features/feature-stadium-builder]]
 - [[../20-Features/feature-club-economy-mvp-pillar]]
 - [[../20-Features/feature-venue-operations]]
-- [[../20-Features/feature-player-lifecycle]]
-- [[../20-Features/feature-training-medicine]]
+- [[../20-Features/feature-player-lifecycle]] - development-factor
+  explanations aligned to GD-0021.
+- [[../20-Features/feature-training-medicine]] - training, medicine and
+  staff-pipeline quality hooks aligned to GD-0021.
 - [[../20-Features/feature-eos-player-skills-and-people-context]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../20-Features/feature-systemic-event-director]]

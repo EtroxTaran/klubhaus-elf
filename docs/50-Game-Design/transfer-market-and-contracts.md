@@ -3,10 +3,10 @@ title: Transfer Market and Contracts
 status: draft
 tags: [game-design, transfers, contracts, ai, economy, scouting, narrative]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-28
 type: game-design
 binding: true
-related: [[README]], [[scouting-and-recruitment]], [[squad-and-club-structure]], [[economy-system]], [[transfer-negotiations-p2p]], [[../60-Research/transfer-market-simulation]], [[../10-Architecture/transfer-market-architecture]], [[../20-Features/feature-transfer-market-ai-and-contracts]]
+related: [[README]], [[scouting-and-recruitment]], [[squad-and-club-structure]], [[economy-system]], [[transfer-negotiations-p2p]], [[GD-0021-player-staff-development-and-decision-influence]], [[../60-Research/transfer-market-simulation]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../10-Architecture/transfer-market-architecture]], [[../20-Features/feature-transfer-market-ai-and-contracts]]
 ---
 
 # Transfer Market and Contracts
@@ -127,6 +127,10 @@ Agents are simple at MVP: they modify transaction demands, leak risk and
 negotiation temperature. They still have stable identities and traits so a
 deeper relationship system can be layered on later.
 
+People/persona and relationship inputs, if ratified through ADR-0052, are
+consumed through the GD-0021 `TransferDecisionContext` planning hook. Transfer
+does not duplicate People-owned social truth.
+
 ## 8. AI Club Behaviour
 
 AI club transfer strategy is built each window:
@@ -146,6 +150,9 @@ ClubTransferStrategy =
 
 Selling compares `sellPressure` with `protectionScore`. Buying starts from role
 need, squad age profile, tactical fit, budget and manager / owner personality.
+Staff Operations recruitment-pipeline quality may influence discovery,
+shortlist quality and report confidence through GD-0021; staff-skill profile
+effects stay gated until Nico chooses the staff-skill MVP option.
 
 ## 9. Economy Integration
 

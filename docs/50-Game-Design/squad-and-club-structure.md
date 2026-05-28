@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-28
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/player-strength-presentation]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/transfer-market-simulation]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[scouting-and-recruitment]], [[transfer-market-and-contracts]], [[training-load-and-medicine]], [[tactics-system]], [[GD-0020-eos-player-skills-personas-and-people]]
+related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/player-strength-presentation]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/transfer-market-simulation]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[scouting-and-recruitment]], [[transfer-market-and-contracts]], [[training-load-and-medicine]], [[tactics-system]], [[GD-0020-eos-player-skills-personas-and-people]], [[GD-0021-player-staff-development-and-decision-influence]]
 ---
 
 # Squad and Club Structure - Sporting Organisation and Squad Design
@@ -101,7 +101,8 @@ Each player carries:
   tries first-time passes, …).
 - **Player skill/perk profile** as a separate draft FMX-23 layer when
   [[GD-0020-eos-player-skills-personas-and-people]] is ratified. It must not
-  expand the 16+4+8 attribute schema.
+  expand the 16+4+8 attribute schema. Cross-system usage follows
+  [[GD-0021-player-staff-development-and-decision-influence]].
 - **Contract**: length, wage, bonuses, clauses, agent.
 - **Fitness / form / morale** state.
 - **Injury profile and history** owned by Squad & Player; load and match
@@ -123,6 +124,10 @@ Each senior player also has a market profile consumed by
 The market profile produces ranges and pressure flags, not one public exact
 price. UI exposure depends on scouting confidence and progressive-disclosure
 tier.
+
+GD-0021 defines how Player Market Profile, player agency, People relationship
+context, Impact Lens and Staff Operations recruitment-pipeline quality combine
+for transfer and squad-planning decisions.
 
 ## 7. Captain and leadership group
 

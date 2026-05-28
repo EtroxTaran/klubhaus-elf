@@ -12,11 +12,13 @@ related:
   - [[README]]
   - [[GD-0003-squad-players]]
   - [[GD-0018-ai-narrative-personas-and-dialogue]]
+  - [[GD-0021-player-staff-development-and-decision-influence]]
   - [[tactics-system]]
   - [[squad-and-club-structure]]
   - [[youth-academy-and-development]]
   - [[training-load-and-medicine]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+  - [[../60-Research/player-staff-development-decision-model-2026-05-28]]
   - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../20-Features/feature-eos-player-skills-and-people-context]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
@@ -151,6 +153,11 @@ Staff skills apply through the owning domain. People may own the staff persona
 and relationship profile, but Training, Squad, Transfer/Scouting and Medical
 rules apply their own gameplay effects.
 
+Cross-system staff and player effects are governed by
+[[GD-0021-player-staff-development-and-decision-influence]]. Staff-skill MVP
+activation remains an explicit option gate there; this GDDR alone does not make
+staff skill profiles active gameplay.
+
 ## Persona and dialogue model
 
 Each active actor can expose a deterministic context card:
@@ -236,6 +243,9 @@ Needs Nico decision and GDDR/ADR update:
 - Exact balance caps for match effects.
 - Exact split between People-owned actor identity and Narrative-owned media
   publication/outlet state.
+- Staff-skill MVP activation option: target-only, narrow pipeline modifiers or
+  full staff skill-card gameplay. See
+  [[GD-0021-player-staff-development-and-decision-influence]].
 
 ## Rationale
 
@@ -272,10 +282,12 @@ None
 ## Related
 
 - Research: [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]] ·
+  [[../60-Research/player-staff-development-decision-model-2026-05-28]] ·
   [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] ·
   [[../60-Research/raw-perplexity/raw-player-and-staff-values]]
 - Gameplay: [[GD-0003-squad-players]] ·
-  [[GD-0018-ai-narrative-personas-and-dialogue]] · [[tactics-system]] ·
+  [[GD-0018-ai-narrative-personas-and-dialogue]] ·
+  [[GD-0021-player-staff-development-and-decision-influence]] · [[tactics-system]] ·
   [[squad-and-club-structure]] · [[youth-academy-and-development]]
 - Feature: [[../20-Features/feature-eos-player-skills-and-people-context]]
 - [[README]] - Game Design Log

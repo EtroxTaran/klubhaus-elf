@@ -206,6 +206,21 @@ before any promotion.
   [[../20-Features/feature-eos-player-skills-and-people-context]] and
   [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]].
 
+## Player, Staff Development and Decision Influence (2026-05-28)
+
+- [[../60-Research/player-staff-development-decision-model-2026-05-28]] —
+  FMX-38 synthesis for how player attributes, hidden meta, skills, persona,
+  relationships, staff roles and staff pipelines influence development, match,
+  scouting and transfer decisions. Defines factor matrices, identifies the
+  People-to-Training/Transfer bridge gaps and keeps staff-skill MVP activation
+  as a Nico-gated A/B/C decision. Feeds draft
+  [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]],
+  [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]],
+  [[../20-Features/feature-player-lifecycle]],
+  [[../20-Features/feature-training-medicine]],
+  [[../20-Features/feature-transfer-market-ai-and-contracts]] and
+  [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]].
+
 ## Swappable Spatial-Event Match Engine (2026-05-27)
 
 - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]] —
