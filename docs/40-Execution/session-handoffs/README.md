@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-28-fmx-26-staff-backroom]] - FMX-26 ownership dossier for
+  Staff & Backroom residual scope after ADR-0052. Three Perplexity
+  queries (genre / DDD / real-world 2024-2026 Sporting Director model),
+  synthesis recommending Option B (own Staff Operations bounded context
+  as 13th), draft ADR-0053 with three options + §Recommendation + §Map
+  patch proposal. Awaiting Nico decision.
 - [[2026-05-28-fmx-25-manager-legacy-ratification]] - FMX-25 ratification
   pass for ADR-0051 Manager & Legacy Context. Three Perplexity queries
   (roguelite genre, DDD, football-sim precedent), synthesis recommending

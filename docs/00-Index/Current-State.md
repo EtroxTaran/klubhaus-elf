@@ -66,6 +66,19 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
+> **FMX-26 Staff & Backroom ownership dossier (2026-05-28).** Residual
+> scope after ADR-0052 People: who owns staff lifecycle, role assignment,
+> pipeline coverage and wage events? Draft
+> [[../60-Research/staff-backroom-bounded-context-2026-05-28]] and
+> [[../60-Research/raw-perplexity/raw-staff-backroom-2026-05-28]]
+> consolidate genre, DDD-authority and real-world Sporting Director
+> evidence (FIFA Diploma, UEFA Club Licensing, Sage academic study on
+> coach turnover). New draft
+> [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]]
+> proposes **Staff Operations as the 13th bounded context** (Option B),
+> with three options + §Recommendation + §Map patch proposal. Ratify
+> decision pending; map itself not yet modified.
+
 > **FMX-25 + FMX-35 Manager & Legacy ratification applied (2026-05-28).**
 > Nico accepted Option A. [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
 > is now `status: accepted` and `binding: true`. Manager & Legacy is the
