@@ -29,6 +29,9 @@ unless re-opened by a current issue or accepted ADR.
   bounded context; Postgres durable truth; SurrealDB projection/live graph;
   Dexie offline mirror; SSE MVP; Centrifugo scale path; Brevo default with
   Mailjet fallback; Web Push/native push prepared behind adapters.
+- [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
+  - draft FMX-3 implementation framework for Narrative contracts, eval corpus,
+  safety/privacy tests, provider fallback, Playtest First and CI tiers.
 - [SurrealDB Integration](../30-Implementation/surrealdb-integration.md) - superseded historical substrate note; do not implement.
 - [Deployment Dokploy](../30-Implementation/deployment-dokploy.md)
 - [Observability Runbook](../30-Implementation/observability-runbook.md)

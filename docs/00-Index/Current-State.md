@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-28
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
 ---
 
 # Current State
@@ -116,6 +116,18 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > first-exposure AI disclosure and a larger evaluation/safety gate. Generated
 > prose still cannot create or mutate authoritative facts.
 
+> **FMX-3 AI Narration framework/testing expansion (2026-05-28).** Nico chose
+> the **Narrative Context** boundary and **Playtest First** quality posture for
+> MVP planning. Draft [[../60-Research/ai-narration-testing-framework-2026-05-28]],
+> draft [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+> and draft [[../30-Implementation/ai-narration-contract-testing-framework]]
+> now define the framework structure: Narrative owns scene/storylet selection,
+> context-card assembly, template fallback, validation, provenance, eval corpus,
+> telemetry and provider adapter boundary; People owns persona truth,
+> Notification owns delivery, and owning domains keep authoritative facts.
+> Playtest First tunes emotional quality, but does not relax state isolation,
+> safety/privacy, fallback, disclosure or provenance gates.
+
 ## Documentation Baseline (2026-05-22)
 
 [[Documentation-V1]] is the current vault-wide closure
@@ -157,7 +169,8 @@ Use the temporal layers from the baseline:
   narration ready for the MVP as a draft path. The current draft target is Full
   Dialogue plus async flavour, with all active actor classes generated as
   deterministic context-card inputs. Actor traits/intents may affect mechanics
-  deterministically; generated prose may not.
+  deterministically; generated prose may not. The current framework direction
+  is a dedicated Narrative context plus Playtest First quality loop.
 - **Manager-Archetype Roguelite re-evaluation (2026-05-27):** Nico wants the
   report anchored for the MVP, but as hooks only. The first playable should
   capture run-end facts and style signals; final archetype families, thresholds,

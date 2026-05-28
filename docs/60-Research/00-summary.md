@@ -242,6 +242,20 @@ draft [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]],
 draft [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 and adds [[../20-Features/feature-ai-narration-mvp-pillar]].
 
+## AI Narration Testing and Framework (2026-05-28)
+
+[[ai-narration-testing-framework-2026-05-28]] promotes the follow-up research
+on LLM evaluation, security testing and interactive-narrative QA into an FMX-3
+draft framework. Nico selected **Narrative Context** as the architecture
+boundary and **Playtest First** as the quality posture. The framework defines
+contract-first context cards, deterministic fallback, eval corpus tiers,
+Zod/Vitest/fast-check/Playwright test mapping, OWASP/NIST/EU AI Act safety
+gates, season-simulation checks and a playtest rubric for emotional continuity.
+
+This feeds draft
+[[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+and draft [[../30-Implementation/ai-narration-contract-testing-framework]].
+
 ## EOS Player, Staff, Skills and Personas (2026-05-28)
 
 [[eos-player-staff-skills-and-personas-2026-05-28]] promotes the player/staff

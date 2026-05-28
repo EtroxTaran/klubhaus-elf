@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-28
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -88,6 +88,9 @@ context.
 | [[raw-ai-narration-mvp-research-2026-05-28]] | Runtime LLM narration/dialogue best practices, fallback, validation, cache/cost/latency and season memory | [[../ai-narration-world-and-dialogue-mvp-2026-05-28]] |
 | [[raw-ai-narration-compliance-safety-2026-05-28]] | EU AI Act, GDPR, OWASP, monitoring, kill switch and release gates | [[../ai-narration-world-and-dialogue-mvp-2026-05-28]] |
 | [[raw-ai-world-persona-generation-2026-05-28]] | Generated players, staff, board, media, fan groups, fan reps, values and relationship graph | [[../ai-narration-world-and-dialogue-mvp-2026-05-28]] |
+| [[raw-ai-narration-evaluation-testing-2026-05-28]] | Eval corpus, structured output validation, fact grounding, CI tiers and telemetry | [[../ai-narration-testing-framework-2026-05-28]] |
+| [[raw-ai-narration-security-testing-2026-05-28]] | Prompt injection, PII minimization, unsafe output, provider outage and disclosure tests | [[../ai-narration-testing-framework-2026-05-28]] |
+| [[raw-ai-narration-interactive-narrative-qa-2026-05-28]] | Storylets, persona cards, relationship memory, deterministic fallbacks and long-season narrative QA | [[../ai-narration-testing-framework-2026-05-28]] |
 
 ## Rules
 

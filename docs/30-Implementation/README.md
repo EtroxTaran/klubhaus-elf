@@ -44,6 +44,8 @@ operational runbooks. Current implementable notes are classified by
 - [[transfer-market-implementation-plan]] - transfer-market implementation slice.
 - [[club-economy-accounting-ledger]] - draft Club Economy ledger contracts,
   read models and staged insolvency implementation surface.
+- [[ai-narration-contract-testing-framework]] - draft AI narration contract,
+  eval corpus, safety/privacy and Playtest First implementation framework.
 
 ## Historical Notes
 

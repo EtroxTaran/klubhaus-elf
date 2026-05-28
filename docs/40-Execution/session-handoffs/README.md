@@ -53,6 +53,9 @@ This is the **single** canonical handoff location. (An older
   (roguelite genre, DDD, football-sim precedent), synthesis recommending
   Accept (Option A), ADR-0051 expanded with three concrete options + map
   patch proposal. Awaiting Nico decision.
+- [[2026-05-28-ai-narration-framework-testing]] - anchored follow-up AI
+  narration testing/framework research into raw notes, synthesis, ADR-0054,
+  contract-testing framework and map/current-state updates.
 - [[2026-05-28-fmx-23-eos-people-skills-personas]] - anchored the EOS
   Player/Staff Values report and follow-up research into research synthesis,
   draft GD-0020, feature spec, draft ADR-0052 and map/current-state links.

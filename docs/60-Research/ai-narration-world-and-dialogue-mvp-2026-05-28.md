@@ -12,7 +12,11 @@ related:
   - [[ai-narrative-runtime-integration]]
   - [[raw-perplexity/raw-ai-narration-mvp-research-2026-05-28]]
   - [[raw-perplexity/raw-ai-narration-compliance-safety-2026-05-28]]
+  - [[raw-perplexity/raw-ai-narration-evaluation-testing-2026-05-28]]
+  - [[raw-perplexity/raw-ai-narration-security-testing-2026-05-28]]
+  - [[raw-perplexity/raw-ai-narration-interactive-narrative-qa-2026-05-28]]
   - [[raw-perplexity/raw-ai-world-persona-generation-2026-05-28]]
+  - [[ai-narration-testing-framework-2026-05-28]]
   - [[raw-perplexity/raw-ai-llm-usage]]
   - [[raw-perplexity/raw-character-personality-and-dialogue]]
   - [[eos-player-staff-skills-and-personas-2026-05-28]]
@@ -22,8 +26,10 @@ related:
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
+  - [[../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+  - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
 ---
 
 # AI Narration, World and Dialogue MVP Synthesis 2026-05-28
@@ -46,6 +52,13 @@ media outlets, journalists, fan groups, fan reps and agents - as deterministic
 structured data first. Runtime LLM then becomes a validated presentation layer
 over `NarrativeContextCard` contracts, never an authority.
 
+Follow-up research on 2026-05-28 closes the framework gap: the draft MVP target
+now includes a proposed **Narrative bounded context**, a contract/evaluation
+framework and Nico's selected **Playtest First** quality posture. Playtest First
+means emotional believability is tuned through structured playtests early, while
+state isolation, fallback coverage, safety/privacy, provenance and disclosure
+remain hard gates.
+
 ## Nico direction captured
 
 - AI narration is an MVP pillar because it creates the world, emotion and
@@ -56,6 +69,11 @@ over `NarrativeContextCard` contracts, never an authority.
 - Disclosure posture is **First Exposure**: clear first-use disclosure plus
   central info/settings, with machine-readable provenance on every generated
   output.
+- Architecture posture is **Narrative Context**: narration framework ownership
+  should be separate from Notification delivery and People persona truth.
+- Testing posture is **Playtest First**: playtest evidence drives quality
+  thresholds, but runtime LLM cannot bypass contract, fallback, safety or
+  disclosure gates.
 - If provider/privacy/model constraints block this shape, escalate with options
   instead of silently shrinking the design.
 
@@ -84,6 +102,7 @@ over `NarrativeContextCard` contracts, never an authority.
 | Context assembly | `PersonaContextCard` sketch | Full `NarrativeContextCard` contract with facts, actors, memory, intents and forbidden claims |
 | Testing | Adapter/fact-check tests listed | Full narrative evaluation corpus, safety gates, cost gates and long-season drift tests |
 | Compliance | Central disclosure preference | First exposure notice plus machine-readable provenance and legal review gate |
+| Ownership | Orchestrator sketched inside ADR-0030 | Dedicated Narrative context owns scenes, templates, validation, provenance, evals and provider adapter |
 
 ## MVP actor world model
 
@@ -160,7 +179,8 @@ Required principles:
 
 ## Narrative Orchestrator target
 
-ADR-0030 should describe a non-authoritative Narrative Orchestrator:
+ADR-0030 should describe a non-authoritative Narrative Orchestrator, and
+ADR-0054 should place it inside a proposed Narrative bounded context:
 
 - selects eligible scenes and speakers;
 - builds `NarrativeContextCard` from domain read models;
@@ -172,6 +192,9 @@ ADR-0030 should describe a non-authoritative Narrative Orchestrator:
 
 It does not own match facts, player state, fan segment state, board decisions,
 transfer decisions, relationship mutations or economy facts.
+
+The detailed contract/evaluation framework lives in
+[[../30-Implementation/ai-narration-contract-testing-framework]].
 
 ## LLM provider posture
 
@@ -230,6 +253,9 @@ choice- and intent-based.
 - **Compliance tests:** first-exposure disclosure, central AI info/settings,
   machine-readable provenance, no raw user data in prompts, provider settings
   and kill switch.
+- **Playtest tests:** structured human review for emotional specificity,
+  recurring-actor recognisability, memory usefulness, repetition and whether
+  the player can retell "what happened in my save".
 
 ## Open decisions for Nico
 
@@ -242,6 +268,9 @@ choice- and intent-based.
 - Legal sufficiency of first-exposure plus central disclosure under Article 50.
 - Whether any generated text may be exported/shared externally in MVP; if yes,
   export provenance needs a visible and machine-readable marking policy.
+- Final quantitative release thresholds for contradiction rate, fallback rate,
+  persona drift, repetition and unsafe-output rejection after the first
+  playtest corpus establishes a baseline.
 
 ## Source links
 
@@ -265,6 +294,16 @@ choice- and intent-based.
   <https://arxiv.org/pdf/2404.17027>
 - Microsoft Research on AI-assisted game narratives:
   <https://www.microsoft.com/en-us/research/blog/players-creators-and-ai-collaborate-to-build-and-expand-rich-game-narratives/>
+- OpenAI evaluation best practices:
+  <https://platform.openai.com/docs/guides/evaluation-best-practices>
+- Vitest browser mode:
+  <https://vitest.dev/guide/browser/>
+- Zod 4:
+  <https://zod.dev/v4>
+- fast-check:
+  <https://fast-check.dev/docs/ecosystem>
+- Failbetter storylet model:
+  <https://www.failbettergames.com/news/echo-bazaar-narrative-structures-part-two>
 
 ## Promotion path
 
@@ -272,12 +311,16 @@ choice- and intent-based.
    make Full Dialogue the draft MVP direction.
 2. Update [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
    to define Narrative Orchestrator and provider/compliance gates.
-3. Update [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] and
+3. Add [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+   for the dedicated Narrative context and ownership split.
+4. Add [[../30-Implementation/ai-narration-contract-testing-framework]] for
+   contract, eval, safety and Playtest First gates.
+5. Update [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] and
    [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
    so All Active actor classes are planned as MVP context-card inputs.
-4. Add [[../20-Features/feature-ai-narration-mvp-pillar]] and connect the MVP
+6. Add [[../20-Features/feature-ai-narration-mvp-pillar]] and connect the MVP
    roadmap.
-5. Keep all records `draft` / `binding: false` until Nico ratifies the final
+7. Keep all records `draft` / `binding: false` until Nico ratifies the final
    ADR/GDDR set.
 
 ## Related
@@ -285,10 +328,13 @@ choice- and intent-based.
 - [[ai-narrative-runtime-integration]]
 - [[narrative-content-pipeline]]
 - [[data-generators]]
+- [[ai-narration-testing-framework-2026-05-28]]
 - [[eos-player-staff-skills-and-personas-2026-05-28]]
 - [[fan-culture-segmentation-research]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
+- [[../30-Implementation/ai-narration-contract-testing-framework]]
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+- [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]

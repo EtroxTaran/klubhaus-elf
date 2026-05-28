@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-05-28
 type: index
 binding: true
-related: [[Documentation-V1]], [[Current-State]], [[Architecture-Map]], [[../50-Game-Design/README]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+related: [[Documentation-V1]], [[Current-State]], [[Architecture-Map]], [[../50-Game-Design/README]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
 ---
 
 # Decision Log
@@ -59,6 +59,7 @@ contradict an `approved` game-design record.
 | [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]] | accepted | Manager & Legacy context owns manager identity, run analysis, style signals, archetype candidates, legacy setup and prestige selection; cross-save meta read only at save creation, never during a running save. | New FMX-16 draft; FMX-25 ratification dossier; **ratified Nico 2026-05-28 (FMX-35 apply)**: Manager & Legacy is the 12th bounded context. [[../60-Research/manager-legacy-bounded-context-2026-05-28]] is the decision basis. |
 | [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]] | draft | Proposed People / Persona & Skills context owns actor personas, relationship graph, player/staff skill profiles and deterministic dialogue context cards. | New FMX-23 draft; feeds EOS player skills/persona planning. |
 | [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]] | accepted | Staff Operations context (13th) owns staff contract lifecycle, role assignment, pipeline coverage, wage schedule and specialisation metadata; emits wage events to Club Management's ledger; consumes People (ADR-0052) for actor identity when ratified. | New FMX-26 draft; **ratified Nico 2026-05-28 (FMX-36 apply)**: Staff Operations is the 13th bounded context. [[../60-Research/staff-backroom-bounded-context-2026-05-28]] is the decision basis. |
+| [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] | draft | Proposed Narrative context owns scene selection, context-card assembly, fallback templates, validation, provenance, eval corpus, provider adapter boundary and Playtest First evidence. | New FMX-3 draft; complements ADR-0030 and feeds AI Narration MVP pillar. |
 
 ## Process & Workflow ADRs (proposed 2026-05-27, draft)
 
@@ -102,6 +103,8 @@ PR as the work that needs them.
 - [[../60-Research/match-engine-runtime-strategy]] - reopened runtime strategy: swappable runtime spike with Rust-native default candidate.
 - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]] - FMX-10 synthesis for engine exchangeability, spatial-event model, runtime spike, OSS due diligence, disconnect/offline and LLM ticker boundaries.
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] - FMX-3 synthesis for AI narration as an MVP pillar, Full Dialogue, All Active actor context, OpenRouter/provider gates and compliance/testing requirements.
+- [[../60-Research/ai-narration-testing-framework-2026-05-28]] - FMX-3 synthesis for Narrative context ownership, contract/eval corpus design, Playtest First quality loop and LLM safety testing framework.
+- [[../30-Implementation/ai-narration-contract-testing-framework]] - draft implementation framework for Narrative contracts, test tiers, eval corpus, safety gates and playtest feedback loops.
 - [[../60-Research/club-economy-blueprint-2026-05-27]] - FMX-13 synthesis for the Club Economy MVP pillar, weekly ledger, full accounting, staged insolvency, country economy profiles and investor future-scope.
 - [[../60-Research/manager-archetype-roguelite-2026-05-27]] - FMX-16 synthesis for Manager-Archetype Roguelite progression, MVP run-analysis hooks, proposed Manager & Legacy context, playtest-tunable taxonomy and prestige counterweight.
 - [[../60-Research/manager-legacy-bounded-context-2026-05-28]] - FMX-25 ratification synthesis for ADR-0051; consolidates roguelite-genre, DDD and football-sim evidence; recommends Accept (Option A).

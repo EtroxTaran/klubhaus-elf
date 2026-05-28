@@ -11,16 +11,19 @@ superseded_by:
 related:
   - [[../../60-Research/ai-narrative-runtime-integration]]
   - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
+  - [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
   - [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../../60-Research/narrative-content-pipeline]]
   - [[../../60-Research/determinism-and-replay]]
   - [[../../60-Research/pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../20-Features/feature-ai-narration-mvp-pillar]]
+  - [[../../30-Implementation/ai-narration-contract-testing-framework]]
   - [[ADR-0003-match-engine]]
   - [[ADR-0018-systemic-events-and-player-lifecycle]]
   - [[ADR-0020-hybrid-online-mvp-offline-ready]]
   - [[ADR-0052-people-persona-and-skills-context]]
+  - [[ADR-0054-narrative-context-and-ai-narration-framework]]
 ---
 
 # ADR-0030: LLM Out Of Authoritative State Boundary
@@ -127,6 +130,11 @@ It must not:
 - run inside match-engine or deterministic replay paths;
 - become required for day/week advancement, match resolution or finance
   mutation.
+
+ADR-0054 proposes that this orchestrator lives inside a dedicated
+**Narrative** bounded context. ADR-0030 owns the LLM/state boundary; ADR-0054
+owns the context/module ownership split, contracts and test-framework
+structure.
 
 ### Match ticker special case
 
@@ -272,6 +280,9 @@ Negative:
   `aiGenerated: true` and model metadata.
 - Docs gate: legal/compliance review recorded before status can move to
   `accepted`.
+- Framework gate: [[../../30-Implementation/ai-narration-contract-testing-framework]]
+  covers contract, fallback, safety, eval and Playtest First evidence before
+  runtime LLM is enabled outside dev/playtest environments.
 
 ## Supersedes
 
@@ -281,10 +292,13 @@ None
 
 - [[../../60-Research/ai-narrative-runtime-integration]]
 - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
+- [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../../20-Features/feature-ai-narration-mvp-pillar]]
+- [[../../30-Implementation/ai-narration-contract-testing-framework]]
 - [[../../60-Research/pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
 - [[ADR-0003-match-engine]]
 - [[ADR-0018-systemic-events-and-player-lifecycle]]
 - [[ADR-0020-hybrid-online-mvp-offline-ready]]
 - [[ADR-0052-people-persona-and-skills-context]]
+- [[ADR-0054-narrative-context-and-ai-narration-framework]]

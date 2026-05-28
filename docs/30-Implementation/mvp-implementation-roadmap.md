@@ -6,7 +6,7 @@ created: 2026-05-19
 updated: 2026-05-28
 type: implementation
 binding: true
-related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[hybrid-online-pwa-strategy]], [[club-economy-accounting-ledger]]
+related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[hybrid-online-pwa-strategy]], [[club-economy-accounting-ledger]], [[ai-narration-contract-testing-framework]]
 ---
 
 # MVP Implementation Roadmap
@@ -16,8 +16,9 @@ playable. Product scope lives in [[../00-Index/MVP-Scope]]; this note defines
 **how** to ship it in small, clickable slices.
 
 Each slice must ship with: vault delta (if behaviour changes), tests per
-`testing-strategy` (planned), Storybook for touched UI, and green CI per
-[[ci-and-review-process]].
+[[ai-narration-contract-testing-framework]] where narration is touched,
+the broader `testing-strategy` once created, Storybook for touched UI, and
+green CI per [[ci-and-review-process]].
 
 ## Slice template
 
@@ -99,11 +100,23 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 |---|---|
 | Goal | Home/inbox can render template-first narrative cards and show the first AI narration disclosure when Runtime-LLM is enabled |
 | Contexts | Narrative Orchestrator, Notification, People |
-| Vault | [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] |
+| Vault | [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] |
 | UI | AI info/settings surface, narrative card states, fallback/provenance debug state |
 | Tests | Contract: `NarrativeContextCard`; e2e: first-exposure notice; unit: template fallback and provenance |
 | Authority | Presentation only; no domain command reads generated prose |
 | DoD | LLM disabled/offline/over-budget paths show complete template copy |
+
+### Slice 3b — Narrative contract and evaluation harness
+
+| Field | Value |
+|---|---|
+| Goal | Narrative has a contract-first test harness before live LLM paths are trusted |
+| Contexts | Narrative, People, Notification, Audit & Security |
+| Vault | [[ai-narration-contract-testing-framework]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] |
+| UI | Internal/playtest review export only; no player-facing UI required |
+| Tests | Zod contract suite, mocked provider adapter, golden eval corpus seed, prompt-injection/PII cases, fast-check context-card invariants |
+| Authority | Evaluation and presentation only |
+| DoD | Every MVP narration surface has at least one passing and one failing eval case; Playtest First rubric can export failures into corpus cases |
 
 ### Slice 4 — Tactics draft
 
@@ -135,7 +148,7 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 |---|---|
 | Goal | Match report/ticker key events can be enhanced from committed facts, with template fallback |
 | Contexts | Match, Narrative Orchestrator, Notification |
-| Vault | [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]] |
+| Vault | [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[ai-narration-contract-testing-framework]] |
 | UI | Match ticker/report provenance and fallback states |
 | Tests | Fact validator for scores/cards/injuries/substitutions; timeout/429/schema fallback tests |
 | Authority | Match facts are server-confirmed before narration |
@@ -159,7 +172,7 @@ Each slice must ship with: vault delta (if behaviour changes), tests per
 |---|---|
 | Goal | Controlled dialogue scenes exist for player, staff, board, press, fan rep and agent surfaces |
 | Contexts | People, Narrative Orchestrator, Notification, owning domain per scene |
-| Vault | [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] |
+| Vault | [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[ai-narration-contract-testing-framework]] |
 | UI | Dialogue scene component stories for all actor classes |
 | Tests | Intent determinism, fact validation, persona consistency, prompt-injection, safety rejection, cost-cap fallback |
 | Authority | Selected intent plus deterministic policy can affect mechanics; generated prose cannot |
@@ -225,6 +238,8 @@ skippable + 2D-fallback rules as 7c.
 
 - [[../00-Index/MVP-Scope]] — what is in/out of MVP
 - [[../20-Features/feature-ai-narration-mvp-pillar]] — AI Narration MVP pillar
+- [[ai-narration-contract-testing-framework]] — AI narration contracts, evals,
+  safety and Playtest First test framework
 - `auth-mvp-launch-slice` (planned) — Slice 0 detail
 - `testing-strategy` (planned) — test matrix per slice
 - `team-ownership-matrix` (planned) — parallel ownership

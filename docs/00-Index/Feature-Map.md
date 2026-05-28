@@ -26,7 +26,8 @@ documentation gaps.
 - [[../20-Features/feature-roguelite-mvp-first-playable]] — Create-a-Club Roguelite first playable, including FMX-16 manager-archetype run-analysis hooks.
 - [[../20-Features/feature-club-economy-mvp-pillar]] — draft FMX-13 Club Economy pillar for weekly ledger, accounting and staged insolvency.
 - [[../20-Features/feature-ai-narration-mvp-pillar]] — draft FMX-3 AI narration
-  MVP pillar for Full Dialogue, All Active actor context and Runtime-LLM gates.
+  MVP pillar for Full Dialogue, All Active actor context, Narrative context
+  framework, Playtest First quality loop and Runtime-LLM gates.
 - [[../20-Features/feature-eos-player-skills-and-people-context]] — draft
   FMX-23 player-skill/perk and People/persona slice for MVP planning.
 
