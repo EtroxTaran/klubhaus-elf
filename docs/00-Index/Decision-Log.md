@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-05-28
 type: index
 binding: true
-related: [[Documentation-V1]], [[Current-State]], [[Architecture-Map]], [[../50-Game-Design/README]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+related: [[Documentation-V1]], [[Current-State]], [[Architecture-Map]], [[../50-Game-Design/README]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 ---
 
 # Decision Log
@@ -50,7 +50,7 @@ contradict an `approved` game-design record.
 | [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] | draft | PostgreSQL schema-per-save, Drizzle source of truth, lazy migrations, opaque UUID refs. | Supersedes ADR-0004. |
 | [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]] | draft | Same-Postgres-transaction outbox, polling floor plus `LISTEN/NOTIFY`, partitioned archive. | Supersedes ADR-0013. |
 | [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] | draft | Post-MVP non-authoritative Three/R3F presentation scenes. | Tightened by ADR-0041. |
-| [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]] | draft | Runtime LLM may be evaluated only outside authoritative state; async narrative flavour candidate, OpenRouter behind adapter, no generated prose feeds mechanics. | New 2026-05-27; reopens Runtime-LLM MVP question as a draft only. |
+| [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]] | draft | Runtime LLM may be evaluated only outside authoritative state; 2026-05-28 draft target expands to Full Dialogue plus async flavour, OpenRouter behind adapter, no generated prose feeds mechanics. | New 2026-05-27; amended 2026-05-28 for Full Dialogue MVP direction. |
 | [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]] | draft | MVP Text & Stats + Canvas 2D; optional post-MVP Three/R3F presentation scenes only. | Current. |
 | [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]] | draft | First-party Notification bounded context; Postgres durable truth, SurrealDB projection, Dexie offline mirror, Brevo/Mailjet email, Web Push/native push prepared. | Amends ADR-0021/0023/0028 for notification delivery. |
 | [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]] | draft | Babylon.js = optional 3D/iso presentation engine (replaces Three.js/R3F) behind the unchanged SceneDescriptor/CapabilityGate; match render stays Canvas 2D. | New 2026-05-27; amends ADR-0029 §2 + ADR-0041. |
@@ -100,6 +100,7 @@ PR as the work that needs them.
 - [[../30-Implementation/hybrid-online-pwa-strategy]] - implementation stance for ADR-0020.
 - [[../60-Research/match-engine-runtime-strategy]] - reopened runtime strategy: swappable runtime spike with Rust-native default candidate.
 - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]] - FMX-10 synthesis for engine exchangeability, spatial-event model, runtime spike, OSS due diligence, disconnect/offline and LLM ticker boundaries.
+- [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] - FMX-3 synthesis for AI narration as an MVP pillar, Full Dialogue, All Active actor context, OpenRouter/provider gates and compliance/testing requirements.
 - [[../60-Research/club-economy-blueprint-2026-05-27]] - FMX-13 synthesis for the Club Economy MVP pillar, weekly ledger, full accounting, staged insolvency, country economy profiles and investor future-scope.
 - [[../60-Research/manager-archetype-roguelite-2026-05-27]] - FMX-16 synthesis for Manager-Archetype Roguelite progression, MVP run-analysis hooks, proposed Manager & Legacy context, playtest-tunable taxonomy and prestige counterweight.
 - [[../60-Research/manager-legacy-bounded-context-2026-05-28]] - FMX-25 ratification synthesis for ADR-0051; consolidates roguelite-genre, DDD and football-sim evidence; recommends Accept (Option A).

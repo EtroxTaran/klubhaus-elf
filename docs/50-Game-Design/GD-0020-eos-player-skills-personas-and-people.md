@@ -17,7 +17,9 @@ related:
   - [[youth-academy-and-development]]
   - [[training-load-and-medicine]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+  - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../20-Features/feature-eos-player-skills-and-people-context]]
+  - [[../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 ---
 
@@ -52,9 +54,13 @@ real relationship history without inventing facts.
 - **Player skills/perks are separate from attributes.** A skill/perk is a
   visible, sparse specialization over existing football calculations. It is
   never a new numeric attribute, never a global OVR and never a hidden stat.
-- **MVP activates player skills first.** Staff skills, board/media personas and
-  richer relationship systems are planned as target model, but the first active
-  gameplay slice is player skill/perk support.
+- **MVP activates player skills first for gameplay effects.** Player
+  skills/perks are the first active mechanical slice. Staff skills remain target
+  gameplay unless separately ratified.
+- **MVP activates all actor classes for persona context.** Players, staff,
+  board contacts, journalists, media outlets, fan segments, named fan groups,
+  fan reps and agents need generated persona/context-card inputs for narration
+  from the first playable.
 - **Behavioral tendencies stay distinct.** Tendencies such as shoots from
   distance or cuts inside affect decision probabilities. Skills/perks affect
   bounded outcome quality or temporary context effects when a declared trigger
@@ -72,6 +78,9 @@ real relationship history without inventing facts.
 - **Generated prose is presentation only.** Dialogue and LLM context cards may
   use traits, relationships and recent facts, but generated prose never changes
   simulation state.
+- **Media and fan groups are first-class story surfaces.** Media outlets and fan
+  groups are generated entities with stable identity. Journalists and fan reps
+  are People actors that can appear in recurring dialogue scenes.
 
 ## MVP player skill model
 
@@ -144,12 +153,14 @@ rules apply their own gameplay effects.
 
 ## Persona and dialogue model
 
-Each actor can expose a deterministic context card:
+Each active actor can expose a deterministic context card:
 
 ```text
 PersonaContextCard
   actorRef
+  actorType
   visibleFootballLabels
+  valuesAndMotivators
   currentMoodOrPressureState
   relationshipEdgesRelevantToScene
   recentAuthoritativeFacts
@@ -163,6 +174,18 @@ The context card is the bridge into
 phrasing consume the card; mechanics consume the selected intent and
 authoritative facts.
 
+MVP actor classes:
+
+- player;
+- staff;
+- board contact;
+- journalist;
+- media outlet;
+- fan segment;
+- fan group;
+- fan rep;
+- agent.
+
 ## Relationship constellations
 
 The design target is not "one personality tag per player"; it is a small social
@@ -173,8 +196,10 @@ simulation:
 - role competitors can respect each other, resent each other or both;
 - a journalist can repeatedly frame a manager through a hostile or admiring
   lens;
-- a fan segment can attach to a local academy graduate and pressure transfer
-  decisions.
+- a named fan group can attach to a local academy graduate and pressure transfer
+  decisions through its fan rep;
+- a staff member can support a manager in public but challenge training or
+  selection in a private scene.
 
 All relationship changes need provenance from authoritative events. No
 relationship edge may be changed because generated prose sounded plausible.
@@ -194,6 +219,7 @@ Needs Nico decision and GDDR/ADR update:
 
 - expanding the 16+4+8 attribute schema;
 - making staff skills active MVP gameplay;
+- removing staff/board/media/fan actor context from the MVP narration target;
 - allowing OCEAN to directly modify match/economy results;
 - allowing generated prose to create or change facts;
 - moving People ownership into another context;
@@ -204,9 +230,12 @@ Needs Nico decision and GDDR/ADR update:
 - Final MVP player skill catalog.
 - Tier names: skill/mastery vs another IP-clean wording.
 - Exact OCEAN scale and whether it is persisted or derived/cached.
-- First actor classes beyond players and staff.
+- Final actor counts per world size for media outlets, journalists, named fan
+  groups, fan reps and agents.
 - Relationship graph decay, caps and anti-spam rules.
 - Exact balance caps for match effects.
+- Exact split between People-owned actor identity and Narrative-owned media
+  publication/outlet state.
 
 ## Rationale
 
@@ -243,6 +272,7 @@ None
 ## Related
 
 - Research: [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]] ·
+  [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] ·
   [[../60-Research/raw-perplexity/raw-player-and-staff-values]]
 - Gameplay: [[GD-0003-squad-players]] ·
   [[GD-0018-ai-narrative-personas-and-dialogue]] · [[tactics-system]] ·

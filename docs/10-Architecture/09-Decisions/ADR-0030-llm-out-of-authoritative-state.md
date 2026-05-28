@@ -3,21 +3,24 @@ title: ADR-0030 LLM Out Of Authoritative State Boundary
 status: draft
 tags: [adr, architecture, ai, llm, narrative, determinism, openrouter]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-05-28
 type: adr
 binding: false
 supersedes:
 superseded_by:
 related:
   - [[../../60-Research/ai-narrative-runtime-integration]]
+  - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../../60-Research/narrative-content-pipeline]]
   - [[../../60-Research/determinism-and-replay]]
   - [[../../60-Research/pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+  - [[../../20-Features/feature-ai-narration-mvp-pillar]]
   - [[ADR-0003-match-engine]]
   - [[ADR-0018-systemic-events-and-player-lifecycle]]
   - [[ADR-0020-hybrid-online-mvp-offline-ready]]
+  - [[ADR-0052-people-persona-and-skills-context]]
 ---
 
 # ADR-0030: LLM Out Of Authoritative State Boundary
@@ -26,8 +29,9 @@ related:
 
 draft
 
-> Draft only. This ADR reopens the Runtime-LLM question for MVP evaluation. It
-> is not accepted and must not be implemented until Nico explicitly ratifies it.
+> Draft only. This ADR reopens the Runtime-LLM question for MVP evaluation and
+> records the 2026-05-28 Full Dialogue direction. It is not accepted and must
+> not be implemented until Nico explicitly ratifies it.
 
 ## Date
 
@@ -37,9 +41,11 @@ draft
 
 The current narrative pipeline is deterministic: Markdown/ICU templates,
 compiled catalogues, seeded variant selection and build-time LLM assistance
-only. New research from 2026-05-27 argues that runtime LLMs could improve
-football narrative flavour, press writing, player dialogue and long-save
-personal story formation.
+only. Research from 2026-05-27 and 2026-05-28 argues that runtime LLMs could
+improve football narrative flavour, press writing, player dialogue and
+long-save personal story formation. Nico now wants the MVP narration domain to
+be ready for **Full Dialogue** and **All Active** actor classes, because this
+layer creates the world and emotion of the save.
 
 The project still has hard constraints:
 
@@ -53,18 +59,25 @@ The project still has hard constraints:
 ## Options Considered
 
 - **A - Templates only.** Keep all runtime text deterministic and use LLMs only
-  at build time for authoring assistance.
-- **B - Runtime AI narrative enhancement outside authoritative state.** Allow a
-  feature-flagged MVP evaluation for async flavour only. Traits and intents may
-  affect mechanics deterministically; generated text is cosmetic.
-- **C - Runtime AI participates in decisions.** Allow LLMs to choose opponent
+  at build time for authoring assistance. Lowest operational/legal risk, but it
+  does not satisfy Nico's MVP emotion/world goal.
+- **B - Async runtime flavour outside authoritative state.** Allow
+  feature-flagged LLM enhancement for ticker, reports and summaries only.
+  Safer than dialogue, but still leaves player/staff/board/media/fan emotional
+  loops out of the first playable.
+- **C - Full Dialogue runtime narration outside authoritative state.** Add a
+  non-authoritative Narrative Orchestrator for controlled dialogue and async
+  flavour. Traits and intents may affect mechanics deterministically; generated
+  text is cosmetic.
+- **D - Runtime AI participates in decisions.** Allow LLMs to choose opponent
   tactics, transfer willingness, player reactions or other mechanical outputs.
 
 ## Proposed Decision
 
-Choose **B** as the only candidate worth evaluating.
+Choose **C** as the proposed MVP direction.
 
-Runtime LLM may be evaluated for **non-blocking async narrative flavour** only:
+Runtime LLM may be evaluated for **non-blocking Full Dialogue and async
+narrative flavour**:
 
 - key-event match ticker wording after the match event is committed;
 - post-match newspaper snippets;
@@ -72,6 +85,12 @@ Runtime LLM may be evaluated for **non-blocking async narrative flavour** only:
 - weekly summaries;
 - transfer negotiation flavour after the deterministic negotiation result is
   already fixed.
+- player one-to-one dialogue through explicit `DialogueIntent` choices;
+- staff advice/disagreement scenes;
+- board expectation, warning and pressure scenes;
+- press/journalist questions through recurring generated media actors;
+- fan-rep scenes for named fan groups over deterministic Fan Ecology facts;
+- agent/transfer flavour after the owning Transfer/Contracts state is fixed.
 
 Runtime LLM must stay outside authoritative state:
 
@@ -81,11 +100,33 @@ Runtime LLM must stay outside authoritative state:
   pressure, transfer willingness or injury systems;
 - no direct SDK calls outside a future `llm-adapter` boundary;
 - no LLM access from match-engine or deterministic replay paths;
-- no free-form player chat in MVP.
+- no free-form player chat in MVP;
+- no generated text parsed back into domain commands, relationship deltas or
+  event facts.
 
 OpenRouter is the preferred experimental provider path, behind an adapter and
 feature flags. The adapter remains provider-agnostic enough to replace routing
 later.
+
+### Narrative Orchestrator boundary
+
+The proposed MVP boundary is a non-authoritative **Narrative Orchestrator**. It
+may:
+
+- select eligible narrative scenes and speakers;
+- build `NarrativeContextCard` from domain read models and People context;
+- render deterministic fallback templates;
+- call an LLM provider adapter when enabled, online and under budget;
+- validate schema, facts, safety, repetition and persona consistency;
+- store display snapshots with provenance.
+
+It must not:
+
+- own match, player, transfer, finance, board, fan or relationship truth;
+- call authoritative command handlers based on generated text;
+- run inside match-engine or deterministic replay paths;
+- become required for day/week advancement, match resolution or finance
+  mutation.
 
 ### Match ticker special case
 
@@ -104,22 +145,29 @@ events:
 - if OpenRouter times out, errors, exceeds budget or fails validation, the
   template line is used.
 
-Runtime flag posture for MVP evaluation: beta default-on only for a small
-monitored cohort, with immediate kill switch.
+Runtime flag posture for MVP evaluation: feature-flagged, monitored and
+kill-switchable. The default-on/default-off rollout choice remains a Nico
+release decision after legal, safety and cost evidence exists.
 
 ## Required Runtime Contract
 
 Any future implementation must expose a narrow enhancement contract:
 
-- `NarrativeEnhancementRequest` contains structured game facts, persona
-  summaries, tone, locale and a fallback template ID.
+- `NarrativeContextCard` contains scene type, structured game facts, actor
+  persona cards, relevant relationship edges, narrative memory snippets,
+  allowed intents, forbidden claims, tone, locale, cache signature and a
+  fallback template ID.
+- `NarrativeEnhancementRequest` contains one context card plus provider budget,
+  schema version and safety-policy ID.
 - `NarrativeEnhancementResult` returns text plus provenance:
-  `source: 'llm' | 'template'`, `aiGenerated`, `cacheKey`, request ID and model
-  metadata.
+  `source: 'llm' | 'template'`, `aiGenerated`, `cacheKey`, request ID,
+  model/provider metadata, validation status and fallback reason.
 - The fallback template is always rendered locally before the LLM call is
   awaited, so the UI can degrade immediately.
 - The LLM result may replace display copy only after schema validation,
   post-hoc fact checks and content safety checks pass.
+- Dialogue mechanics consume only the selected `DialogueIntent` and deterministic
+  policies; they never consume generated prose.
 
 ## Data Boundary
 
@@ -136,9 +184,10 @@ Use placeholder tokens such as `{{manager_name}}`, `{{club_name}}` and
 
 ## Compliance Boundary
 
-Nico's product preference is info/settings-level AI disclosure rather than a
-visible label on each generated in-game text. This ADR records that preference
-but does **not** conclude it is legally sufficient.
+Nico's product preference is first-exposure AI disclosure plus a central
+info/settings surface rather than a visible label on each generated in-game
+text. This ADR records that preference but does **not** conclude it is legally
+sufficient.
 
 Before Runtime-LLM ships, the release gate must decide:
 
@@ -147,27 +196,46 @@ Before Runtime-LLM ships, the release gate must decide:
 - provider logging/retention settings;
 - user-facing privacy wording;
 - audit evidence that every AI-generated output is identifiable internally.
+- export/share policy if any AI-generated text leaves the game client.
+
+## Provider Boundary
+
+OpenRouter is the draft experimental path. Before implementation:
+
+- model IDs are pinned explicitly; no floating `latest`;
+- structured outputs use JSON Schema strict mode where the selected model
+  supports it;
+- provider routing denies data collection where feasible;
+- ZDR routing is preferred and any provider/model without it requires a Nico
+  option review;
+- usage, cost and limit telemetry are collected per surface and per save;
+- model fallback is configured only across approved model IDs;
+- provider/model changes run the narrative regression corpus before rollout.
 
 ## Rationale
 
-Option B captures the product upside while preserving the architecture. It
-supports the desired long-save "my story" effect without letting a probabilistic
-model create facts or alter the game. It also keeps the deterministic template
-pipeline as the fallback and baseline.
+Option C captures Nico's current product goal while preserving the architecture.
+It supports the desired long-save "my story" effect across players, staff,
+board, media and fans without letting a probabilistic model create facts or
+alter the game. It also keeps the deterministic template pipeline as the
+fallback and baseline.
 
-Option A is safest but may leave too much narrative differentiation on the
-table. Option C conflicts with deterministic replay, multiplayer fairness,
-debuggability and the existing pre-mortem risk model.
+Option A is safest but leaves too much narrative differentiation on the table.
+Option B is a useful fallback if legal/provider risk becomes too high, but it
+does not meet the revised MVP target. Option D conflicts with deterministic
+replay, multiplayer fairness, debuggability and the existing pre-mortem risk
+model.
 
 ## Consequences
 
 Positive:
 
-- Allows a narrow MVP experiment without replacing the template pipeline.
+- Allows an MVP narration pillar without replacing the template pipeline.
 - Keeps OpenRouter experiments reversible through an adapter.
 - Preserves deterministic simulation, replay and future multiplayer fairness.
 - Creates a clear place for cost caps, schema validation, timeouts and provider
   fallback.
+- Gives People/persona context a concrete consumer from the first playable.
 
 Negative:
 
@@ -176,6 +244,8 @@ Negative:
 - Requires additional CI rules to keep LLM dependencies out of authoritative
   contexts.
 - Requires provenance tracking even if the visible UI uses central disclosure.
+- Requires a larger evaluation corpus because dialogue spans multiple actor
+  classes and season-long memory.
 
 ## Verification Requirements
 
@@ -185,10 +255,16 @@ Negative:
   fallback.
 - Fact-check tests: generated text must not introduce facts absent from the
   request.
+- Dialogue determinism tests: selected intent and authoritative facts produce
+  the same mechanical result regardless of generated wording.
 - Cost-cap tests: feature disables LLM and falls back to templates when budget
   is exceeded.
 - Match-ticker tests: key-event inputs cannot introduce facts absent from the
   committed `MatchEventLog`.
+- Persona-consistency tests across a simulated season for players, staff, board,
+  journalists and fan reps.
+- Prompt-injection tests through generated names, club names, fan-group names
+  and media text.
 - Monitoring from day one: calls, input/output tokens, estimated cost, latency,
   provider errors, fallback rate, safety rejections and per-match budget
   exhaustion.
@@ -204,8 +280,11 @@ None
 ## Related Docs
 
 - [[../../60-Research/ai-narrative-runtime-integration]]
+- [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+- [[../../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../../60-Research/pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
 - [[ADR-0003-match-engine]]
 - [[ADR-0018-systemic-events-and-player-lifecycle]]
 - [[ADR-0020-hybrid-online-mvp-offline-ready]]
+- [[ADR-0052-people-persona-and-skills-context]]

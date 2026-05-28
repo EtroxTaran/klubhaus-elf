@@ -4,9 +4,9 @@ status: current
 binding: true
 tags: [research, narrative, authoring, i18n, icu, events, story-arcs, voice, press-conference, newspaper]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-28
 type: research
-related: [[onboarding-strategy]], [[late-game-systems]], [[ai-manager-behaviour]], [[data-generators]], [[determinism-and-replay]], [[performance-budgets]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[club-boss-analysis]], [[anstoss-series-deep-dive]]
+related: [[onboarding-strategy]], [[late-game-systems]], [[ai-manager-behaviour]], [[data-generators]], [[determinism-and-replay]], [[performance-budgets]], [[ai-narrative-runtime-integration]], [[ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[club-boss-analysis]], [[anstoss-series-deep-dive]]
 ---
 
 # Narrative Content & Authoring Pipeline — Events, Story Arcs, Voice, Press, Newspaper
@@ -1406,12 +1406,15 @@ deterministic** because:
 
 Runtime AI-generated story text is not approved by this note or by
 [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]].
-The 2026-05-27 Runtime-LLM question is now being re-evaluated in
+The Runtime-LLM question is now being re-evaluated in
 [[ai-narrative-runtime-integration]],
+[[ai-narration-world-and-dialogue-mvp-2026-05-28]],
 [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] and
 [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
-Those notes are draft/proposed only; until ratified, this deterministic
-template pipeline remains the runtime baseline.
+Those notes are draft/proposed only. The 2026-05-28 draft direction expands the
+MVP candidate to Full Dialogue and All Active actor context, but this
+deterministic template pipeline remains the fallback baseline for every
+runtime-AI surface.
 
 Any future runtime AI pass must cover:
 
@@ -1421,6 +1424,7 @@ Any future runtime AI pass must cover:
 - localization and voice consistency;
 - multiplayer consistency and server-side caching;
 - strict separation from simulation facts.
+- context-card contracts that templates and LLM can both consume.
 
 Any future runtime AI output must be cosmetic-only. It must never create
 facts, change morale, alter transfers, influence injuries or modify any

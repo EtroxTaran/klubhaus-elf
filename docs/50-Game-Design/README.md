@@ -86,7 +86,7 @@ active work.
 | [[GD-0015-ip-clean-data]] | IP-clean data generation | draft | ADR-0007 |
 | [[GD-0016-mobile-ux-loop]] | Mobile UX gameplay loop | draft | ADR-0008, ADR-0010 |
 | [[GD-0017-mvp-scope-and-mode-sequencing]] | MVP scope & mode sequencing | draft | ADR-0020 |
-| [[GD-0018-ai-narrative-personas-and-dialogue]] | AI narrative personas, intent dialogue & Runtime-LLM evaluation | draft | ADR-0030 |
+| [[GD-0018-ai-narrative-personas-and-dialogue]] | AI narrative personas, Full Dialogue, All Active actor context & Runtime-LLM evaluation | draft | ADR-0030 |
 | [[GD-0019-manager-archetype-roguelite-progression]] | Manager archetype roguelite progression; FMX-16 hooks, playtest-tunable taxonomy and prestige counterweight | draft | ADR-0051 |
 | [[GD-0020-eos-player-skills-personas-and-people]] | EOS player skills/perks, staff target skills, personas and People-context planning | draft | ADR-0052 |
 
@@ -144,7 +144,8 @@ active work.
 ## Narrative and AI
 
 - [[GD-0013-narrative-inbox]] - inbox-as-feed, narrative events and press/newspaper baseline.
-- [[GD-0018-ai-narrative-personas-and-dialogue]] - draft persona, intent-dialogue and Runtime-LLM evaluation layer.
+- [[GD-0018-ai-narrative-personas-and-dialogue]] - draft persona, Full
+  Dialogue and Runtime-LLM evaluation layer.
 - [[GD-0020-eos-player-skills-personas-and-people]] - draft People/persona
   context cards and relationship constellations that feed dialogue.
 

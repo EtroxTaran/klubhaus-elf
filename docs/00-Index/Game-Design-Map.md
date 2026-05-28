@@ -78,9 +78,11 @@ below. This means old `Future-scope notes` sections are not active work by defau
 ## Narrative & AI
 
 - [[../50-Game-Design/GD-0013-narrative-inbox]]
-- [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+- [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] - draft
+  Full Dialogue and All Active actor-context target for MVP narration.
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 - [[../60-Research/ai-narrative-runtime-integration]]
+- [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 
 ## UX
 
@@ -107,6 +109,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/player-strength-presentation]]
 - [[../60-Research/presentation-renderer-strategy]]
 - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
+- [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../60-Research/regulations-and-pyramids-research]]
 - [[../60-Research/anstoss-series-deep-dive]]
 - [[../60-Research/club-boss-analysis]]

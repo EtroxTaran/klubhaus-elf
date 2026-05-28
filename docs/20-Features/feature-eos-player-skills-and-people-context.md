@@ -10,8 +10,11 @@ linear: FMX-23
 related:
   - [[README]]
   - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+  - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+  - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+  - [[feature-ai-narration-mvp-pillar]]
   - [[feature-roguelite-mvp-first-playable]]
   - [[feature-player-lifecycle]]
   - [[feature-training-medicine]]
@@ -40,9 +43,15 @@ In scope for the first active slice:
 In scope as target model, not MVP-active gameplay:
 
 - Staff skill/perk cards.
-- Board, journalist and fan-rep persona depth.
 - Relationship graph UI beyond focused mentoring/dialogue contexts.
-- Runtime LLM prose using the context cards.
+
+In scope for MVP narration context, but not mechanical skill gameplay:
+
+- Staff, board, journalist, media-outlet, fan-group, fan-rep and agent persona
+  context cards.
+- Board/media/fan relationship edges and provenance for dialogue scenes.
+- Runtime LLM prose using the context cards, governed by
+  [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
 
 Out of scope:
 
@@ -94,6 +103,8 @@ Feature: EOS player skills and people context
 - MVP skill/perk slice is player-focused.
 - Staff skills are modeled as future target without accidental MVP scope
   expansion.
+- Non-player actors are context-card capable for MVP narration without granting
+  them unratified mechanical skill effects.
 - Match, Training and Squad ownership stays clear.
 - Any optional LLM path remains ADR-0030-compatible.
 - `pnpm docs:check` passes after the vault update.
@@ -101,8 +112,11 @@ Feature: EOS player skills and people context
 ## Related
 
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+- [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+- [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+- [[feature-ai-narration-mvp-pillar]]
 - [[feature-roguelite-mvp-first-playable]]
 - [[feature-player-lifecycle]]
 - [[feature-training-medicine]]

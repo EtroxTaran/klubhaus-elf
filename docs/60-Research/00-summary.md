@@ -198,7 +198,7 @@ into a promotion path. It records Nico's product intent: the long-term goal is a
 save that produces a personal, retellable football story, with recurring
 players, journalists, board personalities, fan reps and media arcs.
 
-Current draft direction:
+Original 2026-05-27 draft direction:
 
 - MVP Runtime-LLM may be re-evaluated for async flavour only (post-match
   newspaper, injury/event reports, weekly summaries, fixed transfer-result
@@ -214,6 +214,33 @@ Current draft direction:
 
 This feeds draft [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 and draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
+
+## AI Narration, World and Dialogue MVP (2026-05-28)
+
+[[ai-narration-world-and-dialogue-mvp-2026-05-28]] updates the FMX-3 direction
+after Nico selected **Full Dialogue**, **All Active** actor context and **First
+Exposure** disclosure for MVP planning. The draft target is now that AI
+narration is an MVP emotional pillar, not only post-match flavour.
+
+Current draft direction:
+
+- Generate active narrative context for players, staff, board contacts, media
+  outlets, journalists, fan segments, named fan groups, fan reps and agents.
+- Keep all actor/world/fact generation deterministic and IP-clean; Runtime-LLM
+  only phrases scenes from `NarrativeContextCard`.
+- Add controlled dialogue surfaces for player one-to-one, staff advice, board
+  meetings, press/journalist questions, fan-rep scenes and agent flavour.
+- Preserve template fallback, fact validation, safety validation, cost caps,
+  provider kill switch and machine-readable provenance.
+- Use first-exposure AI disclosure plus a central info/settings surface as the
+  draft product posture, with legal review still required.
+
+This amends draft
+[[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], draft
+[[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]],
+draft [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]],
+draft [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+and adds [[../20-Features/feature-ai-narration-mvp-pillar]].
 
 ## EOS Player, Staff, Skills and Personas (2026-05-28)
 
