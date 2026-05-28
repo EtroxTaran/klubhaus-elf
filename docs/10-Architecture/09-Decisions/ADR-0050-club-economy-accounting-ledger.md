@@ -1,7 +1,7 @@
 ---
 title: ADR-0050 Club Economy Accounting Ledger
 status: draft
-tags: [adr, architecture, economy, accounting, club-management, commercial, fmx-13, fmx-41]
+tags: [adr, architecture, economy, accounting, club-management, commercial, cup, competition, fmx-13, fmx-41, fmx-45]
 created: 2026-05-27
 updated: 2026-05-28
 type: adr
@@ -17,6 +17,7 @@ related:
   - [[../../50-Game-Design/economy-system]]
   - [[../../60-Research/club-economy-blueprint-2026-05-27]]
   - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+  - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../../30-Implementation/club-economy-accounting-ledger]]
   - [[../../30-Implementation/club-economy-commercial-contracts]]
   - [[ADR-0058-club-economy-commercial-impact-boundary]]
@@ -43,6 +44,11 @@ FMX-41 extends the ledger target with the commercial impact graph: ticketing,
 season tickets, catering, merchandise, sponsorship, cup-game settlement,
 fan-service events and singleplayer Investor cash grants. ADR-0058 is the draft
 boundary proposal for those commercial contracts.
+
+FMX-45 refines the cup-game settlement line. The ledger must distinguish
+competition cash, earned receivables, travel/security costs and non-spendable
+future cup EV. Elimination shock updates forecasts; it does not become a cash
+ledger loss unless a previously recorded receivable is reversed.
 
 The existing DDD map already places finances, infrastructure, sponsors, board
 and fans in the **Club Management** bounded context. The missing architecture
@@ -101,6 +107,17 @@ Draft events:
 - `LeagueLicenceFinancialCheckFailed`
 - `MatchdayCommercialSettlementPosted`
 - `InvestorCashGrantPosted`
+- `CompetitionPrizeReceivableRecorded`
+- `CompetitionPrizeCashReceived`
+- `CupGateShareSettled`
+- `CupMediaFacilityFeeSettled`
+- `CupTravelCostPosted`
+- `CupSecurityCostPosted`
+- `CupSponsorBonusTriggered`
+- `CupMerchandiseSpikePosted`
+- `CupNeutralVenueAllocationSettled`
+- `CupForecastUpdated`
+- `CupEliminationForecastShockRecorded`
 
 Draft read models:
 
@@ -114,6 +131,7 @@ Draft read models:
 - `CommercialForecastSnapshot`
 - `CommercialContractPortfolio`
 - `MatchdayCommercialSettlement`
+- `CupRunRevenueForecast`
 
 ## Rationale
 
@@ -152,6 +170,7 @@ None
 
 - [[../../60-Research/club-economy-blueprint-2026-05-27]]
 - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+- [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - [[../../50-Game-Design/GD-0008-finance-economy]]
 - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../../50-Game-Design/economy-system]]

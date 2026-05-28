@@ -90,7 +90,7 @@ active work.
 | [[GD-0019-manager-archetype-roguelite-progression]] | Manager archetype roguelite progression; FMX-16 hooks, playtest-tunable taxonomy and prestige counterweight | draft | ADR-0051 |
 | [[GD-0020-eos-player-skills-personas-and-people]] | EOS player skills/perks, staff target skills, personas and People-context planning | draft | ADR-0052 |
 | [[GD-0021-player-staff-development-and-decision-influence]] | Player/staff development and decision-influence factor matrices; staff-skill MVP gate | draft | ADR-0052, ADR-0053 |
-| [[GD-0022-economy-commercial-impact-and-contracts]] | Economy commercial impact map; ticketing, season-ticket lifecycle/accrual, fan-demand elasticity, commercial contract lifecycle/breach, catering, merchandise, cup revenue, fan events and Investor clean SP cash | draft | ADR-0050, ADR-0058 |
+| [[GD-0022-economy-commercial-impact-and-contracts]] | Economy commercial impact map; ticketing, season-ticket lifecycle/accrual, fan-demand elasticity, commercial contract lifecycle/breach, catering, merchandise, cup/competition revenue profiles, fan events and Investor clean SP cash | draft | ADR-0050, ADR-0058 |
 
 ## Core loop
 
@@ -103,8 +103,8 @@ active work.
 - [[economy-system]] - cash-flow, budget pots, KPIs.
 - [[GD-0022-economy-commercial-impact-and-contracts]] - draft commercial
   impact layer for ticketing, season-ticket lifecycle/accrual, commercial
-  contract lifecycle/breach, catering, merchandise, cup games, fan-demand
-  elasticity, fan events and Investor clean SP cash.
+  contract lifecycle/breach, catering, merchandise, cup/competition revenue
+  profiles, fan-demand elasticity, fan events and Investor clean SP cash.
 - [[sponsorship-portfolio]] - 4-tier sponsor inventory at asset level.
 - [[stadium-and-campus]] - stadium tiers + Anstoss-style attractions + club campus.
 - [[../20-Features/feature-club-economy-mvp-pillar]] - draft MVP economy pillar for weekly ledger, full accounting and staged insolvency.

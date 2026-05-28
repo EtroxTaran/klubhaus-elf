@@ -1,7 +1,7 @@
 ---
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44]
+tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45]
 created: 2026-05-16
 updated: 2026-05-28
 type: game-design
@@ -16,6 +16,7 @@ related:
   - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+  - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -96,7 +97,7 @@ Important rule: **budget is permission, not cash**.
 | Sponsoring | Reach, image, fan fit, assets, league, exclusivity and activation delivery | Contract cadence with cash and recognition schedule |
 | Media rights | Country profile, league tier, table | Profile-specific lump/periodic |
 | Transfers | Player value, contract, buyer pressure | Upfront + instalments |
-| Prizes | Cup, promotion, title, continental progress | Competition-specific |
+| Prizes | Cup, promotion, title, continental progress | Competition-specific cash, receivable and future-EV profiles |
 | Venue events | Stadium flexibility, calendar, location | Event boundary |
 | Academy/funding | Country profile, youth setup | Annual / seasonal |
 
@@ -228,7 +229,7 @@ still owns the money, but the causes come from contracts and public read models:
 | Catering | Stadium throughput + catering contract lifecycle + service levels | In-house revenue/COGS/staff or concession/rent/share income, penalties for SLA breach |
 | Merchandise | Fan demand + merch contract lifecycle + star/cup/rivalry signals | Retail cash, royalty/MAG true-up, inventory cost, campaign profit/loss, fulfilment penalties |
 | Sponsorship | Sponsor portfolio + commercial contract lifecycle | Upfront cash, periodic accrual, bonuses, penalties, make-goods and termination effects |
-| Cup progression | Competition revenue profile | Prize/media/gate-share/travel/security entries |
+| Cup progression | Competition revenue profile | Prize/media/gate-share/travel/security entries plus receivables, future EV and elimination-shock read models |
 | Fan-service campaign | Fan event policy | Direct costs, sponsor contributions, loyalty/demand effects |
 | Investor entitlement | Singleplayer payment entitlement | Clean cash grant, no other state change |
 
@@ -253,6 +254,15 @@ curable/material/critical; exclusivity conflicts are category/territory/asset
 overlaps, not prose notes. Quick mode sees cash/risk/conflict badges, while
 Expert mode can inspect the contract register, obligation log, breach cases,
 renewal calendar and exclusivity graph.
+
+FMX-45 refines the competition-revenue layer: domestic and continental cups are
+profile-driven settlement events. A `CompetitionRevenueProfile` separates prize
+schedule, gate sharing, ticket allocation, media/facility cadence, travel,
+security, neutral venue rules, replay/two-leg rules, sponsor triggers,
+merchandise spikes, fixture-congestion hooks and forecast policy. The ledger
+posts hard cash, receivables and costs; future cup EV remains a non-spendable
+forecast. Elimination removes future upside and records a forecast shock rather
+than a hidden cash loss.
 
 The same settlement supports Quick / Standard / Expert:
 
@@ -309,7 +319,8 @@ burn through the grant.
   [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]] ·
   [[../60-Research/fan-demand-price-elasticity-2026-05-28]] ·
   [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]] ·
-  [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+  [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]] ·
+  [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - Feature: [[../20-Features/feature-club-economy-mvp-pillar]]
 - Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]

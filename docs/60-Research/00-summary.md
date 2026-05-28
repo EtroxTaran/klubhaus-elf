@@ -296,6 +296,41 @@ This refines draft
 [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 and draft [[../30-Implementation/club-economy-commercial-contracts]].
 
+## Cup and Competition Revenue Profiles (2026-05-28)
+
+[[cup-and-competition-revenue-profiles-2026-05-28]] is the FMX-45 research
+synthesis for domestic and continental competition revenue. It converts
+Germany, England, Spain, Italy, France and UEFA-style patterns into IP-clean
+draft `CompetitionRevenueProfile` templates without copying licensed
+competition names or final real-world constants.
+
+Current draft direction:
+
+- Use profile families for central-round domestic cups, shared-gate underdog
+  cups, federation-hosting cups, seeded elite-entry cups, solidarity/amateur
+  cups and continental value-pillar cups.
+- Separate prize schedules, gate-sharing rules, ticket allocation,
+  media/facility cadence, travel/security obligations, neutral venue rules,
+  replay/two-leg rules, sponsor triggers, merchandise spikes and fixture
+  congestion.
+- Keep cup cash, earned receivables and future-round EV separate. Elimination
+  removes forecast upside and records a forecast shock; it is not a hidden cash
+  penalty.
+- Expose Quick / Standard / Expert: secured income and upside bands in Quick,
+  per-fixture breakdown in Standard, probability/EV/payment-timing details in
+  Expert.
+- Keep season-ticket cup priority and material-right accounting hook-only for
+  this beat; the full liability model remains an FMX-43 follow-up.
+
+This refines draft
+[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
+[[../50-Game-Design/economy-system]], draft
+[[../50-Game-Design/regulations-and-compliance]], draft
+[[../20-Features/feature-club-economy-mvp-pillar]], draft
+[[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
+draft [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+and draft [[../30-Implementation/club-economy-commercial-contracts]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 [[ai-narrative-runtime-integration]] synthesizes the two narrative/LLM reports

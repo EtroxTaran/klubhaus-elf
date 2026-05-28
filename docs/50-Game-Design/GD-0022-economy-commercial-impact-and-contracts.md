@@ -1,7 +1,7 @@
 ---
 title: GD-0022 Economy Commercial Impact and Contracts
 status: draft
-tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44]
+tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45]
 created: 2026-05-28
 updated: 2026-05-28
 type: game-design
@@ -23,6 +23,7 @@ related:
   - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+  - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -37,9 +38,9 @@ draft
 
 > Draft only. This record captures the FMX-41 commercial economy direction, the
 > FMX-42 fan-demand / price-elasticity refinement, the FMX-43 season-ticket
-> lifecycle / accrual-accounting refinement and the FMX-44 commercial contract
-> lifecycle / breach refinement. It needs Nico approval before implementation
-> authority.
+> lifecycle / accrual-accounting refinement, the FMX-44 commercial contract
+> lifecycle / breach refinement and the FMX-45 cup/competition revenue profile
+> refinement. It needs Nico approval before implementation authority.
 
 ## Date
 
@@ -72,8 +73,14 @@ ledger effects behind the same decision.
 - **Top games and rivals matter.** Rivalries, star opponents, table context and
   cup stakes increase demand, premium-price tolerance, away following,
   catering/merch spikes and security cost.
-- **Cup games are economy events.** Each cup match can create gate, catering,
-  security, travel, prize, media, sponsor-bonus and fixture-congestion effects.
+- **Cup games are economy events.** Each competition fixture uses a
+  `CompetitionRevenueProfile` to create gate sharing, ticket allocation,
+  prize, media/facility, travel, security, sponsor-bonus, merchandise,
+  fixture-congestion and forecast effects.
+- **Cup forecasts are not cash.** Secured cup income, earned receivables and
+  expected future-round value are separate. Elimination removes future upside
+  and records a forecast shock; it is not a hidden ledger loss unless an
+  already-booked receivable is reversed.
 - **Catering and merchandise need contract options.** Own operation, concession,
   revenue share, guarantees, royalties, licences and partner contracts must be
   modelled as explicit choices with duration and clauses.
@@ -197,8 +204,9 @@ Accounting rule:
   recognised matchday revenue;
 - cancelled, inaccessible or relocated included matches post aggregate credit
   or refund liabilities according to `groupCompensationPolicy`;
-- cup priority / cup auto-charge rights remain a visible hook, but activation
-  depth is a Nico decision for the cup-economy beat.
+- cup priority / cup auto-charge rights remain a visible hook. FMX-45 keeps the
+  hook explicit but does not define full material-right, refund or liability
+  rules; those remain a follow-up to the FMX-43 season-ticket decision.
 
 Quick-mode wording must distinguish **cash now** from **revenue earned as
 matches are played**. This is a fairness rule: players may use early liquidity,
@@ -304,16 +312,42 @@ and `renewalBias` for FMX-51.
 Each fixture receives a commercial profile:
 
 - `fixtureKind`: league, cup, playoff, friendly, continental, final.
+- `fixtureSettlementKind`: home tie, away tie, replay, two-leg tie, neutral
+  semi/final or league phase.
 - `importanceTier`: routine, high, top, season-decider.
 - `rivalryTier`: none, mild, strong, high, volatile.
 - `opponentDrawPower`: generated/fictional star and reputation pull.
-- `competitionRevenueProfile`: prize, gate split, media, neutral venue,
-  replay/extra-time rules, away-travel profile.
+- `competitionRevenueProfile`: prize schedule, gate-sharing rule, ticket
+  allocation, media/facility cadence, neutral venue, replay/two-leg rules,
+  away/neutral travel, security, solidarity, fixture congestion and forecast
+  policy.
 - `riskProfile`: security, alcohol, away allocation, potential sanctions.
 
-The settlement produces separate ledger entries for ticket, catering,
-hospitality, merchandise, sponsor activation, security/stewarding, travel,
-prize/media and fines.
+FMX-45 defines six IP-clean draft preset families:
+
+| Preset family | Intended feel |
+|---|---|
+| `central-round-domestic-cup` | Round prizes, TV/live-game bonus, no replay, neutral final, strong home-tie value. |
+| `shared-gate-underdog-cup` | Prize ladder, net-gate sharing, facility fees, configurable replays and neutral semi/final. |
+| `federation-hosting-cup` | Lower-tier hosting advantage, federation aid, no-replay default and late two-leg option. |
+| `seeded-elite-entry-cup` | Top-tier-weighted cup, elite later entry, central media band and neutral final. |
+| `solidarity-amateur-cup` | Deep early rounds, lower-tier support, travel/referee support and grassroots windfall. |
+| `continental-value-pillar-cup` | Equal share, performance, ranking/progression, value/legacy and solidarity pools. |
+
+The settlement produces separate facts for ticket, catering, hospitality,
+merchandise, sponsor activation, security/stewarding, travel, prize, media,
+neutral allocation, fines and forecast shocks.
+
+Cup value is displayed in layers:
+
+- hard cash already received;
+- guaranteed receivables already earned;
+- non-spendable future cup EV;
+- fan/board/sponsor/reputation and congestion pressure.
+
+Quick mode shows secured cup income and expected upside as bands. Standard
+shows per-fixture revenue/cost breakdown. Expert shows probability source,
+round-by-round EV, gate-share formula, delayed cash and elimination shock.
 
 ## Investor cash purchase
 
@@ -339,6 +373,7 @@ business model.
 | Commercial contracts | Pick stable/balanced/upside contract preset; see cash, risk and conflict badge | Compare value, term, exclusivity, obligations, fan fit and 13-week cash/recognition forecast | Inspect lifecycle state, version history, obligations, breach cases, exclusivity graph, renewal calendar and schedules |
 | Catering | Pick stable/balanced/upside contract | Compare fixed rent, share, quality and SLA risk | Inspect clauses, COGS, service metrics, cure windows and termination |
 | Merch | Pick own/partner campaign | See projected margin, royalty/MAG and stock risk | Edit royalty, guarantee, inventory, fulfilment and true-up schedule |
+| Cup revenue | See secured income, earned receivables and future upside band | See prize, gate share, media, travel, security, sponsor and merch breakdown | Inspect round EV, probabilities, gate formula, payment timing, congestion sensitivity and elimination shock |
 | Investor | Confirm exact cash amount | See ledger impact and runway change | See no long-term structural change in forecast |
 
 ## Acceptance scenarios
@@ -394,11 +429,36 @@ Feature: Commercial economy impact
     Then an aggregate credit or refund liability is posted
     And no individual supporter entity is created
 
-  Scenario: Cup progression changes the forecast
+  Scenario: Home cup tie settles as a full economy event
     Given a club reaches another cup round
-    When the competition profile posts the new fixture
-    Then the forecast adds prize, gate, catering, security and travel effects
-    And removes those future effects if the club is eliminated
+    And the next fixture is a home tie against a high-draw opponent
+    When the competition revenue profile posts the fixture
+    Then the forecast adds prize, gate, catering, merchandise, security and sponsor effects
+    And cash, receivable and future EV are shown separately
+
+  Scenario: Away cup tie uses gate-share and travel rules
+    Given a club is drawn away in a shared-gate cup profile
+    When the tie is settled
+    Then travel and accommodation costs post
+    And any gate-share or facility-fee income follows the competition profile
+
+  Scenario: Neutral final separates central and club settlement
+    Given a club reaches a neutral final
+    When final settlement runs
+    Then ticket allocation, central prize, sponsor bonus, merchandise spike and travel are separate facts
+    And home-match assumptions are not reused
+
+  Scenario: Early cup exit removes upside, not bank balance
+    Given a club has future cup EV but no earned receivable
+    When the club is eliminated
+    Then future cup upside is removed from the forecast
+    And no cash ledger loss is posted
+
+  Scenario: Fixture congestion is visible as risk
+    Given cup progression creates a midweek fixture cluster
+    When the forecast updates
+    Then travel and congestion risk are visible
+    And fatigue or injury outcomes remain owned by the sporting systems
 
   Scenario: Catering contract changes margin
     Given two clubs have the same attendance
@@ -449,8 +509,15 @@ Feature: Commercial economy impact
   Expert.
 - Decide whether internal instalment receivable risk is active in MVP or
   deferred behind finance-partner presets.
-- Decide how visible cup priority / material-right accounting should be before
-  the cup-economy implementation beat.
+- Final cup-revenue calibration values per profile family.
+- Decide whether Quick-mode board budgets may spend any fraction of expected
+  cup EV.
+- Decide whether replay support is active in first playable or kept as
+  profile-data-only.
+- Decide the full material-right/refund/liability model for season-ticket cup
+  priority after FMX-43.
+- Retry Italy official regulation PDF extraction before Italy-specific
+  constants are frozen.
 - First contract presets for catering and merchandise.
 - Fan-service event catalog for first playable.
 - Guardrails for top-match surcharge and fan-trust damage.
@@ -496,3 +563,16 @@ Negative / constraints:
 
 None. This extends GD-0008 and the FMX-13 economy draft with a commercial impact
 layer; it does not approve final constants.
+
+## Related
+
+- Research: [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]] ·
+  [[../60-Research/fan-demand-price-elasticity-2026-05-28]] ·
+  [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]] ·
+  [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]] ·
+  [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+- Game design: [[GD-0008-finance-economy]] · [[economy-system]] ·
+  [[fan-ecology]] · [[regulations-and-compliance]]
+- Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
+  [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+- Implementation: [[../30-Implementation/club-economy-commercial-contracts]]

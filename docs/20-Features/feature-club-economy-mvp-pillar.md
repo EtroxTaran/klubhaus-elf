@@ -1,7 +1,7 @@
 ---
 title: Feature - Club Economy MVP Pillar
 status: draft
-tags: [feature, mvp, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, season-tickets, fmx-13, fmx-41, fmx-43, fmx-44]
+tags: [feature, mvp, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, season-tickets, cup, competition, fmx-13, fmx-41, fmx-43, fmx-44, fmx-45]
 created: 2026-05-27
 updated: 2026-05-28
 type: feature
@@ -17,6 +17,7 @@ related:
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+  - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   - [[../30-Implementation/club-economy-commercial-contracts]]
@@ -45,12 +46,15 @@ visible economic consequence.
 - Weekly ledger tick with deterministic entries.
 - Minimum revenue streams: ticketing, season-ticket campaign cash with deferred
   revenue recognition, basic sponsor income, matchday catering, small
-  merchandise, prize/bonus payments.
+  merchandise, prize/bonus payments and cup/competition receivables.
 - Minimum commercial policy: season-ticket lifecycle preset, single-ticket
   price band, top-match surcharge preset, one commercial contract register,
   stable/balanced/upside presets for the first catering, merchandise and
   sponsorship contract models, conflict warnings, breach warnings and one
   fan-service campaign choice.
+- Minimum competition-revenue policy: IP-clean domestic cup presets,
+  continental profile hook, hard cash versus receivable versus future EV,
+  elimination-shock forecast update and neutral/away/home settlement variants.
 - Minimum costs: player/staff wages, stadium operations, travel, debt service,
   transfer instalments, maintenance and federation/league levy.
 - Staged insolvency crisis: warning -> overdraft/freeze -> arrears -> licence
@@ -84,6 +88,9 @@ visible economic consequence.
 - Commercial UI can show Quick totals and Expert assumptions for away travel,
   season-ticket cash/deferred accounting, catering/merch contracts, cup
   settlement and fan events.
+- Cup UI can distinguish secured income, earned receivables and expected future
+  round upside, and early elimination removes forecast upside without creating
+  a hidden cash penalty.
 - Commercial UI can show contract lifecycle state, renewal window, exclusivity
   conflict and breach severity at Quick/Standard/Expert depth without changing
   the underlying settlement.
@@ -100,6 +107,7 @@ visible economic consequence.
 - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+- [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[../30-Implementation/club-economy-commercial-contracts]]

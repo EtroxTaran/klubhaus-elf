@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-28
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -86,6 +86,15 @@ patterns.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-commercial-contract-lifecycle-2026-05-28]] | Sports sponsorship, venue catering/concession/retail/hospitality/supplier contracts and CLM lifecycle best practices | [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]] · [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] · [[../../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]] |
+
+## FMX-45 follow-up Perplexity research (2026-05-28)
+
+Additional Perplexity research was run during FMX-45 after Nico asked for full
+research and planning on cup and competition revenue profiles.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-cup-competition-revenue-profiles-2026-05-28]] | Domestic cup and continental competition revenue, gate sharing, prize/media cadence, EV forecasting and elimination shock | [[../cup-and-competition-revenue-profiles-2026-05-28]] · [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] · [[../../30-Implementation/club-economy-commercial-contracts]] |
 
 ## FMX-3 follow-up Perplexity research (2026-05-28)
 
