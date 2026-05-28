@@ -29,7 +29,7 @@ context's contract is designed as if it could be running on its own
 process / pod / region. Splitting a context out later is a deployment
 change, not a refactor.
 
-## 1. Fifteen bounded contexts
+## 1. Sixteen bounded contexts
 
 | Context | Core elements | Exposed outputs |
 |---|---|---|
@@ -46,6 +46,7 @@ change, not a refactor.
 | **Staff Operations** | Staff contract lifecycle, role assignment, pipeline coverage, wage schedule, specialisation metadata | Staff roster + role-assignment board projections, pipeline-coverage snapshots, wage events for the Club Management ledger |
 | **Tactics** | Tactic presets, set-piece routine variants, opposition templates, role/duty configurations, tactical-style signal aggregation | TacticSnapshot at lock-time, RoleProfileForPosition queries, OppositionTemplate lookups, SetPieceRoutineCatalog, TacticalIdentityFingerprint for Manager & Legacy |
 | **Regulations & Compliance** | Regulatory profiles per regulator + competition + tier (versioned by effective date), transfer-window FSM, work-permit catalog, sanction catalog, licence-tier facility requirements, community-pack rule-override validation policy | EligibilityForTransfer / SquadRegistrationCheck / LicenceTierCompliance / FfpRatioCheck queries, CurrentTransferWindow status, EffectiveRuleSet snapshot at save creation, sanction escalation chain |
+| **Rivalry System** | RivalryEdge graph (club pair × sub-score history × threshold-tier FSM), 5-sub-score formula (regional + historical + sporting + fan-incident + transfer-tension), deterministic per-season decay, threshold-tier classification | RivalryScore / IsDerbyFixture / TopRivalsForClub / RivalryIncidentTimeline / RivalryGraphSnapshot / DerbyContext queries; RivalryTierTransitioned events to Fan Ecology + Matchday-Event-Engine + Watch Party + Manager & Legacy + Notification + Match + Tactics + Regulations consumers |
 | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
 | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
 
@@ -72,6 +73,37 @@ own persona, OCEAN substrate or the relationship graph. Wage events flow
 to Club Management per [[09-Decisions/ADR-0050-club-economy-accounting-ledger]];
 effect-readiness and role-assignment events are consumed by Training,
 Transfer, Squad & Player and Match.
+
+Rivalry System was ratified 2026-05-28 via
+[[09-Decisions/ADR-0057-rivalry-system-context]] (FMX-34 dossier +
+FMX-40 apply) and is the sixteenth context. It owns the rivalry-edge
+graph (club pair × sub-score history × threshold-tier FSM), the 5-
+sub-score emergent formula (regional + historical + sporting + fan-
+incident + transfer-tension, per
+[[../50-Game-Design/rivalry-system]]), deterministic per-season decay
+and threshold-tier classification (None / Mild / Strong / High /
+Volatile). Rivalry consumes Match `MatchResolved` for sporting sub-
+score, Transfer `TransferCompleted` for transfer-tension sub-score,
+Fan Ecology `FanIncidentLogged` for fan-incident sub-score, Club
+Management `ClubFoundedInLocation` / `ClubRelocatedToLocation` for
+regional base, and League Orchestration `SeasonAdvanced` for the
+deterministic decay batch. It publishes `RivalryScore` /
+`IsDerbyFixture` / `TopRivalsForClub` / `RivalryIncidentTimeline` /
+`RivalryGraphSnapshot` / `DerbyContext` read models + `Rivalry
+TierTransitioned` events to Fan Ecology (atmosphere multiplier),
+Matchday-Event-Engine via Club Management (Pyro-incident trigger),
+Watch Party (auto-proposal), Manager & Legacy (future archetype
+signal), Notification (derby copy), Match (derby classification at
+`lineup_locked`), Tactics (future derby-specific opposition awareness)
+and Regulations & Compliance (downstream sanction chain via
+matchday-event-engine). Consumers treat rivalry as external fact and
+apply their own policies in their own contexts - canonical Vernon
+scoring-context pattern (analogous to credit rating + customer
+affinity + recommendation + supplier-score real-world DDD precedents).
+Cross-save rivalry pre-population (era profiles + community overlays)
+flows through ADR-0051 Manager & Legacy legacy seeds + ADR-0016
+Community Overlay surface per FMX-33 Community Overlay Pipeline;
+Rivalry BC owns schema + semantic validation per Vernon.
 
 Regulations & Compliance was ratified 2026-05-28 via
 [[09-Decisions/ADR-0056-regulations-compliance-context]] (FMX-30
@@ -164,6 +196,7 @@ flowchart TB
     Staff["Staff Operations"]
     Tactics["Tactics"]
     Reg["Regulations & Compliance"]
+    Rival["Rivalry System"]
     Offline["Offline Sync"]
     Audit["Audit & Security"]
 
@@ -212,6 +245,19 @@ flowchart TB
     Reg --> Staff
     Reg --> Match
     Reg --> Notif
+    Identity --> Rival
+    League --> Rival
+    Club --> Rival
+    Squad --> Rival
+    Match --> Rival
+    Transfer --> Rival
+    Rival --> Match
+    Rival --> Club
+    Rival --> WP
+    Rival --> ML
+    Rival --> Notif
+    Rival --> Tactics
+    Rival --> Reg
     Training --> Squad
     Training --> ML
     Transfer --> ML
@@ -314,6 +360,7 @@ src/domain/
   staff-operations/
   tactics/
   regulations/
+  rivalry/
   sync/
   audit/
 ```

@@ -66,31 +66,40 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
-> **FMX-34 Rivalry System ownership dossier (2026-05-28).** Rivalry
-> - 5-sub-score emergent formula (regional + historical + sporting +
-> fan-incident + transfer-tension) with threshold tiers
-> (None/Mild/Strong/High/Volatile) + per-season decay + cross-system
-> consumers (Fan Ecology atmosphere multiplier, Matchday-Event-Engine
-> Pyro trigger, Regulations sanction-chain downstream, Watch Party
-> auto-proposal, Manager & Legacy future archetype signal,
-> Notification derby copy, Match derby classification, Tactics future
-> opposition awareness, future People + Narrative derby framing) -
-> are designed in [[../50-Game-Design/rivalry-system]] but the
-> 15-context map has no owner. Draft
-> [[../60-Research/rivalry-system-bounded-context-2026-05-28]] and
-> [[../60-Research/raw-perplexity/raw-rivalry-system-2026-05-28]]
-> consolidate genre (FM pre-authored rivalry DB; thin source set),
-> DDD (Vernon canonical scoring-context pattern with CQRS read
-> models + Process Manager / Saga + Domain Service; credit-rating /
-> customer-affinity / recommendation real-world analogues) and
-> real-world 2023-2026 evidence (UEFA risk-match classification,
-> Premier League SGSA Category A/B/C, Bundesliga DFL Rotspiel; derby
-> attendance + revenue premiums documented). New draft
+> **FMX-34 + FMX-40 Rivalry System ratification applied (2026-05-28).**
+> Nico accepted Option C.
 > [[../10-Architecture/09-Decisions/ADR-0057-rivalry-system-context]]
-> proposes **Rivalry System as an additional bounded context**
-> (Option C) with three options + Option D anti-pattern + §Recommendation
-> + §Map patch proposal. Ratify decision pending; map itself not yet
-> modified.
+> is now `status: accepted` and `binding: true`. Rivalry System is the
+> **sixteenth bounded context** in
+> [[../10-Architecture/bounded-context-map]] (table row + Mermaid +
+> `rivalry/` source folder). Decision basis:
+> [[../60-Research/rivalry-system-bounded-context-2026-05-28]].
+> Rivalry owns the rivalry-edge graph (club pair × sub-score history
+> × threshold-tier FSM), the 5-sub-score emergent formula (regional +
+> historical + sporting + fan-incident + transfer-tension),
+> deterministic per-season decay and threshold-tier classification
+> (None / Mild / Strong / High / Volatile). Consumes Match
+> `MatchResolved` (sporting sub-score), Transfer `TransferCompleted`
+> (transfer-tension sub-score), Fan Ecology `FanIncidentLogged` (fan-
+> incident sub-score), Club Management `ClubFoundedInLocation` /
+> `ClubRelocatedToLocation` (regional base), League Orchestration
+> `SeasonAdvanced` (decay batch trigger). Publishes `RivalryScore` /
+> `IsDerbyFixture` / `TopRivalsForClub` / `RivalryIncidentTimeline` /
+> `RivalryGraphSnapshot` / `DerbyContext` read models +
+> `RivalryTierTransitioned` events to Fan Ecology (atmosphere
+> multiplier), Matchday-Event-Engine via Club Management (Pyro
+> trigger), Watch Party (auto-proposal), Manager & Legacy (future
+> archetype signal), Notification (derby copy), Match (derby
+> classification at `lineup_locked`), Tactics (future opposition
+> awareness), Regulations & Compliance (downstream sanction chain).
+> Consumers treat rivalry as external fact and apply own policies in
+> own contexts (canonical Vernon scoring-context pattern; credit-
+> rating / customer-affinity / recommendation real-world analogues).
+> Cross-save rivalry pre-population flows through ADR-0051 legacy
+> seeds + ADR-0016 community overlay surface per FMX-33 Community
+> Overlay Pipeline; Rivalry BC owns schema + semantic validation per
+> Vernon.
+
 
 > **FMX-30 + FMX-39 Regulations & Compliance ratification applied
 > (2026-05-28).** Nico accepted Option B.
@@ -426,14 +435,16 @@ The Wave 2 proposal layer is no longer an active backlog list. Items that remain
 draft/proposed are classified future-scope or optional cleanup by
 [[Documentation-V1]]. Highlights:
 
-- DDD modular monolith with 15 bounded contexts
+- DDD modular monolith with 16 bounded contexts
   ([[../10-Architecture/bounded-context-map]]); ADR-0019 set the original
   eleven-context modular monolith; ADR-0051 ratified Manager & Legacy as
   the twelfth context on 2026-05-28 (FMX-25 + FMX-35); ADR-0053 ratified
   Staff Operations as the thirteenth context on 2026-05-28 (FMX-26 +
   FMX-36); ADR-0055 ratified Tactics as the fourteenth context on
   2026-05-28 (FMX-28 + FMX-37); ADR-0056 ratified Regulations &
-  Compliance as the fifteenth context on 2026-05-28 (FMX-30 + FMX-39).
+  Compliance as the fifteenth context on 2026-05-28 (FMX-30 + FMX-39);
+  ADR-0057 ratified Rivalry System as the sixteenth context on
+  2026-05-28 (FMX-34 + FMX-40).
 - Server-authoritative multiplayer with command-only clients is binding through
   ADR-0011 and current multiplayer game-design notes.
 - Both async cadence models, switchable at season boundary.
