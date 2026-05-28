@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-28-fmx-28-tactics-persistence]] - FMX-28 ownership dossier
+  for the persistent tactics library (presets, set-piece routines,
+  opposition templates, role/duty configurations) distinct from
+  Match's per-match `tactic lock`. Three Perplexity queries (genre /
+  DDD library-vs-instance / real-world 2023-2026 club tactical
+  archives), synthesis recommending Option C (own Tactics bounded
+  context), draft ADR-0055 with four options + §Recommendation + §Map
+  patch proposal (order-tolerant). Awaiting Nico decision.
 - [[2026-05-28-fmx-26-staff-backroom]] - FMX-26 ownership dossier for
   Staff & Backroom residual scope after ADR-0052. Three Perplexity
   queries (genre / DDD / real-world 2024-2026 Sporting Director model),
