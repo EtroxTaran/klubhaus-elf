@@ -58,6 +58,7 @@ contradict an `approved` game-design record.
 | [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] | draft | Club Management owns the weekly finance ledger, full-accounting projections, budget envelopes, country economy profiles and staged insolvency state. | New FMX-13 draft; feeds economy MVP pillar. |
 | [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]] | accepted | Manager & Legacy context owns manager identity, run analysis, style signals, archetype candidates, legacy setup and prestige selection; cross-save meta read only at save creation, never during a running save. | New FMX-16 draft; FMX-25 ratification dossier; **ratified Nico 2026-05-28 (FMX-35 apply)**: Manager & Legacy is the 12th bounded context. [[../60-Research/manager-legacy-bounded-context-2026-05-28]] is the decision basis. |
 | [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]] | draft | Proposed People / Persona & Skills context owns actor personas, relationship graph, player/staff skill profiles and deterministic dialogue context cards. | New FMX-23 draft; feeds EOS player skills/persona planning. |
+| [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]] | proposed | Proposed Staff Operations context (13th) owns staff contract lifecycle, role assignment, pipeline coverage, wage schedule and specialisation metadata; emits wage events to Club Management's ledger; consumes People (ADR-0052) for actor identity. | New FMX-26 draft. Synthesis [[../60-Research/staff-backroom-bounded-context-2026-05-28]] recommends Accept (Option B). Awaiting Nico ratify decision. |
 
 ## Process & Workflow ADRs (proposed 2026-05-27, draft)
 
@@ -104,6 +105,7 @@ PR as the work that needs them.
 - [[../60-Research/club-economy-blueprint-2026-05-27]] - FMX-13 synthesis for the Club Economy MVP pillar, weekly ledger, full accounting, staged insolvency, country economy profiles and investor future-scope.
 - [[../60-Research/manager-archetype-roguelite-2026-05-27]] - FMX-16 synthesis for Manager-Archetype Roguelite progression, MVP run-analysis hooks, proposed Manager & Legacy context, playtest-tunable taxonomy and prestige counterweight.
 - [[../60-Research/manager-legacy-bounded-context-2026-05-28]] - FMX-25 ratification synthesis for ADR-0051; consolidates roguelite-genre, DDD and football-sim evidence; recommends Accept (Option A).
+- [[../60-Research/staff-backroom-bounded-context-2026-05-28]] - FMX-26 ownership synthesis for staff lifecycle, role assignment, pipeline coverage and wage-event emission; recommends Option B (Staff Operations as own bounded context, ADR-0053 proposed).
 - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]] - FMX-23 synthesis for player skills/perks, staff-skill target model, mixed OCEAN + football-domain personas, relationship constellations and proposed People context.
 - [[../60-Research/presentation-renderer-strategy]] - research basis for ADR-0041.
 - [[../60-Research/determinism-and-replay]] - deterministic simulation and replay rules.
