@@ -1,7 +1,7 @@
 ---
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
-tags: [implementation, economy, commercial, contracts, tickets, investor, fmx-41]
+tags: [implementation, economy, commercial, contracts, tickets, fan-demand, price-elasticity, investor, fmx-41, fmx-42]
 created: 2026-05-28
 updated: 2026-05-28
 type: implementation
@@ -17,6 +17,7 @@ related:
   - [[../50-Game-Design/sponsorship-portfolio]]
   - [[../50-Game-Design/stadium-and-campus]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+  - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
   - [[club-economy-accounting-ledger]]
   - [[../10-Architecture/bounded-context-map]]
 ---
@@ -26,8 +27,9 @@ related:
 ## Purpose
 
 Define the contract surface implied by FMX-41 before code exists. This note
-extends [[club-economy-accounting-ledger]] with ticketing, commercial contracts,
-cup settlement, fan-event campaigns and Investor entitlement inputs.
+extends [[club-economy-accounting-ledger]] with ticketing, fan-demand
+elasticity, commercial contracts, cup settlement, fan-event campaigns and
+Investor entitlement inputs.
 
 This is draft planning only. It becomes implementation authority only after the
 relevant GDDR/ADR path is approved.
@@ -58,15 +60,32 @@ Owned by Fan Ecology, consumed by Club Management.
 | `clubId` | Club receiving demand. |
 | `fixtureId` | Optional fixture scope; absent for season forecast. |
 | `forecastHorizon` | Match, week, campaign or season. |
-| `segmentDemand` | Per-segment attendance probability and demand volume. |
-| `seasonTicketRenewalProbability` | Renewal probability by segment. |
-| `priceElasticityBand` | Low/medium/high with ranges, not a fixed constant. |
+| `segmentDemand` | Per-segment latent demand, actual forecast and confidence band. |
+| `attendanceFloorBySegment` | Minimum expected attendance share before severe trust/identity shocks. |
+| `priceSensitivityBySegment` | Low/medium/high/very-high response shape by segment. |
+| `referencePriceBySeatClass` | Country/club/seat-class baseline for fairness comparisons. |
+| `ticketingTrustState` | Supporter trust in pricing policy and recent price-change memory. |
+| `fixtureAttractiveness` | Opponent, rivalry, stakes, form, stars, novelty, kickoff and weather profile. |
+| `capacityPressure` | Underfilled, balanced, constrained or sold-out latent-demand state. |
+| `seasonTicketRenewalProbability` | Renewal probability by segment and seat class. |
 | `cateringPropensity` | Per-segment spend propensity band. |
 | `merchandisePropensity` | Per-segment spend propensity band. |
 | `hospitalityDemand` | Corporate/premium demand band. |
 | `sponsorCategoryFit` | Fit/risk by sponsor category. |
 | `boycottRisk` | Segment-driven demand shock risk. |
 | `provenance` | Source facts and freshness. |
+
+Calculation contract:
+
+- price response is applied to latent demand before stadium capacity is
+  allocated;
+- if latent demand exceeds capacity, price changes may affect segment mix,
+  revenue and trust even when attendance stays full;
+- season-ticket demand and single-ticket demand are separate curves;
+- ticketing trust primarily affects future renewal, boycott risk, atmosphere
+  and sponsor fit rather than only the current fixture;
+- country profile, club DNA and fan-segment mix provide ranges, never final
+  balance constants.
 
 ### `FixtureCommercialProfile`
 
@@ -78,8 +97,13 @@ Produced from League/Competition fixture state plus Rivalry and Match context.
 | `fixtureKind` | League, cup, playoff, friendly, continental, final. |
 | `homeClubId` / `awayClubId` | Participating clubs. |
 | `importanceTier` | Routine, high, top, season-decider. |
+| `fixtureStakes` | Routine, promotion, relegation, title, qualification, elimination or final. |
 | `rivalryTier` | None, mild, strong, high, volatile. |
 | `opponentDrawPower` | Generated reputation/star pull band. |
+| `starPullBand` | Notable player/manager attraction without using real-world names. |
+| `noveltyBand` | First promotion season, rare opponent, new-stadium effect or farewell/icon event. |
+| `homeFormBand` | Recent form and long-term performance trend. |
+| `kickoffConvenience` | Weekend afternoon, evening, late, midweek or holiday. |
 | `awayDemandBand` | Away-following pressure. |
 | `riskBand` | Security and sanction risk. |
 | `weatherBand` | Forecast/weather effect band. |
@@ -114,6 +138,9 @@ Owned by Club Management.
 | `seasonTicketDiscountBand` | Discount versus comparable single-ticket basket. |
 | `singleTicketPriceBands` | Price ranges by seat class. |
 | `topMatchSurchargePolicy` | Off, cautious, market, premium. |
+| `dynamicPricingMode` | Disabled, categories-only, bounded-dynamic or experimental. |
+| `pricingTransparencyPolicy` | How clearly price changes and categories are communicated. |
+| `seasonTicketProtectionRule` | Rules preserving season-ticket value versus single-ticket promotions. |
 | `concessionPolicy` | Youth/family/senior/community rules. |
 | `awayAllocationPolicy` | Allocation and pricing rules. |
 | `fanTrustGuardrail` | Max tolerated price shock by segment. |
@@ -239,6 +266,10 @@ sequenceDiagram
 - Loyal fan segments stabilise bad-year attendance.
 - Fair-weather segments create high upside and high volatility.
 - Rivalry/top-match surcharge changes single-ticket revenue and fan-trust risk.
+- High latent demand can keep attendance full while changing segment mix and
+  future renewal risk.
+- Opaque price jumps reduce ticketing trust and future renewal even if current
+  revenue rises.
 - Cup progression adds expected fixture/prize/sponsor revenue and cost.
 - Own catering has higher upside and cost risk than concession.
 - Merch campaign can profit or fail through inventory/fulfilment assumptions.
@@ -249,6 +280,7 @@ sequenceDiagram
 ## Related
 
 - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+- [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
 - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[club-economy-accounting-ledger]]

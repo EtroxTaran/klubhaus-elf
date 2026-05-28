@@ -37,10 +37,12 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../20-Features/feature-club-economy-mvp-pillar]]
 - [[../60-Research/club-economy-blueprint-2026-05-27]]
 - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+- [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
 
 ## Fans + brand
 
 - [[../50-Game-Design/fan-ecology]]
+- [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
 
 ## Sporting core
 
@@ -106,6 +108,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/systems-design-synthesis]]
 - [[../60-Research/club-economy-blueprint-2026-05-27]]
 - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+- [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
 - [[../60-Research/manager-archetype-roguelite-2026-05-27]]
 - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
 - [[../60-Research/player-staff-development-decision-model-2026-05-28]]
