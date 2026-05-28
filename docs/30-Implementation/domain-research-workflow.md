@@ -209,11 +209,12 @@ regulations, dataset overlays).
 ## Ratification rules
 
 - The map is updated only when Nico explicitly accepts the ADR. The current
-  baseline is fifteen contexts (eleven ratified 2026-05-16; Manager &
+  baseline is sixteen contexts (eleven ratified 2026-05-16; Manager &
   Legacy ratified 2026-05-28 via FMX-25 + FMX-35; Staff Operations
   ratified 2026-05-28 via FMX-26 + FMX-36; Tactics ratified 2026-05-28
   via FMX-28 + FMX-37; Regulations & Compliance ratified 2026-05-28 via
-  FMX-30 + FMX-39).
+  FMX-30 + FMX-39; Rivalry System ratified 2026-05-28 via FMX-34 +
+  FMX-40).
 - Acceptance of an ADR moves it from `status: proposed` to `status:
   accepted` and `binding: true`. The map patch is applied in the same PR.
 - Rejection moves the ADR to `status: rejected` with a `superseded_by` link
@@ -223,7 +224,7 @@ regulations, dataset overlays).
 
 ## Cross-references
 
-- [[../10-Architecture/bounded-context-map]] — current fifteen-context baseline.
+- [[../10-Architecture/bounded-context-map]] — current sixteen-context baseline.
 - [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]] — modular
   monolith and per-context contracts.
 - [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]] —

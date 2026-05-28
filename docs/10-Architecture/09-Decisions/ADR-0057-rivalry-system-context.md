@@ -1,11 +1,11 @@
 ---
 title: ADR-0057 Rivalry System Context
-status: proposed
-tags: [adr, architecture, ddd, rivalry, derby, fmx-34]
+status: accepted
+tags: [adr, architecture, ddd, rivalry, derby, fmx-34, fmx-40, accepted]
 created: 2026-05-28
 updated: 2026-05-28
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -32,11 +32,35 @@ related:
 
 ## Status
 
-proposed
+accepted
 
 ## Date
 
-2026-05-28
+2026-05-28 (proposed) · 2026-05-28 (FMX-40 accepted by Nico, Option C)
+
+## Ratification
+
+Nico accepted Option C on 2026-05-28 after reviewing the FMX-34 dossier
+(PR [#95](https://github.com/EtroxTaran/football-manager-x/pull/95)).
+The §Recommendation below names Option C; the synthesis at
+[[../../60-Research/rivalry-system-bounded-context-2026-05-28]]
+documents the three converging arguments (DDD canonical scoring-
+context pattern with credit-rating / customer-affinity /
+recommendation real-world analogues, real-world UEFA risk-match +
+Premier League Category A/B/C + Bundesliga Rotspiel precedent, and
+concrete cross-context consumer designs in Fan Ecology + Matchday-
+Event-Engine).
+
+Application:
+
+- Status flipped `proposed` → `accepted`; `binding: false` → `true`.
+- The §Map patch proposal that lived in this ADR was applied to
+  [[../bounded-context-map]] in the same PR (FMX-40). Rivalry System
+  is now the **sixteenth bounded context** in the live map.
+- The §Map patch proposal section is removed from this ADR as a
+  result - its content lives in the map. Future amendments to the
+  map go through normal ADR supersession
+  ([[../../90-Meta/vault-governance]]).
 
 ## Context
 
@@ -453,167 +477,6 @@ Negative:
 - Manager-archetype derby-specialist signal aggregation +
   derby-specific opposition templates + derby media framing all stay
   future-scope.
-
-## Map patch proposal
-
-Applies only on Nico's acceptance. Until then, the bounded-context
-map keeps the fifteen-context baseline. The patch is **order-
-tolerant** - ADR-0052 (People) and ADR-0054 (Narrative) may be
-accepted before or after this ADR.
-
-### Patch 1: §1 table
-
-Rename section header to reflect new count
-("Sixteen" / "Seventeen" / "Eighteen" bounded contexts depending on
-how many parallel drafts are accepted at apply-time). Insert one new
-row after Regulations & Compliance:
-
-```diff
- | **Regulations & Compliance** | Regulatory profiles per regulator + competition + tier (versioned by effective date), transfer-window FSM, work-permit catalog, sanction catalog, licence-tier facility requirements, community-pack rule-override validation policy | EligibilityForTransfer / SquadRegistrationCheck / LicenceTierCompliance / FfpRatioCheck queries, CurrentTransferWindow status, EffectiveRuleSet snapshot at save creation, sanction escalation chain |
-+| **Rivalry System** | RivalryEdge graph (club pair × sub-score history × threshold-tier FSM), 5-sub-score formula (regional + historical + sporting + fan-incident + transfer-tension), deterministic per-season decay, threshold-tier classification | RivalryScore / IsDerbyFixture / TopRivalsForClub / RivalryIncidentTimeline / RivalryGraphSnapshot / DerbyContext queries; RivalryTierTransitioned events to Fan Ecology + Matchday-Event-Engine + Watch Party + Manager & Legacy + Notification + Match + Tactics + Regulations consumers |
- | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
-```
-
-Add an explanatory paragraph after the table noting boundaries:
-"Rivalry System consumes Match `MatchResolved` for sporting sub-
-score, Transfer `TransferCompleted` for transfer-tension sub-score,
-Fan Ecology `FanIncidentLogged` for fan-incident sub-score, Club
-Management `ClubFoundedInLocation` / `ClubRelocatedToLocation` for
-regional sub-score base, and League Orchestration `SeasonAdvanced`
-for deterministic per-season decay batch. It publishes rivalry-tier
-+ score + derby-classification + incident-timeline read models +
-tier-transition events to Fan Ecology (atmosphere multiplier),
-Matchday-Event-Engine via Club Management (Pyro-incident trigger),
-Watch Party (auto-proposal), Manager & Legacy (future archetype
-signal), Notification (derby-themed copy), Match (derby
-classification marker), Tactics (future derby opposition awareness)
-and Regulations & Compliance (downstream sanction chain via
-matchday-event-engine). Consumers treat rivalry as external fact and
-apply their own policies in their own contexts (canonical Vernon
-scoring-context pattern; analogous to credit rating + customer
-affinity + recommendation + supplier-score real-world DDD
-precedents). Cross-save rivalry pre-population (era profiles +
-community overlays) flows through ADR-0051 Manager & Legacy legacy
-seeds + ADR-0016 community overlay surface per FMX-33 Community
-Overlay Pipeline; Rivalry BC owns schema + semantic validation per
-Vernon."
-
-### Patch 2: §2 Mermaid
-
-Insert `Rival` node + edges:
-
-```diff
-     Reg["Regulations & Compliance"]
-+    Rival["Rivalry System"]
-     Offline["Offline Sync"]
-     Audit["Audit & Security"]
-
-     Identity --> League
-     Identity --> Club
-     Identity --> ML
-     Identity --> Staff
-     Identity --> Tactics
-     Identity --> Reg
-+    Identity --> Rival
-     League --> Match
-     League --> Transfer
-     League --> WP
-     League --> ML
-     League --> Tactics
-     League --> Reg
-+    League --> Rival
-     Club --> Squad
-     Club --> Match
-     Club --> ML
-     Club --> Staff
-     Club --> Reg
-+    Club --> Rival
-     Squad --> Training
-     Squad --> Transfer
-     Squad --> Match
-     Squad --> ML
-     Squad --> Tactics
-     Squad --> Reg
-+    Match --> Rival
-+    Transfer --> Rival
-+    Rival --> Match
-+    Rival --> Club
-+    Rival --> WP
-+    Rival --> ML
-+    Rival --> Notif
-+    Rival --> Tactics
-+    Rival --> Reg
-     Staff --> Training
-     Staff --> Transfer
-     Staff --> Squad
-     Staff --> Match
-     Staff --> Club
-     Staff --> Notif
-     Staff --> Tactics
-     Staff --> Reg
-     Tactics --> Match
-     Tactics --> Training
-     Tactics --> Transfer
-     Tactics --> ML
-     Tactics --> WP
-     Training --> Squad
-     Training --> ML
-     Transfer --> ML
-     Match --> WP
-     Match --> Notif
-     Match --> ML
-     Match --> Tactics
-     Transfer --> Notif
-     League --> Notif
-     ML --> Notif
-     Reg --> Transfer
-     Reg --> Squad
-     Reg --> Club
-     Reg --> League
-     Reg --> Staff
-     Reg --> Match
-     Reg --> Notif
-```
-
-(`Rival` consumes facts from Identity (auth), League (season ticks),
-Squad / Club (club identity + regional base), Match (resolved
-matches), Transfer (completed transfers). It publishes rivalry-tier
-+ score read models + tier-transition events to Match (derby
-classification marker at lineup_locked), Club (atmosphere consumer
-via Fan Ecology + matchday-event-engine consumer), Watch Party
-(auto-proposal), Manager & Legacy (future archetype signal),
-Notification (derby copy), Tactics (future derby opposition
-awareness), Regulations & Compliance (downstream of Pyro-incident
-sanction chain).)
-
-### Patch 3: §4 Source mapping
-
-Add `rivalry/` to the per-context folder list:
-
-```diff
-   manager-legacy/
-   staff-operations/
-   tactics/
-   regulations/
-+  rivalry/
-   sync/
-   audit/
-```
-
-### Patch 4: §1.x sub-section update (if ADR-0052 / ADR-0054 are also
-proposed at apply-time)
-
-Cross-reference the parallel drafts. Rivalry does not depend on
-ADR-0052 or ADR-0054 acceptance:
-
-- People (ADR-0052): if ratified, Rivalry publishes tier read models
-  consumed by People for journalist / fan-rep persona attribution
-  (derby framing). Until ratified, persona derby framing is future-
-  scope.
-- Narrative (ADR-0054): if ratified, Narrative consumes
-  `IsDerbyFixture` + tier label + `DerbyContext` for pre/post-match
-  copy generation. Until ratified, derby media framing is future-
-  scope. ADR-0030 LLM-out-of-state determinism applies symmetrically.
 
 ## Supersedes
 

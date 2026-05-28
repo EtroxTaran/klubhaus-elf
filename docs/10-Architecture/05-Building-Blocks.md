@@ -7,7 +7,7 @@ updated: 2026-05-28
 
 # Building Blocks
 
-The application is a **modular monolith** with fifteen bounded contexts,
+The application is a **modular monolith** with sixteen bounded contexts,
 primarily implemented in TypeScript. Each context owns its domain logic, state
 machine(s), storage isolation, and contracts (commands / queries / domain
 events). The match engine is deliberately behind a runtime-neutral port so it
@@ -60,6 +60,39 @@ publishes `SetPieceCoachReadinessUpdated` for routine-quality
 multipliers. Cross-save preset sharing stays scoped to the FMX-33
 Community Overlay Pipeline territory per
 [[09-Decisions/ADR-0016-community-dataset-overrides]].
+
+FMX-34 / FMX-40 ratified the sixteenth bounded context, **Rivalry
+System**, on 2026-05-28 via
+[[09-Decisions/ADR-0057-rivalry-system-context]]. It owns the
+rivalry-edge graph (club pair × sub-score history × threshold-tier
+FSM), the 5-sub-score emergent formula (regional + historical +
+sporting + fan-incident + transfer-tension, per
+[[../50-Game-Design/rivalry-system]]), deterministic per-season decay
+and threshold-tier classification (None / Mild / Strong / High /
+Volatile). Consumes Match `MatchResolved` for sporting sub-score,
+Transfer `TransferCompleted` for transfer-tension sub-score, Fan
+Ecology `FanIncidentLogged` for fan-incident sub-score, Club
+Management `ClubFoundedInLocation` / `ClubRelocatedToLocation` for
+regional base, and League Orchestration `SeasonAdvanced` for the
+deterministic per-season decay batch. Publishes `RivalryScore` /
+`IsDerbyFixture` / `TopRivalsForClub` / `RivalryIncidentTimeline` /
+`RivalryGraphSnapshot` / `DerbyContext` read models +
+`RivalryTierTransitioned` events to Fan Ecology (atmosphere
+multiplier), Matchday-Event-Engine via Club Management (Pyro-incident
+trigger), Watch Party (auto-proposal), Manager & Legacy (future
+"derby specialist" archetype signal), Notification (derby copy),
+Match (derby classification marker at `lineup_locked`), Tactics
+(future derby-specific opposition awareness) and Regulations &
+Compliance (downstream sanction chain via matchday-event-engine).
+Consumers treat rivalry as external fact and apply their own policies
+in their own contexts - **canonical Vaughn Vernon scoring-context
+pattern** analogous to credit rating + customer affinity +
+recommendation + supplier-score real-world DDD precedents (CQRS read
+models + Process Manager / Saga + Domain Service). Cross-save rivalry
+pre-population (era profiles + community overlays) flows through
+ADR-0051 Manager & Legacy legacy seeds + ADR-0016 community overlay
+surface per FMX-33 Community Overlay Pipeline; Rivalry BC owns schema
++ semantic validation per Vernon.
 
 FMX-30 / FMX-39 ratified the fifteenth bounded context, **Regulations &
 Compliance**, on 2026-05-28 via
