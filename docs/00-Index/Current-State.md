@@ -125,6 +125,51 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
+> **FMX-29 Youth Academy ownership dossier (2026-05-28).** Annual
+> youth academy lifecycle - intake calendar + cohort generation +
+> intake event (3-12 prospects, HoY opinion, promote / loan / release)
+> + promotion gate (age ≥17 + two youth weeks + post-season transfer
+> window) + per-season investment slider (Junior Coaching / Youth
+> Recruitment / Youth Facilities per GD-0007) + productivity score
+> (EPPP-analogue audit) + home-grown share counter (UEFA HGP-analogue)
+> - is specified in binding GD-0007 + youth-academy-and-development +
+> squad-and-club-structure §1 + §4 but the 16-context map has no
+> owner. ADR-0053 Staff Operations owns Head of Youth + U-team-coach
+> roles as quality multipliers; ADR-0018 splits weekly dev across
+> Training + Squad & Player; the academy lifecycle itself is unowned.
+> Draft [[../60-Research/youth-academy-bounded-context-2026-05-28]]
+> and [[../60-Research/raw-perplexity/raw-youth-academy-2026-05-28]]
+> consolidate genre (FM annual March intake + HoYD + Junior Coaching
+> / Youth Recruitment + Development Centre; EA FC rolling youth
+> scouting + Youth Academy screen; OOTP amateur draft + Minor League
+> System; FIFA Manager Youth Center; Anstoss Nachwuchsabteilung;
+> medium-high), DDD (Vernon canonical long-running-process + Process
+> Manager / Saga + Snapshot pattern; university-admissions cohort +
+> clinical-trial subject cohort + apprenticeship as textbook own-BC
+> analogues; high) and real-world 2023-2026 (Premier League EPPP
+> Categories 1-4 + DFB-NLZ licensing + UEFA Home-Grown Player rule
+> 8/25 with 4 club-trained 15-21 + Academy Director reporting to
+> Sporting Director, exemplified by La Masia + De Toekomst + City
+> Football Academy + Hohenbuschei + Liefering; medium-high) evidence.
+> New draft
+> [[../10-Architecture/09-Decisions/ADR-0060-youth-academy-context]]
+> proposes **Youth Academy as an additional bounded context** (Option
+> C) with four options + §Recommendation + §Map patch proposal +
+> proposed FSM diagram in
+> [[../10-Architecture/state-machines/youth-academy]]. **Six-of-six
+> DDD criteria fire** (equal to FMX-33 wave high; stronger than
+> FMX-26/28/30/34). Sequencing is order-tolerant: if FMX-29 ratifies
+> before ADR-0059 (Community Overlay Pipeline), Youth Academy is the
+> 17th bounded context; if ADR-0059 lands first, Youth Academy is the
+> 18th. IP-clean rule terminology contained in one BC per GD-0015 +
+> ADR-0007; `risk:legal` label set. Public contract direction names
+> `YouthIntakeScheduled`, `YouthCohortPublished` (Snapshot to Squad &
+> Player), `AcademyInvestmentExpensePosted` (consumed by Club
+> Management ledger per ADR-0050), `HomeGrownShareRecalculated`
+> (consumed by Regulations ACL per ADR-0056 Tax-catalog pattern),
+> `YouthPipelineQualityUpdated` (consumed by Manager & Legacy
+> archetype hook per GD-0019). Awaiting Nico ratify decision.
+
 > **FMX-33 Community Overlay Pipeline ownership dossier (2026-05-28).**
 > Community pack import pipeline - manifest parsing + schema
 > validation + conflict resolution + IP-safety gate + multi-BC
