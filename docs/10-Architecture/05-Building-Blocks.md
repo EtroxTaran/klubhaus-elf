@@ -7,7 +7,7 @@ updated: 2026-05-28
 
 # Building Blocks
 
-The application is a **modular monolith** with twelve bounded contexts,
+The application is a **modular monolith** with thirteen bounded contexts,
 primarily implemented in TypeScript. Each context owns its domain logic, state
 machine(s), storage isolation, and contracts (commands / queries / domain
 events). The match engine is deliberately behind a runtime-neutral port so it
@@ -28,6 +28,20 @@ remain post-MVP per
 [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]].
 Determinism rule: a running save must never read mutable cross-save meta
 after creation.
+
+FMX-26 / FMX-36 ratified the thirteenth bounded context, **Staff
+Operations**, on 2026-05-28 via
+[[09-Decisions/ADR-0053-staff-operations-context]]. It owns staff
+contract lifecycle (offered → signed → active → expiring →
+expired/terminated/renewed), role assignment (slot + free-role overflow),
+pipeline-coverage read model spanning Recruitment / Development /
+Training / Medical / Tactics / Match-Day, wage schedule and
+specialisation metadata. Wage events emit to Club Management's ledger via
+the canonical Customer-Supplier + Anti-Corruption Layer pattern
+([[09-Decisions/ADR-0050-club-economy-accounting-ledger]]); no ADR-0050
+amendment is required. Consumes People queries (ADR-0052, draft) for
+actor identity when ratified; until then sources identity from own staff
+roster.
 
 > Authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]]. Full map at
 > [[bounded-context-map]].

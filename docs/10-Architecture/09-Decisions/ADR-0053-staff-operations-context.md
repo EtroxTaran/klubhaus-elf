@@ -1,11 +1,11 @@
 ---
 title: ADR-0053 Staff Operations Context
-status: proposed
-tags: [adr, architecture, ddd, staff, backroom, lifecycle, fmx-26]
+status: accepted
+tags: [adr, architecture, ddd, staff, backroom, lifecycle, fmx-26, fmx-36, accepted]
 created: 2026-05-28
 updated: 2026-05-28
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -29,11 +29,30 @@ related:
 
 ## Status
 
-proposed
+accepted
 
 ## Date
 
-2026-05-28
+2026-05-28 (proposed) · 2026-05-28 (FMX-36 accepted by Nico, Option B)
+
+## Ratification
+
+Nico accepted Option B on 2026-05-28 after reviewing the FMX-26 dossier
+(PR [#87](https://github.com/EtroxTaran/football-manager-x/pull/87)).
+The §Recommendation below names Option B; the synthesis at
+[[../../60-Research/staff-backroom-bounded-context-2026-05-28]] documents
+the three converging arguments (DDD canonical split criteria, real-world
+Sporting Director precedent, ops → ledger pattern textbook).
+
+Application:
+
+- Status flipped `proposed` → `accepted`; `binding: false` → `true`.
+- The §Map patch proposal that lived in this ADR was applied to
+  [[../bounded-context-map]] in the same PR (FMX-36). Staff Operations
+  is now the **thirteenth bounded context** in the live map.
+- The §Map patch proposal section is removed from this ADR as a result -
+  its content lives in the map. Future amendments to the map go through
+  normal ADR supersession ([[../../90-Meta/vault-governance]]).
 
 ## Context
 
@@ -321,106 +340,6 @@ Negative:
 - Staff-skill effect activation (GD-0020 post-MVP) needs follow-up
   ADRs / GDDRs naming which consuming contexts apply which effects.
 - Pipeline-coverage read-model schema is provisional until playtest.
-
-## Map patch proposal
-
-Applies only on Nico's acceptance. Until then, the bounded-context map
-keeps the twelve-context baseline (eleven ratified 2026-05-16 + Manager
-& Legacy ratified 2026-05-28 via FMX-25 + FMX-35).
-
-### Patch 1: §1 Twelve bounded contexts table
-
-Rename section header to "Thirteen bounded contexts" and insert one new
-row after Manager & Legacy:
-
-```diff
- | **Manager & Legacy** | Manager profile, run analysis snapshots, manager style signals, archetype candidates, legacy unlock catalog, prestige profile | Post-run reflection projections, legacy/prestige configuration for new-save creation, archetype candidate board |
-+| **Staff Operations** | Staff contract lifecycle, role assignment, pipeline coverage, wage schedule, specialisation metadata | Staff roster + role-assignment board projections, pipeline-coverage snapshots, wage events for the Club Management ledger |
- | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
-```
-
-Add an explanatory paragraph after the table noting the ADR-0052
-boundary: "Staff Operations consumes People (ADR-0052) actor identity
-and skill-profile snapshots via query; it does not own persona, OCEAN
-substrate or the relationship graph. Wage events flow to Club
-Management per ADR-0050."
-
-### Patch 2: §2 Context map Mermaid diagram
-
-Insert the `Staff` node and its edges:
-
-```diff
-     ML["Manager & Legacy"]
-+    Staff["Staff Operations"]
-     Offline["Offline Sync"]
-     Audit["Audit & Security"]
-
-     Identity --> League
-     Identity --> Club
-     Identity --> ML
-+    Identity --> Staff
-     League --> Match
-     League --> Transfer
-     League --> WP
-     League --> ML
-     Club --> Squad
-     Club --> Match
-     Club --> ML
-+    Club --> Staff
-     Squad --> Training
-     Squad --> Transfer
-     Squad --> Match
-     Squad --> ML
-+    Staff --> Training
-+    Staff --> Transfer
-+    Staff --> Squad
-+    Staff --> Match
-+    Staff --> Club
-+    Staff --> Notif
-     Training --> Squad
-     Training --> ML
-     Transfer --> ML
-     Match --> WP
-     Match --> Notif
-     Match --> ML
-     Transfer --> Notif
-     League --> Notif
-     ML --> Notif
-```
-
-(`Staff` publishes effect-readiness, role-assignment and wage events to
-Training, Transfer, Squad, Match, Club Management and Notification.
-Club Management publishes weekly tick + insolvency stage signals back
-to Staff; Identity publishes user-level authorisation context for
-hiring commands.)
-
-### Patch 3: §4 Source mapping
-
-Add `staff-operations/` to the per-context folder list, after
-`manager-legacy/`:
-
-```diff
-   manager-legacy/
-+  staff-operations/
-   sync/
-   audit/
-```
-
-### Patch 4: §1.1 People (FMX-23) annotation
-
-Update §1.1 "Proposed FMX-23 context" to reflect that ADR-0053 (if
-ratified) sits downstream of ADR-0052 People and consumes its actor
-identity queries:
-
-```diff
- If ADR-0052 is accepted, People owns personhood and skill/profile
- projections while Squad & Player, Training, Match, Club Management,
- Transfer, Notification and Manager & Legacy keep their own authoritative
- facts.
-+If both ADR-0052 and ADR-0053 are accepted, Staff Operations consumes
-+People queries for actor identity and skill-profile snapshots; it does
-+not own personhood.
-```
 
 ## Supersedes
 

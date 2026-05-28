@@ -29,7 +29,7 @@ context's contract is designed as if it could be running on its own
 process / pod / region. Splitting a context out later is a deployment
 change, not a refactor.
 
-## 1. Twelve bounded contexts
+## 1. Thirteen bounded contexts
 
 | Context | Core elements | Exposed outputs |
 |---|---|---|
@@ -43,6 +43,7 @@ change, not a refactor.
 | **Watch Party** | Polls, scheduling, broadcast, conference | Watch-party status, event timeline |
 | **Notification** | Durable notifications, inbox, preferences, subscriptions, schedules, delivery attempts, provider adapters, push preparation, digests | User-facing message projections, unread counters, delivery/audit events |
 | **Manager & Legacy** | Manager profile, run analysis snapshots, manager style signals, archetype candidates, legacy unlock catalog, prestige profile | Post-run reflection projections, legacy/prestige configuration for new-save creation, archetype candidate board |
+| **Staff Operations** | Staff contract lifecycle, role assignment, pipeline coverage, wage schedule, specialisation metadata | Staff roster + role-assignment board projections, pipeline-coverage snapshots, wage events for the Club Management ledger |
 | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
 | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
 
@@ -53,11 +54,22 @@ policy over the existing contexts.
 
 Manager & Legacy was ratified 2026-05-28 via
 [[09-Decisions/ADR-0051-manager-and-legacy-context]] (FMX-25 dossier +
-FMX-35 apply) and is now the twelfth context. It owns cross-run manager
+FMX-35 apply) and is the twelfth context. It owns cross-run manager
 identity, run analysis, style signals, archetype candidates, legacy setup
 and prestige selection. League, Club Management, Match, Transfer, Squad &
 Player and Training provide facts through public contracts; Notification
 renders Manager & Legacy projections.
+
+Staff Operations was ratified 2026-05-28 via
+[[09-Decisions/ADR-0053-staff-operations-context]] (FMX-26 dossier +
+FMX-36 apply) and is the thirteenth context. It owns staff contract
+lifecycle, role assignment, pipeline coverage, wage schedule and
+specialisation metadata. Staff Operations consumes People (ADR-0052,
+draft) actor identity and skill-profile snapshots via query; it does not
+own persona, OCEAN substrate or the relationship graph. Wage events flow
+to Club Management per [[09-Decisions/ADR-0050-club-economy-accounting-ledger]];
+effect-readiness and role-assignment events are consumed by Training,
+Transfer, Squad & Player and Match.
 
 ### 1.1 Proposed FMX-23 context
 
@@ -66,11 +78,17 @@ additional bounded context, **People / Persona & Skills**, for actor personas,
 the relationship graph, player/staff skill profiles and deterministic dialogue
 context cards.
 
-This is not accepted yet. Until ratified, the existing eleven-context map
-remains the baseline and implementation may only preserve planning hooks. If
-ADR-0052 is accepted, People owns personhood and skill/profile projections while
-Squad & Player, Training, Match, Club Management, Transfer, Notification and
-Manager & Legacy keep their own authoritative facts.
+This is not accepted yet. Until ratified, the existing thirteen-context
+map (eleven ratified 2026-05-16 + Manager & Legacy ratified 2026-05-28 +
+Staff Operations ratified 2026-05-28) remains the baseline and
+implementation may only preserve planning hooks. If ADR-0052 is accepted,
+People owns personhood and skill/profile projections while Squad &
+Player, Training, Match, Club Management, Transfer, Notification, Manager
+& Legacy and Staff Operations keep their own authoritative facts. Staff
+Operations (accepted via ADR-0053) consumes People queries for actor
+identity and skill-profile snapshots when ADR-0052 is accepted; until
+then, Staff Operations sources identity from its own staff roster and
+treats skill-profile data as stub.
 
 ## 2. Context map (high-level)
 
@@ -86,12 +104,14 @@ flowchart TB
     WP["Watch Party"]
     Notif["Notification"]
     ML["Manager & Legacy"]
+    Staff["Staff Operations"]
     Offline["Offline Sync"]
     Audit["Audit & Security"]
 
     Identity --> League
     Identity --> Club
     Identity --> ML
+    Identity --> Staff
     League --> Match
     League --> Transfer
     League --> WP
@@ -99,10 +119,17 @@ flowchart TB
     Club --> Squad
     Club --> Match
     Club --> ML
+    Club --> Staff
     Squad --> Training
     Squad --> Transfer
     Squad --> Match
     Squad --> ML
+    Staff --> Training
+    Staff --> Transfer
+    Staff --> Squad
+    Staff --> Match
+    Staff --> Club
+    Staff --> Notif
     Training --> Squad
     Training --> ML
     Transfer --> ML
@@ -194,6 +221,7 @@ src/domain/
   watch-party/
   notifications/
   manager-legacy/
+  staff-operations/
   sync/
   audit/
 ```
