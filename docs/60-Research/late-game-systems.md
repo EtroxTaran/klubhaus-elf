@@ -4,9 +4,9 @@ status: current
 binding: true
 tags: [research, late-game, endgame, continental, national-team, bundestrainer, ownership, takeover, hall-of-fame, legacy, longevity]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-28
 type: research
-related: [[ai-manager-behaviour]], [[data-generators]], [[onboarding-strategy]], [[tactics-and-formations]], [[manager-archetype-roguelite-2026-05-27]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/mode-manage-a-club-career]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[../50-Game-Design/regulations-and-compliance]], [[../50-Game-Design/economy-system]], [[../50-Game-Design/club-dna-and-governance]], [[anstoss-series-deep-dive]]
+related: [[ai-manager-behaviour]], [[data-generators]], [[onboarding-strategy]], [[tactics-and-formations]], [[manager-archetype-roguelite-2026-05-27]], [[cup-and-competition-revenue-profiles-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/mode-manage-a-club-career]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[../50-Game-Design/regulations-and-compliance]], [[../50-Game-Design/economy-system]], [[../50-Game-Design/club-dna-and-governance]], [[anstoss-series-deep-dive]]
 ---
 
 # Late-Game Systems — Continental Cups, Bundestrainer, Ownership, Hall of Fame, Legacy
@@ -275,7 +275,9 @@ Scheduler enforces:
 ### 3.6 Prize money structure
 
 Internally "credits"; UI labelled "€" but abstracted. All amounts
-illustrative.
+illustrative. FMX-45 moves final continental-cup revenue calibration into
+[[cup-and-competition-revenue-profiles-2026-05-28]]: this section is a legacy
+scale sketch, not a final `CompetitionRevenueProfile`.
 
 **EFC Champions Cup**:
 

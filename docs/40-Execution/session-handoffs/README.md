@@ -42,6 +42,17 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-28-fmx-45-cup-competition-revenue]] - FMX-45 cup and
+  competition revenue dossier: Germany/England/Spain/Italy/France plus
+  continental source patterns; IP-clean `CompetitionRevenueProfile` preset
+  families; prize, gate-share, ticket allocation, media/facility, travel,
+  security, neutral venue, sponsor/merch and fixture-congestion fields;
+  hard cash vs receivable vs future EV separation; elimination-shock read model
+  instead of hidden cash loss. Refined draft GD-0022, Economy System,
+  Regulations, Club Economy MVP pillar, ADR-0050, ADR-0058 and
+  commercial-contract surfaces. Awaiting Nico decisions on final calibration,
+  Quick budget reliance on cup EV, replay activation and season-ticket cup
+  material-right liabilities.
 - [[2026-05-28-fmx-44-commercial-contract-lifecycle]] - FMX-44 commercial
   contract lifecycle and breach dossier: shared `CommercialContract` shell for
   sponsorship, catering, merchandise, hospitality, supplier and

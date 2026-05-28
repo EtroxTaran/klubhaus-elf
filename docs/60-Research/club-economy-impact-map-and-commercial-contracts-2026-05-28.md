@@ -1,7 +1,7 @@
 ---
 title: Club Economy Impact Map and Commercial Contracts - Research Synthesis 2026-05-28
 status: draft
-tags: [research, economy, finance, commercial, tickets, fans, contracts, fmx-41]
+tags: [research, economy, finance, commercial, tickets, fans, contracts, cup, competition, fmx-41, fmx-45]
 created: 2026-05-28
 updated: 2026-05-28
 type: research
@@ -10,6 +10,7 @@ linear: FMX-41
 sourceType: external
 related:
   - [[club-economy-blueprint-2026-05-27]]
+  - [[cup-and-competition-revenue-profiles-2026-05-28]]
   - [[fan-culture-segmentation-research]]
   - [[regulations-and-pyramids-research]]
   - [[../50-Game-Design/GD-0008-finance-economy]]
@@ -172,6 +173,9 @@ Cup games are full economy events, not bonus popups:
 
 The competition profile, not Club Management code, defines prize cadence, gate
 sharing, replay rules, neutral venue rules and media payments.
+FMX-45 expands this into [[cup-and-competition-revenue-profiles-2026-05-28]]:
+cash, receivables and future EV are separate, and elimination removes forecast
+upside rather than posting a hidden cash loss.
 
 ### 5. Catering
 

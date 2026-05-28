@@ -210,6 +210,23 @@ before any promotion.
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   and [[../30-Implementation/club-economy-commercial-contracts]].
 
+## Cup and Competition Revenue Profiles (2026-05-28)
+
+- [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]] —
+  FMX-45 synthesis for domestic cup and continental competition revenue. Covers
+  Germany, England, Spain, Italy, France and UEFA-style patterns; translates
+  prize ladders, gate sharing, ticket allocation, media/facility fees,
+  travel/security, neutral finals, solidarity, fixture congestion and
+  expected-value / elimination-shock logic into IP-clean
+  `CompetitionRevenueProfile` templates. Refines draft
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+  [[../50-Game-Design/economy-system]],
+  [[../50-Game-Design/regulations-and-compliance]],
+  [[../20-Features/feature-club-economy-mvp-pillar]],
+  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
+  [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+  and [[../30-Implementation/club-economy-commercial-contracts]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 - [[../60-Research/ai-narrative-runtime-integration]] — synthesized follow-up

@@ -77,7 +77,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 - [ADR-0043 Notification and Messaging Platform](../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform.md)
-- [ADR-0050 Club Economy Accounting Ledger](../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger.md) - draft Club Management finance ledger, accounting projections, country economy profiles and staged insolvency boundary.
+- [ADR-0050 Club Economy Accounting Ledger](../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger.md) - draft Club Management finance ledger, accounting projections, country economy profiles, cup cash/receivable/forecast events and staged insolvency boundary.
 - [ADR-0058 Club Economy Commercial Impact Boundary](../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary.md) - draft Club Management commercial sub-aggregate for ticketing, contracts, cup settlement, fan events and Investor cash grants.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft proposed Manager & Legacy context for manager identity, run analysis, archetype candidates and prestige/legacy selection.
 - [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft proposed People context for actor personas, relationship graph, player/staff skill profiles and deterministic context cards.
@@ -88,13 +88,14 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md)
 - [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md)
 - [Club Economy Accounting Ledger](../30-Implementation/club-economy-accounting-ledger.md) - draft implementation contracts for weekly ledger entries, economy read models and insolvency state.
-- [Club Economy Commercial Contracts](../30-Implementation/club-economy-commercial-contracts.md) - draft contracts for fan demand, ticketing, commercial contracts, cup revenue, fan events and Investor grants.
+- [Club Economy Commercial Contracts](../30-Implementation/club-economy-commercial-contracts.md) - draft contracts for fan demand, ticketing, commercial contracts, cup/competition revenue, fan events and Investor grants.
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
 - [Match Engine Runtime Strategy](../60-Research/match-engine-runtime-strategy.md)
 - [Swappable Spatial-Event Match Engine Research](../60-Research/swappable-spatial-event-match-engine-2026-05-27.md)
 - [Manager Archetype Roguelite Research](../60-Research/manager-archetype-roguelite-2026-05-27.md)
 - [Club Economy Impact Map and Commercial Contracts](../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28.md)
+- [Cup and Competition Revenue Profiles](../60-Research/cup-and-competition-revenue-profiles-2026-05-28.md)
 - [EOS Player, Staff, Skills and Personas Research](../60-Research/eos-player-staff-skills-and-personas-2026-05-28.md)
 - [AI Narration Testing and Framework Research](../60-Research/ai-narration-testing-framework-2026-05-28.md)
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)

@@ -40,6 +40,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+- [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 
 ## Fans + brand
 

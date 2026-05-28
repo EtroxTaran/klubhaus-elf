@@ -1,7 +1,7 @@
 ---
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
-tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44]
+tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45]
 created: 2026-05-28
 updated: 2026-05-28
 type: implementation
@@ -20,6 +20,7 @@ related:
   - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+  - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[club-economy-accounting-ledger]]
   - [[../10-Architecture/bounded-context-map]]
 ---
@@ -34,7 +35,10 @@ elasticity, season-ticket lifecycle accounting, commercial contracts, cup
 settlement, fan-event campaigns and Investor entitlement inputs. FMX-44 adds
 the shared commercial contract lifecycle, obligation, exclusivity and breach
 surface for sponsorship, catering, merchandise, hospitality, suppliers and
-venue activations.
+venue activations. FMX-45 refines `CompetitionRevenueProfile` and cup
+settlement so domestic and continental fixtures can produce hard cash,
+receivables, future EV and elimination shock without copying real-world
+licensed competitions.
 
 This is draft planning only. It becomes implementation authority only after the
 relevant GDDR/ADR path is approved.
@@ -308,15 +312,55 @@ Owned by League/Competition data, consumed by Club Management.
 
 | Field | Meaning |
 |---|---|
-| `competitionId` | Competition identity. |
+| `competitionId` | Fictional competition identity. |
 | `countryProfileId` | Country/profile scope. |
-| `fixtureKind` | League, cup, playoff, final. |
-| `prizeSchedule` | Round/table/progression prize bands. |
-| `gateSharingRule` | Home keeps, split, neutral venue, profile-specific. |
-| `mediaPaymentCadence` | Lump, periodic, merit/facility style. |
-| `solidarityOrParachuteRule` | Profile-defined support. |
-| `travelObligationRule` | Away/neutral travel expectations. |
-| `settlementDelay` | Cash timing and receivable risk. |
+| `competitionKind` | domesticLeague, domesticCup, leagueCup, superCup, playoff, continentalCup, friendly or finalSeries. |
+| `fixtureSettlementKind` | homeTie, awayTie, twoLegTie, replay, neutralSemi, neutralFinal or leaguePhase. |
+| `roundBand` | qualifying, early, middle, late, semi, final, leaguePhase, knockoutPlayoff or knockout. |
+| `prestigeBand` | local, national, major, continentalLower, continentalMajor or global. |
+| `prizeSchedule` | Participation, win/progression, finalist/winner, league-phase, ranking and solidarity bands. |
+| `gateSharingRule` | Gross/net basis, deductions, home/away/organizer shares, levy/pool and expense caps. |
+| `ticketAllocationRule` | Away quota, finalist allocation, neutral venue split, sponsor allocation and protected supporter quotas. |
+| `mediaPaymentRule` | Central pool, facility/live-selection fee, value/legacy pillar, payment cadence and settlement delay. |
+| `settlementDelay` | Cash timing and receivable risk by revenue family. |
+| `recognitionPolicy` | When revenue is receivable, cash, accrued or forecast-only. |
+| `travelCostRule` | Away, neutral, final and continental travel/accommodation expectations. |
+| `securityCostRule` | Home/neutral security basis, rivalry/risk modifiers and regulation constraints. |
+| `neutralVenueRule` | Host body, allocation split, central hospitality, club share and final travel. |
+| `replayOrTwoLegRule` | Replay, extra-time, penalties and two-leg rules by round. |
+| `matchdayCommercialModifiers` | Catering, merchandise, hospitality and fan-zone demand bands. |
+| `sponsorBonusTriggerRules` | Round reached, televised tie, final, upset, trophy or continental qualification. |
+| `fixtureCongestionRule` | Rest-day pressure, travel load, training opportunity cost, fatigue/injury hooks. |
+| `forecastPolicy` | Expected future-round value, progression probability source, confidence band and elimination shock. |
+| `solidarityRule` | Amateur/lower-tier, qualifying, non-participant or parachute-style support. |
+| `communityOverridePolicy` | Which fields community packs may override and required provenance. |
+| `ipCleanSourceProfile` | Fictional template family used as inspiration, never a licensed clone. |
+| `provenance` | Source facts, research note, profile version and effective season. |
+
+Draft IP-clean preset families:
+
+| Family | Use |
+|---|---|
+| `central-round-domestic-cup` | DFB-like central round payments, no replay, neutral final and home-tie windfalls. |
+| `shared-gate-underdog-cup` | FA-like prize ladder, net-gate sharing, live facility fees and replay/neutral rules. |
+| `federation-hosting-cup` | RFEF-like lower-tier hosting, federation aid and late two-leg option. |
+| `seeded-elite-entry-cup` | Lega-like elite later entry, central media and compact late-round value. |
+| `solidarity-amateur-cup` | FFF-like amateur aid, travel/referee support and grassroots cup identity. |
+| `continental-value-pillar-cup` | UEFA-like equal share, performance, ranking/progression, value/legacy and solidarity pools. |
+
+Settlement events that must be representable:
+
+- `CompetitionPrizeReceivableRecorded`
+- `CompetitionPrizeCashReceived`
+- `CupGateShareSettled`
+- `CupMediaFacilityFeeSettled`
+- `CupTravelCostPosted`
+- `CupSecurityCostPosted`
+- `CupSponsorBonusTriggered`
+- `CupMerchandiseSpikePosted`
+- `CupNeutralVenueAllocationSettled`
+- `CupForecastUpdated`
+- `CupEliminationForecastShockRecorded`
 
 ### `FanEventCampaign`
 
@@ -393,7 +437,7 @@ sequenceDiagram
 | `CommercialExclusivityGraph` | Category/territory/asset overlaps and blocked/narrowed offers. |
 | `MatchdayCommercialSettlement` | Per-fixture revenue/cost breakdown. |
 | `FanEventCampaignBoard` | Fan-service event choices and results. |
-| `CupRunRevenueForecast` | Expected cup cash/prize/travel and elimination shock. |
+| `CupRunRevenueForecast` | Secured cup cash, earned receivables, future-round EV, payment timing and elimination shock. |
 | `InvestorGrantAudit` | Entitlement and ledger provenance for SP cash grants. |
 
 ## Test scenarios before implementation
@@ -416,7 +460,20 @@ sequenceDiagram
   future renewal risk.
 - Opaque price jumps reduce ticketing trust and future renewal even if current
   revenue rises.
-- Cup progression adds expected fixture/prize/sponsor revenue and cost.
+- Home cup tie posts ticket, catering, merchandise, security, prize/media and
+  sponsor effects separately.
+- Away cup tie posts travel/accommodation plus profile-defined gate share or
+  facility fee.
+- Neutral final uses allocation, central prize/media, travel and sponsor rules
+  instead of normal home-gate assumptions.
+- Cup progression adds actual next-fixture settlement and recalculates future
+  round EV.
+- Early cup exit removes future EV and records a forecast shock without posting
+  a cash loss unless an earned receivable is reversed.
+- Continental league-phase settlement separates equal share, performance,
+  ranking/progression, value/legacy and solidarity pools.
+- Fixture congestion creates forecast risk hooks without moving fatigue/injury
+  ownership out of sporting systems.
 - Own catering has higher upside and cost risk than concession.
 - Merch campaign can profit or fail through inventory/fulfilment assumptions.
 - A sponsor exclusivity conflict is blocked, narrowed by carve-out or value
@@ -443,6 +500,7 @@ sequenceDiagram
 - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+- [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[club-economy-accounting-ledger]]

@@ -3,7 +3,7 @@ title: Implementation Map
 status: current
 tags: [implementation, meta]
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-05-28
 type: map
 binding: false
 related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]]
@@ -32,6 +32,13 @@ unless re-opened by a current issue or accepted ADR.
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
   - draft FMX-3 implementation framework for Narrative contracts, eval corpus,
   safety/privacy tests, provider fallback, Playtest First and CI tiers.
+- [Club Economy Accounting Ledger](../30-Implementation/club-economy-accounting-ledger.md)
+  - draft FMX-13 ledger contracts for weekly finance facts, accounting
+  projections and staged insolvency.
+- [Club Economy Commercial Contracts](../30-Implementation/club-economy-commercial-contracts.md)
+  - draft FMX-41/FMX-45 commercial contracts for fan demand, ticketing,
+  season-ticket accounting, cup/competition revenue profiles, fan events and
+  Investor grants.
 - [SurrealDB Integration](../30-Implementation/surrealdb-integration.md) - superseded historical substrate note; do not implement.
 - [Deployment Dokploy](../30-Implementation/deployment-dokploy.md)
 - [Observability Runbook](../30-Implementation/observability-runbook.md)

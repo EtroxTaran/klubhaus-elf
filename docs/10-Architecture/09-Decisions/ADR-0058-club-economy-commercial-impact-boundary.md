@@ -1,7 +1,7 @@
 ---
 title: ADR-0058 Club Economy Commercial Impact Boundary
 status: draft
-tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, fmx-41, fmx-44]
+tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, cup, competition, fmx-41, fmx-44, fmx-45]
 created: 2026-05-28
 updated: 2026-05-28
 type: adr
@@ -20,6 +20,7 @@ related:
   - [[../../50-Game-Design/economy-system]]
   - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+  - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../../30-Implementation/club-economy-accounting-ledger]]
   - [[../../30-Implementation/club-economy-commercial-contracts]]
   - [[../bounded-context-map]]
@@ -44,6 +45,11 @@ fan-service campaigns and the singleplayer Investor cash purchase. FMX-44
 refines the commercial contract side into a shared lifecycle and breach model
 for sponsorship, catering, merchandise, hospitality, supplier and
 venue-activation deals.
+
+FMX-45 refines the cup and competition side: League/Competition and
+Regulations own `CompetitionRevenueProfile` rule data, while Club Management
+owns the settlement that turns those profiles into cash, receivable, cost,
+sponsor, merchandise and forecast-shock facts.
 
 The current bounded-context map already gives Club Management finance,
 infrastructure, sponsors, board and fans. However, the richer commercial model
@@ -94,7 +100,8 @@ platform/payment code provides Investor entitlement confirmation.
   ledger truth, avoids cross-context money writes, and still gives Commercial a
   named internal model and contract language. FMX-44's shared
   `CommercialContract` lifecycle stays inside this sub-aggregate and avoids a
-  premature new context.
+  premature new context. FMX-45's competition revenue profiles stay external
+  input facts; Club Management consumes them without owning competition rules.
 - **Cons:** Club Management grows broader; requires discipline and explicit
   public contracts so it does not become a generic "everything club" context.
 - **Fit:** Recommended draft for MVP planning.
@@ -170,11 +177,23 @@ Draft Club-owned events/read models:
 - `CommercialContractTerminated`
 - `FanEventCampaignScheduled`
 - `MatchdayCommercialSettlementPosted`
+- `CompetitionPrizeReceivableRecorded`
+- `CompetitionPrizeCashReceived`
+- `CupGateShareSettled`
+- `CupMediaFacilityFeeSettled`
+- `CupTravelCostPosted`
+- `CupSecurityCostPosted`
+- `CupSponsorBonusTriggered`
+- `CupMerchandiseSpikePosted`
+- `CupNeutralVenueAllocationSettled`
+- `CupForecastUpdated`
+- `CupEliminationForecastShockRecorded`
 - `InvestorCashGrantPosted`
 - `CommercialForecastSnapshot`
 - `CommercialContractPortfolio`
 - `CommercialContractRegister`
 - `CommercialExclusivityGraph`
+- `CupRunRevenueForecast`
 
 ## FMX-44 acceptance-ready amendment
 
@@ -198,6 +217,24 @@ contract-level constraints:
 Extraction trigger: supersede this ADR and re-evaluate Option B only if
 commercial operations later needs independent permissions, staffing,
 simulation cadence, team ownership or service deployment.
+
+## FMX-45 competition revenue amendment
+
+If Nico accepts Option C, the architecture direction should also include these
+cup and competition constraints:
+
+- `CompetitionRevenueProfile` is external rule/profile data owned by
+  League/Competition and Regulations, not by Club Management.
+- Club Management owns cup commercial settlement and ledger posting after it
+  receives the profile plus fixture, fan, rivalry, stadium and match facts.
+- Competition cash, receivables, costs and non-spendable future EV stay
+  separated in read models and ledger projections.
+- Elimination shock is a forecast/read-model event, not a cash loss, unless an
+  already-earned receivable must be reversed.
+- Fixture congestion remains a profile hook; fatigue/injury outcomes stay with
+  the sporting systems.
+- Default profile templates must be IP-clean and data-driven, with real-world
+  sources used only for calibration ranges.
 
 ## Rationale
 
@@ -238,6 +275,7 @@ None.
 
 - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 - [[../../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+- [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../../50-Game-Design/GD-0008-finance-economy]]
 - [[../../50-Game-Design/economy-system]]
