@@ -3,7 +3,7 @@ title: Game Design Hub
 status: current
 tags: [game-design, index]
 created: 2026-05-15
-updated: 2026-05-22
+updated: 2026-05-28
 type: index
 binding: false
 related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]]
@@ -32,7 +32,7 @@ research transcripts in [[../60-Research/raw-perplexity/README]].
 Implement gameplay only from `approved` game-design records. This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0019`) — the decision-record chain from research into
+- **GDDRs** (`GD-0001`...`GD-0020`) — the decision-record chain from research into
   ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -88,6 +88,7 @@ active work.
 | [[GD-0017-mvp-scope-and-mode-sequencing]] | MVP scope & mode sequencing | draft | ADR-0020 |
 | [[GD-0018-ai-narrative-personas-and-dialogue]] | AI narrative personas, intent dialogue & Runtime-LLM evaluation | draft | ADR-0030 |
 | [[GD-0019-manager-archetype-roguelite-progression]] | Manager archetype roguelite progression; FMX-16 hooks, playtest-tunable taxonomy and prestige counterweight | draft | ADR-0051 |
+| [[GD-0020-eos-player-skills-personas-and-people]] | EOS player skills/perks, staff target skills, personas and People-context planning | draft | ADR-0052 |
 
 ## Core loop
 
@@ -113,6 +114,8 @@ active work.
 - [[transfer-market-and-contracts]] - AI club selling, valuation bands, clause packages, player terms and tiered market simulation.
 - [[youth-academy-and-development]] - CA/PA range, age curves, loan rules.
 - [[training-load-and-medicine]] - training blocks, load model, medical pipeline.
+- [[GD-0020-eos-player-skills-personas-and-people]] - draft EOS player
+  skills/perks, staff target skills and persona/relationship model.
 
 ## Tactics and match
 
@@ -142,6 +145,8 @@ active work.
 
 - [[GD-0013-narrative-inbox]] - inbox-as-feed, narrative events and press/newspaper baseline.
 - [[GD-0018-ai-narrative-personas-and-dialogue]] - draft persona, intent-dialogue and Runtime-LLM evaluation layer.
+- [[GD-0020-eos-player-skills-personas-and-people]] - draft People/persona
+  context cards and relationship constellations that feed dialogue.
 
 ## UX
 

@@ -4,9 +4,9 @@ status: current
 binding: true
 tags: [research, data-generation, worldgen, names, crests, players, clubs, determinism, ip-safe]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-28
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]], [[determinism-and-replay]], [[performance-budgets]], [[surrealdb-schema-patterns]], [[../50-Game-Design/scouting-and-recruitment]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/club-dna-and-governance]]
+related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[determinism-and-replay]], [[performance-budgets]], [[surrealdb-schema-patterns]], [[eos-player-staff-skills-and-personas-2026-05-28]], [[../50-Game-Design/scouting-and-recruitment]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/club-dna-and-governance]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 ---
 
 # Data Generators — Names, Crests, Cities, Clubs, Players
@@ -840,6 +840,13 @@ surfaced via:
 - Coaching staff "personality" reads.
 - Observable behaviour over time (poor consistency = scout note
   "inconsistent performer").
+
+FMX-23 adds draft player skills/perks and People/persona planning in
+[[eos-player-staff-skills-and-personas-2026-05-28]] and
+[[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]. That layer
+does **not** expand this attribute schema: skills/perks are generated and
+balanced as separate sparse specializations, and internal OCEAN persona values
+are a People-context substrate, not additional player attributes.
 
 ### 10.3 Physical metadata
 

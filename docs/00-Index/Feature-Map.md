@@ -3,7 +3,7 @@ title: Feature Map
 status: current
 tags: [feature, meta]
 created: 2026-05-16
-updated: 2026-05-22
+updated: 2026-05-28
 type: map
 binding: false
 related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-V1]]
@@ -25,6 +25,8 @@ documentation gaps.
 
 - [[../20-Features/feature-roguelite-mvp-first-playable]] — Create-a-Club Roguelite first playable, including FMX-16 manager-archetype run-analysis hooks.
 - [[../20-Features/feature-club-economy-mvp-pillar]] — draft FMX-13 Club Economy pillar for weekly ledger, accounting and staged insolvency.
+- [[../20-Features/feature-eos-player-skills-and-people-context]] — draft
+  FMX-23 player-skill/perk and People/persona slice for MVP planning.
 
 ## Seed Epics
 
@@ -47,6 +49,7 @@ documentation gaps.
 - [[../20-Features/feature-venue-operations]]
 - [[../20-Features/feature-player-lifecycle]]
 - [[../20-Features/feature-training-medicine]]
+- [[../20-Features/feature-eos-player-skills-and-people-context]]
 - [[../20-Features/feature-systemic-event-director]]
 - [[../20-Features/feature-sponsorship-portfolio]]
 - [[../20-Features/feature-fan-ecology-ui]]

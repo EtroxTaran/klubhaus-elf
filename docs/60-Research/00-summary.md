@@ -2,7 +2,7 @@
 title: Research Summary
 status: current
 tags: [research, summary]
-updated: 2026-05-27
+updated: 2026-05-28
 ---
 
 # Research Summary
@@ -214,6 +214,27 @@ Current draft direction:
 
 This feeds draft [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 and draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
+
+## EOS Player, Staff, Skills and Personas (2026-05-28)
+
+[[eos-player-staff-skills-and-personas-2026-05-28]] promotes the player/staff
+values raw report plus FMX-23 follow-up research into a draft path for clearer
+player individuality, active player skills/perks, staff-skill target modeling,
+mixed OCEAN + football-domain personas and relationship constellations.
+
+Current draft direction:
+
+- Keep the **16+4+8** player attribute basis from [[data-generators]].
+- Add player skills/perks as separate visible specializations, not attributes.
+- Plan staff skills as a target model, with MVP activation focused on players.
+- Use OCEAN only as an internal substrate; expose football-domain labels.
+- Propose a People / Persona & Skills context for actors, relationships,
+  skill profiles and deterministic dialogue context cards.
+
+This feeds draft
+[[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], draft
+[[../20-Features/feature-eos-player-skills-and-people-context]] and draft
+[[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]].
 
 ## Swappable Spatial-Event Match Engine (2026-05-27)
 

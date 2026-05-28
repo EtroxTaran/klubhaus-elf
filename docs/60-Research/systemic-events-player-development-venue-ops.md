@@ -4,9 +4,9 @@ status: current
 binding: true
 tags: [research, player-development, injuries, events, narrative, venue, training]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-05-28
 type: research
-related: [[data-generators]], [[determinism-and-replay]], [[narrative-content-pipeline]], [[ai-manager-behaviour]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/training-load-and-medicine]], [[../50-Game-Design/stadium-and-campus]], [[../50-Game-Design/matchday-event-engine]]
+related: [[data-generators]], [[determinism-and-replay]], [[narrative-content-pipeline]], [[ai-manager-behaviour]], [[eos-player-staff-skills-and-personas-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/training-load-and-medicine]], [[../50-Game-Design/stadium-and-campus]], [[../50-Game-Design/matchday-event-engine]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 ---
 
 # Systemic Events, Player Development, Injuries and Venue Operations
@@ -319,5 +319,9 @@ Standard / Expert progressive disclosure.
   match engine and training loop exist.
 - Personality schema expansion: only after the 8 hidden meta attributes are
   proven insufficient in playtests.
+- Player skill/perk acquisition: FMX-23 moves this to draft
+  [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] and
+  proposed [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]];
+  it must stay separate from attribute expansion.
 - Venue depth: decide after first stadium builder prototype whether Expert
   tier needs manual booking or only policy presets.

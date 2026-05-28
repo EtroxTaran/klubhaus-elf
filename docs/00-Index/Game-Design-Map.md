@@ -3,7 +3,7 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-05-28
 type: map
 binding: false
 related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]]
@@ -47,6 +47,8 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../50-Game-Design/transfer-market-and-contracts]]
 - [[../50-Game-Design/youth-academy-and-development]]
 - [[../50-Game-Design/training-load-and-medicine]]
+- [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] -
+  draft EOS player skills/perks, staff-skill target and People/persona model.
 
 ## Tactics + match
 
@@ -77,6 +79,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 
 - [[../50-Game-Design/GD-0013-narrative-inbox]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+- [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 - [[../60-Research/ai-narrative-runtime-integration]]
 
 ## UX
@@ -96,6 +99,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/systems-design-synthesis]]
 - [[../60-Research/club-economy-blueprint-2026-05-27]]
 - [[../60-Research/manager-archetype-roguelite-2026-05-27]]
+- [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
 - [[../60-Research/mode-design-research]]
 - [[../60-Research/async-multiplayer-research]]
 - [[../60-Research/fan-culture-segmentation-research]]

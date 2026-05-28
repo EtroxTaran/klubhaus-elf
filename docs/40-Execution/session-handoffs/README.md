@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-05-27
+updated: 2026-05-28
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -42,6 +42,9 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-28-fmx-23-eos-people-skills-personas]] - anchored the EOS
+  Player/Staff Values report and follow-up research into research synthesis,
+  draft GD-0020, feature spec, draft ADR-0052 and map/current-state links.
 - [[2026-05-27-fmx-16-manager-archetype-roguelite]] - anchored the
   Manager-Archetype Roguelite raw report into research synthesis, draft GDDR,
   draft ADR-0051, MVP hook updates and index/current-state links.
