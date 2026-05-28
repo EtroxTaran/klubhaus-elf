@@ -42,6 +42,11 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-28-fmx-25-manager-legacy-ratification]] - FMX-25 ratification
+  pass for ADR-0051 Manager & Legacy Context. Three Perplexity queries
+  (roguelite genre, DDD, football-sim precedent), synthesis recommending
+  Accept (Option A), ADR-0051 expanded with three concrete options + map
+  patch proposal. Awaiting Nico decision.
 - [[2026-05-28-fmx-23-eos-people-skills-personas]] - anchored the EOS
   Player/Staff Values report and follow-up research into research synthesis,
   draft GD-0020, feature spec, draft ADR-0052 and map/current-state links.

@@ -1,9 +1,9 @@
 ---
 title: ADR-0051 Manager and Legacy Context
 status: draft
-tags: [adr, architecture, ddd, manager, legacy, roguelite, fmx-16]
+tags: [adr, architecture, ddd, manager, legacy, roguelite, fmx-16, fmx-25]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-05-28
 type: adr
 binding: false
 supersedes:
@@ -12,9 +12,12 @@ related:
   - [[ADR-0019-modular-monolith-ddd]]
   - [[ADR-0020-hybrid-online-mvp-offline-ready]]
   - [[ADR-0027-postgres-data-model]]
+  - [[ADR-0052-people-persona-and-skills-context]]
   - [[../../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]]
   - [[../../50-Game-Design/mode-create-a-club-roguelite]]
   - [[../../60-Research/manager-archetype-roguelite-2026-05-27]]
+  - [[../../60-Research/manager-legacy-bounded-context-2026-05-28]]
+  - [[../../60-Research/raw-perplexity/raw-manager-legacy-ratification-2026-05-28]]
   - [[../../60-Research/late-game-systems]]
 ---
 
@@ -26,7 +29,20 @@ draft
 
 ## Date
 
-2026-05-27
+2026-05-27 (proposed) · 2026-05-28 (FMX-25 ratification pass added)
+
+## FMX-25 Ratification Pass (2026-05-28)
+
+FMX-25 added the expanded §Options considered, the §Recommendation and the
+§Map patch proposal in this ADR, based on the synthesis in
+[[../../60-Research/manager-legacy-bounded-context-2026-05-28]] and the raw
+research in
+[[../../60-Research/raw-perplexity/raw-manager-legacy-ratification-2026-05-28]].
+
+Status remains `draft` and `binding: false`. The ratification pass produced
+a clear recommendation - Nico's Accept / Reject / Defer call is the final
+gate. On acceptance, flip `status` to `accepted`, `binding` to `true` and
+apply the map patch.
 
 ## Context
 
@@ -43,14 +59,81 @@ turn orchestration/account ownership into game-design ownership.
 
 ## Options Considered
 
-- **League Orchestration owns it.** Reuses run lifecycle state, but overloads
-  League with manager identity, style analysis and cross-save progression.
-- **Identity + League split.** Stores global manager profile near the user
-  account and run analysis near League, but creates a weak domain language and
-  coupling between account state and game state.
-- **New Manager & Legacy context.** Adds a proposed twelfth context that owns
-  manager identity, run analysis, style signals, archetype candidates, legacy
-  setup and prestige selection.
+Expanded by the FMX-25 ratification pass.
+
+### Option A - Accept as proposed (new Manager & Legacy context)
+
+Add **Manager & Legacy** as the 12th bounded context with the public-contract
+surface drafted below and the determinism rule in §Determinism and storage
+rules. MVP scope stays hooks-only (RunAnalysisSnapshot, ManagerStyleSignals,
+PostRunReflection). Full perks, legacy carry selection and prestige ladders
+remain post-MVP.
+
+- **Coupling:** clean. League, Club Management, Match, Transfer, Squad &
+  Player and Training publish facts; Manager & Legacy subscribes via the
+  contracts in §Draft consumed facts. No cross-context table joins.
+- **Test isolation:** strong. Manager & Legacy owns its own storage; tests
+  use deterministic event fixtures.
+- **Service extractability:** matches ADR-0019 §5 - extraction is a
+  deployment change because all contracts are JSON-serialisable.
+- **Data sovereignty:** explicit. Cross-save meta in platform schema; per-save
+  run snapshots in `save_<uuidv7hex>` schema (ADR-0027). Running saves never
+  read mutable cross-save meta.
+- **Trade-off:** adds one bounded context to the map (and a corresponding
+  storage boundary). Worth it because the alternative folds progression rules
+  into contexts whose ubiquitous language does not include them.
+
+### Option B - Defer with scope adjustment
+
+Accept the context boundary, but narrow MVP to a single read model
+(`PostRunReflection`) plus the `RogueliteRunEnded` consumer. Other commands,
+events and read models stay post-MVP. Status of the ADR moves to `accepted`
+on the boundary but keeps a §MVP scope addendum.
+
+- **Coupling:** same as Option A.
+- **Trade-off:** the structural decision (own context, snapshot-at-creation
+  rule, consumed-fact list) is independent of which commands ship in MVP.
+  GD-0019 already constrains MVP to hooks-only - the deferral is downstream
+  of the GDDR, not the ADR. The deferral does not unlock more flexibility
+  than acceptance already provides.
+
+### Option C - Reject and fold into existing contexts
+
+Manager identity → Identity. Run analysis → League Orchestration.
+Legacy/prestige → post-MVP feature without a domain owner. ADR-0052's "if
+ADR-0051 is ratified" references collapse into stub queries against a
+post-MVP placeholder.
+
+- **Coupling:** weak. Identity owns "user, sessions, roles, device state" -
+  archetype detection and style-signal synthesis are foreign domain language
+  there. League owns "season, week, match-day, mode, pause, quorum" - run
+  analysis fits awkwardly inside scheduling responsibilities.
+- **Trade-off:** ADR-0019 §Decision explicitly warns against overloading
+  contexts. Folding requires same-beat ADR-0052 patch to drop conditional
+  references. Industry pattern (Hades, Slay the Spire, Risk of Rain 2,
+  Darkest Dungeon II, Against the Storm; surveyed in
+  [[../../60-Research/manager-legacy-bounded-context-2026-05-28]]) all carve
+  cross-run meta into its own module.
+
+## Recommendation
+
+**Accept (Option A).** Three converging lines of evidence:
+
+1. **Industry pattern** - Five independent successful roguelites implement
+   the same snapshot-at-creation rule that ADR-0051 §Determinism encodes.
+2. **DDD correctness** - Cross-run meta with its own domain rules belongs in
+   its own bounded context per ADR-0019 §Decision; folding it overloads
+   Identity or League.
+3. **Downstream commitments** - ADR-0052 (merged 2026-05-28) references
+   ADR-0051 ratification at three named points. Rejecting requires an
+   ADR-0052 patch in the same beat; deferring leaves the contract partially
+   undefined.
+
+The five scope-bounding open questions from GD-0019 §Open (taxonomy, signal
+schema, post-run UI depth, prestige ladder shape, snapshot timing) are
+**not ratification blockers**. They resolve by playtest tuning and follow-up
+GDDR updates; none requires a different context owner. Decision-gate-ready
+per [[../../60-Research/manager-legacy-bounded-context-2026-05-28]].
 
 ## Decision
 
@@ -144,16 +227,105 @@ Negative:
 - Requires event summaries from multiple contexts before full implementation.
 - Needs careful UI wording so MVP hooks do not overpromise final perks.
 
+## Map patch proposal
+
+Applies only on Nico's acceptance of this ADR. Until then,
+`bounded-context-map.md` keeps the eleven-context baseline ratified
+2026-05-16.
+
+### Patch 1: §1 Eleven bounded contexts table
+
+Rename section header to "Twelve bounded contexts" and insert one new row
+between Notification and Offline Sync:
+
+```diff
+ | **Watch Party** | Polls, scheduling, broadcast, conference | Watch-party status, event timeline |
+ | **Notification** | Durable notifications, inbox, preferences, subscriptions, schedules, delivery attempts, provider adapters, push preparation, digests | User-facing message projections, unread counters, delivery/audit events |
++| **Manager & Legacy** | Manager profile, run analysis snapshots, manager style signals, archetype candidates, legacy unlock catalog, prestige profile | Post-run reflection projections, legacy/prestige configuration for new-save creation, archetype candidate board |
+ | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
+ | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
+```
+
+Then remove §1.1 "Proposed FMX-16 context" entirely - it is superseded by
+this acceptance.
+
+### Patch 2: §2 Context map Mermaid diagram
+
+Insert the `ML` node and its edges:
+
+```diff
+     Notif["Notification"]
++    ML["Manager & Legacy"]
+     Offline["Offline Sync"]
+     Audit["Audit & Security"]
+
+     Identity --> League
+     Identity --> Club
++    Identity --> ML
+     League --> Match
+     League --> Transfer
+     League --> WP
++    League --> ML
+     Club --> Squad
+     Club --> Match
++    Club --> ML
+     Squad --> Training
+     Squad --> Transfer
+     Squad --> Match
++    Squad --> ML
+     Training --> Squad
++    Training --> ML
++    Transfer --> ML
+     Match --> WP
+     Match --> Notif
++    Match --> ML
+     Transfer --> Notif
+     League --> Notif
++    ML --> Notif
+```
+
+(`ML` consumes facts from League, Club Management, Match, Transfer, Squad &
+Player and Training per §Draft consumed facts; it publishes facts that
+Notification renders.)
+
+### Patch 3: §4 Source mapping
+
+Add `manager-legacy/` to the per-context folder list:
+
+```diff
+   notifications/
++  manager-legacy/
+   sync/
+   audit/
+```
+
+### Patch 4: §7 Future-scope notes
+
+Update the AI-manager paragraph if the ratified context absorbs any
+cross-run manager AI behaviour; otherwise leave §7 unchanged. Decision
+deferred to acceptance commit.
+
 ## Supersedes
 
 None
 
 ## Related Docs
 
-- [[../../60-Research/manager-archetype-roguelite-2026-05-27]]
-- [[../../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]]
-- [[../../50-Game-Design/mode-create-a-club-roguelite]]
-- [[../../20-Features/feature-roguelite-mvp-first-playable]]
-- [[ADR-0019-modular-monolith-ddd]]
-- [[ADR-0020-hybrid-online-mvp-offline-ready]]
-- [[ADR-0027-postgres-data-model]]
+- [[../../60-Research/manager-legacy-bounded-context-2026-05-28]] - FMX-25
+  ratification synthesis (this ADR's decision basis).
+- [[../../60-Research/raw-perplexity/raw-manager-legacy-ratification-2026-05-28]] -
+  FMX-25 raw research (industry + DDD + football-sim survey).
+- [[../../60-Research/manager-archetype-roguelite-2026-05-27]] - FMX-16 prior
+  synthesis.
+- [[../../60-Research/late-game-systems]] - already-binding determinism rule
+  and 3-tier perk ladder context.
+- [[../../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]] -
+  pillar binding regardless of ratification.
+- [[../../50-Game-Design/mode-create-a-club-roguelite]] - mode that consumes
+  Manager & Legacy contracts.
+- [[../../20-Features/feature-roguelite-mvp-first-playable]] - MVP hooks.
+- [[ADR-0019-modular-monolith-ddd]] - bounded-context discipline.
+- [[ADR-0020-hybrid-online-mvp-offline-ready]] - MVP scope envelope.
+- [[ADR-0027-postgres-data-model]] - per-save schema convention.
+- [[ADR-0052-people-persona-and-skills-context]] - adjacent draft context;
+  three references depend on ADR-0051 ratification.

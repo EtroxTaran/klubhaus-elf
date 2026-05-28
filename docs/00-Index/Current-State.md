@@ -66,6 +66,18 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
+> **FMX-25 Manager & Legacy ratification pass (2026-05-28).** Ratification
+> dossier for ADR-0051 ready for Nico Accept / Reject / Defer call. Draft
+> [[../60-Research/manager-legacy-bounded-context-2026-05-28]] and
+> [[../60-Research/raw-perplexity/raw-manager-legacy-ratification-2026-05-28]]
+> consolidate roguelite (Hades, Slay the Spire, Risk of Rain 2, Darkest
+> Dungeon II, Against the Storm), DDD and football-sim (FM, EA FC Career
+> 24/25/26, OOTP, FIFA Manager, Anstoss) evidence. ADR-0051 expanded with
+> three concrete Options (Accept / Defer with scope adjustment / Reject and
+> fold), §Recommendation = Accept (Option A) and §Map patch proposal.
+> [[../10-Architecture/bounded-context-map]] itself not yet modified;
+> patch applies only on acceptance.
+
 > **FMX-23 EOS People / Skills / Personas (2026-05-28).** Nico directed that
 > the Player & Staff Values report should be anchored without expanding the
 > 16+4+8 attribute schema. Draft
