@@ -2,26 +2,32 @@
 title: Building Blocks
 status: current
 tags: [architecture]
-updated: 2026-05-27
+updated: 2026-05-28
 ---
 
 # Building Blocks
 
-The application is a **modular monolith** with eleven bounded contexts,
+The application is a **modular monolith** with twelve bounded contexts,
 primarily implemented in TypeScript. Each context owns its domain logic, state
 machine(s), storage isolation, and contracts (commands / queries / domain
 events). The match engine is deliberately behind a runtime-neutral port so it
 can move to Rust without changing caller contracts.
 
-FMX-13 adds a second load-bearing domain port: Club Management owns the
+FMX-13 adds a load-bearing domain port: Club Management owns the
 accounting ledger and economy read models behind
 [[09-Decisions/ADR-0050-club-economy-accounting-ledger]]. Finance remains inside
 Club Management, not a shared utility package.
 
-FMX-16 proposes a future twelfth bounded context, **Manager & Legacy**, behind
-[[09-Decisions/ADR-0051-manager-and-legacy-context]]. Until that ADR is accepted,
-it is planning context only: the MVP should preserve run-analysis hooks without
-shipping the full meta-progression system.
+FMX-25 / FMX-35 ratified the twelfth bounded context, **Manager & Legacy**,
+on 2026-05-28 via [[09-Decisions/ADR-0051-manager-and-legacy-context]].
+It owns cross-run manager identity, run analysis snapshots, style signals,
+archetype candidates, legacy unlock catalog and prestige profile. The MVP
+scope stays hooks-only (RunAnalysisSnapshot, ManagerStyleSignals,
+PostRunReflection); full perks, legacy carry selection and prestige ladders
+remain post-MVP per
+[[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]].
+Determinism rule: a running save must never read mutable cross-save meta
+after creation.
 
 > Authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]]. Full map at
 > [[bounded-context-map]].

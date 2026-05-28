@@ -1,11 +1,11 @@
 ---
 title: ADR-0051 Manager and Legacy Context
-status: draft
-tags: [adr, architecture, ddd, manager, legacy, roguelite, fmx-16, fmx-25]
+status: accepted
+tags: [adr, architecture, ddd, manager, legacy, roguelite, fmx-16, fmx-25, fmx-35, accepted]
 created: 2026-05-27
 updated: 2026-05-28
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -25,24 +25,32 @@ related:
 
 ## Status
 
-draft
+accepted
 
 ## Date
 
-2026-05-27 (proposed) · 2026-05-28 (FMX-25 ratification pass added)
+2026-05-27 (proposed) · 2026-05-28 (FMX-25 ratification pass added) ·
+2026-05-28 (FMX-35 accepted by Nico, Option A)
 
-## FMX-25 Ratification Pass (2026-05-28)
+## Ratification
 
-FMX-25 added the expanded §Options considered, the §Recommendation and the
-§Map patch proposal in this ADR, based on the synthesis in
-[[../../60-Research/manager-legacy-bounded-context-2026-05-28]] and the raw
-research in
-[[../../60-Research/raw-perplexity/raw-manager-legacy-ratification-2026-05-28]].
+Nico accepted Option A on 2026-05-28 after reviewing the FMX-25 dossier
+(PR [#85](https://github.com/EtroxTaran/football-manager-x/pull/85), merged
+as commit `7a4563e`). The §Recommendation below names Option A; the
+synthesis at
+[[../../60-Research/manager-legacy-bounded-context-2026-05-28]] documents
+the three converging arguments (industry pattern, DDD correctness, ADR-0052
+downstream commitments).
 
-Status remains `draft` and `binding: false`. The ratification pass produced
-a clear recommendation - Nico's Accept / Reject / Defer call is the final
-gate. On acceptance, flip `status` to `accepted`, `binding` to `true` and
-apply the map patch.
+Application:
+
+- Status flipped `draft` → `accepted`; `binding: false` → `true`.
+- The §Map patch proposal that lived in this ADR was applied to
+  [[../bounded-context-map]] in the same PR (FMX-35). Manager & Legacy is
+  now the **twelfth bounded context** in the live map.
+- The §Map patch proposal section is removed from this ADR as a result -
+  its content lives in the map. Future amendments to the map go through
+  normal ADR supersession ([[../../90-Meta/vault-governance]]).
 
 ## Context
 
@@ -226,84 +234,6 @@ Negative:
 - Adds one proposed bounded context to the map if accepted.
 - Requires event summaries from multiple contexts before full implementation.
 - Needs careful UI wording so MVP hooks do not overpromise final perks.
-
-## Map patch proposal
-
-Applies only on Nico's acceptance of this ADR. Until then,
-`bounded-context-map.md` keeps the eleven-context baseline ratified
-2026-05-16.
-
-### Patch 1: §1 Eleven bounded contexts table
-
-Rename section header to "Twelve bounded contexts" and insert one new row
-between Notification and Offline Sync:
-
-```diff
- | **Watch Party** | Polls, scheduling, broadcast, conference | Watch-party status, event timeline |
- | **Notification** | Durable notifications, inbox, preferences, subscriptions, schedules, delivery attempts, provider adapters, push preparation, digests | User-facing message projections, unread counters, delivery/audit events |
-+| **Manager & Legacy** | Manager profile, run analysis snapshots, manager style signals, archetype candidates, legacy unlock catalog, prestige profile | Post-run reflection projections, legacy/prestige configuration for new-save creation, archetype candidate board |
- | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
- | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
-```
-
-Then remove §1.1 "Proposed FMX-16 context" entirely - it is superseded by
-this acceptance.
-
-### Patch 2: §2 Context map Mermaid diagram
-
-Insert the `ML` node and its edges:
-
-```diff
-     Notif["Notification"]
-+    ML["Manager & Legacy"]
-     Offline["Offline Sync"]
-     Audit["Audit & Security"]
-
-     Identity --> League
-     Identity --> Club
-+    Identity --> ML
-     League --> Match
-     League --> Transfer
-     League --> WP
-+    League --> ML
-     Club --> Squad
-     Club --> Match
-+    Club --> ML
-     Squad --> Training
-     Squad --> Transfer
-     Squad --> Match
-+    Squad --> ML
-     Training --> Squad
-+    Training --> ML
-+    Transfer --> ML
-     Match --> WP
-     Match --> Notif
-+    Match --> ML
-     Transfer --> Notif
-     League --> Notif
-+    ML --> Notif
-```
-
-(`ML` consumes facts from League, Club Management, Match, Transfer, Squad &
-Player and Training per §Draft consumed facts; it publishes facts that
-Notification renders.)
-
-### Patch 3: §4 Source mapping
-
-Add `manager-legacy/` to the per-context folder list:
-
-```diff
-   notifications/
-+  manager-legacy/
-   sync/
-   audit/
-```
-
-### Patch 4: §7 Future-scope notes
-
-Update the AI-manager paragraph if the ratified context absorbs any
-cross-run manager AI behaviour; otherwise leave §7 unchanged. Decision
-deferred to acceptance commit.
 
 ## Supersedes
 

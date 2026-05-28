@@ -66,17 +66,18 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
-> **FMX-25 Manager & Legacy ratification pass (2026-05-28).** Ratification
-> dossier for ADR-0051 ready for Nico Accept / Reject / Defer call. Draft
-> [[../60-Research/manager-legacy-bounded-context-2026-05-28]] and
-> [[../60-Research/raw-perplexity/raw-manager-legacy-ratification-2026-05-28]]
-> consolidate roguelite (Hades, Slay the Spire, Risk of Rain 2, Darkest
-> Dungeon II, Against the Storm), DDD and football-sim (FM, EA FC Career
-> 24/25/26, OOTP, FIFA Manager, Anstoss) evidence. ADR-0051 expanded with
-> three concrete Options (Accept / Defer with scope adjustment / Reject and
-> fold), §Recommendation = Accept (Option A) and §Map patch proposal.
-> [[../10-Architecture/bounded-context-map]] itself not yet modified;
-> patch applies only on acceptance.
+> **FMX-25 + FMX-35 Manager & Legacy ratification applied (2026-05-28).**
+> Nico accepted Option A. [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
+> is now `status: accepted` and `binding: true`. Manager & Legacy is the
+> **twelfth bounded context** in [[../10-Architecture/bounded-context-map]]
+> (table row + Mermaid + `manager-legacy/` source folder). Decision basis:
+> [[../60-Research/manager-legacy-bounded-context-2026-05-28]]. MVP scope
+> stays hooks-only per
+> [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]];
+> taxonomy, signal schema, post-run UI depth, prestige ladder and snapshot
+> timing remain playtest-tunable future-scope. ADR-0052's three
+> conditional "if ADR-0051 is ratified" references are now unconditionally
+> satisfied.
 
 > **FMX-23 EOS People / Skills / Personas (2026-05-28).** Nico directed that
 > the Player & Staff Values report should be anchored without expanding the
@@ -306,10 +307,10 @@ The Wave 2 proposal layer is no longer an active backlog list. Items that remain
 draft/proposed are classified future-scope or optional cleanup by
 [[Documentation-V1]]. Highlights:
 
-- DDD modular monolith with 11 bounded contexts
-  ([[../10-Architecture/bounded-context-map]]) is the historical baseline
-  through ADR-0019; FMX-16 proposes Manager & Legacy as a draft twelfth context
-  via [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]].
+- DDD modular monolith with 12 bounded contexts
+  ([[../10-Architecture/bounded-context-map]]); ADR-0019 set the original
+  eleven-context modular monolith; ADR-0051 ratified Manager & Legacy as the
+  twelfth context on 2026-05-28 (FMX-25 + FMX-35).
 - Server-authoritative multiplayer with command-only clients is binding through
   ADR-0011 and current multiplayer game-design notes.
 - Both async cadence models, switchable at season boundary.
