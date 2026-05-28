@@ -53,6 +53,34 @@ This is the **single** canonical handoff location. (An older
   pillar and commercial-contract surfaces; awaiting Nico decisions on
   share/discount ranges, Quick waitlist visibility, instalment risk, cup
   material-right depth and utilisation strictness.
+- [[2026-05-28-fmx-29-youth-academy]] - FMX-29 ownership dossier for
+  the annual youth academy lifecycle (intake calendar + cohort
+  generation + intake event + promotion gate + per-season investment
+  slider + productivity score + home-grown share counter) including
+  four coordinated FSMs (`AcademySeason` + `YouthCohort` +
+  `CohortMember` + `AcademyInvestmentLevel`). Three Perplexity queries
+  (genre FM annual March intake + HoYD + Junior Coaching + Youth
+  Recruitment + Development Centre + EA FC rolling youth scouting +
+  OOTP amateur draft + Minor League System + FIFA Manager Youth
+  Center + Anstoss Nachwuchsabteilung / DDD Vernon long-running-
+  process + Process Manager / Saga + Snapshot pattern with university-
+  admissions cohort + clinical-trial subject cohort + apprenticeship
+  textbook own-BC analogues / real-world Premier League EPPP
+  Categories 1-4 + DFB-NLZ + UEFA Home-Grown Player rule 8/25 + 4
+  club-trained 15-21 + Academy Director reporting to Sporting Director
+  + La Masia + De Toekomst + City Football Academy + Hohenbuschei +
+  Liefering exemplars + Brexit GBE + FIFA Article 19 + NCAA NIL),
+  synthesis recommending Option C (own Youth Academy bounded context).
+  Six-of-six DDD split criteria fire (equal to FMX-33 wave high).
+  **Strongest single argument**: real-world EPPP + DFB-NLZ + UEFA HGP
+  structurally separate audited organisational unit + Academy Director
+  reporting to Sporting Director, **and** every major football
+  management sim treats academy as structurally separate persistent
+  area. Draft ADR-0060 with four options + §Recommendation + §Map
+  patch proposal (order-tolerant - applies as 17th or 18th depending
+  on ADR-0059 ratification order). New state-machine note
+  `state-machines/youth-academy.md` with four coordinated FSMs.
+  `risk:legal` label set. Awaiting Nico decision.
 - [[2026-05-28-fmx-42-fan-demand-price-elasticity]] - FMX-42 demand and pricing
   dossier: segment-specific latent fan demand before capacity allocation,
   season-ticket renewal versus single-ticket curves, top-match surcharge and
