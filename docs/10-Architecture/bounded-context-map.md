@@ -29,7 +29,7 @@ context's contract is designed as if it could be running on its own
 process / pod / region. Splitting a context out later is a deployment
 change, not a refactor.
 
-## 1. Eleven bounded contexts
+## 1. Twelve bounded contexts
 
 | Context | Core elements | Exposed outputs |
 |---|---|---|
@@ -42,27 +42,24 @@ change, not a refactor.
 | **Match** | Line-up, tactic lock, simulation, results | Result, match events, replay stream |
 | **Watch Party** | Polls, scheduling, broadcast, conference | Watch-party status, event timeline |
 | **Notification** | Durable notifications, inbox, preferences, subscriptions, schedules, delivery attempts, provider adapters, push preparation, digests | User-facing message projections, unread counters, delivery/audit events |
+| **Manager & Legacy** | Manager profile, run analysis snapshots, manager style signals, archetype candidates, legacy unlock catalog, prestige profile | Post-run reflection projections, legacy/prestige configuration for new-save creation, archetype candidate board |
 | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
 | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
 
 Player lifecycle and systemic world events are specialised by
 [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]. They do not
-add a twelfth bounded context. The `WorldEventDirector` is an orchestration
+add a thirteenth bounded context. The `WorldEventDirector` is an orchestration
 policy over the existing contexts.
 
-### 1.1 Proposed FMX-16 context
+Manager & Legacy was ratified 2026-05-28 via
+[[09-Decisions/ADR-0051-manager-and-legacy-context]] (FMX-25 dossier +
+FMX-35 apply) and is now the twelfth context. It owns cross-run manager
+identity, run analysis, style signals, archetype candidates, legacy setup
+and prestige selection. League, Club Management, Match, Transfer, Squad &
+Player and Training provide facts through public contracts; Notification
+renders Manager & Legacy projections.
 
-[[09-Decisions/ADR-0051-manager-and-legacy-context]] proposes a twelfth bounded
-context, **Manager & Legacy**, for manager identity, run analysis, style
-signals, archetype candidates, legacy setup and prestige selection.
-
-This is not accepted yet. Until ratified, the existing eleven-context map
-remains the baseline and implementation may only preserve MVP hooks. If ADR-0051
-is accepted, Manager & Legacy becomes the owner of cross-run manager
-progression; League, Club Management, Match, Transfer, Squad & Player and
-Training provide facts through public contracts.
-
-### 1.2 Proposed FMX-23 context
+### 1.1 Proposed FMX-23 context
 
 [[09-Decisions/ADR-0052-people-persona-and-skills-context]] proposes an
 additional bounded context, **People / Persona & Skills**, for actor personas,
@@ -88,24 +85,33 @@ flowchart TB
     Match["Match"]
     WP["Watch Party"]
     Notif["Notification"]
+    ML["Manager & Legacy"]
     Offline["Offline Sync"]
     Audit["Audit & Security"]
 
     Identity --> League
     Identity --> Club
+    Identity --> ML
     League --> Match
     League --> Transfer
     League --> WP
+    League --> ML
     Club --> Squad
     Club --> Match
+    Club --> ML
     Squad --> Training
     Squad --> Transfer
     Squad --> Match
+    Squad --> ML
     Training --> Squad
+    Training --> ML
+    Transfer --> ML
     Match --> WP
     Match --> Notif
+    Match --> ML
     Transfer --> Notif
     League --> Notif
+    ML --> Notif
     Offline --> Identity
     Offline --> Club
     Offline --> Squad
@@ -187,6 +193,7 @@ src/domain/
   match/
   watch-party/
   notifications/
+  manager-legacy/
   sync/
   audit/
 ```

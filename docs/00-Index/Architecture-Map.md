@@ -32,7 +32,7 @@ future-scope or historical context.
 
 ## DDD and Modules
 
-- [[../10-Architecture/bounded-context-map]] - 11 bounded contexts, service-ready modular monolith; FMX-16 proposes Manager & Legacy and FMX-23 proposes People / Persona & Skills as draft additional contexts.
+- [[../10-Architecture/bounded-context-map]] - 12 bounded contexts, service-ready modular monolith; Manager & Legacy ratified 2026-05-28 (ADR-0051, FMX-25 + FMX-35); FMX-23 proposes People / Persona & Skills as a draft additional context.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
