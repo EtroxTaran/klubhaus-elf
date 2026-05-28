@@ -122,6 +122,29 @@ Docs-only repo — the gate is the vault validator:
 The code gate (Biome / typecheck / Vitest / Playwright / Lighthouse) returns when
 implementation is rebuilt.
 
+## UI Verification
+
+Browser automation for checking UI work — the docs-wiki site, the styleguide
+hub, the Babylon 3D scene, anything rendered. Type-checks and tests verify
+code, not feature behavior; drive the browser before claiming a UI change
+works. If you can't, say so explicitly instead of claiming success.
+
+- Use the project skill `.cursor/skills/playwright-cli/SKILL.md` (the same
+  skill is installed globally for Claude at `~/.claude/skills/playwright-cli/`
+  and Codex at `~/.codex/skills/playwright-cli/`, so all three agents share
+  the commands).
+- Binary: `/usr/local/bin/playwright-cli` (global, `@playwright/cli@0.1.13` —
+  experimental, pre-1.0 with alpha `playwright-core` deps; browsers
+  pre-installed under `~/.cache/ms-playwright/`).
+- Token-efficient loop: `open <url>` → `snapshot` (YAML element refs) →
+  interact (`click eN`, `fill eN "…"`, `press Enter`) → `snapshot` again →
+  `close`. Prefer `snapshot` over `screenshot`; reserve `screenshot` for
+  visual diffs Nico needs to see.
+- Sessions persist across commands; use `-s=<name>` to namespace parallel
+  runs and always `close` so the next agent doesn't inherit a stale browser.
+- This is the agent-driven CLI, not the `Playwright` test framework in the
+  intended stack — that returns when the app is rebuilt.
+
 ## Code Style
 
 - TypeScript strict; never `any` - use `unknown` + Zod narrowing.

@@ -1,0 +1,29 @@
+---
+description: Browser automation and UI verification via playwright-cli — use whenever a change affects the UI, before reporting work as done
+alwaysApply: true
+---
+# Playwright CLI — UI verification
+
+- Use the `playwright-cli` skill (`.cursor/skills/playwright-cli/SKILL.md`) any
+  time a change affects the rendered UI, the styleguide hub, the Babylon 3D
+  scene, or the docs-wiki site — type-checks and tests verify code, not
+  feature behavior. If you can't drive the browser, say so explicitly instead
+  of claiming the UI works.
+- The CLI is token-efficient: prefer `playwright-cli snapshot` (YAML element
+  refs) over `screenshot` for inspection; reserve `screenshot` for visual
+  diffs Nico needs to see.
+- Typical loop: `open <url>` → `snapshot` → interact (`click <ref>`,
+  `fill <ref> "…"`, `press Enter`) → `snapshot` again to confirm → `close`.
+- Sessions persist across commands (`-s=<name>` to namespace parallel runs);
+  always `close` (or `playwright-cli close -s=<name>`) when done so other
+  agents don't inherit a stale browser.
+- Binary: `/usr/local/bin/playwright-cli` (global, `@playwright/cli@0.1.13`,
+  experimental — pre-1.0 with alpha `playwright-core` deps). Browsers are
+  pre-installed under `~/.cache/ms-playwright/` and work despite the Ubuntu
+  26.04 ffmpeg incompat that breaks `playwright-cli install`'s
+  workspace-init path (ffmpeg is only needed for video recording).
+- Same skill is installed for Claude (`~/.claude/skills/playwright-cli/`) and
+  Codex (`~/.codex/skills/playwright-cli/`) so all three agents drive the
+  browser through the same commands.
+- Don't add new `npm`/`playwright` deps to the repo just to use this — the
+  CLI is global. The repo is still docs-only (research phase).
