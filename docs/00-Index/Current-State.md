@@ -66,28 +66,29 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
-> **FMX-30 Regulations & Compliance ownership dossier (2026-05-28).**
-> Regulations - FFP/PSR/SCR, work permits / GBE, home-grown quotas,
-> transfer windows, license-tier facility requirements, sanction
-> catalog - are designed in
-> [[../50-Game-Design/regulations-and-compliance]] (including a named
-> `LeagueRegulationService.check()` call surface) but the 14-context
-> map has no owner. Draft
-> [[../60-Research/regulations-compliance-bounded-context-2026-05-28]]
-> and [[../60-Research/raw-perplexity/raw-regulations-compliance-2026-05-28]]
-> consolidate genre (FM Advanced Rules editor + Test Rules validator
-> as closest direct precedent), DDD (Vernon canonical Tax-catalog
-> pattern with Open Host Service + Published Language + Anticorruption
-> Layer + Process Manager / Saga for multi-context eligibility), and
-> real-world 2024-2026 multi-regulator landscape (UEFA SCR 70% +
-> Premier League PSR £105m + La Liga cost control + Bundesliga
-> licensing + GBE post-Brexit + UEFA HG 3-years-15-to-21) evidence.
-> New draft [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]]
-> proposes **Regulations & Compliance as an additional bounded
-> context** (Option B) with four options + §Recommendation + §Map
-> patch proposal. IP-safety surface contained in one context per
-> GD-0015 + ADR-0007; `risk:legal` label set. Ratify decision pending;
-> map itself not yet modified.
+> **FMX-30 + FMX-39 Regulations & Compliance ratification applied
+> (2026-05-28).** Nico accepted Option B.
+> [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]]
+> is now `status: accepted` and `binding: true`. Regulations &
+> Compliance is the **fifteenth bounded context** in
+> [[../10-Architecture/bounded-context-map]] (table row + Mermaid +
+> `regulations/` source folder). Decision basis:
+> [[../60-Research/regulations-compliance-bounded-context-2026-05-28]].
+> Regulations & Compliance owns the versioned multi-regulator rule
+> catalog (UEFA-analogue + national league + national association per
+> regulator scope × competition × effective date), the transfer-window
+> FSM, the work-permit catalog, the sanction catalog and licence-tier
+> facility requirements. Stock catalogs in `packages/game-data`; per-
+> save snapshot copied at save creation per ADR-0051 determinism rule.
+> Multi-context eligibility chain runs as Vernon's Process Manager /
+> Saga in the consuming BC (Transfer for signings, Squad & Player for
+> registration, League Orchestration for promotion). Regulations owns
+> the rule; each consumer owns its enforcement via Anticorruption
+> Layer. IP-clean rule terminology hardline contained in one context
+> per GD-0015 + ADR-0007; `risk:legal` label set. Cross-save preset
+> sharing of community rule overrides remains FMX-33 Community Overlay
+> Pipeline territory (ADR-0016); Regulations BC owns schema +
+> semantic validation per Vernon.
 
 > **FMX-28 + FMX-37 Tactics ratification applied (2026-05-28).** Nico
 > accepted Option C. [[../10-Architecture/09-Decisions/ADR-0055-tactics-context]]
@@ -399,13 +400,14 @@ The Wave 2 proposal layer is no longer an active backlog list. Items that remain
 draft/proposed are classified future-scope or optional cleanup by
 [[Documentation-V1]]. Highlights:
 
-- DDD modular monolith with 14 bounded contexts
+- DDD modular monolith with 15 bounded contexts
   ([[../10-Architecture/bounded-context-map]]); ADR-0019 set the original
   eleven-context modular monolith; ADR-0051 ratified Manager & Legacy as
   the twelfth context on 2026-05-28 (FMX-25 + FMX-35); ADR-0053 ratified
   Staff Operations as the thirteenth context on 2026-05-28 (FMX-26 +
   FMX-36); ADR-0055 ratified Tactics as the fourteenth context on
-  2026-05-28 (FMX-28 + FMX-37).
+  2026-05-28 (FMX-28 + FMX-37); ADR-0056 ratified Regulations &
+  Compliance as the fifteenth context on 2026-05-28 (FMX-30 + FMX-39).
 - Server-authoritative multiplayer with command-only clients is binding through
   ADR-0011 and current multiplayer game-design notes.
 - Both async cadence models, switchable at season boundary.

@@ -29,7 +29,7 @@ context's contract is designed as if it could be running on its own
 process / pod / region. Splitting a context out later is a deployment
 change, not a refactor.
 
-## 1. Fourteen bounded contexts
+## 1. Fifteen bounded contexts
 
 | Context | Core elements | Exposed outputs |
 |---|---|---|
@@ -45,6 +45,7 @@ change, not a refactor.
 | **Manager & Legacy** | Manager profile, run analysis snapshots, manager style signals, archetype candidates, legacy unlock catalog, prestige profile | Post-run reflection projections, legacy/prestige configuration for new-save creation, archetype candidate board |
 | **Staff Operations** | Staff contract lifecycle, role assignment, pipeline coverage, wage schedule, specialisation metadata | Staff roster + role-assignment board projections, pipeline-coverage snapshots, wage events for the Club Management ledger |
 | **Tactics** | Tactic presets, set-piece routine variants, opposition templates, role/duty configurations, tactical-style signal aggregation | TacticSnapshot at lock-time, RoleProfileForPosition queries, OppositionTemplate lookups, SetPieceRoutineCatalog, TacticalIdentityFingerprint for Manager & Legacy |
+| **Regulations & Compliance** | Regulatory profiles per regulator + competition + tier (versioned by effective date), transfer-window FSM, work-permit catalog, sanction catalog, licence-tier facility requirements, community-pack rule-override validation policy | EligibilityForTransfer / SquadRegistrationCheck / LicenceTierCompliance / FfpRatioCheck queries, CurrentTransferWindow status, EffectiveRuleSet snapshot at save creation, sanction escalation chain |
 | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
 | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
 
@@ -71,6 +72,29 @@ own persona, OCEAN substrate or the relationship graph. Wage events flow
 to Club Management per [[09-Decisions/ADR-0050-club-economy-accounting-ledger]];
 effect-readiness and role-assignment events are consumed by Training,
 Transfer, Squad & Player and Match.
+
+Regulations & Compliance was ratified 2026-05-28 via
+[[09-Decisions/ADR-0056-regulations-compliance-context]] (FMX-30
+dossier + FMX-39 apply) and is the fifteenth context. It owns the
+versioned multi-regulator rule catalog (UEFA-analogue + national
+league analogue + national association analogue per regulator scope ×
+competition profile × effective date), the transfer-window FSM, the
+work-permit catalog, the sanction catalog and licence-tier facility
+requirements. Stock catalogs live in `packages/game-data` per
+ADR-0021/0027 conventions; per-save active rule set + community
+overrides are copied into the save snapshot at creation per ADR-0051
+determinism rule. Multi-context eligibility chains (transfer
+completion, squad registration, promotion compliance) run as Process
+Manager / Saga inside the BC owning the overall business process -
+Transfer for signings, Squad & Player for registration, League
+Orchestration for promotion. Regulations owns the rule; each consumer
+owns its enforcement via Anticorruption Layer per Vernon's canonical
+Tax-catalog pattern. IP-clean rule terminology hardline applies to the
+entire Regulations BC per [[../50-Game-Design/GD-0015-ip-clean-data]]
++ [[09-Decisions/ADR-0007-naming-schema]]. Cross-save preset sharing
+of community rule overrides flows through FMX-33 Community Overlay
+Pipeline per [[09-Decisions/ADR-0016-community-dataset-overrides]];
+Regulations BC owns schema + semantic validation per Vernon.
 
 Tactics was ratified 2026-05-28 via
 [[09-Decisions/ADR-0055-tactics-context]] (FMX-28 dossier + FMX-37
@@ -139,6 +163,7 @@ flowchart TB
     ML["Manager & Legacy"]
     Staff["Staff Operations"]
     Tactics["Tactics"]
+    Reg["Regulations & Compliance"]
     Offline["Offline Sync"]
     Audit["Audit & Security"]
 
@@ -165,15 +190,28 @@ flowchart TB
     Staff --> Club
     Staff --> Notif
     Staff --> Tactics
+    Staff --> Reg
     Identity --> Tactics
+    Identity --> Reg
     League --> Tactics
+    League --> Reg
     Squad --> Tactics
+    Squad --> Reg
+    Club --> Reg
     Match --> Tactics
+    Transfer --> Reg
     Tactics --> Match
     Tactics --> Training
     Tactics --> Transfer
     Tactics --> ML
     Tactics --> WP
+    Reg --> Transfer
+    Reg --> Squad
+    Reg --> Club
+    Reg --> League
+    Reg --> Staff
+    Reg --> Match
+    Reg --> Notif
     Training --> Squad
     Training --> ML
     Transfer --> ML
@@ -275,6 +313,7 @@ src/domain/
   manager-legacy/
   staff-operations/
   tactics/
+  regulations/
   sync/
   audit/
 ```
