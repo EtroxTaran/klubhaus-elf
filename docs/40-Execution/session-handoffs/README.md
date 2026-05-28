@@ -42,6 +42,17 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-28-fmx-43-season-ticket-lifecycle-accounting]] - FMX-43
+  season-ticket lifecycle and accounting dossier: renewal, relocation,
+  member-presale, waitlist, public-sale and in-season adjustment states;
+  group-level no-show / seat-release / transfer / compensation policies;
+  seat-class quotas including standing, seating, family, premium/suites and
+  accessibility; full accrual accounting through cash, receivables, deferred
+  revenue, match recognition and credit/refund liability pools. Refined draft
+  GD-0022, Economy System, Fan Ecology, Stadium/Campus, Club Economy MVP
+  pillar and commercial-contract surfaces; awaiting Nico decisions on
+  share/discount ranges, Quick waitlist visibility, instalment risk, cup
+  material-right depth and utilisation strictness.
 - [[2026-05-28-fmx-42-fan-demand-price-elasticity]] - FMX-42 demand and pricing
   dossier: segment-specific latent fan demand before capacity allocation,
   season-ticket renewal versus single-ticket curves, top-match surcharge and

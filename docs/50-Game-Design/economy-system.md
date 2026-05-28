@@ -1,7 +1,7 @@
 ---
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance, accounting, commercial, club-management, price-elasticity, fmx-13, fmx-41, fmx-42]
+tags: [game-design, economy, finance, accounting, commercial, club-management, price-elasticity, season-tickets, fmx-13, fmx-41, fmx-42, fmx-43]
 created: 2026-05-16
 updated: 2026-05-28
 type: game-design
@@ -14,6 +14,7 @@ related:
   - [[../60-Research/club-economy-blueprint-2026-05-27]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
+  - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -87,7 +88,7 @@ Important rule: **budget is permission, not cash**.
 
 | Source | Primary drivers | Timing |
 |---|---|---|
-| Ticketing | Segment latent demand, league, opponent, table, price, weather, fan loyalty, ticketing trust | Matchday / season ticket pre-sale |
+| Ticketing | Segment latent demand, league, opponent, table, price, weather, fan loyalty, ticketing trust, season-ticket campaign lifecycle | Matchday / season-ticket pre-sale cash, with accrual recognition as matches are played |
 | Catering | Attendance, dwell time, fan mix, risk policy | Matchday + venue events |
 | Hospitality | Corporate demand, premium capacity, sponsor portfolio | Matchday / contract |
 | Merchandise | Brand, stars, success, campaigns | Seasonal spikes |
@@ -221,7 +222,7 @@ still owns the money, but the causes come from contracts and public read models:
 
 | Cause | Source | Ledger effect |
 |---|---|---|
-| Season-ticket campaign | Ticketing policy + fan renewal forecast | Early cash, deferred revenue/accrual, reduced single-ticket inventory |
+| Season-ticket campaign | Ticketing policy + fan renewal forecast + stadium seat-class inventory | Early cash or receivables, deferred revenue/accrual, reduced single-ticket inventory |
 | Single-ticket sales | Fixture commercial profile + price policy | Matchday ticket cash and top-match surcharge effect |
 | Catering | Stadium throughput + catering contract | In-house revenue/COGS/staff or concession/rent/share income |
 | Merchandise | Fan demand + merch contract + star/cup/rivalry signals | Retail cash, royalty, inventory cost, campaign profit/loss |
@@ -235,13 +236,40 @@ by segment before capacity is allocated. Capacity pressure, ticketing trust,
 fixture attractiveness and season-ticket protection explain why a full stadium
 can still hide long-term commercial damage.
 
+FMX-43 refines the season-ticket layer: Club Management must distinguish cash
+receipt, internal instalment receivables, finance-partner fees, deferred
+revenue, match-by-match recognition and aggregate credit/refund liabilities.
+No-show, release, transfer and compensation rules operate on fan-group cohorts,
+not individual supporters. A Quick player sees "cash now versus revenue earned
+later"; Standard and Expert expose the schedule.
+
 The same settlement supports Quick / Standard / Expert:
 
 - Quick: total cost/revenue and recommended action.
 - Standard: driver breakdown and 13-week forecast.
 - Expert: contract clauses, ranges, schedules and sensitivity analysis.
 
-## 14. Investor grant
+## 14. Season-ticket accrual
+
+Season tickets are not treated as one-time income. At sale or renewal time the
+club may receive cash, apply account credit or create a receivable; the same
+campaign also creates a future obligation for included home matches.
+
+Minimum ledger distinction:
+
+- cash receipt / receivable improves liquidity and runway;
+- deferred revenue is a liability until included matches are played;
+- recognised ticket revenue is released match by match;
+- exchange, inaccessible-match compensation and carried credits sit in a
+  credit/refund liability pool;
+- payment plans alter cash timing and risk, not the underlying match-access
+  obligation.
+
+This keeps the game fair: selling many season tickets can save a short-term
+cash crisis, but it cannot magically repair a bad operating model and it limits
+future top-match upside.
+
+## 15. Investor grant
 
 Investor is a singleplayer-only cash entitlement if activated. It posts cash to
 the ledger with clear provenance and has no gameplay penalty:
@@ -255,7 +283,7 @@ the ledger with clear provenance and has no gameplay penalty:
 It buys liquidity only. A club with a negative weekly operating loop will still
 burn through the grant.
 
-## 15. Future-scope notes
+## 16. Future-scope notes
 
 - Manual accounting controls: not planned.
 - Deep tax modelling: only if it creates player-facing decisions.
@@ -268,7 +296,8 @@ burn through the grant.
   [[GD-0022-economy-commercial-impact-and-contracts]]
 - Research: [[../60-Research/club-economy-blueprint-2026-05-27]] ·
   [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]] ·
-  [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
+  [[../60-Research/fan-demand-price-elasticity-2026-05-28]] ·
+  [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - Feature: [[../20-Features/feature-club-economy-mvp-pillar]]
 - Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]

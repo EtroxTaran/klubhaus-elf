@@ -1,12 +1,12 @@
 ---
 title: Fan Ecology - Six Segments and Atmosphere Engine
 status: draft
-tags: [game-design, fans, atmosphere, ultras, economy, ticketing, price-elasticity, fmx-41, fmx-42]
+tags: [game-design, fans, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, fmx-41, fmx-42, fmx-43]
 created: 2026-05-16
 updated: 2026-05-28
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Fan Ecology - Six Segments and Atmosphere Engine
@@ -15,11 +15,11 @@ Fan culture must produce *sporting, economic and political* effects all at
 once. A single "mood" gauge is too coarse - real fans split into segments
 that react to *different* things and pull the club in opposing directions.
 
-FMX-13, FMX-41 and FMX-42 make fan ecology a direct economy input: fan segments
-drive latent demand, attendance, season-ticket renewal, catering, merchandise,
-hospitality demand, sponsor fit and ticketing-trust risk. They never post money
-directly; Club Management reads their public outputs when producing
-[[economy-system]] ledger entries.
+FMX-13, FMX-41, FMX-42 and FMX-43 make fan ecology a direct economy input: fan
+segments drive latent demand, attendance, season-ticket renewal, utilisation,
+waitlist pressure, catering, merchandise, hospitality demand, sponsor fit and
+ticketing-trust risk. They never post money directly; Club Management reads
+their public outputs when producing [[economy-system]] ledger entries.
 
 ## 1. Six supporter segments
 
@@ -47,6 +47,9 @@ For each segment the system tracks:
 - `attendance_floor` - bad-season floor before severe trust/identity shocks.
 - `price_sensitivity` - segment-specific reaction to ticket price and trip cost.
 - `ticketing_trust` - memory of perceived fairness, transparency and shocks.
+- `season_ticket_renewal_probability` by seat class / package.
+- `season_ticket_utilisation_probability` for aggregate attendance or release.
+- `waitlist_pressure` by segment and seat class.
 - `merch_propensity`, `catering_propensity`, `hospitality_demand`.
 
 A decision can move different segments in opposite directions. Examples:
@@ -161,6 +164,8 @@ The forecast includes:
 - segment-level latent demand before stadium capacity is applied;
 - segment-level actual attendance forecast after seat inventory and allocation;
 - season-ticket renewal probability by segment and seat class;
+- season-ticket utilisation / no-show / release probability by fan-group cohort;
+- waitlist pressure and conversion appetite by segment and seat class;
 - reference-price comparison by seat class and country/club profile;
 - price sensitivity by segment, not one global elasticity constant;
 - persistent `ticketingTrustState` and fan-trust guardrails;
@@ -203,6 +208,24 @@ latent_demand_s =
 Club profile and country profile provide calibration ranges only. They do not
 create code branches: a Germany-style traditional club can still behave like an
 event-led club if the generated fan mix and commercial history support it.
+
+### 7.2 FMX-43 season-ticket cohort outputs
+
+Fan Ecology does not own season-ticket campaigns. It provides the demand and
+trust inputs Club Management needs to run them:
+
+| Output | Meaning |
+|---|---|
+| `renewalProbabilityByCohort` | Renewal chance for segment x seat class x package x loyalty tier. |
+| `utilisationProbabilityByCohort` | Aggregate likelihood to attend, release or no-show for included matches. |
+| `waitlistPressureBySeatClass` | Unmet demand and scarcity pressure by segment and seat class. |
+| `priceShockMemory` | Persistent memory of above-guardrail increases and opaque pricing. |
+| `useItOrReleaseTolerance` | How harshly each segment reacts to no-show enforcement. |
+| `compensationSensitivity` | Segment reaction to credit/refund/discount policies after inaccessible matches. |
+
+These are cohort facts, not individual supporter records. A "strict
+utilisation policy" can therefore change renewal probability, atmosphere,
+trust and credit liability without storing who personally attended.
 
 ## 8. UI tiers
 

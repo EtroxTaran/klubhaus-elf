@@ -1,7 +1,7 @@
 ---
 title: Feature - Club Economy MVP Pillar
 status: draft
-tags: [feature, mvp, economy, finance, accounting, commercial, club-management, fmx-13, fmx-41]
+tags: [feature, mvp, economy, finance, accounting, commercial, club-management, season-tickets, fmx-13, fmx-41, fmx-43]
 created: 2026-05-27
 updated: 2026-05-28
 type: feature
@@ -15,6 +15,7 @@ related:
   - [[../50-Game-Design/economy-system]]
   - [[../60-Research/club-economy-blueprint-2026-05-27]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+  - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   - [[../30-Implementation/club-economy-commercial-contracts]]
@@ -41,11 +42,12 @@ visible economic consequence.
 
 - Starting balance sheet and opening cash state for a generated club.
 - Weekly ledger tick with deterministic entries.
-- Minimum revenue streams: ticketing, season-ticket upfront cash, basic sponsor
-  income, matchday catering, small merchandise, prize/bonus payments.
-- Minimum commercial policy: season-ticket share, single-ticket price band,
-  top-match surcharge preset, one catering contract model, one merchandise
-  contract model and one fan-service campaign choice.
+- Minimum revenue streams: ticketing, season-ticket campaign cash with deferred
+  revenue recognition, basic sponsor income, matchday catering, small
+  merchandise, prize/bonus payments.
+- Minimum commercial policy: season-ticket lifecycle preset, single-ticket
+  price band, top-match surcharge preset, one catering contract model, one
+  merchandise contract model and one fan-service campaign choice.
 - Minimum costs: player/staff wages, stadium operations, travel, debt service,
   transfer instalments, maintenance and federation/league levy.
 - Staged insolvency crisis: warning -> overdraft/freeze -> arrears -> licence
@@ -77,7 +79,8 @@ visible economic consequence.
   immediate cash movement.
 - Expert UI can distinguish liquidity, accounting result and compliance risk.
 - Commercial UI can show Quick totals and Expert assumptions for away travel,
-  season tickets, catering/merch contracts, cup settlement and fan events.
+  season-ticket cash/deferred accounting, catering/merch contracts, cup
+  settlement and fan events.
 - If Investor is activated later, it posts clean singleplayer cash without
   debt, owner-control, fan, sponsor or multiplayer side effects.
 - No real club, sponsor or player names are emitted into playable content.
@@ -89,6 +92,7 @@ visible economic consequence.
 - [[../50-Game-Design/economy-system]]
 - [[../60-Research/club-economy-blueprint-2026-05-27]]
 - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+- [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[../30-Implementation/club-economy-commercial-contracts]]

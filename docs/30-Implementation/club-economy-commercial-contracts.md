@@ -1,7 +1,7 @@
 ---
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
-tags: [implementation, economy, commercial, contracts, tickets, fan-demand, price-elasticity, investor, fmx-41, fmx-42]
+tags: [implementation, economy, commercial, contracts, tickets, fan-demand, price-elasticity, season-tickets, accounting, investor, fmx-41, fmx-42, fmx-43]
 created: 2026-05-28
 updated: 2026-05-28
 type: implementation
@@ -18,6 +18,7 @@ related:
   - [[../50-Game-Design/stadium-and-campus]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
+  - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[club-economy-accounting-ledger]]
   - [[../10-Architecture/bounded-context-map]]
 ---
@@ -28,8 +29,8 @@ related:
 
 Define the contract surface implied by FMX-41 before code exists. This note
 extends [[club-economy-accounting-ledger]] with ticketing, fan-demand
-elasticity, commercial contracts, cup settlement, fan-event campaigns and
-Investor entitlement inputs.
+elasticity, season-ticket lifecycle accounting, commercial contracts, cup
+settlement, fan-event campaigns and Investor entitlement inputs.
 
 This is draft planning only. It becomes implementation authority only after the
 relevant GDDR/ADR path is approved.
@@ -68,6 +69,8 @@ Owned by Fan Ecology, consumed by Club Management.
 | `fixtureAttractiveness` | Opponent, rivalry, stakes, form, stars, novelty, kickoff and weather profile. |
 | `capacityPressure` | Underfilled, balanced, constrained or sold-out latent-demand state. |
 | `seasonTicketRenewalProbability` | Renewal probability by segment and seat class. |
+| `seasonTicketUtilisationProbability` | Aggregate attendance / release probability for season-ticket cohorts. |
+| `waitlistPressure` | Scarcity and conversion pressure by segment and seat class. |
 | `cateringPropensity` | Per-segment spend propensity band. |
 | `merchandisePropensity` | Per-segment spend propensity band. |
 | `hospitalityDemand` | Corporate/premium demand band. |
@@ -117,8 +120,9 @@ by commercial settlement.
 | Field | Meaning |
 |---|---|
 | `stadiumId` | Venue identity. |
-| `capacityBySeatClass` | Standing, seated, family, premium, suites, away. |
-| `availableCapacityBySeatClass` | After construction, sanctions and allocations. |
+| `capacityBySeatClass` | Standing, seated, family, premium, suites, accessibility and away. |
+| `availableCapacityBySeatClass` | After construction, sanctions, accessibility rules and away allocations. |
+| `seasonTicketEligibleCapacityBySeatClass` | Home inventory that may be sold as season tickets after protected allocations. |
 | `cateringThroughput` | Service capacity and queue quality. |
 | `merchThroughput` | Shop and fulfilment capacity. |
 | `hospitalityQuality` | Premium service band. |
@@ -136,15 +140,78 @@ Owned by Club Management.
 | `policyId` | Policy identity. |
 | `seasonTicketShareTarget` | Target share by seat class. |
 | `seasonTicketDiscountBand` | Discount versus comparable single-ticket basket. |
+| `seasonTicketLifecyclePolicy` | Campaign states and windows: renewal, relocation, presale, waitlist, public sale and closed. |
+| `seasonTicketAccountingPolicy` | Accrual recognition mode and match-allocation basis. |
 | `singleTicketPriceBands` | Price ranges by seat class. |
 | `topMatchSurchargePolicy` | Off, cautious, market, premium. |
 | `dynamicPricingMode` | Disabled, categories-only, bounded-dynamic or experimental. |
 | `pricingTransparencyPolicy` | How clearly price changes and categories are communicated. |
 | `seasonTicketProtectionRule` | Rules preserving season-ticket value versus single-ticket promotions. |
+| `seatRelocationPolicy` | Eligibility and priority for moving seats between renewal and new sale. |
+| `memberPresalePolicy` | Member, fan-group and loyalty-tier access before public sale. |
+| `waitlistPolicy` | Waitlist eligibility, offer order, offer expiry and pressure output. |
+| `paymentPlanPolicy` | Upfront, internal instalment, finance partner and account-credit handling. |
+| `useItOrReleasePolicy` | Aggregate utilisation target, no-show consequences and seat-release incentive. |
+| `officialExchangePolicy` | Club-controlled release/exchange rules and credit treatment; not a free secondary marketplace. |
+| `groupCompensationPolicy` | Credit/refund/discount treatment for cancelled or inaccessible included matches. |
 | `concessionPolicy` | Youth/family/senior/community rules. |
 | `awayAllocationPolicy` | Allocation and pricing rules. |
 | `fanTrustGuardrail` | Max tolerated price shock by segment. |
 | `effectiveFromWeekId` | Deterministic activation. |
+
+### `SeasonTicketCampaign`
+
+Owned by Club Management. Operates on fan-group cohorts, not individual
+supporters.
+
+| Field | Meaning |
+|---|---|
+| `campaignId` | UUIDv7 identity. |
+| `clubId` | Club running the campaign. |
+| `seasonId` | Season scope. |
+| `policyId` | Linked `TicketingPolicy`. |
+| `campaignState` | planning, renewalWindow, seatRelocation, memberPresale, waitlistAllocation, publicSale, closed, inSeasonAdjustment or renewalReview. |
+| `includedFixturePolicy` | League-only, league-plus-defined-cup, premium package or profile-specific product. |
+| `seatClassQuotas` | Standing, seating, family, premium, suites/hospitality and accessibility. Away inventory is excluded. |
+| `targetShareBySeatClass` | Target season-ticket share by seat class. |
+| `discountVsSingleTicketBasketBand` | Discount against a comparable single-ticket basket. |
+| `renewalWindow` | Start/end week and communication policy. |
+| `earlyBirdWindow` | Optional early-bird or loyalty-protection period. |
+| `seatRelocationWindow` | Relocation eligibility and priority. |
+| `memberPresaleWindow` | Member, loyalty-tier or fan-group sale period. |
+| `waitlistPolicy` | Ordering, eligibility, expiry and waitlist-pressure output. |
+| `paymentPlanPolicy` | Upfront, internal instalment, finance partner and account-credit handling. |
+| `loyaltyTierPolicy` | Renewal rights, attendance minimums, priority windows and benefit bands. |
+| `fanGroupEligibilityPolicy` | Protected group-level access rules without single-fan modelling. |
+| `useItOrReleasePolicy` | Aggregate no-show threshold, release incentives and renewal consequence band. |
+| `groupCompensationPolicy` | Credit/refund/discount treatment for group-level access failures. |
+| `allocationOutcome` | Sold seats and unmet demand by segment, package and seat class. |
+| `accountingScheduleId` | Linked `SeasonTicketAccountingSchedule`. |
+| `trustGuardrail` | Price-shock and fairness limits from Fan Ecology / country profile. |
+| `provenance` | Forecasts, stadium snapshot, fixture set and policy versions used. |
+
+### `SeasonTicketAccountingSchedule`
+
+Owned by Club Management's ledger boundary. It distinguishes cash receipt,
+receivables, deferred revenue and match-by-match recognition.
+
+| Field | Meaning |
+|---|---|
+| `scheduleId` | UUIDv7 identity. |
+| `campaignId` | Linked season-ticket campaign. |
+| `cashReceiptPlan` | Expected and actual receipts by week/payment method. |
+| `instalmentReceivableMinor` | Club-owned instalment receivables. |
+| `financePartnerFeeMinor` | Fee/cost where a finance partner funds the supporter. |
+| `grossConsiderationMinor` | Total ticket consideration before credits and fees. |
+| `accountCreditAppliedMinor` | Existing credits applied against renewal. |
+| `deferredRevenueMinor` | Remaining contract liability for future included matches. |
+| `recognizedRevenueByMatch` | Revenue released as each included match is played. |
+| `remainingPerformanceObligations` | Included matches / access benefits still owed. |
+| `creditLiabilityMinor` | Exchange, compensation or carried credit pool. |
+| `refundLiabilityMinor` | Cash refund pool where policy/profile requires it. |
+| `materialRightLiabilityMinor` | Optional hook for cup priority rights or renewal discounts. |
+| `recognitionPolicy` | Equal per included match, seat-class weighted, package weighted or profile-specific. |
+| `adjustmentEvents` | Cancellations, relocations, sanctions, cup opt-ins and package amendments. |
 
 ### `CommercialContract`
 
@@ -241,7 +308,7 @@ sequenceDiagram
     League->>Club: FixtureCommercialProfile
     Fan->>Club: FanDemandForecast
     Club->>Club: Apply TicketingPolicy + CommercialContracts
-    Club->>Ledger: Post season-ticket cash / deferred revenue
+    Club->>Ledger: Post season-ticket cash / receivables / deferred revenue
     Club->>Ledger: Post matchday commercial settlement
     Club->>Fan: FanEventCampaign outcome facts
     Club->>Ledger: Post campaign costs / sponsor contributions
@@ -253,7 +320,8 @@ sequenceDiagram
 |---|---|
 | `CommercialForecastSnapshot` | Quick/Standard finance dashboard and forecast. |
 | `TicketingPolicySnapshot` | Ticketing UI and explainability. |
-| `SeasonTicketCampaignSnapshot` | Renewal, cash, discount and opportunity-cost view. |
+| `SeasonTicketCampaignSnapshot` | Lifecycle state, renewal, allocation, waitlist, utilisation, cash, discount and opportunity-cost view. |
+| `SeasonTicketAccountingSchedule` | Deferred revenue, receivables, credits and match-by-match recognition. |
 | `CommercialContractPortfolio` | Sponsor/catering/merchandise contract board. |
 | `MatchdayCommercialSettlement` | Per-fixture revenue/cost breakdown. |
 | `FanEventCampaignBoard` | Fan-service event choices and results. |
@@ -263,6 +331,16 @@ sequenceDiagram
 ## Test scenarios before implementation
 
 - Season-ticket share changes early cash and top-match upside.
+- Season-ticket sale posts cash or receivable plus deferred revenue, then
+  recognises match revenue only when included fixtures are played.
+- Instalment plans change cash timing without changing the included-match
+  performance obligation.
+- Finance-partner plans post earlier net cash and a partner fee rather than
+  club-owned receivable risk.
+- Seat-release / no-show policies change aggregate utilisation and credit
+  liabilities without creating individual supporter records.
+- Cancelled or inaccessible included matches post group-level credit/refund
+  liability according to policy.
 - Loyal fan segments stabilise bad-year attendance.
 - Fair-weather segments create high upside and high volatility.
 - Rivalry/top-match surcharge changes single-ticket revenue and fan-trust risk.
@@ -281,6 +359,7 @@ sequenceDiagram
 
 - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
+- [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[club-economy-accounting-ledger]]

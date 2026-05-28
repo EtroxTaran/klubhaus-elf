@@ -178,6 +178,20 @@ before any promotion.
   [[../50-Game-Design/economy-system]] and
   [[../30-Implementation/club-economy-commercial-contracts]].
 
+## Season-Ticket Lifecycle and Accounting (2026-05-28)
+
+- [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]] —
+  FMX-43 synthesis for season-ticket campaign lifecycle, seat-class quotas,
+  renewal / relocation / waitlist / public-sale states, group-level
+  no-show/release/compensation policy and full accrual accounting. Recommends
+  fan-group cohorts plus `SeasonTicketCampaign` and
+  `SeasonTicketAccountingSchedule`, not individual supporter records or a
+  cash-only slider. Refines draft
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+  [[../50-Game-Design/economy-system]], [[../50-Game-Design/fan-ecology]],
+  [[../50-Game-Design/stadium-and-campus]] and
+  [[../30-Implementation/club-economy-commercial-contracts]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 - [[../60-Research/ai-narrative-runtime-integration]] — synthesized follow-up

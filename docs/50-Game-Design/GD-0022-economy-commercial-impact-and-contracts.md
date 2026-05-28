@@ -1,7 +1,7 @@
 ---
 title: GD-0022 Economy Commercial Impact and Contracts
 status: draft
-tags: [game-design, gddr, economy, commercial, tickets, fans, fan-demand, price-elasticity, investor, fmx-41, fmx-42]
+tags: [game-design, gddr, economy, commercial, tickets, fans, fan-demand, price-elasticity, season-tickets, accounting, investor, fmx-41, fmx-42, fmx-43]
 created: 2026-05-28
 updated: 2026-05-28
 type: game-design
@@ -21,6 +21,7 @@ related:
   - [[../60-Research/club-economy-blueprint-2026-05-27]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
+  - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -33,9 +34,10 @@ related:
 
 draft
 
-> Draft only. This record captures the FMX-41 commercial economy direction plus
-> the FMX-42 fan-demand / price-elasticity refinement. It needs Nico approval
-> before implementation authority.
+> Draft only. This record captures the FMX-41 commercial economy direction, the
+> FMX-42 fan-demand / price-elasticity refinement and the FMX-43
+> season-ticket lifecycle / accrual-accounting refinement. It needs Nico
+> approval before implementation authority.
 
 ## Date
 
@@ -62,8 +64,9 @@ ledger effects behind the same decision.
   demand before capacity; Club Management applies ticketing policy, seat
   inventory and season-ticket allocation to derive actual attendance and
   settlement.
-- **Season tickets are a trade-off.** They provide early cash and demand
-  stability, but discount future attendance and reduce top-match upside.
+- **Season tickets are a lifecycle, not a cash button.** They provide early
+  cash and demand stability, but create deferred revenue obligations, discount
+  future attendance and reduce top-match upside.
 - **Top games and rivals matter.** Rivalries, star opponents, table context and
   cup stakes increase demand, premium-price tolerance, away following,
   catering/merch spikes and security cost.
@@ -110,6 +113,9 @@ flowchart TB
 | Decision | Upside | Risk |
 |---|---|---|
 | Higher season-ticket share | Early cash, loyalty, stable attendance | Lower top-match upside, discount lock-in |
+| Full accrual season-ticket accounting | Honest cash/revenue/liability model | More explanation needed for Quick players |
+| Instalment or finance-plan offer | Higher accessibility and renewal conversion | Delayed cash or partner fees / receivable risk |
+| Seat-release / utilisation rule | Better atmosphere, fairness and single-ticket availability | Trust loss if too punitive |
 | More single-ticket inventory | Better top-game yield and dynamic pricing | More volatility in bad years |
 | Top-match surcharge | Captures rival/star/cup demand | Fan-trust loss if overused |
 | Bounded dynamic pricing | Better revenue capture under high latent demand | Affordability backlash if opaque |
@@ -120,6 +126,14 @@ Minimum policy variables:
 
 - `seasonTicketShareTarget`
 - `seasonTicketDiscountBand`
+- `seasonTicketLifecyclePolicy`
+- `seasonTicketAccountingPolicy`
+- `seatRelocationPolicy`
+- `memberPresalePolicy`
+- `waitlistPolicy`
+- `paymentPlanPolicy`
+- `useItOrReleasePolicy`
+- `groupCompensationPolicy`
 - `singleTicketPriceBands`
 - `topMatchSurchargePolicy`
 - `dynamicPricingMode`
@@ -128,8 +142,61 @@ Minimum policy variables:
 - `concessionPolicy`
 - `awayAllocationPolicy`
 - `familyBlockPolicy`
-- `secondaryMarketPolicy`
+- `officialExchangePolicy`
 - `ticketingTrustGuardrail`
+
+## FMX-43 season-ticket lifecycle and accounting rules
+
+Season tickets are planned as campaigns over fan-group cohorts:
+
+```text
+cohort =
+  fan_segment
+  x seat_class
+  x product_package
+  x payment_plan
+  x loyalty_tier
+```
+
+The game does **not** simulate individual supporters. Resale, transfer,
+compensation and refund behaviour are aggregate policy effects: utilisation
+rate, credit liability pool, renewal trust and waitlist pressure.
+
+Draft lifecycle:
+
+1. `planning` - choose share target, seat-class quotas, packages, discount band
+   and payment policies.
+2. `renewalWindow` - existing cohorts renew or churn from form, trust, price
+   and package value.
+3. `seatRelocation` - renewed cohorts can move if inventory allows.
+4. `memberPresale` - members / loyalty tiers / protected fan groups buy before
+   public sale.
+5. `waitlistAllocation` - scarcity is converted into offers and unmet-demand
+   pressure.
+6. `publicSale` - remaining stock reaches weaker-loyalty buyers.
+7. `closed` - allocation and accounting schedule freeze before the season.
+8. `inSeasonAdjustment` - no-show, seat-release, compensation and cup add-on
+   events update utilisation and liabilities.
+9. `renewalReview` - eligibility, trust and waitlist state feed the next
+   campaign.
+
+Accounting rule:
+
+- cash received before matches improves runway but becomes deferred revenue /
+  contract liability until included matches are played;
+- internal instalments create receivables and later cash receipts;
+- finance-partner plans can create earlier net cash plus a partner fee instead
+  of club-owned credit risk;
+- each included home match releases its allocated season-ticket revenue to
+  recognised matchday revenue;
+- cancelled, inaccessible or relocated included matches post aggregate credit
+  or refund liabilities according to `groupCompensationPolicy`;
+- cup priority / cup auto-charge rights remain a visible hook, but activation
+  depth is a Nico decision for the cup-economy beat.
+
+Quick-mode wording must distinguish **cash now** from **revenue earned as
+matches are played**. This is a fairness rule: players may use early liquidity,
+but they must see the future obligation and lost single-ticket upside.
 
 ## Fan segment economy
 
@@ -216,7 +283,7 @@ business model.
 | Flow | Quick | Standard | Expert |
 |---|---|---|---|
 | Away travel | Pick bus/train/flight and see total cost | See segment effects, travel fatigue and sponsor contribution | See capacity, subsidy per fan, security, damage reserve, sensitivity |
-| Season tickets | Pick safe/balanced/upside preset | See share, discount, renewal forecast | Edit price bands, segment elasticity, opportunity cost |
+| Season tickets | Pick safe/balanced/upside preset; see cash now vs earned later | See share, discount, renewal, waitlist, 13-week cash/deferred schedule | Edit lifecycle windows, cohorts, payment plans, utilisation and recognition schedule |
 | Catering | Pick stable/balanced/upside contract | Compare fixed rent, share, quality | Inspect clauses, COGS, service metrics, termination |
 | Merch | Pick own/partner campaign | See projected margin and stock risk | Edit royalty, guarantee, inventory, fulfilment |
 | Investor | Confirm exact cash amount | See ledger impact and runway change | See no long-term structural change in forecast |
@@ -255,6 +322,25 @@ Feature: Commercial economy impact
     Then the high-season-ticket club has more early cash
     And less match-by-match upside
 
+  Scenario: Season-ticket cash is deferred revenue
+    Given a club sells season tickets before the first match
+    When the campaign closes
+    Then cash runway improves
+    And deferred revenue increases
+    But recognised ticket revenue is released only when included matches are played
+
+  Scenario: Instalments delay cash but not obligation
+    Given a club offers internal instalments
+    When season-ticket sales are posted
+    Then the campaign creates receivables and deferred revenue
+    And cash arrives over the instalment schedule
+
+  Scenario: Group compensation avoids individual supporter modelling
+    Given an included match becomes inaccessible to a seat-class cohort
+    When the club applies its compensation policy
+    Then an aggregate credit or refund liability is posted
+    And no individual supporter entity is created
+
   Scenario: Cup progression changes the forecast
     Given a club reaches another cup round
     When the competition profile posts the new fixture
@@ -287,6 +373,13 @@ Feature: Commercial economy impact
 - Investor activation timing and platform/legal checklist.
 - First Top-5 country calibration order.
 - Default season-ticket share and discount ranges per profile.
+- Default season-ticket lifecycle, share and discount ranges per profile.
+- Decide whether waitlist pressure is visible in Quick mode or only Standard /
+  Expert.
+- Decide whether internal instalment receivable risk is active in MVP or
+  deferred behind finance-partner presets.
+- Decide how visible cup priority / material-right accounting should be before
+  the cup-economy implementation beat.
 - First contract presets for catering and merchandise.
 - Fan-service event catalog for first playable.
 - Guardrails for top-match surcharge and fan-trust damage.
