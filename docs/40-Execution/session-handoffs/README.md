@@ -51,6 +51,23 @@ This is the **single** canonical handoff location. (An older
   Economy System and commercial-contract surfaces; awaiting Nico decisions on
   dynamic-pricing scope, country guardrail hardness and Quick-mode trust
   visibility.
+- [[2026-05-28-fmx-33-community-overlay-pipeline]] - FMX-33 ownership
+  dossier for the community pack registry + import-session FSM +
+  manifest validation + IP-safety gate + multi-BC semantic-validation
+  delegation orchestration + save-creation-only activation + per-save
+  snapshot immutability. Three Perplexity queries (genre FM `.fmf`
+  save-creation-only activation + multiple-pack selection / DDD Vernon
+  ingestion-as-bounded-context with Stripe Connect + Avalara +
+  Salesforce + GitHub Actions + OpenStreetMap analogues / real-world
+  Bethesda Creation Kit + Bethesda.net + Steam Workshop + CurseForge
+  + Modrinth + EU DSA 2023-2026), synthesis recommending Option D
+  (own Community Overlay Pipeline bounded context). Six-of-six DDD
+  split criteria fire (strongest in the wave). **Strongest single
+  argument**: ratified ADR-0056 + ADR-0057 explicitly reference
+  "FMX-33 Community Overlay Pipeline" as upstream orchestrator. Draft
+  ADR-0059 with four options + Option E anti-pattern + §Recommendation
+  + §Map patch proposal (order-tolerant). `risk:legal` label set.
+  Awaiting Nico decision.
 - [[2026-05-28-fmx-41-economy-impact-map]] - FMX-41 economy impact map
   and commercial-contract dossier: direct financial-success domains, Top-5
   research anchors, season-ticket and ticket-pricing trade-offs, fan segment

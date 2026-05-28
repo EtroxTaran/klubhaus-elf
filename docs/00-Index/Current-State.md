@@ -103,6 +103,38 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
+> **FMX-33 Community Overlay Pipeline ownership dossier (2026-05-28).**
+> Community pack import pipeline - manifest parsing + schema
+> validation + conflict resolution + IP-safety gate + multi-BC
+> semantic-validation delegation + save-creation-only activation +
+> per-save activation snapshot immutability + revocation governance
+> - is designed in
+> [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]]
+> (proposed) but the 16-context map has no owner. Critically,
+> ratified **ADR-0056 (Regulations) and ADR-0057 (Rivalry)** already
+> explicitly delegated semantic validation to the owning BCs per
+> Vernon pattern and explicitly reference "FMX-33 Community Overlay
+> Pipeline" as the upstream orchestrator they delegate to - two
+> ratified binding ADRs name a missing context. Draft
+> [[../60-Research/community-overlay-pipeline-bounded-context-2026-05-28]]
+> and [[../60-Research/raw-perplexity/raw-community-overlay-pipeline-2026-05-28]]
+> consolidate genre (FM `.fmf` save-creation-only activation +
+> multiple-pack selection + version-strict; medium-high), DDD
+> (Vernon ingestion-as-bounded-context with Process Manager / Saga +
+> Open Host Service + Published Language; Stripe Connect + Avalara
+> + Salesforce + GitHub Actions + OpenStreetMap as direct analogues;
+> high) and real-world 2023-2026 (Bethesda Creation Kit + Bethesda.net
+> + Steam Workshop + CurseForge / Modrinth manifest-driven compliance
+> + EU DSA + Bethesda paid-mods + Steam policy trends converging on
+> upload gate + provenance + audit trail; medium) evidence. New draft
+> [[../10-Architecture/09-Decisions/ADR-0058-community-overlay-pipeline-context]]
+> proposes **Community Overlay Pipeline as an additional bounded
+> context** (Option D) with four options + Option E anti-pattern +
+> §Recommendation + §Map patch proposal. **Six-of-six DDD criteria
+> fire** (stronger than FMX-26/28/30/34). IP-safety surface contained
+> in one context per GD-0015 + ADR-0007; `risk:legal` label set.
+> Ratify decision pending; map itself not yet modified.
+
 > **FMX-34 + FMX-40 Rivalry System ratification applied (2026-05-28).**
 > Nico accepted Option C.
 > [[../10-Architecture/09-Decisions/ADR-0057-rivalry-system-context]]
