@@ -1,12 +1,12 @@
 ---
 title: Stadium and Club Campus - Build-out and On-grounds Economy
 status: draft
-tags: [game-design, stadium, infrastructure, anstoss, commercial, fmx-41]
+tags: [game-design, stadium, infrastructure, anstoss, commercial, season-tickets, fmx-41, fmx-43]
 created: 2026-05-16
 updated: 2026-05-28
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[fan-ecology]], [[regulations-and-compliance]]
+related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[fan-ecology]], [[regulations-and-compliance]]
 ---
 
 # Stadium and Club Campus - Build-out and On-grounds Economy
@@ -183,7 +183,12 @@ merchandise, hospitality and fan-service campaigns. The venue layer publishes a
 Minimum outputs:
 
 - capacity by seat class: standing, seated, family, premium, suites and away;
-- available capacity after construction, sanctions and allocations;
+- available capacity after construction, sanctions, accessibility rules and
+  allocations;
+- season-ticket eligible home capacity by seat class, excluding away inventory;
+- protected family and accessibility quotas;
+- expected no-show / utilisation pressure by seat class if supplied by the
+  ticketing campaign;
 - catering throughput and queue quality;
 - merch shop / fulfilment throughput;
 - hospitality quality and inventory;

@@ -229,6 +229,37 @@ This refines draft [[../50-Game-Design/fan-ecology]], draft
 [[../50-Game-Design/economy-system]] and draft
 [[../30-Implementation/club-economy-commercial-contracts]].
 
+## Season-Ticket Lifecycle and Accounting (2026-05-28)
+
+[[season-ticket-lifecycle-and-accounting-2026-05-28]] is the FMX-43 research
+synthesis for season-ticket lifecycle and accounting. Nico's current direction
+is full accrual accounting with fan-group / cohort policies, not individual fan
+records and not a cash-only season-ticket shortcut.
+
+Current draft direction:
+
+- Model season tickets as `SeasonTicketCampaign` lifecycle states: planning,
+  renewal, relocation, member presale, waitlist allocation, public sale,
+  closed, in-season adjustment and renewal review.
+- Allocate by seat class: standing, standard seating, family, premium/suites,
+  accessibility, with away inventory excluded from home season-ticket stock.
+- Track payment plans as upfront cash, internal instalment receivables,
+  finance-partner net cash / fee and account-credit application.
+- Post sale-time cash or receivables plus deferred revenue, then recognise
+  revenue as included home matches are played.
+- Keep no-show, seat release, transfer and compensation at aggregate cohort /
+  fan-group level through utilisation, trust and credit/refund liability pools.
+- Expose the same core through Quick / Standard / Expert: cash-now warning in
+  Quick, 13-week cash/deferred schedule in Standard and match-by-match accrual
+  plus sensitivity in Expert.
+
+This refines draft
+[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
+[[../50-Game-Design/economy-system]], draft
+[[../50-Game-Design/fan-ecology]], draft
+[[../50-Game-Design/stadium-and-campus]] and draft
+[[../30-Implementation/club-economy-commercial-contracts]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 [[ai-narrative-runtime-integration]] synthesizes the two narrative/LLM reports
