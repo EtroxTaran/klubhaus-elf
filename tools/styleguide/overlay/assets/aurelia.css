@@ -171,7 +171,7 @@ body.hub-body{
 .card .count.new{background:var(--scarlet);color:#fff;border-color:var(--scarlet)}
 
 .toc{
-  padding:24px 44px 36px;display:grid;grid-template-columns:1fr 1fr;gap:48px;
+  padding:24px 44px 36px;display:grid;grid-template-columns:repeat(3,1fr);gap:36px;
   border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--paper-2);
 }
 .toc-col h3{
