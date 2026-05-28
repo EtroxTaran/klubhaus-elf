@@ -29,7 +29,7 @@ context's contract is designed as if it could be running on its own
 process / pod / region. Splitting a context out later is a deployment
 change, not a refactor.
 
-## 1. Thirteen bounded contexts
+## 1. Fourteen bounded contexts
 
 | Context | Core elements | Exposed outputs |
 |---|---|---|
@@ -44,6 +44,7 @@ change, not a refactor.
 | **Notification** | Durable notifications, inbox, preferences, subscriptions, schedules, delivery attempts, provider adapters, push preparation, digests | User-facing message projections, unread counters, delivery/audit events |
 | **Manager & Legacy** | Manager profile, run analysis snapshots, manager style signals, archetype candidates, legacy unlock catalog, prestige profile | Post-run reflection projections, legacy/prestige configuration for new-save creation, archetype candidate board |
 | **Staff Operations** | Staff contract lifecycle, role assignment, pipeline coverage, wage schedule, specialisation metadata | Staff roster + role-assignment board projections, pipeline-coverage snapshots, wage events for the Club Management ledger |
+| **Tactics** | Tactic presets, set-piece routine variants, opposition templates, role/duty configurations, tactical-style signal aggregation | TacticSnapshot at lock-time, RoleProfileForPosition queries, OppositionTemplate lookups, SetPieceRoutineCatalog, TacticalIdentityFingerprint for Manager & Legacy |
 | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
 | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
 
@@ -70,6 +71,23 @@ own persona, OCEAN substrate or the relationship graph. Wage events flow
 to Club Management per [[09-Decisions/ADR-0050-club-economy-accounting-ledger]];
 effect-readiness and role-assignment events are consumed by Training,
 Transfer, Squad & Player and Match.
+
+Tactics was ratified 2026-05-28 via
+[[09-Decisions/ADR-0055-tactics-context]] (FMX-28 dossier + FMX-37
+apply) and is the fourteenth context. It owns the persistent tactics
+library: tactic presets (saved → active → archived FSM), set-piece
+routine variants (drafted → published → retired FSM), opposition
+templates (three-layer model: archetype + sub-archetype +
+manager-signature), role/duty configurations (5-layer tactical model)
+and tactical-style signal aggregation. Match consumes a `TacticSnapshot`
+at `lineup_locked` (canonical Reference + Snapshot pattern - the live
+preset may be edited after lock without affecting the in-flight match).
+Training and Transfer read `RoleProfileForPosition`; Manager & Legacy
+consumes `TacticalIdentityFingerprint` for archetype-style signal
+aggregation per GD-0019 §MVP hook model; Staff Operations publishes
+`SetPieceCoachReadinessUpdated` for routine-quality multipliers.
+Cross-save preset sharing stays scoped to the FMX-33 Community Overlay
+Pipeline territory per [[09-Decisions/ADR-0016-community-dataset-overrides]].
 
 ### 1.1 Proposed FMX-23 context
 
@@ -120,6 +138,7 @@ flowchart TB
     Notif["Notification"]
     ML["Manager & Legacy"]
     Staff["Staff Operations"]
+    Tactics["Tactics"]
     Offline["Offline Sync"]
     Audit["Audit & Security"]
 
@@ -145,6 +164,16 @@ flowchart TB
     Staff --> Match
     Staff --> Club
     Staff --> Notif
+    Staff --> Tactics
+    Identity --> Tactics
+    League --> Tactics
+    Squad --> Tactics
+    Match --> Tactics
+    Tactics --> Match
+    Tactics --> Training
+    Tactics --> Transfer
+    Tactics --> ML
+    Tactics --> WP
     Training --> Squad
     Training --> ML
     Transfer --> ML
@@ -245,6 +274,7 @@ src/domain/
   notifications/
   manager-legacy/
   staff-operations/
+  tactics/
   sync/
   audit/
 ```

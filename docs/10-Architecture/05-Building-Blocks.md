@@ -7,7 +7,7 @@ updated: 2026-05-28
 
 # Building Blocks
 
-The application is a **modular monolith** with thirteen bounded contexts,
+The application is a **modular monolith** with fourteen bounded contexts,
 primarily implemented in TypeScript. Each context owns its domain logic, state
 machine(s), storage isolation, and contracts (commands / queries / domain
 events). The match engine is deliberately behind a runtime-neutral port so it
@@ -42,6 +42,24 @@ the canonical Customer-Supplier + Anti-Corruption Layer pattern
 amendment is required. Consumes People queries (ADR-0052, draft) for
 actor identity when ratified; until then sources identity from own staff
 roster.
+
+FMX-28 / FMX-37 ratified the fourteenth bounded context, **Tactics**, on
+2026-05-28 via [[09-Decisions/ADR-0055-tactics-context]]. It owns the
+persistent tactics library: tactic presets (saved → active → archived
+FSM), set-piece routine variants (drafted → published → retired FSM),
+opposition templates (three-layer archetype + sub-archetype +
+manager-signature model), role/duty configurations (5-layer tactical
+model) and tactical-style signal aggregation. Match consumes a
+`TacticSnapshot` at `lineup_locked` (canonical Reference + Snapshot
+pattern - the live preset may be edited after lock without affecting the
+in-flight match, mirroring Vaughn Vernon's Product Catalog vs Ordering
+analogue). Training and Transfer read `RoleProfileForPosition`; Manager
+& Legacy consumes `TacticalIdentityFingerprint` for archetype-style
+signal aggregation per GD-0019 §MVP hook model; Staff Operations
+publishes `SetPieceCoachReadinessUpdated` for routine-quality
+multipliers. Cross-save preset sharing stays scoped to the FMX-33
+Community Overlay Pipeline territory per
+[[09-Decisions/ADR-0016-community-dataset-overrides]].
 
 FMX-23 proposes **People / Persona & Skills** behind
 [[09-Decisions/ADR-0052-people-persona-and-skills-context]], and FMX-3 proposes
