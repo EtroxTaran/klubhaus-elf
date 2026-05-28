@@ -66,18 +66,18 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > progression, balance-corridor perks with mandatory prestige counterweight, and
 > explicit playtest tunability for taxonomy, thresholds, labels and perk values.
 
-> **FMX-26 Staff & Backroom ownership dossier (2026-05-28).** Residual
-> scope after ADR-0052 People: who owns staff lifecycle, role assignment,
-> pipeline coverage and wage events? Draft
-> [[../60-Research/staff-backroom-bounded-context-2026-05-28]] and
-> [[../60-Research/raw-perplexity/raw-staff-backroom-2026-05-28]]
-> consolidate genre, DDD-authority and real-world Sporting Director
-> evidence (FIFA Diploma, UEFA Club Licensing, Sage academic study on
-> coach turnover). New draft
-> [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]]
-> proposes **Staff Operations as the 13th bounded context** (Option B),
-> with three options + §Recommendation + §Map patch proposal. Ratify
-> decision pending; map itself not yet modified.
+> **FMX-26 + FMX-36 Staff Operations ratification applied (2026-05-28).**
+> Nico accepted Option B. [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]]
+> is now `status: accepted` and `binding: true`. Staff Operations is the
+> **thirteenth bounded context** in [[../10-Architecture/bounded-context-map]]
+> (table row + Mermaid + `staff-operations/` source folder). Decision
+> basis: [[../60-Research/staff-backroom-bounded-context-2026-05-28]].
+> Staff Operations owns hire/fire/contract lifecycle, role assignment,
+> pipeline coverage, wage schedule and specialisation metadata; emits
+> wage events to Club Management ledger (ADR-0050) via Customer-Supplier
+> + Anti-Corruption Layer pattern. Consumes People (ADR-0052, still
+> draft) actor identity via query when ratified; stubs identity from own
+> staff roster until then.
 
 > **FMX-25 + FMX-35 Manager & Legacy ratification applied (2026-05-28).**
 > Nico accepted Option A. [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
@@ -330,10 +330,12 @@ The Wave 2 proposal layer is no longer an active backlog list. Items that remain
 draft/proposed are classified future-scope or optional cleanup by
 [[Documentation-V1]]. Highlights:
 
-- DDD modular monolith with 12 bounded contexts
+- DDD modular monolith with 13 bounded contexts
   ([[../10-Architecture/bounded-context-map]]); ADR-0019 set the original
-  eleven-context modular monolith; ADR-0051 ratified Manager & Legacy as the
-  twelfth context on 2026-05-28 (FMX-25 + FMX-35).
+  eleven-context modular monolith; ADR-0051 ratified Manager & Legacy as
+  the twelfth context on 2026-05-28 (FMX-25 + FMX-35); ADR-0053 ratified
+  Staff Operations as the thirteenth context on 2026-05-28 (FMX-26 +
+  FMX-36).
 - Server-authoritative multiplayer with command-only clients is binding through
   ADR-0011 and current multiplayer game-design notes.
 - Both async cadence models, switchable at season boundary.
