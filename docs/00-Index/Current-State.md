@@ -193,6 +193,113 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `YouthPipelineQualityUpdated` (consumed by Manager & Legacy
 > archetype hook per GD-0019). Awaiting Nico ratify decision.
 
+> **FMX-32 Club Management sub-aggregate ownership audit (2026-05-28).**
+> Boundary audit of the four Club Management sub-aggregate
+> candidates loaded by the wave-2 economy work (FMX-13 + FMX-41
+> Economy Impact Map + FMX-42 Fan Demand & Price Elasticity +
+> FMX-43 Season-Ticket Lifecycle & Accounting + FMX-44 Commercial
+> Contract Lifecycle & Breach Model): Stadium / Venue Operations,
+> Audience & Atmosphere (renamed from Fan Ecology), CommercialPortfolio
+> (Sponsorship + Catering + Merchandise + Hospitality + Ticketing
+> umbrella per FMX-41 unified `CommercialContract` shell), and
+> Ticketing & Commercial Settlement. Today's owner per binding
+> bounded-context-map §1 line 38 + draft ADR-0050 + draft ADR-0058:
+> **Club Management** for all four as sub-aggregates ("It does not
+> add a seventeenth bounded context"). Drafts
+> [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]]
+> and [[../60-Research/raw-perplexity/raw-club-management-sub-aggregate-audit-2026-05-28]]
+> consolidate twelve Perplexity queries across four candidates ×
+> three dimensions (Genre / DDD / Real-world): genre (FM + EA FC
+> Career Mode + OOTP + FIFA Manager + Anstoss treat all four as
+> sub-aggregates with FIFA Manager + F1 Manager + Motorsport
+> Manager as closest analogues; cross-genre CK3 + Civ VI + Cities
+> Skylines + TW Three Kingdoms + Anno + Theme Park show
+> segmented-audience + venue-ops promoted to own context when
+> ops becomes core; medium-high), DDD (Vernon canonical scoring-
+> context + contract-lifecycle-management + settlement-context +
+> Hotel PMS / CMMS analogues; Salesforce CPQ + SAP S/4HANA Sales
+> Contract + Stripe Connect + Guidewire PolicyCenter + Amdocs +
+> Salesforce Marketing Cloud + Schufa + Spotify recommendation +
+> Tesco Clubcard + airline yield mgmt + Stripe Billing-vs-Ledger +
+> concert promoter ticketing-vs-settlement industry pattern; high)
+> and real-world 2023-2026 (Bayern Allianz Arena München Stadion
+> GmbH + BVB Stadionmanagement GmbH + Tottenham venue business +
+> Real Madrid Bernabéu Legends + Sixth Street JV separation
+> evidence; CCO-peer-of-CFO universal at Real Madrid + Barça +
+> Bayern + Manchester United + Manchester City + Liverpool + BVB +
+> Inter + PSG; commercial revenue 40-60% of total per Deloitte
+> Money League 2026; UEFA Stadium Infrastructure + Premier League
+> Ground Regulations + DFL Lizenzhandbuch + FA EPPP + SGSA Green
+> Guide + CEN-EN 17210 + UEFA FSR + PL APT + La Liga PSR + UK
+> Consumer Rights Act 2015 Schedule 2 + EU DSA Art. 16 + EU Late
+> Payment Directive + GDPR Art. 6 / 9 + Bundesliga 50+1 + UEFA
+> SLO + DFB-DFL SLO-Konzept + Premier League Independent Fan
+> Advisory Board multi-regulator framework; IFRS 15 universal
+> practice at BVB Konzernabschluss + Real Madrid Memoria + FC
+> Barcelona Memòria + Manchester United 20-F with cash receipt
+> / deferred revenue / match-by-match recognition / instalment
+> receivables / refund liability pools / hospitality multi-
+> component performance obligations; high for Stadium /
+> CommercialPortfolio / Ticketing & Settlement, low for Audience
+> & Atmosphere club-by-club governance — Perplexity Q2.3 flagged
+> sourcing gap) evidence. New draft
+> [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]]
+> proposes **per-candidate Option matrix (A sub-aggregate / B
+> Hybrid named Aggregate / C own BC / D sub-Aggregate-inside-
+> CommercialPortfolio)** with working recommendation **Option B
+> for Stadium** (Hybrid named Aggregate `StadiumOperations`
+> inside Club Management with published contract surface;
+> 5/6 firing, matchday-FSM coupling to Match keeps it inside Club
+> Management for MVP, Option C defensible post-MVP per Bayern /
+> BVB / Spurs / Real Madrid real-world separation evidence),
+> **Option C for Audience & Atmosphere** (spin-off
+> [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]];
+> six-of-six firing equal to FMX-29 / 33 wave high; Vernon
+> scoring-context canonical + cross-genre unanimous +
+> SLO / GDPR / DSA regulatory anchor), **Option C for
+> CommercialPortfolio** (six-of-six firing; Vernon CLM canonical
+> + CCO-peer-of-CFO universal + 40-60% revenue share +
+> multi-regulator anchor), and **Option D for Ticketing &
+> Commercial Settlement** (sub-Aggregate inside CommercialPortfolio
+> with `SeasonTicketCampaign` 8-state FSM + `FixtureSettlement`
+> Saga + `AccrualSchedule` IFRS 15 + `CreditLiabilityPool` +
+> `InstalmentReceivable` + `AccessibleAllocation`; six-of-six
+> firing; airline yield mgmt + Stripe Billing-vs-Ledger +
+> concert promoter industry pattern; fallback Option C standalone
+> Settlement BC if CommercialPortfolio = Option B). Working
+> recommendation adds two new bounded contexts (Audience &
+> Atmosphere + CommercialPortfolio), bringing 16 → 18 (or
+> 19-20 depending on landing order with ADR-0059 + ADR-0060).
+> In-line amendment hunks proposed against draft ADR-0050
+> §lines 67-79 and draft ADR-0058 §Recommendation lines 97-112;
+> both target ADRs remain `binding: false`, so FMX-32 refines
+> drafts rather than supersedes binding ADRs. ADR-0061 carries
+> the audit-level decision; ADR-0062 carries the spin-off
+> ratification frame so Nico can ratify Audience & Atmosphere
+> independently. Three of four candidates fire six-of-six
+> (matches FMX-29 / 33 wave high; stronger than FMX-26 / 28 /
+> 30 / 34). IP-clean rule terminology contained per GD-0015 +
+> ADR-0007; `risk:legal` label set on FMX-32 + sibling FMX-54
+> (Fan Ecology persona privacy & creative-IP-safe-naming review)
+> created 2026-05-28 under parent FMX-24. Public contract
+> direction proposed per candidate: Stadium B publishes
+> `StadiumCommercialSnapshot` / `MatchdayTimelineAdvanced` /
+> `PitchConditionChanged` / `VenueEventBooked` /
+> `FacilityComplianceChecked` (consumed by Club Management +
+> Match + Matchday-Event-Engine + Regulations); Audience &
+> Atmosphere publishes `FanDemandForecast` + `FanIncidentLogged`
+> + `AtmosphereSnapshot` + `TicketingTrustStateChanged` +
+> `FanPipelineQualityUpdated` + `OusterCallEscalated` (consumed
+> by CommercialPortfolio + Rivalry + Matchday-Event-Engine +
+> Manager & Legacy + Notification + Club Management);
+> CommercialPortfolio publishes `CommercialContractActivated` /
+> `CommercialBreachOpened` / `MatchdayCommercialSettlementPosted`
+> / `InvestorCashGrantPosted` / `CommercialFairValueAssessed` /
+> `DeferredRevenueRecognised` / `RefundLiabilityRecognised`
+> (consumed by Club Management ledger via Customer-Supplier +
+> ACL per ADR-0050 + Regulations + Manager & Legacy +
+> Notification). Awaiting Nico per-candidate ratify decision.
+
 > **FMX-33 Community Overlay Pipeline ownership dossier (2026-05-28).**
 > Community pack import pipeline - manifest parsing + schema
 > validation + conflict resolution + IP-safety gate + multi-BC
