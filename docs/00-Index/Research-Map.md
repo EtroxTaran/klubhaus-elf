@@ -167,6 +167,17 @@ before any promotion.
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   and [[../30-Implementation/club-economy-commercial-contracts]].
 
+## Fan Demand and Price Elasticity (2026-05-28)
+
+- [[../60-Research/fan-demand-price-elasticity-2026-05-28]] — FMX-42 synthesis
+  for supporter segments, latent demand, season-ticket renewal, price
+  elasticity, top-match surcharges, capacity pressure and ticketing-trust
+  backlash. Recommends segment-specific latent demand plus trust guardrails,
+  not one global elasticity constant. Refines draft [[../50-Game-Design/fan-ecology]],
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+  [[../50-Game-Design/economy-system]] and
+  [[../30-Implementation/club-economy-commercial-contracts]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 - [[../60-Research/ai-narrative-runtime-integration]] — synthesized follow-up

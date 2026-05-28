@@ -1,7 +1,7 @@
 ---
 title: GD-0022 Economy Commercial Impact and Contracts
 status: draft
-tags: [game-design, gddr, economy, commercial, tickets, fans, investor, fmx-41]
+tags: [game-design, gddr, economy, commercial, tickets, fans, fan-demand, price-elasticity, investor, fmx-41, fmx-42]
 created: 2026-05-28
 updated: 2026-05-28
 type: game-design
@@ -20,6 +20,7 @@ related:
   - [[matchday-event-engine]]
   - [[../60-Research/club-economy-blueprint-2026-05-27]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+  - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -32,8 +33,9 @@ related:
 
 draft
 
-> Draft only. This record captures the FMX-41 commercial economy direction and
-> needs Nico approval before implementation authority.
+> Draft only. This record captures the FMX-41 commercial economy direction plus
+> the FMX-42 fan-demand / price-elasticity refinement. It needs Nico approval
+> before implementation authority.
 
 ## Date
 
@@ -56,6 +58,10 @@ ledger effects behind the same decision.
   Management owns ticketing policy, commercial contracts and ledger posting.
 - **Fans are hard economy inputs.** Loyalty, mood, segment mix and volatility
   affect attendance, renewal, per-capita spend, sponsor fit and boycott risk.
+- **Ticket demand is latent and segment-specific.** Fan Ecology forecasts latent
+  demand before capacity; Club Management applies ticketing policy, seat
+  inventory and season-ticket allocation to derive actual attendance and
+  settlement.
 - **Season tickets are a trade-off.** They provide early cash and demand
   stability, but discount future attendance and reduce top-match upside.
 - **Top games and rivals matter.** Rivalries, star opponents, table context and
@@ -106,6 +112,7 @@ flowchart TB
 | Higher season-ticket share | Early cash, loyalty, stable attendance | Lower top-match upside, discount lock-in |
 | More single-ticket inventory | Better top-game yield and dynamic pricing | More volatility in bad years |
 | Top-match surcharge | Captures rival/star/cup demand | Fan-trust loss if overused |
+| Bounded dynamic pricing | Better revenue capture under high latent demand | Affordability backlash if opaque |
 | Family/community pricing | Segment growth and brand trust | Lower short-term yield |
 | Premium/hospitality expansion | High per-capita revenue and sponsor value | Ultras/core alienation if it replaces standing culture |
 
@@ -115,10 +122,14 @@ Minimum policy variables:
 - `seasonTicketDiscountBand`
 - `singleTicketPriceBands`
 - `topMatchSurchargePolicy`
+- `dynamicPricingMode`
+- `pricingTransparencyPolicy`
+- `seasonTicketProtectionRule`
 - `concessionPolicy`
 - `awayAllocationPolicy`
 - `familyBlockPolicy`
 - `secondaryMarketPolicy`
+- `ticketingTrustGuardrail`
 
 ## Fan segment economy
 
@@ -137,6 +148,28 @@ The system must support both club archetypes:
   elasticity, stronger reaction to identity violations;
 - **success/event-led:** high upside in strong seasons, weaker bad-year floor,
   larger top-player/top-game effects.
+
+## FMX-42 fan-demand and price-elasticity rules
+
+The simulation uses one demand core with profile data, not hard-coded country
+branches:
+
+- Fan Ecology calculates `latentDemand` by segment before capacity is applied.
+- Club Management allocates latent demand into seat-class inventory, season
+  tickets, away allocation, single-ticket sales and hospitality.
+- Price sensitivity is segment-specific. Casual/fair-weather/family demand is
+  more sensitive to total trip cost; ultras/core are less attendance-sensitive
+  but more likely to punish perceived identity or fairness breaches.
+- `FixtureCommercialProfile` combines opponent draw, rivalry tier, fixture
+  stakes, home form, star pull, novelty, kickoff convenience and weather.
+- `ticketingTrustState` persists across weeks and seasons. It feeds renewal,
+  boycott risk, atmosphere, sponsor fit and press/supporter events.
+- Capacity pressure is explicit. A sold-out match can still be a bad long-term
+  pricing decision if it displaces loyal segments or damages renewal trust.
+
+Recommended draft stance: category pricing and bounded surcharges are MVP-safe;
+opaque full dynamic pricing remains an explicit Nico decision because the
+research shows trust and affordability risk.
 
 ## Commercial contract families
 
@@ -207,6 +240,14 @@ Feature: Commercial economy impact
     Then single-ticket revenue can exceed the loyal-club baseline
     But future fan-trust risk is evaluated
 
+  Scenario: Sold-out match still carries trust risk
+    Given latent demand exceeds stadium capacity
+    And the club raises normal single-ticket prices above its profile guardrail
+    When matchday settlement runs
+    Then actual attendance can remain near capacity
+    And revenue can rise
+    But ticketing trust and next-season renewal probability fall
+
   Scenario: Season tickets trade upside for certainty
     Given two clubs have the same stadium capacity
     And one club sells more season tickets at a discount
@@ -238,6 +279,11 @@ Feature: Commercial economy impact
 ## Open before approval
 
 - Approval of ADR-0058 boundary recommendation.
+- Decide whether MVP permits only category pricing plus bounded surcharges, or
+  also full dynamic pricing.
+- Decide whether Germany-style fan-first guardrails are hard country rules or
+  tunable profile defaults.
+- Decide how visible `ticketingTrustState` should be in Quick mode.
 - Investor activation timing and platform/legal checklist.
 - First Top-5 country calibration order.
 - Default season-ticket share and discount ranges per profile.

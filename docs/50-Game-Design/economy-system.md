@@ -1,7 +1,7 @@
 ---
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance, accounting, commercial, club-management, fmx-13, fmx-41]
+tags: [game-design, economy, finance, accounting, commercial, club-management, price-elasticity, fmx-13, fmx-41, fmx-42]
 created: 2026-05-16
 updated: 2026-05-28
 type: game-design
@@ -13,6 +13,7 @@ related:
   - [[GD-0022-economy-commercial-impact-and-contracts]]
   - [[../60-Research/club-economy-blueprint-2026-05-27]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+  - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -86,7 +87,7 @@ Important rule: **budget is permission, not cash**.
 
 | Source | Primary drivers | Timing |
 |---|---|---|
-| Ticketing | League, opponent, table, price, weather, fan loyalty | Matchday / season ticket pre-sale |
+| Ticketing | Segment latent demand, league, opponent, table, price, weather, fan loyalty, ticketing trust | Matchday / season ticket pre-sale |
 | Catering | Attendance, dwell time, fan mix, risk policy | Matchday + venue events |
 | Hospitality | Corporate demand, premium capacity, sponsor portfolio | Matchday / contract |
 | Merchandise | Brand, stars, success, campaigns | Seasonal spikes |
@@ -229,6 +230,11 @@ still owns the money, but the causes come from contracts and public read models:
 | Fan-service campaign | Fan event policy | Direct costs, sponsor contributions, loyalty/demand effects |
 | Investor entitlement | Singleplayer payment entitlement | Clean cash grant, no other state change |
 
+FMX-42 refines the fan-demand cause layer: ticket price acts on latent demand
+by segment before capacity is allocated. Capacity pressure, ticketing trust,
+fixture attractiveness and season-ticket protection explain why a full stadium
+can still hide long-term commercial damage.
+
 The same settlement supports Quick / Standard / Expert:
 
 - Quick: total cost/revenue and recommended action.
@@ -261,7 +267,8 @@ burn through the grant.
 - Decision records: [[GD-0008-finance-economy]] ·
   [[GD-0022-economy-commercial-impact-and-contracts]]
 - Research: [[../60-Research/club-economy-blueprint-2026-05-27]] ·
-  [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+  [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]] ·
+  [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
 - Feature: [[../20-Features/feature-club-economy-mvp-pillar]]
 - Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
