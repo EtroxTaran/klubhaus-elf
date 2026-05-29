@@ -3,7 +3,7 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-05-29
 type: map
 binding: false
 related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]]
@@ -41,13 +41,15 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+- [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 
 ## Fans + brand
 
-- [[../50-Game-Design/fan-ecology]]
+- [[../50-Game-Design/audience-and-atmosphere]]
 - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+- [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 
 ## Sporting core
 
@@ -116,6 +118,8 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/fan-demand-price-elasticity-2026-05-28]]
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
+- [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+- [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 - [[../60-Research/manager-archetype-roguelite-2026-05-27]]
 - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
 - [[../60-Research/player-staff-development-decision-model-2026-05-28]]

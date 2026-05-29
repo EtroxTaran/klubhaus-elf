@@ -1,9 +1,9 @@
 ---
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
-tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45]
+tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, operations, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-05-29
 type: implementation
 binding: false
 linear: FMX-41
@@ -13,7 +13,7 @@ related:
   - [[../50-Game-Design/GD-0008-finance-economy]]
   - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../50-Game-Design/economy-system]]
-  - [[../50-Game-Design/fan-ecology]]
+  - [[../50-Game-Design/audience-and-atmosphere]]
   - [[../50-Game-Design/sponsorship-portfolio]]
   - [[../50-Game-Design/stadium-and-campus]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
@@ -21,6 +21,7 @@ related:
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+  - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[club-economy-accounting-ledger]]
   - [[../10-Architecture/bounded-context-map]]
 ---
@@ -38,22 +39,29 @@ surface for sponsorship, catering, merchandise, hospitality, suppliers and
 venue activations. FMX-45 refines `CompetitionRevenueProfile` and cup
 settlement so domestic and continental fixtures can produce hard cash,
 receivables, future EV and elimination shock without copying real-world
-licensed competitions.
+licensed competitions. FMX-46 adds `MatchdayOperatingCostProfile` and
+risk-cost settlement for stewarding, security, policing-style contribution,
+medical, cleaning, energy, temporary staff, pitch recovery, insurance,
+restrictions and sanctions.
 
 This is draft planning only. It becomes implementation authority only after the
 relevant GDDR/ADR path is approved.
 
 ## Ownership rule
 
-Club Management owns:
+Per accepted ADR-0058 and ADR-0061, CommercialPortfolio owns:
 
 - ticketing policies and season-ticket campaigns;
 - commercial contract portfolio for sponsorship, catering, merchandise,
   hospitality, supplier and venue-activation contracts;
 - fan-event campaign choices and budgets;
-- commercial forecasts and settlement;
-- ledger posting for all commercial outcomes;
-- Investor entitlement cash grant posting in singleplayer.
+- commercial forecasts and per-fixture commercial/operating settlement;
+- Investor entitlement grant policy in singleplayer.
+
+Club Management owns:
+
+- finance ledger posting for all commercial outcomes;
+- budget envelopes, board pressure and insolvency state.
 
 Other domains provide facts through contracts. They do not write commercial
 state or ledger entries directly.
@@ -62,7 +70,7 @@ state or ledger entries directly.
 
 ### `FanDemandForecast`
 
-Owned by Fan Ecology, consumed by Club Management.
+Owned by Audience & Atmosphere, consumed by CommercialPortfolio.
 
 | Field | Meaning |
 |---|---|
@@ -122,8 +130,7 @@ Produced from League/Competition fixture state plus Rivalry and Match context.
 
 ### `StadiumCommercialSnapshot`
 
-Owned by Stadium/Campus inside Club Management or the stadium subsystem, read
-by commercial settlement.
+Owned by Stadium Operations, read by commercial and operating settlement.
 
 | Field | Meaning |
 |---|---|
@@ -137,11 +144,19 @@ by commercial settlement.
 | `fanZoneQuality` | Dwell-time and activation band. |
 | `ownershipModel` | Owned, leased, municipal, ground-share. |
 | `fixedOperatingCost` | Weekly venue cost range. |
+| `matchdayVariableCostBands` | Venue operating cost bands for routine through high-risk fixtures. |
+| `stewardingDensityBand` | Baseline and risk-tier staffing density. |
+| `securityCapabilityBand` | Search, segregation, surveillance and control capability. |
+| `medicalEmergencyCapacity` | First-aid, ambulance, doctor and heat/water readiness band. |
+| `cleaningWasteCostBand` | Cleaning, waste and sanitation cost band. |
+| `energyUtilityCostBand` | Floodlight, heating/cooling, water and technical-system cost band. |
+| `pitchCondition` | Pitch health and recovery-cost risk. |
+| `awaySeparationConstraints` | Segregation, ingress/egress and away-sector constraints. |
 | `eventEligibility` | Concert, conference, community/fan event tags. |
 
 ### `TicketingPolicy`
 
-Owned by Club Management.
+Owned by CommercialPortfolio.
 
 | Field | Meaning |
 |---|---|
@@ -169,7 +184,7 @@ Owned by Club Management.
 
 ### `SeasonTicketCampaign`
 
-Owned by Club Management. Operates on fan-group cohorts, not individual
+Owned by CommercialPortfolio. Operates on fan-group cohorts, not individual
 supporters.
 
 | Field | Meaning |
@@ -195,12 +210,13 @@ supporters.
 | `groupCompensationPolicy` | Credit/refund/discount treatment for group-level access failures. |
 | `allocationOutcome` | Sold seats and unmet demand by segment, package and seat class. |
 | `accountingScheduleId` | Linked `SeasonTicketAccountingSchedule`. |
-| `trustGuardrail` | Price-shock and fairness limits from Fan Ecology / country profile. |
+| `trustGuardrail` | Price-shock and fairness limits from Audience & Atmosphere / country profile. |
 | `provenance` | Forecasts, stadium snapshot, fixture set and policy versions used. |
 
 ### `SeasonTicketAccountingSchedule`
 
-Owned by Club Management's ledger boundary. It distinguishes cash receipt,
+Owned by CommercialPortfolio as an accrual/recognition schedule; Club
+Management posts the resulting ledger entries. It distinguishes cash receipt,
 receivables, deferred revenue and match-by-match recognition.
 
 | Field | Meaning |
@@ -223,7 +239,7 @@ receivables, deferred revenue and match-by-match recognition.
 
 ### `CommercialContract`
 
-Owned by Club Management.
+Owned by CommercialPortfolio.
 
 | Field | Meaning |
 |---|---|
@@ -308,7 +324,7 @@ Contract events that must be representable before implementation:
 
 ### `CompetitionRevenueProfile`
 
-Owned by League/Competition data, consumed by Club Management.
+Owned by League/Competition data, consumed by CommercialPortfolio.
 
 | Field | Meaning |
 |---|---|
@@ -362,10 +378,79 @@ Settlement events that must be representable:
 - `CupForecastUpdated`
 - `CupEliminationForecastShockRecorded`
 
+### `MatchdayOperatingCostProfile`
+
+Owned by CommercialPortfolio as the per-fixture operating settlement profile.
+It consumes facts from Stadium Operations, Audience & Atmosphere, Rivalry
+System, Regulations & Compliance, League/Competition and Matchday Event Engine.
+Club Management posts ledger entries only after settlement events are emitted.
+
+| Field | Meaning |
+|---|---|
+| `profileId` | Profile identity and version. |
+| `fixtureId` | Fixture scope. |
+| `venueId` | Stadium Operations venue identity. |
+| `competitionId` | League/Competition profile reference. |
+| `countryProfileId` | Country or abstract fallback profile. |
+| `riskTier` | routine, guarded, elevated, highRisk, restricted or closedDoor. |
+| `riskDrivers` | Rivalry, away support, kickoff, weather, stakes, incident memory, sanctions and venue state. |
+| `attendanceBand` | Expected attendance / open-sector band used for variable costs. |
+| `awayFanBand` | Away allocation, travel pressure and segregation pressure. |
+| `openSectorPlan` | Which home/away/premium/family/accessibility sectors are open or closed. |
+| `stewardingRule` | Stewarding baseline and risk multiplier. |
+| `securityRule` | Search, segregation, private-security and surveillance rule. |
+| `policingContributionRule` | None, footprint-limited, shared, high-risk contribution or competition-hosted. |
+| `medicalEmergencyRule` | First-aid, ambulance, doctor, heat/water and emergency-service profile. |
+| `cleaningWasteRule` | Cleaning, waste and sanitation cost rule. |
+| `energyUtilityRule` | Floodlight, heating, cooling, water and technical-system cost rule. |
+| `temporaryStaffRule` | Turnstile, retail, catering, hospitality, fan-zone and contractor staffing rule. |
+| `officialsRule` | Match official, VAR/technical and competition-operations cost/levy rule. |
+| `pitchRecoveryRule` | Weather, pitch condition, turf quality and event-density recovery rule. |
+| `insuranceComplianceRule` | Seasonal overhead allocation and inspection/risk-history modifier. |
+| `damageReserveRule` | Property, transport, cleanup and supporter-incident reserve rule. |
+| `restrictionRule` | Alcohol, away-fan, sector, ghost-match and public-order constraints. |
+| `mitigationOptions` | Security upgrade, fan dialogue, alcohol restriction, away cap, water/medical upgrade, pitch prep. |
+| `forecastCostBand` | Quick/Standard visible expected operating-cost range. |
+| `settlementDelay` | Matchday, post-match disciplinary delay or monthly allocation. |
+| `provenance` | Source facts, profile version, confidence and research/source note. |
+
+Risk tiers:
+
+| Tier | Meaning |
+|---|---|
+| `routine` | Normal fixture, no special public-order signal. |
+| `guarded` | Attendance, away demand, kickoff or weather needs visible planning. |
+| `elevated` | Rivalry, cup stakes, incident memory or away-travel pressure. |
+| `highRisk` | High/volatile rivalry or regulator/police high-risk classification. |
+| `restricted` | Alcohol ban, away cap/ban, sector closure or special entry controls. |
+| `closedDoor` | Ghost match / behind-closed-doors sanction. |
+
+Settlement events that must be representable:
+
+- `MatchdayOperatingCostForecasted`
+- `MatchdayStewardingCostPosted`
+- `MatchdaySecurityCostPosted`
+- `MatchdayPoliceContributionPosted`
+- `MatchdayMedicalEmergencyCostPosted`
+- `MatchdayCleaningWasteCostPosted`
+- `MatchdayEnergyCostPosted`
+- `MatchdayTemporaryStaffCostPosted`
+- `MatchdayOfficialsCostPosted`
+- `PitchRecoveryCostPosted`
+- `MatchdayInsuranceComplianceCostAllocated`
+- `MatchdayDamageReserveAdjusted`
+- `MatchdaySanctionFinePosted`
+- `SectorClosureRevenueImpactRecorded`
+- `GhostMatchSettlementRecorded`
+- `AwayFanRestrictionApplied`
+- `AlcoholRestrictionApplied`
+- `RiskTierReclassified`
+- `MitigationActionSettled`
+
 ### `FanEventCampaign`
 
-Owned by Club Management; causal effects applied through Fan Ecology and
-settled through the ledger.
+Owned by CommercialPortfolio; causal effects apply through Audience &
+Atmosphere and settle through the ledger.
 
 | Field | Meaning |
 |---|---|
@@ -383,7 +468,8 @@ settled through the ledger.
 
 ### `InvestorEntitlementGrant`
 
-Produced by platform/payment boundary, consumed by Club Management.
+Produced by platform/payment boundary, consumed by CommercialPortfolio for
+entitlement policy and by Club Management for the final ledger posting.
 
 | Field | Meaning |
 |---|---|
@@ -411,16 +497,20 @@ Rules:
 ```mermaid
 sequenceDiagram
     participant League
-    participant Fan as Fan Ecology
+    participant Fan as Audience & Atmosphere
+    participant Stadium as Stadium Operations
+    participant Commercial as CommercialPortfolio
     participant Club as Club Management
     participant Ledger as Club Ledger
 
-    League->>Club: FixtureCommercialProfile
-    Fan->>Club: FanDemandForecast
-    Club->>Club: Apply TicketingPolicy + CommercialContracts
+    League->>Commercial: FixtureCommercialProfile + CompetitionRevenueProfile
+    Fan->>Commercial: FanDemandForecast + atmosphere/risk facts
+    Stadium->>Commercial: StadiumCommercialSnapshot
+    Commercial->>Commercial: Apply TicketingPolicy + CommercialContracts + MatchdayOperatingCostProfile
+    Commercial->>Club: Commercial and operating settlement events
     Club->>Ledger: Post season-ticket cash / receivables / deferred revenue
-    Club->>Ledger: Post matchday commercial settlement
-    Club->>Fan: FanEventCampaign outcome facts
+    Club->>Ledger: Post matchday commercial and operating settlement
+    Commercial->>Fan: FanEventCampaign outcome facts
     Club->>Ledger: Post campaign costs / sponsor contributions
 ```
 
@@ -436,6 +526,7 @@ sequenceDiagram
 | `CommercialContractRegister` | Lifecycle state, contract version, renewal window, breach case and obligation status. |
 | `CommercialExclusivityGraph` | Category/territory/asset overlaps and blocked/narrowed offers. |
 | `MatchdayCommercialSettlement` | Per-fixture revenue/cost breakdown. |
+| `MatchdayOperatingCostSettlement` | Per-fixture operating cost, risk-tier and restriction breakdown. |
 | `FanEventCampaignBoard` | Fan-service event choices and results. |
 | `CupRunRevenueForecast` | Secured cup cash, earned receivables, future-round EV, payment timing and elimination shock. |
 | `InvestorGrantAudit` | Entitlement and ledger provenance for SP cash grants. |
@@ -462,6 +553,14 @@ sequenceDiagram
   revenue rises.
 - Home cup tie posts ticket, catering, merchandise, security, prize/media and
   sponsor effects separately.
+- Matchday operating-cost profile posts stewarding, security,
+  policing-style, medical, cleaning, energy, temporary staff, officials, pitch,
+  insurance and sanction effects separately.
+- High-risk rivalry fixture shows mitigation before operating settlement.
+- Alcohol restriction reduces catering upside and security/sanction exposure.
+- Sector closure reduces capacity while fixed required operating costs remain.
+- Ghost match removes attendance income while required stadium, security,
+  medical, energy and competition-operation costs still post.
 - Away cup tie posts travel/accommodation plus profile-defined gate share or
   facility fee.
 - Neutral final uses allocation, central prize/media, travel and sponsor rules
@@ -501,6 +600,7 @@ sequenceDiagram
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+- [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[club-economy-accounting-ledger]]

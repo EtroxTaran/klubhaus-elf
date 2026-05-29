@@ -1,12 +1,12 @@
 ---
 title: Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prevention
 status: draft
-tags: [game-design, events, matchday, weather, sanctions]
+tags: [game-design, events, matchday, weather, sanctions, operations, fmx-46]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-05-29
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[fan-ecology]], [[rivalry-system]], [[stadium-and-campus]], [[regulations-and-compliance]]
+related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[audience-and-atmosphere]], [[rivalry-system]], [[stadium-and-campus]], [[regulations-and-compliance]], [[GD-0022-economy-commercial-impact-and-contracts]]
 ---
 
 # Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prevention
@@ -39,6 +39,13 @@ but it does not own these rules or their state changes.
 | **Security** | Pyro, fan march, block clash, projectiles |
 | **Catering** | Water demand spike, beer drop, sausages sold out |
 | **Media / PR** | Protest banner, record attendance, boycott, choreo |
+
+FMX-46 adds a cost-settlement contract: event effects may emit operating-cost
+inputs such as `PitchRecoveryCostPosted`, `MatchdayMedicalEmergencyCostPosted`,
+`MatchdayDamageReserveAdjusted`, `RiskTierReclassified` or a Regulations-owned
+sanction command. The event engine resolves the incident; CommercialPortfolio
+settles the commercial/operating cost; Club Management posts finance ledger
+entries.
 
 ## 3. Event schema
 
@@ -90,7 +97,7 @@ The engine reads this declarative schema; no per-event code is needed.
 | Field | Value |
 |---|---|
 | Trigger | High `rivalry_score`, recent fan-incident memory, low security upgrade |
-| Effect | Fine, partial sector closure (next match), media event |
+| Effect | Fine, partial sector closure (next match), media event, risk-tier reclassification |
 | Prevention | Security budget, fan dialogue project, ticket policy |
 
 ### 4.4 Floodlight outage
@@ -106,7 +113,7 @@ The engine reads this declarative schema; no per-event code is needed.
 | Field | Value |
 |---|---|
 | Trigger | Heavy rain previous week + no undersoil + low groundskeeper budget |
-| Effect | Tactical familiarity penalty for both teams (mud), injury risk + |
+| Effect | Tactical familiarity penalty for both teams (mud), injury risk +, pitch recovery cost |
 | Prevention | Undersoil heating, drainage upgrade, groundskeeper budget |
 
 ## 5. Engine evaluation phases
@@ -148,8 +155,11 @@ Events feed into other systems, not just inbox cards:
 
 - Catering & infrastructure events ←” [[economy-system]] revenue and KPIs.
 - Security events ←” [[regulations-and-compliance]] sanction chain.
+- Security, medical, pitch and infrastructure events ←”
+  [[GD-0022-economy-commercial-impact-and-contracts]] matchday operating-cost
+  settlement.
 - Medical events ←” [[training-load-and-medicine]] injury record.
-- Fan events ←” [[fan-ecology]] segment mood.
+- Fan events ←” [[audience-and-atmosphere]] segment mood.
 - Media events ←” [[club-dna-and-governance]] media image.
 - Pitch and venue conflicts ←” [[stadium-and-campus]] venue calendar,
   pitch wear and setup/teardown windows.
@@ -158,10 +168,13 @@ Domain ownership:
 
 | Event source | Owner |
 |---|---|
-| Stadium, catering, sponsor and fan effects | Club Management |
+| Stadium and pitch effects | Stadium Operations |
+| Catering, sponsor and commercial settlement effects | CommercialPortfolio |
+| Fan mood, atmosphere and trust effects | Audience & Atmosphere |
 | Fixture phase and match interruption facts | Match + League Orchestration |
 | Injuries/availability | Squad & Player after Match/Training facts |
-| Sanctions | Regulations/compliance policy under Club/League |
+| Sanctions | Regulations & Compliance |
+| Finance ledger entries | Club Management |
 | User-facing cards | Notification/Narrative projection |
 
 ## 8. UI tiers

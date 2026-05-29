@@ -3,7 +3,7 @@ title: Game Design Hub
 status: current
 tags: [game-design, index]
 created: 2026-05-15
-updated: 2026-05-28
+updated: 2026-05-29
 type: index
 binding: false
 related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]]
@@ -90,7 +90,7 @@ active work.
 | [[GD-0019-manager-archetype-roguelite-progression]] | Manager archetype roguelite progression; FMX-16 hooks, playtest-tunable taxonomy and prestige counterweight | draft | ADR-0051 |
 | [[GD-0020-eos-player-skills-personas-and-people]] | EOS player skills/perks, staff target skills, personas and People-context planning | draft | ADR-0052 |
 | [[GD-0021-player-staff-development-and-decision-influence]] | Player/staff development and decision-influence factor matrices; staff-skill MVP gate | draft | ADR-0052, ADR-0053 |
-| [[GD-0022-economy-commercial-impact-and-contracts]] | Economy commercial impact map; ticketing, season-ticket lifecycle/accrual, fan-demand elasticity, commercial contract lifecycle/breach, catering, merchandise, cup/competition revenue profiles, fan events and Investor clean SP cash | draft | ADR-0050, ADR-0058 |
+| [[GD-0022-economy-commercial-impact-and-contracts]] | Economy commercial impact map; ticketing, season-ticket lifecycle/accrual, fan-demand elasticity, commercial contract lifecycle/breach, catering, merchandise, cup/competition revenue profiles, matchday operating costs, fan events and Investor clean SP cash | draft | ADR-0050, ADR-0058 |
 
 ## Core loop
 
@@ -104,14 +104,16 @@ active work.
 - [[GD-0022-economy-commercial-impact-and-contracts]] - draft commercial
   impact layer for ticketing, season-ticket lifecycle/accrual, commercial
   contract lifecycle/breach, catering, merchandise, cup/competition revenue
-  profiles, fan-demand elasticity, fan events and Investor clean SP cash.
+  profiles, matchday operating costs, fan-demand elasticity, fan events and
+  Investor clean SP cash.
 - [[sponsorship-portfolio]] - 4-tier sponsor inventory at asset level.
 - [[stadium-and-campus]] - stadium tiers + Anstoss-style attractions + club campus.
 - [[../20-Features/feature-club-economy-mvp-pillar]] - draft MVP economy pillar for weekly ledger, full accounting and staged insolvency.
 
 ## Fans and brand
 
-- [[fan-ecology]] - 6 supporter segments + atmosphere engine.
+- [[audience-and-atmosphere]] - supporter segments, demand, ticketing trust
+  and atmosphere engine.
 - [[../60-Research/fan-demand-price-elasticity-2026-05-28]] - FMX-42
   segment-specific latent demand, price sensitivity and ticketing-trust research.
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]] -
@@ -120,6 +122,8 @@ active work.
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]] -
   FMX-44 shared commercial contract lifecycle, exclusivity, breach and fan-fit
   research.
+- [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]] -
+  FMX-46 matchday operating-cost and risk-cost settlement research.
 
 ## Sporting core
 

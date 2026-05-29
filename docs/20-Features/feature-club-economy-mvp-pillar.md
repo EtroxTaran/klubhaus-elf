@@ -1,9 +1,9 @@
 ---
 title: Feature - Club Economy MVP Pillar
 status: draft
-tags: [feature, mvp, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, season-tickets, cup, competition, fmx-13, fmx-41, fmx-43, fmx-44, fmx-45]
+tags: [feature, mvp, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, season-tickets, cup, competition, matchday, operations, fmx-13, fmx-41, fmx-43, fmx-44, fmx-45, fmx-46]
 created: 2026-05-27
-updated: 2026-05-28
+updated: 2026-05-29
 type: feature
 binding: false
 linear: FMX-13
@@ -18,6 +18,7 @@ related:
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+  - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   - [[../30-Implementation/club-economy-commercial-contracts]]
@@ -55,8 +56,13 @@ visible economic consequence.
 - Minimum competition-revenue policy: IP-clean domestic cup presets,
   continental profile hook, hard cash versus receivable versus future EV,
   elimination-shock forecast update and neutral/away/home settlement variants.
-- Minimum costs: player/staff wages, stadium operations, travel, debt service,
-  transfer instalments, maintenance and federation/league levy.
+- Minimum costs: player/staff wages, stadium operations, matchday operating
+  costs, travel, debt service, transfer instalments, maintenance and
+  federation/league levy.
+- Minimum matchday operating-cost policy: per-fixture risk tier, stewarding,
+  private security, policing contribution, medical, cleaning, energy,
+  temporary staff, officials, pitch recovery, damage reserve and sanction
+  settlement, with mitigation presets before high-risk fixtures.
 - Staged insolvency crisis: warning -> overdraft/freeze -> arrears -> licence
   consequence -> run end.
 - Country profile selection for Germany, England, France, Italy, Spain and
@@ -87,7 +93,10 @@ visible economic consequence.
 - Expert UI can distinguish liquidity, accounting result and compliance risk.
 - Commercial UI can show Quick totals and Expert assumptions for away travel,
   season-ticket cash/deferred accounting, catering/merch contracts, cup
-  settlement and fan events.
+  settlement, matchday operating-risk costs and fan events.
+- High-risk, restricted and closed-door fixtures show forecast cost, revenue
+  impact and mitigation options before settlement, unless the cost is triggered
+  by a post-match incident.
 - Cup UI can distinguish secured income, earned receivables and expected future
   round upside, and early elimination removes forecast upside without creating
   a hidden cash penalty.
@@ -108,6 +117,7 @@ visible economic consequence.
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+- [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[../30-Implementation/club-economy-commercial-contracts]]

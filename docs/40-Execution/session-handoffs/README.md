@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-05-28
+updated: 2026-05-29
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -42,6 +42,20 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-29-fmx-46-matchday-operating-costs]] - FMX-46 matchday
+  operating-cost and risk-cost settlement dossier: UEFA/national safety,
+  stewarding, policing, supporter-travel, alcohol, disciplinary and stadium
+  operations patterns; CommercialPortfolio-owned `MatchdayOperatingCostProfile`;
+  risk tiers from routine to closed-door; settlement families for stewarding,
+  security, policing contribution, medical, cleaning/waste, energy, temporary
+  staff, officials, pitch recovery, insurance/compliance allocation, damage
+  reserve, sanctions, sector closures, away-fan restrictions, alcohol
+  restrictions and ghost matches. Refined GD-0022, Economy System,
+  Regulations, Matchday Event Engine, Rivalry, Stadium/Campus, Audience &
+  Atmosphere, Club Economy MVP pillar, ADR-0050, ADR-0058 and
+  commercial-contract surfaces. Awaiting Nico decisions on final cost ranges,
+  auto-mitigation defaults, policing-control depth and severe incident
+  frequency.
 - [[2026-05-28-fmx-45-cup-competition-revenue]] - FMX-45 cup and
   competition revenue dossier: Germany/England/Spain/Italy/France plus
   continental source patterns; IP-clean `CompetitionRevenueProfile` preset
