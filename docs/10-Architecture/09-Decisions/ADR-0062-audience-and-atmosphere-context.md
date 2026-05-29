@@ -1,11 +1,11 @@
 ---
 title: ADR-0062 Audience & Atmosphere Context
-status: proposed
-tags: [adr, architecture, ddd, audience-and-atmosphere, fan-ecology, scoring-context, supporting-subdomain, fmx-32, proposed]
+status: accepted
+tags: [adr, architecture, ddd, audience-and-atmosphere, fan-ecology, scoring-context, supporting-subdomain, fmx-32, accepted]
 created: 2026-05-28
 updated: 2026-05-28
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -39,11 +39,27 @@ related:
 
 ## Status
 
-proposed
+accepted
 
 ## Date
 
-2026-05-28
+- Proposed: 2026-05-28
+- Accepted: 2026-05-28 by Nico
+
+## Ratification note
+
+Nico ratified Option C (own bounded context Audience & Atmosphere)
+on 2026-05-28 as part of the FMX-32 audit ratification (ADR-0061
+§Ratification note). Audience & Atmosphere becomes the **18th**
+bounded context (Club Management → 17 contexts after Stadium
+Operations carve-out, +1 for A&A). Combined with the
+CommercialPortfolio carve-out (ADR-0061), the map grows to 19
+contexts in this ratification event. Cross-save dependencies on
+People (ADR-0052 draft) + Narrative (ADR-0054 draft) + Manager &
+Legacy (ADR-0051 accepted) + Community Overlay Pipeline (ADR-0059
+proposed) remain as documented; `NamedSupporterGroup` aggregate
+stays opt-in via FMX-54-gated command until FMX-54 (Fan Ecology
+persona privacy & creative-IP-safe-naming review) ratifies.
 
 ## Context
 

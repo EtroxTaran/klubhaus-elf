@@ -84,7 +84,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > constant; fixture attractiveness includes opponent draw, rivalry, stakes,
 > form, star pull, novelty, kickoff and weather; `ticketingTrustState` carries
 > perceived fairness and price-shock memory into renewal, boycott, atmosphere
-> and sponsor-fit risk. Draft [[../50-Game-Design/fan-ecology]],
+> and sponsor-fit risk. Draft [[../50-Game-Design/audience-and-atmosphere]],
 > [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
 > [[../50-Game-Design/economy-system]] and
 > [[../30-Implementation/club-economy-commercial-contracts]] are refined
@@ -106,7 +106,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > policy effects, not individual fan records. Draft
 > [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
 > [[../50-Game-Design/economy-system]],
-> [[../50-Game-Design/fan-ecology]],
+> [[../50-Game-Design/audience-and-atmosphere]],
 > [[../50-Game-Design/stadium-and-campus]] and
 > [[../30-Implementation/club-economy-commercial-contracts]] are refined
 > accordingly. Default share/discount ranges, Quick-mode waitlist visibility,
@@ -214,6 +214,78 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > (consumed by Regulations ACL per ADR-0056 Tax-catalog pattern),
 > `YouthPipelineQualityUpdated` (consumed by Manager & Legacy
 > archetype hook per GD-0019). Awaiting Nico ratify decision.
+
+> **FMX-32 Club Management sub-aggregate audit + ADR-0050 +
+> ADR-0058 + ADR-0061 + ADR-0062 ratification applied (2026-05-28).**
+> Nico ratified the best-practice landing.
+> [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]]
+> and [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]]
+> are now `status: accepted` and `binding: true`; draft
+> [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+> and [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+> flipped to `accepted` / `binding: true` at the same ratification
+> event with the FMX-32 in-line amendment hunks applied (ADR-0058's
+> original "Option C = Club Management sub-aggregate, no new BC"
+> recommendation is **superseded** by ADR-0061; the originally-
+> deferred "Option B = new Commercial Operations bounded context"
+> path is now the accepted shape, instantiated as CommercialPortfolio).
+> Per-candidate decision: **Stadium / Venue Ops = Option C** (own
+> bounded context `Stadium Operations` — Nico chose C over the
+> dossier working rec B based on real-world Bayern Allianz Arena
+> München Stadion GmbH + BVB Stadionmanagement GmbH + Tottenham
+> venue business + Real Madrid Bernabéu Legends & Sixth Street JV
+> legal-entity / dedicated-division separation evidence, the
+> Hotel PMS + CMMS + Theme Park DDD analogue + cross-genre
+> precedent, and event-based matchday-FSM coupling to Match
+> handled via Customer-Supplier + ACL); **Audience & Atmosphere =
+> Option C** (own bounded context via spin-off ADR-0062, renamed
+> from the predecessor Fan-Ecology GDDR which is now `status:
+> superseded` with the supersession banner pointing forward;
+> [[../50-Game-Design/audience-and-atmosphere]] is the new
+> binding GDDR);
+> **CommercialPortfolio = Option C** (own bounded context covering
+> sponsorship + catering + merchandise + hospitality + ticketing
+> & commercial settlement umbrella per FMX-44 unified
+> `CommercialContract` shell); **Ticketing & Commercial Settlement
+> = Option D** (sub-Aggregate inside CommercialPortfolio with
+> `SeasonTicketCampaign` 8-state FSM + `FixtureSettlement` Saga
+> + `AccrualSchedule` IFRS 15 + `CreditLiabilityPool` +
+> `InstalmentReceivable` + `AccessibleAllocation`). Adds **three
+> new bounded contexts** (Stadium Operations, Audience &
+> Atmosphere, CommercialPortfolio) per
+> [[../10-Architecture/bounded-context-map]] §1 (16 → 19; future
+> ratifications of ADR-0059 Community Overlay Pipeline + ADR-0060
+> Youth Academy can grow the map to 21). Map patches applied: §1
+> table amended (Club Management row narrowed to "finance ledger
+> sole writer + budget envelopes + board pressure + insolvency
+> state"; three new rows added for Stadium Operations / Audience
+> & Atmosphere / CommercialPortfolio); §1 prose new paragraphs
+> for each of the three new contexts; §2 high-level Mermaid new
+> Stadium / AAtmo / CPort nodes + edges; §3 finance-ownership
+> rule amended (CommercialPortfolio emits settlement events
+> consumed by Club Management via Customer-Supplier + ACL;
+> Stadium Operations emits facility-cost events; Staff Operations
+> emits wage events; same pattern; Club Management remains sole
+> ledger writer); §4 source mapping new folders
+> (`stadium-operations/` + `audience-and-atmosphere/` +
+> `commercial-portfolio/`); §5 extraction-order prose note flagged
+> CommercialPortfolio as highest service-extraction priority due
+> to 40-60% revenue share at top-tier clubs per Deloitte Money
+> League 2026. Three of four candidates fire six-of-six DDD
+> split-criteria (matches FMX-29 / 33 wave high). Real-world
+> evidence anchors: Vernon IDDD scoring-context (A&A) + contract
+> lifecycle management (CommercialPortfolio) + settlement-context
+> (Ticketing & Settlement) + Hotel PMS / CMMS (Stadium); cross-
+> genre CK3 / Civ VI / Cities / TW / Anno / Theme Park unanimous;
+> CCO-peer-of-CFO universal at top clubs; UEFA FSR / PL APT / La
+> Liga PSR / GDPR / DSA / CRA / Late Payment Directive / CEN-EN
+> 17210 / UEFA SLO / DFB-DFL SLO-Konzept / Bundesliga 50+1 multi-
+> regulator anchor; IFRS 15 universal practice at BVB / Real
+> Madrid / Barça / Manchester United. `risk:legal` hardline per
+> GD-0015 + ADR-0007 contained in three contexts; FMX-54 sibling
+> follow-up (Fan Ecology persona privacy & creative-IP-safe-
+> naming review) hardens `NamedSupporterGroup` aggregate scope
+> + creative-naming generator pattern.
 
 > **FMX-32 Club Management sub-aggregate ownership audit (2026-05-28).**
 > Boundary audit of the four Club Management sub-aggregate

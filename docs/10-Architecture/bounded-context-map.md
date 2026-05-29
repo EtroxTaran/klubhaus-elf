@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-05-28
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]]
 ---
 
 # Bounded Context Map
@@ -29,13 +29,13 @@ context's contract is designed as if it could be running on its own
 process / pod / region. Splitting a context out later is a deployment
 change, not a refactor.
 
-## 1. Sixteen bounded contexts
+## 1. Nineteen bounded contexts
 
 | Context | Core elements | Exposed outputs |
 |---|---|---|
 | **Identity & Access** | User, sessions, roles, device state | Auth claims, membership context |
 | **League Orchestration** | Season, week, match-day, mode, pause, quorum | League status, deadlines, lifecycle events |
-| **Club Management** | Finance ledger, accounting projections, budgets, infrastructure, sponsors, board, fans, insolvency state | Club state, economy snapshots, board pressure, facility modifiers |
+| **Club Management** | Finance ledger (sole writer), accounting projections, budget envelopes, board pressure, insolvency state | Club state, economy snapshots, board pressure |
 | **Squad & Player** | Player base data, fitness, morale, contracts, injuries | Impact Lens projections, squad projections, player state |
 | **Training** | Training plan, load, development signals | Training outcomes, fatigue signals, growth deltas |
 | **Transfer** | Market valuation, opportunities, offers, clause packages, negotiation cases, deadlines, escalation | Transfer state, valuation bands, pressure signals, completed deals |
@@ -46,7 +46,10 @@ change, not a refactor.
 | **Staff Operations** | Staff contract lifecycle, role assignment, pipeline coverage, wage schedule, specialisation metadata | Staff roster + role-assignment board projections, pipeline-coverage snapshots, wage events for the Club Management ledger |
 | **Tactics** | Tactic presets, set-piece routine variants, opposition templates, role/duty configurations, tactical-style signal aggregation | TacticSnapshot at lock-time, RoleProfileForPosition queries, OppositionTemplate lookups, SetPieceRoutineCatalog, TacticalIdentityFingerprint for Manager & Legacy |
 | **Regulations & Compliance** | Regulatory profiles per regulator + competition + tier (versioned by effective date), transfer-window FSM, work-permit catalog, sanction catalog, licence-tier facility requirements, community-pack rule-override validation policy | EligibilityForTransfer / SquadRegistrationCheck / LicenceTierCompliance / FfpRatioCheck queries, CurrentTransferWindow status, EffectiveRuleSet snapshot at save creation, sanction escalation chain |
-| **Rivalry System** | RivalryEdge graph (club pair × sub-score history × threshold-tier FSM), 5-sub-score formula (regional + historical + sporting + fan-incident + transfer-tension), deterministic per-season decay, threshold-tier classification | RivalryScore / IsDerbyFixture / TopRivalsForClub / RivalryIncidentTimeline / RivalryGraphSnapshot / DerbyContext queries; RivalryTierTransitioned events to Fan Ecology + Matchday-Event-Engine + Watch Party + Manager & Legacy + Notification + Match + Tactics + Regulations consumers |
+| **Rivalry System** | RivalryEdge graph (club pair × sub-score history × threshold-tier FSM), 5-sub-score formula (regional + historical + sporting + fan-incident + transfer-tension), deterministic per-season decay, threshold-tier classification | RivalryScore / IsDerbyFixture / TopRivalsForClub / RivalryIncidentTimeline / RivalryGraphSnapshot / DerbyContext queries; RivalryTierTransitioned events to Audience & Atmosphere + Matchday-Event-Engine + Watch Party + Manager & Legacy + Notification + Match + Tactics + Regulations consumers |
+| **Stadium Operations** | `Stadium` Aggregate (matchday FSM: Preparing → DoorsOpen → InPlay / Kickoff → Halftime → SettlementPending → Reset), `FacilityCondition` (age + decay + maintenance project lifecycle), `VenueEventCalendar` (non-matchday event bookings), `SeatClassInventory` (capacity by class: standing, seating, family, premium, suites, accessibility, away allocation), `HospitalityInventory` (suite + box physical inventory), Process Manager / Saga for weekly facility decay + maintenance lifecycle | `StadiumCommercialSnapshot` / `StadiumCapacitySnapshot` / `MatchdayTimelineBoard` / `FacilityComplianceSnapshot` / `VenueEventCalendarBoard` / `PitchQualitySnapshot` / `HospitalityInventorySnapshot` queries; `MatchdayTimelineAdvanced` / `MatchdayEventTriggered` / `PitchConditionChanged` / `VenueEventBooked` / `VenueEventCompleted` / `MaintenanceProjectScheduled` / `MaintenanceProjectCompleted` / `SeatClassInventoryRebalanced` / `FacilityComplianceChecked` events |
+| **Audience & Atmosphere** | `SupporterSegment` Aggregate (per-segment loyalty + mood + volatility + attendance probability + season-ticket renewal probability + price sensitivity + propensity), `AtmosphereSnapshot` (per-fixture multiplier from rivalry × table × utilisation × form × weather × security × choreo participation), `FanIncident` (choreo + protest banner + ticket boycott + ouster-call threshold-triggered FSM), `TicketingTrustLedger` (persistent 3-season shock memory), `NamedSupporterGroup` (FMX-54-gated opt-in overlay) | `FanDemandForecast` / `AtmosphereSnapshot` / `SegmentMoodBoard` / `TicketingTrustStateSnapshot` / `FanIncidentTimeline` / `NamedSupporterGroupRoster` / `OusterCallEscalationBoard` / `FanPipelineQualitySnapshot` queries; `FanDemandForecasted` / `FanIncidentLogged` / `AtmosphereSnapshotPublished` / `SegmentRenewalProbabilityUpdated` / `TicketingTrustStateChanged` / `OusterCallEscalated` / `BoycottThresholdConfirmed` / `ChoreoCampaignRegistered` / `FanPipelineQualityUpdated` events |
+| **CommercialPortfolio** | `CommercialContract` Aggregate (unified shell across sponsorship + catering + merchandise + hospitality + season-ticket bundles; Available → Negotiating → Active → Renewing → Terminated + Cool-down FSM), `AssetInventory` (asset taxonomy + slot allocation), `ExclusivityGraph` (category-exclusivity edges), `SeasonTicketCampaign` (8-state FSM), `FixtureSettlement` (per-fixture settlement Saga), `AccrualSchedule` (IFRS 15 5-step model), `CreditLiabilityPool` (refund + no-show + postponement liability), `InstalmentReceivable` (payment-plan state + IFRS 9 ECL), `CommercialFairValueAssessment` (UEFA FSR + PL APT + La Liga PSR documentation), `FanEventCampaign` (paid fan-service campaigns) | `CommercialContractPortfolio` / `CommercialForecastSnapshot` / `AssetInventoryDashboard` / `ExclusivityGraphSnapshot` / `SeasonTicketCampaignBoard` / `MatchdayCommercialSettlement` / `RefundLiabilitySnapshot` / `InstalmentReceivableAging` / `FairValueEvidencePack` / `FanEventCampaignCalendar` / `CommercialKpiBoard` queries; `CommercialContractActivated` / `CommercialContractRenewalDue` / `CommercialContractRenewed` / `CommercialBreachOpened` / `CommercialBreachResolved` / `CommercialContractTerminated` / `SeasonTicketCampaignAdvanced` / `SeasonTicketCampaignClosed` / `TicketingPolicyChanged` / `MatchdayCommercialSettlementPosted` / `InvestorCashGrantPosted` / `FanEventCampaignScheduled` / `CommercialFairValueAssessed` / `RefundLiabilityRecognised` / `RefundLiabilityReleased` / `DeferredRevenueRecognised` events; Customer-Supplier + ACL to Club Management ledger per ADR-0050 |
 | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
 | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
 
@@ -55,15 +58,33 @@ Player lifecycle and systemic world events are specialised by
 add a thirteenth bounded context. The `WorldEventDirector` is an orchestration
 policy over the existing contexts.
 
-FMX-41 commercial economy planning is captured in draft
-[[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]. It does not
-add a seventeenth bounded context. The draft recommendation is a Club
-Management commercial sub-aggregate: Club owns ticketing policy, commercial
-contracts, fan-event campaign choices, Investor entitlement ledger posting and
-commercial settlement. Fan Ecology, Rivalry System, League/Competition, Match,
-Stadium/Campus, Regulations and other contexts provide public facts such as
-`FanDemandForecast`, `FixtureCommercialProfile`,
-`CompetitionRevenueProfile` and `StadiumCommercialSnapshot`; they never write
+FMX-41 commercial economy planning was originally captured in
+[[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+as a Club Management commercial sub-aggregate (no new BC). The
+FMX-32 boundary audit (ADR-0061 + ADR-0062) refined that
+recommendation 2026-05-28: Nico ratified the best-practice landing
+in which **commercial policy + commercial contract lifecycle +
+commercial settlement + Investor entitlement grant posting** are
+owned by the new **CommercialPortfolio** bounded context (17th /
+18th / 19th depending on counting order — see §1 table above);
+**stadium economics** moved to the new **Stadium Operations**
+bounded context; **fan signals** (segment demand + atmosphere +
+trust state + politics events) moved to the new **Audience &
+Atmosphere** bounded context. Club Management remains the sole
+writer of finance ledger entries per ADR-0050; CommercialPortfolio
+emits settlement events consumed via Customer-Supplier + ACL.
+Audience & Atmosphere supplies `FanDemandForecast`,
+`AtmosphereSnapshot`, `TicketingTrustState`, `FanIncidentLogged`,
+`FanPipelineQualityUpdated` and `OusterCallEscalated`. Stadium
+Operations supplies `StadiumCommercialSnapshot`,
+`StadiumCapacitySnapshot`, `MatchdayTimelineAdvanced`,
+`PitchConditionChanged`, `VenueEventBooked` and
+`FacilityComplianceChecked`. League / Competition supplies
+`FixtureCommercialProfile` + `CompetitionRevenueProfile` +
+`SeasonAdvanced`. Rivalry supplies `RivalryTierTransitioned` +
+`RivalryCommercialSignal`. Regulations supplies `EffectiveRuleSet`
+(UEFA FSR + PL APT + La Liga PSR + GDPR + DSA + CRA + Late
+Payment Directive + CEN-EN 17210 obligations). No context writes
 Club ledger rows directly.
 
 Manager & Legacy was ratified 2026-05-28 via
@@ -155,6 +176,153 @@ aggregation per GD-0019 §MVP hook model; Staff Operations publishes
 `SetPieceCoachReadinessUpdated` for routine-quality multipliers.
 Cross-save preset sharing stays scoped to the FMX-33 Community Overlay
 Pipeline territory per [[09-Decisions/ADR-0016-community-dataset-overrides]].
+
+Stadium Operations was ratified 2026-05-28 via
+[[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]]
+(FMX-32 dossier + apply) and is one of the three new bounded
+contexts added by the FMX-32 audit. It owns the matchday FSM
+(Preparing → DoorsOpen → InPlay / Kickoff → Halftime →
+SettlementPending → Reset), the facility-decay sub-FSM + weekly
+maintenance Process Manager, the venue-event calendar
+(non-matchday concerts + community days + conferences), the
+seat-class inventory (standing + seating + family + premium +
+suites + accessibility + away allocation per
+[[../50-Game-Design/stadium-and-campus]] §1-4) and the
+hospitality-suite physical inventory. Match consumes
+`StadiumCapacitySnapshot` + `PitchConditionChanged` at
+`lineup_locked` (canonical Reference + Snapshot pattern);
+Matchday-Event-Engine consumes `MatchdayEventTriggered` for Pyro
+/ weather / catering / medical / security event policies;
+Regulations & Compliance consumes `FacilityComplianceChecked` +
+`StadiumCapacitySnapshot` for UEFA Stadium Infrastructure
+Regulations + DFL Lizenzhandbuch + Premier League Ground
+Regulations + FA EPPP + SGSA Green Guide + CEN-EN 17210
+compliance; CommercialPortfolio consumes `StadiumCommercialSnapshot`
++ `HospitalityInventorySnapshot` for matchday + hospitality
+commercial settlement and non-matchday venue-event revenue
+booking; Club Management consumes facility-cost + matchday OPEX
+events via Customer-Supplier + ACL for ledger posting per
+ADR-0050. Audience & Atmosphere consumes
+`StadiumCapacitySnapshot` for utilisation computation. Pattern
+follows Vernon canonical Hotel PMS / CMMS / Theme Park
+operations-subdomain analogue; real-world organisational
+separation evidence (separate-legal-entity / dedicated-division
+model documented at top-tier European clubs per FMX-32 synthesis
+§F5.1) supported Option C over the dossier's working
+Recommendation B.
+
+Audience & Atmosphere was ratified 2026-05-28 via
+[[09-Decisions/ADR-0062-audience-and-atmosphere-context]] (spin-
+off of ADR-0061 FMX-32 audit). Renamed from Fan Ecology per the
+audit's locked naming direction. It owns the per-segment cohort
+model (Ultras / Hardcore + Core + Family + Fair-weather +
+Corporate + Casual per
+[[../50-Game-Design/audience-and-atmosphere]] §1), the weekly
+atmosphere engine (multi-input scoring: rivalry × table ×
+utilisation × form × weather × security × choreo participation),
+the persistent ticketing-trust state with three-season shock
+memory and the politics-event triggers (choreo + protest banner
++ ticket boycott + ouster-call threshold-triggered FSM).
+CommercialPortfolio consumes `FanDemandForecast` as a Snapshot at
+season-ticket campaign opening + per-fixture pricing decision;
+Rivalry System consumes `FanIncidentLogged` as the fan-incident
+sub-score per ADR-0057; Matchday-Event-Engine consumes
+`AtmosphereSnapshot` for atmosphere + security risk input;
+Manager & Legacy consumes `FanPipelineQualityUpdated` for the
+archetype hook aggregation per GD-0019; Notification renders
+`OusterCallEscalated` per ADR-0043; Club Management consumes
+`OusterCallEscalated` as a board-pressure signal. Cross-save
+legacy fan-base seeds flow through ADR-0051 Manager & Legacy at
+save creation only; cross-save community pack overrides (segment
+names, atmosphere-multiplier tweaks, named-group archetype
+templates) flow through ADR-0059 Community Overlay Pipeline
+(proposed) at save creation only; Audience & Atmosphere BC owns
+schema + semantic validation per Vernon. `NamedSupporterGroup`
+Aggregate is FMX-54-gated (Fan Ecology persona privacy &
+creative-IP-safe-naming review). UEFA SLO + DFB-DFL SLO-Konzept +
+Premier League Independent Fan Advisory Board posture exposed via
+`SLOLiaisonContact` read model consumed by Regulations &
+Compliance. `risk:legal` hardline applies per
+[[../50-Game-Design/GD-0015-ip-clean-data]] +
+[[09-Decisions/ADR-0007-naming-schema]] (no real club /
+supporter-group / fan-incident / person names embedded as
+samples). Pattern follows Vernon canonical scoring-context +
+customer-loyalty pattern (Salesforce Marketing Cloud + Schufa +
+Spotify + Tesco Clubcard real-world DDD analogues); cross-genre
+precedent CK3 vassal opinion + Civ VI Loyalty + Cities Skylines
+districts + TW Three Kingdoms public order all separate
+segmented audience / loyalty.
+
+CommercialPortfolio was ratified 2026-05-28 via
+[[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]]
+(FMX-32 dossier + apply). It owns the unified `CommercialContract`
+shell across sponsorship + catering + merchandise + hospitality +
+season-ticket bundles per FMX-44, the contract lifecycle FSM
+(Available → Negotiating → Active → Renewing → Terminated +
+Cool-down), the side-condition catalog with breach detection
+(youth-focus + family-friendly + continental qualification +
+player-conduct + kit-sponsor visibility), the asset inventory
+taxonomy (jersey front / sleeve / shorts / training /
+stadium-name / stand-naming / VIP-suites / LED-boards /
+app-banner / fan-zone-activation / catering-exclusivity), the
+multi-input valuation formula (reach × brand safety × utilisation
+× fan profile × media resonance × exclusivity premium), the
+exclusivity graph (category-exclusivity edges: no two breweries /
+no two energy drinks / no two telecoms), the 8-state
+season-ticket campaign FSM (planning → renewalWindow →
+seatRelocation → memberPresale → waitlistAllocation → publicSale
+→ closed → inSeasonAdjustment → renewalReview), the per-fixture
+settlement Saga (gate count × class price − discounts + catering
++ merchandise share + hospitality), the IFRS 15 accrual schedule
+(cash receipt → contract liability → match-by-match recognition),
+the credit / refund liability pool (away allocation refunds +
+postponed match refunds), the instalment receivable tracker with
+IFRS 9 ECL (Klarna + PayPal Pay Later + club-own financing), the
+`CommercialFairValueAssessment` documentation for UEFA FSR + PL
+APT + La Liga PSR + Bundesliga 50+1 related-party scrutiny, and
+the paid fan-service campaigns (away trains + family / summer
+events + choreo support + beer-per-goal activations) per
+[[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]].
+Club Management consumes settlement + ledger-posting events via
+Customer-Supplier + ACL per ADR-0050; CommercialPortfolio never
+writes finance tables directly. Audience & Atmosphere supplies
+`FanDemandForecast` + `TicketingTrustState` consumed at campaign
+opening + per-fixture pricing decision per FMX-42. Stadium
+Operations supplies `StadiumCommercialSnapshot` +
+`StadiumCapacitySnapshot` + `HospitalityInventorySnapshot`
+consumed for matchday + hospitality settlement per FMX-32.
+Rivalry System supplies `RivalryTierTransitioned` (consumed for
+top-match pricing + sponsor-fit risk per ADR-0058). League
+Orchestration supplies `FixtureCommercialProfile` +
+`CompetitionRevenueProfile` + `SeasonAdvanced`. Regulations &
+Compliance supplies `EffectiveRuleSet` for IFRS 15 obligation
+interpretation + UEFA FSR matchday-segregation + UK CRA 2015
+Schedule 2 refund-policy + DSA secondary-market + CEN-EN 17210
+accessibility + Late Payment Directive + GDPR Art. 6 / 9
+ticket-buyer data. Match supplies `MatchResolved` (final
+settlement input). Manager & Legacy consumes `CommercialKpiBoard`
+for archetype hook aggregation per GD-0019. Notification renders
+sponsor activation + renewal-due + breach alerts per ADR-0043.
+Cross-save legacy commercial seeds (sponsor-archetype templates,
+Investor entitlement state, pricing-strategy preferences) flow
+through ADR-0051 Manager & Legacy at save creation only;
+cross-save community pack overrides (sponsor brand catalogues,
+asset taxonomies, fan-event campaign templates) flow through
+ADR-0059 Community Overlay Pipeline (proposed) at save creation
+only; CommercialPortfolio BC owns schema + semantic validation
+per Vernon. `risk:legal` hardline applies per GD-0015 + ADR-0007
+(no real-world sponsor names, no real-world club names embedded
+as samples; UEFA / DFL / FA / La Liga / Premier League regulatory
+references kept abstract via the Regulations & Compliance catalog
+per ADR-0056). Pattern follows Vernon canonical Contract
+Lifecycle Management + Process Manager / Saga + Open Host Service
++ Published Language (Salesforce Sales Cloud + CPQ + SAP S/4HANA
+Sales Contract + Stripe Connect platform + Guidewire PolicyCenter
++ Amdocs / Netcracker subscription lifecycle real-world DDD
+analogues); the settlement sub-Aggregate landing follows Vernon
+Customer-Supplier with ACL (airline yield management + revenue
+accounting + Stripe Billing-vs-Ledger + concert promoter
+ticketing-vs-settlement industry pattern).
 
 ### 1.1 Proposed FMX-23 context
 
@@ -269,6 +437,31 @@ flowchart TB
     Rival --> Notif
     Rival --> Tactics
     Rival --> Reg
+    Stadium["Stadium Operations"]
+    AAtmo["Audience & Atmosphere"]
+    CPort["CommercialPortfolio"]
+    Stadium --> Match
+    Stadium --> Club
+    Stadium --> Reg
+    Stadium --> CPort
+    Stadium --> AAtmo
+    AAtmo --> CPort
+    AAtmo --> Rival
+    AAtmo --> Match
+    AAtmo --> ML
+    AAtmo --> Notif
+    AAtmo --> Club
+    Rival --> AAtmo
+    Match --> AAtmo
+    League --> AAtmo
+    CPort --> Club
+    CPort --> Reg
+    CPort --> ML
+    CPort --> Notif
+    Rival --> CPort
+    League --> CPort
+    Match --> CPort
+    Reg --> CPort
     Training --> Squad
     Training --> ML
     Transfer --> ML
@@ -316,10 +509,21 @@ Club Management may emit `VenueEventBooked` and `MatchdayEventTriggered`,
 and Notification may render deterministic projections from those facts.
 
 FMX-13 adds the Club Economy accounting boundary
-([[09-Decisions/ADR-0050-club-economy-accounting-ledger]]): Transfer, Match,
-League, Squad and Stadium/Fan systems may produce facts that affect money, but
-only Club Management posts ledger entries and exposes finance read models. No
-other context writes finance tables or recalculates accounting state.
+([[09-Decisions/ADR-0050-club-economy-accounting-ledger]]),
+refined by the FMX-32 audit
+([[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]] +
+[[09-Decisions/ADR-0062-audience-and-atmosphere-context]]):
+Transfer, Match, League, Squad, Staff Operations, Stadium
+Operations, Audience & Atmosphere and CommercialPortfolio may
+produce facts that affect money, but **only Club Management posts
+ledger entries** and exposes finance read models. CommercialPortfolio
+emits settlement events (`MatchdayCommercialSettlementPosted`,
+`CommercialContractActivated`, `InvestorCashGrantPosted`,
+`DeferredRevenueRecognised`, `RefundLiabilityRecognised`) consumed
+by Club Management via Customer-Supplier + ACL; the same pattern
+applies for Stadium Operations facility costs and Staff Operations
+wage events. No other context writes finance tables or recalculates
+accounting state.
 
 FMX-23 proposes the People / Persona & Skills boundary
 ([[09-Decisions/ADR-0052-people-persona-and-skills-context]]): Squad, Training,
@@ -372,6 +576,9 @@ src/domain/
   tactics/
   regulations/
   rivalry/
+  stadium-operations/
+  audience-and-atmosphere/
+  commercial-portfolio/
   sync/
   audit/
 ```
@@ -414,8 +621,14 @@ notification records remain the durable source of truth; SurrealDB projections,
 Dexie mirrors, email/push providers and Centrifugo are adapters around that
 context, not owners of notification state.
 
-The remaining seven contexts likely stay co-located unless a real
-scaling signal forces a split.
+The remaining contexts likely stay co-located unless a real
+scaling signal forces a split. Among the FMX-32-added contexts,
+**CommercialPortfolio** carries the highest service-extraction
+priority due to its 40-60% revenue share at top-tier clubs per
+Deloitte Money League 2026 (FMX-32 synthesis §F5.3); Stadium
+Operations and Audience & Atmosphere remain co-located until
+operations + activation team scale demands their independent
+deployment.
 
 This is the explicit user requirement that drove this map: maximum
 service-architecture readiness so individual systems can be
