@@ -1,9 +1,9 @@
 ---
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45]
+tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, country-profile, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-53]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-05-29
 type: game-design
 binding: false
 linear: FMX-13
@@ -17,6 +17,7 @@ related:
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+  - [[../60-Research/top5-country-economy-profiles-2026-05-29]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -184,6 +185,16 @@ Country profiles define data, not code branches:
 Each profile owns payment cadence, league levies, media distribution style,
 parachute/solidarity rules, licence checks, tax/fee assumptions and calibration
 ranges.
+
+FMX-53 backs this table with equal-depth, sourced calibration profiles in
+[[../60-Research/top5-country-economy-profiles-2026-05-29]]: a draft
+`CountryEconomyProfile` (revenue mix, media weights/cadence,
+attendance/utilisation, season-ticket culture, stadium ownership, commercial
+multiplier, financial-control regime, relegation/parachute and tax/levy bands),
+the gameplay-affecting differences between countries, banded ranges marked as
+calibration inputs rather than final constants, and a proposed first calibration
+baseline (abstract → Germany-like → England-like). Numbers stay IP-clean and
+fictional; real leagues calibrate scale only.
 
 ## 10. Roguelite implications
 
