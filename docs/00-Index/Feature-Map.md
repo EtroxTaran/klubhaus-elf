@@ -3,7 +3,7 @@ title: Feature Map
 status: current
 tags: [feature, meta]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-05-29
 type: map
 binding: false
 related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-V1]]
@@ -24,7 +24,7 @@ documentation gaps.
 ## Active MVP feature
 
 - [[../20-Features/feature-roguelite-mvp-first-playable]] — Create-a-Club Roguelite first playable, including FMX-16 manager-archetype run-analysis hooks.
-- [[../20-Features/feature-club-economy-mvp-pillar]] — draft FMX-13/FMX-41/FMX-45 Club Economy pillar for weekly ledger, accounting, commercial impact, contracts, cup/competition revenue profiles and staged insolvency.
+- [[../20-Features/feature-club-economy-mvp-pillar]] — draft FMX-13/FMX-41/FMX-45/FMX-46 Club Economy pillar for weekly ledger, accounting, commercial impact, contracts, cup/competition revenue profiles, matchday operating-risk costs and staged insolvency.
 - [[../20-Features/feature-ai-narration-mvp-pillar]] — draft FMX-3 AI narration
   MVP pillar for Full Dialogue, All Active actor context, Narrative context
   framework, Playtest First quality loop and Runtime-LLM gates.

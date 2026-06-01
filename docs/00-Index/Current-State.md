@@ -3,10 +3,10 @@ title: Current State
 status: current
 tags: [meta, current-state, execution, hot]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-01
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Current State
@@ -62,9 +62,10 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
 > [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 > and [[../30-Implementation/club-economy-commercial-contracts]] now capture the
-> proposed target: Club Management owns commercial policy, commercial contracts,
-> fan-event campaign choices, commercial settlement and Investor cash-grant
-> ledger posting; Fan Ecology / Rivalry / League / Match / Stadium /
+> proposed target, amended by accepted FMX-32: CommercialPortfolio owns
+> commercial policy, commercial contracts, fan-event campaign choices,
+> commercial settlement and Investor entitlement policy; Club Management posts
+> ledger entries; Audience & Atmosphere / Rivalry / League / Match / Stadium /
 > Regulations provide causal facts. Ticketing models season-ticket certainty
 > versus single-ticket/top-match upside; fan segments drive attendance,
 > renewal, catering, merch, hospitality and sponsor fit; cup games become full
@@ -77,8 +78,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > **FMX-42 Fan demand and price elasticity (2026-05-28).** Nico asked to pick
 > the first economy research ticket and go deep. Draft
 > [[../60-Research/fan-demand-price-elasticity-2026-05-28]] now captures the
-> proposed demand model: Fan Ecology estimates segment-specific latent demand
-> before stadium capacity; Club Management applies ticketing policy,
+> proposed demand model: Audience & Atmosphere estimates segment-specific
+> latent demand before stadium capacity; CommercialPortfolio applies ticketing policy,
 > seat-class inventory, season-ticket allocation and commercial contracts to
 > settle actual revenue. Price sensitivity is per segment, not one global
 > constant; fixture attractiveness includes opponent draw, rivalry, stakes,
@@ -139,9 +140,10 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > **FMX-45 Cup and competition revenue profiles (2026-05-28).** Nico asked
 > for full research and planning on cup/competition revenue. Draft
 > [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]] now
-> captures the proposed model: League/Competition and Regulations provide a
-> `CompetitionRevenueProfile`; Club Management settles cash, receivables, costs
-> and forecast shocks. Draft IP-clean preset families cover central-round
+> captures the proposed model, amended by accepted FMX-32: League/Competition
+> and Regulations provide a `CompetitionRevenueProfile`; CommercialPortfolio
+> settles cash, receivables, costs and forecast shocks; Club Management posts
+> ledger entries. Draft IP-clean preset families cover central-round
 > domestic cups, shared-gate underdog cups, federation-hosting cups, seeded
 > elite-entry cups, solidarity/amateur cups and continental value-pillar cups.
 > The model separates secured income, earned receivables and future cup EV;
@@ -175,6 +177,58 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > (abstract → Germany-like → England-like). First-baseline choice, profile
 > granularity for bimodal leagues, continental-overlay timing, tax-modelling
 > depth and a primary-source re-check (esp. Italy) remain Nico-gated decisions.
+
+> **FMX-46 Matchday operating costs and risk-cost settlement (2026-05-29).**
+> Nico asked for the next economy domain to be researched, planned and anchored.
+> Draft
+> [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
+> now captures the proposed model: CommercialPortfolio owns a per-fixture
+> `MatchdayOperatingCostProfile` and operating settlement Saga; Club Management
+> remains the ADR-0050 ledger writer. Stadium Operations, Audience &
+> Atmosphere, Rivalry, Regulations, League/Competition and Matchday Event
+> Engine provide the causal facts. Risk tiers run from `routine` through
+> `closedDoor`; settlement covers stewarding, security, policing contribution,
+> medical, cleaning, energy, temporary staff, officials, pitch recovery,
+> insurance/compliance allocation, damage reserve, sanctions, sector closures,
+> away-fan restrictions, alcohol restrictions and ghost matches. Quick shows a
+> matchday cost/risk band, Standard shows cost families and mitigations, and
+> Expert shows drivers, assumptions and settlement trace. Final cost ranges,
+> auto-mitigation defaults, policing-control depth and severe-incident
+> frequency remain Nico-gated decisions.
+
+> **FMX-47 Catering and merchandise operations depth (2026-06-01).** Nico picked
+> the next economy issue: deepen catering and merchandise beyond flat revenue
+> percentages. Draft
+> [[../60-Research/catering-and-merchandise-operations-2026-06-01]] now refines
+> the two FMX-44 contract families with an explicit operations + inventory side,
+> keeping ownership inside CommercialPortfolio (ADR-0061) and Club Management as
+> sole ledger writer (ADR-0050). It adds an `operatingModel` dial per family
+> (catering: in-house / concession lease / management fee / revenue-share /
+> MAG-plus-share; merchandise: own-store-and-e-commerce / licensed-partner /
+> kit-supplier-guarantee / pure-licensing) that decides who bears cost and
+> inventory risk; models catering revenue as `attendance × per-capita` capped by
+> service capacity and stockouts; separates ledger lines for revenue, COGS,
+> labour/opex, waste/spoilage, royalty/MAG true-up and guarantee shortfall;
+> tracks a merchandise stock plan vs demand forecast with launch/icon/cup spike
+> multipliers, markdown, write-down-to-NRV and returns; couples service quality
+> (queue, stockout, hygiene) to Audience & Atmosphere satisfaction and sponsor
+> fit; makes alcohol policy an in-bowl / concourse-only / near-ban revenue↔safety
+> dial (country-profile driven); reuses the FMX-44 category × territory × asset ×
+> carve-out exclusivity graph for catering supplier pouring-rights; and sets
+> cash-vs-recognition per IFRS 15 by operating model. Stadium Operations supplies
+> throughput/dwell; Audience & Atmosphere supplies demand/mood. New ledger events
+> are named in
+> [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
+> the boundary is confirmed in
+> [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
+> Draft [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+> [[../50-Game-Design/economy-system]],
+> [[../50-Game-Design/stadium-and-campus]] and
+> [[../30-Implementation/club-economy-commercial-contracts]] are refined
+> accordingly. All numbers remain IP-clean calibration ranges. Operational depth
+> ceiling, per-country default operating model, alcohol-policy depth,
+> service-penalty hardness, campaign-drop scheduling and Quick-mode abstraction
+> remain Nico-gated decisions.
 
 > **FMX-16 Manager-Archetype Roguelite progression (2026-05-27).** Nico directed
 > that the manager-archetype report should be anchored as MVP-relevant hooks, not
@@ -458,13 +512,13 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > deterministic per-season decay and threshold-tier classification
 > (None / Mild / Strong / High / Volatile). Consumes Match
 > `MatchResolved` (sporting sub-score), Transfer `TransferCompleted`
-> (transfer-tension sub-score), Fan Ecology `FanIncidentLogged` (fan-
-> incident sub-score), Club Management `ClubFoundedInLocation` /
+> (transfer-tension sub-score), Audience & Atmosphere
+> `FanIncidentLogged` (fan-incident sub-score), Club Management `ClubFoundedInLocation` /
 > `ClubRelocatedToLocation` (regional base), League Orchestration
 > `SeasonAdvanced` (decay batch trigger). Publishes `RivalryScore` /
 > `IsDerbyFixture` / `TopRivalsForClub` / `RivalryIncidentTimeline` /
 > `RivalryGraphSnapshot` / `DerbyContext` read models +
-> `RivalryTierTransitioned` events to Fan Ecology (atmosphere
+> `RivalryTierTransitioned` events to Audience & Atmosphere (atmosphere
 > multiplier), Matchday-Event-Engine via Club Management (Pyro
 > trigger), Watch Party (auto-proposal), Manager & Legacy (future
 > archetype signal), Notification (derby copy), Match (derby

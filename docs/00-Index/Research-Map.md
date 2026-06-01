@@ -3,7 +3,7 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-06-01
 type: map
 binding: false
 related: [[Current-State]]
@@ -173,7 +173,7 @@ before any promotion.
   for supporter segments, latent demand, season-ticket renewal, price
   elasticity, top-match surcharges, capacity pressure and ticketing-trust
   backlash. Recommends segment-specific latent demand plus trust guardrails,
-  not one global elasticity constant. Refines draft [[../50-Game-Design/fan-ecology]],
+  not one global elasticity constant. Refines draft [[../50-Game-Design/audience-and-atmosphere]],
   [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
   [[../50-Game-Design/economy-system]] and
   [[../30-Implementation/club-economy-commercial-contracts]].
@@ -188,7 +188,7 @@ before any promotion.
   `SeasonTicketAccountingSchedule`, not individual supporter records or a
   cash-only slider. Refines draft
   [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
-  [[../50-Game-Design/economy-system]], [[../50-Game-Design/fan-ecology]],
+  [[../50-Game-Design/economy-system]], [[../50-Game-Design/audience-and-atmosphere]],
   [[../50-Game-Design/stadium-and-campus]] and
   [[../30-Implementation/club-economy-commercial-contracts]].
 
@@ -242,6 +242,47 @@ before any promotion.
   [[../50-Game-Design/GD-0008-finance-economy]],
   [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] and
   [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]].
+
+## Matchday Operating Costs and Risk-Cost Settlement (2026-05-29)
+
+- [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
+  — FMX-46 synthesis for realistic but fair matchday operating-cost and risk
+  settlement. Covers stewarding, private security, policing contribution,
+  medical, cleaning/waste, energy, temporary staff, officials, pitch recovery,
+  damage reserve, sanctions, sector closures, away-fan restrictions, alcohol
+  restrictions and ghost matches. Recommends a CommercialPortfolio-owned
+  `MatchdayOperatingCostProfile` plus ADR-0050 ledger postings by Club
+  Management. Refines
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+  [[../50-Game-Design/economy-system]],
+  [[../50-Game-Design/regulations-and-compliance]],
+  [[../50-Game-Design/matchday-event-engine]],
+  [[../50-Game-Design/rivalry-system]],
+  [[../50-Game-Design/stadium-and-campus]],
+  [[../50-Game-Design/audience-and-atmosphere]],
+  [[../20-Features/feature-club-economy-mvp-pillar]],
+  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
+  [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+  and [[../30-Implementation/club-economy-commercial-contracts]].
+
+## Catering and Merchandise Operations Depth (2026-06-01)
+
+- [[../60-Research/catering-and-merchandise-operations-2026-06-01]] —
+  FMX-47 synthesis for catering and merchandise operations beyond flat revenue
+  percentages. Adds the operating-model dial (in-house / concession / management-
+  fee / revenue-share / MAG for catering; own-store / licensed-partner / kit-
+  supplier-guarantee / pure-licensing for merchandise), an explicit cost/inventory
+  side (COGS, labour, waste, stockout, markdown, write-down, returns), merchandise
+  demand spikes, service-quality → Audience & Atmosphere coupling, alcohol-policy
+  revenue↔safety dial, supplier pouring-rights/exclusivity carve-outs and IFRS 15
+  cash-vs-recognition. Stays inside CommercialPortfolio (ADR-0061) with Club
+  Management as sole ledger writer. Refines draft
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+  [[../50-Game-Design/economy-system]],
+  [[../50-Game-Design/stadium-and-campus]],
+  [[../30-Implementation/club-economy-commercial-contracts]],
+  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+  and [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
 
 ## AI Narrative Runtime Integration (2026-05-27)
 

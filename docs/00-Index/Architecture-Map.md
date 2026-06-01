@@ -3,10 +3,10 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-05-29
 type: map
 binding: false
-related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]]
+related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 ---
 
 # Architecture Map
@@ -32,7 +32,7 @@ future-scope or historical context.
 
 ## DDD and Modules
 
-- [[../10-Architecture/bounded-context-map]] - 16 bounded contexts, service-ready modular monolith; Manager & Legacy ratified 2026-05-28 (ADR-0051, FMX-25 + FMX-35); Staff Operations ratified 2026-05-28 (ADR-0053, FMX-26 + FMX-36); Tactics ratified 2026-05-28 (ADR-0055, FMX-28 + FMX-37); Regulations & Compliance ratified 2026-05-28 (ADR-0056, FMX-30 + FMX-39); Rivalry System ratified 2026-05-28 (ADR-0057, FMX-34 + FMX-40); FMX-23 proposes People / Persona & Skills and FMX-3 proposes Narrative as draft additional contexts.
+- [[../10-Architecture/bounded-context-map]] - 19 bounded contexts after FMX-32: Manager & Legacy, Staff Operations, Tactics, Regulations & Compliance, Rivalry System, Stadium Operations, Audience & Atmosphere and CommercialPortfolio are ratified additions/amendments; FMX-23 proposes People / Persona & Skills and FMX-3 proposes Narrative as draft additional contexts.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -77,8 +77,8 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 - [ADR-0043 Notification and Messaging Platform](../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform.md)
-- [ADR-0050 Club Economy Accounting Ledger](../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger.md) - draft Club Management finance ledger, accounting projections, country economy profiles, cup cash/receivable/forecast events and staged insolvency boundary.
-- [ADR-0058 Club Economy Commercial Impact Boundary](../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary.md) - draft Club Management commercial sub-aggregate for ticketing, contracts, cup settlement, fan events and Investor cash grants.
+- [ADR-0050 Club Economy Accounting Ledger](../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger.md) - accepted Club Management finance ledger, accounting projections, country economy profiles, cup cash/receivable/forecast events, matchday operating-cost ledger events and staged insolvency boundary.
+- [ADR-0058 Club Economy Commercial Impact Boundary](../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary.md) - accepted CommercialPortfolio boundary for ticketing, contracts, cup settlement, matchday operating-cost profiles, fan events and Investor entitlement policy.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft proposed Manager & Legacy context for manager identity, run analysis, archetype candidates and prestige/legacy selection.
 - [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft proposed People context for actor personas, relationship graph, player/staff skill profiles and deterministic context cards.
 - [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft proposed Narrative context for scene selection, context-card assembly, templates, validation, provenance, evals and provider adapter boundary.
@@ -88,7 +88,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md)
 - [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md)
 - [Club Economy Accounting Ledger](../30-Implementation/club-economy-accounting-ledger.md) - draft implementation contracts for weekly ledger entries, economy read models and insolvency state.
-- [Club Economy Commercial Contracts](../30-Implementation/club-economy-commercial-contracts.md) - draft contracts for fan demand, ticketing, commercial contracts, cup/competition revenue, fan events and Investor grants.
+- [Club Economy Commercial Contracts](../30-Implementation/club-economy-commercial-contracts.md) - draft contracts for fan demand, ticketing, commercial contracts, cup/competition revenue, matchday operating costs, fan events and Investor grants.
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
 - [Match Engine Runtime Strategy](../60-Research/match-engine-runtime-strategy.md)
@@ -96,6 +96,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [Manager Archetype Roguelite Research](../60-Research/manager-archetype-roguelite-2026-05-27.md)
 - [Club Economy Impact Map and Commercial Contracts](../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28.md)
 - [Cup and Competition Revenue Profiles](../60-Research/cup-and-competition-revenue-profiles-2026-05-28.md)
+- [Matchday Operating Costs and Risk-Cost Settlement](../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29.md)
 - [EOS Player, Staff, Skills and Personas Research](../60-Research/eos-player-staff-skills-and-personas-2026-05-28.md)
 - [AI Narration Testing and Framework Research](../60-Research/ai-narration-testing-framework-2026-05-28.md)
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
@@ -133,7 +134,6 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft context-map change; no implementation until accepted.
 - [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft context-map change; no implementation until accepted.
 - [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft context-map change; no implementation until accepted.
-- [ADR-0058 Club Economy Commercial Impact Boundary](../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary.md) - draft commercial-boundary proposal; no implementation until accepted.
 
 ## Rule
 

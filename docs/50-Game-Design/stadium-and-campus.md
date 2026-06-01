@@ -1,19 +1,20 @@
 ---
 title: Stadium and Club Campus - Build-out and On-grounds Economy
 status: draft
-tags: [game-design, stadium, infrastructure, anstoss, commercial, contract-lifecycle, breach, season-tickets, fmx-41, fmx-43, fmx-44]
+tags: [game-design, stadium, infrastructure, anstoss, commercial, contract-lifecycle, breach, season-tickets, matchday, catering, merchandise, operations, fmx-41, fmx-43, fmx-44, fmx-46, fmx-47]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-06-01
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[fan-ecology]], [[regulations-and-compliance]]
+related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../30-Implementation/club-economy-commercial-contracts]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[audience-and-atmosphere]], [[regulations-and-compliance]]
 ---
 
 # Stadium and Club Campus - Build-out and On-grounds Economy
 
 > Approved by the systemic events / player lifecycle pass (2026-05-17).
-> Venue operations are a Club Management system with football consequences,
-> not a detached tycoon minigame.
+> Venue operations are now owned by the Stadium Operations bounded context
+> (ADR-0061). They have football, commercial and ledger consequences, but they
+> are not a detached tycoon minigame.
 
 The stadium is the **economic and emotional heart** of the club. Anstoss 3
 proved that buildings on the grounds (Würstchenbude, Bierzelt, Fanshop,
@@ -21,10 +22,10 @@ Disco) carry more long-term player engagement than any tactic screen. This
 is one of our three flagship differentiators - see
 [[../60-Research/systems-design-synthesis]] §4.
 
-FMX-13 clarifies the accounting boundary: stadium and campus decisions do not
-own their own money model. They emit facility, matchday and venue-operation
-facts that Club Management posts into [[economy-system]] through the accounting
-ledger described in
+FMX-32 clarifies the boundary: Stadium Operations owns stadium/campus
+operational facts and venue-operation state. CommercialPortfolio consumes those
+facts for ticketing, commercial contracts and matchday operating settlement.
+Club Management remains the sole finance ledger writer described in
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]].
 
 ## 1. Three stadium layers
@@ -156,7 +157,7 @@ matchday_revenue = ticket_revenue
 ```
 
 Each component depends on attendance, dwell time, fan-segment mix and
-weather. See [[fan-ecology]] §4.
+weather. See [[audience-and-atmosphere]].
 
 Non-matchday revenue is separate:
 
@@ -195,6 +196,14 @@ Minimum outputs:
 - fan-zone quality and sponsor-activation slots;
 - ownership or lease model;
 - fixed operating cost and matchday variable-cost bands;
+- stewarding/staffing density bands;
+- private-security and search/segregation capability bands;
+- medical/emergency capacity band;
+- cleaning/waste and sanitation cost bands;
+- energy/utility and technical-system cost bands;
+- pitch condition, recovery cost and fixture-density risk;
+- ingress/egress and away-fan separation constraints;
+- current sector closures, ghost-match flags and accessibility restrictions;
 - event eligibility for concerts, conferences, fan parties and community days.
 
 The same stadium can therefore produce different financial results depending on
@@ -213,8 +222,19 @@ deals. The snapshot must be rich enough for Club Management to evaluate:
 - breach-relevant incident hooks: safety, alcohol-policy, health, crowding,
   cancellation and fulfilment failure.
 
-The stadium does not open or resolve commercial breaches. It publishes facts;
-Club Management evaluates the contract policy and posts the ledger effects.
+The stadium does not open or resolve commercial breaches or finance postings.
+It publishes facts; CommercialPortfolio evaluates contract and matchday
+operating policy, and Club Management posts the ledger effects.
+
+FMX-47 confirms catering and merchandise throughput as **Stadium-supplied
+facts**, not CommercialPortfolio-owned ones. The snapshot supplies dwell time
+and per-service-point service capacity (`transactions_per_min × selling_window ×
+basket`) so CommercialPortfolio can cap catering revenue and detect stockouts;
+it supplies fan-shop / e-commerce fulfilment throughput for merchandise. Adding
+or upgrading a catering/merch/fan-zone module raises dwell, capacity and capture;
+non-matchday venue events (concerts, conferences) carry their own catering/merch
+service window. Stadium publishes the throughput facts; CommercialPortfolio
+settles revenue/COGS/waste and Club Management posts the ledger (ADR-0050/0061).
 
 ## 9. UI tiers
 
