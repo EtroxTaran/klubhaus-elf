@@ -202,15 +202,16 @@ sponsorship, cup, fan-event and Investor effects, and which contracts keep those
 facts out of direct ledger writes.
 
 Nico's current direction is: Top-5 country research at equal depth, Realistic
-Rails, Club Management as the draft commercial settlement owner, fan segments as
-hard economy inputs, season tickets as upfront-cash-versus-upside trade-off,
+Rails, CommercialPortfolio as the accepted commercial policy/settlement owner
+after FMX-32, Club Management as sole finance-ledger writer, fan segments as hard
+economy inputs, season tickets as upfront-cash-versus-upside trade-off,
 catering/merchandise as explicit contract families, cup games as full economy
-events, fan-service campaigns as paid loyalty/atmosphere levers, and Investor
-as clean singleplayer cash with no gameplay penalty beyond the unchanged weekly
+events, fan-service campaigns as paid loyalty/atmosphere levers, and Investor as
+clean singleplayer cash with no gameplay penalty beyond the unchanged weekly
 economy.
 
 This feeds draft
-[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
+[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], accepted
 [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 and draft [[../30-Implementation/club-economy-commercial-contracts]].
 
@@ -270,9 +271,10 @@ schedules, not flat annual income and not separate state machines per family.
 
 Current draft direction:
 
-- Use `CommercialContract` as the shared Club Management shell for lifecycle
+- Use `CommercialContract` as the shared CommercialPortfolio shell for lifecycle
   state, version history, cash schedule, recognition schedule, obligations,
-  exclusivity, breach policy, renewal policy and audit trail.
+  exclusivity, breach policy, renewal policy and audit trail. Club Management
+  remains the sole finance-ledger writer.
 - Keep sponsorship, catering, merchandise, hospitality, supplier and
   venue-activation clauses in family-specific schedules.
 - Model breaches as curable/material/critical with cure windows, make-goods,
@@ -292,7 +294,7 @@ This refines draft
 [[../50-Game-Design/economy-system]], draft
 [[../50-Game-Design/sponsorship-portfolio]], draft
 [[../50-Game-Design/stadium-and-campus]], draft
-[[../20-Features/feature-club-economy-mvp-pillar]], draft
+[[../20-Features/feature-club-economy-mvp-pillar]], accepted
 [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 and draft [[../30-Implementation/club-economy-commercial-contracts]].
 
@@ -326,9 +328,9 @@ This refines draft
 [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
 [[../50-Game-Design/economy-system]], draft
 [[../50-Game-Design/regulations-and-compliance]], draft
-[[../20-Features/feature-club-economy-mvp-pillar]], draft
+[[../20-Features/feature-club-economy-mvp-pillar]], accepted
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
-draft [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+accepted [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 and draft [[../30-Implementation/club-economy-commercial-contracts]].
 
 ## Matchday Operating Costs and Risk-Cost Settlement (2026-05-29)
@@ -399,6 +401,48 @@ This refines draft
 [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
 [[../50-Game-Design/economy-system]], binding
 [[../50-Game-Design/stadium-and-campus]], draft
+[[../30-Implementation/club-economy-commercial-contracts]], accepted
+[[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
+accepted [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
+
+## Fan-Service Campaign Catalog and Effects (2026-06-01)
+
+[[fan-service-campaign-catalog-and-effects-2026-06-01]] is the FMX-48 research
+synthesis for turning fan-service campaigns into a concrete, fair economy
+surface. It uses away travel, fan/family/community events, choreo and supporter
+dialogue, beer/beverage rewards and sponsor activations as sourced patterns,
+but keeps shipped content fictional and IP-clean.
+
+Current draft direction:
+
+- Model `FanEventCampaign` as a CommercialPortfolio-owned lifecycle:
+  `draft -> scheduled -> active -> settled -> reviewed`, with `cancelled` and
+  `breached` exits.
+- Use a first catalog of at least eight, likely ten, campaign kinds:
+  `away-train`, `bus-subsidy`, `flight-subsidy`, `family-day`, `summer-party` /
+  `fan-festival`, `community-ticket-day`, `choreo-support`,
+  `supporter-dialogue`, `beer-per-goal` / beverage reward and
+  `digital-fan-challenge`.
+- Separate direct settlement from fan effects: Club Management posts costs,
+  sponsor contributions, refunds and make-goods; Audience & Atmosphere owns
+  mood, trust, atmosphere, demand and cooldown memory.
+- Track sponsor contribution beyond cash: prizes, transport support, media,
+  staff, community grants and digital tooling, with KPI targets and make-good
+  rules for low uptake or cancellation.
+- Gate travel, alcohol, safety, child/family and digital/UGC risks through
+  country/profile constraints. Non-alcoholic beverage variants are the safe
+  fallback for strict alcohol profiles.
+- Expose Quick / Standard / Expert from the same core: recommended campaign
+  card, comparative campaign board and full lifecycle/provenance view.
+
+This refines draft
+[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
+[[../50-Game-Design/economy-system]], binding
+[[../50-Game-Design/audience-and-atmosphere]], binding
+[[../50-Game-Design/stadium-and-campus]], binding
+[[../50-Game-Design/matchday-event-engine]], draft
+[[../50-Game-Design/sponsorship-portfolio]], draft
+[[../20-Features/feature-club-economy-mvp-pillar]], draft
 [[../30-Implementation/club-economy-commercial-contracts]], accepted
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
 accepted [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].

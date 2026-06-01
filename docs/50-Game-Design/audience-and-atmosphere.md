@@ -1,13 +1,13 @@
 ---
 title: Audience & Atmosphere - Six Segments and Atmosphere Engine
 status: draft
-tags: [game-design, fans, audience, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, matchday, risk, fmx-32, fmx-41, fmx-42, fmx-43, fmx-46, fmx-54]
+tags: [game-design, fans, audience, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, matchday, fan-service, risk, fmx-32, fmx-41, fmx-42, fmx-43, fmx-46, fmx-48, fmx-54]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-01
 type: game-design
 binding: true
 supersedes: fan-ecology
-related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 > **Renamed 2026-05-28 from "Fan Ecology".** Audience & Atmosphere
@@ -29,9 +29,12 @@ segments drive latent demand, attendance, season-ticket renewal, utilisation,
 waitlist pressure, catering, merchandise, hospitality demand, sponsor fit and
 ticketing-trust risk. FMX-46 adds matchday risk inputs: atmosphere, segment
 volatility and fan-incident memory can raise or lower the
-`MatchdayOperatingCostProfile`. Audience & Atmosphere never posts money
-directly; CommercialPortfolio consumes its public outputs for commercial and
-operating settlement, and Club Management posts ledger entries.
+`MatchdayOperatingCostProfile`. FMX-48 adds fan-service campaign effects:
+CommercialPortfolio settles campaign cost/sponsor facts, while Audience &
+Atmosphere owns the mood, trust, atmosphere, demand and cooldown memory effects.
+Audience & Atmosphere never posts money directly; CommercialPortfolio consumes
+its public outputs for commercial and operating settlement, and Club Management
+posts ledger entries.
 
 ## 1. Six supporter segments
 
@@ -190,7 +193,9 @@ The forecast includes:
 - catering, merchandise and hospitality propensity;
 - sponsor-category fit and boycott risk;
 - expected effect of fan-service campaigns such as away trains, family days,
-  summer parties, choreo support and beer-per-goal promotions.
+  summer parties, choreo support, supporter dialogue, beverage rewards and
+  digital fan challenges;
+- campaign fatigue / cooldown memory by segment and sponsor category.
 
 This preserves two club archetypes:
 
@@ -240,6 +245,36 @@ trust inputs Club Management needs to run them:
 These are cohort facts, not individual supporter records. A "strict
 utilisation policy" can therefore change renewal probability, atmosphere,
 trust and credit liability without storing who personally attended.
+
+### 7.3 FMX-48 fan-service campaign effects
+
+Audience & Atmosphere consumes `FanEventSegmentEffectPublished` facts from
+CommercialPortfolio after a campaign settles. It owns the final segment effects;
+CommercialPortfolio only supplies campaign outcome, sponsor and settlement
+facts.
+
+Minimum campaign-effect inputs:
+
+| Input | Meaning |
+|---|---|
+| `campaignKind` | Away travel, family/community, fan festival, choreo/dialogue, beverage reward or digital challenge. |
+| `targetSegments` | Segment weights and expected reach. |
+| `uptakeBand` | Actual participation compared with forecast. |
+| `communicationQuality` | Whether promises, changes, cancellation and make-goods were explained. |
+| `sponsorFit` | Category and local/community fit. |
+| `riskOutcome` | Travel disruption, alcohol/safety incident, prohibited material, privacy/moderation issue or clean outcome. |
+| `cooldownImpact` | Repetition/fatigue memory for the same segment, sponsor category and campaign kind. |
+
+Draft segment tendencies:
+
+- Ultras/Core respond strongly to away travel, choreo support and credible
+  supporter dialogue; they punish over-branded events and broken promises.
+- Family responds to family days, community tickets and safe festivals; alcohol
+  heavy or unsafe campaigns can reduce trust.
+- Casual/Fair Weather respond to fan festivals, beverage rewards and digital
+  challenges, but fatigue quickly if sign-up friction or sponsor spam is high.
+- Corporate responds to orderly premium/festival or travel-linked experiences
+  and reacts negatively to disorder or brand-safety risk.
 
 ## 8. UI tiers
 

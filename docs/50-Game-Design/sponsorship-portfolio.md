@@ -1,12 +1,12 @@
 ---
 title: Sponsorship Portfolio - Asset-level Sponsor Inventory
 status: draft
-tags: [game-design, sponsors, finance, commercial, contracts, contract-lifecycle, breach, fan-fit, fmx-41, fmx-44]
+tags: [game-design, sponsors, finance, commercial, contracts, contract-lifecycle, breach, fan-fit, fan-service, activations, fmx-41, fmx-44, fmx-48]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-06-01
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[stadium-and-campus]], [[fan-ecology]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[stadium-and-campus]], [[fan-ecology]], [[audience-and-atmosphere]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Sponsorship Portfolio - Asset-level Sponsor Inventory
@@ -25,6 +25,11 @@ FMX-44 keeps sponsorship asset-driven but routes every signed deal through the
 shared `CommercialContract` lifecycle. Sponsor-specific schedules define asset
 packages, category exclusivity, activation obligations, fan-fit risk, renewal
 rights and breach remedies.
+
+FMX-48 adds fan-service campaigns as measurable sponsor activations. Sponsors
+can fund, staff, supply, promote or prize a campaign, but the game must track
+fit, KPI targets, low uptake, make-goods, cooldowns and fan-spam fatigue instead
+of treating every activation as positive exposure.
 
 ## 1. Sponsor categories
 
@@ -49,6 +54,10 @@ A club's "inventory" lists every individual asset it can sell:
 - LED ring board (rotation slots).
 - Mobile app banner.
 - Fan zone activation.
+- Family day / community ticket block.
+- Away travel support.
+- Choreo or supporter-dialogue support.
+- Digital fan challenge.
 - Goal-alert pre-roll.
 - Newsletter sponsor.
 - Catering exclusivity (beer / soft drinks / sausages).
@@ -87,6 +96,8 @@ constrain other decisions:
 - Minimum reach (continental qualification required).
 - Hospitality capacity (premium seats present).
 - Fan activations per season (community / fan-zone events).
+- Fan-service campaign make-good if participation, exposure or availability is
+  below the agreed threshold.
 - Exclusion of competing industries (no rival brewery).
 - Player conduct clauses (disciplinary triggers).
 - Stadium-name retention (no name change for X years).
@@ -184,6 +195,35 @@ Draft sponsor-category risk bands:
 | Bank/fintech | Medium conflict risk with payment or digital partners. |
 | Global tech/media | Reach upside, possible privacy/fan-trust risk. |
 | Controversial state/owner-linked | High reputation and protest risk; Nico-gated for first playable. |
+
+## 8.1 FMX-48 fan-service activation hooks
+
+Sponsor contribution for a `FanEventCampaign` is not only money. The campaign
+contract may provide:
+
+- cash subsidy;
+- prizes or product pool;
+- transport support;
+- media spend / content production;
+- staff or operational support;
+- community grant;
+- digital tooling for participation or UGC.
+
+Minimum sponsor KPI fields:
+
+| Field | Meaning |
+|---|---|
+| `activationInventory` | Fan zone, family day, away travel, digital, beverage reward, community block or choreo/dialogue asset. |
+| `sponsorContribution` | Cash, goods, services, media or staff. |
+| `fitBand` | Segment/category fit from Audience & Atmosphere. |
+| `kpiTargets` | Participation, attendance uplift, impressions, sentiment, leads, sales or community reach. |
+| `makeGoodPolicy` | Extra slot, fee credit, social/LED inventory or contract extension if targets fail. |
+| `cooldownPolicy` | Frequency limit by sponsor category, segment and campaign type. |
+| `riskFlags` | Alcohol, child/family, data/UGC, controversial category, crowd-flow or public-order risk. |
+
+Low uptake, cancellation or poor fan sentiment can reduce renewal value even if
+cash was paid. High-fit campaigns can improve sponsor satisfaction and fan
+trust; intrusive or repetitive campaigns create cooldown/fatigue penalties.
 
 ## 9. Future-scope notes (classified future-scope)
 

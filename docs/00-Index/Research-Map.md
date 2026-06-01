@@ -284,6 +284,27 @@ before any promotion.
   [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   and [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
 
+## Fan-Service Campaign Catalog and Effects (2026-06-01)
+
+- [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]] —
+  FMX-48 synthesis for paid fan-service campaigns as a concrete
+  CommercialPortfolio object instead of example-only flavour. Adds a
+  `FanEventCampaign` lifecycle, IP-clean catalog for away travel, family /
+  community events, choreo/supporter dialogue, beverage rewards and digital fan
+  challenges, segment-specific effects, sponsor contribution/make-good fields,
+  cooldown/anti-spam policy and legal/risk hooks for travel, alcohol, safety,
+  children and digital UGC. Refines draft
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+  [[../50-Game-Design/economy-system]],
+  [[../50-Game-Design/audience-and-atmosphere]],
+  [[../50-Game-Design/stadium-and-campus]],
+  [[../50-Game-Design/matchday-event-engine]],
+  [[../50-Game-Design/sponsorship-portfolio]],
+  [[../20-Features/feature-club-economy-mvp-pillar]],
+  [[../30-Implementation/club-economy-commercial-contracts]],
+  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+  and [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 - [[../60-Research/ai-narrative-runtime-integration]] — synthesized follow-up

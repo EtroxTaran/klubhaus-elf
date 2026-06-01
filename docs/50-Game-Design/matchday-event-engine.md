@@ -1,12 +1,12 @@
 ---
 title: Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prevention
 status: draft
-tags: [game-design, events, matchday, weather, sanctions, operations, fmx-46]
+tags: [game-design, events, matchday, weather, sanctions, operations, fan-service, safety, fmx-46, fmx-48]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-01
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[audience-and-atmosphere]], [[rivalry-system]], [[stadium-and-campus]], [[regulations-and-compliance]], [[GD-0022-economy-commercial-impact-and-contracts]]
+related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[audience-and-atmosphere]], [[rivalry-system]], [[stadium-and-campus]], [[regulations-and-compliance]], [[GD-0022-economy-commercial-impact-and-contracts]]
 ---
 
 # Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prevention
@@ -39,6 +39,7 @@ but it does not own these rules or their state changes.
 | **Security** | Pyro, fan march, block clash, projectiles |
 | **Catering** | Water demand spike, beer drop, sausages sold out |
 | **Media / PR** | Protest banner, record attendance, boycott, choreo |
+| **Fan-service** | Delayed away buses, fan festival weather fallback, choreo material dispute, low-uptake community block |
 
 FMX-46 adds a cost-settlement contract: event effects may emit operating-cost
 inputs such as `PitchRecoveryCostPosted`, `MatchdayMedicalEmergencyCostPosted`,
@@ -46,6 +47,13 @@ inputs such as `PitchRecoveryCostPosted`, `MatchdayMedicalEmergencyCostPosted`,
 sanction command. The event engine resolves the incident; CommercialPortfolio
 settles the commercial/operating cost; Club Management posts finance ledger
 entries.
+
+FMX-48 adds campaign outcome inputs: active `FanEventCampaign` choices can
+change event probabilities or effects (for example coordinated away travel,
+choreo support, supporter dialogue or fan festival crowd flow). The event
+engine can resolve disruptions, safety incidents or low-uptake signals, but
+CommercialPortfolio owns campaign settlement and Audience & Atmosphere owns
+final fan mood/trust effects.
 
 ## 3. Event schema
 
@@ -160,6 +168,9 @@ Events feed into other systems, not just inbox cards:
   settlement.
 - Medical events ←” [[training-load-and-medicine]] injury record.
 - Fan events ←” [[audience-and-atmosphere]] segment mood.
+- Fan-service campaign incidents ←”
+  [[GD-0022-economy-commercial-impact-and-contracts]] campaign settlement and
+  [[audience-and-atmosphere]] segment effects.
 - Media events ←” [[club-dna-and-governance]] media image.
 - Pitch and venue conflicts ←” [[stadium-and-campus]] venue calendar,
   pitch wear and setup/teardown windows.
