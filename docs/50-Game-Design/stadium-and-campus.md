@@ -1,12 +1,12 @@
 ---
 title: Stadium and Club Campus - Build-out and On-grounds Economy
 status: draft
-tags: [game-design, stadium, infrastructure, anstoss, commercial, contract-lifecycle, breach, season-tickets, matchday, catering, merchandise, operations, fmx-41, fmx-43, fmx-44, fmx-46, fmx-47]
+tags: [game-design, stadium, infrastructure, anstoss, commercial, contract-lifecycle, breach, season-tickets, matchday, catering, merchandise, operations, fan-service, fmx-41, fmx-43, fmx-44, fmx-46, fmx-47, fmx-48]
 created: 2026-05-16
 updated: 2026-06-01
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../30-Implementation/club-economy-commercial-contracts]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[audience-and-atmosphere]], [[regulations-and-compliance]]
+related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../30-Implementation/club-economy-commercial-contracts]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[audience-and-atmosphere]], [[regulations-and-compliance]]
 ---
 
 # Stadium and Club Campus - Build-out and On-grounds Economy
@@ -100,6 +100,14 @@ visitor-by-visitor simulation.
 Venue event rules include eligibility tags, setup days, teardown days,
 pitch impact, revenue range, operating cost, sponsor affinity, fan segment
 effects and conflict rules.
+
+FMX-48 adds campaign-specific venue facts for `FanEventCampaign`: fan festival
+and family-day capacity, crowd-flow and emergency-readiness bands, temporary
+structure suitability, weather fallback quality, accessible family/community
+areas, fan-zone sponsor slots, choreo storage/material approval support and
+transport arrival/parking constraints for away buses or rail shuttles. Stadium
+Operations publishes these facts; CommercialPortfolio decides whether to
+schedule the campaign and settle its cost.
 
 The player should normally choose policies or accept/reject highlighted
 events rather than micromanage every booking.
@@ -204,7 +212,9 @@ Minimum outputs:
 - pitch condition, recovery cost and fixture-density risk;
 - ingress/egress and away-fan separation constraints;
 - current sector closures, ghost-match flags and accessibility restrictions;
-- event eligibility for concerts, conferences, fan parties and community days.
+- event eligibility for concerts, conferences, fan parties and community days;
+- fan-service campaign capacity, crowd-flow, weather fallback, temporary
+  structure, choreo/material and transport-arrival constraints.
 
 The same stadium can therefore produce different financial results depending on
 fan composition and contract model: an in-house catering club has higher upside
@@ -235,6 +245,13 @@ or upgrading a catering/merch/fan-zone module raises dwell, capacity and capture
 non-matchday venue events (concerts, conferences) carry their own catering/merch
 service window. Stadium publishes the throughput facts; CommercialPortfolio
 settles revenue/COGS/waste and Club Management posts the ledger (ADR-0050/0061).
+
+FMX-48 confirms fan-service venue readiness as **Stadium-supplied facts**, not
+campaign ownership. Stadium can make a campaign feasible, cheaper or safer
+through modules and operations quality, but it does not own sponsor promises,
+fan effects or ledger settlement. A poor venue snapshot can block, downgrade or
+raise the risk/cost of family days, fan festivals, choreo support and away
+travel arrival plans.
 
 ## 9. UI tiers
 

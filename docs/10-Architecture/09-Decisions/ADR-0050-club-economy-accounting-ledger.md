@@ -1,7 +1,7 @@
 ---
 title: ADR-0050 Club Economy Accounting Ledger
 status: accepted
-tags: [adr, architecture, economy, accounting, club-management, commercial, cup, competition, matchday, catering, merchandise, operations, fmx-13, fmx-32, fmx-41, fmx-45, fmx-46, fmx-47, accepted]
+tags: [adr, architecture, economy, accounting, club-management, commercial, cup, competition, matchday, catering, merchandise, operations, fan-service, fmx-13, fmx-32, fmx-41, fmx-45, fmx-46, fmx-47, fmx-48, accepted]
 created: 2026-05-27
 updated: 2026-06-01
 type: adr
@@ -22,6 +22,7 @@ related:
   - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
+  - [[../../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[../../60-Research/club-management-sub-aggregate-audit-2026-05-28]]
   - [[../../30-Implementation/club-economy-accounting-ledger]]
   - [[../../30-Implementation/club-economy-commercial-contracts]]
@@ -82,6 +83,11 @@ insurance/compliance, damage reserve, sanction, sector-closure, ghost-match,
 away-fan restriction and alcohol restriction entries. CommercialPortfolio owns
 the operating settlement profile and emits settlement events; Club Management
 remains the sole ledger writer.
+
+FMX-48 refines the fan-service campaign line. The ledger must be able to post
+campaign costs, sponsor contributions, refunds, make-goods and travel /
+community / choreo / beverage settlement entries separately from the fan mood,
+trust, atmosphere and demand effects owned by Audience & Atmosphere.
 
 The accepted DDD map now keeps finance ledger truth in **Club Management**
 while Stadium Operations, Audience & Atmosphere and CommercialPortfolio own
@@ -188,11 +194,27 @@ Draft events:
 - `MerchandiseReturnsSettled` (FMX-47)
 - `CommercialRoyaltyTrueUpRecognised` (FMX-47: sales-based royalty exception)
 - `CommercialGuaranteeShortfallRecognised` (FMX-47)
+- `FanEventCampaignScheduled` (FMX-48)
+- `FanEventCampaignCostCommitted` (FMX-48)
+- `FanEventSponsorContributionRecognised` (FMX-48)
+- `FanEventCampaignCancelled` (FMX-48)
+- `FanEventMakeGoodGranted` (FMX-48)
+- `FanEventCampaignSettled` (FMX-48)
+- `FanEventLowUptakeRecorded` (FMX-48)
+- `FanEventSegmentEffectPublished` (FMX-48: public fan-effect fact, not a ledger entry)
+- `AwayTravelSubsidySettled` (FMX-48)
+- `ChoreoSupportSettled` (FMX-48)
+- `BeverageRewardCampaignSettled` (FMX-48)
+- `CommunityTicketBlockSettled` (FMX-48)
+- `FanEventCooldownApplied` (FMX-48)
 
-These FMX-47 events are posted by Club Management on settlement facts emitted by
-CommercialPortfolio (Customer-Supplier + ACL); they keep revenue, COGS,
-labour/opex, royalty/MAG true-up, guarantee shortfall, waste and stock
-write-down as separate lines rather than one net catering/merch number.
+These FMX-47 and FMX-48 events are posted by Club Management on settlement
+facts emitted by CommercialPortfolio (Customer-Supplier + ACL); they keep
+revenue, COGS, labour/opex, royalty/MAG true-up, guarantee shortfall, waste,
+stock write-down, campaign cost, sponsor contribution, refund and make-good as
+separate lines rather than one net number. `FanEventSegmentEffectPublished` is
+included in the contract list for traceability, but Audience & Atmosphere owns
+the resulting mood/trust/atmosphere/demand state.
 
 Draft read models:
 
@@ -210,6 +232,7 @@ Draft read models:
 - `CupRunRevenueForecast`
 - `CateringOperationsBoard` (FMX-47: per-point capacity, queue, stockout, COGS, waste)
 - `MerchandiseInventoryBoard` (FMX-47: stock vs forecast, markdown, write-down, returns)
+- `FanEventCampaignBoard` (FMX-48: lifecycle, cost, sponsor support, target segment, risk, cooldown)
 
 ## Rationale
 
@@ -251,6 +274,7 @@ None
 - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 - [[../../60-Research/catering-and-merchandise-operations-2026-06-01]]
+- [[../../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
 - [[../../50-Game-Design/GD-0008-finance-economy]]
 - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../../50-Game-Design/economy-system]]

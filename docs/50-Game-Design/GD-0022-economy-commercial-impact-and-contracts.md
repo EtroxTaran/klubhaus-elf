@@ -1,7 +1,7 @@
 ---
 title: GD-0022 Economy Commercial Impact and Contracts
 status: draft
-tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47]
+tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48]
 created: 2026-05-28
 updated: 2026-06-01
 type: game-design
@@ -26,6 +26,7 @@ related:
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
+  - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[audience-and-atmosphere]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
@@ -46,7 +47,9 @@ draft
 > lifecycle / accrual-accounting refinement, the FMX-44 commercial contract
 > lifecycle / breach refinement, the FMX-45 cup/competition revenue profile
 > refinement and the FMX-46 matchday operating-cost / risk-cost settlement
-> refinement. It needs Nico approval before implementation authority.
+> refinement, the FMX-47 catering/merchandise operations refinement and the
+> FMX-48 fan-service campaign catalog refinement. It needs Nico approval before
+> implementation authority.
 
 ## Date
 
@@ -107,9 +110,11 @@ ledger effects behind the same decision.
   catering, merchandise, hospitality, supplier and venue-activation deals share
   one lifecycle shell with family-specific schedules, obligations, exclusivity,
   renewal windows and curable/material/critical breach handling.
-- **Fan-service campaigns are paid levers.** Away trains, summer parties,
-  family days, choreo support and goal-linked beer campaigns cost money and can
-  improve loyalty, atmosphere, sponsor activation and demand.
+- **Fan-service campaigns are paid levers.** Away travel, family/community
+  events, choreo support, supporter dialogue, beverage rewards and digital fan
+  challenges cost money and can improve loyalty, atmosphere, sponsor activation
+  and demand, but they also carry travel, alcohol, safety, safeguarding,
+  low-uptake and spam-fatigue risk.
 - **Investor is clean SP cash.** A real-money Investor purchase grants a known
   in-game cash amount in singleplayer only. It creates no debt, no owner
   control, no fan penalty and no competitive advantage. It is still visible in
@@ -373,6 +378,84 @@ remains sole ledger writer (ADR-0050/0061). Stadium Operations supplies
 throughput/dwell; Audience & Atmosphere supplies demand and consumes service
 quality. No boundary changes in this beat.
 
+## FMX-48 fan-service campaign catalog
+
+FMX-48 turns the old "fan event" examples into a bounded commercial campaign
+surface. Source:
+[[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]. The
+campaign spends money, sponsor inventory or operational capacity now to move
+future fan trust, atmosphere, demand and sponsor fit. It is **not** a separate
+event-management game.
+
+`FanEventCampaign` lifecycle:
+
+```text
+draft -> scheduled -> active -> settled -> reviewed
+                 scheduled -> cancelled
+                 active -> cancelled
+                 active -> breached -> settled
+```
+
+First catalog candidates:
+
+| Campaign kind | Primary design use | Main risk |
+|---|---|---|
+| `away-train` | High-capacity away support and ultras/core loyalty. | Disruption, station transfer, damage reserve, policing/refund. |
+| `bus-subsidy` | Lower-cost domestic away support for core/family fans. | Delay, comfort, low uptake, route incident. |
+| `flight-subsidy` | Distant cup/continental support and corporate travel hook. | High cost, cancellation, ESG/reputation. |
+| `family-day` | Family loyalty, kids/youth pipeline, safer low-demand fixture. | Weather, safeguarding, low short-term yield. |
+| `summer-party` / `fan-festival` | Local brand, sponsor impressions, season-ticket push. | Weather cancellation, crowd flow, cost overrun. |
+| `community-ticket-day` | Utilisation, goodwill, local-group conversion. | No-show, resale/misuse, lower yield. |
+| `choreo-support` | Derby/cup atmosphere and ultras/core identity. | Prohibited material, autonomy tension, sanction risk. |
+| `supporter-dialogue` | Trust repair, protest prevention and risk acceptance. | Broken promises, low credibility, polarised groups. |
+| `beer-per-goal` / beverage reward | Sponsor buzz, adult/core/casual match emotion and catering lift. | Alcohol law, public order, family/health backlash. |
+| `digital-fan-challenge` | Casual/remote engagement, first-party data and social reach. | Privacy, IP/moderation and spam fatigue. |
+
+Minimum campaign fields:
+
+- `campaignKind`, `lifecycleState`, `fixtureId` / `seasonId`;
+- `targetSegments`, `capacity`, `eligibilityPolicy`;
+- `budgetMinor`, `sponsorContribution`, `fulfilmentModel`;
+- `riskFlags`, `regulatoryProfile`, `cooldownPolicy`;
+- `expectedEffects`, `kpiTargets`, `makeGoodPolicy`, `settlementPolicy`;
+- `provenance` linking fixture, venue, sponsor, fan and rule facts.
+
+Settlement events that must be representable:
+
+- `FanEventCampaignScheduled`
+- `FanEventCampaignCostCommitted`
+- `FanEventSponsorContributionRecognised`
+- `FanEventCampaignCancelled`
+- `FanEventMakeGoodGranted`
+- `FanEventCampaignSettled`
+- `FanEventLowUptakeRecorded`
+- `FanEventSegmentEffectPublished`
+- `AwayTravelSubsidySettled`
+- `ChoreoSupportSettled`
+- `BeverageRewardCampaignSettled`
+- `CommunityTicketBlockSettled`
+- `FanEventCooldownApplied`
+
+Ownership stays unchanged: CommercialPortfolio owns campaign policy,
+contract/sponsor obligations, settlement and cooldowns; Audience & Atmosphere
+owns mood, trust, atmosphere and demand effects; Stadium Operations supplies
+venue capacity, crowd-flow, temporary-structure and fan-zone facts; Regulations
+gates alcohol, travel, safety, safeguarding and digital/UGC constraints; Club
+Management posts ledger entries only after settlement.
+
+Fairness rules:
+
+- travel campaigns show capacity, disruption/refund and damage-reserve risk
+  before scheduling;
+- alcohol campaigns are country-profile gated and must support non-alcoholic /
+  soft-drink variants;
+- child/family events model safeguarding/privacy as risk complexity, not
+  personal child data;
+- sponsor-heavy or repeated campaigns need cooldowns so raw impressions cannot
+  hide fan spam fatigue;
+- SLO/supporter dialogue helps choreo and risk acceptance but does not let the
+  club command supporter groups.
+
 ## Cup and special-fixture settlement
 
 Each fixture receives a commercial profile:
@@ -527,6 +610,7 @@ business model.
 | Merch | Pick own/partner campaign | See projected margin, royalty/MAG and stock risk | Edit royalty, guarantee, inventory, fulfilment and true-up schedule |
 | Cup revenue | See secured income, earned receivables and future upside band | See prize, gate share, media, travel, security, sponsor and merch breakdown | Inspect round EV, probabilities, gate formula, payment timing, congestion sensitivity and elimination shock |
 | Matchday operating cost | See risk badge, total cost band and recommended mitigation | See staffing/security, venue/facility and restriction/sanction breakdown | Inspect profile modifiers, formulas, source provenance, incident memory and event settlement |
+| Fan-service campaign | Pick a recommended campaign and see cost, sponsor help, fan effect band and one risk badge | Compare campaign type, target segments, capacity, uptake forecast, risk/cooldown and settlement timing | Inspect lifecycle, eligibility, SLO/security approvals, KPI targets, make-good, cooldown and provenance |
 | Investor | Confirm exact cash amount | See ledger impact and runway change | See no long-term structural change in forecast |
 
 ## Acceptance scenarios
@@ -665,6 +749,42 @@ Feature: Commercial economy impact
     When a higher-value competing offer arrives
     Then the club must respect the incumbent renewal policy before accepting it
 
+  Scenario: Subsidised away train improves away support
+    Given a high-rivalry away fixture
+    And the club schedules an away-train campaign with enough capacity
+    When the campaign settles without disruption
+    Then Club Management posts travel subsidy and damage reserve outcomes
+    And Audience & Atmosphere receives improved core and ultras trust
+    And away atmosphere increases for the fixture
+
+  Scenario: Family day trades yield for long-term loyalty
+    Given a low-demand home fixture
+    When the club schedules a family day with community ticket blocks
+    Then ticket yield is reduced
+    And Family segment mood, future demand and sponsor community fit improve
+    And low uptake is recorded if group attendance misses the forecast
+
+  Scenario: Beverage campaign follows the country profile
+    Given a club in a strict alcohol-profile country
+    When a beverage sponsor proposes beer-per-goal
+    Then CommercialPortfolio offers a non-alcoholic or off-site variant
+    And the risk card shows alcohol, family-fit and public-order constraints
+
+  Scenario: Choreo support uses SLO-mediated approval
+    Given a derby fixture with high atmosphere potential
+    And the club funds a choreo-support campaign
+    When SLO dialogue and material approval succeed
+    Then atmosphere and ultras/core trust improve
+    And sanction probability is lower than an unmanaged display
+
+  Scenario: Failed fan festival creates make-good
+    Given a sponsor-funded fan festival has a participation target
+    And bad weather reduces attendance below the agreed threshold
+    When settlement runs
+    Then CommercialPortfolio records low uptake
+    And a make-good or future sponsor slot is scheduled
+    And fan sentiment depends on communication and compensation quality
+
   Scenario: Investor does not rebalance the save
     Given a singleplayer club buys an Investor cash grant
     When the entitlement is confirmed
@@ -706,7 +826,17 @@ Feature: Commercial economy impact
 - Decide whether severe supporter incidents are enabled in first playable or
   staged behind difficulty / realism settings.
 - First contract presets for catering and merchandise.
-- Fan-service event catalog for first playable.
+- First-playable fan-service campaign catalog: minimum eight types or full ten.
+- Quick-mode fan-service abstraction: one recommended campaign card per period
+  or visible campaign board from the start.
+- Beer/alcohol wording: explicit beer/alcohol campaigns or generic beverage /
+  non-alcoholic abstraction.
+- Default fan-service cooldown hardness and anti-spam thresholds.
+- Whether SLO quality is an active staff modifier in MVP or a future hook owned
+  by Staff Operations / Audience & Atmosphere.
+- Whether travel disruption, refund and damage-reserve rules are active in MVP
+  or profile-data-only until matchday operations are playtested.
+- Whether sponsor KPI make-goods are Standard-visible or Expert-only.
 - Guardrails for top-match surcharge and fan-trust damage.
 - Accept ADR-0058 Option C after the FMX-44 lifecycle/breach amendment, or
   reopen the Commercial Operations bounded-context option.
@@ -757,7 +887,10 @@ layer; it does not approve final constants.
   [[../60-Research/fan-demand-price-elasticity-2026-05-28]] ·
   [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]] ·
   [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]] ·
-  [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+  [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]] ·
+  [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]] ·
+  [[../60-Research/catering-and-merchandise-operations-2026-06-01]] ·
+  [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
 - Game design: [[GD-0008-finance-economy]] · [[economy-system]] ·
   [[audience-and-atmosphere]] · [[regulations-and-compliance]]
 - Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
