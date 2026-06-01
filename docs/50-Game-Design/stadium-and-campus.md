@@ -1,12 +1,12 @@
 ---
 title: Stadium and Club Campus - Build-out and On-grounds Economy
 status: draft
-tags: [game-design, stadium, infrastructure, anstoss, commercial, contract-lifecycle, breach, season-tickets, matchday, operations, fmx-41, fmx-43, fmx-44, fmx-46]
+tags: [game-design, stadium, infrastructure, anstoss, commercial, contract-lifecycle, breach, season-tickets, matchday, catering, merchandise, operations, fmx-41, fmx-43, fmx-44, fmx-46, fmx-47]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-01
 type: game-design
 binding: true
-related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../30-Implementation/club-economy-commercial-contracts]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[audience-and-atmosphere]], [[regulations-and-compliance]]
+related: [[README]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../30-Implementation/club-economy-commercial-contracts]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[audience-and-atmosphere]], [[regulations-and-compliance]]
 ---
 
 # Stadium and Club Campus - Build-out and On-grounds Economy
@@ -225,6 +225,16 @@ deals. The snapshot must be rich enough for Club Management to evaluate:
 The stadium does not open or resolve commercial breaches or finance postings.
 It publishes facts; CommercialPortfolio evaluates contract and matchday
 operating policy, and Club Management posts the ledger effects.
+
+FMX-47 confirms catering and merchandise throughput as **Stadium-supplied
+facts**, not CommercialPortfolio-owned ones. The snapshot supplies dwell time
+and per-service-point service capacity (`transactions_per_min × selling_window ×
+basket`) so CommercialPortfolio can cap catering revenue and detect stockouts;
+it supplies fan-shop / e-commerce fulfilment throughput for merchandise. Adding
+or upgrading a catering/merch/fan-zone module raises dwell, capacity and capture;
+non-matchday venue events (concerts, conferences) carry their own catering/merch
+service window. Stadium publishes the throughput facts; CommercialPortfolio
+settles revenue/COGS/waste and Club Management posts the ledger (ADR-0050/0061).
 
 ## 9. UI tiers
 

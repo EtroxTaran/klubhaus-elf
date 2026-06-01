@@ -1,9 +1,9 @@
 ---
 title: GD-0022 Economy Commercial Impact and Contracts
 status: draft
-tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, operations, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46]
+tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47]
 created: 2026-05-28
-updated: 2026-05-29
+updated: 2026-06-01
 type: game-design
 binding: false
 supersedes:
@@ -25,6 +25,8 @@ related:
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
+  - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
+  - [[audience-and-atmosphere]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -324,6 +326,52 @@ active violation opens a material breach case.
 AI-club behaviour is not part of FMX-44. The contract register may expose
 read-only hooks such as `cashUrgency`, `fanFitWeight`, `serviceQualityWeight`
 and `renewalBias` for FMX-51.
+
+## FMX-47 catering and merchandise operations depth
+
+FMX-47 turns catering and merchandise from flat revenue percentages into
+operations the player can steer. The core decision is an **operating model**
+that trades control + upside + risk against certainty + low effort + capped take
+(the commercial analogue of the FMX-43 season-ticket upfront-vs-upside dial).
+Source: [[../60-Research/catering-and-merchandise-operations-2026-06-01]]. All
+numbers are calibration ranges.
+
+- **Operating-model dial.** Catering: in-house (keep gross, bear COGS + labour +
+  waste), concession lease (operator bears all, club gets rent ± share),
+  management fee (keep gross **and** bear volume/inventory risk, pay fee),
+  revenue-share (operator bears cost, club gets % of gross), MAG + share
+  (`max(MAG, share)`). Merchandise: own store + e-commerce (club bears
+  inventory/fulfilment), licensed partner / wholesale, kit-supplier guarantee,
+  pure licensing/royalty.
+- **Revenue is operations-capped.** Catering = `attendance × per-capita`, where
+  per-capita rises with dwell time, product quality, throughput and segment mix,
+  and is **capped** by service capacity (queue/throughput) and by stockouts (an
+  item's sales stop at zero once sold out; unmet demand is lost revenue + a fan
+  satisfaction hit, not silently absorbed).
+- **Cost and inventory are explicit.** The ledger separates revenue, COGS,
+  labour/opex, royalty/MAG true-up, guarantee shortfall, waste/spoilage
+  (catering ~3-5% of food COGS normal) and stock markdown/write-down
+  (merch season-end 30-70%, e-commerce returns ~15-25%). Over-ordering wastes;
+  under-ordering loses sales — the stockout-vs-overstock tension.
+- **Merchandise demand spikes.** Kit launch (~3-5×), icon signing (~1.3-1.5×),
+  cup-final run (~1.1-1.3×, more if won), promotion/trophy lift — applied as a
+  forecast multiplier on a planned stock buy, with cup spikes linked to the
+  FMX-45 `CompetitionRevenueProfile` merch band.
+- **Service quality and alcohol policy are levers.** Queue, stockout and quality
+  feed Audience & Atmosphere satisfaction / repeat attendance / NPS and sponsor
+  fit. Alcohol policy is an in-bowl / concourse-only / near-ban dial with a
+  revenue↔safety trade-off (country-profile driven, FMX-53). Supplier
+  pouring-rights/exclusivity reuse the category × territory × asset × carve-out
+  exclusivity graph and constrain an outsourced operator's sourcing.
+
+Breach grading is unchanged from FMX-44: a repeated catering queue/stockout SLA
+failure escalates curable → material (service credits, cure period, replace-
+operator board prompt); a food-safety/hygiene/alcohol-law incident is critical.
+
+Catering/merch operations are owned inside CommercialPortfolio; Club Management
+remains sole ledger writer (ADR-0050/0061). Stadium Operations supplies
+throughput/dwell; Audience & Atmosphere supplies demand and consumes service
+quality. No boundary changes in this beat.
 
 ## Cup and special-fixture settlement
 

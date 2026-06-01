@@ -2,7 +2,7 @@
 title: Research Summary
 status: current
 tags: [research, summary]
-updated: 2026-05-29
+updated: 2026-06-01
 ---
 
 # Research Summary
@@ -368,6 +368,40 @@ This refines current/draft
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
 [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 and [[../30-Implementation/club-economy-commercial-contracts]].
+
+## Catering and Merchandise Operations Depth (2026-06-01)
+
+[[catering-and-merchandise-operations-2026-06-01]] is the FMX-47 research
+synthesis for catering and merchandise operations beyond flat revenue
+percentages. It deepens the two FMX-44 contract families with an explicit
+cost/inventory side, keeping ownership inside CommercialPortfolio (ADR-0061) and
+Club Management as sole ledger writer (ADR-0050).
+
+Current draft direction:
+
+- Each family carries an operating model that decides risk: catering in-house /
+  concession lease / management fee / revenue-share / MAG-plus-share;
+  merchandise own-store-and-e-commerce / licensed-partner / kit-supplier-
+  guarantee / pure-licensing.
+- Catering revenue is `attendance × per-capita`, capped by service capacity
+  (queue/throughput) and stockouts; the ledger separates revenue, COGS,
+  labour/opex, waste/spoilage, royalty/MAG true-up and guarantee shortfall.
+- Merchandise plans a stock buy against a demand forecast with launch / icon /
+  cup spike multipliers, then markdown, write-down-to-NRV and returns.
+- Service quality (queue, stockout, hygiene) feeds Audience & Atmosphere
+  satisfaction and sponsor fit; alcohol policy is an in-bowl / concourse-only /
+  near-ban dial with a revenue↔safety trade-off (country-profile driven).
+- Catering supplier pouring-rights/exclusivity reuse the FMX-44 category ×
+  territory × asset × carve-out exclusivity graph; cash-vs-recognition follows
+  IFRS 15 per operating model. All numbers are calibration ranges, IP-clean.
+
+This refines draft
+[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
+[[../50-Game-Design/economy-system]], binding
+[[../50-Game-Design/stadium-and-campus]], draft
+[[../30-Implementation/club-economy-commercial-contracts]], accepted
+[[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
+accepted [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
 
 ## AI Narrative Runtime Integration (2026-05-27)
 

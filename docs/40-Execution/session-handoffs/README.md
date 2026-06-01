@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-05-29
+updated: 2026-06-01
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -56,6 +56,17 @@ This is the **single** canonical handoff location. (An older
   commercial-contract surfaces. Awaiting Nico decisions on final cost ranges,
   auto-mitigation defaults, policing-control depth and severe incident
   frequency.
+- [[2026-06-01-fmx-47-catering-merchandise-operations]] - FMX-47 catering and
+  merchandise operations depth: per-family `operatingModel` risk dial; catering
+  revenue capped by service capacity and stockouts; explicit COGS, labour, waste,
+  inventory, markdown, write-down and returns ledger lines; merchandise demand
+  spikes; service-quality → Audience & Atmosphere coupling; alcohol-policy
+  revenue↔safety dial; supplier pouring-rights/exclusivity carve-outs; IFRS 15
+  cash-vs-recognition. Refined draft GD-0022, Economy System, Stadium & Campus,
+  commercial-contract surface, ADR-0050 events and ADR-0058 boundary amendment.
+  Stays inside CommercialPortfolio; awaiting Nico decisions on operational depth
+  ceiling, per-country defaults, alcohol depth, penalty hardness and Quick-mode
+  abstraction.
 - [[2026-05-28-fmx-45-cup-competition-revenue]] - FMX-45 cup and
   competition revenue dossier: Germany/England/Spain/Italy/France plus
   continental source patterns; IP-clean `CompetitionRevenueProfile` preset

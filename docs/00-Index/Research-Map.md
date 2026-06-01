@@ -3,7 +3,7 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-01
 type: map
 binding: false
 related: [[Current-State]]
@@ -248,6 +248,25 @@ before any promotion.
   [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   and [[../30-Implementation/club-economy-commercial-contracts]].
+
+## Catering and Merchandise Operations Depth (2026-06-01)
+
+- [[../60-Research/catering-and-merchandise-operations-2026-06-01]] —
+  FMX-47 synthesis for catering and merchandise operations beyond flat revenue
+  percentages. Adds the operating-model dial (in-house / concession / management-
+  fee / revenue-share / MAG for catering; own-store / licensed-partner / kit-
+  supplier-guarantee / pure-licensing for merchandise), an explicit cost/inventory
+  side (COGS, labour, waste, stockout, markdown, write-down, returns), merchandise
+  demand spikes, service-quality → Audience & Atmosphere coupling, alcohol-policy
+  revenue↔safety dial, supplier pouring-rights/exclusivity carve-outs and IFRS 15
+  cash-vs-recognition. Stays inside CommercialPortfolio (ADR-0061) with Club
+  Management as sole ledger writer. Refines draft
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+  [[../50-Game-Design/economy-system]],
+  [[../50-Game-Design/stadium-and-campus]],
+  [[../30-Implementation/club-economy-commercial-contracts]],
+  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+  and [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
 
 ## AI Narrative Runtime Integration (2026-05-27)
 

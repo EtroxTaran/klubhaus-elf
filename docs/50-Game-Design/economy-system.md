@@ -1,9 +1,9 @@
 ---
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, matchday, operations, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46]
+tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-01
 type: game-design
 binding: false
 linear: FMX-13
@@ -18,10 +18,12 @@ related:
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
+  - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   - [[../30-Implementation/club-economy-commercial-contracts]]
+  - [[audience-and-atmosphere]]
   - [[sponsorship-portfolio]]
   - [[stadium-and-campus]]
   - [[transfer-market-and-contracts]]
@@ -92,9 +94,9 @@ Important rule: **budget is permission, not cash**.
 | Source | Primary drivers | Timing |
 |---|---|---|
 | Ticketing | Segment latent demand, league, opponent, table, price, weather, fan loyalty, ticketing trust, season-ticket campaign lifecycle | Matchday / season-ticket pre-sale cash, with accrual recognition as matches are played |
-| Catering | Attendance, dwell time, fan mix, risk policy, catering contract model and service quality | Matchday + venue events, with contract cash/recognition schedule |
+| Catering | Attendance, dwell time, fan mix, alcohol policy, operating model, per-capita band, service capacity (queue/throughput), stockout/waste | Matchday + venue events, with COGS/labour/waste lines and contract cash/recognition schedule |
 | Hospitality | Corporate demand, premium capacity, sponsor portfolio, hospitality contract terms | Matchday / contract |
-| Merchandise | Brand, stars, success, campaigns, merch contract and fulfilment quality | Seasonal spikes, royalties/MAG/true-up schedule |
+| Merchandise | Brand, stars, success, campaign drops, operating model, stock plan vs demand forecast, fulfilment quality | Seasonal/launch spikes, royalties/MAG/true-up, markdown/write-down and returns schedule |
 | Sponsoring | Reach, image, fan fit, assets, league, exclusivity and activation delivery | Contract cadence with cash and recognition schedule |
 | Media rights | Country profile, league tier, table | Profile-specific lump/periodic |
 | Transfers | Player value, contract, buyer pressure | Upfront + instalments |
@@ -229,8 +231,8 @@ still owns the money, but the causes come from contracts and public read models:
 |---|---|---|
 | Season-ticket campaign | Ticketing policy + fan renewal forecast + stadium seat-class inventory | Early cash or receivables, deferred revenue/accrual, reduced single-ticket inventory |
 | Single-ticket sales | Fixture commercial profile + price policy | Matchday ticket cash and top-match surcharge effect |
-| Catering | Stadium throughput + catering contract lifecycle + service levels | In-house revenue/COGS/staff or concession/rent/share income, penalties for SLA breach |
-| Merchandise | Fan demand + merch contract lifecycle + star/cup/rivalry signals | Retail cash, royalty/MAG true-up, inventory cost, campaign profit/loss, fulfilment penalties |
+| Catering | Stadium throughput/dwell + operating model + per-capita band capped by capacity/stockout + service levels + alcohol policy | In-house revenue/COGS/labour/waste or concession/rent/share income; stockout = lost revenue + satisfaction hit; penalties for SLA breach |
+| Merchandise | Fan demand + operating model + stock plan vs forecast + star/cup/rivalry spike signals | Retail cash, royalty/MAG true-up, COGS, waste/write-down, markdown, returns, campaign profit/loss, fulfilment penalties |
 | Sponsorship | Sponsor portfolio + commercial contract lifecycle | Upfront cash, periodic accrual, bonuses, penalties, make-goods and termination effects |
 | Cup progression | Competition revenue profile | Prize/media/gate-share/travel/security entries plus receivables, future EV and elimination-shock read models |
 | Matchday operating profile | Fixture risk + Stadium Operations + Rivalry + Audience & Atmosphere + Regulations | Stewarding/security/policing-style/medical/cleaning/energy/staff/pitch/insurance/sanction costs plus restrictions and risk-tier feedback |
@@ -277,6 +279,19 @@ reserve and restriction/sanction effects. Risk tiers (`routine`, `guarded`,
 match. Mitigation can reduce probability or severity, but costs money or
 revenue; sector closures and ghost matches remove attendance income while
 preserving required operating costs.
+
+FMX-47 refines the catering and merchandise layer into operations. Each family
+carries an operating model (in-house / concession / management-fee / revenue-
+share / MAG-plus-share for catering; own-store / licensed-partner / kit-supplier-
+guarantee / pure-licensing for merchandise) that decides who bears cost and
+inventory risk. Catering revenue is `attendance × per-capita`, capped by service
+capacity and stockouts; the ledger separates revenue, COGS, labour/opex,
+waste/spoilage, royalty/MAG true-up and guarantee shortfall. Merchandise tracks a
+planned stock buy against a demand forecast with launch/icon/cup spike
+multipliers, then markdown, write-down-to-NRV and returns. Service quality
+(queue, stockout, hygiene) feeds Audience & Atmosphere satisfaction and sponsor
+fit; alcohol policy is an in-bowl / concourse-only / near-ban dial with a
+revenue↔safety trade-off. All numbers are calibration ranges.
 
 The same settlement supports Quick / Standard / Expert:
 
