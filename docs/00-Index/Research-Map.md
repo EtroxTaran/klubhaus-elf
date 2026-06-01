@@ -227,6 +227,22 @@ before any promotion.
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   and [[../30-Implementation/club-economy-commercial-contracts]].
 
+## Top-5 Country Economy Calibration Profiles (2026-05-29)
+
+- [[../60-Research/top5-country-economy-profiles-2026-05-29]] — FMX-53 synthesis
+  for per-country economic calibration profiles (Germany / England / Spain /
+  Italy / France + abstract). Translates revenue mix, media distribution &
+  cadence, attendance/utilisation, season-ticket culture, stadium ownership,
+  commercial scale, financial-control regime (PSR / DFL licensing / LCPD cap /
+  DNCG / FIGC), relegation/parachute support and tax/levy abstraction into an
+  IP-clean `CountryEconomyProfile` with banded calibration ranges (not final
+  constants). Fills out [[../50-Game-Design/economy-system]] §9, supplies the
+  `countryProfileId` referenced by `CompetitionRevenueProfile`, and recommends a
+  first calibration baseline. Refines draft
+  [[../50-Game-Design/GD-0008-finance-economy]],
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] and
+  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]].
+
 ## Matchday Operating Costs and Risk-Cost Settlement (2026-05-29)
 
 - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
@@ -366,6 +382,10 @@ before any promotion.
 - [[../60-Research/raw-perplexity/raw-ai-narration-interactive-narrative-qa-2026-05-28]] -
   storylets, persona cards, relationship memory, deterministic fallbacks and
   long-season narrative QA.
+- [[../60-Research/raw-perplexity/raw-top5-country-economy-profiles-2026-05-29]] -
+  FMX-53 four-theme country-economy pass (revenue mix, media/control regime,
+  matchday & ST culture / ownership, commercial scale & tax/levy); promoted into
+  [[../60-Research/top5-country-economy-profiles-2026-05-29]].
 
 ## Research Rules
 

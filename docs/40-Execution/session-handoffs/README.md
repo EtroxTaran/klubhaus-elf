@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-05-29-fmx-53-country-economy-profiles]] - FMX-53 Top-5 country economy
+  calibration profiles: Germany/England/Spain/Italy/France plus abstract
+  fallback; IP-clean `CountryEconomyProfile` (revenue mix, media weights &
+  cadence, attendance/utilisation, season-ticket culture, stadium ownership,
+  commercial multiplier, financial-control regime, parachute and tax/levy);
+  gameplay-affecting differences; banded calibration ranges (not final);
+  first-baseline recommendation and open Nico decisions.
 - [[2026-05-29-fmx-46-matchday-operating-costs]] - FMX-46 matchday
   operating-cost and risk-cost settlement dossier: UEFA/national safety,
   stewarding, policing, supporter-travel, alcohol, disciplinary and stadium
