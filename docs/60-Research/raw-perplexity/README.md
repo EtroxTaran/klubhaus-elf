@@ -3,10 +3,10 @@ title: Raw Perplexity Research Transcripts
 status: raw
 tags: [research, raw, perplexity, wave-2, player-strength]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-06-01
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]], [[../catering-and-merchandise-operations-2026-06-01]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -95,6 +95,16 @@ research and planning on cup and competition revenue profiles.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-cup-competition-revenue-profiles-2026-05-28]] | Domestic cup and continental competition revenue, gate sharing, prize/media cadence, EV forecasting and elimination shock | [[../cup-and-competition-revenue-profiles-2026-05-28]] · [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] · [[../../30-Implementation/club-economy-commercial-contracts]] |
+
+## FMX-47 follow-up Perplexity research (2026-06-01)
+
+Additional Perplexity research was run during FMX-47 after Nico picked the next
+economy issue: catering and merchandise operations depth beyond flat revenue
+percentages.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-catering-and-merchandise-operations-2026-06-01]] | Stadium catering/concession & football merchandise commercial models, COGS/inventory/waste, demand spikes, service-quality & SLA breach, supplier exclusivity, IFRS 15 recognition | [[../catering-and-merchandise-operations-2026-06-01]] · [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] · [[../../30-Implementation/club-economy-commercial-contracts]] |
 
 ## FMX-3 follow-up Perplexity research (2026-05-28)
 

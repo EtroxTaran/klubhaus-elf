@@ -1,9 +1,9 @@
 ---
 title: ADR-0058 Club Economy Commercial Impact Boundary
 status: accepted
-tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, commercial-portfolio, cup, competition, fmx-32, fmx-41, fmx-44, fmx-45, accepted]
+tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, commercial-portfolio, cup, competition, catering, merchandise, operations, fmx-32, fmx-41, fmx-44, fmx-45, fmx-47, accepted]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-01
 type: adr
 binding: true
 supersedes:
@@ -287,6 +287,29 @@ cup and competition constraints:
 - Default profile templates must be IP-clean and data-driven, with real-world
   sources used only for calibration ranges.
 
+## FMX-47 catering and merchandise operations amendment
+
+FMX-47 deepens the catering and merchandise families without moving a boundary:
+
+- Catering and merchandise operations (operating model, COGS, labour, waste,
+  inventory lifecycle, stockout, fulfilment, supplier exclusivity) are owned
+  inside **CommercialPortfolio** as part of the unified `CommercialContract`;
+  Club Management remains sole ledger writer and posts the FMX-47 operations
+  events (ADR-0050) from CommercialPortfolio settlement facts via
+  Customer-Supplier + ACL.
+- Throughput and dwell are **Stadium Operations** facts
+  (`StadiumCommercialSnapshot`); demand, service-quality reaction and NPS are
+  **Audience & Atmosphere** facts (`FanDemandForecast` + service-quality
+  consumption). CommercialPortfolio consumes both; it does not own throughput or
+  fan mood.
+- The ledger keeps revenue, COGS, labour/opex, royalty/MAG true-up, guarantee
+  shortfall, waste and stock write-down as separate facts (never one net number),
+  with cash-vs-recognition per IFRS 15 by operating model.
+- Catering supplier pouring-rights/exclusivity reuse the FMX-44 exclusivity graph
+  (category × territory × asset × carve-outs); no new exclusivity model.
+- All operational numbers remain IP-clean calibration ranges, never final
+  constants; in-game supplier/brand names follow GD-0015 + ADR-0007.
+
 ## Rationale
 
 Option C keeps the economy coherent. The ledger, commercial contract lifecycle
@@ -327,6 +350,7 @@ None.
 - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 - [[../../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+- [[../../60-Research/catering-and-merchandise-operations-2026-06-01]]
 - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../../50-Game-Design/GD-0008-finance-economy]]
 - [[../../50-Game-Design/economy-system]]

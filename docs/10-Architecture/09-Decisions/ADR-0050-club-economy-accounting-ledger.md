@@ -1,9 +1,9 @@
 ---
 title: ADR-0050 Club Economy Accounting Ledger
 status: accepted
-tags: [adr, architecture, economy, accounting, club-management, commercial, cup, competition, fmx-13, fmx-32, fmx-41, fmx-45, accepted]
+tags: [adr, architecture, economy, accounting, club-management, commercial, cup, competition, catering, merchandise, fmx-13, fmx-32, fmx-41, fmx-45, fmx-47, accepted]
 created: 2026-05-27
-updated: 2026-05-28
+updated: 2026-06-01
 type: adr
 binding: true
 supersedes:
@@ -149,6 +149,21 @@ Draft events:
 - `CupNeutralVenueAllocationSettled`
 - `CupForecastUpdated`
 - `CupEliminationForecastShockRecorded`
+- `MatchdayCateringSettled` (FMX-47: revenue + COGS + labour + waste lines)
+- `CateringStockoutRecorded` (FMX-47)
+- `CateringWastePosted` (FMX-47)
+- `MerchandiseStockPlanCommitted` (FMX-47)
+- `MerchandiseSalesSettled` (FMX-47: full-price + spike lines)
+- `MerchandiseMarkdownApplied` (FMX-47)
+- `MerchandiseStockWrittenDown` (FMX-47: IAS 2 net-realisable-value)
+- `MerchandiseReturnsSettled` (FMX-47)
+- `CommercialRoyaltyTrueUpRecognised` (FMX-47: sales-based royalty exception)
+- `CommercialGuaranteeShortfallRecognised` (FMX-47)
+
+These FMX-47 events are posted by Club Management on settlement facts emitted by
+CommercialPortfolio (Customer-Supplier + ACL); they keep revenue, COGS,
+labour/opex, royalty/MAG true-up, guarantee shortfall, waste and stock
+write-down as separate lines rather than one net catering/merch number.
 
 Draft read models:
 
@@ -163,6 +178,8 @@ Draft read models:
 - `CommercialContractPortfolio`
 - `MatchdayCommercialSettlement`
 - `CupRunRevenueForecast`
+- `CateringOperationsBoard` (FMX-47: per-point capacity, queue, stockout, COGS, waste)
+- `MerchandiseInventoryBoard` (FMX-47: stock vs forecast, markdown, write-down, returns)
 
 ## Rationale
 
@@ -202,6 +219,7 @@ None
 - [[../../60-Research/club-economy-blueprint-2026-05-27]]
 - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+- [[../../60-Research/catering-and-merchandise-operations-2026-06-01]]
 - [[../../50-Game-Design/GD-0008-finance-economy]]
 - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../../50-Game-Design/economy-system]]

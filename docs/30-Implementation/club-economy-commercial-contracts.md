@@ -1,9 +1,9 @@
 ---
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
-tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45]
+tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, catering, merchandise, operations, inventory, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-47]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-01
 type: implementation
 binding: false
 linear: FMX-41
@@ -21,6 +21,7 @@ related:
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+  - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
   - [[club-economy-accounting-ledger]]
   - [[../10-Architecture/bounded-context-map]]
 ---
@@ -286,6 +287,59 @@ Family schedules:
 | Hospitality | Seat/package inventory, service level, minimum spend/headcount, premium quality, sponsor overlap. |
 | Supplier | Mandatory supplier, rebates, volume targets, equipment support, exclusivity carve-outs. |
 | Venue activation | Event rights, staffing, safety, sponsor contribution, fulfilment model, cancellation policy. |
+
+### Catering and merchandise operations (FMX-47)
+
+FMX-47 deepens the catering and merchandise families beyond a flat
+`revenueShareBps`/`costShareBps` into an explicit operations + inventory side.
+CommercialPortfolio settles each fixture/period; Club Management posts the ledger
+entry (ADR-0050 single-writer; ADR-0061 ownership). Numbers are calibration
+ranges, not constants. Source: [[../60-Research/catering-and-merchandise-operations-2026-06-01]].
+
+`operatingModel` (per catering/merch contract) decides risk allocation:
+
+| Family | `operatingModel` values | Who bears stock/inventory + fulfilment risk |
+|---|---|---|
+| Catering | `inHouse`, `concessionLease`, `managementFee`, `revenueShare`, `magPlusShare` | Club (`inHouse`, `managementFee`) vs operator (others) |
+| Merchandise | `ownStoreEcom`, `licensedPartner`, `kitSupplierGuarantee`, `pureLicensing` | Club (`ownStoreEcom`) vs partner/manufacturer/licensee (others) |
+
+Operations fields added to the catering/merch schedules:
+
+| Field | Meaning |
+|---|---|
+| `operatingModel` | Risk-allocation model above; drives which cost/inventory lines apply. |
+| `cogsBps` | Cost of goods sold band (catering blended ~23-32%; merch kit 35-45%). |
+| `labourOpexBps` | Catering staffing + other opex band (in-house/management-fee only). |
+| `wasteRateBps` | Catering spoilage band (~3-5% of food COGS normal, higher on shock). |
+| `perCapitaBand` | Catering spend-per-attendee band before capacity/stockout cap. |
+| `serviceCapacity` | Throughput cap (`transactions_per_min × window × basket`) from Stadium snapshot. |
+| `stockPlan` | Merch planned stock buy vs demand forecast; lead-time + size/SKU split. |
+| `demandMultipliers` | Merch spike factors: kit launch (~3-5×), icon signing (~1.3-1.5×), cup-final (~1.1-1.3×), promotion/trophy. |
+| `markdownPolicy` | Merch season-end markdown (30-70%) + write-down-to-NRV rule (IAS 2). |
+| `returnsRateBps` | E-commerce apparel returns band (~15-25%) + net return cost. |
+| `fulfilmentSla` | Merch dispatch/delivery SLA + per-order fulfilment cost. |
+| `alcoholPolicy` | Catering `inBowl` / `concourseOnly` / `nearBan` dial (revenue↔safety; links FMX-53 country profile). |
+| `supplierMandate` | Pouring-rights / must-buy / ranging constraints + category exclusivity carve-outs (reuses `exclusivityScope`). |
+
+Settlement separates the ledger lines (named in ADR-0050): revenue, COGS,
+labour/opex, royalty/MAG true-up, guarantee shortfall, waste/spoilage and stock
+write-down — never a single net number. Cash-vs-recognition follows IFRS 15 per
+`operatingModel` (POS at sale; concession rent straight-line; revenue-share as
+concessionaire sales occur; royalty under the sales-based royalty exception; MAG
+straight-line with overage true-up only above the floor).
+
+Additional operations events that must be representable:
+
+- `MatchdayCateringSettled` (revenue + COGS + labour + waste lines)
+- `CateringStockoutRecorded` (lost demand + satisfaction penalty to Audience & Atmosphere)
+- `CateringWastePosted`
+- `MerchandiseStockPlanCommitted`
+- `MerchandiseSalesSettled` (full-price + spike lines)
+- `MerchandiseMarkdownApplied`
+- `MerchandiseStockWrittenDown`
+- `MerchandiseReturnsSettled`
+- `CommercialRoyaltyTrueUpRecognised`
+- `CommercialGuaranteeShortfallRecognised`
 
 Contract events that must be representable before implementation:
 
