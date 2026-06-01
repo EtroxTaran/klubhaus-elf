@@ -1,7 +1,7 @@
 ---
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
-tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48]
+tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-50]
 created: 2026-05-28
 updated: 2026-06-01
 type: implementation
@@ -23,6 +23,8 @@ related:
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
+  - [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]
+  - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
   - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[club-economy-accounting-ledger]]
   - [[../10-Architecture/bounded-context-map]]
@@ -588,15 +590,34 @@ entitlement policy and by Club Management for the final ledger posting.
 | `platform` | Web, iOS, Android, desktop, etc. |
 | `storeTransactionRef` | Opaque transaction reference. |
 | `grantedAt` | Grant timestamp. |
-| `disclosureVersion` | Disclosure text/version accepted. |
+| `disclosureVersion` | Disclosure text/version accepted (versioned, audited). |
 | `refundOrRevocationPolicy` | Platform/legal handling hook. |
+| `provider` | Payment path behind `PaymentProviderPort`: `apple-iap`, `google-iap` or `web-psp` (FMX-50). |
+| `lifecycleState` | `created`, `paid`, `entitled`, `refunded`, `revoked` or `failed` (FMX-50 state machine). |
+| `accountBinding` | Entitlement binds to the account, not the save; re-derived on import (FMX-50). |
+| `auditTrail` | `userId`, `platform`, `skuId`, `storeTransactionRef`, `disclosureVersion`, `grantedAt`, `cashGrantMinor`, `ledgerEntryId`, `status` (FMX-50). |
 
-Rules:
+Rules (FMX-50 refines):
 
-- only accepted in singleplayer saves;
-- idempotent by `entitlementId`;
-- posts one `investor_entitlement_cash_grant` ledger entry;
+- only accepted in singleplayer saves; multiplayer/leaderboard hard-denied; offline
+  deferred until server-confirmed (no offline self-grant);
+- **server-authoritative + idempotent by `storeTransactionRef`** (provider
+  transaction id); `paid -> entitled` may fire only once; webhooks (Apple ASSN /
+  Google RTDN) processed idempotently with a reconciliation job for misses/refunds;
+- posts one `investor_entitlement_cash_grant` ledger entry (ADR-0050 single writer);
+- entitlement is **account-bound, not save-bound** — imported saves re-bind from
+  the account, never trust save bytes;
+- refund/void/chargeback flips to `refunded`/`revoked` and reverses/flags the cash
+  per policy, **without changing simulation rules or multiplayer state**;
 - does not mutate ownership, board, fan, sponsor, debt or compliance state.
+
+Compliance + payment boundary (SKU catalog, billing paths, refund/revocation,
+age-rating, EU/DE/UK/US consumer-law disclosure, abuse prevention and audit) is
+specified in proposed
+[[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
+and researched in
+[[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]. Final
+vendor, refund-of-spent-cash policy and activation timing remain HITL/legal gates.
 
 ## Settlement flow
 

@@ -371,6 +371,42 @@ This refines current/draft
 [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 and [[../30-Implementation/club-economy-commercial-contracts]].
 
+## Investor Compliance and Entitlement Boundary (2026-06-01)
+
+[[investor-compliance-and-entitlement-boundary-2026-06-01]] is the FMX-50 research
+synthesis for the compliance + entitlement boundary of the singleplayer real-money
+Investor cash purchase. The gameplay rule is fixed (clean SP cash, no penalty/
+debt/ownership/multiplayer advantage); this beat defines only the boundary around
+it.
+
+Current draft direction:
+
+- Bill behind a `PaymentProviderPort`: Apple StoreKit 2 / Google Play consumable
+  IAP in Capacitor app builds, a web PSP / Merchant-of-Record in the PWA.
+  Entitlements bind to the account, not the save.
+- Grant exactly-once via a server-authoritative state machine
+  (`created → paid → entitled → refunded|revoked`), idempotent by provider
+  transaction id, posting one `InvestorCashGrantPosted` (ADR-0050 sole writer).
+- Reconcile refund/revocation via Apple ASSN / Google void + a reconciliation job,
+  without changing simulation rules or multiplayer.
+- Age rating is the plain "In-Game Purchases" descriptor (never random items);
+  EU/DE/UK/US consumer law adds the pay-obligation button + VAT-inclusive price,
+  immediate-delivery withdrawal-right waiver, price transparency and no dark
+  patterns.
+- Allow matrix: SP allowed, MP/leaderboard hard-denied, offline deferred, imported
+  save re-bound from the account; abuse prevention + audit throughout.
+
+This feeds new proposed
+[[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
+and refines draft
+[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+[[../30-Implementation/club-economy-commercial-contracts]], accepted
+[[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+and accepted
+[[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]].
+Payment vendor (MoR vs Stripe-direct), refund-of-spent-cash policy, age-gate
+strictness and activation timing remain HITL/legal gates.
+
 ## Catering and Merchandise Operations Depth (2026-06-01)
 
 [[catering-and-merchandise-operations-2026-06-01]] is the FMX-47 research

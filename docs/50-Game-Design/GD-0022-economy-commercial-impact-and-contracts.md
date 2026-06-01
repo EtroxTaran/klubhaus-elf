@@ -1,7 +1,7 @@
 ---
 title: GD-0022 Economy Commercial Impact and Contracts
 status: draft
-tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48]
+tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-50]
 created: 2026-05-28
 updated: 2026-06-01
 type: game-design
@@ -26,6 +26,8 @@ related:
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
+  - [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]
+  - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
   - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[audience-and-atmosphere]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
@@ -599,6 +601,29 @@ Investor is a special singleplayer entitlement:
 The design intent is clear: the player may buy time, but not a repaired
 business model.
 
+FMX-50 specifies the compliance + entitlement boundary behind this rule
+(proposed [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]],
+research [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]):
+
+- **Billing** runs behind a `PaymentProviderPort` — Apple StoreKit 2 / Google
+  Play **consumable IAP** in the app builds, a web PSP / Merchant-of-Record in the
+  PWA. Entitlements bind to the **account, not the save**.
+- **Exactly-once grant**: server-authoritative, idempotent by provider
+  transaction id, state machine `created → paid → entitled → (refunded | revoked)`;
+  one ledger fact via ADR-0050.
+- **Refund/revocation** (Apple ASSN / Google void) reconciles the entitlement
+  without changing simulation rules or multiplayer.
+- **Age rating**: plain "In-Game Purchases" descriptor — never "Includes Random
+  Items" (no loot box, ever).
+- **Consumer law**: pay-obligation button ("Zahlungspflichtig bestellen") +
+  VAT-inclusive price, immediate-delivery withdrawal-right waiver with consent +
+  durable confirmation, real-money price shown beside the cash amount, no dark
+  patterns.
+
+Final payment vendor (Merchant-of-Record vs Stripe-direct), the
+refunded-already-spent-cash policy, age-gate strictness and activation timing are
+HITL/legal gates, not decided in this beat.
+
 ## Quick / Standard / Expert surfaces
 
 | Flow | Quick | Standard | Expert |
@@ -801,7 +826,9 @@ Feature: Commercial economy impact
 - Decide whether Germany-style fan-first guardrails are hard country rules or
   tunable profile defaults.
 - Decide how visible `ticketingTrustState` should be in Quick mode.
-- Investor activation timing and platform/legal checklist.
+- Investor activation timing and platform/legal checklist (FMX-50: payment vendor
+  MoR-vs-direct, refunded-already-spent-cash policy, age-gate strictness, web-path
+  availability — all HITL/legal gates per proposed ADR-0063).
 - First Top-5 country calibration order.
 - Default season-ticket share and discount ranges per profile.
 - Default season-ticket lifecycle, share and discount ranges per profile.
