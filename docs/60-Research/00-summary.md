@@ -554,6 +554,40 @@ draft [[../30-Implementation/club-economy-accounting-ledger]]. Thresholds,
 media-advance activation, board guarantees, emergency-sale hardness and supplier
 arrears depth remain Nico-gated decisions.
 
+## Economy Calibration and Soak-Test Scenarios (2026-06-01)
+
+[[economy-calibration-and-soak-test-scenarios-2026-06-01]] is the FMX-52
+calibration/soak-test capstone that consumes the FMX-13/41/49/51/53 economy work.
+It defines **how** banded ranges become accepted constants, not the constants
+themselves.
+
+Current draft direction:
+
+- **Evidence-acceptance gate:** a constant is accepted only when it sits in its
+  evidence-justified band, soak KPIs stay healthy at the value and band edges, no
+  scenario verdict flips under a ± sensitivity sweep, and a parameter sheet is filled
+  — then Nico sign-off promotes the design note draft → approved.
+- **KPI bands:** wage/revenue, UEFA-70 squad-cost, debt/revenue, runway and DSCR
+  healthy/warning/critical, shifted per tier and `CountryEconomyProfile`.
+- **Insolvency targets:** tier-scaled per decade (top ~2–5% / mid ~8–15% / lowest
+  ~15–25% of clubs reaching administration) with a no-cascade invariant.
+- **Anti-runaway:** title HHI + CR4 over rolling 10y/30y, max single-club title share
+  <~25–30%/30y, revenue Gini 0.35–0.50 sanity bound.
+- **Soak harness:** 32-seed PR smoke + 50-season nightly gate + 100-season deep soak,
+  golden-baseline summary + statistical drift detection (control charts / Mahalanobis /
+  KS).
+- **Scenarios:** a deterministic forward matrix mapped to the scope list, plus reverse
+  stress testing per archetype; Quick/Standard/Expert forecast-accuracy validation.
+
+The executable contract (fixtures, seeds, invariants, parameter/scenario sheets) is in
+[[../30-Implementation/economy-calibration-and-soak-test-runbook]]; it cross-links
+draft [[../50-Game-Design/economy-system]] §12 and consumes
+[[ai-club-economy-behaviour-2026-06-01]], [[top5-country-economy-profiles-2026-05-29]],
+[[club-financing-tools-2026-06-01]], [[determinism-and-replay]] and
+[[pre-mortem/PM-2026-05-20-16-test-strategy-depth]]. No ADR/GDDR changed; final
+constants, exact insolvency %, homeostasis aggressiveness and forecast tolerances
+remain Nico-gated.
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 [[ai-narrative-runtime-integration]] synthesizes the two narrative/LLM reports
