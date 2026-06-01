@@ -129,6 +129,12 @@ active work.
   research.
 - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]] -
   FMX-46 matchday operating-cost and risk-cost settlement research.
+- [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]] -
+  FMX-48 fan-service campaign catalog, sponsor activation and segment effect
+  research.
+- [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]] -
+  FMX-54 fan-persona privacy, fictional aggregate boundary, IP-safe
+  social-world naming and Community Overlay future-gate research.
 
 ## Sporting core
 

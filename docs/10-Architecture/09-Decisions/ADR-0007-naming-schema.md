@@ -1,13 +1,13 @@
 ---
 title: ADR-0007 IP-clean Naming Schema + Data Generators
 status: draft
-tags: [adr, ip, data-generation, names, crests, worldgen]
+tags: [adr, ip, data-generation, names, crests, worldgen, privacy, gdpr, fmx-54]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-06-01
 accepted_at: 2026-05-17
 type: adr
 binding: true
-related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0016-community-dataset-overrides]], [[../../60-Research/data-generators]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/performance-budgets]]
+related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0016-community-dataset-overrides]], [[../../60-Research/data-generators]], [[../../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/performance-budgets]]
 ---
 
 # ADR-0007: IP-clean Naming Schema + Data Generators
@@ -226,6 +226,37 @@ Community-contributed content via the override-pack pipeline:
 Pack acceptance requires the same legal-cleanliness contract as the
 shipped core data.
 
+### 13a. FMX-54 fan, media and commercial persona naming
+
+The naming contract extends to every generated social-world and commercial
+surface introduced for AI narration, fan politics, sponsor activation and
+community overlays:
+
+- fan groups, fan reps and supporter slogans/chants;
+- journalists, media outlets and board/agent/staff persona names;
+- sponsor brands, venue names, hospitality/commercial partners and fan-service
+  campaign labels;
+- community override pack names, manifest display names and imported name
+  corpora.
+
+All such actors are fictional. They MUST NOT be real-person stand-ins, real
+supporter organisations, real fan-group handles, real chants, real sponsor
+brands, real venues, famous media brands or confusingly similar variants.
+
+The generator and import gate must reject or escalate:
+
+- exact denylist hits after normalisation, case folding, accent folding,
+  punctuation folding and confusable-character folding;
+- token-subset matches and protected city + descriptor combinations;
+- famous abbreviations and acronyms from clubs, fan groups, brands and venues;
+- phonetic near-matches and high-similarity edit-distance matches for
+  high-salience names;
+- real private-person data, real supporter membership lists, photos, social
+  handles or special-category-like fan labels.
+
+Community overlay remains local/P2P at MVP. Hosted pack distribution is blocked
+until a separate DSA/UGC/privacy/AI-transparency gate is prepared and approved.
+
 ## Consequences
 
 ### Positive
@@ -301,6 +332,15 @@ CI enforcement:
 - Test rule: 0 real-world club / player / coach names in shipped
   corpora (string-match list of 1 000 known real names; if any
   match in shipped data → fail build).
+- Test rule: 0 generated fan group, fan rep, journalist, media outlet, sponsor,
+  venue or supporter slogan names match the denylist or configured near-match
+  thresholds.
+- Test rule: community import fixtures with real supporter groups, real handles,
+  real private-person data or special-category-like fan labels are rejected or
+  flagged before activation.
+- Review rule: high-salience generated samples (top-tier clubs, sponsors,
+  venues and narrative social-world actors) receive periodic manual review
+  before corpus/generator promotion.
 
 ## Sources
 

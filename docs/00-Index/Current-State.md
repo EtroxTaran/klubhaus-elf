@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-01
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/club-financing-tools-2026-06-01]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/club-financing-tools-2026-06-01]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Current State
@@ -321,6 +321,30 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > accordingly. First-playable catalog size, Quick-mode board depth, alcohol
 > abstraction, cooldown hardness, SLO staff depth, travel disruption depth and
 > sponsor make-good visibility remain Nico-gated decisions.
+
+> **FMX-54 Fan persona privacy and creative IP-safe naming review
+> (2026-06-01).** Nico chose the recommended planning answers: Community
+> Overlay / DSA stays **Future-Scope** (MVP local file import / P2P only),
+> personas stay **Fictional Aggregate** (fan reps are generated
+> People/Narrative actors attached to aggregate groups, not real fans or user
+> profiles), and naming depth is **Policy + Tests** (rules, prohibitions,
+> near-match checks and review gates, not a full implementation schema). Draft
+> [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]] and raw
+> [[../60-Research/raw-perplexity/raw-fan-persona-privacy-and-naming-2026-06-01]]
+> now refine binding [[../50-Game-Design/audience-and-atmosphere]], binding
+> [[../50-Game-Design/GD-0015-ip-clean-data]], accepted
+> [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], current
+> [[../60-Research/data-generators]], binding
+> [[../30-Implementation/privacy-and-consent]], draft
+> [[../50-Game-Design/community-editor-and-datasets]], proposed
+> [[../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]]
+> and draft [[../50-Game-Design/sponsorship-portfolio]]. Current guardrail:
+> named fan groups/reps, media actors, sponsors, venues and community pack
+> names are fictional and denylist/similarity-checked; no real supporter
+> groups, handles, membership lists, private-person data or special-category
+> fan labels. Open Nico/legal gates: final legal sign-off before any hosted mod
+> platform; exact similarity thresholds and manual review cadence; whether any
+> sensitive-themed fictional fan identity labels should be narrowed further.
 
 > **FMX-51 AI club economy behaviour (2026-06-01).** Nico asked for the next
 > economy beat after FMX-50 (FMX-49 financing tools is picked by another agent):

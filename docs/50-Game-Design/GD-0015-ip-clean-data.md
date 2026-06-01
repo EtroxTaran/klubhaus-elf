@@ -1,12 +1,12 @@
 ---
 title: GD-0015 IP-clean Data Generation
 status: draft
-tags: [game-design, gddr, ip, gamedata]
+tags: [game-design, gddr, ip, gamedata, privacy, gdpr, naming, community, fmx-54]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-06-01
 type: game-design
 binding: true
-related: [[README]], [[GD-0009-league-structure]], [[GD-0003-squad-players]], [[../60-Research/ip-and-licensing]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/modules/game-data]], [[../00-Index/Non-Goals]]
+related: [[README]], [[GD-0009-league-structure]], [[GD-0003-squad-players]], [[../60-Research/ip-and-licensing]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/modules/game-data]], [[../00-Index/Non-Goals]]
 ---
 
 # GD-0015: IP-clean Data Generation
@@ -54,6 +54,36 @@ player never sees, or can search for, a real club or player.
   side** (no "find your favourite club" search) (ip-and-licensing §4.7).
 - Excluded gameplay content: doping mini-game, illegal accounting, gambling
   sponsor draws (anstoss-series-deep-dive §6 "Hard boundaries").
+
+## FMX-54 persona and community naming amendment
+
+The IP-clean rule also applies to the social and commercial world around the
+club, not only to club/player master data:
+
+- Fan groups, fan reps, journalists, media outlets, board contacts, agents,
+  sponsor brands, venues, supporter slogans/chants and community overlay names
+  are generated fictional data by default.
+- No real supporter association names, real ultras group names, real social
+  handles, real chants/slogans, real private-person names, famous brand
+  homophones or thin disguises are allowed.
+- Fan groups and fan reps are fictional aggregate/narrative actors; they must
+  not contain real supporter membership lists, photos, user-account profiles or
+  real-world special-category labels.
+- Community override packs remain local/P2P at MVP. Import can warn and run
+  best-effort validation, but hosted pack distribution is future-scope and needs
+  a separate DSA/UGC/privacy gate before activation.
+
+Policy + test gate:
+
+- Run exact denylist checks after normalisation, case folding, accent folding,
+  punctuation folding and confusable-character folding.
+- Add token-subset, phonetic and edit-distance/similarity checks for
+  high-salience names: clubs, venues, sponsors, fan groups, fan reps, media
+  outlets and journalists.
+- Block protected city + descriptor combinations and famous abbreviations
+  (`FCB`, `BVB`, `PSG`, sponsor/venue shorthand, supporter group acronyms).
+- Review generated samples per locale/world-size seed, with extra manual review
+  for top-tier clubs and narrative social-world actors.
 
 ## Open (Wave 2)
 

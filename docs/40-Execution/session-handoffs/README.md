@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-01-fmx-54-fan-privacy-naming]] - FMX-54 fan persona privacy and
+  creative IP-safe naming review: fan groups and fan reps stay fictional
+  aggregate/narrative actors; no real fans, handles, membership lists,
+  private-person data or special-category fan labels; ADR-0007/GD-0015 naming
+  policy extends to fan groups, reps, slogans/chants, media, sponsors, venues
+  and community overlay names; MVP Community Overlay remains local/P2P, with
+  hosted distribution blocked behind future DSA/UGC/privacy/AI-transparency
+  gates.
 - [[2026-06-01-fmx-51-ai-club-economy-behaviour]] - FMX-51 AI club economy
   behaviour: composes the locked manager AI ([[../../60-Research/ai-manager-behaviour]])
   + transfer tiering with a thin financial-policy layer (five archetypes), a
