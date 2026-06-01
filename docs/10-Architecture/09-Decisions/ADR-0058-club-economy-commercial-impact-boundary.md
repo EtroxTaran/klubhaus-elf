@@ -1,7 +1,7 @@
 ---
 title: ADR-0058 Club Economy Commercial Impact Boundary
 status: accepted
-tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, commercial-portfolio, cup, competition, matchday, catering, merchandise, operations, investor, entitlement, fmx-32, fmx-41, fmx-44, fmx-45, fmx-46, fmx-47, fmx-50, accepted]
+tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, commercial-portfolio, cup, competition, matchday, catering, merchandise, operations, fan-service, investor, entitlement, fmx-32, fmx-41, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-50, accepted]
 created: 2026-05-28
 updated: 2026-06-01
 type: adr
@@ -24,6 +24,7 @@ related:
   - [[../../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
+  - [[../../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[../../60-Research/club-management-sub-aggregate-audit-2026-05-28]]
   - [[../../30-Implementation/club-economy-accounting-ledger]]
   - [[../../30-Implementation/club-economy-commercial-contracts]]
@@ -110,6 +111,12 @@ FMX-46 refines the matchday operating-cost side: Stadium Operations, Audience
 Engine provide risk and venue facts; CommercialPortfolio owns the per-fixture
 `MatchdayOperatingCostProfile` and operating settlement; Club Management posts
 the resulting ledger entries through ADR-0050.
+
+FMX-48 refines the fan-service campaign side: CommercialPortfolio owns
+`FanEventCampaign` policy, sponsor/fulfilment obligations, settlement and
+cooldown, while Audience & Atmosphere owns mood/trust/atmosphere/demand effects,
+Stadium Operations owns venue/crowd-flow facts, Regulations owns alcohol/travel/
+safety constraints and Club Management posts ledger entries through ADR-0050.
 
 After FMX-32, the bounded-context map separates Club Management finance truth
 from Stadium Operations, Audience & Atmosphere and CommercialPortfolio. The
@@ -239,6 +246,18 @@ Draft Club-owned events/read models:
 - `CommercialPenaltyApplied`
 - `CommercialContractTerminated`
 - `FanEventCampaignScheduled`
+- `FanEventCampaignCostCommitted`
+- `FanEventSponsorContributionRecognised`
+- `FanEventCampaignCancelled`
+- `FanEventMakeGoodGranted`
+- `FanEventCampaignSettled`
+- `FanEventLowUptakeRecorded`
+- `FanEventSegmentEffectPublished`
+- `AwayTravelSubsidySettled`
+- `ChoreoSupportSettled`
+- `BeverageRewardCampaignSettled`
+- `CommunityTicketBlockSettled`
+- `FanEventCooldownApplied`
 - `MatchdayCommercialSettlementPosted`
 - `CompetitionPrizeReceivableRecorded`
 - `CompetitionPrizeCashReceived`
@@ -383,6 +402,31 @@ disclosure, abuse prevention and audit are specified in proposed
 Final vendor (MoR vs direct), refund-of-spent-cash policy and activation timing
 are HITL/legal gates. `risk:legal`.
 
+## FMX-48 fan-service campaign amendment
+
+FMX-48 deepens fan-service campaigns without moving a boundary:
+
+- `FanEventCampaign` is owned inside **CommercialPortfolio** as campaign policy,
+  lifecycle, sponsor/fulfilment obligation, settlement, KPI/make-good and
+  cooldown state. It is not a new bounded context and not owned by Club
+  Management.
+- **Audience & Atmosphere** owns the resulting segment mood, trust, atmosphere,
+  demand and campaign-fatigue memory. CommercialPortfolio publishes
+  `FanEventSegmentEffectPublished` facts but does not mutate fan state.
+- **Stadium Operations** owns venue feasibility facts: fan-zone capacity,
+  crowd-flow, temporary structures, weather fallback, choreo/material support
+  and away-travel arrival/parking constraints.
+- **Regulations & Compliance** owns profile constraints for alcohol, travel,
+  safety, child/family safeguarding and digital/UGC rules.
+- **Club Management** remains sole ledger writer and posts campaign cost,
+  sponsor contribution, refund, make-good and settlement entries after
+  CommercialPortfolio emits settlement facts via Customer-Supplier + ACL.
+- Sponsor contribution is modelled as cash, goods, services, media, staff,
+  community grant or digital tooling; low uptake and cancellation create
+  make-good rules rather than hidden sponsor satisfaction changes.
+- Campaign frequency is bounded by cooldown/fatigue policy so sponsor
+  activations cannot be spammed for unbounded positive fan or ROI effects.
+
 ## Rationale
 
 The FMX-32 ratification keeps the economy coherent by separating two truths:
@@ -434,6 +478,7 @@ None.
 - [[../../60-Research/catering-and-merchandise-operations-2026-06-01]]
 - [[../../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]
 - [[ADR-0063-investor-entitlement-and-payment-boundary]]
+- [[../../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
 - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../../50-Game-Design/GD-0008-finance-economy]]
 - [[../../50-Game-Design/economy-system]]

@@ -1,7 +1,7 @@
 ---
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
-tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, accounting, investor, entitlement, compliance, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-50]
+tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-50]
 created: 2026-05-28
 updated: 2026-06-01
 type: implementation
@@ -25,6 +25,7 @@ related:
   - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
   - [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]
   - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
+  - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[club-economy-accounting-ledger]]
   - [[../10-Architecture/bounded-context-map]]
 ---
@@ -46,6 +47,10 @@ licensed competitions. FMX-46 adds `MatchdayOperatingCostProfile` and
 risk-cost settlement for stewarding, security, policing-style contribution,
 medical, cleaning, energy, temporary staff, pitch recovery, insurance,
 restrictions and sanctions.
+
+FMX-48 turns fan-service campaigns into an explicit `FanEventCampaign`
+lifecycle and campaign catalog with travel, family/community, choreo/dialogue,
+beverage reward and digital activation variants.
 
 This is draft planning only. It becomes implementation authority only after the
 relevant GDDR/ADR path is approved.
@@ -508,19 +513,66 @@ Settlement events that must be representable:
 Owned by CommercialPortfolio; causal effects apply through Audience &
 Atmosphere and settle through the ledger.
 
+Lifecycle:
+
+```text
+draft -> scheduled -> active -> settled -> reviewed
+                 scheduled -> cancelled
+                 active -> cancelled
+                 active -> breached -> settled
+```
+
 | Field | Meaning |
 |---|---|
 | `campaignId` | Campaign identity. |
-| `campaignKind` | away-train, bus-subsidy, flight-subsidy, summer-party, family-day, beer-per-goal, choreo-support, community-ticket-day. |
-| `targetSegments` | Fan segments affected. |
-| `fixtureId` | Optional linked fixture. |
+| `campaignKind` | `away-train`, `bus-subsidy`, `flight-subsidy`, `family-day`, `summer-party`, `fan-festival`, `community-ticket-day`, `choreo-support`, `supporter-dialogue`, `beer-per-goal`, `beverage-reward` or `digital-fan-challenge`. |
+| `lifecycleState` | draft, scheduled, active, settled, reviewed, cancelled or breached. |
+| `targetSegments` | Fan segments affected and weighting. |
+| `fixtureId` / `seasonId` | Fixture-scoped or season/campaign scoped. |
 | `budgetMinor` | Planned club spend. |
-| `sponsorContributionMinor` | Sponsor support, if any. |
+| `sponsorContribution` | Cash, prize, transport support, media, staff, community grant or digital tooling. |
 | `capacity` | Participant/fan limit. |
-| `fulfilmentModel` | Club-run, sponsor-run, partner-run. |
-| `expectedEffects` | Mood, loyalty, attendance, catering/merch/hospitality bands. |
-| `riskFlags` | Weather, security, alcohol policy, low uptake, incident risk. |
-| `settlementPolicy` | When costs and sponsor contributions post. |
+| `fulfilmentModel` | Club-run, sponsor-run, partner-run or supporter-group-coordinated. |
+| `eligibilityPolicy` | Segment, age, member, away allocation, community-partner or consent/UGC rules. |
+| `expectedEffects` | Mood, loyalty, trust, atmosphere, attendance, catering/merch/hospitality and sponsor-fit bands. |
+| `riskFlags` | Travel, weather, safety, alcohol, child/family, digital/UGC, low uptake and incident risk. |
+| `regulatoryProfile` | Country/profile constraints and required approvals. |
+| `kpiTargets` | Participation, attendance, impressions, sentiment, sponsor leads or uptake. |
+| `cooldownPolicy` | Minimum gap before repeating by kind, segment and sponsor category. |
+| `makeGoodPolicy` | Sponsor/fan compensation after low uptake, cancellation or breach. |
+| `settlementPolicy` | When costs, sponsor contributions, refunds and make-goods post. |
+| `provenance` | Fixture, venue, sponsor, fan and rule facts used. |
+
+Catalog effects:
+
+| Campaign group | Commercial effect | Fan/risk effect |
+|---|---|---|
+| Away travel (`away-train`, `bus-subsidy`, `flight-subsidy`) | Travel subsidy, partner/sponsor support, damage reserve and disruption/refund handling. | Better away atmosphere and ultras/core trust; higher logistics, policing and cancellation risk. |
+| Family/community (`family-day`, `community-ticket-day`) | Lower immediate ticket yield, sponsor/community contribution and possible merch/catering lift. | Family/local loyalty and future demand; safeguarding, no-show and weather risk. |
+| Fan festival / summer party | Event cost, sponsor impressions, catering/merch opportunity and weather fallback. | Casual/family/core brand lift; crowd-flow and temporary-structure risk. |
+| Choreo/dialogue | Material/support cost and SLO/staff time. | Ultras/core atmosphere and trust; prohibited-material, autonomy and broken-promise risk. |
+| Beverage reward | Sponsor reward pool, POS/catering coordination and make-good rules. | Adult/core/casual buzz; country-profile alcohol, public-order and family-fit risk. |
+| Digital challenge | Sponsor tech/prizes/media spend and data/UGC rules. | Casual/remote reach; privacy, moderation and spam-fatigue risk. |
+
+Fan-service settlement events that must be representable:
+
+- `FanEventCampaignScheduled`
+- `FanEventCampaignCostCommitted`
+- `FanEventSponsorContributionRecognised`
+- `FanEventCampaignCancelled`
+- `FanEventMakeGoodGranted`
+- `FanEventCampaignSettled`
+- `FanEventLowUptakeRecorded`
+- `FanEventSegmentEffectPublished`
+- `AwayTravelSubsidySettled`
+- `ChoreoSupportSettled`
+- `BeverageRewardCampaignSettled`
+- `CommunityTicketBlockSettled`
+- `FanEventCooldownApplied`
+
+The segment-effect event is not a ledger entry. It is a public outcome fact for
+Audience & Atmosphere; Club Management only posts the financial settlement
+events emitted by CommercialPortfolio.
 
 ### `InvestorEntitlementGrant`
 
@@ -666,6 +718,14 @@ sequenceDiagram
   final AI behaviour.
 - Beer-per-goal campaign posts sponsor contribution and alcohol-policy risk.
 - Away-train subsidy improves loyalty/away atmosphere and posts real cost.
+- Family day can reduce immediate yield while improving family mood, future
+  demand and sponsor community fit.
+- Choreo support requires SLO/material approval before it can improve
+  atmosphere and trust.
+- Low-uptake fan festival records sponsor make-good and fan communication
+  outcome separately from normal settlement.
+- Repeated sponsor-heavy campaigns apply cooldown/fatigue effects before
+  projected impressions are trusted.
 - Investor grant is idempotent, SP-only and posts clean cash without side effects.
 
 ## Related
@@ -676,6 +736,8 @@ sequenceDiagram
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
+- [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
+- [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
 - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[club-economy-accounting-ledger]]

@@ -1,7 +1,7 @@
 ---
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, country-profile, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-53]
+tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, country-profile, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-53]
 created: 2026-05-16
 updated: 2026-06-01
 type: game-design
@@ -20,6 +20,7 @@ related:
   - [[../60-Research/top5-country-economy-profiles-2026-05-29]]
   - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
+  - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -247,7 +248,7 @@ still owns the money, but the causes come from contracts and public read models:
 | Sponsorship | Sponsor portfolio + commercial contract lifecycle | Upfront cash, periodic accrual, bonuses, penalties, make-goods and termination effects |
 | Cup progression | Competition revenue profile | Prize/media/gate-share/travel/security entries plus receivables, future EV and elimination-shock read models |
 | Matchday operating profile | Fixture risk + Stadium Operations + Rivalry + Audience & Atmosphere + Regulations | Stewarding/security/policing-style/medical/cleaning/energy/staff/pitch/insurance/sanction costs plus restrictions and risk-tier feedback |
-| Fan-service campaign | Fan event policy | Direct costs, sponsor contributions, loyalty/demand effects |
+| Fan-service campaign | Campaign policy + sponsor/venue/rule facts + fan forecast | Campaign costs, sponsor contributions, refunds/make-goods, cooldowns and segment demand/trust/atmosphere effects |
 | Investor entitlement | Singleplayer payment entitlement | Clean cash grant, no other state change |
 
 FMX-42 refines the fan-demand cause layer: ticket price acts on latent demand
@@ -303,6 +304,16 @@ multipliers, then markdown, write-down-to-NRV and returns. Service quality
 (queue, stockout, hygiene) feeds Audience & Atmosphere satisfaction and sponsor
 fit; alcohol policy is an in-bowl / concourse-only / near-ban dial with a
 revenue↔safety trade-off. All numbers are calibration ranges.
+
+FMX-48 refines fan-service campaigns from example text into a commercial cause
+layer. A `FanEventCampaign` has lifecycle, target segments, capacity, sponsor
+contribution, fulfilment, eligibility, risk flags, KPI targets, cooldown and
+make-good policy. Campaigns cover away travel, family/community events,
+summer/fan festivals, choreo support, supporter dialogue, beverage rewards and
+digital fan challenges. The ledger posts campaign costs, sponsor support,
+refunds and make-goods separately; Audience & Atmosphere owns the resulting
+mood, trust, atmosphere, demand and fatigue effects. Alcohol, travel, safety,
+children/family and digital/UGC constraints are profile-gated.
 
 The same settlement supports Quick / Standard / Expert:
 
@@ -360,7 +371,10 @@ burn through the grant.
   [[../60-Research/fan-demand-price-elasticity-2026-05-28]] ·
   [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]] ·
   [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]] ·
-  [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+  [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]] ·
+  [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]] ·
+  [[../60-Research/catering-and-merchandise-operations-2026-06-01]] ·
+  [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
 - Feature: [[../20-Features/feature-club-economy-mvp-pillar]]
 - Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]

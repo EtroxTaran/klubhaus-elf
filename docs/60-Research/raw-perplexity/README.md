@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-01
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]], [[../matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../catering-and-merchandise-operations-2026-06-01]], [[../investor-compliance-and-entitlement-boundary-2026-06-01]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]], [[../matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../catering-and-merchandise-operations-2026-06-01]], [[../investor-compliance-and-entitlement-boundary-2026-06-01]], [[../fan-service-campaign-catalog-and-effects-2026-06-01]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -123,6 +123,16 @@ High-priority `risk:legal` Investor compliance & entitlement boundary issue.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-investor-compliance-and-entitlement-boundary-2026-06-01]] | Apple/Google consumable-IAP rules, web PSP, refund/revocation, IARC/PEGI/USK age rating, EU/DE/UK/US consumer law, Merchant-of-Record vs Stripe + OSS tax, idempotency/webhooks, fraud, PII-free analytics | [[../investor-compliance-and-entitlement-boundary-2026-06-01]] · [[../../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]] · [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] |
+
+## FMX-48 follow-up Perplexity research (2026-06-01)
+
+Additional Perplexity and targeted source research was run during FMX-48 after
+Nico asked for full research and planning on fan-service campaign catalog and
+effects.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-fan-service-campaign-catalog-and-effects-2026-06-01]] | Away travel, fan/family/community events, choreo and supporter dialogue, alcohol/beverage campaigns, sponsor activation measurement, low uptake and cooldowns | [[../fan-service-campaign-catalog-and-effects-2026-06-01]] · [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] · [[../../30-Implementation/club-economy-commercial-contracts]] |
 
 ## FMX-3 follow-up Perplexity research (2026-05-28)
 
