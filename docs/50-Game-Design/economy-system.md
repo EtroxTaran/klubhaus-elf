@@ -1,7 +1,7 @@
 ---
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance, accounting, commercial, financing, debt, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, country-profile, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-53]
+tags: [game-design, economy, finance, accounting, commercial, financing, debt, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, country-profile, calibration, soak-test, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-52, fmx-53]
 created: 2026-05-16
 updated: 2026-06-01
 type: game-design
@@ -22,6 +22,8 @@ related:
   - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
   - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[../60-Research/club-financing-tools-2026-06-01]]
+  - [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]]
+  - [[../30-Implementation/economy-calibration-and-soak-test-runbook]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -272,6 +274,17 @@ investing enough to grow.
   frequency, runaway cash and promotion/relegation shocks.
 - Real external numbers calibrate scale only; shipped content stays IP-clean and
   fictional.
+
+FMX-52 anchors the calibration workflow itself. The KPI healthy/warning/critical
+bands (§7), tier-scaled insolvency-frequency targets, anti-runaway concentration
+metrics (title HHI/CR4, revenue Gini), the deterministic forward + reverse
+stress-test scenario set, the 50-season gate + 100-season deep soak, the
+Quick/Standard/Expert forecast-accuracy validation and the **evidence-acceptance
+gate** that promotes a banded constant to accepted (only on Nico sign-off) are
+specified in [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]]
+with the executable fixtures/seeds/golden-baseline/parameter-sheet contract in
+[[../30-Implementation/economy-calibration-and-soak-test-runbook]]. Numbers stay in
+data and pass that gate before they are final.
 
 ## 13. Commercial impact graph
 

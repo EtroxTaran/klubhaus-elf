@@ -152,6 +152,15 @@ economy beat — how AI-controlled clubs behave economically.
 |---|---|---|
 | [[raw-ai-club-economy-behaviour-2026-06-01]] | Genre AI-club economy mechanics (FM/OOTP/EA FC/Anstoss/Capitalism Lab); real-club financial archetypes + wage/turnover/debt bands + event reactions; AI architecture (rule/utility) + anti-runaway/anti-zombie/inflation control + soak-test KPIs; per-country regulatory rails | [[../ai-club-economy-behaviour-2026-06-01]] · [[../../50-Game-Design/GD-0023-ai-club-economy-behaviour]] · [[../ai-manager-behaviour]] · [[../transfer-market-simulation]] |
 
+## FMX-52 follow-up Perplexity research (2026-06-01)
+
+Three Perplexity passes were run during FMX-52, the economy calibration/soak-test
+capstone.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-economy-calibration-and-soak-test-scenarios-2026-06-01]] | Simulation balancing & long-run economy testing (Monte-Carlo sweeps, golden baselines, drift detection, concentration metrics, homeostasis tuning, KPI bands, soak duration, insolvency base rates); financial stress-testing & reverse-stress / scenario analysis (Basel/CCAR patterns, failure definitions, shock magnitudes, IFRS 15 season tickets, parachutes, evidence standards); deterministic-sim testing techniques (golden-master/property/metamorphic, invariants, drift tolerances, seeds) + attendance/fan-demand elasticity | [[../economy-calibration-and-soak-test-scenarios-2026-06-01]] · [[../../30-Implementation/economy-calibration-and-soak-test-runbook]] · [[../../50-Game-Design/economy-system]] |
+
 ## FMX-3 follow-up Perplexity research (2026-05-28)
 
 Additional Perplexity research was run after Nico expanded the Runtime-LLM
