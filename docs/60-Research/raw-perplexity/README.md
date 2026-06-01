@@ -143,6 +143,15 @@ Nico asked for the next issue: club financing tools separate from Investor.
 |---|---|---|
 | [[raw-club-financing-tools-2026-06-01]] | Club financing instruments, bank debt, credit lines, sponsor/media advances, receivable factoring, restructurings, overdue payables, Top-5/UEFA-style controls and Investor separation | [[../club-financing-tools-2026-06-01]] · [[../../50-Game-Design/GD-0008-finance-economy]] · [[../../30-Implementation/club-economy-accounting-ledger]] |
 
+## FMX-51 follow-up Perplexity research (2026-06-01)
+
+Four Perplexity passes were run during FMX-51 after Nico asked for the next
+economy beat — how AI-controlled clubs behave economically.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-ai-club-economy-behaviour-2026-06-01]] | Genre AI-club economy mechanics (FM/OOTP/EA FC/Anstoss/Capitalism Lab); real-club financial archetypes + wage/turnover/debt bands + event reactions; AI architecture (rule/utility) + anti-runaway/anti-zombie/inflation control + soak-test KPIs; per-country regulatory rails | [[../ai-club-economy-behaviour-2026-06-01]] · [[../../50-Game-Design/GD-0023-ai-club-economy-behaviour]] · [[../ai-manager-behaviour]] · [[../transfer-market-simulation]] |
+
 ## FMX-3 follow-up Perplexity research (2026-05-28)
 
 Additional Perplexity research was run after Nico expanded the Runtime-LLM

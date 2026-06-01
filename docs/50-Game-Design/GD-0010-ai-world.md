@@ -3,7 +3,7 @@ title: GD-0010 AI Managers & World Simulation
 status: draft
 tags: [game-design, gddr, ai]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-06-01
 type: game-design
 binding: false
 related: [[README]], [[GD-0006-transfers]], [[GD-0011-career-progression]], [[../60-Research/club-boss-analysis]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]]
@@ -43,6 +43,14 @@ world that freezes once you reach the top.
 - **R2-06 (high)** — the world-drift algorithm itself (rival drift,
   fallen-giant cycles, rising youth nations).
 - **R2-08 (critical)** — isolate a separate "AI RNG" stream from world/match.
+
+> **2026-06-01 (FMX-51):** the **economy slice** of R2-04/R2-06 is now addressed
+> by draft [[GD-0023-ai-club-economy-behaviour]] (AI club financial-policy
+> archetypes, three financial regimes, soft diegetic homeostasis, staged distress,
+> tiered fidelity), grounded in
+> [[../60-Research/ai-club-economy-behaviour-2026-06-01]]. The R2-08 AI RNG stream
+> is locked as `WorldAiMgmtRng` in [[../60-Research/determinism-and-replay]].
+> Tactical/world-drift detail stays here and in [[../60-Research/ai-manager-behaviour]].
 
 ## Rationale
 

@@ -337,7 +337,10 @@ active violation opens a material breach case.
 
 AI-club behaviour is not part of FMX-44. The contract register may expose
 read-only hooks such as `cashUrgency`, `fanFitWeight`, `serviceQualityWeight`
-and `renewalBias` for FMX-51.
+and `renewalBias` for FMX-51. **FMX-51 now consumes these hooks** — Tier 0 AI
+clubs make active commercial choices through them while Tier 1+ receive banded
+profile outcomes; see [[GD-0023-ai-club-economy-behaviour]] and
+[[../60-Research/ai-club-economy-behaviour-2026-06-01]].
 
 ## FMX-47 catering and merchandise operations depth
 

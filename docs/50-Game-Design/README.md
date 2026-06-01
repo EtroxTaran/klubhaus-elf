@@ -91,6 +91,7 @@ active work.
 | [[GD-0020-eos-player-skills-personas-and-people]] | EOS player skills/perks, staff target skills, personas and People-context planning | draft | ADR-0052 |
 | [[GD-0021-player-staff-development-and-decision-influence]] | Player/staff development and decision-influence factor matrices; staff-skill MVP gate | draft | ADR-0052, ADR-0053 |
 | [[GD-0022-economy-commercial-impact-and-contracts]] | Economy commercial impact map; ticketing, season-ticket lifecycle/accrual, fan-demand elasticity, commercial contract lifecycle/breach, catering, merchandise, cup/competition revenue profiles, matchday operating costs, fan events and Investor clean SP cash | draft | ADR-0050, ADR-0058 |
+| [[GD-0023-ai-club-economy-behaviour]] | AI club economy behaviour; five financial-policy archetypes over manager archetypes, three financial regimes (Healthy/Stressed/Distressed), soft diegetic homeostasis (no AI stat cheats), staged distress with rare bounded insolvency, tiered fidelity, country distress personalities, structured rationale tags | draft | ADR-0050, ADR-0051, ADR-0058 |
 
 ## Core loop
 

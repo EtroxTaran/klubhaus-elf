@@ -322,6 +322,38 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > abstraction, cooldown hardness, SLO staff depth, travel disruption depth and
 > sponsor make-good visibility remain Nico-gated decisions.
 
+> **FMX-51 AI club economy behaviour (2026-06-01).** Nico asked for the next
+> economy beat after FMX-50 (FMX-49 financing tools is picked by another agent):
+> define how AI-controlled clubs behave economically so the player is not the only
+> club pricing tickets, disciplining wages/transfers, handling debt, signing
+> sponsors and reacting to promotion/relegation/cup/shock. Draft
+> [[../60-Research/ai-club-economy-behaviour-2026-06-01]] and new draft
+> [[../50-Game-Design/GD-0023-ai-club-economy-behaviour]] capture the proposed
+> model: **compose** the locked AI architecture
+> ([[../60-Research/ai-manager-behaviour]]: utility-AI + FSM + heuristics, no AI
+> stat cheats) and transfer tiering ([[../60-Research/transfer-market-simulation]])
+> with a thin **financial-policy layer** (five archetypes — selling / sugar-daddy /
+> prudent / over-leveraged / yo-yo — modulated by board ambition + patience and the
+> `CountryEconomyProfile`); a three-regime FSM (`Healthy / Stressed / Distressed`)
+> gating utility-ranked actions; **soft, diegetic homeostasis only** (progressive
+> costs, revenue-indexed wage caps, reference pricing, solidarity/parachute pools,
+> ROI decay, hard survival floor, PI-controller mean-reversion) applied identically
+> to player and AI; **staged distress with rare, bounded insolvency** down the
+> existing insolvency FSM with per-country distress personalities (England auto
+> points-deduction + football-creditor rule; Germany preventive licensing + 50+1;
+> Spain revenue-linked cap; France DNCG; Italy phoenix restart); **tiered fidelity**
+> (Tier 0 full + active commercial choices, Tier 1 simplified, Tier 2-3 banded);
+> and **structured rationale tags** for explainability (full narration deferred to
+> [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]).
+> AI clubs are **consumers** of the commercial system via the FMX-44/47 reserved
+> hooks; Club Management stays sole ledger writer (ADR-0050); AI owner support is
+> in-fiction (equity/soft loan), **never** the singleplayer Investor. Resolves the
+> economy slice of [[../50-Game-Design/GD-0010-ai-world]] R2-04/R2-06. All ratio
+> bands and damper gains are IP-clean calibration inputs for the FMX-52 capstone;
+> archetype assignment, insolvency-frequency band, homeostasis aggressiveness,
+> rationale-tag vocabulary, Tier 0 commercial breadth and AI owner-support gating
+> remain Nico-gated decisions.
+
 > **FMX-16 Manager-Archetype Roguelite progression (2026-05-27).** Nico directed
 > that the manager-archetype report should be anchored as MVP-relevant hooks, not
 > as a full MVP perk/legacy system. Draft
