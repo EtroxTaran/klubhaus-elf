@@ -483,6 +483,43 @@ This refines draft
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
 accepted [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
 
+## Club Financing Tools Separate from Investor (2026-06-01)
+
+[[club-financing-tools-2026-06-01]] is the FMX-49 research synthesis for
+in-world club financing tools that are distinct from the real-money
+singleplayer Investor entitlement. It uses football finance, IFRS-lite
+accounting and Top-5/UEFA-style control patterns to define playable liquidity
+tools without turning Investor into debt, ownership or gameplay compliance.
+
+Current draft direction:
+
+- Club Management owns `FinancingFacility`, `CashflowRunwayForecast`,
+  `OverduePayablesAging`, `DebtServiceSchedule`, `CovenantStatusBoard`,
+  `FinancingOptionBoard` and `EmergencySaleMandate`.
+- First playable tool set: overdraft/credit line, bank loan, sponsor advance,
+  receivables factoring, debt restructuring/payment holiday, board owner-support
+  grant/shareholder loan and emergency-sale mandate.
+- CommercialPortfolio owns sponsor/media contract amendments, commercial
+  receivable schedules, advance eligibility, contract liabilities and fair-value
+  facts; Club Management decides the financing action and posts the ledger.
+- Investor remains outside in-world financing: clean SP cash, no debt,
+  ownership, board/fan penalty, compliance mutation or multiplayer advantage.
+- Top-5 profiles stay "exact-ish": England-like PSR/overdue-payables,
+  Germany-like licensing/liquidity, France-like budget-control intervention,
+  Italy-like licence/tax-arrears pressure, Spain-like squad-cost registration
+  cap and UEFA-style overlay.
+
+This refines draft
+[[../50-Game-Design/GD-0008-finance-economy]], draft
+[[../50-Game-Design/economy-system]], draft
+[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
+[[../50-Game-Design/regulations-and-compliance]], draft
+[[../20-Features/feature-club-economy-mvp-pillar]], accepted
+[[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
+draft [[../30-Implementation/club-economy-accounting-ledger]]. Thresholds,
+media-advance activation, board guarantees, emergency-sale hardness and supplier
+arrears depth remain Nico-gated decisions.
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 [[ai-narrative-runtime-integration]] synthesizes the two narrative/LLM reports

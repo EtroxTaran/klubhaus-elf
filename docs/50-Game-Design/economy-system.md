@@ -1,7 +1,7 @@
 ---
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, country-profile, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-53]
+tags: [game-design, economy, finance, accounting, commercial, financing, debt, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, country-profile, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-53]
 created: 2026-05-16
 updated: 2026-06-01
 type: game-design
@@ -21,6 +21,7 @@ related:
   - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
   - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
+  - [[../60-Research/club-financing-tools-2026-06-01]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -85,7 +86,7 @@ sources of truth.
 | Operating P&L | Is the club structurally profitable? | Cut wages, raise prices, grow sponsors. |
 | Transfer budget | Board-approved spending envelope. | Spend now or preserve liquidity. |
 | Wage budget | Weekly squad/staff wage ceiling. | Renegotiate, release, add relegation clauses. |
-| Debt | Loans, overdraft, instalments, interest. | Refinance, repay early, accept risk. |
+| Debt / financing | Loans, overdraft, factoring, advances, shareholder loans, instalments, interest and covenants. | Draw credit, refinance, factor receivable, restructure, accept risk. |
 | Reserves | Risk buffer and restricted funds. | Hold cash or invest in infrastructure. |
 | Assets | Squad book value, stadium/campus value. | Develop youth, amortise fees, renovate. |
 
@@ -131,6 +132,8 @@ Important rule: **budget is permission, not cash**.
 | Amortisation schedule | Transfer fee recognition over contract length. |
 | Liability schedule | Future cash obligations and due dates. |
 | Receivable schedule | Future incoming cash and risk. |
+| Financing facility register | Active credit lines, loans, advances, factoring, restructuring and owner-support instruments. |
+| Overdue payables ageing | Football-club, employee, tax/social, supplier and licensor payables by age bucket. |
 | Compliance view | Squad cost, debt, runway and licence readiness. |
 
 Expert players can inspect these. Quick players see only the decision impact:
@@ -144,6 +147,8 @@ runway, risk card, next best actions.
 | Wage ratio | Wages over recognised revenue. |
 | Squad cost ratio | Wages + transfer amortisation + agent/transaction cost over revenue. |
 | Debt ratio | Debt and obligations over annual revenue. |
+| Debt-service coverage | Forecast cash and recurring earnings over scheduled financing payments. |
+| Overdue payables | Licence-relevant unpaid amounts by category and age. |
 | Matchday dependency | Share of income tied to home fixtures. |
 | Sponsor dependency | Share of income tied to sponsor portfolio. |
 | Transfer dependency | Reliance on player sales to stay liquid. |
@@ -171,9 +176,43 @@ Run end is not instant. The drama is the recovery window:
 - cut wages;
 - renegotiate debt;
 - accept sponsor advance;
+- factor a receivable;
+- accept in-world board support as equity-like rescue grant or shareholder
+  loan;
 - defer facility work;
 - accept board restrictions;
-- in future-scope SP only, consider an Investor rescue event.
+- in future-scope SP only, Investor may buy liquidity but does not alter the
+  debt, fan, board or compliance model.
+
+## 8.1 Club financing and runway
+
+FMX-49 adds a **Club Management-owned financing layer**. It is separate from the
+real-money Investor entitlement and from CommercialPortfolio contract ownership.
+
+First-playable active financing tools:
+
+| Tool | Core model | Main trade-off |
+|---|---|---|
+| Overdraft / credit line | Draws automatically or by player action up to a limit when cash is tight; current debt and weekly interest are visible. | Fast runway relief, but limit exhaustion moves the club toward freeze/arrears. |
+| Bank / facility loan | Opens principal, interest, repayment schedule, maturity and covenant profile. | Larger funding, but future debt service and covenant breach risk. |
+| Sponsor advance | Uses CommercialPortfolio contract facts to pull cash forward. | Cash now, future sponsor cash already consumed and contract liability remains visible. |
+| Receivables factoring | Converts transfer/sponsor/media receivable into cash as `trueSale` or `securedBorrowing`. | Immediate liquidity, discount/fee and weaker future cash. |
+| Restructuring / payment holiday | Changes a liability schedule after distress. | Short-term relief, higher total cost, stricter recovery conditions. |
+| Emergency sale mandate | Club Management issues target proceeds/deadline to Transfer. | Liquidity target, but fire-sale sporting and fan cost. |
+| Board support | Fictional non-IAP equity-like rescue grant or shareholder loan. | Grant improves equity; loan improves liquidity but adds related-party debt. |
+
+`CashflowRunwayForecast` is the decision surface beneath crisis progression:
+
+- Quick shows runway and one to three action cards.
+- Standard shows a 13-week forecast with scheduled inflows, outflows,
+  facilities, upcoming debt service and funding gap.
+- Expert shows facility register, covenant status, current/non-current split,
+  receivable factoring treatment, overdue payables ageing and licence
+  implications.
+
+Wage deferrals, supplier arrears and media advances are not normal first
+playable buttons. They are hooks or crisis consequences until the surrounding
+systems and country profiles can support them safely.
 
 ## 9. Country economy profiles
 
@@ -343,8 +382,9 @@ future top-match upside.
 
 ## 15. Investor grant
 
-Investor is a singleplayer-only cash entitlement if activated. It posts cash to
-the ledger with clear provenance and has no gameplay penalty:
+Investor is a singleplayer-only cash entitlement if activated. FMX-49 keeps it
+outside the in-world financing model. It posts cash to the ledger with clear
+provenance and has no gameplay penalty:
 
 - no owner-control change;
 - no debt;
@@ -374,7 +414,8 @@ burn through the grant.
   [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]] ·
   [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]] ·
   [[../60-Research/catering-and-merchandise-operations-2026-06-01]] ·
-  [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
+  [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]] ·
+  [[../60-Research/club-financing-tools-2026-06-01]]
 - Feature: [[../20-Features/feature-club-economy-mvp-pillar]]
 - Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]

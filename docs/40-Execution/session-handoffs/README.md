@@ -42,6 +42,16 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-01-fmx-49-club-financing-tools]] - FMX-49 club financing tools
+  separate from Investor: Club Management-owned `FinancingFacility`,
+  `CashflowRunwayForecast`, `OverduePayablesAging`, `DebtServiceSchedule`,
+  `CovenantStatusBoard`, `FinancingOptionBoard` and emergency-sale mandate;
+  first-playable overdraft/credit line, bank loan, sponsor advance, receivable
+  factoring, restructuring/payment holiday, owner support and emergency-sale
+  mandate; CommercialPortfolio emits commercial receivable, advance eligibility,
+  contract-liability and fair-value facts; Investor remains clean SP entitlement
+  cash only. Awaiting Nico decisions on thresholds, media-advance activation,
+  board guarantees, emergency-sale hardness and supplier-arrears depth.
 - [[2026-06-01-fmx-50-investor-compliance-entitlement-boundary]] - FMX-50 Investor
   compliance & entitlement boundary (`risk:legal`): `PaymentProviderPort`
   (Apple/Google consumable IAP + web PSP/MoR), server-authoritative idempotent
