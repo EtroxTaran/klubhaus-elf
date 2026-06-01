@@ -1,9 +1,9 @@
 ---
 title: GD-0008 Finance, Economy & Stadium
 status: draft
-tags: [game-design, gddr, finance, economy, accounting, commercial, fmx-13, fmx-41]
+tags: [game-design, gddr, finance, economy, accounting, commercial, financing, debt, investor, fmx-13, fmx-41, fmx-49]
 created: 2026-05-17
-updated: 2026-05-28
+updated: 2026-06-01
 type: game-design
 binding: false
 linear: FMX-13
@@ -15,6 +15,7 @@ related:
   - [[mode-create-a-club-roguelite]]
   - [[../60-Research/club-economy-blueprint-2026-05-27]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+  - [[../60-Research/club-financing-tools-2026-06-01]]
   - [[GD-0022-economy-commercial-impact-and-contracts]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
@@ -57,6 +58,10 @@ choices before the run collapses.
   risk policy.
 - **Insolvency is staged.** Negative cash starts a crisis path: warning,
   overdraft/freeze, arrears, licence review and finally run end or control loss.
+- **Club financing is in-world and Club-owned.** FMX-49 adds a Club Management
+  financing layer for overdraft/credit line, bank loan, sponsor advance,
+  receivables factoring, restructuring/payment holiday, board support and
+  emergency-sale mandates. These are not real-money Investor purchases.
 - **Transfer budget is not cash.** Transfer packages create immediate cash
   movements, scheduled liabilities, amortisation, wage obligations and future
   contingent events.
@@ -80,6 +85,8 @@ choices before the run collapses.
 ## Open before approval
 
 - Final thresholds for staged insolvency and licence loss.
+- Final thresholds for financing runway, covenant warning, arrears ageing and
+  licence-review escalation by Top-5 country profile.
 - Which accounting read models appear in the very first playable.
 - Country-profile ranges for lower tiers.
 - Balance-test targets for healthy insolvency rate, wage ratio and runaway cash.
@@ -106,6 +113,33 @@ spine:
 The player-facing rule is simple: every commercial decision must be readable in
 Quick mode and inspectable in Expert mode, but both modes use the same ledger
 facts.
+
+## FMX-49 financing amendment
+
+FMX-49 separates **club financing** from the real-money Investor path:
+
+| Financing input | Game-design consequence |
+|---|---|
+| Overdraft / credit line | Short-term liquidity buffer; current debt, weekly interest and limit exhaustion can move the club from watch to overdraft/freeze. |
+| Bank / facility loan | Planned funding or refinancing; principal, repayment schedule, interest and covenant profile affect budget and licence readiness. |
+| Sponsor / media advance | Pulls forward future contract cash; CommercialPortfolio owns contract cash-vs-revenue and liability facts, while Club Management owns liquidity and insolvency effects. |
+| Receivables factoring | Turns receivables into cash at a discount; true sale removes receivable, secured borrowing keeps receivable plus liability. |
+| Restructuring / payment holiday | Extends or modifies debt service; improves runway but adds future cost, restrictions and licence-review risk. |
+| Board support | Fictional in-world equity-like rescue grant or shareholder loan; never an IAP and never the Investor entitlement. |
+| Emergency sale mandate | Club Management sets target proceeds/deadline; Transfer still owns valuation, offers and negotiation. |
+| Wage deferral / supplier arrears | Crisis consequences and overdue-payables categories, not normal first-playable manager financing buttons. |
+
+FMX-49 also adds two required finance surfaces:
+
+- `CashflowRunwayForecast`: a rolling 13-week Standard view plus longer
+  licence/going-concern forecast, combining external payment schedules with
+  Club-owned facility drawdowns, repayment and interest.
+- `OverduePayablesAging`: licence-facing ageing by football-club transfer
+  payables, employee payables, tax/social payables, supplier payables and
+  UEFA/licensor payables.
+
+Investor remains the FMX-50 payment/entitlement surface: clean SP cash only, no
+debt, owner-control, fan, sponsor, board or compliance semantics.
 
 ## Rationale
 
@@ -145,6 +179,7 @@ silently superseded.
 
 - Research: [[../60-Research/club-economy-blueprint-2026-05-27]] ·
   [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]] ·
+  [[../60-Research/club-financing-tools-2026-06-01]] ·
   [[../60-Research/raw-perplexity/raw-club-economy-simulation]]
 - System note: [[economy-system]]
 - Commercial GDDR: [[GD-0022-economy-commercial-impact-and-contracts]]

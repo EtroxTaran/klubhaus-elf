@@ -1,7 +1,7 @@
 ---
 title: GD-0022 Economy Commercial Impact and Contracts
 status: draft
-tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-50]
+tags: [game-design, gddr, economy, commercial, financing, debt, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50]
 created: 2026-05-28
 updated: 2026-06-01
 type: game-design
@@ -29,6 +29,7 @@ related:
   - [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]
   - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
   - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
+  - [[../60-Research/club-financing-tools-2026-06-01]]
   - [[audience-and-atmosphere]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
@@ -50,8 +51,8 @@ draft
 > lifecycle / breach refinement, the FMX-45 cup/competition revenue profile
 > refinement and the FMX-46 matchday operating-cost / risk-cost settlement
 > refinement, the FMX-47 catering/merchandise operations refinement and the
-> FMX-48 fan-service campaign catalog refinement. It needs Nico approval before
-> implementation authority.
+> FMX-48 fan-service campaign catalog refinement and the FMX-49 financing
+> separation refinement. It needs Nico approval before implementation authority.
 
 ## Date
 
@@ -121,6 +122,10 @@ ledger effects behind the same decision.
   in-game cash amount in singleplayer only. It creates no debt, no owner
   control, no fan penalty and no competitive advantage. It is still visible in
   the ledger and does not alter weekly economics.
+- **Commercial advances are contract facts, not Investor.** Sponsor/media
+  advances use CommercialPortfolio cash-vs-revenue schedules and contract
+  liabilities, but Club Management owns the liquidity action, financing register,
+  runway and insolvency effects.
 - **Realistic Rails.** The sim should be realistic in cause and consequence,
   but fair through forecasts, warnings, presets, recovery options and tunable
   ranges rather than instant hidden failure.
@@ -604,6 +609,36 @@ Investor is a special singleplayer entitlement:
 The design intent is clear: the player may buy time, but not a repaired
 business model.
 
+## FMX-49 commercial financing boundary
+
+FMX-49 adds in-world financing without moving commercial ownership:
+
+- CommercialPortfolio owns commercial contract amendments, receivable schedules,
+  recognition schedules, contract liabilities, related-party flags and fair-value
+  assessments.
+- Club Management owns `FinancingFacility`, `CashflowRunwayForecast`, overdue
+  payables, covenant state, board support, emergency-sale mandate and ledger
+  posting.
+- Sponsor/media advances are represented as a hybrid: CommercialPortfolio
+  publishes `CommercialAdvanceEligibilityPublished` and schedule facts; Club
+  Management accepts or rejects the financing action and posts the cash/liability
+  effects.
+- Receivables factoring can use commercial or transfer receivables, but the
+  factoring action is Club Management because it changes liquidity, debt and
+  insolvency state.
+- Board support is fictional in-world finance only. It may be an equity-like
+  rescue grant or a shareholder loan; it is never the real-money Investor.
+
+CommercialPortfolio must expose enough facts for Club Management to avoid
+guessing:
+
+| Fact | Meaning |
+|---|---|
+| `CommercialReceivableSchedulePublished` | Due dates, amounts, counterparty, certainty band and receivable kind. |
+| `CommercialAdvanceEligibilityPublished` | Which sponsor/media cash flows may be advanced, discount/fee band and future-cash consequence. |
+| `CommercialContractLiabilityPublished` | Cash received before performance obligations are fulfilled. |
+| `CommercialFairValueAssessed` | Related-party/fair-value result used by Regulations and Club Management. |
+
 FMX-50 specifies the compliance + entitlement boundary behind this rule
 (proposed [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]],
 research [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]):
@@ -819,6 +854,19 @@ Feature: Commercial economy impact
     Then Club Management posts clean cash to the ledger
     And the wage, debt and forecast rules remain unchanged
     And multiplayer state is unaffected
+
+  Scenario: Sponsor advance is financing, not earned revenue
+    Given CommercialPortfolio has an eligible sponsor contract schedule
+    When Club Management accepts a sponsor advance
+    Then cash runway improves
+    And CommercialPortfolio keeps the contract liability and recognition schedule
+    And the Investor entitlement path is not used
+
+  Scenario: Commercial receivable factoring affects the Club finance register
+    Given CommercialPortfolio publishes a sponsor receivable schedule
+    When Club Management factors the receivable
+    Then the financing facility register records true-sale or secured-borrowing treatment
+    And future commercial cash availability is reduced
 ```
 
 ## Open before approval
@@ -867,6 +915,11 @@ Feature: Commercial economy impact
 - Whether travel disruption, refund and damage-reserve rules are active in MVP
   or profile-data-only until matchday operations are playtested.
 - Whether sponsor KPI make-goods are Standard-visible or Expert-only.
+- Whether sponsor/media advances are active in first playable beyond sponsor
+  advances, or media advances stay profile-data-only until competition cadences
+  are calibrated.
+- Whether supplier arrears are ever a player-facing deferral choice or only a
+  crisis consequence after missed payment.
 - Guardrails for top-match surcharge and fan-trust damage.
 - Accept ADR-0058 Option C after the FMX-44 lifecycle/breach amendment, or
   reopen the Commercial Operations bounded-context option.
@@ -920,7 +973,8 @@ layer; it does not approve final constants.
   [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]] ·
   [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]] ·
   [[../60-Research/catering-and-merchandise-operations-2026-06-01]] ·
-  [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
+  [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]] ·
+  [[../60-Research/club-financing-tools-2026-06-01]]
 - Game design: [[GD-0008-finance-economy]] · [[economy-system]] ·
   [[audience-and-atmosphere]] · [[regulations-and-compliance]]
 - Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·

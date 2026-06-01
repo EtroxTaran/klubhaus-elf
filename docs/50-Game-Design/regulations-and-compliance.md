@@ -1,12 +1,12 @@
 ---
 title: Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
 status: draft
-tags: [game-design, regulations, compliance, leagues, promotion, economy, cup, competition, matchday, security, sanctions, fmx-41, fmx-45, fmx-46]
+tags: [game-design, regulations, compliance, leagues, promotion, economy, financing, debt, cup, competition, matchday, security, sanctions, fmx-41, fmx-45, fmx-46, fmx-49]
 created: 2026-05-16
 updated: 2026-05-29
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/late-game-systems]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[stadium-and-campus]], [[matchday-event-engine]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/late-game-systems]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/club-financing-tools-2026-06-01]], [[stadium-and-campus]], [[matchday-event-engine]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
@@ -160,8 +160,9 @@ FMX-41 adds two finance-facing outputs:
   as alcohol bans, sector closures, ghost matches, away-fan restrictions,
   hospitality requirements, safety staffing and financial-ratio checks.
 
-Regulations & Compliance owns the rule catalog. Club Management owns the
-commercial settlement and ledger posting caused by those rules.
+Regulations & Compliance owns the rule catalog. CommercialPortfolio owns the
+commercial settlement caused by those rules, and Club Management owns the
+ledger posting caused by that settlement.
 
 FMX-45 clarifies the split: Regulations and League/Competition data define
 which cup profile applies; Club Management converts it into cash, receivable,
@@ -176,6 +177,24 @@ sector closures, ghost matches, fine ladders and risk-tier reclassification.
 CommercialPortfolio turns those constraints into per-fixture settlement events;
 Club Management posts the resulting finance ledger entries. Regulations never
 writes ledger rows directly.
+
+FMX-49 adds financing-compliance hooks. Regulations & Compliance owns the rule
+catalog and emits check results; Club Management owns financing facilities,
+overdue-payables ageing, runway and ledger posting. First-playable country
+profiles are Top-5 exact-ish and IP-clean:
+
+| Profile | Finance-compliance emphasis |
+|---|---|
+| England-like | Formal insolvency creates major sporting sanction risk; P&S/PSR-style loss review and tax/reporting pressure. |
+| Germany-like | Pre-season economic capability and licence conditions/requirements. |
+| France-like | DNCG-style wage-bill controls, transfer-fee controls, recruitment bans and relegation/conservative relegation. |
+| Italy-like | Audited/interim accounts, no overdue payables, net equity and future financial information. |
+| Spain-like | LCPD-style squad-cost capacity and registration gating. |
+| UEFA overlay | No-overdue-payables, fair value, football earnings, acceptable deviation and squad-cost ratio. |
+
+The rule outputs must distinguish at least: warning, transfer/registration
+restriction, wage/transfer budget cap, points/sporting sanction, licence denial
+and competition exclusion.
 
 ## 11. UI tiers
 

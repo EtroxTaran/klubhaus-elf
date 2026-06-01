@@ -1,9 +1,9 @@
 ---
 title: Club Economy Accounting Ledger - Draft Contracts
 status: draft
-tags: [implementation, economy, accounting, club-management, commercial, contracts, fmx-13, fmx-41]
+tags: [implementation, economy, accounting, club-management, commercial, contracts, financing, debt, fmx-13, fmx-41, fmx-49]
 created: 2026-05-27
-updated: 2026-05-28
+updated: 2026-06-01
 type: implementation
 binding: false
 linear: FMX-13
@@ -14,6 +14,7 @@ related:
   - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../50-Game-Design/economy-system]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
+  - [[../60-Research/club-financing-tools-2026-06-01]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[club-economy-commercial-contracts]]
   - [[../10-Architecture/bounded-context-map]]
@@ -34,13 +35,25 @@ Club Management owns:
 - finance ledger;
 - accounting projections;
 - budgets and board finance policy;
-- sponsor contracts and side conditions;
-- stadium/campus economic effects;
+- in-world financing facilities and actions;
 - country economy profile application;
 - insolvency crisis state.
 
-Other contexts interact through public contracts only. No context may insert
-ledger rows directly or query Club-owned finance tables.
+Other bounded contexts own causal facts and interact through public contracts
+only:
+
+- CommercialPortfolio owns commercial contracts, ticketing/campaign policy,
+  commercial settlement, receivable schedules, commercial advance eligibility,
+  contract-liability and fair-value facts;
+- Stadium Operations owns stadium/venue capacity, throughput, facility and
+  operating facts;
+- Audience & Atmosphere owns fan demand, mood, ticketing trust, atmosphere and
+  supporter-risk facts;
+- Regulations & Compliance owns the rule catalog, licence gates and
+  jurisdictional finance-control profiles;
+- Transfer owns player-transfer payment schedules and market outcomes.
+
+No context may insert ledger rows directly or query Club-owned finance tables.
 
 ## Ledger entry shape
 
@@ -52,10 +65,10 @@ Minimum draft fields:
 | `clubId` | Club aggregate. |
 | `saveId` | Per-save scope. |
 | `weekId` | League week / accounting period. |
-| `sourceContext` | Club, Match, Transfer, League, Squad, Training or System. |
+| `sourceContext` | Club, CommercialPortfolio, Stadium Operations, Match, Transfer, League, Squad, Training, Regulations or System. |
 | `sourceEventId` | Domain event that caused the entry. |
 | `accountCode` | Chart-of-accounts code from the country/profile pack. |
-| `entryKind` | cash, accrual, liability, receivable, amortisation or reserve. |
+| `entryKind` | cash, accrual, liability, receivable, amortisation, reserve or equity. |
 | `amountMinor` | Integer minor-unit amount; signed. |
 | `currencyProfile` | Country/profile currency symbol and minor-unit rules. |
 | `recognitionDate` | When the accounting effect belongs. |
@@ -81,17 +94,89 @@ Minimum draft fields:
 | Transfer | Contract committed, instalment due, sell-on due, wage subsidy, agent fee. |
 | Squad & Player | Wage contract active, bonus triggered, contract ended. |
 | Training | Camp booked, academy operating cost, medicine facility effect. |
-| Fan Ecology | Demand forecast, season-ticket renewal, spend propensity and fan-event effects. |
+| Audience & Atmosphere | Demand forecast, season-ticket renewal, spend propensity, fan-event effects, mood and trust signals. |
 | Rivalry System | Derby/top-match commercial signal and risk band. |
-| Regulations & Compliance | Competition revenue profile, licence checks and commercial constraints. |
-| Platform / entitlement boundary | Singleplayer Investor entitlement grants. |
+| Stadium Operations | Stadium capacity, throughput, ownership model, facility cost and venue-operating facts. |
+| CommercialPortfolio | Commercial settlement events, contract cash/recognition schedules, receivable schedules, sponsor/media advance eligibility, commercial contract-liability facts, commercial fair-value facts and Investor entitlement-policy approvals. |
+| Regulations & Compliance | Competition revenue profile, licence checks, commercial constraints, finance-control thresholds and overdue-payable/debt-control profiles. |
+| Platform / payment boundary | Singleplayer Investor payment and entitlement facts. |
 | Notification | Reads finance events only; it does not create finance facts. |
 
 FMX-41 adds detailed commercial contracts in
-[[club-economy-commercial-contracts]]. The ledger remains the accounting truth;
-commercial policy and settlement are a Club Management sub-aggregate unless
-[[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
-is superseded.
+[[club-economy-commercial-contracts]]. FMX-49 adds in-world financing tools.
+The ledger remains the accounting truth: CommercialPortfolio emits settlement
+and eligibility facts, while Club Management owns financing facilities because
+they alter liquidity, debt service, covenants, board pressure and insolvency.
+
+## Financing contracts (FMX-49)
+
+`FinancingFacility` is the Club-owned register entry for all in-world liquidity
+tools. Sponsor/media advances and receivable factoring use CommercialPortfolio
+facts for contract eligibility and fair-value evidence, but the liquidity action
+and ledger posting stay in Club Management.
+
+| Field | Meaning |
+|---|---|
+| `facilityId` | UUIDv7 identity. |
+| `clubId` | Club aggregate. |
+| `facilityKind` | overdraft, creditLine, bankLoan, sponsorAdvance, mediaAdvance, receivableFactoring, restructuring, shareholderLoan, ownerGrant or emergencySaleMandate. |
+| `lifecycleState` | offered, active, drawn, amortising, covenantBreach, restructured, repaid, expired or cancelled. |
+| `counterpartyKind` | bank, sponsor, mediaDistributor, factor, board, shareholder or internalMandate. |
+| `approvedLimitMinor` | Maximum committed funding. |
+| `outstandingPrincipalMinor` | Principal currently owed; zero for non-debt grants and emergency-sale mandates. |
+| `undrawnLimitMinor` | Remaining drawable amount for overdraft/credit-line style facilities. |
+| `interestBandBps` | Profile-driven interest band, not final balance constant. |
+| `feeMinor` | Arrangement, factoring discount or restructuring fee. |
+| `maturityWeekId` | Contract maturity or review week. |
+| `repaymentSchedule` | Weekly/monthly/seasonal repayment, bullet or amortising schedule. |
+| `drawdownPolicy` | Manual draw, automatic overdraft, board-approved or emergency-only. |
+| `securedAgainst` | None, commercialReceivable, mediaReceivable, transferReceivable, stadiumAsset or boardGuarantee. |
+| `recoursePolicy` | Full recourse, limited recourse or true-sale style receivable sale. |
+| `covenantProfile` | Liquidity, wage/debt ratio, overdue-payable or licence-gate covenant. |
+| `classification` | Debt, working-capital, contract-advance, receivable-sale, owner-support or sale-mandate. |
+| `regulatoryTreatment` | Country/profile rule treatment and competition overlay. |
+| `accountingPolicy` | Liability, contract liability, derecognised receivable, retained-risk receivable, equity/reserve or disclosure-only. |
+| `provenance` | Source facts, research note, profile version and approval trace. |
+
+Additional Club-owned finance surfaces:
+
+| Surface | Purpose |
+|---|---|
+| `CashflowRunwayForecast` | 4/13/52-week forecast with starting cash, committed inflows/outflows, debt service, undrawn facilities, covenant/licence warnings and scenario tier. |
+| `OverduePayablesAging` | Ageing by wages, tax, transfer, commercial, supplier and debt buckets; drives licence/compliance triggers. |
+| `DebtServiceSchedule` | Principal, interest, fees, maturity and restructuring/payment-holiday effects. |
+| `CovenantStatusBoard` | Profile-specific finance-control and lender covenant status. |
+| `EmergencySaleMandate` | Board-mandated cash target, asset pool, sale window, sporting-cost warning and mandate state. |
+| `FinancingOptionBoard` | Quick/Standard/Expert financing choices with cost, runway, compliance and fan/board-risk trade-offs. |
+
+Draft commands:
+
+- `RequestFinancingOption`
+- `OpenFinancingFacility`
+- `DrawFinancingFacility`
+- `AcceptSponsorAdvance`
+- `FactorReceivable`
+- `RequestDebtRestructuring`
+- `AcceptOwnerSupport`
+- `IssueEmergencySaleMandate`
+
+Draft events:
+
+- `FinancingFacilityOpened`
+- `FinancingDrawdownPosted`
+- `FinancingInterestAccrued`
+- `FinancingRepaymentScheduled`
+- `FinancingRepaymentPosted`
+- `FinancingCovenantBreached`
+- `SponsorAdvanceAccepted`
+- `MediaAdvanceAccepted` (future hook unless Nico promotes media advances)
+- `ReceivableFactored`
+- `DebtRestructuringAgreed`
+- `PaymentHolidayGranted`
+- `OwnerSupportGranted`
+- `EmergencySaleMandateIssued`
+- `OverduePayableAged`
+- `FinancialHealthStateChanged`
 
 ## Read models
 
@@ -108,6 +193,12 @@ is superseded.
 | `CommercialContractPortfolio` | Sponsorship, catering and merchandise contract board. |
 | `MatchdayCommercialSettlement` | Per-fixture ticket/catering/merch/security breakdown. |
 | `InvestorGrantAudit` | Singleplayer entitlement and ledger provenance. |
+| `FinancingFacilityRegister` | Active facilities, limits, principal, fees, maturity and security. |
+| `CashflowRunwayForecast` | Quick/Standard/Expert runway, warning and scenario surface. |
+| `OverduePayablesAging` | Ageing buckets for wages, tax, transfer, supplier, commercial and debt obligations. |
+| `FinancingOptionBoard` | Available liquidity actions and their cost/risk trade-offs. |
+| `DebtServiceSchedule` | Principal, interest, fees, maturities and restructuring effects. |
+| `CovenantStatusBoard` | Lender, board and regulation-triggered finance-control state. |
 
 ## Staged insolvency state
 
@@ -121,6 +212,7 @@ Draft states:
 | `freeze` | Board freezes discretionary spending. |
 | `arrears` | Wages, debt or supplier obligations missed. |
 | `licence_review` | League/board review pending. |
+| `recovery` | Restructuring, payment holiday, owner support or emergency sale mandate stabilised runway, but restrictions remain. |
 | `run_end` | Licence lost, forced dissolution or control loss. |
 
 The state machine is deterministic and data-driven by country/profile thresholds.
@@ -135,11 +227,18 @@ The state machine is deterministic and data-driven by country/profile thresholds
 - Commercial sensitivity tests for season-ticket share, top-match surcharge,
   catering/merch contract models, cup progression and fan-service campaigns.
 - Investor grant idempotency and SP-only isolation tests.
+- Financing tests for overdraft drawdown, bank-loan repayment, sponsor advance
+  cash-vs-recognition, receivable factoring derecognition/retained-risk branch,
+  restructuring/payment-holiday recovery and owner-support Investor separation.
+- Country/profile compliance tests for overdue payables, covenant breaches,
+  transfer/registration restrictions, wage/transfer budget caps, points/sporting
+  sanctions, licence denial and competition exclusion.
 
 ## Related
 
 - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+- [[../60-Research/club-financing-tools-2026-06-01]]
 - [[../50-Game-Design/GD-0008-finance-economy]]
 - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../50-Game-Design/economy-system]]

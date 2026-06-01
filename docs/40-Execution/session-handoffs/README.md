@@ -51,6 +51,16 @@ This is the **single** canonical handoff location. (An older
   and structured rationale tags. New draft GD-0023; wired GD-0022/GD-0010 hooks. AI
   owner support is in-fiction, never the singleplayer Investor. Bands/dampers are
   FMX-52 calibration inputs.
+- [[2026-06-01-fmx-49-club-financing-tools]] - FMX-49 club financing tools
+  separate from Investor: Club Management-owned `FinancingFacility`,
+  `CashflowRunwayForecast`, `OverduePayablesAging`, `DebtServiceSchedule`,
+  `CovenantStatusBoard`, `FinancingOptionBoard` and emergency-sale mandate;
+  first-playable overdraft/credit line, bank loan, sponsor advance, receivable
+  factoring, restructuring/payment holiday, owner support and emergency-sale
+  mandate; CommercialPortfolio emits commercial receivable, advance eligibility,
+  contract-liability and fair-value facts; Investor remains clean SP entitlement
+  cash only. Awaiting Nico decisions on thresholds, media-advance activation,
+  board guarantees, emergency-sale hardness and supplier-arrears depth.
 - [[2026-06-01-fmx-50-investor-compliance-entitlement-boundary]] - FMX-50 Investor
   compliance & entitlement boundary (`risk:legal`): `PaymentProviderPort`
   (Apple/Google consumable IAP + web PSP/MoR), server-authoritative idempotent

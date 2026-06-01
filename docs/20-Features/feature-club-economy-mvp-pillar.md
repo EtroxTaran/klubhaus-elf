@@ -1,7 +1,7 @@
 ---
 title: Feature - Club Economy MVP Pillar
 status: draft
-tags: [feature, mvp, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, season-tickets, cup, competition, matchday, operations, fan-service, fmx-13, fmx-41, fmx-43, fmx-44, fmx-45, fmx-46, fmx-48]
+tags: [feature, mvp, economy, finance, accounting, financing, debt, commercial, contract-lifecycle, breach, club-management, season-tickets, cup, competition, matchday, operations, fan-service, fmx-13, fmx-41, fmx-43, fmx-44, fmx-45, fmx-46, fmx-48, fmx-49]
 created: 2026-05-27
 updated: 2026-06-01
 type: feature
@@ -20,6 +20,7 @@ related:
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
+  - [[../60-Research/club-financing-tools-2026-06-01]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   - [[../30-Implementation/club-economy-commercial-contracts]]
@@ -64,6 +65,12 @@ visible economic consequence.
 - Minimum costs: player/staff wages, stadium operations, matchday operating
   costs, travel, debt service, transfer instalments, maintenance and
   federation/league levy.
+- Minimum financing tools: overdraft/credit line, bank/facility loan, sponsor
+  advance, receivables factoring, restructuring/payment holiday, emergency sale
+  mandate and fictional non-IAP board support as equity-like rescue grant or
+  shareholder loan.
+- Minimum finance-risk surfaces: 13-week runway forecast, financing facility
+  register, overdue-payables ageing and Top-5 profile licence/sanction hooks.
 - Minimum matchday operating-cost policy: per-fixture risk tier, stewarding,
   private security, policing contribution, medical, cleaning, energy,
   temporary staff, officials, pitch recovery, damage reserve and sanction
@@ -93,6 +100,10 @@ visible economic consequence.
 - A post-match or post-week screen explains each material cash movement.
 - Negative cash does not instantly end the run; the staged crisis flow is
   visible and recoverable until its final stage.
+- Overdraft, sponsor advance, loan repayment, restructuring and factoring each
+  have visible ledger and runway consequences.
+- Investor cash remains separate from in-world financing and never creates debt,
+  owner-control, fan/sponsor effects or multiplayer impact.
 - Transfer offers and contracts can create future liabilities, not only
   immediate cash movement.
 - Expert UI can distinguish liquidity, accounting result and compliance risk.
@@ -127,6 +138,7 @@ visible economic consequence.
 - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
+- [[../60-Research/club-financing-tools-2026-06-01]]
 - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[../30-Implementation/club-economy-commercial-contracts]]
