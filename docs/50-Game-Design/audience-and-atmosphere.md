@@ -1,13 +1,13 @@
 ---
 title: Audience & Atmosphere - Six Segments and Atmosphere Engine
 status: draft
-tags: [game-design, fans, audience, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, fmx-32, fmx-41, fmx-42, fmx-43, fmx-54]
+tags: [game-design, fans, audience, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, matchday, risk, fmx-32, fmx-41, fmx-42, fmx-43, fmx-46, fmx-54]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-05-29
 type: game-design
 binding: true
 supersedes: fan-ecology
-related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 > **Renamed 2026-05-28 from "Fan Ecology".** Audience & Atmosphere
@@ -27,8 +27,11 @@ that react to *different* things and pull the club in opposing directions.
 FMX-13, FMX-41, FMX-42 and FMX-43 make fan ecology a direct economy input: fan
 segments drive latent demand, attendance, season-ticket renewal, utilisation,
 waitlist pressure, catering, merchandise, hospitality demand, sponsor fit and
-ticketing-trust risk. They never post money directly; Club Management reads
-their public outputs when producing [[economy-system]] ledger entries.
+ticketing-trust risk. FMX-46 adds matchday risk inputs: atmosphere, segment
+volatility and fan-incident memory can raise or lower the
+`MatchdayOperatingCostProfile`. Audience & Atmosphere never posts money
+directly; CommercialPortfolio consumes its public outputs for commercial and
+operating settlement, and Club Management posts ledger entries.
 
 ## 1. Six supporter segments
 
@@ -88,6 +91,7 @@ Outputs:
 - **Sponsor perception** - post-match brand reading.
 - **Social buzz / club image** - long-term media KPI.
 - **Per-capita match-day revenue**.
+- **Security-risk input** for the `MatchdayOperatingCostProfile`.
 
 Pseudocode:
 
@@ -161,6 +165,7 @@ The Fan Service consumes the `rivalry_score` from [[rivalry-system]]:
 - High score → segment population temporarily ↑ for the derby.
 - High score → atmosphere multiplier × 1.3.
 - High score → risk-event probabilities ↑ (see [[matchday-event-engine]]).
+- High score plus incident memory → higher matchday operating-cost risk tier.
 
 ## 7. Commercial demand contract
 

@@ -1,7 +1,7 @@
 ---
 title: GD-0022 Economy Commercial Impact and Contracts
 status: draft
-tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, catering, merchandise, operations, inventory, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-47]
+tags: [game-design, gddr, economy, commercial, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, accounting, investor, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47]
 created: 2026-05-28
 updated: 2026-06-01
 type: game-design
@@ -12,7 +12,7 @@ related:
   - [[README]]
   - [[GD-0008-finance-economy]]
   - [[economy-system]]
-  - [[fan-ecology]]
+  - [[audience-and-atmosphere]]
   - [[sponsorship-portfolio]]
   - [[stadium-and-campus]]
   - [[regulations-and-compliance]]
@@ -24,11 +24,14 @@ related:
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+  - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
   - [[audience-and-atmosphere]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+  - [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]]
+  - [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]]
   - [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
@@ -41,7 +44,8 @@ draft
 > Draft only. This record captures the FMX-41 commercial economy direction, the
 > FMX-42 fan-demand / price-elasticity refinement, the FMX-43 season-ticket
 > lifecycle / accrual-accounting refinement, the FMX-44 commercial contract
-> lifecycle / breach refinement and the FMX-45 cup/competition revenue profile
+> lifecycle / breach refinement, the FMX-45 cup/competition revenue profile
+> refinement and the FMX-46 matchday operating-cost / risk-cost settlement
 > refinement. It needs Nico approval before implementation authority.
 
 ## Date
@@ -51,9 +55,10 @@ draft
 ## Player experience goal
 
 The player should feel that fan culture, opponent appeal, cup runs, stadium
-choices, sponsor fit and commercial contracts directly shape club finances. A
-new player can make simple choices such as "train, bus or flight for the away
-trip"; an expert can inspect the exact assumptions, contract clauses and
+choices, sponsor fit, high-risk matchdays and commercial contracts directly
+shape club finances. A new player can make simple choices such as "train, bus
+or flight for the away trip" or "accept the recommended derby security plan";
+an expert can inspect the exact assumptions, contract clauses, risk drivers and
 ledger effects behind the same decision.
 
 ## Decided / strong draft direction
@@ -61,14 +66,17 @@ ledger effects behind the same decision.
 - **Commercial success is causal.** Ticketing, season tickets, catering,
   merchandise, sponsors and fan events are driven by fan segments, fixtures,
   stadium state, rivalry, competition profile and sporting form.
-- **Club Management owns settlement.** Other systems expose facts; Club
-  Management owns ticketing policy, commercial contracts and ledger posting.
+- **CommercialPortfolio owns commercial settlement; Club owns ledger truth.**
+  Other systems expose facts; CommercialPortfolio owns ticketing policy,
+  commercial contract lifecycle, per-fixture commercial/operating settlement
+  and fan-event campaign policy. Club Management remains the sole finance
+  ledger writer per ADR-0050.
 - **Fans are hard economy inputs.** Loyalty, mood, segment mix and volatility
   affect attendance, renewal, per-capita spend, sponsor fit and boycott risk.
-- **Ticket demand is latent and segment-specific.** Fan Ecology forecasts latent
-  demand before capacity; Club Management applies ticketing policy, seat
-  inventory and season-ticket allocation to derive actual attendance and
-  settlement.
+- **Ticket demand is latent and segment-specific.** Audience & Atmosphere
+  forecasts latent demand before capacity; CommercialPortfolio applies
+  ticketing policy, seat inventory and season-ticket allocation to derive
+  actual attendance and settlement.
 - **Season tickets are a lifecycle, not a cash button.** They provide early
   cash and demand stability, but create deferred revenue obligations, discount
   future attendance and reduce top-match upside.
@@ -79,6 +87,15 @@ ledger effects behind the same decision.
   `CompetitionRevenueProfile` to create gate sharing, ticket allocation,
   prize, media/facility, travel, security, sponsor-bonus, merchandise,
   fixture-congestion and forecast effects.
+- **Matchday operating costs are profile-driven.** Each home, neutral or
+  special fixture can receive a `MatchdayOperatingCostProfile` for stewarding,
+  security, policing-style contribution, medical/emergency cover, cleaning,
+  waste, energy, temporary staff, officials, pitch recovery, insurance,
+  restrictions and sanctions.
+- **Risk costs must be fair.** High-risk fixtures, pyro incidents, alcohol
+  bans, away-fan restrictions, sector closures and ghost matches are realistic
+  consequences, but they require visible risk drivers, warnings and mitigation
+  choices before severe costs settle.
 - **Cup forecasts are not cash.** Secured cup income, earned receivables and
   expected future-round value are separate. Elimination removes future upside
   and records a forecast shock; it is not a hidden ledger loss unless an
@@ -108,10 +125,10 @@ ledger effects behind the same decision.
 ```mermaid
 flowchart TB
     Forecast["Demand forecast<br/>fans + fixture + venue + weather"]
-    Policy["Commercial policy<br/>prices, season tickets, campaign choice"]
+    Policy["CommercialPortfolio policy<br/>prices, season tickets, campaign choice"]
     Contract["Commercial contracts<br/>sponsor, catering, merch, hospitality"]
-    Settlement["Match/week settlement"]
-    Ledger["Club ledger"]
+    Settlement["Commercial/operating settlement"]
+    Ledger["Club Management ledger"]
     Feedback["Fan mood, sponsor image, board pressure"]
 
     Forecast --> Policy
@@ -237,9 +254,10 @@ The system must support both club archetypes:
 The simulation uses one demand core with profile data, not hard-coded country
 branches:
 
-- Fan Ecology calculates `latentDemand` by segment before capacity is applied.
-- Club Management allocates latent demand into seat-class inventory, season
-  tickets, away allocation, single-ticket sales and hospitality.
+- Audience & Atmosphere calculates `latentDemand` by segment before capacity is
+  applied.
+- CommercialPortfolio allocates latent demand into seat-class inventory,
+  season tickets, away allocation, single-ticket sales and hospitality.
 - Price sensitivity is segment-specific. Casual/fair-weather/family demand is
   more sensitive to total trip cost; ultras/core are less attendance-sensitive
   but more likely to punish perceived identity or fairness breaches.
@@ -369,7 +387,12 @@ Each fixture receives a commercial profile:
   allocation, media/facility cadence, neutral venue, replay/two-leg rules,
   away/neutral travel, security, solidarity, fixture congestion and forecast
   policy.
-- `riskProfile`: security, alcohol, away allocation, potential sanctions.
+- `matchdayOperatingCostProfile`: stewarding, security, policing-style
+  contribution, medical/emergency, cleaning/waste, energy, temporary staff,
+  officials, pitch recovery, insurance/compliance, damage reserve,
+  restrictions and sanction exposure.
+- `riskProfile`: security, alcohol, away allocation, potential sanctions,
+  sector closures and ghost-match exposure.
 
 FMX-45 defines six IP-clean draft preset families:
 
@@ -397,6 +420,87 @@ Quick mode shows secured cup income and expected upside as bands. Standard
 shows per-fixture revenue/cost breakdown. Expert shows probability source,
 round-by-round EV, gate-share formula, delayed cash and elimination shock.
 
+## Matchday operating-cost settlement
+
+FMX-46 turns matchday cost from a flat subtraction into a profile-driven
+settlement. The same profile powers normal home matches, derbies, domestic cup
+ties, neutral finals, restricted matches and ghost matches.
+
+`MatchdayOperatingCostProfile` has six risk tiers:
+
+| Tier | Meaning | Typical effect |
+|---|---|---|
+| `routine` | Normal match with no special public-order signal. | Baseline stewarding, security, medical, cleaning, energy and pitch costs. |
+| `guarded` | Attendance, away demand, kickoff or weather needs attention. | Small steward/security uplift and a visible mitigation card. |
+| `elevated` | Rivalry, cup stakes, incident memory or away-travel pressure. | Security upgrade recommended; alcohol, away allocation and damage reserve reviewed. |
+| `highRisk` | High/volatile rivalry or regulator/police classification. | Strong security/stewarding/policing uplift and possible fan separation controls. |
+| `restricted` | Rule or mitigation limits normal attendance or sales. | Alcohol ban, away cap/ban, sector closure or special entry controls. |
+| `closedDoor` | Ghost match / behind-closed-doors sanction. | Attendance income is removed while required operating costs remain. |
+
+Minimum cost families:
+
+- stewarding and crowd management;
+- private security, searches, segregation and surveillance;
+- policing-style contribution where the country/profile makes it chargeable;
+- medical, emergency, heat/water and first-aid cover;
+- cleaning, waste and sanitation;
+- energy, water, floodlight, heating/cooling and technical systems;
+- temporary staff and contractors for turnstiles, retail, catering,
+  hospitality and fan zones;
+- match officials / competition operations where the profile assigns the cost;
+- pitch recovery and groundskeeping after weather, dense fixtures or non-
+  matchday events;
+- insurance, safety certification and compliance overhead allocation;
+- damage reserve, fines, sector closures, away-fan restrictions, alcohol bans
+  and ghost-match effects.
+
+Inputs stay with their owning domains:
+
+- Rivalry System publishes rivalry tier and fan-incident pressure.
+- Audience & Atmosphere publishes atmosphere, trust and fan-incident facts.
+- Stadium Operations publishes capacity, open sectors, ingress/egress, pitch
+  condition, technical systems and venue cost bands.
+- Regulations & Compliance publishes alcohol, away-fan, closure, ghost-match,
+  safety-staffing and sanction constraints.
+- League / Competition publishes fixture and competition profile data.
+- Matchday Event Engine resolves weather, pyro, medical, infrastructure and
+  pitch incidents.
+- CommercialPortfolio applies ticketing, contracts, fan-event campaigns and
+  mitigation choices, then emits settlement events to Club Management.
+
+Settlement events that must be representable:
+
+- `MatchdayOperatingCostForecasted`
+- `MatchdayStewardingCostPosted`
+- `MatchdaySecurityCostPosted`
+- `MatchdayPoliceContributionPosted`
+- `MatchdayMedicalEmergencyCostPosted`
+- `MatchdayCleaningWasteCostPosted`
+- `MatchdayEnergyCostPosted`
+- `MatchdayTemporaryStaffCostPosted`
+- `MatchdayOfficialsCostPosted`
+- `PitchRecoveryCostPosted`
+- `MatchdayInsuranceComplianceCostAllocated`
+- `MatchdayDamageReserveAdjusted`
+- `MatchdaySanctionFinePosted`
+- `SectorClosureRevenueImpactRecorded`
+- `GhostMatchSettlementRecorded`
+- `AwayFanRestrictionApplied`
+- `AlcoholRestrictionApplied`
+- `RiskTierReclassified`
+- `MitigationActionSettled`
+
+Fairness rules:
+
+- severe incidents need visible pre-match risk drivers or incident memory;
+- mitigation choices reduce probability or severity but cost money or revenue;
+- restrictions lower risk while reducing sales, atmosphere or commercial
+  upside;
+- a sector closure reduces sellable capacity but does not erase fixed venue
+  and required safety costs;
+- a ghost match removes attendance income but still posts required stadium,
+  security, medical, energy and competition-operation costs.
+
 ## Investor cash purchase
 
 Investor is a special singleplayer entitlement:
@@ -422,6 +526,7 @@ business model.
 | Catering | Pick stable/balanced/upside contract | Compare fixed rent, share, quality and SLA risk | Inspect clauses, COGS, service metrics, cure windows and termination |
 | Merch | Pick own/partner campaign | See projected margin, royalty/MAG and stock risk | Edit royalty, guarantee, inventory, fulfilment and true-up schedule |
 | Cup revenue | See secured income, earned receivables and future upside band | See prize, gate share, media, travel, security, sponsor and merch breakdown | Inspect round EV, probabilities, gate formula, payment timing, congestion sensitivity and elimination shock |
+| Matchday operating cost | See risk badge, total cost band and recommended mitigation | See staffing/security, venue/facility and restriction/sanction breakdown | Inspect profile modifiers, formulas, source provenance, incident memory and event settlement |
 | Investor | Confirm exact cash amount | See ledger impact and runway change | See no long-term structural change in forecast |
 
 ## Acceptance scenarios
@@ -508,6 +613,33 @@ Feature: Commercial economy impact
     Then travel and congestion risk are visible
     And fatigue or injury outcomes remain owned by the sporting systems
 
+  Scenario: Derby high-risk match exposes mitigation before settlement
+    Given a high-rivalry home fixture
+    And recent fan-incident memory
+    When CommercialPortfolio creates the matchday operating-cost profile
+    Then the fixture is classified as highRisk
+    And Quick mode shows the expected cost band and recommended mitigation
+    And Expert mode shows rivalry, away allocation, kickoff and incident-memory drivers
+
+  Scenario: Alcohol restriction trades revenue for safety
+    Given an elevated-risk match with strong catering demand
+    When the club accepts an alcohol restriction
+    Then catering upside is reduced
+    And security incident probability and sanction exposure are reduced
+    And both effects are visible before matchday settlement
+
+  Scenario: Sector closure keeps fixed operating costs
+    Given a prior security incident caused a sector closure
+    When the next home match is forecast
+    Then available capacity and matchday revenue fall
+    And fixed venue, medical and required security costs remain
+
+  Scenario: Ghost match removes attendance income but not all costs
+    Given a behind-closed-doors sanction
+    When matchday settlement runs
+    Then ticket and most retail income are zero
+    And required stadium, security, medical, energy and competition-operation costs still post
+
   Scenario: Catering contract changes margin
     Given two clubs have the same attendance
     And one runs catering in-house while the other has a concession lease
@@ -566,6 +698,13 @@ Feature: Commercial economy impact
   priority after FMX-43.
 - Retry Italy official regulation PDF extraction before Italy-specific
   constants are frozen.
+- Final matchday operating-cost ranges per country, tier and stadium scale.
+- Decide whether Quick mode may auto-apply recommended low-cost mitigations or
+  must always ask.
+- Decide how much policing/public-order cost is player-controllable versus
+  regulator-imposed per country profile.
+- Decide whether severe supporter incidents are enabled in first playable or
+  staged behind difficulty / realism settings.
 - First contract presets for catering and merchandise.
 - Fan-service event catalog for first playable.
 - Guardrails for top-match surcharge and fan-trust damage.
@@ -620,7 +759,7 @@ layer; it does not approve final constants.
   [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]] ·
   [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - Game design: [[GD-0008-finance-economy]] · [[economy-system]] ·
-  [[fan-ecology]] · [[regulations-and-compliance]]
+  [[audience-and-atmosphere]] · [[regulations-and-compliance]]
 - Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - Implementation: [[../30-Implementation/club-economy-commercial-contracts]]

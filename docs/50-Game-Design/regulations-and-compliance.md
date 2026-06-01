@@ -1,12 +1,12 @@
 ---
 title: Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
 status: draft
-tags: [game-design, regulations, compliance, leagues, promotion, economy, cup, competition, fmx-41, fmx-45]
+tags: [game-design, regulations, compliance, leagues, promotion, economy, cup, competition, matchday, security, sanctions, fmx-41, fmx-45, fmx-46]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-05-29
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/late-game-systems]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[stadium-and-campus]], [[matchday-event-engine]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/late-game-systems]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[stadium-and-campus]], [[matchday-event-engine]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
@@ -131,6 +131,12 @@ Per competition:
   tiers).
 - Alcohol policy: per country (e.g. Bundesliga allows; some other leagues
   restrict at risk matches).
+- Matchday risk-tier rules: routine, guarded, elevated, high-risk, restricted
+  and closed-door profiles determine required staffing, separation,
+  public-order controls and commercial constraints.
+- Away-supporter rules: allocation caps, fan separation, travel bans,
+  escorted travel and away-sector closures are profile/rule outputs, not
+  hidden matchday modifiers.
 
 ## 9. Compliance failure mid-season
 
@@ -162,6 +168,14 @@ which cup profile applies; Club Management converts it into cash, receivable,
 cost and forecast-shock settlement events. Fixture congestion can be exposed as
 a profile hook, but fatigue and injury consequences stay with the sporting
 systems.
+
+FMX-46 adds `MatchdayOperatingCostProfile` inputs. Regulations & Compliance
+owns the rules that can force or constrain operating settlement: alcohol bans,
+away-fan caps or bans, safety-staffing minimums, public-order classification,
+sector closures, ghost matches, fine ladders and risk-tier reclassification.
+CommercialPortfolio turns those constraints into per-fixture settlement events;
+Club Management posts the resulting finance ledger entries. Regulations never
+writes ledger rows directly.
 
 ## 11. UI tiers
 

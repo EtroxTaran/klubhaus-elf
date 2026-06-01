@@ -1,7 +1,7 @@
 ---
 title: ADR-0058 Club Economy Commercial Impact Boundary
 status: accepted
-tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, commercial-portfolio, cup, competition, catering, merchandise, operations, fmx-32, fmx-41, fmx-44, fmx-45, fmx-47, accepted]
+tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, commercial-portfolio, cup, competition, matchday, catering, merchandise, operations, fmx-32, fmx-41, fmx-44, fmx-45, fmx-46, fmx-47, accepted]
 created: 2026-05-28
 updated: 2026-06-01
 type: adr
@@ -23,6 +23,7 @@ related:
   - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+  - [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../../60-Research/club-management-sub-aggregate-audit-2026-05-28]]
   - [[../../30-Implementation/club-economy-accounting-ledger]]
   - [[../../30-Implementation/club-economy-commercial-contracts]]
@@ -53,9 +54,10 @@ sub-Aggregate). The boundary rules below are amended accordingly:
   portfolio, fan-event campaign choices) + commercial contract
   lifecycle state + version history + obligation fulfilment +
   breach cases + renewal policy + exclusivity graph + per-fixture
-  settlement Saga + IFRS 15 accrual schedule + credit / refund
-  liability pool + instalment receivables + Investor entitlement
-  grant policy.
+  commercial settlement Saga + `MatchdayOperatingCostProfile` +
+  matchday operating-cost settlement Saga + IFRS 15 accrual
+  schedule + credit / refund liability pool + instalment
+  receivables + Investor entitlement grant policy.
 - **Club Management** owns the ledger entries caused by commercial
   settlement; CommercialPortfolio emits settlement events
   consumed via Customer-Supplier + ACL per Vernon canonical
@@ -98,16 +100,23 @@ for sponsorship, catering, merchandise, hospitality, supplier and
 venue-activation deals.
 
 FMX-45 refines the cup and competition side: League/Competition and
-Regulations own `CompetitionRevenueProfile` rule data, while Club Management
-owns the settlement that turns those profiles into cash, receivable, cost,
-sponsor, merchandise and forecast-shock facts.
+Regulations own `CompetitionRevenueProfile` rule data, while
+CommercialPortfolio owns the settlement that turns those profiles into cash,
+receivable, cost, sponsor, merchandise and forecast-shock facts. Club
+Management posts the resulting ledger entries through ADR-0050.
 
-The current bounded-context map already gives Club Management finance,
-infrastructure, sponsors, board and fans. However, the richer commercial model
-could be placed in several ways. The boundary matters because ticketing and
-commercial contracts need causal inputs from Fan Ecology, Rivalry, League,
-Match, Stadium, Regulations, Transfer and Staff, but they must not let every
-domain write money directly.
+FMX-46 refines the matchday operating-cost side: Stadium Operations, Audience
+& Atmosphere, Rivalry, Regulations, League/Competition and Matchday Event
+Engine provide risk and venue facts; CommercialPortfolio owns the per-fixture
+`MatchdayOperatingCostProfile` and operating settlement; Club Management posts
+the resulting ledger entries through ADR-0050.
+
+After FMX-32, the bounded-context map separates Club Management finance truth
+from Stadium Operations, Audience & Atmosphere and CommercialPortfolio. The
+boundary matters because ticketing and commercial contracts need causal inputs
+from Audience & Atmosphere, Rivalry, League, Match, Stadium Operations,
+Regulations, Transfer and Staff, but they must not let every domain write money
+directly.
 
 ## Options considered
 
@@ -239,12 +248,32 @@ Draft Club-owned events/read models:
 - `CupNeutralVenueAllocationSettled`
 - `CupForecastUpdated`
 - `CupEliminationForecastShockRecorded`
+- `MatchdayOperatingCostForecasted`
+- `MatchdayStewardingCostPosted`
+- `MatchdaySecurityCostPosted`
+- `MatchdayPoliceContributionPosted`
+- `MatchdayMedicalEmergencyCostPosted`
+- `MatchdayCleaningWasteCostPosted`
+- `MatchdayEnergyCostPosted`
+- `MatchdayTemporaryStaffCostPosted`
+- `MatchdayOfficialsCostPosted`
+- `PitchRecoveryCostPosted`
+- `MatchdayInsuranceComplianceCostAllocated`
+- `MatchdayDamageReserveAdjusted`
+- `MatchdaySanctionFinePosted`
+- `SectorClosureRevenueImpactRecorded`
+- `GhostMatchSettlementRecorded`
+- `AwayFanRestrictionApplied`
+- `AlcoholRestrictionApplied`
+- `RiskTierReclassified`
+- `MitigationActionSettled`
 - `InvestorCashGrantPosted`
 - `CommercialForecastSnapshot`
 - `CommercialContractPortfolio`
 - `CommercialContractRegister`
 - `CommercialExclusivityGraph`
 - `CupRunRevenueForecast`
+- `MatchdayOperatingCostSettlement`
 
 ## FMX-44 acceptance-ready amendment
 
@@ -271,13 +300,15 @@ simulation cadence, team ownership or service deployment.
 
 ## FMX-45 competition revenue amendment
 
-If Nico accepts Option C, the architecture direction should also include these
-cup and competition constraints:
+After the FMX-32 ratification, the cup and competition direction includes these
+constraints:
 
 - `CompetitionRevenueProfile` is external rule/profile data owned by
-  League/Competition and Regulations, not by Club Management.
-- Club Management owns cup commercial settlement and ledger posting after it
-  receives the profile plus fixture, fan, rivalry, stadium and match facts.
+  League/Competition and Regulations, not by CommercialPortfolio or Club
+  Management.
+- CommercialPortfolio owns cup commercial settlement after it receives the
+  profile plus fixture, audience, rivalry, stadium and match facts.
+- Club Management posts the resulting ledger entries through ADR-0050.
 - Competition cash, receivables, costs and non-spendable future EV stay
   separated in read models and ledger projections.
 - Elimination shock is a forecast/read-model event, not a cash loss, unless an
@@ -286,6 +317,27 @@ cup and competition constraints:
   the sporting systems.
 - Default profile templates must be IP-clean and data-driven, with real-world
   sources used only for calibration ranges.
+
+## FMX-46 matchday operating-cost amendment
+
+The FMX-32 ratification supersedes the old Option C wording above. The
+matchday operating-cost direction is:
+
+- `MatchdayOperatingCostProfile` is a per-fixture CommercialPortfolio model,
+  not a direct Stadium Operations or Club ledger table.
+- CommercialPortfolio consumes venue/service facts from Stadium Operations,
+  demand and crowd-mix facts from Audience & Atmosphere, rivalry signals from
+  Rivalry, restriction and sanction facts from Regulations, profile context
+  from League/Competition and incident outcomes from Matchday Event Engine.
+- Risk tiers are data contracts (`routine`, `guarded`, `elevated`,
+  `highRisk`, `restricted`, `closedDoor`), not hard-coded legal conclusions.
+- Sector closures, away-fan restrictions, alcohol restrictions and ghost
+  matches must show both revenue impact and operating-cost impact.
+- High-risk fixtures must provide a forecast and mitigation surface before the
+  player can be surprised by material cost, unless the cost is caused by a
+  post-match incident.
+- Club Management remains the sole finance-ledger writer; it posts ADR-0050
+  entries after receiving CommercialPortfolio settlement events.
 
 ## FMX-47 catering and merchandise operations amendment
 
@@ -312,34 +364,41 @@ FMX-47 deepens the catering and merchandise families without moving a boundary:
 
 ## Rationale
 
-Option C keeps the economy coherent. The ledger, commercial contract lifecycle
-and commercial settlement belong together, but causal truth stays with the
-domain that creates it. This matches the FMX-13 direction, avoids a premature
-additional context, and still gives future implementers enough contract names to
-build realistic tickets, contracts, cup revenue and fan-service events.
+The FMX-32 ratification keeps the economy coherent by separating two truths:
+CommercialPortfolio owns commercial policy, contract lifecycle, accrual
+schedule and settlement, while Club Management owns finance-ledger posting.
+Causal truth still stays with the domain that creates it. This gives
+implementers enough contract names to build realistic tickets, contracts, cup
+revenue, matchday operating costs and fan-service events without allowing every
+domain to write money directly.
 
 ## Consequences
 
 Positive:
 
-- One finance owner remains responsible for cash, accrual, contracts and
-  commercial settlement.
+- CommercialPortfolio has one commercial owner for policy, contracts, accrual
+  schedules and settlement.
+- Club Management remains the sole finance-ledger writer for cash, P&L,
+  liability and compliance projections.
 - Contract lifecycle, renewal, exclusivity and breach rules are explicit enough
   for Quick / Standard / Expert UI without creating legal-software depth.
-- Commercial modelling can become deep without letting Match, Rivalry or Fan
-  Ecology write money directly.
+- Commercial modelling can become deep without letting Match, Rivalry or
+  Audience & Atmosphere write money directly.
+- Matchday operating risk becomes forecastable and tunable without giving
+  non-finance contexts direct ledger access.
 - Quick / Standard / Expert UI can read one commercial forecast.
 - Investor entitlement is isolated from ownership, debt and multiplayer.
 
 Negative / constraints:
 
-- Club Management's internal model becomes larger.
-- Contract boundaries must be tested early to avoid Club Management depending
-  on other contexts' private schemas.
-- A future Commercial Operations context may still be justified if lifecycle
-  complexity grows.
+- CommercialPortfolio's model becomes broad and must stay modular internally.
+- Contract boundaries must be tested early to avoid CommercialPortfolio or
+  Club Management depending on other contexts' private schemas.
 - ADR-0050 ledger tests must cover commercial cash-vs-recognition schedules,
   penalties, make-goods, true-ups and termination settlements.
+- ADR-0050 ledger tests must also cover stewarding, security, policing
+  contribution, medical, cleaning, energy, pitch recovery, sanction, closure
+  and ghost-match settlement entries.
 
 ## Supersedes
 
@@ -350,6 +409,7 @@ None.
 - [[../../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
 - [[../../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+- [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 - [[../../60-Research/catering-and-merchandise-operations-2026-06-01]]
 - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../../50-Game-Design/GD-0008-finance-economy]]

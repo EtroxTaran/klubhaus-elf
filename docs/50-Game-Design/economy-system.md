@@ -1,7 +1,7 @@
 ---
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
-tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, catering, merchandise, operations, inventory, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-47]
+tags: [game-design, economy, finance, accounting, commercial, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47]
 created: 2026-05-16
 updated: 2026-06-01
 type: game-design
@@ -17,6 +17,7 @@ related:
   - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
   - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
   - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
+  - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
@@ -108,8 +109,10 @@ Important rule: **budget is permission, not cash**.
 - Player and staff wages.
 - Signing fees, loyalty bonuses, agent fees.
 - Transfer amortisation and instalments.
-- Matchday security, stewarding, cleaning and officials.
-- Stadium energy, pitch, maintenance and insurance.
+- Matchday stewarding, security, policing-style contribution, medical,
+  emergency services, cleaning, waste, energy, temporary staff and officials.
+- Stadium energy, pitch recovery, maintenance, insurance and safety /
+  compliance overhead.
 - Travel and accommodation.
 - Academy, scouting, medicine and training operations.
 - Debt service and overdraft interest.
@@ -232,6 +235,7 @@ still owns the money, but the causes come from contracts and public read models:
 | Merchandise | Fan demand + operating model + stock plan vs forecast + star/cup/rivalry spike signals | Retail cash, royalty/MAG true-up, COGS, waste/write-down, markdown, returns, campaign profit/loss, fulfilment penalties |
 | Sponsorship | Sponsor portfolio + commercial contract lifecycle | Upfront cash, periodic accrual, bonuses, penalties, make-goods and termination effects |
 | Cup progression | Competition revenue profile | Prize/media/gate-share/travel/security entries plus receivables, future EV and elimination-shock read models |
+| Matchday operating profile | Fixture risk + Stadium Operations + Rivalry + Audience & Atmosphere + Regulations | Stewarding/security/policing-style/medical/cleaning/energy/staff/pitch/insurance/sanction costs plus restrictions and risk-tier feedback |
 | Fan-service campaign | Fan event policy | Direct costs, sponsor contributions, loyalty/demand effects |
 | Investor entitlement | Singleplayer payment entitlement | Clean cash grant, no other state change |
 
@@ -265,6 +269,16 @@ merchandise spikes, fixture-congestion hooks and forecast policy. The ledger
 posts hard cash, receivables and costs; future cup EV remains a non-spendable
 forecast. Elimination removes future upside and records a forecast shock rather
 than a hidden cash loss.
+
+FMX-46 refines the matchday operating-cost layer: every relevant fixture can
+receive a `MatchdayOperatingCostProfile` with stewarding, security,
+policing-style contribution, medical/emergency cover, cleaning/waste, energy,
+temporary staff, officials, pitch recovery, insurance/compliance, damage
+reserve and restriction/sanction effects. Risk tiers (`routine`, `guarded`,
+`elevated`, `highRisk`, `restricted`, `closedDoor`) are visible before the
+match. Mitigation can reduce probability or severity, but costs money or
+revenue; sector closures and ghost matches remove attendance income while
+preserving required operating costs.
 
 FMX-47 refines the catering and merchandise layer into operations. Each family
 carries an operating model (in-house / concession / management-fee / revenue-
@@ -340,5 +354,5 @@ burn through the grant.
 - Architecture: [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] ·
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - Linked systems: [[sponsorship-portfolio]] · [[stadium-and-campus]] ·
-  [[fan-ecology]] · [[transfer-market-and-contracts]] ·
+  [[audience-and-atmosphere]] · [[transfer-market-and-contracts]] ·
   [[mode-create-a-club-roguelite]]

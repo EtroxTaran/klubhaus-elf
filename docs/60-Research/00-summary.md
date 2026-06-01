@@ -224,7 +224,7 @@ It rejects one global elasticity constant, keeps numbers as tunable profile
 ranges, and documents country-profile tendencies for Germany, England, Spain,
 Italy and France.
 
-This refines draft [[../50-Game-Design/fan-ecology]], draft
+This refines draft [[../50-Game-Design/audience-and-atmosphere]], draft
 [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
 [[../50-Game-Design/economy-system]] and draft
 [[../30-Implementation/club-economy-commercial-contracts]].
@@ -256,7 +256,7 @@ Current draft direction:
 This refines draft
 [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
 [[../50-Game-Design/economy-system]], draft
-[[../50-Game-Design/fan-ecology]], draft
+[[../50-Game-Design/audience-and-atmosphere]], draft
 [[../50-Game-Design/stadium-and-campus]] and draft
 [[../30-Implementation/club-economy-commercial-contracts]].
 
@@ -330,6 +330,44 @@ This refines draft
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
 draft [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 and draft [[../30-Implementation/club-economy-commercial-contracts]].
+
+## Matchday Operating Costs and Risk-Cost Settlement (2026-05-29)
+
+[[matchday-operating-costs-and-risk-cost-settlement-2026-05-29]] is the FMX-46
+research synthesis for the non-ticket cost side of matchday economics. It
+translates UEFA, national safety, stewarding, policing, alcohol, supporter
+travel, stadium operations and disciplinary patterns into an IP-clean
+`MatchdayOperatingCostProfile`.
+
+Current draft direction:
+
+- CommercialPortfolio owns the per-fixture operating profile and settlement
+  Saga; Club Management remains the ADR-0050 ledger writer.
+- Stadium Operations, Audience & Atmosphere, Rivalry, Regulations,
+  League/Competition and Matchday Event Engine provide causal facts.
+- Risk tiers are `routine`, `guarded`, `elevated`, `highRisk`, `restricted`
+  and `closedDoor`.
+- Settlement separates stewarding, private security, policing contribution,
+  medical, cleaning/waste, energy, temporary staff, officials, pitch recovery,
+  insurance/compliance allocation, damage reserve, sanctions, sector closures,
+  away-fan restrictions, alcohol restrictions and ghost-match effects.
+- Quick / Standard / Expert show the same settlement at different depth:
+  fixture cost band, family breakdown and full driver/audit trace.
+- Fairness guardrails require forecast, warning and mitigation before material
+  high-risk costs unless a cost is caused by an in-match or post-match event.
+
+This refines current/draft
+[[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+[[../50-Game-Design/economy-system]],
+[[../50-Game-Design/regulations-and-compliance]],
+[[../50-Game-Design/matchday-event-engine]],
+[[../50-Game-Design/rivalry-system]],
+[[../50-Game-Design/stadium-and-campus]],
+[[../50-Game-Design/audience-and-atmosphere]],
+[[../20-Features/feature-club-economy-mvp-pillar]],
+[[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
+[[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+and [[../30-Implementation/club-economy-commercial-contracts]].
 
 ## Catering and Merchandise Operations Depth (2026-06-01)
 

@@ -1,12 +1,12 @@
 ---
 title: Rivalry System - Emergent Five-sub-score Rivalry Graph
 status: draft
-tags: [game-design, rivalry, fans, history]
+tags: [game-design, rivalry, fans, history, matchday, risk, fmx-46]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-05-29
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[matchday-event-engine]], [[fan-ecology]], [[watch-party-and-conference]]
+related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[matchday-event-engine]], [[audience-and-atmosphere]], [[GD-0022-economy-commercial-impact-and-contracts]], [[watch-party-and-conference]]
 ---
 
 # Rivalry System - Emergent Five-sub-score Rivalry Graph
@@ -94,12 +94,22 @@ Modified by: shared region cultural / linguistic markers (modest +5).
 
 ## 4. Effects on match-day
 
-Per [[fan-ecology]] §6 and [[matchday-event-engine]]:
+Per [[audience-and-atmosphere]] and [[matchday-event-engine]]:
 
 - Higher atmosphere multiplier in the engine.
 - Higher security event probability.
+- Higher `MatchdayOperatingCostProfile` risk tier and damage reserve.
 - Higher catering revenue per fan (premium pricing accepted).
 - Watch-party auto-proposal for `Strong+` rivalries.
+
+FMX-46 mapping to operating-cost risk:
+
+| Rivalry tier | Operating-cost profile input |
+|---|---|
+| None / Mild | Normal fixture attractiveness; no automatic risk uplift. |
+| Strong | Derby badge; `guarded` or `elevated` risk if away demand, kickoff or incident memory also fires. |
+| High | `elevated` risk by default; alcohol policy and away allocation review. |
+| Volatile | `highRisk` by default; visiting-fan cap, security upgrade and fan-dialogue mitigation recommended. |
 
 ## 5. Decay and reset
 

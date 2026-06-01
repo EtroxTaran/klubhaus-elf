@@ -3,7 +3,7 @@ title: Implementation Map
 status: current
 tags: [implementation, meta]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-05-29
 type: map
 binding: false
 related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]]
@@ -36,9 +36,9 @@ unless re-opened by a current issue or accepted ADR.
   - draft FMX-13 ledger contracts for weekly finance facts, accounting
   projections and staged insolvency.
 - [Club Economy Commercial Contracts](../30-Implementation/club-economy-commercial-contracts.md)
-  - draft FMX-41/FMX-45 commercial contracts for fan demand, ticketing,
+  - draft FMX-41/FMX-45/FMX-46 commercial contracts for fan demand, ticketing,
   season-ticket accounting, cup/competition revenue profiles, fan events and
-  Investor grants.
+  Investor grants, plus matchday operating-cost profiles and risk settlement.
 - [SurrealDB Integration](../30-Implementation/surrealdb-integration.md) - superseded historical substrate note; do not implement.
 - [Deployment Dokploy](../30-Implementation/deployment-dokploy.md)
 - [Observability Runbook](../30-Implementation/observability-runbook.md)
