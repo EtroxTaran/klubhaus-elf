@@ -483,6 +483,40 @@ This refines draft
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
 accepted [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
 
+## AI Club Economy Behaviour (2026-06-01)
+
+[[ai-club-economy-behaviour-2026-06-01]] is the FMX-51 synthesis for the economic
+behaviour of AI-controlled clubs. It **composes** locked systems rather than adding
+new machinery: the manager-AI architecture and archetypes
+([[ai-manager-behaviour]]), the transfer sell model + Tier 0/1/2-3 fidelity
+([[transfer-market-simulation]]), the weekly ledger + staged insolvency
+([[../50-Game-Design/economy-system]]) and the `CountryEconomyProfile`
+([[top5-country-economy-profiles-2026-05-29]]).
+
+Proposed model:
+
+- A thin **financial-policy layer** (five archetypes: selling / sugar-daddy /
+  prudent / over-leveraged / yo-yo) on top of the manager archetype, modulated by
+  board ambition + patience and the country profile.
+- A **three-regime FSM** (`Healthy / Stressed / Distressed`) gating **utility-ranked**
+  actions, on a hierarchical cadence (cheap weekly regime check; per-season / event
+  re-budget) within the locked out-of-match per-club budget.
+- **Soft, diegetic homeostasis only — no AI stat cheats**: progressive costs,
+  revenue-indexed wage-growth caps, reference pricing, solidarity/parachute pools,
+  ROI decay, a hard survival floor and PI-controller mean-reversion, applied
+  identically to player and AI.
+- **Staged distress with rare, bounded insolvency** down the existing insolvency FSM,
+  with per-country distress personalities.
+- **Tiered fidelity** (Tier 0 full + active commercial choices via FMX-44/47 reserved
+  hooks; Tier 1 simplified; Tier 2-3 banded) and **structured rationale tags** for
+  explainability (full narration deferred).
+
+AI owner support is in-fiction (equity / soft loan), never the singleplayer Investor.
+Feeds draft [[../50-Game-Design/GD-0023-ai-club-economy-behaviour]] and resolves the
+economy slice of [[../50-Game-Design/GD-0010-ai-world]] R2-04/R2-06. All ratio bands
+and damper gains are IP-clean calibration inputs for the FMX-52 capstone. Raw passes:
+[[raw-perplexity/raw-ai-club-economy-behaviour-2026-06-01]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 [[ai-narrative-runtime-integration]] synthesizes the two narrative/LLM reports

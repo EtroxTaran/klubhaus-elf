@@ -134,6 +134,15 @@ effects.
 |---|---|---|
 | [[raw-fan-service-campaign-catalog-and-effects-2026-06-01]] | Away travel, fan/family/community events, choreo and supporter dialogue, alcohol/beverage campaigns, sponsor activation measurement, low uptake and cooldowns | [[../fan-service-campaign-catalog-and-effects-2026-06-01]] · [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] · [[../../30-Implementation/club-economy-commercial-contracts]] |
 
+## FMX-51 follow-up Perplexity research (2026-06-01)
+
+Four Perplexity passes were run during FMX-51 after Nico asked for the next
+economy beat — how AI-controlled clubs behave economically.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-ai-club-economy-behaviour-2026-06-01]] | Genre AI-club economy mechanics (FM/OOTP/EA FC/Anstoss/Capitalism Lab); real-club financial archetypes + wage/turnover/debt bands + event reactions; AI architecture (rule/utility) + anti-runaway/anti-zombie/inflation control + soak-test KPIs; per-country regulatory rails | [[../ai-club-economy-behaviour-2026-06-01]] · [[../../50-Game-Design/GD-0023-ai-club-economy-behaviour]] · [[../ai-manager-behaviour]] · [[../transfer-market-simulation]] |
+
 ## FMX-3 follow-up Perplexity research (2026-05-28)
 
 Additional Perplexity research was run after Nico expanded the Runtime-LLM

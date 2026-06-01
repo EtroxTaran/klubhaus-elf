@@ -42,6 +42,15 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-01-fmx-51-ai-club-economy-behaviour]] - FMX-51 AI club economy
+  behaviour: composes the locked manager AI ([[../../60-Research/ai-manager-behaviour]])
+  + transfer tiering with a thin financial-policy layer (five archetypes), a
+  three-regime FSM (Healthy/Stressed/Distressed), soft diegetic homeostasis (no AI
+  stat cheats), staged distress with rare bounded insolvency + per-country distress
+  personalities, tiered fidelity (Tier 0 active commercial choices, Tier 1+ banded)
+  and structured rationale tags. New draft GD-0023; wired GD-0022/GD-0010 hooks. AI
+  owner support is in-fiction, never the singleplayer Investor. Bands/dampers are
+  FMX-52 calibration inputs.
 - [[2026-06-01-fmx-50-investor-compliance-entitlement-boundary]] - FMX-50 Investor
   compliance & entitlement boundary (`risk:legal`): `PaymentProviderPort`
   (Apple/Google consumable IAP + web PSP/MoR), server-authoritative idempotent

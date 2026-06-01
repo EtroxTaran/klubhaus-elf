@@ -325,6 +325,22 @@ before any promotion.
   [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   and [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
 
+## AI Club Economy Behaviour (2026-06-01)
+
+- [[../60-Research/ai-club-economy-behaviour-2026-06-01]] — FMX-51 synthesis for how
+  AI-controlled clubs behave economically (ticketing, wages, transfers, debt,
+  sponsors, promotion/relegation/cup/shock reactions, insolvency). Composes the locked
+  AI architecture ([[../60-Research/ai-manager-behaviour]]) + transfer tiering
+  ([[../60-Research/transfer-market-simulation]]) + `CountryEconomyProfile`
+  ([[../60-Research/top5-country-economy-profiles-2026-05-29]]) with a thin
+  financial-policy layer (five archetypes), three financial regimes, soft diegetic
+  homeostasis (no AI stat cheats), staged distress with rare bounded insolvency,
+  tiered fidelity and structured rationale tags. Feeds draft
+  [[../50-Game-Design/GD-0023-ai-club-economy-behaviour]] and resolves the economy
+  slice of [[../50-Game-Design/GD-0010-ai-world]] R2-04/R2-06. AI owner support is
+  in-fiction, never the singleplayer Investor. Bands/dampers are calibration inputs
+  for FMX-52.
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 - [[../60-Research/ai-narrative-runtime-integration]] — synthesized follow-up
@@ -427,6 +443,11 @@ before any promotion.
   FMX-53 four-theme country-economy pass (revenue mix, media/control regime,
   matchday & ST culture / ownership, commercial scale & tax/levy); promoted into
   [[../60-Research/top5-country-economy-profiles-2026-05-29]].
+- [[../60-Research/raw-perplexity/raw-ai-club-economy-behaviour-2026-06-01]] -
+  FMX-51 four-pass AI-club-economy research (genre AI-club economy mechanics;
+  real-club financial archetypes + ratio bands; AI architecture / anti-runaway /
+  anti-zombie / soak-test patterns; per-country regulatory rails); promoted into
+  [[../60-Research/ai-club-economy-behaviour-2026-06-01]].
 
 ## Research Rules
 
