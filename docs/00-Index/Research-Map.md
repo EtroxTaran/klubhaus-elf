@@ -265,6 +265,26 @@ before any promotion.
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   and [[../30-Implementation/club-economy-commercial-contracts]].
 
+## Investor Compliance and Entitlement Boundary (2026-06-01)
+
+- [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]] —
+  FMX-50 synthesis for the singleplayer real-money Investor purchase compliance +
+  entitlement boundary (gameplay rule unchanged: clean SP cash, no penalty/debt/
+  ownership/MP advantage). Defines a `PaymentProviderPort` (Apple/Google consumable
+  IAP in app builds, web PSP / Merchant-of-Record in the PWA), a server-
+  authoritative idempotent entitlement state machine bound to the account, refund/
+  revocation via Apple ASSN / Google void, plain "In-Game Purchases" age rating,
+  EU/DE/UK/US consumer-law disclosure, abuse prevention, audit and a SP-allowed /
+  MP-denied allow matrix. Grounded in official Apple/Google policy + EU/DE/UK/US
+  consumer law + PM-04/PM-08 pre-mortems. Feeds new proposed
+  [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
+  and refines
+  [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
+  [[../30-Implementation/club-economy-commercial-contracts]],
+  [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+  and [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]].
+  Payment vendor, refund policy, age-gate and activation timing are HITL/legal gates.
+
 ## Catering and Merchandise Operations Depth (2026-06-01)
 
 - [[../60-Research/catering-and-merchandise-operations-2026-06-01]] —

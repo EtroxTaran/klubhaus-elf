@@ -1,7 +1,7 @@
 ---
 title: ADR-0050 Club Economy Accounting Ledger
 status: accepted
-tags: [adr, architecture, economy, accounting, club-management, commercial, cup, competition, matchday, catering, merchandise, operations, fmx-13, fmx-32, fmx-41, fmx-45, fmx-46, fmx-47, accepted]
+tags: [adr, architecture, economy, accounting, club-management, commercial, cup, competition, matchday, catering, merchandise, operations, investor, fmx-13, fmx-32, fmx-41, fmx-45, fmx-46, fmx-47, fmx-50, accepted]
 created: 2026-05-27
 updated: 2026-06-01
 type: adr
@@ -148,6 +148,7 @@ Draft events:
 - `LeagueLicenceFinancialCheckFailed`
 - `MatchdayCommercialSettlementPosted`
 - `InvestorCashGrantPosted`
+- `InvestorEntitlementCashReversed` (FMX-50: refund/chargeback reconciliation)
 - `CompetitionPrizeReceivableRecorded`
 - `CompetitionPrizeCashReceived`
 - `CupGateShareSettled`
@@ -251,6 +252,8 @@ None
 - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 - [[../../60-Research/catering-and-merchandise-operations-2026-06-01]]
+- [[../../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]
+- [[ADR-0063-investor-entitlement-and-payment-boundary]]
 - [[../../50-Game-Design/GD-0008-finance-economy]]
 - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../../50-Game-Design/economy-system]]

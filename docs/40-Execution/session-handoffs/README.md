@@ -42,6 +42,15 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-01-fmx-50-investor-compliance-entitlement-boundary]] - FMX-50 Investor
+  compliance & entitlement boundary (`risk:legal`): `PaymentProviderPort`
+  (Apple/Google consumable IAP + web PSP/MoR), server-authoritative idempotent
+  entitlement state machine bound to the account, refund/revocation via Apple
+  ASSN / Google void, plain "In-Game Purchases" age rating, EU/DE/UK/US
+  consumer-law disclosure, abuse prevention, audit and SP-allowed/MP-denied allow
+  matrix. New proposed ADR-0063; refined GD-0022, commercial-contracts, ADR-0058,
+  ADR-0050. Gameplay rule unchanged. Payment vendor, refund policy, age-gate and
+  activation timing are HITL/legal gates.
 - [[2026-05-29-fmx-53-country-economy-profiles]] - FMX-53 Top-5 country economy
   calibration profiles: Germany/England/Spain/Italy/France plus abstract
   fallback; IP-clean `CountryEconomyProfile` (revenue mix, media weights &

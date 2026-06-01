@@ -1,7 +1,7 @@
 ---
 title: ADR-0058 Club Economy Commercial Impact Boundary
 status: accepted
-tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, commercial-portfolio, cup, competition, matchday, catering, merchandise, operations, fmx-32, fmx-41, fmx-44, fmx-45, fmx-46, fmx-47, accepted]
+tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, commercial-portfolio, cup, competition, matchday, catering, merchandise, operations, investor, entitlement, fmx-32, fmx-41, fmx-44, fmx-45, fmx-46, fmx-47, fmx-50, accepted]
 created: 2026-05-28
 updated: 2026-06-01
 type: adr
@@ -210,6 +210,9 @@ Draft commands owned by Club Management:
 - `SetMatchdayCommercialPolicy`
 - `ApplyInvestorEntitlementGrant`
 - `SetCommercialDisclosureAcknowledged`
+- `InitiateInvestorPurchase` (FMX-50)
+- `ConfirmInvestorEntitlement` (FMX-50, idempotent by `storeTransactionRef`)
+- `ReconcileInvestorEntitlement` (FMX-50, refund / void / chargeback)
 
 Draft input facts/read models from other domains:
 
@@ -268,6 +271,9 @@ Draft Club-owned events/read models:
 - `RiskTierReclassified`
 - `MitigationActionSettled`
 - `InvestorCashGrantPosted`
+- `InvestorEntitlementRevoked` (FMX-50)
+- `InvestorPaymentFailed` (FMX-50)
+- `InvestorDisclosureAcknowledged` (FMX-50, versioned)
 - `CommercialForecastSnapshot`
 - `CommercialContractPortfolio`
 - `CommercialContractRegister`
@@ -362,6 +368,21 @@ FMX-47 deepens the catering and merchandise families without moving a boundary:
 - All operational numbers remain IP-clean calibration ranges, never final
   constants; in-game supplier/brand names follow GD-0015 + ADR-0007.
 
+## FMX-50 Investor entitlement and payment boundary note
+
+FMX-50 details the Investor entitlement/compliance side without moving a boundary.
+CommercialPortfolio keeps the Investor entitlement grant policy; Club Management
+stays the sole ledger writer (`InvestorCashGrantPosted`). The payment path
+(`apple-iap` / `google-iap` / `web-psp`) sits behind a `PaymentProviderPort`; the
+entitlement is a server-authoritative, idempotent state machine
+(`created → paid → entitled → refunded|revoked`) bound to the account, not the
+save. SKU catalog, refund/revocation, age-rating, EU/DE/UK/US consumer-law
+disclosure, abuse prevention and audit are specified in proposed
+[[ADR-0063-investor-entitlement-and-payment-boundary]] (research:
+[[../../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]).
+Final vendor (MoR vs direct), refund-of-spent-cash policy and activation timing
+are HITL/legal gates. `risk:legal`.
+
 ## Rationale
 
 The FMX-32 ratification keeps the economy coherent by separating two truths:
@@ -411,6 +432,8 @@ None.
 - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 - [[../../60-Research/catering-and-merchandise-operations-2026-06-01]]
+- [[../../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]
+- [[ADR-0063-investor-entitlement-and-payment-boundary]]
 - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../../50-Game-Design/GD-0008-finance-economy]]
 - [[../../50-Game-Design/economy-system]]
