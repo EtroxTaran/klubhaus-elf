@@ -1,7 +1,7 @@
 ---
 title: ADR-0050 Club Economy Accounting Ledger
 status: accepted
-tags: [adr, architecture, economy, accounting, club-management, commercial, cup, competition, matchday, catering, merchandise, operations, fan-service, investor, fmx-13, fmx-32, fmx-41, fmx-45, fmx-46, fmx-47, fmx-48, fmx-50, accepted]
+tags: [adr, architecture, economy, accounting, club-management, financing, debt, commercial, cup, competition, matchday, catering, merchandise, operations, fan-service, investor, fmx-13, fmx-32, fmx-41, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, accepted]
 created: 2026-05-27
 updated: 2026-06-01
 type: adr
@@ -23,6 +23,7 @@ related:
   - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
+  - [[../../60-Research/club-financing-tools-2026-06-01]]
   - [[../../60-Research/club-management-sub-aggregate-audit-2026-05-28]]
   - [[../../30-Implementation/club-economy-accounting-ledger]]
   - [[../../30-Implementation/club-economy-commercial-contracts]]
@@ -89,6 +90,12 @@ campaign costs, sponsor contributions, refunds, make-goods and travel /
 community / choreo / beverage settlement entries separately from the fan mood,
 trust, atmosphere and demand effects owned by Audience & Atmosphere.
 
+FMX-49 refines the in-world financing line. Club Management owns financing
+facilities, drawdowns, debt service, covenant status, overdue-payables ageing,
+cashflow runway, board support and emergency sale mandates. CommercialPortfolio,
+Transfer, League/Competition, Stadium Operations and Regulations & Compliance
+provide eligibility and rule facts; none of them own the finance ledger.
+
 The accepted DDD map now keeps finance ledger truth in **Club Management**
 while Stadium Operations, Audience & Atmosphere and CommercialPortfolio own
 their operational, supporter and commercial facts. The missing architecture
@@ -117,7 +124,7 @@ Key rules:
   liabilities, budget pots and compliance ratios are projections derived from
   the ledger plus Club-owned policy tables.
 - Club Management owns the **finance ledger** (sole writer), budget envelopes,
-  board pressure and insolvency stage. **Stadium economics** is owned by the
+  board pressure, in-world financing facilities and insolvency stage. **Stadium economics** is owned by the
   Stadium Operations BC (FMX-32, ADR-0061); **sponsor + catering +
   merchandise + hospitality contracts + ticketing & commercial settlement**
   are owned by the CommercialPortfolio BC (FMX-32, ADR-0061); **fan signals**
@@ -130,6 +137,9 @@ Key rules:
 - Money values are integer minor units; ratios use basis points.
 - Country-specific economy rules are data profiles, not branches scattered
   across handlers.
+- Real-money Investor entitlement grants are not financing facilities. They
+  remain SP-only payment/entitlement events with clean cash and no debt,
+  owner-control, fan, sponsor, board or compliance semantics.
 
 ## Public contract direction
 
@@ -138,6 +148,14 @@ Draft commands:
 - `PostFinanceLedgerEntry`
 - `AdvanceClubEconomyWeek`
 - `SetBudgetPolicy`
+- `RequestFinancingOption`
+- `OpenFinancingFacility`
+- `DrawFinancingFacility`
+- `AcceptSponsorAdvance`
+- `FactorReceivable`
+- `RequestDebtRestructuring`
+- `AcceptOwnerSupport`
+- `IssueEmergencySaleMandate`
 - `AcceptSponsorContract`
 - `ScheduleFacilityProject`
 - `RequestCrisisAction`
@@ -155,6 +173,21 @@ Draft events:
 - `MatchdayCommercialSettlementPosted`
 - `InvestorCashGrantPosted`
 - `InvestorEntitlementCashReversed` (FMX-50: refund/chargeback reconciliation)
+- `FinancingFacilityOpened` (FMX-49)
+- `FinancingDrawdownPosted` (FMX-49)
+- `FinancingInterestAccrued` (FMX-49)
+- `FinancingRepaymentScheduled` (FMX-49)
+- `FinancingRepaymentPosted` (FMX-49)
+- `FinancingCovenantBreached` (FMX-49)
+- `SponsorAdvanceAccepted` (FMX-49)
+- `MediaAdvanceAccepted` (FMX-49 hook)
+- `ReceivableFactored` (FMX-49)
+- `DebtRestructuringAgreed` (FMX-49)
+- `PaymentHolidayGranted` (FMX-49)
+- `OwnerSupportGranted` (FMX-49)
+- `EmergencySaleMandateIssued` (FMX-49)
+- `OverduePayableAged` (FMX-49)
+- `FinancialHealthStateChanged` (FMX-49)
 - `CompetitionPrizeReceivableRecorded`
 - `CompetitionPrizeCashReceived`
 - `CupGateShareSettled`
@@ -217,6 +250,13 @@ separate lines rather than one net number. `FanEventSegmentEffectPublished` is
 included in the contract list for traceability, but Audience & Atmosphere owns
 the resulting mood/trust/atmosphere/demand state.
 
+The FMX-49 financing events are posted by Club Management on Club-owned
+financing decisions and on eligibility facts emitted by CommercialPortfolio,
+Transfer, League/Competition, Stadium Operations and Regulations & Compliance.
+They keep cash drawdown, principal, interest, covenant, overdue-payables,
+factoring and owner-support effects separate from commercial revenue and from
+real-money Investor grants.
+
 Draft read models:
 
 - `ClubEconomySnapshot`
@@ -234,6 +274,12 @@ Draft read models:
 - `CateringOperationsBoard` (FMX-47: per-point capacity, queue, stockout, COGS, waste)
 - `MerchandiseInventoryBoard` (FMX-47: stock vs forecast, markdown, write-down, returns)
 - `FanEventCampaignBoard` (FMX-48: lifecycle, cost, sponsor support, target segment, risk, cooldown)
+- `FinancingFacilityRegister` (FMX-49: active facilities, drawdowns, maturity, current/non-current split)
+- `CashflowRunwayForecast` (FMX-49: 13-week and licence/going-concern forecast)
+- `OverduePayablesAging` (FMX-49: football-club, employee, tax/social, supplier and licensor buckets)
+- `FinancingOptionBoard` (FMX-49: eligible liquidity actions and trade-offs)
+- `DebtServiceSchedule` (FMX-49: principal/interest due dates and restructuring)
+- `CovenantStatusBoard` (FMX-49: compliant, at-risk or breached facility covenants)
 
 ## Rationale
 
@@ -278,6 +324,7 @@ None
 - [[../../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]
 - [[ADR-0063-investor-entitlement-and-payment-boundary]]
 - [[../../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
+- [[../../60-Research/club-financing-tools-2026-06-01]]
 - [[../../50-Game-Design/GD-0008-finance-economy]]
 - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../../50-Game-Design/economy-system]]

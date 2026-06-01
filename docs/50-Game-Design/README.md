@@ -3,7 +3,7 @@ title: Game Design Hub
 status: current
 tags: [game-design, index]
 created: 2026-05-15
-updated: 2026-05-29
+updated: 2026-06-01
 type: index
 binding: false
 related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]]
@@ -76,7 +76,7 @@ active work.
 | [[GD-0005-training]] | Training & development | draft | ADR-0003 |
 | [[GD-0006-transfers]] | Transfers & scouting | draft | ADR-0027 |
 | [[GD-0007-youth]] | Youth academy | draft | ADR-0027, ADR-0007 |
-| [[GD-0008-finance-economy]] | Finance, economy & stadium; FMX-13 weekly ledger / full-accounting draft | draft | ADR-0027, ADR-0050 |
+| [[GD-0008-finance-economy]] | Finance, economy & stadium; FMX-13 weekly ledger / full-accounting draft plus FMX-49 in-world financing tools | draft | ADR-0027, ADR-0050 |
 | [[GD-0009-league-structure]] | League & competition structure | draft | ADR-0007, ADR-0027 |
 | [[GD-0010-ai-world]] | AI managers & world simulation | draft (Wave 2 gated) | ADR-0003, ADR-0009 |
 | [[GD-0011-career-progression]] | Career progression, board & objectives | draft | ADR-0003 |
@@ -106,6 +106,10 @@ active work.
   contract lifecycle/breach, catering, merchandise, cup/competition revenue
   profiles, matchday operating costs, fan-demand elasticity, fan events and
   Investor clean SP cash.
+- [[../60-Research/club-financing-tools-2026-06-01]] - FMX-49 in-world
+  financing tools: credit line, loan, sponsor advance, receivable factoring,
+  restructuring, owner support and emergency-sale mandates separate from
+  Investor.
 - [[sponsorship-portfolio]] - 4-tier sponsor inventory at asset level.
 - [[stadium-and-campus]] - stadium tiers + Anstoss-style attractions + club campus.
 - [[../20-Features/feature-club-economy-mvp-pillar]] - draft MVP economy pillar for weekly ledger, full accounting and staged insolvency.

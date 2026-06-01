@@ -1,7 +1,7 @@
 ---
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
-tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-50]
+tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, financing, debt, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50]
 created: 2026-05-28
 updated: 2026-06-01
 type: implementation
@@ -24,6 +24,7 @@ related:
   - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
   - [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]
+  - [[../60-Research/club-financing-tools-2026-06-01]]
   - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
   - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[club-economy-accounting-ledger]]
@@ -52,6 +53,12 @@ FMX-48 turns fan-service campaigns into an explicit `FanEventCampaign`
 lifecycle and campaign catalog with travel, family/community, choreo/dialogue,
 beverage reward and digital activation variants.
 
+FMX-49 adds commercial financing facts for sponsor/media advances and
+receivable factoring. CommercialPortfolio owns the contract amendment,
+cash-versus-recognition schedule, receivable schedule, contract-liability and
+fair-value evidence; Club Management owns the actual financing facility,
+drawdown, covenant, insolvency and ledger-posting decisions.
+
 This is draft planning only. It becomes implementation authority only after the
 relevant GDDR/ADR path is approved.
 
@@ -64,12 +71,15 @@ Per accepted ADR-0058 and ADR-0061, CommercialPortfolio owns:
   hospitality, supplier and venue-activation contracts;
 - fan-event campaign choices and budgets;
 - commercial forecasts and per-fixture commercial/operating settlement;
+- commercial receivable schedules, advance eligibility, contract-liability and
+  fair-value facts;
 - Investor entitlement grant policy in singleplayer.
 
 Club Management owns:
 
 - finance ledger posting for all commercial outcomes;
-- budget envelopes, board pressure and insolvency state.
+- budget envelopes, board pressure and insolvency state;
+- in-world financing facilities and liquidity actions.
 
 Other domains provide facts through contracts. They do not write commercial
 state or ledger entries directly.
@@ -310,6 +320,31 @@ Family schedules:
 | Hospitality | Seat/package inventory, service level, minimum spend/headcount, premium quality, sponsor overlap. |
 | Supplier | Mandatory supplier, rebates, volume targets, equipment support, exclusivity carve-outs. |
 | Venue activation | Event rights, staffing, safety, sponsor contribution, fulfilment model, cancellation policy. |
+
+### Commercial financing facts (FMX-49)
+
+CommercialPortfolio publishes financing-relevant facts; it does not open debt,
+draw facilities, restructure obligations or decide insolvency actions. Club
+Management consumes these facts when the player or board accepts a financing
+tool.
+
+| Fact | Fields | Consumer rule |
+|---|---|---|
+| `CommercialReceivableSchedulePublished` | `contractId`, `receivableId`, `counterpartyProfileId`, `dueWeekId`, `grossAmountMinor`, `recognitionState`, `cashCollectionRisk`, `assignableFlag`, `recourseRestriction`, `provenance`. | Club Management can offer factoring only against assignable receivables and must model derecognition vs retained-risk accounting explicitly. |
+| `CommercialAdvanceEligibilityPublished` | `contractId`, `contractKind`, `counterpartyKind`, `maxAdvanceMinor`, `discountOrFeeBandBps`, `remainingPerformanceObligations`, `cashScheduleImpact`, `recognitionScheduleImpact`, `regulatoryFlags`, `fairValueRequired`, `provenance`. | Club Management can show sponsor/media advance options without mutating commercial ownership. |
+| `CommercialContractLiabilityPublished` | `contractId`, `contractVersion`, `deferredRevenueMinor`, `remainingPerformanceObligations`, `refundOrMakeGoodExposureMinor`, `advanceRelatedFlag`, `recognitionPolicy`. | Club Management can explain why upfront cash improves runway but does not become earned revenue immediately. |
+| `CommercialFairValueAssessed` | `contractId`, `relatedPartyFlag`, `marketComparableBand`, `aboveMarketAmountMinor`, `regulatoryTreatment`, `auditConfidence`, `sourceProfile`. | Regulations and Club Management can apply UEFA/league-style controls to advances or owner-related commercial deals. |
+
+Rules:
+
+- sponsor and media advances are commercial contract amendments first, then
+  Club-owned financing actions;
+- factoring a commercial receivable consumes the receivable schedule and posts
+  cash/fee/accounting treatment through Club Management;
+- fair-value and related-party flags are facts for compliance; they do not imply
+  the singleplayer Investor entitlement path;
+- media advances remain hook-only until Nico explicitly promotes them beyond
+  `CommercialAdvanceEligibilityPublished`.
 
 ### Catering and merchandise operations (FMX-47)
 
@@ -635,8 +670,10 @@ sequenceDiagram
     Stadium->>Commercial: StadiumCommercialSnapshot
     Commercial->>Commercial: Apply TicketingPolicy + CommercialContracts + MatchdayOperatingCostProfile
     Commercial->>Club: Commercial and operating settlement events
+    Commercial->>Club: Receivable schedules + advance eligibility + fair-value facts
     Club->>Ledger: Post season-ticket cash / receivables / deferred revenue
     Club->>Ledger: Post matchday commercial and operating settlement
+    Club->>Ledger: Post financing drawdown / repayment / factoring effects
     Commercial->>Fan: FanEventCampaign outcome facts
     Club->>Ledger: Post campaign costs / sponsor contributions
 ```
@@ -656,6 +693,9 @@ sequenceDiagram
 | `MatchdayOperatingCostSettlement` | Per-fixture operating cost, risk-tier and restriction breakdown. |
 | `FanEventCampaignBoard` | Fan-service event choices and results. |
 | `CupRunRevenueForecast` | Secured cup cash, earned receivables, future-round EV, payment timing and elimination shock. |
+| `CommercialReceivableSchedule` | Assignable receivables, due weeks, collection risk and recourse restrictions. |
+| `CommercialAdvanceEligibilityBoard` | Sponsor/media advance options with cash, recognition, liability and fair-value impact. |
+| `CommercialFairValueAssessmentRegister` | Related-party and above-market commercial assessments for compliance consumers. |
 | `InvestorGrantAudit` | Entitlement and ledger provenance for SP cash grants. |
 
 ## Test scenarios before implementation
@@ -726,6 +766,13 @@ sequenceDiagram
   outcome separately from normal settlement.
 - Repeated sponsor-heavy campaigns apply cooldown/fatigue effects before
   projected impressions are trusted.
+- Sponsor advance requires a commercial contract amendment and advance
+  eligibility fact before Club Management posts the financing facility.
+- Commercial receivable factoring consumes an assignable receivable schedule and
+  posts cash, fee and derecognition/retained-risk treatment through Club
+  Management.
+- A media advance is visible as a future hook but cannot be accepted until Nico
+  promotes it beyond eligibility publication.
 - Investor grant is idempotent, SP-only and posts clean cash without side effects.
 
 ## Related
@@ -738,6 +785,7 @@ sequenceDiagram
 - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 - [[../60-Research/catering-and-merchandise-operations-2026-06-01]]
 - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
+- [[../60-Research/club-financing-tools-2026-06-01]]
 - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[club-economy-accounting-ledger]]
