@@ -1,12 +1,12 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, privacy, gdpr, ip, naming, fmx-54]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, fmx-52, fmx-54]
 created: 2026-05-16
 updated: 2026-06-01
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]], [[../matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../catering-and-merchandise-operations-2026-06-01]], [[../investor-compliance-and-entitlement-boundary-2026-06-01]], [[../fan-service-campaign-catalog-and-effects-2026-06-01]], [[../club-financing-tools-2026-06-01]], [[../fan-persona-privacy-and-naming-2026-06-01]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]], [[../matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../catering-and-merchandise-operations-2026-06-01]], [[../investor-compliance-and-entitlement-boundary-2026-06-01]], [[../fan-service-campaign-catalog-and-effects-2026-06-01]], [[../club-financing-tools-2026-06-01]], [[../economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../fan-persona-privacy-and-naming-2026-06-01]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -151,6 +151,15 @@ economy beat — how AI-controlled clubs behave economically.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-ai-club-economy-behaviour-2026-06-01]] | Genre AI-club economy mechanics (FM/OOTP/EA FC/Anstoss/Capitalism Lab); real-club financial archetypes + wage/turnover/debt bands + event reactions; AI architecture (rule/utility) + anti-runaway/anti-zombie/inflation control + soak-test KPIs; per-country regulatory rails | [[../ai-club-economy-behaviour-2026-06-01]] · [[../../50-Game-Design/GD-0023-ai-club-economy-behaviour]] · [[../ai-manager-behaviour]] · [[../transfer-market-simulation]] |
+
+## FMX-52 follow-up Perplexity research (2026-06-01)
+
+Three Perplexity passes were run during FMX-52, the economy calibration/soak-test
+capstone.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-economy-calibration-and-soak-test-scenarios-2026-06-01]] | Simulation balancing & long-run economy testing (Monte-Carlo sweeps, golden baselines, drift detection, concentration metrics, homeostasis tuning, KPI bands, soak duration, insolvency base rates); financial stress-testing & reverse-stress / scenario analysis (Basel/CCAR patterns, failure definitions, shock magnitudes, IFRS 15 season tickets, parachutes, evidence standards); deterministic-sim testing techniques (golden-master/property/metamorphic, invariants, drift tolerances, seeds) + attendance/fan-demand elasticity | [[../economy-calibration-and-soak-test-scenarios-2026-06-01]] · [[../../30-Implementation/economy-calibration-and-soak-test-runbook]] · [[../../50-Game-Design/economy-system]] |
 
 ## FMX-54 follow-up Perplexity research (2026-06-01)
 

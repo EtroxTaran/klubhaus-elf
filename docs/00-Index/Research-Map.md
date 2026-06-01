@@ -341,6 +341,21 @@ before any promotion.
   in-fiction, never the singleplayer Investor. Bands/dampers are calibration inputs
   for FMX-52.
 
+## Economy Calibration and Soak-Test Scenarios (2026-06-01)
+
+- [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]] — FMX-52
+  calibration/soak-test capstone consuming FMX-13/41/49/51/53. Defines the calibration
+  workflow + evidence-acceptance gate (banded value, soak in band at value & edges, ±
+  sensitivity sweep, parameter sheet, Nico sign-off), KPI healthy/warning/critical bands
+  (wage/revenue, UEFA-70 squad-cost, debt/revenue, runway, DSCR), tier-scaled
+  insolvency-frequency targets with a no-cascade invariant, anti-runaway metrics (title
+  HHI/CR4, revenue Gini), failure signatures, a 32-seed PR smoke + 50-season gate +
+  100-season deep soak with golden-baseline drift detection, a deterministic forward +
+  reverse stress-test scenario matrix, and Quick/Standard/Expert forecast-accuracy
+  validation. No final constants (they stay in data behind the gate). Executable contract
+  in [[../30-Implementation/economy-calibration-and-soak-test-runbook]]; cross-linked from
+  [[../50-Game-Design/economy-system]] §12.
+
 ## Fan Persona Privacy and Creative IP-Safe Naming (2026-06-01)
 
 - [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]] —
@@ -465,6 +480,11 @@ before any promotion.
   real-club financial archetypes + ratio bands; AI architecture / anti-runaway /
   anti-zombie / soak-test patterns; per-country regulatory rails); promoted into
   [[../60-Research/ai-club-economy-behaviour-2026-06-01]].
+- [[../60-Research/raw-perplexity/raw-economy-calibration-and-soak-test-scenarios-2026-06-01]] -
+  FMX-52 three-pass calibration/soak research (simulation balancing & long-run economy
+  testing; financial stress-testing & scenario/reverse-stress analysis; deterministic-sim
+  testing techniques + attendance/fan-demand elasticity); promoted into
+  [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]].
 - [[../60-Research/raw-perplexity/raw-fan-persona-privacy-and-naming-2026-06-01]] -
   FMX-54 three-pass fan-persona privacy and naming research (GDPR boundary for
   fictional fan groups/reps; IP-safe naming for fan/media/sponsor/venue
