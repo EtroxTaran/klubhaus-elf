@@ -483,6 +483,39 @@ This refines draft
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
 accepted [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
 
+## Fan-Ecology Persona Privacy and Creative IP-Safe Naming Review (2026-06-01)
+
+[[fan-persona-privacy-and-naming-2026-06-01]] is the FMX-54 synthesis
+for named fan groups, fan reps, persona privacy, IP-safe social-world naming and
+community overlay import boundaries.
+
+Current draft direction:
+
+- MVP Community Overlay remains local file import / peer-to-peer sharing.
+  Hosted pack distribution, discovery or marketplace functionality is a future
+  DSA/UGC/privacy/AI-transparency gate.
+- Fan groups are fictional aggregates over the six Audience & Atmosphere
+  segments; fan reps are generated fictional People/Narrative actors and never
+  real fans, handles, photos, membership lists or user profiles.
+- Segment facts stay aggregate. Mood, attendance, protest, demand and trust
+  effects come from Audience & Atmosphere deterministic rules, not generated
+  prose.
+- ADR-0007/GD-0015 naming policy now explicitly covers fan groups, fan reps,
+  supporter slogans/chants, media outlets, journalists, sponsors, venues and
+  community overlay names.
+- Policy + tests are the accepted depth for this beat: denylist, normalisation,
+  confusable/phonetic/similarity gates, protected abbreviation/city-descriptor
+  blocks and manual review for high-salience samples.
+
+This refines binding
+[[../50-Game-Design/audience-and-atmosphere]], binding
+[[../50-Game-Design/GD-0015-ip-clean-data]], accepted
+[[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], draft
+[[../50-Game-Design/community-editor-and-datasets]], proposed
+[[../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]],
+binding [[../30-Implementation/privacy-and-consent]], current
+[[data-generators]] and draft [[../50-Game-Design/sponsorship-portfolio]].
+
 ## AI Club Economy Behaviour (2026-06-01)
 
 [[ai-club-economy-behaviour-2026-06-01]] is the FMX-51 synthesis for the economic

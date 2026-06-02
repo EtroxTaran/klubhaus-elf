@@ -1,12 +1,12 @@
 ---
 title: IP and Licensing
 status: ready
-tags: [research, ip, gamedata, legal]
+tags: [research, ip, gamedata, legal, privacy, gdpr, naming, fmx-54]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-06-01
 type: research
 linear:
-related: [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[00-summary]], [[anstoss-series-deep-dive]], [[competitor-matrix]], [[../10-Architecture/modules/game-data]], [[../95-Archive/gap-reports/feature-gap-analysis]]
+related: [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[00-summary]], [[fan-persona-privacy-and-naming-2026-06-01]], [[anstoss-series-deep-dive]], [[competitor-matrix]], [[../10-Architecture/modules/game-data]], [[../95-Archive/gap-reports/feature-gap-analysis]]
 ---
 
 # IP and Licensing
@@ -347,6 +347,26 @@ generation time *and* at CI on shipped seed data.
 * Sponsor names are also denylist-checked against the top-500 global brand
   index (Interbrand) to avoid accidental collisions (`Volta Bank` is safe;
   `Apple FC Telekom` is not).
+
+### 5.6 FMX-54 fan, media and social-world names
+
+The same naming hardline applies to the social world introduced for Audience &
+Atmosphere, People/Narrative and community overlays:
+
+* Fan groups, fan reps, journalists, media outlets, board contacts, agents,
+  sponsor brands, venues and supporter slogans/chants are generated fictional
+  names.
+* Do not use real supporter organisation names, ultras group names, social
+  handles, chants, campaign slogans, famous fan acronyms, real journalist names
+  or real private-person stand-ins.
+* Generated fan groups are segment aggregates, not real supporter datasets.
+  They must not contain membership lists, photos, user-account profiles or
+  real-world political/religious/ethnic/health labels.
+* Denylist checks must include exact, normalised, confusable, token-subset,
+  phonetic and high-similarity near-match gates for high-salience names.
+* Community imports are riskier than shipped data. Local import can warn and run
+  best-effort validation; hosted pack distribution stays future-scope until DSA,
+  UGC moderation, AI transparency and privacy/DSAR gates are approved.
 
 ## 6. Player-name generation constraints
 

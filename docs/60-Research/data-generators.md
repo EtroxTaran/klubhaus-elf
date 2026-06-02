@@ -2,11 +2,11 @@
 title: Data Generators — Names, Crests, Cities, Clubs, Players
 status: current
 binding: true
-tags: [research, data-generation, worldgen, names, crests, players, clubs, determinism, ip-safe]
+tags: [research, data-generation, worldgen, names, crests, players, clubs, determinism, ip-safe, privacy, gdpr, fmx-54]
 created: 2026-05-17
-updated: 2026-05-28
+updated: 2026-06-01
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[determinism-and-replay]], [[performance-budgets]], [[surrealdb-schema-patterns]], [[eos-player-staff-skills-and-personas-2026-05-28]], [[ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../50-Game-Design/scouting-and-recruitment]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/club-dna-and-governance]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+related: [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[determinism-and-replay]], [[performance-budgets]], [[surrealdb-schema-patterns]], [[eos-player-staff-skills-and-personas-2026-05-28]], [[ai-narration-world-and-dialogue-mvp-2026-05-28]], [[fan-persona-privacy-and-naming-2026-06-01]], [[../50-Game-Design/scouting-and-recruitment]], [[../50-Game-Design/youth-academy-and-development]], [[../50-Game-Design/club-dna-and-governance]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 ---
 
 # Data Generators — Names, Crests, Cities, Clubs, Players
@@ -1210,6 +1210,25 @@ fictional social-world records:
 These records use the same `GeneratorRng` hierarchy and opaque IDs as the rest
 of worldgen. They are canonical inputs for People and Narrative context cards,
 not generated prose.
+
+FMX-54 constrains this extension:
+
+- social-world records are synthetic and deterministic, not real-person source
+  tuples;
+- fan groups and fan reps are fictional aggregate/narrative actors, not real
+  supporter organisations, user profiles, handles, photos or membership lists;
+- media outlets, journalists, sponsors, venues and fan-service labels use the
+  same ADR-0007/GD-0015 IP-clean naming policy as clubs and players;
+- no generated record encodes real-world political, religious, ethnic, health
+  or comparable special-category labels for real persons or users;
+- generated actor traits are save/world state and must not be joined to the user
+  account in backend analytics.
+
+Generator acceptance tests must include shipped fixtures that reject exact and
+near-match names for clubs, players, fan groups, fan reps, media outlets,
+journalists, sponsors and venues. Community-import fixtures must reject or flag
+real private-person data, real supporter handles and special-category-like fan
+labels before activation.
 
 ## 15. Open follow-ups
 

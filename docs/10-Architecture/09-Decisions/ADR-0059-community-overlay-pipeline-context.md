@@ -1,9 +1,9 @@
 ---
 title: ADR-0059 Community Overlay Pipeline Context
 status: proposed
-tags: [adr, architecture, ddd, community, overlay, import, fmx-33, risk-legal]
+tags: [adr, architecture, ddd, community, overlay, import, privacy, gdpr, dsa, naming, fmx-33, fmx-54, risk-legal]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-01
 type: adr
 binding: false
 supersedes:
@@ -25,6 +25,7 @@ related:
   - [[../../50-Game-Design/GD-0015-ip-clean-data]]
   - [[../../20-Features/feature-community-editor]]
   - [[../../60-Research/community-overlay-pipeline-bounded-context-2026-05-28]]
+  - [[../../60-Research/fan-persona-privacy-and-naming-2026-06-01]]
   - [[../../60-Research/raw-perplexity/raw-community-overlay-pipeline-2026-05-28]]
 ---
 
@@ -267,6 +268,24 @@ Three converging arguments:
   trails. Community Overlay BC's `IPSafetyAuditLog` + `RevokePack`
   + repeat-infringer state machine satisfy these requirements;
   detailed compliance reporting is future-scope.
+
+### FMX-54 privacy and naming amendment
+
+FMX-54 does not activate hosted pack distribution and does not ratify this ADR.
+It adds a required gate if this ADR is later accepted:
+
+- MVP community packs remain local file import / peer-to-peer sharing.
+- `IPGate` must include privacy/persona naming validation for fan groups, fan
+  reps, journalists, media outlets, sponsors, venues, supporter slogans/chants
+  and imported name corpora.
+- Local import can warn and run best-effort schema/IP/privacy checks, but it
+  must reject or flag real private-person data, real supporter membership
+  lists, real social handles, real fan-group names, doxxing content,
+  special-category-like fan fields and AI impersonations of real people.
+- Hosted distribution, pack discovery or marketplace functionality is blocked
+  until DSA notice/action, complaints/appeals, moderation logs, repeat-abuse
+  policy, AI transparency labels where applicable, DSAR/deletion integration and
+  Privacy Notice/RoPA updates are defined and approved.
 
 Status stays `proposed` / `binding: false` until Nico ratifies.
 

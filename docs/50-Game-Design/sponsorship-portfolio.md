@@ -1,12 +1,12 @@
 ---
 title: Sponsorship Portfolio - Asset-level Sponsor Inventory
 status: draft
-tags: [game-design, sponsors, finance, commercial, contracts, contract-lifecycle, breach, fan-fit, fan-service, activations, fmx-41, fmx-44, fmx-48]
+tags: [game-design, sponsors, finance, commercial, contracts, contract-lifecycle, breach, fan-fit, fan-service, activations, privacy, ip, naming, fmx-41, fmx-44, fmx-48, fmx-54]
 created: 2026-05-16
 updated: 2026-06-01
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[stadium-and-campus]], [[fan-ecology]], [[audience-and-atmosphere]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[stadium-and-campus]], [[audience-and-atmosphere]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Sponsorship Portfolio - Asset-level Sponsor Inventory
@@ -30,6 +30,14 @@ FMX-48 adds fan-service campaigns as measurable sponsor activations. Sponsors
 can fund, staff, supply, promote or prize a campaign, but the game must track
 fit, KPI targets, low uptake, make-goods, cooldowns and fan-spam fatigue instead
 of treating every activation as positive exposure.
+
+FMX-54 extends the IP/privacy guardrails to sponsors and venues: sponsor brand
+names, venue naming rights, hospitality partners and campaign labels are
+fictional and follow ADR-0007/GD-0015 naming gates. No real brands, famous
+homophones, slogan echoes or confusingly similar venue/sponsor names are used.
+Fan-service activations must not collect or imply real private-person data,
+supporter membership lists or special-category fan attributes unless a future
+legal/privacy gate explicitly approves a hosted UGC/user-data feature.
 
 ## 1. Sponsor categories
 
@@ -148,7 +156,7 @@ stateDiagram-v2
 ## 7. Linking to fans
 
 Some sponsor categories *fight* the fan segments
-([[fan-ecology]]). Examples:
+([[audience-and-atmosphere]]). Examples:
 
 - Gambling sponsor on jersey front: family + ultras segments unhappy.
 - Stadium naming change: tradition segment unhappy.

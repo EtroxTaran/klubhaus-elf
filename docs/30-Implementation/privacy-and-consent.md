@@ -1,9 +1,9 @@
 ---
 title: Privacy and Consent — implementation surface
 status: current
-tags: [implementation, gdpr, eprivacy, privacy, consent, dsar, deletion, age-gate, breach-runbook]
+tags: [implementation, gdpr, eprivacy, privacy, consent, dsar, deletion, age-gate, breach-runbook, community, naming, fmx-54]
 created: 2026-05-18
-updated: 2026-05-22
+updated: 2026-06-01
 type: implementation
 binding: true
 adr:
@@ -15,6 +15,7 @@ adr:
 related:
   - "[[../60-Research/gdpr-compliance]]"
   - "[[../60-Research/telemetry-privacy]]"
+  - "[[../60-Research/fan-persona-privacy-and-naming-2026-06-01]]"
   - "[[../60-Research/threat-model]]"
   - "[[auth-flows]]"
   - "[[session-management]]"
@@ -82,6 +83,11 @@ follow-ups:
   future ADR when payments enter scope.
 - The OAuth IdP linking privacy UX → **F2 §3.6** post-MVP
   deferred surface.
+- Hosted community-pack / UGC distribution privacy handling →
+  future Community Overlay legal gate. MVP supports local file
+  import/P2P only; hosted pack discovery, moderation, uploader
+  identity retention and UGC DSAR/deletion flows are not unlocked
+  by FMX-54.
 - The detailed admin-side incident-response runbook beyond the
   breach notification core → [[incident-response]] +
   [[secrets-rotation]] + **F11 secrets-management** (P1).
@@ -95,6 +101,27 @@ required. The **founder is designated as Privacy Lead**
 the Privacy Notice + the in-app Privacy Center as the
 controller contact for all rights-exercise requests + breach
 inquiries.
+
+### 1.4 Fictional game-world personas
+
+FMX-54 clarifies that generated fan groups, fan reps, journalists,
+media outlets, sponsors, venues and other social-world actors are
+fictional save/world state when they are generated under
+[[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] and not
+linked to real people or user accounts.
+
+Implementation guardrails:
+
+- Do not store individual supporter records for generated fan
+  groups.
+- Do not derive fan reps from real fans, social handles, photos,
+  community membership lists or private-person imports.
+- Do not encode real-world special-category labels for real persons
+  or users in fan-persona fields.
+- Do not join fan-rep traits, supporter identity labels or
+  special-category-like game themes to account analytics.
+- Generated fan-persona records live in save/world state and follow
+  save/account deletion semantics.
 
 ## 2. Privacy Notice (Datenschutzerklärung)
 

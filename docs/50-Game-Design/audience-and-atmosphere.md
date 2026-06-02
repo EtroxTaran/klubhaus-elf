@@ -1,13 +1,13 @@
 ---
 title: Audience & Atmosphere - Six Segments and Atmosphere Engine
 status: draft
-tags: [game-design, fans, audience, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, matchday, fan-service, risk, fmx-32, fmx-41, fmx-42, fmx-43, fmx-46, fmx-48, fmx-54]
+tags: [game-design, fans, audience, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, matchday, fan-service, privacy, gdpr, ip, naming, risk, fmx-32, fmx-41, fmx-42, fmx-43, fmx-46, fmx-48, fmx-54]
 created: 2026-05-16
 updated: 2026-06-01
 type: game-design
 binding: true
 supersedes: fan-ecology
-related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 > **Renamed 2026-05-28 from "Fan Ecology".** Audience & Atmosphere
@@ -144,9 +144,12 @@ Events are surfaced as inbox cards with Accept / Decline / Defer actions.
 
 The six segments remain the source of truth for population, mood, volatility,
 attendance and economic outputs. For the AI narration MVP pillar, each club also
-generates a small named fan-group overlay:
+generates a small named fan-group overlay. FMX-54 constrains this overlay as
+fictional aggregate game state, not real supporter data:
 
-- `fan_group_id` and IP-clean generated name;
+- `fan_group_id` and IP-clean generated name under
+  [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] /
+  [[GD-0015-ip-clean-data]];
 - represented segment: Ultras, Core, Family, Fair Weather, Corporate or Casual;
 - identity: tradition, local pride, youth-first, anti-owner, results-first,
   style-first or community-first;
@@ -156,10 +159,22 @@ generates a small named fan-group overlay:
   delegation;
 - influence band and public visibility.
 
-Fan reps are People actors attached to those groups. They can appear in
-controlled dialogue scenes and media stories, but they do not own fan facts.
-Any mood, protest or attendance effect still comes from Fan Ecology rules and
-the selected deterministic intent, not from generated prose.
+Fan groups are fictional aggregates over one of the six segments. They are not
+real supporter organisations, real ultras groups, real social handles, real
+membership lists or imported private-person data. Group identity labels stay
+gameplay-bound and category-free; do not encode real-world political,
+religious, ethnic, health or comparable special-category traits.
+
+Fan reps are generated fictional People/Narrative actors attached to those
+groups. They can appear in controlled dialogue scenes and media stories, but
+they do not own fan facts and cannot be derived from real fans, photos, handles,
+community membership lists or private-person imports. Any mood, protest or
+attendance effect still comes from Audience & Atmosphere rules and the selected
+deterministic intent, not from generated prose.
+
+Storage rule: the overlay lives inside save/world state and follows the
+save/account deletion lifecycle. Backend analytics must not join fan-rep traits
+or supporter identity labels to the user account.
 
 ## 6. Rivalry-driven fan loading
 

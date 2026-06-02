@@ -1,12 +1,12 @@
 ---
 title: Community Editor and Dataset Override Packs
 status: draft
-tags: [game-design, editor, datasets, modding, community]
+tags: [game-design, editor, datasets, modding, community, privacy, gdpr, dsa, ip, naming, fmx-54]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-06-01
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[../60-Research/ip-and-licensing]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[../60-Research/ip-and-licensing]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 ---
 
 # Community Editor and Dataset Override Packs
@@ -127,12 +127,34 @@ The editor's input forms remind the user:
 This is consistent with [[../60-Research/ip-and-licensing]] §IP hard
 stops.
 
+FMX-54 adds privacy and persona-content validation to the same boundary:
+
+- Local imports should show an explicit IP/privacy warning before activation.
+- Schema validation should block or flag real private-person data, doxxing
+  content, real supporter membership lists, real social handles, real fan-group
+  names, real chants/slogans, real-person AI impersonation and
+  special-category-like fan fields.
+- Fan groups, fan reps, journalists, media outlets, sponsors and venues in packs
+  must satisfy the same ADR-0007/GD-0015 naming policy as shipped data.
+- The game must not treat imported fan-persona data as permission to profile
+  the player/user account.
+
 ## 9. Distribution
 
-Packs are *not* hosted by us. Users share them peer-to-peer (file upload,
-forums). The game supports local file import only - no built-in
-marketplace. This protects us from hosting potentially infringing
-material.
+Packs are *not* hosted by us at MVP. Users share them peer-to-peer (file
+upload, forums). The game supports local file import only - no built-in
+marketplace. This protects us from hosting potentially infringing material and
+keeps DSA/UGC platform operations out of the current scope.
+
+Hosted pack distribution, pack discovery or marketplace functionality is a
+future legal/product gate. Before that ships, the documentation must define:
+
+- DSA notice-and-action intake, complaint/appeal handling, moderation logs,
+  repeat-abuse policy, takedown and revocation workflow;
+- uploader/creator provenance metadata and retention;
+- AI-generated content transparency labels where applicable;
+- Privacy Notice, RoPA, DSAR/export and deletion handling for hosted UGC,
+  moderation data and uploader identities.
 
 ## 10. UI tiers
 

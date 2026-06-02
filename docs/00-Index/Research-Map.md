@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-01
 type: map
 binding: false
-related: [[Current-State]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]]
 ---
 
 # Research Map
@@ -356,6 +356,23 @@ before any promotion.
   in [[../30-Implementation/economy-calibration-and-soak-test-runbook]]; cross-linked from
   [[../50-Game-Design/economy-system]] §12.
 
+## Fan Persona Privacy and Creative IP-Safe Naming (2026-06-01)
+
+- [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]] —
+  FMX-54 synthesis for Audience & Atmosphere named fan groups/reps, persona
+  privacy, creative IP-safe social-world naming and Community Overlay import
+  boundaries. Locks the planning direction to local/P2P community packs for MVP,
+  fictional aggregate fan personas, and policy+test naming guardrails across fan
+  groups, reps, slogans/chants, media, sponsors, venues and community overlays.
+  Refines [[../50-Game-Design/audience-and-atmosphere]],
+  [[../50-Game-Design/GD-0015-ip-clean-data]],
+  [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]],
+  [[../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]],
+  [[../30-Implementation/privacy-and-consent]],
+  [[../60-Research/data-generators]],
+  [[../60-Research/ip-and-licensing]] and
+  [[../50-Game-Design/sponsorship-portfolio]].
+
 ## AI Narrative Runtime Integration (2026-05-27)
 
 - [[../60-Research/ai-narrative-runtime-integration]] — synthesized follow-up
@@ -468,6 +485,11 @@ before any promotion.
   testing; financial stress-testing & scenario/reverse-stress analysis; deterministic-sim
   testing techniques + attendance/fan-demand elasticity); promoted into
   [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]].
+- [[../60-Research/raw-perplexity/raw-fan-persona-privacy-and-naming-2026-06-01]] -
+  FMX-54 three-pass fan-persona privacy and naming research (GDPR boundary for
+  fictional fan groups/reps; IP-safe naming for fan/media/sponsor/venue
+  surfaces; Community Overlay DSA/AI/UGC future gate); promoted into
+  [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]].
 
 ## Research Rules
 
