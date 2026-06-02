@@ -3,10 +3,10 @@ title: GD-0009 League & Competition Structure
 status: draft
 tags: [game-design, gddr, league]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-06-02
 type: game-design
 binding: true
-related: [[README]], [[GD-0015-ip-clean-data]], [[GD-0010-ai-world]], [[../60-Research/ip-and-licensing]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+related: [[README]], [[GD-0015-ip-clean-data]], [[GD-0010-ai-world]], [[../60-Research/ip-and-licensing]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate]], [[../60-Research/competition-registry-sub-aggregate-2026-06-02]]
 ---
 
 # GD-0009: League & Competition Structure
@@ -51,6 +51,14 @@ with entirely fictional branding.
 - **R2-06 (high)** — continental/federation cup design without UEFA IP.
 - **R2-13 (medium)** — women's calendar offset; model must not preclude it.
 - **R2-14 (critical)** — `league`/`competition`/`fixture` schema patterns.
+  *SurrealDB **storage** patterns resolved (historical
+  [[../60-Research/surrealdb-schema-patterns]], now superseded by
+  [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]). The
+  **domain** competition/season registry schema is now **proposed** in
+  [[../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate]]
+  (FMX-79) — see the appendix below — pending Nico ratification of the four open
+  questions D1–D4. R2-06/R2-13 remain open and are reserved seams there, not
+  designed.*
 
 ## Rationale
 
@@ -75,6 +83,76 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] (fictional competition names)
 - [[../10-Architecture/09-Decisions/ADR-0004-data-model]] (league/competition/fixture schema)
+- [[../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate]] (proposed — Competition & Season registry domain schema, R2-14 / gap G1)
+
+## Appendix A — Competition & Season registry (architecture, FMX-79)
+
+> **Status: proposed** (not part of the binding *Decided / strong* block).
+> Canonical aggregate diagram for the Competition & Season registry sub-aggregate
+> cluster inside **League Orchestration**. The typed domain model and invariant
+> catalogue (I1–I9) are owned by
+> [[../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate]];
+> this appendix owns the diagram. Drawn under the recommended options (D1 = inside
+> League Orchestration; D2 = shared `CompetitionSeason` concept + distinct roots).
+> Cup + continental are reserved post-MVP seams (R2-06); women's calendar offset
+> (R2-13) is per-`Season` data, not a schema change.
+
+```mermaid
+classDiagram
+    class Competition {
+        +CompetitionId id
+        +CompetitionNameRef name
+        +CompetitionKind kind
+        +AssociationId association
+        +CompetitionFormat defaultFormat
+    }
+    class Season {
+        +SeasonId id
+        +string label
+        +CalendarWindow window
+        +Status status
+    }
+    class LeagueCompetitionSeason {
+        +CompetitionSeasonId id
+        +CompetitionId competitionId
+        +SeasonId seasonId
+        +LeagueTier tier
+        +CompetitionFormat format
+        +Participant[] participants
+    }
+    class CupCompetitionSeason {
+        <<reserved post-MVP>>
+        +CompetitionSeasonId id
+        +Participant[] participants
+        +SeedingValue seeding
+    }
+    class PyramidConfiguration {
+        +PyramidId id
+        +TierConfiguration[] tiers
+    }
+    class Participant {
+        +ParticipantId id
+        +ClubId clubId
+        +SeedingValue seeding
+    }
+    class Club {
+        <<Club Management BC>>
+        +ClubId id
+    }
+
+    Competition "1" --> "0..*" LeagueCompetitionSeason : has editions
+    Season "1" --> "0..*" LeagueCompetitionSeason : groups
+    Season "1" --> "0..*" CupCompetitionSeason : groups (reserved)
+    LeagueCompetitionSeason "1" *-- "2..*" Participant : registers
+    CupCompetitionSeason "1" *-- "2..*" Participant : registers (reserved)
+    Participant "0..*" --> "1" Club : references by ClubId
+    PyramidConfiguration "1" --> "1..*" Competition : ranks into tiers
+```
+
+The arrow from `Participant` to `Club` is a **cross-context reference by
+`ClubId`** (Club Management owns the Club aggregate); the registry never owns or
+mutates clubs, which is what lets one club appear in a league edition + N cup
+editions in the same season without ownership conflict (invariant I3).
 
 ## Related
 
