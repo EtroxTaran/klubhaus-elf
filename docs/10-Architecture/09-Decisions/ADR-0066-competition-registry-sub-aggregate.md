@@ -1,11 +1,12 @@
 ---
 title: ADR-0066 Competition & Season Registry sub-aggregate (League Orchestration)
-status: proposed
+status: accepted
 tags: [adr, architecture, ddd, league, competition, season, fixture, registry, pyramid, gap-g1, fmx-79]
 created: 2026-06-02
 updated: 2026-06-02
+accepted_at: 2026-06-02
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -31,18 +32,20 @@ related:
 
 ## Status
 
-proposed
+accepted
 
-> **Proposed — not self-accepted.** This ADR closes the structural shape of the
-> single **critical** audit gap **G1** (R2-14, `prio:critical`). It carries four
-> **open questions for Nico** (§Open questions) as option sets, each with a
-> recommendation. A separate apply-PR ratifies (flips status, applies the
-> bounded-context-map / GD-0009 hunks) per the FMX-24 / ask-first gate. Until then
-> `binding: false`.
+> **Ratified by Nico 2026-06-02.** All four open questions resolved on the
+> recommended options: **D1 = A** (sub-aggregate cluster inside League
+> Orchestration), **D2 = A** (shared `CompetitionSeason` concept + distinct
+> aggregate roots per format family), **D3 = A** (sibling editions under one
+> Season), **D4 = A** (pyramid depth >1 in schema, single-tier data at MVP). The
+> bounded-context-map League Orchestration row is amended in this PR; the GD-0009
+> appendix is promoted to accepted. Cup seeding remains reserved for R2-06.
 
 ## Date
 
 - Proposed: 2026-06-02
+- Accepted (Nico): 2026-06-02
 
 ## Context
 
@@ -79,13 +82,15 @@ this ADR is persistence-agnostic and Zod-describable, mapping cleanly onto
 ADR-0027 (cross-context refs = opaque branded UUIDv7 columns; embedded VOs =
 `jsonb`).
 
-## Open questions for Nico (HITL — not yet answered)
+## Decisions ratified (Nico, 2026-06-02)
 
-Unlike most context ADRs in this wave, the shaping questions here are **open**;
-the proposal carries each as an option set with a recommendation and does **not**
-self-decide. Map/GD-0009 hunks are drafted against the recommended options.
+The four shaping questions were put to Nico live and **all resolved on the
+recommended option (A)**: D1 = inside League Orchestration; D2 = shared
+`CompetitionSeason` concept + distinct aggregate roots; D3 = sibling editions
+under one Season; D4 = pyramid depth >1 in schema with single-tier MVP data. The
+options are retained below for the decision record.
 
-1. **D1 — Bounded-context placement.** **[rec. A]** Competition & Season registry
+1. **D1 — Bounded-context placement.** **[ratified: A]** Competition & Season registry
    as a **sub-aggregate cluster inside League Orchestration** (matches map L37;
    keeps clock + structure together; honours existing published-language
    promises) — vs B. a new "Competition & Fixtures" bounded context (orphans the
@@ -252,18 +257,16 @@ or examples.
 
 - Cup family is specified but unbuilt; the `CupCompetitionSeason` reserved seam
   must be honoured when R2-06 opens (a future ADR, not silent extension).
-- Four open decisions (D1–D4) gate ratification; the apply-PR cannot land until
-  Nico answers. The model is drafted against the recommended options.
 - Seeding (R2-06) is intentionally undesigned; the `SeedingValue` seam must not be
   treated as a complete cup-seeding contract.
 
 ## HITL gate
 
-This ADR is `proposed` / `binding: false`. The bounded-context-map and GD-0009
-hunks are **drafted against the recommended options** but applied only by a
-separate ratification PR after Nico answers D1–D4 (ask-first gate;
-`needs:nico-decision`). If Nico picks any non-recommended option, the typed model
-above is revised before apply. `bounded-context-map.md` is **not edited** in this
-PR (ratify gate) — the registry refines the existing League Orchestration row
-rather than adding a context, so the apply-PR will amend that row in place once
-D1–D4 are answered.
+This ADR is now `accepted` / `binding: true` — Nico ratified D1–D4 (all option A)
+live on 2026-06-02. The bounded-context-map League Orchestration row amendment and
+the GD-0009 appendix promotion are applied **in this PR**. The original gate text
+follows for the record: the map and GD-0009 hunks were **drafted against the
+recommended options** and applied only after Nico answered D1–D4 (ask-first gate;
+`needs:nico-decision`). The registry refines the existing League Orchestration row
+rather than adding a context, so the amendment edits that row in place. Merge
+remains Nico's (PR #119).
