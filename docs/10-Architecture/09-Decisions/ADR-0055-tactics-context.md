@@ -484,12 +484,11 @@ None
   deterministic set-piece variant-selection rule + `TacticSnapshot` set-piece
   fields (see appendix).
 
-## Appendix: `TacticSnapshot` set-piece selection fields (proposed, FMX-70)
+## Appendix: `TacticSnapshot` set-piece selection fields (accepted, FMX-70)
 
-> **Status: proposed** (not part of the accepted decision above). Canonical spec
-> + invariants + open questions in
-> [[ADR-0067-set-piece-variant-selection-determinism]]; a ratification PR folds
-> this in once Nico answers ADR-0067's D1–D3.
+> **Status: accepted** (ratified Nico 2026-06-02; an amendment to this ADR).
+> Canonical spec + invariants + the ratified decisions (D1–D3 = option A) in
+> [[ADR-0067-set-piece-variant-selection-determinism]].
 
 ADR-0055 establishes that Match consumes a frozen `TacticSnapshot` at
 `lineup_locked` with set-piece variants inside, but does not pin the *fields* the

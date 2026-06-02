@@ -1,11 +1,12 @@
 ---
 title: ADR-0067 Set-piece variant selection determinism
-status: proposed
+status: accepted
 tags: [adr, architecture, match-engine, determinism, set-pieces, tactics, rng, replay, gap-g9, fmx-70]
 created: 2026-06-02
 updated: 2026-06-02
+accepted_at: 2026-06-02
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -26,20 +27,19 @@ related:
 
 ## Status
 
-proposed
+accepted
 
-> **Proposed — not self-accepted.** Closes audit gap **G9** (set-piece variant
-> selection determinism, `weak-domain`/`unclear-invariants`). Carries three
-> **open questions for Nico** (§Open questions) as option sets with
-> recommendations. This ADR is the **single canonical spec**; the proposed
-> amendments to the accepted/binding ADR-0026 and ADR-0055 are recorded as
-> clearly-marked `proposed` appendices in those files and applied in full only by
-> a ratification PR (ratify gate; `needs:nico-decision`). Until then
-> `binding: false`.
+> **Ratified by Nico 2026-06-02.** All three open questions resolved on the
+> recommended options: **D1 = A** (priority default + per-module opt-in
+> `seeded-mix`), **D2 = A** (`deadBallIndex` derived from the event log, no
+> persisted counter), **D3 = A** (own `setpiece:*` sub-label under
+> `MatchCoreRng`). Closes audit gap **G9**. The appendices in accepted ADR-0026
+> and ADR-0055 and the GD-0002 section are promoted to accepted in the same PR.
 
 ## Date
 
 - Proposed: 2026-06-02
+- Accepted (Nico): 2026-06-02
 
 ## Context
 
@@ -81,7 +81,7 @@ self-decide:
    sub-label under `MatchCoreRng(matchId)` — vs B. reuse the generic match-event
    sub-label.
 
-## Decision (proposed, under recommended options)
+## Decision (ratified — Nico 2026-06-02, D1–D3 all option A)
 
 ### 1. Selection is a pure function (the core invariant)
 
@@ -220,9 +220,10 @@ Extends the ADR-0026 golden-replay → deterministic-frame-sequence suite:
 
 ## HITL gate
 
-`proposed` / `binding: false`. The amendments to **ADR-0026** (determinism
-contract) and **ADR-0055** (`TacticSnapshot` fields) are recorded as
-clearly-marked `proposed` appendices in those binding ADRs and the worked example
-lands in **GD-0002** (draft); none of the accepted decisions are altered in place.
-A ratification PR folds the appendices into the contracts once Nico answers
-D1–D3. If a non-recommended option is chosen, §Decision is revised before apply.
+`accepted` / `binding: true` — Nico ratified D1–D3 (all option A) live on
+2026-06-02. The amendments to **ADR-0026** (determinism contract) and **ADR-0055**
+(`TacticSnapshot` fields) are promoted from `proposed` to accepted appendices, and
+the **GD-0002** worked-example section likewise, in this same PR. The accepted
+ten rules of ADR-0026 and the accepted ADR-0055 decision are not altered in place;
+the appendices add to them. Merge of the docs PR is via the standard auto-merge
+(ADR-0044).

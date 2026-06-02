@@ -92,7 +92,7 @@ on set_piece_event(type):
 
 `.select(context)` is a **deterministic, replay-safe pure function** pinned by
 [[../10-Architecture/09-Decisions/ADR-0067-set-piece-variant-selection-determinism]]
-(proposed, FMX-70): eligible variants are filtered by `Trigger`, ordered
+(accepted 2026-06-02, FMX-70): eligible variants are filtered by `Trigger`, ordered
 `(priority DESC, variantId ASC)`, and chosen by the module's `selectionMode`
 (`priority` default, or opt-in `seeded-mix` drawing from `MatchCoreRng` sub-label
 `setpiece:<side>:<type>:<deadBallIndex>`). No hidden engine state; identical on

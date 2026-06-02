@@ -82,9 +82,9 @@ Negative / constraints:
 - Requires statistical validation, not only unit tests.
 - Runtime-LLM ticker remains cosmetic and cannot influence gameplay.
 
-## Set-piece variant selection determinism (proposed, FMX-70)
+## Set-piece variant selection determinism (accepted, FMX-70)
 
-> **Status: proposed** — pins the previously-undefined `set-pieces.md` §7
+> **Status: accepted** (ratified Nico 2026-06-02) — pins the previously-undefined `set-pieces.md` §7
 > `variant = …select(context)` seam (audit gap G9). Canonical spec + invariants +
 > open questions: [[../10-Architecture/09-Decisions/ADR-0067-set-piece-variant-selection-determinism]];
 > determinism-contract amendment in

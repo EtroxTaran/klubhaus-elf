@@ -252,13 +252,12 @@ None.
 - [[ADR-0067-set-piece-variant-selection-determinism]] (proposed — extends the
   determinism boundary to set-piece variant selection; see appendix)
 
-## Appendix: Set-piece variant selection determinism (proposed, FMX-70)
+## Appendix: Set-piece variant selection determinism (accepted, FMX-70)
 
-> **Status: proposed** (not part of the accepted ten rules above). Recorded here
-> so the determinism contract is discoverable; the canonical spec, invariants and
-> open questions live in
-> [[ADR-0067-set-piece-variant-selection-determinism]]. A ratification PR folds
-> this into the contract once Nico answers ADR-0067's D1–D3.
+> **Status: accepted** (ratified Nico 2026-06-02; an amendment to this ADR, not a
+> change to the accepted ten rules above). The canonical spec, invariants and the
+> ratified decisions (D1–D3 = option A) live in
+> [[ADR-0067-set-piece-variant-selection-determinism]].
 
 The ten rules pin the engine→renderer projection seam but leave one engine-side
 determinism seam unspecified: when multiple authored set-piece variants satisfy
