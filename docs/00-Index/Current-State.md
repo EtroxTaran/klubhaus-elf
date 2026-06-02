@@ -33,6 +33,29 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > not ratified — no technology, gameplay or architecture decision is made without
 > Nico (2–3 sourced options + recommendation).
 
+> **Domain-model audit & next-wave backlog (2026-06-02).** With all 55 prior FMX
+> issues Done and no open backlog, a read-only multi-agent DDD + gameplay
+> documentation audit mapped the vault's completeness and staged the next wave.
+> Result in [[../60-Research/domain-model-audit-and-backlog-2026-06-02]]: the
+> 19-context model is healthy; the proposed **target model** keeps all 19 ratified,
+> recommends ratifying the 5 proposed contexts (People ADR-0052, Narrative
+> ADR-0054, Youth Academy ADR-0060, Community Overlay ADR-0059, Scouting ADR-0064)
+> and adding 3 net-new (Competition & Fixtures = own BC, Discipline = Match
+> sub-aggregate, Loan Lifecycle = Transfer saga). A 26-entry **gap register**
+> (1 critical — G1 Competition & Fixtures registry/scheduling; 13 high) plus
+> 9 vault-design deltas are recorded. Top Nico-gated decisions: (1) Community
+> Overlay ratify-or-rearchitect (clears binding debt in accepted ADR-0056/0057),
+> (2) Competition & Fixtures ownership, (3) People + Narrative + the LLM legal
+> gate. Backlog staged in Linear FMX as epics **FMX-56..FMX-65** with 37 children
+> **FMX-66..FMX-102** (+dependency links). All items are `draft` proposals pending
+> the ask-first gate; no ADR/GDDR/map was edited.
+> A **platform-tier follow-up audit** (same day) closed the original lane-11 gap
+> (Identity / Offline Sync / Audit & Security / Save / IP): 16 confirmed + 19
+> reframed gaps, staged as new epic **E10 / FMX-103** with 14 children
+> **FMX-104..FMX-117**. It surfaced three live contradictions in `status:current`
+> binding docs — SurrealDB-vs-Postgres drift, two disagreeing threat-models, and
+> orphaned save-integrity intent — to resolve before multiplayer/security build-out.
+
 > **FMX-55 Agent claim status rule (2026-06-02).** Operational update:
 > claimable Linear issues are now `Backlog` or `Todo`; an agent's first visible
 > action after verifying no active branch/PR/worktree already owns the issue is
