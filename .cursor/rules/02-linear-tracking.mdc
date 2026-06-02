@@ -13,8 +13,10 @@ alwaysApply: true
   Requirements / Acceptance; mandatory one `type:` + one `area:` label; link the
   canonical vault note. Agents create only in `Backlog`, search for duplicates
   first, max 3 new issues/session, and never change labels/states.
-- Status moves by agents: `Todo → In Progress → In Review`, or `→ Blocked` (with a
-  comment). **Never** move to `Done`/`Canceled` — Nico only.
+- Status moves by agents: claim `Backlog` or `Todo` by immediately moving the
+  issue to `In Progress` after verifying no active branch/PR/worktree already owns
+  it; then `In Progress → In Review`, or `→ Blocked` (with a comment). **Never**
+  move to `Done`/`Canceled` — Nico only.
 - Branch carries the Linear ID: `feat/fmx-<n>-<slug>` (human),
   `claude|codex|cursor/fmx-<n>-<slug>` (agent). PR title `[FMX-<n>] …`; PR body
   first line `Closes FMX-<n>` (docs/non-closing: `Part of FMX-<n>`).

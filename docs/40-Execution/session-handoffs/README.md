@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-01
+updated: 2026-06-02
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-02-fmx-55-agent-claim-status-rule]] - FMX-55 operational workflow
+  update: claimable Linear issues are `Backlog` or `Todo`; an agent's first
+  visible action is now to verify no active branch/PR/worktree owns the issue and
+  move it to `In Progress` before branch/worktree or file edits. PR-open
+  automation remains fallback/reinforcement; agents still never move issues to
+  `Done` or `Canceled`.
 - [[2026-06-01-fmx-54-fan-privacy-naming]] - FMX-54 fan persona privacy and
   creative IP-safe naming review: fan groups and fan reps stay fictional
   aggregate/narrative actors; no real fans, handles, membership lists,
