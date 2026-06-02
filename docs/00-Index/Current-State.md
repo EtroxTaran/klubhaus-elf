@@ -412,6 +412,38 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > concentration window/threshold and whether FMX-53 country profiles get promoted to a
 > draft ADR remain Nico-gated decisions.
 
+> **FMX-27 Scouting Activity ownership (2026-06-02).** Nico picked the next
+> bounded-context-gap ticket (FMX-24 wave) after the economy wave closed: decide
+> who owns scout *activity* — assignments, the scout-report lifecycle
+> (file → knowledge% → age → stale → refresh), network coverage tiers,
+> long-list/short-list and hidden-flag surfacing — given ADR-0052 already owns the
+> Chief-Scout *identity* in People. Draft
+> [[../60-Research/scouting-activity-bounded-context-2026-06-02]],
+> [[../60-Research/raw-perplexity/raw-scouting-activity-bounded-context-2026-06-02]]
+> and new proposed
+> [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]] capture
+> the recommendation **Option C — Scouting as its own (20th) bounded context**:
+> People supplies scout identity by query, Scouting owns activity, and Transfer /
+> Squad & Player / Youth Academy / Notification consume published read models +
+> events. Only Option C respects the binding Impact-Lens boundary rule
+> (`bounded-context-map.md` §3.1 — no cross-context table join); DDD split-criteria
+> fire six-of-six (genre FM/EA/Anstoss/OOTP + DDD CRM-Lead-vs-Opportunity /
+> ATS-vs-HR-Core + real-world hybrid scouting networks). Nico confirmed the four
+> shaping decisions 2026-06-02: ownership = **C**; opposition/match-prep scouting =
+> **recruitment-only + reserved `OppositionScoutingRequested` hook**; youth
+> boundary = **Scouting discovers → Youth Academy intakes**
+> (`ExternalYouthProspectIdentified`); hidden flags = **Scouting gates the
+> confidence-based reveal, People/Squad keep the truth**. Public contract drafted
+> (`AssignScoutToRegion`, `ScoutReportFiled`, `ScoutReportBecameStale`,
+> `LongListUpdated`, `HiddenFlagSurfaced`, `CandidateIdentifiedForRecruitment`,
+> `ExternalYouthProspectIdentified`). Refines draft
+> [[../50-Game-Design/scouting-and-recruitment]] (new §0 Activity-ownership);
+> map-patch proposal attached to ADR-0064 (the 19→20 context bump);
+> `bounded-context-map.md` itself **not** edited (ratify gate). ADR-0064 stays
+> `proposed` / `binding: false`. Formal ratification + map-apply, FSM-library
+> selection (XState v5 candidate), opposition-scouting full model and
+> scouting-budget granularity remain Nico-gated / future-scope.
+
 > **FMX-16 Manager-Archetype Roguelite progression (2026-05-27).** Nico directed
 > that the manager-archetype report should be anchored as MVP-relevant hooks, not
 > as a full MVP perk/legacy system. Draft

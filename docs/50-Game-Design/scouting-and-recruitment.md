@@ -3,10 +3,10 @@ title: Scouting and Recruitment - Funnel, Scout Attributes, Market Dynamics
 status: draft
 tags: [game-design, scouting, recruitment, transfers]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-06-02
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/player-strength-presentation]], [[squad-and-club-structure]], [[tactics-system]], [[transfer-market-and-contracts]], [[transfer-negotiations-p2p]]
+related: [[README]], [[../60-Research/player-strength-presentation]], [[squad-and-club-structure]], [[tactics-system]], [[transfer-market-and-contracts]], [[transfer-negotiations-p2p]], [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../60-Research/scouting-activity-bounded-context-2026-06-02]]
 ---
 
 # Scouting and Recruitment - Funnel, Scout Attributes, Market Dynamics
@@ -14,6 +14,50 @@ related: [[README]], [[../60-Research/player-strength-presentation]], [[squad-an
 Recruitment is a seven-step funnel. Each step has a cost, an information
 quality and a different kind of failure mode. The single biggest gameplay
 choice is *where to spend scouting effort* given a finite budget.
+
+## 0. Activity ownership (FMX-27 / ADR-0064 — proposed)
+
+> Proposed in draft [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]]
+> (decision basis [[../60-Research/scouting-activity-bounded-context-2026-06-02]]).
+> Shaping decisions confirmed by Nico 2026-06-02; the ADR itself stays
+> `proposed` until ratified. This section pins *who owns what*, not new mechanics.
+
+The mechanics in this note are owned across a clear producer→consumer chain:
+
+- **People context** ([[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]],
+  draft) owns the **scout / data-analyst as a Person** — identity, persona, the
+  six scout attributes (§2) as a skill profile. Scouting references the scout by
+  `ActorRef` and queries skill values; it never owns scout identity.
+- **Staff Operations** (ADR-0053) owns scout **hire / fire / contract / wage**;
+  Scouting consumes the active-scout roster.
+- A proposed **Scouting** bounded context owns scout **activity**: assignments
+  (region / league / club / player routing + expiry), the scout-report lifecycle
+  (file → knowledge% accumulation → age → stale → refresh, §3), network
+  **coverage** tiers (§5), the persistent **long-list / short-list** (§6), and
+  the **hidden-flag reveal** (§7).
+- **Transfer** ([[GD-0006-transfers]]) consumes scouting output — it gets
+  `CandidateIdentifiedForRecruitment` to open an opportunity and scout-report
+  confidence to narrow valuation bands (§3.1 + §4). Scouting feeds, but does not
+  run, negotiation.
+- **Squad & Player** consumes `ScoutReportFiled` as an Impact-Lens input
+  (per `bounded-context-map.md` §3.1 — published events, never a table join).
+- **Youth Academy** (ADR-0060, proposed) consumes
+  `ExternalYouthProspectIdentified`: **Scouting discovers** external prospects of
+  any age up to the academy gate; **Youth Academy intakes** them (intake / cohort
+  lifecycle is Youth Academy's, not Scouting's).
+- **Notification** renders report-filed / new-target inbox items.
+
+Two scope rulings from the same decision:
+
+- **Hidden flags** (§7): Scouting owns only the **confidence-gated reveal** (a
+  flag becomes visible once knowledge% crosses its threshold). The flag *truth*
+  stays in People (personality / professionalism / adaptability / ambition) and
+  Squad & Player (injury-proneness) — Scouting never becomes a second source of
+  truth.
+- **Opposition / match-prep scouting** is **out of scope for MVP**: this note
+  covers **recruitment scouting** only. A reserved `OppositionScoutingRequested`
+  hook is held for a later ticket; opposition analysis stays with Tactics / Match
+  where it is consumed (mirrors FM's recruitment-scout vs match-analyst split).
 
 ## 1. Seven-step recruitment funnel
 
