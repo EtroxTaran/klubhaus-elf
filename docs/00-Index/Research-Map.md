@@ -411,6 +411,21 @@ before any promotion.
   [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   and [[../30-Implementation/ai-narration-contract-testing-framework]].
 
+## Narrative Media and Press Content Ownership (2026-06-02)
+
+- [[../60-Research/narrative-content-bounded-context-2026-06-02]] — FMX-31
+  synthesis for Press/Media content authoring ownership after ADR-0052 People
+  and ADR-0054 Narrative. Recommends extending **Narrative** with
+  `PressStorylet`, `ConferenceResponseTree`, `PressArticle`, `ToneProfileLibrary`,
+  `PressPublicationPolicy`, deterministic ICU fallback templates, content
+  validation, provenance and optional schema-validated LLM paraphrase controls.
+  Notification remains delivery/inbox/provider owner, People supplies
+  `PersonaContextCard` / `DialogueContextCard`, and owning domains keep
+  authoritative state. Feeds proposed
+  [[../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]]
+  and raw
+  [[../60-Research/raw-perplexity/raw-narrative-content-bounded-context-2026-06-02]].
+
 ## EOS Player, Staff, Skills and Personas (2026-05-28)
 
 - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]] — FMX-23
