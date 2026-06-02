@@ -3,7 +3,7 @@ title: Linear Task Tracking & GitHub Integration
 status: current
 tags: [meta, implementation, linear, github, tracking]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-06-02
 type: implementation
 binding: true
 related: [[../90-Meta/collaboration-and-decision-protocol]], [[agent-workflow-pattern]], [[../90-Meta/vault-governance]], [[../00-Index/Current-State]], [[../00-Index/Decision-Log]], [[../10-Architecture/bounded-context-map]], [[../90-Meta/mcp-memory-integration]]
@@ -42,9 +42,13 @@ every issue.
 ## Workflow states
 
 `Backlog` → `Todo` → `In Progress` → `In Review` → `Done`; `Blocked` when stuck;
-`Canceled`. `Blocked` is a **state, not a label**. Agents move only
-`Todo → In Progress → In Review`, or `→ Blocked` with a comment; **never** to
-`Done`/`Canceled` (Nico only).
+`Canceled`. `Blocked` is a **state, not a label**.
+
+Agents may claim only issues in `Backlog` or `Todo`. Claiming means: verify that
+no active branch, PR, or worktree already owns the issue, then move Linear to
+`In Progress` as the **first visible action** before creating a branch/worktree
+or editing files. Agents may then move `In Progress → In Review`, or
+`→ Blocked` with a comment; **never** to `Done`/`Canceled` (Nico only).
 
 ## Issue conventions
 
@@ -55,7 +59,9 @@ every issue.
   `type:` + one `area:` label.
 - **Agents:** create issues only in `Backlog` (type+area required); search for a
   duplicate first (idempotent); **max 3 new issues per session**; never change the
-  schema (labels/states). Decompose with sub-issues; order with blocking relations.
+  schema (labels/states). Creating and immediately working an issue is two steps:
+  create it in `Backlog`, then claim it by moving `Backlog → In Progress`.
+  Decompose with sub-issues; order with blocking relations.
 
 ## GitHub integration & traceability
 
@@ -66,8 +72,10 @@ The Linear issue ID in the **branch name** is the auto-link key.
 - **PR title:** `[FMX-<n>] …`. **PR body first line:** `Closes FMX-<n>` — **1 PR ↔
   1 issue**, merge auto-closes it (`Part of FMX-<n>` only when one issue truly needs
   several PRs).
-- **Team automations:** PR opened → `In Progress`; PR merged → `Done`. (Merge is
-  Nico's action, so the human-only `Done` rule is preserved.)
+- **Team automations:** PR opened → `In Progress` remains a fallback/reinforcement;
+  PR merged → `Done`. Agent claim status must happen earlier than PR creation, so
+  agents still move `Backlog|Todo → In Progress` explicitly through Linear MCP.
+  Merge is Nico's action, so the human-only `Done` rule is preserved.
 - **Merge:** **auto-merge-when-green** (ADR-0044) — squash to `main`, branch-protected
   (PR required, no force-push/deletion, linear history). Docs/low-risk: green required
   checks (`docs-check` + `linear-id`) → merges, **no review, no manual Nico-merge**.
@@ -104,7 +112,9 @@ commit ⇄ PR auto-link is confirmed working.
 3. **Linear → Settings → Integrations → GitHub:** install the app (org level),
    grant `EtroxTaran/football-manager-x`, enable **PR linking**, set
    **Branch format = identifier-title**, add automations *PR opened → In Progress*
-   and *PR merged → Done*. Leave **GitHub Sync off**.
+   and *PR merged → Done*. If personal/account git automation is enabled, branch
+   creation may also assign and move issues forward for human users; agents still
+   use the explicit Linear-MCP claim rule. Leave **GitHub Sync off**.
 4. **GitHub (later, optional):** add required status checks to the `main`
    protection once CI returns, and decide whether to require ≥1 review (left off
    now — solo merger). Squash-only + base branch protection are already applied.

@@ -36,8 +36,12 @@ It exists to make seven principles inescapable rather than scattered:
 
 Every beat follows this cycle. Do not skip a step; do not reorder.
 
-1. **Pick** one small beat from Linear (team FMX) and work it in its **own git
-   worktree + branch** `‹tool›/fmx-‹n›-slug` — one issue ↔ one worktree ↔ one branch
+1. **Pick + claim** one small beat from Linear (team FMX). Claimable states are
+   `Backlog` and `Todo` only. Before claiming, check that no active branch, PR or
+   worktree already owns the issue; if it does, stop and pick another beat unless
+   Nico explicitly redirects you. Claim by moving Linear to `In Progress` as the
+   first visible action, then work it in its **own git worktree + branch**
+   `‹tool›/fmx-‹n›-slug` — one issue ↔ one worktree ↔ one branch
    ([[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow|ADR-0045]]).
    **No work without an issue**; the only exception is an explicit Nico override.
 2. **Confirm understanding.** Re-state the beat's intent and acceptance
