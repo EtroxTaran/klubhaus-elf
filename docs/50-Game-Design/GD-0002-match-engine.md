@@ -3,7 +3,7 @@ title: GD-0002 Match Engine & Simulation Model
 status: draft
 tags: [game-design, gddr, match-engine, spatial-event]
 created: 2026-05-17
-updated: 2026-05-27
+updated: 2026-06-02
 type: game-design
 binding: false
 related: [[README]], [[match-engine]], [[GD-0004-tactics]], [[GD-0010-ai-world]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../60-Research/anstoss-series-deep-dive]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/modules/match-engine]]
@@ -82,6 +82,45 @@ Negative / constraints:
 - Requires statistical validation, not only unit tests.
 - Runtime-LLM ticker remains cosmetic and cannot influence gameplay.
 
+## Set-piece variant selection determinism (proposed, FMX-70)
+
+> **Status: proposed** — pins the previously-undefined `set-pieces.md` §7
+> `variant = …select(context)` seam (audit gap G9). Canonical spec + invariants +
+> open questions: [[../10-Architecture/09-Decisions/ADR-0067-set-piece-variant-selection-determinism]];
+> determinism-contract amendment in
+> [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]];
+> `TacticSnapshot` fields in
+> [[../10-Architecture/09-Decisions/ADR-0055-tactics-context]].
+
+When multiple authored set-piece variants satisfy their triggers at a dead-ball,
+the engine selects one by a **pure function** of the frozen `TacticSnapshot`, the
+dead-ball context, a derived `deadBallIndex`, and (only in `seeded-mix` mode) a
+seeded draw — never hidden state. Algorithm: filter eligible variants by trigger
+→ sort `(priority DESC, variantId ASC)` → `priority` mode picks the top;
+`seeded-mix` mode picks a seeded index over the eligible set.
+
+**Worked example — offensive corner, `deadBallIndex = 3`, two eligible variants:**
+
+```text
+Snapshot module 'offensive-corner':
+  selectionMode = 'priority'              # the casual default
+  variants (after trigger filter, both eligible at this dead-ball):
+    { variantId: "far-post",  priority: 80 }
+    { variantId: "short",     priority: 80 }   # tie on priority
+  ordered by (priority DESC, variantId ASC) → ["far-post", "short"]
+  → priority mode selects ordered[0] = "far-post"   # tie broken by variantId
+
+Same module, but selectionMode = 'seeded-mix':
+  seed = splitmix64(matchSeed ^ H("SETPIECE_VARIANT") ^ HOME ^ OFF_CORNER ^ 3)
+  i    = Rng(seed).uniformInt(0, 1)        # over ["far-post", "short"]
+  → selects ordered[i]   # reproducible on every replay from (matchSeed, side, type, deadBallIndex)
+```
+
+`deadBallIndex` (= prior offensive corners for this side since kickoff) is
+recovered by folding the event log forward during resim — no stored counter. The
+result is identical on every replay of the same seed, so a corner that scores in
+one viewing scores in every replay.
+
 ## Supersedes
 
 None
@@ -91,6 +130,7 @@ None
 - [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
 - [[../10-Architecture/09-Decisions/ADR-0003-match-engine]] (historical planning target)
 - [[../10-Architecture/09-Decisions/ADR-0005-save-format]] (replay/determinism)
+- [[../10-Architecture/09-Decisions/ADR-0067-set-piece-variant-selection-determinism]] (proposed — set-piece selection determinism, G9)
 
 ## Related
 

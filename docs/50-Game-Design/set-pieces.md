@@ -85,10 +85,18 @@ The match engine treats every set piece as an isolated mini-scene:
 
 ```text
 on set_piece_event(type):
-  variant = tactic.set_pieces[type].select(context)
+  variant = tactic.set_pieces[type].select(context)   # deterministic — see ADR-0067
   outcome = resolve_attribute_math(variant, takers, markers, atmosphere)
   emit_event(outcome)
 ```
+
+`.select(context)` is a **deterministic, replay-safe pure function** pinned by
+[[../10-Architecture/09-Decisions/ADR-0067-set-piece-variant-selection-determinism]]
+(proposed, FMX-70): eligible variants are filtered by `Trigger`, ordered
+`(priority DESC, variantId ASC)`, and chosen by the module's `selectionMode`
+(`priority` default, or opt-in `seeded-mix` drawing from `MatchCoreRng` sub-label
+`setpiece:<side>:<type>:<deadBallIndex>`). No hidden engine state; identical on
+every replay of the same seed.
 
 Set-piece outcomes are tracked separately in match statistics so the
 player can analyse efficiency.

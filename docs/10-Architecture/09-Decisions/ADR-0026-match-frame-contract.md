@@ -3,7 +3,7 @@ title: ADR-0026 Match Frame Contract
 status: draft
 tags: [adr, architecture, match-engine, match-view, contract, determinism]
 created: 2026-05-19
-updated: 2026-05-27
+updated: 2026-06-02
 accepted_at: 2026-05-19
 type: adr
 binding: true
@@ -249,3 +249,35 @@ None.
   [[ADR-0022-animation-game-feel]] · [[ADR-0021-revised-tech-stack]]
 - [[../../60-Research/determinism-and-replay]] ·
   [[../../60-Research/match-engine-simulation-model]]
+- [[ADR-0067-set-piece-variant-selection-determinism]] (proposed — extends the
+  determinism boundary to set-piece variant selection; see appendix)
+
+## Appendix: Set-piece variant selection determinism (proposed, FMX-70)
+
+> **Status: proposed** (not part of the accepted ten rules above). Recorded here
+> so the determinism contract is discoverable; the canonical spec, invariants and
+> open questions live in
+> [[ADR-0067-set-piece-variant-selection-determinism]]. A ratification PR folds
+> this into the contract once Nico answers ADR-0067's D1–D3.
+
+The ten rules pin the engine→renderer projection seam but leave one engine-side
+determinism seam unspecified: when multiple authored set-piece variants satisfy
+their triggers at a dead-ball, which one the engine selects (`set-pieces.md` §7
+`.select(context)`, audit gap G9). ADR-0067 closes it consistently with this
+ADR's model:
+
+- Variant selection is a **pure function** of `(frozen TacticSnapshot module,
+  dead-ball context, derived `deadBallIndex`, optional seeded draw)` — no
+  persisted intermediate state (rule 4 / rule 8 preserved).
+- `deadBallIndex` is **derived by folding the event log from kickoff** (the same
+  resim-from-kickoff fold as `MatchWorldStateTracker`); no stored counter.
+- Any randomness (the optional `seeded-mix` mode) draws **only** from
+  `MatchCoreRng(matchId)` under sub-label
+  `setpiece:<side>:<type>:<deadBallIndex>` (ADR-0018 §3) — never a new stream.
+- Golden-replay byte-stability (this ADR's Verification) extends to the selected
+  variant sequence.
+
+Cross-references: [[../../50-Game-Design/GD-0002-match-engine]] (worked example),
+[[../../50-Game-Design/set-pieces]] (§7 hook), [[ADR-0055-tactics-context]]
+(`TacticSnapshot` set-piece fields), [[ADR-0018-systemic-events-and-player-lifecycle]]
+(RNG sub-labels).
