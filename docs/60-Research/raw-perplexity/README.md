@@ -1,12 +1,12 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, fmx-52, fmx-54]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, narrative, media, press, fmx-31, fmx-52, fmx-54]
 created: 2026-05-16
-updated: 2026-06-01
+updated: 2026-06-02
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]], [[../matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../catering-and-merchandise-operations-2026-06-01]], [[../investor-compliance-and-entitlement-boundary-2026-06-01]], [[../fan-service-campaign-catalog-and-effects-2026-06-01]], [[../club-financing-tools-2026-06-01]], [[../economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../fan-persona-privacy-and-naming-2026-06-01]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../narrative-content-bounded-context-2026-06-02]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]], [[../matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../catering-and-merchandise-operations-2026-06-01]], [[../investor-compliance-and-entitlement-boundary-2026-06-01]], [[../fan-service-campaign-catalog-and-effects-2026-06-01]], [[../club-financing-tools-2026-06-01]], [[../economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../fan-persona-privacy-and-naming-2026-06-01]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -76,6 +76,15 @@ player/staff skills, perks and clearer people/persona constellations.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-ea-fc26-fm-skills-persona-perplexity-2026-05-28]] | EA FC 26 / Football Manager skills, perks, staff and mixed OCEAN + football-domain persona model | [[../eos-player-staff-skills-and-personas-2026-05-28]] · [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] · [[../../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]] |
+
+## FMX-31 follow-up Perplexity research (2026-06-02)
+
+Additional Perplexity research was run during FMX-31 after Nico asked for full
+planning on Media / Press / Narrative-Content ownership.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-narrative-content-bounded-context-2026-06-02]] | Genre press/media patterns, DDD ownership, storylet authoring, LLM fallback/provenance controls and newsroom/CMS publish-vs-distribute workflow | [[../narrative-content-bounded-context-2026-06-02]] · [[../../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]] |
 
 ## FMX-44 follow-up Perplexity research (2026-05-28)
 

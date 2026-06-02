@@ -444,6 +444,33 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > selection (XState v5 candidate), opposition-scouting full model and
 > scouting-budget granularity remain Nico-gated / future-scope.
 
+> **FMX-31 Narrative Media / Press Content ownership (2026-06-02).** Nico picked
+> the next FMX-24 bounded-context-gap ticket after FMX-27: decide who owns press
+> content rules, conference response trees, tabloid tone mapping, ICU fallback
+> keys and article publication, given ADR-0052 already owns journalist/persona
+> identity and ADR-0043 owns Notification delivery. Draft
+> [[../60-Research/narrative-content-bounded-context-2026-06-02]],
+> [[../60-Research/raw-perplexity/raw-narrative-content-bounded-context-2026-06-02]]
+> and new proposed
+> [[../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]]
+> capture the recommendation **Option B — extend ADR-0054 Narrative with a
+> Press/Media authoring subdomain, not a separate Media context**. Narrative owns
+> `PressStorylet`, `ConferenceResponseTree`, `PressArticle` /
+> `PressArticleVersion`, `ToneProfileLibrary`, `PressPublicationPolicy`,
+> deterministic fallback templates, validation, provenance and optional
+> schema-validated LLM paraphrase controls. Notification remains delivery /
+> inbox / provider state; People supplies `PersonaContextCard` /
+> `DialogueContextCard`; owning domains keep authoritative morale, fan mood,
+> board pressure, relationship and transfer facts. Nico confirmed the three
+> shaping defaults 2026-06-02: **Narrative erweitert** as owner;
+> **Narrative publiziert** (`PublishPressArticle`, `TriggerPressConference`,
+> `ConferenceResponseSelected`, `TabloidToneApplied`); and **strict deterministic
+> template-first** with stable IDs, ICU keys, PII-minimized context cards,
+> provenance, kill-switch and optional validated LLM paraphrase. Map-patch
+> proposal attached to ADR-0065 extends the existing Narrative proposal; no
+> `bounded-context-map.md` edit until ratification. Exact press-content volume,
+> effect-intent taxonomy and AI disclosure surface remain future / legal gates.
+
 > **FMX-16 Manager-Archetype Roguelite progression (2026-05-27).** Nico directed
 > that the manager-archetype report should be anchored as MVP-relevant hooks, not
 > as a full MVP perk/legacy system. Draft

@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-02-fmx-31-narrative-media-press-ownership]] - FMX-31 Narrative
+  Media / Press content ownership: proposed ADR-0065 extends ADR-0054 Narrative
+  with Press/Media authoring (`PressStorylet`, `ConferenceResponseTree`,
+  `PressArticle`, `ToneProfileLibrary`, `PressPublicationPolicy`), deterministic
+  ICU fallback coverage, validation, provenance and optional schema-validated LLM
+  paraphrase controls. Notification remains delivery; People supplies persona
+  cards; owning domains keep authoritative state. Awaiting Nico ratification.
 - [[2026-06-02-fmx-55-agent-claim-status-rule]] - FMX-55 operational workflow
   update: claimable Linear issues are `Backlog` or `Todo`; an agent's first
   visible action is now to verify no active branch/PR/worktree owns the issue and
