@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-06-03
 type: index
 binding: false
-related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]]
+related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]]
 ---
 
 # Game Design Hub
@@ -74,7 +74,7 @@ active work.
 | [[GD-0003-squad-players]] | Squad, players & attributes | draft | ADR-0027, ADR-0003 |
 | [[GD-0004-tactics]] | Tactics & formations | draft | ADR-0003, ADR-0008 |
 | [[GD-0005-training]] | Training & development | draft | ADR-0003 |
-| [[GD-0006-transfers]] | Transfers & scouting | draft | ADR-0027 |
+| [[GD-0006-transfers]] | Transfers & scouting; FMX-81 adds proposed contract renewal / expiry / Bosman / free-agent lifecycle appendix | draft | ADR-0027, ADR-0073 |
 | [[GD-0007-youth]] | Youth academy | draft | ADR-0027, ADR-0007 |
 | [[GD-0008-finance-economy]] | Finance, economy & stadium; FMX-13 weekly ledger / full-accounting draft plus FMX-49 in-world financing tools | draft | ADR-0027, ADR-0050 |
 | [[GD-0009-league-structure]] | League & competition structure | draft | ADR-0007, ADR-0027 |
@@ -143,6 +143,8 @@ active work.
 - [[squad-and-club-structure]] - sporting org roles + squad design dimensions.
 - [[scouting-and-recruitment]] - recruitment funnel + scout attributes + market dynamics.
 - [[transfer-market-and-contracts]] - AI club selling, valuation bands, clause packages, player terms and tiered market simulation.
+- [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]] - FMX-81 synthesis
+  for renewal, expiry, Bosman/pre-contract and free-agent signing ownership.
 - [[youth-academy-and-development]] - CA/PA range, age curves, loan rules.
 - [[training-load-and-medicine]] - training blocks, load model, medical pipeline.
 - [[GD-0020-eos-player-skills-personas-and-people]] - draft EOS player

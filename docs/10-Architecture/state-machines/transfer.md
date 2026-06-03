@@ -3,10 +3,10 @@ title: State Machine - Transfer Negotiation
 status: current
 tags: [architecture, state-machine, transfer, ddd]
 created: 2026-05-16
-updated: 2026-05-22
+updated: 2026-06-03
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../transfer-market-architecture]], [[../../50-Game-Design/transfer-market-and-contracts]], [[../../50-Game-Design/transfer-negotiations-p2p]], [[../09-Decisions/ADR-0014-state-machines]]
+related: [[README]], [[../bounded-context-map]], [[../transfer-market-architecture]], [[../../50-Game-Design/transfer-market-and-contracts]], [[../../50-Game-Design/transfer-negotiations-p2p]], [[../09-Decisions/ADR-0014-state-machines]], [[../09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[player-contract-lifecycle]]
 ---
 
 # State Machine - Transfer Negotiation
@@ -144,7 +144,25 @@ transfer_offer {                             # strongly-typed (typed cols + CHEC
 - `TransferCompleted` (post-acceptance, after league-window check)
 - `TransferCollapsed`
 
-## 7. Anti-griefing
+## 7. FMX-81 contract-lifecycle seam
+
+FMX-81 keeps this state machine strictly **club-to-club**. The persisted
+`seller_club_id` remains non-null; do not model free agents by setting it to
+`null`.
+
+Player contract lifecycle truth is owned by Squad & Player in
+[[player-contract-lifecycle]] and proposed [[../09-Decisions/ADR-0073-player-contract-lifecycle-fsm]].
+Transfer owns only the process cases that can change that lifecycle:
+
+- `RenewalNegotiationCase` for current-club extension talks;
+- `PreContractCase` for approach-to-sign / Bosman-style future contracts;
+- `FreeAgentSigningCase` for no-selling-club signings.
+
+Those cases may reuse the player-terms language from this transfer FSM, but their
+registration/work-permit gates are Regulations verdicts and their contract-state
+effects are commands/events consumed by Squad & Player.
+
+## 8. Anti-griefing
 
 A bidder accumulates `griefingScore` per league based on:
 
@@ -156,7 +174,7 @@ A bidder accumulates `griefingScore` per league based on:
 
 When threshold exceeded, league admin sees a flag and can sanction.
 
-## 8. Test strategy
+## 9. Test strategy
 
 - Property-based: state machine never reaches undefined state.
 - Concurrency: two simultaneous counter-offers race; resolve
@@ -165,8 +183,10 @@ When threshold exceeded, league admin sees a flag and can sanction.
 - Escalation: golden traces for ignore-pattern detection.
 - Player terms: club-agreed package can still collapse when player / agent
   rejects terms.
+- Boundary: free-agent and pre-contract paths cannot be persisted as
+  club-to-club transfer cases with a missing seller.
 
-## 9. Future-scope notes (classified future-scope)
+## 10. Future-scope notes (classified future-scope)
 
 - Counter-offer infinite loop prevention - tentative: maximum 3
   counter-rounds per chain.

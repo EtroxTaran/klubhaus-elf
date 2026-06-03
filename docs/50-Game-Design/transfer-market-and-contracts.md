@@ -3,10 +3,10 @@ title: Transfer Market and Contracts
 status: draft
 tags: [game-design, transfers, contracts, ai, economy, scouting, narrative]
 created: 2026-05-17
-updated: 2026-05-28
+updated: 2026-06-03
 type: game-design
 binding: true
-related: [[README]], [[scouting-and-recruitment]], [[squad-and-club-structure]], [[economy-system]], [[transfer-negotiations-p2p]], [[GD-0021-player-staff-development-and-decision-influence]], [[../60-Research/transfer-market-simulation]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../10-Architecture/transfer-market-architecture]], [[../20-Features/feature-transfer-market-ai-and-contracts]]
+related: [[README]], [[GD-0006-transfers]], [[scouting-and-recruitment]], [[squad-and-club-structure]], [[economy-system]], [[transfer-negotiations-p2p]], [[GD-0021-player-staff-development-and-decision-influence]], [[../60-Research/transfer-market-simulation]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../10-Architecture/transfer-market-architecture]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/state-machines/player-contract-lifecycle]], [[../20-Features/feature-transfer-market-ai-and-contracts]]
 ---
 
 # Transfer Market and Contracts
@@ -216,3 +216,75 @@ Transfers feed D15 narrative systems:
 - Clauses are priced internally as cash equivalents.
 - Full simulation depth is tiered by world proximity.
 - UI explains causes without exposing all hidden formulas.
+
+## 14. Contract lifecycle, Bosman and free agents (FMX-81)
+
+Contract expiry is a market force, not a passive date field. Proposed ADR-0073
+assigns lifecycle truth to Squad & Player and keeps Transfer as the process owner
+for negotiation cases.
+
+### Contract Hub states
+
+| State | Player-facing meaning |
+|---|---|
+| Secure | No immediate action. |
+| Monitor | Plan now if the player is important, expensive or sellable. |
+| Renewal Due | Open talks, sell, release or consciously defer. |
+| Pre-contract Eligible | Other clubs may approach under the active Regulations profile. |
+| Expiring | Last high-risk period before the player leaves or becomes unattached. |
+| Free Agent | Player is unattached; signing is no-fee but registration/work eligibility still gates use. |
+
+### Renewal loop
+
+Important players must get a multi-touch arc:
+
+1. **Intent** — extend at current level, reward, cut costs, sell or release.
+2. **Stance** — player/agent reports openness and expected pain points.
+3. **Offer** — wage, years, role and one key clause/bonus on mobile; Expert can
+   expose the full clause family later.
+4. **Counter / accept / cool-off** — two or three rounds before a cooldown or
+   breakdown. The next retry can be easier/harder based on role, morale, form and
+   competing interest.
+
+This is the minimum loop that avoids the known "offer / no counter / lose player"
+failure from GD-0006.
+
+### Bosman / pre-contract opportunities
+
+When Regulations says the pre-contract window is open, Transfer may open a
+`PreContractCase`. The UI action is **Approach to Sign**:
+
+- same player terms surface as other contract talks;
+- no selling-club negotiation;
+- future effective date, usually contract end / next valid registration point;
+- may complete as terms agreed while registration/work eligibility remains pending.
+
+For the user's own players, the inbox should surface "external clubs can now
+approach" and "pre-contract agreed elsewhere" as critical risk cards.
+
+### Free-agent signing
+
+Free agents use `FreeAgentSigningCase`:
+
+- no transfer fee and no seller;
+- terms can be agreed at any time;
+- player may still be unavailable until Regulations returns registration and
+  work-permit eligibility;
+- signing bonus and agent fee flow to Club Management as financial intents.
+
+Free-agent lists are not just bargain bins: each candidate carries reason tags
+such as recently released, wage-risk, veteran stopgap, youth upside and
+work-permit risk.
+
+## 15. Notification and opportunity surfacing
+
+Expiry warnings are Notification-owned events with self-contained facts. Transfer
+may consume the same facts to create market opportunities:
+
+- internal risk: "Key midfielder can talk to other clubs in 30 days";
+- external target: "Scouted winger enters pre-contract window";
+- free-agent spotlight: "Released goalkeeper fits backup need";
+- squad-planning prompt: "Three rotation players expire this summer".
+
+Warnings should be batched into season-start, mid-season and end-season planning
+beats where possible, with urgent individual cards for key-player risk.

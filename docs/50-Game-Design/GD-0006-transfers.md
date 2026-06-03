@@ -3,10 +3,10 @@ title: GD-0006 Transfers & Scouting
 status: draft
 tags: [game-design, gddr, transfers]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-06-03
 type: game-design
 binding: true
-related: [[README]], [[GD-0013-narrative-inbox]], [[GD-0010-ai-world]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+related: [[README]], [[GD-0013-narrative-inbox]], [[GD-0010-ai-world]], [[transfer-market-and-contracts]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]]
 ---
 
 # GD-0006: Transfers & Scouting
@@ -62,10 +62,50 @@ Ranged uncertainty + inbox framing turns admin into narrative decisions
 Positive:
 
 - Decisions feel consequential; one surface (inbox) for all deal flow.
+- FMX-81 adds a contract-lifecycle appendix so renewal, expiry, Bosman and
+  free-agent cases become recurring planning loops instead of one-shot pop-ups.
 
 Negative / constraints:
 
 - Needs the AI model (R2-04) and economy tiers (R2-02) before tuning.
+- Exact country-profile values for pre-contract windows, free-agent registration
+  exceptions and work-permit checks remain Regulations data pending ratification.
+
+## FMX-81 appendix — contract lifecycle and expiry risk (proposed)
+
+Contract management is part of the Transfer & Scouting player fantasy but the
+authoritative lifecycle belongs to Squad & Player per proposed
+[[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]].
+
+The player-facing loop is:
+
+1. **Plan** in a Contracts Hub: sort by expiry, role importance, wage burden,
+   resale risk and squad depth.
+2. **Warn** through inbox/feed cards at season start, 18 months, 12 months,
+   pre-contract opening, 3 months, 1 month and expiry. Warnings are
+   Notification-owned payloads with self-contained facts.
+3. **Negotiate** through a compact multi-round flow: intent, player/agent stance,
+   wage/years/role/key-clause offer, counter, accept or cooling-off.
+4. **Choose alternatives**: renew, sell before risk peaks, release, let expire,
+   approach external pre-contract targets or sign free agents.
+
+Bosman/pre-contract and free-agent paths are Transfer-owned process cases, not a
+nullable variant of the club-to-club transfer FSM:
+
+- `PreContractCase`: future club + player/agent; current club is context, not a
+  negotiating seller.
+- `FreeAgentSigningCase`: target club + unattached player/agent; no selling club.
+
+Top-5-style policy differences are surfaced as fictional Regulations profiles.
+The MVP design includes the dimensions; exact values are data/profile work:
+
+| Profile | Contract-risk flavour |
+|---|---|
+| England-like | Foreign six-month pre-contract, stricter domestic late-window profile and GBE-like work eligibility. |
+| Germany-like | Six-month baseline with strong registration-window discipline. |
+| Spain-like | Registration/squad-cost capacity can block otherwise agreed contracts. |
+| Italy-like | Window discipline plus audited-payables / eligibility pressure. |
+| France-like | Wage-control/regulator review can make no-fee signings fail finance fit. |
 
 ## Supersedes
 

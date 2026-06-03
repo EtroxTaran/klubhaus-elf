@@ -3,10 +3,10 @@ title: Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
 status: draft
 tags: [game-design, regulations, compliance, leagues, promotion, economy, financing, debt, cup, competition, matchday, security, sanctions, fmx-41, fmx-45, fmx-46, fmx-49]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-03
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/late-game-systems]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/club-financing-tools-2026-06-01]], [[stadium-and-campus]], [[matchday-event-engine]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/late-game-systems]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/club-financing-tools-2026-06-01]], [[stadium-and-campus]], [[matchday-event-engine]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[transfer-market-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
@@ -121,6 +121,20 @@ Per competition:
 - Work-permit checks (abstract: each non-home foreign player has a
   "permit score" derived from career caps).
 - U-21 minimum (continental cups).
+
+FMX-81 adds player-contract eligibility hooks:
+
+- `ContractPermissionPolicy` defines when another club may approach an expiring
+  player for a pre-contract. Default profile axis = six-month international
+  window, with domestic overrides where the fictional country profile requires it.
+- `RegistrationPolicy` distinguishes signed/terms-agreed from match-eligible.
+  A no-fee/free-agent contract can be agreed while registration waits for the
+  next window or an exception.
+- `WorkPermitVerdict` / GBE-like profiles are evaluated before a foreign player
+  can be used by the target club. A failed verdict blocks registration or match
+  eligibility; it does not rewrite Squad & Player contract truth.
+- Free-agent policy must distinguish **pre-existing free agents** from
+  **post-window free agents**. Exact top-5 values remain data-profile work.
 
 ## 8. Operations rules
 

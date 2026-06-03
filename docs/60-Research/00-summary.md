@@ -1,8 +1,8 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary]
-updated: 2026-06-01
+tags: [research, summary, contracts, fmx-81]
+updated: 2026-06-03
 ---
 
 # Research Summary
@@ -214,6 +214,22 @@ This feeds draft
 [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], accepted
 [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 and draft [[../30-Implementation/club-economy-commercial-contracts]].
+
+## Player Contract Lifecycle FSM (2026-06-03)
+
+[[player-contract-lifecycle-fsm-2026-06-03]] is the FMX-81 synthesis for renewal,
+expiry, Bosman/pre-contract and free-agent signing ownership. It records the
+selected planning landing: Squad & Player owns contract lifecycle truth; Transfer
+owns renewal, pre-contract and free-agent signing process cases; Regulations owns
+pre-contract windows, free-agent registration policy and work-permit/GBE-like
+verdicts; Notification owns self-contained expiry-warning delivery; Club
+Management owns wage/signing-bonus/agent-fee ledger posting.
+
+This feeds proposed
+[[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]],
+[[../10-Architecture/state-machines/player-contract-lifecycle]],
+[[../50-Game-Design/GD-0006-transfers]] and
+[[../50-Game-Design/transfer-market-and-contracts]].
 
 ## Fan Demand and Price Elasticity (2026-05-28)
 
