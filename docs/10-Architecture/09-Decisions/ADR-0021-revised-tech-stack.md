@@ -89,6 +89,12 @@ Kamal-2 escape-hatch note (see [[../11-Risks]] and
    (replaces ad-hoc React Context for app/game state). **Not TanStack Store** —
    not production-ready as a primary store in 2026 (still used transitively
    inside Query/Form/Table, which is fine).
+   **Scope (ratified by [[ADR-0008-mobile-first-ui]] §D2, FMX-98 2026-06-03):** the
+   Zustand v5 store is a **narrow client-only slice** (live match playback view-state,
+   worker-bridge status, optimistic-overlay registry, app-wide ephemeral UI) — **never**
+   a god-store mirroring server state (that stays in TanStack Query). This scoping
+   reconciles GD-0016's "no Redux/Zustand" wording with this decision: no Redux, no
+   server-state store — a narrow client-only slice is allowed.
 3. **TanStack data layer — all-in.** Add TanStack Query, Table, Virtual, Form
    (league tables / squad lists / transfer browsers / game forms). Decisive
    strengths of the chosen ecosystem, not just safe bets.

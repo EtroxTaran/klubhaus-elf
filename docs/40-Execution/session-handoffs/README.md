@@ -42,6 +42,15 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-03-fmx-98-mobile-route-map-ia-client-state]] - FMX-98 mobile route map +
+  IA + client-state: ADR-0008 ratified (`draft → accepted`, Nico D1–D3 = A,A,A
+  2026-06-03). **D1** bottom-nav hybrid (4–5 tabs + Club/More bottom-sheet + Home
+  task-hub) + MVP route map + WCAG 2.2 AA shell; **D2** layered client state + a narrow
+  Zustand v5 client-only slice (resolves the GD-0016↔ADR-0021 Zustand contradiction) +
+  resilient/optimistic UI contract; **D3** hybrid worker bridge (Comlink control-plane +
+  `postMessage` event stream) on a dedicated deterministic engine worker. Resolves
+  GD-0016 R2-07/R2-17; R2-16 → FMX-100. Reconciled GD-0016 + ADR-0021; unblocks FMX-99 +
+  FMX-100.
 - [[2026-06-03-fmx-78-fixture-commercial-revenue-profiles]] - FMX-78 League
   Orchestration -> CommercialPortfolio publication contract for
   `CompetitionRevenueProfilePublished` and `FixtureCommercialProfilesPublished`.

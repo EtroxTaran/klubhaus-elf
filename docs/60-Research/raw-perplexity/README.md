@@ -113,6 +113,7 @@ League Orchestration -> CommercialPortfolio profile-publication issue.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-fixture-commercial-revenue-profiles-2026-06-03]] | Real-world fixture/competition revenue mechanics, DDD event-plus-query publication, and management-game finance presentation for `FixtureCommercialProfile` + `CompetitionRevenueProfile` | [[../fixture-commercial-revenue-profiles-2026-06-03]] · [[../../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]] · [[../../30-Implementation/club-economy-commercial-contracts]] |
+| [[raw-mobile-route-map-ia-and-client-state-2026-06-03]] | 2026 mobile-PWA navigation IA (bottom-nav vs drawer vs hub-and-spoke) + football-manager-game nav survey (Top Eleven/OSM/FM Mobile/Hattrick/Club Soccer Director/New Star Manager/We Are Football); React + TanStack client-state layering + optimistic/draft lifecycle; Comlink-vs-`postMessage` worker bridge + worker topology | [[../mobile-route-map-ia-and-client-state-2026-06-03]] · [[../../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] |
 
 ## FMX-46 follow-up Perplexity research (2026-05-29)
 

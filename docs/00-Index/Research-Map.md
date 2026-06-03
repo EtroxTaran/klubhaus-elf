@@ -40,6 +40,16 @@ design notes.
   (14 children FMX-104..FMX-117) + dependency links. `status: draft` proposal — all items
   pending Nico's ask-first gate.
 
+## Mobile Route Map, IA & Client-State (FMX-98, 2026-06-03)
+
+- [[../60-Research/mobile-route-map-ia-and-client-state-2026-06-03]] — FMX-98. 2026
+  mobile-PWA navigation IA + football-manager-game nav survey, React/TanStack client-state
+  layering (server=Query · drafts=Dexie · route=Router · ephemeral=React · narrow Zustand
+  slice), optimistic/draft lifecycle, and the Comlink + `postMessage` worker bridge +
+  separate-worker topology. Grounds the ratified
+  [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] (D1–D3 = A,A,A, Nico
+  2026-06-03); resolves GD-0016 R2-07/R2-17 + the GD-0016↔ADR-0021 Zustand contradiction.
+
 ## Fixture Commercial / Competition Revenue Profile Contract (2026-06-03)
 
 - [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]] - FMX-78
