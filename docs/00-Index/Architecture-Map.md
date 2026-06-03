@@ -3,10 +3,10 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-03
 type: map
 binding: false
-related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
+related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]]
 ---
 
 # Architecture Map
@@ -47,6 +47,7 @@ future-scope or historical context.
 - [[../10-Architecture/state-machines/README]]
 - [[../10-Architecture/state-machines/league-week]]
 - [[../10-Architecture/state-machines/transfer]]
+- [[../10-Architecture/state-machines/player-contract-lifecycle]]
 - [[../10-Architecture/state-machines/watch-party]]
 - [[../10-Architecture/state-machines/match]]
 
@@ -83,6 +84,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft proposed People context for actor personas, relationship graph, player/staff skill profiles and deterministic context cards.
 - [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft proposed Narrative context for scene selection, context-card assembly, templates, validation, provenance, evals and provider adapter boundary.
 - [ADR-0065 Narrative Media and Press Content Ownership](../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership.md) - draft proposed extension of ADR-0054: Narrative owns Press/Media content authoring, conference response trees, article publication policy, tone library, deterministic fallbacks and optional validated LLM paraphrase controls; Notification delivers and People supplies persona cards.
+- [ADR-0073 Player Contract Lifecycle FSM](../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm.md) - proposed Squad & Player ownership of player-contract lifecycle truth; Transfer owns renewal/pre-contract/free-agent process cases; Regulations owns pre-contract/free-agent/work-permit verdicts.
 
 ## Current Binding Research and Specs
 
@@ -101,6 +103,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [EOS Player, Staff, Skills and Personas Research](../60-Research/eos-player-staff-skills-and-personas-2026-05-28.md)
 - [AI Narration Testing and Framework Research](../60-Research/ai-narration-testing-framework-2026-05-28.md)
 - [Narrative Media and Press Content Ownership Research](../60-Research/narrative-content-bounded-context-2026-06-02.md)
+- [Player Contract Lifecycle FSM Research](../60-Research/player-contract-lifecycle-fsm-2026-06-03.md)
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
 - [Match Engine Simulation Model](../60-Research/match-engine-simulation-model.md)
 - [Presentation Renderer Strategy](../60-Research/presentation-renderer-strategy.md)

@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-03
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../60-Research/onboarding-guided-first-season-2026-06-03]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]]
 ---
 
 # Game Design Map
@@ -56,6 +56,8 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../50-Game-Design/squad-and-club-structure]]
 - [[../50-Game-Design/scouting-and-recruitment]]
 - [[../50-Game-Design/transfer-market-and-contracts]]
+- [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]] - FMX-81
+  contract renewal, expiry, Bosman/pre-contract and free-agent signing synthesis.
 - [[../50-Game-Design/youth-academy-and-development]]
 - [[../50-Game-Design/training-load-and-medicine]]
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] -
@@ -140,6 +142,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/progressive-disclosure-research]]
 - [[../60-Research/player-strength-presentation]]
 - [[../60-Research/onboarding-guided-first-season-2026-06-03]]
+- [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]]
 - [[../60-Research/presentation-renderer-strategy]]
 - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]

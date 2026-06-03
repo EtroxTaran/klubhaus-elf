@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-03
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]]
 ---
 
 # Research Map
@@ -62,6 +62,19 @@ design notes.
   [[../50-Game-Design/GD-0012-onboarding]] and
   [[../50-Game-Design/onboarding-and-tutorial]]; raw capture:
   [[../60-Research/raw-perplexity/raw-onboarding-guided-first-season-2026-06-03]].
+
+## Player Contract Lifecycle FSM (FMX-81, 2026-06-03)
+
+- [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]] — FMX-81 synthesis
+  for contract renewal, expiry, Bosman/pre-contract and free-agent signing
+  ownership. Grounds Nico's selected options: Squad & Player owns lifecycle
+  truth, top-5 profile depth is included, and free-agent/pre-contract flows use
+  separate Transfer-owned cases. Feeds proposed
+  [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]],
+  state machine [[../10-Architecture/state-machines/player-contract-lifecycle]],
+  [[../50-Game-Design/GD-0006-transfers]] and
+  [[../50-Game-Design/transfer-market-and-contracts]]; raw capture:
+  [[../60-Research/raw-perplexity/raw-player-contract-lifecycle-fsm-2026-06-03]].
 
 ## Fixture Commercial / Competition Revenue Profile Contract (2026-06-03)
 
