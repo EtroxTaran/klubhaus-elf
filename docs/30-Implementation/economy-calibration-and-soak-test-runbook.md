@@ -3,12 +3,13 @@ title: Economy Calibration and Soak-Test Runbook - Draft
 status: draft
 tags: [implementation, economy, calibration, soak-test, stress-test, determinism, testing, kpi, fmx-52]
 created: 2026-06-01
-updated: 2026-06-01
+updated: 2026-06-03
 type: implementation
 binding: false
 linear: FMX-52
 related:
   - [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]]
+  - [[../60-Research/ai-world-drift-algorithm-2026-06-03]]
   - [[../60-Research/ai-club-economy-behaviour-2026-06-01]]
   - [[../60-Research/top5-country-economy-profiles-2026-05-29]]
   - [[../60-Research/determinism-and-replay]]
@@ -16,6 +17,8 @@ related:
   - [[../50-Game-Design/economy-system]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+  - [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]]
+  - [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]]
   - [[club-economy-accounting-ledger]]
   - [[club-economy-commercial-contracts]]
 ---
@@ -171,7 +174,87 @@ For **reverse** scenarios, `overrides` is the **frontier shock combination** the
 search found (the minimum combo that tips survival → failure); these become regression
 scenarios and inform damper tuning.
 
-## 9. Acceptance flow (how a calibration set ships)
+## 9. World-drift extension (FMX-91)
+
+FMX-91 adds the AI World Simulation parameter families from
+[[../60-Research/ai-world-drift-algorithm-2026-06-03]] and draft
+[[../50-Game-Design/GD-0024-ai-world-drift-algorithm]]. This runbook owns final
+values; FMX-91 only defines the shape.
+
+Additional parameter-sheet families:
+
+```yaml
+parameter:
+  id: worldDrift.risingRival.titleVacuumSeasons
+  definition: Seasons without a serious regional top-tier title challenger before a Rising Rival candidate can enter pending state.
+  value: null
+  band: [low, high]
+  source: real-world competitive-balance evidence + 50y soak target
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: worldDrift.giantCollapse.instabilityThreshold
+  definition: Candidate score threshold combining wage burden, owner fatigue, age profile, missed continental revenue and instability_score.
+  value: null
+  band: [low, high]
+  source: FMX-91 + late-game-systems takeover model
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: worldDrift.continentalEra.reputationDeltaBp
+  definition: League/region reputation-band delta applied by a ContinentalEraShifted event.
+  value: null
+  band: [low, high]
+  source: coefficient and league-strength drift evidence
+  sensitivity: parameter-sensitive
+```
+
+Additional scenario sheets:
+
+```yaml
+scenario:
+  id: worldDrift.risingRival.longTitleVacuum
+  narrative: "A region has no serious challenger for a decade; AI World may seed one rising-rival project inside global MVP caps."
+  archetype: healthy low-debt mid-table
+  countryProfileId: neutral-baseline
+  severity: baseline
+  overrides: { titleVacuumSeasons: "<band-edge>", marketSizeBand: "mediumPlus" }
+  fixture: { fixtureListId: "<ai-only-50y>", seed: "<worldSeed>" }
+  expect:
+    kpiBands: { titleConcentration: inBand, eventDensity: inBand, wageRevenueGini: inBand }
+    verdict: pass
+  type: forward
+```
+
+```yaml
+scenario:
+  id: worldDrift.giantCollapse.overextendedDynasty
+  narrative: "A successful high-wage club misses revenue and enters visible crisis rather than staying permanently dominant."
+  archetype: high-debt ambitious
+  countryProfileId: premium-broadcast
+  severity: adverse
+  overrides: { wageBurden: "<high-band>", ownerFatigue: "<high-band>", squadAge: "<high-band>" }
+  fixture: { fixtureListId: "<ai-only-50y>", seed: "<worldSeed>" }
+  expect:
+    kpiBands: { eventDensity: inBand, titleChurn: inBand, administrationRate: inBand }
+    verdict: pass
+  type: reverse
+```
+
+Additional health metrics:
+
+- byte-identical `WorldDrift*` event sequence for same seed + config;
+- event density and diversity by mechanism;
+- title concentration and new-champion frequency over 30/50/100 years;
+- league/revenue/wage Gini before and after drift events;
+- continental-era volatility by 10-year rolling window;
+- no ledger mutation by AI World Simulation events.
+
+## 10. Acceptance flow (how a calibration set ships)
 
 1. Fill parameter sheets (§7) and scenario sheets (§8).
 2. Run economy smoke (PR) → invariants + determinism pass.

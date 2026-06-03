@@ -3,10 +3,10 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-03
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]]
 ---
 
 # Game Design Map
@@ -95,6 +95,8 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] - draft
   Full Dialogue and All Active actor-context target for MVP narration.
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+- [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]] - draft deterministic
+  world-drift design for Rising Rival, Giant Collapse and Continental Era Shift.
 - [[../60-Research/ai-narrative-runtime-integration]]
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 
@@ -123,6 +125,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/manager-archetype-roguelite-2026-05-27]]
 - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
 - [[../60-Research/player-staff-development-decision-model-2026-05-28]]
+- [[../60-Research/ai-world-drift-algorithm-2026-06-03]]
 - [[../60-Research/mode-design-research]]
 - [[../60-Research/async-multiplayer-research]]
 - [[../60-Research/fan-culture-segmentation-research]]

@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-03
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]]
 ---
 
 # Research Map
@@ -61,6 +61,20 @@ design notes.
   and raw capture
   [[../60-Research/raw-perplexity/raw-fixture-commercial-revenue-profiles-2026-06-03]].
   Nico ratified D1-D3 as A/A/A on 2026-06-03; ADR-0070 is accepted/binding.
+
+## AI World-Drift Algorithm (2026-06-03)
+
+- [[../60-Research/ai-world-drift-algorithm-2026-06-03]] - FMX-91 synthesis for
+  deterministic long-save world drift: Rising Rival, Giant Collapse and
+  Continental Era Shift / rising nations. Records Nico's selected planning
+  options: proposed AI World Simulation bounded context, hybrid RNG allocation,
+  reputation-first rising-nations scope and two-level global/per-confederation
+  caps. Feeds draft [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]],
+  proposed
+  [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]],
+  raw capture
+  [[../60-Research/raw-perplexity/raw-ai-world-drift-algorithm-2026-06-03]] and
+  the FMX-52 calibration runbook.
 
 ## Pre-Mortem 2026-05-20 (Cluster, 3 Iterationen)
 

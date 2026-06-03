@@ -51,6 +51,13 @@ This is the **single** canonical handoff location. (An older
   `postMessage` event stream) on a dedicated deterministic engine worker. Resolves
   GD-0016 R2-07/R2-17; R2-16 → FMX-100. Reconciled GD-0016 + ADR-0021; unblocks FMX-99 +
   FMX-100.
+- [[2026-06-03-fmx-91-ai-world-drift-algorithm]] - FMX-91 AI world-drift
+  algorithm: proposed long-save drift model for rising rivals, fallen giants and
+  continental era shifts. Captures Nico's selected options: future AI World
+  Simulation BC ownership, hybrid RNG lanes, reputation-first rising nations and
+  two-level caps. Durable outputs are [[../../60-Research/ai-world-drift-algorithm-2026-06-03]],
+  [[../../50-Game-Design/GD-0024-ai-world-drift-algorithm]] and
+  [[../../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]].
 - [[2026-06-03-fmx-78-fixture-commercial-revenue-profiles]] - FMX-78 League
   Orchestration -> CommercialPortfolio publication contract for
   `CompetitionRevenueProfilePublished` and `FixtureCommercialProfilesPublished`.
