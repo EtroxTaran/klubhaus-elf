@@ -54,11 +54,11 @@ with entirely fictional branding.
   *SurrealDB **storage** patterns resolved (historical
   [[../60-Research/surrealdb-schema-patterns]], now superseded by
   [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]). The
-  **domain** competition/season registry schema is now **proposed** in
+  **domain** competition/season registry schema is **accepted** (ratified Nico
+  2026-06-02) in
   [[../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate]]
-  (FMX-79) — see the appendix below — pending Nico ratification of the four open
-  questions D1–D4. R2-06/R2-13 remain open and are reserved seams there, not
-  designed.*
+  (FMX-79) — see the appendix below; D1–D4 resolved on the recommended options.
+  R2-06/R2-13 remain open and are reserved seams there, not designed.*
 
 ## Rationale
 
@@ -83,16 +83,17 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]] (fictional competition names)
 - [[../10-Architecture/09-Decisions/ADR-0004-data-model]] (league/competition/fixture schema)
-- [[../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate]] (proposed — Competition & Season registry domain schema, R2-14 / gap G1)
+- [[../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate]] (accepted — Competition & Season registry domain schema, R2-14 / gap G1)
 
 ## Appendix A — Competition & Season registry (architecture, FMX-79)
 
-> **Status: proposed** (not part of the binding *Decided / strong* block).
+> **Status: accepted** (ratified Nico 2026-06-02; not part of the original binding
+> *Decided / strong* block but now binding via ADR-0066).
 > Canonical aggregate diagram for the Competition & Season registry sub-aggregate
 > cluster inside **League Orchestration**. The typed domain model and invariant
 > catalogue (I1–I9) are owned by
 > [[../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate]];
-> this appendix owns the diagram. Drawn under the recommended options (D1 = inside
+> this appendix owns the diagram. Drawn under the ratified options (D1 = inside
 > League Orchestration; D2 = shared `CompetitionSeason` concept + distinct roots).
 > Cup + continental are reserved post-MVP seams (R2-06); women's calendar offset
 > (R2-13) is per-`Season` data, not a schema change.

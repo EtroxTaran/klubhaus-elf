@@ -480,3 +480,36 @@ None
   draft; no direct boundary requirement.
 - [[ADR-0016-community-dataset-overrides]] - cross-save preset sharing
   surface (FMX-33 Community Overlay Pipeline territory).
+- [[ADR-0067-set-piece-variant-selection-determinism]] - proposed; pins the
+  deterministic set-piece variant-selection rule + `TacticSnapshot` set-piece
+  fields (see appendix).
+
+## Appendix: `TacticSnapshot` set-piece selection fields (accepted, FMX-70)
+
+> **Status: accepted** (ratified Nico 2026-06-02; an amendment to this ADR).
+> Canonical spec + invariants + the ratified decisions (D1–D3 = option A) in
+> [[ADR-0067-set-piece-variant-selection-determinism]].
+
+ADR-0055 establishes that Match consumes a frozen `TacticSnapshot` at
+`lineup_locked` with set-piece variants inside, but does not pin the *fields* the
+Match engine needs to select a variant deterministically (gap G9). ADR-0067
+adds, per set-piece module, the fields the frozen snapshot must carry:
+
+```ts
+SetPieceModuleSnapshot = {
+  type: SetPieceType,
+  selectionMode: 'priority' | 'seeded-mix',   // per-module; default 'priority'
+  defaultVariantId: VariantId,                 // always-eligible fallback
+  variants: ReadonlyArray<{
+    variantId: VariantId,                      // immutable; stable total-order key
+    priority: int,                             // higher = preferred
+    trigger: TriggerPredicate                  // pure precondition over DeadBallContext
+  }>
+}
+TacticSnapshot.setPieces: Readonly<Record<SetPieceType, SetPieceModuleSnapshot>>
+```
+
+The engine selects via the pure ordering `(priority DESC, variantId ASC)` and
+the module's `selectionMode`; deeply `readonly` per ADR-0026 rule 8. These fields
+are produced through the existing `TacticLockSnapshotProduced` event; no new
+command/event is required.
