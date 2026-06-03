@@ -32,7 +32,7 @@ research transcripts in [[../60-Research/raw-perplexity/README]].
 Implement gameplay only from `approved` game-design records. This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0024`) — the decision-record chain from research into
+- **GDDRs** (`GD-0001`...`GD-0025`) — the decision-record chain from research into
   ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -93,6 +93,7 @@ active work.
 | [[GD-0022-economy-commercial-impact-and-contracts]] | Economy commercial impact map; ticketing, season-ticket lifecycle/accrual, fan-demand elasticity, commercial contract lifecycle/breach, catering, merchandise, cup/competition revenue profiles, matchday operating costs, fan events and Investor clean SP cash | draft | ADR-0050, ADR-0058 |
 | [[GD-0023-ai-club-economy-behaviour]] | AI club economy behaviour; five financial-policy archetypes over manager archetypes, three financial regimes (Healthy/Stressed/Distressed), soft diegetic homeostasis (no AI stat cheats), staged distress with rare bounded insolvency, tiered fidelity, country distress personalities, structured rationale tags | draft | ADR-0050, ADR-0051, ADR-0058 |
 | [[GD-0024-ai-world-drift-algorithm]] | AI world-drift algorithm; Rising Rival, Giant Collapse and Continental Era Shift / rising nations as deterministic, legible, capped structural drift events with FMX-52 calibration handoff | draft | ADR-0071 |
+| [[GD-0025-in-match-controls]] | In-match controls & live-control kit (FMX-100, resolves GD-0016 R2-16 gameplay half); one MVP interaction tier — queued subs, mentality presets, formation-swap, 3 cooldown shouts, 3 speeds + free pause; halftime modal; deterministic shout-effect contract with provisional playtest-tunable magnitudes; text&stats accessible path | draft | ADR-0072 |
 
 ## Core loop
 
@@ -189,6 +190,9 @@ active work.
 - [[progressive-disclosure-ui]] - 3-tier UX (Quick / Standard / Expert).
 - [[../60-Research/player-strength-presentation]] - Impact Lens player-strength model; no global OVR.
 - [[GD-0017-mvp-scope-and-mode-sequencing]] - binding MVP mode sequencing.
+- [[GD-0025-in-match-controls]] - draft in-match controls & live-control kit
+  (halftime modal, subs/mentality/formation/shouts, speed/pause); resolves
+  GD-0016 R2-16 gameplay half.
 
 ## Status legend
 

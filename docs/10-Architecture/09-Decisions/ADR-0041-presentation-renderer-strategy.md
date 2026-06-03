@@ -3,7 +3,7 @@ title: ADR-0041 Two-Renderer Presentation Strategy
 status: draft
 tags: [adr, architecture, rendering, pwa, 3d, stadium]
 created: 2026-05-22
-updated: 2026-05-22
+updated: 2026-06-03
 accepted_at: 2026-05-22
 type: adr
 binding: true
@@ -11,10 +11,16 @@ supersedes:
 superseded_by:
 amended_by: [[ADR-0047-babylon-3d-presentation-engine]]
 amends: [[ADR-0024-match-renderer-abstraction]], [[ADR-0029-3d-presentation-layer]]
-related: [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[ADR-0029-3d-presentation-layer]], [[ADR-0025-mobile-delivery]], [[ADR-0019-modular-monolith-ddd]], [[../../60-Research/presentation-renderer-strategy]], [[../../60-Research/performance-budgets]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/stadium-and-campus]]
+related: [[ADR-0024-match-renderer-abstraction]], [[ADR-0026-match-frame-contract]], [[ADR-0029-3d-presentation-layer]], [[ADR-0025-mobile-delivery]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0072-in-match-control-seam]], [[../../60-Research/presentation-renderer-strategy]], [[../../60-Research/performance-budgets]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/stadium-and-campus]]
 ---
 
 # ADR-0041: Two-Renderer Presentation Strategy
+
+> **CONTROL SEAM noted 2026-06-03 by [[ADR-0072-in-match-control-seam]] (FMX-100;
+> decision unchanged).** ADR-0072 specifies the in-match control seam and the MVP
+> main-thread Canvas-2D render decision + perf-validation protocol. The
+> two-renderer principle and Canvas-2D-only match render here are unchanged; no
+> non-Canvas-2D match renderer is introduced.
 
 > **AMENDED 2026-05-27 by [[ADR-0047-babylon-3d-presentation-engine]].** The optional
 > 3D engine is now **Babylon.js** (replaces Three.js/R3F in the Decision below); the

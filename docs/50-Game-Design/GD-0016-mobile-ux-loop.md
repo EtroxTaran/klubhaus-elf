@@ -23,7 +23,9 @@ approved
 > Note: the visual design language is independently `accepted` via ADR-0010
 > (Aurelia Premier). The interaction-model ADR (ADR-0008) is now `accepted`
 > (ratified 2026-06-03, FMX-98) — it realises this GDDR and resolves R2-07 + R2-17
-> (route map + IA + client-state). R2-16 (match controls + rendering) stays open → FMX-100.
+> (route map + IA + client-state). R2-16 (match controls + rendering) is **resolved
+> 2026-06-03** by draft [[GD-0025-in-match-controls]] (gameplay) + proposed
+> [[../10-Architecture/09-Decisions/ADR-0072-in-match-control-seam]] (architecture), FMX-100.
 >
 > MVP sequencing: [[GD-0017-mvp-scope-and-mode-sequencing]] scopes the first
 > playable to Create-a-Club Roguelite, with Career shown as "comes later".
@@ -66,7 +68,16 @@ tram stop and 30 minutes on a couch — the same UI.
   **bottom-nav hybrid** (4–5 tabs: Home/Squad/Transfers/Inbox + Club/More bottom-sheet
   for Youth/Staff/Stadium/Finances/Settings; Home feed-cards as a task hub), WCAG 2.2 AA,
   44 px targets, `prefers-reduced-motion`.
-- **R2-16 (high)** — match-controls UX + rendering tech. **(still open → FMX-100.)**
+- **R2-16 (high)** — ✅ **RESOLVED 2026-06-03** (FMX-100): match-controls UX +
+  rendering control-seam. Gameplay = draft [[GD-0025-in-match-controls]] (one MVP
+  live-control kit: queued subs, mentality presets, formation-swap, 3 cooldown
+  shouts, 3 speeds + free pause; halftime modal; text&stats a11y path).
+  Architecture = proposed
+  [[../10-Architecture/09-Decisions/ADR-0072-in-match-control-seam]] (intervention
+  DTO with light=next-tick / heavy=next-boundary + immutable `TacticSnapshot`;
+  operational pause; main-thread Canvas-2D for MVP; perf-validation protocol).
+  Rendering *technology* was already settled (ADR-0024/0041 Canvas-2D-first,
+  unchanged).
 - **R2-17 (high)** — ✅ **RESOLVED 2026-06-03** by
   [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] (FMX-98): layered client
   state (TanStack Query = server · Dexie = drafts · TanStack Router = route · React =
@@ -91,7 +102,8 @@ Positive:
 Negative / constraints:
 
 - IA + client-state **resolved** (R2-07/17 → ADR-0008 `accepted` 2026-06-03, FMX-98);
-  match-controls + rendering (R2-16) still open → FMX-100.
+  match-controls + rendering control-seam (R2-16) **resolved** 2026-06-03 → GD-0025
+  + ADR-0072 (FMX-100). Remaining open: R2-10 (i18n).
 
 ## Supersedes
 

@@ -50,11 +50,39 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > P2P optimistic deferred behind the same seam). **D3 = hybrid worker bridge** (Comlink
 > control-plane RPC + hand-rolled `postMessage` event stream) on a **dedicated deterministic
 > engine worker** (OffscreenCanvas main-thread at MVP → render worker only on profiling
-> pressure). Resolves GD-0016 **R2-07 + R2-17**; R2-16 (match controls/rendering) stays open
-> → FMX-100. Reconciled GD-0016 (R2 flags + Zustand rewording) + ADR-0021 (Zustand scope
+> pressure). Resolves GD-0016 **R2-07 + R2-17**; R2-16 (match controls/rendering) resolved
+> 2026-06-03 by FMX-100 (GD-0025 + ADR-0072). Reconciled GD-0016 (R2 flags + Zustand rewording) + ADR-0021 (Zustand scope
 > note); no bounded-context-map edit (cross-reference only). Grounded:
 > [[../60-Research/mobile-route-map-ia-and-client-state-2026-06-03]] (+ raw). Flipped to
 > `accepted` per Nico's live ratification + approved plan; merge stays Nico's.
+
+> **FMX-100 Match rendering & in-match controls UX (2026-06-03).** Closes Epic E7
+> (FMX-63 — UX, Onboarding & Match Presentation) after FMX-98/ADR-0008 — resolves
+> GD-0016 **R2-16** (the match-controls/rendering open flag). Synthesis
+> [[../60-Research/in-match-controls-and-presentation-2026-06-03]] (+ four raw
+> Perplexity captures: games, deterministic-buffering, Canvas-2D perf, WCAG 2.2 AA;
+> GSAP 3.13.0 verified) grounds draft [[../50-Game-Design/GD-0025-in-match-controls]]
+> (gameplay) and proposed
+> [[../10-Architecture/09-Decisions/ADR-0072-in-match-control-seam]] (architecture).
+> **Nico chose D1–D4 = A/A/A/A live (2026-06-03):** **D1** intervention model =
+> *hybrid + immutable snapshot* (light cmds = shout/mentality → next tick; heavy =
+> sub/formation/tactic → next semantic boundary; tactics swap an immutable
+> `TacticSnapshot` atomically — never mutated live); **D2** pause = *operational*,
+> outside the seeded stream (matches match.md §3 + WCAG 2.2.1 real-time exception);
+> **D3** render thread = *main-thread Canvas-2D* for MVP (sim in its dedicated
+> worker; OffscreenCanvas render-worker is a profiled v2 — matches ADR-0008 D3);
+> **D4** MVP control kit = *Full kit* (queued subs + mentality preset +
+> formation-swap + **3 cooldown shouts** + 3 speeds + free pause). Shouts ship, so
+> GD-0025 defines a deterministic **shout-effect contract with provisional,
+> playtest-tunable magnitudes** (FMX-52 calibration; not locked from intuition).
+> The rendering *technology* was already settled (ADR-0024/0041 Canvas-2D-first) —
+> both get a control-seam clarification note, **renderer choice unchanged**. The
+> single-player buffer FSM + watch-party pause-vote are **FMX-101 (G24)**, which
+> builds on this seam. **Honest limitation:** the "measured fps on real devices"
+> acceptance criterion can't be met in this no-code phase — ADR-0072 ships the
+> perf-validation **protocol + pass-criteria**; on-device measurement is a tracked
+> follow-up tied to the first Canvas-2D prototype. Authored `proposed`/`draft` per
+> never-self-accept; awaiting Nico ratify; merge stays Nico's.
 
 > **Domain-model audit & next-wave backlog (2026-06-02).** With all 55 prior FMX
 > issues Done and no open backlog, a read-only multi-agent DDD + gameplay
