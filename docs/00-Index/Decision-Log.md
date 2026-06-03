@@ -106,7 +106,7 @@ PR as the work that needs them.
 | ADR | V1 classification | Handling |
 |---|---|---|
 | [[../10-Architecture/09-Decisions/ADR-0006-i18n]] | Future-scope depth pass | Promote when i18n implementation starts. |
-| [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] | Covered by design-system/a11y baseline | Use design-system docs and approved UX notes; promote only for cleanup or new mobile delivery/UI decisions. |
+| [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] | accepted | Mobile-first interaction model: **bottom-nav hybrid** IA + MVP route map; layered client state (TanStack Query = server · Dexie = drafts · Router = route · React = ephemeral) + a **narrow Zustand v5 client-only slice**; resilient/optimistic UI contract (snapshot→rollback, Dexie draft lifecycle, `expected-version`); **hybrid worker bridge** (Comlink control-plane + `postMessage` event stream) on a dedicated deterministic engine worker. | New 2026-05-15 draft; **ratified Nico 2026-06-03 (FMX-98, D1–D3 = A,A,A)**; resolves GD-0016 R2-07/R2-17 + the GD-0016↔ADR-0021 Zustand contradiction (Zustand scoped to client-only). R2-16 (match controls/rendering) → FMX-100. Realises GD-0016; consistent with ADR-0010/0021/0025/0020/0018/0005. |
 | [[../10-Architecture/09-Decisions/ADR-0012-async-cadence-models]] | Product rules already approved | Implement cadence from game-design notes; ADR promotion is optional cleanup. |
 | [[../10-Architecture/09-Decisions/ADR-0014-state-machines]] | Future runtime-orchestration decision | Promote before changing league/week, transfer, watch-party or match state orchestration. |
 | [[../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming]] | Post-MVP social layer | Keep behind watch-party gate. |

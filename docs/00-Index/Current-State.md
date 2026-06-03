@@ -33,6 +33,29 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > not ratified — no technology, gameplay or architecture decision is made without
 > Nico (2–3 sourced options + recommendation).
 
+> **FMX-98 Mobile route map + IA + client-state — ADR-0008 ratified (2026-06-03).**
+> Nico answered D1–D3 = A,A,A live; [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
+> is promoted `draft → accepted` / `binding: true` (the longest-blocked UI ADR; the
+> "do not implement" banner is removed), unblocking the player-facing lane (FMX-99
+> onboarding + FMX-100 match controls). **D1 = bottom-nav hybrid** (4–5 tabs
+> Home/Squad/Transfers/Inbox + a Club/More bottom-sheet for
+> Youth/Staff/Stadium/Finances/Settings; Home feed-cards double as a task hub) + an MVP
+> route map + a WCAG 2.2 AA / 44px / `prefers-reduced-motion` shell. **D2 = layered client
+> state** (TanStack Query = server · Dexie = drafts · TanStack Router = route · React =
+> ephemeral) **+ a narrow Zustand v5 client-only slice** — resolving the live GD-0016
+> ("no Redux/Zustand") ↔ ADR-0021 ("Zustand v5") contradiction by scoping Zustand to
+> client-only state (no server-state god-store) — plus a resilient/optimistic UI contract
+> (snapshot→patch→rollback; Dexie draft lifecycle `draft→staged→submitting→confirmed|rejected`;
+> `expected-version` preconditions; the four offline UX states; full offline replay-queue +
+> P2P optimistic deferred behind the same seam). **D3 = hybrid worker bridge** (Comlink
+> control-plane RPC + hand-rolled `postMessage` event stream) on a **dedicated deterministic
+> engine worker** (OffscreenCanvas main-thread at MVP → render worker only on profiling
+> pressure). Resolves GD-0016 **R2-07 + R2-17**; R2-16 (match controls/rendering) stays open
+> → FMX-100. Reconciled GD-0016 (R2 flags + Zustand rewording) + ADR-0021 (Zustand scope
+> note); no bounded-context-map edit (cross-reference only). Grounded:
+> [[../60-Research/mobile-route-map-ia-and-client-state-2026-06-03]] (+ raw). Flipped to
+> `accepted` per Nico's live ratification + approved plan; merge stays Nico's.
+
 > **Domain-model audit & next-wave backlog (2026-06-02).** With all 55 prior FMX
 > issues Done and no open backlog, a read-only multi-agent DDD + gameplay
 > documentation audit mapped the vault's completeness and staged the next wave.
