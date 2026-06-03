@@ -1,9 +1,9 @@
 ---
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
-tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, financing, debt, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50]
+tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, financing, debt, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, fmx-78]
 created: 2026-05-28
-updated: 2026-06-01
+updated: 2026-06-03
 type: implementation
 binding: false
 linear: FMX-41
@@ -27,6 +27,8 @@ related:
   - [[../60-Research/club-financing-tools-2026-06-01]]
   - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
   - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
+  - [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]]
+  - [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]]
   - [[club-economy-accounting-ledger]]
   - [[../10-Architecture/bounded-context-map]]
 ---
@@ -48,6 +50,12 @@ licensed competitions. FMX-46 adds `MatchdayOperatingCostProfile` and
 risk-cost settlement for stewarding, security, policing-style contribution,
 medical, cleaning, energy, temporary staff, pitch recovery, insurance,
 restrictions and sanctions.
+
+FMX-78 / ADR-0070 ratifies the League -> CommercialPortfolio published language for
+`FixtureCommercialProfile` and `CompetitionRevenueProfile`: League publishes
+stable fixture/competition commercial rule facts; CommercialPortfolio stores
+consumer-owned projections and composes them with Rivalry, Audience & Atmosphere,
+Stadium Operations, Regulations and Match/Calendar facts.
 
 FMX-48 turns fan-service campaigns into an explicit `FanEventCampaign`
 lifecycle and campaign catalog with travel, family/community, choreo/dialogue,
@@ -126,25 +134,49 @@ Calculation contract:
 
 ### `FixtureCommercialProfile`
 
-Produced from League/Competition fixture state plus Rivalry and Match context.
+Produced by League Orchestration from immutable fixture state and the active
+competition revenue profile. It carries stable fixture/competition commercial
+rule facts only. CommercialPortfolio composes it with separate Rivalry, Audience
+& Atmosphere, Stadium Operations, Regulations and weather/calendar facts before
+settlement.
 
 | Field | Meaning |
 |---|---|
 | `fixtureId` | Fixture identity. |
-| `fixtureKind` | League, cup, playoff, friendly, continental, final. |
+| `fixtureCommercialProfileVersion` | Immutable profile version used for settlement evidence. |
+| `competitionSeasonId` | Competition-season edition that owns the fixture. |
+| `competitionRevenueProfileVersion` | Active competition-revenue profile version used to derive rule slices. |
+| `fixtureKind` | League, cup, playoff, friendly, continental or final. |
 | `homeClubId` / `awayClubId` | Participating clubs. |
-| `importanceTier` | Routine, high, top, season-decider. |
-| `fixtureStakes` | Routine, promotion, relegation, title, qualification, elimination or final. |
-| `rivalryTier` | None, mild, strong, high, volatile. |
-| `opponentDrawPower` | Generated reputation/star pull band. |
-| `starPullBand` | Notable player/manager attraction without using real-world names. |
-| `noveltyBand` | First promotion season, rare opponent, new-stadium effect or farewell/icon event. |
-| `homeFormBand` | Recent form and long-term performance trend. |
-| `kickoffConvenience` | Weekend afternoon, evening, late, midweek or holiday. |
-| `awayDemandBand` | Away-following pressure. |
-| `riskBand` | Security and sanction risk. |
-| `weatherBand` | Forecast/weather effect band. |
-| `campaignTriggers` | Goal, derby, cup-final or star-player campaign flags. |
+| `round` / `matchday` / `scheduledDate` | Calendar placement copied from `FixturesPublished`. |
+| `stageBand` / `roundBand` | League-owned competition stage and round classification. |
+| `tieShape` | Single tie, two-leg tie, replay, league phase or neutral final. |
+| `legNumber` / `aggregateTieId` | Two-leg and aggregate-tie linkage. |
+| `isReplay` / `isNeutralVenue` / `isFinal` | Fixture-shape flags that change settlement rules. |
+| `organizerKind` | Home club, league, association or confederation analogue. |
+| `hostClubId` | Host club when a club is responsible for the event; null for central neutral events. |
+| `venueResponsibilityKind` | Club-hosted, central-hosted, leased-neutral or shared. |
+| `ticketingOperatorKind` | Who operates ticketing for this fixture. |
+| `commercialInventoryPolicy` | Local versus central commercial inventory ownership. |
+| `gateSharingRuleSnapshot` | Fixture-specific gate-share rule copied from the competition profile. |
+| `netReceiptsDefinitionSnapshot` | Deductions and net-receipts basis for this fixture. |
+| `ticketAllocationRuleSnapshot` | Home/away/neutral/final allocation rule for this fixture. |
+| `fixturePrizeTrigger` | Whether this fixture can trigger participation, result or progression prizes. |
+| `facilityFeeTrigger` | Live-selection or facility-fee trigger class. |
+| `broadcastSelectionBand` | Competition-owned broadcast/commercial selection class. |
+| `paymentTrigger` | Match played, round completed, season completed or final audit. |
+| `recognitionTrigger` | Accrual trigger used by CommercialPortfolio. |
+| `settlementDueRule` | Profile-level settlement timing for fixture-derived payments. |
+| `postponementHandling` / `abandonmentHandling` | Commercial treatment of postponed or abandoned fixtures. |
+| `commercialSettlementAttachmentKey` | CommercialPortfolio key for the per-fixture settlement projection. |
+| `operatingCostAttachmentKey` | CommercialPortfolio key where `MatchdayOperatingCostSummary` attaches for background-fast simulation. |
+| `qualityProfileClass` | Background-fast, standard or expert settlement envelope class. |
+| `provenance` | Source facts, profile version and freshness. |
+
+Excluded from the League-owned profile: `rivalryTier`, `opponentDrawPower`,
+`starPullBand`, `homeFormBand`, `weatherBand`, `awayDemandBand`,
+`atmosphereMultiplier`, `boycottRisk` and final demand/cost figures. Those are
+separate consumer facts owned by their contexts.
 
 ### `StadiumCommercialSnapshot`
 
@@ -420,27 +452,39 @@ Contract events that must be representable before implementation:
 
 ### `CompetitionRevenueProfile`
 
-Owned by League/Competition data, consumed by CommercialPortfolio.
+Published by League Orchestration for a competition-season edition and consumed
+through CommercialPortfolio's ACL. CommercialPortfolio owns accrual, settlement,
+forecast interpretation and ledger-facing event emission; League owns the
+competition rule/cadence facts.
 
 | Field | Meaning |
 |---|---|
+| `competitionRevenueProfileId` | Profile identity. |
+| `competitionRevenueProfileVersion` | Immutable profile version used for audit and settlement evidence. |
 | `competitionId` | Fictional competition identity. |
+| `competitionSeasonId` | Season edition the profile applies to. |
+| `seasonId` | Calendar season identity. |
 | `countryProfileId` | Country/profile scope. |
 | `competitionKind` | domesticLeague, domesticCup, leagueCup, superCup, playoff, continentalCup, friendly or finalSeries. |
-| `fixtureSettlementKind` | homeTie, awayTie, twoLegTie, replay, neutralSemi, neutralFinal or leaguePhase. |
-| `roundBand` | qualifying, early, middle, late, semi, final, leaguePhase, knockoutPlayoff or knockout. |
+| `organizerKind` | Club-hosted, league-hosted, association-hosted or confederation-hosted analogue. |
+| `commercialRightsModel` | Club-local, centralized or hybrid commercial rights. |
+| `mediaRightsModel` | None, central pool, facility fee or hybrid. |
 | `prestigeBand` | local, national, major, continentalLower, continentalMajor or global. |
 | `prizeSchedule` | Participation, win/progression, finalist/winner, league-phase, ranking and solidarity bands. |
-| `gateSharingRule` | Gross/net basis, deductions, home/away/organizer shares, levy/pool and expense caps. |
-| `ticketAllocationRule` | Away quota, finalist allocation, neutral venue split, sponsor allocation and protected supporter quotas. |
-| `mediaPaymentRule` | Central pool, facility/live-selection fee, value/legacy pillar, payment cadence and settlement delay. |
+| `participationRules` | Entry/appearance rules and guaranteed participation payment hooks. |
+| `performanceBonusRules` | Win/draw/performance bonus rule family. |
+| `progressionBonusRules` | Round reached, qualification or advancement rule family. |
+| `winnerRunnerUpRules` | Finalist/winner payout rule family. |
+| `defaultGateSharingByStage` | Stage-specific gross/net basis, deductions, home/away/organizer shares, levy/pool and expense caps. |
+| `netReceiptsDefinition` | Deductions that define net receipts for shared-gate fixtures. |
+| `ticketAllocationByStage` | Away quota, finalist allocation, neutral venue split, sponsor/partner allocation and protected supporter quotas. |
+| `mediaDistributionRule` | Central pool, value/legacy, merit/performance and equal-share rule family. |
+| `facilityFeeRule` | Live-selection or broadcast-facility payment rule family. |
+| `paymentCadence` | Payment triggers and instalment cadence. |
 | `settlementDelay` | Cash timing and receivable risk by revenue family. |
 | `recognitionPolicy` | When revenue is receivable, cash, accrued or forecast-only. |
-| `travelCostRule` | Away, neutral, final and continental travel/accommodation expectations. |
-| `securityCostRule` | Home/neutral security basis, rivalry/risk modifiers and regulation constraints. |
 | `neutralVenueRule` | Host body, allocation split, central hospitality, club share and final travel. |
 | `replayOrTwoLegRule` | Replay, extra-time, penalties and two-leg rules by round. |
-| `matchdayCommercialModifiers` | Catering, merchandise, hospitality and fan-zone demand bands. |
 | `sponsorBonusTriggerRules` | Round reached, televised tie, final, upset, trophy or continental qualification. |
 | `fixtureCongestionRule` | Rest-day pressure, travel load, training opportunity cost, fatigue/injury hooks. |
 | `forecastPolicy` | Expected future-round value, progression probability source, confidence band and elimination shock. |

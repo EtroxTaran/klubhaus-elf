@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-02
+updated: 2026-06-03
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-03-fmx-78-fixture-commercial-revenue-profiles]] - FMX-78 League
+  Orchestration -> CommercialPortfolio publication contract for
+  `CompetitionRevenueProfilePublished` and `FixtureCommercialProfilesPublished`.
+  ADR-0070 is accepted after Nico ratified A/A/A on 2026-06-03:
+  event-plus-query, League-owned stable fixture/competition commercial rule facts
+  only, and CommercialPortfolio-owned settlement/accrual interpretation. Map
+  output names now list the accepted profile events + snapshot queries.
 - [[2026-06-02-fmx-31-narrative-media-press-ownership]] - FMX-31 Narrative
   Media / Press content ownership: proposed ADR-0065 extends ADR-0054 Narrative
   with Press/Media authoring (`PressStorylet`, `ConferenceResponseTree`,

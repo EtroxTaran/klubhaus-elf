@@ -34,7 +34,7 @@ change, not a refactor.
 | Context | Core elements | Exposed outputs |
 |---|---|---|
 | **Identity & Access** | User, sessions, roles, device state | Auth claims, membership context |
-| **League Orchestration** | Season, week, match-day, mode, pause, quorum; **Competition & Season registry** sub-aggregate cluster (ADR-0066): `Competition` + `Season` reference entities, `LeagueCompetitionSeason` edition aggregate, `PyramidConfiguration` (tier order + promotion/relegation), participants by `ClubId` ref | League status, deadlines, lifecycle events; `FixtureCommercialProfile` / `CompetitionRevenueProfile` / `SeasonAdvanced` |
+| **League Orchestration** | Season, week, match-day, mode, pause, quorum; **Competition & Season registry** sub-aggregate cluster (ADR-0066): `Competition` + `Season` reference entities, `LeagueCompetitionSeason` edition aggregate, `PyramidConfiguration` (tier order + promotion/relegation), participants by `ClubId` ref | League status, deadlines, lifecycle events; `CompetitionRevenueProfilePublished` / `FixtureCommercialProfilesPublished` / profile snapshot queries / `SeasonAdvanced` |
 | **Club Management** | Finance ledger (sole writer), accounting projections, budget envelopes, board pressure, insolvency state | Club state, economy snapshots, board pressure |
 | **Squad & Player** | Player base data, fitness, morale, contracts, injuries | Impact Lens projections, squad projections, player state |
 | **Training** | Training plan, load, development signals | Training outcomes, fatigue signals, growth deltas |
@@ -67,10 +67,12 @@ entities, the `LeagueCompetitionSeason` edition aggregate (MVP league family; cu
 acyclic tier order, resolvable promotion/relegation slots). Participants reference
 clubs by `ClubId` only (Club Management owns the Club aggregate), so one club may
 sit in a league edition plus N cup editions per season without ownership conflict.
-This registry is the producer of the `FixtureCommercialProfile` /
-`CompetitionRevenueProfile` / `SeasonAdvanced` published-language facts asserted
-below; all competition/season naming routes through the IP-clean catalog (GD-0015
-/ ADR-0007).
+This registry is the producer of the `CompetitionRevenueProfilePublished` /
+`FixtureCommercialProfilesPublished` / profile snapshot query / `SeasonAdvanced`
+published-language facts asserted below; all competition/season naming routes
+through the IP-clean catalog (GD-0015 / ADR-0007). ADR-0070 fixes the profile
+contract: League owns stable competition/fixture rule facts; CommercialPortfolio
+owns accrual and settlement interpretation through an ACL.
 
 FMX-41 commercial economy planning was originally captured in
 [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
@@ -94,7 +96,8 @@ Operations supplies `StadiumCommercialSnapshot`,
 `StadiumCapacitySnapshot`, `MatchdayTimelineAdvanced`,
 `PitchConditionChanged`, `VenueEventBooked` and
 `FacilityComplianceChecked`. League / Competition supplies
-`FixtureCommercialProfile` + `CompetitionRevenueProfile` +
+`CompetitionRevenueProfilePublished` +
+`FixtureCommercialProfilesPublished` + profile snapshot queries +
 `SeasonAdvanced`. Rivalry supplies `RivalryTierTransitioned` +
 `RivalryCommercialSignal`. Regulations supplies `EffectiveRuleSet`
 (UEFA FSR + PL APT + La Liga PSR + GDPR + DSA + CRA + Late
@@ -307,8 +310,9 @@ Operations supplies `StadiumCommercialSnapshot` +
 consumed for matchday + hospitality settlement per FMX-32.
 Rivalry System supplies `RivalryTierTransitioned` (consumed for
 top-match pricing + sponsor-fit risk per ADR-0058). League
-Orchestration supplies `FixtureCommercialProfile` +
-`CompetitionRevenueProfile` + `SeasonAdvanced`. Regulations &
+Orchestration supplies `CompetitionRevenueProfilePublished` +
+`FixtureCommercialProfilesPublished` + profile snapshot queries +
+`SeasonAdvanced`. Regulations &
 Compliance supplies `EffectiveRuleSet` for IFRS 15 obligation
 interpretation + UEFA FSR matchday-segregation + UK CRA 2015
 Schedule 2 refund-policy + DSA secondary-market + CEN-EN 17210
