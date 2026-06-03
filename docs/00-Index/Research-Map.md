@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-03
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]]
 ---
 
 # Research Map
@@ -49,6 +49,19 @@ design notes.
   separate-worker topology. Grounds the ratified
   [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] (D1–D3 = A,A,A, Nico
   2026-06-03); resolves GD-0016 R2-07/R2-17 + the GD-0016↔ADR-0021 Zustand contradiction.
+
+## Onboarding 60-second flow & guided first season (FMX-99, 2026-06-03)
+
+- [[../60-Research/onboarding-guided-first-season-2026-06-03]] — FMX-99 synthesis
+  for GD-0012 R2-05. Grounds Nico's selected options: current FTUE path,
+  Season-1 objective roadmap and wage runway as the first economy lesson.
+  Defines the stopwatch target (<60s to first meaningful tactical choice, <3min
+  to first match), guided-season phase table, deterministic feed-card scoring,
+  per-save-only behaviour adjustment, assistant auto-handling boundary and
+  keyboard-first / WCAG 2.2 AA onboarding-route requirements. Feeds approved
+  [[../50-Game-Design/GD-0012-onboarding]] and
+  [[../50-Game-Design/onboarding-and-tutorial]]; raw capture:
+  [[../60-Research/raw-perplexity/raw-onboarding-guided-first-season-2026-06-03]].
 
 ## Fixture Commercial / Competition Revenue Profile Contract (2026-06-03)
 
