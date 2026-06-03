@@ -252,7 +252,7 @@ The R2-17 core. Optimistic UI is a **temporary projection**, never a second sour
 
 - **GD-0016** — R2-07 + R2-17 marked **resolved** with back-references to this ADR; the
   "no Redux/Zustand" line reworded to "no Redux, no Zustand god-store mirroring server
-  state — a narrow client-only slice is allowed (ADR-0008 §D2)". R2-16 stays open → FMX-100.
+  state — a narrow client-only slice is allowed (ADR-0008 §D2)". R2-16 (match controls/rendering) resolved 2026-06-03 by FMX-100 → [[../../50-Game-Design/GD-0025-in-match-controls]] + [[ADR-0072-in-match-control-seam]].
 - **ADR-0021** — a note that ADR-0008 §D2 **scopes** the ratified Zustand v5 usage to the
   narrow client-only slice (contradiction closed; no status change).
 

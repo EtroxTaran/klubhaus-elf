@@ -3,16 +3,24 @@ title: ADR-0024 Match Renderer Abstraction
 status: draft
 tags: [adr, architecture, ui, match-view]
 created: 2026-05-19
-updated: 2026-05-22
+updated: 2026-06-03
 accepted_at: 2026-05-19
 type: adr
 binding: true
 supersedes:
 superseded_by:
-related: [[ADR-0021-revised-tech-stack]], [[ADR-0022-animation-game-feel]], [[ADR-0003-match-engine]], [[ADR-0026-match-frame-contract]], [[ADR-0041-presentation-renderer-strategy]]
+related: [[ADR-0021-revised-tech-stack]], [[ADR-0022-animation-game-feel]], [[ADR-0003-match-engine]], [[ADR-0026-match-frame-contract]], [[ADR-0041-presentation-renderer-strategy]], [[ADR-0072-in-match-control-seam]]
 ---
 
 # ADR-0024: Match Renderer Abstraction
+
+> **CONTROL SEAM clarified 2026-06-03 by [[ADR-0072-in-match-control-seam]] (FMX-100;
+> decision unchanged).** This ADR defines the *draw* seam (engine event log →
+> `MatchFrame` → renderer). The *control* seam — how player interventions reach the
+> deterministic engine, and that the Canvas-2D renderer runs on the **main thread**
+> at MVP (sim stays in its dedicated worker; OffscreenCanvas render-worker is a
+> profiled v2) — is specified in ADR-0072. The renderer abstraction and Canvas-2D
+> choice here are unchanged.
 
 > **AMENDED 2026-05-22 by [[ADR-0041-presentation-renderer-strategy]].** The
 > renderer abstraction and Canvas 2D-first decision remain binding. PixiJS is no
