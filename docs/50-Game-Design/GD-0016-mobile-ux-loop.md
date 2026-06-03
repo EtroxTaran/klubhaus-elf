@@ -21,8 +21,9 @@ approved
 > Wave 2 research closes.
 >
 > Note: the visual design language is independently `accepted` via ADR-0010
-> (Aurelia Premier). The interaction-model ADR (ADR-0008) is still `draft` —
-> ratifying this GDDR gives that ADR its approved design source to implement.
+> (Aurelia Premier). The interaction-model ADR (ADR-0008) is now `accepted`
+> (ratified 2026-06-03, FMX-98) — it realises this GDDR and resolves R2-07 + R2-17
+> (route map + IA + client-state). R2-16 (match controls + rendering) stays open → FMX-100.
 >
 > MVP sequencing: [[GD-0017-mvp-scope-and-mode-sequencing]] scopes the first
 > playable to Create-a-Club Roguelite, with Career shown as "comes later".
@@ -60,11 +61,21 @@ tram stop and 30 minutes on a couch — the same UI.
 
 ## Open (Wave 2)
 
-- **R2-07 (high)** — route map, bottom-nav vs drawer vs hub-tile, WCAG 2.2 AA,
+- **R2-07 (high)** — ✅ **RESOLVED 2026-06-03** by
+  [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] (FMX-98): route map +
+  **bottom-nav hybrid** (4–5 tabs: Home/Squad/Transfers/Inbox + Club/More bottom-sheet
+  for Youth/Staff/Stadium/Finances/Settings; Home feed-cards as a task hub), WCAG 2.2 AA,
   44 px targets, `prefers-reduced-motion`.
-- **R2-16 (high)** — match-controls UX + rendering tech.
-- **R2-17 (high)** — client-state pattern (modal drafts, optimistic transfer
-  UI, Worker bridge; no Redux/Zustand). **R2-10 (medium)** — i18n.
+- **R2-16 (high)** — match-controls UX + rendering tech. **(still open → FMX-100.)**
+- **R2-17 (high)** — ✅ **RESOLVED 2026-06-03** by
+  [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]] (FMX-98): layered client
+  state (TanStack Query = server · Dexie = drafts · TanStack Router = route · React =
+  ephemeral) + a **narrow Zustand v5 client-only slice**; optimistic UI = snapshot →
+  patch → rollback with a Dexie draft lifecycle + `expected-version`; hybrid worker bridge
+  (Comlink control-plane + `postMessage` event stream). **Constraint reworded:** *no Redux,
+  and no Zustand **god-store mirroring server state** — a narrow client-only slice is
+  allowed* (reconciles this GDDR with ADR-0021's ratified Zustand v5; see ADR-0008 §D2).
+  **R2-10 (medium)** — i18n (still open).
 
 ## Rationale
 
@@ -79,7 +90,8 @@ Positive:
 
 Negative / constraints:
 
-- IA/state/rendering open (R2-07/16/17) → blocks ADR-0008.
+- IA + client-state **resolved** (R2-07/17 → ADR-0008 `accepted` 2026-06-03, FMX-98);
+  match-controls + rendering (R2-16) still open → FMX-100.
 
 ## Supersedes
 
