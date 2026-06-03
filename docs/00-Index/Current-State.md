@@ -76,6 +76,19 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `operatingCostAttachmentKey` for the G21 background-fast
 > `MatchdayOperatingCostSummary` hook.
 
+> **FMX-91 AI world-drift algorithm (2026-06-03).**
+> [[../60-Research/ai-world-drift-algorithm-2026-06-03]], draft
+> [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]] and proposed
+> [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]]
+> turn the GD-0010 R2-06 / gap G8 world-drift prose into a deterministic,
+> replay-safe proposal for Rising Rival, Giant Collapse and Continental Era
+> Shift. Nico selected the planning defaults on 2026-06-03: new AI World
+> Simulation bounded context, hybrid RNG (`WorldAiMgmtRng` for club/owner/AI
+> drift, `WorldRng` for macro shifts), reputation-first rising-nations scope and
+> global MVP caps with reserved per-confederation caps. Final thresholds,
+> probabilities and effect magnitudes remain FMX-52 calibration inputs, not
+> locked constants.
+
 > **FMX-10 match-engine re-evaluation (2026-05-27).** Nico directed that the
 > match engine must be planned as an exchangeable component from day one. Draft
 > [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
