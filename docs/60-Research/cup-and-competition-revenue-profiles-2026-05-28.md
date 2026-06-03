@@ -3,7 +3,7 @@ title: Cup and Competition Revenue Profiles - Research Synthesis 2026-05-28
 status: draft
 tags: [research, economy, cup, competition, revenue, forecast, legal, fmx-45]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-03
 type: research
 binding: false
 linear: FMX-45
@@ -21,6 +21,8 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
   - [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
+  - [[fixture-commercial-revenue-profiles-2026-06-03]]
+  - [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]]
 ---
 
 # Cup and Competition Revenue Profiles - Research Synthesis 2026-05-28
@@ -44,14 +46,16 @@ Nico's defaults for FMX-45:
 
 ## Summary
 
-The research answer is a **data-driven `CompetitionRevenueProfile`** consumed
-by Club Management settlement:
+The research answer is a **data-driven `CompetitionRevenueProfile`** published
+by League/Competition and consumed by CommercialPortfolio settlement:
 
 1. Competition data owns the commercial profile: prize schedule, gate sharing,
    ticket allocation, media cadence, neutral venue rules, replay/two-leg rules,
    travel/security obligations, solidarity and forecast policy.
-2. Club Management owns settlement and ledger posting. League/Competition,
-   Regulations, Fan Ecology, Rivalry, Stadium and Match provide facts only.
+2. CommercialPortfolio owns settlement, accrual, forecast interpretation and
+   ledger-facing event emission. Club Management owns ledger posting only.
+   League/Competition, Regulations, Audience & Atmosphere, Rivalry, Stadium and
+   Match provide facts only.
 3. Cup value is split into hard cash, guaranteed receivables and non-spendable
    expected future value. Elimination removes forecast upside; it is not a
    hidden cash loss.
@@ -132,7 +136,9 @@ fictional and generated per country/continent.
 
 ## `CompetitionRevenueProfile` draft
 
-Owned by League/Competition and Regulations data; consumed by Club Management.
+Published by League/Competition as rule/cadence data and consumed by
+CommercialPortfolio. FMX-78 / ADR-0070 refines the publication mechanics and
+profile versioning; this FMX-45 table remains the revenue-concept source.
 
 | Field | Meaning |
 |---|---|

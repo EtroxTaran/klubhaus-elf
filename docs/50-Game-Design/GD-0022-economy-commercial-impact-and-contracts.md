@@ -1,9 +1,9 @@
 ---
 title: GD-0022 Economy Commercial Impact and Contracts
 status: draft
-tags: [game-design, gddr, economy, commercial, financing, debt, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50]
+tags: [game-design, gddr, economy, commercial, financing, debt, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, fmx-78]
 created: 2026-05-28
-updated: 2026-06-01
+updated: 2026-06-03
 type: game-design
 binding: false
 supersedes:
@@ -30,6 +30,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
   - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[../60-Research/club-financing-tools-2026-06-01]]
+  - [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]]
   - [[audience-and-atmosphere]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
@@ -51,8 +52,9 @@ draft
 > lifecycle / breach refinement, the FMX-45 cup/competition revenue profile
 > refinement and the FMX-46 matchday operating-cost / risk-cost settlement
 > refinement, the FMX-47 catering/merchandise operations refinement and the
-> FMX-48 fan-service campaign catalog refinement and the FMX-49 financing
-> separation refinement. It needs Nico approval before implementation authority.
+> FMX-48 fan-service campaign catalog refinement, the FMX-49 financing
+> separation refinement and the FMX-78 fixture/competition profile publication
+> contract refinement. It needs Nico approval before implementation authority.
 
 ## Date
 
@@ -273,8 +275,13 @@ branches:
 - Price sensitivity is segment-specific. Casual/fair-weather/family demand is
   more sensitive to total trip cost; ultras/core are less attendance-sensitive
   but more likely to punish perceived identity or fairness breaches.
-- `FixtureCommercialProfile` combines opponent draw, rivalry tier, fixture
-  stakes, home form, star pull, novelty, kickoff convenience and weather.
+- League-owned `FixtureCommercialProfile` carries stable fixture and competition
+  commercial facts such as stage, round, tie shape, organizer, venue
+  responsibility, gate/ticket rule slices and prize/media triggers.
+  CommercialPortfolio combines it with Rivalry, Audience & Atmosphere, Stadium
+  Operations, Regulations and weather/calendar facts to explain opponent draw,
+  rivalry, form, star pull, novelty, kickoff convenience, risk and weather to
+  the player.
 - `ticketingTrustState` persists across weeks and seasons. It feeds renewal,
   boycott risk, atmosphere, sponsor fit and press/supporter events.
 - Capacity pressure is explicit. A sold-out match can still be a bad long-term

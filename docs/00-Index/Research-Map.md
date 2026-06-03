@@ -3,10 +3,10 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-06-02
+updated: 2026-06-03
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]]
 ---
 
 # Research Map
@@ -39,6 +39,18 @@ design notes.
   **FMX-56..FMX-65** (37 children FMX-66..FMX-102) + platform-tier epic **E10/FMX-103**
   (14 children FMX-104..FMX-117) + dependency links. `status: draft` proposal — all items
   pending Nico's ask-first gate.
+
+## Fixture Commercial / Competition Revenue Profile Contract (2026-06-03)
+
+- [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]] - FMX-78
+  synthesis for the League Orchestration -> CommercialPortfolio publication
+  contract. Recommends event-plus-query, League-owned stable fixture/commercial
+  rule facts only, and League-owned competition rule/cadence profiles consumed
+  through CommercialPortfolio ACL/projections. Feeds accepted
+  [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]]
+  and raw capture
+  [[../60-Research/raw-perplexity/raw-fixture-commercial-revenue-profiles-2026-06-03]].
+  Nico ratified D1-D3 as A/A/A on 2026-06-03; ADR-0070 is accepted/binding.
 
 ## Pre-Mortem 2026-05-20 (Cluster, 3 Iterationen)
 
