@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-06-03
 type: index
 binding: false
-related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]]
+related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]]
 ---
 
 # Game Design Hub
@@ -80,7 +80,7 @@ active work.
 | [[GD-0009-league-structure]] | League & competition structure | draft | ADR-0007, ADR-0027 |
 | [[GD-0010-ai-world]] | AI managers & world simulation | draft (Wave 2 gated) | ADR-0003, ADR-0009 |
 | [[GD-0011-career-progression]] | Career progression, board & objectives | draft | ADR-0003 |
-| [[GD-0012-onboarding]] | Onboarding & new game | draft | ADR-0008, ADR-0006 |
+| [[GD-0012-onboarding]] | Onboarding & new game; FMX-99 closes R2-05 with current FTUE path, Season-1 objective roadmap and wage-runway first economy lesson | approved | ADR-0008, ADR-0006 |
 | [[GD-0013-narrative-inbox]] | Narrative, inbox & events | draft | ADR-0006, ADR-0003 |
 | [[GD-0014-save-career-model]] | Save & career model | draft | ADR-0020, ADR-0005 |
 | [[GD-0015-ip-clean-data]] | IP-clean data generation | draft | ADR-0007 |

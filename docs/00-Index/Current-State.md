@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-03
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/club-financing-tools-2026-06-01]], [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]], [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/club-financing-tools-2026-06-01]], [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/onboarding-and-tutorial]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]], [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Current State
@@ -83,6 +83,25 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > perf-validation **protocol + pass-criteria**; on-device measurement is a tracked
 > follow-up tied to the first Canvas-2D prototype. Authored `proposed`/`draft` per
 > never-self-accept; awaiting Nico ratify; merge stays Nico's.
+
+> **FMX-99 Onboarding 60-second flow + guided first season (2026-06-03).**
+> [[../60-Research/onboarding-guided-first-season-2026-06-03]], raw
+> [[../60-Research/raw-perplexity/raw-onboarding-guided-first-season-2026-06-03]],
+> approved [[../50-Game-Design/GD-0012-onboarding]] and approved
+> [[../50-Game-Design/onboarding-and-tutorial]] close GD-0012 **R2-05** after
+> Nico selected **current FTUE path / Objective roadmap / Wage runway**. The
+> ratified target is: `/new` -> experience -> mode -> Roguelite setup -> Home
+> feed-card -> `/tactics` playstyle, with **<60s to first meaningful tactical
+> choice** and **<3min to first match kickoff**. Season 1 is now a feed-card
+> objective roadmap (Kickoff -> Stabilize -> Runway -> Adjust -> Review ->
+> Rhythm); the 12-message inbox arc supports it with voice/context. The first
+> economy lesson is wage room/runway, free agents/loans and board expectations,
+> not matchday revenue or full finance cockpit. Feed-card priority is a
+> deterministic integer formula (`onboardingStageBoost + timePressureScore +
+> impactTypeScore + playerBehaviourAdjust`) with per-save-only behaviour
+> adjustment and no cross-save profiling. The issue records a stopwatch protocol
+> + design-time budget; live timing evidence remains a future prototype/build
+> gate because the repo is docs-only.
 
 > **Domain-model audit & next-wave backlog (2026-06-02).** With all 55 prior FMX
 > issues Done and no open backlog, a read-only multi-agent DDD + gameplay
@@ -2111,9 +2130,12 @@ Implementation should start from
   - **First PWA manager to ship this stack** — combines Anstoss-3
     Bundestrainer arc + FM-PC long-save depth + CK3-style cross-save
     Hall of Fame + Civ-style era system + Hattrick record books.
-- **Onboarding Strategy** (locked 2026-05-17, gap D5) -
+- **Onboarding Strategy** (locked 2026-05-17, gap D5; R2-05 ratified by FMX-99
+  on 2026-06-03) -
   [[../60-Research/onboarding-strategy]] +
-  [[../50-Game-Design/onboarding-and-tutorial]] (new `approved` GDD):
+  [[../60-Research/onboarding-guided-first-season-2026-06-03]] +
+  [[../50-Game-Design/GD-0012-onboarding]] +
+  [[../50-Game-Design/onboarding-and-tutorial]] (`approved` GDD):
   - **60-second FTUE** in 4 steps: experience question (Newbie / Bit
     / Veteran) silently mapping to UI tier + difficulty + recommended
     club tier + tutorial verbosity → mode picker upfront (Roguelite
@@ -2122,13 +2144,20 @@ Implementation should start from
     to full 5-screen New Save wizard → Home dashboard with first
     inbox tutorial card. Target < 60 s to first tactical choice;
     < 3 min to first match.
+  - **Guided first-season objective roadmap** is now the primary
+    Season-1 learning spine: Kickoff (Day 0-7: XI / playstyle /
+    first match / report) → Stabilize (Week 2: training load +
+    rotation) → Runway (Week 3-4: wage room, free/loan shortlist,
+    board expectations) → Adjust (Days 31-60: tactical fit, morale,
+    squad depth) → Review (Days 61-90: board confidence and wage
+    runway checkpoint) → Rhythm (rest of season: recurring match prep
+    and targeted warnings).
   - **12-message first-season inbox tutorial arc** over 4 in-game
-    weeks teaching match week / tactics / goals / match report /
-    training / rotation / transfers / contracts / board confidence /
-    set pieces / youth / soft-transition. Week-4 closing message:
-    "You've got the basics. From now on I'll only step in when
-    something important comes up." Pacing 4-6 msg/week arc → 3-4/wk
-    rest of season 1 → 2-3/wk season 2+.
+    weeks supports the objective roadmap with voice, context and
+    emotion; it no longer owns the action order. Week-4 closing
+    message: "You've got the basics. From now on I'll only step in
+    when something important comes up." Pacing 4-6 msg/week arc →
+    3-4/wk rest of season 1 → 2-3/wk season 2+.
   - **10-sender inbox cast**: 4 core (Assistant Manager ~50 % /
     Chairman 15 % / Director of Football 20 % / Head Scout 10 %) +
     6 supporting (Head of Youth / Player Agent / Journalist /
@@ -2161,12 +2190,18 @@ Implementation should start from
     for accessibility) + 1-2 line summary + impact line + primary
     CTA + snooze/dismiss + overflow. Gmail-inspired swipe: right =
     complete/open; left = snooze with undo snackbar. Priority
-    algorithm = timePressureScore (5-40) + impactTypeScore (5-30) +
-    playerBehaviourAdjust (-10 to +10). Guardrails: always ≥ 1
-    match card if match in 3 days; ≤ 2 admin cards in top 5;
-    ≥ 1 "Easy win" card per day on Easy. Per-difficulty queue
-    behaviour (Easy auto-handles low-impact / Hard shows more
-    cards + fewer helpers / Sim strategic only).
+    algorithm =
+    `onboardingStageBoost + timePressureScore + impactTypeScore +
+    playerBehaviourAdjust`, with deterministic integer score tables
+    in [[../50-Game-Design/GD-0012-onboarding]]. Guardrails: always ≥
+    1 match card if match in 3 days; at most one tutorial card and
+    at most one wage/finance card per day unless wage runway is in
+    danger; snooze respected unless a hard deadline becomes critical;
+    tie-break by score / due date / category / stable card id.
+    `playerBehaviourAdjust` is per-save only, resettable, and never a
+    cross-save profile. Assistant auto-handling can prepare drafts on
+    Easy/Normal but never submits authoritative mutations without
+    explicit confirmation.
   - **Tutorial overlay hierarchy** (used sparingly per modern mobile
     best practice):
     - **Spotlight overlay**: 3-4 max total over the whole game;
