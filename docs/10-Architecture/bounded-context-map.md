@@ -3,7 +3,7 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-06-02
 type: architecture
 binding: true
 related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]]
@@ -34,7 +34,7 @@ change, not a refactor.
 | Context | Core elements | Exposed outputs |
 |---|---|---|
 | **Identity & Access** | User, sessions, roles, device state | Auth claims, membership context |
-| **League Orchestration** | Season, week, match-day, mode, pause, quorum | League status, deadlines, lifecycle events |
+| **League Orchestration** | Season, week, match-day, mode, pause, quorum; **Competition & Season registry** sub-aggregate cluster (ADR-0066): `Competition` + `Season` reference entities, `LeagueCompetitionSeason` edition aggregate, `PyramidConfiguration` (tier order + promotion/relegation), participants by `ClubId` ref | League status, deadlines, lifecycle events; `FixtureCommercialProfile` / `CompetitionRevenueProfile` / `SeasonAdvanced` |
 | **Club Management** | Finance ledger (sole writer), accounting projections, budget envelopes, board pressure, insolvency state | Club state, economy snapshots, board pressure |
 | **Squad & Player** | Player base data, fitness, morale, contracts, injuries | Impact Lens projections, squad projections, player state |
 | **Training** | Training plan, load, development signals | Training outcomes, fatigue signals, growth deltas |
@@ -57,6 +57,20 @@ Player lifecycle and systemic world events are specialised by
 [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]. They do not
 add a thirteenth bounded context. The `WorldEventDirector` is an orchestration
 policy over the existing contexts.
+
+The **Competition & Season registry** was ratified 2026-06-02 via
+[[09-Decisions/ADR-0066-competition-registry-sub-aggregate]] (FMX-79, closing the
+critical audit gap G1 / R2-14) as a **sub-aggregate cluster inside League
+Orchestration** — not a new context. It owns `Competition` + `Season` reference
+entities, the `LeagueCompetitionSeason` edition aggregate (MVP league family; cup
++ continental reserved post-MVP), and a `PyramidConfiguration` aggregate (total +
+acyclic tier order, resolvable promotion/relegation slots). Participants reference
+clubs by `ClubId` only (Club Management owns the Club aggregate), so one club may
+sit in a league edition plus N cup editions per season without ownership conflict.
+This registry is the producer of the `FixtureCommercialProfile` /
+`CompetitionRevenueProfile` / `SeasonAdvanced` published-language facts asserted
+below; all competition/season naming routes through the IP-clean catalog (GD-0015
+/ ADR-0007).
 
 FMX-41 commercial economy planning was originally captured in
 [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
