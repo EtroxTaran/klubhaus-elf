@@ -42,6 +42,16 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-03-fmx-99-onboarding-guided-first-season]] - FMX-99 onboarding
+  60-second flow + guided first season: GD-0012 R2-05 resolved after Nico chose
+  current FTUE path, Season-1 objective roadmap and wage-runway first economy
+  lesson. Durable outputs are
+  [[../../60-Research/onboarding-guided-first-season-2026-06-03]],
+  [[../../50-Game-Design/GD-0012-onboarding]] and
+  [[../../50-Game-Design/onboarding-and-tutorial]]. Records deterministic
+  feed-card scoring, per-save behaviour adjustment, assistant auto-handling
+  boundary and WCAG 2.2 AA route requirements; live stopwatch evidence remains a
+  future prototype gate.
 - [[2026-06-03-fmx-98-mobile-route-map-ia-client-state]] - FMX-98 mobile route map +
   IA + client-state: ADR-0008 ratified (`draft → accepted`, Nico D1–D3 = A,A,A
   2026-06-03). **D1** bottom-nav hybrid (4–5 tabs + Club/More bottom-sheet + Home

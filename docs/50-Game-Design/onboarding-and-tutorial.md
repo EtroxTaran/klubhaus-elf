@@ -1,20 +1,22 @@
 ---
 title: Onboarding & Tutorial — FTUE, Inbox Arc, Feed-Cards, Assistant Manager
-status: draft
-tags: [game-design, onboarding, ftue, tutorial, inbox, feed-cards, assistant, mobile-ux]
+status: approved
+tags: [game-design, onboarding, ftue, tutorial, inbox, feed-cards, assistant, mobile-ux, fmx-99]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-06-03
 type: game-design
 binding: true
-related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/onboarding-strategy]], [[../60-Research/narrative-content-pipeline]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[progressive-disclosure-ui]], [[mode-manage-a-club-career]], [[mode-create-a-club-roguelite]]
+related: [[README]], [[GD-0012-onboarding]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/onboarding-strategy]], [[../60-Research/narrative-content-pipeline]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[progressive-disclosure-ui]], [[mode-manage-a-club-career]], [[mode-create-a-club-roguelite]]
 ---
 
 # Onboarding & Tutorial - FTUE, Inbox Arc, Feed-Cards, Assistant Manager
 
-Approved 2026-05-17 (gap D5). Binding implementation reference is
-[[../60-Research/onboarding-strategy]]. This GDD captures the
-product-level rules; numerical detail + UX wireframes + competitor
-analysis live in the research note.
+Approved 2026-05-17 (gap D5), then ratified for R2-05 on 2026-06-03
+by [[GD-0012-onboarding]] / FMX-99. Binding implementation references are
+[[GD-0012-onboarding]], [[../60-Research/onboarding-guided-first-season-2026-06-03]]
+and [[../60-Research/onboarding-strategy]]. This GDD captures the detailed
+product rules; full inbox copy and localization remain separate narrative /
+localization work.
 
 ## 1. Approved product rules
 
@@ -41,6 +43,25 @@ analysis live in the research note.
    keyboard-reachable. Reduced-motion respected.
 9. **Veteran skip** with safety net (micro-tooltips + settings reset
    + auto-detection of struggle).
+
+## 1.1 FMX-99 R2-05 ratified addendum
+
+- **FTUE shape** stays the current route path:
+  `/new` → `/onboarding/experience` → `/onboarding/mode` →
+  `/onboarding/club` → Home feed-card → `/tactics` playstyle.
+- **Timing target** is < 60 seconds to first playstyle choice and
+  < 3 minutes to first match kickoff. The two management-decision
+  screens before match are Roguelite setup and playstyle; the
+  experience/mode steps remain measured one-tap routing steps.
+- **Season 1 learning spine** is an objective roadmap, not the inbox
+  arc. The 12-message inbox arc supports the roadmap with voice,
+  context and emotion.
+- **First economy lesson** is wage runway: wage room, free agents,
+  loans and board expectations. Matchday revenue and full finance
+  cockpit are later lessons.
+- **Assistant auto-handling** may prepare local drafts or prefill
+  low-impact actions on Easy/Normal. Authoritative mutations still
+  require explicit user confirmation.
 
 ## 2. FTUE flow (60-second start)
 
@@ -110,11 +131,21 @@ MVP mode step:
 
 Per-sender voice cards live in `packages/game-data/src/inbox/voice-cards/`.
 
-### 3.2 12-message first-season tutorial arc
+### 3.2 First-season objective roadmap + 12-message support arc
 
-4 in-game weeks, 12 core messages + 1 optional Family flavour
-message. Full subjects + previews in
-[[../60-Research/onboarding-strategy]] §5.3.
+The first-season action order is owned by Home feed-card objectives.
+The inbox provides 12 core messages + 1 optional Family flavour
+message over the first four in-game weeks as voice/context support.
+Full subjects + previews in [[../60-Research/onboarding-strategy]] §5.3.
+
+| Phase | Time | Primary objective lane | Inbox role |
+|---|---|---|---|
+| Kickoff | Day 0-7 | confirm XI, choose playstyle, first match, report | welcome, board expectation, first match framing |
+| Stabilize | Week 2 | training load and rotation | explain fatigue and reinforce lineup choices |
+| Runway | Week 3-4 | wage room, free/loan shortlist, board runway | DoF/board explain wage trade-off and risk |
+| Adjust | Days 31-60 | tactical fit, morale, squad depth | reactive feedback and open-loop hooks |
+| Review | Days 61-90 | objective progress, wage runway checkpoint | board confidence and next target |
+| Rhythm | Rest of season | recurring match prep and targeted warnings | lower-volume narrative and decision prompts |
 
 **Pacing**:
 
@@ -168,8 +199,23 @@ Swipe actions duplicated as visible buttons (accessibility).
 ### 4.3 Prioritisation
 
 ```text
-priority = timePressureScore + impactTypeScore + playerBehaviourAdjust
+priorityScore =
+  onboardingStageBoost
+  + timePressureScore
+  + impactTypeScore
+  + playerBehaviourAdjust
 ```
+
+| Factor | Values |
+|---|---|
+| `onboardingStageBoost` | +80 current required objective; +35 newly unlocked system; +20 returning-user recap; 0 otherwise |
+| `timePressureScore` | +100 overdue/today hard deadline; +80 due <=1 day; +55 due <=3 days; +30 due <=7 days; +10 next-step relevant; 0 informational |
+| `impactTypeScore` | +70 match-critical; +65 wage runway / board confidence; +60 tutorial progression; +50 morale/fitness/availability; +45 transfer opportunity; +25 narrative/open loop; +10 info-only |
+| `playerBehaviourAdjust` | +10 per ignored high-impact CTA, max +30; +20 struggle trigger; -20 same type dismissed twice; -30 completed/snoozed recently; -20 tutorial card for Veteran/Minimal help |
+
+Tie-breaks: score, due date, category order, stable card id. `playerBehaviourAdjust`
+is per-save only and resettable through Assistance settings; it is not a
+cross-save profile.
 
 Per-difficulty queue behaviour:
 

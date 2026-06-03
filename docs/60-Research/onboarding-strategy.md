@@ -4,12 +4,19 @@ status: current
 binding: true
 tags: [research, onboarding, ftue, tutorial, inbox, feed-cards, accessibility, mobile-ux]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-06-03
 type: research
-related: [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[ai-manager-behaviour]], [[tactics-and-formations]], [[data-generators]], [[performance-budgets]], [[progressive-disclosure-research]], [[club-boss-analysis]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/mode-manage-a-club-career]], [[../50-Game-Design/mode-create-a-club-roguelite]]
+related: [[onboarding-guided-first-season-2026-06-03]], [[../50-Game-Design/GD-0012-onboarding]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[ai-manager-behaviour]], [[tactics-and-formations]], [[data-generators]], [[performance-budgets]], [[progressive-disclosure-research]], [[club-boss-analysis]], [[../50-Game-Design/progressive-disclosure-ui]], [[../50-Game-Design/mode-manage-a-club-career]], [[../50-Game-Design/mode-create-a-club-roguelite]]
 ---
 
 # Onboarding Strategy — FTUE, Inbox Tutorial, Feed-Cards, Accessibility
+
+> **FMX-99 amendment (2026-06-03):** This D5 note remains the broad research
+> basis, but R2-05 implementation details are now resolved in
+> [[onboarding-guided-first-season-2026-06-03]] and approved
+> [[../50-Game-Design/GD-0012-onboarding]]. Use the FMX-99 objective roadmap,
+> wage-runway first lesson, deterministic feed-card formula and stopwatch
+> protocol there when this note differs.
 
 > Gap D5 of [[../95-Archive/gap-reports/wave-3-gap-analysis]]. Locks the strategic onboarding
 > system for an offline-ready PWA football manager: 60-second FTUE
@@ -770,6 +777,11 @@ Swipe actions duplicated as visible buttons (accessibility
 requirement).
 
 ### 7.4 Prioritisation algorithm
+
+FMX-99 supersedes the original score bands below with a spec-grade formula in
+[[../50-Game-Design/GD-0012-onboarding]]: `onboardingStageBoost +
+timePressureScore + impactTypeScore + playerBehaviourAdjust`, deterministic
+tie-breaks, per-save-only behaviour adjustment and explicit card guardrails.
 
 Per in-game day, score each pending task:
 

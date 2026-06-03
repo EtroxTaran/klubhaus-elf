@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-03
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../60-Research/onboarding-guided-first-season-2026-06-03]]
 ---
 
 # Game Design Map
@@ -102,6 +102,14 @@ below. This means old `Future-scope notes` sections are not active work by defau
 
 ## UX
 
+- [[../50-Game-Design/GD-0012-onboarding]] - approved FMX-99 onboarding decision:
+  current FTUE path, Season-1 objective roadmap, wage-runway first economy
+  lesson, deterministic feed-card scoring and keyboard-first / WCAG 2.2 AA
+  route requirements.
+- [[../50-Game-Design/onboarding-and-tutorial]] - detailed approved onboarding
+  system spec.
+- [[../60-Research/onboarding-guided-first-season-2026-06-03]] - FMX-99 research
+  synthesis for R2-05.
 - [[../50-Game-Design/progressive-disclosure-ui]]
 - [[../60-Research/player-strength-presentation]] - binding Impact Lens model for player strength presentation; no global OVR.
 - [[../50-Game-Design/squad-and-club-structure]]
@@ -131,6 +139,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/fan-culture-segmentation-research]]
 - [[../60-Research/progressive-disclosure-research]]
 - [[../60-Research/player-strength-presentation]]
+- [[../60-Research/onboarding-guided-first-season-2026-06-03]]
 - [[../60-Research/presentation-renderer-strategy]]
 - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
@@ -154,6 +163,8 @@ the `approved` notes are:
 - [[../50-Game-Design/singleplayer-baseline]]
 - [[../50-Game-Design/async-multiplayer-private-group]] (product rules)
 - [[../50-Game-Design/progressive-disclosure-ui]]
+- [[../50-Game-Design/GD-0012-onboarding]]
+- [[../50-Game-Design/onboarding-and-tutorial]]
 - [[../50-Game-Design/transfer-market-and-contracts]]
 - [[../60-Research/player-strength-presentation]] (binding research synthesis)
 - [[../50-Game-Design/tactics-system]]
