@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-04
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
 ---
 
 # Research Map
@@ -89,6 +89,22 @@ design notes.
   [[../20-Features/feature-ai-narration-mvp-pillar]] and
   [[../30-Implementation/ai-narration-contract-testing-framework]]; raw capture:
   [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]].
+
+## Newsworthiness Event-Publication Semantics (FMX-83, 2026-06-04)
+
+- [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
+  - FMX-83 synthesis for G14. Defines the source-owned publication contract
+  pattern for `InjuryOccurred`, `ContractExpiring`, `BoardPressureChanged` and
+  `TransferRumourPublished`, plus `PlayerSuspended` projection requirements
+  only. Feeds proposed
+  [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]],
+  draft
+  [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
+  [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]],
+  [[../20-Features/feature-ai-narration-mvp-pillar]] and
+  [[../30-Implementation/ai-narration-contract-testing-framework]]; raw
+  capture:
+  [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]].
 
 ## Fixture Commercial / Competition Revenue Profile Contract (2026-06-03)
 

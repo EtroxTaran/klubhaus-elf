@@ -13,6 +13,8 @@ related:
   - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
   - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
   - [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
+  - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
+  - [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../60-Research/ai-narrative-runtime-integration]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
@@ -20,6 +22,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+  - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
   - [[feature-eos-player-skills-and-people-context]]
   - [[feature-fan-ecology-ui]]
 ---
@@ -46,6 +49,10 @@ In scope for the first active narration slice:
   board meeting, press/journalist question, fan-rep scene and agent flavour.
 - Async narrative surfaces: post-match report/newspaper, injury/event report,
   weekly summary and selected match ticker key-event wording.
+- Newsworthy fact ingestion via source-owned self-contained events for injuries,
+  contract expiry, board pressure, transfer rumours and future
+  FMX-80/Discipline suspension facts; Narrative renders these snapshots and
+  never joins source-domain state.
 - FMX-88 scope freeze: all active dialogue/prose surfaces above are
   LLM-eligible for optional phrasing, while facts, choices, intents, effects and
   player-choice labels stay deterministic.
@@ -119,6 +126,9 @@ Feature: AI narration MVP pillar
 - Runtime LLM remains fully optional; `LLM_MODE=disabled` renders all MVP
   narrative fixtures.
 - Generated prose is never parsed into authoritative state or command payloads.
+- Newsworthy narrative facts arrive through self-contained published-language
+  events and are stored in `NarrativeNewsFactProjection`; no Narrative render
+  path performs cross-context joins.
 - Prompt payloads exclude clear user data, PII, secrets, raw free text and
   unmasked user-authored names.
 - Provider/model selection remains gated by ADR-0030, docs verification and
@@ -136,11 +146,13 @@ Feature: AI narration MVP pillar
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
 - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+- [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 - [[../30-Implementation/ai-narration-contract-testing-framework]]
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+- [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
 - [[feature-eos-player-skills-and-people-context]]
 - [[feature-fan-ecology-ui]]

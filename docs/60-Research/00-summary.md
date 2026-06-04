@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, fmx-81, fmx-88]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, fmx-81, fmx-83, fmx-88]
 updated: 2026-06-04
 ---
 
@@ -238,6 +238,24 @@ synthesis for Broad Full Dialogue runtime-LLM scope, the
 `FallbackCoverageManifest`, Article 50 release-gate ownership and the MVP
 no-export/share rule. Raw capture:
 [[raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]].
+
+## Newsworthiness Event-Publication Semantics (2026-06-04)
+
+[[newsworthiness-event-publication-semantics-2026-06-04]] is the FMX-83
+synthesis for G14. It proposes source-owned, self-contained event-publication
+facets for `InjuryOccurred`, `ContractExpiring`, `BoardPressureChanged` and
+`TransferRumourPublished`, plus projection requirements only for the future
+FMX-80/Discipline-owned `PlayerSuspended` schema. Narrative consumes these
+snapshots into `NarrativeNewsFactProjection`, renders storylets/articles/feed
+surfaces and never joins source-domain state while rendering. Raw capture:
+[[raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]].
+
+This feeds proposed
+[[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]],
+draft [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
+[[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]],
+[[../20-Features/feature-ai-narration-mvp-pillar]] and
+[[../30-Implementation/ai-narration-contract-testing-framework]].
 
 ## Fan Demand and Price Elasticity (2026-05-28)
 

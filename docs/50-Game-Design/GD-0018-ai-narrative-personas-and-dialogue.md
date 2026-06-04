@@ -18,6 +18,8 @@ related:
   - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
   - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
   - [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
+  - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
+  - [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../60-Research/raw-perplexity/raw-ai-llm-usage]]
   - [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]]
@@ -29,6 +31,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+  - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
 ---
 
 # GD-0018: AI Narrative Personas and Dialogue
@@ -102,6 +105,12 @@ reactions.
   audience and editorial stance. Journalists have beat, tone, stance, fairness
   and relationships. The LLM phrases articles/questions; it does not decide
   whether a rumour, scandal or board-pressure event exists.
+- **Newsworthy football facts arrive as self-contained events.** FMX-83
+  proposes that injuries, contract-expiry pressure, board-pressure changes and
+  transfer rumours reach Narrative as source-owned published-language payloads
+  with display snapshots, source/confidence, salience inputs and decay hints.
+  Narrative renders and remembers the story thread; it does not query the
+  source context for missing facts or create the fact itself.
 - **Template fallback stays mandatory.** Every AI-enhanced line has a
   deterministic local template fallback and the game remains complete without
   provider access.
@@ -153,6 +162,10 @@ Gameplay line:
   journalists, fan reps and agents.
 - Exact mechanics affected by each trait and intent.
 - Exact `DialogueIntent` taxonomy per surface.
+- Final salience weights, cooldown caps and media-volume rules for newsworthy
+  event publication.
+- Canonical `PlayerSuspended` schema from FMX-80/Discipline; GD-0018 may only
+  consume it for suspension narrative surfaces.
 - Exact first-exposure and settings/help disclosure copy, and the legal memo
   that closes the EU AI Act Article 50 release gate.
 - Final OpenRouter model/provider routing, cost caps and cache policy.
@@ -207,11 +220,13 @@ None
   [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] ·
   [[../60-Research/ai-narration-testing-framework-2026-05-28]] ·
   [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]] ·
+  [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]] ·
   [[../60-Research/raw-perplexity/raw-ai-llm-usage]] ·
   [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]] ·
   [[../60-Research/narrative-content-pipeline]]
 - Decisions: [[GD-0013-narrative-inbox]] ·
   [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]] ·
-  [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+  [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] ·
+  [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
 - Implementation: [[../30-Implementation/ai-narration-contract-testing-framework]]
 - [[README]] - Game Design Log
