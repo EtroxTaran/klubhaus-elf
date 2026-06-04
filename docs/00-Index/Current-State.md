@@ -33,6 +33,25 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > not ratified — no technology, gameplay or architecture decision is made without
 > Nico (2–3 sourced options + recommendation).
 
+> **FMX-69 Set-piece-coach effect-readiness multiplier curve (2026-06-04).** Closes
+> audit gap **G12** (E2 epic FMX-58; unblocked by FMX-70/ADR-0067). Draft
+> [[../50-Game-Design/GD-0026-set-piece-coach-readiness]] pins the model: per-variant
+> readiness `r∈[0,1]` grows via a **bounded exponential** `r'=L−(L−r)e^(−k)`; the
+> Set-Piece-Coach **specialisation score** (ADR-0053, read-only) scales the learning
+> **rate** `k=k0·(1+κ·s)·(1+λ·c_cat)·τ` (ceiling fixed — no runaway); **two-layer**
+> category-familiarity + per-variant granularity; exponential decay (embedded routines
+> retain ~2.5× longer); **hysteresis** selectability gate (θ_on 0.85 / θ_off 0.75) with
+> the `defaultVariantId` as the always-ready floor. **Training** computes + emits the
+> self-contained `SetPieceCoachReadinessUpdated`; **Tactics** freezes `selectable` +
+> `efficiencyMultiplier` into the `TacticSnapshot` at `lineup_locked` so ADR-0067 stays a
+> pure function (no live read, **no `*Rng`**). **Nico chose D1–D4 = A/A/A/A live
+> (2026-06-04):** bounded exponential / scale-the-rate / two-layer / Training-emits.
+> Synthesis [[../60-Research/setpiece-coach-readiness-2026-06-04]] (+ raw 4-prompt
+> capture: real-world coach effect ≈ +5–10 set-piece goals/season with diminishing
+> returns, learning-curve math, FM/EA-FC precedent, calibration). Additive
+> ADR-0067/ADR-0055 snapshot-field amendment is **proposed** (Nico-gated). All constants
+> = FMX-52 calibration behind `readinessModelVersion`. Authored `draft`; awaiting ratify.
+
 > **FMX-98 Mobile route map + IA + client-state — ADR-0008 ratified (2026-06-03).**
 > Nico answered D1–D3 = A,A,A live; [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
 > is promoted `draft → accepted` / `binding: true` (the longest-blocked UI ADR; the
