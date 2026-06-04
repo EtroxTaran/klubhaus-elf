@@ -3,7 +3,7 @@ title: Game Design Hub
 status: current
 tags: [game-design, index]
 created: 2026-05-15
-updated: 2026-06-03
+updated: 2026-06-04
 type: index
 binding: false
 related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]]
@@ -86,7 +86,7 @@ active work.
 | [[GD-0015-ip-clean-data]] | IP-clean data generation | draft | ADR-0007 |
 | [[GD-0016-mobile-ux-loop]] | Mobile UX gameplay loop | draft | ADR-0008, ADR-0010 |
 | [[GD-0017-mvp-scope-and-mode-sequencing]] | MVP scope & mode sequencing | draft | ADR-0020 |
-| [[GD-0018-ai-narrative-personas-and-dialogue]] | AI narrative personas, Full Dialogue, All Active actor context, Narrative context and Playtest First evaluation | draft | ADR-0030, ADR-0054 |
+| [[GD-0018-ai-narrative-personas-and-dialogue]] | AI narrative personas, Full Dialogue, All Active actor context, Narrative context, FMX-88 fallback coverage/no-export freeze and Playtest First evaluation | draft | ADR-0030, ADR-0054 |
 | [[GD-0019-manager-archetype-roguelite-progression]] | Manager archetype roguelite progression; FMX-16 hooks, playtest-tunable taxonomy and prestige counterweight | draft | ADR-0051 |
 | [[GD-0020-eos-player-skills-personas-and-people]] | EOS player skills/perks, staff target skills, personas and People-context planning | draft | ADR-0052 |
 | [[GD-0021-player-staff-development-and-decision-influence]] | Player/staff development and decision-influence factor matrices; staff-skill MVP gate | draft | ADR-0052, ADR-0053 |
@@ -183,7 +183,8 @@ active work.
 
 - [[GD-0013-narrative-inbox]] - inbox-as-feed, narrative events and press/newspaper baseline.
 - [[GD-0018-ai-narrative-personas-and-dialogue]] - draft persona, Full
-  Dialogue, Narrative context and Playtest First evaluation layer.
+  Dialogue, Narrative context, FMX-88 fallback coverage/no-export freeze and
+  Playtest First evaluation layer.
 - [[GD-0020-eos-player-skills-personas-and-people]] - draft People/persona
   context cards and relationship constellations that feed dialogue.
 - [[GD-0024-ai-world-drift-algorithm]] - draft AI World Simulation drift

@@ -3,7 +3,7 @@ title: Implementation (Map of Content)
 status: current
 tags: [implementation, moc]
 created: 2026-05-17
-updated: 2026-05-28
+updated: 2026-06-04
 type: index
 binding: true
 related: [[../00-Index/Home]], [[agent-workflow-pattern]], [[../10-Architecture/README]], [[../00-Index/Documentation-V1]]
@@ -45,7 +45,8 @@ operational runbooks. Current implementable notes are classified by
 - [[club-economy-accounting-ledger]] - draft Club Economy ledger contracts,
   read models and staged insolvency implementation surface.
 - [[ai-narration-contract-testing-framework]] - draft AI narration contract,
-  eval corpus, safety/privacy and Playtest First implementation framework.
+  eval corpus, fallback coverage manifest, safety/privacy and Playtest First
+  implementation framework.
 
 ## Historical Notes
 

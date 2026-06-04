@@ -3,13 +3,15 @@ title: AI Narration Contract Testing Framework
 status: draft
 tags: [implementation, testing, ai, llm, narrative, contracts, mvp, fmx-3]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-04
 type: implementation
 binding: false
 linear: FMX-3
 related:
   - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
+  - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+  - [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
@@ -43,6 +45,7 @@ modules:
 | `scene-selector` | Pick eligible narrative scenes/storylets from public read models |
 | `context-assembler` | Build `NarrativeContextCard` from authoritative facts and actor cards |
 | `template-runtime` | Render deterministic fallback copy for every surface |
+| `fallback-manifest` | Maintain CI-verifiable coverage for every prose point and scene type |
 | `provider-adapter` | Backend-only LLM calls, timeouts, retries, cost and model metadata |
 | `validator` | Schema, fact, safety, repetition and persona checks |
 | `provenance` | Display snapshot metadata, fallback reason, model/schema versions |
@@ -74,6 +77,11 @@ First-wave contracts:
 - `NarrativeProvenance`: source, provider/model, schema version, cache key,
   validation state and `aiGenerated`.
 - `NarrativeEvalCase`: replayable eval fixture.
+- `FallbackCoverageManifest`: machine-readable coverage registry mapping each
+  prose point / `NarrativeSceneType` to fallback template, fixture, LLM
+  eligibility, forbidden claims, provenance schema and test IDs.
+- `NarrativeSceneFallbackFixture`: deterministic input fixture that proves a
+  scene renders without provider access.
 
 Use Zod 4 strict object schemas at runtime boundaries and infer TypeScript
 types from those schemas. Export JSON Schema only from the same schemas used by
@@ -83,7 +91,7 @@ runtime validation.
 
 | Tier | Runs | Required checks |
 |---|---|---|
-| Local/PR | Every relevant change | Zod contract tests, mocked provider adapter, fallback coverage, static no-LLM-in-authoritative-path guard, small eval corpus |
+| Local/PR | Every relevant change | Zod contract tests, mocked provider adapter, fallback manifest coverage, LLM-disabled render fixtures, static no-LLM-in-authoritative-path guard, small eval corpus |
 | Nightly | Scheduled | Larger corpus, fast-check generated context cards, season simulations, red-team prompts, cost/latency report |
 | Release | Before runtime enablement | 10k-style narrative seed soak, legal/disclosure checklist, provider/model regression, manual playtest review, kill-switch drill |
 
@@ -96,6 +104,7 @@ they become concrete scripts in the CI process.
 |---|---|
 | Contract shape | Unknown keys rejected; required provenance/fallback fields present |
 | Context assembly | Only public read-model facts appear; no raw user/PII/internal IDs |
+| Fallback manifest coverage | Every prose point and `NarrativeSceneType` has `fallbackTemplateId`, fixture, deterministic render assertion and provenance assertion |
 | Deterministic fallback | Same seed/context/template version yields same fallback |
 | Fact grounding | Output cannot contradict listed authoritative facts |
 | Intent determinism | Mechanics are identical for template and LLM wording when intent is same |
@@ -142,17 +151,22 @@ Failures become corpus cases before prompt/model tuning is considered complete.
 
 ## Acceptance Criteria
 
-- Every MVP narration surface has a fallback template before live LLM is used.
+- Every MVP prose point is covered by the `FallbackCoverageManifest` before live
+  LLM is used.
+- `LLM_MODE=disabled` renders every manifest fixture with no provider access.
 - Every live/provider path is optional, budgeted and kill-switchable.
 - No generated prose is parsed into domain commands or authoritative facts.
 - All prompt payloads are minimized and redact user-authored names.
 - Playtest output can be exported as eval cases without exposing secrets or PII.
 - Provider/model changes rerun the narrative corpus before rollout.
+- Generated text export/share stays out of MVP unless a later legal-gated policy
+  is ratified.
 
 ## Related
 
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
+- [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]

@@ -3,7 +3,7 @@ title: ADR-0030 LLM Out Of Authoritative State Boundary
 status: draft
 tags: [adr, architecture, ai, llm, narrative, determinism, openrouter]
 created: 2026-05-27
-updated: 2026-05-28
+updated: 2026-06-04
 type: adr
 binding: false
 supersedes:
@@ -12,6 +12,8 @@ related:
   - [[../../60-Research/ai-narrative-runtime-integration]]
   - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
+  - [[../../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+  - [[../../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
   - [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../../60-Research/narrative-content-pipeline]]
   - [[../../60-Research/determinism-and-replay]]
@@ -111,6 +113,40 @@ OpenRouter is the preferred experimental provider path, behind an adapter and
 feature flags. The adapter remains provider-agnostic enough to replace routing
 later.
 
+### FMX-88 MVP runtime scope freeze
+
+FMX-88 freezes the MVP surface line for the Runtime-LLM evaluation. Nico chose
+**Broad Full Dialogue** on 2026-06-04: optional LLM prose enhancement may cover
+all active narrative dialogue/prose surfaces from GD-0018, but only after
+deterministic facts, intents, options, effects, fallback templates and
+provenance exist.
+
+LLM-eligible prose surfaces:
+
+- player one-to-one, staff advice/disagreement, board scenes,
+  press/journalist questions, fan-rep scenes and agent/transfer flavour;
+- post-match newspaper/report, injury/event report, weekly summary and selected
+  match ticker key-event wording;
+- actor voice/tone for players, staff, board contacts, media actors, fan reps
+  and agents.
+
+Template-only / deterministic surfaces:
+
+- tactics commands, match simulation, transfer valuation/acceptance, finance,
+  training, injuries, morale deltas, registrations, scheduling, rules,
+  save/replay/audit logs and any other authoritative state transition;
+- UI labels, controls, tutorial/onboarding instructions, legal/privacy copy and
+  player-choice labels whose wording carries mechanical meaning.
+
+The LLM may phrase a scene; it may not produce the scene's facts, selectable
+options, effect IDs, policy keys, command payloads, numeric values or domain
+events. Dialogue mechanics consume only the selected `DialogueIntent` and
+deterministic policies.
+
+No generated-text export/share ships in the MVP. Any future export, social
+share, public posting or editorial use of generated text requires a separate
+policy and legal review.
+
 ### Narrative Orchestrator boundary
 
 The proposed MVP boundary is a non-authoritative **Narrative Orchestrator**. It
@@ -177,6 +213,12 @@ Any future implementation must expose a narrow enhancement contract:
 - Dialogue mechanics consume only the selected `DialogueIntent` and deterministic
   policies; they never consume generated prose.
 
+FMX-88 adds a mandatory `FallbackCoverageManifest` planning contract. Every
+`NarrativeSceneType` / prose point must declare a `fallbackTemplateId`, fixtures,
+LLM eligibility, forbidden claims, provenance schema version and tests. The
+LLM-disabled path must render every fixture without provider access before any
+runtime LLM release.
+
 ## Data Boundary
 
 Prompt payloads must not contain:
@@ -205,6 +247,13 @@ Before Runtime-LLM ships, the release gate must decide:
 - user-facing privacy wording;
 - audit evidence that every AI-generated output is identifiable internally.
 - export/share policy if any AI-generated text leaves the game client.
+
+FMX-88 names this the **Article 50 Runtime-LLM Release Gate**. It is closed only
+by Nico plus an external legal/compliance reviewer, with an artifact covering
+feature scope, jurisdictions, first-exposure disclosure copy, persistent
+settings/help copy, accessibility review, provider marking/provenance evidence,
+privacy/data minimization, export/share policy and owner sign-off. The issue
+defines the gate; it does not perform the legal review.
 
 ## Provider Boundary
 
@@ -278,6 +327,11 @@ Negative:
   exhaustion.
 - Disclosure/provenance tests: every AI-generated result stores
   `aiGenerated: true` and model metadata.
+- Fallback manifest tests: every `NarrativeSceneType` and prose point has a
+  deterministic fallback fixture and provenance assertion; `LLM_MODE=disabled`
+  renders all fixtures.
+- No-export tests/policy gate: generated text cannot leave the game client in
+  MVP paths unless a later export/share policy and legal review are ratified.
 - Docs gate: legal/compliance review recorded before status can move to
   `accepted`.
 - Framework gate: [[../../30-Implementation/ai-narration-contract-testing-framework]]

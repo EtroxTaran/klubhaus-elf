@@ -3,7 +3,7 @@ title: GD-0018 AI Narrative Personas and Dialogue
 status: draft
 tags: [game-design, gddr, narrative, ai, llm, personas, dialogue]
 created: 2026-05-27
-updated: 2026-05-28
+updated: 2026-06-04
 type: game-design
 binding: false
 supersedes:
@@ -16,6 +16,8 @@ related:
   - [[../60-Research/ai-narrative-runtime-integration]]
   - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
+  - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+  - [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
   - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../60-Research/raw-perplexity/raw-ai-llm-usage]]
   - [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]]
@@ -74,13 +76,16 @@ reactions.
   as the source for actor labels, relationship edges, recent facts, allowed
   intents and forbidden claims. Dialogue consumes those cards; it does not own
   persona or relationship state.
-- **MVP Runtime-LLM candidate is Full Dialogue plus async flavour.** Candidate
+- **MVP Runtime-LLM scope is frozen as Broad Full Dialogue.** Candidate
   surfaces: player one-to-one, staff advice/disagreement, board meetings,
   press/journalist questions, fan-rep scenes, post-match newspaper snippets,
   injury/event reports, weekly summaries, transfer/agent flavour after the
   result is fixed, and selected match ticker key-event wording after committed
   facts. Source:
   [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]].
+  FMX-88 freezes this as an MVP surface boundary, not as a provider/model
+  decision: optional LLM may phrase prose across these surfaces, but all facts,
+  choices, intents and effects remain deterministic.
 - **All active actor classes need generated persona context in MVP.** The first
   implementation wave should cover players, staff, board contacts, media
   outlets, journalists, fan segments, named fan groups, fan reps and agents.
@@ -100,6 +105,9 @@ reactions.
 - **Template fallback stays mandatory.** Every AI-enhanced line has a
   deterministic local template fallback and the game remains complete without
   provider access.
+- **Fallback coverage is CI-manifested.** FMX-88 requires every prose point to
+  appear in a `FallbackCoverageManifest` with fallback template, fixture,
+  deterministic render test and provenance assertion before runtime LLM release.
 - **No raw user data or PII goes to LLMs.** User-authored names and free text are
   replaced with placeholders. MVP avoids free-form user input entirely.
 - **First-exposure disclosure is the draft product posture.** The first AI
@@ -115,6 +123,28 @@ reactions.
   thresholds are frozen. This does not relax the hard state-boundary,
   fallback, safety, privacy or disclosure gates.
 
+## FMX-88 frozen MVP line
+
+Nico selected these FMX-88 planning choices on 2026-06-04:
+
+| # | Decision | Choice |
+|---|---|---|
+| D1 | Runtime-LLM scope | **Broad Full Dialogue:** all active narrative dialogue/prose surfaces may use optional LLM phrasing after deterministic scene selection, facts, intents, options, effects and fallback templates exist. |
+| D2 | Fallback coverage | **CI manifest:** every `NarrativeSceneType` / prose point needs fallback template, fixture, deterministic render test and provenance assertion. |
+| D3 | Article 50 gate | **Nico + external legal/compliance review:** this GDDR records the release blocker, not the legal conclusion. |
+| D4 | Export/share | **No generated-text export/share in MVP:** future export/social/publication policy is a later legal-gated feature. |
+
+Gameplay line:
+
+- LLM can improve the *voice* of player/staff/board/media/fan/agent scenes,
+  reports, summaries and selected committed match-ticker lines.
+- LLM cannot write player-choice labels, create new choices, determine effects,
+  alter morale/pressure/trust/finance/transfer/match/rule facts or generate
+  authoritative state.
+- If LLM is disabled, offline, over budget, killed, unsafe or invalid, the same
+  scene renders through deterministic templates and remains a complete game
+  experience.
+
 ## Open
 
 - Exact MVP actor counts per world size: outlets, journalists, named fan groups,
@@ -123,11 +153,12 @@ reactions.
   journalists, fan reps and agents.
 - Exact mechanics affected by each trait and intent.
 - Exact `DialogueIntent` taxonomy per surface.
-- Whether first-exposure plus central disclosure satisfies EU AI Act Article 50
-  for the intended in-game surfaces.
+- Exact first-exposure and settings/help disclosure copy, and the legal memo
+  that closes the EU AI Act Article 50 release gate.
 - Final OpenRouter model/provider routing, cost caps and cache policy.
 - Content volume targets for template-only fallback quality across the Full
   Dialogue surfaces.
+- Future generated-text export/share policy, if the MVP no-export rule changes.
 - Final quantitative thresholds for contradiction rate, fallback rate, persona
   drift, repetition and unsafe-output rejection after the first playtest corpus
   establishes a baseline.
@@ -175,6 +206,7 @@ None
 - Research: [[../60-Research/ai-narrative-runtime-integration]] ·
   [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]] ·
   [[../60-Research/ai-narration-testing-framework-2026-05-28]] ·
+  [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]] ·
   [[../60-Research/raw-perplexity/raw-ai-llm-usage]] ·
   [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]] ·
   [[../60-Research/narrative-content-pipeline]]

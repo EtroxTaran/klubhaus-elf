@@ -1,8 +1,8 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, fmx-81]
-updated: 2026-06-03
+tags: [research, summary, contracts, ai, llm, narrative, fmx-81, fmx-88]
+updated: 2026-06-04
 ---
 
 # Research Summary
@@ -230,6 +230,14 @@ This feeds proposed
 [[../10-Architecture/state-machines/player-contract-lifecycle]],
 [[../50-Game-Design/GD-0006-transfers]] and
 [[../50-Game-Design/transfer-market-and-contracts]].
+
+## AI Narration Scope Freeze and Fallback Coverage (2026-06-04)
+
+[[ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]] is the FMX-88
+synthesis for Broad Full Dialogue runtime-LLM scope, the
+`FallbackCoverageManifest`, Article 50 release-gate ownership and the MVP
+no-export/share rule. Raw capture:
+[[raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]].
 
 ## Fan Demand and Price Elasticity (2026-05-28)
 

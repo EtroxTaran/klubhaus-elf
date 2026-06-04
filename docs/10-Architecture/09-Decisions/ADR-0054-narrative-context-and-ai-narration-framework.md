@@ -3,7 +3,7 @@ title: ADR-0054 Narrative Context and AI Narration Framework
 status: draft
 tags: [adr, architecture, ddd, bounded-context, narrative, ai, llm, testing, mvp]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-04
 type: adr
 binding: false
 supersedes:
@@ -11,6 +11,8 @@ superseded_by:
 related:
   - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
+  - [[../../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+  - [[../../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
   - [[../../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../20-Features/feature-ai-narration-mvp-pillar]]
@@ -85,6 +87,25 @@ The Narrative context does **not** own:
 - transfer decisions, agent economics or negotiation state;
 - notification delivery, unread counts, push/email delivery or subscriptions.
 
+### FMX-88 scope and fallback freeze
+
+FMX-88 freezes the MVP Narrative responsibility line for runtime LLM:
+
+- Narrative may optionally enhance prose for the Broad Full Dialogue surface set
+  from GD-0018: controlled player/staff/board/press/fan/agent scenes, async
+  reports/summaries and selected committed match ticker key events.
+- Narrative must keep player-choice labels, option/effect IDs, facts, rules,
+  commands, finance/training/transfer/match/scheduling outputs and legal/privacy
+  copy deterministic/template-only.
+- Narrative owns the `FallbackCoverageManifest` and fails release readiness if a
+  prose point lacks a fallback template, fixture, deterministic render test and
+  provenance assertion.
+- Narrative owns provenance/telemetry for template and LLM paths, but the
+  Article 50 release gate closes only through Nico plus external
+  legal/compliance review.
+- Generated text remains in-game only for MVP; export/share requires a later
+  policy and legal review.
+
 ## Context Boundaries
 
 | Owner | Owns | Narrative may consume |
@@ -120,6 +141,8 @@ Planning contracts for the first implementation wave:
 - `NarrativeValidationReport`
 - `NarrativeProvenance`
 - `NarrativeEvalCase`
+- `FallbackCoverageManifest`
+- `NarrativeSceneFallbackFixture`
 
 Contracts are TypeScript + Zod 4 when implementation resumes. Zod schemas are
 strict at provider/API boundaries and may export JSON Schema for structured
@@ -143,6 +166,12 @@ Authoritative domain facts
 The fallback is always renderable without provider access. LLM output may
 replace presentation copy only after validation passes.
 
+Every scene that can reach the runtime flow must be present in the
+`FallbackCoverageManifest`. The manifest links `NarrativeSceneType`,
+`fallbackTemplateId`, fixtures, allowed facts, forbidden claims, LLM eligibility,
+provenance schema version and test IDs. The provider adapter is not release-ready
+unless an LLM-disabled render pass covers the complete manifest.
+
 ## MVP Testing Posture
 
 Nico selected **Playtest First** for narrative quality. This ADR interprets
@@ -154,6 +183,8 @@ that as:
 - production Runtime-LLM still requires hard gates for state isolation,
   fallback coverage, safety/privacy validation, provenance, disclosure and
   provider failure behavior.
+- FMX-88 makes fallback coverage a CI-style manifest gate, not a manual
+  checklist.
 
 The implementation framework is
 [[../../30-Implementation/ai-narration-contract-testing-framework]].
@@ -170,6 +201,10 @@ The implementation framework is
 - Intent tests proving mechanics read `DialogueIntent`, never generated prose.
 - Security tests for prompt injection, PII minimization, unsafe output,
   provider errors, over-budget and kill switch.
+- Manifest tests proving every `NarrativeSceneType` / prose point has a
+  fallback template, fixture and provenance assertion.
+- LLM-disabled render tests proving the complete manifest renders with no
+  provider access.
 - Season simulation tests for repetition, stale memory, unresolved arcs and
   persona drift.
 - Playtest rubric that feeds failures back into eval cases and validators.
