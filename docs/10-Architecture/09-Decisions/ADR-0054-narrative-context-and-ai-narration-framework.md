@@ -21,7 +21,7 @@ related:
   - [[ADR-0019-modular-monolith-ddd]]
   - [[ADR-0030-llm-out-of-authoritative-state]]
   - [[ADR-0052-people-persona-and-skills-context]]
-  - [[ADR-0075-narrative-newsworthiness-event-contracts]]
+  - [[ADR-0076-narrative-newsworthiness-event-contracts]]
 ---
 
 # ADR-0054: Narrative Context and AI Narration Framework
@@ -125,7 +125,7 @@ into source contexts while rendering.
 
 `PlayerSuspended` is deliberately not specified by FMX-83. This ADR consumes
 the projection requirements recorded in
-[[ADR-0075-narrative-newsworthiness-event-contracts]]; FMX-80/Discipline remains
+[[ADR-0076-narrative-newsworthiness-event-contracts]]; FMX-80/Discipline remains
 the sole schema owner.
 
 ## Context Boundaries

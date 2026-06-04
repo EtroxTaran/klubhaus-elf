@@ -1,5 +1,5 @@
 ---
-title: ADR-0075 Narrative Newsworthiness Event Contracts
+title: ADR-0076 Narrative Newsworthiness Event Contracts
 status: proposed
 tags: [adr, architecture, narrative, newsworthiness, events, contracts, ddd, fmx-83]
 created: 2026-06-04
@@ -26,7 +26,7 @@ related:
   - [[../../60-Research/domain-model-audit-and-backlog-2026-06-02]]
 ---
 
-# ADR-0075: Narrative Newsworthiness Event Contracts
+# ADR-0076: Narrative Newsworthiness Event Contracts
 
 ## Status
 

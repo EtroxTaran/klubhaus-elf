@@ -18,7 +18,7 @@ related:
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
-  - [[../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
+  - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
   - [[mvp-implementation-roadmap]]
 ---
 
@@ -185,5 +185,5 @@ Failures become corpus cases before prompt/model tuning is considered complete.
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
-- [[../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
+- [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
 - [[mvp-implementation-roadmap]]

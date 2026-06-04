@@ -31,7 +31,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
-  - [[../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
+  - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
 ---
 
 # GD-0018: AI Narrative Personas and Dialogue
@@ -227,6 +227,6 @@ None
 - Decisions: [[GD-0013-narrative-inbox]] ·
   [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]] ·
   [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] ·
-  [[../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
+  [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
 - Implementation: [[../30-Implementation/ai-narration-contract-testing-framework]]
 - [[README]] - Game Design Log

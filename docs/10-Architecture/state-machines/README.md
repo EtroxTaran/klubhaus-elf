@@ -24,6 +24,7 @@ workflow. Each is owned by exactly one bounded context.
 | Watch Party | Watch Party | [[watch-party]] |
 | Match (overview) | Match | [[match]] |
 | Youth Academy (proposed) | Youth Academy (proposed via ADR-0060) | [[youth-academy]] |
+| Loan Orchestration (proposed) | Transfer (saga; proposed via ADR-0075) | [[loan-orchestration]] |
 
 ## Authority
 

@@ -7,7 +7,7 @@ updated: 2026-06-04
 type: research
 related:
   - [[../newsworthiness-event-publication-semantics-2026-06-04]]
-  - [[../../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
+  - [[../../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
   - [[../../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[../../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
@@ -204,7 +204,7 @@ therefore recorded as recommended proposed defaults, not ratified decisions:
 ## Related
 
 - [[../newsworthiness-event-publication-semantics-2026-06-04]]
-- [[../../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
+- [[../../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
 - [[../../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 

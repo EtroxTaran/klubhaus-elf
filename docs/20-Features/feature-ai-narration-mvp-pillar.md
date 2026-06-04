@@ -22,7 +22,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
-  - [[../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
+  - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
   - [[feature-eos-player-skills-and-people-context]]
   - [[feature-fan-ecology-ui]]
 ---
@@ -153,6 +153,6 @@ Feature: AI narration MVP pillar
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
-- [[../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
+- [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
 - [[feature-eos-player-skills-and-people-context]]
 - [[feature-fan-ecology-ui]]

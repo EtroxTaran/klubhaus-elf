@@ -9,7 +9,7 @@ binding: false
 related:
   - [[../../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
-  - [[../../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
+  - [[../../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
   - [[../../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[../../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
@@ -43,7 +43,7 @@ related:
 - Added synthesis:
   [[../../60-Research/newsworthiness-event-publication-semantics-2026-06-04]].
 - Added proposed:
-  [[../../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]].
+  [[../../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]].
 - Updated Narrative ADR/feature/GDDR/testing notes and vault maps so the
   contract is discoverable.
 
@@ -76,7 +76,7 @@ related:
 - `.cursor/plans/fmx-83-newsworthiness-event-contracts.md`
 - `docs/60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04.md`
 - `docs/60-Research/newsworthiness-event-publication-semantics-2026-06-04.md`
-- `docs/10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts.md`
+- `docs/10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts.md`
 - `docs/10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md`
 - `docs/50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue.md`
 - `docs/20-Features/feature-ai-narration-mvp-pillar.md`
@@ -92,7 +92,7 @@ related:
 
 ## Needs promotion
 
-- ADR-0075 remains `proposed` until Nico ratifies.
+- ADR-0076 remains `proposed` until Nico ratifies.
 - ADR-0054/ADR-0065/GD-0018 remain draft/proposed and non-binding.
 - FMX-80, FMX-82 and FMX-87 remain follow-up decision owners.
 

@@ -97,7 +97,7 @@ design notes.
   pattern for `InjuryOccurred`, `ContractExpiring`, `BoardPressureChanged` and
   `TransferRumourPublished`, plus `PlayerSuspended` projection requirements
   only. Feeds proposed
-  [[../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]],
+  [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]],
   draft
   [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
   [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]],

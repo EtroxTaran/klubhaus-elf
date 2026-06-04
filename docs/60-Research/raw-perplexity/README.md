@@ -157,7 +157,7 @@ Nico selected the newsworthiness / event-publication issue.
 
 | File | Topic | Synthesis target |
 |---|---|---|
-| [[raw-newsworthiness-event-publication-semantics-2026-06-04]] | Real football media/newsworthiness facts, comparable game/storylet event-surface patterns, DDD integration-event payload rules and Zod 4 contract guidance for self-contained Narrative facts | [[../newsworthiness-event-publication-semantics-2026-06-04]] · [[../../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]] · [[../../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] |
+| [[raw-newsworthiness-event-publication-semantics-2026-06-04]] | Real football media/newsworthiness facts, comparable game/storylet event-surface patterns, DDD integration-event payload rules and Zod 4 contract guidance for self-contained Narrative facts | [[../newsworthiness-event-publication-semantics-2026-06-04]] · [[../../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]] · [[../../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] |
 
 ## FMX-46 follow-up Perplexity research (2026-05-29)
 

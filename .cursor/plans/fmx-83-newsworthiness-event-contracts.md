@@ -49,7 +49,7 @@ ratified architecture decisions.
   documentation.
 - [x] Add raw research capture.
 - [x] Add synthesis note.
-- [x] Add proposed ADR-0075.
+- [x] Add proposed ADR-0076.
 - [x] Update Narrative ADR/feature/GDDR/testing notes and vault maps.
 - [ ] Run docs validation and diff checks.
 - [ ] Commit, push, open PR and move Linear to `In Review`.
