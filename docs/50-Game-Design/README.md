@@ -32,7 +32,7 @@ research transcripts in [[../60-Research/raw-perplexity/README]].
 Implement gameplay only from `approved` game-design records. This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0025`) — the decision-record chain from research into
+- **GDDRs** (`GD-0001`...`GD-0026`) — the decision-record chain from research into
   ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -94,6 +94,7 @@ active work.
 | [[GD-0023-ai-club-economy-behaviour]] | AI club economy behaviour; five financial-policy archetypes over manager archetypes, three financial regimes (Healthy/Stressed/Distressed), soft diegetic homeostasis (no AI stat cheats), staged distress with rare bounded insolvency, tiered fidelity, country distress personalities, structured rationale tags | draft | ADR-0050, ADR-0051, ADR-0058 |
 | [[GD-0024-ai-world-drift-algorithm]] | AI world-drift algorithm; Rising Rival, Giant Collapse and Continental Era Shift / rising nations as deterministic, legible, capped structural drift events with FMX-52 calibration handoff | draft | ADR-0071 |
 | [[GD-0025-in-match-controls]] | In-match controls & live-control kit (FMX-100, resolves GD-0016 R2-16 gameplay half); one MVP interaction tier — queued subs, mentality presets, formation-swap, 3 cooldown shouts, 3 speeds + free pause; halftime modal; deterministic shout-effect contract with provisional playtest-tunable magnitudes; text&stats accessible path | draft | ADR-0072 |
+| [[GD-0026-set-piece-coach-readiness]] | Set-piece-coach effect-readiness multiplier curve (FMX-69, closes gap G12); per-variant readiness via bounded exponential, coach specialisation (ADR-0053) scales the learning rate, two-layer category+variant granularity, decay + hysteresis selectability gate frozen into the TacticSnapshot (ADR-0067); `SetPieceCoachReadinessUpdated` emitted by Training; constants = FMX-52 calibration | draft | ADR-0053, ADR-0067 (additive amend) |
 
 ## Core loop
 
@@ -156,6 +157,8 @@ active work.
 
 - [[tactics-system]] - Position+Role+Duty+Instructions+Traits model, tactical familiarity.
 - [[set-pieces]] - corners, FKs, penalties, throw-ins as a sub-system.
+- [[GD-0026-set-piece-coach-readiness]] - draft set-piece-coach effect-readiness
+  multiplier curve (FMX-69, G12); readiness gates ADR-0067 variant selectability.
 - [[match-engine]] - 2D event-based engine spec.
 
 ## Modes

@@ -56,7 +56,11 @@ attributes in isolation from open-play attribute math.
 
 A **Set-Piece Coach** (see [[squad-and-club-structure]] §1) multiplies the
 training block effectiveness. Without one, set-piece variants take more
-weeks to learn.
+weeks to learn. The readiness curve, coach-effect model and
+`SetPieceCoachReadinessUpdated` contract are pinned by draft
+[[GD-0026-set-piece-coach-readiness]] (FMX-69, gap G12): per-variant readiness
+grows via a bounded exponential whose **rate** the coach specialisation score
+(ADR-0053) scales, and gates which variants are selectable in the §7 hook below.
 
 ## 5. Penalty psychology
 
