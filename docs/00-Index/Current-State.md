@@ -56,6 +56,32 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../60-Research/mobile-route-map-ia-and-client-state-2026-06-03]] (+ raw). Flipped to
 > `accepted` per Nico's live ratification + approved plan; merge stays Nico's.
 
+> **FMX-68 Tactical-identity fingerprint aggregation (2026-06-03).** First child of
+> Epic **E2** (FMX-58 — Match Determinism & Tactical Contracts); resolves gap **G10**
+> and **unblocks FMX-93/G3** (archetype taxonomy). Synthesis
+> [[../60-Research/tactical-identity-fingerprint-2026-06-03]] (+ four raw Perplexity
+> captures: real-world signal metrics, EWMA/decay, empirical-Bayes confidence,
+> comparable games — FM/EA FC/OOTP/EHM/NBA & motorsport sims) grounds proposed
+> [[../10-Architecture/09-Decisions/ADR-0074-tactical-identity-fingerprint-aggregation]],
+> which **extends** accepted [[../10-Architecture/09-Decisions/ADR-0055-tactics-context]]
+> with the missing algorithm for the `TacticalIdentityFingerprint` it already owns
+> (consumed by Manager & Legacy, [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]).
+> Emits **raw signals + confidence only — no archetype names** (G3 deferral, GD-0019).
+> **Nico chose D1–D4 = A/A/A/A live (2026-06-03):** **D1** aggregation = **EWMA per
+> signal, half-life 15 matches** (recency-weighted, replay-deterministic; first ~30
+> matches provisional); **D2** confidence = **empirical-Bayes shrinkage** combining
+> sample size, behavioural variance and tactical **familiarity** F (reuses Tactics'
+> familiarity bar), shrinking to the league prior when sparse; **D3** carrier =
+> Tactics-owned **projection updated per-match, single authoritative read at
+> `RogueliteRunEnded`** into the `RunAnalysisSnapshot` (ADR-0051 never-re-read);
+> **D4** home = **new ADR-0074** + a one-line additive pointer in ADR-0055 (accepted
+> ADR not rewritten). Five signals (possession, pressing, risk, adaptation, set-piece)
+> defined from committed match facts + the locked `TacticSnapshot`; shouts/pause/speed
+> excluded (ADR-0072). **Pure-deterministic projection — declares no `*Rng` sub-label**
+> (ADR-0018 §3). `adaptation` is the weakest-defined axis (proxy from the intervention
+> log; slowest confidence). All baselines/weights are **FMX-52 calibration debt** behind
+> `algorithmVersion`. Authored `proposed` per never-self-accept; awaiting Nico ratify.
+
 > **FMX-100 Match rendering & in-match controls UX (2026-06-03).** Closes Epic E7
 > (FMX-63 — UX, Onboarding & Match Presentation) after FMX-98/ADR-0008 — resolves
 > GD-0016 **R2-16** (the match-controls/rendering open flag). Synthesis

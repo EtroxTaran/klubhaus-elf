@@ -3,7 +3,7 @@ title: ADR-0055 Tactics Context
 status: accepted
 tags: [adr, architecture, ddd, tactics, set-pieces, fmx-28, fmx-37, accepted]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-03
 type: adr
 binding: true
 supersedes:
@@ -16,6 +16,7 @@ related:
   - [[ADR-0049-swappable-spatial-event-match-engine]]
   - [[ADR-0051-manager-and-legacy-context]]
   - [[ADR-0053-staff-operations-context]]
+  - [[ADR-0074-tactical-identity-fingerprint-aggregation]]
   - [[ADR-0052-people-persona-and-skills-context]]
   - [[ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[ADR-0016-community-dataset-overrides]]
@@ -483,6 +484,10 @@ None
 - [[ADR-0067-set-piece-variant-selection-determinism]] - proposed; pins the
   deterministic set-piece variant-selection rule + `TacticSnapshot` set-piece
   fields (see appendix).
+- [[ADR-0074-tactical-identity-fingerprint-aggregation]] - proposed (FMX-68, G10);
+  supplies the aggregation algorithm (signal definitions, EWMA decay, empirical-Bayes
+  confidence) for the `TacticalIdentityFingerprint` projection this ADR owns.
+  Additive extension — this ADR's decision is unchanged.
 
 ## Appendix: `TacticSnapshot` set-piece selection fields (accepted, FMX-70)
 

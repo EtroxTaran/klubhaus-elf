@@ -3,7 +3,7 @@ title: GD-0019 Manager Archetype Roguelite Progression
 status: draft
 tags: [game-design, gddr, roguelite, manager, archetype, progression, fmx-16]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-06-03
 type: game-design
 binding: false
 supersedes:
@@ -13,6 +13,8 @@ related:
   - [[mode-create-a-club-roguelite]]
   - [[GD-0017-mvp-scope-and-mode-sequencing]]
   - [[../60-Research/manager-archetype-roguelite-2026-05-27]]
+  - [[../10-Architecture/09-Decisions/ADR-0074-tactical-identity-fingerprint-aggregation]]
+  - [[../60-Research/tactical-identity-fingerprint-2026-06-03]]
   - [[../60-Research/raw-perplexity/raw-roguelite-meta-progression]]
   - [[../60-Research/late-game-systems]]
   - [[../20-Features/feature-roguelite-mvp-first-playable]]
@@ -138,7 +140,10 @@ Requires Nico decision and a GDDR/ADR update:
 ## Open
 
 - Final archetype taxonomy and naming.
-- Exact signal schema and confidence model.
+- ~~Exact signal schema and confidence model.~~ → **specified by proposed
+  [[../10-Architecture/09-Decisions/ADR-0074-tactical-identity-fingerprint-aggregation]]**
+  (FMX-68, G10): five signals + EWMA(h=15) + empirical-Bayes confidence, raw signals
+  only. Taxonomy/naming stays open here (G3 / FMX-93).
 - Exact post-run UI depth for first playable.
 - First prestige ladder shape.
 - Whether future challenge runs can badge async-group cosmetics.
