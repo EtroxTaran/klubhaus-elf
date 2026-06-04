@@ -184,7 +184,7 @@ stateDiagram-v2
 | `YouthCohortPublished` | Squad & Player | **Snapshot**: materialise player records from cohort composition; attribute ranges + archetype labels copied (canonical Reference + Snapshot pattern from ADR-0055) |
 | `YouthCohortPublished` | Training | New player IDs for weekly dev calc per ADR-0018 §1 |
 | `YouthPromoted` | Manager & Legacy | Pipeline-quality signal aggregation per GD-0019 archetype hook |
-| `YouthLoaned` | Transfer | Future-scope loan-orchestration Process Manager entry point |
+| `YouthLoaned` | Transfer | Loan-orchestration Process Manager entry point: materialises a `proposed` `LoanAgreement` per proposed [[../09-Decisions/ADR-0075-loan-orchestration-process-manager]] / [[loan-orchestration]] (FMX-85) |
 | `YouthReleased` | Notification | Released-prospect inbox card |
 | `AcademyInvestmentChanged` | Club Management | Budget envelope update |
 | `AcademyInvestmentExpensePosted` | Club Management | Ledger entry per ADR-0050 (Customer-Supplier + ACL pattern) |
