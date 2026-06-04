@@ -3,7 +3,7 @@ title: Features
 status: current
 tags: [feature, index]
 created: 2026-05-15
-updated: 2026-05-28
+updated: 2026-06-04
 type: index
 binding: false
 related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-V1]]
@@ -32,7 +32,8 @@ stubs as future-scope planning, not open documentation gaps.
   weekly ledger, full accounting, commercial contracts and staged insolvency.
 - [[feature-ai-narration-mvp-pillar]] - draft FMX-3 AI narration MVP pillar:
   Full Dialogue, All Active actor context, Narrative context framework,
-  Playtest First, template fallback and Runtime-LLM gates.
+  Playtest First, template fallback, Runtime-LLM gates and FMX-88 fallback
+  manifest/no-export constraints.
 - [[feature-eos-player-skills-and-people-context]] - draft FMX-23 feature
   slice for player skills/perks, People context, persona context cards and
   GD-0021 decision-influence hooks.

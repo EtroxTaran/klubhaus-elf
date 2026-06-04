@@ -3,7 +3,7 @@ title: Current State
 status: current
 tags: [meta, current-state, execution, hot]
 created: 2026-05-16
-updated: 2026-06-03
+updated: 2026-06-04
 type: index
 binding: true
 related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/club-financing-tools-2026-06-01]], [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/onboarding-and-tutorial]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]], [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]]
@@ -51,6 +51,27 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > returns, learning-curve math, FM/EA-FC precedent, calibration). Additive
 > ADR-0067/ADR-0055 snapshot-field amendment is **proposed** (Nico-gated). All constants
 > = FMX-52 calibration behind `readinessModelVersion`. Authored `draft`; awaiting ratify.
+
+> **FMX-88 AI narration scope freeze + fallback coverage (2026-06-04).**
+> [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+> (+ raw
+> [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]])
+> grounds the AI narration legal/resilience keystone. Nico selected the FMX-88
+> planning defaults live: **Broad Full Dialogue** runtime-LLM scope, **CI
+> manifest** fallback coverage, **Nico + external legal/compliance review** for
+> the Article 50 release gate, and **no generated-text export/share in MVP**.
+> Draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
+> now freezes LLM-eligible prose surfaces versus template-only deterministic
+> surfaces; draft
+> [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+> owns the `FallbackCoverageManifest`, fixtures, deterministic render tests and
+> provenance assertions. [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]],
+> [[../20-Features/feature-ai-narration-mvp-pillar]] and
+> [[../30-Implementation/ai-narration-contract-testing-framework]] are aligned.
+> Runtime LLM remains optional, non-authoritative, kill-switchable and blocked
+> until the legal/provenance/disclosure/export artifact is signed off; generated
+> prose may phrase scenes but cannot create facts, choices, effects, commands or
+> authoritative state.
 
 > **FMX-98 Mobile route map + IA + client-state — ADR-0008 ratified (2026-06-03).**
 > Nico answered D1–D3 = A,A,A live; [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]

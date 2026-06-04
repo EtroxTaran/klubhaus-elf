@@ -3,10 +3,10 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-06-03
+updated: 2026-06-04
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
 ---
 
 # Research Map
@@ -75,6 +75,20 @@ design notes.
   [[../50-Game-Design/GD-0006-transfers]] and
   [[../50-Game-Design/transfer-market-and-contracts]]; raw capture:
   [[../60-Research/raw-perplexity/raw-player-contract-lifecycle-fsm-2026-06-03]].
+
+## AI Narration Scope Freeze and Fallback Coverage (FMX-88, 2026-06-04)
+
+- [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+  - FMX-88 synthesis freezing Broad Full Dialogue runtime-LLM scope, the
+  CI-verifiable `FallbackCoverageManifest`, Article 50 release gate ownership
+  and MVP no-export/share rule. Feeds draft
+  [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]],
+  draft
+  [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
+  [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]],
+  [[../20-Features/feature-ai-narration-mvp-pillar]] and
+  [[../30-Implementation/ai-narration-contract-testing-framework]]; raw capture:
+  [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]].
 
 ## Fixture Commercial / Competition Revenue Profile Contract (2026-06-03)
 

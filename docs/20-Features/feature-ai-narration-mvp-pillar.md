@@ -3,7 +3,7 @@ title: Feature - AI Narration MVP Pillar
 status: draft
 tags: [feature, ai, llm, narrative, dialogue, mvp, fmx-3]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-04
 type: feature
 binding: false
 linear: FMX-3
@@ -11,6 +11,8 @@ related:
   - [[README]]
   - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
+  - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+  - [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
   - [[../60-Research/ai-narrative-runtime-integration]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
@@ -44,7 +46,12 @@ In scope for the first active narration slice:
   board meeting, press/journalist question, fan-rep scene and agent flavour.
 - Async narrative surfaces: post-match report/newspaper, injury/event report,
   weekly summary and selected match ticker key-event wording.
+- FMX-88 scope freeze: all active dialogue/prose surfaces above are
+  LLM-eligible for optional phrasing, while facts, choices, intents, effects and
+  player-choice labels stay deterministic.
 - Complete deterministic template fallback for every surface.
+- `FallbackCoverageManifest` coverage for every prose point: fallback template,
+  fixture, deterministic render test and provenance assertion.
 - Runtime LLM enhancement behind feature flags, budget caps, provider
   validation, fact checks, safety checks and kill switch.
 - First-exposure AI disclosure plus central settings/help explanation and
@@ -61,8 +68,8 @@ Out of MVP scope:
 - LLM-driven tactics, transfers, finance, match simulation, board decisions,
   fan mood or relationship changes.
 - Provider calls from the browser client.
-- Export/share of AI-generated text unless a provenance and visible-disclosure
-  policy is explicitly ratified.
+- Export/share of generated text. MVP generated prose stays in-game only; any
+  future export/share/publication path needs a separate policy and legal review.
 - Per-output visible AI labels by default; legal review may still require them.
 
 ## Gherkin scenarios
@@ -106,7 +113,11 @@ Feature: AI narration MVP pillar
 ## Acceptance criteria
 
 - MVP scope explicitly includes Full Dialogue and All Active actor context.
-- Every LLM surface has a deterministic fallback template.
+- Every prose point appears in the `FallbackCoverageManifest` with a
+  deterministic fallback template, fixture, deterministic render test and
+  provenance assertion.
+- Runtime LLM remains fully optional; `LLM_MODE=disabled` renders all MVP
+  narrative fixtures.
 - Generated prose is never parsed into authoritative state or command payloads.
 - Prompt payloads exclude clear user data, PII, secrets, raw free text and
   unmasked user-authored names.
@@ -114,6 +125,8 @@ Feature: AI narration MVP pillar
   Nico approval.
 - Narrative context ownership, framework structure and contract/eval tiers are
   covered by ADR-0054 and the implementation framework note before code starts.
+- Article 50 runtime release is blocked until Nico plus external
+  legal/compliance review accepts the disclosure/provenance/export artifact.
 - Playtest First may guide quality iteration, but cannot bypass template
   fallback, state isolation, safety/privacy, provenance or disclosure gates.
 - `pnpm docs:check` passes after the vault update.
@@ -122,6 +135,7 @@ Feature: AI narration MVP pillar
 
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
+- [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 - [[../30-Implementation/ai-narration-contract-testing-framework]]

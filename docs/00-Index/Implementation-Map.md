@@ -3,7 +3,7 @@ title: Implementation Map
 status: current
 tags: [implementation, meta]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-04
 type: map
 binding: false
 related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]]
@@ -31,7 +31,8 @@ unless re-opened by a current issue or accepted ADR.
   Mailjet fallback; Web Push/native push prepared behind adapters.
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
   - draft FMX-3 implementation framework for Narrative contracts, eval corpus,
-  safety/privacy tests, provider fallback, Playtest First and CI tiers.
+  safety/privacy tests, provider fallback, FMX-88 fallback manifest coverage,
+  Playtest First and CI tiers.
 - [Club Economy Accounting Ledger](../30-Implementation/club-economy-accounting-ledger.md)
   - draft FMX-13 ledger contracts for weekly finance facts, accounting
   projections and staged insolvency.

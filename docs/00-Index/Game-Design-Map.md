@@ -3,10 +3,10 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-06-03
+updated: 2026-06-04
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
 ---
 
 # Game Design Map
@@ -95,7 +95,9 @@ below. This means old `Future-scope notes` sections are not active work by defau
 
 - [[../50-Game-Design/GD-0013-narrative-inbox]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] - draft
-  Full Dialogue and All Active actor-context target for MVP narration.
+  Full Dialogue and All Active actor-context target for MVP narration; FMX-88
+  freezes Broad Full Dialogue runtime-LLM scope, CI fallback manifest and the
+  no-export MVP rule.
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 - [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]] - draft deterministic
   world-drift design for Rising Rival, Giant Collapse and Continental Era Shift.
@@ -146,6 +148,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/presentation-renderer-strategy]]
 - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
+- [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
 - [[../60-Research/regulations-and-pyramids-research]]
 - [[../60-Research/anstoss-series-deep-dive]]
 - [[../60-Research/club-boss-analysis]]

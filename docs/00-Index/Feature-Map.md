@@ -3,7 +3,7 @@ title: Feature Map
 status: current
 tags: [feature, meta]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-04
 type: map
 binding: false
 related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-V1]]
@@ -27,7 +27,8 @@ documentation gaps.
 - [[../20-Features/feature-club-economy-mvp-pillar]] — draft FMX-13/FMX-41/FMX-45/FMX-46 Club Economy pillar for weekly ledger, accounting, commercial impact, contracts, cup/competition revenue profiles, matchday operating-risk costs and staged insolvency.
 - [[../20-Features/feature-ai-narration-mvp-pillar]] — draft FMX-3 AI narration
   MVP pillar for Full Dialogue, All Active actor context, Narrative context
-  framework, Playtest First quality loop and Runtime-LLM gates.
+  framework, Playtest First quality loop, Runtime-LLM gates and FMX-88 fallback
+  coverage/no-export constraints.
 - [[../20-Features/feature-eos-player-skills-and-people-context]] — draft
   FMX-23 player-skill/perk and People/persona slice for MVP planning, now
   linked to GD-0021 decision-influence hooks.

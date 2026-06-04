@@ -3,10 +3,10 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-06-03
+updated: 2026-06-04
 type: map
 binding: false
-related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]]
+related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]]
 ---
 
 # Architecture Map
@@ -82,7 +82,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0058 Club Economy Commercial Impact Boundary](../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary.md) - accepted CommercialPortfolio boundary for ticketing, contracts, cup settlement, matchday operating-cost profiles, fan events and Investor entitlement policy.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft proposed Manager & Legacy context for manager identity, run analysis, archetype candidates and prestige/legacy selection.
 - [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft proposed People context for actor personas, relationship graph, player/staff skill profiles and deterministic context cards.
-- [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft proposed Narrative context for scene selection, context-card assembly, templates, validation, provenance, evals and provider adapter boundary.
+- [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft proposed Narrative context for scene selection, context-card assembly, templates, fallback coverage manifest, validation, provenance, evals and provider adapter boundary.
 - [ADR-0065 Narrative Media and Press Content Ownership](../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership.md) - draft proposed extension of ADR-0054: Narrative owns Press/Media content authoring, conference response trees, article publication policy, tone library, deterministic fallbacks and optional validated LLM paraphrase controls; Notification delivers and People supplies persona cards.
 - [ADR-0073 Player Contract Lifecycle FSM](../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm.md) - proposed Squad & Player ownership of player-contract lifecycle truth; Transfer owns renewal/pre-contract/free-agent process cases; Regulations owns pre-contract/free-agent/work-permit verdicts.
 
@@ -103,6 +103,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [EOS Player, Staff, Skills and Personas Research](../60-Research/eos-player-staff-skills-and-personas-2026-05-28.md)
 - [AI Narration Testing and Framework Research](../60-Research/ai-narration-testing-framework-2026-05-28.md)
 - [Narrative Media and Press Content Ownership Research](../60-Research/narrative-content-bounded-context-2026-06-02.md)
+- [AI Narration Scope Freeze and Fallback Coverage](../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04.md)
 - [Player Contract Lifecycle FSM Research](../60-Research/player-contract-lifecycle-fsm-2026-06-03.md)
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
 - [Match Engine Simulation Model](../60-Research/match-engine-simulation-model.md)
@@ -135,7 +136,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0014 State Machines](../10-Architecture/09-Decisions/ADR-0014-state-machines.md) - promote before changing runtime orchestration.
 - [ADR-0015 Spectator Snapshot Streaming](../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming.md) - post-MVP watch-party layer.
 - [ADR-0016 Community Dataset Overrides](../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides.md) - future-scope until UGC moderation/security gates are implemented.
-- [ADR-0030 LLM Out Of Authoritative State Boundary](../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state.md) - draft Runtime-LLM re-evaluation for Full Dialogue outside authoritative state; no implementation until accepted.
+- [ADR-0030 LLM Out Of Authoritative State Boundary](../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state.md) - draft Runtime-LLM re-evaluation for Broad Full Dialogue outside authoritative state; FMX-88 adds the fallback manifest, Article 50 gate and MVP no-export rule; no implementation until accepted.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft context-map change; no implementation until accepted.
 - [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft context-map change; no implementation until accepted.
 - [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft context-map change; no implementation until accepted.
