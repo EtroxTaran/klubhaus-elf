@@ -12,10 +12,13 @@ related:
   - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
   - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
   - [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
+  - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
+  - [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+  - [[../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
   - [[mvp-implementation-roadmap]]
 ---
 
@@ -49,6 +52,7 @@ modules:
 | `provider-adapter` | Backend-only LLM calls, timeouts, retries, cost and model metadata |
 | `validator` | Schema, fact, safety, repetition and persona checks |
 | `provenance` | Display snapshot metadata, fallback reason, model/schema versions |
+| `news-fact-projection` | Consume source-owned newsworthy event snapshots into `NarrativeNewsFactProjection` without cross-context joins |
 | `memory` | Compact narrative memory snippets and stale-memory retirement |
 | `eval-harness` | Eval corpus loading, mocked/live runs, reports and playtest exports |
 | `telemetry` | Tokens, latency, cost, validation status and kill-switch state |
@@ -82,6 +86,12 @@ First-wave contracts:
   eligibility, forbidden claims, provenance schema and test IDs.
 - `NarrativeSceneFallbackFixture`: deterministic input fixture that proves a
   scene renders without provider access.
+- `NewsworthyEventEnvelope`: source-owned integration-event envelope for
+  Narrative-facing facts.
+- `NewsworthinessMetadata`: salience inputs, source confidence, attribution,
+  privacy detail and legal-risk metadata.
+- `NarrativeNewsFactProjection`: rebuildable, non-authoritative projection
+  consumed by storylets/articles/feed surfaces.
 
 Use Zod 4 strict object schemas at runtime boundaries and infer TypeScript
 types from those schemas. Export JSON Schema only from the same schemas used by
@@ -104,6 +114,7 @@ they become concrete scripts in the CI process.
 |---|---|
 | Contract shape | Unknown keys rejected; required provenance/fallback fields present |
 | Context assembly | Only public read-model facts appear; no raw user/PII/internal IDs |
+| Newsworthiness ingestion | Injury, contract-expiry, board-pressure and transfer-rumour fixtures render from event snapshots only; no source-domain join is needed |
 | Fallback manifest coverage | Every prose point and `NarrativeSceneType` has `fallbackTemplateId`, fixture, deterministic render assertion and provenance assertion |
 | Deterministic fallback | Same seed/context/template version yields same fallback |
 | Fact grounding | Output cannot contradict listed authoritative facts |
@@ -153,6 +164,8 @@ Failures become corpus cases before prompt/model tuning is considered complete.
 
 - Every MVP prose point is covered by the `FallbackCoverageManifest` before live
   LLM is used.
+- Every newsworthy fact surface renders from a self-contained source-owned
+  event snapshot or is rejected as under-specified.
 - `LLM_MODE=disabled` renders every manifest fixture with no provider access.
 - Every live/provider path is optional, budgeted and kill-switchable.
 - No generated prose is parsed into domain commands or authoritative facts.
@@ -167,8 +180,10 @@ Failures become corpus cases before prompt/model tuning is considered complete.
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
 - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+- [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+- [[../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
 - [[mvp-implementation-roadmap]]

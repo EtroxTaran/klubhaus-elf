@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-04
 type: map
 binding: false
-related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]]
+related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
 ---
 
 # Architecture Map
@@ -85,6 +85,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft proposed Narrative context for scene selection, context-card assembly, templates, fallback coverage manifest, validation, provenance, evals and provider adapter boundary.
 - [ADR-0065 Narrative Media and Press Content Ownership](../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership.md) - draft proposed extension of ADR-0054: Narrative owns Press/Media content authoring, conference response trees, article publication policy, tone library, deterministic fallbacks and optional validated LLM paraphrase controls; Notification delivers and People supplies persona cards.
 - [ADR-0073 Player Contract Lifecycle FSM](../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm.md) - proposed Squad & Player ownership of player-contract lifecycle truth; Transfer owns renewal/pre-contract/free-agent process cases; Regulations owns pre-contract/free-agent/work-permit verdicts.
+- [ADR-0075 Narrative Newsworthiness Event Contracts](../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts.md) - proposed source-owned newsworthy event publication facets for Narrative consumption: injuries, contract expiry, board pressure, transfer rumours and future Discipline-owned suspensions.
 
 ## Current Binding Research and Specs
 
@@ -104,6 +105,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [AI Narration Testing and Framework Research](../60-Research/ai-narration-testing-framework-2026-05-28.md)
 - [Narrative Media and Press Content Ownership Research](../60-Research/narrative-content-bounded-context-2026-06-02.md)
 - [AI Narration Scope Freeze and Fallback Coverage](../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04.md)
+- [Newsworthiness Event-Publication Semantics](../60-Research/newsworthiness-event-publication-semantics-2026-06-04.md)
 - [Player Contract Lifecycle FSM Research](../60-Research/player-contract-lifecycle-fsm-2026-06-03.md)
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
 - [Match Engine Simulation Model](../60-Research/match-engine-simulation-model.md)

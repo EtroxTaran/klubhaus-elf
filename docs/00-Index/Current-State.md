@@ -73,6 +73,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > prose may phrase scenes but cannot create facts, choices, effects, commands or
 > authoritative state.
 
+> **FMX-83 Newsworthiness / event-publication semantics (2026-06-04).**
+> [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
+> (+ raw
+> [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]])
+> grounds proposed
+> [[../10-Architecture/09-Decisions/ADR-0075-narrative-newsworthiness-event-contracts]]
+> for gap **G14**. Recommended defaults after Nico selected FMX-83 and said
+> "go on" (not ratified): **D1=A** distinct publisher-owned event contracts plus
+> shared `NarrativeNewsFactProjection`; **D2=A** Transfer emits rumour facts and
+> Narrative renders only; **D3=A** FMX-83 consumes future FMX-80/Discipline
+> `PlayerSuspended` and does not define the schema; **D4=A** banded,
+> display-ready, self-contained payloads with source/confidence/legal/privacy
+> metadata. The four specified Narrative-facing event facets are
+> `InjuryOccurred`, `ContractExpiring`, `BoardPressureChanged` and
+> `TransferRumourPublished`. Narrative may select storylets/articles and render
+> fallback/LLM prose from these snapshots, but never joins source-domain state
+> or creates authoritative football facts.
+
 > **FMX-98 Mobile route map + IA + client-state — ADR-0008 ratified (2026-06-03).**
 > Nico answered D1–D3 = A,A,A live; [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]
 > is promoted `draft → accepted` / `binding: true` (the longest-blocked UI ADR; the

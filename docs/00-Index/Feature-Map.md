@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-04
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-V1]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-V1]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
 ---
 
 # Feature Map
@@ -28,7 +28,8 @@ documentation gaps.
 - [[../20-Features/feature-ai-narration-mvp-pillar]] — draft FMX-3 AI narration
   MVP pillar for Full Dialogue, All Active actor context, Narrative context
   framework, Playtest First quality loop, Runtime-LLM gates and FMX-88 fallback
-  coverage/no-export constraints.
+  coverage/no-export constraints; FMX-83 adds source-owned newsworthy event
+  snapshots for Narrative surfaces.
 - [[../20-Features/feature-eos-player-skills-and-people-context]] — draft
   FMX-23 player-skill/perk and People/persona slice for MVP planning, now
   linked to GD-0021 decision-influence hooks.

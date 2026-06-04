@@ -13,12 +13,15 @@ related:
   - [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
   - [[../../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
   - [[../../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
+  - [[../../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
+  - [[../../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../20-Features/feature-ai-narration-mvp-pillar]]
   - [[ADR-0019-modular-monolith-ddd]]
   - [[ADR-0030-llm-out-of-authoritative-state]]
   - [[ADR-0052-people-persona-and-skills-context]]
+  - [[ADR-0075-narrative-newsworthiness-event-contracts]]
 ---
 
 # ADR-0054: Narrative Context and AI Narration Framework
@@ -106,6 +109,25 @@ FMX-88 freezes the MVP Narrative responsibility line for runtime LLM:
 - Generated text remains in-game only for MVP; export/share requires a later
   policy and legal review.
 
+### FMX-83 newsworthiness event-publication contract
+
+FMX-83 adds a proposed source-domain publication contract for newsworthy facts.
+Narrative may consume `InjuryOccurred`, `ContractExpiring`,
+`BoardPressureChanged`, `TransferRumourPublished` and the future
+FMX-80/Discipline-owned `PlayerSuspended` event only as self-contained
+published-language snapshots.
+
+Narrative owns the `NarrativeNewsFactProjection`, storylet/article eligibility,
+fallback rendering and display provenance. Narrative does **not** decide that a
+football fact exists, does **not** create transfer rumours, does **not** own
+board pressure, injuries, contracts or suspensions, and does **not** join back
+into source contexts while rendering.
+
+`PlayerSuspended` is deliberately not specified by FMX-83. This ADR consumes
+the projection requirements recorded in
+[[ADR-0075-narrative-newsworthiness-event-contracts]]; FMX-80/Discipline remains
+the sole schema owner.
+
 ## Context Boundaries
 
 | Owner | Owns | Narrative may consume |
@@ -143,6 +165,10 @@ Planning contracts for the first implementation wave:
 - `NarrativeEvalCase`
 - `FallbackCoverageManifest`
 - `NarrativeSceneFallbackFixture`
+- `NewsworthyEventEnvelope`
+- `NewsworthinessMetadata`
+- `NarrativeNewsFactProjection`
+- `NarrativeFactSourceAttribution`
 
 Contracts are TypeScript + Zod 4 when implementation resumes. Zod schemas are
 strict at provider/API boundaries and may export JSON Schema for structured
@@ -203,6 +229,9 @@ The implementation framework is
   provider errors, over-budget and kill switch.
 - Manifest tests proving every `NarrativeSceneType` / prose point has a
   fallback template, fixture and provenance assertion.
+- Newsworthiness contract tests proving Narrative can render injury, contract
+  expiry, board-pressure and transfer-rumour snapshots without cross-context
+  joins, and proving `PlayerSuspended` remains an external Discipline contract.
 - LLM-disabled render tests proving the complete manifest renders with no
   provider access.
 - Season simulation tests for repetition, stale memory, unresolved arcs and
