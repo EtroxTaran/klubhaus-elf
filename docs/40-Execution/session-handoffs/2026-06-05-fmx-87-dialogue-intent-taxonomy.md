@@ -27,10 +27,10 @@ related:
 - Added ADR-0030 / ADR-0054 conformance updates and map/index links.
 - Validation passed: `node scripts/docs-check.mjs` and `git diff --check`.
 - Commit pushed and draft PR #136 opened.
+- Linear moved to `In Review` and handoff comment added.
 
 ## Open / next step
 
-- Move Linear to `In Review` and add the PR handoff comment.
 - Nico ratifies or changes GD-0027 before any implementation work.
 
 ## Blockers
