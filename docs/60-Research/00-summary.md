@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88]
 updated: 2026-06-05
 ---
 
@@ -64,6 +64,17 @@ The current state is:
   cleanup unless promoted by owner decision.
 - Evidence gates remain tracked through implementation: tests, drills, legal
   sign-off, release artifacts and production telemetry.
+
+## Opposition-template AI Consumption Contract (FMX-67, 2026-06-05)
+
+[[opposition-template-ai-consumption-contract-2026-06-05]] closes the research
+layer for G11: AI-management planning supplies opponent-prep context, Tactics
+selects and publishes the self-contained
+`OppositionTemplateSelectedForMatchV1`, and Match freezes it into
+`TacticSnapshot` at `lineup_locked`. It feeds proposed
+[[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]].
+Raw Perplexity/Web capture:
+[[raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]].
 
 ## Player Discipline Sub-Aggregate (FMX-80, 2026-06-05)
 

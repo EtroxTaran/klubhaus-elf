@@ -3,7 +3,7 @@ title: ADR-0055 Tactics Context
 status: accepted
 tags: [adr, architecture, ddd, tactics, set-pieces, fmx-28, fmx-37, accepted]
 created: 2026-05-28
-updated: 2026-06-03
+updated: 2026-06-05
 type: adr
 binding: true
 supersedes:
@@ -17,6 +17,7 @@ related:
   - [[ADR-0051-manager-and-legacy-context]]
   - [[ADR-0053-staff-operations-context]]
   - [[ADR-0074-tactical-identity-fingerprint-aggregation]]
+  - [[ADR-0080-opposition-template-ai-consumption-contract]]
   - [[ADR-0052-people-persona-and-skills-context]]
   - [[ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[ADR-0016-community-dataset-overrides]]
@@ -27,6 +28,8 @@ related:
   - [[../../20-Features/feature-tactics-progressive-disclosure]]
   - [[../../60-Research/tactics-persistence-bounded-context-2026-05-28]]
   - [[../../60-Research/raw-perplexity/raw-tactics-persistence-2026-05-28]]
+  - [[../../60-Research/opposition-template-ai-consumption-contract-2026-06-05]]
+  - [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]]
   - [[../../60-Research/tactics-and-formations]]
 ---
 
@@ -296,10 +299,14 @@ Tactics does **not** own:
   configuration).
 - Set-Piece-Coach role lifecycle (owned by Staff Operations per
   ADR-0053; Tactics consumes `SetPieceCoachReadinessUpdated`).
-- AI-manager opposition selection logic (owned by League / Club /
-  Transfer per `bounded-context-map.md §7` AI-manager note; Tactics
-  publishes the catalog, AI consumes the catalog and the per-opponent
-  context).
+- AI-manager opposition planning context and personality logic (owned by
+  League / Club / Transfer per `bounded-context-map.md §7` AI-manager note;
+  if ADR-0071 is ratified, AI World Simulation may become the planning source).
+  Tactics publishes the catalog. Proposed
+  [[ADR-0080-opposition-template-ai-consumption-contract]] narrows the
+  consumption contract by making Tactics the deterministic catalog selector and
+  publisher from a supplied AI-planning context; until ratified, ADR-0080 is
+  planning context only.
 
 ## Public contract direction
 
@@ -488,6 +495,17 @@ None
   supplies the aggregation algorithm (signal definitions, EWMA decay, empirical-Bayes
   confidence) for the `TacticalIdentityFingerprint` projection this ADR owns.
   Additive extension — this ADR's decision is unchanged.
+- [[ADR-0080-opposition-template-ai-consumption-contract]] - proposed (FMX-67, G11);
+  defines how AI-management planning supplies context, how Tactics selects and
+  publishes `OppositionTemplateSelectedForMatchV1`, and how Match freezes the
+  result into `TacticSnapshot` at `lineup_locked`. Additive extension — this
+  ADR's accepted Tactics ownership decision is unchanged unless ADR-0080 is
+  ratified.
+- [[../../60-Research/opposition-template-ai-consumption-contract-2026-06-05]]
+  - FMX-67 synthesis and option matrix for the opposition-template AI
+  consumption contract.
+- [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]]
+  - FMX-67 raw source capture.
 
 ## Appendix: `TacticSnapshot` set-piece selection fields (accepted, FMX-70)
 
@@ -518,3 +536,32 @@ The engine selects via the pure ordering `(priority DESC, variantId ASC)` and
 the module's `selectionMode`; deeply `readonly` per ADR-0026 rule 8. These fields
 are produced through the existing `TacticLockSnapshotProduced` event; no new
 command/event is required.
+
+## Appendix: Opposition-template AI consumption contract (proposed, FMX-67)
+
+> **Status: proposed** (Nico selected D1-D3 live on 2026-06-05; awaiting
+> ratification). Canonical spec + invariants in
+> [[ADR-0080-opposition-template-ai-consumption-contract]].
+
+ADR-0055 establishes that Tactics owns `OppositionTemplate` records, while Match
+only consumes a frozen `TacticSnapshot` at `lineup_locked`. It did not define
+how AI match-prep chooses one of those templates for a specific opponent
+(gap G11).
+
+ADR-0080 proposes the additive contract:
+
+- AI-management planning owns *why and when* a planning context is requested:
+  fixture stakes, manager style, scouting confidence, opponent projection and
+  risk posture.
+- Tactics owns the deterministic selector over its catalog and publishes the
+  self-contained `OppositionTemplateSelectedForMatchV1` event.
+- Match consumes the Tactics-published event at `lineup_locked` and freezes the
+  selected template into `TacticSnapshot`. Match never silently chooses a
+  template and never joins Tactics or AI-management state.
+- Final selection is immutable at `lineup_locked`; `lineup_open` may expose a
+  candidate for planning UI only.
+- Selection uses `WorldAiMgmtRng` with the versioned sub-label
+  `worldAiMgmt:opposition-template:fixture:<fixtureId>:club:<clubId>:v1:select`,
+  isolating out-of-match AI planning from MatchCoreRng and set-piece sub-labels.
+
+No new bounded context or bounded-context-map edit is proposed by FMX-67.

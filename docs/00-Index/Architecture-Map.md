@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-05
 type: map
 binding: false
-related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/state-machines/player-discipline]]
+related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/state-machines/player-discipline]]
 ---
 
 # Architecture Map
@@ -84,10 +84,12 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft proposed Manager & Legacy context for manager identity, run analysis, archetype candidates and prestige/legacy selection.
 - [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft proposed People context for actor personas, relationship graph, player/staff skill profiles and deterministic context cards.
 - [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft proposed Narrative context for scene selection, context-card assembly, templates, fallback coverage manifest, validation, provenance, evals and provider adapter boundary; FMX-87 adds finite dialogue-intent/effect result planning contracts while effects stay with source domains.
+- [ADR-0055 Tactics Context](../10-Architecture/09-Decisions/ADR-0055-tactics-context.md) - accepted Tactics context for tactic presets, set-piece routine variants, opposition templates, role/duty configurations, lock-time `TacticSnapshot` production and tactical-style signal aggregation.
 - [ADR-0065 Narrative Media and Press Content Ownership](../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership.md) - draft proposed extension of ADR-0054: Narrative owns Press/Media content authoring, conference response trees, article publication policy, tone library, deterministic fallbacks and optional validated LLM paraphrase controls; Notification delivers and People supplies persona cards.
 - [ADR-0073 Player Contract Lifecycle FSM](../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm.md) - proposed Squad & Player ownership of player-contract lifecycle truth; Transfer owns renewal/pre-contract/free-agent process cases; Regulations owns pre-contract/free-agent/work-permit verdicts.
 - [ADR-0076 Narrative Newsworthiness Event Contracts](../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts.md) - proposed source-owned newsworthy event publication facets for Narrative consumption: injuries, contract expiry, board pressure, transfer rumours and ADR-0078/Squad & Player-owned suspensions.
 - [ADR-0078 Player Discipline Suspension Contracts](../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts.md) - proposed Squad & Player-owned discipline sub-aggregate/process manager for card accumulation, suspension windows, straight-red appeals, eligibility and canonical `PlayerSuspended`; Match owns card facts and Regulations owns discipline profiles.
+- [ADR-0080 Opposition-template AI Consumption Contract](../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract.md) - proposed Tactics-published `OppositionTemplateSelectedForMatchV1` contract: AI-management supplies planning context, Tactics selects from the catalog using `WorldAiMgmtRng`, Match freezes the event into `TacticSnapshot` at `lineup_locked`.
 
 ## Current Binding Research and Specs
 
@@ -110,6 +112,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [Newsworthiness Event-Publication Semantics](../60-Research/newsworthiness-event-publication-semantics-2026-06-04.md)
 - [Dialogue Intent Taxonomy and Effect Matrix](../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05.md)
 - [Player Discipline Sub-Aggregate](../60-Research/player-discipline-sub-aggregate-2026-06-05.md)
+- [Opposition-template AI Consumption Contract](../60-Research/opposition-template-ai-consumption-contract-2026-06-05.md)
 - [Player Contract Lifecycle FSM Research](../60-Research/player-contract-lifecycle-fsm-2026-06-03.md)
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
 - [Match Engine Simulation Model](../60-Research/match-engine-simulation-model.md)
