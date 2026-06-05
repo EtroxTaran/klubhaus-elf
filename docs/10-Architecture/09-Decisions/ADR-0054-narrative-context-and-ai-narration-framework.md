@@ -27,7 +27,7 @@ related:
   - [[ADR-0030-llm-out-of-authoritative-state]]
   - [[ADR-0052-people-persona-and-skills-context]]
   - [[ADR-0076-narrative-newsworthiness-event-contracts]]
-  - [[ADR-0077-player-discipline-suspension-contracts]]
+  - [[ADR-0078-player-discipline-suspension-contracts]]
 ---
 
 # ADR-0054: Narrative Context and AI Narration Framework
@@ -132,7 +132,7 @@ into source contexts while rendering.
 `PlayerSuspended` is deliberately not specified by FMX-83. This ADR consumes
 the projection requirements recorded in
 [[ADR-0076-narrative-newsworthiness-event-contracts]] and the canonical schema
-proposed in [[ADR-0077-player-discipline-suspension-contracts]]; Squad & Player
+proposed in [[ADR-0078-player-discipline-suspension-contracts]]; Squad & Player
 remains the sole suspension/availability owner.
 
 ### FMX-87 dialogue intent/effect contract

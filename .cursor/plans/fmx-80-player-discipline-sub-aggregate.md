@@ -32,7 +32,7 @@ Nico selected the planning defaults live on 2026-06-05:
 - [x] Run Perplexity/source research for real discipline rules, game precedent
   and FMX DDD ownership options.
 - [x] Add raw research capture and synthesis note.
-- [x] Add proposed ADR-0077.
+- [x] Add proposed ADR-0078.
 - [x] Add `player-discipline` state-machine note.
 - [x] Update Narrative/GD references and vault maps.
 - [x] Run docs validation and diff checks.

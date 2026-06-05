@@ -43,7 +43,7 @@ This is the **single** canonical handoff location. (An older
 ## Handoffs
 
 - [[2026-06-05-fmx-80-player-discipline]] - FMX-80 player discipline
-  sub-aggregate: raw/synthesis research, proposed ADR-0077 and
+  sub-aggregate: raw/synthesis research, proposed ADR-0078 and
   [[../../10-Architecture/state-machines/player-discipline]] for G18.
   Captures Nico's D1-D4 choices: Squad & Player process manager/sub-aggregate
   (no new BC), straight-red appeals only, Regulations-profile-driven

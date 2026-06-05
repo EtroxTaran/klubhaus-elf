@@ -148,7 +148,7 @@ Nico selected the player discipline sub-aggregate issue.
 
 | File | Topic | Synthesis target |
 |---|---|---|
-| [[raw-player-discipline-sub-aggregate-2026-06-05]] | Real-world yellow accumulation, red-card suspensions, competition/domestic/all scope, straight-red appeal patterns, football-manager genre surfacing and FMX DDD ownership trade-offs for player discipline | [[../player-discipline-sub-aggregate-2026-06-05]] · [[../../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]] · [[../../10-Architecture/state-machines/player-discipline]] |
+| [[raw-player-discipline-sub-aggregate-2026-06-05]] | Real-world yellow accumulation, red-card suspensions, competition/domestic/all scope, straight-red appeal patterns, football-manager genre surfacing and FMX DDD ownership trade-offs for player discipline | [[../player-discipline-sub-aggregate-2026-06-05]] · [[../../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]] · [[../../10-Architecture/state-machines/player-discipline]] |
 
 ## FMX-88 follow-up Perplexity research (2026-06-04)
 

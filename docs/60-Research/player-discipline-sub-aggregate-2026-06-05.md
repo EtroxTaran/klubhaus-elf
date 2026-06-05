@@ -8,7 +8,7 @@ type: research
 binding: false
 related:
   - [[raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]]
-  - [[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]]
+  - [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
   - [[../10-Architecture/state-machines/player-discipline]]
   - [[../10-Architecture/state-machines/match]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
@@ -122,7 +122,7 @@ Nico selected these planning choices live on 2026-06-05. The linked ADR remains
 ## Related
 
 - [[raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]]
-- [[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]]
+- [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
 - [[../10-Architecture/state-machines/player-discipline]]
 - [[../10-Architecture/state-machines/match]]
 - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]

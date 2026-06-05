@@ -8,7 +8,7 @@ type: state-machine
 binding: false
 related:
   - [[README]]
-  - [[../09-Decisions/ADR-0077-player-discipline-suspension-contracts]]
+  - [[../09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
   - [[../09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../09-Decisions/ADR-0056-regulations-compliance-context]]
   - [[../09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
@@ -20,7 +20,7 @@ related:
 
 Owns the player discipline availability lifecycle. Owning context:
 **Squad & Player** via the FMX-80 sub-aggregate proposed in
-[[../09-Decisions/ADR-0077-player-discipline-suspension-contracts]]. Match owns
+[[../09-Decisions/ADR-0078-player-discipline-suspension-contracts]]. Match owns
 card facts; Regulations owns profiles; Narrative/Notification consume emitted
 facts.
 
@@ -196,7 +196,7 @@ Future implementation should cover:
 
 ## Related
 
-- [[../09-Decisions/ADR-0077-player-discipline-suspension-contracts]]
+- [[../09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
 - [[match]]
 - [[../09-Decisions/ADR-0052-people-persona-and-skills-context]]
 - [[../09-Decisions/ADR-0056-regulations-compliance-context]]

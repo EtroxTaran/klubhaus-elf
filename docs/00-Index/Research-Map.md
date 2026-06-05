@@ -80,7 +80,7 @@ design notes.
 
 - [[../60-Research/player-discipline-sub-aggregate-2026-06-05]] - FMX-80
   synthesis for G18. Grounds the proposed
-  [[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]]
+  [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
   and state machine [[../10-Architecture/state-machines/player-discipline]] with
   official discipline-rule source checks, football-manager genre precedent and
   FMX-specific DDD ownership trade-offs. Records Nico's selected defaults:

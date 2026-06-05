@@ -72,7 +72,7 @@ G18: Match owns card facts, Regulations owns discipline profiles and appeal
 eligibility policies, Squad & Player owns card ledgers, suspension windows,
 straight-red appeal state and the canonical `PlayerSuspended` contract. It feeds
 proposed
-[[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]]
+[[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
 and state machine [[../10-Architecture/state-machines/player-discipline]]. Raw
 Perplexity/source capture:
 [[raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]].
@@ -258,7 +258,7 @@ no-export/share rule. Raw capture:
 synthesis for G14. It proposes source-owned, self-contained event-publication
 facets for `InjuryOccurred`, `ContractExpiring`, `BoardPressureChanged` and
 `TransferRumourPublished`, plus projection requirements only for the
-ADR-0077/Squad & Player-owned `PlayerSuspended` schema. Narrative consumes these
+ADR-0078/Squad & Player-owned `PlayerSuspended` schema. Narrative consumes these
 snapshots into `NarrativeNewsFactProjection`, renders storylets/articles/feed
 surfaces and never joins source-domain state while rendering. Raw capture:
 [[raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]].

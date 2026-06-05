@@ -7,7 +7,7 @@ updated: 2026-06-05
 type: research
 related:
   - [[../player-discipline-sub-aggregate-2026-06-05]]
-  - [[../../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]]
+  - [[../../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
   - [[../../10-Architecture/state-machines/player-discipline]]
   - [[../../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]]

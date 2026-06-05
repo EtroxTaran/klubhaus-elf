@@ -10,7 +10,7 @@ related:
   - [[player-discipline-sub-aggregate-2026-06-05]]
   - [[raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]]
   - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
-  - [[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]]
+  - [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
@@ -83,7 +83,7 @@ decisions.
 |---|---|---|
 | D1 | Generic narrative fact event vs distinct source events | **Distinct publisher-owned events plus shared Narrative projection.** Each source context keeps its ubiquitous language; Narrative normalises into a projection/checklist. |
 | D2 | Transfer rumour origin | **Transfer emits the rumour publication fact.** Narrative may render and vary prose but may not invent rumour truth or market state. |
-| D3 | `PlayerSuspended` boundary | **Consume only.** ADR-0077 now proposes Squad & Player as sole schema/availability owner; FMX-83 lists projection requirements so Narrative can consume it. |
+| D3 | `PlayerSuspended` boundary | **Consume only.** ADR-0078 now proposes Squad & Player as sole schema/availability owner; FMX-83 lists projection requirements so Narrative can consume it. |
 | D4 | Payload granularity | **Banded, display-ready snapshots.** Include display names, context, bands, source/confidence/legal/privacy metadata and salience inputs; exclude raw internals and consumer joins. |
 
 ## 3. Design conclusions
@@ -119,7 +119,7 @@ Source contexts remain the domain owners.
 | `ContractExpiring` | Squad & Player contract lifecycle, aligned with ADR-0073 | Let Narrative and Notification surface expiry/renewal pressure from a self-contained warning payload. |
 | `BoardPressureChanged` | Club Management / board policy | Publish pressure movement, reason and context as a banded public-facing fact. |
 | `TransferRumourPublished` | Transfer | Publish attributed rumour facts as rumour objects with confidence, decay and supersession. |
-| `PlayerSuspended` | Squad & Player via [[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]] | Not defined here. FMX-83 lists requirements only; ADR-0077 proposes the canonical payload with reason band, scope, duration band, appeal status and source/legal flags. |
+| `PlayerSuspended` | Squad & Player via [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]] | Not defined here. FMX-83 lists requirements only; ADR-0078 proposes the canonical payload with reason band, scope, duration band, appeal status and source/legal flags. |
 
 ## 5. Shared payload checklist
 

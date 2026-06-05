@@ -37,7 +37,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
-  - [[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]]
+  - [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
 ---
 
 # GD-0018: AI Narrative Personas and Dialogue
@@ -190,7 +190,7 @@ agent/transfer readiness and the relevant owning domain for press/media effects.
 - Final salience weights, cooldown caps and media-volume rules for newsworthy
   event publication.
 - Canonical `PlayerSuspended` schema from
-  [[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]];
+  [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]];
   GD-0018 may only consume it for suspension narrative surfaces.
 - Exact first-exposure and settings/help disclosure copy, and the legal memo
   that closes the EU AI Act Article 50 release gate.

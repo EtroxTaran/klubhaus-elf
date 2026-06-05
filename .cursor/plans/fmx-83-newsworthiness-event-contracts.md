@@ -24,7 +24,7 @@ authoritative domain state.
 - FMX-86 was no longer truly blocked because FMX-73 and FMX-76 are Done.
 - FMX-89 was no longer truly blocked because FMX-91 is Done.
 - FMX-83 explicitly avoids the `PlayerSuspended` ownership conflict by
-  consuming the ADR-0077/Squad & Player-owned schema from FMX-80 instead of
+  consuming the ADR-0078/Squad & Player-owned schema from FMX-80 instead of
   defining it here.
 
 ## Decisions and recommendations
@@ -36,7 +36,7 @@ ratified architecture decisions.
 |---|---|---|
 | D1 | Generic narrative fact event or distinct publisher events? | Distinct source-owned event contracts plus a shared Narrative projection/checklist. |
 | D2 | Who creates transfer rumours? | Transfer emits the rumour publication fact; Narrative renders it and may not invent market truth. |
-| D3 | How to handle suspensions? | FMX-83 records projection requirements only; ADR-0077/Squad & Player is the proposed schema owner. |
+| D3 | How to handle suspensions? | FMX-83 records projection requirements only; ADR-0078/Squad & Player is the proposed schema owner. |
 | D4 | How much detail may payloads carry? | Self-contained display snapshots, bands and source metadata; no raw internals or consumer joins. |
 
 ## Work items
