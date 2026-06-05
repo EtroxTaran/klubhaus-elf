@@ -3,7 +3,7 @@ title: AI Narration Contract Testing Framework
 status: draft
 tags: [implementation, testing, ai, llm, narrative, contracts, mvp, fmx-3]
 created: 2026-05-28
-updated: 2026-06-04
+updated: 2026-06-05
 type: implementation
 binding: false
 linear: FMX-3
@@ -12,10 +12,13 @@ related:
   - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
   - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
   - [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
+  - [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+  - [[../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+  - [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
@@ -73,6 +76,12 @@ First-wave contracts:
 - `NarrativeMemorySnippet`: tagged event-backed memory, age and relevance.
 - `DialogueIntent`: selectable player/manager response with deterministic
   policy key.
+- `DialogueIntentSelected`: planning event emitted after the manager selects a
+  finite intent option.
+- `DialogueIntentRejected`: validation result for an intent option that is no
+  longer eligible after the owning context rechecks facts.
+- `DialogueEffectResult`: owning-domain result projection for the applied band,
+  visibility posture and follow-up display needs.
 - `ForbiddenClaim`: explicit unsupported fact category for this scene.
 - `NarrativeContextCard`: complete scene input.
 - `NarrativeEnhancementRequest`: context card plus provider/safety budget.
@@ -119,6 +128,7 @@ they become concrete scripts in the CI process.
 | Deterministic fallback | Same seed/context/template version yields same fallback |
 | Fact grounding | Output cannot contradict listed authoritative facts |
 | Intent determinism | Mechanics are identical for template and LLM wording when intent is same |
+| Dialogue effect ownership | Every selectable intent names exactly one owner context, policy key, band and visibility posture; Narrative cannot apply the effect |
 | Provider resilience | Timeout, 429, 5xx, malformed JSON and schema failures fall back |
 | Safety/privacy | Prompt injection, system-prompt extraction, unsafe content and PII leaks fail |
 | Persona drift | Actor tone and stance stay within allowed stress/persona corridor |
@@ -169,6 +179,8 @@ Failures become corpus cases before prompt/model tuning is considered complete.
 - `LLM_MODE=disabled` renders every manifest fixture with no provider access.
 - Every live/provider path is optional, budgeted and kill-switchable.
 - No generated prose is parsed into domain commands or authoritative facts.
+- Every dialogue effect is applied by the owning gameplay context from the
+  selected intent and authoritative facts, never by Narrative or generated text.
 - All prompt payloads are minimized and redact user-authored names.
 - Playtest output can be exported as eval cases without exposing secrets or PII.
 - Provider/model changes rerun the narrative corpus before rollout.
@@ -180,9 +192,11 @@ Failures become corpus cases before prompt/model tuning is considered complete.
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
 - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+- [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+- [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
 - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]

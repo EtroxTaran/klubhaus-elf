@@ -3,7 +3,7 @@ title: ADR-0054 Narrative Context and AI Narration Framework
 status: draft
 tags: [adr, architecture, ddd, bounded-context, narrative, ai, llm, testing, mvp]
 created: 2026-05-28
-updated: 2026-06-04
+updated: 2026-06-05
 type: adr
 binding: false
 supersedes:
@@ -13,10 +13,13 @@ related:
   - [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
   - [[../../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
   - [[../../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
+  - [[../../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+  - [[../../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - [[../../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+  - [[../../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
   - [[../../20-Features/feature-ai-narration-mvp-pillar]]
   - [[ADR-0019-modular-monolith-ddd]]
   - [[ADR-0030-llm-out-of-authoritative-state]]
@@ -128,6 +131,30 @@ the projection requirements recorded in
 [[ADR-0076-narrative-newsworthiness-event-contracts]]; FMX-80/Discipline remains
 the sole schema owner.
 
+### FMX-87 dialogue intent/effect contract
+
+FMX-87 adds a draft dialogue-intent taxonomy and mechanical effect matrix for
+the Broad Full Dialogue MVP surfaces. Narrative owns scene orchestration,
+eligible options, option labels, fallback/LLM prose and provenance. It does not
+own the mechanical consequence.
+
+The proposed flow is:
+
+```text
+Narrative scene and option set
+  -> manager selects finite DialogueIntent
+  -> DialogueIntentSelected planning event
+  -> owning gameplay context validates and applies policy band
+  -> DialogueEffectResult is projected back for UI/Narrative display
+```
+
+Each selectable intent must name one `effectOwnerContext`, one
+`effectPolicyKey`, a `mechanicalEffectBand` and an `effectVisibility` posture.
+Exact numeric values remain outside this ADR and are deferred to the owning
+domains. Persona/stress inputs may gate option eligibility and scale within a
+bounded policy band, but they cannot let generated prose create or change an
+effect.
+
 ## Context Boundaries
 
 | Owner | Owns | Narrative may consume |
@@ -156,6 +183,9 @@ Planning contracts for the first implementation wave:
 - `RelationshipEdgeSummary`
 - `NarrativeMemorySnippet`
 - `DialogueIntent`
+- `DialogueIntentSelected`
+- `DialogueIntentRejected`
+- `DialogueEffectResult`
 - `ForbiddenClaim`
 - `NarrativeContextCard`
 - `NarrativeEnhancementRequest`
@@ -225,6 +255,8 @@ The implementation framework is
 - Fact-grounding tests against scores, injuries, transfers, contracts,
   promises, sanctions, finance and morale facts.
 - Intent tests proving mechanics read `DialogueIntent`, never generated prose.
+- Dialogue effect-owner tests proving every selectable intent names exactly one
+  owning gameplay context, effect policy key and visibility posture.
 - Security tests for prompt injection, PII minimization, unsafe output,
   provider errors, over-budget and kill switch.
 - Manifest tests proving every `NarrativeSceneType` / prose point has a
@@ -272,8 +304,10 @@ None
 
 - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
+- [[../../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 - [[../../30-Implementation/ai-narration-contract-testing-framework]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+- [[../../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
 - [[../../20-Features/feature-ai-narration-mvp-pillar]]
 - [[ADR-0019-modular-monolith-ddd]]
 - [[ADR-0030-llm-out-of-authoritative-state]]

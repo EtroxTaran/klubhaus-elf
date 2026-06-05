@@ -3,7 +3,7 @@ title: GD-0018 AI Narrative Personas and Dialogue
 status: draft
 tags: [game-design, gddr, narrative, ai, llm, personas, dialogue]
 created: 2026-05-27
-updated: 2026-06-04
+updated: 2026-06-05
 type: game-design
 binding: false
 supersedes:
@@ -20,12 +20,15 @@ related:
   - [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
   - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
+  - [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+  - [[../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../60-Research/raw-perplexity/raw-ai-llm-usage]]
   - [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]]
   - [[../60-Research/narrative-content-pipeline]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
   - [[GD-0020-eos-player-skills-personas-and-people]]
+  - [[GD-0028-dialogue-intent-taxonomy-effect-matrix]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
@@ -154,6 +157,24 @@ Gameplay line:
   scene renders through deterministic templates and remains a complete game
   experience.
 
+## FMX-87 dialogue-intent effect line
+
+Nico selected these FMX-87 planning choices on 2026-06-05:
+
+| # | Decision | Choice |
+|---|---|---|
+| D1 | Surface scope | **Broad MVP:** player, staff, board, press/media, fan-rep and agent surfaces all receive finite `DialogueIntent` coverage. |
+| D2 | Effect precision | **Bands:** effect direction and magnitude class are locked here; exact numeric values route to FMX-52 calibration. |
+| D3 | Persona influence | **Gate plus bounded scale:** persona/relationship facts may gate availability and explicitly scale effects, but owning domains still resolve the command. |
+
+Draft [[GD-0028-dialogue-intent-taxonomy-effect-matrix]] is the proposed
+taxonomy/effect matrix. Its core rule is that Narrative may surface the allowed
+intent and phrase it through template/LLM prose, but the primary effect owner
+applies the result: Squad & Player for player morale/trust/status, Staff
+Operations for staff-resolution facts, Club Management for board pressure and
+commitments, Audience & Atmosphere for fan-rep sentiment, Transfer for
+agent/transfer readiness and the relevant owning domain for press/media effects.
+
 ## Open
 
 - Exact MVP actor counts per world size: outlets, journalists, named fan groups,
@@ -161,7 +182,8 @@ Gameplay line:
 - Exact persona trait list and scale for players, staff, board contacts,
   journalists, fan reps and agents.
 - Exact mechanics affected by each trait and intent.
-- Exact `DialogueIntent` taxonomy per surface.
+- Exact numeric tuning, caps, cooldowns and decay for dialogue-effect bands
+  (FMX-52 calibration).
 - Final salience weights, cooldown caps and media-volume rules for newsworthy
   event publication.
 - Canonical `PlayerSuspended` schema from FMX-80/Discipline; GD-0018 may only
@@ -221,10 +243,12 @@ None
   [[../60-Research/ai-narration-testing-framework-2026-05-28]] ·
   [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]] ·
   [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]] ·
+  [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]] ·
   [[../60-Research/raw-perplexity/raw-ai-llm-usage]] ·
   [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]] ·
   [[../60-Research/narrative-content-pipeline]]
 - Decisions: [[GD-0013-narrative-inbox]] ·
+  [[GD-0028-dialogue-intent-taxonomy-effect-matrix]] ·
   [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]] ·
   [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] ·
   [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]

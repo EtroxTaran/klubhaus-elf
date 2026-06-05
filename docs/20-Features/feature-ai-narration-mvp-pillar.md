@@ -3,7 +3,7 @@ title: Feature - AI Narration MVP Pillar
 status: draft
 tags: [feature, ai, llm, narrative, dialogue, mvp, fmx-3]
 created: 2026-05-28
-updated: 2026-06-04
+updated: 2026-06-05
 type: feature
 binding: false
 linear: FMX-3
@@ -13,11 +13,14 @@ related:
   - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
   - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
   - [[../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
+  - [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+  - [[../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../60-Research/ai-narrative-runtime-integration]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+  - [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
   - [[../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
@@ -46,7 +49,9 @@ In scope for the first active narration slice:
   context, relationship edges, recent narrative memory, allowed intents and
   forbidden claims.
 - Full controlled dialogue surfaces: player one-to-one, staff advice,
-  board meeting, press/journalist question, fan-rep scene and agent flavour.
+  board meeting, press/journalist question, fan-rep scene and agent flavour,
+  with finite `DialogueIntent` choices and a draft effect matrix per
+  [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]].
 - Async narrative surfaces: post-match report/newspaper, injury/event report,
   weekly summary and selected match ticker key-event wording.
 - Newsworthy fact ingestion via source-owned self-contained events for injuries,
@@ -89,6 +94,7 @@ Feature: AI narration MVP pillar
     And a NarrativeContextCard lists allowed intents
     When I choose a reassurance intent
     Then morale and trust effects are computed from the intent and player facts
+    And the owning gameplay context applies the configured effect band
     And the generated wording does not affect the result
 
   Scenario: Journalist cannot invent facts
@@ -126,6 +132,9 @@ Feature: AI narration MVP pillar
 - Runtime LLM remains fully optional; `LLM_MODE=disabled` renders all MVP
   narrative fixtures.
 - Generated prose is never parsed into authoritative state or command payloads.
+- Every selectable dialogue intent maps to one owning gameplay context, one
+  effect policy key, one effect band and one visibility posture; Narrative never
+  applies or tunes the effect.
 - Newsworthy narrative facts arrive through self-contained published-language
   events and are stored in `NarrativeNewsFactProjection`; no Narrative render
   path performs cross-context joins.
@@ -146,9 +155,11 @@ Feature: AI narration MVP pillar
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../60-Research/ai-narration-testing-framework-2026-05-28]]
 - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
+- [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+- [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
 - [[../30-Implementation/ai-narration-contract-testing-framework]]
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]

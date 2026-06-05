@@ -3,10 +3,10 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-06-04
+updated: 2026-06-05
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 ---
 
 # Research Map
@@ -105,6 +105,24 @@ design notes.
   [[../30-Implementation/ai-narration-contract-testing-framework]]; raw
   capture:
   [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]].
+
+## Dialogue Intent Taxonomy and Effect Matrix (FMX-87, 2026-06-05)
+
+- [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+  - FMX-87 synthesis for G13. Grounds the draft
+  [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
+  with comparable sports-manager dialogue systems, real football communication
+  surfaces, storylet/dialogue-system design and DDD command/event boundaries.
+  Records Nico's selected defaults: Broad MVP surfaces, banded effects and
+  persona gate plus bounded scaling. Feeds draft
+  [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]],
+  draft
+  [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
+  [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]],
+  [[../20-Features/feature-ai-narration-mvp-pillar]] and
+  [[../30-Implementation/ai-narration-contract-testing-framework]]; raw
+  capture:
+  [[../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]].
 
 ## Fixture Commercial / Competition Revenue Profile Contract (2026-06-03)
 
