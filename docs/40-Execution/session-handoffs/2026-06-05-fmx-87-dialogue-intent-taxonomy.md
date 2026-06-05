@@ -28,6 +28,10 @@ related:
 - Validation passed: `node scripts/docs-check.mjs` and `git diff --check`.
 - Commit pushed and draft PR #136 opened.
 - Linear moved to `In Review` and handoff comment added.
+- Merge conflict repair on 2026-06-05: merged current `origin/main`, kept
+  mainline FMX-86 `GD-0027-hidden-attribute-substrate-mapping`, renumbered the
+  FMX-87 dialogue GDDR to `GD-0028`, updated all dialogue references and
+  revalidated with `node scripts/docs-check.mjs` plus `git diff --check HEAD`.
 
 ## Open / next step
 
