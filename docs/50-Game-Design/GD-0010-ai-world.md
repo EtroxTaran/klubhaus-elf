@@ -52,6 +52,14 @@ world that freezes once you reach the top.
 > is locked as `WorldAiMgmtRng` in [[../60-Research/determinism-and-replay]].
 > Tactical/world-drift detail stays here and in [[../60-Research/ai-manager-behaviour]].
 
+> **2026-06-05 (FMX-90):** the late-game-arc slice of R2-06 gains its **measurement
+> gate** (gap G2). [[../60-Research/dynasty-flatline-and-prestige-metric-inputs-2026-06-05]]
+> specifies the engagement-flatline KPI battery + the prestige/HoF/era metric-input
+> hand-off to E6-3/FMX-95 (the flatline must be *located* before any late-game
+> threshold is tuned). Dynasty board/ownership/bankruptcy FSMs were ratified by FMX-89
+> ([[../10-Architecture/09-Decisions/ADR-0079-dynasty-board-ownership-and-bankruptcy]] /
+> [[GD-0030-dynasty-board-and-ownership]]).
+
 ## Rationale
 
 Long-term retention depends on a world that keeps generating rivals and stories

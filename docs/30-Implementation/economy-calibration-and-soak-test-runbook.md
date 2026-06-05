@@ -3,12 +3,13 @@ title: Economy Calibration and Soak-Test Runbook - Draft
 status: draft
 tags: [implementation, economy, calibration, soak-test, stress-test, determinism, testing, kpi, fmx-52]
 created: 2026-06-01
-updated: 2026-06-03
+updated: 2026-06-05
 type: implementation
 binding: false
 linear: FMX-52
 related:
   - [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]]
+  - [[../60-Research/dynasty-flatline-and-prestige-metric-inputs-2026-06-05]]
   - [[../60-Research/ai-world-drift-algorithm-2026-06-03]]
   - [[../60-Research/ai-club-economy-behaviour-2026-06-01]]
   - [[../60-Research/top5-country-economy-profiles-2026-05-29]]
@@ -415,7 +416,129 @@ Additional health metrics:
 - administration rate + rescue-vs-(reserved)liquidation split;
 - no ledger mutation outside Club Management; no `WorldAiMgmtRng` draw outside declared labels.
 
-## 11. Acceptance flow (how a calibration set ships)
+## 11. Flatline-investigation extension (FMX-90)
+
+The dynasty engagement-flatline investigation (gap **G2**, E5-2c) instruments where a
+long save collapses into **late-game solved-state / runaway-leader degeneracy**
+*before* any late-game threshold is treated as final. Method + metric-input rationale:
+[[../60-Research/dynasty-flatline-and-prestige-metric-inputs-2026-06-05]]. Decisions
+(Nico, 2026-06-05): **full KPI battery**, **reuse 50y + 100y tiers**, persist raw
+prestige-input facts + version the formula. All KPIs are pure derivations of committed
+facts/read-models — **no new RNG, no new event**. The human-facing target metric is
+**Save-Age-at-Abandonment** (live telemetry); until a build exists the structural
+proxies below are the instrument and SAA is the **validation anchor** they are later
+calibrated against. All bands `null` here — magnitudes are FMX-52 calibration.
+
+KPI-catalogue extension (per season, computed for the player/bot club in the headless
+soak; league-balance indices computed **with and without** the human club):
+
+```yaml
+parameter:
+  id: flatline.kpi.clubDominanceIndexFlagBand
+  definition: CDI = percentile of club squad-strength (rating+depth+wage+value) in its league; sustained-dominance flag band.
+  value: null
+  band: [low, high]                    # e.g. CDI>=~0.9 sustained N seasons = flag
+  source: competitive-balance + sim prior art (FMX-90 research)
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: flatline.kpi.earlyTitleLockinMatchdayBand
+  definition: ETL = earliest matchday with realised title prob >95%; shrinking ETL over seasons marks runaway dominance. Band defines the flag.
+  value: null
+  band: [low, high]
+  source: FMX-90 research (title-probability concentration)
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: flatline.kpi.meaningfulMatchRateDelta
+  definition: delta by which a result must move a key outcome probability to count a match as "meaningful" (drives MMR).
+  value: null
+  band: [low, high]
+  source: FMX-90 research (meaningful-match fraction)
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: flatline.kpi.boardObjectiveDifficultyTrivialBand
+  definition: BODR = median pre-season success prob of active board objectives (FMX-89 BoardExpectationSet); ->1.0 = trivial board pressure.
+  value: null
+  band: [low, high]
+  source: FMX-90 research + FMX-89 board ladder
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: flatline.kpi.dynastyDominanceScoreBand
+  definition: DDS = normalised composite of CDI + FinancialRunawayIndex + dynasty streaks + title HHI over a sliding window; high = solved dynasty.
+  value: null
+  band: [low, high]
+  source: FMX-90 research (composite anti-flatline indicator)
+  sensitivity: parameter-sensitive
+```
+
+> Full battery (also instrumented, bands per FMX-52): **save-level** —
+> Outcome-Uncertainty Index, Meaningful-Match Rate, Transfer-Market-Activity Index,
+> Financial-Runaway Index, Event-Diversity Index; **league-balance** — title HHI,
+> Gini of points, Noll-Scully, dynasty streaks; **composites** — Decision-Density
+> Index, Meaningful-Objective Count. Dynasty-volatility inputs reuse the §10 FMX-89
+> event surface (`BoardConfidenceChanged`, `ManagerSacked`, `OwnershipTransition*`,
+> `AdministrationEntered`, `ClubRescued`, `ManagerAbandonedClub`).
+
+Flatline scenarios (Standard `soak:50y` + Deep `soak:100y` tail; observation
+seasons 1-10 with mid/late-season checkpoints):
+
+```yaml
+scenario:
+  id: dynasty.flatline.dominanceRunaway
+  narrative: "A user-strength club is tracked over a 50y dynasty; the KPI battery locates where outcome-uncertainty and decision-density collapse (the season 4-6 flatline) so it is measured before any late-game tuning."
+  archetype: healthy low-debt mid-table
+  countryProfileId: neutral-baseline
+  severity: baseline
+  overrides: { botPlaystyle: minMaxer, observationSeasons: "1..10", checkpoints: "preseason|midseason|runIn" }
+  fixture: { fixtureListId: "<player-club-50y>", seed: "<worldSeed>" }
+  expect:
+    kpiBands: { flatlineLocusLocatable: true, proxyDiscriminatesPrePost: true, cdi: tracked, oui: tracked, etl: tracked, dds: tracked }
+    verdict: pass
+  type: forward
+```
+
+```yaml
+scenario:
+  id: dynasty.flatline.tailStaleness
+  narrative: "Deep 100y tail run checks whether FMX-89 board/ownership/bankruptcy + FMX-91 world-drift keep the save volatile, or whether DDS saturates and event-diversity decays into long-run staleness."
+  archetype: high-debt ambitious
+  countryProfileId: premium-broadcast
+  severity: baseline
+  overrides: { botPlaystyle: minMaxer, observationSeasons: "1..100" }
+  fixture: { fixtureListId: "<player-club-100y>", seed: "<worldSeed>" }
+  expect:
+    kpiBands: { ddsSaturation: inBand, eventDiversityDecay: inBand, titleChurn: inBand }
+    verdict: pass
+  type: reverse
+```
+
+Additional health metrics:
+
+- byte-identical KPI summary vector for same seed + config (KPIs are pure derivations);
+- the flatline **locus** (season where OUI/MMR/DDI collapse while CDI/DDS stay high)
+  is reproducibly locatable across the seed sweep;
+- the proxy set **discriminates** pre- vs post-collapse seasons (separation, not a
+  tuned threshold);
+- DDS / title-HHI computed with vs without the human club isolates human distortion;
+- no new `*Rng` draw; no ledger mutation by the investigation harness.
+
+> **Honest limitation (docs-only phase).** Save-Age-at-Abandonment, session-length-
+> over-save-age and "reached season k" cohort retention need a running build +
+> analytics consent. They are the human-validation layer the soak proxies are later
+> calibrated against (FMX-52); the soak instrument is what ships now.
+
+## 12. Acceptance flow (how a calibration set ships)
 
 1. Fill parameter sheets (§7) and scenario sheets (§8).
 2. Run economy smoke (PR) → invariants + determinism pass.

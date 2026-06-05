@@ -33,6 +33,31 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > not ratified — no technology, gameplay or architecture decision is made without
 > Nico (2–3 sourced options + recommendation).
 
+> **FMX-90 Dynasty engagement-flatline investigation + prestige/HoF metric inputs
+> (2026-06-05).** Closes audit gap **G2** (E5 epic FMX-61; E5-2c, after FMX-89
+> board/ownership/bankruptcy). Synthesis
+> [[../60-Research/dynasty-flatline-and-prestige-metric-inputs-2026-06-05]] (+ raw
+> [[../60-Research/raw-perplexity/raw-dynasty-flatline-and-prestige-metric-inputs-2026-06-05]])
+> specifies (a) a **flatline-investigation method** and (b) the **prestige/HoF/era
+> metric-input** hand-off for **E6-3 / FMX-95**. The named failure mode is **late-game
+> solved-state / runaway-leader degeneracy**; the method instruments *where* a save
+> collapses **before** any late-game tuning. **Nico chose D1-D4 live (2026-06-05):**
+> **D1 = full KPI battery** (save-level proxies CDI / OUI / ETL / MMR / TMAI / BODR /
+> FRI / EDI + league-balance title-HHI / Gini / Noll-Scully / streaks + composites
+> DDS / DDI / MOC), **D2 = reuse 50y + 100y soak tiers** (observation seasons 1-10 +
+> checkpoints), **D3 = full prestige/HoF/era input taxonomy with an MVP subset
+> flagged** (rest reserved-stub), **D4 = persist raw per-save facts + version the
+> formula** (E6-3 re-scores from raw; cross-save aggregation read-only-at-world-gen,
+> restating D8 / `late-game-systems §9.2`). KPIs reuse the FMX-89 `BoardConfidenceChanged`
+> / `ManagerSacked` / `OwnershipTransition*` / `AdministrationEntered` / `ClubRescued`
+> / `ManagerAbandonedClub` surface. **Declares no new `*Rng`** (measurement is pure)
+> and **does not edit ADR-0051** — E6-3/FMX-95 owns that amendment + the scoring
+> formula + records book (single-authority boundary preserved). The flatline plan
+> lands as runbook **§11** (`dynasty.flatline.*` scenarios; bands `null` = FMX-52
+> calibration). **Honest limitation:** Save-Age-at-Abandonment + cohort retention need
+> a running build; they are the human-validation anchor the soak proxies are later
+> calibrated against. Authored `current` (research) / runbook `draft`; awaiting Nico.
+
 > **FMX-67 Opposition-template AI consumption contract (2026-06-05).**
 > [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]]
 > (+ raw
