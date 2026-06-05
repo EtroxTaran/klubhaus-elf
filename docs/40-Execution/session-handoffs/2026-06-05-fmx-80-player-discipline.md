@@ -18,7 +18,7 @@ related:
 ## Linear
 
 - Issue: FMX-80
-- PR: to be opened after validation
+- PR: https://github.com/EtroxTaran/football-manager-x/pull/138
 
 ## Goals
 
@@ -42,10 +42,10 @@ related:
 - Updated Decision Log, Current State, Architecture Map, Research Map and raw
   research index.
 - Validation passed: `node scripts/docs-check.mjs` and `git diff --check`.
+- Commit pushed and draft PR #138 opened.
 
 ## Open Tasks
 
-- Commit, push and open the draft PR.
 - Move Linear to `In Review` after the PR exists.
 
 ## Decisions Made
