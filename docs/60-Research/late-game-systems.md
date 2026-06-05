@@ -899,6 +899,14 @@ liquidation (very extreme; optional setting).
 
 Per D6 Q&A — full 3-layer system.
 
+> **FMX-90 (2026-06-05):** the prestige/HoF/era model below is the raw material for
+> the metric-input hand-off in
+> [[dynasty-flatline-and-prestige-metric-inputs-2026-06-05]], consumed by **E6-3 /
+> FMX-95** (owner of the ADR-0051 amendment + scoring formula + records book). FMX-90
+> supplies the **input taxonomy** (manager-prestige / HoF-legend / era-detection
+> inputs, MVP-flagged) and the **persist-raw-facts + version-the-formula** determinism
+> rule (D4); it does not lock the §7 scoring numbers.
+
 ### 7.1 Manager HoF — per-save
 
 **Scoring formula**:
