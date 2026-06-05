@@ -28,7 +28,7 @@ related:
   - [[../60-Research/narrative-content-pipeline]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
   - [[GD-0020-eos-player-skills-personas-and-people]]
-  - [[GD-0027-dialogue-intent-taxonomy-effect-matrix]]
+  - [[GD-0028-dialogue-intent-taxonomy-effect-matrix]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
@@ -167,7 +167,7 @@ Nico selected these FMX-87 planning choices on 2026-06-05:
 | D2 | Effect precision | **Bands:** effect direction and magnitude class are locked here; exact numeric values route to FMX-52 calibration. |
 | D3 | Persona influence | **Gate plus bounded scale:** persona/relationship facts may gate availability and explicitly scale effects, but owning domains still resolve the command. |
 
-Draft [[GD-0027-dialogue-intent-taxonomy-effect-matrix]] is the proposed
+Draft [[GD-0028-dialogue-intent-taxonomy-effect-matrix]] is the proposed
 taxonomy/effect matrix. Its core rule is that Narrative may surface the allowed
 intent and phrase it through template/LLM prose, but the primary effect owner
 applies the result: Squad & Player for player morale/trust/status, Staff
@@ -248,7 +248,7 @@ None
   [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]] ·
   [[../60-Research/narrative-content-pipeline]]
 - Decisions: [[GD-0013-narrative-inbox]] ·
-  [[GD-0027-dialogue-intent-taxonomy-effect-matrix]] ·
+  [[GD-0028-dialogue-intent-taxonomy-effect-matrix]] ·
   [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]] ·
   [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] ·
   [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]

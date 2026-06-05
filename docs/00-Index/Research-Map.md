@@ -110,7 +110,7 @@ design notes.
 
 - [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - FMX-87 synthesis for G13. Grounds the draft
-  [[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]]
+  [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
   with comparable sports-manager dialogue systems, real football communication
   surfaces, storylet/dialogue-system design and DDD command/event boundaries.
   Records Nico's selected defaults: Broad MVP surfaces, banded effects and

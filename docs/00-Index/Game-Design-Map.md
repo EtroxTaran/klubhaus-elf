@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-05
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 ---
 
 # Game Design Map
@@ -100,7 +100,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
   no-export MVP rule; FMX-83 proposes source-owned newsworthy event snapshots
   for injuries, contract expiry, board pressure and transfer rumours; FMX-87
   adds finite `DialogueIntent` taxonomy and banded effect matrix coverage.
-- [[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]] - draft
+- [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]] - draft
   FMX-87 dialogue-intent taxonomy and effect matrix for player, staff, board,
   press/media, fan-rep and agent surfaces.
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]

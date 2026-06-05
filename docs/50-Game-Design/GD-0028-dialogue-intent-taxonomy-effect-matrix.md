@@ -1,5 +1,5 @@
 ---
-title: GD-0027 Dialogue Intent Taxonomy and Effect Matrix
+title: GD-0028 Dialogue Intent Taxonomy and Effect Matrix
 status: draft
 tags: [game-design, gddr, narrative, dialogue, intents, effects, ai, llm, fmx-87, gap-g13]
 created: 2026-06-05
@@ -24,7 +24,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
 ---
 
-# GD-0027: Dialogue Intent Taxonomy and Effect Matrix
+# GD-0028: Dialogue Intent Taxonomy and Effect Matrix
 
 ## Status
 

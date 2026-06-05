@@ -267,7 +267,7 @@ influence as explicit gates plus bounded scaling. Raw capture:
 [[raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]].
 
 This feeds draft
-[[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]],
+[[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]],
 draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]],
 draft [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
 [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]],

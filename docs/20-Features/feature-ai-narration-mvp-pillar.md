@@ -20,7 +20,7 @@ related:
   - [[../60-Research/ai-narrative-runtime-integration]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
-  - [[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]]
+  - [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
   - [[../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
@@ -51,7 +51,7 @@ In scope for the first active narration slice:
 - Full controlled dialogue surfaces: player one-to-one, staff advice,
   board meeting, press/journalist question, fan-rep scene and agent flavour,
   with finite `DialogueIntent` choices and a draft effect matrix per
-  [[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]].
+  [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]].
 - Async narrative surfaces: post-match report/newspaper, injury/event report,
   weekly summary and selected match ticker key-event wording.
 - Newsworthy fact ingestion via source-owned self-contained events for injuries,
@@ -159,7 +159,7 @@ Feature: AI narration MVP pillar
 - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
-- [[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]]
+- [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
 - [[../30-Implementation/ai-narration-contract-testing-framework]]
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]

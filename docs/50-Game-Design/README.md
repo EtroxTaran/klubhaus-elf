@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-06-05
 type: index
 binding: false
-related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-dialogue-intent-taxonomy-effect-matrix]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 ---
 
 # Game Design Hub
@@ -32,7 +32,7 @@ research transcripts in [[../60-Research/raw-perplexity/README]].
 Implement gameplay only from `approved` game-design records. This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0027`) — the decision-record chain from research into
+- **GDDRs** (`GD-0001`...`GD-0028`) — the decision-record chain from research into
   ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -95,7 +95,8 @@ active work.
 | [[GD-0024-ai-world-drift-algorithm]] | AI world-drift algorithm; Rising Rival, Giant Collapse and Continental Era Shift / rising nations as deterministic, legible, capped structural drift events with FMX-52 calibration handoff | draft | ADR-0071 |
 | [[GD-0025-in-match-controls]] | In-match controls & live-control kit (FMX-100, resolves GD-0016 R2-16 gameplay half); one MVP interaction tier — queued subs, mentality presets, formation-swap, 3 cooldown shouts, 3 speeds + free pause; halftime modal; deterministic shout-effect contract with provisional playtest-tunable magnitudes; text&stats accessible path | draft | ADR-0072 |
 | [[GD-0026-set-piece-coach-readiness]] | Set-piece-coach effect-readiness multiplier curve (FMX-69, closes gap G12); per-variant readiness via bounded exponential, coach specialisation (ADR-0053) scales the learning rate, two-layer category+variant granularity, decay + hysteresis selectability gate frozen into the TacticSnapshot (ADR-0067); `SetPieceCoachReadinessUpdated` emitted by Training; constants = FMX-52 calibration | draft | ADR-0053, ADR-0067 (additive amend) |
-| [[GD-0027-dialogue-intent-taxonomy-effect-matrix]] | Dialogue-intent taxonomy and effect matrix (FMX-87, closes gap G13); Broad MVP surfaces, closed finite intents, banded deterministic effects, persona gate + bounded scaling, and command/event flow proving Narrative/LLM prose never applies state | draft | ADR-0030, ADR-0054 |
+| [[GD-0027-hidden-attribute-substrate-mapping]] | Hidden-attribute substrate mapping (FMX-86, closes gap G22, unblocks ADR-0052 boundary); deterministic meta/OCEAN → football-label derivation via mutually-exclusive label axes + orthogonal flags; OCEAN persisted as state (derive-at-gen, mutate in place); reveal reuses Scouting's `HiddenFlagRevealLedger` gate (bands not point estimates, no join); mentoring split = People policy + Training compute (numeric model → GD-0021); thresholds = calibration. **D1–D4 = A/A/A/A** | draft | ADR-0052, ADR-0064 |
+| [[GD-0028-dialogue-intent-taxonomy-effect-matrix]] | Dialogue-intent taxonomy and effect matrix (FMX-87, closes gap G13); Broad MVP surfaces, closed finite intents, banded deterministic effects, persona gate + bounded scaling, and command/event flow proving Narrative/LLM prose never applies state | draft | ADR-0030, ADR-0054 |
 
 ## Core loop
 
@@ -153,6 +154,9 @@ active work.
   skills/perks, staff target skills and persona/relationship model.
 - [[GD-0021-player-staff-development-and-decision-influence]] - draft factor
   matrices for development, match, transfer and staff-pipeline decisions.
+- [[GD-0027-hidden-attribute-substrate-mapping]] - draft 8-meta/OCEAN → football-label
+  derivation (axes + flags), OCEAN persistence, Scouting-gated reveal bands and the
+  People/Training mentoring split (FMX-86, G22; unblocks ADR-0052).
 
 ## Tactics and match
 
@@ -186,7 +190,7 @@ active work.
 - [[GD-0018-ai-narrative-personas-and-dialogue]] - draft persona, Full
   Dialogue, Narrative context, FMX-88 fallback coverage/no-export freeze and
   Playtest First evaluation layer; FMX-87 adds draft
-  [[GD-0027-dialogue-intent-taxonomy-effect-matrix]] for finite intents and
+  [[GD-0028-dialogue-intent-taxonomy-effect-matrix]] for finite intents and
   banded effects.
 - [[GD-0020-eos-player-skills-personas-and-people]] - draft People/persona
   context cards and relationship constellations that feed dialogue.

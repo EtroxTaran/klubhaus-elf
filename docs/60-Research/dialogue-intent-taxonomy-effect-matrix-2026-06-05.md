@@ -7,7 +7,7 @@ updated: 2026-06-05
 type: research
 related:
   - [[raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
-  - [[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]]
+  - [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
@@ -132,7 +132,7 @@ Nico selected these planning choices live on 2026-06-05. The linked GDDR remains
 ## Related
 
 - [[raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
-- [[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]]
+- [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]

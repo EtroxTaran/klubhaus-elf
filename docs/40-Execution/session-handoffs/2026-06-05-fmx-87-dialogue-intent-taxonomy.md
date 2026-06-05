@@ -8,7 +8,7 @@ type: handoff
 binding: false
 related:
   - [[../../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
-  - [[../../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]]
+  - [[../../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
 ---
 
 # Handoff: FMX-87 Dialogue Intent Taxonomy (2026-06-05)
@@ -43,7 +43,7 @@ related:
 
 - `docs/60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05.md`
 - `docs/60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05.md`
-- `docs/50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix.md`
+- `docs/50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix.md`
 - ADR / feature / map / Current-State updates in this PR.
 
 ## Needs promotion
