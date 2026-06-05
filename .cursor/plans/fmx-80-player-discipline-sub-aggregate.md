@@ -37,4 +37,4 @@ Nico selected the planning defaults live on 2026-06-05:
 - [x] Update Narrative/GD references and vault maps.
 - [x] Run docs validation and diff checks.
 - [x] Commit, push and open draft PR #138.
-- [ ] Move Linear to `In Review`.
+- [x] Move Linear to `In Review`.

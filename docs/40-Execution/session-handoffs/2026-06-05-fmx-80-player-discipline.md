@@ -43,10 +43,11 @@ related:
   research index.
 - Validation passed: `node scripts/docs-check.mjs` and `git diff --check`.
 - Commit pushed and draft PR #138 opened.
+- Linear moved to `In Review` and handoff comment added.
 
 ## Open Tasks
 
-- Move Linear to `In Review` after the PR exists.
+- Nico ratifies or amends ADR-0077 before implementation work.
 
 ## Decisions Made
 
