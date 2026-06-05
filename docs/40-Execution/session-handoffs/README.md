@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-03
+updated: 2026-06-05
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-05-fmx-87-dialogue-intent-taxonomy]] - FMX-87 dialogue intent
+  taxonomy + mechanical effect matrix: raw/synthesis research, draft GD-0027,
+  ADR-0030/ADR-0054 contract updates and feature/map/index alignment for
+  finite player/staff/board/press/fan/agent dialogue intents. Captures Nico's
+  D1-D3 choices: broad MVP surfaces, banded effects, persona gate plus bounded
+  scaling. Numeric tuning remains FMX-52; implementation waits on ratification.
 - [[2026-06-03-fmx-99-onboarding-guided-first-season]] - FMX-99 onboarding
   60-second flow + guided first season: GD-0012 R2-05 resolved after Nico chose
   current FTUE path, Season-1 objective roadmap and wage-runway first economy

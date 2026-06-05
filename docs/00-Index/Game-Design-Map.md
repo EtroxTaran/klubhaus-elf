@@ -3,10 +3,10 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-06-04
+updated: 2026-06-05
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 ---
 
 # Game Design Map
@@ -98,7 +98,11 @@ below. This means old `Future-scope notes` sections are not active work by defau
   Full Dialogue and All Active actor-context target for MVP narration; FMX-88
   freezes Broad Full Dialogue runtime-LLM scope, CI fallback manifest and the
   no-export MVP rule; FMX-83 proposes source-owned newsworthy event snapshots
-  for injuries, contract expiry, board pressure and transfer rumours.
+  for injuries, contract expiry, board pressure and transfer rumours; FMX-87
+  adds finite `DialogueIntent` taxonomy and banded effect matrix coverage.
+- [[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]] - draft
+  FMX-87 dialogue-intent taxonomy and effect matrix for player, staff, board,
+  press/media, fan-rep and agent surfaces.
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 - [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]] - draft deterministic
   world-drift design for Rising Rival, Giant Collapse and Continental Era Shift.
@@ -151,6 +155,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
 - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
+- [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 - [[../60-Research/regulations-and-pyramids-research]]
 - [[../60-Research/anstoss-series-deep-dive]]
 - [[../60-Research/club-boss-analysis]]

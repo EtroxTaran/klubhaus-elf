@@ -3,7 +3,7 @@ title: ADR-0030 LLM Out Of Authoritative State Boundary
 status: draft
 tags: [adr, architecture, ai, llm, narrative, determinism, openrouter]
 created: 2026-05-27
-updated: 2026-06-04
+updated: 2026-06-05
 type: adr
 binding: false
 supersedes:
@@ -14,11 +14,14 @@ related:
   - [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
   - [[../../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
   - [[../../60-Research/raw-perplexity/raw-ai-narration-scope-freeze-fallback-coverage-2026-06-04]]
+  - [[../../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+  - [[../../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../../60-Research/narrative-content-pipeline]]
   - [[../../60-Research/determinism-and-replay]]
   - [[../../60-Research/pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+  - [[../../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]]
   - [[../../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../../30-Implementation/ai-narration-contract-testing-framework]]
   - [[ADR-0003-match-engine]]
@@ -219,6 +222,30 @@ LLM eligibility, forbidden claims, provenance schema version and tests. The
 LLM-disabled path must render every fixture without provider access before any
 runtime LLM release.
 
+### FMX-87 dialogue-intent contract
+
+FMX-87 adds the draft rule that controlled dialogue mechanics start from
+finite, player-selected `DialogueIntent` options and never from generated prose.
+Nico selected broad MVP coverage across player one-to-one, staff, board,
+press/media, fan-rep and agent surfaces on 2026-06-05.
+
+The architecture consequence is:
+
+- Narrative may assemble and render scenes, option labels, fallback copy,
+  optional LLM prose and provenance.
+- Narrative may emit draft planning events such as `DialogueIntentSelected`,
+  `DialogueIntentRejected` and `DialogueEffectResult`, but only as contracts
+  around already selected finite options.
+- The owning gameplay context applies the effect: People/Squad for
+  morale/trust/relationship, Club Management/Board for confidence and mandate
+  pressure, Audience & Atmosphere for supporter mood/reputation and
+  Transfer/Contracts for agent/client posture.
+- Mechanical values are expressed as policy IDs and effect bands at this layer.
+  Exact numeric tuning is deferred to the owning domain balance issue, not
+  embedded in Narrative or LLM prompts.
+- Persona and stress may gate eligibility and scale a band within bounded
+  policy rules; they never let generated text choose a new mechanic.
+
 ## Data Boundary
 
 Prompt payloads must not contain:
@@ -314,6 +341,9 @@ Negative:
   request.
 - Dialogue determinism tests: selected intent and authoritative facts produce
   the same mechanical result regardless of generated wording.
+- Dialogue effect-owner tests: each selectable intent has exactly one owning
+  context for the mechanical effect, and Narrative cannot apply or tune that
+  effect directly.
 - Cost-cap tests: feature disables LLM and falls back to templates when budget
   is exceeded.
 - Match-ticker tests: key-event inputs cannot introduce facts absent from the
@@ -347,7 +377,9 @@ None
 - [[../../60-Research/ai-narrative-runtime-integration]]
 - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
+- [[../../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+- [[../../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]]
 - [[../../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../../30-Implementation/ai-narration-contract-testing-framework]]
 - [[../../60-Research/pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]

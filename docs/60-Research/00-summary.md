@@ -1,8 +1,8 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, fmx-81, fmx-83, fmx-88]
-updated: 2026-06-04
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, fmx-81, fmx-83, fmx-87, fmx-88]
+updated: 2026-06-05
 ---
 
 # Research Summary
@@ -252,6 +252,23 @@ surfaces and never joins source-domain state while rendering. Raw capture:
 
 This feeds proposed
 [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]],
+draft [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
+[[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]],
+[[../20-Features/feature-ai-narration-mvp-pillar]] and
+[[../30-Implementation/ai-narration-contract-testing-framework]].
+
+## Dialogue Intent Taxonomy and Effect Matrix (2026-06-05)
+
+[[dialogue-intent-taxonomy-effect-matrix-2026-06-05]] is the FMX-87 synthesis
+for G13. It records Nico's selected planning defaults: Broad MVP dialogue
+surfaces (player, staff, board, press/media, fan-rep, agent), banded mechanical
+effects with exact values deferred to FMX-52 calibration, and persona/relationship
+influence as explicit gates plus bounded scaling. Raw capture:
+[[raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]].
+
+This feeds draft
+[[../50-Game-Design/GD-0027-dialogue-intent-taxonomy-effect-matrix]],
+draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]],
 draft [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
 [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]],
 [[../20-Features/feature-ai-narration-mvp-pillar]] and
