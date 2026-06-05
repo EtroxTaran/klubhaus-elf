@@ -248,6 +248,17 @@ context.
 | [[raw-ai-narration-security-testing-2026-05-28]] | Prompt injection, PII minimization, unsafe output, provider outage and disclosure tests | [[../ai-narration-testing-framework-2026-05-28]] |
 | [[raw-ai-narration-interactive-narrative-qa-2026-05-28]] | Storylets, persona cards, relationship memory, deterministic fallbacks and long-season narrative QA | [[../ai-narration-testing-framework-2026-05-28]] |
 
+## FMX-86 follow-up Perplexity research (2026-06-05)
+
+Research grounding the hidden-attribute substrate mapping GDDR (G22): how the
+internal OCEAN substrate derives player-facing football labels, how scouting gates
+their reveal, whether to persist or re-derive the personality vector, and the
+single-composite-vs-multi-tag label model.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-hidden-attribute-substrate-mapping-2026-06-05]] | OCEAN→football-label mapping + FM personality/media/trait derivation; FM/OOTP/NBA 2K scouting-gated reveal & attribute bands; persist-vs-derive a personality vector in deterministic/event-sourced sims; single-composite vs multi-tag labels (FM/CK3/RimWorld) with exclusion axes | [[../hidden-attribute-substrate-mapping-2026-06-05]] · [[../../50-Game-Design/GD-0027-hidden-attribute-substrate-mapping]] · [[../../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]] · [[../../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]] |
+
 ## Rules
 
 - Raw notes may quote competitor names and product features for analysis only.

@@ -33,6 +33,27 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > not ratified — no technology, gameplay or architecture decision is made without
 > Nico (2–3 sourced options + recommendation).
 
+> **FMX-86 Hidden-attribute substrate mapping (2026-06-05).** Closes audit gap **G22**
+> (E3 epic FMX-59; after FMX-85 loan PM — 3/4 of E3 now drafted) and **unblocks the
+> ADR-0052 People substrate boundary**. Draft
+> [[../50-Game-Design/GD-0027-hidden-attribute-substrate-mapping]] pins the deterministic
+> **meta/OCEAN → football-label** derivation: labels are assigned along **mutually-exclusive
+> axes** (Leadership / Temperament / Professionalism / Attachment / Openness / Media) plus
+> **orthogonal flags** (mentor, loner, demanding, ambitious, loyal), so a player reads as
+> *leader · volatile · homesick* without contradiction. **People** owns derivation (truth) +
+> the mentoring relationship/eligibility policy; **Training** owns the mentoring
+> development-outcome compute (numeric model → GD-0021); **Scouting** owns the **single**
+> reveal gate (`HiddenFlagRevealLedger`, ADR-0064) surfacing **bands not point estimates**
+> (GD-0006), no cross-context join; raw OCEAN/meta is **never** surfaced. OCEAN is **persisted
+> as state** (derived at world-gen from hidden-meta + archetype seed, then mutated in place —
+> replay-safe, survives formula evolution). **Nico chose D1–D4 = A/A/A/A live (2026-06-05):**
+> persist-OCEAN / Scouting-gates-People-derives / mentoring-split / multi-label-with-axes.
+> Synthesis [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]] (+ raw 4-prompt
+> capture: OCEAN→label + FM personality system, FM/OOTP scouting-gated reveal bands,
+> persist-vs-derive in deterministic sims, single-vs-multi-tag labels). No new `*Rng`
+> (derivation pure). All thresholds + the visible-label cap = calibration behind
+> `personaLabelModelVersion`. Authored `draft`; awaiting Nico ratify.
+
 > **FMX-85 Loan-Orchestration Process Manager (2026-06-04).** Closes audit gap **G15**
 > (E3 epic FMX-59; after FMX-81 player-contract FSM) and unblocks the Youth Academy
 > `published_loaned` path (ADR-0060). Proposed
