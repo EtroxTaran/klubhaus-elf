@@ -259,3 +259,7 @@ None
 - [[ADR-0027-postgres-data-model]] - per-save schema convention.
 - [[ADR-0052-people-persona-and-skills-context]] - adjacent draft context;
   three references depend on ADR-0051 ratification.
+- [[ADR-0082-manager-style-signal-and-run-analysis-contract]] - FMX-93 (proposed);
+  fills this context's draft `ManagerStyleSignals` / `RunAnalysisSnapshot` /
+  `PostRunReflection` surface with the non-tactical signal schema + run-analysis
+  contract (additive; this ADR's decision is unchanged).

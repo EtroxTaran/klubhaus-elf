@@ -359,6 +359,7 @@ None
 - [[../bounded-context-map]]
 - [[ADR-0050-club-economy-accounting-ledger]]
 - [[ADR-0051-manager-and-legacy-context]]
+- [[ADR-0082-manager-style-signal-and-run-analysis-contract]] — FMX-93. **Disambiguation:** the **owner** archetypes here (`OwnerProfile`, §6.2) are distinct from **manager**-style identity; the manager-archetype *taxonomy* stays deferred (G3) — consumers reference `ManagerStyleSignals`, not a named manager-archetype list.
 - [[ADR-0071-ai-world-simulation-context-and-drift-contract]]
 - [[ADR-0018-systemic-events-and-player-lifecycle]]
 - [[../../60-Research/determinism-and-replay]]
