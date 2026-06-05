@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-06-05
 type: index
 binding: false
-related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-V1]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-V1]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[feature-statistics-analytics-hub-mvp]]
 ---
 
 # Features
@@ -38,6 +38,9 @@ stubs as future-scope planning, not open documentation gaps.
 - [[feature-eos-player-skills-and-people-context]] - draft FMX-23 feature
   slice for player skills/perks, People context, persona context cards and
   GD-0021 decision-influence hooks.
+- [[feature-statistics-analytics-hub-mvp]] - draft FMX-94 MVP Analytics Hub:
+  Key Findings, Last Match, Team/Player Analysis, standings/leaders, form,
+  comparison, maps/heatmaps and Manager & Legacy handoff snapshots.
 
 Older feature stubs may contain historical "In scope (MVP)" headings. The
 canonical MVP scope is [[../00-Index/MVP-Scope]]; use it before interpreting
@@ -57,6 +60,7 @@ those headings.
 - [[feature-eos-player-skills-and-people-context]] — Player skills/perks plus
   People/persona context planning.
 - [[feature-ai-narration-mvp-pillar]] — AI narration MVP pillar.
+- [[feature-statistics-analytics-hub-mvp]] - MVP Analytics Hub and statistics.
 - [[feature-systemic-event-director]] — Deterministic event orchestration across owning domains.
 - [[feature-sponsorship-portfolio]] — Asset-level sponsor inventory + side conditions.
 - [[feature-fan-ecology-ui]] — 6-segment supporter dashboard.

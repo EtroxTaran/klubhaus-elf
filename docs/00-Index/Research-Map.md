@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-05
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]]
 ---
 
 # Research Map
@@ -99,6 +99,22 @@ design notes.
   Nico's selected defaults: split event model, final immutability at
   `lineup_locked` and dedicated `WorldAiMgmtRng` sub-label; raw capture:
   [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]].
+
+## Statistics & Analytics Read-Model Owner (FMX-94, 2026-06-05)
+
+- [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]] -
+  FMX-94 synthesis for G19 and the ADR-0068 `standingsRef` dependency.
+  Grounds proposed
+  [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]],
+  draft [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]] and draft
+  [[../20-Features/feature-statistics-analytics-hub-mvp]] with real-world
+  official-vs-derived football analytics practice, Football Manager/OOTP
+  analytics/history surfaces and DDD/CQRS projection ownership trade-offs.
+  Records Nico's selected defaults: dedicated projection-only Statistics &
+  Analytics owner, per-save projections plus immutable Manager & Legacy / HoF
+  handoff snapshots, full MVP Analytics Hub and core-plus-model metric set; raw
+  capture:
+  [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]].
 
 ## AI Narration Scope Freeze and Fallback Coverage (FMX-88, 2026-06-04)
 

@@ -3,7 +3,7 @@ title: ADR-0068 Fixture scheduling contract + determinism (League Orchestration)
 status: accepted
 tags: [adr, architecture, league, fixtures, scheduling, determinism, rng, replay, contracts, gap-g1, fmx-72]
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-06-05
 accepted_at: 2026-06-02
 type: adr
 binding: true
@@ -15,11 +15,13 @@ related:
   - [[ADR-0018-systemic-events-and-player-lifecycle]]
   - [[ADR-0027-postgres-data-model]]
   - [[ADR-0028-postgres-transactional-outbox]]
+  - [[ADR-0081-statistics-analytics-read-model-owner]]
   - [[ADR-0014-state-machines]]
   - [[../state-machines/league-week]]
   - [[../bounded-context-map]]
   - [[../../50-Game-Design/GD-0009-league-structure]]
   - [[../../60-Research/fixture-scheduling-determinism-2026-06-02]]
+  - [[../../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-fixture-scheduling-determinism-2026-06-02]]
   - [[../../60-Research/determinism-and-replay]]
   - [[../../30-Implementation/domain-research-workflow]]
@@ -37,6 +39,12 @@ accepted
 > **D3 = A** (`CompetitionStatus` references a separate standings read model).
 > Closes the scheduling half of audit gap **G1**. Builds on the ratified
 > Competition & Season registry ([[ADR-0066-competition-registry-sub-aggregate]]).
+
+> **2026-06-05 follow-up (FMX-94 / G19).** Proposed
+> [[ADR-0081-statistics-analytics-read-model-owner]] names the pending
+> `standingsRef` owner as projection-only **Statistics & Analytics**. Until
+> ADR-0081 is ratified, ADR-0068 remains accepted for fixture scheduling and
+> still treats standings as an external read-model reference.
 
 ## Date
 
@@ -202,8 +210,10 @@ sequenceDiagram
 - The `fixtures:<competitionSeasonId>:draw` sub-label semantics are part of the
   replay contract: changing the draw/shuffle algorithm requires an
   `engineVersion` bump so old saves reproduce (determinism rule 11).
-- Standings are deferred (G19) — `CompetitionStatus` only references them; a
-  follow-up must name the statistics owner.
+- Standings are resolved by the FMX-94 follow-up proposal:
+  [[ADR-0081-statistics-analytics-read-model-owner]] names projection-only
+  Statistics & Analytics as the `standingsRef` owner. Until ratification,
+  `CompetitionStatus` still only references standings and does not compute them.
 - Parallel-competition calendar collisions are reserved (post-MVP cups), not
   designed — the `CalendarSlotPolicy` hook must be honoured when cups arrive.
 
@@ -214,4 +224,4 @@ drafting. The `bounded-context-map.md` League Orchestration **exposed-outputs**
 row should list `FixturesPublished` + the scheduling commands/queries; that
 in-place map edit is folded into the FMX-79 ratification apply-PR (#121, which
 already amends the same row) to avoid a conflicting double-edit. Standings owner
-(G19) is a separate future decision.
+(G19) is now proposed in [[ADR-0081-statistics-analytics-read-model-owner]].
