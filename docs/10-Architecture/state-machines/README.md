@@ -1,12 +1,12 @@
 ---
 title: State Machines Index
 status: current
-tags: [architecture, state-machine, ddd]
+tags: [architecture, state-machine, ddd, discipline, fmx-80]
 created: 2026-05-16
 updated: 2026-06-03
 type: index
 binding: false
-related: [[../bounded-context-map]], [[../09-Decisions/ADR-0014-state-machines]], [[../09-Decisions/ADR-0073-player-contract-lifecycle-fsm]]
+related: [[../bounded-context-map]], [[../09-Decisions/ADR-0014-state-machines]], [[../09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[player-discipline]]
 ---
 
 # State Machines Index
@@ -21,6 +21,7 @@ workflow. Each is owned by exactly one bounded context.
 | League / Week | League Orchestration | [[league-week]] |
 | Transfer Negotiation | Transfer | [[transfer]] |
 | Player Contract Lifecycle | Squad & Player | [[player-contract-lifecycle]] |
+| Player Discipline (proposed) | Squad & Player (proposed via ADR-0078) | [[player-discipline]] |
 | Watch Party | Watch Party | [[watch-party]] |
 | Match (overview) | Match | [[match]] |
 | Youth Academy (proposed) | Youth Academy (proposed via ADR-0060) | [[youth-academy]] |

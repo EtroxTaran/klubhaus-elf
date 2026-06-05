@@ -1,12 +1,12 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-78, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-99]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-99]
 created: 2026-05-16
 updated: 2026-06-05
 type: index
 binding: false
-related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../newsworthiness-event-publication-semantics-2026-06-04]], [[../dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../narrative-content-bounded-context-2026-06-02]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]], [[../fixture-commercial-revenue-profiles-2026-06-03]], [[../ai-world-drift-algorithm-2026-06-03]], [[../onboarding-guided-first-season-2026-06-03]], [[../player-contract-lifecycle-fsm-2026-06-03]], [[../matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../catering-and-merchandise-operations-2026-06-01]], [[../investor-compliance-and-entitlement-boundary-2026-06-01]], [[../fan-service-campaign-catalog-and-effects-2026-06-01]], [[../club-financing-tools-2026-06-01]], [[../economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../fan-persona-privacy-and-naming-2026-06-01]]
+related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../newsworthiness-event-publication-semantics-2026-06-04]], [[../dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../player-discipline-sub-aggregate-2026-06-05]], [[../narrative-content-bounded-context-2026-06-02]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]], [[../fixture-commercial-revenue-profiles-2026-06-03]], [[../ai-world-drift-algorithm-2026-06-03]], [[../onboarding-guided-first-season-2026-06-03]], [[../player-contract-lifecycle-fsm-2026-06-03]], [[../matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../catering-and-merchandise-operations-2026-06-01]], [[../investor-compliance-and-entitlement-boundary-2026-06-01]], [[../fan-service-campaign-catalog-and-effects-2026-06-01]], [[../club-financing-tools-2026-06-01]], [[../economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../fan-persona-privacy-and-naming-2026-06-01]]
 ---
 
 # Raw Perplexity Research Transcripts (Wave 2)
@@ -140,6 +140,15 @@ Nico selected the player contract lifecycle / Bosman ownership issue.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-player-contract-lifecycle-fsm-2026-06-03]] | Real-world contract expiry / pre-contract / free-agent registration / GBE rules; Football Manager / Anstoss-style renewal UX; DDD ownership options for contract lifecycle truth | [[../player-contract-lifecycle-fsm-2026-06-03]] · [[../../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]] · [[../../10-Architecture/state-machines/player-contract-lifecycle]] |
+
+## FMX-80 follow-up Perplexity research (2026-06-05)
+
+Perplexity and targeted official-source checks were run during FMX-80 after
+Nico selected the player discipline sub-aggregate issue.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-player-discipline-sub-aggregate-2026-06-05]] | Real-world yellow accumulation, red-card suspensions, competition/domestic/all scope, straight-red appeal patterns, football-manager genre surfacing and FMX DDD ownership trade-offs for player discipline | [[../player-discipline-sub-aggregate-2026-06-05]] · [[../../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]] · [[../../10-Architecture/state-machines/player-discipline]] |
 
 ## FMX-88 follow-up Perplexity research (2026-06-04)
 

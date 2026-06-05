@@ -17,6 +17,8 @@ related:
   - [[../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
+  - [[../60-Research/player-discipline-sub-aggregate-2026-06-05]]
+  - [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]]
   - [[../60-Research/ai-narrative-runtime-integration]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
@@ -26,6 +28,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
+  - [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
   - [[feature-eos-player-skills-and-people-context]]
   - [[feature-fan-ecology-ui]]
 ---
@@ -55,8 +58,8 @@ In scope for the first active narration slice:
 - Async narrative surfaces: post-match report/newspaper, injury/event report,
   weekly summary and selected match ticker key-event wording.
 - Newsworthy fact ingestion via source-owned self-contained events for injuries,
-  contract expiry, board pressure, transfer rumours and future
-  FMX-80/Discipline suspension facts; Narrative renders these snapshots and
+  contract expiry, board pressure, transfer rumours and ADR-0078/Squad & Player
+  suspension facts; Narrative renders these snapshots and
   never joins source-domain state.
 - FMX-88 scope freeze: all active dialogue/prose surfaces above are
   LLM-eligible for optional phrasing, while facts, choices, intents, effects and

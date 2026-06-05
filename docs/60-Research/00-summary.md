@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, fmx-81, fmx-83, fmx-87, fmx-88]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88]
 updated: 2026-06-05
 ---
 
@@ -64,6 +64,19 @@ The current state is:
   cleanup unless promoted by owner decision.
 - Evidence gates remain tracked through implementation: tests, drills, legal
   sign-off, release artifacts and production telemetry.
+
+## Player Discipline Sub-Aggregate (FMX-80, 2026-06-05)
+
+[[player-discipline-sub-aggregate-2026-06-05]] closes the research layer for
+G18: Match owns card facts, Regulations owns discipline profiles and appeal
+eligibility policies, Squad & Player owns card ledgers, suspension windows,
+straight-red appeal state and the canonical `PlayerSuspended` contract. It feeds
+proposed
+[[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
+and state machine [[../10-Architecture/state-machines/player-discipline]]. Raw
+Perplexity/source capture:
+[[raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]].
+
 ## Ad-hoc Transfer Market Synthesis (2026-05-17)
 
 [[transfer-market-simulation]] promotes Nico's attached transfer-market
@@ -244,8 +257,8 @@ no-export/share rule. Raw capture:
 [[newsworthiness-event-publication-semantics-2026-06-04]] is the FMX-83
 synthesis for G14. It proposes source-owned, self-contained event-publication
 facets for `InjuryOccurred`, `ContractExpiring`, `BoardPressureChanged` and
-`TransferRumourPublished`, plus projection requirements only for the future
-FMX-80/Discipline-owned `PlayerSuspended` schema. Narrative consumes these
+`TransferRumourPublished`, plus projection requirements only for the
+ADR-0078/Squad & Player-owned `PlayerSuspended` schema. Narrative consumes these
 snapshots into `NarrativeNewsFactProjection`, renders storylets/articles/feed
 surfaces and never joins source-domain state while rendering. Raw capture:
 [[raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]].
