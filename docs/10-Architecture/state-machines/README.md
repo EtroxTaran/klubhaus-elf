@@ -1,12 +1,12 @@
 ---
 title: State Machines Index
 status: current
-tags: [architecture, state-machine, ddd, discipline, fmx-80]
+tags: [architecture, state-machine, ddd, discipline, dynasty, board, ownership, fmx-89]
 created: 2026-05-16
-updated: 2026-06-03
+updated: 2026-06-05
 type: index
 binding: false
-related: [[../bounded-context-map]], [[../09-Decisions/ADR-0014-state-machines]], [[../09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[player-discipline]]
+related: [[../bounded-context-map]], [[../09-Decisions/ADR-0014-state-machines]], [[../09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[player-discipline]], [[../09-Decisions/ADR-0079-dynasty-board-ownership-and-bankruptcy]], [[dynasty-board-and-ownership]]
 ---
 
 # State Machines Index
@@ -26,6 +26,7 @@ workflow. Each is owned by exactly one bounded context.
 | Match (overview) | Match | [[match]] |
 | Youth Academy (proposed) | Youth Academy (proposed via ADR-0060) | [[youth-academy]] |
 | Loan Orchestration (proposed) | Transfer (saga; proposed via ADR-0075) | [[loan-orchestration]] |
+| Dynasty Board & Ownership (proposed) | Club Management (Board & Ownership sub-aggregates; proposed via ADR-0079) | [[dynasty-board-and-ownership]] |
 
 ## Authority
 

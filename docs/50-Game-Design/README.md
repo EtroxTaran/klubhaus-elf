@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-06-05
 type: index
 binding: false
-related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]]
+related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]]
 ---
 
 # Game Design Hub
@@ -98,6 +98,7 @@ active work.
 | [[GD-0027-hidden-attribute-substrate-mapping]] | Hidden-attribute substrate mapping (FMX-86, closes gap G22, unblocks ADR-0052 boundary); deterministic meta/OCEAN → football-label derivation via mutually-exclusive label axes + orthogonal flags; OCEAN persisted as state (derive-at-gen, mutate in place); reveal reuses Scouting's `HiddenFlagRevealLedger` gate (bands not point estimates, no join); mentoring split = People policy + Training compute (numeric model → GD-0021); thresholds = calibration. **D1–D4 = A/A/A/A** | draft | ADR-0052, ADR-0064 |
 | [[GD-0028-dialogue-intent-taxonomy-effect-matrix]] | Dialogue-intent taxonomy and effect matrix (FMX-87, closes gap G13); Broad MVP surfaces, closed finite intents, banded deterministic effects, persona gate + bounded scaling, and command/event flow proving Narrative/LLM prose never applies state | draft | ADR-0030, ADR-0054 |
 | [[GD-0029-weather-and-pitch-design-model]] | Weather & pitch design model (FMX-66, companion to ADR-0077, closes gap G23 design layer); weather parameter vector + regime taxonomy (Fine/Unsettled/Stormy/Heatwave/Freeze) + pitch-condition ladder; **subtle weather, pitch the amplifier** (FM/OOTP lesson); WBGT≥32 cooling break; fallible forecast as a planning mechanic; effect *directions* only — magnitudes + postponement reserved to FMX-52 / later. **D1–D4 = C/A/A/A** | draft | ADR-0077 |
+| [[GD-0030-dynasty-board-and-ownership]] | Dynasty board & ownership model (FMX-89, E5; closes late-game gaps G2/G20); 8-tier board-ambition ladder + confidence + 2-phase sacking (deterministic), 6 owner archetypes as presets on a continuous 6-axis trait space, ownership-transition (instability_score → archetype draw → align/resist/leave → caps/cooldowns) consuming ADR-0071 drift, bankruptcy/administration (points + embargo + fire-sale + heroic-save/abandon; liquidation→phoenix reserved). The design answer to the "Club Boss late-game flatline". Effect *directions* only — magnitudes = FMX-52. **D1–D4 = A/A/A/A** | draft | ADR-0079 |
 
 ## Core loop
 
@@ -184,6 +185,11 @@ active work.
   (FMX-66, G23): parameter vector, regime taxonomy, pitch-condition ladder,
   WBGT≥32 cooling break, fallible forecast; subtle weather + pitch the amplifier.
   Feeds [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]].
+- [[GD-0030-dynasty-board-and-ownership]] - draft dynasty board & ownership model
+  (FMX-89, G2/G20): 8-tier board-ambition ladder + confidence + 2-phase sacking,
+  6 owner archetypes on a continuous trait space, ownership-transition + bankruptcy/
+  administration arcs (heroic-save/abandon); the design answer to the "Club Boss
+  late-game flatline". Feeds [[../10-Architecture/09-Decisions/ADR-0079-dynasty-board-ownership-and-bankruptcy]].
 - [[regulations-and-compliance]] - promotion-gated stadium / ops requirements.
 - [[rivalry-system]] - emergent rivalry score with 5 sub-scores.
 - [[matchday-event-engine]] - rule-based events with trigger / probability / effect / prevention.
