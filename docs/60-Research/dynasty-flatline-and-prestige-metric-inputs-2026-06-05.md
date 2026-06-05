@@ -267,6 +267,7 @@ tail variant. Pass criterion: the flatline locus is **locatable** and the proxy 
 - [[determinism-and-replay]] — D8 + RNG sub-label grammar
 - [[../30-Implementation/economy-calibration-and-soak-test-runbook]] — §11 flatline plan lands here
 - [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]] — consumer (E6-3 amends; not edited here)
+- [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]] — FMX-93: prestige/HoF metric inputs reference manager **style signals** (`ManagerStyleSignals`), **not** a named archetype taxonomy; no fixed manager-archetype list exists yet (G3, post-MVP).
 - [[../10-Architecture/09-Decisions/ADR-0079-dynasty-board-ownership-and-bankruptcy]] · [[../50-Game-Design/GD-0030-dynasty-board-and-ownership]] — FMX-89 volatility event surface feeding the KPIs
 - [[../50-Game-Design/GD-0010-ai-world]] — R2-06 late-game arc
 - [[domain-model-audit-and-backlog-2026-06-02]] — gap G2; E5-2c vs E6-3 boundary

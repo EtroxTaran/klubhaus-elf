@@ -3,7 +3,7 @@ title: GD-0019 Manager Archetype Roguelite Progression
 status: draft
 tags: [game-design, gddr, roguelite, manager, archetype, progression, fmx-16]
 created: 2026-05-27
-updated: 2026-06-03
+updated: 2026-06-05
 type: game-design
 binding: false
 supersedes:
@@ -19,6 +19,8 @@ related:
   - [[../60-Research/late-game-systems]]
   - [[../20-Features/feature-roguelite-mvp-first-playable]]
   - [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
+  - [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]]
+  - [[../60-Research/manager-archetype-mvp-hooks-and-perk-prestige-2026-06-05]]
 ---
 
 # GD-0019: Manager Archetype Roguelite Progression
@@ -33,7 +35,39 @@ draft
 
 ## Date
 
-2026-05-27
+2026-05-27 (created) · 2026-06-05 (FMX-93 confirming revision)
+
+## FMX-93 confirming revision (2026-06-05)
+
+> Added by FMX-93 (Gap **G3**). Confirms — does not rewrite — the stance below. Decisions D1–D4 put to
+> Nico live and chosen 2026-06-05 = **A, A, A, A**. The architectural contract is authored in
+> [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]]
+> (`proposed`); decision basis is
+> [[../60-Research/manager-archetype-mvp-hooks-and-perk-prestige-2026-06-05]].
+
+- **D1 — MVP scope: hooks-only confirmed; taxonomy deferred.** MVP captures run-end facts + provisional
+  `ManagerStyleSignals` + a `PostRunReflection`. Archetype **names**, perk caps and the prestige ladder
+  stay post-MVP & Nico-gated. **Authored-then-validated note:** the eventual taxonomy is to be
+  *authored as a small designed set and then validated/renamed by playtest clustering* — **not** a
+  purely data-mined output (pure clustering yields unstable, design-useless groups; roguelite-agency
+  research). No archetype list exists yet.
+- **D2 — Signal schema + confidence.** The **tactical** signal is fully pinned by
+  [[../10-Architecture/09-Decisions/ADR-0074-tactical-identity-fingerprint-aggregation|ADR-0074]]
+  (EWMA h=15 + empirical-Bayes). The **five non-tactical** categories (youth, transfer, finance,
+  club-building, resilience) are captured as **coarse signals with a lightweight sample-based
+  confidence** (ADR-0082). Player-facing confidence is shown as **3 bands — Provisional / Emerging /
+  Established**; raw numbers appear only in the **Expert** UI tier (FM scout-range pattern).
+- **D3 — Start-finance perk policy.** **No soft perk affects starting finance in MVP.** Any future one
+  requires a prestige unlock + hard cap + an explicit challenge counterweight + a fresh Nico decision.
+  (Confirms "direct start-money not a safe default"; research: starting-economy boosts collapse early
+  tension and snowball.)
+- **D4 — Post-run reflection.** **MVP-mandatory, minimal but real**: a short text summary of the 2–3
+  strongest signals + run outcome. Delivers the player-experience goal below.
+- **Owner.** Manager & Legacy (ADR-0051) assembles the `RunAnalysisSnapshot` from published facts only
+  (no roguelite process-manager split at MVP).
+
+The "Decided / strong", "Taxonomy stance" and "Change policy" sections below are unchanged and remain
+the governing principles; the items above resolve the matching entries in **§Open**.
 
 ## Player experience goal
 
@@ -139,16 +173,21 @@ Requires Nico decision and a GDDR/ADR update:
 
 ## Open
 
-- Final archetype taxonomy and naming.
-- ~~Exact signal schema and confidence model.~~ → **specified by proposed
-  [[../10-Architecture/09-Decisions/ADR-0074-tactical-identity-fingerprint-aggregation]]**
-  (FMX-68, G10): five signals + EWMA(h=15) + empirical-Bayes confidence, raw signals
-  only. Taxonomy/naming stays open here (G3 / FMX-93).
-- Exact post-run UI depth for first playable.
-- First prestige ladder shape.
-- Whether future challenge runs can badge async-group cosmetics.
-- Whether any soft perk may affect starting finance, and if yes, the maximum
-  allowed cap.
+- Final archetype taxonomy and naming. *(Still open — deferred post-MVP. FMX-93 (G3) confirms the
+  deferral and pins it as **authored-then-clustering-validated**, not pure data-mining. No list yet.)*
+- ~~Exact signal schema and confidence model.~~ → **tactical** signal specified by proposed
+  [[../10-Architecture/09-Decisions/ADR-0074-tactical-identity-fingerprint-aggregation]]
+  (FMX-68, G10): five signals + EWMA(h=15) + empirical-Bayes confidence, raw signals only; the **five
+  non-tactical** coarse signals + 3-band confidence specified by proposed
+  [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]]
+  (FMX-93). Taxonomy/naming stays open above (G3).
+- ~~Exact post-run UI depth for first playable.~~ → **resolved (FMX-93, D4)**: MVP ships a minimal but
+  real text `PostRunReflection` (outcome + top 2–3 signals); richer depth is post-MVP.
+- First prestige ladder shape. *(Still open — post-MVP, Nico-gated.)*
+- Whether future challenge runs can badge async-group cosmetics. *(Still open — post-MVP.)*
+- ~~Whether any soft perk may affect starting finance, and if yes, the maximum allowed cap.~~ →
+  **resolved (FMX-93, D3)**: **none in MVP**; any future start-finance perk is prestige-gated +
+  hard-capped + counterweighted + a fresh Nico decision.
 
 ## Rationale
 
@@ -179,6 +218,8 @@ None
 ## Feeds ADRs
 
 - [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
+- [[../10-Architecture/09-Decisions/ADR-0074-tactical-identity-fingerprint-aggregation]] (FMX-68 — tactical signal algorithm)
+- [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]] (FMX-93 — non-tactical signals + run-analysis contract)
 
 ## Related
 
