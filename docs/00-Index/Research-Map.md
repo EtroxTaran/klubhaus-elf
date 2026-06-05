@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-05
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]]
 ---
 
 # Research Map
@@ -88,6 +88,17 @@ design notes.
   profile-driven suspension scopes and appeal resolution before the next
   relevant fixture; raw capture:
   [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]].
+
+## Opposition-template AI Consumption Contract (FMX-67, 2026-06-05)
+
+- [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]] -
+  FMX-67 synthesis for G11. Grounds proposed
+  [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]]
+  with real-world opposition analysis workflows, Football Manager/OOTP
+  pre-match strategy precedents and deterministic replay constraints. Records
+  Nico's selected defaults: split event model, final immutability at
+  `lineup_locked` and dedicated `WorldAiMgmtRng` sub-label; raw capture:
+  [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]].
 
 ## AI Narration Scope Freeze and Fallback Coverage (FMX-88, 2026-06-04)
 

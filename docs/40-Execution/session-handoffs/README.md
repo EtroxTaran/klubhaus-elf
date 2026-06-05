@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-05-fmx-67-opposition-template-ai-consumption]] - FMX-67
+  opposition-template AI consumption contract: raw/synthesis research and
+  proposed ADR-0080 for G11. Captures Nico's D1-D3 choices: split event model,
+  final immutability at `lineup_locked` and dedicated `WorldAiMgmtRng`
+  sub-label. Keeps Tactics as catalog + selector/publisher owner, AI-management
+  as planning-context owner and Match as lock-time `TacticSnapshot` consumer;
+  no new bounded context or map change. Template weights/taxonomy and
+  scouting-confidence effects remain future calibration/design debt.
 - [[2026-06-05-fmx-80-player-discipline]] - FMX-80 player discipline
   sub-aggregate: raw/synthesis research, proposed ADR-0078 and
   [[../../10-Architecture/state-machines/player-discipline]] for G18.
