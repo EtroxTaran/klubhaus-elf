@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, read-model, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94]
 updated: 2026-06-05
 ---
 
@@ -75,6 +75,21 @@ selects and publishes the self-contained
 [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]].
 Raw Perplexity/Web capture:
 [[raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]].
+
+## Statistics & Analytics Read-Model Owner (FMX-94, 2026-06-05)
+
+[[statistics-analytics-read-model-owner-2026-06-05]] closes the research layer
+for G19 and resolves the ADR-0068 `CompetitionStatus.standingsRef` dependency.
+The selected planning line is a dedicated projection-only **Statistics &
+Analytics** owner, per-save projections, immutable Manager & Legacy / HoF
+handoff snapshots, and a full MVP Analytics Hub with core stats plus xG/xA/xGA,
+PPDA, field tilt, shot/pass maps, heatmaps, zone control, per-90 leaderboards,
+form and player/team comparisons. It feeds proposed
+[[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]],
+draft [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]] and draft
+[[../20-Features/feature-statistics-analytics-hub-mvp]]. Raw Perplexity/Web
+capture:
+[[raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]].
 
 ## Player Discipline Sub-Aggregate (FMX-80, 2026-06-05)
 

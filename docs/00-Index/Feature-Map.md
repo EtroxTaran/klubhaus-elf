@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-05
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-V1]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-V1]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../20-Features/feature-statistics-analytics-hub-mvp]]
 ---
 
 # Feature Map
@@ -34,6 +34,10 @@ documentation gaps.
 - [[../20-Features/feature-eos-player-skills-and-people-context]] — draft
   FMX-23 player-skill/perk and People/persona slice for MVP planning, now
   linked to GD-0021 decision-influence hooks.
+- [[../20-Features/feature-statistics-analytics-hub-mvp]] - draft FMX-94 MVP
+  Analytics Hub for Key Findings, Last Match, Team/Player Analysis,
+  standings/leaders, form, comparisons, maps/heatmaps and Manager & Legacy
+  handoff snapshots.
 
 ## Seed Epics
 
@@ -60,6 +64,7 @@ documentation gaps.
   staff-pipeline quality hooks aligned to GD-0021.
 - [[../20-Features/feature-eos-player-skills-and-people-context]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
+- [[../20-Features/feature-statistics-analytics-hub-mvp]]
 - [[../20-Features/feature-systemic-event-director]]
 - [[../20-Features/feature-sponsorship-portfolio]]
 - [[../20-Features/feature-fan-ecology-ui]]

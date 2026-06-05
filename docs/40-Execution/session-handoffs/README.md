@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-05-fmx-94-statistics-analytics]] - FMX-94 statistics and
+  analytics read-model owner: raw/synthesis research, proposed ADR-0081, draft
+  GD-0031 and MVP feature spec for G19 / ADR-0068 `standingsRef`. Captures
+  Nico's D1-D4 choices: dedicated projection-only Statistics & Analytics owner,
+  per-save projections plus immutable Manager & Legacy / HoF handoff snapshots,
+  full MVP Analytics Hub and core-plus-model metric set. Keeps the ratified
+  bounded-context table at 19 until ADR-0081 is accepted.
 - [[2026-06-05-fmx-67-opposition-template-ai-consumption]] - FMX-67
   opposition-template AI consumption contract: raw/synthesis research and
   proposed ADR-0080 for G11. Captures Nico's D1-D3 choices: split event model,
