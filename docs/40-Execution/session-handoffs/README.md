@@ -42,6 +42,15 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-05-fmx-80-player-discipline]] - FMX-80 player discipline
+  sub-aggregate: raw/synthesis research, proposed ADR-0077 and
+  [[../../10-Architecture/state-machines/player-discipline]] for G18.
+  Captures Nico's D1-D4 choices: Squad & Player process manager/sub-aggregate
+  (no new BC), straight-red appeals only, Regulations-profile-driven
+  `competition`/`domestic`/`all` scopes and appeal resolution before the next
+  relevant fixture. Defines canonical `PlayerSuspendedV1` as a Squad & Player
+  event consumed by Narrative/Notification; thresholds and ban lengths remain
+  FMX-52/Regulations-profile calibration.
 - [[2026-06-05-fmx-87-dialogue-intent-taxonomy]] - FMX-87 dialogue intent
   taxonomy + mechanical effect matrix: raw/synthesis research, draft GD-0027,
   ADR-0030/ADR-0054 contract updates and feature/map/index alignment for

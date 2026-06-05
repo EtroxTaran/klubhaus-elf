@@ -3,7 +3,7 @@ title: ADR-0076 Narrative Newsworthiness Event Contracts
 status: proposed
 tags: [adr, architecture, narrative, newsworthiness, events, contracts, ddd, fmx-83]
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-06-05
 type: adr
 binding: false
 supersedes:
@@ -18,11 +18,14 @@ related:
   - [[ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[ADR-0065-narrative-media-press-content-ownership]]
   - [[ADR-0073-player-contract-lifecycle-fsm]]
+  - [[ADR-0077-player-discipline-suspension-contracts]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
+  - [[../../60-Research/player-discipline-sub-aggregate-2026-06-05]]
+  - [[../../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]]
   - [[../../60-Research/domain-model-audit-and-backlog-2026-06-02]]
 ---
 
@@ -36,8 +39,8 @@ proposed
 > and said "go on"; D1-D4 below are therefore authored as recommended proposed
 > defaults, not ratified decisions. This ADR closes gap G14 at the contract
 > layer. It does not accept Narrative as a context, does not implement schemas,
-> and does not define `PlayerSuspended`; FMX-80/Discipline remains the sole
-> owner of that schema.
+> and does not define `PlayerSuspended`; ADR-0077 now proposes Squad & Player
+> as the sole owner of that schema.
 
 ## Date
 
@@ -75,7 +78,8 @@ Scope:
 
 Out of scope:
 
-- FMX-80 Discipline state machine and `PlayerSuspended` schema.
+- FMX-80 player-discipline state machine and `PlayerSuspended` schema
+  (proposed in [[ADR-0077-player-discipline-suspension-contracts]]).
 - FMX-82 media outlet cadence/stance/reach/reliability rules.
 - FMX-87 dialogue-intent effect matrix.
 - Final salience weights, article volume, cooldowns and content calibration.
@@ -103,8 +107,8 @@ Out of scope:
 
 | Option | Description | Trade-off |
 |---|---|---|
-| **A. Consume FMX-80 schema, list requirements here** | FMX-83 defines no suspension event shape, only the data Narrative will need. | **Recommended default.** Removes the duplicate-schema risk called out by the audit. |
-| B. Block FMX-83 until FMX-80 lands | Avoids all risk but delays upstream Narrative work unnecessarily. |
+| **A. Consume FMX-80 schema, list requirements here** | FMX-83 defines no suspension event shape, only the data Narrative will need. | **Recommended default.** Removes the duplicate-schema risk called out by the audit. ADR-0077 now supplies the proposed canonical schema. |
+| B. Block FMX-83 until FMX-80 lands | Avoided delay while FMX-80 was open; now historical option because ADR-0077 exists as a proposal. |
 | C. Define provisional suspension schema here | Fastest for Narrative, but likely creates divergent authoritative schemas. |
 
 ### D4 - Payload granularity
@@ -301,7 +305,8 @@ authoritative transfer interest from prose.
 ### `PlayerSuspended` projection requirements only
 
 FMX-83 does not define the event name, envelope or state machine for
-`PlayerSuspended`. FMX-80/Discipline must own that schema.
+`PlayerSuspended`. ADR-0077 proposes Squad & Player as the schema and
+availability owner.
 
 Narrative requires at least:
 
@@ -378,7 +383,7 @@ No dependency is added or upgraded by this docs-only ADR.
 | C3 | Every event is self-contained enough for a fallback template, a press/media storylet and an inbox/feed snapshot. |
 | C4 | Rumours carry source confidence, attribution, decay and supersession; Narrative never invents transfer truth. |
 | C5 | Medical, financial, legal and pressure details are banded unless already explicitly public in-world. |
-| C6 | `PlayerSuspended` is not defined here; FMX-80/Discipline is the sole schema owner. |
+| C6 | `PlayerSuspended` is not defined here; ADR-0077 / Squad & Player is the sole proposed schema owner. |
 | C7 | Events publish through ADR-0028 transactional outbox after the source transaction commits; consumers are idempotent and replay-safe. |
 | C8 | Runtime LLM may phrase only the rendered surface; it cannot create, alter or confirm news facts. |
 
@@ -400,7 +405,8 @@ Negative / constraints:
   tests.
 - Salience weights and cooldowns remain unresolved until media/content
   calibration.
-- A future FMX-80 schema is still required before suspension stories can ship.
+- ADR-0077 must be ratified before suspension stories can ship from the
+  proposed `PlayerSuspendedV1` schema.
 
 ## Supersedes
 
@@ -416,4 +422,3 @@ None.
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../../30-Implementation/ai-narration-contract-testing-framework]]
-

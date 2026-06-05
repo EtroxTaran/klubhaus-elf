@@ -53,7 +53,7 @@ related:
 |---|---|
 | D1 | Distinct source-owned event contracts plus shared `NarrativeNewsFactProjection`. |
 | D2 | Transfer emits `TransferRumourPublished`; Narrative renders only. |
-| D3 | FMX-83 consumes future FMX-80/Discipline `PlayerSuspended`; it does not define the schema. |
+| D3 | FMX-83 consumes the FMX-80 suspension schema; ADR-0077 now proposes Squad & Player-owned `PlayerSuspendedV1`. |
 | D4 | Banded, display-ready, self-contained payloads with source/confidence/legal/privacy metadata. |
 
 ## Open / next step
@@ -68,8 +68,8 @@ related:
 
 - No docs blocker.
 - Implementation remains blocked until Narrative contracts are ratified.
-- Suspension stories remain blocked on FMX-80/Discipline defining the canonical
-  `PlayerSuspended` schema.
+- Suspension stories remain blocked on ADR-0077 ratification of the canonical
+  `PlayerSuspendedV1` schema.
 
 ## Changed vault paths
 
@@ -95,4 +95,3 @@ related:
 - ADR-0076 remains `proposed` until Nico ratifies.
 - ADR-0054/ADR-0065/GD-0018 remain draft/proposed and non-binding.
 - FMX-80, FMX-82 and FMX-87 remain follow-up decision owners.
-

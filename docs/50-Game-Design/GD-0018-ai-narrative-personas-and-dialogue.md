@@ -22,6 +22,8 @@ related:
   - [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - [[../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+  - [[../60-Research/player-discipline-sub-aggregate-2026-06-05]]
+  - [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]]
   - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../60-Research/raw-perplexity/raw-ai-llm-usage]]
   - [[../60-Research/raw-perplexity/raw-character-personality-and-dialogue]]
@@ -35,6 +37,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
+  - [[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]]
 ---
 
 # GD-0018: AI Narrative Personas and Dialogue
@@ -186,8 +189,9 @@ agent/transfer readiness and the relevant owning domain for press/media effects.
   (FMX-52 calibration).
 - Final salience weights, cooldown caps and media-volume rules for newsworthy
   event publication.
-- Canonical `PlayerSuspended` schema from FMX-80/Discipline; GD-0018 may only
-  consume it for suspension narrative surfaces.
+- Canonical `PlayerSuspended` schema from
+  [[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]];
+  GD-0018 may only consume it for suspension narrative surfaces.
 - Exact first-exposure and settings/help disclosure copy, and the legal memo
   that closes the EU AI Act Article 50 release gate.
 - Final OpenRouter model/provider routing, cost caps and cache policy.

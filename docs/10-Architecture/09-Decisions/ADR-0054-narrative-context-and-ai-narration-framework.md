@@ -17,6 +17,8 @@ related:
   - [[../../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - [[../../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
+  - [[../../60-Research/player-discipline-sub-aggregate-2026-06-05]]
+  - [[../../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]]
   - [[../../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
@@ -25,6 +27,7 @@ related:
   - [[ADR-0030-llm-out-of-authoritative-state]]
   - [[ADR-0052-people-persona-and-skills-context]]
   - [[ADR-0076-narrative-newsworthiness-event-contracts]]
+  - [[ADR-0077-player-discipline-suspension-contracts]]
 ---
 
 # ADR-0054: Narrative Context and AI Narration Framework
@@ -116,8 +119,8 @@ FMX-88 freezes the MVP Narrative responsibility line for runtime LLM:
 
 FMX-83 adds a proposed source-domain publication contract for newsworthy facts.
 Narrative may consume `InjuryOccurred`, `ContractExpiring`,
-`BoardPressureChanged`, `TransferRumourPublished` and the future
-FMX-80/Discipline-owned `PlayerSuspended` event only as self-contained
+`BoardPressureChanged`, `TransferRumourPublished` and the FMX-80
+Squad & Player-owned `PlayerSuspended` event only as self-contained
 published-language snapshots.
 
 Narrative owns the `NarrativeNewsFactProjection`, storylet/article eligibility,
@@ -128,8 +131,9 @@ into source contexts while rendering.
 
 `PlayerSuspended` is deliberately not specified by FMX-83. This ADR consumes
 the projection requirements recorded in
-[[ADR-0076-narrative-newsworthiness-event-contracts]]; FMX-80/Discipline remains
-the sole schema owner.
+[[ADR-0076-narrative-newsworthiness-event-contracts]] and the canonical schema
+proposed in [[ADR-0077-player-discipline-suspension-contracts]]; Squad & Player
+remains the sole suspension/availability owner.
 
 ### FMX-87 dialogue intent/effect contract
 

@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-05
 type: map
 binding: false
-related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
+related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]], [[../10-Architecture/state-machines/player-discipline]]
 ---
 
 # Architecture Map
@@ -48,6 +48,7 @@ future-scope or historical context.
 - [[../10-Architecture/state-machines/league-week]]
 - [[../10-Architecture/state-machines/transfer]]
 - [[../10-Architecture/state-machines/player-contract-lifecycle]]
+- [[../10-Architecture/state-machines/player-discipline]]
 - [[../10-Architecture/state-machines/watch-party]]
 - [[../10-Architecture/state-machines/match]]
 
@@ -85,7 +86,8 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft proposed Narrative context for scene selection, context-card assembly, templates, fallback coverage manifest, validation, provenance, evals and provider adapter boundary; FMX-87 adds finite dialogue-intent/effect result planning contracts while effects stay with source domains.
 - [ADR-0065 Narrative Media and Press Content Ownership](../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership.md) - draft proposed extension of ADR-0054: Narrative owns Press/Media content authoring, conference response trees, article publication policy, tone library, deterministic fallbacks and optional validated LLM paraphrase controls; Notification delivers and People supplies persona cards.
 - [ADR-0073 Player Contract Lifecycle FSM](../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm.md) - proposed Squad & Player ownership of player-contract lifecycle truth; Transfer owns renewal/pre-contract/free-agent process cases; Regulations owns pre-contract/free-agent/work-permit verdicts.
-- [ADR-0076 Narrative Newsworthiness Event Contracts](../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts.md) - proposed source-owned newsworthy event publication facets for Narrative consumption: injuries, contract expiry, board pressure, transfer rumours and future Discipline-owned suspensions.
+- [ADR-0076 Narrative Newsworthiness Event Contracts](../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts.md) - proposed source-owned newsworthy event publication facets for Narrative consumption: injuries, contract expiry, board pressure, transfer rumours and ADR-0077/Squad & Player-owned suspensions.
+- [ADR-0077 Player Discipline Suspension Contracts](../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts.md) - proposed Squad & Player-owned discipline sub-aggregate/process manager for card accumulation, suspension windows, straight-red appeals, eligibility and canonical `PlayerSuspended`; Match owns card facts and Regulations owns discipline profiles.
 
 ## Current Binding Research and Specs
 
@@ -107,6 +109,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [AI Narration Scope Freeze and Fallback Coverage](../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04.md)
 - [Newsworthiness Event-Publication Semantics](../60-Research/newsworthiness-event-publication-semantics-2026-06-04.md)
 - [Dialogue Intent Taxonomy and Effect Matrix](../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05.md)
+- [Player Discipline Sub-Aggregate](../60-Research/player-discipline-sub-aggregate-2026-06-05.md)
 - [Player Contract Lifecycle FSM Research](../60-Research/player-contract-lifecycle-fsm-2026-06-03.md)
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
 - [Match Engine Simulation Model](../60-Research/match-engine-simulation-model.md)

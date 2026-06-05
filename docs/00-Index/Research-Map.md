@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-05
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]]
 ---
 
 # Research Map
@@ -75,6 +75,19 @@ design notes.
   [[../50-Game-Design/GD-0006-transfers]] and
   [[../50-Game-Design/transfer-market-and-contracts]]; raw capture:
   [[../60-Research/raw-perplexity/raw-player-contract-lifecycle-fsm-2026-06-03]].
+
+## Player Discipline Sub-Aggregate (FMX-80, 2026-06-05)
+
+- [[../60-Research/player-discipline-sub-aggregate-2026-06-05]] - FMX-80
+  synthesis for G18. Grounds the proposed
+  [[../10-Architecture/09-Decisions/ADR-0077-player-discipline-suspension-contracts]]
+  and state machine [[../10-Architecture/state-machines/player-discipline]] with
+  official discipline-rule source checks, football-manager genre precedent and
+  FMX-specific DDD ownership trade-offs. Records Nico's selected defaults:
+  Squad & Player process manager/sub-aggregate, straight-red appeals only,
+  profile-driven suspension scopes and appeal resolution before the next
+  relevant fixture; raw capture:
+  [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]].
 
 ## AI Narration Scope Freeze and Fallback Coverage (FMX-88, 2026-06-04)
 
