@@ -254,7 +254,168 @@ Additional health metrics:
 - continental-era volatility by 10-year rolling window;
 - no ledger mutation by AI World Simulation events.
 
-## 10. Acceptance flow (how a calibration set ships)
+## 10. Dynasty board & ownership extension (FMX-89)
+
+Banded parameters + soak scenarios for the dynasty board-ambition, ownership-
+transition and bankruptcy/administration FSMs
+([[../10-Architecture/09-Decisions/ADR-0079-dynasty-board-ownership-and-bankruptcy]] /
+[[../50-Game-Design/GD-0030-dynasty-board-and-ownership]]). All values `null` here;
+the evidence gate sets them behind `dynastyModelVersion`. Determinism: board ladder
+is RNG-free; ownership/insolvency draws use `WorldAiMgmtRng` (ADR-0079 §D3).
+
+```yaml
+parameter:
+  id: dynasty.board.expectationRatchetTiers
+  definition: Max tier change to next-season board expectation after over/under-performance (8-tier ladder).
+  value: null
+  band: [1, 1]                         # locked direction: ±1 tier/season (DB8); band confirms invariant, not tuned
+  source: ai-manager-behaviour §10.5
+  sensitivity: verdict-stable
+```
+
+```yaml
+parameter:
+  id: dynasty.board.confidenceDecayPerWinlessRun
+  definition: Confidence decrement per match in a winless run while below the expectation band.
+  value: null
+  band: [low, high]
+  source: ai-manager-behaviour §9.1 + real-world board-ladder research (FMX-89)
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: dynasty.board.voteOfConfidenceWindowMatches
+  definition: Length of the override-objective window granted at the board-confidence meeting before a hard cutoff.
+  value: null
+  band: [low, high]
+  source: FM 2-phase sacking precedent (FMX-89 games research)
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: dynasty.ownership.instabilityTakeoverThreshold
+  definition: instability_score (financial_stress + performance + ownership tenure/satisfaction) at/above which a club becomes a takeover candidate.
+  value: null
+  band: [low, high]                    # late-game-systems §6.3 sketch: >=3
+  source: late-game-systems §6.3 + FMX-89 real-world research
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: dynasty.ownership.takeoverCapPerLeagueSeasons
+  definition: Minimum seasons between meaningful takeovers within one league (cooldown cap).
+  value: null
+  band: [5, 7]                         # late-game-systems §6.3 baseline
+  source: late-game-systems §6.3
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: dynasty.ownership.globalTakeoverCapPerSeason
+  definition: Max meaningful takeovers worldwide per season (anti-chaos global cap).
+  value: null
+  band: [low, high]                    # late-game-systems §6.3 baseline ~2
+  source: late-game-systems §6.3
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: dynasty.ownership.archetypeBudgetMultiplierBp
+  definition: Per-archetype wage/transfer budget multiplier bands applied on ownership change (Foundation..Petrol-State).
+  value: null
+  band: [low, high]
+  source: late-game-systems §6.2 archetype tables
+  sensitivity: parameter-sensitive
+  profileOverrides: {}
+```
+
+```yaml
+parameter:
+  id: dynasty.bankruptcy.administrationPointsDeduction
+  definition: League points deducted on entering administration.
+  value: null
+  band: [-15, -9]                      # EFL real anchor -12; magnitude = calibration
+  source: FMX-89 real-world administration research (EFL/PL)
+  sensitivity: verdict-stable
+```
+
+```yaml
+parameter:
+  id: dynasty.bankruptcy.embargoWageCapPct
+  definition: Wage-cap (% of revenue) enforced under transfer embargo / administration.
+  value: null
+  band: [low, high]                    # late-game-systems §6.4 ~40-50%
+  source: late-game-systems §6.4 + EFL SCMP research
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: dynasty.bankruptcy.fireSaleValuationDiscountBp
+  definition: Valuation discount AI buyers receive on administrator fire-sale players.
+  value: null
+  band: [low, high]
+  source: FM administration behaviour (FMX-89 games research)
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: dynasty.owner.resistanceModifierBp
+  definition: Continuous archetype-resistance modifier on structural-event probability from the owner trait vector (suppress for stable, amplify for reckless).
+  value: null
+  band: [low, high]                    # generalises ai-manager-behaviour §4.3 drift caps (±0.2/±0.25)
+  source: ai-manager-behaviour §4.3 + FMX-89 determinism research
+  sensitivity: parameter-sensitive
+```
+
+Soak scenarios (board/ownership/bankruptcy cadence + diversity KPIs):
+
+```yaml
+scenario:
+  id: dynasty.ownership.takeoverCadenceDiversity
+  narrative: "Over a 50y AI-only run, takeovers respect caps/cooldowns and span a diverse archetype mix (no single-archetype monoculture)."
+  archetype: mixed-league
+  countryProfileId: neutral-baseline
+  severity: baseline
+  overrides: { takeoverCapPerLeagueSeasons: "<band-edge>", globalTakeoverCapPerSeason: "<band-edge>" }
+  fixture: { fixtureListId: "<ai-only-50y>", seed: "<worldSeed>" }
+  expect:
+    kpiBands: { takeoverDensity: inBand, archetypeDiversity: inBand, takeoverCapBreaches: 0 }
+    verdict: pass
+  type: forward
+```
+
+```yaml
+scenario:
+  id: dynasty.bankruptcy.administrationRecoveryArc
+  narrative: "An overextended club enters administration (points hit + embargo + fire-sale) and either is rescued or survives — never silently disappears (liquidation reserved)."
+  archetype: high-debt ambitious
+  countryProfileId: premium-broadcast
+  severity: adverse
+  overrides: { wageRevenueRatio: "<high-band>", cashRunway: "<low-band>" }
+  fixture: { fixtureListId: "<ai-only-50y>", seed: "<worldSeed>" }
+  expect:
+    kpiBands: { administrationRate: inBand, rescueVsLiquidationSplit: inBand, ledgerWritesOutsideClubMgmt: 0 }
+    verdict: pass
+  type: reverse
+```
+
+Additional health metrics:
+
+- byte-identical board/ownership/insolvency event sequence for same seed + config;
+- board-confidence escalation/sacking transitions reproduce with **no** RNG draw;
+- expectation ratchet never exceeds ±1 tier/season;
+- takeover density + archetype diversity over 30/50/100 years (anti-flatline KPI);
+- administration rate + rescue-vs-(reserved)liquidation split;
+- no ledger mutation outside Club Management; no `WorldAiMgmtRng` draw outside declared labels.
+
+## 11. Acceptance flow (how a calibration set ships)
 
 1. Fill parameter sheets (§7) and scenario sheets (§8).
 2. Run economy smoke (PR) → invariants + determinism pass.
