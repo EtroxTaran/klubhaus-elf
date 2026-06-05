@@ -33,4 +33,5 @@ Nico selected the planning defaults live on 2026-06-05:
 - [x] Add draft GD-0027.
 - [x] Update ADR-0030, ADR-0054, GD-0018, feature/testing notes and vault maps.
 - [x] Run docs validation and diff checks.
-- [ ] Commit, push, open PR and move Linear to `In Review`.
+- [x] Commit, push and open draft PR #136.
+- [ ] Move Linear to `In Review`.

@@ -16,6 +16,7 @@ related:
 ## Linear
 
 - Issue: FMX-87
+- PR: https://github.com/EtroxTaran/football-manager-x/pull/136
 
 ## Done this session
 
@@ -25,10 +26,11 @@ related:
 - Added raw Perplexity capture, synthesis and draft GD-0027.
 - Added ADR-0030 / ADR-0054 conformance updates and map/index links.
 - Validation passed: `node scripts/docs-check.mjs` and `git diff --check`.
+- Commit pushed and draft PR #136 opened.
 
 ## Open / next step
 
-- Commit, push, open PR and move Linear to `In Review`.
+- Move Linear to `In Review` and add the PR handoff comment.
 - Nico ratifies or changes GD-0027 before any implementation work.
 
 ## Blockers
