@@ -263,3 +263,8 @@ None
   fills this context's draft `ManagerStyleSignals` / `RunAnalysisSnapshot` /
   `PostRunReflection` surface with the non-tactical signal schema + run-analysis
   contract (additive; this ADR's decision is unchanged).
+- [[ADR-0083-awards-honours-records-and-hall-of-fame-contract]] - FMX-95 (proposed);
+  extends this context's scope to own awards/honours generation, the in-world Hall of
+  Fame and the cross-save legacy/HoF & legend ranking + manager prestige, under this
+  ADR's existing read-only-at-creation determinism rule (additive; per-save records stay
+  Statistics-owned; this ADR's decision is unchanged).
