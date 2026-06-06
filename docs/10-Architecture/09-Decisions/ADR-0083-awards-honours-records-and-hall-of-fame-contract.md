@@ -143,7 +143,7 @@ ranking + induction) is MVP-active in design, with magnitudes as FMX-52 debt.
 | Transfer | transfer value/profit facts (record signing/sale; manager prestige inputs) |
 | Squad & Player / Training | player milestones, longevity, youth-promotion facts |
 | Manager & Legacy (self, ADR-0082) | `RunAnalysisSnapshot` outcome + style signals (prestige context) |
-| FMX-90 metric-input taxonomy | the MVP-tagged prestige/HoF/era inputs (national-team inputs reserved — FMX-84) |
+| FMX-90 metric-input taxonomy | the MVP-tagged prestige/HoF/era inputs (national-team inputs reserved — FMX-84, now contracted as a forward-additive `factId` in [[ADR-0084-national-team-dual-role-and-international-window-contract]] §4) |
 
 ### 3. Determinism & versioning contract
 
@@ -281,3 +281,4 @@ ratifying PR.
 - [[../../50-Game-Design/GD-0032-awards-honours-records-and-hall-of-fame]] — the game-design model this contract serves.
 - [[../../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]] — prestige/legacy; archetype taxonomy deferred (G3).
 - [[../../60-Research/dynasty-flatline-and-prestige-metric-inputs-2026-06-05]] — FMX-90 metric-input taxonomy + D4/D8 hand-off.
+- [[ADR-0084-national-team-dual-role-and-international-window-contract]] — fills the reserved national-team caps/honours input as a forward-additive `factId`.

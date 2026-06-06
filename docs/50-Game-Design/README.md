@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-06-05
 type: index
 binding: false
-related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[GD-0031-analytics-hub-and-statistics]], [[GD-0032-awards-honours-records-and-hall-of-fame]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
+related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[GD-0031-analytics-hub-and-statistics]], [[GD-0032-awards-honours-records-and-hall-of-fame]], [[GD-0033-national-team-dual-role]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../60-Research/national-team-dual-role-2026-06-06]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
 ---
 
 # Game Design Hub
@@ -101,6 +101,7 @@ active work.
 | [[GD-0030-dynasty-board-and-ownership]] | Dynasty board & ownership model (FMX-89, E5; closes late-game gaps G2/G20); 8-tier board-ambition ladder + confidence + 2-phase sacking (deterministic), 6 owner archetypes as presets on a continuous 6-axis trait space, ownership-transition (instability_score → archetype draw → align/resist/leave → caps/cooldowns) consuming ADR-0071 drift, bankruptcy/administration (points + embargo + fire-sale + heroic-save/abandon; liquidation→phoenix reserved). The design answer to the "Club Boss late-game flatline". Effect *directions* only — magnitudes = FMX-52. **D1–D4 = A/A/A/A** | draft | ADR-0079 |
 | [[GD-0031-analytics-hub-and-statistics]] | Analytics Hub and Statistics (FMX-94, E6; closes G19 design layer); full MVP Analytics Hub with Key Findings, Last Match, Team/Player Analysis, standings/leaders, form windows, maps/heatmaps/zone control and early season-history handoff; official counts stay distinct from derived estimates; no global OVR. **D1-D4 = dedicated projection owner / per-save + immutable handoff snapshots / full MVP hub / core-plus-model metrics** | draft | ADR-0081 |
 | [[GD-0032-awards-honours-records-and-hall-of-fame]] | Awards, Honours, Records & Hall of Fame (FMX-95, E6 / E6-3; closes G20 design layer). Three layers: **season awards** → per-save **records book** → **legacy/HoF** synthesis (in-world HoF + cross-save legend ranking + manager prestige). IP-safe award/honour/record taxonomy; HoF induction by formula-preselect, **era-normalized** + **scarcity/quota-capped**, inspectable reasons; peak-and-longevity. Manager & Legacy owns the legacy/HoF layer (extends ADR-0051); per-save records stay Statistics-owned. **D1-D4 = extend ADR-0051 / per-save records + cross-save legends / raw facts + versioned formula / full HoF in MVP**; all magnitudes = FMX-52. | draft | ADR-0083 |
+| [[GD-0033-national-team-dual-role]] | National-Team (Bundestrainer) dual-role (FMX-84, E5; closes late-game gap G2/R2-06). The headline late-game aspiration ("club legend → national-team coach", GD-0011 spine) shipped as a **telegraphed reserved-stub**: ratify design + thresholds now, MVP ships only the reserved international-window contract + foreshadowing, full playable role post-MVP. Unlock = **reputation ≥ 75 AND 5 seasons** (no trophy path); 3 engagement levels (Full/Match-Only/Light-Touch); deterministic forced-choice same-day club↔nation clash. League Orchestration owns the international-window calendar. **D1–D4 = reserved-stub / League-owned windows / rep+seasons gate / 3 levels + forced-choice**; magnitudes = FMX-52. | draft | ADR-0084 |
 
 ## Core loop
 
@@ -192,6 +193,12 @@ active work.
   6 owner archetypes on a continuous trait space, ownership-transition + bankruptcy/
   administration arcs (heroic-save/abandon); the design answer to the "Club Boss
   late-game flatline". Feeds [[../10-Architecture/09-Decisions/ADR-0079-dynasty-board-ownership-and-bankruptcy]].
+- [[GD-0033-national-team-dual-role]] - draft national-team (Bundestrainer)
+  dual-role (FMX-84, G2/R2-06): the GD-0011 "club legend → national-team coach"
+  spine as a telegraphed reserved-stub — ratify design now, ship the reserved
+  international-window contract + foreshadowing in MVP, playable role post-MVP;
+  rep ≥ 75 + 5 seasons gate, 3 engagement levels, deterministic same-day-clash
+  choice. Feeds [[../10-Architecture/09-Decisions/ADR-0084-national-team-dual-role-and-international-window-contract]].
 - [[regulations-and-compliance]] - promotion-gated stadium / ops requirements.
 - [[rivalry-system]] - emergent rivalry score with 5 sub-scores.
 - [[matchday-event-engine]] - rule-based events with trigger / probability / effect / prevention.
