@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-06-05
 type: index
 binding: false
-related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[GD-0031-analytics-hub-and-statistics]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
+related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[GD-0031-analytics-hub-and-statistics]], [[GD-0032-awards-honours-records-and-hall-of-fame]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
 ---
 
 # Game Design Hub
@@ -100,6 +100,7 @@ active work.
 | [[GD-0029-weather-and-pitch-design-model]] | Weather & pitch design model (FMX-66, companion to ADR-0077, closes gap G23 design layer); weather parameter vector + regime taxonomy (Fine/Unsettled/Stormy/Heatwave/Freeze) + pitch-condition ladder; **subtle weather, pitch the amplifier** (FM/OOTP lesson); WBGT≥32 cooling break; fallible forecast as a planning mechanic; effect *directions* only — magnitudes + postponement reserved to FMX-52 / later. **D1–D4 = C/A/A/A** | draft | ADR-0077 |
 | [[GD-0030-dynasty-board-and-ownership]] | Dynasty board & ownership model (FMX-89, E5; closes late-game gaps G2/G20); 8-tier board-ambition ladder + confidence + 2-phase sacking (deterministic), 6 owner archetypes as presets on a continuous 6-axis trait space, ownership-transition (instability_score → archetype draw → align/resist/leave → caps/cooldowns) consuming ADR-0071 drift, bankruptcy/administration (points + embargo + fire-sale + heroic-save/abandon; liquidation→phoenix reserved). The design answer to the "Club Boss late-game flatline". Effect *directions* only — magnitudes = FMX-52. **D1–D4 = A/A/A/A** | draft | ADR-0079 |
 | [[GD-0031-analytics-hub-and-statistics]] | Analytics Hub and Statistics (FMX-94, E6; closes G19 design layer); full MVP Analytics Hub with Key Findings, Last Match, Team/Player Analysis, standings/leaders, form windows, maps/heatmaps/zone control and early season-history handoff; official counts stay distinct from derived estimates; no global OVR. **D1-D4 = dedicated projection owner / per-save + immutable handoff snapshots / full MVP hub / core-plus-model metrics** | draft | ADR-0081 |
+| [[GD-0032-awards-honours-records-and-hall-of-fame]] | Awards, Honours, Records & Hall of Fame (FMX-95, E6 / E6-3; closes G20 design layer). Three layers: **season awards** → per-save **records book** → **legacy/HoF** synthesis (in-world HoF + cross-save legend ranking + manager prestige). IP-safe award/honour/record taxonomy; HoF induction by formula-preselect, **era-normalized** + **scarcity/quota-capped**, inspectable reasons; peak-and-longevity. Manager & Legacy owns the legacy/HoF layer (extends ADR-0051); per-save records stay Statistics-owned. **D1-D4 = extend ADR-0051 / per-save records + cross-save legends / raw facts + versioned formula / full HoF in MVP**; all magnitudes = FMX-52. | draft | ADR-0083 |
 
 ## Core loop
 
@@ -222,6 +223,10 @@ active work.
   statistics design: Key Findings, Last Match, Team/Player Analysis,
   standings/leaders, form windows, maps/heatmaps, official-vs-derived labels
   and Manager & Legacy handoff snapshots.
+- [[GD-0032-awards-honours-records-and-hall-of-fame]] - draft awards/honours/
+  records/Hall-of-Fame design: three layers (season awards → per-save records
+  book → legacy/HoF synthesis), IP-safe taxonomy, era-normalized +
+  scarcity-capped induction, in-world + cross-save HoF; magnitudes = FMX-52.
 
 ## Status legend
 
