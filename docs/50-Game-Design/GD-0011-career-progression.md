@@ -49,6 +49,12 @@ single, transparent board-trust pressure each match.
 - **R2-06 (high)** — board-ambition escalations, ownership transitions, the
   national-team arc, prestige/hall-of-fame/legacy metrics, numeric tuning.
   Dynasty saves currently flatline ~season 4–6.
+  - **2026-06-06 (FMX-84):** the **national-team arc** slice of R2-06 is now
+    designed — see [[GD-0033-national-team-dual-role]] /
+    [[../10-Architecture/09-Decisions/ADR-0084-national-team-dual-role-and-international-window-contract|ADR-0084]]
+    (ratified as a telegraphed reserved-stub; full playable role post-MVP).
+    Board-ambition/ownership = [[GD-0030-dynasty-board-and-ownership]] (FMX-89);
+    prestige/HoF metrics = [[GD-0032-awards-honours-records-and-hall-of-fame]] (FMX-95).
 
 ## Rationale
 

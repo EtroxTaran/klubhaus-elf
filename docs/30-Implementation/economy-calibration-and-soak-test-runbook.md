@@ -538,7 +538,61 @@ Additional health metrics:
 > analytics consent. They are the human-validation layer the soak proxies are later
 > calibrated against (FMX-52); the soak instrument is what ships now.
 
-## 12. Acceptance flow (how a calibration set ships)
+## 12. National-team dual-role extension (FMX-84)
+
+Banded gate + offer-window parameters for the national-team ("Bundestrainer") dual-role
+([[../10-Architecture/09-Decisions/ADR-0084-national-team-dual-role-and-international-window-contract]] /
+[[../50-Game-Design/GD-0033-national-team-dual-role]]). All values `null` here; the evidence gate
+sets them behind `nationalTeamModelVersion`. Determinism: international-window publication +
+same-day-clash resolution are **RNG-free** (ADR-0084 NT4/NT5); post-MVP job-offer draws reserve the
+`WorldAiMgmtRng` sub-label `national-team:offers:<seasonId>` (not drawn at MVP). Gate is
+`reputation ≥ reputationMin AND seasons ≥ minSeasons` — **no trophy path** (D3=B).
+
+```yaml
+parameter:
+  id: nationalTeam.unlock.reputationMin
+  definition: Global manager-reputation threshold (region-rep aggregate, late-game-systems §5.3) to be eligible for a national-team offer.
+  value: null
+  band: [low, high]                    # ai-manager-behaviour §11.2 baseline ~75 (0-100 scale)
+  source: ai-manager-behaviour §11.2 + late-game-systems §5.3
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: nationalTeam.unlock.minSeasons
+  definition: Minimum in-game seasons managed before national-team eligibility (conjunctive with reputationMin; no trophy alternative).
+  value: null
+  band: [low, high]                    # ai-manager-behaviour §11.2 baseline ~5
+  source: ai-manager-behaviour §11.2 (D3=B; late-game-systems "OR 3 trophies" path dropped)
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: nationalTeam.offerWindow.postTournamentDays
+  definition: Length of the main national-team hiring window opening after a major tournament (post-MVP offer market).
+  value: null
+  band: [low, high]                    # late-game-systems §4.2 sketch ~1 month
+  source: late-game-systems §4.2
+  sensitivity: parameter-sensitive
+```
+
+```yaml
+parameter:
+  id: nationalTeam.offerWindow.boardConfidenceFloor
+  definition: Sitting national-coach board-confidence level at/below which a secondary mid-cycle hiring window opens.
+  value: null
+  band: [low, high]                    # late-game-systems §4.2 sketch ~<20
+  source: late-game-systems §4.2
+  sensitivity: parameter-sensitive
+```
+
+> Post-MVP (deferred with the playable role): engagement-level time-budget splits, job-offer
+> candidate-scoring weights, nationality multiplier and same-day-clash frequency are added here
+> when the full dual-role ships (ADR-0084 NT9).
+
+## 13. Acceptance flow (how a calibration set ships)
 
 1. Fill parameter sheets (§7) and scenario sheets (§8).
 2. Run economy smoke (PR) → invariants + determinism pass.
