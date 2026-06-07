@@ -56,8 +56,16 @@ transfer_lock_at= T - 60 min
 setup_lock_at   = T - 5 min
 ```
 
-These deadlines are written into the underlying match record so the
-league-week state machine respects them.
+These deadlines are carried to League Orchestration via `WatchPartyScheduled` (§8).
+
+> **Draft reconciliation (FMX-102 / proposed [[../09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]]).**
+> Resolves the deadline contradiction (gap G25). `broadcast_at` is the single **deadline
+> source-of-truth**: League Orchestration **adopts** it as the matchday timing **anchor at schedule
+> time** and **derives** its locks from it (`league-week.md §3.1`, DL1–DL4) — it does *not* "bypass"
+> the matchday-open lifecycle (League still owns it). The anchor is immutable once the matchday opens,
+> so ADR-0012's no-mid-cycle-mutation rule is preserved. (Supersedes the earlier "written into the
+> match record so the league-week SM respects them" / `watch-party-and-conference.md §4` "bypassed /
+> takes precedence" wording on ratify.)
 
 ## 4. Transition triggers
 
@@ -198,7 +206,7 @@ watch_party_participant {                # junction table (surrogate PK)
 
 - `WatchPartyProposed`
 - `WatchPartyPollOpened`
-- `WatchPartyScheduled`
+- `WatchPartyScheduled` *(draft — FMX-102/ADR-0088: payload extended to carry `broadcast_at` + the backward-derived locks self-contained; League Orchestration consumes it at schedule time as the matchday deadline anchor — §3, DL2/DL4)*
 - `WatchPartySetupLocked`
 - `WatchPartyLive`
 - `WatchPartyCompleted`

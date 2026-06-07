@@ -89,6 +89,41 @@ Effects (in order, applied per follow-on event):
 Detail in [[../../50-Game-Design/transfer-market-and-contracts]] and
 [[../../50-Game-Design/transfer-negotiations-p2p]] §3.
 
+## 4.1 Staged escalation FSM (draft — FMX-102)
+
+> **Draft amendment (FMX-102 / proposed [[../09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]]).**
+> Replaces the single `escalated` lump above with an explicit **5-stage** sub-FSM (gap G25). Not
+> binding until ratified; on ratify this supersedes the prose effects list in §4 and the
+> single-state `escalated` modelling. Magnitudes → FMX-52 behind `escalationModelVersion`.
+> Game-design companion: [[../../50-Game-Design/GD-0036-transfer-escalation-and-inactivity-pressure]].
+
+Escalation is a **Transfer-owned value object** (`EscalationPressure`) keyed by
+`(playerId, sellerClubId, bidderClubId)`. A single integer **`pressure` accumulator** (D2) rises by a
+weighted increment on each relevant committed fact (`TransferOfferExpired`, ignored strong interest,
+inactivity tick) and **decays** by a per-stage rate on event boundaries (D3 — leaky bucket). `stage`
+is a pure function of `pressure` via **hysteresis** thresholds (`θ_up > θ_down`). The macro-state
+`escalated` in §1 now means `stage ≥ S1`.
+
+| Stage | Meaning | Stage-entry consequence event |
+|---|---|---|
+| `none` | No accumulated pressure | — |
+| `expired_ignored` (S1) | Pattern of ignored expiries begins | (internal) |
+| `registered_interest` (S2) | Agent/club registers interest publicly | `TransferInterestRegistered` |
+| `unrest_requested` (S3) | Player unrest + formal transfer request | `PlayerTransferRequestSubmitted` |
+| `media_strike_threat` (S4) | Media leak / strike-threat **signal** (never a strike itself; ADR-0030) | `TransferStandoffEscalated` |
+| `public_unrest` (S5) | Supporter/public unrest at the club | `SupporterUnrestTriggered` |
+
+**Decay & de-escalation:** in calm, `pressure` is monotone non-increasing and the stage steps **down**;
+later stages decay slower (stickiness). Resolving facts (new contract, reconciliation, agreed sale,
+window close) emit `TransferEscalationDeescalated{fromStage, toStage, cause}`.
+
+**Invariants (ADR-0088 ES1–ES5):** at-most-**one-stage-up per event**; `media_strike_threat` (S4) is
+reachable only from S3 **and** only with `pressureSinceStageEntry ≥ MIN` → **"no strike from one
+ignored offer" is a structural gate, not prose**. Determinism (**D4 = B**): escalation is replay-safe;
+borderline tips/dwell carry **bounded seeded variance from the existing `TransferRng` (stream #7)** with
+**seed + draw indices persisted in provenance** (no new `*Rng`); the variance lives *inside* the gates
+and can never skip a rung.
+
 ## 5. Persistence
 
 Per [[../09-Decisions/ADR-0027-postgres-data-model]]: strongly-typed tables in
@@ -140,9 +175,18 @@ transfer_offer {                             # strongly-typed (typed cols + CHEC
 - `TransferPlayerTermsRejected`
 - `TransferOfferRejected`
 - `TransferOfferExpired`
-- `TransferNegotiationEscalated`
+- `TransferNegotiationEscalated` *(retained; now carries `stage` — draft FMX-102/ADR-0088)*
 - `TransferCompleted` (post-acceptance, after league-window check)
 - `TransferCollapsed`
+
+Staged-escalation events *(draft — FMX-102/ADR-0088; §4.1)* — each self-contained, routed via the
+ADR-0028 outbox, consumed without cross-context joins:
+
+- `TransferEscalationStageChanged` (canonical derived projection)
+- `TransferInterestRegistered` (S2) / `PlayerTransferRequestSubmitted` (S3) /
+  `TransferStandoffEscalated` (S4, signal-only — Narrative renders, ADR-0030) /
+  `SupporterUnrestTriggered` (S5)
+- `TransferEscalationDeescalated`
 
 ## 7. FMX-81 contract-lifecycle seam
 
@@ -180,7 +224,11 @@ When threshold exceeded, league admin sees a flag and can sanction.
 - Concurrency: two simultaneous counter-offers race; resolve
   deterministically by `received_at`.
 - Time: deadlines fire reliably under timezone changes.
-- Escalation: golden traces for ignore-pattern detection.
+- Escalation: golden traces for ignore-pattern detection. *(draft — FMX-102/ADR-0088)* Stage-by-stage
+  traces over the `EscalationPressure` accumulator: assert exact `pressure`/`stage` at each event
+  boundary; **no `media_strike_threat` (S4) from a single event** (the structural gate); per-stage
+  decay/cool-off steps the stage back down; identical `worldSeed` + facts + persisted `TransferRng`
+  draws → byte-identical trajectory (D4 = B).
 - Player terms: club-agreed package can still collapse when player / agent
   rejects terms.
 - Boundary: free-agent and pre-contract paths cannot be persisted as

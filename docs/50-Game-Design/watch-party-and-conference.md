@@ -57,9 +57,16 @@ transfer_lock_at = T - 60 min
 setup_lock_at = T - 5 min
 ```
 
-All upstream deadlines compute backwards. The matchday-open state in
-[[async-multiplayer-private-group]] is bypassed for this match because
-the scheduling event takes precedence.
+All upstream deadlines compute backwards from `broadcast_at`.
+
+> **Draft reconciliation (FMX-102 / proposed [[../10-Architecture/09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]]).**
+> `broadcast_at` is the single **deadline source-of-truth** for this match: League Orchestration
+> **adopts** it as the matchday timing **anchor at schedule time** (carried via `WatchPartyScheduled`)
+> and derives the matchday locks from it — the matchday-open lifecycle is **not** bypassed (League
+> still owns it; it just derives its deadlines from `broadcast_at`). Resolved at schedule time +
+> immutable once the matchday opens, so ADR-0012's no-mid-cycle-mutation rule holds. (Supersedes the
+> earlier "is bypassed … the scheduling event takes precedence" wording on ratify.) See
+> [[../10-Architecture/state-machines/league-week]] §3.1.
 
 ## 5. Watch-party state machine
 
