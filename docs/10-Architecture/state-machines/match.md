@@ -66,7 +66,7 @@ stateDiagram-v2
 | `scheduled` | None (match not yet open) |
 | `lineup_open` | Line-up, tactic, set-piece routine, substitution priorities |
 | `lineup_locked` | None (frozen) |
-| `simulating` | Tactical changes, substitutions, shouts (per UI tier) |
+| `simulating` | Tactical changes, substitutions, shouts (per UI tier; bounded by the §5.1 intervention-buffer policy) |
 | `halftime` | Halftime modal (3 controls minimum) |
 | `completed` | Read-only |
 
@@ -80,6 +80,36 @@ Per [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]] and
   replays from the same seed + same intervention events reproduce the
   result.
 - Watch party / replay consumes the same stream.
+
+## 5.1 Intervention buffer policy (draft — FMX-101)
+
+> **Draft amendment (FMX-101 / proposed ADR-0087).** Fills the buffer state-machine that
+> ADR-0072 (in-match control seam) explicitly deferred to G24. Not binding until ratified.
+
+ADR-0072 fixed *when* an accepted intervention applies (light → `immediateNextTick`; heavy →
+`nextSemanticBoundary` ∈ {deadBall, restart, halftime}; atomic `TacticSnapshot` swap). The
+`InterventionBufferPolicy` is a Match-aggregate **value object** that bounds *how many* land at
+each deterministic acceptance point and how the rest are surfaced — a pure function of event
+history + command payload (no wall-clock, no Watch-Party state; **no new `*Rng`**):
+
+- **Per-point caps**: a global cap (~8) + per-type caps — substitutions ≤3, **one** tactical
+  package (atomic multi-change), one shout. Magnitudes → FMX-52 (`interventionPolicyVersion`).
+- **Deterministic ordering**: buffered interventions apply in ascending `(boundaryIndex,
+  commandId)`; substitutions dedup (first kept); tactics/shouts last-write-wins (earlier
+  superseded).
+- **Rejection (self-contained, replay-safe)**: overflow/illegal/late cmds emit
+  `InterventionRejected{reason}` with `reason ∈ {BufferFull, WindowClosed, DuplicateSuperseded,
+  Illegal, NotExecutedInTime}` — consumable by UI/Notification with no cross-context join. Overflow
+  rejects (no silent auto-defer); the ordinary legal-but-waiting path keeps ADR-0072's
+  `pending → scheduled → applied`.
+- **IFAB authority preserved**: substitution counts + windows stay rule-data-driven (competition
+  data); the cap never overrides them.
+- **Acceptance window** (`anyTime` vs `fixedWindowsOnly`) is set by the Watch-Party "Inputs at any
+  time?" rule via an ACL command (`ConfigureMatchInterventionConstraints` →
+  `MatchInterventionConstraintsConfigured`); Match only *enforces* it.
+
+See [[../09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]] (invariants IB1–IB7)
+and [[../../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]].
 
 ## 6. Persistence
 
@@ -165,6 +195,8 @@ engine as wall-clock time; only accepted interventions become replay events.
 - `MatchCompleted`
 - `MatchReported`
 - `MatchPostponed`
+- `InterventionBuffered` / `InterventionApplied` / `InterventionRejected` *(draft — FMX-101/ADR-0087; §5.1)*
+- `MatchPaused` / `MatchResumed` *(draft — FMX-101/ADR-0087; deterministic response to Watch-Party `PauseMatch`/`ResumeMatch` commands; wall-clock stays out of the seeded engine per §6)*
 
 ## 8. Failure / recovery
 
