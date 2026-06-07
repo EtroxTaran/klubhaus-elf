@@ -102,6 +102,7 @@ active work.
 | [[GD-0031-analytics-hub-and-statistics]] | Analytics Hub and Statistics (FMX-94, E6; closes G19 design layer); full MVP Analytics Hub with Key Findings, Last Match, Team/Player Analysis, standings/leaders, form windows, maps/heatmaps/zone control and early season-history handoff; official counts stay distinct from derived estimates; no global OVR. **D1-D4 = dedicated projection owner / per-save + immutable handoff snapshots / full MVP hub / core-plus-model metrics** | draft | ADR-0081 |
 | [[GD-0032-awards-honours-records-and-hall-of-fame]] | Awards, Honours, Records & Hall of Fame (FMX-95, E6 / E6-3; closes G20 design layer). Three layers: **season awards** → per-save **records book** → **legacy/HoF** synthesis (in-world HoF + cross-save legend ranking + manager prestige). IP-safe award/honour/record taxonomy; HoF induction by formula-preselect, **era-normalized** + **scarcity/quota-capped**, inspectable reasons; peak-and-longevity. Manager & Legacy owns the legacy/HoF layer (extends ADR-0051); per-save records stay Statistics-owned. **D1-D4 = extend ADR-0051 / per-save records + cross-save legends / raw facts + versioned formula / full HoF in MVP**; all magnitudes = FMX-52. | draft | ADR-0083 |
 | [[GD-0033-national-team-dual-role]] | National-Team (Bundestrainer) dual-role (FMX-84, E5; closes late-game gap G2/R2-06). The headline late-game aspiration ("club legend → national-team coach", GD-0011 spine) shipped as a **telegraphed reserved-stub**: ratify design + thresholds now, MVP ships only the reserved international-window contract + foreshadowing, full playable role post-MVP. Unlock = **reputation ≥ 75 AND 5 seasons** (no trophy path); 3 engagement levels (Full/Match-Only/Light-Touch); deterministic forced-choice same-day club↔nation clash. League Orchestration owns the international-window calendar. **D1–D4 = reserved-stub / League-owned windows / rep+seasons gate / 3 levels + forced-choice**; magnitudes = FMX-52. | draft | ADR-0084 |
+| [[GD-0034-media-outlet-ecology-model]] | Media-outlet ecology model (FMX-82, E4; closes G17 design layer). Media outlets as a small **persistent, opinionated cast** with memory — beating the genre's "fake-feeling outlets / no memory" pitfall. Five attribute dimensions (**Type · Stance · Reach · Reliability · Cadence**) + 8 type archetypes; editions built by a deterministic **scoring + finite per-edition budget** with a per-club "news gravity" master dial; **stance drift** from read-only world signals (results/rivalry/board/fan-mood) as inspectable events; first-class **narrative threads**; clean **reach (domain) ≠ delivery (Notification) ≠ feed (UI)** split. Outlets emit coverage facts + advisory effect-intents — never apply effects (ADR-0030). **D1–D4 = new Media Ecology BC / persistent named outlets / base archetype + drift / scoring + budget**; magnitudes = FMX-52 behind `mediaEcologyModelVersion`. | draft | ADR-0085 |
 
 ## Core loop
 
@@ -217,6 +218,13 @@ active work.
 - [[GD-0024-ai-world-drift-algorithm]] - draft AI World Simulation drift
   mechanics for long-save rival emergence, giant collapse and regional/league
   power shifts.
+- [[GD-0034-media-outlet-ecology-model]] - draft media-outlet ecology (FMX-82,
+  G17): media outlets as a small persistent, opinionated cast with memory —
+  five dimensions (Type · Stance · Reach · Reliability · Cadence), deterministic
+  scoring + per-edition budget, stance drift, narrative threads, and a clean
+  reach (domain) ≠ delivery (Notification) ≠ feed (UI) split. Companion to the
+  new Media Ecology context
+  [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]].
 
 ## UX
 
