@@ -282,6 +282,14 @@ rather than minting a new locked top-level stream, because media outlets are AI-
 ADR-0077's RNG note); a dedicated `MediaRng` stream is the alternative if outlet variation should
 be isolated from world-AI drift for replay-debugging.
 
+> **2026-06-07 (open-decisions sweep) recommendation — reuse `WorldAiMgmtRng:media:*` (no new
+> top-level stream).** Grounded in the ADR-0018 §3 stream discipline (reuse an existing locked
+> top-level RNG with a versioned sub-label; never mint a new top-level `*Rng` unless a concern is
+> genuinely independent) and the established FMX precedent (FMX-66/67/80/92 all reused existing
+> streams via sub-labels). Media outlets are AI-world actors, so the `WorldAiMgmtRng` family is the
+> correct home; a dedicated `MediaRng` is only warranted if replay-debug isolation later proves
+> necessary. See [[../../00-Index/Open-Decisions-Dossier]] (mini-point M1).
+
 ## Consequences
 
 Positive:

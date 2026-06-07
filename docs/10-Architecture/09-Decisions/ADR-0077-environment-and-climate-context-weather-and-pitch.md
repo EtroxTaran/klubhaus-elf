@@ -368,6 +368,14 @@ the emitter** — but flags the exact line (e.g. whether the pitch-condition
 weather fact) as a point for Nico's explicit ratification rather than deciding it
 unilaterally.
 
+> **2026-06-07 (open-decisions sweep) recommendation — Stadium Operations keeps the pitch-condition
+> *state*/aggregate; Environment & Climate owns weather as a consumed input.** Grounded in the DDD
+> keep-invariants-together heuristic: pitch condition is a function of facility/usage state (undersoil
+> heating, drainage, decay, minutes-played) that Stadium Operations already owns and is the
+> `PitchConditionChanged` emitter for; splitting the aggregate across two contexts would cut a tight
+> invariant. Environment & Climate stays the upstream weather/forecast owner. See
+> [[../../00-Index/Open-Decisions-Dossier]] (mini-point M3).
+
 ## Consequences
 
 Positive:
