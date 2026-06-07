@@ -59,6 +59,30 @@ stateDiagram-v2
 | any | `paused` | Pause vote command | Quorum reached |
 | `paused` | `week_open` | Resume vote / time / admin | - |
 
+## 3.1 Deadline source-of-truth (draft — FMX-102)
+
+> **Draft amendment (FMX-102 / proposed [[../09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]]).**
+> Resolves the additive-vs-mutative deadline contradiction (gap G25) between this FSM and
+> `watch-party.md §3` / `watch-party-and-conference.md §4`. Not binding until ratified.
+
+Every matchday has a single **`MatchTiming { anchorType, anchorAt }`** value object; all lock
+deadlines (`transfer_lock_at`, `line-up_lock_at`, `tactic_lock_at`, `setup_lock_at`) are a **pure
+derivation** of it (`computeLockDeadlines`, no wall-clock). Exactly one anchor is authoritative:
+
+- **No watch party:** `anchorType = 'kickoff'`, `anchorAt = kickoff_at` (cadence-driven, the default).
+- **Scheduled watch party (D5 = A):** League Orchestration **adopts** `anchorType = 'broadcast'`,
+  `anchorAt = broadcast_at` — watch-party `broadcast_at` is the **deadline source-of-truth**.
+
+**Precedence is resolved at schedule time, before the week opens (D6 = A):** the anchor is set when the
+fixture/week is set up and is **immutable once `matchday_open` is entered** (`MatchdayOpened` emitted);
+any late reschedule for that fixture is **rejected at the domain boundary**. This is *not* a mid-cycle
+mutation, so **ADR-0012's "no mid-week deadline mutation" rule holds unchanged** (no exception carved).
+
+**Carrying contract (D7 = A):** `broadcast_at` arrives via the existing **`WatchPartyScheduled`** event
+(self-contained payload incl. the backward-derived locks — `watch-party.md §8`), consumed by League
+**at schedule time**; no cross-context join (event-carried state transfer; ADR-0028 outbox).
+Invariants: ADR-0088 **DL1–DL4**.
+
 ## 4. Persistence
 
 Per [[../09-Decisions/ADR-0027-postgres-data-model]]: a strongly-typed
@@ -91,7 +115,7 @@ Stored in PostgreSQL per [[../09-Decisions/ADR-0027-postgres-data-model]]
 - `WeekOpened`
 - `WeekQuorumReached`
 - `PreMatchCountdownStarted`
-- `MatchdayOpened`
+- `MatchdayOpened` *(draft — FMX-102/ADR-0088: now carries the resolved `anchorType`/`anchorAt` + derived locks; see §3.1)*
 - `MatchdayLocked`
 - `MatchdayResolving`
 - `MatchdayResolved`
@@ -101,7 +125,7 @@ Stored in PostgreSQL per [[../09-Decisions/ADR-0027-postgres-data-model]]
 - `LeagueResumed`
 
 All events route through the transactional outbox
-([[../09-Decisions/ADR-0013-transactional-outbox]]).
+([[../09-Decisions/ADR-0028-postgres-transactional-outbox]], which supersedes ADR-0013).
 
 ## 6. Failure / recovery
 
@@ -121,6 +145,11 @@ All events route through the transactional outbox
   recovery.
 - Quorum sweep: vary quorum % and complete-times; verify
   `quorum_reached` fires correctly.
+- *(draft — FMX-102/ADR-0088)* Deadline-precedence golden trace: a fixture with a scheduled watch
+  party resolves `anchorType='broadcast'` / `anchorAt=broadcast_at` **before** `matchday_open`;
+  `MatchdayOpened` carries the broadcast-derived locks (single source of truth, DL2); a post-open
+  reschedule for that fixture is **rejected** at the domain boundary (DL3); a fixture with no party
+  resolves `anchorType='kickoff'`. Same inputs → identical resolved locks.
 
 ## 8. Future-scope notes (classified future-scope)
 

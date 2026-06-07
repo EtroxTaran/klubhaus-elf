@@ -92,6 +92,21 @@ Default: Fixed Cadence (lower complexity, friendlier onboarding).
 - Both modes MUST emit the same domain events (`WeekQuorumReached`,
   `MatchdayOpened`, etc.).
 
+## Watch-party deadline reconciliation (draft — FMX-102)
+
+> **Draft amendment (FMX-102 / proposed [[ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]]).**
+> Clarifies how a scheduled watch party interacts with the "no mid-cycle mutation" rule above (gap
+> G25). Not binding until ratified.
+
+A scheduled watch party does **not** violate the no-mid-cycle-mutation rule. When a watch party is
+scheduled, League Orchestration adopts its `broadcast_at` as the matchday timing **anchor**
+(`league-week.md §3.1`) and derives the lock deadlines from it. Precedence is **resolved at schedule
+time, before the week opens**; the anchor is **immutable once `MatchdayOpened` is emitted**, and any
+late reschedule for that fixture is rejected at the domain boundary. Because the deadline is fixed
+*before* the cycle opens (not changed during it), the Compliance rules above hold unchanged — this is
+an additive clarification, **not** an exception. `MatchdayOpened` still fires for the fixture (it now
+carries the resolved anchor + derived locks), satisfying "both modes emit the same domain events."
+
 ## Sources
 
 - [[../../60-Research/async-multiplayer-research]] §1-§4
