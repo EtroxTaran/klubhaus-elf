@@ -21,6 +21,7 @@ design/handoff/*/bundle.tar.gz
 .stryker-tmp/
 reports/mutation/
 semgrep.sarif
+export/
 
 .claude/
 .tmp-pnpm-shim/
