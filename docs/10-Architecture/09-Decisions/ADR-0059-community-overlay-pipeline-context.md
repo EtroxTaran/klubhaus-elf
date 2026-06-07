@@ -3,7 +3,7 @@ title: ADR-0059 Community Overlay Pipeline Context
 status: proposed
 tags: [adr, architecture, ddd, community, overlay, import, privacy, gdpr, dsa, naming, fmx-33, fmx-54, risk-legal]
 created: 2026-05-28
-updated: 2026-06-01
+updated: 2026-06-07
 type: adr
 binding: false
 supersedes:
@@ -25,8 +25,10 @@ related:
   - [[../../50-Game-Design/GD-0015-ip-clean-data]]
   - [[../../20-Features/feature-community-editor]]
   - [[../../60-Research/community-overlay-pipeline-bounded-context-2026-05-28]]
+  - [[../../60-Research/community-overlay-pipeline-decision-2026-06-07]]
   - [[../../60-Research/fan-persona-privacy-and-naming-2026-06-01]]
   - [[../../60-Research/raw-perplexity/raw-community-overlay-pipeline-2026-05-28]]
+  - [[../../00-Index/Open-Decisions-Dossier]]
 ---
 
 # ADR-0059: Community Overlay Pipeline Context
@@ -192,6 +194,25 @@ Each consumer BC (Regulations + Rivalry + ...) calls a shared
   Service called by each consumer" leaks cross-context model into
   everyone else's language, leads to tight coupling and duplication.
   Listed for completeness; rejected.
+
+## Decision questions (open — awaiting Nico, 2026-06-07)
+
+Re-grounded in [[../../60-Research/community-overlay-pipeline-decision-2026-06-07]] (DDD
+ingestion-context-vs-ACL; Steam Workshop / Paradox / Factorio mod architecture; EU DSA
+notice-and-action obligations).
+
+- **D1 — Owner.** **A. Own bounded context (Option D) ← recommended** · B. Platform service (Option A)
+  · C. Sub-aggregate in Identity / Offline Sync (Options B/C) · (E rejected anti-pattern).
+- **D2 — MVP distribution.** **A. Local-file / P2P import only ← recommended** (no own-backend DSA
+  platform scope; FMX-54 privacy/naming gate on the IPGate) · B. Hosted marketplace in MVP (incurs DSA
+  notice-and-action + trusted-flaggers + transparency + moderation/appeals now).
+
+**Recommendation: D1 = A, D2 = A.** The pipeline satisfies six-of-six DDD context criteria (own
+language/lifecycle/storage/governance, multiple shielded consumers, independent evolution) and matches
+the Factorio/Paradox/Steam ingestion-context precedent; two already-binding ADRs (0056, 0057) name it
+as their orchestrator, so ratifying resolves dangling references. Local-import-only keeps MVP out of
+DSA own-platform obligations while the BC is designed so a hosted/Workshop adapter can plug in later.
+Full rationale below.
 
 ## Recommendation
 
@@ -647,6 +668,9 @@ None
 
 - [[../../60-Research/community-overlay-pipeline-bounded-context-2026-05-28]]
   - FMX-33 ratification synthesis (this ADR's decision basis).
+- [[../../60-Research/community-overlay-pipeline-decision-2026-06-07]]
+  - 2026-06-07 external re-grounding (DDD ingestion context + DSA).
+- [[../../00-Index/Open-Decisions-Dossier]] - consolidated open-decision Q&A.
 - [[../../60-Research/raw-perplexity/raw-community-overlay-pipeline-2026-05-28]]
   - FMX-33 raw research (genre / DDD / real-world surveys).
 - [[ADR-0016-community-dataset-overrides]] - upstream scope +

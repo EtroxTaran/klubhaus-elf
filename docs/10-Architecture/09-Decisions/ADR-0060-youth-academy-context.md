@@ -3,7 +3,7 @@ title: ADR-0060 Youth Academy Context
 status: proposed
 tags: [adr, architecture, ddd, youth, academy, lifecycle, fmx-29, proposed]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-07
 type: adr
 binding: false
 supersedes:
@@ -30,7 +30,9 @@ related:
   - [[../../50-Game-Design/GD-0015-ip-clean-data]]
   - [[../../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]]
   - [[../../60-Research/youth-academy-bounded-context-2026-05-28]]
+  - [[../../60-Research/youth-academy-context-decision-2026-06-07]]
   - [[../../60-Research/raw-perplexity/raw-youth-academy-2026-05-28]]
+  - [[../../00-Index/Open-Decisions-Dossier]]
 ---
 
 # ADR-0060: Youth Academy Context
@@ -206,6 +208,27 @@ slider all owned by Staff Operations.
   (academy members) are players, putting them outside Staff
   Operations' scope by ratified ADR.
 - **Trade-off:** weak; ratified ADR-0053 §Decision rules this out.
+
+## Decision questions (open — awaiting Nico, 2026-06-07)
+
+Re-grounded in [[../../60-Research/youth-academy-context-decision-2026-06-07]]
+(DDD cadence/lifecycle heuristics; EPPP/NLZ/UEFA-HGP structure; FM/OOTP/EHM youth modelling).
+
+- **D1 — Owner.** **C. Own bounded context (kept coarse-grained) ← recommended** · A. Squad
+  sub-aggregate · B. Training sub-aggregate · D. Staff Operations sub-aggregate (ruled out by
+  ratified ADR-0053). Cadence mismatch (annual vs weekly), lifecycle independence and language
+  distinctness all fire; over-splitting risk is handled by keeping *one* context with internal
+  aggregates.
+- **D2 — Home-grown / registration eligibility boundary.** **A. Rules-centric ← recommended:**
+  Regulations owns the eligibility *interpretation* (`SquadRegistrationCheck`/`IsHomeGrownForCompetition`);
+  Youth Academy owns the *training-history facts* and exposes `HomeGrownShareCounter` as a **derived
+  projection** (no standalone "is home-grown" truth stored in Academy). · B. Academy-centric: Academy
+  stores the home-grown boolean (simpler queries, but rule changes leak and meaning drifts).
+
+**Recommendation: D1 = C, D2 = A.** Own context per the strongest-in-wave split signals + real-world
+(EPPP/NLZ separate audited unit) + genre precedent; and keep eligibility *interpretation* in
+Regulations with Academy as the fact/history owner — a one-line clarification of the existing
+`HomeGrownShareRecalculated` → Regulations-ACL contract, not a redesign. Full rationale below.
 
 ## Recommendation
 
@@ -613,6 +636,9 @@ None.
 
 - [[../../60-Research/youth-academy-bounded-context-2026-05-28]] -
   FMX-29 ownership synthesis (this ADR's decision basis).
+- [[../../60-Research/youth-academy-context-decision-2026-06-07]] -
+  2026-06-07 external re-grounding + home-grown boundary sharpening.
+- [[../../00-Index/Open-Decisions-Dossier]] - consolidated open-decision Q&A.
 - [[../../60-Research/raw-perplexity/raw-youth-academy-2026-05-28]] -
   FMX-29 raw research (genre, DDD, real-world surveys).
 - [[../../50-Game-Design/GD-0007-youth]] - binding youth GDDR.

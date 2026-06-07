@@ -263,7 +263,11 @@ induction stays a **pure deterministic formula** (recommended — no new `*Rng`)
 genuinely stochastic seeded voting (new `LegacyRng`/`HoFRng` sub-label, ADR-0018 §3). All
 numeric magnitudes are **FMX-52 calibration debt** and do not block ratification of the
 contract shape. Archetype taxonomy + prestige-ladder shape remain post-MVP / Nico-gated
-(GD-0019); national-team inputs remain a reserved stub pending FMX-84. Awaiting Nico ratify +
+(GD-0019); national-team inputs remain a reserved stub pending FMX-84.
+**2026-06-07 (open-decisions sweep) recommendation:** keep in-world HoF induction a **pure
+deterministic formula** (no new `*Rng`) for MVP; if stochastic voting is later wanted, add a
+*sub-label of an existing stream* per ADR-0018 §3, **not** a new top-level `LegacyRng`/`HoFRng`.
+See [[../../00-Index/Open-Decisions-Dossier]] (mini-point M2). Awaiting Nico ratify +
 merge; the ADR-0051 additive pointer and the bounded-context-map patch apply in the
 ratifying PR.
 

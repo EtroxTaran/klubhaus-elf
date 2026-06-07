@@ -3,7 +3,7 @@ title: ADR-0052 People, Persona and Skills Context
 status: draft
 tags: [adr, architecture, ddd, people, persona, player-skills, fmx-23]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-07
 type: adr
 binding: false
 supersedes:
@@ -20,8 +20,10 @@ related:
   - [[../../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
   - [[../../60-Research/player-staff-development-decision-model-2026-05-28]]
   - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
+  - [[../../60-Research/people-persona-skills-bounded-context-2026-06-07]]
   - [[../../20-Features/feature-eos-player-skills-and-people-context]]
   - [[../../20-Features/feature-ai-narration-mvp-pillar]]
+  - [[../../00-Index/Open-Decisions-Dossier]]
 ---
 
 # ADR-0052: People, Persona and Skills Context
@@ -68,6 +70,33 @@ persona context cards and visible player skill/perk profiles.
   cross-actor personhood, relationship graph, player/staff skill profiles and
   deterministic context cards while leaving football/economy facts in their
   current owners.
+
+## Decision questions (open — awaiting Nico, 2026-06-07)
+
+Grounded in [[../../60-Research/people-persona-skills-bounded-context-2026-06-07]]
+(DDD literature + CK2/CK3 / FM / Talk-of-the-Town sim precedent).
+
+- **D1 — Granularity.**
+  - **A. Own bounded context** (this ADR), framed as a *profile / relationship / scoring*
+    context (not an identity registry), referencing people by id, owning the persona substrate +
+    relationship graph + skill profiles + dialogue cards. **← recommended.**
+  - B. Sub-aggregate inside Squad & Player.
+  - C. Split persona into Notification/Narrative + skills into Squad.
+- **D2 — MVP scope behind the boundary.**
+  - **A. Ratify the boundary + contracts now, ship a thin MVP slice** (persona substrate + player
+    skill profile + `DialogueContextCard`); staff-skill depth, full relationship graph and advanced
+    scoring reserved-stub behind `peopleModelVersion`. **← recommended.**
+  - B. Full People model in MVP (big-bang; higher risk).
+  - C. Defer the whole context; keep planning hooks only.
+
+**Recommendation: D1 = A, D2 = A.** Rationale: the personality + relationship + scoring concern
+fires every DDD split heuristic (distinct invariants, meaning-drift of "relationship"/"player",
+high independent rate of change, many autonomous consumers) and matches the canonical scoring-context
+pattern; centralising it mirrors how CK2/CK3 (Opinion System), Talk-of-the-Town (Big-Five +
+relationship graph) and FM (personality from hidden attributes) drive behaviour from one substrate.
+A Squad sub-aggregate (B) fails meaning-drift + rate-of-change and overloads Squad with media/board
+persona. Ratifying the boundary while shipping thin avoids a big-bang and unblocks Staff Operations /
+Narrative / Scouting which already assume stable People queries.
 
 ## Decision
 
@@ -227,6 +256,8 @@ None
 - [[../../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
 - [[../../60-Research/player-staff-development-decision-model-2026-05-28]]
 - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
+- [[../../60-Research/people-persona-skills-bounded-context-2026-06-07]]
+- [[../../00-Index/Open-Decisions-Dossier]]
 - [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 - [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
