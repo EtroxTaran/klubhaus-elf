@@ -101,6 +101,41 @@ Default: `activeManagers`.
 - Abuse protection belongs here: pause budgets, cooldowns and audit events are
   watch-party orchestration concerns, not match-engine logic.
 
+## 5.2 Deliberate pause-vote rule (draft — FMX-101)
+
+> **Draft amendment (FMX-101 / proposed ADR-0087).** Adds the deliberate, manager-initiated
+> pause that §5.1 (disconnect pause) does not cover, closing gap G24. Not binding until ratified.
+
+A **deliberate** pause is distinct from the §5.1 **disconnect** pause (which stays automatic,
+free, longer, budget-less). It is a Watch-Party **process manager / saga**
+(`PauseControlProcess`, keyed `(watchPartyId, matchId)`) — separate from the disconnect-pause
+process; both may emit `PauseMatch`, so Match never learns who asked. All wall-clock state
+(budget, cooldown, quorum, timers) lives here, never in the engine (ADR-0087 PV1).
+
+FSM: `Idle → VoteClosed → VoteOpen → MatchPaused → (autoResume | ResumeMatch) → VoteClosed`.
+
+```text
+# group-config (within platform ceilings); magnitudes → FMX-52
+deliberatePauseBudgetPerHalf       = integer, default 2   (per active manager)
+deliberatePauseGlobalCapPerHalf    = integer, default min(managers*2, 6)
+deliberatePauseCooldownSeconds     = integer, default 90  (in-match)
+deliberatePauseMaxDurationSeconds  = integer, default 20  (HARD CEILING 60)
+pauseConsentMode                   = vetoWindow (2 mgrs) | majorityVote (3+); window ~3s
+```
+
+- **Consent (D3)**: 2 managers → unilateral request + 3s veto window; 3+ → majority vote
+  (≥⌈n/2⌉ incl. requester) in a 3s window; resume request → 3s countdown, one re-pause allowed.
+- **Budget (D4)**: discrete per-active-manager-per-half count + global per-half cap + cooldown +
+  max-duration with **mandatory auto-resume**.
+- **Platform-fixed (non-configurable)**: max duration ≤60s, absolute max total paused/half,
+  auto-resume always on, **no carry-over** between halves, always-on audit/attribution.
+- **Determinism**: a pause reaches Match only as a `PauseMatch` command; Match emits `MatchPaused`
+  and **suspends sim progress** (the next deterministic acceptance point does not move); wall-clock
+  never enters the seeded engine (restates match.md §6; ADR-0087 PV3/PV7).
+
+See [[../09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]] (invariants PV1–PV7)
+and [[../../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]].
+
 ## 6. Conference variant
 
 A conference watch-party subscribes to multiple match feeds
@@ -131,7 +166,23 @@ watch_party {                            # strongly-typed (typed cols + CHECK)
   disconnect_pause_mode: text + CHECK IN (off | active_managers | all_managers),
   disconnect_pause_window_s: integer,
   disconnect_pause_budget_per_half: integer,
+  # deliberate pause-vote (draft — FMX-101/ADR-0087; §5.2) — distinct from disconnect pause
+  deliberate_pause_budget_per_half: integer,
+  deliberate_pause_global_cap_per_half: integer,
+  deliberate_pause_cooldown_s: integer,
+  deliberate_pause_max_duration_s: integer,   # CHECK <= 60 (platform ceiling)
+  pause_consent_mode: text + CHECK IN (veto_window | majority_vote),
   chat_enabled: boolean
+}
+
+watch_party_pause_event {                # audit child table (draft — FMX-101/ADR-0087)
+  id: uuid (UUIDv7, app-generated, PK),
+  watch_party_id: uuid (intra-context FK to watch_party),
+  member_id: uuid (MemberId, opaque branded ref)?,   # null for auto/system events
+  half: integer,
+  kind: text + CHECK IN (vote_opened | vote_enacted | resumed | request_rejected | budget_debited | budget_exhausted),
+  reason_code: text?,                    # Cooldown | NoBudget | GlobalCapReached | NotAllowed | Vetoed | QuorumNotMet
+  occurred_at: timestamptz              # operational wall-clock (audit only, never feeds the engine)
 }
 
 watch_party_participant {                # junction table (surrogate PK)
@@ -152,6 +203,8 @@ watch_party_participant {                # junction table (surrogate PK)
 - `WatchPartyLive`
 - `WatchPartyCompleted`
 - `WatchPartyCancelled`
+- `PauseVoteOpened` / `PauseVoteEnacted` / `PauseResumed` / `PauseRequestRejected` *(draft — FMX-101/ADR-0087; §5.2 deliberate pause-vote, distinct from §5.1 disconnect pause)*
+- emits commands `PauseMatch` / `ResumeMatch` to Match (consumes `MatchPaused` / `MatchResumed`) *(draft)*
 
 ## 9. Failure / recovery
 
@@ -171,6 +224,9 @@ watch_party_participant {                # junction table (surrogate PK)
 - Spectator delay math holds under variable network conditions.
 - Disconnect pause mode respects passive-vs-active participants, timeout and
   pause budget.
+- *(draft — FMX-101/ADR-0087)* Deliberate pause-vote respects consent mode (veto vs quorum),
+  per-manager-per-half budget, cooldown, max-duration auto-resume and no carry-over; every
+  pause/resume/rejected-request emits an attributed audit event.
 
 ## 11. Future-scope notes (classified future-scope)
 
