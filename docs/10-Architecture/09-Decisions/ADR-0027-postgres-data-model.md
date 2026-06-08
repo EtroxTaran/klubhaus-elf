@@ -1,6 +1,6 @@
 ---
 title: ADR-0027 PostgreSQL Data Model (per-save schema isolation, Drizzle source of truth)
-status: superseded
+status: accepted
 tags: [adr, architecture, data, postgresql, drizzle, schema, saves]
 created: 2026-05-19
 updated: 2026-06-08
@@ -8,7 +8,7 @@ accepted_at: 2026-05-19
 type: adr
 binding: true
 supersedes: ADR-0004-data-model
-superseded_by: ADR-0097-postgres-scale-envelope-and-audit-canonicalisation
+amended_by: [[ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]
 related: [[ADR-0004-data-model]], [[ADR-0021-revised-tech-stack]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../bounded-context-map]]
 ---
 
