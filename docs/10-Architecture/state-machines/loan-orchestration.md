@@ -1,9 +1,9 @@
 ---
-title: State Machine - Loan Orchestration (proposed)
-status: draft
+title: State Machine - Loan Orchestration
+status: current
 tags: [architecture, state-machine, transfer, loan, saga, fmx-85, proposed]
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-06-08
 type: state-machine
 binding: false
 related:
@@ -22,10 +22,10 @@ related:
 
 # State Machine - Loan Orchestration (proposed)
 
-> **Proposed** alongside [[../09-Decisions/ADR-0075-loan-orchestration-process-manager]]
-> (FMX-85 dossier). This note specifies the FSM surface the **Transfer-led
-> Loan-Orchestration Process Manager** owns if ADR-0075 is ratified. It does not bind
-> implementation until ADR-0075 flips to `accepted` / `binding: true`.
+> **Ratified** alongside [[../09-Decisions/ADR-0075-loan-orchestration-process-manager]]
+> (FMX-85; accepted 2026-06-08). This note is the **current** FSM surface the **Transfer-led
+> Loan-Orchestration Process Manager** owns. It becomes binding for implementation when the
+> project enters the development phase (`binding: true`).
 
 Transfer hosts a **Loan-Orchestration Process Manager / Saga** (Vernon canonical
 long-running-process pattern, same shape as the Youth Academy cohort coordinator) that owns:
