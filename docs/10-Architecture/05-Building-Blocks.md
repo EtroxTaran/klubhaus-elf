@@ -39,8 +39,8 @@ authoritative list and never restates a different count. The six clusters:
 
 FMX-13 adds a load-bearing domain port: Club Management owns the
 accounting ledger and economy read models behind
-[[09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]]
-(supersedes the original ADR-0050 ledger boundary). Finance remains inside
+[[09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+(amended by ADR-0095's balanced double-entry posting invariant). Finance remains inside
 Club Management, not a shared utility package.
 
 FMX-25 / FMX-35 ratified the twelfth bounded context, **Manager & Legacy**,
@@ -63,7 +63,7 @@ pipeline-coverage read model spanning Recruitment / Development /
 Training / Medical / Tactics / Match-Day, wage schedule and
 specialisation metadata. Wage events emit to Club Management's ledger via
 the canonical Customer-Supplier + Anti-Corruption Layer pattern
-([[09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]]); no
+([[09-Decisions/ADR-0050-club-economy-accounting-ledger]]); no
 ledger-posting-invariant amendment is required. Consumes People queries (ADR-0052, draft) for
 actor identity when ratified; until then sources identity from own staff
 roster.
@@ -301,7 +301,7 @@ Each folder owns `commands.ts`, `events.ts`, `queries.ts`,
 - **Transactional outbox** ([[09-Decisions/ADR-0028-postgres-transactional-outbox]])
   for same-Postgres-transaction domain-event publication.
 - **Club Economy accounting ledger**
-  ([[09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]]) for
+  ([[09-Decisions/ADR-0050-club-economy-accounting-ledger]]) for
   weekly finance facts, accounting projections, budget envelopes, country economy
   profiles and insolvency state.
 - **Job queue + scheduler** for timers, reminders, escalation,

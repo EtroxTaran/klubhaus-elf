@@ -1,14 +1,13 @@
 ---
 title: ADR-0005 Save Format and Versioning
-status: superseded
-superseded_by: ADR-0098-save-format-kdf-argon2id-and-active-pack-refs
+status: accepted
+amended_by: [[ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[ADR-0020-hybrid-online-mvp-offline-ready]]
 tags: [adr, save, encryption, compression, versioning, e2ee]
 created: 2026-05-15
 updated: 2026-06-08
 accepted_at: 2026-05-16
 type: adr
 binding: true
-amended_by: [[ADR-0020-hybrid-online-mvp-offline-ready]]
 related: [[ADR-0004-data-model]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0002-offline-first]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/surrealdb-schema-patterns]]
 ---
 
