@@ -1,9 +1,9 @@
 ---
 title: GD-0024 AI World-Drift Algorithm
-status: draft
+status: accepted
 tags: [game-design, gddr, ai-world, world-drift, dynasty, determinism, fmx-91]
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-08
 type: game-design
 binding: false
 related: [[README]], [[GD-0010-ai-world]], [[GD-0011-career-progression]], [[GD-0023-ai-club-economy-behaviour]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/raw-perplexity/raw-ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/late-game-systems]], [[../60-Research/determinism-and-replay]], [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]]

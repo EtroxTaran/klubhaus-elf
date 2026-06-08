@@ -1,9 +1,9 @@
 ---
 title: ADR-0086 Background-fast Matchday Cost-Settlement Pipeline
-status: proposed
+status: accepted
 tags: [adr, architecture, ddd, economy, matchday-costs, settlement, background-fast, quality-profile, commercial-portfolio, club-management, ledger, determinism, event-sourcing, fmx-92]
 created: 2026-06-07
-updated: 2026-06-07
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

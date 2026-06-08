@@ -1,6 +1,6 @@
 ---
 title: ADR-0101 Settlement value-collapse + quality-profile enum reconciliation + insolvency-to-ledger posting contract
-status: draft
+status: accepted
 tags: [adr, architecture, ddd, economy, settlement, determinism, replay, money-band, quality-profile, match-engine, insolvency, ledger, commercial-portfolio, club-management, reconciliation, fmx-audit]
 created: 2026-06-08
 updated: 2026-06-08

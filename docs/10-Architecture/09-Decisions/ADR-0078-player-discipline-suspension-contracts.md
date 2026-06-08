@@ -1,9 +1,9 @@
 ---
 title: ADR-0078 Player Discipline Suspension Contracts
-status: proposed
+status: accepted
 tags: [adr, architecture, discipline, suspension, appeals, squad, match, regulations, narrative, ddd, fmx-80]
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

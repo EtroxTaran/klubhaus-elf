@@ -1,6 +1,6 @@
 ---
 title: GD-0039 C6 status reconciliation & cluster ratification order (People-first)
-status: draft
+status: accepted
 tags: [game-design, gddr, governance, c6, people, staff, manager-legacy, youth, scouting, discipline, loans, ratification-order, status-drift, fmx-105]
 created: 2026-06-08
 updated: 2026-06-08

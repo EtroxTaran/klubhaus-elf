@@ -1,9 +1,9 @@
 ---
 title: ADR-0003 Match Engine Architecture
-status: draft
+status: superseded
 tags: [adr, match-engine, simulation, web-worker, deterministic]
 created: 2026-05-15
-updated: 2026-05-27
+updated: 2026-06-08
 accepted_at: 2026-05-16
 type: adr
 binding: false

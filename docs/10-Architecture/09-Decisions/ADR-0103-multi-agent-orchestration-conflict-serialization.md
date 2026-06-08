@@ -1,6 +1,6 @@
 ---
 title: "ADR-0103: Multi-agent orchestration & conflict serialization"
-status: draft
+status: accepted
 tags: [adr, meta, process, workflow, multi-agent, orchestration, fmx-103]
 created: 2026-06-08
 updated: 2026-06-08

@@ -1,9 +1,9 @@
 ---
 title: ADR-0071 AI World Simulation context and drift contract
-status: proposed
+status: accepted
 tags: [adr, architecture, ai-world, world-drift, ddd, determinism, rng, published-language, fmx-91]
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

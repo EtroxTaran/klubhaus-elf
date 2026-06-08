@@ -1,6 +1,6 @@
 ---
 title: ADR-0099 Spectator / watch-party streaming over the committed event log (supersedes ADR-0015)
-status: draft
+status: accepted
 tags: [adr, architecture, watch-party, spectator, streaming, replay, event-sourcing, determinism, offline-first, online-only, fmx-105]
 created: 2026-06-08
 updated: 2026-06-08

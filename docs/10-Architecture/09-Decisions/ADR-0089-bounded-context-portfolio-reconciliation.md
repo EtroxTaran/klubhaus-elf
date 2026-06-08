@@ -1,9 +1,9 @@
 ---
 title: ADR-0089 Bounded-context portfolio reconciliation and final count
-status: proposed
+status: accepted
 tags: [adr, architecture, ddd, bounded-context, modular-monolith, governance, fmx-105]
 created: 2026-06-07
-updated: 2026-06-07
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

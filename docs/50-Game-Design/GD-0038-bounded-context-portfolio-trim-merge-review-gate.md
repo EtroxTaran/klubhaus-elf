@@ -1,6 +1,6 @@
 ---
 title: GD-0038 Bounded-context portfolio trim / merge-review gate
-status: draft
+status: accepted
 tags: [game-design, gddr, bounded-context, ddd, portfolio, governance, scope, merge-review, cognitive-load, fmx-105]
 created: 2026-06-08
 updated: 2026-06-08

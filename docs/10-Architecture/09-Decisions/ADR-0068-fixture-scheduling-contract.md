@@ -3,7 +3,7 @@ title: ADR-0068 Fixture scheduling contract + determinism (League Orchestration)
 status: accepted
 tags: [adr, architecture, league, fixtures, scheduling, determinism, rng, replay, contracts, gap-g1, fmx-72]
 created: 2026-06-02
-updated: 2026-06-05
+updated: 2026-06-08
 accepted_at: 2026-06-02
 type: adr
 binding: true

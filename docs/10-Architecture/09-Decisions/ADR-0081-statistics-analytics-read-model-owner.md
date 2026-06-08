@@ -1,9 +1,9 @@
 ---
 title: ADR-0081 Statistics & Analytics read-model owner
-status: proposed
+status: accepted
 tags: [adr, architecture, statistics, analytics, read-model, cqrs, ddd, projections, fmx-94]
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

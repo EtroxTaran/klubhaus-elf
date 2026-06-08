@@ -1,9 +1,9 @@
 ---
 title: GD-0010 AI Managers & World Simulation
-status: draft
+status: accepted
 tags: [game-design, gddr, ai]
 created: 2026-05-17
-updated: 2026-06-01
+updated: 2026-06-08
 type: game-design
 binding: false
 related: [[README]], [[GD-0006-transfers]], [[GD-0011-career-progression]], [[../60-Research/club-boss-analysis]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]]

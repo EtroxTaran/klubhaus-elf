@@ -1,9 +1,9 @@
 ---
 title: GD-0031 Analytics Hub and Statistics
-status: draft
+status: accepted
 tags: [game-design, statistics, analytics, data-hub, match, mvp, fmx-94]
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-08
 type: game-design
 binding: false
 linear: FMX-94

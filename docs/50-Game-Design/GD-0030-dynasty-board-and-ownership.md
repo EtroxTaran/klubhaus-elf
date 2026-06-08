@@ -1,9 +1,9 @@
 ---
 title: GD-0030 Dynasty Board & Ownership
-status: draft
+status: accepted
 tags: [game-design, gddr, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, late-game, fmx-89]
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-08
 type: game-design
 binding: false
 supersedes:

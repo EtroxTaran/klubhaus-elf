@@ -1,9 +1,9 @@
 ---
 title: ADR-0069 League↔Regulations fixture/competition eligibility hand-off
-status: proposed
+status: accepted
 tags: [adr, architecture, ddd, league, regulations, compliance, eligibility, handoff, contracts, determinism, gap-g1, fmx-74, risk-legal]
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

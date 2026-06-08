@@ -1,14 +1,14 @@
 ---
 title: ADR-0043 Notification and Messaging Platform
-status: draft
+status: superseded
 tags: [adr, architecture, notification, messaging, realtime, email, push, gdpr]
 created: 2026-05-22
-updated: 2026-05-22
+updated: 2026-06-08
 accepted_at: 2026-05-22
 type: adr
 binding: true
 supersedes:
-superseded_by:
+superseded_by: ADR-0102-notification-platform-re-ratification-offline-delivery-clause
 related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0021-revised-tech-stack]], [[ADR-0023-realtime-transport]], [[ADR-0025-mobile-delivery]], [[ADR-0028-postgres-transactional-outbox]], [[../../30-Implementation/notification-messaging-platform]], [[../../30-Implementation/privacy-and-consent]], [[../../30-Implementation/rate-limiting-anti-abuse]]
 ---
 

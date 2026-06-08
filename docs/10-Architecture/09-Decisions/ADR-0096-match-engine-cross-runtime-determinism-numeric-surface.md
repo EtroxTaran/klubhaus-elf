@@ -1,6 +1,6 @@
 ---
 title: ADR-0096 Match-engine cross-runtime determinism & numeric-surface contract
-status: draft
+status: accepted
 tags: [adr, architecture, match-engine, determinism, rng, fixed-point, wasm, rust, runtime, offline-first, fmx-106]
 created: 2026-06-08
 updated: 2026-06-08

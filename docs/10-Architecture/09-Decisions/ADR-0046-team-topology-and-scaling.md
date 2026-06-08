@@ -1,9 +1,9 @@
 ---
 title: "ADR-0046: Team Topology & Multi-Lead Scaling"
-status: draft
+status: accepted
 tags: [adr, architecture, process, scaling, future-scope]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

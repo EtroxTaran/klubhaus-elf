@@ -1,9 +1,9 @@
 ---
 title: GD-0006 Transfers & Scouting
-status: draft
+status: accepted
 tags: [game-design, gddr, transfers]
 created: 2026-05-17
-updated: 2026-06-03
+updated: 2026-06-08
 type: game-design
 binding: true
 related: [[README]], [[GD-0013-narrative-inbox]], [[GD-0010-ai-world]], [[transfer-market-and-contracts]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]]

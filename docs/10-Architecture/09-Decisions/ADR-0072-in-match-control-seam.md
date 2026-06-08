@@ -1,9 +1,9 @@
 ---
 title: ADR-0072 In-Match Control Seam & Intervention Determinism
-status: proposed
+status: accepted
 tags: [adr, architecture, match, ui, controls, determinism, replay, canvas, performance, fmx-100]
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

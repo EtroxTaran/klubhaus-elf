@@ -1,6 +1,6 @@
 ---
 title: ADR-0092 Vault governance — status/lifecycle single-source-of-truth + reference-integrity sweep
-status: draft
+status: accepted
 tags: [adr, governance, vault, status-lifecycle, reference-integrity, editorial, fmx-105]
 created: 2026-06-08
 updated: 2026-06-08

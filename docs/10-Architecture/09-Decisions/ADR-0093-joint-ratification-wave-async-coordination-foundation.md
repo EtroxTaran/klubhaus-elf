@@ -1,6 +1,6 @@
 ---
 title: ADR-0093 Joint ratification wave — promote the async-coordination foundation (ADR-0012 cadence + ADR-0014 state machines) and land ADR-0088 + ADR-0089
-status: draft
+status: accepted
 tags: [adr, architecture, governance, ratification, async, cadence, state-machine, bounded-context, fmx-64, fmx-102, fmx-105]
 created: 2026-06-08
 updated: 2026-06-08

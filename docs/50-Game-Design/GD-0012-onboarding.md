@@ -1,9 +1,9 @@
 ---
 title: GD-0012 Onboarding & New Game
-status: approved
+status: accepted
 tags: [game-design, gddr, onboarding, fmx-99]
 created: 2026-05-17
-updated: 2026-06-03
+updated: 2026-06-08
 type: game-design
 binding: true
 related: [[README]], [[onboarding-and-tutorial]], [[GD-0008-finance-economy]], [[GD-0016-mobile-ux-loop]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/onboarding-strategy]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/raw-perplexity/raw-onboarding-guided-first-season-2026-06-03]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]]

@@ -1,9 +1,9 @@
 ---
 title: "ADR-0044: CI/CD Strategy & Merge Policy"
-status: draft
+status: accepted
 tags: [adr, architecture, ci, process]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

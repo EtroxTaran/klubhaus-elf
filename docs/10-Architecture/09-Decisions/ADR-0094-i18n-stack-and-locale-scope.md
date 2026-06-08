@@ -1,6 +1,6 @@
 ---
 title: ADR-0094 i18n stack & locale scope (supersedes ADR-0006)
-status: draft
+status: accepted
 tags: [adr, i18n, l10n, icu, paraglide, tolgee, formatjs, locale, offline-pwa, ssr, fmx-i18n-depth-pass]
 created: 2026-06-08
 updated: 2026-06-08

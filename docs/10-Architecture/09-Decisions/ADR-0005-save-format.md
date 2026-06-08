@@ -1,9 +1,10 @@
 ---
 title: ADR-0005 Save Format and Versioning
-status: draft
+status: superseded
+superseded_by: ADR-0098-save-format-kdf-argon2id-and-active-pack-refs
 tags: [adr, save, encryption, compression, versioning, e2ee]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-06-08
 accepted_at: 2026-05-16
 type: adr
 binding: true

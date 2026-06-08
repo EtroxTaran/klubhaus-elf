@@ -1,9 +1,9 @@
 ---
 title: ADR-0024 Match Renderer Abstraction
-status: draft
+status: accepted
 tags: [adr, architecture, ui, match-view]
 created: 2026-05-19
-updated: 2026-06-03
+updated: 2026-06-08
 accepted_at: 2026-05-19
 type: adr
 binding: true

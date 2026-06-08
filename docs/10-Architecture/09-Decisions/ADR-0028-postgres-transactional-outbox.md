@@ -1,9 +1,9 @@
 ---
 title: ADR-0028 PostgreSQL Transactional Outbox (same-tx + poll-floor + LISTEN/NOTIFY)
-status: draft
+status: accepted
 tags: [adr, architecture, outbox, events, reliability, postgresql]
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-06-08
 accepted_at: 2026-05-19
 type: adr
 binding: true

@@ -1,9 +1,10 @@
 ---
 title: ADR-0015 Watch-Party via Spectator Snapshot Streaming
-status: proposed
+status: superseded
+superseded_by: ADR-0099-spectator-watch-party-streaming-over-committed-event-log
 tags: [adr, architecture, watch-party, streaming, replay]
 created: 2026-05-16
-updated: 2026-05-19
+updated: 2026-06-08
 type: adr
 binding: false
 related: [[../state-machines/watch-party]], [[../../60-Research/async-multiplayer-research]], [[../../50-Game-Design/watch-party-and-conference]], [[ADR-0021-revised-tech-stack]], [[ADR-0023-realtime-transport]], [[ADR-0024-match-renderer-abstraction]]

@@ -1,6 +1,6 @@
 ---
 title: ADR-0097 PostgreSQL data-model scale envelope + audit-table canonicalisation
-status: draft
+status: accepted
 tags: [adr, architecture, data, postgresql, schema-per-save, scaling, audit, fmx-105]
 created: 2026-06-08
 updated: 2026-06-08

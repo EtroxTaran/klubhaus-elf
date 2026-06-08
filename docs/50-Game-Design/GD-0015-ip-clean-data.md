@@ -1,9 +1,9 @@
 ---
 title: GD-0015 IP-clean Data Generation
-status: draft
+status: accepted
 tags: [game-design, gddr, ip, gamedata, privacy, gdpr, naming, community, fmx-54]
 created: 2026-05-17
-updated: 2026-06-01
+updated: 2026-06-08
 type: game-design
 binding: true
 related: [[README]], [[GD-0009-league-structure]], [[GD-0003-squad-players]], [[../60-Research/ip-and-licensing]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/modules/game-data]], [[../00-Index/Non-Goals]]

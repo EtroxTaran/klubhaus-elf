@@ -3,7 +3,7 @@ title: ADR-0053 Staff Operations Context
 status: accepted
 tags: [adr, architecture, ddd, staff, backroom, lifecycle, fmx-26, fmx-36, accepted]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-08
 type: adr
 binding: true
 supersedes:

@@ -1,9 +1,9 @@
 ---
 title: ADR-0087 Live-match Intervention Buffer + Watch-Party Pause-Vote
-status: proposed
+status: accepted
 tags: [adr, architecture, ddd, match, watch-party, intervention-buffer, pause-vote, process-manager, saga, value-object, determinism, event-sourcing, anti-grief, multiplayer, fmx-101]
 created: 2026-06-07
-updated: 2026-06-07
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

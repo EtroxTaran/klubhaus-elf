@@ -1,6 +1,6 @@
 ---
 title: ADR-0095 Double-entry / balanced-transfer ledger posting invariant
-status: draft
+status: accepted
 tags: [adr, architecture, ddd, economy, accounting, ledger, double-entry, invariant, audit, event-sourcing, determinism, club-management, fmx-106]
 created: 2026-06-08
 updated: 2026-06-08

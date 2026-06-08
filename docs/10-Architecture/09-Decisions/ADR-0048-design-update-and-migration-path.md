@@ -1,9 +1,9 @@
 ---
 title: "ADR-0048: Design-System Update & Migration Path"
-status: draft
+status: accepted
 tags: [adr, architecture, design, process, migration]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

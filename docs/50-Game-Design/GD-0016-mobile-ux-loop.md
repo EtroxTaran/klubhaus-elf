@@ -1,9 +1,9 @@
 ---
 title: GD-0016 Mobile UX Gameplay Loop
-status: draft
+status: accepted
 tags: [game-design, gddr, ux, mobile]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-06-08
 type: game-design
 binding: true
 related: [[README]], [[GD-0001-core-loop]], [[GD-0013-narrative-inbox]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0010-design-system]], [[../10-Architecture/09-Design-System]]

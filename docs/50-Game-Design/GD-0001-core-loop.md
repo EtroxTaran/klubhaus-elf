@@ -1,9 +1,9 @@
 ---
 title: GD-0001 Core Career Loop & Weekly Rhythm
-status: draft
+status: accepted
 tags: [game-design, gddr, loop]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-06-08
 type: game-design
 binding: true
 related: [[README]], [[GD-0011-career-progression]], [[GD-0016-mobile-ux-loop]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]

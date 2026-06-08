@@ -1,9 +1,9 @@
 ---
 title: GD-0011 Career Progression, Board & Objectives
-status: draft
+status: accepted
 tags: [game-design, gddr, progression]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-06-08
 type: game-design
 binding: true
 related: [[README]], [[GD-0001-core-loop]], [[GD-0010-ai-world]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]

@@ -1,9 +1,9 @@
 ---
 title: ADR-0080 Opposition-template AI Consumption Contract
-status: proposed
+status: accepted
 tags: [adr, architecture, tactics, opposition, ai, match, determinism, replay, fmx-67]
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

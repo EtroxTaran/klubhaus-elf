@@ -1,9 +1,9 @@
 ---
 title: ADR-0014 Explicit State Machines for Time-critical Workflows
-status: proposed
+status: accepted
 tags: [adr, architecture, state-machine, workflow]
 created: 2026-05-16
-updated: 2026-05-19
+updated: 2026-06-08
 type: adr
 binding: false
 related: [[../state-machines/README]], [[../../60-Research/raw-perplexity/raw-architecture]], [[ADR-0021-revised-tech-stack]], [[ADR-0013-transactional-outbox]]

@@ -1,9 +1,9 @@
 ---
 title: GD-0018 AI Narrative Personas and Dialogue
-status: draft
+status: accepted
 tags: [game-design, gddr, narrative, ai, llm, personas, dialogue]
 created: 2026-05-27
-updated: 2026-06-05
+updated: 2026-06-08
 type: game-design
 binding: false
 supersedes:
