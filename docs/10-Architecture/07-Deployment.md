@@ -3,10 +3,10 @@ title: Deployment
 status: current
 tags: [architecture, deployment, dokploy, observability]
 created: 2026-05-15
-updated: 2026-05-22
+updated: 2026-06-08
 type: architecture
 binding: false
-related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[../30-Implementation/deployment-dokploy]], [[../30-Implementation/observability-runbook]]
+related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]], [[09-Decisions/ADR-0044-cicd-and-merge-policy]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]], [[09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]], [[../30-Implementation/deployment-dokploy]], [[../30-Implementation/observability-runbook]]
 ---
 
 # Deployment
@@ -14,6 +14,13 @@ related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-002
 Dokploy runs Docker Compose on Hetzner. The architecture remains a
 single-node deployment for MVP, with services split into app/runtime,
 data and observability groups so they can move independently later.
+
+Deployment follows the portable-pipeline / auto-merge-when-green CI/CD
+policy in ADR-0044: all check logic lives in repo scripts (runnable
+locally and from a thin CI workflow, no vendor lock-in), and green PRs
+auto-merge on strict branch protection (docs: no review; code → `main`:
+≥1 CODEOWNER review). The single-node Postgres target is the node the
+ADR-0097 per-node schema ceiling is scoped to.
 
 ## Environments
 
@@ -27,14 +34,23 @@ data and observability groups so they can move independently later.
 MVP runtime services:
 
 - `app`: TanStack Start / Vinxi Node server on port 3000.
-- `postgres`: system of record for platform data, per-save schemas,
-  notification records, outbox and audit archive.
+- `postgres`: PostgreSQL 18.x (pin the concrete 18.x at implementation,
+  no floating `latest`) — system of record for platform data, one schema
+  **per active save** (ADR-0097), notification records, and the outbox +
+  its partitioned archive. The outbox is the canonical **domain** audit
+  trail (ADR-0028/0097); there is **no** platform `audit_log` table
+  (dropped by ADR-0097) — the **security** trail is the Audit & Security
+  context's own append-only log. Archived saves drop out of the live
+  catalog into row-level/blob storage; the per-node live-schema count is a
+  monitored ceiling (ADR-0097).
 - `outbox-publisher`: future long-running worker for the ADR-0028 Postgres
   outbox to ADR-0023 realtime fan-out.
 - `scheduler`: future long-running worker for timers, countdowns, notification
   reminders, digests and retry jobs.
 - `notification-worker`: future worker for Notification context policies,
-  delivery attempts, provider webhooks and channel retries.
+  delivery attempts, provider webhooks and channel retries (ADR-0102; the
+  Dexie in-app inbox is the authoritative-for-read channel, SSE/Centrifugo,
+  email and Web Push are best-effort online accelerants).
 - `surrealdb`: optional additive projection/live-graph store when a feature
   explicitly enables it; never the authoritative data store.
 - `redis`: session/cache/rate-limit and future Centrifugo engine storage;
@@ -48,6 +64,24 @@ MVP runtime services:
 
 `/healthz` is the app liveness contract. The Dockerfile already uses it
 for the app container health check.
+
+## Client Delivery and Sync
+
+- **PWA + Capacitor shell.** The responsive PWA is the single source of
+  truth and carries the MVP; a thin, additive Capacitor shell is the
+  post-MVP path to the App Store / Play Store, reusing the unchanged web
+  `webDir` (ADR-0104). The implementable anchor is **Capacitor 7.x**
+  (min iOS 14.0, Xcode 16+), re-pinned at build per the currency rule
+  (Capacitor 8 is a watch item). Native APNs/FCM push lands with that
+  shell; until then the EU-iOS-no-Web-Push limitation (dated 2026-06-08,
+  DMA-driven and reversible) constrains push on iOS.
+- **Narrow cloud-sync.** Offline Sync is a thin context at MVP
+  (Service-Worker cache + Dexie drafts + synchronous commands) behind a
+  migration seam (ADR-0090); the server stays the single authority with
+  server-authoritative re-validation + rebase. The single node serves
+  command-oriented endpoints and event rehydration — the post-MVP durable
+  outbox / background-sync flush is purely additive and changes no node
+  topology here.
 
 ## Observability Services
 
@@ -94,8 +128,10 @@ Initial retention:
 - GlitchTip crash reports: 30 days.
 - Prometheus metrics: 15 months.
 - Tempo traces: 7 days.
-- Domain audit events: ADR-0028 Postgres hot 60 days + monthly archive
-  partitions forever.
+- Domain trail (the outbox): ADR-0028 Postgres hot 60 days + monthly
+  archive partitions forever. This is the canonical domain audit trail
+  (ADR-0097); the separate security trail is owned by the Audit & Security
+  context, not a platform `audit_log` table.
 
 Telemetry volumes are separate from Postgres save/notification data. Backup
 priority:

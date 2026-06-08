@@ -3,10 +3,10 @@ title: Crosscutting Concerns
 status: current
 tags: [architecture, security, quality, observability, logging]
 created: 2026-05-15
-updated: 2026-05-22
+updated: 2026-06-08
 type: architecture
 binding: false
-related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0003-match-engine]], [[09-Decisions/ADR-0013-transactional-outbox]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/telemetry-privacy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/client-telemetry]]
+related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[09-Decisions/ADR-0100-story-thread-ownership-and-cross-context-naming]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/telemetry-privacy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/client-telemetry]]
 ---
 
 # Crosscutting Concerns
@@ -17,18 +17,27 @@ the binding source when there is a conflict.
 
 ## Logging and Observability
 
-ADR-0017 defines the observability stack:
+ADR-0017 defines the observability stack. The MVP profile (trimmed by the
+ADR-0017 2026-05-19 amendment) is:
 
 - Grafana Loki for operational logs.
 - Prometheus for metrics.
-- Grafana Tempo for traces.
 - Grafana Alloy for collection.
 - Grafana for dashboards and alerting.
 - GlitchTip with Sentry-compatible SDKs for crash/error reports.
 - OpenTelemetry JS as the instrumentation contract.
 
-Operational logs, crash reports, metrics, traces and domain audit events
-are different data classes. Do not collapse them into one store.
+Grafana Tempo (traces) and Mimir are **deferred** at MVP per the ADR-0017
+amendment; Alloy keeps them re-addable as a collector-config + container change.
+Tracing spans (below) are an OpenTelemetry instrumentation contract regardless of
+whether the Tempo backend is deployed yet.
+
+Operational logs, crash reports, metrics, traces, domain audit events and the
+security audit log are different data classes. Do not collapse them into one
+store. In particular the **domain audit trail** (derived from the ADR-0028
+transactional outbox) and the **security audit log** (the separate, append-only,
+hash-chained log owned by the Audit & Security context per ADR-0091) are
+deliberately distinct concerns and must never be merged — see Audit Trails below.
 
 ## Structured Logs
 
@@ -69,7 +78,8 @@ full Dexie rows or community-pack user content.
 ## Correlation and Tracing
 
 Each inbound request gets a `request_id`. Commands and domain events carry
-`correlation_id` and, when relevant, `causation_id` per ADR-0013.
+`correlation_id` and, when relevant, `causation_id` per ADR-0028 (the
+transactional outbox that supersedes ADR-0013).
 
 OpenTelemetry spans should cover:
 
@@ -105,6 +115,33 @@ React/TanStack Router error boundaries, service worker failures, Web
 Worker crashes, Dexie failures and unhandled rejections must be reported
 through the client telemetry rules in
 [[../30-Implementation/client-telemetry]].
+
+## Audit Trails
+
+There are **three** distinct "audit" concerns; ADR-0092 (governance) and ADR-0097
+(data-model) canonicalised them so they are never conflated, and the platform
+`audit_log` table is dropped:
+
+- **Domain audit trail.** "How did game state change?" — derived from the
+  ADR-0028 transactional outbox (`outbox_event`); the outbox **is** the domain
+  audit trail. There is **no separate platform `audit_log` table** (dropped per
+  ADR-0097; outbox = domain trail).
+- **Security audit log.** "Who attempted what, under which security decision,
+  with what evidence?" — a **separate, append-only, write-once** log owned by the
+  **Audit & Security** bounded context (ADR-0091). It is tamper-evident
+  (per-record hash-chaining + periodic signed checkpoints), records command
+  reception, auth/authz decisions, idempotency/replay rejections, rate-limit
+  triggers, anomaly flags and moderation actions as security *facts* (not raw
+  PII/secrets/payloads), and carries its own retention/redaction policy.
+- **Operational/diagnostic logs.** The Loki/GlitchTip telemetry above — neither
+  an authoritative source nor a forensic record.
+
+These are distinct data classes with distinct invariants, retention rules and
+access controls; **do not merge the domain audit trail and the security audit
+log** (it would pollute the domain event store and break the forensic boundary).
+Audit & Security *consumes* domain events + command metadata via the outbox; it
+never joins another context's tables, and it does not own domain validation,
+authentication or the outbox itself (ADR-0091).
 
 ## Privacy and Consent
 
@@ -223,9 +260,62 @@ ADR-0020 governs MVP offline behavior:
 - stale/cached data must be labelled when it can affect decisions; and
 - future selective offline must not be blocked by storage or contract choices.
 
+ADR-0090 fixes the offline-sync scope and conflict-resolution strategy that
+ADR-0020's "future selective offline" left open. Offline Sync stays a **thin
+context at MVP** (Service-Worker cache + Dexie drafts + synchronous commands)
+behind a mandated migration seam: every command carries `commandId` (idempotency
+key) + `expectedVersion`, every client projection carries `lastSeenVersion`, the
+server API is command-oriented, and clients can always rehydrate projections from
+server events. The conflict strategy is **server-authoritative re-validation +
+rebase** for all core game commands — the server is the single authority, treats
+its outbox events as canonical, and rebases still-valid queued commands on
+conflict. CRDTs are **confined to watch-party collaborative overlays** (chat,
+shared markers) on their own sync channel; last-write-wins is allowed **only** for
+cosmetic local preferences, never for game state.
+
 Observability must not break offline-ready behavior or future offline-first
 singleplayer. Telemetry queues are secondary to game state, are bounded, and
 may be dropped before they risk save durability or storage pressure.
+
+## Determinism and Numeric Surface
+
+Determinism is a crosscutting contract, not a match-engine-local detail
+(ADR-0096, which supersedes ADR-0003 and finalises ADR-0049):
+
+- **Every value a committed event, summary statistic, RNG branch or replay
+  decision depends on is computed in integers / fixed-point** (basis points
+  0–10000 for probabilities, integer millimetres on the pitch grid, integer mm/s
+  for velocities, integer cents/minor units for money). Floating point is
+  permitted **only** downstream of the committed event log — render interpolation
+  and the `MatchFrame` projection — which are not replay-bearing. This is what
+  keeps replay equality-safe across any runtime (Rust-native, Rust→WASM or TS).
+- **Nine named RNG streams** are canonical (correcting the stale "8"): `WorldRng`,
+  `WorldAiMgmtRng`, `MatchCoreRng`, `MatchAiRng`, `WeatherRng`, `InjuryRng`,
+  `TransferRng`, `NewsRng/PresentationRng`, `GeneratorRng`. New randomness reuses a
+  versioned sub-label of an existing stream; no new top-level `*Rng` is minted.
+- **No non-deterministic primitives** in replay-bearing code: `Math.random`,
+  `Date.now` and `setTimeout`-derived timing are lint-banned; seeds + draw indices
+  are persisted in provenance for byte-identical replay.
+- **Per-quality-profile replay precedence:** byte-identical golden replay is
+  mandatory for `competitive-full` and `interactive-standard`; `background-detailed`
+  keeps byte parity where cheap but a statistical envelope is the binding gate;
+  `background-fast` is statistical-envelope-only and is never a byte-exact replay
+  source. Anti-cheat, audit and watch-party replays run only against byte-exact
+  profiles.
+
+## AI / LLM Boundary
+
+Runtime LLM usage is kept **out of authoritative state** as a crosscutting rule
+(ADR-0030). No LLM runs inside the match engine, deterministic replay paths or any
+authoritative command handler, and no generated text is parsed back into domain
+commands, relationship deltas, numeric values or event facts. Generated prose is
+cosmetic display copy only, always produced downstream of already-committed facts,
+behind a feature-flagged, kill-switchable adapter with a deterministic template
+fallback rendered first. Prompt payloads carry no PII, secrets, internal IDs, raw
+user free-text or real-world entity names (placeholder tokens are substituted
+locally). Every generated output stores `aiGenerated: true` + provenance; the
+EU AI Act Article 50 release gate (ADR-0030) must close before any runtime-LLM
+ship.
 
 ## Security Baseline
 
@@ -236,11 +326,37 @@ may be dropped before they risk save durability or storage pressure.
   assets, not public artifacts.
 - Production credentials, `.env*`, keys and secret stores are never read
   or committed by agents.
+- Save encryption uses AES-GCM 256 with AAD header binding. The key-derivation
+  function is **split by path** (ADR-0098, superseding ADR-0005 on the KDF):
+  PBKDF2-SHA256 @ 600 000 iterations (native Web Crypto) for the high-entropy
+  **device-backup** key on the hot at-rest decrypt path, and **Argon2id** (WASM,
+  the OWASP-preferred memory-hard KDF) for the **portable-export passphrase** —
+  the only brute-forceable, P2P-travelling secret — loaded only on the
+  export/import path. The `kdfAlgo` envelope field discriminates the two.
 
 ## Accessibility and Internationalisation
 
 - Accessibility target is WCAG 2.2 AA / BITV 2.0.
 - Diagnostic UI such as Sync / Activity, storage warnings and error
   banners must be keyboard-accessible and screen-reader friendly.
-- German is the primary UI language; internal logs remain English for
+- German is the primary (source) UI language; internal logs remain English for
   operational consistency.
+- The i18n stack is **Paraglide JS + `format.js` Intl polyfills + self-hosted
+  Tolgee** (ADR-0094, superseding ADR-0006's i18next direction), with **ICU-MF1**
+  as the message contract and **5 MVP locales (DE/EN/FR/ES/IT, DE source)**.
+  Crosscutting CI gates: pseudo-localisation snapshot, ICU-validate, RTL
+  logical-properties lint, Unicode-property-escape name validation
+  (`\p{L}\p{N}\p{Pd}\p{Zs}`, never `[a-zA-Z]`) and content-hashed locale bundles
+  for service-worker cache-busting.
+
+## Ubiquitous Language and Naming
+
+Bounded contexts each own their own model and ubiquitous language; integration is
+via Published-Language events over the ADR-0028 outbox, never a shared domain
+model (ADR-0100). Two contexts referencing the same real-world thing share only a
+**correlation key**, not a same-named aggregate — a same-named, same-structure
+aggregate across contexts is a Shared Kernel / model-leakage smell. The ratified
+worked example: the player-facing story arc is Narrative's `StoryThread` aggregate
+(Narrative is the sole originator), the outlet-side coverage arc is Media Ecology's
+`CoverageThread` aggregate, and both reference the same `storyThreadId` as a
+correlation key owned by neither.
