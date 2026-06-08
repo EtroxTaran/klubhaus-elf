@@ -29,7 +29,7 @@ context's contract is designed as if it could be running on its own
 process / pod / region. Splitting a context out later is a deployment
 change, not a refactor.
 
-## 1. Nineteen bounded contexts
+## 1. Twenty-eight bounded contexts
 
 | Context | Core elements | Exposed outputs |
 |---|---|---|
@@ -52,11 +52,38 @@ change, not a refactor.
 | **CommercialPortfolio** | `CommercialContract` Aggregate (unified shell across sponsorship + catering + merchandise + hospitality + season-ticket bundles; Available → Negotiating → Active → Renewing → Terminated + Cool-down FSM), `AssetInventory` (asset taxonomy + slot allocation), `ExclusivityGraph` (category-exclusivity edges), `SeasonTicketCampaign` (8-state FSM), `FixtureSettlement` (per-fixture settlement Saga), `AccrualSchedule` (IFRS 15 5-step model), `CreditLiabilityPool` (refund + no-show + postponement liability), `InstalmentReceivable` (payment-plan state + IFRS 9 ECL), `CommercialFairValueAssessment` (UEFA FSR + PL APT + La Liga PSR documentation), `FanEventCampaign` (paid fan-service campaigns) | `CommercialContractPortfolio` / `CommercialForecastSnapshot` / `AssetInventoryDashboard` / `ExclusivityGraphSnapshot` / `SeasonTicketCampaignBoard` / `MatchdayCommercialSettlement` / `RefundLiabilitySnapshot` / `InstalmentReceivableAging` / `FairValueEvidencePack` / `FanEventCampaignCalendar` / `CommercialKpiBoard` queries; `CommercialContractActivated` / `CommercialContractRenewalDue` / `CommercialContractRenewed` / `CommercialBreachOpened` / `CommercialBreachResolved` / `CommercialContractTerminated` / `SeasonTicketCampaignAdvanced` / `SeasonTicketCampaignClosed` / `TicketingPolicyChanged` / `MatchdayCommercialSettlementPosted` / `InvestorCashGrantPosted` / `FanEventCampaignScheduled` / `CommercialFairValueAssessed` / `RefundLiabilityRecognised` / `RefundLiabilityReleased` / `DeferredRevenueRecognised` events; Customer-Supplier + ACL to Club Management ledger per ADR-0050 |
 | **Offline Sync** | MVP: cache/draft status and freshness metadata. Future: local outbox, command replay, conflict logic | Draft/cache status now; sync status later |
 | **Audit & Security** | Command log, replay protection, abuse detection | Audit trail, anomaly flags |
+| **People / Persona & Skills** | OCEAN/persona substrate, hidden-attribute → football-label derivation (ADR-0052), persona profiles, actor-class registry, player + staff-target skill profiles | Persona/skill projections, derived label axes, persona-gate inputs for Narrative/Dialogue |
+| **Narrative** | Narrative content authoring, `StoryThread` origination (ADR-0100), newsworthiness event contracts (ADR-0076), dialogue intent→effect boundary (never applies state, ADR-0030) | `NarrativeEventQueued`, `StoryThread` (correlation key), `OutletPublishedStory` hand-off to Media Ecology |
+| **Community Overlay Pipeline** | Community datapack ingestion + `ManifestSchema` validation against the ADR-0097 Zod/CHECK bounds, override application (default-off per GD-0015), active-pack tracking | Validated overlay packs, `ActivePacksSnapshot` refs for SavePayload (ADR-0098) |
+| **Youth Academy** | Youth intake generation, academy facility + coaching development, promotion-to-senior lifecycle | Youth prospect projections, intake + promotion events |
+| **Scouting** | Scouting assignments, knowledge accumulation, `HiddenFlagRevealLedger` (reveals bands, not point estimates) | Scouting reports, hidden-attribute reveal bands, shortlist projections |
+| **AI World Simulation** | World-drift algorithm (GD-0024: Rising Rival / Giant Collapse / Era Shift as deterministic capped drift), AI manager/club decisions, `WorldAiMgmtRng` sub-streams (ADR-0071) | Drift events, AI-club decisions, structural world-state deltas |
+| **Environment & Climate** | Weather parameter vector + regime taxonomy, pitch-condition ladder, pitch-state owner (ADR-0077) | Weather/pitch snapshots, `PitchConditionChanged`, forecast queries |
+| **Statistics & Analytics** | Projection-only read model (ADR-0081): official counts vs derived estimates, analytics hub, per-save immutable history snapshots; no global OVR | Analytics/statistics projections (read-only), season-history snapshots |
+| **Media Ecology** | Persistent opinionated outlets (Type/Stance/Reach/Reliability/Cadence), `CoverageThread` aggregate (ADR-0100), deterministic scoring + per-edition budget, stance drift | Coverage facts, advisory effect-intents (never applies effects, ADR-0030) |
+
+The ratified portfolio is **28 bounded contexts** (19 → 28), fixed by
+[[09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]] with a stable
+ordinal key by ADR number (positions 20–28 are the nine rows above).
+[[09-Decisions/ADR-0065-narrative-media-press-content-ownership]] is **not** a new
+context — it is a Narrative subdomain.
 
 Player lifecycle and systemic world events are specialised by
 [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]. They do not
-add a thirteenth bounded context. The `WorldEventDirector` is an orchestration
+add a new bounded context. The `WorldEventDirector` is an orchestration
 policy over the existing contexts.
+
+### Subdomain clusters (ADR-0089)
+
+The 28 contexts group into six clusters — cognitive-load aids, **not** new
+boundaries; a context may relate across clusters:
+
+1. **Sporting Core** — Match, Tactics, Training, Squad & Player, Stadium Operations, Environment & Climate.
+2. **Competition & World Simulation** — League Orchestration, Regulations & Compliance, Rivalry System, AI World Simulation, Statistics & Analytics.
+3. **Club, Finance & Commerce** — Club Management, CommercialPortfolio, Staff Operations, Audience & Atmosphere.
+4. **Recruitment, People & Career** — Transfer, Scouting, Youth Academy, People / Persona & Skills, Manager & Legacy.
+5. **Engagement & Narrative** — Narrative, Media Ecology, Notification, Watch Party.
+6. **Platform & Governance** — Identity & Access, Offline Sync, Audit & Security, Community Overlay Pipeline.
 
 The **Competition & Season registry** was ratified 2026-06-02 via
 [[09-Decisions/ADR-0066-competition-registry-sub-aggregate]] (FMX-79, closing the
@@ -133,7 +160,7 @@ renders Manager & Legacy projections.
 
 Staff Operations was ratified 2026-05-28 via
 [[09-Decisions/ADR-0053-staff-operations-context]] (FMX-26 dossier +
-FMX-36 apply) and is the thirteenth context. It owns staff contract
+FMX-36 apply) and is its own bounded context. It owns staff contract
 lifecycle, role assignment, pipeline coverage, wage schedule and
 specialisation metadata. Staff Operations consumes People (ADR-0052,
 draft) actor identity and skill-profile snapshots via query; it does not

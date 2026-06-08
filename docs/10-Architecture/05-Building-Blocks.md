@@ -2,20 +2,45 @@
 title: Building Blocks
 status: current
 tags: [architecture]
-updated: 2026-05-28
+updated: 2026-06-08
 ---
 
 # Building Blocks
 
-The application is a **modular monolith** with sixteen bounded contexts,
-primarily implemented in TypeScript. Each context owns its domain logic, state
-machine(s), storage isolation, and contracts (commands / queries / domain
-events). The match engine is deliberately behind a runtime-neutral port so it
-can move to Rust without changing caller contracts.
+The application is a **service-ready modular monolith**
+([[09-Decisions/ADR-0019-modular-monolith-ddd]]), primarily implemented in
+TypeScript. Each context owns its domain logic, state machine(s), storage
+isolation, and contracts (commands / queries / domain events). The match engine
+is deliberately behind a runtime-neutral port so it can move to Rust without
+changing caller contracts (cross-runtime determinism + integer/fixed-point
+numeric surface per
+[[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]).
+
+The ratified decomposition is the **28 bounded contexts grouped into six
+subdomain clusters** fixed by
+[[09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]]. The clusters
+are organisational cognitive-load aids, not new boundaries — a context may relate
+across clusters. The canonical context catalog (count, per-context ordinal, scope)
+lives in [[bounded-context-map]]; this chapter defers to that map for the
+authoritative list and never restates a different count. The six clusters:
+
+1. **Sporting Core** — Match, Tactics, Training, Squad & Player, Stadium
+   Operations, Environment & Climate.
+2. **Competition & World Simulation** — League Orchestration, Regulations &
+   Compliance, Rivalry System, AI World Simulation, Statistics & Analytics.
+3. **Club, Finance & Commerce** — Club Management, CommercialPortfolio, Staff
+   Operations, Audience & Atmosphere.
+4. **Recruitment, People & Career** — Transfer, Scouting, Youth Academy, People /
+   Persona & Skills, Manager & Legacy.
+5. **Engagement & Narrative** — Narrative, Media Ecology, Notification, Watch
+   Party.
+6. **Platform & Governance** — Identity & Access, Offline Sync, Audit & Security,
+   Community Overlay Pipeline.
 
 FMX-13 adds a load-bearing domain port: Club Management owns the
 accounting ledger and economy read models behind
-[[09-Decisions/ADR-0050-club-economy-accounting-ledger]]. Finance remains inside
+[[09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]]
+(supersedes the original ADR-0050 ledger boundary). Finance remains inside
 Club Management, not a shared utility package.
 
 FMX-25 / FMX-35 ratified the twelfth bounded context, **Manager & Legacy**,
@@ -38,8 +63,8 @@ pipeline-coverage read model spanning Recruitment / Development /
 Training / Medical / Tactics / Match-Day, wage schedule and
 specialisation metadata. Wage events emit to Club Management's ledger via
 the canonical Customer-Supplier + Anti-Corruption Layer pattern
-([[09-Decisions/ADR-0050-club-economy-accounting-ledger]]); no ADR-0050
-amendment is required. Consumes People queries (ADR-0052, draft) for
+([[09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]]); no
+ledger-posting-invariant amendment is required. Consumes People queries (ADR-0052, draft) for
 actor identity when ratified; until then sources identity from own staff
 roster.
 
@@ -119,15 +144,39 @@ terminology hardline contained in one context per
 [[09-Decisions/ADR-0007-naming-schema]]; `risk:legal` discipline
 applies.
 
-FMX-23 proposes **People / Persona & Skills** behind
-[[09-Decisions/ADR-0052-people-persona-and-skills-context]], and FMX-3 proposes
-**Narrative** behind
-[[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]. Both are
-planning context only until ratified. People owns actor/persona truth;
-Narrative owns scene/context-card assembly, fallback templates, validation,
+**People / Persona & Skills**
+([[09-Decisions/ADR-0052-people-persona-and-skills-context]]) and **Narrative**
+([[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]) are part
+of the ratified 28-context portfolio per ADR-0089. People owns actor/persona
+truth; Narrative owns scene/context-card assembly, fallback templates, validation,
 provenance, evals and provider adapter boundaries.
 
-> Authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]]. Full map at
+The **Audit & Security** context (Platform & Governance cluster) is an *explicit
+but narrow* bounded context per
+[[09-Decisions/ADR-0091-audit-security-context-definition]]: its mandate is
+**observe, record, verify, flag — never decide game rules or own canonical game
+state**. It owns the append-only security audit log (separate from the domain
+event store), tamper-evidence (hash-chaining + signed checkpoints), the
+replay-protection / dedup state backing the command envelope, abuse/anomaly
+scoring and the GDPR retention/redaction policy. It does **not** own
+authentication (Identity & Access), domain command validation (each owning
+context re-validates) or the transactional outbox (ADR-0028 infrastructure it
+consumes).
+
+Story-thread ownership across the Narrative and Media Ecology contexts is split
+per [[09-Decisions/ADR-0100-story-thread-ownership-and-cross-context-naming]]:
+**Narrative** is the sole originator of the player-facing `StoryThread`
+aggregate, while **Media Ecology** owns the outlet-side `CoverageThread`
+aggregate (renamed from `NarrativeThread`). `storyThreadId` is a **correlation
+key only** — neither aggregate is shared and neither joins the other's tables;
+cross-context flow is Published-Language events via the outbox. Content authoring
+(`PressPublicationPolicy`, tone, templates) stays in Narrative; outlet
+operational behaviour (cadence, budget, salience) stays in Media Ecology, with
+`OutletPublishedStory` as the single hand-off.
+
+> Authority: [[09-Decisions/ADR-0019-modular-monolith-ddd]] (modular-monolith
+> ground rules) + [[09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]]
+> (28-context / six-cluster catalog). Full canonical map at
 > [[bounded-context-map]].
 
 ## High-level package layout
@@ -145,6 +194,13 @@ flowchart TB
 ```
 
 ## Bounded context layout
+
+The diagram below shows an **illustrative dependency subset** of the ratified
+28-context portfolio (it predates the full catalog and is kept for orientation,
+not as the authoritative list). The complete, canonical context map — all 28
+contexts, the six clusters and every published-language edge — lives in
+[[bounded-context-map]] per
+[[09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]].
 
 ```mermaid
 flowchart TB
@@ -213,6 +269,11 @@ flowchart TB
 
 ## Source folder convention
 
+The TypeScript code lives under `src/domain/` with one folder per context. The
+illustrative subset below is kept for orientation; the **complete folder mapping**
+for all 28 ratified contexts is maintained in [[bounded-context-map]] §4
+(authoritative per [[09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]]).
+
 ```text
 src/domain/
   identity/
@@ -226,8 +287,9 @@ src/domain/
   notifications/
   sync/
   audit/
-  people/          # draft if ADR-0052 is accepted
-  narrative/       # draft if ADR-0054 is accepted
+  people/          # People / Persona & Skills (ADR-0052)
+  narrative/       # Narrative (ADR-0054)
+  # … plus the remaining ratified contexts — see bounded-context-map §4
 ```
 
 Each folder owns `commands.ts`, `events.ts`, `queries.ts`,
@@ -239,22 +301,22 @@ Each folder owns `commands.ts`, `events.ts`, `queries.ts`,
 - **Transactional outbox** ([[09-Decisions/ADR-0028-postgres-transactional-outbox]])
   for same-Postgres-transaction domain-event publication.
 - **Club Economy accounting ledger**
-  ([[09-Decisions/ADR-0050-club-economy-accounting-ledger]]) for weekly finance
-  facts, accounting projections, budget envelopes, country economy profiles and
-  insolvency state.
+  ([[09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]]) for
+  weekly finance facts, accounting projections, budget envelopes, country economy
+  profiles and insolvency state.
 - **Job queue + scheduler** for timers, reminders, escalation,
   auto-resolves.
 - **Realtime channel** ([[09-Decisions/ADR-0023-realtime-transport]])
   for league status, notifications and watch-party signals: SSE first,
   Centrifugo when scale/presence/recovery requires it.
-- **Notification platform** ([[09-Decisions/ADR-0043-notification-and-messaging-platform]])
+- **Notification platform** ([[09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]])
   for inbox, preferences, delivery attempts, email, push preparation and
   offline notification projections.
 - **Match worker** for server-authoritative simulation behind
   `MatchEnginePort` ([[09-Decisions/ADR-0011-server-authoritative-multiplayer]],
-  [[09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]).
+  [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]).
 - **Spectator service** for watch parties
-  ([[09-Decisions/ADR-0015-spectator-snapshot-streaming]]).
+  ([[09-Decisions/ADR-0099-spectator-watch-party-streaming-over-committed-event-log]]).
 - **Hybrid-online PWA seam** ([[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]])
   keeps Dexie scoped to caches/drafts/staging in MVP while preserving a future
   local-authoritative singleplayer adapter.
