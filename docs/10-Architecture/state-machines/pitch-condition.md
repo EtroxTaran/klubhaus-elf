@@ -1,9 +1,9 @@
 ---
 title: State Machine - Pitch Condition
-status: draft
+status: current
 tags: [architecture, state-machine, pitch, weather, stadium, environment, match, fmx-66]
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-08
 type: state-machine
 binding: false
 related:
@@ -22,13 +22,13 @@ Models the **playability/condition** of a stadium pitch as it responds to weathe
 and usage. Pitch **facility/usage state** (drainage, undersoil heating,
 maintenance, minutes-played) is owned by **Stadium Operations**
 ([[../09-Decisions/ADR-0061-club-management-sub-aggregate-audit]]); the
-**weather input + derivation rules** are owned by the proposed **Environment &
+**weather input + derivation rules** are owned by the **Environment &
 Climate** context ([[../09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]],
 D1 = new context). Stadium Operations remains the `PitchConditionChanged` emitter;
 **Match** consumes the condition as a frozen snapshot at `lineup_locked`. The
-exact state-vs-rules split is the open ratification item in ADR-0077.
+exact state-vs-rules split is fixed by the ratified ADR-0077.
 
-> `draft` / `binding: false`. MVP exposes condition as **in-match modifiers only**
+> `current` / `binding: false` (ADR-0077 ratified). MVP exposes condition as **in-match modifiers only**
 > (ADR-0077 D4); the `postponed` / `abandoned` ruling is a **reserved**
 > future-scope transition (named hook `PitchPlayabilityRuling`).
 

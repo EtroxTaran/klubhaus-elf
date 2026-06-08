@@ -1,9 +1,9 @@
 ---
-title: State Machine - Youth Academy (proposed)
-status: draft
+title: State Machine - Youth Academy
+status: current
 tags: [architecture, state-machine, youth, academy, lifecycle, fmx-29, proposed]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-08
 type: state-machine
 binding: false
 related:
@@ -22,11 +22,10 @@ related:
 
 # State Machine - Youth Academy (proposed)
 
-> **Proposed** alongside [[../09-Decisions/ADR-0060-youth-academy-context]]
-> (FMX-29 dossier). This note specifies the FSM surface that the Youth
-> Academy bounded context will own if ADR-0060 is ratified. It does not
-> bind implementation until ADR-0060 flips to `accepted` /
-> `binding: true`.
+> **Ratified** alongside [[../09-Decisions/ADR-0060-youth-academy-context]]
+> (FMX-29; accepted 2026-06-08). This note is the **current** FSM surface that the Youth
+> Academy bounded context owns. It becomes binding for implementation when the
+> project enters the development phase (`binding: true`).
 
 Youth Academy owns three coordinated state machines per ADR-0060:
 
