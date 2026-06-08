@@ -33,6 +33,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > not ratified — no technology, gameplay or architecture decision is made without
 > Nico (2–3 sourced options + recommendation).
 
+> **2026-06-08 — Decision portfolio re-ratified (planning-mode sweep).** The full
+> re-audit + decision-queue sweep is applied on branch `claude/ratify-decision-sweep`
+> (**PR pending Nico's merge** — merge is the ratification act). All 80 reopened ADRs
+> + 36 GDDRs were re-ratified (`status: accepted`; frontmatter is the single source of
+> truth per [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]]);
+> **13 new ADRs (0092–0104)** + **4 new GDDRs (0037–0040)** adopted; **10 supersessions**
+> recorded (ADR-0005→0098, 0006→0094, 0009→0103, 0015→0099, 0025→0104, 0027→0097,
+> 0043→0102, 0049→0096, 0050→0095; 0003 drift-fixed). 13 scope-calls + 2 forks decided
+> live, 118 on the ★-recommended disposition. Sweep record:
+> [[../40-Execution/decision-queue-2026-06-08-ratified|ratification ledger]] +
+> [[../40-Execution/decision-queue-2026-06-08|decision-queue]] +
+> [[../60-Research/adr-re-audit-master-2026-06-08|re-audit master]]. Phase unchanged
+> (research/architecture — no development). On merge, this banner supersedes the
+> "not ratified" framing above.
+
 > **FMX-102 Async escalation FSM + watch-party deadline source-of-truth (2026-06-07).** Closes audit
 > gap **G25** and is the **last open backlog item** (E8 epic FMX-64 / E8-2; with FMX-101 merged
 > (PR #148), **E8/FMX-64 closes on ratify**). Unblocked by FMX-72/ADR-0068 (Done). Synthesis
