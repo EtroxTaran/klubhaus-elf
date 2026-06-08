@@ -1,9 +1,9 @@
 ---
 title: GD-0020 EOS Player Skills, Personas and People
-status: draft
+status: accepted
 tags: [game-design, gddr, player-skills, persona, people, fmx-23]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-08
 type: game-design
 binding: false
 supersedes:

@@ -1,9 +1,9 @@
 ---
 title: GD-0005 Training & Development
-status: draft
+status: accepted
 tags: [game-design, gddr, training]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-06-08
 type: game-design
 binding: true
 related: [[README]], [[GD-0003-squad-players]], [[GD-0001-core-loop]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]

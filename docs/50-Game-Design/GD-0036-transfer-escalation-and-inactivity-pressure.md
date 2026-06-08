@@ -1,9 +1,9 @@
 ---
 title: GD-0036 Transfer Escalation & Inactivity Pressure
-status: draft
+status: accepted
 tags: [game-design, gddr, transfer, escalation, inactivity, player-unrest, async-multiplayer, fmx-102]
 created: 2026-06-07
-updated: 2026-06-07
+updated: 2026-06-08
 type: gddr
 binding: false
 linear: FMX-102

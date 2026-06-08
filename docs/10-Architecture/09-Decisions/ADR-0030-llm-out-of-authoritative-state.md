@@ -1,9 +1,9 @@
 ---
 title: ADR-0030 LLM Out Of Authoritative State Boundary
-status: draft
+status: accepted
 tags: [adr, architecture, ai, llm, narrative, determinism, openrouter]
 created: 2026-05-27
-updated: 2026-06-05
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

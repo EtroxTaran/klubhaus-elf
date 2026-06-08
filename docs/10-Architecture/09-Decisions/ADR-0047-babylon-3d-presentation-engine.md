@@ -1,9 +1,9 @@
 ---
 title: "ADR-0047: Babylon.js as the 3D / Isometric Presentation Engine"
-status: draft
+status: accepted
 tags: [adr, presentation, 3d, babylon, isometric, stadium, pwa]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

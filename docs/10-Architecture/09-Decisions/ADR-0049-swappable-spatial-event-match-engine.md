@@ -1,13 +1,13 @@
 ---
 title: ADR-0049 Swappable Spatial-Event Match Engine
-status: draft
+status: superseded
 tags: [adr, architecture, match-engine, runtime, rust, typescript, wasm, spatial-event, determinism]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes: ADR-0003-match-engine
-superseded_by:
+superseded_by: ADR-0096-match-engine-cross-runtime-determinism-numeric-surface
 related:
   - [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../../60-Research/match-engine-runtime-strategy]]

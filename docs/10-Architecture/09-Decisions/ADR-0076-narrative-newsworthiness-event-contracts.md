@@ -1,9 +1,9 @@
 ---
 title: ADR-0076 Narrative Newsworthiness Event Contracts
-status: proposed
+status: accepted
 tags: [adr, architecture, narrative, newsworthiness, events, contracts, ddd, fmx-83]
 created: 2026-06-04
-updated: 2026-06-05
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

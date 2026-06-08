@@ -1,9 +1,9 @@
 ---
 title: GD-0014 Save & Career Model
-status: draft
+status: accepted
 tags: [game-design, gddr, save]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-06-08
 type: game-design
 binding: true
 related: [[README]], [[GD-0002-match-engine]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../60-Research/pwa-offline-patterns]], [[../60-Research/offline-mvp-scope-and-sync-strategy]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../00-Index/Non-Goals]]

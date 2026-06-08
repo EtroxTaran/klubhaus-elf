@@ -1,13 +1,13 @@
 ---
 title: ADR-0019 Service-ready Modular Monolith with DDD Bounded Contexts
-status: draft
+status: accepted
 tags: [adr, architecture, ddd, modular-monolith, service-architecture]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-06-08
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[../bounded-context-map]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0014-state-machines]], [[../../60-Research/raw-perplexity/raw-architecture]]
+related: [[../bounded-context-map]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0014-state-machines]], [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
 # ADR-0019: Service-ready Modular Monolith with DDD Bounded Contexts
@@ -51,8 +51,8 @@ bounded contexts** in TypeScript.
 
 Three rules together encode "service-ready":
 
-1. **One deployable, eleven bounded contexts.** The MVP ships as one
-   Node.js / TanStack Start process. Inside it, eleven contexts live
+1. **One deployable, many bounded contexts.** The MVP ships as one
+   Node.js / TanStack Start process. Inside it, the bounded contexts live
    under `src/domain/<context>/` and communicate only through their
    public contracts.
 2. **Network-transparent contracts.** Every contract (commands, queries,
@@ -66,9 +66,12 @@ Three rules together encode "service-ready":
    boundaries (no cross-context FKs; opaque branded-`uuid` refs only).
    No "shared lookup tables" that bypass the rule.
 
-### The eleven bounded contexts
+### The bounded contexts
 
-Documented in detail in [[../bounded-context-map]]:
+The canonical context catalog and count live in [[../bounded-context-map]]
+(reconciled in [[ADR-0089-bounded-context-portfolio-reconciliation]]); this ADR
+is count-agnostic and owns only the modular-monolith *style*. The list below is
+illustrative of the original core set:
 
 - Identity & Access
 - League Orchestration
@@ -95,7 +98,7 @@ Documented in detail in [[../bounded-context-map]]:
   a `QueryGateway` interface (queries). In MVP both are in-process; the
   same call site works against a network implementation later.
 - Domain events publish through the transactional outbox per
-  [[ADR-0013-transactional-outbox]].
+  [[ADR-0028-postgres-transactional-outbox]].
 - Server-authority rules per [[ADR-0011-server-authoritative-multiplayer]].
 - State machines per [[ADR-0014-state-machines]].
 
@@ -158,7 +161,7 @@ The following compliance rules apply to all new code touching
 - Bus + QueryGateway abstractions MUST be used; direct function calls
   across contexts are forbidden.
 - Domain events MUST publish through the transactional outbox per
-  [[ADR-0013-transactional-outbox]].
+  [[ADR-0028-postgres-transactional-outbox]].
 - New cross-context dependencies require an explicit entry in
   [[../bounded-context-map]] §2 (the dependency map).
 

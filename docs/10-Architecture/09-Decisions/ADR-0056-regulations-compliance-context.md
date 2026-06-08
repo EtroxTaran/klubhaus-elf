@@ -3,7 +3,7 @@ title: ADR-0056 Regulations and Compliance Context
 status: accepted
 tags: [adr, architecture, ddd, regulations, compliance, ffp, work-permits, fmx-30, fmx-39, risk-legal, accepted]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-08
 type: adr
 binding: true
 supersedes:

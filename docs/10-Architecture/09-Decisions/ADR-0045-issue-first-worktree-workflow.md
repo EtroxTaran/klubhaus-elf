@@ -1,9 +1,9 @@
 ---
 title: "ADR-0045: Issue-first + Git-Worktree Agent Workflow"
-status: draft
+status: accepted
 tags: [adr, architecture, process, workflow]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

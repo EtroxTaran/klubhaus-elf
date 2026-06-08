@@ -1,9 +1,9 @@
 ---
 title: GD-0026 Set-Piece-Coach Effect-Readiness Multiplier Curve
-status: draft
+status: accepted
 tags: [game-design, gddr, set-pieces, staff, training, tactics, match, determinism, fmx-69, gap-g12]
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-06-08
 type: game-design
 binding: false
 related: [[README]], [[set-pieces]], [[GD-0005-training]], [[training-load-and-medicine]], [[GD-0021-player-staff-development-and-decision-influence]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0055-tactics-context]], [[../10-Architecture/09-Decisions/ADR-0067-set-piece-variant-selection-determinism]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../60-Research/setpiece-coach-readiness-2026-06-04]]

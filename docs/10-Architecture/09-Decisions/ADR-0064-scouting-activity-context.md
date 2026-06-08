@@ -1,9 +1,9 @@
 ---
 title: ADR-0064 Scouting Activity Context
-status: proposed
+status: accepted
 tags: [adr, architecture, ddd, scouting, recruitment, transfer, squad-club, intelligence-context, supporting-subdomain, fmx-27]
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

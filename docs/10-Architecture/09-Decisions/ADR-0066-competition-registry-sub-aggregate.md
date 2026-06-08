@@ -3,7 +3,7 @@ title: ADR-0066 Competition & Season Registry sub-aggregate (League Orchestratio
 status: accepted
 tags: [adr, architecture, ddd, league, competition, season, fixture, registry, pyramid, gap-g1, fmx-79]
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-06-08
 accepted_at: 2026-06-02
 type: adr
 binding: true

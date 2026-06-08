@@ -1,9 +1,9 @@
 ---
 title: ADR-0052 People, Persona and Skills Context
-status: draft
+status: accepted
 tags: [adr, architecture, ddd, people, persona, player-skills, fmx-23]
 created: 2026-05-28
-updated: 2026-06-07
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

@@ -1,9 +1,9 @@
 ---
 title: ADR-0077 Environment & Climate Context (Weather + Pitch)
-status: proposed
+status: accepted
 tags: [adr, architecture, ddd, environment, climate, weather, pitch, match, stadium, league, determinism, replay, fmx-66]
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

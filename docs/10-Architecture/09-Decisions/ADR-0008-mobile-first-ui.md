@@ -3,7 +3,7 @@ title: ADR-0008 Mobile-first UI — route map, IA & client-state
 status: accepted
 tags: [adr, ui, ux, mobile, ia, navigation, client-state, optimistic-ui, worker, determinism, fmx-98]
 created: 2026-05-15
-updated: 2026-06-03
+updated: 2026-06-08
 type: adr
 binding: true
 supersedes:

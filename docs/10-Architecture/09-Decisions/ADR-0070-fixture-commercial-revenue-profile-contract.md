@@ -3,7 +3,7 @@ title: ADR-0070 FixtureCommercialProfile + CompetitionRevenueProfile publication
 status: accepted
 tags: [adr, architecture, league, competition, fixture, commercial, revenue, published-language, outbox, acl, fmx-78]
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-08
 accepted_at: 2026-06-03
 type: adr
 binding: true

@@ -1,9 +1,9 @@
 ---
 title: GD-0029 Weather & Pitch Design Model
-status: draft
+status: accepted
 tags: [game-design, gddr, weather, pitch, match, environment, fmx-66]
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-08
 type: game-design
 binding: false
 supersedes:

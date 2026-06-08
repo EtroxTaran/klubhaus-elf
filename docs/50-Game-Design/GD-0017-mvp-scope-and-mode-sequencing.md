@@ -1,9 +1,9 @@
 ---
 title: GD-0017 MVP Scope and Mode Sequencing
-status: draft
+status: accepted
 tags: [game-design, gddr, mvp, scope, roguelite]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-06-08
 type: game-design
 binding: true
 related: [[README]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]], [[GD-0019-manager-archetype-roguelite-progression]], [[singleplayer-baseline]], [[onboarding-and-tutorial]], [[../00-Index/MVP-Scope]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]

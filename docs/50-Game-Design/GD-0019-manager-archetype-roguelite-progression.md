@@ -1,9 +1,9 @@
 ---
 title: GD-0019 Manager Archetype Roguelite Progression
-status: draft
+status: accepted
 tags: [game-design, gddr, roguelite, manager, archetype, progression, fmx-16]
 created: 2026-05-27
-updated: 2026-06-05
+updated: 2026-06-08
 type: game-design
 binding: false
 supersedes:

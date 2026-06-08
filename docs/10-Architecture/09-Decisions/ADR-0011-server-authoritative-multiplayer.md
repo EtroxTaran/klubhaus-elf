@@ -1,13 +1,13 @@
 ---
 title: ADR-0011 Server-Authoritative Multiplayer
-status: draft
+status: accepted
 tags: [adr, architecture, multiplayer, security]
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-06-08
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0013-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/raw-perplexity/raw-architecture]]
+related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
 # ADR-0011: Server-Authoritative Multiplayer
@@ -202,7 +202,7 @@ frequency.
 - Service extraction (match worker, scheduler worker, spectator service)
   is open per [[ADR-0019-modular-monolith-ddd]] §Future.
 - Offline-first stays viable because drafts persist locally and replay
-  on reconnect (per [[ADR-0002-offline-first]] + [[ADR-0013-transactional-outbox]]).
+  on reconnect (per [[ADR-0002-offline-first]] + [[ADR-0028-postgres-transactional-outbox]]).
 - AI vs AI summary storage opens a Phase-2 option of selectively keeping
   full logs for "marquee" AI vs AI fixtures (e.g. AI title decider).
 
@@ -212,7 +212,7 @@ frequency.
   client-generated request ID (UUIDv7). Server stores recent request IDs
   in the outbox to detect replays.
 - Server-issued state transitions write events through the transactional
-  outbox ([[ADR-0013-transactional-outbox]]).
+  outbox ([[ADR-0028-postgres-transactional-outbox]]).
 - Read models project to Postgres tables ([[ADR-0027-postgres-data-model]])
   that clients read directly via the public query layer of the owning
   context (per [[ADR-0019-modular-monolith-ddd]] §6); an optional

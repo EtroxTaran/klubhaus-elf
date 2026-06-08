@@ -1,9 +1,9 @@
 ---
 title: ADR-0054 Narrative Context and AI Narration Framework
-status: draft
+status: accepted
 tags: [adr, architecture, ddd, bounded-context, narrative, ai, llm, testing, mvp]
 created: 2026-05-28
-updated: 2026-06-05
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-07
 type: index
 binding: true
-related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/pitch-condition]], [[../10-Architecture/state-machines/player-discipline]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/loan-orchestration-process-manager-2026-06-04]], [[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]], [[../10-Architecture/state-machines/loan-orchestration]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/club-financing-tools-2026-06-01]], [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/onboarding-and-tutorial]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0029-weather-and-pitch-design-model]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../20-Features/feature-statistics-analytics-hub-mvp]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]], [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]], [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]], [[../60-Research/manager-archetype-mvp-hooks-and-perk-prestige-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract]], [[../50-Game-Design/GD-0032-awards-honours-records-and-hall-of-fame]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]], [[../50-Game-Design/GD-0034-media-outlet-ecology-model]], [[../60-Research/media-outlet-operational-behaviour-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0086-background-fast-matchday-cost-settlement]], [[../60-Research/background-fast-cost-settlement-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]], [[../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]], [[../60-Research/live-match-intervention-buffer-and-pause-vote-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]], [[../50-Game-Design/GD-0036-transfer-escalation-and-inactivity-pressure]], [[../60-Research/fmx-102-async-escalation-and-deadline-source-of-truth-2026-06-07]]
+related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/pitch-condition]], [[../10-Architecture/state-machines/player-discipline]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/loan-orchestration-process-manager-2026-06-04]], [[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]], [[../10-Architecture/state-machines/loan-orchestration]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/club-financing-tools-2026-06-01]], [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/onboarding-and-tutorial]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0029-weather-and-pitch-design-model]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../20-Features/feature-statistics-analytics-hub-mvp]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]], [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]], [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]], [[../60-Research/manager-archetype-mvp-hooks-and-perk-prestige-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract]], [[../50-Game-Design/GD-0032-awards-honours-records-and-hall-of-fame]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]], [[../50-Game-Design/GD-0034-media-outlet-ecology-model]], [[../60-Research/media-outlet-operational-behaviour-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0086-background-fast-matchday-cost-settlement]], [[../60-Research/background-fast-cost-settlement-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]], [[../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]], [[../60-Research/live-match-intervention-buffer-and-pause-vote-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]], [[../50-Game-Design/GD-0036-transfer-escalation-and-inactivity-pressure]], [[../60-Research/fmx-102-async-escalation-and-deadline-source-of-truth-2026-06-07]]
 ---
 
 # Current State
@@ -32,6 +32,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > the sections below are **proposed / under re-evaluation** (see [[Decision-Log]]),
 > not ratified — no technology, gameplay or architecture decision is made without
 > Nico (2–3 sourced options + recommendation).
+
+> **2026-06-08 — Decision portfolio re-ratified (planning-mode sweep).** The full
+> re-audit + decision-queue sweep is applied on branch `claude/ratify-decision-sweep`
+> (**PR pending Nico's merge** — merge is the ratification act). All 80 reopened ADRs
+> + 36 GDDRs were re-ratified (`status: accepted`; frontmatter is the single source of
+> truth per [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]]);
+> **13 new ADRs (0092–0104)** + **4 new GDDRs (0037–0040)** adopted; **10 supersessions**
+> recorded (ADR-0005→0098, 0006→0094, 0009→0103, 0015→0099, 0025→0104, 0027→0097,
+> 0043→0102, 0049→0096, 0050→0095; 0003 drift-fixed). 13 scope-calls + 2 forks decided
+> live, 118 on the ★-recommended disposition. Sweep record:
+> [[../40-Execution/decision-queue-2026-06-08-ratified|ratification ledger]] +
+> [[../40-Execution/decision-queue-2026-06-08|decision-queue]] +
+> [[../60-Research/adr-re-audit-master-2026-06-08|re-audit master]]. Phase unchanged
+> (research/architecture — no development). On merge, this banner supersedes the
+> "not ratified" framing above.
 
 > **FMX-102 Async escalation FSM + watch-party deadline source-of-truth (2026-06-07).** Closes audit
 > gap **G25** and is the **last open backlog item** (E8 epic FMX-64 / E8-2; with FMX-101 merged
@@ -616,7 +631,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 
 > **FMX-10 match-engine re-evaluation (2026-05-27).** Nico directed that the
 > match engine must be planned as an exchangeable component from day one. Draft
-> [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+> [[../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]
 > is now the proposed target: server-authoritative spatial-event engine,
 > `MatchEnginePort`, 2D/ticker/replay from committed event/spatial facts, and a
 > **Spike, Rust-default** runtime posture. The older TypeScript-MVP runtime
@@ -628,7 +643,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../50-Game-Design/GD-0008-finance-economy]],
 > [[../50-Game-Design/economy-system]],
 > [[../20-Features/feature-club-economy-mvp-pillar]],
-> [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+> [[../10-Architecture/09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]]
 > and [[../30-Implementation/club-economy-accounting-ledger]] now capture the
 > proposed target: Economy as an MVP pillar, weekly ledger, full accounting,
 > staged insolvency, Top-5 country profiles + abstract fallback, ranges/formulas
@@ -736,7 +751,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../50-Game-Design/economy-system]],
 > [[../50-Game-Design/regulations-and-compliance]],
 > [[../20-Features/feature-club-economy-mvp-pillar]],
-> [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
+> [[../10-Architecture/09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]],
 > [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 > and [[../30-Implementation/club-economy-commercial-contracts]] are refined
 > accordingly. Final calibration, Quick budget reliance on EV, replay support
@@ -800,7 +815,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > cash-vs-recognition per IFRS 15 by operating model. Stadium Operations supplies
 > throughput/dwell; Audience & Atmosphere supplies demand/mood. New ledger events
 > are named in
-> [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
+> [[../10-Architecture/09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]] and
 > the boundary is confirmed in
 > [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]].
 > Draft [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
@@ -836,7 +851,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > Refines [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
 > [[../30-Implementation/club-economy-commercial-contracts]],
 > [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
-> and [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]].
+> and [[../10-Architecture/09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]].
 > Payment vendor (MoR vs Stripe-direct), refunded-already-spent-cash policy,
 > age-gate strictness and soft-launch activation timing are HITL/legal gates — all
 > numbers/fees are calibration inputs and nothing ships without legal sign-off.
@@ -865,7 +880,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
 > [[../50-Game-Design/regulations-and-compliance]],
 > [[../20-Features/feature-club-economy-mvp-pillar]],
-> [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
+> [[../10-Architecture/09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]],
 > [[../30-Implementation/club-economy-accounting-ledger]] and
 > [[../30-Implementation/club-economy-commercial-contracts]] are refined
 > accordingly. Thresholds, media-advance activation, board guarantees,
@@ -896,7 +911,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../50-Game-Design/matchday-event-engine]],
 > [[../50-Game-Design/sponsorship-portfolio]],
 > [[../20-Features/feature-club-economy-mvp-pillar]],
-> [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
+> [[../10-Architecture/09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]],
 > [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 > and [[../30-Implementation/club-economy-commercial-contracts]] are refined
 > accordingly. First-playable catalog size, Quick-mode board depth, alcohol
@@ -1107,7 +1122,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]]
 > and [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]]
 > are now `status: accepted` and `binding: true`; draft
-> [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+> [[../10-Architecture/09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]]
 > and [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 > flipped to `accepted` / `binding: true` at the same ratification
 > event with the FMX-32 in-line amendment hunks applied (ADR-0058's
@@ -1535,7 +1550,7 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
 
 - **DB (hybrid):** PostgreSQL + Drizzle is the system of record. **SurrealDB
   deferred** to an optional additive realtime/graph engine behind an interface.
-  **Wave 2 groundwork landed 2026-05-19**: [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]
+  **Wave 2 groundwork landed 2026-05-19**: [[../10-Architecture/09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]
   (supersedes ADR-0004) and [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]]
   (supersedes ADR-0013) lock the Postgres design (schema-per-save, A2 lazy
   migration, Drizzle source of truth + generated standalone Zod mirror, branded
@@ -1547,7 +1562,7 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   All-in TanStack data layer (Query/Table/Virtual/Form).
 - **Game-feel:** Motion + GSAP ([[../10-Architecture/09-Decisions/ADR-0022-animation-game-feel]]).
 - **Realtime:** SSE now → Centrifugo planned ([[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]]).
-- **Notification/Messaging:** [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
+- **Notification/Messaging:** [[../10-Architecture/09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]]
   locks a first-party Notification bounded context. PostgreSQL is durable
   notification truth, SurrealDB is allowed as additive graph/live projection,
   Dexie mirrors the in-app inbox offline, SSE is the MVP wake-up/update
@@ -1568,7 +1583,7 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   ([[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]], supersedes
   the earlier Three.js/R3F choice); PixiJS/PlayCanvas/Three.js are not planned. Live match
   render stays Canvas 2D.
-- **Mobile:** PWA + planned Capacitor shell ([[../10-Architecture/09-Decisions/ADR-0025-mobile-delivery]]).
+- **Mobile:** PWA + planned Capacitor shell ([[../10-Architecture/09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]]).
 - **Presentation 3D layer (post-MVP, Phase 2):** **Babylon.js** (ADR-0047)
   for isometric stadium / campus view + kuratierte Event-Cutscenes (walkout,
   trophy lift, goal celebration) + static highlight backdrops
@@ -1629,7 +1644,7 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   spatial-event simulation with intervention points, Result / Event / Spatial /
   Analytics output layers, explicit match-depth profiles, 2D/ticker/replay
   consumers and Rust-default runtime spike. ([[../50-Game-Design/match-engine]],
-  [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]],
+  [[../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]],
   [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]])
 - **Club economy gameplay profile (draft)**: MVP economy pillar with weekly
   Club Management ledger, full-accounting projections, staged insolvency,
@@ -1643,7 +1658,7 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
   [[../50-Game-Design/economy-system]],
   [[../20-Features/feature-club-economy-mvp-pillar]],
-  [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
+  [[../10-Architecture/09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant]],
   [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]])
 - **Manager & Legacy gameplay profile (draft)**: MVP run-analysis hooks for
   Manager-Archetype Roguelite progression; emergent style signals before fixed
@@ -3068,9 +3083,9 @@ Implementation should start from
   - **Phase 2** (post-MVP): add LambdaTest 1-slot weekly real-device job (~€1.5 k/yr) on Galaxy A54 / Pixel 7a / iPhone SE 3-class hardware.
   - **Phase 3** (optional, only if Phase 2 insufficient): build 5-device hardware rig (~€2.4 k one-off + €800/yr amortised).
   - **ADR-0003 Match Engine** (accepted 2026-05-16, gap A3) -
-  [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]:
+  [[../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]:
   - Historical TypeScript-first target only. FMX-10 reopens this decision and
-    proposes [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+    proposes [[../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]
     as the replacement target.
   - Current proposed rule: consumers depend on a versioned `MatchEnginePort`,
     not on a concrete `packages/match-engine` runtime. The first implementation
@@ -3124,7 +3139,7 @@ Implementation should start from
     app shell, safe cached reads and local drafts; server-confirmed
     authoritative progression; full selective offline later.
 - **ADR-0005 Save Format** (accepted 2026-05-16, gap A5) -
-  [[../10-Architecture/09-Decisions/ADR-0005-save-format]]:
+  [[../10-Architecture/09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]]:
   - **Two export modes**: 'Device backup' (account-secret +
     device-salt KDF; auto-restores when signed into same account)
     and 'Portable export' (user passphrase + per-export 32-byte
@@ -3148,7 +3163,7 @@ Implementation should start from
     grace period before per-save DB drop). Soft 10 / hard 50
     quota per user (per A4).
 - **Data model** (accepted 2026-05-19, supersedes ADR-0004) -
-  [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]] +
+  [[../10-Architecture/09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]] +
   [[../30-Implementation/postgres-drizzle-integration]]:
   - **Storage topology**: PostgreSQL **schema-per-save** — platform data
     in `public`; each save in its own `save_<uuidv7hex>` schema; delete =

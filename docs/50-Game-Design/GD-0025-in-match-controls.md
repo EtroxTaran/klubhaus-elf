@@ -1,9 +1,9 @@
 ---
 title: GD-0025 In-Match Controls & Live-Control Kit
-status: draft
+status: accepted
 tags: [game-design, gddr, ux, mobile, match, controls, halftime, shouts, fmx-100]
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-08
 type: game-design
 binding: false
 related: [[README]], [[GD-0016-mobile-ux-loop]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0004-tactics]], [[GD-0002-match-engine]], [[match-engine]], [[progressive-disclosure-ui]], [[../10-Architecture/09-Decisions/ADR-0072-in-match-control-seam]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]], [[../10-Architecture/state-machines/match]], [[../60-Research/in-match-controls-and-presentation-2026-06-03]]

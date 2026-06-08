@@ -1,9 +1,9 @@
 ---
 title: ADR-0090 Offline Sync — MVP scope and conflict-resolution strategy
-status: proposed
+status: accepted
 tags: [adr, architecture, offline, sync, pwa, crdt, conflict-resolution, determinism, fmx-103]
 created: 2026-06-07
-updated: 2026-06-07
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

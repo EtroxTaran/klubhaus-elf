@@ -1,13 +1,13 @@
 ---
 title: ADR-0018 Systemic Events and Player Lifecycle Architecture
-status: draft
+status: accepted
 tags: [adr, architecture, events, player-development, injuries, narrative, venue]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-06-08
 accepted_at: 2026-05-17
 type: adr
 binding: true
-related: [[../../60-Research/systemic-events-player-development-venue-ops]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0013-transactional-outbox]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/narrative-content-pipeline]], [[../bounded-context-map]]
+related: [[../../60-Research/systemic-events-player-development-venue-ops]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0028-postgres-transactional-outbox]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/narrative-content-pipeline]], [[../bounded-context-map]]
 ---
 
 # ADR-0018: Systemic Events and Player Lifecycle Architecture
@@ -29,9 +29,9 @@ The game needs long-running systems that are related but not identical:
 
 The rejected shape is "one random event system" that owns all of this. That
 would bypass DDD boundaries, hide causality, make tuning hard and conflict
-with deterministic replay. The accepted architecture already has 11 bounded
-contexts, domain events through the transactional outbox and deterministic
-RNG streams.
+with deterministic replay. The accepted architecture already has its bounded
+contexts (canonical catalog in [[../bounded-context-map]]), domain events
+through the transactional outbox and deterministic RNG streams.
 
 ## Decision
 
@@ -57,7 +57,7 @@ delegates the actual rule evaluation to the owning context.
 
 No context may read another context's internal tables to compute these
 decisions. Cross-context facts travel through commands, queries and domain
-events as required by ADR-0010.
+events as required by ADR-0019.
 
 ## 2. World Event Director
 
@@ -175,5 +175,5 @@ Implementation must provide:
 
 ## 9. Supersession
 
-This ADR does not supersede ADR-0010, ADR-0013, D8 or D15. It specializes
+This ADR does not supersede ADR-0019, ADR-0013, D8 or D15. It specializes
 them for player lifecycle and systemic events.

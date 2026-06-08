@@ -533,7 +533,7 @@ network implementation later.
 - **Domain Events** - facts (`WeekCompleted`, `QuorumReached`,
   `TrainingWeekProcessed`, `TransferOfferExpired`, `MatchResolved`).
   Published via the transactional outbox
-  ([[09-Decisions/ADR-0013-transactional-outbox]]).
+  ([[09-Decisions/ADR-0028-postgres-transactional-outbox]]).
 
 No context reads another context's internal tables or document fields.
 No JOIN across context boundaries. No shared lookup tables that bypass

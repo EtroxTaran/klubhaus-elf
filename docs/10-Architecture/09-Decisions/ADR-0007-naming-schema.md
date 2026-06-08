@@ -1,9 +1,9 @@
 ---
 title: ADR-0007 IP-clean Naming Schema + Data Generators
-status: draft
+status: accepted
 tags: [adr, ip, data-generation, names, crests, worldgen, privacy, gdpr, fmx-54]
 created: 2026-05-15
-updated: 2026-06-01
+updated: 2026-06-08
 accepted_at: 2026-05-17
 type: adr
 binding: true

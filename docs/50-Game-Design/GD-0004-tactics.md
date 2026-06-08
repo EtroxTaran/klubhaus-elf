@@ -1,9 +1,9 @@
 ---
 title: GD-0004 Tactics & Formations
-status: draft
+status: accepted
 tags: [game-design, gddr, tactics]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-06-08
 type: game-design
 binding: true
 related: [[README]], [[GD-0002-match-engine]], [[GD-0016-mobile-ux-loop]], [[../60-Research/anstoss-series-deep-dive]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]]

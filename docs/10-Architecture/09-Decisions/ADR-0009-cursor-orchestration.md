@@ -1,13 +1,13 @@
 ---
 title: ADR-0009 Cursor Cloud Agent Orchestration
-status: draft
+status: superseded
 tags: [adr, meta]
 created: 2026-05-15
-updated: 2026-05-17
+updated: 2026-06-08
 type: adr
 binding: true
 supersedes:
-superseded_by:
+superseded_by: ADR-0103-multi-agent-orchestration-conflict-serialization
 related: []
 ---
 

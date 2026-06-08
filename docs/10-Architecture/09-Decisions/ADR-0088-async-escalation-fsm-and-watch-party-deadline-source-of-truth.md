@@ -1,9 +1,9 @@
 ---
 title: ADR-0088 Async Escalation FSM + Watch-Party Deadline Source-of-Truth
-status: proposed
+status: accepted
 tags: [adr, architecture, ddd, transfer, escalation, league-week, watch-party, deadlines, source-of-truth, event-carried-state-transfer, determinism, hysteresis, leaky-bucket, fmx-102]
 created: 2026-06-07
-updated: 2026-06-07
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

@@ -1,9 +1,9 @@
 ---
 title: ADR-0016 Community Datasets via Versioned Override Packs
-status: proposed
+status: accepted
 tags: [adr, architecture, data, modding, community]
 created: 2026-05-16
-updated: 2026-05-19
+updated: 2026-06-08
 type: adr
 binding: false
 related: [[../../60-Research/regulations-and-pyramids-research]], [[../../50-Game-Design/community-editor-and-datasets]], [[ADR-0004-data-model]], [[ADR-0007-naming-schema]], [[ADR-0021-revised-tech-stack]]

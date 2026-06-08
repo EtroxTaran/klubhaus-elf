@@ -1,9 +1,9 @@
 ---
 title: ADR-0083 Awards, Honours, Records & Hall-of-Fame Contract
-status: proposed
+status: accepted
 tags: [adr, architecture, manager, legacy, awards, honours, records, hall-of-fame, prestige, determinism, fmx-95]
 created: 2026-06-06
-updated: 2026-06-06
+updated: 2026-06-08
 type: adr
 binding: false
 supersedes:

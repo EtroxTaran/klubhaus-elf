@@ -1,9 +1,9 @@
 ---
 title: ADR-0029 3D Presentation Layer (Stadium, Cutscenes, Backdrop)
-status: draft
+status: accepted
 tags: [adr, presentation, 3d, three-js, r3f, stadium, cutscene, pwa, mobile]
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-08
 accepted_at: 2026-05-20
 type: adr
 binding: true

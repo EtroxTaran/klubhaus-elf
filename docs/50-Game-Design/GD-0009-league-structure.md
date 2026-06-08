@@ -1,9 +1,9 @@
 ---
 title: GD-0009 League & Competition Structure
-status: draft
+status: accepted
 tags: [game-design, gddr, league]
 created: 2026-05-17
-updated: 2026-06-02
+updated: 2026-06-08
 type: game-design
 binding: true
 related: [[README]], [[GD-0015-ip-clean-data]], [[GD-0010-ai-world]], [[../60-Research/ip-and-licensing]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate]], [[../60-Research/competition-registry-sub-aggregate-2026-06-02]]
