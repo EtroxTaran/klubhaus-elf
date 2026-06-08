@@ -160,7 +160,7 @@ Positive:
 
 Negative / constraints:
 
-- **28 contexts is a large surface** for a pre-MVP small team (see [[GD]] below); the cluster grouping +
+- **28 contexts is a large surface** for a pre-MVP small team (see [[GD-0038-bounded-context-portfolio-trim-merge-review-gate|GD-0038]] below); the cluster grouping +
   catalog are the agreed mitigation, but the wave makes the large count *binding*.
 - The **`contract_version` bump on already-ratified events** (`WatchPartyScheduled`, `MatchdayOpened`)
   must not be silently skipped — it is a discipline cost the apply-PR must honour explicitly.

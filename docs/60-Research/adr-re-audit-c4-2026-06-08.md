@@ -3,6 +3,7 @@ title: ADR re-audit — Cluster C4 (Architecture Style / Modularity / Eventing /
 status: draft
 tags: [research, adr-audit, architecture, modular-monolith, ddd, state-machine, async, realtime, multiplayer, eventing, bounded-context, c4]
 created: 2026-06-08
+updated: 2026-06-08
 type: research
 binding: false
 related:
@@ -149,7 +150,7 @@ never treat SSE/Centrifugo delivery as durable (always reconcile against Notific
   blocking at MVP (Centrifugo is deferred), but flag it on the upgrade ticket.
 - One latent edge the ADR notes but understates: the HTTP/1.1 ~6-SSE-connection cap is "fine over HTTP/2
   behind the reverse proxy" — true, but the offline-first PWA must guarantee HTTP/2 at the Dokploy reverse
-  proxy ([[../10-Architecture/09-Decisions/ADR-0044-dokploy-deploy]] territory). Worth a one-line crosscutting
+  proxy ([[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]] territory). Worth a one-line crosscutting
   invariant rather than a buried negative-consequence.
 
 Recommendation: keep as-is; add the Centrifugo version pin + HTTP/2-at-proxy invariant when the

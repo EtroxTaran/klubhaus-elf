@@ -4,6 +4,8 @@ type: execution
 status: draft
 binding: false
 created: 2026-06-08
+tags: [execution, adr, gddr, ratification, ledger]
+updated: 2026-06-08
 related:
   - "[[decision-queue-2026-06-08]]"
   - "[[adr-re-audit-master-2026-06-08]]"

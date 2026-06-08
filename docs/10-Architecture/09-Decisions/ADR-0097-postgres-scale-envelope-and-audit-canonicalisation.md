@@ -14,7 +14,7 @@ related:
   - [[ADR-0004-data-model]]
   - [[ADR-0091-audit-security-context-definition]]
   - [[ADR-0019-modular-monolith-ddd]]
-  - [[ADR-0044-deployment-dokploy]]
+  - [[ADR-0044-cicd-and-merge-policy]]
   - [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
   - [[../../60-Research/surrealdb-schema-patterns]]
   - [[../../60-Research/audit-security-context-definition-2026-06-07]]
@@ -61,7 +61,7 @@ deploy-wide DDL and global maintenance still touch every live schema), **`pg_dum
 (dumps must enumerate every schema/relation), **`pg_class`/`pg_attribute` catalog bloat** (each save
 adds a full table/index set, growing the catalog roughly linearly), and **planner overhead** on
 catalog-heavy operations. There is no hard documented cutover — these are order-of-magnitude practitioner
-bands — but a single [[ADR-0044-deployment-dokploy]] node cannot sit at hundreds of thousands of live
+bands — but a single [[ADR-0044-cicd-and-merge-policy]] node cannot sit at hundreds of thousands of live
 schemas without a deliberate strategy.
 
 **PostgreSQL 18.4** is the current stable major as of authoring (Perplexity 2026-06-08; 18 GA, 18.4 the
@@ -128,7 +128,7 @@ Propose, awaiting Nico: **D1 = A, D2 = A.**
 **Schema-per-active-save** is the live topology (unchanged from ADR-0027 §1). Add:
 
 1. **A documented schema ceiling per node** — a soft-warn / hard-stop count of live schemas on a single
-   [[ADR-0044-deployment-dokploy]] Postgres node, sitting inside the practitioner comfort/pain bands
+   [[ADR-0044-cicd-and-merge-policy]] Postgres node, sitting inside the practitioner comfort/pain bands
    (the concrete number is an open question below; it is a per-node operational SLO, alerted like the
    outbox lag SLOs of ADR-0028 §6, **not** a hard DB limit).
 2. **Cold/archive fallback** — when a save flips to `state=archived` (ADR-0027 §9), its per-save schema
@@ -234,7 +234,7 @@ branded UUID refs, quotas) are **preserved unchanged**. **Amends** [[ADR-0028-po
 - [[ADR-0004-data-model]] — original `audit_log` table named here is dropped.
 - [[ADR-0091-audit-security-context-definition]] — the canonical *security* audit log (context-owned).
 - [[ADR-0019-modular-monolith-ddd]] — §6 strict-isolation contract this ADR preserves.
-- [[ADR-0044-deployment-dokploy]] — single-node deployment target the per-node ceiling is scoped to.
+- [[ADR-0044-cicd-and-merge-policy]] — single-node deployment target the per-node ceiling is scoped to.
 - [[../../60-Research/surrealdb-schema-patterns]] — the alternative data substrate (live Postgres-vs-SurrealDB
   axis); this ADR stays within the ratified Postgres choice.
 - [[../../60-Research/audit-security-context-definition-2026-06-07]] — grounding for the security-trail half.

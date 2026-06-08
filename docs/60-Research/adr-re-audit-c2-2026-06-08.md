@@ -69,7 +69,7 @@ validation-package invariant. These are defensible. But three issues:
    governance forbids.
 2. **Schema-per-save scaling is asserted, not bounded.** §1 picks schema-per-save
    over row-level/db-per-save on isolation grounds and parks the cost in
-   [[../11-Risks]], but never states the *tenant-count envelope*. External
+   [[../10-Architecture/11-Risks]], but never states the *tenant-count envelope*. External
    research (Perplexity Sonar, 2026-06-08) confirms there is no hard Postgres
    schema-count limit, but at low-thousands of schemas the real costs are
    **migration fan-out, `pg_dump` enumeration time, `pg_class`/`pg_attribute`

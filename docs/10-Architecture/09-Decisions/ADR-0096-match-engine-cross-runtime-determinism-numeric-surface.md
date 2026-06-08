@@ -6,7 +6,7 @@ created: 2026-06-08
 updated: 2026-06-08
 type: adr
 binding: false
-supersedes: ADR-0049, ADR-0003
+supersedes: ADR-0049-swappable-spatial-event-match-engine
 superseded_by:
 related:
   - [[ADR-0049-swappable-spatial-event-match-engine]]
@@ -17,7 +17,7 @@ related:
   - [[ADR-0011-server-authoritative-multiplayer]]
   - [[ADR-0027-postgres-data-model]]
   - [[ADR-0030-llm-out-of-authoritative-state]]
-  - [[ADR-0044-dokploy-deployment]]
+  - [[ADR-0044-cicd-and-merge-policy]]
   - [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
   - [[../../60-Research/determinism-and-replay]]
   - [[../../60-Research/match-engine-runtime-strategy]]
@@ -119,7 +119,7 @@ Nico to choose.
 - **B.** **Single-runtime — author the engine once in Rust→WASM and run the SAME WASM module
   server-side (wasmtime) and client-side.** Strongest bit-identical / offline-verify story (remedy (B));
   removes the native↔WASM divergence class structurally even for any residual float use. Cost:
-  server-side WASM hosting on the Dokploy host ([[ADR-0044-dokploy-deployment]]) and lower native peak
+  server-side WASM hosting on the Dokploy host ([[ADR-0044-cicd-and-merge-policy]]) and lower native peak
   throughput vs a native Rust worker.
 - **C.** **Keep TypeScript authoritative for MVP, Rust as a profiled future swap behind the port.**
   Lowest ship risk; one runtime, one libm, no cross-runtime divergence at MVP; defers the whole

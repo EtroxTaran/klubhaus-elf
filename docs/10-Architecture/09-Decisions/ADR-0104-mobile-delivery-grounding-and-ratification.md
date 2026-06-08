@@ -6,7 +6,7 @@ created: 2026-06-08
 updated: 2026-06-08
 type: adr
 binding: false
-supersedes:
+supersedes: ADR-0025-mobile-delivery
   - [[ADR-0025-mobile-delivery]]
 superseded_by:
 related:
@@ -15,7 +15,7 @@ related:
   - [[ADR-0002-offline-first]]
   - [[ADR-0021-revised-tech-stack]]
   - [[ADR-0023-realtime-transport]]
-  - [[ADR-0090-cloud-sync-scope]]
+  - [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
   - [[../11-Risks]]
   - [[../../50-Game-Design/GD-0016-mobile-ux-loop]]
   - [[../../60-Research/pwa-offline-patterns]]
@@ -137,7 +137,7 @@ thin, additive, reversible Capacitor shell; native APNs/FCM), but:
    **downgraded** from binding fact to "observed, unverified".
 
 This ADR does **not** change which transport carries push, nor the realtime transport
-([[ADR-0023-realtime-transport]]), nor the cloud-sync scope ([[ADR-0090-cloud-sync-scope]]).
+([[ADR-0023-realtime-transport]]), nor the cloud-sync scope ([[ADR-0090-offline-sync-scope-and-conflict-strategy]]).
 
 ## Rationale
 
@@ -210,7 +210,7 @@ or gate is Nico's call. This is a low-priority, post-MVP correction.
 - [[ADR-0008-mobile-first-ui]] — invariant **U9** ("route shell runs identically in PWA + Capacitor,
   no web-code fork") already depends on this delivery model.
 - [[ADR-0002-offline-first]] — offline-first PWA baseline this delivery model serves.
-- [[ADR-0021-revised-tech-stack]] · [[ADR-0023-realtime-transport]] · [[ADR-0090-cloud-sync-scope]]
+- [[ADR-0021-revised-tech-stack]] · [[ADR-0023-realtime-transport]] · [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
   — adjacent constraints, unchanged by this ADR.
 - [[../11-Risks]] — native build-pipeline / App-Store-review risk (from ADR-0025).
 - [[../../50-Game-Design/GD-0016-mobile-ux-loop]] — mobile experience this delivery channel realises.

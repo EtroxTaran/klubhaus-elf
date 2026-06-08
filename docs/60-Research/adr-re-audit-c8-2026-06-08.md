@@ -17,7 +17,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]]
   - [[../10-Architecture/09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]]
   - [[../10-Architecture/09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]]
-  - [[../10-Architecture/09-Decisions/ADR-0002-pwa-offline-first]]
+  - [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]]
   - [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]

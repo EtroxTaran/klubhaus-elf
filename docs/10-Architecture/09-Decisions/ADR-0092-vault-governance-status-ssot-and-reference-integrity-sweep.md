@@ -6,7 +6,7 @@ created: 2026-06-08
 updated: 2026-06-08
 type: adr
 binding: false
-supersedes: —
+supersedes:
 superseded_by:
 related:
   - [[ADR-0089-bounded-context-portfolio-reconciliation]]

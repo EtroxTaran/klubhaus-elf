@@ -6,7 +6,7 @@ created: 2026-06-08
 updated: 2026-06-08
 type: adr
 binding: false
-supersedes: [[ADR-0009-cursor-orchestration]]
+supersedes: ADR-0009-cursor-orchestration
 superseded_by:
 related:
   - [[ADR-0009-cursor-orchestration]]

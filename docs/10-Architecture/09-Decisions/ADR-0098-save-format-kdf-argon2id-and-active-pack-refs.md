@@ -6,7 +6,7 @@ created: 2026-06-08
 updated: 2026-06-08
 type: adr
 binding: false
-supersedes:
+supersedes: ADR-0005-save-format
   - [[ADR-0005-save-format]]
 superseded_by:
 related:

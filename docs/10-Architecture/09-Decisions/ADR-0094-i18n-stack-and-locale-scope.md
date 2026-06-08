@@ -6,7 +6,7 @@ created: 2026-06-08
 updated: 2026-06-08
 type: adr
 binding: false
-supersedes:
+supersedes: ADR-0006-i18n
   - [[ADR-0006-i18n]]
 superseded_by:
 related:

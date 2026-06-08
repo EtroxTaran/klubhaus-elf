@@ -6,7 +6,7 @@ created: 2026-06-08
 updated: 2026-06-08
 type: adr
 binding: false
-supersedes: ADR-0043
+supersedes: ADR-0043-notification-and-messaging-platform
 superseded_by:
 related:
   - [[ADR-0043-notification-and-messaging-platform]]

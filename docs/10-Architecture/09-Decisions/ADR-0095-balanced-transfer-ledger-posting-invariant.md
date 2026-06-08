@@ -6,7 +6,7 @@ created: 2026-06-08
 updated: 2026-06-08
 type: adr
 binding: false
-supersedes:
+supersedes: ADR-0050-club-economy-accounting-ledger
   - [[ADR-0050-club-economy-accounting-ledger]]
 superseded_by:
 related:
