@@ -3,7 +3,7 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-06-05
+updated: 2026-06-08
 type: architecture
 binding: true
 related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]]
@@ -171,7 +171,7 @@ Transfer, Squad & Player and Match.
 
 Rivalry System was ratified 2026-05-28 via
 [[09-Decisions/ADR-0057-rivalry-system-context]] (FMX-34 dossier +
-FMX-40 apply) and is the sixteenth context. It owns the rivalry-edge
+FMX-40 apply) and is its own bounded context. It owns the rivalry-edge
 graph (club pair × sub-score history × threshold-tier FSM), the 5-
 sub-score emergent formula (regional + historical + sporting + fan-
 incident + transfer-tension, per
@@ -202,7 +202,7 @@ Rivalry BC owns schema + semantic validation per Vernon.
 
 Regulations & Compliance was ratified 2026-05-28 via
 [[09-Decisions/ADR-0056-regulations-compliance-context]] (FMX-30
-dossier + FMX-39 apply) and is the fifteenth context. It owns the
+dossier + FMX-39 apply) and is its own bounded context. It owns the
 versioned multi-regulator rule catalog (UEFA-analogue + national
 league analogue + national association analogue per regulator scope ×
 competition profile × effective date), the transfer-window FSM, the
@@ -225,7 +225,7 @@ Regulations BC owns schema + semantic validation per Vernon.
 
 Tactics was ratified 2026-05-28 via
 [[09-Decisions/ADR-0055-tactics-context]] (FMX-28 dossier + FMX-37
-apply) and is the fourteenth context. It owns the persistent tactics
+apply) and is its own bounded context. It owns the persistent tactics
 library: tactic presets (saved → active → archived FSM), set-piece
 routine variants (drafted → published → retired FSM), opposition
 templates (three-layer model: archetype + sub-archetype +
