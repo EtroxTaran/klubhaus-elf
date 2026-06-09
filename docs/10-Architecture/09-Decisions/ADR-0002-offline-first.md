@@ -8,7 +8,7 @@ accepted_at: 2026-05-16
 type: adr
 binding: true
 superseded_by: ADR-0020-hybrid-online-mvp-offline-ready
-related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[../../60-Research/pwa-offline-patterns]], [[../../60-Research/determinism-and-replay]]
+related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0028-postgres-transactional-outbox]], [[../../60-Research/pwa-offline-patterns]], [[../../60-Research/determinism-and-replay]]
 ---
 
 # ADR-0002: Offline-first Strategy
@@ -31,7 +31,7 @@ Accepted historically on 2026-05-16, gap A2 of
 - **Multiplayer** is server-authoritative (ADR-0011). The client may
   draft actions offline (transfer offers, line-up changes, weekly
   closes), but the effect lands only after server-side confirmation
-  via the transactional outbox (ADR-0013).
+  via the transactional outbox (ADR-0028).
 
 Wave-1 ADR-0002 was a 12-line stub. Wave-1 research
 [[../../60-Research/pwa-offline-patterns]] established the foundation
@@ -44,7 +44,7 @@ locked the surrounding context:
   (soft 10 / hard 50 per user); Dexie-only on the browser at MVP.
 - **A5 (ADR-0005)** — encrypted save envelope; gzip compression;
   three independent version fields.
-- **B4 (ADR-0013)** — transactional outbox + UUIDv7 + idempotent
+- **B4 (ADR-0028)** — transactional outbox + UUIDv7 + idempotent
   consumers.
 - **D8 (determinism-and-replay)** — engine modules vendored per
   version into the PWA bundle so offline replay is deterministic.
@@ -241,7 +241,7 @@ Plus the iOS-specific `<link rel="apple-touch-icon" href="/icons/icon-180.png" s
 ### 8. Outbox UX — visible Sync / Activity view
 
 Per the locked outbox behaviour of ADR-0011 (hard-reject on conflict)
-and ADR-0013 (UUIDv7 + idempotent consumers):
+and ADR-0028 (UUIDv7 + idempotent consumers):
 
 #### 8.1 What's visible
 
@@ -348,7 +348,7 @@ and the service-worker code itself:
   `getAppActivityState().hasInProgress === true`.
 - Outbox replay MUST be triggered by all three primary mechanisms:
   startup, `online`, `visibilitychange → visible`.
-- Outbox commands MUST be idempotent per ADR-0013 (UUIDv7 request
+- Outbox commands MUST be idempotent per ADR-0028 (UUIDv7 request
   IDs).
 - `BackgroundSyncPlugin` MUST NOT be relied on as the sole mechanism;
   it is an accelerator only.
@@ -387,7 +387,7 @@ CI enforcement:
 - TanStack Start PWA discussions (GitHub).
 - [[ADR-0011-server-authoritative-multiplayer]] §Offline conflict
   policy (B2) — hard-reject + recreate flow.
-- [[ADR-0013-transactional-outbox]] (B4) — UUIDv7, idempotency.
+- [[ADR-0028-postgres-transactional-outbox]] (B4) — UUIDv7, idempotency.
 - [[ADR-0004-data-model]] §6 (A4) — save quotas, archive flow.
 - [[ADR-0005-save-format]] (A5) — encryption + envelope.
 - [[../../60-Research/determinism-and-replay]] (D8) — engine modules

@@ -7,7 +7,7 @@ updated: 2026-06-09
 accepted_at: 2026-05-17
 type: adr
 binding: true
-related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[ADR-0013-transactional-outbox]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0043-notification-and-messaging-platform]], [[../08-Crosscutting]], [[../../30-Implementation/observability-runbook]], [[../../30-Implementation/client-telemetry]]
+related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0043-notification-and-messaging-platform]], [[../08-Crosscutting]], [[../../30-Implementation/observability-runbook]], [[../../30-Implementation/client-telemetry]]
 ---
 
 # ADR-0017: Self-hosted Observability and Logging
@@ -170,7 +170,7 @@ Initial retention policy:
 | Prometheus metrics | 15 months |
 | Tempo traces | 7 days |
 | Client offline telemetry queue | max 24 hours |
-| Domain audit events | ADR-0013: hot 60 days, archive forever |
+| Domain audit events | ADR-0028: hot 60 days, archive forever |
 
 Incident legal hold can freeze a narrow time window, but legal hold must
 be documented in the incident record and reviewed after closure.
@@ -184,7 +184,7 @@ The initial alert set is symptom-first:
 - service worker registration failure spike;
 - IndexedDB quota or transaction error spike;
 - server 5xx rate and p95/p99 latency;
-- outbox lag and publish failures per ADR-0013;
+- outbox lag and publish failures per ADR-0028;
 - Redis consumer group lag;
 - telemetry ingest failure, disk pressure and alert-delivery failure.
 
@@ -211,7 +211,7 @@ later for RUM if H7 requires it.
 
 Rejected for the default. It is attractive as a lower-component
 all-in-one platform, but Grafana/Loki/Prometheus/Tempo/Alloy is more
-standard, easier to hire for and aligns with ADR-0013's Prometheus /
+standard, easier to hire for and aligns with ADR-0028's Prometheus /
 Grafana outbox metrics.
 
 ### PostHog / Umami / Plausible in v1
@@ -234,7 +234,7 @@ triage.
 - Client crashes, service worker failures and IndexedDB issues become
   visible instead of hidden in user devices.
 - OpenTelemetry keeps instrumentation backend-neutral.
-- ADR-0013 outbox metrics fit naturally into Prometheus/Grafana.
+- ADR-0028 outbox metrics fit naturally into Prometheus/Grafana.
 - Domain audit remains separate from noisy operational logs.
 - Privacy rules are explicit before SDKs are introduced.
 
@@ -276,5 +276,5 @@ triage.
 ## Links
 
 - Related research: [[../../60-Research/telemetry-privacy]]
-- Related architecture: [[../08-Crosscutting]], [[ADR-0002-offline-first]], [[ADR-0013-transactional-outbox]]
+- Related architecture: [[../08-Crosscutting]], [[ADR-0002-offline-first]], [[ADR-0028-postgres-transactional-outbox]]
 - Related implementation: [[../../30-Implementation/observability-runbook]], [[../../30-Implementation/client-telemetry]], [[../../30-Implementation/deployment-dokploy]]
