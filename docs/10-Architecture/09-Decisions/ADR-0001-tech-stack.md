@@ -3,7 +3,7 @@ title: ADR-0001 Tech Stack
 status: superseded
 tags: [adr, architecture]
 created: 2026-05-15
-updated: 2026-05-19
+updated: 2026-06-09
 accepted_at: 2026-05-15
 type: adr
 binding: true
@@ -26,7 +26,7 @@ Accepted historically on 2026-05-15.
 
 ## Context
 
-`soccer-manager` is an offline-ready football management PWA built largely by
+**Klubhaus Elf** is an offline-ready football management PWA built largely by
 AI coding agents. The stack must support SSR + file-based routing, a
 hybrid-online MVP, future selective offline-first singleplayer, a deterministic
 simulation core, strict typing, and an agent-friendly CI gate.

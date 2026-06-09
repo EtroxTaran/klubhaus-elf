@@ -3,7 +3,7 @@ title: Mobile route map, IA & client-state pattern (FMX-98)
 status: current
 tags: [research, ui-ux, mobile, ia, navigation, client-state, optimistic-ui, worker, determinism, fmx-98]
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-09
 type: research
 binding: false
 linear: FMX-98
@@ -79,7 +79,7 @@ Decision-ready and **ratified live by Nico (2026-06-03)**:
 - **ADR-0025** (accepted): responsive PWA is the single source of truth; thin Capacitor
   shell reuses the same `webDir`, additive + reversible → route shell must run identically
   in web + Capacitor (no web-code fork).
-- **ADR-0010** (accepted): Aurelia Premier design system; Tailwind v4 tokens, `data-scheme`
+- **ADR-0010** (accepted): Klubhaus Design-System; Tailwind v4 tokens, `data-scheme`
   light/dark, club-adaptive accent; realises the mobile-first + WCAG intent.
 - **ADR-0020** (accepted): hybrid-online MVP. Offline scope = app shell + cached read
   models (freshness-labelled) + **local drafts** (Dexie); authoritative mutations require

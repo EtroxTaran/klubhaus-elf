@@ -3,7 +3,7 @@ title: GD-0016 Mobile UX Gameplay Loop
 status: accepted
 tags: [game-design, gddr, ux, mobile]
 created: 2026-05-17
-updated: 2026-06-08
+updated: 2026-06-09
 type: game-design
 binding: true
 related: [[README]], [[GD-0001-core-loop]], [[GD-0013-narrative-inbox]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0010-design-system]], [[../10-Architecture/09-Design-System]]
@@ -21,7 +21,7 @@ approved
 > Wave 2 research closes.
 >
 > Note: the visual design language is independently `accepted` via ADR-0010
-> (Aurelia Premier). The interaction-model ADR (ADR-0008) is now `accepted`
+> (Klubhaus DS). The interaction-model ADR (ADR-0008) is now `accepted`
 > (ratified 2026-06-03, FMX-98) — it realises this GDDR and resolves R2-07 + R2-17
 > (route map + IA + client-state). R2-16 (match controls + rendering) is **resolved
 > 2026-06-03** by draft [[GD-0025-in-match-controls]] (gameplay) + proposed
@@ -56,7 +56,7 @@ tram stop and 30 minutes on a couch — the same UI.
 - **Guardrails at the edges, freedom at the centre** — warn loudly on illegal
   XI, never silently allow <11 starters (club-boss-analysis takeaway 10).
 - **Sort/filter every list from day one** (club-boss-analysis takeaway 8).
-- Delivered design language = **ADR-0010 "Aurelia Premier" / Direction A
+- Delivered design language = **ADR-0010 "Klubhaus DS" / Direction A
   "Sonntagszeitung"** (accepted): Tailwind v4 tokens, `data-scheme` light/dark
   (SSR-deterministic), club-adaptive accent; chrome in `locales/{de,en}.ts`,
   sample data in `screens/fixtures.ts` (ADR-0010; [[../10-Architecture/09-Design-System]]).

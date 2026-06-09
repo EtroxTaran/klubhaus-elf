@@ -3,13 +3,13 @@ title: web module
 status: current
 tags: [architecture, module]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-06-09
 type: module
 binding: true
 related: [[../05-Building-Blocks]], [[../09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
 ---
 
-# apps/web (`@soccer-manager/web`)
+# apps/web (`@klubhaus-elf/web`)
 
 ## Purpose
 
@@ -26,10 +26,10 @@ and the UI composition layer for the player.
 
 ## Inputs
 
-- `@soccer-manager/ui` components.
-- `@soccer-manager/game-data` generated data.
-- `@soccer-manager/db-schema` types/validation.
-- `@soccer-manager/match-engine` simulation API.
+- `@klubhaus-elf/ui` components.
+- `@klubhaus-elf/game-data` generated data.
+- `@klubhaus-elf/db-schema` types/validation.
+- `@klubhaus-elf/match-engine` simulation API.
 
 ## Outputs
 

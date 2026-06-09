@@ -3,13 +3,13 @@ title: ui module
 status: current
 tags: [architecture, module]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-06-09
 type: module
 binding: true
 related: [[../05-Building-Blocks]]
 ---
 
-# packages/ui (`@soccer-manager/ui`)
+# packages/ui (`@klubhaus-elf/ui`)
 
 ## Purpose
 

@@ -3,7 +3,7 @@ title: Risks
 status: current
 tags: [architecture, risk]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-09
 type: arch
 related: [[10-Quality]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[09-Decisions/ADR-0007-naming-schema]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0023-realtime-transport]], [[09-Decisions/ADR-0024-match-renderer-abstraction]], [[09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[09-Decisions/ADR-0010-design-system]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]]]
 ---
@@ -28,7 +28,7 @@ to upgrade out of, not consciously accepted trade-offs from a decision.
 
 | Item | Status | Risk if unaddressed | Plan |
 |---|---|---|---|
-| **Storybook 8 vs Vite 7 peer mismatch** (`apps/web`: `@storybook/* ^8.6.14`, `vite ^7.1.5`) | Tracked, non-urgent, non-blocking (unmet-peer warning only; build/test green) | Drifts each Vite minor; SB8 builder may break on a future Vite 7.x; blocks SB9-only addon APIs | `pnpm dlx storybook@latest upgrade` (runs SB9 codemods, e.g. `@storybook/test`→`storybook/test`, `addon-viewport` becomes core). SB9 officially supports Vite 7. Verify `pnpm --filter @soccer-manager/web build-storybook` + showcase visual pass across Scheme × Club × Viewport ([[09-Decisions/ADR-0010-design-system]] §13). Re-pin exact versions after upgrade (ADR-0021 no-`latest` rule); Renovate groups `@storybook/*`. |
+| **Storybook 8 vs Vite 7 peer mismatch** (`apps/web`: `@storybook/* ^8.6.14`, `vite ^7.1.5`) | Tracked, non-urgent, non-blocking (unmet-peer warning only; build/test green) | Drifts each Vite minor; SB8 builder may break on a future Vite 7.x; blocks SB9-only addon APIs | `pnpm dlx storybook@latest upgrade` (runs SB9 codemods, e.g. `@storybook/test`→`storybook/test`, `addon-viewport` becomes core). SB9 officially supports Vite 7. Verify `pnpm --filter @klubhaus-elf/web build-storybook` + showcase visual pass across Scheme × Club × Viewport ([[09-Decisions/ADR-0010-design-system]] §13). Re-pin exact versions after upgrade (ADR-0021 no-`latest` rule); Renovate groups `@storybook/*`. |
 
 ## Re-audit risk register (ADR re-audit, 2026-06-08)
 

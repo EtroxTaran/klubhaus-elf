@@ -3,7 +3,7 @@ title: Wave 3 Gap Analysis and Execution Backlog
 status: superseded
 tags: [research, planning, gap-analysis, wave-3, backlog]
 created: 2026-05-16
-updated: 2026-05-22
+updated: 2026-06-09
 type: research-backlog
 binding: false
 supersedes: research-wave-2-gaps
@@ -669,7 +669,7 @@ its IDs are mirrored here verbatim. Wave 3 adds explicit per-gap research
 - **Priority**: P0.
 - **Scope**: Schemafull `DEFINE TABLE` patterns, record-link vs embedded, RELATE graph, query patterns via `src/db/client.ts`, per-save isolation, migrations, embedded SurrealDB WASM, **outbox + consumer_event_offset tables** and the **monthly archive partition policy** (locked from B4).
 - **Q&A outcome (2026-05-16)** — all locked in [[surrealdb-schema-patterns]]:
-  - **Per-save isolation**: hybrid - shared `platform` DB (identity, save registry, outbox, audit, IP-clean catalog) + one DB per save in the same `soccer_manager` namespace.
+  - **Per-save isolation**: hybrid - shared `platform` DB (identity, save registry, outbox, audit, IP-clean catalog) + one DB per save in the same `klubhaus_elf` namespace.
   - **Schema strategy**: hybrid - SCHEMAFULL for stable core entities (player, club, league, match, transfer_offer, sponsor, training_plan, staff, user, mp_group); SCHEMALESS for event/log/payload tables (match_event, outbox_event, audit_log, narrative_event_log, notification).
   - **Relationship modelling**: per-relationship choice. club→players = record link; match→match_events = linked rows; transfer_offer→counter-offers = linked rows + parent_offer; transfer = document table; watch_party→participants = RELATE edge with metadata; club→stadium / player→traits / training_plan→drills = embedded.
   - **Migrations + type-gen**: TS-first schema mirror in `packages/db-schema`; custom generator emits `.surql` + Zod + TS types; explicit `pnpm db:migrate` release step (not boot-time); forward-only with phased rename pattern.

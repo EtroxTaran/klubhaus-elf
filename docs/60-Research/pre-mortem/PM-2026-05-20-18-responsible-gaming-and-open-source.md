@@ -3,7 +3,7 @@ title: "Pre-Mortem 2026-05-20 · 18 · Responsible-Gaming & Open-Source-Strategy
 status: current
 tags: [research, pre-mortem, responsible-gaming, dark-patterns, oss, license, agpl, 2026-Q2]
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-09
 type: research
 binding: false
 report_id: PM-2026-05-20-18
@@ -22,6 +22,13 @@ related:
 ---
 
 # Pre-Mortem 2026-05-20 · 18 · Responsible-Gaming, Dark-Patterns & Open-Source-Strategy
+
+> **Rebrand-Hinweis (2026-06-09):** Repo-/Working-Title-Referenzen wie
+> `EtroxTaran/football-manager-x` und `football-manager-x-client` /
+> `football-manager-x-backend` sind als historische Planungsgrundlage erhalten.
+> Das Produkt heißt seit dem 2026-06-09-Rebrand **Klubhaus Elf** (Slug
+> `klubhaus-elf`); ein zukünftiger Split-Repo würde entsprechend
+> `klubhaus-elf-client` / `klubhaus-elf-backend` heißen.
 
 > **Failure-Headlines**
 > - ”žIndie unter MIT — 8 Mo später dominieren 3 Hosted-Forks von Bootleg-Anbietern den DACH-Markt; Original 0 zahlende Kunden."

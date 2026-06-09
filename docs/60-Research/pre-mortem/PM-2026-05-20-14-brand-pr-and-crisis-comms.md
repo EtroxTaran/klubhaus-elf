@@ -3,7 +3,7 @@ title: "Pre-Mortem 2026-05-20 · 14 · Brand, PR & Crisis Communications + Re-Br
 status: current
 tags: [research, pre-mortem, brand, pr, crisis-comms, rebrand, trademark, 2026-Q2]
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-09
 type: research
 binding: false
 report_id: PM-2026-05-20-14
@@ -22,6 +22,12 @@ related:
 ---
 
 # Pre-Mortem 2026-05-20 · 14 · Brand, PR, Crisis Comms + Re-Branding Proposals
+
+> **Rebrand-Hinweis (2026-06-09):** Der historische Arbeitstitel
+> `football-manager-x` und die hier vorgeschlagenen Re-Branding-Kandidaten
+> sind als Entscheidungsgrundlage erhalten. Der Rebrand wurde durchgeführt:
+> das Produkt heißt jetzt **Klubhaus Elf** (Slug `klubhaus-elf`, Domain
+> `klubhaus-elf.de`). Diese Datei dokumentiert *warum* der Rebrand nötig war.
 
 > **Failure-Headlines**
 > - ”žSports Interactive (SEGA)-Abmahnung — Rebrand 3 Wochen vor Soft-Launch — alle Wishlists, Discord, Pressekontakte verloren."

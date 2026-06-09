@@ -3,7 +3,7 @@ title: "ADR Re-Audit — Cluster C1: Foundation / Platform / UI / i18n (2026-06-
 status: draft
 tags: [research, adr-audit, foundation, platform, pwa, offline, ui, design-system, animation, i18n, cluster-c1]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-09
 type: research
 binding: false
 related:
@@ -101,7 +101,7 @@ in `locales/{de,en}.ts` — this inherits ADR-0006's stale i18next/2-locale assu
 **Recommendation:** keep; the only follow-on is that the i18n contract it points at (ADR-0006) is
 itself stale — fix there, not here.
 
-### ADR-0010 Aurelia Premier Design System — **weak (thin frontmatter + scope drift risk)** · confidence medium
+### ADR-0010 Klubhaus Design-System — **weak (thin frontmatter + scope drift risk)** · confidence medium
 The tokenized approach (CSS-var indirection over Tailwind v4 `@theme`, `data-scheme` not
 `prefers-color-scheme`, club-adaptive accent, shadcn deferred, fixtures-vs-i18n boundary) is
 sound and matches Nico's standing "tokenized/reusable/responsive" rule. **Issues:** (1) frontmatter

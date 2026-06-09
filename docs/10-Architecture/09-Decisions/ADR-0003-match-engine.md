@@ -3,7 +3,7 @@ title: ADR-0003 Match Engine Architecture
 status: superseded
 tags: [adr, match-engine, simulation, web-worker, deterministic]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-09
 accepted_at: 2026-05-16
 type: adr
 binding: false
@@ -23,7 +23,7 @@ related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-au
 > The engine emits a typed **event log** only — never frame snapshots, never
 > normalised coordinates. The engine→renderer seam (coordinate normalisation,
 > event-kind mapping, entity-id scheme, frame builder) lives in
-> `@soccer-manager/match-contract`. **Compliance:** the engine MUST NOT import
+> `@klubhaus-elf/match-contract`. **Compliance:** the engine MUST NOT import
 > a renderer, MUST NOT normalise coordinates, and MUST NOT interpolate
 > positions — those are downstream of the contract.
 

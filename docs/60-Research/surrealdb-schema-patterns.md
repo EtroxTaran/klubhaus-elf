@@ -3,7 +3,7 @@ title: SurrealDB Schema Patterns - Historical Context
 status: superseded
 tags: [research, surrealdb, schema, data-model, persistence, wave-3, historical]
 created: 2026-05-16
-updated: 2026-05-19
+updated: 2026-06-09
 superseded_by: ADR-0027-postgres-data-model
 type: research
 binding: false
@@ -31,7 +31,7 @@ A **shared platform DB** plus **one database per save**, all inside a
 single namespace.
 
 ```text
-namespace: soccer_manager
+namespace: klubhaus_elf
   database: platform        # identity, save registry, outbox, audit,
                             # global IP-clean catalog (fictional players,
                             # competitions, regions, naming pools)
@@ -529,7 +529,7 @@ audit_log                # sensitive admin actions
 
 | Topic | Decision |
 |---|---|
-| Per-save isolation | Hybrid: shared `platform` DB + DB per save in one namespace `soccer_manager` |
+| Per-save isolation | Hybrid: shared `platform` DB + DB per save in one namespace `klubhaus_elf` |
 | Schema strategy | SCHEMAFULL core + SCHEMALESS event/log/payload tables |
 | club → players | Record link on `player.club` |
 | match → match_events | Linked rows |

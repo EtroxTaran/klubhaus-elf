@@ -1,15 +1,20 @@
 ---
-title: ADR-0010 Aurelia Premier Design System
+title: ADR-0010 Klubhaus Design System
 status: accepted
 tags: [adr, design, ui]
-updated: 2026-06-08
+updated: 2026-06-09
 ---
 
-# ADR-0010: Aurelia Premier Design System
+# ADR-0010: Klubhaus Design System
+
+> **Renamed by the 2026-06-09 rebrand to Klubhaus Elf.** This design system was
+> originally titled "Aurelia Premier" (after the in-world league); the design-system
+> name is now decoupled to **Klubhaus DS**. "Aurelia Premier" remains the in-world
+> league only.
 
 ## Context
 
-The UI is delivered as a Claude Design handoff ("Aurelia Premier", Direction A
+The UI is delivered as a Claude Design handoff ("Klubhaus DS", Direction A
 "Sonntagszeitung" — warm cream paper, dark ink, single scarlet accent,
 Newsreader/Inter/JetBrains Mono). The export is an external, regenerated
 artifact (see [[../../30-Implementation/design-sync-workflow]]). Phase 1

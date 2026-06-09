@@ -3,7 +3,7 @@ title: Threat Model
 status: current
 tags: [research, security, threat-model, stride, owasp-asvs, anti-cheat, pwa]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-06-09
 type: research
 binding: true
 related:
@@ -197,7 +197,7 @@ ASVS v5 anchors: **V6 Authentication**, **V7 Session Management**,
 | # | Threat | Bound control | Residual |
 |---|---|---|---|
 | T1 | Local save tampering in IndexedDB to cheat singleplayer or craft illegal MP commands | Server-authoritative validation (ADR-0011); AES-GCM AEAD detects modification but **does not prevent user from re-encrypting after modification with their own key** — therefore **client-side save integrity is not relied on for MP truth** | Singleplayer cheating is accepted (user-owned device). MP cheating blocked by server re-validation, not by save integrity. |
-| T2 | Service Worker cache poisoning / poisoned offline bundle | Immutable content-hashed assets + SRI for any non-bundled imports + signed container image (cosign keyless) + Workbox cache-name versioning per build | Local browser cache compromise still possible by a different installed PWA on same origin (irrelevant for soccer-manager since single origin) |
+| T2 | Service Worker cache poisoning / poisoned offline bundle | Immutable content-hashed assets + SRI for any non-bundled imports + signed container image (cosign keyless) + Workbox cache-name versioning per build | Local browser cache compromise still possible by a different installed PWA on same origin (irrelevant for Klubhaus Elf since single origin) |
 | T3 | Command replay / reorder / alter from offline outbox | Server-issued `turn_token` per (season, phase, user); idempotency key = `HMAC(server_secret, user_id ‖ season_id ‖ league_id ‖ endpoint ‖ client_cmd_id)`; per-(user, context) Redis TTL replay cache; commands include `season_id` + `phase_id` — old commands → `409 stale_phase` | A command valid in the current phase that is reordered within the phase can still hit. Mitigated by per-resource state machines (transfer FSM enforces order). |
 | T4 | Portable export tampering: user imports modified or malicious save | AEAD tag verification on import (ADR-0005 §2); strict schema validation before any state read; reject if envelope/save/engine version unknown; sandboxed dry-run replay against stored seed before commit (per ADR-0011 §Hotseat handoff §3) | Maliciously-crafted but schema-valid save that exploits a logic bug in import path → mitigated by fuzz testing on import handler (open task) |
 | T5 | Telemetry / log tampering — attacker injects misleading logs | Server-side tagging (client-supplied fields are advisory); structured logs append-only via outbox (ADR-0013); log integrity = retention + access control + (optional) hash-chain on cold archive partitions (open Q&A for F10) | Pre-sync local manipulation possible; server cross-checks vs outbox event sequence |

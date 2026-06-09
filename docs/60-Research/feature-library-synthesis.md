@@ -3,7 +3,7 @@ title: Feature Library Synthesis Across Football Manager Products
 status: in-review
 tags: [research, competitors, features, synthesis, wave-2]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-06-09
 type: research
 binding: false
 related: [[competitor-matrix]], [[anstoss-series-deep-dive]], [[club-boss-analysis]], [[raw-perplexity/raw-feature-library]], [[../00-Index/Research-Map]]
@@ -61,7 +61,7 @@ the casual end of progressive disclosure.
 Source for the async-multiplayer model, transfer market dynamics between
 real managers and the friend-league framing.
 
-The soccer-manager target is **the empty intersection of A + B + casual D**
+The Klubhaus Elf target is **the empty intersection of A + B + casual D**
 with our own IP-clean fictional universe.
 
 ## 3. Distilled feature inventory (consolidation table)

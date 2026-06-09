@@ -3,7 +3,7 @@ title: Game Mode Patterns - Roguelite, Career, Singleplayer, Async Group
 status: in-review
 tags: [research, modes, roguelite, multiplayer, synthesis, wave-2]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-06-09
 type: research
 binding: false
 related: [[raw-perplexity/raw-game-modes]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[../50-Game-Design/mode-manage-a-club-career]], [[../50-Game-Design/singleplayer-baseline]], [[../50-Game-Design/async-multiplayer-private-group]]
@@ -13,7 +13,7 @@ related: [[raw-perplexity/raw-game-modes]], [[../50-Game-Design/mode-create-a-cl
 
 Distilled from four parallel Perplexity iterations
 ([[raw-perplexity/raw-game-modes]]) into the recommended product structure
-for soccer-manager.
+for Klubhaus Elf.
 
 ## 1. Product rule
 

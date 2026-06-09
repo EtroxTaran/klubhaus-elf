@@ -1,14 +1,14 @@
 ---
-title: Design Styleguide — Aurelia Premier
+title: Design Styleguide — Klubhaus DS
 status: current
 tags: [architecture, design, ui, styleguide]
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-06-09
 type: reference
 related: [[09-Design-System]], [[09-Decisions/ADR-0010-design-system]], [[09-Decisions/ADR-0048-design-update-and-migration-path]], [[09-Decisions/ADR-0047-babylon-3d-presentation-engine]]
 ---
 
-# Design Styleguide — Aurelia Premier
+# Design Styleguide — Klubhaus DS
 
 > **The live, interactive styleguide is a separate deployment** (`STYLEGUIDE_DOMAIN`,
 > see `tools/styleguide/` + `docker-compose.docs.yml`): the claude.ai/design export
@@ -24,7 +24,7 @@ related: [[09-Design-System]], [[09-Decisions/ADR-0010-design-system]], [[09-Dec
 > durable **token reference** (one current truth); the deployed site is the explorable
 > design system. The Quartz wiki is intentionally untouched (default styling).
 
-Rendered, at-a-glance styleguide for the **Aurelia Premier** design system
+Rendered, at-a-glance styleguide for the **Klubhaus** design system
 ("Sonntagszeitung", Direction A). The **source of truth** is
 [[09-Design-System]] §2–4 (synced from claude.ai/design via
 [[../30-Implementation/design-sync-workflow]], decision [[09-Decisions/ADR-0010-design-system]]);

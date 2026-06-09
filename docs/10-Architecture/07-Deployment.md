@@ -3,7 +3,7 @@ title: Deployment
 status: current
 tags: [architecture, deployment, dokploy, observability]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-09
 type: architecture
 binding: false
 related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]], [[09-Decisions/ADR-0044-cicd-and-merge-policy]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]], [[09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]], [[../30-Implementation/deployment-dokploy]], [[../30-Implementation/observability-runbook]]
@@ -24,8 +24,8 @@ ADR-0097 per-node schema ceiling is scoped to.
 
 ## Environments
 
-- `develop` -> `dev.soccer-manager.etrox.de`
-- `main` -> `soccer-manager.etrox.de`
+- `develop` -> `dev.klubhaus-elf.de`
+- `main` -> `klubhaus-elf.de`
 - A staging environment may be added before closed beta if production
   observability alerts become too noisy to test safely in dev.
 

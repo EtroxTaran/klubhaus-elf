@@ -5,7 +5,7 @@ status: draft
 binding: false
 created: 2026-06-08
 tags: [execution, adr, gddr, decision-queue, ratification]
-updated: 2026-06-08
+updated: 2026-06-09
 related:
   - "[[adr-re-audit-master-2026-06-08]]"
   - "[[Decision-Log]]"
@@ -190,7 +190,7 @@ cards.)
 | # | ID | Title | Disposition | Open Q? | Depends on | Sweep |
 |---|---|---|---|:--:|---|---|
 | 1 | ADR-0007 | IP-clean Naming Schema + Data Generators | ratify-as-is | N | ADR-0092 | ☐ ratify ☐ amend ☐ defer ☐ reject |
-| 2 | ADR-0010 | Aurelia Premier Design System | ratify-w/-amend | Y | — | ☐ ratify ☐ amend ☐ defer ☐ reject |
+| 2 | ADR-0010 | Klubhaus Design-System | ratify-w/-amend | Y | — | ☐ ratify ☐ amend ☐ defer ☐ reject |
 | 3 | ADR-0011 | Server-Authoritative Multiplayer | ratify-w/-amend | Y | ADR-0092 | ☐ ratify ☐ amend ☐ defer ☐ reject |
 | 4 | ADR-0014 | Explicit State Machines | supersede-by-new (0093) | Y | ADR-0092, ADR-0093 | ☐ ratify ☐ amend ☐ defer ☐ reject |
 | 5 | ADR-0012 | Async Multiplayer Cadence Models | supersede-by-new (0093) | Y | ADR-0092, ADR-0093, ADR-0088 | ☐ ratify ☐ amend ☐ defer ☐ reject |
@@ -526,7 +526,7 @@ cards.)
 
 ## Batch 4
 
-### ADR-0010 — Aurelia Premier Design System
+### ADR-0010 — Klubhaus Design-System
 - **One-line:** Tokenized design-system approach is sound (matches Nico's standing rule); thinnest pre-convention frontmatter + possibly-drifted shadcn/screen snapshot + unpinned Tailwind v4 minor.
 - **Current status:** draft (weak — pre-convention frontmatter). **Disposition:** ratify-with-amendment.
 - **Open D-question — pre-convention frontmatter + drifted snapshot + unpinned Tailwind:**

@@ -3,7 +3,7 @@ title: PWA Offline Patterns
 status: review
 tags: [research, pwa, save, offline-first, indexeddb, service-worker, sync]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-06-09
 type: research
 linear:
 related:
@@ -94,7 +94,7 @@ Hard constraints from project docs:
 
 ### 2.1 Storage layout
 
-One Dexie database per origin, named `soccer-manager`.
+One Dexie database per origin, named `klubhaus-elf`.
 
 | Table         | Primary key                  | Purpose                                                                    |
 |---------------|------------------------------|----------------------------------------------------------------------------|
@@ -290,7 +290,7 @@ User-initiated save export creates a single JSON file:
 
 ```jsonc
 {
-  "_format": "soccer-manager.save",
+  "_format": "klubhaus-elf.save",
   "_formatVersion": 3,
   "_appVersion": "0.5.2",
   "_exportedAt": "2026-05-15T22:35:00.000Z",
@@ -348,7 +348,7 @@ with:
 - `navigateFallback: '/offline.html'`
 
 `apps/web/public/sw-register.js` registers `/service-worker.js` 15 s
-after `load` (or earlier on a custom `soccer-manager:register-sw`
+after `load` (or earlier on a custom `klubhaus-elf:register-sw`
 event). It silently swallows registration errors so the bootstrap
 shell stays usable.
 
@@ -695,7 +695,7 @@ These do not block MVP but should be resolved before cloud sync ships:
 ### Decision (proposed)
 
 - Persist all gameplay state in **IndexedDB via Dexie 4** in a single
-  origin database `soccer-manager`. Never use `localStorage`.
+  origin database `klubhaus-elf`. Never use `localStorage`.
 - Always opt into persistent storage via
   `navigator.storage.persist()` after the first save commit, and
   expose `navigator.storage.estimate()` in the save management UI.

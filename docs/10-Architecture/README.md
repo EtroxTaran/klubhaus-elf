@@ -3,7 +3,7 @@ title: Architecture (Map of Content)
 status: current
 tags: [architecture, moc]
 created: 2026-05-17
-updated: 2026-06-05
+updated: 2026-06-09
 type: index
 binding: true
 related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[05-Building-Blocks]], [[../00-Index/Documentation-V1]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
@@ -26,7 +26,7 @@ baseline for architecture-gap classification.
 - [[06-Runtime]] — runtime view
 - [[07-Deployment]] — deployment view
 - [[08-Crosscutting]] — crosscutting concerns
-- [[09-Design-System]] — Aurelia Premier design system
+- [[09-Design-System]] — Klubhaus design system
 - [[10-Quality]] — quality goals & gates
 - [[11-Risks]] — risks
 

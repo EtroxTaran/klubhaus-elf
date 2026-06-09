@@ -3,7 +3,7 @@ title: "Gap Closure Concept 2026-05-22"
 status: current
 tags: [research, pre-mortem, gap-closure, concept, 2026-Q2]
 created: 2026-05-22
-updated: 2026-05-22
+updated: 2026-06-09
 type: concept
 binding: false
 report_set: 2026-05-20
@@ -352,8 +352,9 @@ no real-club/logo corpus test.
 **Closes concept gap for:** 14-F-01, 14-F-02, 14-F-03, 14-F-04, 14-F-05,
 14-F-06, 14-F-07, 14-F-08, 14-F-09.
 
-**Decision.** `football-manager-x` is a working title only. Before public
-visibility, pick an IP-clean brand candidate and get legal search. Brand voice:
+**Decision.** `football-manager-x` is a working title only (resolved by the
+2026-06-09 rebrand to Klubhaus Elf). Before public visibility, pick an IP-clean
+brand candidate and get legal search. Brand voice:
 founder-led, transparent, German-first, no fake studio scale.
 
 **Best practice.** FTO memo before marketing, crisis templates, mention
