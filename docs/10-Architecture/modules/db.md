@@ -3,13 +3,13 @@ title: db module
 status: current
 tags: [architecture, module, postgresql, drizzle]
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-06-09
 type: module
 binding: true
 related: [[../05-Building-Blocks]], [[db-schema]], [[../09-Decisions/ADR-0021-revised-tech-stack]], [[../09-Decisions/ADR-0027-postgres-data-model]], [[../09-Decisions/ADR-0028-postgres-transactional-outbox]]
 ---
 
-# packages/db (`@soccer-manager/db`)
+# packages/db (`@klubhaus-elf/db`)
 
 ## Purpose
 

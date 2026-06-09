@@ -1,11 +1,11 @@
 ---
-title: Design System — Aurelia Premier
+title: Design System — Klubhaus DS
 status: current
 tags: [architecture, design, ui, accessibility]
-updated: 2026-05-27
+updated: 2026-06-09
 ---
 
-# Design System — Aurelia Premier
+# Design System — Klubhaus DS
 
 Code-authoritative reference for the UI. The decision record is
 [[09-Decisions/ADR-0010-design-system]]; the external source is synced via
@@ -14,7 +14,7 @@ lives under `design/handoff/<date>/` (the `project/*` sources are the
 historical artifact — **the code and this doc win** on any conflict).
 
 > **Synced 2026-05-27 from the claude.ai/design export `XP8K00C56OrBxyU0uxch7Q`**
-> (`design/handoff/2026-05-27/`). The token system below (Aurelia Premier, Direction A)
+> (`design/handoff/2026-05-27/`). The token system below (Klubhaus DS, Direction A)
 > is confirmed by the export's `tailwind.config.ts`. New in this export: **Babylon.js
 > stadium 3D** (`stadium-babylon/*` — see
 > [[09-Decisions/ADR-0047-babylon-3d-presentation-engine]]), adaptive responsive screens
@@ -239,7 +239,7 @@ the vault (`DOCS_BASIC_AUTH`). Ops detail: `tools/docs-preview/README.md`.
 - **Future vision**: the deferred screens in §10 enter the showcase the same
   way — a colocated story when each lands; `autodocs` renders each
   component's prop API automatically, so the showcase grows by construction.
-- **Local**: `pnpm --filter @soccer-manager/web storybook`. Decorators
+- **Local**: `pnpm --filter @klubhaus-elf/web storybook`. Decorators
   (i18n + theme + a memory router so screen `Link`s are inert) live in
   `apps/web/.storybook/`.
 

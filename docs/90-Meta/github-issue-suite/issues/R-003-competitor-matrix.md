@@ -38,7 +38,7 @@ Write findings to `docs/60-Research/competitor-matrix.md` with front matter.
 
 - [ ] Matrix with platforms, business model, offline support, depth, mobile fit, strengths, weaknesses.
 - [ ] Feature coverage table for league, transfers, training, youth, stadium, finance, match sim, save/cloud.
-- [ ] Differentiation opportunities for soccer-manager.
+- [ ] Differentiation opportunities for Klubhaus Elf.
 - [ ] Risks where competitors set user expectations that MVP might miss.
 - [ ] Source list with retrieval date.
 

@@ -3,7 +3,7 @@ title: Mode - Create a Club Roguelite
 status: draft
 tags: [game-design, mode, roguelite, create-a-club]
 created: 2026-05-16
-updated: 2026-05-18
+updated: 2026-06-09
 type: game-design
 binding: true
 related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0019-manager-archetype-roguelite-progression]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/onboarding-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[mode-manage-a-club-career]], [[onboarding-and-tutorial]], [[economy-system]], [[club-dna-and-governance]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
@@ -11,7 +11,7 @@ related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0019-manage
 
 # Mode - Create a Club Roguelite
 
-The signature mode of soccer-manager. Permadeath on insolvency, but each
+The signature mode of Klubhaus Elf. Permadeath on insolvency, but each
 run leaves *legacy* that makes the next run *different* (not easier).
 This note is **approved** at the level of the product rule. Sub-mechanic
 tuning remains `draft` and lives in linked notes.

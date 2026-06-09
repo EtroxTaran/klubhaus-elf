@@ -3,7 +3,7 @@ title: PostgreSQL + Drizzle Integration
 status: current
 tags: [database, implementation, postgresql, drizzle]
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-06-09
 type: implementation
 binding: true
 adr:
@@ -77,10 +77,10 @@ psql "$DATABASE_URL"
 ## Query gateway
 
 Domain code never sees the pool. All access goes through `QueryGateway`
-exported from `@soccer-manager/db`:
+exported from `@klubhaus-elf/db`:
 
 ```ts
-import { gateway } from '@soccer-manager/db'
+import { gateway } from '@klubhaus-elf/db'
 
 // Platform context
 await gateway.withPlatform(async (tx) => {

@@ -3,7 +3,7 @@ title: ADR-0002 Offline-first Strategy
 status: superseded
 tags: [adr, pwa, offline-first, service-worker, workbox, indexeddb, dexie, sync]
 created: 2026-05-15
-updated: 2026-05-18
+updated: 2026-06-09
 accepted_at: 2026-05-16
 type: adr
 binding: true
@@ -23,7 +23,7 @@ Accepted historically on 2026-05-16, gap A2 of
 
 ## Context
 
-`soccer-manager` is a Progressive Web App with two operating modes:
+**Klubhaus Elf** is a Progressive Web App with two operating modes:
 
 - **Singleplayer** must be **fully playable offline**: launch the app
   from the home screen with no network, continue a career, simulate
@@ -220,8 +220,8 @@ Manifest configuration (in `apps/web/public/manifest.webmanifest`):
 
 ```json
 {
-  "name": "soccer-manager",
-  "short_name": "SoccerMgr",
+  "name": "Klubhaus Elf",
+  "short_name": "Klubhaus Elf",
   "display": "standalone",
   "orientation": "any",
   "theme_color": "#0a0e1a",

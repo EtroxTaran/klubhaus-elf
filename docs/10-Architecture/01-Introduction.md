@@ -3,14 +3,14 @@ title: Introduction
 status: current
 tags: [architecture]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-09
 type: arch
 related: [[02-Constraints]], [[03-Context]], [[04-Solution-Strategy]], [[../00-Index/Vision]]
 ---
 
 # Introduction
 
-`soccer-manager` is an offline-first football management PWA (Anstoss-style) built
+**Klubhaus Elf** is an offline-first football management PWA (Anstoss-style) built
 around a Create-a-Club roguelite vision, a deterministic match simulation, and
 fully IP-clean generated game data. The system is decomposed into a **ratified
 28-bounded-context portfolio grouped into six subdomain clusters**

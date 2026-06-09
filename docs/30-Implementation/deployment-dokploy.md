@@ -3,7 +3,7 @@ title: Dokploy Deployment
 status: current
 tags: [deployment, implementation, dokploy, observability]
 created: 2026-05-15
-updated: 2026-05-22
+updated: 2026-06-09
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
@@ -32,8 +32,8 @@ and the self-hosted observability stack selected by ADR-0017.
 
 ## Target Apps
 
-- `soccer-manager-dev`: branch `develop`, domain `dev.soccer-manager.etrox.de`
-- `soccer-manager-prod`: branch `main`, domain `soccer-manager.etrox.de`
+- `klubhaus-elf-dev`: branch `develop`, domain `dev.klubhaus-elf.de`
+- `klubhaus-elf-prod`: branch `main`, domain `klubhaus-elf.de`
 
 ## Required Nico-provided access
 

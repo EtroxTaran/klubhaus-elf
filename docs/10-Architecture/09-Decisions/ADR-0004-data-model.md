@@ -3,7 +3,7 @@ title: ADR-0004 Data Model — Domain Entities, Schemas, Saves
 status: superseded
 tags: [adr, architecture, data, surrealdb, dexie, schema, saves]
 created: 2026-05-15
-updated: 2026-05-19
+updated: 2026-06-09
 accepted_at: 2026-05-16
 type: adr
 binding: true
@@ -27,7 +27,7 @@ authoritative in MVP; Dexie stores cache/drafts/staging).
 
 ## Context
 
-`soccer-manager` is an offline-first PWA with eleven DDD bounded
+**Klubhaus Elf** is an offline-first PWA with eleven DDD bounded
 contexts (ADR-0019), server-authoritative multiplayer (ADR-0011),
 deterministic match simulation (D8 research), a transactional outbox
 (ADR-0013), encrypted saves (B2), and IP-clean fictional content
@@ -64,10 +64,10 @@ authoritative MVP storage. Browser-side Dexie mirrors read caches, drafts and
 future export/sync staging data; it does not own canonical domain progression
 until a later selective-offline singleplayer adapter is explicitly added.
 
-One namespace `soccer_manager` with two kinds of databases:
+One namespace `klubhaus_elf` with two kinds of databases:
 
 ```text
-namespace: soccer_manager
+namespace: klubhaus_elf
   database: platform        # shared across all saves
   database: save_<saveId>   # one per save (UUIDv7 saveId)
   database: save_<saveId>   # ...

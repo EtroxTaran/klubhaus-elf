@@ -3,14 +3,14 @@ title: Vault Home
 status: current
 tags: [meta]
 created: 2026-05-15
-updated: 2026-05-27
+updated: 2026-06-09
 type: index
 binding: true
 ---
 
-# soccer-manager — Project Wiki
+# Klubhaus Elf — Project Wiki
 
-The documentation single source of truth for the `soccer-manager` project, and
+The documentation single source of truth for the **Klubhaus Elf** (`klubhaus-elf`) project, and
 the front door to every area. Agents start at [[Agent-Onboarding]]; humans can
 read top-to-bottom or use the left **Explorer** to browse the full tree.
 

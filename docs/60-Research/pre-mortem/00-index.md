@@ -3,7 +3,7 @@ title: "Pre-Mortem 2026-05-20 · Cluster Index"
 status: current
 tags: [research, pre-mortem, index, 2026-Q2]
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-09
 type: index
 binding: false
 report_set: 2026-05-20
@@ -42,6 +42,12 @@ related:
 ---
 
 # Pre-Mortem 2026-05-20 · Cluster Index
+
+> **Rebrand-Hinweis (2026-06-09):** Der historische Arbeitstitel
+> `football-manager-x` ist in diesem Cluster bewusst erhalten — er dokumentiert
+> u.a. die Marken-Kollision (08-F-05 / 14-F-01), *warum* ein Rebrand nötig war.
+> Der Rebrand ist erfolgt: das Produkt heißt jetzt **Klubhaus Elf** (Slug
+> `klubhaus-elf`, Domain `klubhaus-elf.de`).
 
 > **Frage, die diese Übung beantwortet:** Was sind die wahrscheinlichsten Gründe, dass football-manager-x in sechs Monaten bei 10.000 Spielern gescheitert ist — und was tun wir *jetzt*, damit das nicht passiert?
 

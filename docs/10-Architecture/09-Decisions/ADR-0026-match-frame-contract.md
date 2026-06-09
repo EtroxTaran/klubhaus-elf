@@ -63,7 +63,7 @@ Ten rules. They resolve every known fork decisively.
 A new composite package **`packages/match-contract`** holds the only types and
 pure utilities shared across the engine ↔ renderer seam. It depends on nothing
 but TypeScript (mirrors `packages/db-schema`'s posture). It is consumed via the
-existing path mapping `@soccer-manager/match-contract` (→
+existing path mapping `@klubhaus-elf/match-contract` (→
 `packages/match-contract/src`). It is referenced from the root `tsconfig.json`
 project list and imported by the selected engine adapter and `apps/web`.
 

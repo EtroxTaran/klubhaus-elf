@@ -3,7 +3,7 @@ title: Account Recovery
 status: current
 tags: [implementation, account-recovery, master-key-envelope, key-rotation, web-crypto, recovery-codes]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-06-09
 type: implementation
 binding: true
 adr:
@@ -333,7 +333,7 @@ When wrapping, the AAD passed to AES-GCM is the **canonical
 serialisation** of the plain-header fields:
 
 ```text
-AAD = utf8("soccer-manager-envelope-v1")
+AAD = utf8("klubhaus-elf-envelope-v1")
    || u8(envelopeVersion)
    || u8(wrapModeCode)              // 0x01=user, 0x02=recovery_code, 0x03=device,
                                     // 0x04=portable_export, 0x05=shared_save, 0x06=device_bound
@@ -531,7 +531,7 @@ interface KeystoreRow {
 class AccountKeystoreDb extends Dexie {
   rows!: Table<KeystoreRow, string>
   constructor() {
-    super('soccer-manager-keystore')
+    super('klubhaus-elf-keystore')
     this.version(1).stores({ rows: 'user_id' })
   }
 }
@@ -1148,7 +1148,7 @@ Default: **only on recovery-code use**.
 ### Q6. AAD layout (`envelopeVersion`, `wrapMode`, `wrapTargetId`, `kdf`, `aead`, `salt`, `keyId`)
 
 Confirm: §3.3 AAD includes the magic prefix
-`"soccer-manager-envelope-v1"` + the discriminator codes +
+`"klubhaus-elf-envelope-v1"` + the discriminator codes +
 algorithm parameters + `wrapTargetId` + `keyId`. This makes
 envelope transplants and rollback attacks detect at unwrap
 time.

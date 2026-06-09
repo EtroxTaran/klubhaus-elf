@@ -3,7 +3,7 @@ title: "Pre-Mortem 2026-05-20 · 08 · Legal, Consumer-Law & Tax"
 status: current
 tags: [research, pre-mortem, legal, consumer-law, tax, trademark, dsa, agb, 2026-Q2]
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-09
 type: research
 binding: false
 report_id: PM-2026-05-20-08
@@ -26,6 +26,12 @@ related:
 ---
 
 # Pre-Mortem 2026-05-20 · 08 · Legal, Consumer-Law & Tax (beyond DSGVO)
+
+> **Rebrand-Hinweis (2026-06-09):** Der historische Arbeitstitel
+> `football-manager-x` wird in diesem Dokument bewusst beibehalten, weil er
+> dokumentiert, *warum* die Marken-Kollision (F-05) ein Risiko war. Die
+> Kollision ist durch den Rebrand zu **Klubhaus Elf** (Slug `klubhaus-elf`,
+> Domain `klubhaus-elf.de`) aufgelöst.
 
 > **Failure-Headline-Kandidaten**
 > - ”žSEGA/Sports-Interactive-Abmahnung wegen 'football-manager-x' — Streitwert 75 k €, Anwaltskosten + Unterlassungserklärung."

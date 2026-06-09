@@ -2,13 +2,13 @@
 title: Competitor Matrix
 status: draft
 tags: [research, competitor, product]
-updated: 2026-05-16
+updated: 2026-06-09
 ---
 
 # Competitor Matrix
 
 Comparative analysis of the football management products most likely to anchor
-user expectations for soccer-manager. Focus is on actionable product scope and
+user expectations for Klubhaus Elf. Focus is on actionable product scope and
 differentiation, not implementation detail. Club Boss is referenced here at a
 profile level only and treated in depth in [[club-boss-analysis]].
 
@@ -65,12 +65,12 @@ playable, **Light** = present but shallow/abstracted, **Out** = not in product,
 | **SOKKA** | Solid (closed competitive ladder) | Deep (live market between managers) | Solid (stamina + special qualities) | Solid (youth pipeline) | Light | Solid (market-based economy) | Light (text + simple visualisation) | Server-side; one match per day |
 | **Soccer Manager 2026** | Deep (90+ leagues, 54 countries, 900+ clubs) | Solid | Solid (skill tree) | Solid | Solid (facility upgrade) | Solid | Solid (Match Motion Engine, 3D on mobile) | Account-bound cloud save |
 
-## Differentiation opportunities for soccer-manager
+## Differentiation opportunities for Klubhaus Elf
 
 The matrix surfaces a clear gap between *deep desktop simulations that are
 hostile to mobile and offline play* (Football Manager, Anstoss, We Are
 Football, FIFA Manager) and *mobile-first products that are shallow or
-online-only* (Top Eleven, OSM, Soccer Manager, partly Club Boss). soccer-manager
+online-only* (Top Eleven, OSM, Soccer Manager, partly Club Boss). Klubhaus Elf
 can target the empty quadrant: **deep, offline-first, mobile-friendly,
 non-predatory**.
 

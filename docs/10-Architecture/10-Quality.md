@@ -3,7 +3,7 @@ title: Quality
 status: current
 tags: [architecture, quality, determinism, offline-first, performance, security, accessibility, i18n]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-09
 type: arch
 binding: false
 related: [[08-Crosscutting]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0008-mobile-first-ui]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0005-save-format]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[../60-Research/performance-budgets]], [[../60-Research/determinism-and-replay]], [[../30-Implementation/ci-and-review-process]]
@@ -11,7 +11,7 @@ related: [[08-Crosscutting]], [[09-Decisions/ADR-0096-match-engine-cross-runtime
 
 # Quality
 
-This chapter records the **ratified quality goals** for `soccer-manager` and the
+This chapter records the **ratified quality goals** for **Klubhaus Elf** and the
 **concrete quality scenarios** (arc42 stimulus → response → measure) that make each goal
 testable. It reflects ratified decisions only; the measurable budgets it cites live in
 [[../60-Research/performance-budgets]] (binding) and the enforcement model in

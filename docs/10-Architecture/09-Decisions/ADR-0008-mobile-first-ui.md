@@ -3,7 +3,7 @@ title: ADR-0008 Mobile-first UI — route map, IA & client-state
 status: accepted
 tags: [adr, ui, ux, mobile, ia, navigation, client-state, optimistic-ui, worker, determinism, fmx-98]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-09
 type: adr
 binding: true
 supersedes:
@@ -56,7 +56,7 @@ responsive UI; one-handed portrait, <1 s tap budget; a single "this week" home o
 next-match card + 3–4 action cards; tap-only chairman loop with one primary action per
 screen; hub + drill-down nav (Squad/Transfers/Youth/Staff/Stadium/Finances);
 tabular→cards; halftime = 30-s modal; press/board = feed cards; sort/filter every list;
-design language = ADR-0010 "Aurelia Premier". It deferred three Wave-2 items that block
+design language = ADR-0010 "Klubhaus DS". It deferred three Wave-2 items that block
 this interaction-model ADR: **R2-07** (route map + bottom-nav vs drawer vs hub-tile,
 WCAG 2.2 AA, 44px, `prefers-reduced-motion`) and **R2-17** (client-state pattern: modal
 drafts, optimistic transfer UI, Worker bridge; "no Redux/Zustand"). This ADR ratifies

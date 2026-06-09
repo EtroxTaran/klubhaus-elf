@@ -3,7 +3,7 @@ title: ADR-0021 Revised Tech Stack
 status: accepted
 tags: [adr, architecture, database, state, validation]
 created: 2026-05-19
-updated: 2026-06-08
+updated: 2026-06-09
 accepted_at: 2026-05-19
 type: adr
 binding: true
@@ -64,7 +64,7 @@ password-hash correction is recorded in the F2 [[../../30-Implementation/auth-fl
 ## Decision
 
 **Retained from ADR-0001, unchanged:** TanStack Start (now GA), React,
-TanStack Router, Tailwind, the Aurelia Premier design system + Storybook,
+TanStack Router, Tailwind, the Klubhaus design system + Storybook,
 Dexie/IndexedDB (client cache/drafts), Biome, Vitest, Playwright, fast-check,
 Stryker, pnpm, Docker. Deployment stays Dokploy with a mandatory mitigations +
 Kamal-2 escape-hatch note (see [[../11-Risks]] and

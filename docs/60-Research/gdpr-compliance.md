@@ -3,7 +3,7 @@ title: GDPR Compliance — RoPA, lawful basis, retention, DPIA, DPO
 status: current
 tags: [research, gdpr, eprivacy, privacy, ropa, dpia, compliance]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-06-09
 type: research
 binding: true
 related:
@@ -665,7 +665,7 @@ GitHub in our runtime architecture**:
 
 **Conclusion**: GitHub is not a processor of user personal data
 for our service. We do not need an Art. 28 DPA with Microsoft /
-GitHub for the soccer-manager product. The relationship is
+GitHub for the Klubhaus Elf product. The relationship is
 covered by Microsoft / GitHub's own published GDPR posture
 for code-hosting customers.
 

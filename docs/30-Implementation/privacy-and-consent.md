@@ -3,7 +3,7 @@ title: Privacy and Consent — implementation surface
 status: current
 tags: [implementation, gdpr, eprivacy, privacy, consent, dsar, deletion, age-gate, breach-runbook, community, naming, fmx-54]
 created: 2026-05-18
-updated: 2026-06-01
+updated: 2026-06-09
 type: implementation
 binding: true
 adr:
@@ -511,7 +511,7 @@ The export ZIP contains JSON files (machine-readable per
 Art. 20) + a human-readable `README.html` summary. Layout:
 
 ```
-soccer-manager-data-export-<user_id>-<YYYY-MM-DD>.zip
+klubhaus-elf-data-export-<user_id>-<YYYY-MM-DD>.zip
 ├── README.html                # human-readable summary; opens locally
 ├── README.md                  # same content, markdown
 ├── metadata.json              # export request timestamp, scope, signed by server
@@ -764,7 +764,7 @@ following template:
 > If you have questions, please reply to this email or contact
 > our Privacy Lead at privacy-lead@<domain>.
 >
-> — The soccer-manager team
+> — The Klubhaus Elf team
 
 **DE subject**: "Wichtiger Sicherheitshinweis zu deinem Konto"
 
@@ -890,14 +890,12 @@ Default: **`privacy-lead@<canonical-domain>`**.
 ### Q2. Canonical domain
 
 The F1-F5 + F6 docs reference `<canonical-domain>` throughout
-as a placeholder. Confirm whether the production canonical is
-`soccer-manager.app`, `soccer-manager.de`, `soccer-manager.eu`,
-or a different name to be settled in product naming. Decision
+as a placeholder. The 2026-06-09 rebrand settled the production
+canonical domain as **`klubhaus-elf.de`**. Decision
 unblocks: Privacy Notice publication, Imprint address, Brevo
 sender-domain DKIM/SPF, Hetzner DNS config.
 
-Default: **placeholder** — flagged for resolution before
-public launch.
+Default: **`klubhaus-elf.de`** (set by the 2026-06-09 rebrand).
 
 ### Q3. Imprint address (Impressum)
 

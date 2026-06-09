@@ -3,7 +3,7 @@ title: Context
 status: current
 tags: [architecture]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-09
 type: arch
 related: [[01-Introduction]], [[04-Solution-Strategy]], [[06-Runtime]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]]
 ---
@@ -16,7 +16,7 @@ not a runtime dependency.
 
 ```mermaid
 flowchart LR
-  Player[Player] --> PWA[soccer-manager PWA: offline-first core]
+  Player[Player] --> PWA[Klubhaus Elf PWA: offline-first core]
   PWA <--> Local[(Local browser storage: cache, drafts, saves)]
   PWA <-. narrow cloud-sync + command-queue .-> Sync[Cloud sync service]
   PWA -. optional cloud narration .-> LLM[Cloud LLM]

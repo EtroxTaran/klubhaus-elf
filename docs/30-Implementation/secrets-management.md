@@ -3,7 +3,7 @@ title: Secrets Management — sops + age + direnv, rotation, leak response, dep 
 status: current
 tags: [implementation, secrets, sops, age, direnv, key-rotation, leak-response, supply-chain, backups]
 created: 2026-05-18
-updated: 2026-05-19
+updated: 2026-06-09
 type: implementation
 binding: true
 adr:
@@ -307,7 +307,7 @@ maps `dsn` → the `DATABASE_URL` env var consumed by
 postgres:
   host: db.internal          # structural — visible in git diff
   port: 5432
-  database: soccer_manager
+  database: klubhaus_elf
   superuser:
     username: postgres
     password: "<sops-encrypted>"   # matched by *_password
@@ -724,10 +724,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}   # built-in, not a static PAT
       - name: Build + push
         run: |
-          docker buildx build --push -t ghcr.io/${{ github.repository_owner }}/soccer-manager:${{ github.ref_name }} .
+          docker buildx build --push -t ghcr.io/${{ github.repository_owner }}/klubhaus-elf:${{ github.ref_name }} .
       - name: cosign keyless sign
         uses: sigstore/cosign-installer@v3
-      - run: cosign sign --yes ghcr.io/${{ github.repository_owner }}/soccer-manager:${{ github.ref_name }}
+      - run: cosign sign --yes ghcr.io/${{ github.repository_owner }}/klubhaus-elf:${{ github.ref_name }}
       - name: Notify Dokploy
         run: |
           curl -X POST -H "X-Dokploy-Token: ${{ secrets.DOKPLOY_WEBHOOK_SECRET }}" \
@@ -751,7 +751,7 @@ On the Hetzner production VM:
 
 ```text
 /etc/age/prod.key                # 0400, owned by dokploy user
-/opt/soccer-manager/secrets/     # sops files mirrored from git on deploy
+/opt/klubhaus-elf/secrets/     # sops files mirrored from git on deploy
   ├── app.enc.env
   ├── db.enc.yaml
   ├── observability.enc.yaml
@@ -775,7 +775,7 @@ set -euo pipefail
 
 # Decrypt each secret file to tmpfs
 for f in app.enc.env db.enc.yaml observability.enc.yaml infra.enc.yaml; do
-  sops -d /opt/soccer-manager/secrets/"$f" > /run/secrets/"${f%.enc.*}"
+  sops -d /opt/klubhaus-elf/secrets/"$f" > /run/secrets/"${f%.enc.*}"
 done
 
 # Export app.env values as environment variables
@@ -792,13 +792,13 @@ exec node /app/dist/server.mjs
 ```yaml
 services:
   app:
-    image: ghcr.io/<owner>/soccer-manager:${IMAGE_TAG}
+    image: ghcr.io/<owner>/klubhaus-elf:${IMAGE_TAG}
     tmpfs:
       - /run/secrets:size=1m,mode=0700,uid=1000  # tmpfs, not disk
     read_only: true
     user: "1000:1000"
     volumes:
-      - /opt/soccer-manager/secrets:/opt/soccer-manager/secrets:ro
+      - /opt/klubhaus-elf/secrets:/opt/klubhaus-elf/secrets:ro
       - /etc/age/prod.key:/etc/age/prod.key:ro  # only the entrypoint reads this
     environment:
       - SOPS_AGE_KEY_FILE=/etc/age/prod.key
@@ -1117,8 +1117,8 @@ into a fresh Redis instance and that session lookups work.
 ### 11.3 PostgreSQL restore drill
 
 1. Spin up a fresh PostgreSQL instance (same major version + config).
-2. `pg_restore -d soccer_manager <latest-weekly-dump>` (or
-   `psql -d soccer_manager < dump.sql` for plain-text dumps).
+2. `pg_restore -d klubhaus_elf <latest-weekly-dump>` (or
+   `psql -d klubhaus_elf < dump.sql` for plain-text dumps).
 3. Verify schema integrity:
    - `\dn` — confirm `public` and any `save_*` schemas (ADR-0021
      schema-per-save) are present.

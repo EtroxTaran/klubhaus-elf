@@ -1,13 +1,13 @@
 <!--
 id: D-001
-title: [area:ui] Implement remaining 35 Aurelia Premier screens by phase
+title: [area:ui] Implement remaining 35 Klubhaus Design-System screens by phase
 labels: type:feature, area:ui, prio:medium, size:l, parallel:after-design-system
 milestone: M3
 depends_on: A-010
 output: apps/web/src/screens/**, apps/web/src/routes/**
 -->
 
-# [area:ui] Implement remaining 35 Aurelia Premier screens by phase
+# [area:ui] Implement remaining 35 Klubhaus Design-System screens by phase
 
 **ID:** D-001  
 **Labels:** `type:feature`, `area:ui`, `prio:medium`, `size:l`, `parallel:after-design-system`  
@@ -17,7 +17,7 @@ output: apps/web/src/screens/**, apps/web/src/routes/**
 
 ## Goal
 
-Phase 1 shipped 10 of 45 Aurelia Premier screens (PR #13). Implement the
+Phase 1 shipped 10 of 45 Klubhaus Design-System screens (PR #13). Implement the
 remaining 35, recreating each pixel-faithfully on the Phase-1 design-system
 foundation (tokens, atoms, composites, theming, i18n, strict TDD).
 

@@ -3,7 +3,7 @@ title: Raw - Feature Library Across Football Manager Products
 status: raw
 tags: [research, raw, perplexity, competitors, features]
 created: 2026-05-16
-updated: 2026-05-16
+updated: 2026-06-09
 type: research-raw
 binding: false
 related: [[README]], [[../feature-library-synthesis]], [[../competitor-matrix]], [[../anstoss-series-deep-dive]], [[../club-boss-analysis]]
@@ -31,7 +31,7 @@ event-based 2D engine, and Capacitor-based PWA → native deployment path.
 
 The key market-gap conclusion: **no competitor combines roguelite permadeath +
 Anstoss-style stadium attractions + FM-level depth + private async multiplayer in
-a modern offline-first PWA**. That intersection is the soccer-manager target.
+a modern offline-first PWA**. That intersection is the Klubhaus Elf target.
 
 ## 1. Anstoss series (1993-2022)
 

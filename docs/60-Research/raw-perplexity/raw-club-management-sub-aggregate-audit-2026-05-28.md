@@ -3,7 +3,7 @@ title: Raw - Club Management Sub-Aggregate Ownership Audit Research (FMX-32)
 status: raw
 tags: [research, raw, perplexity, club-management, stadium, fan-ecology, sponsorship, ticketing, commercial-portfolio, bounded-context, fmx-32]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-09
 type: raw-research
 binding: false
 linear: FMX-32
@@ -362,7 +362,7 @@ KPIs and compliance data; Finance / Core management contexts
 consume summarized or transformed information via contracts and
 translation layers, not via shared aggregates.
 
-football-manager-x venue context is analogous to PMS / CMMS
+Klubhaus Elf venue context is analogous to PMS / CMMS
 relative to an ERP's Finance module.
 
 **Concrete recommendation:**

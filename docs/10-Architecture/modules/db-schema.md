@@ -3,13 +3,13 @@ title: db-schema module
 status: current
 tags: [architecture, module]
 created: 2026-05-17
-updated: 2026-05-19
+updated: 2026-06-09
 type: module
 binding: true
 related: [[../05-Building-Blocks]], [[db]], [[../09-Decisions/ADR-0021-revised-tech-stack]], [[../09-Decisions/ADR-0027-postgres-data-model]]
 ---
 
-# packages/db-schema (`@soccer-manager/db-schema`)
+# packages/db-schema (`@klubhaus-elf/db-schema`)
 
 ## Purpose
 
@@ -17,11 +17,11 @@ Standalone, dependency-light Zod validation mirror of the domain schema.
 Consumed at server-function boundaries and the PWA's bundle-critical client
 path (Zod Mini target — see [[../09-Decisions/ADR-0021-revised-tech-stack]] §4).
 
-Single source of truth is **`@soccer-manager/db`**'s Drizzle schema; this
+Single source of truth is **`@klubhaus-elf/db`**'s Drizzle schema; this
 mirror is **generated** by `packages/db/scripts/emit-db-schema-mirror.ts`
 (reads the Drizzle schema + drizzle-zod and writes self-contained `.ts`
 files into `src/generated/`). The mirror has **zero runtime dependency** on
-`@soccer-manager/db` — the package stays a composite-build-safe leaf
+`@klubhaus-elf/db` — the package stays a composite-build-safe leaf
 (per the [[../09-Decisions/ADR-0027-postgres-data-model]] §3 generator rule).
 
 ## Owns
@@ -31,7 +31,7 @@ files into `src/generated/`). The mirror has **zero runtime dependency** on
 
 ## Inputs
 
-- The Drizzle schema in `@soccer-manager/db`
+- The Drizzle schema in `@klubhaus-elf/db`
   ([[../09-Decisions/ADR-0027-postgres-data-model]]).
 - The mirror emitter script in `packages/db/scripts/emit-db-schema-mirror.ts`.
 
@@ -56,4 +56,4 @@ files into `src/generated/`). The mirror has **zero runtime dependency** on
   (supersedes ADR-0004).
 - [[../09-Decisions/ADR-0005-save-format]] — save-envelope contracts.
 - Consumed by [[web]] and (planned) [[match-engine]] /
-  `@soccer-manager/match-contract`.
+  `@klubhaus-elf/match-contract`.

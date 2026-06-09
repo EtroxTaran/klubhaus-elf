@@ -3,7 +3,7 @@ title: Vision
 status: current
 tags: [context, vision]
 created: 2026-05-17
-updated: 2026-05-18
+updated: 2026-06-09
 type: index
 binding: true
 related: [[Non-Goals]], [[MVP-Scope]]
@@ -11,7 +11,7 @@ related: [[Non-Goals]], [[MVP-Scope]]
 
 # Vision
 
-`soccer-manager` is an offline-ready football management PWA in the Anstoß
+**Klubhaus Elf** is an offline-ready football management PWA in the Anstoß
 tradition: roguelite club-building first, long single-player careers later,
 deterministic simulation, and IP-clean generated game data.
 

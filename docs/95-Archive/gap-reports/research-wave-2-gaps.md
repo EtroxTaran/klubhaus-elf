@@ -3,7 +3,7 @@ title: Research Wave 2 — Gap Analysis & Backlog Proposal
 status: superseded
 superseded_by: wave-3-gap-analysis
 tags: [research, planning, gap-analysis, superseded]
-updated: 2026-05-16
+updated: 2026-06-09
 ---
 
 # Research Wave 2 — Gap Analysis & Backlog Proposal
@@ -542,7 +542,7 @@ the Wave 1/2 doc that introduces each, AKOM-126 (arc42) input block.
 ## Suggested Linear setup
 
 A **Milestone "M1.5 Research Wave 2"** has been created in the
-`soccer-manager — Research & Architecture` project. The 19 items above
+`Klubhaus Elf — Research & Architecture` project. The 19 items above
 translate into 19 Linear issues (`AKOM-136`…`AKOM-148` for R2-01…R2-13;
 additional IDs assigned for R2-14…R2-19). All are `type:research`, all
 `parallel:safe`. Critical-priority items are R2-01, R2-02, R2-08, R2-14.

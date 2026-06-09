@@ -3,7 +3,7 @@ title: ADR-0017 Self-hosted Observability and Logging
 status: accepted
 tags: [adr, architecture, observability, logging, monitoring, telemetry, gdpr]
 created: 2026-05-17
-updated: 2026-06-08
+updated: 2026-06-09
 accepted_at: 2026-05-17
 type: adr
 binding: true
@@ -31,7 +31,7 @@ MVP-scope amended 2026-05-19 (Tempo/Mimir deferred) — see banner.
 
 ## Context
 
-`soccer-manager` needs active monitoring before it reaches beta:
+**Klubhaus Elf** needs active monitoring before it reaches beta:
 
 - client crashes and service worker failures must be visible even when
   they happen during offline-first flows;

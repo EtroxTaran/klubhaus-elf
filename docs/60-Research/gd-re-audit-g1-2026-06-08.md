@@ -3,7 +3,7 @@ title: "GD Re-Audit — Cluster G1: Core loop / Onboarding / Save / Mobile UX / 
 status: draft
 tags: [research, gd-audit, game-design, core-loop, onboarding, save, mobile-ux, mvp-scope, data-gen, ip-clean, cluster-g1]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-09
 type: research
 binding: false
 related:
@@ -125,7 +125,7 @@ to Nico as scope calls with status-quo defaults. dependsOn: ADR-0007 (origin), A
 ### GD-0016 Mobile UX Gameplay Loop — **sound (R2-07/16/17 resolved live; only R2-10/i18n remains)** · disposition ratify-as-is · confidence high
 One mobile-first responsive UI, single "this week" home with next-match + 3–4 contextual cards,
 tap-only chairman loop, hub+drill-down nav, tabular→cards, halftime 30s modal, "guardrails at the
-edges / freedom at the centre", sort/filter from day one, delivered via ADR-0010 Aurelia Premier.
+edges / freedom at the centre", sort/filter from day one, delivered via ADR-0010 Klubhaus Design-System.
 The big open items are **already resolved**: R2-07 (route map + IA) and R2-17 (layered client-state
 + narrow Zustand v5 slice, reconciling the old GD-0016↔ADR-0021 Zustand contradiction) by **ADR-0008
 (FMX-98, accepted 2026-06-03)**; R2-16 (in-match controls + render seam) by **GD-0025 + ADR-0072

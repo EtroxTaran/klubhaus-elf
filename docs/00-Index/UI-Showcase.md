@@ -2,7 +2,7 @@
 title: UI Showcase
 status: current
 tags: [meta, ui, design]
-updated: 2026-05-27
+updated: 2026-06-09
 ---
 
 # UI Showcase (Storybook)
@@ -31,7 +31,7 @@ subdomain, behind the **same** login as these docs:
 
 > ðŸ”— **<https://SHOWCASE_DOMAIN_PLACEHOLDER>**
 
-Run it locally instead with `pnpm --filter @soccer-manager/web storybook`
+Run it locally instead with `pnpm --filter @klubhaus-elf/web storybook`
 (http://localhost:6006).
 
 ## What's in it
