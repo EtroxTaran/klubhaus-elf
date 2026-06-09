@@ -3,7 +3,7 @@ title: ADR-0094 i18n stack & locale scope (supersedes ADR-0006)
 status: accepted
 tags: [adr, i18n, l10n, icu, paraglide, tolgee, formatjs, locale, offline-pwa, ssr, fmx-i18n-depth-pass]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-09
 type: adr
 binding: false
 supersedes: ADR-0006-i18n
@@ -112,9 +112,33 @@ re-check (Perplexity, see Rationale): **Paraglide JS v2.0.0**, **Tolgee server v
 ## Decision
 
 Propose, awaiting Nico: **Option A** — **Paraglide JS + `format.js` Intl polyfills + Tolgee self-hosted**,
-**MVP locales DE/EN/FR/ES/IT (DE source)**, ICU-MF1 as the message contract — **pending validation that
-ICU-MF1 (flected club names + slavic plurals) is adequately met via Paraglide's plugin story**, and
-pending Nico's ratification.
+**MVP locales DE/EN/FR/ES/IT (DE source)**, ICU-MF1 as the (optional) ICU-syntax contract. **The
+ICU-MF1 validation flagged here is resolved for the MVP locale set — see the validation note below.**
+
+### ICU-MF1 validation — resolved for MVP (2026-06-09)
+
+Grounded check (context7 @ `/opral/paraglide-js` docs + Perplexity, 2026-06-09): for the MVP
+locales **DE/EN/FR/ES/IT** the original ICU-MF1 worry does **not** bind, because the needs are met
+without depending on the ICU plugin:
+
+- **Plurals/select are native, not ICU-plugin-dependent.** Paraglide v2's **variants system** +
+  built-in formatters (`plural` over `Intl.PluralRules` — incl. ordinal and `few`/`many`,
+  `number`/`datetime`/`relativetime`) cover the cardinal `one`/`other` needs of these five locales
+  without ICU syntax.
+- **Flected club names are a casus-slot concern, not an ICU one.** Neither ICU MF1 nor Paraglide
+  does morphological declension; the idiomatic (and already ADR-specified) solution is the
+  **casus-slot scheme** — pass pre-inflected variables (`{club_gen}`, `{club_dat}`). The ICU plugin
+  does not change this either way.
+- **The `inlang-icu-messageformat-1` plugin stays optional** — adopt it only if the team wants
+  literal ICU strings; native variants suffice for MVP.
+- **Possible simplification (not decided here):** since Paraglide wraps `Intl.*` natively, `format.js`
+  is not strictly required for these five locales — whether to drop it from Option A is a follow-up
+  for implementation; this ADR keeps the A stack as ratified.
+- **Slavic `one/few/many/other` pressure is post-MVP** (no Slavic locale in DE/EN/FR/ES/IT) —
+  re-validate when a Slavic locale is added.
+
+Net: **Option A stands; the headline ICU-MF1 risk is resolved for MVP** (mitigated via native
+variants + the casus-slot scheme; ICU plugin optional).
 
 This ADR **folds the closed Wave-2 research in as binding** (the PM-09 CORE outputs + §T09 decision are
 not re-litigated here) and **enumerates the downstream locale-count migration touch-points** so they
@@ -170,8 +194,9 @@ Negative:
 
 - **Downstream locale-count assumptions must migrate in lockstep** (ADR-0008 a11y §, ADR-0010 i18n
   boundary, narrative pipeline) — a coordinated change, not a drop-in.
-- **ICU-MF1 is plugin-mediated** in Paraglide; the casus-slot scheme + plugin must be proven before
-  authoring relies on it.
+- **ICU-MF1 is plugin-mediated** in Paraglide (`inlang-icu-messageformat-1`) — but **optional**:
+  plurals/select are native (variants + `Intl.PluralRules`) and flected names use the casus-slot
+  scheme. **Validated 2026-06-09 for the MVP locales** (see Decision); re-check on a Slavic locale.
 - **Locale switching is reload-based** in Paraglide (`window.location.reload()`), acceptable for an
   infrequent action but a UX constraint to note.
 - **TanStack-Start integration is Vite-adapter + community glue**, not a turnkey first-party package — a

@@ -3,7 +3,7 @@ title: ADR-0026 Match Frame Contract
 status: accepted
 tags: [adr, architecture, match-engine, match-view, contract, determinism]
 created: 2026-05-19
-updated: 2026-06-08
+updated: 2026-06-09
 accepted_at: 2026-05-19
 type: adr
 binding: true
@@ -230,14 +230,18 @@ Negative:
 
 ## Human-decision forks (flagged, not silently decided)
 
-- **HF-1 (rule 3):** removing `"chance"` and adding `"save"`. Alternative: keep
-  `"chance"` defined as "shot event with outcome ∈ {off_target, blocked,
-  saved}". Recommendation stands (no inference at the seam), but this is a
-  match-view UX call that can be revisited without breaking the contract.
-- **HF-2 (rule 7):** linear interpolation as the MVP default. Curved/eased
-  off-ball motion is a game-feel choice ([[ADR-0022-animation-game-feel]]
-  territory) that can be layered in the caller later without changing the
-  contract.
+> **Resolved by Nico 2026-06-09: HF-1 = A, HF-2 = A** (both recommended options).
+> Neither breaks the frame contract; both stay revisitable.
+
+- **HF-1 (rule 3) — RESOLVED = A:** remove `"chance"`, add `"save"` — the event
+  stream carries concrete observed outcomes (no inference at the seam); a "chance"
+  is a derived match-view concept the caller computes if it wants it. *Alternative
+  (not taken): keep `"chance"` defined as "shot event with outcome ∈ {off_target,
+  blocked, saved}".* Match-view UX call, revisitable without breaking the contract.
+- **HF-2 (rule 7) — RESOLVED = A:** linear interpolation as the MVP default.
+  Curved/eased off-ball motion is a game-feel choice
+  ([[ADR-0022-animation-game-feel]] territory) that can be layered in the caller
+  later without changing the contract.
 
 ## Supersedes
 
