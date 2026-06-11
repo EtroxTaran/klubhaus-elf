@@ -3,7 +3,7 @@ title: ADR-0018 Systemic Events and Player Lifecycle Architecture
 status: accepted
 tags: [adr, architecture, events, player-development, injuries, narrative, venue]
 created: 2026-05-17
-updated: 2026-06-08
+updated: 2026-06-11
 accepted_at: 2026-05-17
 type: adr
 binding: true
@@ -14,7 +14,12 @@ related: [[../../60-Research/systemic-events-player-development-venue-ops]], [[A
 
 ## Status
 
-Accepted (2026-05-17, systemic events / player lifecycle documentation pass).
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read "Accepted
+> (2026-05-17, systemic events / player lifecycle documentation pass).". Body status reconciled to
+> the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

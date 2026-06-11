@@ -3,7 +3,7 @@ title: ADR-0098 Save-format KDF upgrade (Argon2id passphrase path) + active-pack
 status: accepted
 tags: [adr, save, encryption, kdf, argon2id, pbkdf2, community-packs, determinism, offline-first, p2p, supersession]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 amends: [[ADR-0005-save-format]]
@@ -28,8 +28,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08. This ADR **supersedes
 > [[ADR-0005-save-format]]** on exactly two points — the passphrase-path KDF (ADR-0005 §3)
 > and the `SavePayload` shape (ADR-0005 §6) — and leaves all other ADR-0005 rules

@@ -3,7 +3,7 @@ title: ADR-0087 Live-match Intervention Buffer + Watch-Party Pause-Vote
 status: accepted
 tags: [adr, architecture, ddd, match, watch-party, intervention-buffer, pause-vote, process-manager, saga, value-object, determinism, event-sourcing, anti-grief, multiplayer, fmx-101]
 created: 2026-06-07
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -36,8 +36,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Authored after Nico chose the FMX-101 decisions live
 > (2026-06-07, D1–D4 = A/A/A/A). Closes domain-audit gap **G24** and the E8-1 child of epic
 > FMX-64. It **extends ADR-0072** (fills the buffer-state-machine + pause-vote it explicitly

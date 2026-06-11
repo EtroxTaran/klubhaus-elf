@@ -3,7 +3,7 @@ title: GD-0018 AI Narrative Personas and Dialogue
 status: accepted
 tags: [game-design, gddr, narrative, ai, llm, personas, dialogue]
 created: 2026-05-27
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 supersedes:
@@ -44,8 +44,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > Draft only. This record captures the current best design direction for AI
 > narrative personas, Full Dialogue and Runtime-LLM evaluation. It is not
 > implementable until Nico approves it and the linked ADR is accepted.

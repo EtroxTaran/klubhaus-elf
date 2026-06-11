@@ -3,7 +3,7 @@ title: ADR-0025 Mobile Delivery (PWA + Capacitor)
 status: superseded
 tags: [adr, architecture, mobile, pwa, capacitor]
 created: 2026-05-19
-updated: 2026-06-08
+updated: 2026-06-11
 accepted_at: 2026-05-19
 type: adr
 binding: true
@@ -14,9 +14,17 @@ related: [[ADR-0021-revised-tech-stack]], [[ADR-0008-mobile-first-ui]], [[ADR-00
 
 # ADR-0025: Mobile Delivery (PWA + Capacitor)
 
+> **SUPERSEDED on 2026-06-08 by [[ADR-0104-mobile-delivery-grounding-and-ratification]].**
+> Old way: PWA + Capacitor delivery with ungrounded iOS-push/EU-DMA claims. New way: grounded claims, Capacitor 7.x pinned; responsive PWA = source of truth, thin additive shell. Kept for history — do not
+> implement.
+
 ## Status
 
-accepted
+superseded
+
+> Superseded 2026-06-08 by [[ADR-0104-mobile-delivery-grounding-and-ratification]] (ratification
+> sweep, PR #153); body previously read `accepted`. Body status reconciled to the frontmatter SSOT
+> (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Date
 

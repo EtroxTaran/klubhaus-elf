@@ -3,7 +3,7 @@ title: ADR-0089 Bounded-context portfolio reconciliation and final count
 status: accepted
 tags: [adr, architecture, ddd, bounded-context, modular-monolith, governance, fmx-105]
 created: 2026-06-07
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -30,8 +30,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Authored 2026-06-07. Resolves the structural knot where **nine**
 > parallel ADRs each propose a new bounded context and each defers its map-patch "to reconcile with the
 > other parallel proposals" — several literally claiming to be "the 20th". This ADR is the single place

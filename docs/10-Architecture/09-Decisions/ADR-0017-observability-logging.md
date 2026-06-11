@@ -3,7 +3,7 @@ title: ADR-0017 Self-hosted Observability and Logging
 status: accepted
 tags: [adr, architecture, observability, logging, monitoring, telemetry, gdpr]
 created: 2026-05-17
-updated: 2026-06-09
+updated: 2026-06-11
 accepted_at: 2026-05-17
 type: adr
 binding: true
@@ -26,8 +26,13 @@ related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[
 
 ## Status
 
-Accepted (2026-05-17, gap D11 / C6 / E3 planning pass).
-MVP-scope amended 2026-05-19 (Tempo/Mimir deferred) — see banner.
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read "Accepted
+> (2026-05-17, gap D11 / C6 / E3 planning pass). MVP-scope amended 2026-05-19 (Tempo/Mimir
+> deferred) — see banner.". Body status reconciled to the frontmatter SSOT (ADR-0092) on
+> 2026-06-11 (FMX-143).
 
 ## Context
 

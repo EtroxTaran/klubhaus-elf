@@ -3,7 +3,7 @@ title: ADR-0096 Match-engine cross-runtime determinism & numeric-surface contrac
 status: accepted
 tags: [adr, architecture, match-engine, determinism, rng, fixed-point, wasm, rust, runtime, offline-first, fmx-106]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes: ADR-0049-swappable-spatial-event-match-engine
@@ -30,8 +30,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08 (FMX-106 open-decisions sweep). This ADR
 > **finalises [[ADR-0049-swappable-spatial-event-match-engine]]** (which is itself still `draft`)
 > on the one axis it left soft — cross-runtime numeric determinism — and **carries

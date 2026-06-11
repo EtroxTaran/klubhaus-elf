@@ -3,7 +3,7 @@ title: ADR-0091 Audit & Security — context definition
 status: accepted
 tags: [adr, architecture, ddd, audit, security, anti-abuse, replay-protection, gdpr, fmx-104]
 created: 2026-06-07
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -23,8 +23,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Authored 2026-06-07 to close the Audit & Security "thin/undefined"
 > gap surfaced in the open-decisions sweep. Defines the scope of the already-ratified **Audit &
 > Security** bounded context (no map-row change — the context exists; this ADR fixes its internals).

@@ -3,7 +3,7 @@ title: "ADR-0044: CI/CD Strategy & Merge Policy"
 status: accepted
 tags: [adr, architecture, ci, process]
 created: 2026-05-27
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -15,7 +15,11 @@ related: [[../../30-Implementation/ci-and-review-process]], [[../../30-Implement
 
 ## Status
 
-draft
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Date
 

@@ -3,13 +3,24 @@ title: Rivalry System - Emergent Five-sub-score Rivalry Graph
 status: draft
 tags: [game-design, rivalry, fans, history, matchday, risk, fmx-46]
 created: 2026-05-16
-updated: 2026-05-29
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[matchday-event-engine]], [[audience-and-atmosphere]], [[GD-0022-economy-commercial-impact-and-contracts]], [[watch-party-and-conference]]
 ---
 
 # Rivalry System - Emergent Five-sub-score Rivalry Graph
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 Rivalries are not just declared at scenario start. They **emerge** from
 geography, history, sporting events, fan incidents and transfer

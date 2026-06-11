@@ -3,7 +3,7 @@ title: ADR-0003 Match Engine Architecture
 status: superseded
 tags: [adr, match-engine, simulation, web-worker, deterministic]
 created: 2026-05-15
-updated: 2026-06-09
+updated: 2026-06-11
 accepted_at: 2026-05-16
 type: adr
 binding: false
@@ -29,8 +29,13 @@ related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-au
 
 ## Status
 
-Accepted (2026-05-16, gap A3 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]).
-Render-seam contract added 2026-05-19 by [[ADR-0026-match-frame-contract]].
+superseded
+
+> Superseded by [[ADR-0049-swappable-spatial-event-match-engine]] (2026-05-27 re-evaluation;
+> drift-fix recorded in the 2026-06-08 ratification sweep, PR #153); body previously read
+> "Accepted (2026-05-16, gap A3 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]).
+> Render-seam contract added 2026-05-19 by [[ADR-0026-match-frame-contract]].". Body status
+> reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

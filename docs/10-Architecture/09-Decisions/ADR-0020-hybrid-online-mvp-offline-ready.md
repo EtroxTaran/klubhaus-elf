@@ -3,7 +3,7 @@ title: ADR-0020 Hybrid-online MVP, Offline-ready Architecture
 status: accepted
 tags: [adr, pwa, mvp, offline-ready, indexeddb, sync]
 created: 2026-05-18
-updated: 2026-06-08
+updated: 2026-06-11
 accepted_at: 2026-05-18
 type: adr
 binding: true
@@ -16,9 +16,14 @@ related: [[../../00-Index/MVP-Scope]], [[../../60-Research/offline-mvp-scope-and
 
 ## Status
 
-Accepted (2026-05-18). Supersedes [[ADR-0002-offline-first]] for MVP scope.
-Amends the timing of local save/export implementation in [[ADR-0005-save-format]]
-without discarding its envelope/versioning direction.
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read "Accepted
+> (2026-05-18). Supersedes [[ADR-0002-offline-first]] for MVP scope. Amends the timing of local
+> save/export implementation in [[ADR-0005-save-format]] without discarding its
+> envelope/versioning direction.". Body status reconciled to the frontmatter SSOT (ADR-0092) on
+> 2026-06-11 (FMX-143).
 
 ## Context
 

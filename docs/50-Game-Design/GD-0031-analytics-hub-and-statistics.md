@@ -3,7 +3,7 @@ title: GD-0031 Analytics Hub and Statistics
 status: accepted
 tags: [game-design, statistics, analytics, data-hub, match, mvp, fmx-94]
 created: 2026-06-05
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 linear: FMX-94
@@ -22,7 +22,11 @@ related:
 
 ## Status
 
-draft
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 Nico selected the full MVP Analytics Hub direction during FMX-94 planning. This
 GDDR records the game-design target; implementation waits for ADR-0081

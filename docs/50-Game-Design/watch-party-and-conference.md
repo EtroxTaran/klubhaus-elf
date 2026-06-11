@@ -3,13 +3,24 @@ title: Watch Party and Conference Mode
 status: draft
 tags: [game-design, mode, multiplayer, watch-party, conference]
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[async-multiplayer-private-group]], [[../10-Architecture/state-machines/watch-party]]
 ---
 
 # Watch Party and Conference Mode
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 A **synchronous spike** sitting on top of the async multiplayer model.
 Targets emotional highlights (human-vs-human matches, finals, derbies,

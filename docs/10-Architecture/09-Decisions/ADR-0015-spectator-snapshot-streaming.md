@@ -4,13 +4,17 @@ status: superseded
 superseded_by: ADR-0099-spectator-watch-party-streaming-over-committed-event-log
 tags: [adr, architecture, watch-party, streaming, replay]
 created: 2026-05-16
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 related: [[../state-machines/watch-party]], [[../../60-Research/async-multiplayer-research]], [[../../50-Game-Design/watch-party-and-conference]], [[ADR-0021-revised-tech-stack]], [[ADR-0023-realtime-transport]], [[ADR-0024-match-renderer-abstraction]]
 ---
 
 # ADR-0015: Watch-Party via Spectator Snapshot Streaming
+
+> **SUPERSEDED on 2026-06-08 by [[ADR-0099-spectator-watch-party-streaming-over-committed-event-log]].**
+> Old way: watch-party via dedicated spectator snapshot streaming. New way: streaming over the committed event log (replay cursor, delay at delivery, no persisted snapshots). Kept for history — do not
+> implement.
 
 > **STACK-REVISION IMPACT 2026-05-19 ([[ADR-0021-revised-tech-stack]] + ADR-0023/0024/0025).**
 > Informational only — status (`proposed`) and decision are **unchanged**; do not
@@ -23,7 +27,12 @@ related: [[../state-machines/watch-party]], [[../../60-Research/async-multiplaye
 
 ## Status
 
-Proposed (2026-05-16). Needs Nico's review before acceptance.
+superseded
+
+> Superseded 2026-06-08 by [[ADR-0099-spectator-watch-party-streaming-over-committed-event-log]]
+> (ratification sweep, PR #153); body previously read "Proposed (2026-05-16). Needs Nico's review
+> before acceptance.". Body status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11
+> (FMX-143).
 
 ## Context
 

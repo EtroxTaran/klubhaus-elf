@@ -3,13 +3,24 @@ title: Async Multiplayer - Private Group with Two Cadence Models
 status: draft
 tags: [game-design, mode, multiplayer, async]
 created: 2026-05-16
-updated: 2026-05-22
+updated: 2026-06-11
 type: game-design
-binding: true
+binding: false
 related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/match-engine-runtime-strategy]], [[singleplayer-baseline]], [[match-engine]], [[watch-party-and-conference]], [[transfer-negotiations-p2p]], [[../10-Architecture/state-machines/league-week]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
 ---
 
 # Async Multiplayer - Private Group with Two Cadence Models
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 The flagship multiplayer mode. Invite-only friend groups, server-paced,
 with **two configurable cadence models** (Fixed and Dynamic) sharing one

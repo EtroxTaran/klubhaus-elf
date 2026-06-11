@@ -3,7 +3,7 @@ title: Open-Decisions Dossier — questions, recommendations, ratify checklist
 status: current
 tags: [meta, index, decisions, open-questions, dossier, fmx-105]
 created: 2026-06-07
-updated: 2026-06-07
+updated: 2026-06-11
 type: index
 binding: false
 related:
@@ -20,19 +20,33 @@ related:
 
 # Open-Decisions Dossier
 
-One place to **decide everything still open** across the domains. Each item below is a crisp
-question with researched options and a **recommended answer** (grounded externally 2026-06-07 —
-Perplexity Sonar + Exa + DDD/sim literature; see the per-item research notes). Nothing here is
-self-accepted: all ADRs stay `proposed`/`draft` until you ratify. Answer the **D-questions** (and
-the mini-points) and the apply-PRs flip status + apply the map patches.
+> **CLOSED — all items below were decided 2026-06-08 and merged 2026-06-08/09 via PRs
+> #153/#157–#161 (merge = the ratification act).** §A A1–A5, §B M1–M3, §C D1–D3 and all 15 §D
+> rows were ratified on the ★-recommended disposition (13 scope-calls + 2 forks decided live);
+> the carried in-ADR items **ADR-0026 HF-1/HF-2** and **ADR-0094 ICU-MF1** were resolved in
+> PR #159. This note is now a **closed historical index** — the authoritative records are the
+> [[../40-Execution/decision-queue-2026-06-08-ratified|ratification ledger]], [[Decision-Log]]
+> and the per-ADR frontmatter (SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]]).
+> Closure recorded 2026-06-11 (FMX-143,
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). New open
+> decisions get new dossier/queue notes — this one is not reopened.
 
-> Reading order: §A genuinely-open decisions (need your call) → §B mini ratification points →
-> §C the "20th-context" reconciliation → §D ratify-only checklist (already your direction, just
-> needs a formal yes). Recommendations are marked **→**.
+One place where everything still open across the domains **was decided**. Each item below is a
+crisp question with researched options and a **recommended answer** (grounded externally
+2026-06-07 — Perplexity Sonar + Exa + DDD/sim literature; see the per-item research notes).
+Nothing here was self-accepted: ratification happened via the 2026-06-08 sweep above.
+
+> Reading order: §A genuinely-open decisions → §B mini ratification points →
+> §C the "20th-context" reconciliation → §D ratify-only checklist. Recommendations are
+> marked **→**; every recommendation below was ratified as marked.
 
 ---
 
 ## A. Genuinely-open decisions
+
+> **All decided 2026-06-08 (#153):** A1–A5 ratified `accepted` on the recommended options
+> (A1 D1/D2=A/A · A2 D1/D2=A/A · A3 D1/D2=C/A · A4 D1/D2=A/A · A5 D1/D2=A/A).
 
 ### A1 · People / Persona & Skills — [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 Research: [[../60-Research/people-persona-skills-bounded-context-2026-06-07]]
@@ -103,6 +117,9 @@ minimize/pseudonymize + retain-fact-sever-identifier.
 
 ## B. Mini ratification points (recommendation = the option each ADR already proposes)
 
+> **All decided 2026-06-08 (#153) per recommendation:** M1 reuse `WorldAiMgmtRng:media:*` ·
+> M2 pure deterministic HoF formula · M3 Stadium Operations keeps pitch-condition state.
+
 - **M1 · Media Ecology RNG label** ([[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]]) —
   reuse `WorldAiMgmtRng:media:*` sub-label **→** vs dedicated `MediaRng`. **→ reuse** (ADR-0018 §3
   stream discipline + FMX-66/67/80/92 precedent; outlets are AI-world actors).
@@ -119,6 +136,9 @@ minimize/pseudonymize + retain-fact-sever-identifier.
 
 ## C. The "20th-context" reconciliation — [[../10-Architecture/09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]] (new, keystone)
 Research: [[../60-Research/bounded-context-portfolio-reconciliation-2026-06-07]]
+
+> **Decided 2026-06-08 (#153): D1/D2/D3 = A/A/A** — 28-context catalog with fixed ordinals
+> (20–28) + six subdomain clusters; the bounded-context-map §1 table now reflects it.
 
 Nine ADRs each propose a new context and each claims "the 20th". This is the single knot that needs
 your call on the *portfolio*, not just individual contexts.
@@ -140,26 +160,27 @@ clusters cap cognitive load; the catalog removes the "everyone is the 20th" ambi
 
 ## D. Ratify-only checklist (your direction already given — just needs a formal yes)
 
-These are `proposed`/`draft` ADRs you already chose live; no new research, only ratification (flip to
-`accepted`/`current` + apply map/Decision-Log patches). Confirm each:
+These were `proposed`/`draft` ADRs already chosen live; **all 15 rows were ratified `accepted`
+2026-06-08 (#153)** (✓ below = ratified; ADR-0076/0085 thread portions later amended by ADR-0100,
+recorded 2026-06-11 per FMX-143):
 
 | Ratify? | ADR / GDDR | What you chose | Notes |
 |:---:|---|---|---|
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] | Narrative as own context | new BC #21 in §C catalog |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]] | Scouting own context (Option C, 2026-06-02) | new BC #24 |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]] | Media/Press = Narrative subdomain (not a BC) | confirmed in §C |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]] | AI World Sim own context (D1=B, 2026-06-03) | new BC #25 |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]] | Env & Climate own context (C/A/A/A) | new BC #26; M3 above |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]] | Statistics & Analytics own context | new BC #27 |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]] | Media Ecology own context (B/A/A/A) | new BC #28; M1 above |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]] | Transfer-led loan saga (A/B/A/A) | contract among existing BCs |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]] | Squad-owned discipline (A/A/A/A) | no new BC |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]] | split event model (C/B/C) | no new BC |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]] | hooks-only (A/A/A/A) | extends ADR-0051 |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract]] | extend ADR-0051; full HoF MVP (A/A/A/B) | M2 above |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0086-background-fast-matchday-cost-settlement]] | coarse parametric + seeded variance (A/A/A/C) | no new BC |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]] | bounded buffer + veto/quorum (A/A/A/A) | no new BC |
-| ☐ | [[../10-Architecture/09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]] | 5-stage FSM + seeded variance (A/A/A/B/A/A/A) | no new BC (FMX-102) |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] | Narrative as own context | new BC #21 in §C catalog |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]] | Scouting own context (Option C, 2026-06-02) | new BC #24 |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]] | Media/Press = Narrative subdomain (not a BC) | confirmed in §C |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]] | AI World Sim own context (D1=B, 2026-06-03) | new BC #25 |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]] | Env & Climate own context (C/A/A/A) | new BC #26; M3 above |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]] | Statistics & Analytics own context | new BC #27 |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]] | Media Ecology own context (B/A/A/A) | new BC #28; M1 above |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]] | Transfer-led loan saga (A/B/A/A) | contract among existing BCs |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]] | Squad-owned discipline (A/A/A/A) | no new BC |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]] | split event model (C/B/C) | no new BC |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]] | hooks-only (A/A/A/A) | extends ADR-0051 |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract]] | extend ADR-0051; full HoF MVP (A/A/A/B) | M2 above |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0086-background-fast-matchday-cost-settlement]] | coarse parametric + seeded variance (A/A/A/C) | no new BC |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]] | bounded buffer + veto/quorum (A/A/A/A) | no new BC |
+| ✓ | [[../10-Architecture/09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]] | 5-stage FSM + seeded variance (A/A/A/B/A/A/A) | no new BC (FMX-102) |
 
 FMX-52 calibration debt (numeric magnitudes behind `*Version` flags) is **not** a ratification
 blocker for any of the above — it is a separate, later tuning wave.

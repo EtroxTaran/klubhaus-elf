@@ -3,7 +3,7 @@ title: GD-0020 EOS Player Skills, Personas and People
 status: accepted
 tags: [game-design, gddr, player-skills, persona, people, fmx-23]
 created: 2026-05-28
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 supersedes:
@@ -29,8 +29,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > Draft only. This record captures the FMX-23 design direction for EOS player
 > skills/perks, staff-skill planning, persona substrate and relationship
 > constellations. It is not implementable until Nico approves it and the linked

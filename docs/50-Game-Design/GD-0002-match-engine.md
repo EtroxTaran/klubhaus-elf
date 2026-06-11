@@ -3,7 +3,7 @@ title: GD-0002 Match Engine & Simulation Model
 status: accepted
 tags: [game-design, gddr, match-engine, spatial-event]
 created: 2026-05-17
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[match-engine]], [[GD-0004-tactics]], [[GD-0010-ai-world]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../60-Research/anstoss-series-deep-dive]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/modules/match-engine]]
@@ -13,7 +13,11 @@ related: [[README]], [[match-engine]], [[GD-0004-tactics]], [[GD-0010-ai-world]]
 
 ## Status
 
-draft
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Date
 

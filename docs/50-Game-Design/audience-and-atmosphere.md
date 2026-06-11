@@ -3,9 +3,9 @@ title: Audience & Atmosphere - Six Segments and Atmosphere Engine
 status: draft
 tags: [game-design, fans, audience, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, matchday, fan-service, privacy, gdpr, ip, naming, risk, fmx-32, fmx-41, fmx-42, fmx-43, fmx-46, fmx-48, fmx-54]
 created: 2026-05-16
-updated: 2026-06-01
+updated: 2026-06-11
 type: game-design
-binding: true
+binding: false
 supersedes: fan-ecology
 related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[stadium-and-campus]], [[rivalry-system]], [[matchday-event-engine]], [[mode-manage-a-club-career]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[../10-Architecture/09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
@@ -19,6 +19,17 @@ related: [[README]], [[../60-Research/fan-culture-segmentation-research]], [[../
 > Atmosphere BC.
 
 # Audience & Atmosphere - Six Segments and Atmosphere Engine
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 Fan culture must produce *sporting, economic and political* effects all at
 once. A single "mood" gauge is too coarse - real fans split into segments

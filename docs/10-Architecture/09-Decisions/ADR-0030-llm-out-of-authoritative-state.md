@@ -3,7 +3,7 @@ title: ADR-0030 LLM Out Of Authoritative State Boundary
 status: accepted
 tags: [adr, architecture, ai, llm, narrative, determinism, openrouter]
 created: 2026-05-27
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -35,8 +35,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > Draft only. This ADR reopens the Runtime-LLM question for MVP evaluation and
 > records the 2026-05-28 Full Dialogue direction. It is not accepted and must
 > not be implemented until Nico explicitly ratifies it.

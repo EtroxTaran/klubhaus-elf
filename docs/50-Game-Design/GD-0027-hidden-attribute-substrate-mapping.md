@@ -3,7 +3,7 @@ title: GD-0027 Hidden-Attribute Substrate Mapping (8-meta / OCEAN → labels)
 status: accepted
 tags: [game-design, gddr, persona, ocean, player-skills, scouting, mentoring, determinism, fmx-86, gap-g22]
 created: 2026-06-05
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[GD-0020-eos-player-skills-personas-and-people]], [[GD-0021-player-staff-development-and-decision-influence]], [[GD-0018-ai-narrative-personas-and-dialogue]], [[GD-0015-ip-clean-data]], [[GD-0006-transfers]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]]
@@ -15,8 +15,13 @@ superseded_by:
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **Draft / `binding: false`.** Closes audit gap **G22** (FMX-86, E3 epic FMX-59).
 > Decisions **D1–D4** were put to Nico live on 2026-06-05 (ask-first gate) and chosen
 > **A/A/A/A**. The document as a whole awaits ratification; all numeric thresholds are

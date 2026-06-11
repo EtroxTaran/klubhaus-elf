@@ -3,7 +3,7 @@ title: ADR-0090 Offline Sync — MVP scope and conflict-resolution strategy
 status: accepted
 tags: [adr, architecture, offline, sync, pwa, crdt, conflict-resolution, determinism, fmx-103]
 created: 2026-06-07
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -24,8 +24,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Authored 2026-06-07 to close the Offline Sync "thin/undefined"
 > gap surfaced in the open-decisions sweep. Defines what the ratified **Offline Sync** bounded context
 > owns at MVP and the post-MVP conflict-resolution strategy, so the narrow MVP does not foreclose the

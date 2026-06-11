@@ -3,7 +3,7 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-06-09
+updated: 2026-06-11
 type: architecture
 binding: true
 related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]]
@@ -101,23 +101,21 @@ through the IP-clean catalog (GD-0015 / ADR-0007). ADR-0070 fixes the profile
 contract: League owns stable competition/fixture rule facts; CommercialPortfolio
 owns accrual and settlement interpretation through an ACL.
 
-FMX-91 proposes a future **AI World Simulation** bounded context in
-[[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]].
-It is not added to the ratified context table until Nico accepts the ADR. The
-proposal would move long-save world-drift orchestration (Rising Rival, Giant
-Collapse, Continental Era Shift) out of League/Club/Transfer scattered policy and
-into one publisher of self-contained `WorldDrift*` events. League keeps fixtures
-and seasons; Club Management keeps ledger authority; Youth/Data Generator keep
-regen internals.
+The **AI World Simulation** bounded context (FMX-91,
+[[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]],
+ratified `accepted` 2026-06-08) is part of the §1 table. It moves long-save
+world-drift orchestration (Rising Rival, Giant Collapse, Continental Era Shift)
+out of League/Club/Transfer scattered policy and into one publisher of
+self-contained `WorldDrift*` events. League keeps fixtures and seasons; Club
+Management keeps ledger authority; Youth/Data Generator keep regen internals.
 
-FMX-94 proposes a future **Statistics & Analytics** projection-only bounded
-context owner in
-[[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]]. It is not added
-to the ratified context table until Nico accepts the ADR. The proposal gives
-standings, match/player/team stat lines, league leaders, metric definitions,
-derived analytics and Manager & Legacy / HoF handoff snapshots one rebuildable
-owner while source contexts keep authoritative facts and command invariants.
-It resolves the ADR-0068 `CompetitionStatus.standingsRef` owner gap without
+The **Statistics & Analytics** projection-only bounded context (FMX-94,
+[[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], ratified
+`accepted` 2026-06-08) is part of the §1 table. It gives standings,
+match/player/team stat lines, league leaders, metric definitions, derived
+analytics and Manager & Legacy / HoF handoff snapshots one rebuildable owner
+while source contexts keep authoritative facts and command invariants. It
+resolves the ADR-0068 `CompetitionStatus.standingsRef` owner gap without
 allowing cross-context table joins.
 
 FMX-41 commercial economy planning was originally captured in
@@ -127,8 +125,8 @@ FMX-32 boundary audit (ADR-0061 + ADR-0062) refined that
 recommendation 2026-05-28: Nico ratified the best-practice landing
 in which **commercial policy + commercial contract lifecycle +
 commercial settlement + Investor entitlement grant posting** are
-owned by the new **CommercialPortfolio** bounded context (17th /
-18th / 19th depending on counting order — see §1 table above);
+owned by the new **CommercialPortfolio** bounded context (ordinal
+position per the ADR-0089 canonical catalog — see §1 table above);
 **stadium economics** moved to the new **Stadium Operations**
 bounded context; **fan signals** (segment demand + atmosphere +
 trust state + politics events) moved to the new **Audience &
@@ -388,39 +386,30 @@ Customer-Supplier with ACL (airline yield management + revenue
 accounting + Stripe Billing-vs-Ledger + concert promoter
 ticketing-vs-settlement industry pattern).
 
-### 1.1 Proposed FMX-23 context
+### 1.1 People / Persona & Skills context (FMX-23)
 
-[[09-Decisions/ADR-0052-people-persona-and-skills-context]] proposes an
-additional bounded context, **People / Persona & Skills**, for actor personas,
-the relationship graph, player/staff skill profiles and deterministic dialogue
-context cards.
+[[09-Decisions/ADR-0052-people-persona-and-skills-context]] (ratified
+`accepted` 2026-06-08) defines the **People / Persona & Skills** bounded
+context — actor personas, the relationship graph, player/staff skill profiles
+and deterministic dialogue context cards. It is part of the §1 table.
 
-This is not accepted yet. Until ratified, the existing thirteen-context
-map (eleven ratified 2026-05-16 + Manager & Legacy ratified 2026-05-28 +
-Staff Operations ratified 2026-05-28) remains the baseline and
-implementation may only preserve planning hooks. If ADR-0052 is accepted,
-People owns personhood and skill/profile projections while Squad &
-Player, Training, Match, Club Management, Transfer, Notification, Manager
-& Legacy and Staff Operations keep their own authoritative facts. Staff
-Operations (accepted via ADR-0053) consumes People queries for actor
-identity and skill-profile snapshots when ADR-0052 is accepted; until
-then, Staff Operations sources identity from its own staff roster and
-treats skill-profile data as stub.
+People owns personhood and skill/profile projections while Squad & Player,
+Training, Match, Club Management, Transfer, Notification, Manager & Legacy and
+Staff Operations keep their own authoritative facts. Staff Operations
+(accepted via ADR-0053) consumes People queries for actor identity and
+skill-profile snapshots.
 
-### 1.3 Proposed FMX-3 context
+### 1.3 Narrative context (FMX-3)
 
-[[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] proposes
-an additional bounded context, **Narrative**, for scene/storylet selection,
-`NarrativeContextCard` assembly, fallback templates, optional LLM adapter
-boundary, validation, provenance, evaluation corpus, playtest evidence and
-narrative telemetry.
+[[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+(ratified `accepted` 2026-06-08) defines the **Narrative** bounded context —
+scene/storylet selection, `NarrativeContextCard` assembly, fallback templates,
+optional LLM adapter boundary, validation, provenance, evaluation corpus,
+playtest evidence and narrative telemetry. It is part of the §1 table.
 
-This is not accepted yet. Until ratified, the existing eleven-context map
-remains the baseline and implementation may only preserve planning hooks. If
-ADR-0054 is accepted, Narrative becomes the owner of the narration framework.
-People remains the source of actor/persona truth, Notification remains the
-delivery owner, and Match/Squad/Club/Fan/Transfer contexts remain the
-authoritative fact owners.
+Narrative owns the narration framework. People remains the source of
+actor/persona truth, Notification remains the delivery owner, and
+Match/Squad/Club/Fan/Transfer contexts remain the authoritative fact owners.
 
 ## 2. Context map (high-level)
 

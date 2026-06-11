@@ -3,7 +3,7 @@ title: "ADR-0048: Design-System Update & Migration Path"
 status: accepted
 tags: [adr, architecture, design, process, migration]
 created: 2026-05-27
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -16,7 +16,11 @@ related: [[ADR-0010-design-system]], [[../09-Design-System]], [[../../30-Impleme
 
 ## Status
 
-draft
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Date
 

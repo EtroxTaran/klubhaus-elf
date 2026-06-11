@@ -3,11 +3,12 @@ title: ADR-0076 Narrative Newsworthiness Event Contracts
 status: accepted
 tags: [adr, architecture, narrative, newsworthiness, events, contracts, ddd, fmx-83]
 created: 2026-06-04
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
 superseded_by:
+amended_by: [[ADR-0100-story-thread-ownership-and-cross-context-naming]]
 related:
   - [[ADR-0018-systemic-events-and-player-lifecycle]]
   - [[ADR-0019-modular-monolith-ddd]]
@@ -31,10 +32,21 @@ related:
 
 # ADR-0076: Narrative Newsworthiness Event Contracts
 
+> **AMENDED on 2026-06-08 by [[ADR-0100-story-thread-ownership-and-cross-context-naming]]**
+> — the **thread-ownership / thread-naming portions only** (StoryThread origination /
+> `storyThreadId` correlation-key semantics now live in ADR-0100); the event envelope, the four publication facets and the source/confidence/legal/privacy metadata stand unchanged
+> and remain `accepted`. Recorded as a partial supersession on the amendment pattern
+> (Nico, 2026-06-11, FMX-143).
+
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Nico selected FMX-83 as the next issue
 > and said "go on"; D1-D4 below are therefore authored as recommended proposed
 > defaults, not ratified decisions. This ADR closes gap G14 at the contract

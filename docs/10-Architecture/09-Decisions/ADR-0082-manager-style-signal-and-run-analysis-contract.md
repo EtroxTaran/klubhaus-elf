@@ -3,7 +3,7 @@ title: ADR-0082 Manager Style-Signal & Run-Analysis Contract (MVP hooks)
 status: accepted
 tags: [adr, architecture, manager, legacy, roguelite, meta, signals, run-analysis, determinism, fmx-93]
 created: 2026-06-05
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -30,8 +30,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Decisions D1–D4 were put to Nico live on 2026-06-05 (ask-first
 > gate) and chosen below; authored `proposed` per the never-self-accept rule — Nico ratifies (merge).
 > This ADR **does not re-open** the accepted [[ADR-0051-manager-and-legacy-context]] (ownership,
@@ -280,7 +285,7 @@ None
 thresholds, coarse-signal normalisation baselines/weights, exact reflection copy) is **calibration
 debt routed to FMX-52** and does not block ratification of the contract shape. Archetype taxonomy,
 perk catalogue/caps, prestige-ladder shape and any future start-finance perk cap remain **post-MVP,
-Nico-gated** decisions. Awaiting Nico ratify + merge; the ADR-0051 additive pointer applies in the
+Nico-gated** decisions. Ratified 2026-06-08 (#153); the ADR-0051 additive pointer applies in the
 same PR.
 
 ## Related Docs

@@ -3,7 +3,7 @@ title: GD-0022 Economy Commercial Impact and Contracts
 status: accepted
 tags: [game-design, gddr, economy, commercial, financing, debt, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, fmx-78]
 created: 2026-05-28
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 supersedes:
@@ -44,8 +44,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > Draft only. This record captures the FMX-41 commercial economy direction, the
 > FMX-42 fan-demand / price-elasticity refinement, the FMX-43 season-ticket
 > lifecycle / accrual-accounting refinement, the FMX-44 commercial contract

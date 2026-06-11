@@ -3,7 +3,7 @@ title: ADR-0072 In-Match Control Seam & Intervention Determinism
 status: accepted
 tags: [adr, architecture, match, ui, controls, determinism, replay, canvas, performance, fmx-100]
 created: 2026-06-03
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -28,8 +28,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Decisions D1–D4 were put to Nico live on
 > 2026-06-03 (ask-first gate) and chosen as A/A/A/A below; authored `proposed` per
 > the never-self-accept rule — Nico ratifies (merge). This ADR specifies the
@@ -212,5 +217,5 @@ FMX-101; shout-effect magnitudes are calibration debt (FMX-52 via GD-0025).
 
 `proposed` / `binding: false`. D1–D4 chosen live by Nico 2026-06-03 (A/A/A/A).
 Residual D-questions (halftime action set, speed-step count, shout cooldown/effect
-magnitudes, max queued subs) sit in GD-0025 for ratification. Awaiting Nico ratify
+magnitudes, max queued subs) sit in GD-0025 for ratification. Ratified 2026-06-08 (#153)
 + merge; ADR-0024/0041 amendment notes apply in the same PR.

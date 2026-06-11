@@ -3,7 +3,7 @@ title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
 tags: [game-design, economy, finance, accounting, commercial, financing, debt, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, country-profile, calibration, soak-test, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-52, fmx-53]
 created: 2026-05-16
-updated: 2026-06-01
+updated: 2026-06-11
 type: game-design
 binding: false
 linear: FMX-13
@@ -36,6 +36,17 @@ related:
 ---
 
 # Economy System - Weekly Ledger, Accounting and Club Risk
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 The economy is a **weekly ledger and accounting simulator**. The player sees
 simple risk surfaces first, but the simulation tracks cash timing, accounting

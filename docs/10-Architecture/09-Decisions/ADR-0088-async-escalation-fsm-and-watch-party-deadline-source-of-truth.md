@@ -3,7 +3,7 @@ title: ADR-0088 Async Escalation FSM + Watch-Party Deadline Source-of-Truth
 status: accepted
 tags: [adr, architecture, ddd, transfer, escalation, league-week, watch-party, deadlines, source-of-truth, event-carried-state-transfer, determinism, hysteresis, leaky-bucket, fmx-102]
 created: 2026-06-07
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -37,8 +37,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Authored after Nico chose the FMX-102 decisions live
 > (2026-06-07, **D1–D7 = A/A/A/B/A/A/A**). Closes domain-audit gap **G25** and the **E8-2** child of
 > epic FMX-64 — the **last open backlog item** (sibling FMX-101/ADR-0087 merged, PR #148), so on

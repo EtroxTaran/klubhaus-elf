@@ -3,13 +3,24 @@ title: Squad and Club Structure - Sporting Organisation and Squad Design
 status: draft
 tags: [game-design, squad, staff, organisation]
 created: 2026-05-16
-updated: 2026-05-28
+updated: 2026-06-11
 type: game-design
-binding: true
+binding: false
 related: [[README]], [[../60-Research/systems-design-synthesis]], [[../60-Research/player-strength-presentation]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/transfer-market-simulation]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[scouting-and-recruitment]], [[transfer-market-and-contracts]], [[training-load-and-medicine]], [[tactics-system]], [[GD-0020-eos-player-skills-personas-and-people]], [[GD-0021-player-staff-development-and-decision-influence]]
 ---
 
 # Squad and Club Structure - Sporting Organisation and Squad Design
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 > Approved by the systemic events / player lifecycle pass (2026-05-17).
 > The player record must stay aligned with [[../60-Research/data-generators]]

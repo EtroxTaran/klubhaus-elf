@@ -3,7 +3,7 @@ title: ADR-0102 Notification platform re-ratification + offline-delivery clause
 status: accepted
 tags: [adr, architecture, notification, messaging, offline, pwa, sync, governance, supersede, fmx-106]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes: ADR-0043-notification-and-messaging-platform
@@ -28,8 +28,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08 to resolve a status-drift + offline-seam gap on the
 > **Notification** bounded context surfaced in the open-decisions sweep. This is a **superseding ADR**:
 > it re-states [[ADR-0043-notification-and-messaging-platform]]'s decision **unchanged** under the current

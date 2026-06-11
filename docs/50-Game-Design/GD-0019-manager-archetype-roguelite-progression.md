@@ -3,7 +3,7 @@ title: GD-0019 Manager Archetype Roguelite Progression
 status: accepted
 tags: [game-design, gddr, roguelite, manager, archetype, progression, fmx-16]
 created: 2026-05-27
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 supersedes:
@@ -27,8 +27,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > Draft only. This record captures the current best design direction for
 > manager-archetype roguelite progression. It is not implementable until Nico
 > approves it and the linked ADR is accepted.

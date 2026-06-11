@@ -3,7 +3,7 @@ title: ADR-0075 Loan-Orchestration Process Manager
 status: accepted
 tags: [adr, architecture, ddd, transfer, loan, squad, match, regulations, club-management, youth, fmx-85]
 created: 2026-06-04
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -34,8 +34,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** FMX-85 (E3-1) closes audit gap **G15** by recording
 > Nico's selected landing for player loans: a **Transfer-led Loan-Orchestration Process
 > Manager (saga)** coordinating Transfer, Squad & Player, Match, Regulations and Club

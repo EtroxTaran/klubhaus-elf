@@ -3,7 +3,7 @@ title: GD-0008 Finance, Economy & Stadium
 status: accepted
 tags: [game-design, gddr, finance, economy, accounting, commercial, financing, debt, investor, fmx-13, fmx-41, fmx-49]
 created: 2026-05-17
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 linear: FMX-13
@@ -27,7 +27,11 @@ related:
 
 ## Status
 
-draft
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 All game-design decisions are reopened. This record captures the FMX-13 draft
 direction and must be ratified by Nico before implementation authority.

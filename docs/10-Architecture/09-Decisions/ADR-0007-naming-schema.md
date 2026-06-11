@@ -3,7 +3,7 @@ title: ADR-0007 IP-clean Naming Schema + Data Generators
 status: accepted
 tags: [adr, ip, data-generation, names, crests, worldgen, privacy, gdpr, fmx-54]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-11
 accepted_at: 2026-05-17
 type: adr
 binding: true
@@ -14,8 +14,12 @@ related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0016-community
 
 ## Status
 
-Accepted (2026-05-17, gap D2 of
-[[../../95-Archive/gap-reports/wave-3-gap-analysis]]).
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read "Accepted
+> (2026-05-17, gap D2 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]).". Body status
+> reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

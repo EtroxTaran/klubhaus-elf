@@ -3,7 +3,7 @@ title: GD-0028 Dialogue Intent Taxonomy and Effect Matrix
 status: accepted
 tags: [game-design, gddr, narrative, dialogue, intents, effects, ai, llm, fmx-87, gap-g13]
 created: 2026-06-05
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 related:
@@ -28,8 +28,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **Draft / `binding: false`.** Closes audit gap **G13** (FMX-87). Nico chose
 > D1-D3 live on 2026-06-05, but this record is not implementable until ratified.
 > It defines the deterministic intent/effect design layer; exact numeric deltas

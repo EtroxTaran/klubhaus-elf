@@ -22,3 +22,5 @@ jobs:
           node-version: 22
       - name: Validate vault (pnpm docs:check)
         run: node scripts/docs-check.mjs
+      - name: Status-consistency check (frontmatter SSOT, ADR-0092 / FMX-143)
+        run: node scripts/status-consistency-check.mjs

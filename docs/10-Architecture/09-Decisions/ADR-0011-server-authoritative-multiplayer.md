@@ -3,7 +3,7 @@ title: ADR-0011 Server-Authoritative Multiplayer
 status: accepted
 tags: [adr, architecture, multiplayer, security]
 created: 2026-05-16
-updated: 2026-06-08
+updated: 2026-06-11
 accepted_at: 2026-05-16
 type: adr
 binding: true
@@ -14,10 +14,14 @@ related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-eng
 
 ## Status
 
-Accepted (2026-05-16, gap B2 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]).
-Confirmed by [[ADR-0020-hybrid-online-mvp-offline-ready]]: multiplayer is
-post-MVP and remains server-authoritative; offline multiplayer effects are never
-finalised locally.
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read "Accepted
+> (2026-05-16, gap B2 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]). Confirmed by
+> [[ADR-0020-hybrid-online-mvp-offline-ready]]: multiplayer is post-MVP and remains
+> server-authoritative; offline multiplayer effects are never finalised locally.". Body status
+> reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

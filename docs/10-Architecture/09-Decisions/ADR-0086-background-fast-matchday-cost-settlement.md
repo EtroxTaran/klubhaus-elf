@@ -3,7 +3,7 @@ title: ADR-0086 Background-fast Matchday Cost-Settlement Pipeline
 status: accepted
 tags: [adr, architecture, ddd, economy, matchday-costs, settlement, background-fast, quality-profile, commercial-portfolio, club-management, ledger, determinism, event-sourcing, fmx-92]
 created: 2026-06-07
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -32,8 +32,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Authored after Nico chose the FMX-92 decisions live
 > (2026-06-07). Closes domain-audit gap **G21** and **the last open child of E6 / FMX-62**.
 > It does **not** flip any context to accepted, does **not** implement schemas, and does

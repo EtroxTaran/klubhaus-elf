@@ -3,7 +3,7 @@ title: GD-0030 Dynasty Board & Ownership
 status: accepted
 tags: [game-design, gddr, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, late-game, fmx-89]
 created: 2026-06-05
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 supersedes:
@@ -24,7 +24,11 @@ related:
 
 ## Status
 
-draft
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Date
 

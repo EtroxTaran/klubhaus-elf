@@ -3,13 +3,24 @@ title: Mode - Create a Club Roguelite
 status: draft
 tags: [game-design, mode, roguelite, create-a-club]
 created: 2026-05-16
-updated: 2026-06-09
+updated: 2026-06-11
 type: game-design
-binding: true
+binding: false
 related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0019-manager-archetype-roguelite-progression]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/onboarding-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[mode-manage-a-club-career]], [[onboarding-and-tutorial]], [[economy-system]], [[club-dna-and-governance]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
 ---
 
 # Mode - Create a Club Roguelite
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 The signature mode of Klubhaus Elf. Permadeath on insolvency, but each
 run leaves *legacy* that makes the next run *different* (not easier).

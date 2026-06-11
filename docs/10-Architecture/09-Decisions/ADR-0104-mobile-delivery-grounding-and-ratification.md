@@ -3,7 +3,7 @@ title: ADR-0104 Mobile-delivery grounding + ratification (supersedes ADR-0025)
 status: accepted
 tags: [adr, architecture, mobile, pwa, capacitor, push, ios, dma, grounding, governance]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes: ADR-0025-mobile-delivery
@@ -26,8 +26,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08. This is a **grounding-and-ratification
 > supersede** of [[ADR-0025-mobile-delivery]]. It does **not** reverse ADR-0025's direction
 > (responsive PWA = single source of truth; thin additive Capacitor shell for the app stores)

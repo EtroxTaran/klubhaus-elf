@@ -3,7 +3,7 @@ title: ADR-0004 Data Model — Domain Entities, Schemas, Saves
 status: superseded
 tags: [adr, architecture, data, surrealdb, dexie, schema, saves]
 created: 2026-05-15
-updated: 2026-06-09
+updated: 2026-06-11
 accepted_at: 2026-05-16
 type: adr
 binding: true
@@ -18,12 +18,9 @@ related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-mult
 
 ## Status
 
-Superseded (2026-05-19 by [[ADR-0027-postgres-data-model]]).
-Accepted historically on 2026-05-16, gap A4 of
-[[../../95-Archive/gap-reports/wave-3-gap-analysis]].
-MVP timing amended historically by
-[[ADR-0020-hybrid-online-mvp-offline-ready]] (server-confirmed state is
-authoritative in MVP; Dexie stores cache/drafts/staging).
+superseded
+
+> Superseded (2026-05-19 by [[ADR-0027-postgres-data-model]]). Accepted historically on 2026-05-16, gap A4 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]. MVP timing amended historically by [[ADR-0020-hybrid-online-mvp-offline-ready]] (server-confirmed state is authoritative in MVP; Dexie stores cache/drafts/staging). Body status normalized to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

@@ -3,12 +3,11 @@ title: ADR-0100 Story-thread ownership and cross-context naming (StoryThread vs 
 status: accepted
 tags: [adr, architecture, ddd, narrative, media-ecology, story-thread, bounded-context, correlation-key, ownership, fmx-105]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
+amends: [[ADR-0076-narrative-newsworthiness-event-contracts]], [[ADR-0085-media-ecology-context-and-outlet-operational-behaviour]]
 supersedes:
-  - ADR-0076
-  - ADR-0085
 superseded_by:
 related:
   - [[ADR-0076-narrative-newsworthiness-event-contracts]]
@@ -32,10 +31,25 @@ related:
 
 # ADR-0100: Story-thread ownership and cross-context naming (StoryThread vs CoverageThread; storyThreadId as correlation key)
 
+> **Recorded as a partial supersession / amendment (Nico, 2026-06-11, FMX-143).** This ADR
+> **amends** [[ADR-0076-narrative-newsworthiness-event-contracts|ADR-0076]] and
+> [[ADR-0085-media-ecology-context-and-outlet-operational-behaviour|ADR-0085]] — it replaces
+> **only their thread-ownership / thread-naming portions** (see Status history below); both
+> predecessors remain `accepted` for everything else. The 2026-06-08 ledger shorthand
+> "0076/0085→0100" is annotated accordingly in
+> [[../../40-Execution/ratification-status-inventory-2026-06-11|the status inventory]]
+> (amendment pattern per ADR-0095/0097/0098 precedent; the ledger itself is unchanged as a
+> scribe record).
+
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08 during the open-decisions audit. This
 > ADR resolves a **cross-ADR collision** between two still-`proposed` ADRs: ADR-0076 and
 > ADR-0085 both attach first-class meaning to the **same name** (`storyThreadId` / thread)
@@ -152,7 +166,7 @@ Out of scope (unchanged, still owned by the named ADRs):
 
 ## Decision (proposed default)
 
-**D1 = A, D2 = A, D3 = A.** Awaiting Nico ratify.
+**D1 = A, D2 = A, D3 = A.** Ratified 2026-06-08 (#153); recorded as an amendment of ADR-0076/0085 on 2026-06-11 (FMX-143, H1).
 
 - **Narrative owns thread origination** via a first-class **`StoryThread`** aggregate. A
   `StoryThread` is the player-facing arc — "this injury, this contract saga, this transfer

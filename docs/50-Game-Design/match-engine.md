@@ -3,13 +3,24 @@ title: Match Engine - Swappable Spatial-Event Specification
 status: draft
 tags: [game-design, match-engine, simulation, spatial-event]
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-06-11
 type: game-design
-binding: true
+binding: false
 related: [[README]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../60-Research/match-engine-simulation-model]], [[../60-Research/match-engine-runtime-strategy]], [[../60-Research/determinism-and-replay]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/tactics-and-formations]], [[tactics-system]], [[fan-ecology]], [[set-pieces]], [[singleplayer-baseline]], [[async-multiplayer-private-group]]
 ---
 
 # Match Engine - Swappable Spatial-Event Specification
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 The target match engine is **spatial-event, not outcome-first and not a
 frame-by-frame renderer**. Events are resolved from a meaningful 2D pitch state:

@@ -3,7 +3,7 @@ title: ADR-0009 Cursor Cloud Agent Orchestration
 status: superseded
 tags: [adr, meta]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: true
 supersedes:
@@ -13,9 +13,17 @@ related: []
 
 # ADR-0009: Cursor Cloud Agent Orchestration
 
+> **SUPERSEDED on 2026-06-08 by [[ADR-0103-multi-agent-orchestration-conflict-serialization]].**
+> Old way: Cursor-specific cloud-agent orchestration rules. New way: tool-agnostic orchestration across Claude/Codex/Cursor with conflict serialization. Kept for history — do not
+> implement.
+
 ## Status
 
-accepted
+superseded
+
+> Superseded 2026-06-08 by [[ADR-0103-multi-agent-orchestration-conflict-serialization]]
+> (ratification sweep, PR #153); body previously read `accepted`. Body status reconciled to the
+> frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Date
 
