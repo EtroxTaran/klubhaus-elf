@@ -34,6 +34,14 @@ related:
 
 accepted
 
+> **D4 gate unlocked 2026-06-11 (FMX-145):** [[ADR-0095-balanced-transfer-ledger-posting-invariant]]
+> D1 was confirmed **A — balanced double-entry** (Nico live, `binding: true`), so the D4 "balanced
+> **iff** double-entry" clause resolves to **balanced, unconditionally** — every insolvency posting
+> MUST balance. The sequencing constraint ("this ADR sequences after the ADR-0050 entry-model
+> decision") is satisfied. Still open here: the exact `MoneyBand → amountMinor` collapse rule
+> (D2 — **FMX-149**) and the named insolvency posting contract + shared enum apply-work
+> (**FMX-146**); the quality-profile enum reconciliation is **FMX-147**.
+
 > Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
@@ -203,10 +211,14 @@ Name the ledger posting each ADR-0079 insolvency event resolves to inside Club M
 | `AdministratorFireSaleOpened` → fire-sale completion | fire-sale receipt → cash-in vs asset disposal/write-down posting |
 | `ClubRescued { creditorWriteoffBand }` | creditor write-off → liability-removal posting (band collapsed per D2) |
 
-- If [[ADR-0050-club-economy-accounting-ledger]] adopts **double-entry**, every such posting MUST
+- ~~If [[ADR-0050-club-economy-accounting-ledger]] adopts **double-entry**, every such posting MUST
   **balance** (equal debits/credits) per the grounding; if it adopts a single-entry signed-amount
-  ledger, each resolves to one signed `amountMinor` entry. **This clause is therefore gated on the
-  ADR-0050 single-vs-double-entry decision and sequences right after it.**
+  ledger, each resolves to one signed `amountMinor` entry. This clause is therefore gated on the
+  ADR-0050 single-vs-double-entry decision and sequences right after it.~~ **Gate resolved
+  2026-06-11 (FMX-145):** double-entry was adopted ([[ADR-0095-balanced-transfer-ledger-posting-invariant]]
+  D1 = A, binding) — every insolvency posting **MUST balance** (LI-1/LI-4 apply; the creditor
+  write-off debits the liability leg against an equity leg, the fire-sale receipt books cash-in
+  against the asset disposal/write-down).
 - A **single shared insolvency-stage enum** is referenced by both ADR-0050 (its "staged insolvency
   state") and ADR-0079 (its `InsolvencyCase` FSM), so the FSM states and the ledger-facing stage are
   one model with one set of names.
@@ -237,9 +249,9 @@ Positive:
 
 Negative / constraints:
 
-- The "balanced postings" clause **depends on** the still-open single-vs-double-entry decision in
-  [[ADR-0050-club-economy-accounting-ledger]]; this ADR MUST sequence **after** that supersession/
-  amendment lands.
+- The "balanced postings" clause **depended on** the single-vs-double-entry decision in
+  [[ADR-0050-club-economy-accounting-ledger]] — **resolved 2026-06-11 (FMX-145): double-entry
+  adopted (ADR-0095 D1 = A, binding)**; the sequencing constraint is satisfied.
 - The exact band→`amountMinor` collapse function is left open (below) and must be ratified before the
   collapse clause is binding.
 - Replacing `qualityProfileClass` changes the published `FixtureCommercialProfile` shape — a schema
@@ -247,8 +259,10 @@ Negative / constraints:
 
 ## Risks
 
-- **Sequencing risk.** The balanced-postings clause cannot be finalised until the ADR-0050 single-vs
-  -double-entry decision is made; landing this ADR first would leave D4 partially specified.
+- **Sequencing risk.** ~~The balanced-postings clause cannot be finalised until the ADR-0050 single-vs
+  -double-entry decision is made; landing this ADR first would leave D4 partially specified.~~
+  **Closed 2026-06-11 (FMX-145)** — ADR-0095 D1 = A is binding; D4's posting contract is now fully
+  specifiable (apply-work: FMX-146).
 - **Cross-ADR churn.** Three accepted/proposed contracts (ADR-0070 accepted; ADR-0086, ADR-0079
   proposed) are touched on ratification; the changes are additive/clarifying but require coordinated
   apply-PRs (mirrors the reconciliation pattern in [[ADR-0089-bounded-context-portfolio-reconciliation]]).

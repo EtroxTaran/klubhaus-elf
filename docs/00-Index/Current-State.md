@@ -51,6 +51,29 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-145 Ledger posting shape decided — ADR-0095 D1 = A, binding (2026-06-11).** The keystone
+> of the Club/Finance/Commerce **accounting-integrity cluster** (audit epic FMX-122; first
+> post-FMX-143 issue worked). The 2026-06-08 bulk sweep had accepted ADR-0095 on its
+> ★-recommendation, but the queue card read "A-vs-B is Nico's" — an accept-with-reservation that
+> left the ADR `binding: false` and the posting shape of every ledger path undefined, gating
+> ADR-0101 D4 ("balanced **iff** double-entry"). Research
+> [[../60-Research/ledger-posting-shape-double-vs-single-entry-2026-06-11]] (+ 2 raw captures;
+> TigerBeetle/Modern Treasury primary sources verified) shows production immutable ledgers
+> uniformly enforce per-transaction balance as a kernel invariant with corrections as new
+> offsetting entries; single-entry + periodic reconcile has documented late-detection /
+> attribution / replay-divergence failure modes. **Nico decided 4 questions live (2026-06-11):**
+> **D1 = A** balanced double-entry postings (LI-1..LI-9 binding; LI-4 refined to the standard
+> *reversing entry* wording with `originalEntryId` link) · **CoA granularity = two-level** (small
+> fixed typed chart ~30–40 accounts + versioned `categoryCode` posting-metadata catalog;
+> Expert-P&L aggregates by category, balance sheet by account; concrete chart = **FMX-150**) ·
+> **no save migration** (pre-1.0, no live saves since the 2026-05-27 reset; balanced shape = v1
+> schema) · **dossier sub-task = dated closure addendum** (dossier stays closed). ADR-0095 →
+> `binding: true`; ADR-0050 carries a dated shape-only amendment note (amendment pattern per
+> FMX-143 H1 — stays `accepted`); the bounded-context-map Club Management row gains the
+> "balanced double-entry postings" clause (no context-count change); **ADR-0101 D4 is unlocked**
+> (insolvency postings balance unconditionally → **FMX-146**; collapse rule **FMX-149**;
+> quality-profile enum **FMX-147**). Magnitudes unaffected (FMX-52 unchanged).
+>
 > **FMX-143 Ratification-status SSOT reconciliation (2026-06-11).** The **Urgent** keystone of
 > the 2026-06-10 audit backlog (epic FMX-118): after the merged ratification PRs #153/#157–#161
 > the four status surfaces contradicted each other (89+ ADR/GDDR bodies still `draft`/`proposed`
@@ -70,7 +93,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > reopen oversight → aligned to draft. Records:
 > [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]] (133 records ×
 > 4 sources) + research [[../60-Research/ratification-status-ssot-reconciliation-2026-06-11]]
-> (+ raw [[../60-Research/raw-perplexity/raw-ratification-status-ssot-2026-06-11]]).
+> (+ raw [[../60-Research/raw-perplexity/raw-ratification-status-ssot-2026-06-11]], [[../60-Research/ledger-posting-shape-double-vs-single-entry-2026-06-11]], [[../60-Research/raw-perplexity/raw-ledger-posting-shape-2026-06-11]], [[../60-Research/raw-perplexity/raw-chart-of-accounts-granularity-2026-06-11]]).
 > "Is decision X ratified?" is answerable from frontmatter again; the remaining open audit
 > issues of epics FMX-118–FMX-129 are unblocked.
 
