@@ -1,8 +1,9 @@
 name: docs-check
 
 # Validates the Obsidian vault: frontmatter, wikilinks, no orphans, no secrets,
-# ADRs listed in the Decision-Log. Thin trigger only — the logic lives in the
-# portable scripts/docs-check.mjs (run locally with `pnpm docs:check`). See ADR-0044.
+# ADRs listed in the Decision-Log (scripts/docs-check.mjs, `pnpm docs:check`) +
+# status-SSOT drift (scripts/status-consistency-check.mjs, `pnpm docs:status-check`,
+# ADR-0092/FMX-143). Thin trigger only — the logic lives in the portable scripts. See ADR-0044.
 # No paths filter on purpose: this is a required check, so it must report on every PR.
 
 on:

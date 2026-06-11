@@ -18,7 +18,8 @@ related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00
 > Scope-calls decided live by Nico; record in
 > [[../40-Execution/decision-queue-2026-06-08-ratified|the ratification ledger]].
 > This supersedes the 2026-05-27 reopen note below. **GDDRs are binding again;**
-> the non-numbered system/mode notes remain `draft` pending individual re-approval
+> the non-numbered system/mode notes remain `draft` (fan-ecology: `superseded`) pending
+> individual re-approval
 > (see [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]], FMX-143).
 >
 > *History:* **2026-05-27 — All game-design decisions reopened.** Every GDDR and system
@@ -42,7 +43,7 @@ Implement gameplay only from `accepted`/`approved` game-design records (GDDRs ca
 individually re-approved). This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0028`) — the decision-record chain from research into
+- **GDDRs** (`GD-0001`...`GD-0040`) — the decision-record chain from research into
   ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it

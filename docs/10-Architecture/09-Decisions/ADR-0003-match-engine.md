@@ -31,7 +31,9 @@ related: [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-au
 
 superseded
 
-> Superseded by [[ADR-0049-swappable-spatial-event-match-engine]] (2026-05-27 re-evaluation;
+> Superseded by [[ADR-0049-swappable-spatial-event-match-engine]] — itself superseded by
+> [[ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], the live planning
+> target (2026-05-27 re-evaluation;
 > drift-fix recorded in the 2026-06-08 ratification sweep, PR #153); body previously read
 > "Accepted (2026-05-16, gap A3 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]).
 > Render-seam contract added 2026-05-19 by [[ADR-0026-match-frame-contract]].". Body status

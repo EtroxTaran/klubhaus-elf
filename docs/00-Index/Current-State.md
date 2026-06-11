@@ -25,8 +25,10 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
 > **2026-06-08 — Decision portfolio re-ratified (merged 2026-06-08/09 via PRs
-> #153/#157–#161 — merge was the ratification act).** All 80 reopened ADRs
-> + 36 GDDRs were re-ratified (`status: accepted`; frontmatter is the single source of
+> #153/#157–#161 — merge was the ratification act).** All 76 reopened ADRs + 36 GDDRs
+> were re-ratified (69 ADRs → `accepted`, 7 → `superseded` by new wave ADRs; the 4
+> pre-reopen supersessions 0001/0002/0004/0013 were never reopened and stay
+> `superseded`; frontmatter is the single source of
 > truth per [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]]);
 > **13 new ADRs (0092–0104)** + **4 new GDDRs (0037–0040)** adopted; **7 supersessions** (0006→0094, 0009→0103, 0015→0099, 0025→0104, 0043→0102,
 > 0049→0096; 0003 drift-fixed) + **5 amendments** (ADR-0095 amends 0050, ADR-0097 amends 0027,
@@ -53,14 +55,15 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > the 2026-06-10 audit backlog (epic FMX-118): after the merged ratification PRs #153/#157–#161
 > the four status surfaces contradicted each other (89+ ADR/GDDR bodies still `draft`/`proposed`
 > against `accepted` frontmatter; bounded-context-map prose vs its own 28-row table; the
-> Open-Decisions-Dossier listing ratified items as open; "PR pending" banners after the merge).
+> Open-Decisions-Dossier listing ratified items as open; stale pending-merge banners after the merge).
 > Sweep: every decision-record body `## Status` now carries the bare frontmatter status word +
 > a dated history line (ADR-0092 demotion — history preserved, never deleted); map §1.1/§1.3 +
 > FMX-91/FMX-94 paragraphs rewritten as ratified; dossier closed as a historical index; banners
 > flipped to merged; standard SUPERSEDED banners added to ADR-0006/0009/0015/0025/0043/0049.
 > **Nico decided 4 forks live (2026-06-11):** **H1** ADR-0100 recorded as **amendment** of
 > ADR-0076/0085 (thread-ownership/naming portions only; both stay `accepted`; ledger erratum in
-> the inventory) · **H2** the 27 non-numbered system/mode notes stay `draft` (`binding: false`,
+> the inventory) · **H2** the 27 `draft` non-numbered system/mode notes stay `draft` (the 28th such
+> note is `superseded` and untouched; `binding: false`,
 > "approved" prose demoted; re-approval = later HITL pass) · **H3** standing
 > `scripts/status-consistency-check.mjs` added **+ CI-wired** (body⇄frontmatter, map count⇄table,
 > stale-banner + superseded-link rules) · **H4** `onboarding-and-tutorial.md` `approved` was a
@@ -68,8 +71,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]] (133 records ×
 > 4 sources) + research [[../60-Research/ratification-status-ssot-reconciliation-2026-06-11]]
 > (+ raw [[../60-Research/raw-perplexity/raw-ratification-status-ssot-2026-06-11]]).
-> "Is decision X ratified?" is answerable from frontmatter again; the remaining audit issues
-> (FMX-119–FMX-194) are unblocked.
+> "Is decision X ratified?" is answerable from frontmatter again; the remaining open audit
+> issues of epics FMX-118–FMX-129 are unblocked.
 
 > **FMX-102 Async escalation FSM + watch-party deadline source-of-truth (2026-06-07).** Closes audit
 > gap **G25** and is the **last open backlog item** (E8 epic FMX-64 / E8-2; with FMX-101 merged

@@ -3,7 +3,7 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-06-05
+updated: 2026-06-11
 type: map
 binding: false
 related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
@@ -14,8 +14,11 @@ related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]]
 Use this map for gameplay, economy, progression, and player experience work.
 
 [[Documentation-V1]] classifies draft game-design notes as
-future-scope or historical planning unless they are listed as approved/current
-below. This means old `Future-scope notes` sections are not active work by default.
+future-scope or historical planning unless they are listed as binding
+(`accepted`/`approved`/`current`) below. Frontmatter is the status SSOT
+(ADR-0092); since the 2026-06-08 ratification all GD-0001–GD-0040 GDDRs are
+`accepted`, while the non-numbered system/mode notes are `draft` pending
+individual re-approval (FMX-143 H2). This means old `Future-scope notes` sections are not active work by default.
 
 ## Hub
 
@@ -61,9 +64,9 @@ below. This means old `Future-scope notes` sections are not active work by defau
 - [[../50-Game-Design/youth-academy-and-development]]
 - [[../50-Game-Design/training-load-and-medicine]]
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] -
-  draft EOS player skills/perks, staff-skill target and People/persona model.
+  accepted EOS player skills/perks, staff-skill target and People/persona model.
 - [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]] -
-  draft factor-matrix layer for player development, transfer decisions,
+  accepted factor-matrix layer for player development, transfer decisions,
   staff-pipeline influence and the staff-skill MVP gate.
 
 ## Tactics + match
@@ -76,7 +79,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 ## Modes
 
 - [[../50-Game-Design/mode-create-a-club-roguelite]] - MVP first playable.
-- [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]] - draft
+- [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]] - accepted
   Manager-Archetype Roguelite progression hooks.
 - [[../50-Game-Design/mode-manage-a-club-career]] - visible as "comes later"; post-MVP playable.
 - [[../50-Game-Design/singleplayer-baseline]]
@@ -94,29 +97,29 @@ below. This means old `Future-scope notes` sections are not active work by defau
 ## Narrative & AI
 
 - [[../50-Game-Design/GD-0013-narrative-inbox]]
-- [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] - draft
+- [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]] - accepted
   Full Dialogue and All Active actor-context target for MVP narration; FMX-88
   freezes Broad Full Dialogue runtime-LLM scope, CI fallback manifest and the
   no-export MVP rule; FMX-83 proposes source-owned newsworthy event snapshots
   for injuries, contract expiry, board pressure and transfer rumours; FMX-87
   adds finite `DialogueIntent` taxonomy and banded effect matrix coverage.
-- [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]] - draft
+- [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]] - accepted
   FMX-87 dialogue-intent taxonomy and effect matrix for player, staff, board,
   press/media, fan-rep and agent surfaces.
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
-- [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]] - draft deterministic
+- [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]] - accepted deterministic
   world-drift design for Rising Rival, Giant Collapse and Continental Era Shift.
 - [[../60-Research/ai-narrative-runtime-integration]]
 - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 
 ## UX
 
-- [[../50-Game-Design/GD-0012-onboarding]] - approved FMX-99 onboarding decision:
+- [[../50-Game-Design/GD-0012-onboarding]] - accepted FMX-99 onboarding decision:
   current FTUE path, Season-1 objective roadmap, wage-runway first economy
   lesson, deterministic feed-card scoring and keyboard-first / WCAG 2.2 AA
   route requirements.
-- [[../50-Game-Design/onboarding-and-tutorial]] - detailed approved onboarding
-  system spec.
+- [[../50-Game-Design/onboarding-and-tutorial]] - detailed onboarding system
+  spec (`draft`, pending individual re-approval — FMX-143 H4).
 - [[../60-Research/onboarding-guided-first-season-2026-06-03]] - FMX-99 research
   synthesis for R2-05.
 - [[../50-Game-Design/progressive-disclosure-ui]]
@@ -129,7 +132,7 @@ below. This means old `Future-scope notes` sections are not active work by defau
 
 ## Analytics + history
 
-- [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]] - draft FMX-94
+- [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]] - accepted FMX-94
   MVP Analytics Hub and statistics design: Key Findings, Last Match, Team/Player
   Analysis, standings/leaders, form windows, maps/heatmaps/zone control,
   official-vs-derived metric labels and Manager & Legacy handoff snapshots.
@@ -176,22 +179,20 @@ below. This means old `Future-scope notes` sections are not active work by defau
 
 ## Binding Rule
 
-Only `approved` game design or feature notes are binding for
-implementation. Draft gameplay ideas can be used for planning but not as
-implementation specs. As of the 2026-05-22 baseline, the current MVP/gameplay
-surface is covered; non-approved notes are future-scope, not open gaps. Today
-the `approved` notes are:
+Only `accepted`/`approved` game design or feature notes are binding for
+implementation; draft gameplay ideas can be used for planning but not as
+implementation specs. Since the 2026-06-08 ratification (#153, FMX-143
+reconciliation 2026-06-11):
 
-- [[../50-Game-Design/mode-create-a-club-roguelite]] (product rule)
-- [[../50-Game-Design/mode-manage-a-club-career]] (product rule)
-- [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]] (MVP sequencing)
-- [[../50-Game-Design/singleplayer-baseline]]
-- [[../50-Game-Design/async-multiplayer-private-group]] (product rules)
-- [[../50-Game-Design/progressive-disclosure-ui]]
-- [[../50-Game-Design/GD-0012-onboarding]]
-- [[../50-Game-Design/onboarding-and-tutorial]]
-- [[../50-Game-Design/transfer-market-and-contracts]]
-- [[../60-Research/player-strength-presentation]] (binding research synthesis)
-- [[../50-Game-Design/tactics-system]]
-- [[../50-Game-Design/match-engine]]
-- [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]] (current research input)
+- **Binding: all GDDRs [[../50-Game-Design/GD-0001-core-loop|GD-0001]]–GD-0040**
+  (`accepted`; the GDDR is the decision of record — see
+  [[../50-Game-Design/README]] precedence rules). Wave-2-gated items inside
+  accepted GDDRs remain scope-gated, not implementable.
+- **Binding research synthesis:** [[../60-Research/player-strength-presentation]]
+  (Impact Lens, no global OVR).
+- **Not binding (planning context):** the non-numbered system/mode notes
+  (mode-create-a-club-roguelite, mode-manage-a-club-career,
+  singleplayer-baseline, onboarding-and-tutorial, tactics-system, match-engine,
+  transfer-market-and-contracts, …) are `draft` pending individual re-approval
+  (FMX-143 H2/H4); fan-ecology is `superseded`. They must not contradict the
+  GDDR of record.

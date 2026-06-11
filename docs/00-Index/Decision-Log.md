@@ -34,7 +34,7 @@ contradict an `approved` game-design record.
 
 > **2026-06-08 ratification sweep (merged 2026-06-08 via PR #153).** All reopened ADRs
 > were re-ratified to `status: accepted` (frontmatter = single source of truth per
-> ADR-0092). Superseded by ratification-wave ADRs: **0003→0096 (drift-fix), 0006→0094,
+> ADR-0092). Superseded by ratification-wave ADRs: **0003→0049 (drift-fix; chain continues 0049→0096), 0006→0094,
 > 0009→0103, 0015→0099, 0025→0104, 0043→0102, 0049→0096** (plus the four pre-existing
 > supersessions 0001→0021, 0002→0020, 0004→0027, 0013→0028 — eleven `superseded` total).
 > **ADR-0076/0085 are *amended* by ADR-0100** (thread-ownership/naming portions only;

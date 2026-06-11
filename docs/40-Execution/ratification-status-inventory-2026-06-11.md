@@ -97,10 +97,10 @@ before this sweep; "Body (now)" after it.
 
 | File | FM status | FM binding | Body (pre) | Body (now) | Class | Action / referee |
 |---|---|---|---|---|---|---|
-| `ADR-0001-tech-stack.md` | `superseded` | `true` | Superseded (2026-05-19 by ADR-0021-revised-tech-stack). | Superseded (2026-05-19 by ADR-0021-rev | A | body → frontmatter + dated history |
-| `ADR-0002-offline-first.md` | `superseded` | `true` | Superseded (2026-05-18 by ADR-0020-hybrid-online-mvp-offli | Superseded (2026-05-18 by ADR-0020-hyb | A | body → frontmatter + dated history |
+| `ADR-0001-tech-stack.md` | `superseded` | `true` | Superseded (2026-05-19 by ADR-0021-revised-tech-stack). | superseded | = | pre-existing supersession; prose body normalized to bare word + history 2026-06-11 (checker strictness) |
+| `ADR-0002-offline-first.md` | `superseded` | `true` | Superseded (2026-05-18 by ADR-0020-hybrid-online-mvp-offli | superseded | = | pre-existing supersession; prose body normalized to bare word + history 2026-06-11 (checker strictness) |
 | `ADR-0003-match-engine.md` | `superseded` | `false` | Accepted (2026-05-16, gap A3 of ../../95-Archive/gap-repor | superseded | A | body → frontmatter + dated history |
-| `ADR-0004-data-model.md` | `superseded` | `true` | Superseded (2026-05-19 by ADR-0027-postgres-data-model). | Superseded (2026-05-19 by ADR-0027-pos | A | body → frontmatter + dated history |
+| `ADR-0004-data-model.md` | `superseded` | `true` | Superseded (2026-05-19 by ADR-0027-postgres-data-model). | superseded | = | pre-existing supersession; prose body normalized to bare word + history 2026-06-11 (checker strictness) |
 | `ADR-0005-save-format.md` | `accepted` | `true` | Accepted (2026-05-16, gap A5 of ../../95-Archive/gap-repor | accepted | A | body → frontmatter + dated history |
 | `ADR-0006-i18n.md` | `superseded` | `false` | draft | superseded | A | body → frontmatter + dated history |
 | `ADR-0007-naming-schema.md` | `accepted` | `true` | Accepted (2026-05-17, gap D2 of | accepted | A | body → frontmatter + dated history |
@@ -109,7 +109,7 @@ before this sweep; "Body (now)" after it.
 | `ADR-0010-design-system.md` | `accepted` | `` | — | — | C | no body status section — OK (narrative optional per ADR-0092) |
 | `ADR-0011-server-authoritative-multiplayer.md` | `accepted` | `true` | Accepted (2026-05-16, gap B2 of ../../95-Archive/gap-repor | accepted | A | body → frontmatter + dated history |
 | `ADR-0012-async-cadence-models.md` | `accepted` | `false` | Proposed (2026-05-16). Needs Nico's review before acceptance | accepted | B | ledger/HITL referee → recorded |
-| `ADR-0013-transactional-outbox.md` | `superseded` | `true` | Superseded (2026-05-19 by ADR-0028-postgres-transactional- | Superseded (2026-05-19 by ADR-0028-pos | A | body → frontmatter + dated history |
+| `ADR-0013-transactional-outbox.md` | `superseded` | `true` | Superseded (2026-05-19 by ADR-0028-postgres-transactional- | superseded | = | pre-existing supersession; prose body normalized to bare word + history 2026-06-11 (checker strictness) |
 | `ADR-0014-state-machines.md` | `accepted` | `false` | Proposed (2026-05-16). Needs Nico's review before acceptance | accepted | B | ledger/HITL referee → recorded |
 | `ADR-0015-spectator-snapshot-streaming.md` | `superseded` | `false` | Proposed (2026-05-16). Needs Nico's review before acceptance | superseded | B | ledger/HITL referee → recorded |
 | `ADR-0016-community-dataset-overrides.md` | `accepted` | `false` | Proposed (2026-05-16). Needs Nico's review before acceptance | accepted | B | ledger/HITL referee → recorded |

@@ -17,7 +17,9 @@ related: [[../state-machines/watch-party]], [[../../60-Research/async-multiplaye
 > implement.
 
 > **STACK-REVISION IMPACT 2026-05-19 ([[ADR-0021-revised-tech-stack]] + ADR-0023/0024/0025).**
-> Informational only — status (`proposed`) and decision are **unchanged**; do not
+> **History (pre-supersession banner, demoted 2026-06-11 per FMX-143 — ADR-0099 is the
+> current decision):**
+> Informational only — status at the time (`proposed`) and decision were **unchanged**; do not
 > implement. On promotion the substrate amendment below applies: *snapshot/delay
 > model unchanged; **transport → SSE-now / Centrifugo-planned** per
 > [[ADR-0023-realtime-transport]]; frames are the typed renderer frames per
