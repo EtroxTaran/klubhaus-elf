@@ -32,6 +32,19 @@ related:
 > [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). New open
 > decisions get new dossier/queue notes — this one is not reopened.
 
+> **Post-dossier decisions (historical completeness, added 2026-06-11 — FMX-145 consolidated
+> sub-task; the dossier stays closed).** Two decision records were authored 2026-06-08, *after*
+> this dossier's 2026-06-07 snapshot, and were therefore never catalogued here:
+> [[../10-Architecture/09-Decisions/ADR-0095-balanced-transfer-ledger-posting-invariant|ADR-0095]]
+> (ledger posting shape, D1 A-vs-B) and
+> [[../10-Architecture/09-Decisions/ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract|ADR-0101]]
+> (band-collapse rule / quality-profile enum / insolvency postings). Their open D-questions were
+> decided outside this dossier: **ADR-0095 D1 = A (balanced double-entry) + `binding: true`,
+> two-level chart-of-accounts granularity, no save migration — Nico live 2026-06-11 (FMX-145)**;
+> ADR-0101's remaining axes are tracked as **FMX-149** (collapse rule), **FMX-147**
+> (quality-profile enum) and **FMX-146** (insolvency posting contract), with the concrete chart
+> of accounts as **FMX-150**. Authoritative records: [[Decision-Log]] + per-ADR frontmatter.
+
 One place where everything still open across the domains **was decided**. Each item below is a
 crisp question with researched options and a **recommended answer** (grounded externally
 2026-06-07 — Perplexity Sonar + Exa + DDD/sim literature; see the per-item research notes).

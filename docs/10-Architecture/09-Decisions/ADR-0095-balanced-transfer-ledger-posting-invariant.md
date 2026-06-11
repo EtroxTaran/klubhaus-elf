@@ -5,9 +5,8 @@ tags: [adr, architecture, ddd, economy, accounting, ledger, double-entry, invari
 created: 2026-06-08
 updated: 2026-06-11
 type: adr
-binding: false
+binding: true
 amends: [[ADR-0050-club-economy-accounting-ledger]]
-  - [[ADR-0050-club-economy-accounting-ledger]]
 superseded_by:
 related:
   - [[ADR-0050-club-economy-accounting-ledger]]
@@ -24,6 +23,7 @@ related:
   - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../../50-Game-Design/economy-system]]
   - [[../../60-Research/club-economy-blueprint-2026-05-27]]
+  - [[../../60-Research/ledger-posting-shape-double-vs-single-entry-2026-06-11]]
   - [[../../00-Index/Open-Decisions-Dossier]]
 ---
 
@@ -32,6 +32,14 @@ related:
 ## Status
 
 accepted
+
+> **D1 confirmed + `binding: true` 2026-06-11 (FMX-145).** The 2026-06-08 bulk ratification
+> accepted this ADR on its ★-recommended disposition, but the queue card's recommendation
+> explicitly read "A-vs-B is Nico's" — an accept-with-reservation, which is why the ADR stayed
+> `binding: false`. Nico confirmed **D1 = A (balanced double-entry)** live on 2026-06-11
+> (FMX-145), together with the chart-of-accounts granularity principle and the migration answer
+> (see §Decision); grounded in
+> [[../../60-Research/ledger-posting-shape-double-vs-single-entry-2026-06-11]].
 
 > Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
@@ -51,6 +59,7 @@ accepted
 ## Date
 
 - Drafted: 2026-06-08 (FMX-106)
+- D1 confirmed + binding: 2026-06-11 (FMX-145)
 
 ## Context
 
@@ -123,8 +132,8 @@ Pre-existing constraints this ADR must honour (unchanged):
 
 ## Options considered
 
-- **D1 — Posting shape & identity invariant**
-  - **A (RECOMMENDED) — Balanced double-entry postings.** Every `FinanceLedgerEntryPosted` carries
+- **D1 — Posting shape & identity invariant** *(decided **A**, Nico live 2026-06-11, FMX-145)*
+  - **A (CHOSEN) — Balanced double-entry postings.** Every `FinanceLedgerEntryPosted` carries
     **≥2 lines that sum to zero**, each line tagged with an `accountCode` (typed asset / liability /
     equity / income / expense). A **reversal is a balanced offsetting pair** (swap the legs of the
     original), never a mutation and never a bare negative. Add a **`LedgerEntry` invariant table** and
@@ -140,9 +149,18 @@ Pre-existing constraints this ADR must honour (unchanged):
     cluster's reversal/accrual/write-off mechanisms unverifiable and the audit-trail/trust claim
     unenforceable — the gap this ADR exists to close.
 
-## Decision (draft — awaiting Nico)
+## Decision
 
-Propose **D1 = A** as a **new superseding ADR** that:
+**D1 = A — balanced double-entry postings.** Confirmed live by Nico on 2026-06-11 (FMX-145),
+closing the accept-with-reservation left by the 2026-06-08 bulk sweep. Grounding:
+[[../../60-Research/ledger-posting-shape-double-vs-single-entry-2026-06-11]] — every surveyed
+production immutable/event-sourced ledger (TigerBeetle, Modern Treasury, Stripe, Square/Cash App,
+Uber) enforces per-transaction balance as a write-path kernel invariant and models corrections as
+new offsetting entries; the documented failure modes of single-entry + periodic reconcile (late
+error detection, no imbalance attribution, replay divergence in the projection pipeline) are
+exactly what a byte-identical-replay engine cannot afford.
+
+This ADR **amends** ADR-0050 (shape-only) such that it:
 
 1. **Leaves the ADR-0050 boundary decision unchanged** (sole writer, projections-are-derived,
    integer-minor-units, the entire command/event/read-model contract list, the
@@ -161,9 +179,34 @@ Propose **D1 = A** as a **new superseding ADR** that:
    always-on kernel invariant; the full identity is the layered control check, matching TigerBeetle /
    Modern Treasury / Square practice).
 
-**A vs B is Nico's call.** A is recommended because the corrections the cluster *already shipped*
-(reversal+repost, IFRS-15 accrual, creditor write-off) are structurally double-entry in spirit; A makes
-them mechanically verifiable, whereas B verifies them only on an after-the-fact projection sweep.
+**A vs B was Nico's call — decided A (2026-06-11, FMX-145).** A was recommended because the
+corrections the cluster *already shipped* (reversal+repost, IFRS-15 accrual, creditor write-off) are
+structurally double-entry in spirit; A makes them mechanically verifiable, whereas B verifies them
+only on an after-the-fact projection sweep.
+
+**Decided sub-answers (Nico live, 2026-06-11, FMX-145):**
+
+- **Chart-of-accounts granularity = two-level.** Level 1: a **small fixed typed chart of
+  ~30–40 accounts** (5 types — asset/liability/equity/income/expense — covering the real economic
+  buckets: operating/restricted cash, receivable classes, inventory, deferred revenue, payable
+  classes, financing principal, equity/retained earnings, revenue families, expense families).
+  Level 2: fine-grained classification (e.g. the 15+ FMX-46 matchday cost families) lives in a
+  **versioned `categoryCode` catalog carried as posting metadata**, never as extra accounts — the
+  in-game "Expert accounting" P&L aggregates by category, the balance sheet by account. This is
+  the embedded-ledger standard (Modern Treasury dimensions, TigerBeetle codes/`user_data`,
+  Oracle GL tree-versioning) and keeps the chart proportionate. The **concrete account list +
+  category catalog is FMX-150's deliverable**; this ADR pins the principle and extends LI-9 to
+  cover both levels.
+- **Migration = none (pre-1.0).** The repository was reset to docs-vault-only on 2026-05-27;
+  no implementation and **no live saves exist**. The balanced posting shape **is the v1 save
+  schema**; no single-signed→balanced migration path is specified. The FMX-145 data-loss risk
+  only materialises if implementation starts before this ADR is binding — closed by this flip.
+- **LI-4 terminology.** The standard industry term for the LI-4 mechanism is the **reversing
+  entry** (same accounts, negated/flipped lines, linked via `originalEntryId`, own idempotency
+  key); with signed per-line amounts this coincides with the "leg-swapped balanced pair" wording.
+  Re-routing corrections are modeled as **reversal of the original + a new correct entry**
+  (TigerBeetle "Always Add More Transfers"), matching ADR-0086 BF8's distinct-upgrade-key
+  discipline. Semantics unchanged; LI-4 below carries the refined wording.
 
 **Pairing.** This ADR should land **together with a settlement/insolvency follow-up** so three things
 arrive coherently: (i) **reversal-as-balanced-pair** (the ADR-0086 BF8 mechanism), (ii) the
@@ -184,12 +227,12 @@ per-posting balance requirement LI-1/LI-2 in favour of a weekly reconcile):
 | **LI-1** | **Per-posting balance (kernel invariant):** every `FinanceLedgerEntryPosted` has `lines.length ≥ 2` and `Σ line.amountMinor = 0`. An unbalanced posting is rejected before it reaches the outbox. |
 | **LI-2** | Every line carries a typed **`accountCode`** ∈ {asset, liability, equity, income, expense} from the club chart of accounts; no untyped lines. |
 | **LI-3** | **Accounting identity (control check):** at any settled point, `Σ asset = Σ liability + Σ equity` over the club's ledger (derivable from line account codes; asserted in replay/soak checks). |
-| **LI-4** | **Reversal = balanced offsetting pair:** a reversal posts the **leg-swapped** lines of the target entry (same magnitudes, swapped debit/credit) under a distinct idempotency key — it **never mutates** the original and is **never a bare signed number** (supersedes the implicit single-signed reversal assumed by ADR-0086 BF8). |
+| **LI-4** | **Reversal = reversing entry (balanced offsetting pair):** a reversal posts the **leg-swapped** lines of the target entry (same accounts, negated/flipped amounts) under a distinct idempotency key, **linked to the original via `originalEntryId`** — it **never mutates** the original and is **never a bare signed number**; a re-routing correction is a reversing entry **plus** a new correct entry (supersedes the implicit single-signed reversal assumed by ADR-0086 BF8). |
 | **LI-5** | **Append-only & immutable:** posted entries are never edited or deleted; all corrections are new balanced entries (consistent with ADR-0050 append-only + ADR-0028 outbox). |
 | **LI-6** | **Sole writer preserved:** balanced postings are produced **only** by Club Management; other contexts emit fact events (ADR-0050/0058) — double-entry never leaks into a non-finance context. |
 | **LI-7** | **Money type:** all `amountMinor` are integer minor units (ADR-0050); ratios in basis points; no floats; band→`amountMinor` collapse happens **before** posting (see pairing follow-up). |
 | **LI-8** | **Determinism/replay:** identical inputs + `worldSeed` produce a byte-identical balanced posting sequence; the balanced-pair reversal is reproducible on replay (ADR-0086 BF6 extended to the pair). |
-| **LI-9** | **Chart-of-accounts versioning:** the account-code set is versioned (e.g. `chartOfAccountsVersion`); adding accounts never renumbers existing codes (future-proof, mirrors ADR-0086 `costProfileVersion` discipline). |
+| **LI-9** | **Chart-of-accounts + category-catalog versioning (two-level):** the account-code set is versioned (`chartOfAccountsVersion`); adding accounts never renumbers or reuses existing codes (retire = inactive flag, never delete). The fine-grained **`categoryCode` catalog is a separate versioned dimension on postings** (effective-dated; old saves replay under their original catalog version) — category evolution never touches accounts or rewrites ledger history (future-proof, mirrors ADR-0086 `costProfileVersion` discipline). |
 
 ## Consequences
 
@@ -216,8 +259,9 @@ Negative / constraints:
   events (matchday cost families, catering/merchandise lines, financing drawdown/interest, fan-event
   settlement, cup settlement) must now emit a balanced pair with explicit account codes rather than one
   signed number.
-- A **chart of accounts** must be defined (granularity = open question) before postings can be coded;
-  this is new design surface ADR-0050 deferred.
+- A **chart of accounts** must be defined before postings can be coded; this is new design surface
+  ADR-0050 deferred (granularity decided two-level 2026-06-11, FMX-145 — see §Decision; the
+  concrete account list + category catalog is FMX-150).
 - The accounting complexity **must not leak into non-finance contexts** — LI-6 + the existing
   sole-ledger-writer rule already protect this (other contexts keep emitting flat fact events; only
   Club Management's ACL turns a fact into a balanced pair), but it is a discipline to enforce in review.
@@ -225,48 +269,50 @@ Negative / constraints:
 ## Risks
 
 - **Over-modelling for a single-player offline game:** full corporate chart-of-accounts granularity
-  would be gold-plating; the D1-open-question on granularity must keep this proportionate (a small
-  fixed chart, not GAAP-complete). The recommendation deliberately scopes the identity check as a
-  control/projection check, not a per-write global sweep, to keep the offline hot path cheap.
-- **Migration ambiguity:** this ADR fixes the target shape but does **not** prescribe a save-migration
-  path; a follow-up must define how/whether existing single-signed saves project into balanced legs (or
-  whether this is pre-1.0 with no live saves). Treated as the pairing follow-up's responsibility.
+  would be gold-plating. **Mitigated by the decided two-level granularity** (small fixed ~30–40
+  account chart; fine classification as versioned posting metadata — §Decision). The identity check
+  stays a control/projection check, not a per-write global sweep, keeping the offline hot path cheap.
+- **Migration ambiguity:** **resolved 2026-06-11 (FMX-145)** — pre-1.0, no live saves exist
+  (docs-vault-only reset 2026-05-27); the balanced shape is the v1 save schema, no migration path.
 - **Leak risk** if a future context is tempted to post its own balanced entry — mitigated by LI-6, not
   eliminated.
 
 ## Open questions
 
-- **D1 — A (balanced double-entry) vs B (single-entry `amountMinor` + a binding enforced-projection
-  identity invariant)?** A guarantees the identity *structurally per posting*; B guarantees it
-  *periodically on a projection*. Nico's call.
-- **Chart-of-accounts granularity for an offline single-player ledger** — how many accounts, and how
-  fine? (e.g. one liability account per creditor class vs a single "creditors" account; per-cost-family
-  expense accounts vs a single "matchday operating expense"). This drives how legible the in-game
-  "expert accounting" view can be vs modelling cost.
-- **Band → `amountMinor` collapse point** — ADR-0086 summaries carry `MoneyBand`; where exactly does a
-  band become the exact balanced pair the ledger posts? (Pairing follow-up.)
+All three original open questions are **resolved or routed** (2026-06-11, FMX-145):
+
+- **D1 — A vs B:** **decided A** (balanced double-entry) — Nico live 2026-06-11; see §Decision.
+- **Chart-of-accounts granularity:** **decided** — two-level (small fixed typed chart ~30–40
+  accounts + versioned `categoryCode` posting-metadata catalog); the concrete account list +
+  category catalog is **FMX-150**'s deliverable.
+- **Band → `amountMinor` collapse point:** **routed** — owned by
+  [[ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]] D2; the exact
+  collapse rule (midpoint / deterministic representative / seeded-within-band) is **FMX-149**.
+  With D1 = A decided, ADR-0101's D4 "balanced **iff** double-entry" clause resolves to
+  **balanced, unconditionally** — the insolvency posting contract (**FMX-146**) sequences next.
 
 ## Supersedes
 
-[[ADR-0050-club-economy-accounting-ledger]] — **partially / shape-only.** This ADR supersedes ADR-0050's
-**single-signed-`amountMinor` posting shape** and adds the **invariant table + accounting-identity
-check** ADR-0050 lacked. It **does not** supersede ADR-0050's bounded-context boundary, sole-writer
-rule, projections-are-derived rule, money type, or event/command/read-model contract list — those
-remain in force. ADR-0050 is **not edited**; its supersession is recorded only here (ratify gate,
-[[../../90-Meta/vault-governance]]). On ratification, ADR-0050's `superseded_by` is updated and the
-[[../bounded-context-map]] Club Management row gains a one-line "balanced double-entry ledger postings"
-clause; the **context count is unchanged (no new BC)**.
+None — this ADR **amends** [[ADR-0050-club-economy-accounting-ledger]] **shape-only**, on the
+amendment pattern (FMX-143 fork H1, Nico 2026-06-11: predecessor stays `accepted` with
+`amended_by:`; no `superseded_by`). It replaces ADR-0050's **single-signed-`amountMinor` posting
+shape** and adds the **invariant table + accounting-identity check** ADR-0050 lacked. It **does
+not** touch ADR-0050's bounded-context boundary, sole-writer rule, projections-are-derived rule,
+money type, or event/command/read-model contract list — those remain in force. With D1 confirmed
+(2026-06-11, FMX-145), ADR-0050 carries a dated amendment note and the [[../bounded-context-map]]
+Club Management row carries the one-line "balanced double-entry ledger postings" clause; the
+**context count is unchanged (no new BC)**.
 
 ## Bounded-context-map impact
 
 **None structural.** This is an internal posting-shape + invariant change inside the **existing** Club
 Management context (sole ledger writer). No new context, no new cross-context relationship; the
 CommercialPortfolio / Stadium Operations / Audience & Atmosphere fact-event relationships are unchanged.
-A one-line Club Management clause may be added on ratify.
+The one-line Club Management clause was added with the D1 confirmation (2026-06-11, FMX-145).
 
 ## Related Docs
 
-- [[ADR-0050-club-economy-accounting-ledger]] — superseded (posting-shape only); boundary unchanged.
+- [[ADR-0050-club-economy-accounting-ledger]] — amended (posting-shape only); boundary unchanged.
 - [[ADR-0058-club-economy-commercial-impact-boundary]] — IFRS-15 accrual recognition that this
   invariant makes reconcilable.
 - [[ADR-0086-background-fast-matchday-cost-settlement]] — BF8 reversal+repost becomes a balanced pair.
@@ -286,3 +332,10 @@ A one-line Club Management clause may be added on ratify.
   Equity`), Modern Treasury Ledgers (postings sum to zero; offsetting reversals), Square/Cash App
   internal ledgers (append-only double-entry; reversing entries). Pattern: per-transaction balance is
   the kernel invariant; A = L + E is the layered control/projection check.
+- Decision grounding (2026-06-11, FMX-145):
+  [[../../60-Research/ledger-posting-shape-double-vs-single-entry-2026-06-11]] (+ raw captures
+  [[../../60-Research/raw-perplexity/raw-ledger-posting-shape-2026-06-11]],
+  [[../../60-Research/raw-perplexity/raw-chart-of-accounts-granularity-2026-06-11]]) — primary
+  sources verified: TigerBeetle *Correcting Transfers* recipe, Modern Treasury ledger-transaction
+  balance rule; CoA granularity practice (Modern Treasury dimensions, Formance/Twisp metadata,
+  Oracle GL tree versioning).

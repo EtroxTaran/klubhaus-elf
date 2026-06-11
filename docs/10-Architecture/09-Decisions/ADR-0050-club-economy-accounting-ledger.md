@@ -3,7 +3,7 @@ title: ADR-0050 Club Economy Accounting Ledger
 status: accepted
 tags: [adr, architecture, economy, accounting, club-management, financing, debt, commercial, cup, competition, matchday, catering, merchandise, operations, fan-service, investor, fmx-13, fmx-32, fmx-41, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, accepted]
 created: 2026-05-27
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: true
 supersedes:
@@ -34,6 +34,14 @@ related:
 ## Status
 
 accepted
+
+> **Amended (shape-only) by [[ADR-0095-balanced-transfer-ledger-posting-invariant]]**, whose D1 was
+> confirmed **A — balanced double-entry postings** and flipped `binding: true` by Nico on 2026-06-11
+> (FMX-145; amendment pattern per FMX-143 fork H1 — this ADR stays `accepted`). The single-signed
+> `amountMinor` posting shape described below is replaced by balanced ≥2-line postings with the
+> LI-1..LI-9 invariant table; this ADR's boundary, sole-writer rule, projections-are-derived rule,
+> integer-minor-units money type and the event/command/read-model contract list remain in force
+> unchanged.
 
 ## Ratification note
 
