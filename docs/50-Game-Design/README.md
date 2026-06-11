@@ -3,7 +3,7 @@ title: Game Design Hub
 status: current
 tags: [game-design, index]
 created: 2026-05-15
-updated: 2026-06-09
+updated: 2026-06-11
 type: index
 binding: false
 related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[GD-0031-analytics-hub-and-statistics]], [[GD-0032-awards-honours-records-and-hall-of-fame]], [[GD-0033-national-team-dual-role]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../60-Research/national-team-dual-role-2026-06-06]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
@@ -11,21 +11,24 @@ related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00
 
 # Game Design Hub
 
-> **2026-05-27 — All game-design decisions reopened.** Every GDDR and system
-> note previously `approved` was reset to `status: draft` for re-evaluation.
-> **Nothing here is currently binding;** records will be re-approved
-> individually after review. The Status column and "approved" wording below
-> reflect the pre-reopen state and are being revisited.
+> **2026-06-08 — Re-ratified (planning-mode sweep, merged 2026-06-08 via PR #153).**
+> All 36 GDDRs were re-ratified to `accepted` and **4 new GDDRs (GD-0037–0040)** adopted
+> (table below mirrors the canonical frontmatter, the single source of truth per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]]).
+> Scope-calls decided live by Nico; record in
+> [[../40-Execution/decision-queue-2026-06-08-ratified|the ratification ledger]].
+> This supersedes the 2026-05-27 reopen note below. **GDDRs are binding again;**
+> the non-numbered system/mode notes remain `draft` (fan-ecology: `superseded`) pending
+> individual re-approval
+> (see [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]], FMX-143).
 >
-> **2026-06-08 — Re-ratified (planning-mode sweep, PR pending Nico's merge).** All 36
-> GDDRs were re-ratified to `accepted` and **4 new GDDRs (GD-0037–0040)** adopted (table
-> below mirrors the canonical frontmatter). Scope-calls decided live by Nico; record in
-> [[../40-Execution/decision-queue-2026-06-08-ratified|the ratification ledger]]. On merge,
-> this supersedes the "nothing binding" note above.
+> *History:* **2026-05-27 — All game-design decisions reopened.** Every GDDR and system
+> note previously `approved` was reset to `status: draft` for re-evaluation; nothing was
+> binding while the re-evaluation ran. Closed by the 2026-06-08 ratification above.
 
 Working game-design notes for Klubhaus Elf. Treat this folder as the GDD:
 one note per system + mode + emergent system. Notes are `draft` unless the
-status field says otherwise; `approved` notes are binding for implementation.
+status field says otherwise; `accepted`/`approved` notes are binding for implementation.
 [[../00-Index/Documentation-V1]] classifies non-approved notes
 as future-scope or historical planning unless they are promoted in
 [[../00-Index/Current-State]].
@@ -35,10 +38,12 @@ research transcripts in [[../60-Research/raw-perplexity/README]].
 
 ## Authority and decision records
 
-Implement gameplay only from `approved` game-design records. This folder has two
+Implement gameplay only from `accepted`/`approved` game-design records (GDDRs carry
+`accepted` since the 2026-06-08 ratification; system notes use `approved` once
+individually re-approved). This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0028`) — the decision-record chain from research into
+- **GDDRs** (`GD-0001`...`GD-0040`) — the decision-record chain from research into
   ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -48,13 +53,13 @@ complementary record shapes:
 
 A junior should never have to guess. Apply this order:
 
-1. **Status wins first.** An `approved` record is binding; a `draft`/`superseded`
+1. **Status wins first.** An `accepted`/`approved` record is binding; a `draft`/`superseded`
    record is never implementation authority — even on the same topic. So if a
    GDDR is `draft` but its system note is `approved` (or vice-versa), the
-   **`approved` one is binding** regardless of shape.
-2. **If both are `approved`**, the **GDDR is the decision of record** and the
+   **`accepted`/`approved` one is binding** regardless of shape.
+2. **If both are binding**, the **GDDR is the decision of record** and the
    **system note is the detailed spec**; read both, and they must agree. A
-   conflict between two `approved` records is a **stop condition** — escalate and
+   conflict between two binding records is a **stop condition** — escalate and
    supersede one explicitly before implementing; do not average them.
 3. The authoritative list of what is currently approved/binding lives in
    [[../00-Index/Game-Design-Map]].
@@ -63,15 +68,15 @@ A junior should never have to guess. Apply this order:
 
 | Topic | Binding document | Do NOT implement from |
 |---|---|---|
-| Match engine & simulation | [[match-engine]] (`approved`) | [[GD-0002-match-engine]] (`draft`, Wave-2 gated) |
-| Core career loop | [[GD-0001-core-loop]] (`approved`) | [[core-loop]] (`draft` context note) |
-| AI managers & world | — (none binding yet) | [[GD-0010-ai-world]] (`draft`, Wave-2 gated) |
+| Match engine & simulation | [[GD-0002-match-engine]] (`accepted`, Wave-2 gated) | [[match-engine]] (`draft` system note) |
+| Core career loop | [[GD-0001-core-loop]] (`accepted`) | [[core-loop]] (`draft` context note) |
+| AI managers & world | [[GD-0010-ai-world]] (`accepted`, Wave-2 gated) | — |
 
-For every other topic both records are `approved` and complementary (GDDR =
-decision, system note = spec). `draft` records are planning context only; as of
-2026-05-22 the MVP gameplay surface is fully covered by the approved/current
-notes in [[../00-Index/Game-Design-Map]], so remaining `draft` labels are not
-active work.
+Since the 2026-06-08 ratification the GDDR layer is `accepted` (binding); the
+non-numbered system/mode notes are `draft` detailed specs pending individual
+re-approval (FMX-143 H2) — read them as planning context that must not
+contradict the GDDR of record. Wave-2-gated items inside accepted GDDRs remain
+scope-gated, not implementable.
 
 | GDDR | System | Status | Feeds ADR |
 |---|---|---|---|

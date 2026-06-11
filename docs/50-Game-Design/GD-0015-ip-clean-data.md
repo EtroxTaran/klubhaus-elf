@@ -3,7 +3,7 @@ title: GD-0015 IP-clean Data Generation
 status: accepted
 tags: [game-design, gddr, ip, gamedata, privacy, gdpr, naming, community, fmx-54]
 created: 2026-05-17
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: true
 related: [[README]], [[GD-0009-league-structure]], [[GD-0003-squad-players]], [[../60-Research/ip-and-licensing]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/modules/game-data]], [[../00-Index/Non-Goals]]
@@ -13,7 +13,11 @@ related: [[README]], [[GD-0009-league-structure]], [[GD-0003-squad-players]], [[
 
 ## Status
 
-approved
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `approved`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 > Ratified — restates accepted ADR-0007 and the ip-and-licensing §9 decision.
 > The Wave-2 generation *algorithm* (R2-02) is NOT approved.

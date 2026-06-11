@@ -3,7 +3,7 @@ title: ADR-0059 Community Overlay Pipeline Context
 status: accepted
 tags: [adr, architecture, ddd, community, overlay, import, privacy, gdpr, dsa, naming, fmx-33, fmx-54, risk-legal]
 created: 2026-05-28
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -35,7 +35,11 @@ related:
 
 ## Status
 
-proposed
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Date
 

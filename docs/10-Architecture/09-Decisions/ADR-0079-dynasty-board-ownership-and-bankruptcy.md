@@ -3,7 +3,7 @@ title: ADR-0079 Dynasty Board, Ownership & Bankruptcy FSMs
 status: accepted
 tags: [adr, architecture, ddd, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, club-management, determinism, replay, fmx-89]
 created: 2026-06-05
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -34,8 +34,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** FMX-89 (E5 epic FMX-61) closes the late-game
 > arc gaps **G2/G20** by promoting research-tier board-ambition, ownership-
 > transition and bankruptcy/administration prose into ratified, deterministic,

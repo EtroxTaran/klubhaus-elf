@@ -3,7 +3,7 @@ title: GD-0021 Player and Staff Development and Decision Influence
 status: accepted
 tags: [game-design, gddr, player-development, staff, transfers, skills, fmx-38]
 created: 2026-05-28
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 supersedes:
@@ -38,8 +38,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > Draft only. This record proposes the canonical factor-matrix layer for how
 > player, staff and People-context facts influence gameplay and transfer
 > decisions. It is not implementable until Nico approves it.

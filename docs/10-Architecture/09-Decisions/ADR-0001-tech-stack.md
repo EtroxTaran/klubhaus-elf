@@ -3,7 +3,7 @@ title: ADR-0001 Tech Stack
 status: superseded
 tags: [adr, architecture]
 created: 2026-05-15
-updated: 2026-06-09
+updated: 2026-06-11
 accepted_at: 2026-05-15
 type: adr
 binding: true
@@ -17,8 +17,9 @@ related: [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-s
 
 ## Status
 
-Superseded (2026-05-19 by [[ADR-0021-revised-tech-stack]]).
-Accepted historically on 2026-05-15.
+superseded
+
+> Superseded (2026-05-19 by [[ADR-0021-revised-tech-stack]]). Accepted historically on 2026-05-15. Body status normalized to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Date
 

@@ -3,7 +3,7 @@ title: GD-0003 Squad, Players & Attributes
 status: accepted
 tags: [game-design, gddr, squad]
 created: 2026-05-17
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[GD-0005-training]], [[GD-0006-transfers]], [[GD-0021-player-staff-development-and-decision-influence]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../60-Research/data-generators]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/modules/db-schema]]
@@ -13,8 +13,13 @@ related: [[README]], [[GD-0005-training]], [[GD-0006-transfers]], [[GD-0021-play
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **Reopened draft.** This record contains historical pre-Wave-2 wording. The
 > current player data baseline is 16 visible outfield attributes + 4 GK extras
 > + 8 hidden meta on a 1-20 scale from [[../60-Research/data-generators]],

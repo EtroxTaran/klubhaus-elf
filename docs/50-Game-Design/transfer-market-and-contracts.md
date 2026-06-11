@@ -3,13 +3,24 @@ title: Transfer Market and Contracts
 status: draft
 tags: [game-design, transfers, contracts, ai, economy, scouting, narrative]
 created: 2026-05-17
-updated: 2026-06-03
+updated: 2026-06-11
 type: game-design
-binding: true
+binding: false
 related: [[README]], [[GD-0006-transfers]], [[scouting-and-recruitment]], [[squad-and-club-structure]], [[economy-system]], [[transfer-negotiations-p2p]], [[GD-0021-player-staff-development-and-decision-influence]], [[../60-Research/transfer-market-simulation]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../10-Architecture/transfer-market-architecture]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/state-machines/player-contract-lifecycle]], [[../20-Features/feature-transfer-market-ai-and-contracts]]
 ---
 
 # Transfer Market and Contracts
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 > Approved 2026-05-17 after Nico resolved clause depth, Expert UI, transfer
 > scope, training rewards and MVP agent depth. Research authority:

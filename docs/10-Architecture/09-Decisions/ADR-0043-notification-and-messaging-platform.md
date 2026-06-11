@@ -3,7 +3,7 @@ title: ADR-0043 Notification and Messaging Platform
 status: superseded
 tags: [adr, architecture, notification, messaging, realtime, email, push, gdpr]
 created: 2026-05-22
-updated: 2026-06-08
+updated: 2026-06-11
 accepted_at: 2026-05-22
 type: adr
 binding: true
@@ -14,9 +14,18 @@ related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0021-revised-tech-stack]], [[A
 
 # ADR-0043: Notification and Messaging Platform
 
+> **SUPERSEDED on 2026-06-08 by [[ADR-0102-notification-platform-re-ratification-offline-delivery-clause]].**
+> Old way: notification platform without an offline-delivery clause. New way: same platform re-ratified under the gate + inbox-first offline clause (SSE/email/push best-effort online). Kept for history — do not
+> implement.
+
 ## Status
 
-accepted
+superseded
+
+> Superseded 2026-06-08 by
+> [[ADR-0102-notification-platform-re-ratification-offline-delivery-clause]] (ratification sweep,
+> PR #153); body previously read `accepted`. Body status reconciled to the frontmatter SSOT
+> (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Date
 

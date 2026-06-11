@@ -3,7 +3,7 @@ title: GD-0014 Save & Career Model
 status: accepted
 tags: [game-design, gddr, save]
 created: 2026-05-17
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: true
 related: [[README]], [[GD-0002-match-engine]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../60-Research/pwa-offline-patterns]], [[../60-Research/offline-mvp-scope-and-sync-strategy]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0005-save-format]], [[../00-Index/Non-Goals]]
@@ -13,7 +13,11 @@ related: [[README]], [[GD-0002-match-engine]], [[GD-0017-mvp-scope-and-mode-sequ
 
 ## Status
 
-approved
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `approved`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 > The rules below are ratified — they restate accepted ADR-0002 / ADR-0005 and
 > binding Vision/Non-Goals. The Wave-2 items under "Open" are NOT approved.

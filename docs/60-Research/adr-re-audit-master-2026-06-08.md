@@ -27,6 +27,12 @@ related:
 
 # ADR Re-Audit — Master Report (2026-06-08)
 
+> **Erratum (2026-06-11, FMX-143):** statuses and dispositions in the tables below reflect
+> the **pre-apply** audit state (frontmatter is the SSOT per ADR-0092). One disposition was
+> applied differently: ADR-0100 was recorded as an **amendment** of ADR-0076/0085
+> (thread-ownership/naming portions only; both predecessors stay `accepted`), not a full
+> supersession — see [[../40-Execution/ratification-status-inventory-2026-06-11]].
+
 > **Status: draft / proposal — nothing here is ratified.** This is the synthesis
 > note for a read-only re-audit of the full ADR/GDDR portfolio (80 ADRs to ADR-0091,
 > 36 GDDRs, the arc42 set, and the `60-Research` corpus). It builds on, and is read

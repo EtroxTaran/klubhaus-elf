@@ -3,7 +3,7 @@ title: ADR-0099 Spectator / watch-party streaming over the committed event log (
 status: accepted
 tags: [adr, architecture, watch-party, spectator, streaming, replay, event-sourcing, determinism, offline-first, online-only, fmx-105]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes: ADR-0015-spectator-snapshot-streaming
@@ -31,8 +31,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08 from the open-decisions sweep. This ADR
 > **supersedes [[ADR-0015-spectator-snapshot-streaming]]** by re-expressing watch-party / spectator
 > streaming purely in committed-event-log terms, removing the **"snapshot per virtual minute"

@@ -3,7 +3,7 @@ title: ADR-0014 Explicit State Machines for Time-critical Workflows
 status: accepted
 tags: [adr, architecture, state-machine, workflow]
 created: 2026-05-16
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 related: [[../state-machines/README]], [[../../60-Research/raw-perplexity/raw-architecture]], [[ADR-0021-revised-tech-stack]], [[ADR-0028-postgres-transactional-outbox]]
@@ -22,7 +22,13 @@ related: [[../state-machines/README]], [[../../60-Research/raw-perplexity/raw-ar
 
 ## Status
 
-Proposed (2026-05-16). Needs Nico's review before acceptance.
+accepted
+
+> Originally proposed 2026-05-16; ratified `accepted` 2026-06-08 in the joint ratification wave
+> ([[ADR-0093-joint-ratification-wave-async-coordination-foundation|ADR-0093]];
+> [[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read "Proposed
+> (2026-05-16). Needs Nico's review before acceptance.". Body status reconciled to the frontmatter
+> SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

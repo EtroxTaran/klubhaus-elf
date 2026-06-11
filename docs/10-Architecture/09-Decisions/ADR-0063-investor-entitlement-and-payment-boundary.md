@@ -3,7 +3,7 @@ title: ADR-0063 Investor Entitlement and Payment Boundary
 status: accepted
 tags: [adr, architecture, economy, investor, monetization, entitlement, iap, payment, compliance, legal, risk-legal, fmx-50, proposed]
 created: 2026-06-01
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -28,10 +28,15 @@ related:
 
 ## Status
 
-**draft / proposed** — research-phase ADR. Decisions in this file are options +
-working recommendation for Nico. The legal-sensitive choices (payment vendor,
-soft-launch activation, refund policy, age-gate strictness) are explicit **HITL
-gates** and are not accepted by this draft. `risk:legal`.
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read "**draft /
+> proposed** — research-phase ADR. Decisions in this file are options + working recommendation for
+> Nico. The legal-sensitive choices (payment vendor, soft-launch activation, refund policy,
+> age-gate strictness) are explicit **HITL gates** and are not accepted by this draft.
+> `risk:legal`.". Body status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11
+> (FMX-143).
 
 ## Date
 

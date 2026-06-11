@@ -3,7 +3,7 @@ title: "ADR-0047: Babylon.js as the 3D / Isometric Presentation Engine"
 status: accepted
 tags: [adr, presentation, 3d, babylon, isometric, stadium, pwa]
 created: 2026-05-27
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -16,8 +16,13 @@ related: [[ADR-0029-3d-presentation-layer]], [[ADR-0041-presentation-renderer-st
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **Amends [[ADR-0029-3d-presentation-layer]] §2 (framework choice) and
 > [[ADR-0041-presentation-renderer-strategy]] (decision + guardrail).** It replaces
 > **Three.js / React Three Fiber** with **Babylon.js** as the optional 3D/2.5D

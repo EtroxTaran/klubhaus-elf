@@ -3,13 +3,24 @@ title: Player-to-Player Transfer Negotiations
 status: draft
 tags: [game-design, transfers, multiplayer, escalation]
 created: 2026-05-16
-updated: 2026-05-17
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[transfer-market-and-contracts]], [[../60-Research/transfer-market-simulation]], [[../60-Research/async-multiplayer-research]], [[scouting-and-recruitment]], [[async-multiplayer-private-group]], [[../10-Architecture/state-machines/transfer]]
 ---
 
 # Player-to-Player Transfer Negotiations
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 Human-to-human transfers are the most strategic interaction in async
 groups. The design rule is **silence must not be the strongest strategy**.

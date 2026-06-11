@@ -1,15 +1,30 @@
 ---
 title: Onboarding & Tutorial — FTUE, Inbox Arc, Feed-Cards, Assistant Manager
-status: approved
+status: draft
 tags: [game-design, onboarding, ftue, tutorial, inbox, feed-cards, assistant, mobile-ux, fmx-99]
 created: 2026-05-17
-updated: 2026-06-03
+updated: 2026-06-11
 type: game-design
-binding: true
+binding: false
 related: [[README]], [[GD-0012-onboarding]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/onboarding-strategy]], [[../60-Research/narrative-content-pipeline]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[progressive-disclosure-ui]], [[mode-manage-a-club-career]], [[mode-create-a-club-roguelite]]
 ---
 
 # Onboarding & Tutorial - FTUE, Inbox Arc, Feed-Cards, Assistant Manager
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
+> *H4 note:* this note still carried `status: approved` after the reopen ("Approved
+> 2026-05-17, then ratified for R2-05 on 2026-06-03") — confirmed an **oversight** by Nico
+> (2026-06-11, FMX-143) and aligned to `draft` like every other system note; the ratified
+> onboarding decisions live in [[GD-0012-onboarding]] (accepted).
 
 Approved 2026-05-17 (gap D5), then ratified for R2-05 on 2026-06-03
 by [[GD-0012-onboarding]] / FMX-99. Binding implementation references are

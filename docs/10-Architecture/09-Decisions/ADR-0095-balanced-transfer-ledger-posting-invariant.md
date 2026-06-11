@@ -3,7 +3,7 @@ title: ADR-0095 Double-entry / balanced-transfer ledger posting invariant
 status: accepted
 tags: [adr, architecture, ddd, economy, accounting, ledger, double-entry, invariant, audit, event-sourcing, determinism, club-management, fmx-106]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 amends: [[ADR-0050-club-economy-accounting-ledger]]
@@ -31,8 +31,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08 (FMX-106). This is a **superseding ADR** that
 > **narrowly amends the posting *shape* and adds an accounting-identity invariant** to the
 > [[ADR-0050-club-economy-accounting-ledger]] ledger. It **leaves the ADR-0050 *boundary* decision

@@ -3,7 +3,7 @@ title: ADR-0097 PostgreSQL data-model scale envelope + audit-table canonicalisat
 status: accepted
 tags: [adr, architecture, data, postgresql, schema-per-save, scaling, audit, fmx-105]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 amends: [[ADR-0027-postgres-data-model]]
@@ -26,8 +26,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08. Builds on and **supersedes the unbounded
 > tenant-count aspect of ADR-0027** (schema-per-save) and **amends ADR-0028** (the audit-trail
 > placement). It does **not** edit ADR-0027 or ADR-0028 (supersession is by this new draft only); the

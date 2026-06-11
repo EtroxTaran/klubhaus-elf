@@ -3,11 +3,12 @@ title: ADR-0085 Media Ecology Context and Outlet Operational Behaviour
 status: accepted
 tags: [adr, architecture, ddd, media, media-ecology, outlets, press, narrative, audience, notification, determinism, fmx-82]
 created: 2026-06-07
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
 superseded_by:
+amended_by: [[ADR-0100-story-thread-ownership-and-cross-context-naming]]
 related:
   - [[ADR-0018-systemic-events-and-player-lifecycle]]
   - [[ADR-0019-modular-monolith-ddd]]
@@ -35,10 +36,21 @@ related:
 
 # ADR-0085: Media Ecology Context and Outlet Operational Behaviour
 
+> **AMENDED on 2026-06-08 by [[ADR-0100-story-thread-ownership-and-cross-context-naming]]**
+> — the **thread-ownership / thread-naming portions only** (StoryThread origination /
+> `storyThreadId` correlation-key semantics now live in ADR-0100); the outlet model, cadence, stance drift, determinism and RNG-label choice stand unchanged
+> and remain `accepted`. Recorded as a partial supersession on the amendment pattern
+> (Nico, 2026-06-11, FMX-143).
+
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Authored after Nico chose the FMX-82 decisions
 > live (2026-06-07). Closes domain-audit gap **G17**. It does **not** flip any context
 > to accepted, does **not** implement schemas, and does **not** edit

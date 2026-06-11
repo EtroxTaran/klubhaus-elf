@@ -3,7 +3,7 @@ title: ADR-0012 Async Multiplayer Cadence Models (Fixed + Dynamic)
 status: accepted
 tags: [adr, architecture, async, multiplayer, cadence]
 created: 2026-05-16
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 related: [[../../60-Research/async-multiplayer-research]], [[../../50-Game-Design/async-multiplayer-private-group]], [[../state-machines/league-week]], [[ADR-0021-revised-tech-stack]]
@@ -21,7 +21,13 @@ related: [[../../60-Research/async-multiplayer-research]], [[../../50-Game-Desig
 
 ## Status
 
-Proposed (2026-05-16). Needs Nico's review before acceptance.
+accepted
+
+> Originally proposed 2026-05-16; ratified `accepted` 2026-06-08 in the joint ratification wave
+> ([[ADR-0093-joint-ratification-wave-async-coordination-foundation|ADR-0093]], with ADR-0088;
+> [[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read "Proposed
+> (2026-05-16). Needs Nico's review before acceptance.". Body status reconciled to the frontmatter
+> SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

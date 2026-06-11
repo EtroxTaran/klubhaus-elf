@@ -3,7 +3,7 @@ title: ADR-0080 Opposition-template AI Consumption Contract
 status: accepted
 tags: [adr, architecture, tactics, opposition, ai, match, determinism, replay, fmx-67]
 created: 2026-06-05
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -30,8 +30,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** FMX-67 closes E2 gap **G11** by pinning how
 > AI match-prep consumes Tactics-owned `OppositionTemplate` records and how Match
 > freezes the selected result. **Nico chose D1-D3 live on 2026-06-05 = split

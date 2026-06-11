@@ -3,7 +3,7 @@ title: GD-0026 Set-Piece-Coach Effect-Readiness Multiplier Curve
 status: accepted
 tags: [game-design, gddr, set-pieces, staff, training, tactics, match, determinism, fmx-69, gap-g12]
 created: 2026-06-04
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[set-pieces]], [[GD-0005-training]], [[training-load-and-medicine]], [[GD-0021-player-staff-development-and-decision-influence]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0055-tactics-context]], [[../10-Architecture/09-Decisions/ADR-0067-set-piece-variant-selection-determinism]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../60-Research/setpiece-coach-readiness-2026-06-04]]
@@ -13,8 +13,13 @@ related: [[README]], [[set-pieces]], [[GD-0005-training]], [[training-load-and-m
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **Draft / `binding: false`.** Closes audit gap **G12** (FMX-69, E2 epic FMX-58).
 > Decisions **D1–D4** were put to Nico live on 2026-06-04 (ask-first gate) and chosen
 > **A/A/A/A**. The document as a whole awaits ratification; named constants flagged

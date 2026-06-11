@@ -3,7 +3,7 @@ title: ADR-0101 Settlement value-collapse + quality-profile enum reconciliation 
 status: accepted
 tags: [adr, architecture, ddd, economy, settlement, determinism, replay, money-band, quality-profile, match-engine, insolvency, ledger, commercial-portfolio, club-management, reconciliation, fmx-audit]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -32,8 +32,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08 as an audit-driven reconciliation ADR. It
 > **closes three contract gaps** discovered across the already-drafted settlement / match-engine /
 > insolvency ADRs, none of which is individually wrong but which **do not currently compose

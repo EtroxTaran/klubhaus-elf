@@ -3,13 +3,24 @@ title: Core Loop - Season Arc and Weekly Heartbeat
 status: draft
 tags: [game-design, core-loop, pacing]
 created: 2026-05-16
-updated: 2026-05-18
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/systems-design-synthesis]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]]
 ---
 
 # Core Loop - Season Arc and Weekly Heartbeat
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 The single most important game-design decision: how often the player taps,
 what they tap on, and what happens between taps. Everything else - economy,

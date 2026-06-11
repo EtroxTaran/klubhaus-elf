@@ -3,7 +3,7 @@ title: ADR-0073 Player Contract Lifecycle FSM
 status: accepted
 tags: [adr, architecture, ddd, squad, transfer, contracts, regulations, notification, fmx-81]
 created: 2026-06-03
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -29,8 +29,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** FMX-81 resolves an ownership ambiguity by
 > recording Nico's selected landing: Squad & Player owns player-contract lifecycle
 > truth; Transfer owns deal/negotiation cases; Regulations owns eligibility rules;

@@ -3,7 +3,7 @@ title: ADR-0081 Statistics & Analytics read-model owner
 status: accepted
 tags: [adr, architecture, statistics, analytics, read-model, cqrs, ddd, projections, fmx-94]
 created: 2026-06-05
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -25,7 +25,11 @@ related:
 
 ## Status
 
-proposed
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 Nico selected the planning line live on 2026-06-05: dedicated projection-only
 owner, per-save projections plus immutable Manager & Legacy / HoF handoff

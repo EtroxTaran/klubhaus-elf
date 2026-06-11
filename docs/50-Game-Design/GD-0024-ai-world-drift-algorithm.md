@@ -3,7 +3,7 @@ title: GD-0024 AI World-Drift Algorithm
 status: accepted
 tags: [game-design, gddr, ai-world, world-drift, dynasty, determinism, fmx-91]
 created: 2026-06-03
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[GD-0010-ai-world]], [[GD-0011-career-progression]], [[GD-0023-ai-club-economy-behaviour]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/raw-perplexity/raw-ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/late-game-systems]], [[../60-Research/determinism-and-replay]], [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]]
@@ -13,8 +13,13 @@ related: [[README]], [[GD-0010-ai-world]], [[GD-0011-career-progression]], [[GD-
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > FMX-91 draft. Nico selected the four core planning options on 2026-06-03:
 > AI World Simulation as proposed bounded context, hybrid RNG allocation,
 > reputation-first rising-nations scope and two-level caps. This GDDR remains

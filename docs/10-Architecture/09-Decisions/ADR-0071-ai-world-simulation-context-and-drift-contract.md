@@ -3,7 +3,7 @@ title: ADR-0071 AI World Simulation context and drift contract
 status: accepted
 tags: [adr, architecture, ai-world, world-drift, ddd, determinism, rng, published-language, fmx-91]
 created: 2026-06-03
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -30,8 +30,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > FMX-91 draft. Nico selected the proposed direction on 2026-06-03, but this ADR
 > remains `proposed` / `binding: false` until ratified through the normal
 > architecture gate.

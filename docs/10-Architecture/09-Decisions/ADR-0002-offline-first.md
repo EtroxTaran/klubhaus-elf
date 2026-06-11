@@ -3,7 +3,7 @@ title: ADR-0002 Offline-first Strategy
 status: superseded
 tags: [adr, pwa, offline-first, service-worker, workbox, indexeddb, dexie, sync]
 created: 2026-05-15
-updated: 2026-06-09
+updated: 2026-06-11
 accepted_at: 2026-05-16
 type: adr
 binding: true
@@ -17,9 +17,9 @@ related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-forma
 
 ## Status
 
-Superseded (2026-05-18 by [[ADR-0020-hybrid-online-mvp-offline-ready]]).
-Accepted historically on 2026-05-16, gap A2 of
-[[../../95-Archive/gap-reports/wave-3-gap-analysis]].
+superseded
+
+> Superseded (2026-05-18 by [[ADR-0020-hybrid-online-mvp-offline-ready]]). Accepted historically on 2026-05-16, gap A2 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]. Body status normalized to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

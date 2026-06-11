@@ -3,7 +3,7 @@ title: "ADR-0103: Multi-agent orchestration & conflict serialization"
 status: accepted
 tags: [adr, meta, process, workflow, multi-agent, orchestration, fmx-103]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes: ADR-0009-cursor-orchestration
@@ -23,8 +23,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08. Supersedes
 > [[ADR-0009-cursor-orchestration]] (Cursor-only, stale framing, contradictory status).
 > Preserves ADR-0009's one durable insight — **serialize shared-contract changes, fan out

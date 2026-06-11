@@ -3,7 +3,7 @@ title: ADR-0094 i18n stack & locale scope (supersedes ADR-0006)
 status: accepted
 tags: [adr, i18n, l10n, icu, paraglide, tolgee, formatjs, locale, offline-pwa, ssr, fmx-i18n-depth-pass]
 created: 2026-06-08
-updated: 2026-06-09
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes: ADR-0006-i18n
@@ -27,8 +27,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08. This is the **"i18n ADR depth pass"** that
 > gap-closure §T09 listed as a *required artefact* but which was never produced. It folds the **closed
 > Research Wave 2** recommendation (PM-2026-05-20-09 + gap-closure-2026-05-22 §T09) into a single ADR and

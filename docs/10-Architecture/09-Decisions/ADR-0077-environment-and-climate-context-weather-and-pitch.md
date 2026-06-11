@@ -3,7 +3,7 @@ title: ADR-0077 Environment & Climate Context (Weather + Pitch)
 status: accepted
 tags: [adr, architecture, ddd, environment, climate, weather, pitch, match, stadium, league, determinism, replay, fmx-66]
 created: 2026-06-05
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -34,8 +34,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** FMX-66 (E2 epic FMX-58) closes audit gap
 > **G23** by pinning an owner + a replay-safe determinism path for weather and
 > pitch conditions. **D1–D4 were chosen live by Nico on 2026-06-05 = C, A, A, A.**

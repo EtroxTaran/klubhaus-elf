@@ -3,7 +3,7 @@ title: Current State
 status: current
 tags: [meta, current-state, execution, hot]
 created: 2026-05-16
-updated: 2026-06-07
+updated: 2026-06-11
 type: index
 binding: true
 related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/pitch-condition]], [[../10-Architecture/state-machines/player-discipline]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/loan-orchestration-process-manager-2026-06-04]], [[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]], [[../10-Architecture/state-machines/loan-orchestration]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/club-financing-tools-2026-06-01]], [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/onboarding-and-tutorial]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0029-weather-and-pitch-design-model]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../20-Features/feature-statistics-analytics-hub-mvp]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]], [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]], [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]], [[../60-Research/manager-archetype-mvp-hooks-and-perk-prestige-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract]], [[../50-Game-Design/GD-0032-awards-honours-records-and-hall-of-fame]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]], [[../50-Game-Design/GD-0034-media-outlet-ecology-model]], [[../60-Research/media-outlet-operational-behaviour-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0086-background-fast-matchday-cost-settlement]], [[../60-Research/background-fast-cost-settlement-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]], [[../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]], [[../60-Research/live-match-intervention-buffer-and-pause-vote-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]], [[../50-Game-Design/GD-0036-transfer-escalation-and-inactivity-pressure]], [[../60-Research/fmx-102-async-escalation-and-deadline-source-of-truth-2026-06-07]]
@@ -18,35 +18,61 @@ current research notes.
 This page is the first stop for active project context. If another note conflicts
 with this page, prefer the accepted ADR or approved/current note linked here.
 
-> **2026-05-27 — Decisions reopened.** All previously `accepted` ADRs and
-> `approved` GDDRs/system notes were reset to `status: draft` for re-evaluation
-> (implementation removed; the design is being re-questioned with additional
-> topics). Treat **nothing** below as binding until re-ratified — the
-> "accepted/approved/locked" language in the sections that follow reflects the
-> pre-reopen state. See [[Decision-Log]] and [[../50-Game-Design/README]].
-
 > **Active phase: research / analysis / architecture planning — no development.**
-> Deliverables are vault notes (research, `draft` GDDRs/ADRs), not code. Roles,
-> the ask-first decision gate, and this phase are defined in
-> [[../90-Meta/collaboration-and-decision-protocol]]. The tech-stack details in
-> the sections below are **proposed / under re-evaluation** (see [[Decision-Log]]),
-> not ratified — no technology, gameplay or architecture decision is made without
-> Nico (2–3 sourced options + recommendation).
+> Deliverables are vault notes (research, GDDRs/ADRs), not code. Roles, the
+> ask-first decision gate, and this phase are defined in
+> [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
+> architecture decision is made without Nico (2–3 sourced options + recommendation).
 
-> **2026-06-08 — Decision portfolio re-ratified (planning-mode sweep).** The full
-> re-audit + decision-queue sweep is applied on branch `claude/ratify-decision-sweep`
-> (**PR pending Nico's merge** — merge is the ratification act). All 80 reopened ADRs
-> + 36 GDDRs were re-ratified (`status: accepted`; frontmatter is the single source of
+> **2026-06-08 — Decision portfolio re-ratified (merged 2026-06-08/09 via PRs
+> #153/#157–#161 — merge was the ratification act).** All 76 reopened ADRs + 36 GDDRs
+> were re-ratified (69 ADRs → `accepted`, 7 → `superseded` by new wave ADRs; the 4
+> pre-reopen supersessions 0001/0002/0004/0013 were never reopened and stay
+> `superseded`; frontmatter is the single source of
 > truth per [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]]);
 > **13 new ADRs (0092–0104)** + **4 new GDDRs (0037–0040)** adopted; **7 supersessions** (0006→0094, 0009→0103, 0015→0099, 0025→0104, 0043→0102,
-> 0049→0096; 0003 drift-fixed) + **3 amendments** (ADR-0095 amends 0050, ADR-0097 amends 0027,
-> ADR-0098 amends 0005 — predecessors stay accepted). 13 scope-calls + 2 forks decided
-> live, 118 on the ★-recommended disposition. Sweep record:
-> [[../40-Execution/decision-queue-2026-06-08-ratified|ratification ledger]] +
+> 0049→0096; 0003 drift-fixed) + **5 amendments** (ADR-0095 amends 0050, ADR-0097 amends 0027,
+> ADR-0098 amends 0005, **ADR-0100 amends 0076 + 0085** — thread-ownership/naming
+> portions only, recorded 2026-06-11 per FMX-143 — predecessors stay accepted).
+> 13 scope-calls + 2 forks decided live, 118 on the ★-recommended disposition.
+> **Accepted ADRs / GDDRs are binding planning truth again**; the non-numbered
+> game-design system/mode notes remain `draft` pending individual re-approval.
+> Sweep record: [[../40-Execution/decision-queue-2026-06-08-ratified|ratification ledger]] +
 > [[../40-Execution/decision-queue-2026-06-08|decision-queue]] +
-> [[../60-Research/adr-re-audit-master-2026-06-08|re-audit master]]. Phase unchanged
-> (research/architecture — no development). On merge, this banner supersedes the
-> "not ratified" framing above.
+> [[../60-Research/adr-re-audit-master-2026-06-08|re-audit master]]; body-status
+> reconciliation: [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]
+> (FMX-143). Phase unchanged (research/architecture — no development).
+>
+> *History:* **2026-05-27 — Decisions reopened.** All previously `accepted` ADRs and
+> `approved` GDDRs/system notes were reset to `status: draft` for re-evaluation
+> (implementation removed; the design was re-questioned with additional topics);
+> nothing was binding while the re-evaluation ran. Closed by the 2026-06-08
+> ratification sweep above. Where older sections below still carry pre-reopen
+> "accepted/approved/locked" narration, the frontmatter of the linked note is
+> authoritative (ADR-0092).
+
+> **FMX-143 Ratification-status SSOT reconciliation (2026-06-11).** The **Urgent** keystone of
+> the 2026-06-10 audit backlog (epic FMX-118): after the merged ratification PRs #153/#157–#161
+> the four status surfaces contradicted each other (89+ ADR/GDDR bodies still `draft`/`proposed`
+> against `accepted` frontmatter; bounded-context-map prose vs its own 28-row table; the
+> Open-Decisions-Dossier listing ratified items as open; stale pending-merge banners after the merge).
+> Sweep: every decision-record body `## Status` now carries the bare frontmatter status word +
+> a dated history line (ADR-0092 demotion — history preserved, never deleted); map §1.1/§1.3 +
+> FMX-91/FMX-94 paragraphs rewritten as ratified; dossier closed as a historical index; banners
+> flipped to merged; standard SUPERSEDED banners added to ADR-0006/0009/0015/0025/0043/0049.
+> **Nico decided 4 forks live (2026-06-11):** **H1** ADR-0100 recorded as **amendment** of
+> ADR-0076/0085 (thread-ownership/naming portions only; both stay `accepted`; ledger erratum in
+> the inventory) · **H2** the 27 `draft` non-numbered system/mode notes stay `draft` (the 28th such
+> note is `superseded` and untouched; `binding: false`,
+> "approved" prose demoted; re-approval = later HITL pass) · **H3** standing
+> `scripts/status-consistency-check.mjs` added **+ CI-wired** (body⇄frontmatter, map count⇄table,
+> stale-banner + superseded-link rules) · **H4** `onboarding-and-tutorial.md` `approved` was a
+> reopen oversight → aligned to draft. Records:
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]] (133 records ×
+> 4 sources) + research [[../60-Research/ratification-status-ssot-reconciliation-2026-06-11]]
+> (+ raw [[../60-Research/raw-perplexity/raw-ratification-status-ssot-2026-06-11]]).
+> "Is decision X ratified?" is answerable from frontmatter again; the remaining open audit
+> issues of epics FMX-118–FMX-129 are unblocked.
 
 > **FMX-102 Async escalation FSM + watch-party deadline source-of-truth (2026-06-07).** Closes audit
 > gap **G25** and is the **last open backlog item** (E8 epic FMX-64 / E8-2; with FMX-101 merged

@@ -3,7 +3,7 @@ title: ADR-0084 National-Team Dual-Role Scope & International-Window Contract
 status: accepted
 tags: [adr, architecture, league-orchestration, manager, legacy, national-team, international-window, calendar, determinism, fmx-84]
 created: 2026-06-06
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -32,8 +32,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Decisions D1–D4 were put to Nico live on 2026-06-06
 > (ask-first gate) and chosen below; authored `proposed` per the never-self-accept rule — Nico
 > ratifies (merge). This ADR **adds** the international-window contract to the **accepted**
@@ -261,7 +266,7 @@ contradiction by making GD-0033 + this ADR the current truth (research docs left
 `proposed` / `binding: false`. D1–D4 chosen live by Nico 2026-06-06 = **A/A/B/A** (D3=B is Nico's
 choice of the simpler gate over the recommended trophies-or-seasons variant). All numeric
 magnitudes are **FMX-52 calibration debt** and do not block ratification of the contract shape. The
-full playable dual-role remains post-MVP. Awaiting Nico ratify + merge; the additive ADR pointers
+full playable dual-role remains post-MVP. Ratified 2026-06-08 (#153); the additive ADR pointers
 and the bounded-context-map patch apply in the ratifying PR.
 
 ## Related Docs

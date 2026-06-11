@@ -3,13 +3,24 @@ title: Community Editor and Dataset Override Packs
 status: draft
 tags: [game-design, editor, datasets, modding, community, privacy, gdpr, dsa, ip, naming, fmx-54]
 created: 2026-05-16
-updated: 2026-06-01
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[../60-Research/ip-and-licensing]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
 ---
 
 # Community Editor and Dataset Override Packs
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 The base game ships with a fictional, IP-clean universe per
 [[../60-Research/ip-and-licensing]] and

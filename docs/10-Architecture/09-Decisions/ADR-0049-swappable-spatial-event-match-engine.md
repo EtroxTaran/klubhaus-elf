@@ -3,7 +3,7 @@ title: ADR-0049 Swappable Spatial-Event Match Engine
 status: superseded
 tags: [adr, architecture, match-engine, runtime, rust, typescript, wasm, spatial-event, determinism]
 created: 2026-05-27
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes: ADR-0003-match-engine
@@ -25,10 +25,19 @@ related:
 
 # ADR-0049: Swappable Spatial-Event Match Engine
 
+> **SUPERSEDED on 2026-06-08 by [[ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]].**
+> Old way: swappable spatial-event engine boundary with the numeric surface unpinned. New way: integer/fixed-point determinism contract for replay-bearing computation; per-quality-profile precedence. Kept for history — do not
+> implement.
+
 ## Status
 
-draft
+superseded
 
+> Superseded 2026-06-08 by [[ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]
+> (ratification sweep, PR #153); body previously read `draft`. Body status reconciled to the
+> frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > Draft only. This ADR records Nico's current target direction after the
 > 2026-05-27 re-evaluation. It replaces ADR-0003 as the proposed match-engine
 > planning target, but it still needs formal ratification before implementation.

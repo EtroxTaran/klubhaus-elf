@@ -6,6 +6,7 @@
   "packageManager": "pnpm@11.1.2",
   "scripts": {
     "docs:check": "node scripts/docs-check.mjs",
+    "docs:status-check": "node scripts/status-consistency-check.mjs",
     "docs:export:notebooklm": "node scripts/export-notebooklm.mjs",
     "docs:preview": "node tools/docs-preview/preview.mjs",
     "sync:design": "node scripts/design-sync.mjs"

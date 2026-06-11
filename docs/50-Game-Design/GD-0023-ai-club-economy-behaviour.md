@@ -3,7 +3,7 @@ title: GD-0023 AI Club Economy Behaviour
 status: accepted
 tags: [game-design, gddr, ai, ai-clubs, economy, world-simulation, fmx-51]
 created: 2026-06-01
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[GD-0010-ai-world]], [[GD-0008-finance-economy]], [[GD-0022-economy-commercial-impact-and-contracts]], [[economy-system]], [[../60-Research/ai-club-economy-behaviour-2026-06-01]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/transfer-market-simulation]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
@@ -13,7 +13,11 @@ related: [[README]], [[GD-0010-ai-world]], [[GD-0008-finance-economy]], [[GD-002
 
 ## Status
 
-draft
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Date
 

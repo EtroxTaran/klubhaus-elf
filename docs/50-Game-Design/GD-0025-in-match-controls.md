@@ -3,7 +3,7 @@ title: GD-0025 In-Match Controls & Live-Control Kit
 status: accepted
 tags: [game-design, gddr, ux, mobile, match, controls, halftime, shouts, fmx-100]
 created: 2026-06-03
-updated: 2026-06-08
+updated: 2026-06-11
 type: game-design
 binding: false
 related: [[README]], [[GD-0016-mobile-ux-loop]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0004-tactics]], [[GD-0002-match-engine]], [[match-engine]], [[progressive-disclosure-ui]], [[../10-Architecture/09-Decisions/ADR-0072-in-match-control-seam]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]], [[../10-Architecture/state-machines/match]], [[../60-Research/in-match-controls-and-presentation-2026-06-03]]
@@ -13,8 +13,13 @@ related: [[README]], [[GD-0016-mobile-ux-loop]], [[GD-0017-mvp-scope-and-mode-se
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **Draft / `binding: false`.** Resolves the gameplay half of GD-0016 **R2-16**
 > (match-controls UX). Decisions D1–D4 below were put to Nico live on 2026-06-03
 > (ask-first gate) and chosen; the document as a whole awaits ratification, and the

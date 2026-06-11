@@ -3,7 +3,7 @@ title: ADR-0093 Joint ratification wave — promote the async-coordination found
 status: accepted
 tags: [adr, architecture, governance, ratification, async, cadence, state-machine, bounded-context, fmx-64, fmx-102, fmx-105]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -33,8 +33,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08. This is a **governance/sequencing** ADR, not a
 > new technical decision: it proposes to ratify **four interdependent ADRs in one wave** so that no
 > downstream ADR rests on a still-parked dependency. It **does not edit** any of the four target ADRs

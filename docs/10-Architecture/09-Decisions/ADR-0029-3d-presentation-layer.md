@@ -3,7 +3,7 @@ title: ADR-0029 3D Presentation Layer (Stadium, Cutscenes, Backdrop)
 status: accepted
 tags: [adr, presentation, 3d, three-js, r3f, stadium, cutscene, pwa, mobile]
 created: 2026-05-20
-updated: 2026-06-08
+updated: 2026-06-11
 accepted_at: 2026-05-20
 type: adr
 binding: true
@@ -17,10 +17,14 @@ related: [[../../60-Research/performance-budgets]], [[../../20-Features/feature-
 
 ## Status
 
-Accepted (2026-05-20). Precises — does **not** supersede — the locked
-2026-05-17 "no 3D ever" decision recorded in
-[[../../60-Research/performance-budgets]] §6, [[../08-Crosscutting]] §Match
-render policy, and [[../../00-Index/Current-State]] §Performance Budgets.
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read "Accepted
+> (2026-05-20). Precises — does **not** supersede — the locked 2026-05-17 "no 3D ever" decision
+> recorded in [[../../60-Research/performance-budgets]] §6, [[../08-Crosscutting]] §Match render
+> policy, and [[../../00-Index/Current-State]] §Performance Budgets.". Body status reconciled to
+> the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 The original wording read literally as "no 3D match view on the roadmap,
 ever (permanent product decision)". Read in context — and confirmed by

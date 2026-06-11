@@ -3,7 +3,7 @@ title: "ADR-0046: Team Topology & Multi-Lead Scaling"
 status: accepted
 tags: [adr, architecture, process, scaling, future-scope]
 created: 2026-05-27
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -15,8 +15,13 @@ related: [[../bounded-context-map]], [[ADR-0019-modular-monolith-ddd]], [[../../
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **Future-scope.** Activates when a second lead joins. Until then Nico holds all
 > roles; nothing here changes the solo setup today — it records the prepared path so
 > the migration is additive, not a rewrite.

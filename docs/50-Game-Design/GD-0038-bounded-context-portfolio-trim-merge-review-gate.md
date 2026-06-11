@@ -26,7 +26,7 @@ related:
 
 > **Status `draft` · `binding: false`.** A scope / portfolio-governance companion to **ADR-0089**.
 > ADR-0089 proposes **D1 = A** (accept all nine new contexts ⇒ **19 → 28**, as written) and is itself
-> still `proposed` / awaiting Nico's ratify. This GDDR does **not** touch ADR-0089 — it argues that the
+> still `proposed` at authoring time (since ratified 2026-06-08, #153). This GDDR does **not** touch ADR-0089 — it argues that the
 > ADR's own **D1 A-vs-B** axis is worth keeping *genuinely open* as a standing, first-class
 > **merge-review gate**, rather than treating 28 as final the moment ADR-0089 lands. Per the decision
 > gate (`docs/90-Meta/collaboration-and-decision-protocol.md`) this is **options + a recommendation +

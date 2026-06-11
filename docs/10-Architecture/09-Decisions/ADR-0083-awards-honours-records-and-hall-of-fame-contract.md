@@ -3,7 +3,7 @@ title: ADR-0083 Awards, Honours, Records & Hall-of-Fame Contract
 status: accepted
 tags: [adr, architecture, manager, legacy, awards, honours, records, hall-of-fame, prestige, determinism, fmx-95]
 created: 2026-06-06
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -31,8 +31,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Decisions D1–D4 were put to Nico live on 2026-06-06
 > (ask-first gate) and chosen below; authored `proposed` per the never-self-accept rule —
 > Nico ratifies (merge). This ADR **extends** the accepted
@@ -267,7 +272,7 @@ contract shape. Archetype taxonomy + prestige-ladder shape remain post-MVP / Nic
 **2026-06-07 (open-decisions sweep) recommendation:** keep in-world HoF induction a **pure
 deterministic formula** (no new `*Rng`) for MVP; if stochastic voting is later wanted, add a
 *sub-label of an existing stream* per ADR-0018 §3, **not** a new top-level `LegacyRng`/`HoFRng`.
-See [[../../00-Index/Open-Decisions-Dossier]] (mini-point M2). Awaiting Nico ratify +
+See [[../../00-Index/Open-Decisions-Dossier]] (mini-point M2; decided per recommendation). Ratified 2026-06-08 (#153) +
 merge; the ADR-0051 additive pointer and the bounded-context-map patch apply in the
 ratifying PR.
 

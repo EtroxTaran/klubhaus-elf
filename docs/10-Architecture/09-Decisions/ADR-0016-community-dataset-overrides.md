@@ -3,7 +3,7 @@ title: ADR-0016 Community Datasets via Versioned Override Packs
 status: accepted
 tags: [adr, architecture, data, modding, community]
 created: 2026-05-16
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 related: [[../../60-Research/regulations-and-pyramids-research]], [[../../50-Game-Design/community-editor-and-datasets]], [[ADR-0004-data-model]], [[ADR-0007-naming-schema]], [[ADR-0021-revised-tech-stack]]
@@ -22,7 +22,13 @@ related: [[../../60-Research/regulations-and-pyramids-research]], [[../../50-Gam
 
 ## Status
 
-Proposed (2026-05-16). Needs Nico's review before acceptance.
+accepted
+
+> Originally proposed 2026-05-16; ratified `accepted` 2026-06-08, co-ratified with
+> [[ADR-0059-community-overlay-pipeline-context|ADR-0059]]
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read "Proposed
+> (2026-05-16). Needs Nico's review before acceptance.". Body status reconciled to the frontmatter
+> SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

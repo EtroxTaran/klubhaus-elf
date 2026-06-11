@@ -3,7 +3,7 @@ title: ADR-0019 Service-ready Modular Monolith with DDD Bounded Contexts
 status: accepted
 tags: [adr, architecture, ddd, modular-monolith, service-architecture]
 created: 2026-05-16
-updated: 2026-06-08
+updated: 2026-06-11
 accepted_at: 2026-05-16
 type: adr
 binding: true
@@ -19,7 +19,12 @@ related: [[../bounded-context-map]], [[ADR-0011-server-authoritative-multiplayer
 
 ## Status
 
-Accepted (2026-05-16, gap B1 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]).
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read "Accepted
+> (2026-05-16, gap B1 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]).". Body status
+> reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

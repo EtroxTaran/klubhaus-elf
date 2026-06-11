@@ -3,13 +3,24 @@ title: Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prev
 status: draft
 tags: [game-design, events, matchday, weather, sanctions, operations, fan-service, safety, fmx-46, fmx-48]
 created: 2026-05-16
-updated: 2026-06-01
+updated: 2026-06-11
 type: game-design
-binding: true
+binding: false
 related: [[README]], [[../60-Research/raw-perplexity/raw-environment-events]], [[../60-Research/systemic-events-player-development-venue-ops]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[audience-and-atmosphere]], [[rivalry-system]], [[stadium-and-campus]], [[regulations-and-compliance]], [[GD-0022-economy-commercial-impact-and-contracts]]
 ---
 
 # Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prevention
+
+> **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
+> reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
+> sweep (#153). "Approved" wording below is **pre-reopen history**, not a current status
+> claim; the product rules described here await individual re-approval (decided by Nico,
+> 2026-06-11: keep `draft`, re-approval is a later HITL pass — see
+> [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]]). Frontmatter
+> is the status SSOT per
+> [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
+> The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
+> is then the binding record.
 
 > Approved by the systemic events / player lifecycle pass (2026-05-17).
 > Match-day events are part of the wider systemic event architecture, but

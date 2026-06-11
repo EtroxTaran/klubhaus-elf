@@ -4,7 +4,7 @@ status: accepted
 amended_by: [[ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[ADR-0020-hybrid-online-mvp-offline-ready]]
 tags: [adr, save, encryption, compression, versioning, e2ee]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-11
 accepted_at: 2026-05-16
 type: adr
 binding: true
@@ -22,8 +22,15 @@ related: [[ADR-0004-data-model]], [[ADR-0011-server-authoritative-multiplayer]],
 
 ## Status
 
-Accepted (2026-05-16, gap A5 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]).
-MVP timing amended by [[ADR-0020-hybrid-online-mvp-offline-ready]].
+accepted
+
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PRs #153 + #155 — #153 applied the ledger's
+> supersede-by-0098 disposition, #155 reclassified ADR-0098 as an amendment so this ADR
+> returned to `accepted` + `amended_by`); body previously read "Accepted
+> (2026-05-16, gap A5 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]). MVP timing amended
+> by [[ADR-0020-hybrid-online-mvp-offline-ready]].". Body status reconciled to the frontmatter
+> SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

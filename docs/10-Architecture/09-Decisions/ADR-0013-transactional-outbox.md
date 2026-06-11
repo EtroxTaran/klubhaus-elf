@@ -3,7 +3,7 @@ title: ADR-0013 Transactional Outbox for Domain Events
 status: superseded
 tags: [adr, architecture, events, reliability, outbox, redis-streams]
 created: 2026-05-16
-updated: 2026-05-19
+updated: 2026-06-11
 accepted_at: 2026-05-16
 type: adr
 binding: true
@@ -17,9 +17,9 @@ related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-mult
 
 ## Status
 
-Superseded (2026-05-19 by [[ADR-0028-postgres-transactional-outbox]]).
-Accepted historically on 2026-05-16, gap B4 of
-[[../../95-Archive/gap-reports/wave-3-gap-analysis]].
+superseded
+
+> Superseded (2026-05-19 by [[ADR-0028-postgres-transactional-outbox]]). Accepted historically on 2026-05-16, gap B4 of [[../../95-Archive/gap-reports/wave-3-gap-analysis]]. Body status normalized to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 ## Context
 

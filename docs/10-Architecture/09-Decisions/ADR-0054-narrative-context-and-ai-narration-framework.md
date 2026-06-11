@@ -3,7 +3,7 @@ title: ADR-0054 Narrative Context and AI Narration Framework
 status: accepted
 tags: [adr, architecture, ddd, bounded-context, narrative, ai, llm, testing, mvp]
 created: 2026-05-28
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -34,8 +34,13 @@ related:
 
 ## Status
 
-draft
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > Draft only. Nico selected the Narrative context direction during FMX-3
 > planning, but this ADR is not accepted and must not be implemented until
 > ratified.

@@ -3,7 +3,7 @@ title: ADR-0065 Narrative Media and Press Content Ownership
 status: accepted
 tags: [adr, architecture, ddd, narrative, media, press, notification, people, llm, fmx-31]
 created: 2026-06-02
-updated: 2026-06-08
+updated: 2026-06-11
 type: adr
 binding: false
 supersedes:
@@ -30,8 +30,13 @@ related:
 
 ## Status
 
-proposed
+accepted
 
+> Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
+> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
+> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > Proposed extension of ADR-0054. This ADR does not make Narrative accepted and
 > does not edit `bounded-context-map.md`; the map patch lands only when Nico
 > ratifies ADR-0054 / ADR-0065.
