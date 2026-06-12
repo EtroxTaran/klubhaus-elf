@@ -3,7 +3,7 @@ title: ADR-0079 Dynasty Board, Ownership & Bankruptcy FSMs
 status: accepted
 tags: [adr, architecture, ddd, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, club-management, determinism, replay, fmx-89]
 created: 2026-06-05
-updated: 2026-06-11
+updated: 2026-06-12
 type: adr
 binding: false
 supersedes:
@@ -11,6 +11,7 @@ superseded_by:
 related:
   - [[../bounded-context-map]]
   - [[ADR-0050-club-economy-accounting-ledger]]
+  - [[ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]]
   - [[ADR-0051-manager-and-legacy-context]]
   - [[ADR-0071-ai-world-simulation-context-and-drift-contract]]
   - [[ADR-0018-systemic-events-and-player-lifecycle]]
@@ -21,6 +22,7 @@ related:
   - [[../../50-Game-Design/GD-0030-dynasty-board-and-ownership]]
   - [[../../50-Game-Design/GD-0010-ai-world]]
   - [[../../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]]
+  - [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]]
   - [[../../60-Research/raw-perplexity/raw-board-confidence-real-world-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-club-takeover-administration-real-world-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-board-ownership-comparable-games-2026-06-05]]
@@ -39,6 +41,13 @@ accepted
 > Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **FMX-146 amendment applied 2026-06-12.** ADR-0101 D4 now treats this ADR / GD-0030
+> as the owner of the shared `InsolvencyCaseStage` enum and maps insolvency events to
+> ledger effects without creating a second finance FSM. Administration, points deduction,
+> embargo, wage-cap policy and fire-sale opening are policy/state facts; completed fire
+> sales reuse ADR-0105 registration postings; creditor haircut/forgiveness maps to
+> `InsolvencyCreditorWriteOffPosted` inside ADR-0050.
 
 > **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** FMX-89 (E5 epic FMX-61) closes the late-game
@@ -170,6 +179,7 @@ worldAiMgmt:structural:year:<year>:ownership:<clubId>:archetype-pick   # new own
 worldAiMgmt:structural:year:<year>:ownership:<clubId>:effect-shape     # effect-vector shaping
 worldAiMgmt:structural:year:<year>:insolvency:<clubId>:audit           # annual insolvency-audit outcome
 worldAiMgmt:structural:year:<year>:insolvency:<clubId>:firesale:<slot> # per-slot fire-sale realization
+worldAiMgmt:structural:year:<year>:insolvency:<clubId>:writeoff:<creditorClass>:v1 # creditorWriteoffBand collapse
 worldAiMgmt:structural:year:<year>:insolvency:<clubId>:rescue          # rescue-bid emergence
 worldAiMgmt:drift:season:<seasonId>:owner-resistance:<clubId>          # (existing, FMX-91) archetype-resistance modifier reused
 ```
@@ -218,12 +228,26 @@ OwnershipTransitionResolved  { clubId, seasonId, outcome: completed|blocked-by-o
 OwnerExpectationResetApplied { clubId, fromTier, toTier, budgetPolicyDelta }
 
 # InsolvencyCase (stochastic; WorldAiMgmtRng) — core MVP
+InsolvencyStageChanged     { clubId, insolvencyCaseId, fromStage, toStage, reason, dynastyModelVersion }
 AdministrationEntered      { clubId, seasonId, pointsDeductionBand, embargoScope, wageCapPct, rngLabel }
+InsolvencyWageCapPolicySet { clubId, insolvencyCaseId, wageCapPct, effectiveWeekId }
 AdministratorFireSaleOpened{ clubId, valuationDiscountBand, mustSellThreshold }
 ClubRescued                { clubId, rescueOwnerProfileId, creditorWriteoffBand, reputationPenaltyBand, legacyCredit: 'saved-the-club' }
 ManagerAbandonedClub       { clubId, managerTenureId, legacyPenalty: 'abandoned-sinking-ship' }
 # Reserved (post-MVP, named only): ClubLiquidated, PhoenixClubFounded, CvaProposed, CvaAccepted
 ```
+
+`InsolvencyCaseStage` is the shared enum:
+`stable | stressed | cash_flow_crisis | under_embargo | administration | rescued | liquidated`.
+`liquidated` remains a post-MVP reserved hook. ADR-0050 references this enum instead of
+owning a separate staged insolvency FSM.
+
+Ledger mapping (ADR-0101 D4 / FMX-146): `AdministrationEntered`, points deductions,
+embargoes, wage caps and `AdministratorFireSaleOpened` are not postings. Wage-cap policy
+constrains future ADR-0105 wage blocks; completed fire sales use ADR-0105
+`RegistrationDisposalSettled` / `RegistrationWriteOffPosted` with `insolvencyCaseId`
+provenance; `ClubRescued` with a creditor haircut creates ADR-0050
+`InsolvencyCreditorWriteOffPosted`.
 
 Draft commands/queries: `EvaluateBoardSeason(clubId, seasonId)`,
 `OpenBoardConfidenceMeeting(clubId)`, `ResolveOwnershipTransition(clubId)`,
@@ -235,6 +259,9 @@ Draft commands/queries: `EvaluateBoardSeason(clubId, seasonId)`,
 Match/League results + Club Management finance state (board ladder + insolvency
 audit). **Emitted ledger effects stay inside Club Management** (it is the
 sub-aggregates' own context) — no ledger write occurs outside Club Management.
+FMX-146 narrows "ledger effects" to actual economic events: stage/policy events
+do not post, completed fire sales reuse ADR-0105 registration postings and creditor
+haircuts use ADR-0050 `InsolvencyCreditorWriteOffPosted`.
 
 ## Invariants
 

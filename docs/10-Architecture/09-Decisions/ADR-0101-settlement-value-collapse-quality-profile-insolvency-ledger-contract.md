@@ -22,6 +22,7 @@ related:
   - [[../../50-Game-Design/GD-0008-finance-economy]]
   - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../../60-Research/determinism-and-replay]]
+  - [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]]
   - [[../../60-Research/moneyband-amountminor-collapse-rule-2026-06-12]]
   - [[../../60-Research/background-fast-cost-settlement-2026-06-07]]
   - [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
@@ -45,16 +46,26 @@ accepted
 > [[../../60-Research/moneyband-amountminor-collapse-rule-2026-06-12]] (floor/low-bound collapse
 > was research-rejected: systematic −n·w/2 season drift; midpoint was the co-equal pure lead;
 > seeded-within-band matches sim-game practice and the project's standing seeded-variance
-> posture, ADR-0086 D4=C). Frontmatter stays `binding: false` until the remaining axes close
-> (**FMX-147** enum apply, **FMX-146** insolvency contract); the D2 clause itself is binding.
+> posture, ADR-0086 D4=C). Frontmatter stays `binding: false` until the remaining axis closes
+> (**FMX-147** enum apply); the D2 clause itself is binding.
+
+> **D4 insolvency contract confirmed 2026-06-12 (FMX-146) — the D4 clause is binding.** Nico
+> approved the recommended plan line: ADR-0079/GD-0030 own the single shared
+> `InsolvencyCaseStage` enum; ADR-0050 consumes that enum as its ledger-facing staged
+> insolvency state instead of carrying a second finance FSM; administration, embargo, wage-cap,
+> points-deduction and fire-sale-opening events are state/policy facts only; fire-sale settlement
+> reuses ADR-0105 registration disposal/write-off postings; and the only new insolvency-specific
+> posting is `InsolvencyCreditorWriteOffPosted`. Grounding:
+> [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]]. Frontmatter still stays
+> `binding: false` until FMX-147 closes D3; the D4 clause itself is binding.
 
 > **D4 gate unlocked 2026-06-11 (FMX-145):** [[ADR-0095-balanced-transfer-ledger-posting-invariant]]
 > D1 was confirmed **A — balanced double-entry** (Nico live, `binding: true`), so the D4 "balanced
 > **iff** double-entry" clause resolves to **balanced, unconditionally** — every insolvency posting
 > MUST balance. The sequencing constraint ("this ADR sequences after the ADR-0050 entry-model
-> decision") is satisfied. Still open here: the exact `MoneyBand → amountMinor` collapse rule
-> (D2 — **FMX-149**) and the named insolvency posting contract + shared enum apply-work
-> (**FMX-146**); the quality-profile enum reconciliation is **FMX-147**.
+> decision") is satisfied. The exact `MoneyBand → amountMinor` collapse rule (D2 — **FMX-149**)
+> and the named insolvency posting contract + shared enum (D4 — **FMX-146**) are now applied;
+> the quality-profile enum reconciliation is **FMX-147**.
 
 > Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
@@ -170,12 +181,14 @@ and expand a single business event into **balanced** double-entry postings in th
   enum** referenced by both ADR-0050 and ADR-0079 so the FSM and the staged state are one model. · B:
   add the postings without unifying the enum (leaves two insolvency models).
 
-## Decision (proposed)
+## Decision
 
-Propose, awaiting Nico: **D1 = A, D2 = A, D3 = A, D4 = A.**
+Accepted decision line: **D1 = A, D2 = A, D3 = A, D4 = A.** Clause-level apply status:
+D2 is binding via FMX-149, D4 is binding via FMX-146 and D3 remains the FMX-147 apply-work before
+this ADR's frontmatter can flip to `binding: true`.
 
 > D2's open sub-question (*which* rule) was decided 2026-06-12 (FMX-149): **seeded-within-band**
-> — see §"D2 ratified rule" below. D3/D4 apply-work continues as FMX-147/FMX-146.
+> — see §"D2 ratified rule" below. D4 was applied by FMX-146; D3 apply-work continues as FMX-147.
 
 ### D2 — Deterministic `MoneyBand → amountMinor` collapse
 
@@ -259,23 +272,109 @@ canonical profile**, not an ambiguous string.
 Name the ledger posting each ADR-0079 insolvency event resolves to inside Club Management
 (ADR-0050 sole-writer; ADR-0079 DB5), and unify the insolvency state model:
 
-| ADR-0079 event | Ledger effect (ADR-0050 vocabulary) |
+#### Shared enum
+
+ADR-0079 / GD-0030 own the canonical lifecycle enum. ADR-0050 references this enum for its
+ledger-facing staged insolvency state; older finance labels remain UI/read-model aliases only.
+
+```text
+InsolvencyCaseStage =
+  stable
+  stressed
+  cash_flow_crisis
+  under_embargo
+  administration
+  rescued
+  liquidated        # reserved post-MVP terminal hook
+```
+
+Alias mapping for legacy finance surfaces:
+
+| Legacy finance label | Canonical stage |
 |---|---|
-| `AdministrationEntered { wageCapPct }` | wage-cap delta → wage-expense run-rate adjustment posting |
-| `AdministratorFireSaleOpened` → fire-sale completion | fire-sale receipt → cash-in vs asset disposal/write-down posting |
-| `ClubRescued { creditorWriteoffBand }` | creditor write-off → liability-removal posting (band collapsed per D2) |
+| `healthy` | `stable` |
+| `watch` | `stressed` |
+| `overdraft` | `stressed` or `cash_flow_crisis`, depending on arrears trigger |
+| `freeze` | `under_embargo` |
+| `arrears` | `cash_flow_crisis` |
+| `licence_review` | `under_embargo` |
+| `recovery` | `rescued` |
+| `run_end` | reserved control-loss/run outcome, not an MVP ledger stage |
+
+#### Event-to-posting mapping
+
+| Origin event / fact | Ledger posting? | Contract |
+|---|---:|---|
+| `InsolvencyStageChanged` | No | State/projection fact only. |
+| `AdministrationEntered { pointsDeductionBand, embargoScope, wageCapPct }` | No | Opens policy state: League applies points deduction, Transfer/Squad apply restrictions, wage-cap policy constrains future wage blocks. |
+| `InsolvencyWageCapPolicySet` | No immediate posting | Future `PlayerWageBlockPosted` / `StaffWageBlockPosted` limits use ADR-0105; posted wages are never rewritten. |
+| `AdministratorFireSaleOpened { valuationDiscountBand }` | No | Creates administrator authority and valuation pressure only; the band uses the existing ADR-0079 fire-sale RNG sub-label as provenance if collapsed. |
+| `RegistrationDisposalSettled` with `insolvencyCaseId` | Yes | Reuse ADR-0105 `RegistrationDisposalSettled`; provenance marks administrator fire-sale. |
+| `RegistrationWriteOffPosted` with `insolvencyCaseId` | Yes | Reuse ADR-0105 `RegistrationWriteOffPosted`; provenance marks insolvency/write-off reason. |
+| `OwnerSupportGranted` | Yes, if it is a cash/debt/equity support instrument | Reuse the ADR-0050 / FMX-49 financing-owner-support path; not an insolvency-only posting. |
+| `ClubRescued { creditorWriteoffBand }` | Yes, for creditor haircut/forgiveness | New `InsolvencyCreditorWriteOffPosted`, with the amount collapsed under D2 before posting. |
+| `ClubLiquidated` | Reserved | Post-MVP liquidation close-out only; no MVP posting contract. |
 
 - ~~If [[ADR-0050-club-economy-accounting-ledger]] adopts **double-entry**, every such posting MUST
   **balance** (equal debits/credits) per the grounding; if it adopts a single-entry signed-amount
   ledger, each resolves to one signed `amountMinor` entry. This clause is therefore gated on the
   ADR-0050 single-vs-double-entry decision and sequences right after it.~~ **Gate resolved
   2026-06-11 (FMX-145):** double-entry was adopted ([[ADR-0095-balanced-transfer-ledger-posting-invariant]]
-  D1 = A, binding) — every insolvency posting **MUST balance** (LI-1/LI-4 apply; the creditor
-  write-off debits the liability leg against an equity leg, the fire-sale receipt books cash-in
-  against the asset disposal/write-down).
-- A **single shared insolvency-stage enum** is referenced by both ADR-0050 (its "staged insolvency
-  state") and ADR-0079 (its `InsolvencyCase` FSM), so the FSM states and the ledger-facing stage are
+  D1 = A, binding) — every insolvency posting **MUST balance** (LI-1/LI-4 apply).
+- `AdministrationEntered`, points deductions, transfer embargoes, wage caps and fire-sale openings
+  are policy/state facts. They can change permissions, budgets, valuation pressure and league
+  standings, but they do not by themselves move cash, liabilities or registration assets.
+- A **single shared insolvency-stage enum** is referenced by both ADR-0050 (its staged insolvency
+  state) and ADR-0079 (its `InsolvencyCase` FSM), so the FSM states and the ledger-facing stage are
   one model with one set of names.
+
+#### New posting: `InsolvencyCreditorWriteOffPosted`
+
+`InsolvencyCreditorWriteOffPosted` is the only new insolvency-specific ledger posting. It is emitted
+inside Club Management after a rescue / settlement fact has selected a concrete creditor haircut.
+
+Minimum payload:
+
+```text
+InsolvencyCreditorWriteOffPosted {
+  clubId
+  insolvencyCaseId
+  originEventId
+  creditorClass
+  settlementRef
+  amountMinor
+  currency
+  collapsePolicyRef?         # required when derived from creditorWriteoffBand
+  postingRuleVersion
+  contraClassification       # debt_restructuring_gain | owner_equity_contribution
+  idempotencyKey
+}
+```
+
+Balanced leg direction:
+
+| Situation | Provisional leg shape |
+|---|---|
+| External creditor haircut / CVA-like settlement | Dr/reduce liability · Cr `income.debt_restructuring_gain` |
+| Owner or related-party forgiveness in substance as capital support | Dr/reduce liability · Cr `equity.owner_contribution` |
+
+Concrete account codes are FMX-150; FMX-146 pins the event and account-category intent only.
+The deterministic idempotency pattern is:
+
+```text
+insolvency-creditor-writeoff:{clubId}:{insolvencyCaseId}:{originEventId}:{creditorClass}:{postingRuleVersion}
+```
+
+Band collapse / RNG provenance:
+
+- `creditorWriteoffBand` collapses once per creditor-class business amount before posting, using
+  `collapseBand` D2 and the existing `WorldAiMgmtRng` stream sub-label
+  `worldAiMgmt:structural:year:<year>:insolvency:<clubId>:writeoff:<creditorClass>:v1`.
+- `valuationDiscountBand` for administrator fire-sale pressure uses the existing ADR-0079 fire-sale
+  slot label (`...:insolvency:<clubId>:firesale:<slot>`). It affects valuation/acceptance policy
+  and provenance on the eventual sale, not a direct ledger posting.
+- The collapsed `amountMinor`, `rngSubLabel`, seed/draw indices and `costProfileVersion` are
+  persisted in provenance as required by D2.
 
 ## Rationale
 
@@ -298,8 +397,10 @@ Positive:
   -reproducible `amountMinor`, with the band kept only as classification metadata.
 - One quality-profile enum portfolio-wide; settlement-path routing becomes a typed function instead of
   an undefined 3↔4 collapse.
-- Insolvency ledger effects become **explicit and audit-correct** (named postings, balanced if
-  double-entry), and there is a **single** insolvency-stage model shared by ADR-0050 and ADR-0079.
+- Insolvency ledger effects become **explicit and audit-correct**: most insolvency events are
+  policy/state facts, fire-sale settlements reuse existing registration postings, creditor haircuts
+  use one named balanced posting, and there is a **single** insolvency-stage model shared by
+  ADR-0050 and ADR-0079.
 
 Negative / constraints:
 
@@ -316,8 +417,8 @@ Negative / constraints:
 
 - **Sequencing risk.** ~~The balanced-postings clause cannot be finalised until the ADR-0050 single-vs
   -double-entry decision is made; landing this ADR first would leave D4 partially specified.~~
-  **Closed 2026-06-11 (FMX-145)** — ADR-0095 D1 = A is binding; D4's posting contract is now fully
-  specifiable (apply-work: FMX-146).
+  **Closed 2026-06-11 (FMX-145)** — ADR-0095 D1 = A is binding. D4's posting contract was then
+  applied by FMX-146 on 2026-06-12.
 - **Cross-ADR churn.** Three accepted/proposed contracts (ADR-0070 accepted; ADR-0086, ADR-0079
   proposed) are touched on ratification; the changes are additive/clarifying but require coordinated
   apply-PRs (mirrors the reconciliation pattern in [[ADR-0089-bounded-context-portfolio-reconciliation]]).
@@ -328,13 +429,16 @@ Negative / constraints:
   deterministic representative/floor, or a **seeded-within-band** draw on the existing
   `WorldRng:venue:…:opcost:v1` sub-label (with persisted seed + draw indices)? Pure-deterministic
   (midpoint/floor) is the simplest replay-safe option; seeded-within-band adds designed variance but
-  must reuse an existing stream and persist provenance. This is the only fully-open axis; the rest of
+  must reuse an existing stream and persist provenance. This was the D2 collapse axis; the rest of
   the ADR is structurally determined once Nico picks the rule and the ADR-0050 entry model.~~
   **Resolved 2026-06-12 (FMX-149, Nico live): seeded-within-band** — one uniform integer draw per
   business amount on a documented existing-stream sub-label, seed + draw indices persisted in
   `provenance`, versioned behind the shared `costProfileVersion`; canonical `MoneyBand` type pinned.
   See §"D2 ratified rule" and [[../../60-Research/moneyband-amountminor-collapse-rule-2026-06-12]].
-  No axis of this ADR remains open (apply-work: FMX-146 insolvency contract, FMX-147 enum).
+- **Insolvency posting contract / shared enum:** **Resolved 2026-06-12 (FMX-146):** D4 is applied as
+  the shared ADR-0079/GD-0030 `InsolvencyCaseStage` enum plus the event-to-posting mapping above.
+- **Remaining axis:** FMX-147 still applies D3's quality-profile enum reconciliation. Frontmatter
+  stays `binding: false` until that axis closes.
 
 ## Supersedes
 
@@ -356,5 +460,6 @@ None.
   satisfy.
 - [[../../60-Research/background-fast-cost-settlement-2026-06-07]] /
   [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]] /
-  [[../../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]] — settlement and insolvency grounding.
+  [[../../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]] /
+  [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]] — settlement and insolvency grounding.
 - [[../../00-Index/Open-Decisions-Dossier]] — consolidated open-decision Q&A.

@@ -3,7 +3,7 @@ title: GD-0008 Finance, Economy & Stadium
 status: accepted
 tags: [game-design, gddr, finance, economy, accounting, commercial, financing, debt, investor, fmx-13, fmx-41, fmx-49]
 created: 2026-05-17
-updated: 2026-06-11
+updated: 2026-06-12
 type: game-design
 binding: false
 linear: FMX-13
@@ -16,9 +16,11 @@ related:
   - [[../60-Research/club-economy-blueprint-2026-05-27]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../60-Research/club-financing-tools-2026-06-01]]
+  - [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]]
   - [[GD-0022-economy-commercial-impact-and-contracts]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+  - [[../10-Architecture/09-Decisions/ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   - [[../30-Implementation/club-economy-commercial-contracts]]
 ---
@@ -60,8 +62,11 @@ choices before the run collapses.
 - **Liquidity, profit and compliance are distinct.** A club can be cash-poor
   but profitable, profitable but non-compliant, or solvent while violating board
   risk policy.
-- **Insolvency is staged.** Negative cash starts a crisis path: warning,
-  overdraft/freeze, arrears, licence review and finally run end or control loss.
+- **Insolvency is staged.** Negative cash starts the shared ADR-0079/ADR-0101
+  `InsolvencyCaseStage` path (`stable → stressed → cash_flow_crisis →
+  under_embargo → administration → rescued`, with `liquidated` reserved).
+  Older finance labels — warning/watch, overdraft/freeze, arrears, licence
+  review, recovery and run end/control loss — are UI/read-model aliases only.
 - **Club financing is in-world and Club-owned.** FMX-49 adds a Club Management
   financing layer for overdraft/credit line, bank loan, sponsor advance,
   receivables factoring, restructuring/payment holiday, board support and

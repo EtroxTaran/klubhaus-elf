@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-12-fmx-146-insolvency-ledger-contract]] - FMX-146 insolvency
+  event-to-ledger posting contract: raw/synthesis research and accepted ADR/GDDR
+  amendments for the ADR-0050 / ADR-0079 seam. Captures the selected line:
+  ADR-0079/GD-0030 own the shared `InsolvencyCaseStage`; administration,
+  embargo, points deduction, wage-cap policy and fire-sale opening are
+  state/policy facts only; completed fire sales reuse ADR-0105 registration
+  postings; creditor haircut/forgiveness uses `InsolvencyCreditorWriteOffPosted`.
+  ADR-0101 remains `binding: false` until FMX-147 closes D3.
 - [[2026-06-12-fmx-131-standings-authority]] - FMX-131 standings authority
   clarification: raw/synthesis research and accepted ADR amendments for the
   ADR-0066 / ADR-0068 / ADR-0081 seam. Captures Nico's selected split: League

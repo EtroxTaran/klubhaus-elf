@@ -51,8 +51,25 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-146 Insolvency event→ledger posting contract decided — ADR-0101 D4 clause binding
+> (2026-06-12).** Closes the ADR-0050 vs ADR-0079 insolvency seam: ADR-0079/GD-0030 now own the
+> shared `InsolvencyCaseStage` enum (`stable → stressed → cash_flow_crisis → under_embargo →
+> administration → rescued`, reserved `liquidated`), while ADR-0050 references it instead of
+> carrying a second finance FSM. Research
+> [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]] (+ raw real-world football,
+> game-precedent and DDD/accounting captures) grounds Nico's approved line: administration,
+> points deduction, embargo, wage-cap policy and fire-sale opening are policy/state facts with no
+> immediate posting; wage caps constrain future ADR-0105 wage blocks; completed fire sales reuse
+> ADR-0105 `RegistrationDisposalSettled` / `RegistrationWriteOffPosted` with `insolvencyCaseId`
+> provenance; creditor haircut/forgiveness uses the one new balanced posting
+> `InsolvencyCreditorWriteOffPosted` (external haircut → debt-restructuring gain; owner/related-party
+> forgiveness → equity contribution). `creditorWriteoffBand` collapses under ADR-0101 D2 using
+> `WorldAiMgmtRng:...:insolvency:<clubId>:writeoff:<creditorClass>:v1`; concrete account codes stay
+> **FMX-150**. ADR-0101 frontmatter remains `binding: false` until **FMX-147** closes D3; D2 and D4
+> clauses are binding.
+
 > **FMX-149 MoneyBand → amountMinor collapse rule decided — ADR-0101 D2 = seeded-within-band,
-> clause binding (2026-06-12).** Closes the "only fully-open axis" of ADR-0101 (audit epic
+> clause binding (2026-06-12).** Closes the D2 collapse axis of ADR-0101 (audit epic
 > FMX-122; unblocked by FMX-145's D1 = A): settlement envelopes carry banded estimates while the
 > ledger posts one exact integer `amountMinor` — without a named collapse rule two replays could
 > pick different representatives and break BF6 byte-identity. Research
@@ -63,14 +80,13 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `collapseBand(band, ctx) → amountMinor`, exactly one uniform integer draw on the closed band
 > per business amount (shared by every balanced leg, LI-1 after collapse; degenerate band = no
 > draw; no floating point), on a documented existing-stream sub-label (BF7; opcost label exists,
-> insolvency labels land with FMX-146), seed + draw indices persisted in `provenance` (BF6);
+> insolvency labels landed with FMX-146), seed + draw indices persisted in `provenance` (BF6);
 > floor research-rejected (−n·w/2 season drift), midpoint co-equal pure lead ·
 > **versioning = shared `costProfileVersion`** (one key governs collapse policy + magnitudes,
 > BF10/FMX-52) · **canonical `MoneyBand` pinned** (`{ lowMinor, highMinor }`, closed interval,
 > integer minor units per LI-7 — previously used but untyped) · **binding handling =**
-> ADR-0101 frontmatter stays `binding: false` until FMX-146/147 close the remaining axes; the
-> D2 clause itself is binding. Apply-work next: **FMX-146** (insolvency posting contract, now
-> fully unblocked), **FMX-147** (quality-profile enum).
+> ADR-0101 frontmatter stays `binding: false` until **FMX-147** closes the remaining axis; the
+> D2 clause itself is binding. Apply-work next: **FMX-147** (quality-profile enum).
 
 > **FMX-144 Wage + transfer-fee posting contracts defined — ADR-0105 accepted/binding
 > (2026-06-12).** Follow-up keystone of the accounting-integrity cluster (audit epic FMX-122):
@@ -91,8 +107,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > IAS-38-lite lean). New [[../10-Architecture/09-Decisions/ADR-0105-wage-and-transfer-fee-posting-contracts|ADR-0105]]
 > (accepted/binding, **amends ADR-0050**); ADR-0053/ADR-0075 carry counterpart cross-references;
 > the bounded-context-map Club Management row names the wage-block counterpart + Transfer→Ledger
-> ACL. Account handles provisional pending **FMX-150**; insolvency wage-cap seam stays with
-> ADR-0101 D4 / **FMX-146**.
+> ACL. Account handles provisional pending **FMX-150**; insolvency wage-cap handling is resolved by
+> ADR-0101 D4 / **FMX-146** as a future wage-block constraint, not a posting rewrite.
 >
 > **FMX-131 Standings authority clarified — League official ordering, Statistics projection
 > (2026-06-12).** Closes the ADR-0066 / ADR-0081 seam where both documents used "standings"
@@ -130,9 +146,9 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > schema) · **dossier sub-task = dated closure addendum** (dossier stays closed). ADR-0095 →
 > `binding: true`; ADR-0050 carries a dated shape-only amendment note (amendment pattern per
 > FMX-143 H1 — stays `accepted`); the bounded-context-map Club Management row gains the
-> "balanced double-entry postings" clause (no context-count change); **ADR-0101 D4 is unlocked**
-> (insolvency postings balance unconditionally → **FMX-146**; collapse rule **FMX-149**;
-> quality-profile enum **FMX-147**). Magnitudes unaffected (FMX-52 unchanged).
+> "balanced double-entry postings" clause (no context-count change); **ADR-0101 D4 was unlocked**
+> and is now applied by **FMX-146**; collapse rule **FMX-149** and insolvency contract **FMX-146**
+> are closed, quality-profile enum **FMX-147** remains. Magnitudes unaffected (FMX-52 unchanged).
 >
 > **FMX-143 Ratification-status SSOT reconciliation (2026-06-11).** The **Urgent** keystone of
 > the 2026-06-10 audit backlog (epic FMX-118): after the merged ratification PRs #153/#157–#161

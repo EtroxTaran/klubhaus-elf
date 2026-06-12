@@ -291,7 +291,7 @@ All three original open questions are **resolved or routed** (2026-06-11, FMX-14
   one uniform integer per business amount, shared by every balanced leg (LI-1 holds *after*
   collapse), versioned behind `costProfileVersion`.
   With D1 = A decided, ADR-0101's D4 "balanced **iff** double-entry" clause resolves to
-  **balanced, unconditionally** — the insolvency posting contract (**FMX-146**) sequences next.
+  **balanced, unconditionally** — the insolvency posting contract was applied by **FMX-146**.
 
 ## Supersedes
 

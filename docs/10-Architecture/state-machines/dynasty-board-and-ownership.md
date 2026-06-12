@@ -3,7 +3,7 @@ title: State Machine - Dynasty Board & Ownership
 status: current
 tags: [architecture, state-machine, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, club-management, fmx-89]
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-12
 type: state-machine
 binding: false
 related:
@@ -11,11 +11,13 @@ related:
   - [[../bounded-context-map]]
   - [[../09-Decisions/ADR-0079-dynasty-board-ownership-and-bankruptcy]]
   - [[../09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+  - [[../09-Decisions/ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]]
   - [[../09-Decisions/ADR-0051-manager-and-legacy-context]]
   - [[../09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]]
   - [[../09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]
   - [[../../50-Game-Design/GD-0030-dynasty-board-and-ownership]]
   - [[../../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]]
+  - [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]]
 ---
 
 # State Machine - Dynasty Board & Ownership
@@ -114,6 +116,12 @@ per-club cooldown.
 
 ## 3. InsolvencyCase FSM (stochastic; WorldAiMgmtRng) — core MVP
 
+`InsolvencyCaseStage` is the shared ADR-0079/GD-0030 enum consumed by ADR-0050:
+`stable`, `stressed`, `cash_flow_crisis`, `under_embargo`, `administration`, `rescued`,
+reserved `liquidated`. Older finance labels (`healthy`, `watch`, `overdraft`, `freeze`,
+`arrears`, `licence_review`, `recovery`, `run_end`) are read-model/UI aliases only, not a
+second ledger FSM.
+
 Per club. Extends ADR-0050's "staged insolvency state". Reserved tail dashed.
 
 ```mermaid
@@ -149,6 +157,12 @@ Player paths (GD-0030 §5): **heroic save** (`rescued` + survival → legacy cre
 **abandon** (`ManagerAbandonedClub` before administration → light legacy penalty),
 **inside administration** (expectations flip to "fight for survival", underdog bonus).
 
+Ledger posture (ADR-0101 D4 / FMX-146): stage changes, administration entry, points
+deductions, embargoes, wage-cap policy and fire-sale opening are policy/state facts with no
+immediate ledger posting. Completed fire sales reuse ADR-0105 registration disposal/write-off
+postings with `insolvencyCaseId` provenance. Creditor haircut/forgiveness on rescue creates
+ADR-0050 `InsolvencyCreditorWriteOffPosted`.
+
 ## 4. Transition triggers
 
 | FSM | From → To | Trigger source |
@@ -173,13 +187,14 @@ Player paths (GD-0030 §5): **heroic save** (`rescued` + survival → legacy cre
 | `OwnershipTransitionResolved` / `OwnerProfileAssigned` | Club Management (self) | Budget policy + expectation reset; ledger budget envelopes updated **inside Club Management** (no external ledger write). |
 | `OwnershipTransitionTriggered` | Narrative / Notification | Takeover storyline. |
 | `AdministrationEntered` | League Orchestration | Apply points deduction to the table; transfer embargo flag. |
-| `AdministratorFireSaleOpened` | Transfer / Squad & Player | Players flagged must-sell; AI buyers get a valuation discount. |
-| `ClubRescued` / `ManagerAbandonedClub` | Manager & Legacy | Legacy credit / penalty tag. |
+| `AdministratorFireSaleOpened` | Transfer / Squad & Player | Players flagged must-sell; AI buyers get a valuation discount; no posting until disposal/write-off settles. |
+| `ClubRescued` / `ManagerAbandonedClub` | Manager & Legacy | Legacy credit / penalty tag; creditor haircut, if present, posts through Club Management. |
 | `GiantCollapseTriggered` / `RisingRivalTriggered` (consumed) | This FSM | Ownership-transition triggers (ADR-0071, via ACL/events). |
 
 All finance effects are posted **inside Club Management** (the sub-aggregates' own
 context); consumed external drift arrives via ACL/events, never cross-context joins
-(DB5).
+(DB5). FMX-146 constrains this to actual economic events: policy/state facts do not
+move ledger balances by themselves.
 
 ## 6. Event schemas (Zod/JSON direction)
 
@@ -254,12 +269,20 @@ type AdministrationEntered = DynastyEventBase & {
   wageCapPct: RangeBp
   rngLabel: string                // ...:insolvency:<clubId>:audit
 }
+type InsolvencyWageCapPolicySet = DynastyEventBase & {
+  type: 'InsolvencyWageCapPolicySet'
+  insolvencyCaseId: InsolvencyCaseId
+  wageCapPct: RangeBp
+  effectiveWeekId: WeekId
+}
 type ClubRescued = DynastyEventBase & {
   type: 'ClubRescued'
+  insolvencyCaseId: InsolvencyCaseId
   rescueOwnerProfileId: OwnerProfileId
   creditorWriteoffBand: RangeBp
   reputationPenaltyBand: RangeBp
   legacyCredit: 'saved-the-club'
+  writeoffRngLabel?: string       // ...:insolvency:<clubId>:writeoff:<creditorClass>:v1
 }
 // Reserved (post-MVP, named only): ClubLiquidated, PhoenixClubFounded, CvaProposed, CvaAccepted
 ```

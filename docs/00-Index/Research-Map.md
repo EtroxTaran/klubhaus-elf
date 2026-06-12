@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-12
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-real-world-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-ddd-accounting-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-games-2026-06-12]]
 ---
 
 # Research Map
@@ -125,6 +125,20 @@ design notes.
   Analytics owns standings history/display projections, leaders and analytics
   views only. Raw capture:
   [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]].
+
+## Insolvency Event-To-Ledger Posting Contract (FMX-146, 2026-06-12)
+
+- [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]] -
+  FMX-146 synthesis for the ADR-0101 D4 seam. Grounds the accepted split:
+  ADR-0079/GD-0030 own the shared `InsolvencyCaseStage`; administration,
+  points deductions, embargoes, wage-cap policy and fire-sale opening are
+  state/policy facts only; wage caps constrain future ADR-0105 wage blocks;
+  completed fire sales reuse ADR-0105 registration disposal/write-off postings;
+  and creditor haircut/forgiveness uses `InsolvencyCreditorWriteOffPosted`.
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-insolvency-ledger-real-world-2026-06-12]],
+  [[../60-Research/raw-perplexity/raw-insolvency-ledger-ddd-accounting-2026-06-12]],
+  [[../60-Research/raw-perplexity/raw-insolvency-ledger-games-2026-06-12]].
 
 ## AI Narration Scope Freeze and Fallback Coverage (FMX-88, 2026-06-04)
 
