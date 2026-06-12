@@ -3,7 +3,7 @@ title: ADR-0075 Loan-Orchestration Process Manager
 status: accepted
 tags: [adr, architecture, ddd, transfer, loan, squad, match, regulations, club-management, youth, fmx-85]
 created: 2026-06-04
-updated: 2026-06-11
+updated: 2026-06-12
 type: adr
 binding: false
 supersedes:
@@ -270,6 +270,11 @@ LoanFinancialIntent =
 ```
 
 Club Management consumes the intent through its ACL and posts ledger entries.
+Per [[ADR-0105-wage-and-transfer-fee-posting-contracts]] (FMX-144) the four `kind`
+values ride the named wage/transfer posting contracts — `wage_contribution` as recharge
+legs in the wage blocks, `loan_fee`/`breach_penalty` via `TransferInstalmentSettled`
+(loan fee recognised at `effectiveDate`), `obligation_buy_fee` via
+`TransferFeeCapitalised` on trigger — never a fourth ledger path (LO8).
 
 ## Invariants
 

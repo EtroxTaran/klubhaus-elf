@@ -51,6 +51,28 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-144 Wage + transfer-fee posting contracts defined — ADR-0105 accepted/binding
+> (2026-06-12).** Follow-up keystone of the accounting-integrity cluster (audit epic FMX-122):
+> ADR-0050 had a rich posting-event vocabulary but **no named posting event** for the game's two
+> biggest cashflows — the wage block (player + staff) and the transfer fee incl.
+> instalments/receivable/payable and registration-cost amortisation; the `StaffWagePosted` ACL
+> (ADR-0053) had no Club-Management counterpart. Research
+> [[../60-Research/wage-and-transfer-fee-posting-contracts-2026-06-11]] (+ 2 raw captures;
+> IAS 38/IAS 19 club practice — ManUtd/Juventus/BVB — and FM-style sim aggregation patterns).
+> **Nico decided 6 forks live (2026-06-12):** **D1 = B** separate `PlayerWageBlockPosted` +
+> `StaffWageBlockPosted` weekly events (override of the combined-block lean) · **D2 = A** full
+> IAS 38 (registration intangible + instalment receivable/payable + straight-line amortisation +
+> disposal gain/loss) · **D3 = A** weekly amortisation in `AdvanceClubEconomyWeek`
+> (`floor(total/n)`, last week absorbs remainder) · **D4 = A** loan intents ride the
+> wage/transfer contracts, loan fee at `effectiveDate` (no fourth path, LO8) · **D5 = A** natural
+> idempotency keys · **D6 = C** expense-everything (intangible = bare fee only; signing bonus +
+> agent fees immediate expense; free transfer = no intangible — recorded override of the
+> IAS-38-lite lean). New [[../10-Architecture/09-Decisions/ADR-0105-wage-and-transfer-fee-posting-contracts|ADR-0105]]
+> (accepted/binding, **amends ADR-0050**); ADR-0053/ADR-0075 carry counterpart cross-references;
+> the bounded-context-map Club Management row names the wage-block counterpart + Transfer→Ledger
+> ACL. Account handles provisional pending **FMX-150**; insolvency wage-cap seam stays with
+> ADR-0101 D4 / **FMX-146**.
+>
 > **FMX-131 Standings authority clarified — League official ordering, Statistics projection
 > (2026-06-12).** Closes the ADR-0066 / ADR-0081 seam where both documents used "standings"
 > differently. Research
