@@ -3,11 +3,13 @@ title: ADR-0050 Club Economy Accounting Ledger
 status: accepted
 tags: [adr, architecture, economy, accounting, club-management, financing, debt, commercial, cup, competition, matchday, catering, merchandise, operations, fan-service, investor, fmx-13, fmx-32, fmx-41, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, accepted]
 created: 2026-05-27
-updated: 2026-06-11
+updated: 2026-06-12
 type: adr
 binding: true
 supersedes:
-amended_by: [[ADR-0095-balanced-transfer-ledger-posting-invariant]]
+amended_by:
+  - [[ADR-0095-balanced-transfer-ledger-posting-invariant]]
+  - [[ADR-0105-wage-and-transfer-fee-posting-contracts]]
 related:
   - [[ADR-0019-modular-monolith-ddd]]
   - [[ADR-0027-postgres-data-model]]
@@ -150,6 +152,13 @@ Key rules:
   owner-control, fan, sponsor, board or compliance semantics.
 
 ## Public contract direction
+
+> **Amended 2026-06-12 (FMX-144):** the wage-block and transfer-fee/amortisation posting
+> vocabulary — `PlayerWageBlockPosted`, `StaffWageBlockPosted`, `ContractSigningCostPosted`,
+> `TransferFeeCapitalised`, `TransferInstalmentSettled`, `RegistrationAmortisationPosted`,
+> `RegistrationDisposalSettled`, `RegistrationWriteOffPosted` (+ non-posting
+> `RegistrationAmortisationRescheduled`) — is defined in
+> [[ADR-0105-wage-and-transfer-fee-posting-contracts]] and is part of this contract list.
 
 Draft commands:
 
