@@ -1,9 +1,9 @@
 ---
 title: ADR-0066 Competition & Season Registry sub-aggregate (League Orchestration)
 status: accepted
-tags: [adr, architecture, ddd, league, competition, season, fixture, registry, pyramid, gap-g1, fmx-79]
+tags: [adr, architecture, ddd, league, competition, season, fixture, registry, pyramid, standings, gap-g1, fmx-79, fmx-131]
 created: 2026-06-02
-updated: 2026-06-08
+updated: 2026-06-12
 accepted_at: 2026-06-02
 type: adr
 binding: true
@@ -24,8 +24,12 @@ related:
   - [[../../50-Game-Design/GD-0015-ip-clean-data]]
   - [[../../60-Research/competition-registry-sub-aggregate-2026-06-02]]
   - [[../../60-Research/raw-perplexity/raw-competition-registry-sub-aggregate-2026-06-02]]
+  - [[../../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
+  - [[../../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]]
   - [[../../60-Research/domain-model-audit-and-backlog-2026-06-02]]
   - [[../../30-Implementation/domain-research-workflow]]
+  - [[ADR-0068-fixture-scheduling-contract]]
+  - [[ADR-0081-statistics-analytics-read-model-owner]]
 ---
 
 # ADR-0066: Competition & Season Registry sub-aggregate (League Orchestration)
@@ -42,10 +46,19 @@ accepted
 > bounded-context-map League Orchestration row is amended in this PR; the GD-0009
 > appendix is promoted to accepted. Cup seeding remains reserved for R2-06.
 
+> **FMX-131 amendment 2026-06-12.** "Owns standings" is clarified to mean
+> League Orchestration owns the tie-break rule, official current/final ordering
+> and the structural outcomes derived from that ordering (champion,
+> qualification, promotion/relegation, season rollover). Statistics & Analytics
+> owns the rebuildable `CompetitionStandingsHistory` projection for display,
+> history, leaders and analytics. The Pyramid-rollover process manager reads
+> League-owned official standings, never the Statistics projection.
+
 ## Date
 
 - Proposed: 2026-06-02
 - Accepted (Nico): 2026-06-02
+- Amended (FMX-131, Nico): 2026-06-12
 
 ## Context
 
@@ -111,7 +124,7 @@ options are retained below for the decision record.
    **reserved for R2-06**, not designed here; the model leaves a `SeedingValue`
    seam.
 
-## Decision (proposed, under recommended options)
+## Decision
 
 Specify the Competition & Season registry as a **sub-aggregate cluster inside
 League Orchestration** comprising **four aggregate roots** + reference entities +
@@ -124,7 +137,7 @@ family; cup + continental are reserved seams (designed-for, not built).
 |---|---|---|---|
 | `Competition` | reference entity (small AR) | Long-lived competition concept (e.g. "Aurelia Premier"): id, IP-clean name ref, kind (`league`/`cup`/`continental`), association/country ref, default format template. | ✅ |
 | `Season` | reference entity (small AR) / calendar VO | Calendar concept: id, label (`2027/28`), `CalendarWindow` (Aug–May), status FSM (`planned → active → completed`). | ✅ |
-| `LeagueCompetitionSeason` | **aggregate root** (edition) | The per-season league edition: refs `CompetitionId` + `SeasonId` + `LeagueTier`; owns `Participant`s, `CompetitionFormat`, schedule/standings. The unit of domain rules. | ✅ |
+| `LeagueCompetitionSeason` | **aggregate root** (edition) | The per-season league edition: refs `CompetitionId` + `SeasonId` + `LeagueTier`; owns `Participant`s, `CompetitionFormat`, schedule, tie-break rule application and official current/final ordering. The unit of domain rules. | ✅ |
 | `CupCompetitionSeason` | **aggregate root** (edition) — *reserved* | Per-season cup edition: refs + `Participant`s (with `SeedingValue`) + bracket/group state. Same `CompetitionSeason` concept; distinct invariants. | ⏸ post-MVP (R2-06) |
 | `PyramidConfiguration` | **aggregate root** | Tier ranking + promotion/relegation rules for a pyramid: ordered `TierConfiguration`s + `PromotionRule`/`RelegationRule` VOs. | ✅ (depth-1 data) |
 
@@ -195,6 +208,7 @@ LeagueCompetitionSeason = {
 | **I7** | `CompetitionFormat` is **immutable** after edition creation; a format change is modelled as a new edition, never an in-place mutation. | edition AR |
 | **I8** | Every `Competition`/`Season` user-facing name resolves through `CompetitionNameRef` → the IP-clean fictional catalog (GD-0015 / ADR-0007); **no literal real competition name** is storable. *(IP criterion)* | `Competition` AR + catalog ACL |
 | **I9** | A `Season` advances `planned → active → completed` monotonically; `SeasonAdvanced` is emitted on each transition (the published fact downstream contexts consume). | `Season` AR + outbox (ADR-0028) |
+| **I10** | Official ordering for a `LeagueCompetitionSeason` is resolved by the League-owned `TieBreakerRule` + source match/result facts and is the only source for champion, qualification, promotion/relegation and season-rollover outcomes. Statistics projections may display/history the same rows but never decide these outcomes. | edition AR + Pyramid-rollover process manager |
 
 The canonical **mermaid aggregate diagram** lives in the GD-0009 architecture
 appendix ([[../../50-Game-Design/GD-0009-league-structure]] §"Competition & Season
@@ -215,8 +229,51 @@ event** (`CompetitionConcluded` → a Process Manager creates an entry
 
 Promotion/relegation at season rollover is a **Pyramid-rollover Process Manager**:
 on each tier edition's `CompetitionConcluded`, it reads the `PyramidConfiguration`
-rules (I5/I6) and registers each club into its next-season tier edition. Per-edition
-aggregates stay focused on their own invariants (Vernon process-manager guidance).
+rules (I5/I6) and the League-owned official standings contract below, then
+registers each club into its next-season tier edition. It does **not** read
+`CompetitionStandingsHistory` from Statistics & Analytics; that projection may
+lag, rebuild or use a new projection version without changing the official
+outcome. Per-edition aggregates stay focused on their own invariants (Vernon
+process-manager guidance).
+
+### Official standings contract (FMX-131 amendment)
+
+The League-owned ordering contract is separate from ADR-0081's projection query:
+
+```ts
+GetOfficialCompetitionStandings = {
+  competitionSeasonId: CompetitionSeasonId
+} -> OfficialCompetitionStandings | null
+
+CompetitionStandingsFinalizedV1 = {
+  competitionSeasonId: CompetitionSeasonId
+  competitionId: CompetitionId
+  seasonId: SeasonId
+  ruleVersion: CompetitionRuleVersion
+  sourceResultWatermark: EventWatermark
+  finalizedAt: Instant
+  rows: OfficialStandingRow[]
+}
+
+OfficialStandingRow = {
+  rank: int
+  clubId: ClubId
+  played: int
+  won: int
+  drawn: int
+  lost: int
+  goalsFor: int
+  goalsAgainst: int
+  goalDifference: int
+  points: int
+  tieBreakerTrace: TieBreakerTrace[]
+  structuralOutcome?: 'champion' | 'qualified' | 'promoted' | 'relegated' | 'playoff'
+}
+```
+
+Statistics & Analytics consumes `CompetitionStandingsFinalizedV1` to build
+history, leaders and season-summary projections. League Orchestration remains
+the only authority for the official table row used by season rollover.
 
 ### Reserved post-MVP seams (designed-for, not built)
 
@@ -252,6 +309,8 @@ or examples.
   (reserved seams; format-as-policy).
 - Persistence-clean against ADR-0027; Zod-describable for contracts-first.
 - IP-clean by construction (I8).
+- FMX-131 removes the duplicate standings-authority risk: League owns official
+  ordering and structural outcomes; Statistics owns display/history projections.
 
 **Negative / constraints**
 
@@ -259,6 +318,9 @@ or examples.
   must be honoured when R2-06 opens (a future ADR, not silent extension).
 - Seeding (R2-06) is intentionally undesigned; the `SeedingValue` seam must not be
   treated as a complete cup-seeding contract.
+- Any future tie-break input supplied by Statistics & Analytics must be named in
+  `TieBreakerRule` and consumed through an explicit public metric snapshot; it
+  still does not move final-ordering authority out of League Orchestration.
 
 ## HITL gate
 
@@ -270,3 +332,7 @@ recommended options** and applied only after Nico answered D1–D4 (ask-first ga
 `needs:nico-decision`). The registry refines the existing League Orchestration row
 rather than adding a context, so the amendment edits that row in place. Merge
 remains Nico's (PR #119).
+
+FMX-131 was answered live by Nico on 2026-06-12 and applied as an amendment:
+League owns official standings authority for structural outcomes, while
+Statistics owns the projection/history surface.

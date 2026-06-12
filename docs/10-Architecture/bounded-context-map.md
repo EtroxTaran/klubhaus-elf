@@ -3,10 +3,10 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-06-11
+updated: 2026-06-12
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]]
 ---
 
 # Bounded Context Map
@@ -34,7 +34,7 @@ change, not a refactor.
 | Context | Core elements | Exposed outputs |
 |---|---|---|
 | **Identity & Access** | User, sessions, roles, device state | Auth claims, membership context |
-| **League Orchestration** | Season, week, match-day, mode, pause, quorum; **Competition & Season registry** sub-aggregate cluster (ADR-0066): `Competition` + `Season` reference entities, `LeagueCompetitionSeason` edition aggregate, `PyramidConfiguration` (tier order + promotion/relegation), participants by `ClubId` ref | League status, deadlines, lifecycle events; `CompetitionRevenueProfilePublished` / `FixtureCommercialProfilesPublished` / profile snapshot queries / `SeasonAdvanced` |
+| **League Orchestration** | Season, week, match-day, mode, pause, quorum; **Competition & Season registry** sub-aggregate cluster (ADR-0066): `Competition` + `Season` reference entities, `LeagueCompetitionSeason` edition aggregate, `PyramidConfiguration` (tier order + promotion/relegation), participants by `ClubId` ref, League-owned tie-break rule + official current/final ordering | League status, deadlines, lifecycle events; `CompetitionRevenueProfilePublished` / `FixtureCommercialProfilesPublished` / profile snapshot queries / `SeasonAdvanced`; `GetOfficialCompetitionStandings` / `CompetitionStandingsFinalizedV1` |
 | **Club Management** | Finance ledger (sole writer; balanced double-entry postings per ADR-0095), accounting projections, budget envelopes, board pressure, insolvency state | Club state, economy snapshots, board pressure |
 | **Squad & Player** | Player base data, fitness, morale, contracts, injuries | Impact Lens projections, squad projections, player state |
 | **Training** | Training plan, load, development signals | Training outcomes, fatigue signals, growth deltas |
@@ -59,7 +59,7 @@ change, not a refactor.
 | **Scouting** | Scouting assignments, knowledge accumulation, `HiddenFlagRevealLedger` (reveals bands, not point estimates) | Scouting reports, hidden-attribute reveal bands, shortlist projections |
 | **AI World Simulation** | World-drift algorithm (GD-0024: Rising Rival / Giant Collapse / Era Shift as deterministic capped drift), AI manager/club decisions, `WorldAiMgmtRng` sub-streams (ADR-0071) | Drift events, AI-club decisions, structural world-state deltas |
 | **Environment & Climate** | Weather parameter vector + regime taxonomy, pitch-condition ladder, pitch-state owner (ADR-0077) | Weather/pitch snapshots, `PitchConditionChanged`, forecast queries |
-| **Statistics & Analytics** | Projection-only read model (ADR-0081): official counts vs derived estimates, analytics hub, per-save immutable history snapshots; no global OVR | Analytics/statistics projections (read-only), season-history snapshots |
+| **Statistics & Analytics** | Projection-only read model (ADR-0081): official counts vs derived estimates, analytics hub, per-save immutable standings/history snapshots; no global OVR; no official-ordering or rollover authority | Analytics/statistics projections (read-only), standings history, league leaders, season-history snapshots |
 | **Media Ecology** | Persistent opinionated outlets (Type/Stance/Reach/Reliability/Cadence), `CoverageThread` aggregate (ADR-0100), deterministic scoring + per-edition budget, stance drift | Coverage facts, advisory effect-intents (never applies effects, ADR-0030) |
 
 The ratified portfolio is **28 bounded contexts** (19 → 28), fixed by
@@ -94,6 +94,9 @@ entities, the `LeagueCompetitionSeason` edition aggregate (MVP league family; cu
 acyclic tier order, resolvable promotion/relegation slots). Participants reference
 clubs by `ClubId` only (Club Management owns the Club aggregate), so one club may
 sit in a league edition plus N cup editions per season without ownership conflict.
+FMX-131 clarifies that League Orchestration also owns the `TieBreakerRule`,
+official current/final ordering and `CompetitionStandingsFinalizedV1` used for
+champion, qualification, promotion/relegation and season rollover.
 This registry is the producer of the `CompetitionRevenueProfilePublished` /
 `FixtureCommercialProfilesPublished` / profile snapshot query / `SeasonAdvanced`
 published-language facts asserted below; all competition/season naming routes
@@ -116,7 +119,10 @@ match/player/team stat lines, league leaders, metric definitions, derived
 analytics and Manager & Legacy / HoF handoff snapshots one rebuildable owner
 while source contexts keep authoritative facts and command invariants. It
 resolves the ADR-0068 `CompetitionStatus.standingsRef` owner gap without
-allowing cross-context table joins.
+allowing cross-context table joins. FMX-131 clarifies that
+`CompetitionStandingsHistory` is a display/history projection of League-owned
+official ordering, not the source for promotion/relegation, qualification or
+season-rollover commands.
 
 FMX-41 commercial economy planning was originally captured in
 [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]

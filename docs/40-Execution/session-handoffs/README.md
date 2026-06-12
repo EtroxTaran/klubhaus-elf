@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-05
+updated: 2026-06-12
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-12-fmx-131-standings-authority]] - FMX-131 standings authority
+  clarification: raw/synthesis research and accepted ADR amendments for the
+  ADR-0066 / ADR-0068 / ADR-0081 seam. Captures Nico's selected split: League
+  Orchestration owns tie-break rules, official current/final ordering,
+  promotion/relegation, qualification and season rollover via
+  `GetOfficialCompetitionStandings` / `CompetitionStandingsFinalizedV1`;
+  Statistics & Analytics owns `CompetitionStandingsHistory`, league leaders,
+  Analytics Hub projections and handoff snapshots only.
 - [[2026-06-05-fmx-94-statistics-analytics]] - FMX-94 statistics and
   analytics read-model owner: raw/synthesis research, proposed ADR-0081, draft
   GD-0031 and MVP feature spec for G19 / ADR-0068 `standingsRef`. Captures

@@ -3,10 +3,10 @@ title: Features
 status: current
 tags: [feature, index]
 created: 2026-05-15
-updated: 2026-06-05
+updated: 2026-06-12
 type: index
 binding: false
-related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-V1]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[feature-statistics-analytics-hub-mvp]]
+related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-V1]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[feature-statistics-analytics-hub-mvp]]
 ---
 
 # Features
@@ -40,7 +40,8 @@ stubs as future-scope planning, not open documentation gaps.
   GD-0021 decision-influence hooks.
 - [[feature-statistics-analytics-hub-mvp]] - draft FMX-94 MVP Analytics Hub:
   Key Findings, Last Match, Team/Player Analysis, standings/leaders, form,
-  comparison, maps/heatmaps and Manager & Legacy handoff snapshots.
+  comparison, maps/heatmaps and Manager & Legacy handoff snapshots. FMX-131
+  keeps official standings/rollover authority in League Orchestration.
 
 Older feature stubs may contain historical "In scope (MVP)" headings. The
 canonical MVP scope is [[../00-Index/MVP-Scope]]; use it before interpreting

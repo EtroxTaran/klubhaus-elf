@@ -1,16 +1,18 @@
 ---
 title: ADR-0081 Statistics & Analytics read-model owner
 status: accepted
-tags: [adr, architecture, statistics, analytics, read-model, cqrs, ddd, projections, fmx-94]
+tags: [adr, architecture, statistics, analytics, standings, read-model, cqrs, ddd, projections, fmx-94, fmx-131]
 created: 2026-06-05
-updated: 2026-06-11
+updated: 2026-06-12
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
   - [[../../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]]
+  - [[../../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
+  - [[../../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]]
   - [[../../50-Game-Design/GD-0031-analytics-hub-and-statistics]]
   - [[../../20-Features/feature-statistics-analytics-hub-mvp]]
   - [[ADR-0019-modular-monolith-ddd]]
@@ -33,13 +35,20 @@ accepted
 
 Nico selected the planning line live on 2026-06-05: dedicated projection-only
 owner, per-save projections plus immutable Manager & Legacy / HoF handoff
-snapshots, full MVP Analytics Hub, and the core-plus-model metric set. This ADR
-records the proposed architecture. It becomes binding only after Nico ratifies
-it.
+snapshots, full MVP Analytics Hub, and the core-plus-model metric set.
+
+> **FMX-131 amendment 2026-06-12.** Statistics & Analytics owns standings
+> history/display projections, league leaders and analytics snapshots. It does
+> **not** own official ordering, tie-break authority, promotion/relegation,
+> qualification or season rollover. League Orchestration owns those structural
+> outcomes via ADR-0066's `GetOfficialCompetitionStandings` /
+> `CompetitionStandingsFinalizedV1`.
 
 ## Date
 
 - Proposed: 2026-06-05
+- Accepted (vault-wide ratification): 2026-06-08
+- Amended (FMX-131, Nico): 2026-06-12
 
 ## Context
 
@@ -69,13 +78,12 @@ The answer must preserve FMX's DDD rules:
 
 ## Decision
 
-If ratified, add **Statistics & Analytics** as a projection-only bounded context
-owner.
+**Statistics & Analytics** is a projection-only bounded context owner.
 
 It owns:
 
 - match, player, team, competition and season statistics read models;
-- standings history and league leaders;
+- standings history/display projections and league leaders;
 - metric definitions and metric-set versions;
 - derived analytics outputs such as xG/xA/xGA, PPDA, field tilt, shot/pass
   maps, heatmaps, zone control, form and comparison views;
@@ -85,7 +93,8 @@ It owns:
 It does **not** own:
 
 - match simulation, results or event truth;
-- competition format, fixtures or season lifecycle;
+- competition format, fixtures, official ordering, tie-break authority,
+  promotion/relegation, qualification or season lifecycle;
 - player identity, squad membership, contracts, injuries or eligibility;
 - finance/board/club command state;
 - Manager & Legacy scoring formulas, prestige decisions or HoF induction rules;
@@ -119,7 +128,7 @@ GetTeamForm = {
 GetCompetitionStandingsHistory = {
   competitionSeasonId: CompetitionSeasonId
   roundRange?: RoundRange
-} -> CompetitionStandingsHistory
+} -> CompetitionStandingsHistory // display/history projection; not structural authority
 
 GetLeagueLeaders = {
   competitionSeasonId: CompetitionSeasonId
@@ -209,6 +218,7 @@ TeamFormWindow = {
 CompetitionStandingsHistory = {
   competitionSeasonId: CompetitionSeasonId
   projectionVersion: ProjectionVersion
+  sourceOfficialOrderingWatermark?: EventWatermark
   rounds: StandingsRoundSnapshot[]
 }
 
@@ -252,7 +262,7 @@ Statistics & Analytics consumes source-owned public facts only:
 | Context | Input category |
 |---|---|
 | Match | Match result, event, spatial and analytics output layers from [[../../50-Game-Design/match-engine]]. |
-| League Orchestration | Competition/season rule snapshots, `FixturesPublished`, `SeasonAdvanced`, competition status lifecycle. |
+| League Orchestration | Competition/season rule snapshots, `FixturesPublished`, `SeasonAdvanced`, competition status lifecycle, `CompetitionStandingsFinalizedV1` and official standings snapshots from ADR-0066. |
 | Squad & Player | Player and squad identity snapshots, roster membership, eligibility labels and public player facts required to label stats. |
 | Club Management | Club identity and season club labels only; no ledger joins. |
 | Tactics | Optional `TacticSnapshot` / tactical-style labels for comparisons and style context. |
@@ -262,11 +272,11 @@ Statistics & Analytics consumes source-owned public facts only:
 
 | # | Invariant | Enforcement |
 |---|---|---|
-| **SA1** | Statistics & Analytics projections are read models, not command authority. | contract review |
+| **SA1** | Statistics & Analytics projections are read models, not command authority. They cannot decide champion, qualification, promotion/relegation or season rollover outcomes. | contract review |
 | **SA2** | No Statistics query may join private source-context tables. | module boundary / review |
 | **SA3** | Projection handlers are idempotent through ADR-0028 consumer offsets or equivalent processed-event tracking. | projection infrastructure |
 | **SA4** | Rebuild with the same source facts + `metricSetVersion` produces the same projection output. | golden projection tests |
-| **SA5** | Standings are computed from Match result facts plus League-owned competition rules; the projection never mutates League state. | standings projector |
+| **SA5** | Standings projections are computed from Match result facts plus League-owned rules and/or `CompetitionStandingsFinalizedV1`; the projection never mutates League state and is never read by the Pyramid-rollover process manager. | standings projector |
 | **SA6** | Derived metrics carry `metricSetVersion`; official counts and model estimates are labeled separately in query payloads. | schema + UI contract |
 | **SA7** | Manager & Legacy consumes immutable `SeasonAnalyticsHandoffSnapshot` records, not live mutable analytics joins. | snapshot protocol |
 | **SA8** | Analytics rebuild/migration supports side-by-side projection versions before switching consumers. | rebuild runbook |
@@ -286,15 +296,20 @@ Statistics & Analytics consumes source-owned public facts only:
 
 **Negative / constraints**
 
-- Adds one proposed bounded-context owner. The bounded-context map should not
-  move from 19 to 20 until this ADR is accepted.
+- Adds a projection-only bounded-context owner with rebuild/version
+  obligations.
 - Source contexts must publish enough self-contained facts for projections.
 - Every derived metric now has versioning and rebuild obligations.
+- Official standings authority stays in League Orchestration; analytics cannot
+  silently add a second tie-break rule or structural ordering.
 
 ## Verification
 
 - Fixture `CompetitionStatus.standingsRef` resolves to
-  `CompetitionStandingsHistory`.
+  `CompetitionStandingsHistory` for display/history only.
+- Promotion/relegation and season rollover use ADR-0066
+  `GetOfficialCompetitionStandings` / `CompetitionStandingsFinalizedV1`, not a
+  Statistics projection.
 - Replaying a fixed set of Match + League source facts rebuilds byte-identical
   standings and league leaders for the same `metricSetVersion`.
 - Reprocessing the same source event is a no-op.
@@ -307,6 +322,8 @@ Statistics & Analytics consumes source-owned public facts only:
 
 - [[../../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
 - [[../../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]]
+- [[../../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
+- [[../../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]]
 - [[../../50-Game-Design/GD-0031-analytics-hub-and-statistics]]
 - [[../../20-Features/feature-statistics-analytics-hub-mvp]]
 - [[ADR-0068-fixture-scheduling-contract]]

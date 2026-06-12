@@ -1,9 +1,9 @@
 ---
 title: ADR-0068 Fixture scheduling contract + determinism (League Orchestration)
 status: accepted
-tags: [adr, architecture, league, fixtures, scheduling, determinism, rng, replay, contracts, gap-g1, fmx-72]
+tags: [adr, architecture, league, fixtures, scheduling, standings, determinism, rng, replay, contracts, gap-g1, fmx-72, fmx-131]
 created: 2026-06-02
-updated: 2026-06-08
+updated: 2026-06-12
 accepted_at: 2026-06-02
 type: adr
 binding: true
@@ -22,7 +22,9 @@ related:
   - [[../../50-Game-Design/GD-0009-league-structure]]
   - [[../../60-Research/fixture-scheduling-determinism-2026-06-02]]
   - [[../../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
+  - [[../../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
   - [[../../60-Research/raw-perplexity/raw-fixture-scheduling-determinism-2026-06-02]]
+  - [[../../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]]
   - [[../../60-Research/determinism-and-replay]]
   - [[../../30-Implementation/domain-research-workflow]]
 ---
@@ -40,15 +42,20 @@ accepted
 > Closes the scheduling half of audit gap **G1**. Builds on the ratified
 > Competition & Season registry ([[ADR-0066-competition-registry-sub-aggregate]]).
 
-> **2026-06-05 follow-up (FMX-94 / G19).** Proposed
-> [[ADR-0081-statistics-analytics-read-model-owner]] names the pending
-> `standingsRef` owner as projection-only **Statistics & Analytics**. Until
-> ADR-0081 is ratified, ADR-0068 remains accepted for fixture scheduling and
-> still treats standings as an external read-model reference.
+> **2026-06-05 follow-up (FMX-94 / G19).** Ratified
+> [[ADR-0081-statistics-analytics-read-model-owner]] names the `standingsRef`
+> owner as projection-only **Statistics & Analytics**.
+>
+> **FMX-131 amendment 2026-06-12.** `CompetitionStatus.standingsRef` is the
+> display/history projection reference only. League Orchestration's
+> Pyramid-rollover process manager reads ADR-0066's League-owned
+> `GetOfficialCompetitionStandings` / `CompetitionStandingsFinalizedV1`
+> authority for promotion/relegation and season rollover.
 
 ## Date
 
 - Proposed + Accepted (Nico): 2026-06-02
+- Amended (FMX-131, Nico): 2026-06-12
 
 ## Context
 
@@ -143,7 +150,7 @@ CompetitionStatus(competitionSeasonId: CompetitionSeasonId) → {
   stage: 'scheduled' | 'in-progress' | 'completed',
   currentRound: int,
   totalRounds: int,
-  standingsRef: StandingsReadModelRef          // reference only — standings owned elsewhere (G19)
+  standingsRef: StandingsReadModelRef          // Statistics projection ref only; not structural authority
 }
 ```
 
@@ -181,7 +188,7 @@ sequenceDiagram
 | **F5** | Fixtures are immutable after `FixturesPublished`; `GenerateFixtures` is idempotent (re-run = no-op / identical). | edition AR |
 | **F6** | `FixturesPublished` is self-contained — every consumer field is in the payload; no cross-context join implied by any command/query. | contract review |
 | **F7** | Consecutive home or away runs per club ≤ `maxStreak` (default 2) after the post-pass, or the residual is logged (odd-n edge). | scheduler post-pass + test |
-| **F8** | `CompetitionStatus.standingsRef` is a reference only; this contract computes no standings table (G19 deferred). | contract review |
+| **F8** | `CompetitionStatus.standingsRef` is a reference to the Statistics & Analytics display/history projection only. Official ordering for structural outcomes is ADR-0066's League-owned standings contract. | contract review |
 
 ## Verification
 
@@ -193,7 +200,8 @@ sequenceDiagram
   (F7).
 - Contract unit tests: `FixturesPublished` round-trips through Zod; `NextFixture`
   answers per-club and per-competition; `CompetitionStatus` exposes
-  stage/round/`standingsRef`.
+  stage/round/`standingsRef`, while rollover tests use
+  `GetOfficialCompetitionStandings`.
 
 ## Consequences
 
@@ -210,10 +218,11 @@ sequenceDiagram
 - The `fixtures:<competitionSeasonId>:draw` sub-label semantics are part of the
   replay contract: changing the draw/shuffle algorithm requires an
   `engineVersion` bump so old saves reproduce (determinism rule 11).
-- Standings are resolved by the FMX-94 follow-up proposal:
-  [[ADR-0081-statistics-analytics-read-model-owner]] names projection-only
-  Statistics & Analytics as the `standingsRef` owner. Until ratification,
-  `CompetitionStatus` still only references standings and does not compute them.
+- Standings display/history is resolved by
+  [[ADR-0081-statistics-analytics-read-model-owner]]: projection-only Statistics
+  & Analytics owns `CompetitionStandingsHistory` behind `standingsRef`.
+  Promotion/relegation, qualification and season rollover remain League
+  Orchestration command authority via ADR-0066.
 - Parallel-competition calendar collisions are reserved (post-MVP cups), not
   designed — the `CalendarSlotPolicy` hook must be honoured when cups arrive.
 
@@ -223,5 +232,8 @@ sequenceDiagram
 drafting. The `bounded-context-map.md` League Orchestration **exposed-outputs**
 row should list `FixturesPublished` + the scheduling commands/queries; that
 in-place map edit is folded into the FMX-79 ratification apply-PR (#121, which
-already amends the same row) to avoid a conflicting double-edit. Standings owner
-(G19) is now proposed in [[ADR-0081-statistics-analytics-read-model-owner]].
+already amends the same row) to avoid a conflicting double-edit. Standings
+projection owner (G19) is ratified in
+[[ADR-0081-statistics-analytics-read-model-owner]]. FMX-131 clarifies the
+remaining authority split: `standingsRef` is read-side only; structural outcomes
+read ADR-0066's League-owned official standings contract.
