@@ -3,9 +3,9 @@ title: ADR-0078 Player Discipline Suspension Contracts
 status: accepted
 tags: [adr, architecture, discipline, suspension, appeals, squad, match, regulations, narrative, ddd, fmx-80]
 created: 2026-06-05
-updated: 2026-06-11
+updated: 2026-06-12
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -40,6 +40,10 @@ accepted
 > planning defaults D1-D4 live on 2026-06-05. This ADR closes audit gap G18 at
 > the ownership/contract layer. It does not add runtime code, does not ratify a
 > new bounded context and does not lock numeric thresholds or ban lengths.
+
+> **FMX-135 status cleanup (2026-06-12):** Nico confirmed the FMX-143
+> ratification intent during the FMX-135 pass. This ADR remains `accepted` and is
+> now `binding: true`; the pre-ratification banner above stays historical context.
 
 ## Date
 
@@ -116,7 +120,7 @@ Out of scope:
 | B. Multi-day asynchronous hearing | Appeal can remain pending across several calendar days/fixtures. | More realistic for deep modes, but adds scheduling edge cases to MVP. |
 | C. Instant post-match auto-result | Appeal outcome resolves immediately when selected. | Simple, but less diegetic and removes timing policy from Regulations. |
 
-## Decision (proposed default)
+## Decision
 
 **D1 = A, D2 = A, D3 = A, D4 = A.**
 

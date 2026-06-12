@@ -3,7 +3,7 @@ title: Open-Decisions Dossier — questions, recommendations, ratify checklist
 status: current
 tags: [meta, index, decisions, open-questions, dossier, fmx-105]
 created: 2026-06-07
-updated: 2026-06-11
+updated: 2026-06-12
 type: index
 binding: false
 related:
@@ -13,6 +13,8 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]]
   - [[../10-Architecture/09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]]
   - [[../10-Architecture/09-Decisions/ADR-0091-audit-security-context-definition]]
+  - [[../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]
+  - [[../40-Execution/fmx-135-match-engine-contract-decision-queue-2026-06-12]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]]
   - [[../10-Architecture/09-Decisions/ADR-0060-youth-academy-context]]
@@ -46,6 +48,15 @@ related:
 > 2026-06-12: shared `InsolvencyCaseStage` + `InsolvencyCreditorWriteOffPosted`, D4 clause
 > binding**) and **FMX-147** (quality-profile enum, still remaining), with the concrete chart
 > of accounts as **FMX-150**. Authoritative records: [[Decision-Log]] + per-ADR frontmatter.
+
+> **Post-dossier FMX-135 closure (historical completeness, added 2026-06-12; dossier stays
+> closed).** FMX-135 resolved ADR-0096's runtime fork and the six-ADR `accepted` /
+> `binding:false` cleanup outside this dossier. Nico approved D1=B (single Rust/WASM module
+> everywhere via Wasmtime/browser WebAssembly), D2=A, D3=A, D4 single-WASM readiness spike and
+> D5 all six named ADRs `accepted` / `binding: true`. Authoritative records:
+> [[../40-Execution/fmx-135-match-engine-contract-decision-queue-2026-06-12]],
+> [[../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]
+> and [[Decision-Log]].
 
 One place where everything still open across the domains **was decided**. Each item below is a
 crisp question with researched options and a **recommended answer** (grounded externally

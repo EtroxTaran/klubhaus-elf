@@ -425,6 +425,10 @@ cards.)
 ### ADR-0096 — Match-engine cross-runtime determinism & numeric-surface (finalises 0049)
 - **One-line:** Integer/fixed-point surface mandatory; per-profile precedence; 9-stream restatement; runtime fork to Nico.
 - **Current status:** draft; supersedes ADR-0049 + ADR-0003. **Disposition:** ratify-with-amendment.
+- **FMX-135 follow-up:** [[fmx-135-match-engine-contract-decision-queue-2026-06-12]] resolved the
+  runtime/source fork and status/binding cleanup on 2026-06-12. Outcome: D1=B single Rust/WASM module
+  everywhere (Wasmtime/browser WebAssembly) with mandatory integer/fixed-point replay surface; D2=A;
+  D3=A; D4 single-WASM readiness spike; D5 all six named ADRs `accepted` / `binding: true`.
 - **Open D-question — numeric surface + runtime fork:**
   - **(A)** integer/fixed-point mandatory + Rust-native-default spike. ★ *recommended (D1=A regardless of fork)*
   - **(B)** single Rust→WASM module both sides.

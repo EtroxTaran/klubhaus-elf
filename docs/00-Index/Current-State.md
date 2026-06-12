@@ -51,6 +51,20 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-135 Match-engine contract ratified — ADR-0096 binding single-WASM runtime
+> (2026-06-12).** FMX-135 reopened the Match-engine chain
+> ADR-0003 -> ADR-0049 -> ADR-0096 and the six `accepted` + `binding:false` ADRs
+> previously named by Linear. Nico approved the recommended D1-D5 path live on 2026-06-12:
+> ADR-0096 now binds to one Rust-authored WASM module everywhere (server via
+> Wasmtime, browser via WebAssembly API), mandatory integer/fixed-point replay
+> surface, D2-A per-profile replay precedence, D3-A carry-forward + canonical
+> 9 RNG streams, D4 single-WASM parity/readiness spike before authoritative
+> Match runtime implementation, and D5 status cleanup. ADR-0096, ADR-0072,
+> ADR-0077, ADR-0078, ADR-0086 and ADR-0087 are `accepted` / `binding: true`.
+> Research: [[../60-Research/match-engine-contract-ratification-2026-06-12]];
+> decision record: [[../40-Execution/fmx-135-match-engine-contract-decision-queue-2026-06-12]].
+> No bounded-context-map change.
+>
 > **FMX-146 Insolvency event→ledger posting contract decided — ADR-0101 D4 clause binding
 > (2026-06-12).** Closes the ADR-0050 vs ADR-0079 insolvency seam: ADR-0079/GD-0030 now own the
 > shared `InsolvencyCaseStage` enum (`stable → stressed → cash_flow_crisis → under_embargo →
@@ -233,8 +247,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `state-machines/match.md` (§5.1) + `state-machines/watch-party.md` (§5.2) authored in the same PR
 > (flip to current on ratify). **Nico chose D1–D4 = A/A/A/A live (2026-06-07):** bounded per-type
 > buffer · typed deterministic rejection · hybrid veto/quorum consent · discrete per-half pause
-> budget. All magnitudes = **FMX-52** behind `interventionPolicyVersion`. Authored
-> `proposed`/`draft`; awaiting Nico ratify.
+> budget. All magnitudes = **FMX-52** behind `interventionPolicyVersion`.
+> Ratified 2026-06-08; FMX-135 status cleanup confirmed `binding: true` on 2026-06-12.
 
 > **FMX-92 Background-fast matchday cost-settlement pipeline (2026-06-07).** Closes audit gap
 > **G21** and the **last open child of E6 / FMX-62** (Economy Settlement Pipelines & Read-Models;
@@ -261,8 +275,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `*Rng`**), with **seed + draw indices persisted in provenance** for byte-identical replay.
 > 11 invariants (BF1–BF11); ADR-0050 sole-writer + no-cross-context-join preserved. **No
 > bounded-context-map change** (contract among existing Match/CommercialPortfolio/Club Management;
-> 19 ratified unchanged). All magnitudes = **FMX-52** behind `costProfileVersion`. Authored
-> `proposed`; awaiting Nico ratify.
+> 19 ratified unchanged). All magnitudes = **FMX-52** behind `costProfileVersion`.
+> Ratified 2026-06-08; FMX-135 status cleanup confirmed `binding: true` on 2026-06-12.
 
 > **FMX-82 Media-outlet operational behaviour — new "Media Ecology" context (2026-06-07).**
 > Closes audit gap **G17** (E4 epic FMX-60 — the **last open child of the only High-priority
@@ -425,8 +439,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > only, profile-driven `competition`/`domestic`/`all` scopes and appeal
 > resolution before the next relevant fixture. Numeric thresholds, ban lengths,
 > appeal odds, warning timings and good-behaviour incentives stay with
-> FMX-52/Regulations-profile calibration. Authored `proposed`; awaiting Nico
-> ratify.
+> FMX-52/Regulations-profile calibration. Ratified 2026-06-08; FMX-135 status
+> cleanup confirmed `binding: true` on 2026-06-12.
 
 > **FMX-86 Hidden-attribute substrate mapping (2026-06-05).** Closes audit gap **G22**
 > (E3 epic FMX-59; after FMX-85 loan PM — 3/4 of E3 now drafted) and **unblocks the
@@ -474,9 +488,11 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../60-Research/weather-and-pitch-conditions-2026-06-05]] (+ 3 raw captures: real-world
 > football weather / prior-art games / deterministic weather-generators). Magnitudes (effect
 > sizes, regime probabilities, pitch-decay rates, WBGT/forecast bands) = **FMX-52** calibration
-> behind `weatherModelVersion`. **Open ratification item:** exact pitch-condition *state* ownership
-> (Environment & Climate vs Stadium Operations). Map-patch proposal attached (19 → 20 contexts);
-> `bounded-context-map.md` **not** edited (ratify gate). Authored `proposed`/`draft`; awaiting Nico ratify.
+> behind `weatherModelVersion`. Pitch-condition *state* ownership is resolved:
+> Stadium Operations keeps facility/usage state and remains the `PitchConditionChanged` emitter;
+> Environment & Climate owns weather inputs and derivation rules. The context-count/map change was
+> resolved by ADR-0089; FMX-135 adds no map patch. Ratified 2026-06-08; FMX-135 status cleanup
+> confirmed `binding: true` on 2026-06-12.
 
 > **FMX-87 Dialogue intent taxonomy + mechanical effect matrix (2026-06-05).**
 > [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
@@ -659,8 +675,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > builds on this seam. **Honest limitation:** the "measured fps on real devices"
 > acceptance criterion can't be met in this no-code phase — ADR-0072 ships the
 > perf-validation **protocol + pass-criteria**; on-device measurement is a tracked
-> follow-up tied to the first Canvas-2D prototype. Authored `proposed`/`draft` per
-> never-self-accept; awaiting Nico ratify; merge stays Nico's.
+> follow-up tied to the first Canvas-2D prototype. Ratified 2026-06-08; FMX-135 status
+> cleanup confirmed `binding: true` on 2026-06-12.
 
 > **FMX-81 Player contract lifecycle FSM (2026-06-03).** Proposed
 > [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]] +
@@ -757,10 +773,11 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > **FMX-10 match-engine re-evaluation (2026-05-27).** Nico directed that the
 > match engine must be planned as an exchangeable component from day one. Draft
 > [[../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]
-> is now the proposed target: server-authoritative spatial-event engine,
-> `MatchEnginePort`, 2D/ticker/replay from committed event/spatial facts, and a
-> **Spike, Rust-default** runtime posture. The older TypeScript-MVP runtime
-> stance is no longer the proposed target.
+> is now the accepted/binding target: server-authoritative spatial-event engine,
+> `MatchEnginePort`, 2D/ticker/replay from committed event/spatial facts, mandatory
+> integer/fixed-point replay-bearing math and **one Rust-authored WASM module everywhere**
+> (server Wasmtime, browser WebAssembly API). The older TypeScript-MVP runtime
+> stance and the Rust-native-authoritative spike are no longer the target.
 
 > **FMX-13 Club Economy re-evaluation (2026-05-27).** Nico directed that the
 > club-economy blueprint should be fully anchored, not left as raw research.

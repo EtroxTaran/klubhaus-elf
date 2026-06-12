@@ -1,11 +1,11 @@
 ---
 title: ADR-0096 Match-engine cross-runtime determinism & numeric-surface contract
 status: accepted
-tags: [adr, architecture, match-engine, determinism, rng, fixed-point, wasm, rust, runtime, offline-first, fmx-106]
+tags: [adr, architecture, match-engine, determinism, rng, fixed-point, wasm, rust, runtime, offline-first, fmx-106, fmx-135]
 created: 2026-06-08
-updated: 2026-06-11
+updated: 2026-06-12
 type: adr
-binding: false
+binding: true
 supersedes: ADR-0049-swappable-spatial-event-match-engine
 superseded_by:
 related:
@@ -22,6 +22,8 @@ related:
   - [[../../60-Research/determinism-and-replay]]
   - [[../../60-Research/match-engine-runtime-strategy]]
   - [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
+  - [[../../60-Research/match-engine-contract-ratification-2026-06-12]]
+  - [[../../40-Execution/fmx-135-match-engine-contract-decision-queue-2026-06-12]]
   - [[../../50-Game-Design/GD-0002-match-engine]]
   - [[../../00-Index/Open-Decisions-Dossier]]
 ---
@@ -43,8 +45,18 @@ accepted
 > [[ADR-0003-match-engine]] forward explicitly**, closing the carry-forward and RNG-stream-count
 > gaps that ADR-0049 left dangling. It supersedes both as the planning target for the determinism
 > contract; it does **not** edit either file (ratify gate). The runtime-stance question
-> (Rust-native+WASM-replay vs single-WASM-everywhere vs TS-first MVP) is the load-bearing open
-> decision and is presented as options for Nico — **nothing here is accepted**. Awaiting Nico ratify.
+> (Rust-native+WASM-replay vs single-WASM-everywhere vs TS-first MVP) was the load-bearing
+> decision and was presented as options for Nico. Historical only; the FMX-135 binding ratification
+> below resolves this fork.
+
+> **FMX-135 binding ratification (2026-06-12):** Nico approved the recommended
+> D1-D5 path via the live FMX-135 decision pass. New research:
+> [[../../60-Research/match-engine-contract-ratification-2026-06-12]]; decision
+> packet:
+> [[../../40-Execution/fmx-135-match-engine-contract-decision-queue-2026-06-12]].
+> Outcome: mandatory integer/fixed-point replay surface; authoritative runtime
+> **B = single Rust/WASM module everywhere**; D2-A profile precedence; D3-A
+> carry-forward + 9 RNG streams; D4 governance below; D5 status cleanup applied.
 
 ## Date
 
@@ -90,8 +102,8 @@ Three further gaps that ADR-0049 opened and did not close:
    integer-only branching, the 12 save-determinism rules, the namespaced-routine-ID convention and the
    engine-versioned-replay model are all live, but their carry-forward is implicit, not pinned.
 
-This ADR closes all three and pins the determinism precedence rule, leaving only the runtime stance for
-Nico to choose.
+This ADR closes all three, pins the determinism precedence rule and records the FMX-135 runtime
+decision.
 
 ## Grounding
 
@@ -114,14 +126,11 @@ Nico to choose.
 
 ### D1 — Numeric surface + runtime stance (the load-bearing decision)
 
-- **A (RECOMMENDED).** Make the **integer / fixed-point numeric surface MANDATORY** for *all
-  replay-bearing computation* (promote ADR-0049's "where it matters" to "everywhere a committed event,
-  stat, RNG draw or replay branch depends on it"; floats allowed only in throwaway render/interpolation
-  downstream of the committed log, per [[ADR-0026-match-frame-contract]]). **Keep the Rust-native-default
-  spike** from ADR-0049 — the mandatory integer surface is exactly what makes a future Rust→WASM replay
-  path *or* a TS path equality-safe, so it de-risks the runtime choice instead of pre-empting it. This is
-  remedy (A) from the grounding, applied as a contract rather than left implicit.
-- **B.** **Single-runtime — author the engine once in Rust→WASM and run the SAME WASM module
+- **A.** Make the **integer / fixed-point numeric surface MANDATORY** for all replay-bearing
+  computation and keep a Rust-native authoritative runtime plus Rust→WASM replay. This preserves
+  native throughput, but remains the highest proof burden because native-vs-WASM parity must be
+  continuously proven. **Not chosen as the authoritative runtime in FMX-135.**
+- **B (CHOSEN).** **Single-runtime — author the engine once in Rust→WASM and run the SAME WASM module
   server-side (wasmtime) and client-side.** Strongest bit-identical / offline-verify story (remedy (B));
   removes the native↔WASM divergence class structurally even for any residual float use. Cost:
   server-side WASM hosting on the Dokploy host ([[ADR-0044-cicd-and-merge-policy]]) and lower native peak
@@ -138,7 +147,7 @@ Nico to choose.
 
 ### D2 — Determinism precedence rule (resolves the byte-vs-statistical gap)
 
-- **A (RECOMMENDED).** **Per-quality-profile precedence:** byte-identical event-log golden replay is
+- **A (CHOSEN).** **Per-quality-profile precedence:** byte-identical event-log golden replay is
   **mandatory** for `competitive-full` and `interactive-standard` (human-involving, audit/anti-cheat,
   watch-party); `background-detailed` keeps byte parity where cheap but a statistical envelope is the
   binding gate; **`background-fast` is statistical-envelope-only** (outcome-first generation, ADR-0049
@@ -151,16 +160,17 @@ Nico to choose.
 
 ### D3 — ADR-0003 carry-forward + RNG-stream restatement (housekeeping, low-controversy)
 
-- **A (RECOMMENDED).** Add an **explicit ADR-0003 carry-forward appendix** (the rules that survive
+- **A (CHOSEN).** Add an **explicit ADR-0003 carry-forward appendix** (the rules that survive
   verbatim) and **restate the canonical 9 RNG streams** (correcting the stale "8"), pointing at
   [[../../60-Research/determinism-and-replay]] §2.2 as the single source.
 - **B.** Leave carry-forward implicit (status quo — the gap this ADR exists to close).
 
 ## Decision
 
-Propose, awaiting Nico: **D1 = A** (mandatory integer/fixed-point surface + keep the Rust-default spike),
-**D2 = A** (per-profile precedence), **D3 = A** (carry-forward appendix + 9-stream restatement). The
-runtime-authority half of D1 (A vs B vs C) is explicitly **left to Nico** — see Open questions.
+Nico decision (FMX-135, 2026-06-12): **D1 = B** for authoritative runtime, with the
+mandatory integer/fixed-point replay surface from D1-A; **D2 = A** per-profile
+precedence; **D3 = A** carry-forward appendix + 9-stream restatement; **D4** spike
+governance as below; **D5** status/binding cleanup applied.
 
 ### D1-A — Mandatory integer / fixed-point replay surface
 
@@ -171,9 +181,24 @@ integer mm/s for velocities, integer cents for money — exactly the table alrea
 [[../../60-Research/determinism-and-replay]] §4). Floating point is permitted **only** downstream of the
 committed event log — in the `MatchFrame` projection and render interpolation (ADR-0026), which are not
 replay-bearing. This is the single change that makes *any* later runtime (Rust-native, Rust→WASM, or TS)
-equality-safe, so it **de-risks rather than pre-empts** the runtime choice. The Rust-native-default spike
-from ADR-0049 §Runtime Spike Gate is **kept unchanged**; the spike now also reports cross-runtime golden
-parity under the mandatory integer surface as an explicit exit criterion.
+equality-safe, so it preserves future options without accepting hidden numeric divergence.
+
+### D1-B — Single-WASM authoritative runtime
+
+The authoritative Match engine is one Rust-authored WebAssembly module:
+
+- Server executes the same module via Wasmtime.
+- Browser replay/sandbox executes the same module via the WebAssembly API.
+- Native Rust builds may exist for local diagnostics or performance comparison, but are **not**
+  authoritative unless a future ADR explicitly reopens the runtime decision.
+- Implementation must re-check the latest stable Wasmtime, Rust toolchain and supporting packages at
+  implementation time, then pin exact versions. The 2026-06-12 research observed Wasmtime `45.0.1`,
+  Rust `libm` `0.2.16` and `pure-rand` `8.4.0` as current registry versions.
+- Host imports are deterministic-only; no clocks, system RNG, nondeterministic filesystem/state or
+  platform math enter replay-bearing logic.
+- Relaxed SIMD is disabled or forced deterministic. NaNs are treated as engine bugs; no NaN payloads
+  carry state. If interruption is required, fuel-based deterministic interruption is the replay-safe
+  option; epoch/wall-clock interruption is operational only and cannot affect committed state.
 
 ### D2-A — Per-profile determinism precedence (the single cluster-wide rule)
 
@@ -200,12 +225,18 @@ framework-agnostic engine boundary. **RNG streams: the canonical count is 9, not
 `NewsRng/PresentationRng`, `GeneratorRng` ([[../../60-Research/determinism-and-replay]] §2.2). Any doc
 quoting "8 named streams" (ADR-0003 §Context) is superseded by this restatement.
 
-### Spike governance (so this does not stall)
+### Spike governance
 
-D1's runtime fork is resolved by the ADR-0049 spike, which this ADR gives **an owner, a deadline, and an
-MVP fallback**: if the spike is inconclusive by its deadline, the **MVP fallback is D1 Option C**
-(TS-authoritative behind the port) — lowest ship risk, with the mandatory integer surface (D1-A) already
-guaranteeing a future Rust/WASM swap stays equality-safe. Owner + deadline are the open items below.
+The ADR-0049 open-ended Rust-native runtime spike is closed by FMX-135. The remaining spike is a
+single-WASM parity/readiness spike:
+
+- **Owner:** the next Match-engine implementation agent under Nico review.
+- **Deadline:** before the first implementation PR that introduces authoritative Match runtime code.
+- **Exit criteria:** same fixtures, seeds and input snapshots produce identical event-log hashes for
+  byte-exact profiles in Wasmtime and supported browser engines; no replay-bearing float escape hatches;
+  no nondeterministic host imports; deterministic interruption policy documented.
+- **Fallback:** if the single-WASM path is blocked, return to Nico with a new A/B/C decision. A TS-first
+  authoritative MVP fallback is **not** automatically authorized by this ADR.
 
 ## Consequences
 
@@ -223,15 +254,15 @@ Negative / cost:
 
 - Mandatory fixed-point **constrains engine-math authoring** (no convenient float geometry in the
   replay-bearing core; geometry must be quantised — already the ADR-0003 §3 stance, now made strict).
-- Option B (single-WASM) adds server-side WASM hosting and caps native peak throughput; Option C defers
-  the Rust scaling story. The runtime fork has **large downstream cost** and should not be over-committed
-  before the spike resolves.
+- Single-WASM hosting adds Wasmtime operational surface and may cap native peak throughput compared
+  with a native Rust worker. The D4 readiness spike must prove the cost is acceptable before the first
+  authoritative Match runtime implementation PR.
 
 ## Risks
 
-- **Over-committing the runtime before evidence.** The Rust-native vs single-WASM vs TS choice is
-  expensive to reverse (replay modules are versioned per engine). Mitigation: D1-A's integer surface +
-  the port boundary keep all three swappable; the spike, not this ADR, picks the runtime.
+- **Single-WASM viability risk.** The selected runtime needs Wasmtime/browser parity evidence before
+  implementation. Mitigation: D4 requires a pre-implementation parity/readiness spike and returns to
+  Nico if it fails.
 - **Fixed-point authoring friction.** Forcing quantised math may tempt float "escape hatches" in the
   core. Mitigation: the ADR-0003 lint bans (float-threshold branching, transcendentals) extend to all
   replay-bearing code, enforced in CI.
@@ -241,19 +272,16 @@ Negative / cost:
 
 ## Open questions
 
-1. **Runtime stance (D1 fork):** Rust-native + Rust→WASM replay (A's runtime half) vs
-   single-WASM-everywhere via wasmtime (B) vs TS-first MVP behind the port (C)? The mandatory integer
-   surface (D1-A) is recommended under *all three*; only the authoritative runtime differs.
-2. **Spike owner + deadline + inconclusive-fallback:** who owns the ADR-0049 spike, by when, and is the
-   inconclusive fallback the proposed **Option C (TS-first MVP)**?
+None for FMX-135. If the D4 single-WASM spike fails, reopen a new HITL runtime decision instead of
+silently falling back to TS-first or Rust-native authority.
 
 ## Supersedes
 
 - [[ADR-0049-swappable-spatial-event-match-engine]] — **finalised** on the cross-runtime determinism
   axis: ADR-0049's soft "fixed-point where it matters" is replaced by the mandatory replay-bearing
-  integer surface (D1-A) and the per-profile precedence rule (D2-A). All other ADR-0049 content (the
-  swappable port, the spatial-event model, the spike gate, the LLM boundary) is **carried forward
-  unchanged**. ADR-0049 is not edited.
+  integer surface (D1-A), the single-WASM authority decision (D1-B) and the per-profile precedence rule
+  (D2-A). ADR-0049's swappable port, spatial-event model and LLM boundary are carried forward; its
+  open-ended Rust-native runtime spike is replaced by FMX-135 D4 governance. ADR-0049 is not edited.
 - [[ADR-0003-match-engine]] — **carried forward** via the D3-A appendix (carry-forward rule set made
   explicit; 9-stream count restated, correcting "8"). ADR-0003 is not edited.
 
@@ -274,7 +302,7 @@ catalog or to `bounded-context-map.md`.
 - [[../../60-Research/determinism-and-replay]] — the canonical numeric table (§4), 12 save-determinism
   rules (§5), 9 RNG streams (§2.2), cross-runtime parity gate (§7) this ADR pins.
 - [[../../60-Research/match-engine-runtime-strategy]] / [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
-  — runtime-strategy grounding behind the D1 fork.
+  — runtime-strategy grounding behind the superseded D1 fork.
 - [[ADR-0002-offline-first]] / [[ADR-0090-offline-sync-scope-and-conflict-strategy]] — the verify-locally
   / narrow-sync product context that makes cross-runtime byte-parity load-bearing.
 - [[../../50-Game-Design/GD-0002-match-engine]] — game-design source for the match engine.

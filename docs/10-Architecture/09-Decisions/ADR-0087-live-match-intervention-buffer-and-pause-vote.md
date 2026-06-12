@@ -3,9 +3,9 @@ title: ADR-0087 Live-match Intervention Buffer + Watch-Party Pause-Vote
 status: accepted
 tags: [adr, architecture, ddd, match, watch-party, intervention-buffer, pause-vote, process-manager, saga, value-object, determinism, event-sourcing, anti-grief, multiplayer, fmx-101]
 created: 2026-06-07
-updated: 2026-06-11
+updated: 2026-06-12
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -50,6 +50,10 @@ accepted
 > to `state-machines/match.md` and `state-machines/watch-party.md` (authored in the same PR,
 > clearly marked draft) and flips **no** context to accepted. **No bounded-context-map change**
 > (a contract between the existing ratified Match and Watch Party contexts).
+
+> **FMX-135 status cleanup (2026-06-12):** Nico confirmed the FMX-143
+> ratification intent during the FMX-135 pass. This ADR remains `accepted` and is
+> now `binding: true`; the pre-ratification banner above stays historical context.
 
 ## Date
 
@@ -130,7 +134,7 @@ match simulation internals (ADR-0049); **all numeric magnitudes** (→ FMX-52 be
 | **A. Discrete per-manager/half count** | N discrete pauses/manager/half (default ~2) + global per-half cap + cooldown + max-duration + auto-resume; distinct from the free/longer disconnect pause. | **Chosen.** Mirrors NBA/NFL/CS timeout design; legible ("Pause 1/2"), easy to audit + reason about per-person abuse. |
 | B. Shared time-bank (chess-clock) | A pooled "pause-seconds" bank/half drawn down per pause (Fischer/Bronstein analogue). | More flexible (few long vs many short) but harder to surface fairly across managers + reason about abuse. |
 
-## Decision (proposed)
+## Decision
 
 **D1 = A, D2 = A, D3 = A, D4 = A** (Nico, live, 2026-06-07).
 

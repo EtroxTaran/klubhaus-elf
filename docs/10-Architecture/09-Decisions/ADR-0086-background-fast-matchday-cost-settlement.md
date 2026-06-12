@@ -3,9 +3,9 @@ title: ADR-0086 Background-fast Matchday Cost-Settlement Pipeline
 status: accepted
 tags: [adr, architecture, ddd, economy, matchday-costs, settlement, background-fast, quality-profile, commercial-portfolio, club-management, ledger, determinism, event-sourcing, fmx-92]
 created: 2026-06-07
-updated: 2026-06-11
+updated: 2026-06-12
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -44,6 +44,10 @@ accepted
 > It does **not** flip any context to accepted, does **not** implement schemas, and does
 > **not** edit `bounded-context-map.md` (no map change is required — see below). It **extends
 > the ADR-0070 `MatchdayOperatingCostSummary` sketch**; it does not re-open ADR-0050/0058/0061/0070.
+
+> **FMX-135 status cleanup (2026-06-12):** Nico confirmed the FMX-143
+> ratification intent during the FMX-135 pass. This ADR remains `accepted` and is
+> now `binding: true`; the pre-ratification banner above stays historical context.
 
 ## Date
 
@@ -144,7 +148,7 @@ Out of scope:
 | B. Pure now, reserve `WorldRng:venue` sub-label | Pure for MVP; reserve the seam for later variance. | Conservative; defers the variance feature. |
 | **C. Seeded cost variance now** | Bounded variance drawn from the existing `WorldRng:venue:<clubId>:<week>` sub-label (no new top-level stream), versioned `…:opcost:v1`; seed + draw indices persisted in provenance. | **Chosen (Nico override).** Adds designed cost realism immediately; replay-safe **iff** the seed/draws are persisted as fixture input state (this ADR mandates it). Variance band → FMX-52. |
 
-## Decision (proposed)
+## Decision
 
 **D1 = A, D2 = A, D3 = A, D4 = C** (Nico, live, 2026-06-07).
 
@@ -309,13 +313,14 @@ Negative / constraints:
 - A second ledger path (reversal+repost) exists for the upgrade case; consumers must implement the
   per-operation idempotency keys correctly.
 
-## HITL gate
+## Ratification / follow-up
 
-Authored `proposed` after Nico chose the FMX-92 planning defaults live (2026-06-07): **D1 = A**
+Accepted and binding. Authored `proposed` after Nico chose the FMX-92 planning defaults live
+(2026-06-07): **D1 = A**
 (coarse parametric function), **D2 = A** (lightweight stateless path), **D3 = A** (reversal +
 repost), **D4 = C** (seeded cost variance now — Nico override of the pure-function default).
 
-Remaining ratification / follow-up items before implementation:
+Remaining follow-up items before implementation:
 
 - all numeric magnitudes → **FMX-52** behind `costProfileVersion` (base/perAttendee/riskUplift,
   per-family split ratios, variance band); calibrate to background-detailed/foreground distributions;

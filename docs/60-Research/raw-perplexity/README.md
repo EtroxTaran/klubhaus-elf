@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-146]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, match-engine, determinism, runtime, replay, quality-profile, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-135, fmx-146]
 created: 2026-05-16
 updated: 2026-06-12
 type: index
@@ -189,6 +189,18 @@ authority issue.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-standings-authority-league-vs-statistics-2026-06-12]] | DDD/CQRS command authority vs projection risk, real-world league tiebreaker authority and game/platform precedent for official standings vs analytics/history projections | [[../standings-authority-league-vs-statistics-2026-06-12]] · [[../../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate]] · [[../../10-Architecture/09-Decisions/ADR-0068-fixture-scheduling-contract]] · [[../../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]] |
+
+## FMX-135 follow-up Perplexity research (2026-06-12)
+
+Perplexity research was refreshed during FMX-135 before Nico resolved the
+ADR-0096 runtime fork and status/binding inconsistency. Perplexity's
+game/runtime citations were not strong enough to stand alone, so the synthesis
+cross-checks library and runtime facts against primary docs and registries.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-match-engine-runtime-fork-2026-06-12]] | Runtime fork trade-off: Rust-native + WASM replay vs single WASM everywhere vs TS-first MVP, with FMA/libm/NaN/relaxed-SIMD/import/interruption risks | [[../match-engine-contract-ratification-2026-06-12]] · [[../../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]] |
+| [[raw-match-engine-replay-quality-profiles-2026-06-12]] | Replay guarantee tiers for human-viewed matches, detailed background matches and fast background simulation | [[../match-engine-contract-ratification-2026-06-12]] · [[../../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]] |
 
 ## FMX-88 follow-up Perplexity research (2026-06-04)
 

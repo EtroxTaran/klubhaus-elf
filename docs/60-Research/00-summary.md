@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-146]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-135, fmx-146]
 updated: 2026-06-12
 ---
 
@@ -101,6 +101,20 @@ promotion/relegation, qualification and season rollover); Statistics & Analytics
 owns display/history standings projections, league leaders and analytics
 surfaces only. Raw Perplexity capture:
 [[raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]].
+
+## Match-Engine Contract Ratification (FMX-135, 2026-06-12)
+
+[[match-engine-contract-ratification-2026-06-12]] refreshes the ADR-0096
+runtime-fork and replay-profile evidence. Nico approved the recommended D1-D5
+path live on 2026-06-12: ADR-0096 binds to a single Rust/WASM module everywhere
+(server Wasmtime, browser WebAssembly API), mandatory integer/fixed-point
+replay-bearing math, D2-A replay precedence, D3-A carry-forward/9-stream cleanup
+and D4 single-WASM readiness spike before Match runtime implementation. D5 also
+cleans ADR-0096/0072/0077/0078/0086/0087 to `accepted` / `binding: true`. Raw captures:
+[[raw-perplexity/raw-match-engine-runtime-fork-2026-06-12]],
+[[raw-perplexity/raw-match-engine-replay-quality-profiles-2026-06-12]].
+Decision record:
+[[../40-Execution/fmx-135-match-engine-contract-decision-queue-2026-06-12]].
 
 ## Insolvency Event-To-Ledger Posting Contract (FMX-146, 2026-06-12)
 

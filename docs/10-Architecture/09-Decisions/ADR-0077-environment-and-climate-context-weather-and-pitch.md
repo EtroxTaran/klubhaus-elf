@@ -3,9 +3,9 @@ title: ADR-0077 Environment & Climate Context (Weather + Pitch)
 status: accepted
 tags: [adr, architecture, ddd, environment, climate, weather, pitch, match, stadium, league, determinism, replay, fmx-66]
 created: 2026-06-05
-updated: 2026-06-11
+updated: 2026-06-12
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -50,9 +50,15 @@ accepted
 > [[../../90-Meta/vault-governance]], mirroring ADR-0064 / ADR-0075). It locks
 > **no numeric constants**: every magnitude, band, regime probability,
 > pitch-decay rate, WBGT band and forecast-error σ is **FMX-52 calibration debt**
-> behind a `weatherModelVersion`. One boundary item is **left open for Nico's
-> ratification** (see §"Open ratification item": the exact pitch-condition *state*
-> ownership split between Environment & Climate and Stadium Operations).
+> behind a `weatherModelVersion`. The formerly open pitch-condition state split
+> was resolved by the 2026-06-08 ratification sweep and confirmed during FMX-135:
+> Stadium Operations keeps facility/usage state and remains the
+> `PitchConditionChanged` emitter; Environment & Climate owns weather inputs and
+> derivation rules.
+
+> **FMX-135 status cleanup (2026-06-12):** Nico confirmed the FMX-143
+> ratification intent during the FMX-135 pass. This ADR remains `accepted` and is
+> now `binding: true`; the pre-ratification banner above stays historical context.
 
 ## Date
 
@@ -152,7 +158,7 @@ Ownership of the inputs/outputs around it:
   `PitchConditionChanged` emitter** at the matchday FSM. Environment & Climate
   supplies the **weather input + derivation rules**; Stadium Ops applies them to
   its owned facility/usage state. *(The precise state-vs-rules split is the one
-  open ratification item — see §"Open ratification item".)*
+  ratified boundary item — see §"Ratified boundary item".)*
 - **Match** consumes a frozen `MatchWeatherSnapshot` + the Stadium
   `PitchConditionChanged` snapshot at `lineup_locked`; it never generates either.
 - **Audience & Atmosphere** consumes `MatchWeatherResolved` for its atmosphere
@@ -357,21 +363,19 @@ On ratification, [[../bounded-context-map]] gains a **20th** bounded context,
   is a **consumed input** to pitch condition. The context count line (19) becomes
   20, and `src/domain/` gains an `environment-climate/` folder.
 
-The map file is **not** edited until Nico ratifies (per
+The map patch is applied only through the ratification workflow (per
 [[../../90-Meta/vault-governance]]; same discipline as ADR-0064 / ADR-0075).
 
-## Open ratification item
+## Ratified boundary item
 
 **Pitch-condition *state* ownership boundary.** D1 (Option C) gives the new
 context the weather + pitch-weather *model*. Stadium Operations already owns the
 **facility/usage state** that pitch condition depends on (undersoil heating,
 drainage, decay, minutes-played) and emits `PitchConditionChanged`. This ADR
-proposes the clean split — **Environment & Climate owns the weather input + the
+ratifies the clean split — **Environment & Climate owns the weather input + the
 derivation rules; Stadium Operations keeps the facility/usage state and remains
-the emitter** — but flags the exact line (e.g. whether the pitch-condition
-*aggregate* moves into Environment & Climate, or stays in Stadium Ops consuming a
-weather fact) as a point for Nico's explicit ratification rather than deciding it
-unilaterally.
+the emitter**. Any future move of the pitch-condition aggregate itself out of
+Stadium Operations requires a new ADR.
 
 > **2026-06-07 (open-decisions sweep) recommendation — Stadium Operations keeps the pitch-condition
 > *state*/aggregate; Environment & Climate owns weather as a consumed input.** Grounded in the DDD
@@ -403,23 +407,22 @@ Negative / constraints:
 - Per-fixture realization depends on stable fixture identity (ADR-0068) and the
   venue climate-zone reference being available before lock.
 
-## HITL gate
+## Ratification / follow-up
 
-Authored `proposed` after Nico chose the FMX-66 planning defaults live
+Accepted and binding. Authored `proposed` after Nico chose the FMX-66 planning defaults live
 (2026-06-05): **D1 = C** (new Environment & Climate context), **D2 = A**
 (seasonal template + regimes → realization), **D3 = A** (fallible forecast),
 **D4 = A** (modifiers only at MVP).
 
-Remaining ratification / follow-up items before implementation:
+Remaining follow-up items before implementation:
 
-- the pitch-condition **state ownership** boundary (Environment & Climate vs
-  Stadium Operations) — §"Open ratification item";
 - all numeric magnitudes (effect sizes, regime probabilities, pitch-decay rates,
   WBGT/visibility bands, forecast-error σ) → **FMX-52** calibration behind
   `weatherModelVersion`;
 - the postponement/abandonment + re-fixturing slice (reserved hook) → a later
   E2/League issue;
-- the 1-row+context bounded-context-map patch (apply on ratify).
+- bounded-context-map wording cleanup if a later map pass needs to remove
+  pitch-state shorthand ambiguity.
 
 ## Supersedes
 
