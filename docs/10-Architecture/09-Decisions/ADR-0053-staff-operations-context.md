@@ -3,7 +3,7 @@ title: ADR-0053 Staff Operations Context
 status: accepted
 tags: [adr, architecture, ddd, staff, backroom, lifecycle, fmx-26, fmx-36, accepted]
 created: 2026-05-28
-updated: 2026-06-08
+updated: 2026-06-12
 type: adr
 binding: true
 supersedes:
@@ -260,7 +260,9 @@ Draft events:
 - `StaffContractTerminated`
 - `StaffRoleAssigned`
 - `StaffRoleReassigned`
-- `StaffWagePosted` (consumed by Club Management ledger)
+- `StaffWagePosted` (consumed by Club Management ledger; posted weekly as the
+  aggregated `StaffWageBlockPosted` counterpart event per
+  [[ADR-0105-wage-and-transfer-fee-posting-contracts]], FMX-144)
 - `PipelineCoverageRecalculated`
 - `StaffSpecialisationUpdated`
 
