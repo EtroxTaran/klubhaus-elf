@@ -3,10 +3,10 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-06-05
+updated: 2026-06-12
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]]
 ---
 
 # Research Map
@@ -106,7 +106,7 @@ design notes.
   FMX-94 synthesis for G19 and the ADR-0068 `standingsRef` dependency.
   Grounds proposed
   [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]],
-  draft [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]] and draft
+  accepted [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]] and draft
   [[../20-Features/feature-statistics-analytics-hub-mvp]] with real-world
   official-vs-derived football analytics practice, Football Manager/OOTP
   analytics/history surfaces and DDD/CQRS projection ownership trade-offs.
@@ -115,6 +115,16 @@ design notes.
   handoff snapshots, full MVP Analytics Hub and core-plus-model metric set; raw
   capture:
   [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]].
+
+## Standings Authority - League vs Statistics (FMX-131, 2026-06-12)
+
+- [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]] -
+  FMX-131 synthesis for the ADR-0066 / ADR-0068 / ADR-0081 seam. Grounds the
+  accepted split: League Orchestration owns tie-break rules, official
+  current/final ordering and promotion/relegation/season rollover; Statistics &
+  Analytics owns standings history/display projections, leaders and analytics
+  views only. Raw capture:
+  [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]].
 
 ## AI Narration Scope Freeze and Fallback Coverage (FMX-88, 2026-06-04)
 

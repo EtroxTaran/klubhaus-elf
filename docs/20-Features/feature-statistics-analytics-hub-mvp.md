@@ -1,9 +1,9 @@
 ---
 title: Feature - Statistics Analytics Hub MVP
 status: draft
-tags: [feature, statistics, analytics, data-hub, mvp, fmx-94]
+tags: [feature, statistics, analytics, standings, data-hub, mvp, fmx-94, fmx-131]
 created: 2026-06-05
-updated: 2026-06-05
+updated: 2026-06-12
 type: feature
 binding: false
 linear: FMX-94
@@ -11,6 +11,8 @@ related:
   - [[README]]
   - [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
   - [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]]
+  - [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
+  - [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]]
   - [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]]
   - [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]]
   - [[../50-Game-Design/match-engine]]
@@ -35,6 +37,8 @@ In scope for the first active slice:
 - Team analysis versus league context, normalized per 90.
 - Player analysis with role-aware stat lines, form and player comparison.
 - Standings history and league leaderboards.
+- Official standings labels displayed from League-owned official ordering; the
+  Analytics projection is not the promotion/relegation authority.
 - Rolling team/player form windows.
 - Shot maps, pass maps and heatmaps for Expert tier.
 - `AnalyticsMetricDefinition` / metric-set version visibility for modeled
@@ -74,6 +78,7 @@ Feature: Statistics Analytics Hub MVP
     When I open standings history
     Then Statistics & Analytics resolves CompetitionStandingsHistory
     And League Orchestration is not queried through private tables
+    And promotion/relegation status comes from League-owned official ordering
 
   Scenario: Player comparison avoids global OVR
     Given I compare two forwards
@@ -95,6 +100,8 @@ Feature: Statistics Analytics Hub MVP
   standings/leaders, form windows and early season-history output.
 - Official counts and derived model estimates are visibly distinct.
 - Projection query names match ADR-0081.
+- Analytics standings views are display/history projections; structural outcomes
+  use ADR-0066 official standings contracts.
 - Analytics Hub does not duplicate Squad & Player's Impact Lens or introduce a
   global OVR.
 - Manager & Legacy receives immutable handoff snapshots only.
@@ -104,6 +111,7 @@ Feature: Statistics Analytics Hub MVP
 ## Related
 
 - [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
+- [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
 - [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]]
 - [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]]
 - [[../50-Game-Design/match-engine]]

@@ -3,10 +3,10 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-06-11
+updated: 2026-06-12
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
 ---
 
 # Game Design Map
@@ -135,9 +135,13 @@ individual re-approval (FMX-143 H2). This means old `Future-scope notes` section
 - [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]] - accepted FMX-94
   MVP Analytics Hub and statistics design: Key Findings, Last Match, Team/Player
   Analysis, standings/leaders, form windows, maps/heatmaps/zone control,
-  official-vs-derived metric labels and Manager & Legacy handoff snapshots.
+  official-vs-derived metric labels and Manager & Legacy handoff snapshots;
+  FMX-131 keeps official standings ordering and rollover authority in League
+  Orchestration.
 - [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]] -
   research synthesis for G19 and ADR-0081.
+- [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]] -
+  research synthesis for the official standings vs projection authority split.
 - [[../20-Features/feature-statistics-analytics-hub-mvp]] - draft MVP feature
   slice.
 

@@ -72,7 +72,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > the bounded-context-map Club Management row names the wage-block counterpart + Transfer→Ledger
 > ACL. Account handles provisional pending **FMX-150**; insolvency wage-cap seam stays with
 > ADR-0101 D4 / **FMX-146**.
-
+>
+> **FMX-131 Standings authority clarified — League official ordering, Statistics projection
+> (2026-06-12).** Closes the ADR-0066 / ADR-0081 seam where both documents used "standings"
+> differently. Research
+> [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]] (+ raw
+> [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]])
+> confirms the DDD/CQRS and real-world competition split: League/competition authority owns
+> tie-break rules and official outcomes; analytics owns read-side history and display. Nico selected
+> the line live: [[../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate|ADR-0066]]
+> now defines `GetOfficialCompetitionStandings` / `CompetitionStandingsFinalizedV1` and invariant
+> I10 for official current/final ordering, champion/qualification/promotion/relegation and season
+> rollover; [[../10-Architecture/09-Decisions/ADR-0068-fixture-scheduling-contract|ADR-0068]]
+> keeps `CompetitionStatus.standingsRef` as a Statistics display/history reference only; and
+> [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner|ADR-0081]]
+> is `accepted` / `binding: true` but explicitly projection-only. The
+> [[../10-Architecture/bounded-context-map]] League and Statistics rows now mirror the split.
+> GD-0031 is binding for the Analytics Hub surface, while the feature spec remains draft.
+>
 > **FMX-145 Ledger posting shape decided — ADR-0095 D1 = A, binding (2026-06-11).** The keystone
 > of the Club/Finance/Commerce **accounting-integrity cluster** (audit epic FMX-122; first
 > post-FMX-143 issue worked). The 2026-06-08 bulk sweep had accepted ADR-0095 on its

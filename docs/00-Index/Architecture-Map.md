@@ -3,10 +3,10 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-06-05
+updated: 2026-06-12
 type: map
 binding: false
-related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/player-discipline]]
+related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/player-discipline]]
 ---
 
 # Architecture Map
@@ -32,12 +32,11 @@ future-scope or historical context.
 
 ## DDD and Modules
 
-- [[../10-Architecture/bounded-context-map]] - 19 bounded contexts after FMX-32: Manager & Legacy, Staff Operations, Tactics, Regulations & Compliance, Rivalry System, Stadium Operations, Audience & Atmosphere and CommercialPortfolio are ratified additions/amendments; FMX-23 proposes People / Persona & Skills and FMX-3 proposes Narrative as draft additional contexts.
-- FMX-94 proposes a projection-only **Statistics & Analytics** owner in
-  [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]]
-  for standings, match/player/team stats, derived analytics and Manager &
-  Legacy handoff snapshots. Do not count it in the ratified context table until
-  Nico accepts ADR-0081.
+- [[../10-Architecture/bounded-context-map]] - 28 ratified bounded contexts
+  after ADR-0089. FMX-131 clarifies the League/Statistics standings seam:
+  League Orchestration owns tie-break rules, official ordering and
+  promotion/relegation/rollover outcomes; Statistics & Analytics owns
+  projection-only standings history, leaders and analytics views.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -95,7 +94,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0076 Narrative Newsworthiness Event Contracts](../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts.md) - proposed source-owned newsworthy event publication facets for Narrative consumption: injuries, contract expiry, board pressure, transfer rumours and ADR-0078/Squad & Player-owned suspensions.
 - [ADR-0078 Player Discipline Suspension Contracts](../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts.md) - proposed Squad & Player-owned discipline sub-aggregate/process manager for card accumulation, suspension windows, straight-red appeals, eligibility and canonical `PlayerSuspended`; Match owns card facts and Regulations owns discipline profiles.
 - [ADR-0080 Opposition-template AI Consumption Contract](../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract.md) - proposed Tactics-published `OppositionTemplateSelectedForMatchV1` contract: AI-management supplies planning context, Tactics selects from the catalog using `WorldAiMgmtRng`, Match freezes the event into `TacticSnapshot` at `lineup_locked`.
-- [ADR-0081 Statistics & Analytics Read-Model Owner](../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner.md) - proposed projection-only owner for standings, stat lines, match analytics, league leaders, versioned metric definitions, MVP Analytics Hub queries and immutable Manager & Legacy / HoF handoff snapshots.
+- [ADR-0081 Statistics & Analytics Read-Model Owner](../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner.md) - accepted projection-only owner for standings history/display projections, stat lines, match analytics, league leaders, versioned metric definitions, MVP Analytics Hub queries and immutable Manager & Legacy / HoF handoff snapshots; FMX-131 keeps official ordering and season rollover in League Orchestration.
 
 ## Current Binding Research and Specs
 
@@ -120,6 +119,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [Player Discipline Sub-Aggregate](../60-Research/player-discipline-sub-aggregate-2026-06-05.md)
 - [Opposition-template AI Consumption Contract](../60-Research/opposition-template-ai-consumption-contract-2026-06-05.md)
 - [Statistics & Analytics Read-Model Owner](../60-Research/statistics-analytics-read-model-owner-2026-06-05.md)
+- [Standings Authority - League vs Statistics](../60-Research/standings-authority-league-vs-statistics-2026-06-12.md)
 - [Player Contract Lifecycle FSM Research](../60-Research/player-contract-lifecycle-fsm-2026-06-03.md)
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
 - [Match Engine Simulation Model](../60-Research/match-engine-simulation-model.md)

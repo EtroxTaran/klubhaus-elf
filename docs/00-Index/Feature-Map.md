@@ -3,10 +3,10 @@ title: Feature Map
 status: current
 tags: [feature, meta]
 created: 2026-05-16
-updated: 2026-06-05
+updated: 2026-06-12
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-V1]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../20-Features/feature-statistics-analytics-hub-mvp]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-V1]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../20-Features/feature-statistics-analytics-hub-mvp]]
 ---
 
 # Feature Map
@@ -37,7 +37,8 @@ documentation gaps.
 - [[../20-Features/feature-statistics-analytics-hub-mvp]] - draft FMX-94 MVP
   Analytics Hub for Key Findings, Last Match, Team/Player Analysis,
   standings/leaders, form, comparisons, maps/heatmaps and Manager & Legacy
-  handoff snapshots.
+  handoff snapshots; standings views use League-owned official ordering per
+  FMX-131.
 
 ## Seed Epics
 

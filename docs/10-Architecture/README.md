@@ -3,10 +3,10 @@ title: Architecture (Map of Content)
 status: current
 tags: [architecture, moc]
 created: 2026-05-17
-updated: 2026-06-09
+updated: 2026-06-12
 type: index
 binding: true
-related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[05-Building-Blocks]], [[../00-Index/Documentation-V1]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
+related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[05-Building-Blocks]], [[../00-Index/Documentation-V1]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
 ---
 
 # Architecture — Map of Content
@@ -44,10 +44,11 @@ baseline for architecture-gap classification.
 - [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]] —
   draft proposed Narrative context for narration contracts, templates,
   validation, provenance and evals.
-- [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]] — proposed
-  projection-only Statistics & Analytics owner for standings, stat lines,
-  derived metrics, MVP Analytics Hub queries and Manager & Legacy handoff
-  snapshots.
+- [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]] — accepted
+  projection-only Statistics & Analytics owner for standings history/display,
+  stat lines, derived metrics, MVP Analytics Hub queries and Manager & Legacy
+  handoff snapshots; FMX-131 keeps official ordering and season rollover in
+  League Orchestration.
 
 ## Modules
 

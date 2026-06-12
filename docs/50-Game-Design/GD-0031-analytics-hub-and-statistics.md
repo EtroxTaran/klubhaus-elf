@@ -1,16 +1,18 @@
 ---
 title: GD-0031 Analytics Hub and Statistics
 status: accepted
-tags: [game-design, statistics, analytics, data-hub, match, mvp, fmx-94]
+tags: [game-design, statistics, analytics, data-hub, standings, match, mvp, fmx-94, fmx-131]
 created: 2026-06-05
-updated: 2026-06-11
+updated: 2026-06-12
 type: game-design
-binding: false
+binding: true
 linear: FMX-94
 related:
   - [[README]]
   - [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
   - [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]]
+  - [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
+  - [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]]
   - [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]]
   - [[../20-Features/feature-statistics-analytics-hub-mvp]]
   - [[match-engine]]
@@ -29,8 +31,13 @@ accepted
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
 Nico selected the full MVP Analytics Hub direction during FMX-94 planning. This
-GDDR records the game-design target; implementation waits for ADR-0081
-ratification and later UI/spec work.
+GDDR records the accepted game-design target. Implementation waits for a later
+UI/spec beat, not for ADR-0081 ratification.
+
+> **FMX-131 clarification 2026-06-12.** Analytics surfaces may display standings
+> history, ranks, leaders and promotion/relegation labels, but official ordering
+> and structural season outcomes come from League Orchestration (ADR-0066), not
+> from the Analytics projection.
 
 ## Date
 
@@ -50,9 +57,9 @@ official facts distinct from model estimates.
 2. **Statistics do not become an OVR substitute.** Player comparison and
    per-90 leaderboards must respect [[../60-Research/player-strength-presentation]]:
    no universal global OVR and no hidden "best player" shortcut.
-3. **Official vs estimated is visible.** Goals, assists, points and cards are
-   official counts. xG/xA/xGA, PPDA, field tilt, zone control and maps are
-   model-derived estimates.
+3. **Official vs estimated is visible.** Goals, assists, points, cards and
+   League-published official standings outcomes are official facts. xG/xA/xGA,
+   PPDA, field tilt, zone control and maps are model-derived estimates.
 4. **MVP metric set is broad but bounded.** Include core counting stats plus
    xG/xA/xGA, PPDA, field tilt, shot maps, pass maps, heatmaps, zone control,
    per-90 leaderboards, form windows and player/team comparisons.
@@ -92,7 +99,8 @@ official facts distinct from model estimates.
 - saves, clean sheets, goals against;
 - yellow/red cards, suspensions as public labels;
 - points, wins/draws/losses, goals for/against, goal difference;
-- streaks, standings rank, promotion/relegation/qualification status.
+- streaks, standings rank, promotion/relegation/qualification status as read
+  from League-owned official ordering.
 
 **MVP derived metrics**
 
@@ -140,6 +148,7 @@ official facts distinct from model estimates.
 ## Related
 
 - [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]
+- [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
 - [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]]
 - [[../20-Features/feature-statistics-analytics-hub-mvp]]
 - [[match-engine]]

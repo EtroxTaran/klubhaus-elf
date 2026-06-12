@@ -1,8 +1,8 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, read-model, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94]
-updated: 2026-06-05
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131]
+updated: 2026-06-12
 ---
 
 # Research Summary
@@ -86,10 +86,21 @@ handoff snapshots, and a full MVP Analytics Hub with core stats plus xG/xA/xGA,
 PPDA, field tilt, shot/pass maps, heatmaps, zone control, per-90 leaderboards,
 form and player/team comparisons. It feeds proposed
 [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]],
-draft [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]] and draft
+accepted [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]] and draft
 [[../20-Features/feature-statistics-analytics-hub-mvp]]. Raw Perplexity/Web
 capture:
 [[raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]].
+
+## Standings Authority - League vs Statistics (FMX-131, 2026-06-12)
+
+[[standings-authority-league-vs-statistics-2026-06-12]] closes the research layer
+for the ADR-0066 / ADR-0068 / ADR-0081 standings-authority seam. The accepted
+split is: League Orchestration owns tie-break rules, official current/final
+ordering and structural outcomes (`CompetitionStandingsFinalizedV1`,
+promotion/relegation, qualification and season rollover); Statistics & Analytics
+owns display/history standings projections, league leaders and analytics
+surfaces only. Raw Perplexity capture:
+[[raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]].
 
 ## Player Discipline Sub-Aggregate (FMX-80, 2026-06-05)
 
