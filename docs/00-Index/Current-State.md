@@ -51,6 +51,27 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-149 MoneyBand → amountMinor collapse rule decided — ADR-0101 D2 = seeded-within-band,
+> clause binding (2026-06-12).** Closes the "only fully-open axis" of ADR-0101 (audit epic
+> FMX-122; unblocked by FMX-145's D1 = A): settlement envelopes carry banded estimates while the
+> ledger posts one exact integer `amountMinor` — without a named collapse rule two replays could
+> pick different representatives and break BF6 byte-identity. Research
+> [[../60-Research/moneyband-amountminor-collapse-rule-2026-06-12]] (+ 3 raw captures:
+> event-sourcing collapse-policy/versioning patterns + bias math, IAS 37/ASC 450 range
+> recognition, FM/Hattrick/Anstoss exact-booking-behind-banded-display practice).
+> **Nico decided 4 forks live (2026-06-12):** **rule = seeded-within-band** —
+> `collapseBand(band, ctx) → amountMinor`, exactly one uniform integer draw on the closed band
+> per business amount (shared by every balanced leg, LI-1 after collapse; degenerate band = no
+> draw; no floating point), on a documented existing-stream sub-label (BF7; opcost label exists,
+> insolvency labels land with FMX-146), seed + draw indices persisted in `provenance` (BF6);
+> floor research-rejected (−n·w/2 season drift), midpoint co-equal pure lead ·
+> **versioning = shared `costProfileVersion`** (one key governs collapse policy + magnitudes,
+> BF10/FMX-52) · **canonical `MoneyBand` pinned** (`{ lowMinor, highMinor }`, closed interval,
+> integer minor units per LI-7 — previously used but untyped) · **binding handling =**
+> ADR-0101 frontmatter stays `binding: false` until FMX-146/147 close the remaining axes; the
+> D2 clause itself is binding. Apply-work next: **FMX-146** (insolvency posting contract, now
+> fully unblocked), **FMX-147** (quality-profile enum).
+
 > **FMX-144 Wage + transfer-fee posting contracts defined — ADR-0105 accepted/binding
 > (2026-06-12).** Follow-up keystone of the accounting-integrity cluster (audit epic FMX-122):
 > ADR-0050 had a rich posting-event vocabulary but **no named posting event** for the game's two
