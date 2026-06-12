@@ -3,7 +3,7 @@ title: ADR-0101 Settlement value-collapse + quality-profile enum reconciliation 
 status: accepted
 tags: [adr, architecture, ddd, economy, settlement, determinism, replay, money-band, quality-profile, match-engine, insolvency, ledger, commercial-portfolio, club-management, reconciliation, fmx-audit]
 created: 2026-06-08
-updated: 2026-06-11
+updated: 2026-06-12
 type: adr
 binding: false
 supersedes:
@@ -22,6 +22,7 @@ related:
   - [[../../50-Game-Design/GD-0008-finance-economy]]
   - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../../60-Research/determinism-and-replay]]
+  - [[../../60-Research/moneyband-amountminor-collapse-rule-2026-06-12]]
   - [[../../60-Research/background-fast-cost-settlement-2026-06-07]]
   - [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]]
@@ -33,6 +34,19 @@ related:
 ## Status
 
 accepted
+
+> **D2 collapse rule confirmed 2026-06-12 (FMX-149) — the D2 clause is binding.** Nico decided
+> live: the pinned rule is **seeded-within-band** — `collapseBand(band, ctx) → amountMinor` draws
+> one uniform integer on the closed band interval from an existing
+> [[ADR-0018-systemic-events-and-player-lifecycle]] stream sub-label, with seed + draw indices
+> persisted in `provenance` (ADR-0086 machinery), versioned behind the **shared
+> `costProfileVersion`** (one key governs collapse policy + cost-model magnitudes, BF10/FMX-52).
+> The minimal canonical `MoneyBand` type is pinned here (see §D2). Grounded in
+> [[../../60-Research/moneyband-amountminor-collapse-rule-2026-06-12]] (floor/low-bound collapse
+> was research-rejected: systematic −n·w/2 season drift; midpoint was the co-equal pure lead;
+> seeded-within-band matches sim-game practice and the project's standing seeded-variance
+> posture, ADR-0086 D4=C). Frontmatter stays `binding: false` until the remaining axes close
+> (**FMX-147** enum apply, **FMX-146** insolvency contract); the D2 clause itself is binding.
 
 > **D4 gate unlocked 2026-06-11 (FMX-145):** [[ADR-0095-balanced-transfer-ledger-posting-invariant]]
 > D1 was confirmed **A — balanced double-entry** (Nico live, `binding: true`), so the D4 "balanced
@@ -160,6 +174,9 @@ and expand a single business event into **balanced** double-entry postings in th
 
 Propose, awaiting Nico: **D1 = A, D2 = A, D3 = A, D4 = A.**
 
+> D2's open sub-question (*which* rule) was decided 2026-06-12 (FMX-149): **seeded-within-band**
+> — see §"D2 ratified rule" below. D3/D4 apply-work continues as FMX-147/FMX-146.
+
 ### D2 — Deterministic `MoneyBand → amountMinor` collapse
 
 Pin a **single** pure, deterministic collapse function `collapse(MoneyBand, ctx) → amountMinor`,
@@ -180,9 +197,46 @@ versioned behind `costProfileVersion`, with these invariants:
   stream**), with seed + draw indices persisted in provenance exactly as ADR-0086 mandates for its
   variance term.
 
-> The **exact collapse rule** (midpoint vs deterministic representative/floor vs seeded-within-band) is
-> the single **open question** below for Nico — see also the project's standing preference for bounded
-> seeded variance over pure determinism on RNG-adjacent axes.
+#### D2 ratified rule — `collapseBand` v-`costProfileVersion`, seeded-within-band (Nico live, 2026-06-12, FMX-149)
+
+The pinned function is **`collapseBand(band: MoneyBand, ctx) → amountMinor`** with rule
+**seeded-within-band**, grounded in
+[[../../60-Research/moneyband-amountminor-collapse-rule-2026-06-12]]:
+
+- **Canonical `MoneyBand` type (pinned here; previously used but untyped across
+  ADR-0070/0086/0095/this ADR):** `{ lowMinor: int, highMinor: int }` — a **closed** interval,
+  `lowMinor ≤ highMinor`, integer minor units in the ledger's currency discipline
+  (ADR-0050 / ADR-0095 LI-7). Display/UI bands derive from it; the collapse consumes it.
+- **The draw:** exactly **one uniform integer draw on `[lowMinor, highMinor]`** (inclusive),
+  integer-mapped — **no floating-point** anywhere in the path (platform-divergence hazard).
+  A degenerate band (`lowMinor == highMinor`) collapses to `lowMinor` **without consuming a
+  draw**.
+- **One draw per business amount:** the collapsed value is drawn once and then referenced by
+  **every** leg of the resulting balanced posting (ADR-0095 LI-1, Σ lines = 0 holds *after*
+  collapse) — never one draw per leg.
+- **Stream discipline (BF7 / ADR-0018):** every band-context that collapses via draw has
+  **exactly one documented sub-label on an existing stream** — no new top-level `*Rng` stream.
+  Matchday/opcost bands use the reserved `WorldRng:venue:<clubId>:<week>:opcost:v1`; the
+  insolvency band contexts (`creditorWriteoffBand`, `valuationDiscountBand`) get their sub-label
+  pinned with the insolvency posting contract (**FMX-146**).
+- **Provenance (BF6):** `rngSubLabel`, `rngSeed`, ordered `rngDrawIndices` and
+  `modelVersion = costProfileVersion` are persisted in the envelope `provenance` exactly as
+  ADR-0086 §summary-schema mandates — same inputs replay to a byte-identical `amountMinor`.
+- **Version governance:** the collapse policy is versioned behind the **shared
+  `costProfileVersion`** — one key governs both the band-collapse policy and the cost-model
+  magnitudes (ADR-0086 BF10 / FMX-52). A policy change increments the version; old events
+  replay under the old rule (no silent re-interpretation, no timestamp-keyed policy switches).
+- **Unchanged guards:** the exact-`Money`-wins invariant above stands — `collapseBand` is only
+  invoked where a band is the *sole* source of a posting/forecast/accrual; the band itself stays
+  classification/analytics/UI metadata.
+
+Rejected alternatives (research-graded): **floor/low-bound** — systematic understatement of half
+the band width per posting, linear −n·w/2 drift across a season, distorts FMX-52 calibration;
+**midpoint** — sound co-equal pure-deterministic lead (IAS 37 posture, zero provenance cost) but
+foregoes the bounded designed variance that sim-game practice (FM/Hattrick/Anstoss exact-booking
+with bounded ε) and this project's standing posture (ADR-0086 D4=C, FMX-92/FMX-102) favour;
+**hybrid** (midpoint for forecasts, seeded for settlements) — conceptually clean but a second
+code path against the simplest-proportional bar.
 
 ### D3 — One canonical quality-profile enum + explicit settlement-path mapping
 
@@ -252,8 +306,9 @@ Negative / constraints:
 - The "balanced postings" clause **depended on** the single-vs-double-entry decision in
   [[ADR-0050-club-economy-accounting-ledger]] — **resolved 2026-06-11 (FMX-145): double-entry
   adopted (ADR-0095 D1 = A, binding)**; the sequencing constraint is satisfied.
-- The exact band→`amountMinor` collapse function is left open (below) and must be ratified before the
-  collapse clause is binding.
+- ~~The exact band→`amountMinor` collapse function is left open (below) and must be ratified before the
+  collapse clause is binding.~~ **Resolved 2026-06-12 (FMX-149):** seeded-within-band ratified —
+  the D2 collapse clause is **binding** (see §"D2 ratified rule").
 - Replacing `qualityProfileClass` changes the published `FixtureCommercialProfile` shape — a schema
   version bump on the ADR-0070 contract (its P4 immutable-version rule applies).
 
@@ -269,12 +324,17 @@ Negative / constraints:
 
 ## Open questions
 
-- **Exact `MoneyBand → amountMinor` collapse function:** midpoint of the band, a documented
+- ~~**Exact `MoneyBand → amountMinor` collapse function:** midpoint of the band, a documented
   deterministic representative/floor, or a **seeded-within-band** draw on the existing
   `WorldRng:venue:…:opcost:v1` sub-label (with persisted seed + draw indices)? Pure-deterministic
   (midpoint/floor) is the simplest replay-safe option; seeded-within-band adds designed variance but
   must reuse an existing stream and persist provenance. This is the only fully-open axis; the rest of
-  the ADR is structurally determined once Nico picks the rule and the ADR-0050 entry model.
+  the ADR is structurally determined once Nico picks the rule and the ADR-0050 entry model.~~
+  **Resolved 2026-06-12 (FMX-149, Nico live): seeded-within-band** — one uniform integer draw per
+  business amount on a documented existing-stream sub-label, seed + draw indices persisted in
+  `provenance`, versioned behind the shared `costProfileVersion`; canonical `MoneyBand` type pinned.
+  See §"D2 ratified rule" and [[../../60-Research/moneyband-amountminor-collapse-rule-2026-06-12]].
+  No axis of this ADR remains open (apply-work: FMX-146 insolvency contract, FMX-147 enum).
 
 ## Supersedes
 
