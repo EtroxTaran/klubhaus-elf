@@ -19,6 +19,7 @@ related:
   - [[../bounded-context-map]]
   - [[../../50-Game-Design/GD-0008-finance-economy]]
   - [[../../60-Research/wage-and-transfer-fee-posting-contracts-2026-06-11]]
+  - [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]]
   - [[../../60-Research/ledger-posting-shape-double-vs-single-entry-2026-06-11]]
   - [[../../60-Research/club-economy-blueprint-2026-05-27]]
 ---
@@ -139,8 +140,11 @@ legs apply.
 - **D1 trade-off (recorded):** two wage events instead of one combined block doubles the
   weekly wage-journal count but keeps player vs staff cost streams independently
   consumable without filtering on `categoryCode`.
-- Insolvency wage-cap interaction remains a **seam only** — owned by ADR-0101 D4 /
-  FMX-146; this ADR's wage blocks expose the weekly totals it needs.
+- Insolvency wage-cap / fire-sale interaction is resolved by ADR-0101 D4 / FMX-146:
+  wage-cap policy constrains future `PlayerWageBlockPosted` / `StaffWageBlockPosted`
+  amounts without rewriting posted wages; administrator fire-sale completions reuse
+  `RegistrationDisposalSettled` / `RegistrationWriteOffPosted` with `insolvencyCaseId`
+  provenance rather than introducing insolvency-only transfer postings.
 - All account handles are provisional pending the FMX-150 chart of accounts; renaming an
   account is a catalog-metadata change (LI-9), not a posting-contract change.
 - Idempotency keys are natural keys, so deterministic replay (LI-8) re-derives identical

@@ -42,8 +42,9 @@ related:
 > decided outside this dossier: **ADR-0095 D1 = A (balanced double-entry) + `binding: true`,
 > two-level chart-of-accounts granularity, no save migration — Nico live 2026-06-11 (FMX-145)**;
 > ADR-0101's remaining axes are tracked as **FMX-149** (collapse rule — **decided 2026-06-12:
-> seeded-within-band, D2 clause binding**), **FMX-147** (quality-profile enum) and **FMX-146**
-> (insolvency posting contract), with the concrete chart
+> seeded-within-band, D2 clause binding**), **FMX-146** (insolvency posting contract — **decided
+> 2026-06-12: shared `InsolvencyCaseStage` + `InsolvencyCreditorWriteOffPosted`, D4 clause
+> binding**) and **FMX-147** (quality-profile enum, still remaining), with the concrete chart
 > of accounts as **FMX-150**. Authoritative records: [[Decision-Log]] + per-ADR frontmatter.
 
 One place where everything still open across the domains **was decided**. Each item below is a

@@ -3,18 +3,22 @@ title: Club Economy Accounting Ledger - Draft Contracts
 status: draft
 tags: [implementation, economy, accounting, club-management, commercial, contracts, financing, debt, fmx-13, fmx-41, fmx-49]
 created: 2026-05-27
-updated: 2026-06-01
+updated: 2026-06-12
 type: implementation
 binding: false
 linear: FMX-13
 related:
   - [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]]
+  - [[../10-Architecture/09-Decisions/ADR-0079-dynasty-board-ownership-and-bankruptcy]]
+  - [[../10-Architecture/09-Decisions/ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]]
+  - [[../10-Architecture/09-Decisions/ADR-0105-wage-and-transfer-fee-posting-contracts]]
   - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
   - [[../50-Game-Design/GD-0008-finance-economy]]
   - [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../50-Game-Design/economy-system]]
   - [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]]
   - [[../60-Research/club-financing-tools-2026-06-01]]
+  - [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]]
   - [[../20-Features/feature-club-economy-mvp-pillar]]
   - [[club-economy-commercial-contracts]]
   - [[../10-Architecture/bounded-context-map]]
@@ -202,20 +206,34 @@ Draft events:
 
 ## Staged insolvency state
 
-Draft states:
+FMX-146 replaces the old finance-only draft labels with the shared ADR-0079 /
+ADR-0101 `InsolvencyCaseStage` enum. Club Management still owns the ledger-facing
+view, but it does not own a separate insolvency FSM.
 
 | State | Meaning |
 |---|---|
-| `healthy` | Runway and ratios inside thresholds. |
-| `watch` | Forecast breach within configured horizon. |
-| `overdraft` | Cash below zero but credit line still available. |
-| `freeze` | Board freezes discretionary spending. |
-| `arrears` | Wages, debt or supplier obligations missed. |
-| `licence_review` | League/board review pending. |
-| `recovery` | Restructuring, payment holiday, owner support or emergency sale mandate stabilised runway, but restrictions remain. |
-| `run_end` | Licence lost, forced dissolution or control loss. |
+| `stable` | Solvent; no active distress. |
+| `stressed` | Warning/budget stress: runway or ratios deteriorating. |
+| `cash_flow_crisis` | Liquidity failure, late payments or arrears risk. |
+| `under_embargo` | Registration/budget controls active. |
+| `administration` | Administrator or equivalent crisis-control state: points deduction, embargo, wage-cap policy and fire-sale authority. |
+| `rescued` | Rescue/restructuring complete; restrictions or reputation effects may remain. |
+| `liquidated` | Reserved post-MVP terminal hook; not an MVP ledger stage. |
 
 The state machine is deterministic and data-driven by country/profile thresholds.
+
+Legacy labels map as read-model/UI aliases only: `healthy → stable`, `watch →
+stressed`, `overdraft → stressed | cash_flow_crisis` depending on arrears,
+`freeze → under_embargo`, `arrears → cash_flow_crisis`, `licence_review →
+under_embargo`, `recovery → rescued`, and `run_end → reserved control-loss/run
+outcome`.
+
+FMX-146 ledger mapping: `InsolvencyStageChanged`, `AdministrationEntered`,
+points deductions, embargoes, `InsolvencyWageCapPolicySet` and
+`AdministratorFireSaleOpened` do not post ledger entries by themselves. Wage-cap
+policy constrains future ADR-0105 wage blocks; completed fire sales reuse ADR-0105
+registration disposal/write-off postings; creditor haircut/forgiveness uses
+ADR-0050 `InsolvencyCreditorWriteOffPosted`.
 
 ## Balance evidence needed before ratification
 

@@ -10,6 +10,7 @@ supersedes:
 amended_by:
   - [[ADR-0095-balanced-transfer-ledger-posting-invariant]]
   - [[ADR-0105-wage-and-transfer-fee-posting-contracts]]
+  - [[ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]]
 related:
   - [[ADR-0019-modular-monolith-ddd]]
   - [[ADR-0027-postgres-data-model]]
@@ -26,6 +27,7 @@ related:
   - [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[../../60-Research/club-financing-tools-2026-06-01]]
+  - [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]]
   - [[../../60-Research/club-management-sub-aggregate-audit-2026-05-28]]
   - [[../../30-Implementation/club-economy-accounting-ledger]]
   - [[../../30-Implementation/club-economy-commercial-contracts]]
@@ -44,6 +46,15 @@ accepted
 > LI-1..LI-9 invariant table; this ADR's boundary, sole-writer rule, projections-are-derived rule,
 > integer-minor-units money type and the event/command/read-model contract list remain in force
 > unchanged.
+
+> **Amended (insolvency-contract) by [[ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]]**
+> D4 / FMX-146 on 2026-06-12. ADR-0079/GD-0030 now own the shared
+> `InsolvencyCaseStage` enum (`stable`, `stressed`, `cash_flow_crisis`, `under_embargo`,
+> `administration`, `rescued`, reserved `liquidated`), while this ADR owns only the ledger
+> postings. Administration, points deductions, embargoes, wage caps and fire-sale opening are
+> policy/state facts with no immediate ledger posting; fire-sale completions reuse ADR-0105
+> registration disposal/write-off postings; creditor haircut/forgiveness uses the new balanced
+> `InsolvencyCreditorWriteOffPosted` contract.
 
 ## Ratification note
 
@@ -134,7 +145,8 @@ Key rules:
   liabilities, budget pots and compliance ratios are projections derived from
   the ledger plus Club-owned policy tables.
 - Club Management owns the **finance ledger** (sole writer), budget envelopes,
-  board pressure, in-world financing facilities and insolvency stage. **Stadium economics** is owned by the
+  board pressure, in-world financing facilities and the ledger-facing view of the shared
+  `InsolvencyCaseStage`. **Stadium economics** is owned by the
   Stadium Operations BC (FMX-32, ADR-0061); **sponsor + catering +
   merchandise + hospitality contracts + ticketing & commercial settlement**
   are owned by the CommercialPortfolio BC (FMX-32, ADR-0061); **fan signals**
@@ -159,6 +171,13 @@ Key rules:
 > `RegistrationDisposalSettled`, `RegistrationWriteOffPosted` (+ non-posting
 > `RegistrationAmortisationRescheduled`) — is defined in
 > [[ADR-0105-wage-and-transfer-fee-posting-contracts]] and is part of this contract list.
+
+> **Amended 2026-06-12 (FMX-146):** the insolvency posting vocabulary is now one shared stage
+> contract plus one new posting. `InsolvencyStageChanged`, `AdministrationEntered`,
+> `InsolvencyWageCapPolicySet` and `AdministratorFireSaleOpened` are state/policy facts only.
+> `RegistrationDisposalSettled` / `RegistrationWriteOffPosted` carry `insolvencyCaseId` provenance
+> for fire-sale completions. `InsolvencyCreditorWriteOffPosted` posts creditor haircut/forgiveness
+> as a balanced entry after `creditorWriteoffBand` has collapsed to exact `amountMinor`.
 
 Draft commands:
 
@@ -190,6 +209,8 @@ Draft events:
 - `MatchdayCommercialSettlementPosted`
 - `InvestorCashGrantPosted`
 - `InvestorEntitlementCashReversed` (FMX-50: refund/chargeback reconciliation)
+- `InsolvencyCreditorWriteOffPosted` (FMX-146: liability reduction with
+  `debt_restructuring_gain` or `owner_equity_contribution` contra classification)
 - `FinancingFacilityOpened` (FMX-49)
 - `FinancingDrawdownPosted` (FMX-49)
 - `FinancingInterestAccrued` (FMX-49)
@@ -273,6 +294,15 @@ Transfer, League/Competition, Stadium Operations and Regulations & Compliance.
 They keep cash drawdown, principal, interest, covenant, overdue-payables,
 factoring and owner-support effects separate from commercial revenue and from
 real-money Investor grants.
+
+The FMX-146 insolvency contract keeps state/policy and postings separate:
+`AdministrationEntered`, points deductions, embargoes, wage caps and
+`AdministratorFireSaleOpened` do not move money by themselves. Wage caps constrain
+future ADR-0105 wage blocks; completed administrator fire sales reuse ADR-0105
+registration disposal/write-off postings with `insolvencyCaseId` provenance; and
+creditor write-offs use `InsolvencyCreditorWriteOffPosted` with deterministic
+idempotency key
+`insolvency-creditor-writeoff:{clubId}:{insolvencyCaseId}:{originEventId}:{creditorClass}:{postingRuleVersion}`.
 
 Draft read models:
 

@@ -3,7 +3,7 @@ title: GD-0030 Dynasty Board & Ownership
 status: accepted
 tags: [game-design, gddr, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, late-game, fmx-89]
 created: 2026-06-05
-updated: 2026-06-11
+updated: 2026-06-12
 type: game-design
 binding: false
 supersedes:
@@ -11,8 +11,10 @@ superseded_by:
 related:
   - [[README]]
   - [[../10-Architecture/09-Decisions/ADR-0079-dynasty-board-ownership-and-bankruptcy]]
+  - [[../10-Architecture/09-Decisions/ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]]
   - [[../10-Architecture/state-machines/dynasty-board-and-ownership]]
   - [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]]
+  - [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]]
   - [[GD-0010-ai-world]]
   - [[GD-0011-career-progression]]
   - [[late-game-systems]]
@@ -153,10 +155,19 @@ A staged descent with a **player-facing fork**:
 `stable → stressed → cash_flow_crisis → under_embargo → administration → {rescued |
 (reserved: liquidated→phoenix)}`.
 
+This is the shared `InsolvencyCaseStage` enum used by ADR-0079 and ADR-0050. Older
+finance labels such as `watch`, `overdraft`, `freeze`, `arrears`, `licence_review`,
+`recovery` and `run_end` are UI/read-model aliases only.
+
 - **Administration effects (MVP, directions only):** automatic **points deduction**
   (band ~ −9..−15, calibration; EFL real anchor −12), **transfer embargo**
   (free/low-wage only), **administrator fire-sale** (AI buyers get a valuation
   discount; board accepts fair bids), enforced **wage cap**, reputation hit.
+- **Finance semantics (FMX-146):** administration entry, points deduction,
+  embargo, wage-cap policy and fire-sale opening are not ledger postings by
+  themselves. Wage caps constrain future wage blocks; completed fire sales reuse
+  registration disposal/write-off postings; creditor haircut on rescue creates
+  the one insolvency-specific write-off posting.
 - **Player paths (from §6.4):**
   - **Heroic save** — hit survival targets + a positive net window → "White
     Knight" rescue investor → **"Saved the Club"** legacy credit.

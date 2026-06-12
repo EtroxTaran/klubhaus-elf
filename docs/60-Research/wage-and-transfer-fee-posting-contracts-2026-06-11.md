@@ -55,7 +55,8 @@ simplification, aggregated payroll postings, integer rounding patterns).
   `LoanFinancialIntent { kind: loan_fee | wage_contribution | breach_penalty | obligation_buy_fee }`
   through the Club Management ACL (LO8); FMX-144 must bind these to the same wage/transfer
   contracts, **no fourth ledger path**.
-- **Insolvency wage-cap interaction** — seam only; owned by ADR-0101 D4 / FMX-146.
+- **Insolvency wage-cap interaction** — resolved by ADR-0101 D4 / FMX-146 as a future
+  wage-block constraint, not a retrospective wage posting rewrite.
 
 ## Research question 1 — what does real football accounting do?
 

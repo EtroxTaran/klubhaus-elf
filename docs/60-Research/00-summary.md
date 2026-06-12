@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-146]
 updated: 2026-06-12
 ---
 
@@ -101,6 +101,20 @@ promotion/relegation, qualification and season rollover); Statistics & Analytics
 owns display/history standings projections, league leaders and analytics
 surfaces only. Raw Perplexity capture:
 [[raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]].
+
+## Insolvency Event-To-Ledger Posting Contract (FMX-146, 2026-06-12)
+
+[[insolvency-ledger-posting-contract-2026-06-12]] closes the ADR-0101 D4
+research layer for the ADR-0050 / ADR-0079 insolvency seam. The accepted line:
+ADR-0079/GD-0030 own the shared `InsolvencyCaseStage`; administration,
+points deductions, embargoes, wage-cap policy and fire-sale opening are
+state/policy facts only; wage caps constrain future ADR-0105 wage blocks; completed
+fire sales reuse ADR-0105 registration disposal/write-off postings; and creditor
+haircut/forgiveness uses the one new balanced
+`InsolvencyCreditorWriteOffPosted` posting. Raw captures:
+[[raw-perplexity/raw-insolvency-ledger-real-world-2026-06-12]],
+[[raw-perplexity/raw-insolvency-ledger-ddd-accounting-2026-06-12]],
+[[raw-perplexity/raw-insolvency-ledger-games-2026-06-12]].
 
 ## Player Discipline Sub-Aggregate (FMX-80, 2026-06-05)
 

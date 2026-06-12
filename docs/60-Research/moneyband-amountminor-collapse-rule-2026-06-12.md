@@ -22,7 +22,7 @@ related:
 
 # MoneyBand → amountMinor Collapse Rule (FMX-149)
 
-FMX-149 closes the **only fully-open axis** of
+FMX-149 closes the **D2 collapse axis** of
 [[../10-Architecture/09-Decisions/ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract|ADR-0101]]
 (D2): settlement envelopes carry banded estimates (`estimatedOperatingCostBand`, `riskCostBand`,
 `creditorWriteoffBand`, …) while the ledger posts exactly one integer `amountMinor`
@@ -140,7 +140,7 @@ There is no named "range-collapse" pattern, but the assembled best practice is u
    `WorldRng:venue:<clubId>:<week>:opcost:v1` (BF7). Non-venue bands (e.g. ADR-0079
    `creditorWriteoffBand`, `valuationDiscountBand`) need their own documented **sub-label on an
    existing stream** (ADR-0018: sub-labels allowed, streams locked), e.g.
-   `WorldRng:club:<clubId>:<seasonWeek>:insolvency:v1` — the concrete insolvency label lands with
+   `WorldRng:club:<clubId>:<seasonWeek>:insolvency:v1` — the concrete insolvency labels landed with
    FMX-146; ADR-0101 D2 pins the *principle* (every band-context that collapses via draw has
    exactly one documented sub-label + provenance).
 
