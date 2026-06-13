@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, quality-profile, monetization, no-p2w, compliance, legal, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, quality-profile, monetization, no-p2w, compliance, legal, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-141, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
 created: 2026-05-16
 updated: 2026-06-13
 type: index
@@ -277,6 +277,21 @@ stronger source trail.
 | [[raw-match-engine-game-precedents-2026-06-13]] | Football Manager, OOTP and lower-visual football-manager precedent for watched, quick and background simulation tiers | [[../match-engine-core-model-2026-06-13]] · [[../../50-Game-Design/match-engine]] |
 | [[raw-match-engine-calibration-harness-2026-06-13]] | Golden replay, seed-sweep, statistical-envelope, goodness-of-fit and background-fast compatibility harness patterns | [[../match-engine-core-model-2026-06-13]] · [[../../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] |
 | [[raw-match-engine-source-checks-2026-06-13]] | Targeted source checks for xG, xT/EPV, game precedents, statistical tests and injuries | [[../match-engine-core-model-2026-06-13]] · [[../../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] |
+
+## FMX-141 follow-up Perplexity/Web research (2026-06-13)
+
+Perplexity research plus targeted source checks were run during FMX-141 after
+Nico selected gameplay calibration ownership. Perplexity produced useful
+simulation and slot-taxonomy input, but public game-specific sources were uneven,
+so the source-check capture separates directly sourced evidence from FMX
+governance inference.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-gameplay-calibration-sim-precedents-2026-06-13]] | Simulation/management-game calibration precedent for non-economy gameplay systems, OOTP modifiers, Paradox observation runs and real football analytics analogues | [[../gameplay-calibration-ownership-and-harness-2026-06-13]] · [[../../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] |
+| [[raw-gameplay-calibration-stochastic-harness-2026-06-13]] | Deterministic replay plus Monte Carlo envelope harness, goodness-of-fit checks, metamorphic tests and rebaseline governance | [[../gameplay-calibration-ownership-and-harness-2026-06-13]] · [[../../30-Implementation/gameplay-calibration-and-soak-test-runbook]] |
+| [[raw-gameplay-calibration-domain-slots-2026-06-13]] | Proposed FMX gameplay calibration slots, metrics, harness tiers and lead-designer questions | [[../gameplay-calibration-ownership-and-harness-2026-06-13]] · [[../../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] |
+| [[raw-gameplay-calibration-source-checks-2026-06-13]] | Source-quality audit and verified source trail for OOTP, Paradox, xG, score modelling and simulation testing | [[../gameplay-calibration-ownership-and-harness-2026-06-13]] · [[../../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] |
 
 ## FMX-88 follow-up Perplexity research (2026-06-04)
 

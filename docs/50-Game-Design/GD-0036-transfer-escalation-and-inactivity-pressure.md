@@ -3,7 +3,7 @@ title: GD-0036 Transfer Escalation & Inactivity Pressure
 status: accepted
 tags: [game-design, gddr, transfer, escalation, inactivity, player-unrest, async-multiplayer, fmx-102]
 created: 2026-06-07
-updated: 2026-06-08
+updated: 2026-06-13
 type: gddr
 binding: false
 linear: FMX-102
@@ -14,16 +14,18 @@ related:
   - [[transfer-negotiations-p2p]]
   - [[async-multiplayer-private-group]]
   - [[GD-0027-hidden-attribute-substrate-mapping]]
+  - [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
   - [[../60-Research/fmx-102-async-escalation-and-deadline-source-of-truth-2026-06-07]]
   - [[../60-Research/async-multiplayer-research]]
+  - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
 ---
 
 # GD-0036: Transfer Escalation & Inactivity Pressure
 
 > **Status `draft`.** The gameplay-design companion to **ADR-0088** (architecture/contracts; the
 > deadline source-of-truth half is purely architectural and lives there). Authored after Nico chose
-> FMX-102 live (2026-06-07: escalation **D1–D4 = A/A/A/B**). All numeric magnitudes are **FMX-52
-> calibration** behind `escalationModelVersion` — this note pins *stages, feel and direction*, not
+> FMX-102 live (2026-06-07: escalation **D1–D4 = A/A/A/B**). All numeric magnitudes are **GD-0043
+> `transfer.escalation` calibration** behind `escalationModelVersion` — this note pins *stages, feel and direction*, not
 > final values. Cross-linked from `async-multiplayer-research.md §4` and
 > `async-multiplayer-private-group.md §7`.
 
@@ -99,20 +101,20 @@ same save see the same outcome. The randomness lives **inside the rails**: it ca
 case, but it can **never** skip a rung or trigger a strike-threat out of nowhere — the structural gates
 in §2 hold regardless. (Architecture + invariants: ADR-0088 ES1–ES5.)
 
-## 5. Default magnitudes (provisional — FMX-52)
+## 5. Default magnitudes (provisional — `transfer.escalation`, GD-0043)
 
 Indicative starting points to tune on a running build; **none are locked from intuition**:
 
 | Knob | Provisional default | Owner / tunable |
 |---|---|---|
-| Pressure per lapsed strong-interest bid | medium increment | Transfer → FMX-52 |
-| Pressure per ignored-complaint / inactivity tick | small increment | Transfer → FMX-52 |
-| Decay rate — early stages (S1–S2) | faster leak | FMX-52 |
-| Decay rate — late stages (S4–S5) | slower leak (sticky) | FMX-52 |
-| Hysteresis gap (climb vs fall-back) | modest band | FMX-52 |
-| `pressureSinceStageEntry` to reach S4 (strike-threat) | high, multi-event | FMX-52; **gate is structural, not just numeric** |
-| Seeded-variance bound on borderline tips | small, bounded | FMX-52 (drawn from existing `TransferRng`) |
-| Personality threshold modifiers (ambition/loyalty) | ± band | FMX-52 (via GD-0027 substrate) |
+| Pressure per lapsed strong-interest bid | medium increment | Transfer → `transfer.escalation` |
+| Pressure per ignored-complaint / inactivity tick | small increment | Transfer → `transfer.escalation` |
+| Decay rate — early stages (S1–S2) | faster leak | `transfer.escalation` |
+| Decay rate — late stages (S4–S5) | slower leak (sticky) | `transfer.escalation` |
+| Hysteresis gap (climb vs fall-back) | modest band | `transfer.escalation` |
+| `pressureSinceStageEntry` to reach S4 (strike-threat) | high, multi-event | `transfer.escalation`; **gate is structural, not just numeric** |
+| Seeded-variance bound on borderline tips | small, bounded | `transfer.escalation` (drawn from existing `TransferRng`) |
+| Personality threshold modifiers (ambition/loyalty) | ± band | `transfer.escalation` (via GD-0027 substrate) |
 
 ## 6. Reserved for later (post-MVP)
 
@@ -120,3 +122,12 @@ Indicative starting points to tune on a running build; **none are locked from in
 - Squad-wide **dressing-room contagion** (a star's unrest nudging teammates), à la FM.
 - Manager **promise tracking** as an explicit pressure input (broken promise → jump), beyond the
   bid/inactivity inputs in MVP.
+
+## Calibration slot (FMX-141)
+
+- Slot: `transfer.escalation`
+- Parameter pack: `escalationModelVersion`
+- Harness: T0 exact replay for pressure-stage transitions + T1/T2 transfer saga
+  sweeps in [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
+- Metrics: pressure increments, decay, hysteresis, stage dwell, reversibility,
+  seeded edge variance and no-instant-strike invariant.

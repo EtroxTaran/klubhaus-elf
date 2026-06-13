@@ -14,6 +14,8 @@ related:
   - [[../60-Research/raw-perplexity/raw-match-engine-game-precedents-2026-06-13]]
   - [[../60-Research/raw-perplexity/raw-match-engine-calibration-harness-2026-06-13]]
   - [[../40-Execution/fmx-133-match-engine-core-model-decision-queue-2026-06-13]]
+  - [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
+  - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
   - [[GD-0002-match-engine]]
   - [[match-engine]]
   - [[../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]
@@ -155,6 +157,17 @@ Minimum scenario pack:
 - set-piece advantage;
 - weather/pitch stress when those systems feed the engine.
 
+## Calibration slot (FMX-141)
+
+If ratified, this GDDR is the source GDDR for slot `match.core` under
+[[GD-0043-gameplay-calibration-ownership-and-acceptance-gate|GD-0043]].
+
+- Parameter pack: `matchCoreModelVersion`
+- Harness: T0 golden replay + T1/T2 match scenario sweeps in
+  [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
+- Metrics: W/D/L, goals, shots, xG, xG/shot, cards, injuries, possession,
+  PPDA, profile compatibility and background-fast aggregate drift.
+
 ## Supersedes / closes if ratified
 
 If Nico approves D1-D6, this GDDR closes/supersedes these GD-0002 open gates:
@@ -172,4 +185,3 @@ and pause budgets stay owned by the live-control/watch-party records, not FMX-13
 Approve or change D1-D6 in
 [[../40-Execution/fmx-133-match-engine-core-model-decision-queue-2026-06-13]].
 Recommended packet: **A/A/A/A/A/A**.
-

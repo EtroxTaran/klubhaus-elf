@@ -3,7 +3,7 @@ title: GD-0028 Dialogue Intent Taxonomy and Effect Matrix
 status: accepted
 tags: [game-design, gddr, narrative, dialogue, intents, effects, ai, llm, fmx-87, gap-g13]
 created: 2026-06-05
-updated: 2026-06-11
+updated: 2026-06-13
 type: game-design
 binding: false
 related:
@@ -12,9 +12,11 @@ related:
   - [[GD-0020-eos-player-skills-personas-and-people]]
   - [[GD-0021-player-staff-development-and-decision-influence]]
   - [[GD-0006-transfers]]
+  - [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
   - [[audience-and-atmosphere]]
   - [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - [[../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+  - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
@@ -38,7 +40,7 @@ accepted
 > **Draft / `binding: false`.** Closes audit gap **G13** (FMX-87). Nico chose
 > D1-D3 live on 2026-06-05, but this record is not implementable until ratified.
 > It defines the deterministic intent/effect design layer; exact numeric deltas
-> remain FMX-52 calibration inputs.
+> remain `dialogue.trustMorale` calibration inputs under GD-0043.
 
 ## Date
 
@@ -71,7 +73,7 @@ input.
 | # | Decision | Selected | Rationale |
 |---|---|---|---|
 | D1 | Surface scope | **Broad MVP**: player, staff, board, press/media, fan-rep and agent surfaces. | Matches FMX-88 Broad Full Dialogue and avoids a partial taxonomy that downstream Narrative must later break. |
-| D2 | Effect precision | **Banded effects** (`minor`, `moderate`, `major`, `critical`) with exact numbers deferred. | Stable design language; calibration remains FMX-52 work. |
+| D2 | Effect precision | **Banded effects** (`minor`, `moderate`, `major`, `critical`) with exact numbers deferred. | Stable design language; calibration remains GD-0043 `dialogue.trustMorale` work. |
 | D3 | Persona influence | **Gate plus bounded scale**. | Keeps options legible while still letting persona/relationship context matter; owning domains remain authoritative. |
 
 ## Causality rule
@@ -98,9 +100,9 @@ Forbidden:
 | Band | Meaning | Calibration handling |
 |---|---|---|
 | `none` | No mechanical change; prose/telemetry only. | Stable. |
-| `minor` | Small nudge, mostly short-lived or local. | FMX-52 exact value. |
-| `moderate` | Noticeable state movement or promise creation. | FMX-52 exact value + cap. |
-| `major` | Strong trust/pressure/disposition movement; likely follow-up story. | FMX-52 exact value + cooldown. |
+| `minor` | Small nudge, mostly short-lived or local. | `dialogue.trustMorale` exact value. |
+| `moderate` | Noticeable state movement or promise creation. | `dialogue.trustMorale` exact value + cap. |
+| `major` | Strong trust/pressure/disposition movement; likely follow-up story. | `dialogue.trustMorale` exact value + cooldown. |
 | `critical` | Reserved for rare crisis/ultimatum paths. | Nico-gated and scenario-tested. |
 
 All bands are direction + magnitude class, not numbers. Diminishing returns,
@@ -261,7 +263,8 @@ result read-only for follow-up rendering and provenance.
 - D3. Narrative never applies authoritative effects.
 - D4. LLM/template prose may paraphrase an intent or result event, but may not
   create or alter either.
-- D5. Effect magnitudes are bands here; exact numbers live in FMX-52 calibration.
+- D5. Effect magnitudes are bands here; exact numbers live in GD-0043
+  `dialogue.trustMorale` calibration.
 - D6. Promise-like intents create typed promises/commitments or are not offered.
 - D7. Cross-surface contradictions are facts, not hidden prose judgments.
 - D8. Rejected intents emit deterministic feedback with a reason.
@@ -269,13 +272,22 @@ result read-only for follow-up rendering and provenance.
 ## Open / calibration
 
 - Exact numeric values, caps, decay, stack limits and cooldowns for every band
-  are FMX-52 calibration work.
+  are GD-0043 `dialogue.trustMorale` calibration work.
 - FMX-82 owns final media-outlet cadence/reach/stance interactions with
   press/media intents.
 - ADR-0052 ratification must settle final People/persona ownership before
   implementation.
 - Content authoring must add fallback templates and manifest fixtures per
   intent before runtime LLM can use the surface.
+
+## Calibration slot (FMX-141)
+
+- Slot: `dialogue.trustMorale`
+- Parameter pack: `dialogueEffectModelVersion`
+- Harness: T0 deterministic intent/result replay + T1/T2 branch and effect-band
+  sweeps in [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
+- Metrics: trust/morale deltas, decay, stack caps, cooldowns, promise-debt
+  outcomes, rejection reasons and cross-surface contradiction handling.
 
 ## Supersedes
 
@@ -295,4 +307,3 @@ draft proposed design.
 - [[GD-0020-eos-player-skills-personas-and-people]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../30-Implementation/ai-narration-contract-testing-framework]]
-

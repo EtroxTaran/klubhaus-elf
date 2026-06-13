@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-13-fmx-141-gameplay-calibration-owner]] - FMX-141 gameplay
+  calibration ownership packet: raw Perplexity/source-check captures, synthesis,
+  draft GD-0043, gameplay calibration runbook, HITL queue and affected GDDR
+  retargeting from generic FMX-52 calibration to named slots. Recommended
+  packet is A/A/A/A/A: gameplay-wide umbrella, 14-slot taxonomy, T0-T4 harness
+  tiers, Nico-owned rebaseline authority until delegated and realism-anchored
+  fun/perception overrides.
 - [[2026-06-13-fmx-133-match-engine-core-model]] - FMX-133 match-engine core
   model decision packet: raw Perplexity/source-check captures, synthesis, HITL
   queue and draft GD-0042. Recommended packet is A/A/A/A/A/A: hybrid

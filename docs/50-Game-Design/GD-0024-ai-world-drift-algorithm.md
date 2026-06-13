@@ -3,10 +3,10 @@ title: GD-0024 AI World-Drift Algorithm
 status: accepted
 tags: [game-design, gddr, ai-world, world-drift, dynasty, determinism, fmx-91]
 created: 2026-06-03
-updated: 2026-06-11
+updated: 2026-06-13
 type: game-design
 binding: false
-related: [[README]], [[GD-0010-ai-world]], [[GD-0011-career-progression]], [[GD-0023-ai-club-economy-behaviour]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/raw-perplexity/raw-ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/late-game-systems]], [[../60-Research/determinism-and-replay]], [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]]
+related: [[README]], [[GD-0010-ai-world]], [[GD-0011-career-progression]], [[GD-0023-ai-club-economy-behaviour]], [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/raw-perplexity/raw-ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/late-game-systems]], [[../60-Research/determinism-and-replay]], [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]]
 ---
 
 # GD-0024: AI World-Drift Algorithm
@@ -49,7 +49,7 @@ can drift in strength without the player feeling hidden rubber-banding.
 - **No hidden catch-up buff.** Drift emits in-fiction facts and forecasts; all
   effects are consumed by the owning contexts.
 - **No final constants in this GDDR.** Thresholds, probabilities and magnitudes
-  are banded parameter families routed to FMX-52.
+  are banded parameter families routed to GD-0043 `world.drift` calibration.
 
 ## Drift loop
 
@@ -164,7 +164,8 @@ the player.
 
 ## Calibration handoff
 
-FMX-52 owns final values. This GDDR contributes parameter families:
+GD-0043 `world.drift` owns final gameplay values. This GDDR contributes
+parameter families:
 
 - candidate thresholds;
 - trigger probabilities;
@@ -179,12 +180,23 @@ byte-identical event sequence under identical seeds.
 
 ## Open (Nico-gated before approval)
 
-- Final parameter bands and default calibration values through FMX-52.
+- Final parameter bands and default calibration values through GD-0043
+  `world.drift`.
 - Whether AI World Simulation is ratified as a bounded context or kept as a
   League/Club/Transfer orchestration policy.
 - How future Youth/Data Generator work consumes `youthDiffusionHint`.
 - Whether multi-continent per-confederation caps activate before post-MVP
   continental competitions.
+
+## Calibration slot (FMX-141)
+
+- Slot: `world.drift`
+- Parameter pack: `worldDriftModelVersion`
+- Harness: T2/T3 AI-only long-horizon drift sweeps in
+  [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
+- Metrics: Rising Rival / Giant Collapse / Continental Era Shift event density,
+  cap breaches, title concentration, new-champion frequency, reputation drift,
+  league-strength volatility and downstream economy invariants.
 
 ## Feeds ADRs
 

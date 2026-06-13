@@ -87,7 +87,7 @@ map; the per-save vs cross-save split; the versioning + re-score-from-raw determ
 the forward-additive reserved-stub schema; the induction model; invariants. **Out of scope:**
 Statistics metric definitions (ADR-0081); the archetype taxonomy + prestige-ladder shape
 (G3, GD-0019, post-MVP); national-team inputs (FMX-84, reserved); all numeric magnitudes
-(FMX-52 calibration).
+(GD-0043 `legacy.hof` calibration).
 
 ## Decision options
 
@@ -120,7 +120,7 @@ Statistics metric definitions (ADR-0081); the archetype taxonomy + prestige-ladd
 | Option | Description | Trade-off |
 |---|---|---|
 | A. Contract + reserved stub *(recommended)* | Per-save honours/records + season awards + run-end readout; cross-save HoF = forward-additive reserved stub (no induction UI/voting) populated post-MVP. | Lowest balance risk; dilution/era tuning deferred. |
-| **B. Full HoF in MVP** | Induction logic + simulated voting + cross-save legend ranking MVP-active in design. | **Chosen by Nico (override).** Maximal payoff now; **consequence:** all magnitudes are FMX-52 calibration behind `legacyScoreFormulaVersion`, and era-normalization + scarcity caps are built in as first-class knobs so dilution/distortion stay tunable, not baked. |
+| **B. Full HoF in MVP** | Induction logic + simulated voting + cross-save legend ranking MVP-active in design. | **Chosen by Nico (override).** Maximal payoff now; **consequence:** all magnitudes are GD-0043 `legacy.hof` calibration behind `legacyScoreFormulaVersion`, and era-normalization + scarcity caps are built in as first-class knobs so dilution/distortion stay tunable, not baked. |
 | C. Pure deferral, no awards | Only a reserved stub. | Too thin — yearly awards are cheap signals worth shipping. |
 
 ## Decision (chosen — Nico 2026-06-06)
@@ -128,7 +128,8 @@ Statistics metric definitions (ADR-0081); the archetype taxonomy + prestige-ladd
 **D1 = A, D2 = A, D3 = A, D4 = B.** Manager & Legacy owns the cross-save legacy/HoF/prestige
 layer; per-save records stay Statistics-owned; raw-facts-plus-versioned-formula determinism;
 the full HoF (records book + honours + season awards + in-world HoF + cross-save legend
-ranking + induction) is MVP-active in design, with magnitudes as FMX-52 debt.
+ranking + induction) is MVP-active in design, with magnitudes as GD-0043
+`legacy.hof` debt.
 
 ### 1. Three layers & ownership
 
@@ -222,7 +223,7 @@ computed in the meta layer and never feeds back into a running sim.
 | **HF7** | Cross-save legacy is a **top-N index** (manager + player legends + manager prestige), not full per-entity history — bloat-bounded over 50–100 seasons. |
 | **HF8** | HoF induction is **era-normalized** and **scarcity/quota-capped**, with **inspectable reasons**, to resist dilution and dynasty distortion. |
 | **HF9** | In-world induction is a **pure deterministic formula** and **declares no new `*Rng`** (ADR-0018 §3); any genuinely stochastic in-world voting would require a new seeded sub-label + a fresh Nico decision (open item). |
-| **HF10** | All sample names are **IP-safe / fictional** (GD-0015 / ADR-0007); all magnitudes (weights, thresholds, scarcity caps, era coefficients, voting weights, eligibility window) are **FMX-52 calibration debt** versioned behind `legacyScoreFormulaVersion`. |
+| **HF10** | All sample names are **IP-safe / fictional** (GD-0015 / ADR-0007); all magnitudes (weights, thresholds, scarcity caps, era coefficients, voting weights, eligibility window) are **GD-0043 `legacy.hof` calibration debt** versioned behind `legacyScoreFormulaVersion`. |
 
 ## Consequences
 
@@ -234,7 +235,7 @@ dilution/distortion pitfalls stay tunable; the forward-additive schema keeps the
 stable as categories grow.
 
 **Negative / constraints:** D4=B means the full HoF ships in design with **all magnitudes
-unvalidated** until FMX-52 playtest — the dilution/era risks are *mitigated by design* (knobs)
+unvalidated** until GD-0043 `legacy.hof` playtest — the dilution/era risks are *mitigated by design* (knobs)
 but not *resolved* until tuning; some inputs depend on still-`proposed` upstreams (Statistics
 ADR-0081) and on FMX-84 for national-team inputs (reserved stub); the in-world voting
 determinism question is left open for ratification.
@@ -266,7 +267,7 @@ None
 of the recommended reserved-stub). **One open ratification item:** whether in-world HoF
 induction stays a **pure deterministic formula** (recommended — no new `*Rng`) or gains
 genuinely stochastic seeded voting (new `LegacyRng`/`HoFRng` sub-label, ADR-0018 §3). All
-numeric magnitudes are **FMX-52 calibration debt** and do not block ratification of the
+numeric magnitudes are **GD-0043 `legacy.hof` calibration debt** and do not block ratification of the
 contract shape. Archetype taxonomy + prestige-ladder shape remain post-MVP / Nico-gated
 (GD-0019); national-team inputs remain a reserved stub pending FMX-84.
 **2026-06-07 (open-decisions sweep) recommendation:** keep in-world HoF induction a **pure

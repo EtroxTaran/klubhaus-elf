@@ -82,7 +82,7 @@ games — FM/EA FC/OOTP/EHM/NBA & motorsport sims).
 decay, confidence model, the Tactics→Manager & Legacy consumption contract, determinism,
 a worked example. **Out of scope:** archetype names/taxonomy & clustering (G3 / FMX-93),
 perk/prestige balance, fingerprint UI, opposition-AI scouting, baseline calibration
-(FMX-52). The spec emits **raw signals + confidence only — it names no archetypes.**
+(GD-0043 `tactics.identity`). The spec emits **raw signals + confidence only — it names no archetypes.**
 
 ## Decision options
 
@@ -127,7 +127,7 @@ perk/prestige balance, fingerprint UI, opposition-AI scouting, baseline calibrat
 All signals are pure functions of the committed match event log (already ordered and
 seeded at `lineup_locked`) plus the locked `TacticSnapshot`. Each is normalised to
 [0,1] by a **clipped linear transform** against provisional league baselines
-(calibration is FMX-52). Within-signal sub-metrics combine as a fixed weighted average.
+(calibration is GD-0043 `tactics.identity`). Within-signal sub-metrics combine as a fixed weighted average.
 `clip(z) = min(max(z,0),1)`.
 
 | Signal | Primary measure (per match) | Normalisation | Secondary (weight) |
@@ -178,7 +178,7 @@ w  = n / (n + k_eff)                             # CONFIDENCE ∈ [0,1]
 Confidence rises with matches, falls with behavioural noise and with low familiarity;
 the point estimate `θ̂` is pulled toward the league prior μ₀ when confidence is low.
 
-**Provisional calibration constants (playtest-tunable — FMX-52, not ratified here):**
+**Provisional calibration constants (playtest-tunable — GD-0043 `tactics.identity`, not ratified here):**
 `H = 15`, `μ₀ = 0.5` per signal (or league-derived), `k₀ = 10` (⇒ confidence ≈ 0.5 at
 n=10; `adaptation` uses `k₀ = 20`), `s_ref = 0.2`, `α_fam = 0.5`, variance clamp
 [0.5, 2.0].
@@ -226,7 +226,7 @@ joins** and never re-reads after legacy config is generated for the next save (A
 | **C4** | The spec emits **raw signals + confidence only**; it names no archetypes (G3 / FMX-93 deferral). |
 | **C5** | Per-signal EWMA uses `H=15`; confidence uses empirical-Bayes shrinkage with familiarity; both pure functions of the per-match signal sequence. |
 | **C6** | Manager & Legacy consumes the projection once at run-end, read-only, no cross-context joins, never re-read after (ADR-0051). |
-| **C7** | Calibration constants (`H, μ₀, k₀, s_ref, α_fam`, normalisation bounds, weights) are versioned (`algorithmVersion`) and tunable via FMX-52 without changing the contract shape. |
+| **C7** | Calibration constants (`H, μ₀, k₀, s_ref, α_fam`, normalisation bounds, weights) are versioned (`algorithmVersion`) and tunable via GD-0043 `tactics.identity` without changing the contract shape. |
 
 ## Worked example (pressing signal, n = 4)
 
@@ -255,12 +255,12 @@ clean inputs; gives FMX-93/G3 a stable signal substrate without pre-committing a
 taxonomy; reuses Tactics' existing familiarity bar; every value is re-derivable from
 match facts (debuggable, "why this value?" ready); confidence is first-class so sparse
 saves degrade gracefully toward league average; calibration is isolated behind
-`algorithmVersion` for FMX-52.
+`algorithmVersion` for GD-0043 `tactics.identity`.
 
 **Negative / constraints:** the `adaptation` axis has no canonical real-world metric —
 proxied from the intervention log + game-state response, lowest confidence, flagged as
 calibration debt; all baselines/weights (μ₀, s_ref, k₀, normalisation bounds) are
-provisional pending FMX-52 playtest tuning; fingerprint UI, opposition-AI scouting and
+provisional pending GD-0043 `tactics.identity` playtest tuning; fingerprint UI, opposition-AI scouting and
 archetype clustering are explicitly deferred; in early prototypes lacking xG, set-piece/
 risk sub-metrics use shot-count fallbacks (documented per build).
 
@@ -280,7 +280,7 @@ None
 `proposed` / `binding: false`. D1–D4 chosen live by Nico 2026-06-03. Residual tuning
 (exact μ₀/s_ref/k₀ per signal, normalisation bounds, signal weights, carry-vs-reinit on
 manager change, whether to ship the optional two-component fast EWMA) is **calibration
-debt routed to FMX-52** and does not block ratification of the algorithm shape. Awaiting
+debt routed to GD-0043 `tactics.identity`** and does not block ratification of the algorithm shape. Awaiting
 Nico ratify + merge; the ADR-0055 additive pointer applies in the same PR.
 
 ## Related Docs

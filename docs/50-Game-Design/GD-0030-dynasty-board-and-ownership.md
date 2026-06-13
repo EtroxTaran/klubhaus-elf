@@ -3,7 +3,7 @@ title: GD-0030 Dynasty Board & Ownership
 status: accepted
 tags: [game-design, gddr, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, late-game, fmx-89]
 created: 2026-06-05
-updated: 2026-06-12
+updated: 2026-06-13
 type: game-design
 binding: false
 supersedes:
@@ -19,6 +19,8 @@ related:
   - [[GD-0011-career-progression]]
   - [[late-game-systems]]
   - [[ai-manager-behaviour]]
+  - [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
+  - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
   - [[../30-Implementation/economy-calibration-and-soak-test-runbook]]
 ---
 
@@ -54,8 +56,9 @@ Companion design model to
 [[../10-Architecture/09-Decisions/ADR-0079-dynasty-board-ownership-and-bankruptcy]]
 (architecture, ownership, determinism, event contracts) and the FSMs in
 [[../10-Architecture/state-machines/dynasty-board-and-ownership]]. This GDDR fixes
-the **shape, states and effect *directions*** only; every magnitude is **FMX-52
-calibration**. Nico chose **D1–D4 = A/A/A/A** live (2026-06-05). All three systems
+the **shape, states and effect *directions*** only; every magnitude is **GD-0043
+`dynasty.ownershipBoard` calibration**. Nico chose **D1–D4 = A/A/A/A** live
+(2026-06-05). All three systems
 are owned by **Club Management** as a "Board & Ownership" sub-aggregate set (D1).
 
 ### 1. Board-ambition expectation ladder (deterministic)
@@ -195,7 +198,8 @@ never a bespoke exception path.
 - **All numeric magnitudes** — instability factors + threshold, takeover
   caps/cooldown, admin points band, embargo wage-cap %, escalation deltas,
   confidence weights/decay, archetype budget multipliers, owner-resistance
-  modifiers — **FMX-52** calibration (banded ranges, evidence gate).
+  modifiers — **GD-0043 `dynasty.ownershipBoard`** calibration (banded ranges,
+  evidence gate).
 - **Board-meeting dialogue surfaces + ownership news UI** — gaps G4-G6, separate
   late-game-UI issues.
 - **National-team dual-role** (FMX-84) and **engagement-flatline + HoF metric
@@ -222,13 +226,13 @@ Positive:
   become first-class, deterministic and tunable.
 - Owners are legible *and* mechanically distinct; takeovers and administration are
   consequential arcs, not flavour text.
-- Directions fixed now; tuning deferred to FMX-52, so balance changes are caught at
-  the evidence gate, not baked from intuition.
+- Directions fixed now; tuning deferred to GD-0043 `dynasty.ownershipBoard`, so
+  balance changes are caught at the evidence gate, not baked from intuition.
 
 Negative / constraints:
 
-- Realism depends on FMX-52 calibration; un-tuned, the world is inert or chaotic
-  (the two documented failure modes).
+- Realism depends on GD-0043 `dynasty.ownershipBoard` calibration; un-tuned, the
+  world is inert or chaotic (the two documented failure modes).
 - The most dramatic ending (liquidation → phoenix) is deferred, so MVP bankruptcy
   drama tops out at the heroic-save/abandon fork.
 - Board/ownership effects concentrate in Club Management; its sub-aggregate set
@@ -253,6 +257,18 @@ None
   [[../60-Research/raw-perplexity/raw-deterministic-long-sim-patterns-2026-06-05]]).
 - Decisions: [[../10-Architecture/09-Decisions/ADR-0079-dynasty-board-ownership-and-bankruptcy]];
   state machine [[../10-Architecture/state-machines/dynasty-board-and-ownership]].
-- Calibration: [[../30-Implementation/economy-calibration-and-soak-test-runbook]] (FMX-52).
+- Calibration: [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
+  (`dynasty.ownershipBoard` slot, GD-0043). Economy downstream invariants still
+  cross-check through [[../30-Implementation/economy-calibration-and-soak-test-runbook]].
 - [[README]] — Game Design Log (hub) · context: [[GD-0010-ai-world]] late-game arc,
   [[GD-0011-career-progression]].
+
+## Calibration slot (FMX-141)
+
+- Slot: `dynasty.ownershipBoard`
+- Parameter pack: `dynastyModelVersion`
+- Harness: T2/T3 board, ownership, administration and anti-flatline sweeps in
+  [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
+- Metrics: board-confidence drift, sacking thresholds, takeover density,
+  archetype diversity, administration rate, rescue/failure split, title churn and
+  flatline proxy separation.

@@ -3,10 +3,10 @@ title: GD-0025 In-Match Controls & Live-Control Kit
 status: accepted
 tags: [game-design, gddr, ux, mobile, match, controls, halftime, shouts, fmx-100]
 created: 2026-06-03
-updated: 2026-06-11
+updated: 2026-06-13
 type: game-design
 binding: false
-related: [[README]], [[GD-0016-mobile-ux-loop]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0004-tactics]], [[GD-0002-match-engine]], [[match-engine]], [[progressive-disclosure-ui]], [[../10-Architecture/09-Decisions/ADR-0072-in-match-control-seam]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]], [[../10-Architecture/state-machines/match]], [[../60-Research/in-match-controls-and-presentation-2026-06-03]]
+related: [[README]], [[GD-0016-mobile-ux-loop]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0004-tactics]], [[GD-0002-match-engine]], [[match-engine]], [[progressive-disclosure-ui]], [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]], [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]], [[../10-Architecture/09-Decisions/ADR-0072-in-match-control-seam]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]], [[../10-Architecture/state-machines/match]], [[../60-Research/in-match-controls-and-presentation-2026-06-03]]
 ---
 
 # GD-0025: In-Match Controls & Live-Control Kit
@@ -93,8 +93,9 @@ Each shout is a bounded, deterministic team-level modifier applied as a *light*
 command at the next tick (never mid-tick), with a cooldown and a finite effect
 window. Effect = small modifiers on team intensity / pressing / mentality-leaning
 weights — **NOT** stat cheats and **NOT** prose feeding mechanics. All magnitudes,
-cooldown lengths and windows are **provisional calibration inputs for FMX-52**, not
-locked constants (mirrors the GD-0019 "ship hooks, tune later" stance):
+cooldown lengths and windows are **provisional `match.liveControl` calibration
+inputs under [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate|GD-0043]]**,
+not locked constants (mirrors the GD-0019 "ship hooks, tune later" stance):
 
 | Shout | Provisional intent | Provisional cooldown | Effect window |
 |---|---|---|---|
@@ -116,7 +117,8 @@ is an essential real-time event (WCAG 2.2.1 exception) because the free pause ex
 
 - Exact halftime secondary-action set + ordering.
 - Speed-step count (**3 vs 4**) and labels.
-- Shout cooldown lengths + effect magnitudes + decay (FMX-52 calibration).
+- Shout cooldown lengths + effect magnitudes + decay (`match.liveControl`
+  calibration slot).
 - Max queued subs + competition-rule / Regulations coupling.
 - Whether mentality presets expose a 5th "Contain"/"Park the bus" step.
 - Per-UI-tier exposure (Quick/Standard/Expert per [[progressive-disclosure-ui]]):
@@ -136,7 +138,18 @@ Positive: a legible, one-handed, feedback-rich match that fits the GD-0016 loop 
 gives the first playable a strong headline surface.
 
 Negative / constraints: shout-effect magnitudes + several values are calibration
-debt owed to FMX-52; one tier only at MVP (richer tactical depth is reserved).
+debt owed to the `match.liveControl` slot in
+[[GD-0043-gameplay-calibration-ownership-and-acceptance-gate|GD-0043]]; one tier
+only at MVP (richer tactical depth is reserved).
+
+## Calibration slot (FMX-141)
+
+- Slot: `match.liveControl`
+- Parameter pack: `liveControlModelVersion`
+- Harness: T0 exact replay for command timing + T1/T2 intervention scenario
+  sweeps in [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
+- Metrics: effect latency, xG swing after shout/control change, fatigue delta,
+  cooldown length, effect decay and player-visible feedback timing.
 
 ## Supersedes
 

@@ -3,10 +3,10 @@ title: GD-0027 Hidden-Attribute Substrate Mapping (8-meta / OCEAN → labels)
 status: accepted
 tags: [game-design, gddr, persona, ocean, player-skills, scouting, mentoring, determinism, fmx-86, gap-g22]
 created: 2026-06-05
-updated: 2026-06-11
+updated: 2026-06-13
 type: game-design
 binding: false
-related: [[README]], [[GD-0020-eos-player-skills-personas-and-people]], [[GD-0021-player-staff-development-and-decision-influence]], [[GD-0018-ai-narrative-personas-and-dialogue]], [[GD-0015-ip-clean-data]], [[GD-0006-transfers]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]]
+related: [[README]], [[GD-0020-eos-player-skills-personas-and-people]], [[GD-0021-player-staff-development-and-decision-influence]], [[GD-0018-ai-narrative-personas-and-dialogue]], [[GD-0015-ip-clean-data]], [[GD-0006-transfers]], [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]], [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]]
 supersedes:
 superseded_by:
 ---
@@ -232,10 +232,20 @@ join, but two owners to keep aligned.
 ## Open / next
 
 - **Nico ratify** GD-0027 (`draft` → `approved`) → unblocks ADR-0052 ratification.
-- **Calibration (FMX-52-style):** all axis/flag thresholds, knowledge% reveal bands per
-  signal, the per-list visible-label cap (~2–3) + display priority — behind `personaLabelModelVersion`.
+- **GD-0043 `people.personaLabels` calibration:** all axis/flag thresholds,
+  knowledge% reveal bands per signal, the per-list visible-label cap (~2–3) +
+  display priority — behind `personaLabelModelVersion`.
 - **GD-0021:** the mentoring numeric model (weights/decay/thresholds) + its staff-skill option gate.
 - No blocking decisions remain (D1–D4 resolved live 2026-06-05).
+
+## Calibration slot (FMX-141)
+
+- Slot: `people.personaLabels`
+- Parameter pack: `personaLabelModelVersion`
+- Harness: T1/T2 label-distribution, reveal-band and metamorphic checks in
+  [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
+- Metrics: axis thresholds, label co-occurrence, reveal confidence bands,
+  visible-label cap, display priority and mentoring/personality modifier ranges.
 
 ## Related
 

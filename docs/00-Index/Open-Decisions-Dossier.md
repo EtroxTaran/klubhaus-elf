@@ -60,6 +60,15 @@ related:
 > [[../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]
 > and [[Decision-Log]].
 
+> **Post-dossier FMX-141 calibration ownership (historical completeness, added
+> 2026-06-13; dossier stays closed).** FMX-141 moved the old generic
+> non-economy "FMX-52 calibration" pointers into a new draft gameplay
+> calibration queue. Authoritative pending records:
+> [[../40-Execution/fmx-141-gameplay-calibration-decision-queue-2026-06-13]],
+> [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
+> and [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]. Nico
+> still needs to approve D1-D5; this closed dossier is not reopened.
+
 One place where everything still open across the domains **was decided**. Each item below is a
 crisp question with researched options and a **recommended answer** (grounded externally
 2026-06-07 — Perplexity Sonar + Exa + DDD/sim literature; see the per-item research notes).

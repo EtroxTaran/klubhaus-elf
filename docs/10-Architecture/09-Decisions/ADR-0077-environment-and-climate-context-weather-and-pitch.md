@@ -49,7 +49,8 @@ accepted
 > §"Map patch proposal" is applied only on ratification (per
 > [[../../90-Meta/vault-governance]], mirroring ADR-0064 / ADR-0075). It locks
 > **no numeric constants**: every magnitude, band, regime probability,
-> pitch-decay rate, WBGT band and forecast-error σ is **FMX-52 calibration debt**
+> pitch-decay rate, WBGT band and forecast-error σ is **GD-0043
+> `environment.weatherPitch` calibration debt**
 > behind a `weatherModelVersion`. The formerly open pitch-condition state split
 > was resolved by the 2026-06-08 ratification sweep and confirmed during FMX-135:
 > Stadium Operations keeps facility/usage state and remains the
@@ -226,7 +227,8 @@ reproduced by dispatching the versioned deterministic function. Forecast is a
 
 - a **weather vector** consumed at `lineup_locked` (precip type + intensity,
   temperature, wind speed + direction, derived **WBGT**, visibility; altitude as a
-  venue attribute) — effect *directions* in GD-0029, magnitudes in FMX-52;
+  venue attribute) — effect *directions* in GD-0029, magnitudes in GD-0043
+  `environment.weatherPitch`;
 - a **cooling-break trigger** at **WBGT ≥ 32 °C** (drinks-break band reserved);
 - a **pitch-condition read** (ladder in
   [[../state-machines/pitch-condition]]) that **amplifies** weather effects;
@@ -417,7 +419,8 @@ Accepted and binding. Authored `proposed` after Nico chose the FMX-66 planning d
 Remaining follow-up items before implementation:
 
 - all numeric magnitudes (effect sizes, regime probabilities, pitch-decay rates,
-  WBGT/visibility bands, forecast-error σ) → **FMX-52** calibration behind
+  WBGT/visibility bands, forecast-error σ) → GD-0043 `environment.weatherPitch`
+  calibration behind
   `weatherModelVersion`;
 - the postponement/abandonment + re-fixturing slice (reserved hook) → a later
   E2/League issue;

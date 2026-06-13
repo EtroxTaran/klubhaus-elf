@@ -171,6 +171,27 @@ design notes.
   [[../60-Research/raw-perplexity/raw-match-engine-calibration-harness-2026-06-13]],
   [[../60-Research/raw-perplexity/raw-match-engine-source-checks-2026-06-13]].
 
+## Gameplay Calibration Ownership and Harness (FMX-141, 2026-06-13)
+
+- [[../60-Research/gameplay-calibration-ownership-and-harness-2026-06-13]] -
+  FMX-141 synthesis for non-economy gameplay calibration ownership. Recommends
+  draft
+  [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
+  plus
+  [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]] so older
+  GDDRs point to named slots (`match.liveControl`, `setPieces.readiness`,
+  `environment.weatherPitch`, `dialogue.trustMorale`, `media.ecology`,
+  `transfer.escalation`, `dynasty.ownershipBoard`, `legacy.hof`,
+  `world.drift`, `legacy.nationalTeam`, etc.) instead of generic FMX-52 economy
+  calibration.
+  Decision remains pending Nico in
+  [[../40-Execution/fmx-141-gameplay-calibration-decision-queue-2026-06-13]].
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-gameplay-calibration-sim-precedents-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-gameplay-calibration-stochastic-harness-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-gameplay-calibration-domain-slots-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-gameplay-calibration-source-checks-2026-06-13]].
+
 ## Quality-Profile Enum and Settlement-Path Reconciliation (FMX-147, 2026-06-12)
 
 - [[../60-Research/quality-profile-enum-settlement-path-2026-06-12]] -
@@ -324,7 +345,8 @@ design notes.
   [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]],
   raw capture
   [[../60-Research/raw-perplexity/raw-ai-world-drift-algorithm-2026-06-03]] and
-  the FMX-52 calibration runbook.
+  the GD-0043 `world.drift` calibration slot. Economy downstream checks remain
+  in the FMX-52 economy runbook.
 
 ## Pre-Mortem 2026-05-20 (Cluster, 3 Iterationen)
 
