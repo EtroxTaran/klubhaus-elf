@@ -3,7 +3,7 @@ title: Vault Home
 status: current
 tags: [meta]
 created: 2026-05-15
-updated: 2026-06-09
+updated: 2026-06-13
 type: index
 binding: true
 ---
@@ -85,6 +85,7 @@ ADRs are the source for technical shape.
   [[../30-Implementation/postgres-drizzle-integration]] ·
   [[../30-Implementation/secrets-management]]
 - [[../30-Implementation/linear-task-tracking]] — Linear (team FMX) conventions + GitHub tracking
+- [[../40-Compliance/README]] — compliance evidence and legal artifact gates
 
 ## Research
 

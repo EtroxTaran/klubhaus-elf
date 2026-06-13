@@ -217,6 +217,25 @@ design notes.
   [[../60-Research/raw-perplexity/raw-no-p2w-legal-store-policy-2026-06-13]],
   [[../60-Research/raw-perplexity/raw-no-p2w-test-gate-tooling-2026-06-13]].
 
+## Monetization Legal Gates (FMX-194, 2026-06-13)
+
+- [[../60-Research/monetization-legal-gates-2026-06-13]] -
+  FMX-194 synthesis for ADR-0063's open provider, refund, age-gate and paid
+  soft-launch legal gates. Recommends draft
+  [[../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]]
+  as the non-binding decision home: web MoR-first payment posture, native IAP
+  boundary, immediate-delivery waiver plus unspent-only revocation/no gameplay
+  rollback, proportional age assurance and a paid activation compliance gate.
+  Decision remains pending Nico in
+  [[../40-Execution/fmx-194-monetization-legal-gates-decision-queue-2026-06-13]].
+  Compliance evidence:
+  [[../40-Compliance/monetization-legal-gates-evidence-2026-06-13]].
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-payment-provider-mor-vs-direct-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-refund-spent-cash-policy-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-age-gate-and-soft-launch-gates-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-monetization-legal-source-checks-2026-06-13]].
+
 ## AI Narration Scope Freeze and Fallback Coverage (FMX-88, 2026-06-04)
 
 - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]

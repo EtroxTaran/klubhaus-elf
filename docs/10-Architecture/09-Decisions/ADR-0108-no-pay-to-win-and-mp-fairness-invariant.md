@@ -21,6 +21,7 @@ related:
   - [[../../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
   - [[ADR-0107-pricing-and-iap-monetization-boundary]]
   - [[ADR-0063-investor-entitlement-and-payment-boundary]]
+  - [[ADR-0109-payment-provider-and-monetization-legal-gates]]
   - [[ADR-0089-bounded-context-portfolio-reconciliation]]
   - [[../../30-Implementation/ci-and-review-process]]
 ---
@@ -213,7 +214,9 @@ Negative / constraints:
 - Supporter features involving analytics/history need careful review.
 - Product copy must avoid absolute no-P2W claims until implementation has the
   corresponding test gate.
-- FMX-194 still needs legal/provider/age/refund review before any paid launch.
+- FMX-194 / draft
+  [[ADR-0109-payment-provider-and-monetization-legal-gates|ADR-0109]] still
+  needs legal/provider/age/refund review before any paid launch.
 
 ## Supersedes
 
@@ -226,4 +229,5 @@ None.
 - [[../../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
 - [[ADR-0107-pricing-and-iap-monetization-boundary]]
 - [[ADR-0063-investor-entitlement-and-payment-boundary]]
+- [[ADR-0109-payment-provider-and-monetization-legal-gates]]
 - [[ADR-0089-bounded-context-portfolio-reconciliation]]

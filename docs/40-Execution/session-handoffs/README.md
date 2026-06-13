@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-13-fmx-194-monetization-legal-gates]] - FMX-194 monetization legal
+  gates decision packet: raw Perplexity/source captures, synthesis, compliance
+  evidence home, HITL queue and draft ADR-0109. Recommended packet is A/A/A/A/A:
+  web MoR-first with direct PSP fallback, Apple/Google IAP for native in-app
+  digital cash, immediate-delivery waiver plus unspent-only revocation/no
+  gameplay rollback, proportional age assurance and paid soft-launch
+  compliance-gated activation.
 - [[2026-06-13-fmx-190-no-p2w-mp-fairness]] - FMX-190 no-P2W /
   MP-fairness invariant decision packet: raw Perplexity/Web/tooling captures,
   synthesis, HITL queue and draft ADR-0108. Recommended packet is A/A/A/A/A:

@@ -108,7 +108,8 @@ early_warning:
   - metric: "Anteil Käufe mit dokumentiertem Verzicht-Checkbox"
     threshold: "< 99 %"
 mitigation_summary: "Doppel-Checkbox vor Zahlung + § 312f-Bestätigungsmail mit dauerhaftem Datenträger"
-linked_adrs: []
+linked_adrs:
+  - [[../../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]]
 linked_specs: []
 linked_code: []
 sources:
@@ -125,11 +126,13 @@ sources:
 verification_notes: "F2P-MVP nicht akut; kritisch ab erstem Verkauf. § 356 Abs. 5 BGB für digitale Inhalte erfordert exakte Verzichts-Sequenz."
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
+  - [[../monetization-legal-gates-2026-06-13]]
+  - [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]
 status: mitigated
 owner_suggested: product+legal
 effort: S
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-13
 ```
 
 **Hypothese.** Bei Premium/Cosmetic-Kauf ohne korrekte Verzichts-Sequenz: 14 Tage vollständig erstattbare Käufe → Cashflow-Risiko + Missbrauchsvektor.
@@ -154,7 +157,8 @@ early_warning:
   - metric: "AGB-Last-Review-Datum"
     threshold: "> 12 Monate ohne Legal-Review"
 mitigation_summary: "AGB durch DE-Fachanwalt IT-Recht prüfen; pauschale Haftungsausschlüsse vermeiden; Transparenzgebot § 307 I 2 BGB"
-linked_adrs: []
+linked_adrs:
+  - [[../../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]]
 linked_specs: []
 linked_code: []
 sources:
@@ -166,11 +170,12 @@ sources:
 verification_notes: "§ 309 Nr. 7 BGB: pauschaler Haftungsausschluss für Leben/Körper/Gesundheit nichtig. US-EULAs ('AS IS, no warranties') in DE-B2C reihenweise unwirksam."
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
+  - [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]
 status: mitigated
 owner_suggested: legal
 effort: M
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-13
 ```
 
 **Hypothese.** US-Indie-EULAs enthalten Klauseln, die in DE-B2C-AGB-Kontrolle nichtig sind: ”žAS IS, no warranties" (§ 309 Nr. 7 + §§ 327d-i), Kündigung ”žat sole discretion" (§ 307), ”žarbitration in California" (Rom-I-VO Art. 6 unwirksam). Verbraucherzentrale-Abmahnung 200–1.500 € pro Verstoss.
@@ -195,7 +200,8 @@ early_warning:
   - metric: "TMG-Referenzen auf Website"
     threshold: "> 0 (DDG ist Pflicht seit 14.05.2024)"
 mitigation_summary: "Footer-Impressum max 2 Klicks erreichbar; alle DDG § 5-Pflichtangaben; VSBG-Erklärung 'nicht teilnahmebereit' explizit; OS-Plattform-Link entfernt"
-linked_adrs: []
+linked_adrs:
+  - [[../../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]]
 linked_specs: []
 linked_code: []
 sources:
@@ -212,11 +218,12 @@ sources:
 verification_notes: "§ 33 DDG Bußgeld bis 50 k €. In Praxis Wettbewerbs-Abmahnungen, Streitwerte 5–15 k €, Anwaltskosten 800–1.500 €."
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
+  - [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]
 status: mitigated
 owner_suggested: legal
 effort: S
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-13
 ```
 
 **Hypothese.** DDG seit 14.05.2024 ersetzt TMG. Häufige Fehler: alter § 5 TMG-Verweis, fehlende USt-IdNr., kein Vertretungsberechtigter, OS-Plattform-Link nicht entfernt (abgeschaltet 20.07.2025).
@@ -384,7 +391,8 @@ early_warning:
   - metric: "Cross-Border B2C-Umsatz EU YTD"
     threshold: "> 7.000 € (80 % Warnschwelle)"
 mitigation_summary: "OSS-Registrierung BZSt vor erstem Premium-Verkauf; Stripe/Paddle Tax-Mode 'Inclusive'; Paddle als MoR = Risiko-Transfer"
-linked_adrs: []
+linked_adrs:
+  - [[../../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]]
 linked_specs: [[PM-2026-05-20-04-monetization]]
 linked_code: []
 sources:
@@ -406,11 +414,13 @@ sources:
 verification_notes: "10 k €/Jahr EU-Schwelle seit 01.07.2021 für elektronische B2C-Dienstleistungen. OSS via BZSt-BOP = quartärlicher Single-Filing."
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
+  - [[../monetization-legal-gates-2026-06-13]]
+  - [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]
 status: mitigated
 owner_suggested: finance+legal
 effort: M
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-13
 ```
 
 **Hypothese.** Bei 10 k Spielern + 2–5 % Premium-Conversion × € 5/Mo = € 1–2,5 k/Monat → schnelle Überschreitung der 10 k €-Schwelle. Bei Verpassung: Nachforderungen pro EU-Land.

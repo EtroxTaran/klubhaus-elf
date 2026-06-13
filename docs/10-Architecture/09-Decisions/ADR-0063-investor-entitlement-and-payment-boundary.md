@@ -3,7 +3,7 @@ title: ADR-0063 Investor Entitlement and Payment Boundary
 status: accepted
 tags: [adr, architecture, economy, investor, monetization, entitlement, iap, payment, compliance, legal, risk-legal, fmx-50, proposed]
 created: 2026-06-01
-updated: 2026-06-11
+updated: 2026-06-13
 type: adr
 binding: false
 supersedes:
@@ -22,6 +22,9 @@ related:
   - [[../../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]
   - [[../../60-Research/pre-mortem/PM-2026-05-20-04-monetization]]
   - [[../../60-Research/pre-mortem/PM-2026-05-20-08-legal-consumer-law-and-tax]]
+  - [[ADR-0109-payment-provider-and-monetization-legal-gates]]
+  - [[../../60-Research/monetization-legal-gates-2026-06-13]]
+  - [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]
 ---
 
 # ADR-0063: Investor Entitlement and Payment Boundary
@@ -122,6 +125,14 @@ Promote payments+entitlements to their own context.
 - **B2 Stripe-direct:** lower card cost, you own OSS/tax-ops/invoicing/disputes;
   revisit at volume (PM-04-F-05 keeps a provider-fallback adapter regardless).
 - In-app stays Apple/Google IAP on iOS/Android regardless of the web choice.
+
+FMX-194 adds the non-binding closure packet for this sub-decision and the other
+legal-sensitive gates in
+[[ADR-0109-payment-provider-and-monetization-legal-gates|ADR-0109]],
+[[../../60-Research/monetization-legal-gates-2026-06-13]] and
+[[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]. Those
+recommendations remain pending Nico/legal approval and do not change this ADR's
+binding status by themselves.
 
 ## Recommendation
 

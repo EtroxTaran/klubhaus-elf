@@ -196,18 +196,21 @@ early_warning:
     threshold: ">0.5%"
   - metric: "stripe_review_emails_per_month"
     threshold: ">0"
-mitigation_summary: "Multi-Provider-Layer (Adapter) + Paddle als Backup + Reserve aufbauen"
-linked_adrs: []
+mitigation_summary: "Multi-Provider-Layer (Adapter) + MoR/direct fallback posture + Reserve aufbauen"
+linked_adrs:
+  - [[../../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]]
 linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
+  - [[../monetization-legal-gates-2026-06-13]]
+  - [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]
 status: mitigated
 owner_suggested: backend+finance
 effort: M
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-13
 ```
 
 **Hypothese.** Gaming gilt bei Stripe als Risiko-Branche; eine Welle Chargebacks oder ein automatisierter Review kann Auszahlungen wochenlang einfrieren. Ohne Backup-Provider keine Aussteuerung.
@@ -232,7 +235,8 @@ early_warning:
   - metric: "missing artifacts: AGB, Widerruf, Impressum"
     threshold: ">=1"
 mitigation_summary: "Legal-Review pre-Launch + AGB/Widerruf-Templates + DPA mit Payment-Provider"
-linked_adrs: []
+linked_adrs:
+  - [[../../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]]
 linked_specs:
   - [[../gdpr-compliance]]
   - [[../../30-Implementation/privacy-and-consent]]
@@ -240,11 +244,13 @@ linked_code: []
 linked_issues: []
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
+  - [[../monetization-legal-gates-2026-06-13]]
+  - [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]
 status: mitigated
 owner_suggested: legal+product
 effort: M
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-13
 ```
 
 **Hypothese.** DSGVO ist sauber (locked). Bezahlung bringt zusätzliche Pflichten: AGB, Widerrufsrecht (mit ausdrücklichem Verzicht für digitale Inhalte), Impressum, MOSS/OSS-VAT-Reporting, DPA mit Payment-Provider. Eine Verbraucherschutz-Abmahnung kostet Geld und Image.
@@ -375,17 +381,20 @@ early_warning:
   - metric: "chargeback_rate_pct"
     threshold: ">0.5%"
 mitigation_summary: "Receipt-Verification serverseitig + Entitlement-Audit + UX-Refund-Pfad + Fraud-Detection"
-linked_adrs: []
+linked_adrs:
+  - [[../../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]]
 linked_specs: []
 linked_code: []
 linked_issues: []
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
+  - [[../monetization-legal-gates-2026-06-13]]
+  - [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]
 status: mitigated
 owner_suggested: backend+finance
 effort: M
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-13
 ```
 
 **Hypothese.** Wenn Käufer das Spiel nicht versteht oder Kauf zu früh erfolgt, kommen Refund-Requests. Chargeback-Stürme können Stripe-Konto-Review triggern (siehe F-05).

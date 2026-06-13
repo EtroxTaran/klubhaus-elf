@@ -51,6 +51,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-194 Monetization legal gates prepared — decision pending
+> (2026-06-13).** Linear FMX-194 is `In Progress` on branch
+> `codex/fmx-194-monetization-legal-gates`. Research
+> [[../60-Research/monetization-legal-gates-2026-06-13]] (+ raw payment-provider,
+> refund/spent-cash, age-gate/soft-launch and official source-check captures)
+> recommends closing ADR-0063's legal-sensitive open gates with a web
+> Merchant-of-Record-first posture, Apple/Google IAP for native app-shell
+> in-app digital cash, immediate-delivery waiver plus unspent-only revocation
+> and no gameplay rollback, proportional age assurance, and a hard paid
+> activation compliance gate. Draft
+> [[../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates|ADR-0109]]
+> and compliance checklist
+> [[../40-Compliance/monetization-legal-gates-evidence-2026-06-13]] are **not
+> binding** until Nico approves D1-D5 in
+> [[../40-Execution/fmx-194-monetization-legal-gates-decision-queue-2026-06-13]]
+> and legal review signs off the actual artifacts. Recommended packet:
+> A/A/A/A/A.
+>
 > **FMX-190 No-P2W / MP-fairness invariant prepared — decision pending
 > (2026-06-13).** Linear FMX-190 is `In Progress` on branch
 > `codex/fmx-190-no-p2w-mp-fairness-invariant`. Research
