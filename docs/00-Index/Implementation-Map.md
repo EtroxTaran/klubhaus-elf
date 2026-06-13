@@ -3,7 +3,7 @@ title: Implementation Map
 status: current
 tags: [implementation, meta]
 created: 2026-05-16
-updated: 2026-06-04
+updated: 2026-06-13
 type: map
 binding: false
 related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]]
@@ -20,6 +20,7 @@ unless re-opened by a current issue or accepted ADR.
 ## Implementation Notes
 
 - [Linear Task Tracking & GitHub Integration](../30-Implementation/linear-task-tracking.md) - Linear team FMX conventions (labels, states, project, issue/branch/PR rules) + GitHub integration.
+- [Compliance Evidence](../40-Compliance/README.md) - legal/compliance artifact evidence home; currently includes the non-binding FMX-194 monetization legal gates checklist.
 - [Cursor Cloud Agent Workflow](../30-Implementation/cursor-cloud-agent-workflow.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md) - current MVP PWA/offline-ready implementation stance.

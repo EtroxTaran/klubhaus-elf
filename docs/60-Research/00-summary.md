@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, monetization, no-p2w, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-135, fmx-146, fmx-147, fmx-150, fmx-191]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-135, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
 updated: 2026-06-13
 ---
 
@@ -190,6 +190,25 @@ Raw captures:
 [[raw-perplexity/raw-football-manager-monetization-precedents-2026-06-13]],
 [[raw-perplexity/raw-no-p2w-legal-store-policy-2026-06-13]],
 [[raw-perplexity/raw-no-p2w-test-gate-tooling-2026-06-13]].
+
+## Monetization Legal Gates (FMX-194, 2026-06-13)
+
+[[monetization-legal-gates-2026-06-13]] preserves the FMX-194 research layer
+for ADR-0063's open legal-sensitive gates. It recommends web MoR-first payment
+provider posture with direct PSP fallback, Apple/Google IAP for native in-app
+digital cash, immediate-delivery waiver plus unspent-only revocation and no
+gameplay rollback, proportional age assurance and a paid activation compliance
+gate. Decision remains pending Nico in
+[[../40-Execution/fmx-194-monetization-legal-gates-decision-queue-2026-06-13]];
+draft decision home is
+[[../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]]
+and compliance evidence home is
+[[../40-Compliance/monetization-legal-gates-evidence-2026-06-13]].
+Raw captures:
+[[raw-perplexity/raw-payment-provider-mor-vs-direct-2026-06-13]],
+[[raw-perplexity/raw-refund-spent-cash-policy-2026-06-13]],
+[[raw-perplexity/raw-age-gate-and-soft-launch-gates-2026-06-13]],
+[[raw-perplexity/raw-monetization-legal-source-checks-2026-06-13]].
 
 ## Player Discipline Sub-Aggregate (FMX-80, 2026-06-05)
 

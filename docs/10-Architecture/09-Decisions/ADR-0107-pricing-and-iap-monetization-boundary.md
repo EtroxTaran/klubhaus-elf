@@ -19,6 +19,7 @@ related:
   - [[../../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]
   - [[ADR-0063-investor-entitlement-and-payment-boundary]]
   - [[ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
+  - [[ADR-0109-payment-provider-and-monetization-legal-gates]]
 ---
 
 # ADR-0107: Pricing and IAP Monetization Boundary
@@ -45,8 +46,11 @@ Existing decision memory:
 - [[../../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
   proposes the product/game-design rule: free core, cosmetics, Supporter Club, no
   paid power and singleplayer-only Investor isolation.
-- FMX-194 remains the future home for provider, refund, withdrawal, age-gate and
-  checkout implementation details.
+- FMX-194 produced draft
+  [[ADR-0109-payment-provider-and-monetization-legal-gates|ADR-0109]] as the
+  proposed provider, refund, withdrawal, age-gate and paid-activation legal
+  gate. It remains non-binding until Nico approves its D1-D5 packet and legal
+  review signs off actual artifacts.
 - FMX-190 produced draft
   [[ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]] as the
   proposed project-wide no-P2W contract-test and MP/shared-fairness CI invariant.
