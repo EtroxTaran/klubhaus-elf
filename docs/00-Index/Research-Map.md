@@ -201,6 +201,22 @@ design notes.
   [[../60-Research/raw-perplexity/raw-no-pay-to-win-guardrails-2026-06-13]],
   [[../60-Research/raw-perplexity/raw-monetization-source-checks-2026-06-13]].
 
+## No-Pay-to-Win and MP-Fairness Invariant (FMX-190, 2026-06-13)
+
+- [[../60-Research/no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] -
+  FMX-190 synthesis for the project-wide no-P2W / shared-state fairness invariant.
+  Recommends draft
+  [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
+  as a dedicated zero-effect rule for real-money entitlements across shared saves,
+  rankings, async groups, watch-party state, exports, official comparisons and future
+  multiplayer. Decision remains pending Nico in
+  [[../40-Execution/fmx-190-no-p2w-mp-fairness-decision-queue-2026-06-13]].
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-no-p2w-mp-fairness-guardrails-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-football-manager-monetization-precedents-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-no-p2w-legal-store-policy-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-no-p2w-test-gate-tooling-2026-06-13]].
+
 ## AI Narration Scope Freeze and Fallback Coverage (FMX-88, 2026-06-04)
 
 - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]

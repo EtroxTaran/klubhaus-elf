@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-13-fmx-190-no-p2w-mp-fairness]] - FMX-190 no-P2W /
+  MP-fairness invariant decision packet: raw Perplexity/Web/tooling captures,
+  synthesis, HITL queue and draft ADR-0108. Recommended packet is A/A/A/A/A:
+  dedicated project-wide ADR, broad shared/competitive surfaces, docs-level
+  test contract now with code gates later, paid information as forbidden power,
+  and visible cosmetics non-competitive only when mechanically inert.
 - [[2026-06-13-fmx-191-monetization-model]] - FMX-191 monetization model and
   no-P2W canon decision packet: raw Perplexity/Web captures, synthesis, HITL
   queue and draft GD-0041 / ADR-0107. Recommended packet is A/A/A/A/A: free

@@ -173,6 +173,24 @@ Raw captures:
 [[raw-perplexity/raw-no-pay-to-win-guardrails-2026-06-13]],
 [[raw-perplexity/raw-monetization-source-checks-2026-06-13]].
 
+## No-Pay-to-Win and MP-Fairness Invariant (FMX-190, 2026-06-13)
+
+[[no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] preserves the FMX-190
+research layer for the project-wide no-P2W / shared-state fairness invariant. It
+recommends a dedicated draft ADR: real-money entitlements may unlock presentation,
+identity, account service or isolated singleplayer assistance, but must have zero
+effect on competitive shared state. It treats paid information advantage as
+forbidden power, classifies mechanically inert visible cosmetics as non-competitive
+and proposes a future Vitest/fast-check architecture gate. Decision remains pending
+Nico in [[../40-Execution/fmx-190-no-p2w-mp-fairness-decision-queue-2026-06-13]];
+draft decision home is
+[[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]].
+Raw captures:
+[[raw-perplexity/raw-no-p2w-mp-fairness-guardrails-2026-06-13]],
+[[raw-perplexity/raw-football-manager-monetization-precedents-2026-06-13]],
+[[raw-perplexity/raw-no-p2w-legal-store-policy-2026-06-13]],
+[[raw-perplexity/raw-no-p2w-test-gate-tooling-2026-06-13]].
+
 ## Player Discipline Sub-Aggregate (FMX-80, 2026-06-05)
 
 [[player-discipline-sub-aggregate-2026-06-05]] closes the research layer for

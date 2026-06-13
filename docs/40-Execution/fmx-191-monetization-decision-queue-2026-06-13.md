@@ -12,6 +12,7 @@ related:
   - [[../60-Research/monetization-model-and-no-p2w-canon-2026-06-13]]
   - [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
   - [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]]
+  - [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
   - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
 ---
 
@@ -24,8 +25,10 @@ or [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-bound
 can become binding.
 
 Scope premise already selected in this beat: **FMX-191 = model-level canon**.
-FMX-190 remains the follow-up for CI/test enforcement and multiplayer fairness
-verification.
+FMX-190 is the follow-up for CI/test enforcement and multiplayer fairness
+verification; as of 2026-06-13 it has produced draft
+[[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]
+as a non-binding proposal.
 
 ## D1 - launch monetization model
 

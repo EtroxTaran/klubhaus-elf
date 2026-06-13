@@ -13,6 +13,7 @@ related:
   - [[../60-Research/raw-perplexity/raw-no-pay-to-win-guardrails-2026-06-13]]
   - [[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]
   - [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]]
+  - [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
   - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
   - [[GD-0022-economy-commercial-impact-and-contracts]]
 ---
@@ -40,6 +41,13 @@ FMX already has one monetized gameplay-adjacent concept:
 [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary|ADR-0063]]
 Investor cash. This GDDR does not reopen that payment boundary. It proposes the
 game-design rule that keeps it isolated from shared competition.
+
+FMX-190 follows this model-level canon with draft
+[[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]:
+the proposed project-wide enforcement invariant for no-P2W, shared saves,
+rankings, async groups, watch-party state, official comparisons, exports and
+future multiplayer. ADR-0108 is also non-binding until Nico approves its D1-D5
+packet.
 
 ## Proposed decision if ratified
 
@@ -106,7 +114,9 @@ the SKU fails this GDDR unless Nico explicitly supersedes the canon.
 
 - Concrete prices, SKU ids, tax, refund, withdrawal, PSP/MoR, Apple/Google purchase
   integration and age-gate implementation.
-- CI/test enforcement, which remains FMX-190.
+- CI/test enforcement implementation; FMX-190 now provides the proposed
+  draft ADR-0108 contract, but no code gate exists until the app/toolchain
+  returns and Nico accepts the decision packet.
 - Product analytics vendor and consent implementation.
 
 ## Open Nico decisions

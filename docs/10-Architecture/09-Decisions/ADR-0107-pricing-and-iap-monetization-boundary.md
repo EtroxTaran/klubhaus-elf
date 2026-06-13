@@ -18,6 +18,7 @@ related:
   - [[../../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
   - [[../../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]
   - [[ADR-0063-investor-entitlement-and-payment-boundary]]
+  - [[ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
 ---
 
 # ADR-0107: Pricing and IAP Monetization Boundary
@@ -46,7 +47,10 @@ Existing decision memory:
   paid power and singleplayer-only Investor isolation.
 - FMX-194 remains the future home for provider, refund, withdrawal, age-gate and
   checkout implementation details.
-- FMX-190 remains the future home for no-P2W contract tests and MP-fairness CI.
+- FMX-190 produced draft
+  [[ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]] as the
+  proposed project-wide no-P2W contract-test and MP/shared-fairness CI invariant.
+  It remains non-binding until Nico approves its D1-D5 packet.
 
 ## Decision if ratified
 
@@ -120,7 +124,9 @@ re-opened.
 Positive:
 
 - Monetization becomes a classified entitlement problem, not ad hoc game-state writes.
-- The no-P2W promise can be tested later by FMX-190.
+- The no-P2W promise has a draft FMX-190 enforcement contract in ADR-0108, with
+  future tests still blocked until the toolchain exists and Nico accepts the
+  decision packet.
 - ADR-0063 remains usable but is constrained by the wider singleplayer-only rule.
 - Provider/legal work is deliberately isolated to FMX-194.
 
@@ -129,7 +135,8 @@ Costs and constraints:
 - SKU design must wait for classification and no-P2W review.
 - Supporter analytics/history features need careful review because information can be
   competitive power in a management game.
-- Product copy must not over-promise until FMX-190 enforcement exists.
+- Product copy must not over-promise until ADR-0108 enforcement is accepted and
+  implemented.
 
 ## Open Nico decisions
 

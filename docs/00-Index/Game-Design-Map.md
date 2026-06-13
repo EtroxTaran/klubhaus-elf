@@ -52,6 +52,9 @@ sections are not active work by default.
 - [[../60-Research/monetization-model-and-no-p2w-canon-2026-06-13]] -
   FMX-191 research synthesis for the recommended free-core, cosmetics,
   Supporter Club and no-P2W entitlement model.
+- [[../60-Research/no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] -
+  FMX-190 research synthesis for the proposed project-wide no-P2W / shared-state
+  zero-effect invariant that enforces the FMX-191 promise.
 
 ## Fans + brand
 
@@ -200,7 +203,9 @@ reconciliation 2026-06-11):
   [[../50-Game-Design/README]] precedence rules). Wave-2-gated items inside
   accepted GDDRs remain scope-gated, not implementable.
 - **Not binding:** [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
-  is `draft` pending the FMX-191 Nico decision queue.
+  is `draft` pending the FMX-191 Nico decision queue; related draft
+  [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
+  is the FMX-190 enforcement proposal pending its own Nico decision queue.
 - **Binding research synthesis:** [[../60-Research/player-strength-presentation]]
   (Impact Lens, no global OVR).
 - **Not binding (planning context):** the non-numbered system/mode notes

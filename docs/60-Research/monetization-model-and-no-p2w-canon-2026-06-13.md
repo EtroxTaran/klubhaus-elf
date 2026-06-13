@@ -15,6 +15,7 @@ related:
   - [[raw-perplexity/raw-monetization-source-checks-2026-06-13]]
   - [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
   - [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]]
+  - [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
   - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
   - [[pre-mortem/PM-2026-05-20-04-monetization]]
   - [[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]
@@ -46,8 +47,10 @@ Both remain `draft` until Nico approves the decision packet in
 - Future shared contexts exist in the design memory: async private groups,
   rankings/comparisons, watch-party/conference play and server-authoritative
   multiplayer. Monetization must not create power that can cross into those contexts.
-- FMX-190 remains the follow-up for broader MP-fairness CI/test enforcement. Nico
-  selected the scope split for this beat: FMX-191 is the **model-level canon**.
+- FMX-190 is the follow-up for broader MP-fairness CI/test enforcement. As of
+  2026-06-13 it has produced draft
+  [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]];
+  Nico selected the scope split for this beat: FMX-191 is the **model-level canon**.
 
 ## Evidence synthesis
 
@@ -131,7 +134,8 @@ Any future SKU or entitlement fails the canon if it can:
 - Concrete pricing, taxes, refund operations, chargeback handling and withdrawal-waiver copy.
 - Product analytics vendor and consent implementation.
 - SKU IDs, store copy, UI layout and checkout flow.
-- CI/test enforcement of the no-P2W taxonomy, which remains FMX-190.
+- CI/test enforcement implementation of the no-P2W taxonomy. FMX-190 now has
+  draft ADR-0108 as the proposed contract, pending Nico approval.
 
 ## Open Nico decisions
 

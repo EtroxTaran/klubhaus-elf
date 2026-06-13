@@ -79,7 +79,10 @@ contradict the GDDR of record. Wave-2-gated items inside accepted GDDRs remain
 scope-gated, not implementable.
 
 `GD-0041` is the new FMX-191 monetization/no-P2W proposal and remains `draft`
-until Nico answers the FMX-191 decision queue.
+until Nico answers the FMX-191 decision queue. FMX-190 prepared draft
+[[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]
+as the proposed project-wide no-P2W / shared-fairness enforcement invariant;
+it remains non-binding until Nico answers the FMX-190 decision queue.
 
 | GDDR | System | Status | Feeds ADR |
 |---|---|---|---|
@@ -123,7 +126,7 @@ until Nico answers the FMX-191 decision queue.
 | [[GD-0038-bounded-context-portfolio-trim-merge-review-gate]] | Bounded-context portfolio trim / merge-review gate (FMX-105 sweep): adopt the reconciled 28-context map as canonical, but keep the count under a standing merge-review gate; trim candidates that always co-change. **Nico: option B.** | accepted | ADR-0089 |
 | [[GD-0039-c6-status-reconciliation-and-cluster-ratification-order]] | C6 status reconciliation & People-first cluster ratification order (FMX-105 sweep): canonical status note + fixed People → Staff Ops/Youth/Scouting → Discipline/Loans/Manager-signal order. | accepted | ADR-0052 |
 | [[GD-0040-future-contracts-clm-extraction-seam]] | Future Contracts/CLM extraction-seam (FMX-105 sweep): defer extraction but reserve an explicit ACL seam now so ADR-0073/0075 stop tracking the same future-CLM question in parallel. **Nico: option A.** | accepted | ADR-0073, ADR-0075 |
-| [[GD-0041-monetization-model-and-no-pay-to-win-canon]] | Monetization model and no-P2W canon (FMX-191): recommended free core + deterministic cosmetics + optional non-power Supporter Club + later cosmetic-only season card; strict allowed/forbidden entitlement classes; ADR-0063 Investor isolated to singleplayer. **Pending Nico D1-D5.** | draft | ADR-0107 |
+| [[GD-0041-monetization-model-and-no-pay-to-win-canon]] | Monetization model and no-P2W canon (FMX-191): recommended free core + deterministic cosmetics + optional non-power Supporter Club + later cosmetic-only season card; strict allowed/forbidden entitlement classes; ADR-0063 Investor isolated to singleplayer. FMX-190 enforcement draft [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]] is pending Nico D1-D5. | draft | ADR-0107, ADR-0108 draft |
 
 ## Core loop
 
@@ -145,6 +148,9 @@ until Nico answers the FMX-191 decision queue.
   Investor.
 - [[GD-0041-monetization-model-and-no-pay-to-win-canon]] - draft FMX-191
   monetization model and no-P2W canon; not binding until Nico approves D1-D5.
+- [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]] -
+  draft FMX-190 no-P2W / shared-state fairness invariant and future test-gate
+  proposal; not binding until Nico approves D1-D5.
 - [[sponsorship-portfolio]] - 4-tier sponsor inventory at asset level.
 - [[stadium-and-campus]] - stadium tiers + Anstoss-style attractions + club campus.
 - [[../20-Features/feature-club-economy-mvp-pillar]] - draft MVP economy pillar for weekly ledger, full accounting and staged insolvency.

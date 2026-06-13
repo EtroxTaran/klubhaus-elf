@@ -51,9 +51,23 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-190 No-P2W / MP-fairness invariant prepared — decision pending
+> (2026-06-13).** Linear FMX-190 is `In Progress` on branch
+> `codex/fmx-190-no-p2w-mp-fairness-invariant`. Research
+> [[../60-Research/no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] (+ raw
+> no-P2W guardrail, football-manager precedent, legal/store policy and Vitest/fast-check
+> tooling captures) recommends a dedicated project-wide invariant: real money may unlock
+> presentation, identity, account service or isolated singleplayer assistance, but must
+> have zero effect on competitive shared state. Draft
+> [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]
+> is **not binding** until Nico approves D1-D5 in
+> [[../40-Execution/fmx-190-no-p2w-mp-fairness-decision-queue-2026-06-13]].
+> Recommended packet: A/A/A/A/A. FMX-190 does not reopen FMX-191 monetization,
+> ADR-0063 Investor, or FMX-194 legal/provider gates.
+>
 > **FMX-191 Monetization model / no-P2W canon prepared — decision pending
-> (2026-06-13).** Linear FMX-191 is `In Progress` on branch
-> `codex/fmx-191-monetization-model-no-p2w-canon`. Research
+> (2026-06-13).** Linear FMX-191 is `Done`; the draft packet remains non-binding
+> pending Nico. Research
 > [[../60-Research/monetization-model-and-no-p2w-canon-2026-06-13]] (+ raw market/game,
 > legal/privacy/store, no-P2W guardrail and official source-check captures) recommends the
 > model-level canon: free core, deterministic cosmetics, optional non-power Supporter
@@ -63,8 +77,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary|ADR-0107]]
 > are **not binding** until Nico approves D1-D5 in
 > [[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]. Recommended packet:
-> A/A/A/A/A. ADR-0063 Investor stays a singleplayer-only special case; FMX-190 remains
-> the follow-up for CI/test enforcement.
+> A/A/A/A/A. ADR-0063 Investor stays a singleplayer-only special case.
 >
 > **FMX-150 Chart of Accounts accepted — ADR-0106 binding (2026-06-13).**
 > Linear FMX-150 is `In Progress` on branch `codex/fmx-150-chart-of-accounts`. Research
