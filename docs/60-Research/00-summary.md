@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-135, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
 updated: 2026-06-13
 ---
 
@@ -115,6 +115,23 @@ cleans ADR-0096/0072/0077/0078/0086/0087 to `accepted` / `binding: true`. Raw ca
 [[raw-perplexity/raw-match-engine-replay-quality-profiles-2026-06-12]].
 Decision record:
 [[../40-Execution/fmx-135-match-engine-contract-decision-queue-2026-06-12]].
+
+## Match-Engine Core Model and Calibration (FMX-133, 2026-06-13)
+
+[[match-engine-core-model-2026-06-13]] preserves the FMX-133 research layer for
+GD-0002's match-model gates. It recommends a hybrid event-chain +
+xT/EPV-style utility + shot xG + weighted/logistic attribute-contest model,
+v1 statistical envelopes, profile-specific spatial sample density and a
+calibration harness with golden replays, seed sweeps, goodness-of-fit tests and
+background-fast compatibility checks. Decision remains pending Nico in
+[[../40-Execution/fmx-133-match-engine-core-model-decision-queue-2026-06-13]];
+draft decision home is
+[[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]]. Raw captures:
+[[raw-perplexity/raw-match-engine-real-world-envelopes-2026-06-13]],
+[[raw-perplexity/raw-match-engine-action-utility-models-2026-06-13]],
+[[raw-perplexity/raw-match-engine-game-precedents-2026-06-13]],
+[[raw-perplexity/raw-match-engine-calibration-harness-2026-06-13]],
+[[raw-perplexity/raw-match-engine-source-checks-2026-06-13]].
 
 ## Insolvency Event-To-Ledger Posting Contract (FMX-146, 2026-06-12)
 

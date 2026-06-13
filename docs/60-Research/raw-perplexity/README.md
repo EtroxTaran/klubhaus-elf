@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, quality-profile, monetization, no-p2w, compliance, legal, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-135, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, quality-profile, monetization, no-p2w, compliance, legal, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
 created: 2026-05-16
 updated: 2026-06-13
 type: index
@@ -262,6 +262,21 @@ cross-checks library and runtime facts against primary docs and registries.
 |---|---|---|
 | [[raw-match-engine-runtime-fork-2026-06-12]] | Runtime fork trade-off: Rust-native + WASM replay vs single WASM everywhere vs TS-first MVP, with FMA/libm/NaN/relaxed-SIMD/import/interruption risks | [[../match-engine-contract-ratification-2026-06-12]] · [[../../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]] |
 | [[raw-match-engine-replay-quality-profiles-2026-06-12]] | Replay guarantee tiers for human-viewed matches, detailed background matches and fast background simulation | [[../match-engine-contract-ratification-2026-06-12]] · [[../../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]] |
+
+## FMX-133 follow-up Perplexity/Web research (2026-06-13)
+
+Perplexity research and targeted source checks were run during FMX-133 after
+Nico selected the match-engine core model issue. Perplexity returned useful
+directional synthesis but uneven citations, so the source-check note records the
+stronger source trail.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-match-engine-real-world-envelopes-2026-06-13]] | Real-world match statistical envelopes: goals, shots, xG, cards, possession, PPDA and injuries | [[../match-engine-core-model-2026-06-13]] · [[../../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] |
+| [[raw-match-engine-action-utility-models-2026-06-13]] | Event-chain, logistic/weighted attribute contests, xG, xT/EPV possession value and reason-code modelling | [[../match-engine-core-model-2026-06-13]] · [[../../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] |
+| [[raw-match-engine-game-precedents-2026-06-13]] | Football Manager, OOTP and lower-visual football-manager precedent for watched, quick and background simulation tiers | [[../match-engine-core-model-2026-06-13]] · [[../../50-Game-Design/match-engine]] |
+| [[raw-match-engine-calibration-harness-2026-06-13]] | Golden replay, seed-sweep, statistical-envelope, goodness-of-fit and background-fast compatibility harness patterns | [[../match-engine-core-model-2026-06-13]] · [[../../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] |
+| [[raw-match-engine-source-checks-2026-06-13]] | Targeted source checks for xG, xT/EPV, game precedents, statistical tests and injuries | [[../match-engine-core-model-2026-06-13]] · [[../../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] |
 
 ## FMX-88 follow-up Perplexity research (2026-06-04)
 

@@ -3,7 +3,7 @@ title: Match Engine - Swappable Spatial-Event Specification
 status: draft
 tags: [game-design, match-engine, simulation, spatial-event]
 created: 2026-05-16
-updated: 2026-06-11
+updated: 2026-06-13
 type: game-design
 binding: false
 related: [[README]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../60-Research/match-engine-simulation-model]], [[../60-Research/match-engine-runtime-strategy]], [[../60-Research/determinism-and-replay]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/tactics-and-formations]], [[tactics-system]], [[fan-ecology]], [[set-pieces]], [[singleplayer-baseline]], [[async-multiplayer-private-group]]
@@ -21,6 +21,12 @@ related: [[README]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatia
 > [[../10-Architecture/09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep|ADR-0092]].
 > The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
 > is then the binding record.
+
+> **FMX-133 proposal note (2026-06-13):** [[GD-0042-match-engine-core-model-and-calibration]]
+> proposes the concrete core model for action utility, xG/EPV, attribute math,
+> statistical envelopes, quality-profile spatial density and calibration harness.
+> It is `draft` / non-binding until Nico approves
+> [[../40-Execution/fmx-133-match-engine-core-model-decision-queue-2026-06-13|the FMX-133 decision queue]].
 
 The target match engine is **spatial-event, not outcome-first and not a
 frame-by-frame renderer**. Events are resolved from a meaningful 2D pitch state:
@@ -131,6 +137,50 @@ The action utility layer must expose tactical causality:
 - star-focal play biases candidate actions toward the focal player within
   tactical and positional plausibility.
 
+### 1.3.1 Proposed FMX-133 action utility model
+
+Pending [[GD-0042-match-engine-core-model-and-calibration|GD-0042]] approval,
+`choose_action` is proposed as a deterministic utility selection over plausible
+candidate actions:
+
+```text
+utility(action) =
+  sum(outcome_probability(action, state, actor, opponent) *
+      possession_value(resulting_state(outcome)))
+  + tactical_style_bias
+  + player_trait_bias
+  - risk_penalty
+  - fatigue_or_pressure_penalty
+```
+
+Candidate generation stays tactical and spatial:
+
+- actions must be plausible for the ball zone, role, phase, player traits and
+  current tactic;
+- possession value is an xT/EPV-style grid over ball zone, pressure, pitch
+  control and score context;
+- xG is used only for shot probability, not for all non-shot action utility;
+- Decisions, Composure and tactical familiarity control bounded rationality:
+  high-quality players more often choose the best action, while lower-quality or
+  pressured players may choose a near-best plausible action;
+- the committed event records compact reason codes such as
+  `tactic:direct_play_bias`, `state:high_epv_gain`,
+  `attribute:passing_advantage`, `pressure:forced_clearance` and
+  `fatigue:late_match_degradation`.
+
+### 1.3.2 Proposed attribute probability surfaces
+
+The exact coefficients are calibration data, but the proposed v1 surfaces are:
+
+| Action | Probability surface inputs |
+|---|---|
+| Pass | Passing, Technique, Vision, Decisions, distance, lane congestion, receiver separation, pressure, fatigue, opponent Positioning/Anticipation |
+| Dribble | Dribbling, Technique, Balance, Agility, Acceleration, Flair, pressure count, zone congestion, defender Tackling/Positioning/Strength |
+| Press/duel | Work Rate, Aggression, Anticipation, Stamina, Bravery, support distance, opponent Technique/Composure |
+| Aerial | Heading, Jumping, Strength, Bravery, Positioning, delivery quality, opponent contest score |
+| Shot | xG features plus Finishing, Technique, Composure, weak foot, pressure, keeper position/reflexes, fatigue |
+| Foul/card | Aggression, tackling risk, fatigue, frustration, ref profile, tackle angle, tactical-foul context |
+
 ### 1.4 Narrative layer
 
 Produced per event:
@@ -150,7 +200,8 @@ cosmetic and may never alter the event, stat, replay or downstream state.
 loop while match.running:
   spatial_state = observe_pitch_state()
   candidates = propose_actions(spatial_state, tactics, roles)
-  intended_action = choose_action(candidates, xg_epv, risk, rng)
+  utilities = score_actions(candidates, possession_value, tactics, traits, risk)
+  intended_action = choose_action(utilities, decisions, composure, tactical_familiarity, rng)
   defender_response = defending_team.react(spatial_state, intended_action)
   outcome = resolve(intended_action, defender_response, attributes, pressure, rng)
   field_state.update(outcome)
@@ -260,6 +311,15 @@ Match quality profile is separate from UI tier and device tier.
 | `background-detailed` | Important AI fixtures in active leagues | Summary plus selected event/key-stat data; replay can re-sim on demand |
 | `background-fast` | Rest-world fixtures and long-term world simulation | Result, injuries, form, table, reputation and economy effects only |
 
+Proposed FMX-133 spatial density (pending GD-0042 approval):
+
+| Profile | Spatial/event density |
+|---|---|
+| `competitive-full` | Full event log, event anchors, 1 Hz state samples, phase-boundary samples, intervention support and byte-exact replay. |
+| `interactive-standard` | Full event log, event anchors, 0.33 Hz state samples, phase-boundary samples and byte-exact replay with less heatmap precision. |
+| `background-detailed` | Summary plus selected key events/stats and seed/parameter provenance; not renderable by default. |
+| `background-fast` | Outcome/stat summary only; no renderable event/spatial source; aggregate compatibility required. |
+
 Examples:
 
 - A user's cup final in async MP is `competitive-full`.
@@ -348,7 +408,27 @@ Implications:
 ## 10. Future-scope notes (classified future-scope)
 
 - Tuning values for quality-profile downgrades by world size and device tier.
-- Minimum spatial sample rate per profile for credible heatmaps and running
-  distance.
 - Which `background-detailed` AI fixtures should keep selected events by default
   instead of seed-only summaries.
+
+FMX-133 proposes to remove "minimum spatial sample rate per profile" from
+future-scope by adopting the density table in §6.2 via GD-0042. Until Nico
+approves GD-0042, the table remains planning guidance only.
+
+## 11. Proposed calibration harness (FMX-133)
+
+Pending GD-0042 approval, the match engine must be calibrated by:
+
+- golden replay fixtures for `competitive-full` and `interactive-standard`;
+- 256-seed PR smoke sweeps over named scenarios once implementation exists;
+- 1,000+ seed core sweeps for goals, shots, xG, possession, PPDA, cards and
+  injuries;
+- 10,000+ seed release calibration soaks before changing model versions;
+- background-fast compatibility sweeps against the `competitive-full` reference
+  distribution;
+- statistical checks using chi-square, Kolmogorov-Smirnov or Anderson-Darling
+  where appropriate, plus bootstrap confidence intervals for key means and
+  quantiles.
+
+Exact constants and tolerances remain calibration data, but the harness shape is
+part of the proposed game-design contract.

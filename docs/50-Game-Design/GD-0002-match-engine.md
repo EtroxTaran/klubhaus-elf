@@ -3,7 +3,7 @@ title: GD-0002 Match Engine & Simulation Model
 status: accepted
 tags: [game-design, gddr, match-engine, spatial-event]
 created: 2026-05-17
-updated: 2026-06-11
+updated: 2026-06-13
 type: game-design
 binding: false
 related: [[README]], [[match-engine]], [[GD-0004-tactics]], [[GD-0010-ai-world]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../60-Research/anstoss-series-deep-dive]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/modules/match-engine]]
@@ -56,14 +56,29 @@ from the same committed event/spatial truth.
 
 ## Open / spike gates
 
-- TS-vs-Rust contract spike: same input fixtures, seeds, event log and spatial
-  samples.
-- Numeric representation: fixed-point vs quantized floats.
-- Minimum spatial sample density per quality profile.
+> **FMX-133 proposed closure packet (2026-06-13, pending Nico).**
+> [[GD-0042-match-engine-core-model-and-calibration]] prepares the remaining
+> match-model and calibration decisions as a non-binding D1-D6 packet. The
+> ADR-0096 runtime/numeric closures below are already accepted; the GD-0042
+> model/calibration closures remain gated until Nico approves them. If approved,
+> GD-0042 supersedes the relevant open gates without changing this GDDR's
+> original spatial-event direction.
+
+- TS-vs-Rust contract spike: **closed architecturally by
+  [[../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface|ADR-0096]]**
+  (single Rust-authored WASM module everywhere); no longer a GD-0002 gameplay
+  fork.
+- Numeric representation: **closed by ADR-0096** as mandatory integer/fixed-point
+  replay-bearing math. FMX-133 must not reopen fixed-point vs quantized-float.
+- Minimum spatial sample density per quality profile: proposed in
+  [[GD-0042-match-engine-core-model-and-calibration]] D4 as event anchors + 1 Hz
+  for `competitive-full`, event anchors + 0.33 Hz for `interactive-standard`,
+  and no renderable spatial track for background profiles by default.
 - Statistical envelopes for tactics, star-player involvement, xG, pressing,
-  cards, injuries and background-fast compatibility.
-- Exact disconnect timers and pause budgets must stay aligned with the
-  architecture state machines.
+  cards, injuries and background-fast compatibility: proposed in GD-0042 D3/D5.
+- Exact disconnect timers and pause budgets stay aligned with the architecture
+  state machines and remain outside FMX-133; GD-0035/ADR-0087 own live-control
+  and watch-party pause rules.
 
 ## Rationale
 
