@@ -88,7 +88,7 @@ the `ManagerStyleSignals` aggregate (tactical fingerprint + the five coarse sign
 tier disclosure; the start-finance perk policy; the minimal `PostRunReflection`; determinism
 invariants. **Out of scope:** archetype names/taxonomy & clustering (G3 — deferred), the tactical
 algorithm (ADR-0074), perk catalogue / perk caps / prestige-ladder shape (post-MVP, Nico-gated),
-calibration baselines (FMX-52), full retrospective/Expert analytics UI.
+calibration baselines (GD-0043 `tactics.identity`), full retrospective/Expert analytics UI.
 
 ## Decision options
 
@@ -139,7 +139,7 @@ process-manager is introduced for MVP.
 Five categories from GD-0019, each a **coarse, normalised** signal derived from already-published
 domain facts at run-end (no cross-context joins; sources own the truth). Each combines a small fixed
 set of sub-measures by a weighted average, normalised to [0,1] by a clipped-linear transform against
-provisional baselines (calibration = FMX-52). Definitions are grounded in real-world/game analyst
+provisional baselines (calibration = GD-0043 `tactics.identity`). Definitions are grounded in real-world/game analyst
 vocabulary (see [[../../60-Research/raw-perplexity/raw-manager-identity-offpitch-games-2026-06-05]]).
 
 | Signal (`dimension`) | Coarse measure (run-aggregated) | Owning source domain(s) → fact |
@@ -159,13 +159,13 @@ empirical-Bayes (these are season-level counts, not noisy per-match series):
 
 ```
 n          = number of contributing run-periods/events for the signal
-w_coarse   = n / (n + k_band)              # confidence ∈ [0,1]; k_band provisional (FMX-52)
+w_coarse   = n / (n + k_band)              # confidence ∈ [0,1]; k_band provisional (GD-0043 tactics.identity)
 band       = 'provisional'  if w_coarse < t1       # default t1 = 0.33
            | 'emerging'     if t1 ≤ w_coarse < t2  # default t2 = 0.66
            | 'established'  otherwise
 ```
 
-`k_band`, `t1`, `t2` are **provisional calibration constants (FMX-52)**, versioned behind
+`k_band`, `t1`, `t2` are **provisional calibration constants (GD-0043 `tactics.identity`)**, versioned behind
 `signalModelVersion`. The tactical signal keeps ADR-0074's empirical-Bayes `confidence` (mapped to the
 same three bands for a consistent surface).
 
@@ -250,7 +250,7 @@ snowball).
 | **M6** | Each non-tactical signal lists a **named owning source domain + event/read-model** (§1); no signal stores authoritative data duplicating a source context. |
 | **M7** | **No soft perk affects starting finance in MVP**; any future one is prestige-gated + hard-capped + counterweighted + a fresh Nico decision (§5). |
 | **M8** | `PostRunReflection` is **MVP-mandatory** and **text-only** (outcome + top 2–3 signal phrases); it asserts no perk unlock. |
-| **M9** | Calibration constants (`k_band`, `t1`, `t2`, coarse-signal baselines/weights) are versioned (`signalModelVersion`) and tunable via FMX-52 without changing the contract shape. |
+| **M9** | Calibration constants (`k_band`, `t1`, `t2`, coarse-signal baselines/weights) are versioned (`signalModelVersion`) and tunable via GD-0043 `tactics.identity` without changing the contract shape. |
 | **M10** | Archetype names, perk caps, prestige-ladder shape and any start-finance cap are **post-MVP, Nico-gated**; downstream consumers (E5 archetype-resistance, E5-2/E6-3 prestige/HoF) reference **signals**, not a taxonomy. |
 
 ## Consequences
@@ -262,7 +262,7 @@ perk policy and prestige-counterweight are now ratified balance invariants; `Pos
 delivers the GD-0019 payoff at minimal cost; cross-save determinism stays exactly ADR-0051's rule.
 
 **Negative / constraints:** the five non-tactical coarse-signal baselines/weights and the band
-thresholds (`k_band`, `t1`, `t2`) are provisional pending FMX-52 playtest tuning; some categories
+thresholds (`k_band`, `t1`, `t2`) are provisional pending GD-0043 `tactics.identity` playtest tuning; some categories
 (e.g. `clubBuilding`) depend on facts owned by contexts still `proposed` (Stadium Operations / Audience
 & Atmosphere / CommercialPortfolio) — those inputs are **reserved hooks** until those ADRs ratify; the
 archetype taxonomy, perk catalogue and prestige ladder remain explicitly deferred (G3, post-MVP).
@@ -283,7 +283,7 @@ None
 
 `proposed` / `binding: false`. D1–D4 chosen live by Nico 2026-06-05. Residual tuning (`k_band`, band
 thresholds, coarse-signal normalisation baselines/weights, exact reflection copy) is **calibration
-debt routed to FMX-52** and does not block ratification of the contract shape. Archetype taxonomy,
+debt routed to GD-0043 `tactics.identity`** and does not block ratification of the contract shape. Archetype taxonomy,
 perk catalogue/caps, prestige-ladder shape and any future start-finance perk cap remain **post-MVP,
 Nico-gated** decisions. Ratified 2026-06-08 (#153); the ADR-0051 additive pointer applies in the
 same PR.

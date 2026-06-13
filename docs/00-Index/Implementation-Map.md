@@ -42,9 +42,13 @@ unless re-opened by a current issue or accepted ADR.
   season-ticket accounting, cup/competition revenue profiles, fan events and
   Investor grants, plus matchday operating-cost profiles and risk settlement.
 - [Economy Calibration and Soak-Test Runbook](../30-Implementation/economy-calibration-and-soak-test-runbook.md)
-  - draft FMX-52 calibration/soak method: deterministic fixtures + seed strategy,
+  - draft FMX-52 economy calibration/soak method: deterministic fixtures + seed strategy,
   50y gate + 100y deep soak harness, invariants/metamorphic relations, golden
   baseline + drift detection, parameter/scenario sheets and the evidence-acceptance gate.
+- [Gameplay Calibration and Soak-Test Runbook](../30-Implementation/gameplay-calibration-and-soak-test-runbook.md)
+  - draft FMX-141 non-economy gameplay calibration method: named slots, T0-T4
+  harness tiers, slot/parameter/scenario sheets, envelope checks and
+  baseline/rebaseline policy.
 - [SurrealDB Integration](../30-Implementation/surrealdb-integration.md) - superseded historical substrate note; do not implement.
 - [Deployment Dokploy](../30-Implementation/deployment-dokploy.md)
 - [Observability Runbook](../30-Implementation/observability-runbook.md)

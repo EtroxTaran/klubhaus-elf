@@ -3,10 +3,10 @@ title: GD-0026 Set-Piece-Coach Effect-Readiness Multiplier Curve
 status: accepted
 tags: [game-design, gddr, set-pieces, staff, training, tactics, match, determinism, fmx-69, gap-g12]
 created: 2026-06-04
-updated: 2026-06-11
+updated: 2026-06-13
 type: game-design
 binding: false
-related: [[README]], [[set-pieces]], [[GD-0005-training]], [[training-load-and-medicine]], [[GD-0021-player-staff-development-and-decision-influence]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0055-tactics-context]], [[../10-Architecture/09-Decisions/ADR-0067-set-piece-variant-selection-determinism]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../60-Research/setpiece-coach-readiness-2026-06-04]]
+related: [[README]], [[set-pieces]], [[GD-0005-training]], [[training-load-and-medicine]], [[GD-0021-player-staff-development-and-decision-influence]], [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]], [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0055-tactics-context]], [[../10-Architecture/09-Decisions/ADR-0067-set-piece-variant-selection-determinism]], [[../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[../60-Research/setpiece-coach-readiness-2026-06-04]]
 ---
 
 # GD-0026: Set-Piece-Coach Effect-Readiness Multiplier Curve
@@ -23,7 +23,7 @@ accepted
 > **Draft / `binding: false`.** Closes audit gap **G12** (FMX-69, E2 epic FMX-58).
 > Decisions **D1–D4** were put to Nico live on 2026-06-04 (ask-first gate) and chosen
 > **A/A/A/A**. The document as a whole awaits ratification; named constants flagged
-> **(FMX-52 calibration)** are not locked. Implement gameplay only once `approved`.
+> **(`setPieces.readiness` calibration, GD-0043)** are not locked. Implement gameplay only once `approved`.
 > Builds on accepted ADR-0067 (FMX-70); the readiness gate is an **additive** field on
 > the frozen snapshot, proposed as an ADR-0067/ADR-0055 amendment (§7) — the accepted
 > selection rule is not rewritten.
@@ -124,7 +124,7 @@ effMult = m_min + (1 − m_min) · r                  # default m_min = 0.6 ; ef
 This is the dial the real-world "+5–10 set-piece goals/season" effect size calibrates,
 **downstream of** the curve shape.
 
-### Named constants (all **FMX-52 calibration**, behind `readinessModelVersion`)
+### Named constants (all **`setPieces.readiness` calibration**, behind `readinessModelVersion`)
 
 `k0` (base rate; default `ln 10 / 5 ≈ 0.461`/wk → ~5 weeks to 90% with no coach) ·
 `κ ≈ 0.75` (coach-rate; `s=1` ⇒ ~1.75× faster) · `λ` (category-transfer bonus) ·
@@ -147,7 +147,7 @@ export const SetPieceType = z.enum([
 
 export const SetPieceCoachReadinessUpdated = z.object({
   schemaVersion: z.literal("1.0"),
-  readinessModelVersion: z.string(),          // calibration/version gate (FMX-52)
+  readinessModelVersion: z.string(),          // calibration/version gate (GD-0043 setPieces.readiness)
   saveId: z.string().uuid(),
   clubId: z.string().uuid(),
   effectiveFrom: z.string(),                  // game-week boundary (ISO game-date)
@@ -247,7 +247,8 @@ purity intact); single source for the score (no duplication); decay creates a ge
 keep-it-drilled tradeoff without rote weekly micromanagement.
 
 **Negative / constraints** — adds two additive fields to the accepted `TacticSnapshot`
-(proposed amendment, Nico-gated); all magnitudes are FMX-52 calibration debt behind
+(proposed amendment, Nico-gated); all magnitudes are `setPieces.readiness`
+calibration debt behind
 `readinessModelVersion`; the two-layer model adds per-module + per-variant state to the
 Training projection (bounded; no new RNG, no new persisted match state).
 
@@ -255,5 +256,14 @@ Training projection (bounded; no new RNG, no new persisted match state).
 
 - **Nico ratify** GD-0026 (`draft` → `approved`) + approve the additive ADR-0067/ADR-0055
   snapshot-field amendment (never self-accepted).
-- FMX-52 calibration: all named constants + the `effMult` mapping against the +5–10
-  goals/season target.
+- GD-0043 `setPieces.readiness` calibration: all named constants + the `effMult`
+  mapping against the +5–10 goals/season target.
+
+## Calibration slot (FMX-141)
+
+- Slot: `setPieces.readiness`
+- Parameter pack: `readinessModelVersion`
+- Harness: T0 deterministic readiness reducer + T1/T2 set-piece scenario sweeps in
+  [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
+- Metrics: weeks-to-selectable, decay, hysteresis flips, category transfer,
+  set-piece conversion uplift and training-load side effects.

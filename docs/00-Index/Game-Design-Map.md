@@ -19,8 +19,9 @@ future-scope or historical planning unless they are listed as binding
 (ADR-0092); since the 2026-06-08 ratification all GD-0001–GD-0040 GDDRs are
 `accepted`, while the non-numbered system/mode notes are `draft` pending
 individual re-approval (FMX-143 H2). GD-0041 is the FMX-191 monetization/no-P2W
-proposal and GD-0042 is the FMX-133 match-engine core model/calibration proposal;
-both remain `draft` pending Nico. This means old `Future-scope notes`
+proposal, GD-0042 is the FMX-133 match-engine core model/calibration proposal
+and GD-0043 is the FMX-141 gameplay calibration ownership proposal; all three
+remain `draft` pending Nico. This means old `Future-scope notes`
 sections are not active work by default.
 
 ## Hub
@@ -87,10 +88,14 @@ sections are not active work by default.
 - [[../50-Game-Design/match-engine]]
 - [[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] -
   draft FMX-133 core model/calibration proposal; pending Nico D1-D6.
+- [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] -
+  draft FMX-141 gameplay calibration ownership proposal; pending Nico D1-D5.
 - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
 - [[../60-Research/match-engine-core-model-2026-06-13]] - FMX-133 synthesis for
   statistical envelopes, xG/EPV/action utility, profile density and calibration
   harness.
+- [[../60-Research/gameplay-calibration-ownership-and-harness-2026-06-13]] -
+  FMX-141 synthesis for gameplay-wide calibration slots and harness tiers.
 
 ## Modes
 
@@ -211,7 +216,9 @@ reconciliation 2026-06-11):
 - **Not binding:** [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
   is `draft` pending the FMX-191 Nico decision queue;
   [[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] is `draft`
-  pending the FMX-133 Nico decision queue; related draft
+  pending the FMX-133 Nico decision queue;
+  [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
+  is `draft` pending the FMX-141 Nico decision queue; related draft
   [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
   is the FMX-190 enforcement proposal pending its own Nico decision queue.
 - **Binding research synthesis:** [[../60-Research/player-strength-presentation]]

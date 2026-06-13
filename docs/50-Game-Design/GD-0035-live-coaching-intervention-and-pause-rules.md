@@ -3,7 +3,7 @@ title: GD-0035 Live-Coaching Intervention & Pause Rules
 status: accepted
 tags: [game-design, gddr, match, watch-party, live-coaching, intervention-buffer, pause-vote, anti-grief, multiplayer, fmx-101]
 created: 2026-06-07
-updated: 2026-06-08
+updated: 2026-06-13
 type: gddr
 binding: false
 linear: FMX-101
@@ -12,17 +12,19 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0072-in-match-control-seam]]
   - [[GD-0025-in-match-controls]]
   - [[GD-0002-match-engine]]
+  - [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
   - [[watch-party-and-conference]]
   - [[../10-Architecture/state-machines/match]]
   - [[../10-Architecture/state-machines/watch-party]]
   - [[../60-Research/live-match-intervention-buffer-and-pause-vote-2026-06-07]]
+  - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
 ---
 
 # GD-0035: Live-Coaching Intervention & Pause Rules
 
 > **Status `draft`.** The gameplay-design companion to **ADR-0087** (architecture/contracts).
 > Authored after Nico chose FMX-101 D1–D4 live (2026-06-07, all = A). All numeric magnitudes are
-> **FMX-52 calibration** behind `interventionPolicyVersion` / a pause-policy version + per-group
+> **GD-0043 `match.liveIntervention` calibration** behind `interventionPolicyVersion` / a pause-policy version + per-group
 > config — this note pins *shapes, feel and directions*, not final values. Cross-linked from
 > `watch-party-and-conference.md §7` and `GD-0025`.
 
@@ -47,7 +49,8 @@ FMX-101 adds is the **bounding** at each of those acceptance points:
 - **Caps per acceptance point** (D1): at most a few changes land at one break — a global cap (~8)
   plus per-type caps: **up to 3 substitutions** (the real "triple change"), **one tactical
   package** (a single confirm can bundle formation + roles + mentality + instructions — it counts
-  as *one* change, applied atomically), and **one shout**. Numbers → FMX-52.
+  as *one* change, applied atomically), and **one shout**. Numbers → GD-0043
+  `match.liveIntervention`.
 - **Last word wins**: if you change your mind before the break, the **latest** tactical package and
   the **latest** shout are the ones that apply; earlier ones are quietly *superseded*. Two subs for
   the same player → the first is kept, the second is rejected as a duplicate.
@@ -111,19 +114,19 @@ While paused, the tactics panel opens for everyone with a clear note that **chan
 resume** — the pause is for *coaching*, not a free break. A pause never speeds up or alters the
 match itself; it only suspends the shared view (see the determinism note below).
 
-## 3. Default magnitudes (provisional — FMX-52)
+## 3. Default magnitudes (provisional — `match.liveIntervention`, GD-0043)
 
 Indicative starting points to be tuned on a running build; **none are locked from intuition**:
 
 | Knob | Provisional default | Owner / tunable |
 |---|---|---|
-| Buffer: global cap / point | ~8 | Match policy → FMX-52 |
-| Buffer: subs / tactical pkg / shouts per point | 3 / 1 / 1 | Match policy → FMX-52 |
-| Deliberate pause budget / manager / half | ~2 | per-group + FMX-52 |
-| Deliberate pause: group cap / half | `min(managers×2, 6)` | per-group + FMX-52 |
-| Cooldown between pauses | ~90s in-match | per-group + FMX-52 |
-| Max pause duration (auto-resume) | ~20s (ceiling 60s) | per-group + FMX-52; **ceiling fixed** |
-| Veto / vote window | ~3s | per-group + FMX-52 |
+| Buffer: global cap / point | ~8 | Match policy → `match.liveIntervention` |
+| Buffer: subs / tactical pkg / shouts per point | 3 / 1 / 1 | Match policy → `match.liveIntervention` |
+| Deliberate pause budget / manager / half | ~2 | per-group + `match.liveIntervention` |
+| Deliberate pause: group cap / half | `min(managers×2, 6)` | per-group + `match.liveIntervention` |
+| Cooldown between pauses | ~90s in-match | per-group + `match.liveIntervention` |
+| Max pause duration (auto-resume) | ~20s (ceiling 60s) | per-group + `match.liveIntervention`; **ceiling fixed** |
+| Veto / vote window | ~3s | per-group + `match.liveIntervention` |
 
 ## 4. Determinism note (player-invisible, design-critical)
 
@@ -139,3 +142,12 @@ why two people watching the same replay always see the same match, regardless of
 - Reputation-sensitive guardrails (habitual pausers get longer personal cooldowns).
 - A designated "Head Coach" role with +1 pause and a single veto-override per half (a coach's-
   challenge analogue).
+
+## Calibration slot (FMX-141)
+
+- Slot: `match.liveIntervention`
+- Parameter pack: `interventionPolicyVersion`
+- Harness: T0 exact replay for intervention order/rejection + T1/T2 watch-party
+  fairness sweeps in [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
+- Metrics: buffer caps, typed rejection frequency, pause budget usage, pause
+  duration, cooldown, vote/veto windows and grief-risk signals.

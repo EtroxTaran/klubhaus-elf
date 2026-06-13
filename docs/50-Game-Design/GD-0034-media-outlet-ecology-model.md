@@ -3,7 +3,7 @@ title: GD-0034 Media-Outlet Ecology Model
 status: accepted
 tags: [game-design, gddr, media, media-ecology, outlets, press, editorial-stance, narrative, fmx-82]
 created: 2026-06-07
-updated: 2026-06-08
+updated: 2026-06-13
 type: gddr
 binding: false
 linear: FMX-82
@@ -14,15 +14,17 @@ related:
   - [[GD-0013-narrative-inbox]]
   - [[GD-0018-ai-narrative-personas-and-dialogue]]
   - [[GD-0028-dialogue-intent-taxonomy-effect-matrix]]
+  - [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
   - [[GD-0015-ip-clean-data]]
   - [[../60-Research/media-outlet-operational-behaviour-2026-06-07]]
+  - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
 ---
 
 # GD-0034: Media-Outlet Ecology Model
 
 > **Status `draft`.** The gameplay-design companion to **ADR-0085** (architecture/boundary).
 > Authored after Nico chose FMX-82 D1–D4 live (2026-06-07). All numeric magnitudes are
-> **FMX-52 calibration** behind `mediaEcologyModelVersion` — this note pins *shapes and
+> **GD-0043 `media.ecology` calibration** behind `mediaEcologyModelVersion` — this note pins *shapes and
 > directions*, not final values.
 
 ## Why this exists
@@ -66,7 +68,7 @@ Every outlet is captured by the same small vector (real-world research):
 5. **Cadence** — `cadenceProfile` (`dailyEdition · breakingContinuous · weeklyMagazine`) +
    `eventSensitivity`. How often it publishes and how much matchdays/windows/crises spike it.
 
-### Type archetype starting bands (directions only — FMX-52 calibrates)
+### Type archetype starting bands (directions only — `media.ecology` calibrates)
 
 | Type | Sensationalism | Reliability | Reach base | Affinity tendency |
 |---|---|---|---|---|
@@ -142,12 +144,15 @@ friendly outlets and player media-training all feed outlet relationships and sta
 "managing the media" a real, legible sub-game with multi-system stakes (job security, player
 confidence, fan sentiment, sponsor appeal), not a "click the safe answer" minigame.
 
-## Calibration debt (→ FMX-52, behind `mediaEcologyModelVersion`)
+## Calibration debt (`media.ecology`, GD-0043, behind `mediaEcologyModelVersion`)
 
 Scoring weights `w_*`; per-edition budgets and the salience floor; cadence base + matchday/
 window/crisis/big-event factors; stance-drift rates and crisis thresholds; reach weights; the
 news-gravity formula; roster size per market; outlet→fan-mood/board/morale effect magnitudes.
 This note fixes the **shapes and directions**; the numbers are tuned in playtest.
+
+Harness: T1/T3 outlet-cadence, stance-drift and long-save media-density sweeps in
+[[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
 
 ## Open / deferred
 

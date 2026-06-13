@@ -3,7 +3,7 @@ title: GD-0033 National-Team (Bundestrainer) Dual-Role
 status: accepted
 tags: [game-design, gddr, national-team, dual-role, late-game, dynasty, prestige, career-progression, fmx-84]
 created: 2026-06-06
-updated: 2026-06-08
+updated: 2026-06-13
 type: game-design
 binding: false
 linear: FMX-84
@@ -14,10 +14,12 @@ related:
   - [[GD-0010-ai-world]]
   - [[GD-0019-manager-archetype-roguelite-progression]]
   - [[GD-0032-awards-honours-records-and-hall-of-fame]]
+  - [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
   - [[GD-0015-ip-clean-data]]
   - [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
   - [[../10-Architecture/09-Decisions/ADR-0066-competition-registry-sub-aggregate]]
   - [[../10-Architecture/09-Decisions/ADR-0068-fixture-scheduling-contract]]
+  - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
 ---
 
 # GD-0033: National-Team (Bundestrainer) Dual-Role
@@ -56,7 +58,7 @@ post-MVP fast-follow** — a *telegraphed reserved stub*, not a cut feature.
 
 A manager may be offered a national-team role once **both** hold:
 
-| Gate | Value (banded; FMX-52) | Source / note |
+| Gate | Value (banded; `legacy.nationalTeam` slot) | Source / note |
 |---|---|---|
 | Manager reputation | **≥ 75** | global aggregate of the region-based reputation model (`late-game-systems.md §5.3`: per-country → continental → global) |
 | Tenure | **≥ 5 in-game seasons** managed | `ai-manager-behaviour.md §11.2` |
@@ -74,7 +76,8 @@ rule — even though the playable role ships post-MVP.
 **Job-offer windows** (design intent, post-MVP build): a **main hiring window** ~1 month after a
 major tournament, plus a **secondary window** when a sitting national coach's board confidence
 falls below a floor; rare random vacancies. Candidate selection favours strong **regional +
-national reputation** and nationality fit. Exact timings + candidate-scoring = post-MVP + FMX-52.
+national reputation** and nationality fit. Exact timings + candidate-scoring =
+post-MVP + GD-0043 `legacy.nationalTeam`.
 
 ## 3. Engagement levels (D4)
 
@@ -135,17 +138,17 @@ seam with minimal refactor.
 - **Job-offer market model** (candidate-scoring formula, nationality multiplier, window timings)
   — design directions only here; ratify with the post-MVP build.
 - **Region-rep → single "manager reputation" aggregation curve** — directions only
-  (`late-game-systems.md §5.3`); exact curve = post-MVP + FMX-52.
+  (`late-game-systems.md §5.3`); exact curve = post-MVP + GD-0043 `legacy.nationalTeam`.
 - **National-team contribution to HoF / prestige scoring** — reserved input shape only; weights
-  belong to ADR-0083's `legacyScoreFormulaVersion` (FMX-52).
+  belong to ADR-0083's `legacyScoreFormulaVersion` (`legacy.hof` slot, GD-0043).
 
-## 7. Calibration debt (FMX-52)
+## 7. Calibration debt (`legacy.nationalTeam`, GD-0043)
 
 `nationalTeam.unlock.reputationMin` (~75), `nationalTeam.unlock.minSeasons` (~5),
 `nationalTeam.offerWindow.postTournamentDays`, `nationalTeam.offerWindow.boardConfidenceFloor`,
 plus post-MVP: engagement-level time-budget splits, candidate-scoring weights, nationality
 multiplier, same-day-clash frequency. All banded in
-[[../30-Implementation/economy-calibration-and-soak-test-runbook]] §13; tuned at playtest, not
+[[../30-Implementation/gameplay-calibration-and-soak-test-runbook]] §9; tuned at playtest, not
 locked from intuition.
 
 ## 8. Out of scope
@@ -153,7 +156,7 @@ locked from intuition.
 The actual international **competition schema** / fixture generation for national tournaments
 (Competition Registry, ADR-0066 reserved cup/continental seams); board/ownership FSMs (GD-0030);
 flatline + HoF metric definitions (FMX-90 / GD-0032); the full playable dual-role build itself
-(post-MVP); final constants (FMX-52).
+(post-MVP); final constants (GD-0043 `legacy.nationalTeam`).
 
 ## Rationale
 
@@ -175,9 +178,19 @@ preserves the telegraphed carrot against the season 4–6 flatline; keeps the MV
 reserved prestige seam keeps ADR-0083's national-team stub fillable without rework.
 
 **Negative / constraints:** the playable role is deferred, so the *full* pay-off lands post-MVP
-(mitigated by early telegraphing); all magnitudes are FMX-52 debt until playtest; some inputs
+(mitigated by early telegraphing); all magnitudes are GD-0043 `legacy.nationalTeam` debt until playtest; some inputs
 depend on still-`proposed` upstreams (FMX-91 world-drift, ADR-0083 HoF). D3=B trades the richer
 "trophies OR seasons" gate for a simpler, more legible one.
+
+## Calibration slot (FMX-141)
+
+- Slot: `legacy.nationalTeam`
+- Parameter pack: `nationalTeamModelVersion`
+- Harness: T2/T3 unlock/offer/career sweeps in
+  [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
+- Metrics: reputation threshold, season threshold, job-offer cadence, candidate
+  scoring, clash frequency, engagement workload and HoF/prestige contribution
+  handoff.
 
 ## Supersedes
 

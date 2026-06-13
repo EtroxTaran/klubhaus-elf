@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-141, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
 updated: 2026-06-13
 ---
 
@@ -132,6 +132,24 @@ draft decision home is
 [[raw-perplexity/raw-match-engine-game-precedents-2026-06-13]],
 [[raw-perplexity/raw-match-engine-calibration-harness-2026-06-13]],
 [[raw-perplexity/raw-match-engine-source-checks-2026-06-13]].
+
+## Gameplay Calibration Ownership and Harness (FMX-141, 2026-06-13)
+
+[[gameplay-calibration-ownership-and-harness-2026-06-13]] preserves the
+FMX-141 research layer for non-economy gameplay calibration ownership. It
+recommends draft
+[[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
+and [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]] so
+accepted GDDRs point to concrete slots instead of generic FMX-52 economy
+calibration. Decision remains pending Nico in
+[[../40-Execution/fmx-141-gameplay-calibration-decision-queue-2026-06-13]].
+Recommended packet: gameplay-wide umbrella, 14-slot taxonomy, T0-T4 harness
+tiers, Nico-owned rebaseline authority until delegated and realism-anchored
+fun/perception overrides. Raw captures:
+[[raw-perplexity/raw-gameplay-calibration-sim-precedents-2026-06-13]],
+[[raw-perplexity/raw-gameplay-calibration-stochastic-harness-2026-06-13]],
+[[raw-perplexity/raw-gameplay-calibration-domain-slots-2026-06-13]],
+[[raw-perplexity/raw-gameplay-calibration-source-checks-2026-06-13]].
 
 ## Insolvency Event-To-Ledger Posting Contract (FMX-146, 2026-06-12)
 
@@ -437,8 +455,9 @@ draft [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narrat
 [[dialogue-intent-taxonomy-effect-matrix-2026-06-05]] is the FMX-87 synthesis
 for G13. It records Nico's selected planning defaults: Broad MVP dialogue
 surfaces (player, staff, board, press/media, fan-rep, agent), banded mechanical
-effects with exact values deferred to FMX-52 calibration, and persona/relationship
-influence as explicit gates plus bounded scaling. Raw capture:
+effects with exact values now mapped to the GD-0043 `dialogue.trustMorale`
+calibration slot, and persona/relationship influence as explicit gates plus
+bounded scaling. Raw capture:
 [[raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]].
 
 This feeds draft

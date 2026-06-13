@@ -59,7 +59,7 @@ accepted
 > structural change** beyond a one-line sub-aggregate clause (proposed, applied on
 > ratify per [[../../90-Meta/vault-governance]]). It locks **no numeric constants**:
 > every threshold, cap, deduction band, decay rate and budget multiplier is
-> **FMX-52 calibration debt** behind a `dynastyModelVersion`. The
+> **GD-0043 `dynasty.ownershipBoard` calibration debt** behind a `dynastyModelVersion`. The
 > **liquidation → phoenix-club** tail and **creditor-CVA negotiation** are
 > explicitly **reserved** (named hooks only).
 
@@ -347,7 +347,7 @@ Positive:
   construction.
 - Owners are legible *and* mechanically distinct; takeovers + administration are
   consequential arcs (fixing the genre's cosmetic-takeover / one-shot-bankruptcy
-  failures); no magic numbers baked (FMX-52).
+  failures); no magic numbers baked (GD-0043 `dynasty.ownershipBoard`).
 
 Negative / constraints:
 
@@ -355,7 +355,7 @@ Negative / constraints:
   the state-machine note).
 - The most dramatic ending (liquidation → phoenix) is reserved, so MVP bankruptcy
   drama tops out at heroic-save/abandon.
-- Realism depends on FMX-52 calibration; un-tuned the world is inert or chaotic.
+- Realism depends on GD-0043 `dynasty.ownershipBoard` calibration; un-tuned the world is inert or chaotic.
 
 ## HITL gate
 
@@ -369,7 +369,7 @@ Remaining ratification / follow-up items before implementation:
 - all numeric magnitudes (instability factors + threshold, takeover caps/cooldown,
   admin points band, embargo wage-cap %, escalation deltas, confidence
   weights/decay, archetype budget multipliers, owner-resistance modifiers) →
-  **FMX-52** behind `dynastyModelVersion`;
+  GD-0043 `dynasty.ownershipBoard` behind `dynastyModelVersion`;
 - the **liquidation → phoenix-club + creditor-CVA** slice (reserved hooks) → a later
   E5/League issue (league registration + save structure);
 - late-game UI surfaces (board-meeting dialogue, ownership news) → gaps G4-G6;

@@ -3,7 +3,7 @@ title: GD-0032 Awards, Honours, Records & Hall of Fame
 status: accepted
 tags: [game-design, gddr, awards, honours, records, hall-of-fame, legacy, prestige, dynasty, fmx-95]
 created: 2026-06-06
-updated: 2026-06-08
+updated: 2026-06-13
 type: game-design
 binding: false
 linear: FMX-95
@@ -12,9 +12,11 @@ related:
   - [[../60-Research/awards-honours-records-hof-owner-2026-06-06]]
   - [[GD-0019-manager-archetype-roguelite-progression]]
   - [[GD-0031-analytics-hub-and-statistics]]
+  - [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
   - [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
   - [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]]
   - [[../60-Research/dynasty-flatline-and-prestige-metric-inputs-2026-06-05]]
+  - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
 ---
 
 # GD-0032: Awards, Honours, Records & Hall of Fame
@@ -23,7 +25,7 @@ related:
 > D1–D4 were put to Nico live (2026-06-06, ask-first gate): D1=A extend Manager & Legacy ·
 > D2=A per-save records + cross-save legends · D3=A raw facts + versioned formula · **D4=B
 > full HoF in MVP** (Nico override of the recommended reserved-stub). All numeric magnitudes
-> are **FMX-52 calibration debt**. Architecture in
+> are **GD-0043 `legacy.hof` calibration debt**. Architecture in
 > [[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract|ADR-0083]];
 > grounding in [[../60-Research/awards-honours-records-hof-owner-2026-06-06]]. **IP-safe
 > naming applies** (GD-0015 / ADR-0007): every sample name below is fictional and illustrative.
@@ -136,12 +138,15 @@ determinism constraint). In-world induction is deterministic sim state. **Recomm
 formula. Genuinely stochastic in-world voting would need a new seeded `LegacyRng`/`HoFRng`
 sub-label (ADR-0018 §3). ADR-0083 proposes the no-new-RNG path.
 
-## 7. Calibration debt (FMX-52)
+## 7. Calibration debt (`legacy.hof`, GD-0043)
 
 Scoring weights; peak-vs-longevity balance; HoF thresholds + scarcity/quota caps;
 era-normalization coefficients; voting weights; eligibility waiting period; major-vs-minor
 honour tiering; record-category baselines; awards selection thresholds. All versioned behind
 `legacyScoreFormulaVersion`; tuned at playtest, not locked from intuition.
+
+Slot: `legacy.hof`; harness: T2/T3 awards/records/HoF scoring sweeps in
+[[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
 
 ## 8. Out of scope
 

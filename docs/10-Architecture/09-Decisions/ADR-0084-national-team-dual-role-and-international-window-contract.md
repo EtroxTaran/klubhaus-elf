@@ -80,7 +80,7 @@ windows the schedule reserves around. Best-practice for a niche late-unlocked as
 reserved national-team prestige handoff into Manager & Legacy / ADR-0083; determinism + IP-clean
 invariants. **Out of scope:** the full playable dual-role build (post-MVP); the international
 *competition schema* / national-tournament fixture generation (Competition Registry reserved cup
-/continental seams); HoF metric definitions (ADR-0083 / GD-0032); all numeric magnitudes (FMX-52).
+/continental seams); HoF metric definitions (ADR-0083 / GD-0032); all numeric magnitudes (GD-0043 `legacy.nationalTeam`).
 
 ## Decision options
 
@@ -105,7 +105,7 @@ invariants. **Out of scope:** the full playable dual-role build (post-MVP); the 
 | Option | Description | Trade-off |
 |---|---|---|
 | A. `rep ≥ 75 AND (5 seasons OR 3 trophies)` *(recommended)* | The richer `late-game-systems.md §4.2` gate; trophies path lets fast over-achievers unlock without pure time-gating. | Two-path gate is slightly less legible; research favours time+achievement combos. |
-| **B. `rep ≥ 75 AND 5 in-game seasons`** | The `ai-manager-behaviour.md §11.2` gate; single conjunctive condition; "OR 3 trophies" dropped. | **Chosen by Nico.** Simpler/legible; reputation already rewards trophies via the region-rep model, so a separate trophy path is redundant. Both values banded (FMX-52). |
+| **B. `rep ≥ 75 AND 5 in-game seasons`** | The `ai-manager-behaviour.md §11.2` gate; single conjunctive condition; "OR 3 trophies" dropped. | **Chosen by Nico.** Simpler/legible; reputation already rewards trophies via the region-rep model, so a separate trophy path is redundant. Both values banded (GD-0043 `legacy.nationalTeam`). |
 | C. Reputation-only | Unlock on rep ≥ 75 alone. | Too easy via one dominant season; loses the dynasty-longevity signal. |
 
 ### D4 — Engagement model + same-day clash resolution
@@ -223,7 +223,7 @@ reserved — FMX-84" stub points here.
 | **NT7** | Cross-save prestige aggregation is **read-only-at-world-gen** (ADR-0051 §Determinism / ADR-0083 D8); a running save never reads mutable cross-save meta after creation. |
 | **NT8** | **IP-clean** (GD-0015 / ADR-0007): nation/federation/competition **branding** routes through the fictional catalog; only player/persona *nationality* uses real ISO data; no real federation/nation names embedded as samples. |
 | **NT9** | The **playable dual-role** (job-offer market, squad-building, tournament UX, engagement-level operation, clash modal) is **post-MVP**; MVP ships only the reserved window contract + foreshadowing + reserved prestige seam. |
-| **NT10** | All magnitudes (`reputationMin`, `minSeasons`, offer-window timings, board-confidence floor, post-MVP weights) are **FMX-52 calibration debt**; the gate is `rep ≥ 75 AND seasons ≥ 5` (no trophy path). |
+| **NT10** | All magnitudes (`reputationMin`, `minSeasons`, offer-window timings, board-confidence floor, post-MVP weights) are **GD-0043 `legacy.nationalTeam` calibration debt**; the gate is `rep ≥ 75 AND seasons ≥ 5` (no trophy path). |
 
 ## Consequences
 
@@ -237,7 +237,7 @@ flatline while protecting MVP scope.
 **Negative / constraints:** the playable role is deferred (full pay-off post-MVP; mitigated by
 early foreshadowing); some inputs depend on still-`proposed` upstreams (FMX-91/ADR-0071 world-drift
 for rising-nations context; ADR-0083 HoF); D3=B drops the richer trophies-or-seasons gate for a
-simpler one; all magnitudes await FMX-52 playtest.
+simpler one; all magnitudes await GD-0043 `legacy.nationalTeam` playtest.
 
 ## Proposed bounded-context-map patch (NOT applied — ratify gate)
 
@@ -265,7 +265,7 @@ contradiction by making GD-0033 + this ADR the current truth (research docs left
 
 `proposed` / `binding: false`. D1–D4 chosen live by Nico 2026-06-06 = **A/A/B/A** (D3=B is Nico's
 choice of the simpler gate over the recommended trophies-or-seasons variant). All numeric
-magnitudes are **FMX-52 calibration debt** and do not block ratification of the contract shape. The
+magnitudes are **GD-0043 `legacy.nationalTeam` calibration debt** and do not block ratification of the contract shape. The
 full playable dual-role remains post-MVP. Ratified 2026-06-08 (#153); the additive ADR pointers
 and the bounded-context-map patch apply in the ratifying PR.
 

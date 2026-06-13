@@ -3,7 +3,7 @@ title: GD-0029 Weather & Pitch Design Model
 status: accepted
 tags: [game-design, gddr, weather, pitch, match, environment, fmx-66]
 created: 2026-06-05
-updated: 2026-06-11
+updated: 2026-06-13
 type: game-design
 binding: false
 supersedes:
@@ -16,7 +16,8 @@ related:
   - [[match-engine]]
   - [[stadium-and-campus]]
   - [[audience-and-atmosphere]]
-  - [[../30-Implementation/economy-calibration-and-soak-test-runbook]]
+  - [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
+  - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
 ---
 
 # GD-0029: Weather & Pitch Design Model
@@ -46,7 +47,8 @@ infrastructure that protects it.
 Companion design model to
 [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]]
 (architecture, ownership, determinism). This GDDR fixes the **shape and effect
-*directions*** only; every magnitude is **FMX-52 calibration** behind
+*directions*** only; every magnitude is **GD-0043 `environment.weatherPitch`
+calibration** behind
 `weatherModelVersion`. Nico chose **D1–D4 = C/A/A/A** live (2026-06-05).
 
 - **Weather parameter vector** (per fixture, consumed at `lineup_locked`)
@@ -98,8 +100,8 @@ Companion design model to
   `postponed`/`abandoned` future FSM transition.
 - All **numeric magnitudes**: effect sizes per condition, regime transition
   probabilities, gust/visibility/WBGT bands, pitch-decay + recovery rates,
-  forecast-error σ / skill — **FMX-52** calibration (banded ranges, evidence
-  gate), not locked from intuition.
+  forecast-error σ / skill — **GD-0043 `environment.weatherPitch`** calibration
+  (banded ranges, evidence gate), not locked from intuition.
 - Dynamic in-match weather change (rain starting mid-match) — reserved; MVP fixes
   conditions at `lineup_locked`.
 - Per-region climate-zone catalog depth + altitude catalog — data follow-up
@@ -131,8 +133,9 @@ Positive:
 
 Negative / constraints:
 
-- Effect realism is only as good as FMX-52 calibration; un-tuned, the model is
-  inert or swingy — the two documented failure modes.
+- Effect realism is only as good as GD-0043 `environment.weatherPitch`
+  calibration; un-tuned, the model is inert or swingy — the two documented
+  failure modes.
 - Postponements (a memorable narrative beat) are deferred, so MVP weather drama is
   limited to in-match colour + the forecast gamble.
 - Pitch-condition believability depends on Stadium Operations facility/usage
@@ -155,5 +158,15 @@ None
   [[../60-Research/raw-perplexity/raw-weather-determinism-2026-06-05]]).
 - Decisions: [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]];
   state machine [[../10-Architecture/state-machines/pitch-condition]].
-- Calibration: [[../30-Implementation/economy-calibration-and-soak-test-runbook]] (FMX-52).
+- Calibration: [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
+  (`environment.weatherPitch` slot, GD-0043).
 - [[README]] — Game Design Log (hub) · siblings: GD-0026 set-piece-coach readiness, GD-0028 dialogue-intent.
+
+## Calibration slot (FMX-141)
+
+- Slot: `environment.weatherPitch`
+- Parameter pack: `weatherModelVersion`
+- Harness: T1/T2 weather/pitch scenario matrices in
+  [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]].
+- Metrics: pass/control error, injury/load modifiers, pitch-condition transition
+  rates, forecast-error bands, postponement thresholds and tactic-style impact.

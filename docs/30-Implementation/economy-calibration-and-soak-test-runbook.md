@@ -1,14 +1,17 @@
 ---
 title: Economy Calibration and Soak-Test Runbook - Draft
 status: draft
-tags: [implementation, economy, calibration, soak-test, stress-test, determinism, testing, kpi, fmx-52]
+tags: [implementation, economy, calibration, soak-test, stress-test, determinism, testing, kpi, fmx-52, fmx-141]
 created: 2026-06-01
-updated: 2026-06-05
+updated: 2026-06-13
 type: implementation
 binding: false
 linear: FMX-52
 related:
   - [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]]
+  - [[gameplay-calibration-and-soak-test-runbook]]
+  - [[../60-Research/gameplay-calibration-ownership-and-harness-2026-06-13]]
+  - [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
   - [[../60-Research/dynasty-flatline-and-prestige-metric-inputs-2026-06-05]]
   - [[../60-Research/ai-world-drift-algorithm-2026-06-03]]
   - [[../60-Research/ai-club-economy-behaviour-2026-06-01]]
@@ -33,6 +36,25 @@ invariants, the golden baseline + drift detection, and the parameter/scenario sh
 feed the evidence gate. **No final constants here** — this is the method and the schema;
 values live in data and pass the gate before acceptance. Phase note: this is a `draft`
 runbook in the research phase, not a build instruction yet.
+
+> **FMX-141 scope clarification (2026-06-13).** This runbook is the
+> **economy-specific** FMX-52 calibration gate. Non-economy gameplay magnitudes
+> now point to
+> [[gameplay-calibration-and-soak-test-runbook]] and
+> [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate|GD-0043]].
+> Historical annexes below for world drift, dynasty, flatline and national team
+> remain useful as economy/downstream cross-checks, but their primary gameplay
+> slot ownership moved to GD-0043.
+
+## 0. Scope split after FMX-141
+
+| Calibration concern | Canonical runbook |
+|---|---|
+| Club economy, ledger, commercial, debt, runway, wage/revenue, country economy profiles | this runbook |
+| Match, live control, set pieces, weather/pitch, persona labels, dialogue, media, transfer pressure, dynasty, legacy, national team | [[gameplay-calibration-and-soak-test-runbook]] |
+
+When a gameplay slot creates downstream economy pressure, the gameplay slot owns
+the effect magnitude and this runbook checks economy invariants after the fact.
 
 ## 1. Determinism contract (inherited, do not re-litigate)
 
@@ -177,6 +199,11 @@ scenarios and inform damper tuning.
 
 ## 9. World-drift extension (FMX-91)
 
+> **FMX-141 note.** Primary gameplay ownership for world/dynasty drift now lives
+> under GD-0043 slots, especially `dynasty.ownershipBoard`. This section remains
+> an economy/downstream cross-check for revenue, wage, concentration and ledger
+> consequences.
+
 FMX-91 adds the AI World Simulation parameter families from
 [[../60-Research/ai-world-drift-algorithm-2026-06-03]] and draft
 [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]]. This runbook owns final
@@ -256,6 +283,12 @@ Additional health metrics:
 - no ledger mutation by AI World Simulation events.
 
 ## 10. Dynasty board & ownership extension (FMX-89)
+
+> **FMX-141 note.** Primary calibration ownership is
+> `dynasty.ownershipBoard` in
+> [[gameplay-calibration-and-soak-test-runbook]]. This section keeps the economy
+> invariant view: wage caps, administration rates, ledger boundaries and
+> bankruptcy downstream effects.
 
 Banded parameters + soak scenarios for the dynasty board-ambition, ownership-
 transition and bankruptcy/administration FSMs
@@ -418,6 +451,11 @@ Additional health metrics:
 
 ## 11. Flatline-investigation extension (FMX-90)
 
+> **FMX-141 note.** Primary anti-flatline ownership sits in the gameplay runbook
+> (`dynasty.ownershipBoard`, `media.ecology`, `legacy.hof` as applicable).
+> This section remains the economy/soak proxy catalogue until a build can
+> produce human telemetry.
+
 The dynasty engagement-flatline investigation (gap **G2**, E5-2c) instruments where a
 long save collapses into **late-game solved-state / runaway-leader degeneracy**
 *before* any late-game threshold is treated as final. Method + metric-input rationale:
@@ -427,7 +465,8 @@ prestige-input facts + version the formula. All KPIs are pure derivations of com
 facts/read-models — **no new RNG, no new event**. The human-facing target metric is
 **Save-Age-at-Abandonment** (live telemetry); until a build exists the structural
 proxies below are the instrument and SAA is the **validation anchor** they are later
-calibrated against. All bands `null` here — magnitudes are FMX-52 calibration.
+calibrated against. All bands `null` here — primary magnitudes now sit in the
+GD-0043 gameplay slots named above; this runbook keeps economy/downstream bands.
 
 KPI-catalogue extension (per season, computed for the player/bot club in the headless
 soak; league-balance indices computed **with and without** the human club):
@@ -482,7 +521,7 @@ parameter:
   sensitivity: parameter-sensitive
 ```
 
-> Full battery (also instrumented, bands per FMX-52): **save-level** —
+> Full battery (also instrumented, bands per GD-0043 slot ownership): **save-level** —
 > Outcome-Uncertainty Index, Meaningful-Match Rate, Transfer-Market-Activity Index,
 > Financial-Runaway Index, Event-Diversity Index; **league-balance** — title HHI,
 > Gini of points, Noll-Scully, dynasty streaks; **composites** — Decision-Density
@@ -536,9 +575,14 @@ Additional health metrics:
 > **Honest limitation (docs-only phase).** Save-Age-at-Abandonment, session-length-
 > over-save-age and "reached season k" cohort retention need a running build +
 > analytics consent. They are the human-validation layer the soak proxies are later
-> calibrated against (FMX-52); the soak instrument is what ships now.
+> calibrated against (GD-0043 + future T4 telemetry); the soak instrument is what ships now.
 
 ## 12. National-team dual-role extension (FMX-84)
+
+> **FMX-141 note.** Primary calibration ownership is
+> `legacy.nationalTeam` in
+> [[gameplay-calibration-and-soak-test-runbook]]. This section remains a
+> historical economy-adjacent annex and downstream soak reference.
 
 Banded gate + offer-window parameters for the national-team ("Bundestrainer") dual-role
 ([[../10-Architecture/09-Decisions/ADR-0084-national-team-dual-role-and-international-window-contract]] /

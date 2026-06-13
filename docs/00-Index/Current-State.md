@@ -51,6 +51,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-141 Gameplay calibration ownership prepared — decision pending
+> (2026-06-13).** Linear FMX-141 is `In Progress` on branch
+> `codex/fmx-141-gameplay-calibration-owner`. Research
+> [[../60-Research/gameplay-calibration-ownership-and-harness-2026-06-13]]
+> (+ raw Perplexity/source-check captures for simulation precedents, stochastic
+> harness practice, domain slots and source quality) recommends a gameplay-wide
+> calibration umbrella so non-economy GDDRs stop pointing at the FMX-52 economy
+> runbook. Draft
+> [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate|GD-0043]]
+> and
+> [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]] define the
+> proposed 14-slot taxonomy (`match.core`, `match.liveControl`,
+> `setPieces.readiness`, `tactics.identity`, `world.drift`, `dynasty.ownershipBoard`,
+> `legacy.nationalTeam`, etc.), T0-T4 harness tiers and baseline/rebaseline
+> policy. They are **not binding** until Nico approves D1-D5 in
+> [[../40-Execution/fmx-141-gameplay-calibration-decision-queue-2026-06-13]].
+> Recommended packet: A/A/A/A/A.
+>
 > **FMX-133 Match-engine core model prepared — decision pending
 > (2026-06-13).** Linear FMX-133 is `In Progress` on branch
 > `codex/fmx-133-match-engine-core-model`. Research
@@ -303,7 +321,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > (2026-06-07):** 5 stages · hybrid accumulator · leaky-bucket+stickiness+hysteresis · **D4 = B seeded
 > variance from the existing `TransferRng` (stream #7)** with seed + draw indices persisted (override of
 > the pure-deterministic default; no new `*Rng`) · adopt `broadcast_at` anchor · schedule-time
-> reconciliation · reuse `WatchPartyScheduled`. All magnitudes = **FMX-52** behind
+> reconciliation · reuse `WatchPartyScheduled`. All magnitudes = **GD-0043
+> `transfer.escalation`** behind
 > `escalationModelVersion`. Authored `proposed`/`draft`; awaiting Nico ratify.
 
 > **FMX-101 Live-match intervention buffer + watch-party pause-vote (2026-06-07).** Closes audit
@@ -334,7 +353,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `state-machines/match.md` (§5.1) + `state-machines/watch-party.md` (§5.2) authored in the same PR
 > (flip to current on ratify). **Nico chose D1–D4 = A/A/A/A live (2026-06-07):** bounded per-type
 > buffer · typed deterministic rejection · hybrid veto/quorum consent · discrete per-half pause
-> budget. All magnitudes = **FMX-52** behind `interventionPolicyVersion`.
+> budget. All magnitudes = **GD-0043 `match.liveIntervention`** behind `interventionPolicyVersion`.
 > Ratified 2026-06-08; FMX-135 status cleanup confirmed `binding: true` on 2026-06-12.
 
 > **FMX-92 Background-fast matchday cost-settlement pipeline (2026-06-07).** Closes audit gap
@@ -388,7 +407,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `audienceScopeHint`) is cleanly separated from Notification **delivery** and the non-authoritative UI
 > **feed**. IP-safe outlet names (ADR-0007/GD-0015); 11 invariants (ME1–ME11); ADR-0030 conformant.
 > **Open ratification item:** RNG label — proposes reusing `WorldAiMgmtRng` media sub-label vs a
-> dedicated `MediaRng`. All magnitudes = **FMX-52** behind `mediaEcologyModelVersion`. bounded-context-map
+> dedicated `MediaRng`. All magnitudes = **GD-0043 `media.ecology`** behind `mediaEcologyModelVersion`. bounded-context-map
 > 19→20 patch proposed-not-applied (ratify gate; final 20th-context count reconciled with the other
 > parallel 20th-context proposals — ADR-0077/0081). Authored `proposed`/`draft`; awaiting Nico ratify.
 
@@ -414,8 +433,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > induction = formula-preselect, **era-normalized** + **scarcity/quota-capped**, inspectable
 > reasons. 10 invariants (HF1–HF10). **Nico chose D1–D4 = A/A/A/B live (2026-06-06):** extend
 > ADR-0051 · per-save records + cross-save legends · raw facts + versioned formula · **full HoF
-> in MVP** (Nico override of the recommended reserved-stub — all magnitudes routed to **FMX-52**
-> calibration; era-normalization + scarcity caps built in as first-class knobs). **Declares no
+> in MVP** (Nico override of the recommended reserved-stub — all magnitudes routed to **GD-0043
+> `legacy.hof`** calibration; era-normalization + scarcity caps built in as first-class knobs). **Declares no
 > new `*Rng`** (in-world induction is a pure deterministic formula). **Open ratification item:**
 > stochastic in-world voting would need a seeded `LegacyRng`/`HoFRng` (ADR-0083 proposes the
 > no-new-RNG path). Archetype taxonomy/prestige-ladder = post-MVP (G3); national-team inputs
@@ -463,7 +482,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > cross-save read-only-at-creation rule. Synthesis
 > [[../60-Research/manager-archetype-mvp-hooks-and-perk-prestige-2026-06-05]] (+ 3 raw
 > captures). GD-0019 carries the FMX-93 confirming revision; band thresholds/baselines
-> = FMX-52. Authored `proposed`; awaiting Nico ratify.
+> = GD-0043 `tactics.identity`. Authored `proposed`; awaiting Nico ratify.
 
 > **FMX-90 Dynasty engagement-flatline investigation + prestige/HoF metric inputs
 > (2026-06-05).** Closes audit gap **G2** (E5 epic FMX-61; E5-2c, after FMX-89
@@ -485,8 +504,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > / `ManagerAbandonedClub` surface. **Declares no new `*Rng`** (measurement is pure)
 > and **does not edit ADR-0051** — E6-3/FMX-95 owns that amendment + the scoring
 > formula + records book (single-authority boundary preserved). The flatline plan
-> lands as runbook **§11** (`dynasty.flatline.*` scenarios; bands `null` = FMX-52
-> calibration). **Honest limitation:** Save-Age-at-Abandonment + cohort retention need
+> lands as runbook **§11** (`dynasty.flatline.*` scenarios; bands `null` = GD-0043
+> `dynasty.ownershipBoard` calibration). **Honest limitation:** Save-Age-at-Abandonment + cohort retention need
 > a running build; they are the human-validation anchor the soak proxies are later
 > calibrated against. Authored `current` (research) / runbook `draft`; awaiting Nico.
 
@@ -574,8 +593,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > **Nico chose D1–D4 = C/A/A/A live (2026-06-05).** Synthesis
 > [[../60-Research/weather-and-pitch-conditions-2026-06-05]] (+ 3 raw captures: real-world
 > football weather / prior-art games / deterministic weather-generators). Magnitudes (effect
-> sizes, regime probabilities, pitch-decay rates, WBGT/forecast bands) = **FMX-52** calibration
-> behind `weatherModelVersion`. Pitch-condition *state* ownership is resolved:
+> sizes, regime probabilities, pitch-decay rates, WBGT/forecast bands) = **GD-0043
+> `environment.weatherPitch`** calibration behind `weatherModelVersion`. Pitch-condition *state* ownership is resolved:
 > Stadium Operations keeps facility/usage state and remains the `PitchConditionChanged` emitter;
 > Environment & Climate owns weather inputs and derivation rules. The context-count/map change was
 > resolved by ADR-0089; FMX-135 adds no map patch. Ratified 2026-06-08; FMX-135 status cleanup
@@ -588,7 +607,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > closes audit gap **G13** for controlled AI/Narrative dialogue consequences.
 > Nico chose the planning line live: **D1 Broad MVP surfaces** (player one-to-one,
 > staff, board, press/media, fan-rep and agent), **D2 banded effects** with exact
-> numeric values deferred to FMX-52 calibration, and **D3 persona gate plus bounded
+> numeric values deferred to GD-0043 `dialogue.trustMorale` calibration, and **D3 persona gate plus bounded
 > scaling**. Draft
 > [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
 > now defines the finite `DialogueIntent` taxonomy, effect bands and owner-context
@@ -647,7 +666,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > capture: real-world coach effect ≈ +5–10 set-piece goals/season with diminishing
 > returns, learning-curve math, FM/EA-FC precedent, calibration). Additive
 > ADR-0067/ADR-0055 snapshot-field amendment is **proposed** (Nico-gated). All constants
-> = FMX-52 calibration behind `readinessModelVersion`. Authored `draft`; awaiting ratify.
+> = GD-0043 `setPieces.readiness` calibration behind `readinessModelVersion`. Authored `draft`; awaiting ratify.
 
 > **FMX-88 AI narration scope freeze + fallback coverage (2026-06-04).**
 > [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
@@ -734,7 +753,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > defined from committed match facts + the locked `TacticSnapshot`; shouts/pause/speed
 > excluded (ADR-0072). **Pure-deterministic projection — declares no `*Rng` sub-label**
 > (ADR-0018 §3). `adaptation` is the weakest-defined axis (proxy from the intervention
-> log; slowest confidence). All baselines/weights are **FMX-52 calibration debt** behind
+> log; slowest confidence). All baselines/weights are **GD-0043 `tactics.identity`
+> calibration debt** behind
 > `algorithmVersion`. Authored `proposed` per never-self-accept; awaiting Nico ratify.
 
 > **FMX-100 Match rendering & in-match controls UX (2026-06-03).** Closes Epic E7
@@ -755,7 +775,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > **D4** MVP control kit = *Full kit* (queued subs + mentality preset +
 > formation-swap + **3 cooldown shouts** + 3 speeds + free pause). Shouts ship, so
 > GD-0025 defines a deterministic **shout-effect contract with provisional,
-> playtest-tunable magnitudes** (FMX-52 calibration; not locked from intuition).
+> playtest-tunable magnitudes** (GD-0043 `match.liveControl` calibration; not locked from intuition).
 > The rendering *technology* was already settled (ADR-0024/0041 Canvas-2D-first) —
 > both get a control-seam clarification note, **renderer choice unchanged**. The
 > single-player buffer FSM + watch-party pause-vote are **FMX-101 (G24)**, which
@@ -854,7 +874,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > Simulation bounded context, hybrid RNG (`WorldAiMgmtRng` for club/owner/AI
 > drift, `WorldRng` for macro shifts), reputation-first rising-nations scope and
 > global MVP caps with reserved per-confederation caps. Final thresholds,
-> probabilities and effect magnitudes remain FMX-52 calibration inputs, not
+> probabilities and effect magnitudes remain GD-0043 `world.drift` calibration inputs, not
 > locked constants.
 
 > **FMX-10 match-engine re-evaluation (2026-05-27).** Nico directed that the
