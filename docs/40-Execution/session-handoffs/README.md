@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-12
+updated: 2026-06-13
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-12-fmx-147-quality-profile-reconciliation]] - FMX-147 quality-profile
+  enum reconciliation: raw/synthesis research, Nico-approved D3 decision and
+  accepted ADR-0070/ADR-0101 amendments. ADR-0070 now uses
+  `FixtureCommercialProfilesPublished.schemaVersion: 2` with canonical
+  `qualityProfile` plus derived `settlementPath`; ADR-0101 is fully
+  `binding: true`.
 - [[2026-06-12-fmx-135-match-engine-contract]] - FMX-135 match-engine contract
   ratification: raw/synthesis research, decision record and accepted ADR
   updates. Nico approved D1-D5 live on 2026-06-12: ADR-0096 is binding with one
@@ -57,7 +63,7 @@ This is the **single** canonical handoff location. (An older
   embargo, points deduction, wage-cap policy and fire-sale opening are
   state/policy facts only; completed fire sales reuse ADR-0105 registration
   postings; creditor haircut/forgiveness uses `InsolvencyCreditorWriteOffPosted`.
-  ADR-0101 remains `binding: false` until FMX-147 closes D3.
+  FMX-147 closed D3 on 2026-06-13, so ADR-0101 is now fully binding.
 - [[2026-06-12-fmx-131-standings-authority]] - FMX-131 standings authority
   clarification: raw/synthesis research and accepted ADR amendments for the
   ADR-0066 / ADR-0068 / ADR-0081 seam. Captures Nico's selected split: League

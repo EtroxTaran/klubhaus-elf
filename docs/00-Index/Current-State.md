@@ -3,7 +3,7 @@ title: Current State
 status: current
 tags: [meta, current-state, execution, hot]
 created: 2026-05-16
-updated: 2026-06-12
+updated: 2026-06-13
 type: index
 binding: true
 related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/pitch-condition]], [[../10-Architecture/state-machines/player-discipline]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/loan-orchestration-process-manager-2026-06-04]], [[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]], [[../10-Architecture/state-machines/loan-orchestration]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/club-financing-tools-2026-06-01]], [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/onboarding-and-tutorial]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0029-weather-and-pitch-design-model]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../20-Features/feature-statistics-analytics-hub-mvp]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]], [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]], [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]], [[../60-Research/manager-archetype-mvp-hooks-and-perk-prestige-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract]], [[../50-Game-Design/GD-0032-awards-honours-records-and-hall-of-fame]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]], [[../50-Game-Design/GD-0034-media-outlet-ecology-model]], [[../60-Research/media-outlet-operational-behaviour-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0086-background-fast-matchday-cost-settlement]], [[../60-Research/background-fast-cost-settlement-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]], [[../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]], [[../60-Research/live-match-intervention-buffer-and-pause-vote-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]], [[../50-Game-Design/GD-0036-transfer-escalation-and-inactivity-pressure]], [[../60-Research/fmx-102-async-escalation-and-deadline-source-of-truth-2026-06-07]]
@@ -51,6 +51,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-147 Quality-profile enum reconciliation decided — ADR-0101 fully binding
+> (2026-06-13).** Linear FMX-147 is in progress on branch
+> `codex/fmx-147-quality-profile-reconciliation`. Research
+> [[../60-Research/quality-profile-enum-settlement-path-2026-06-12]] (+ raw DDD/schema,
+> real-world football risk/category, sports-management game captures and supplemental pre-1.0
+> contract-replacement refresh) grounds Nico's D3 decision: ADR-0070
+> `FixtureCommercialProfilesPublished.schemaVersion: 2` with canonical four-value
+> `qualityProfile` (`competitive-full`, `interactive-standard`, `background-detailed`,
+> `background-fast`) plus derived `settlementPath`. Mapping:
+> `competitive-full`/`interactive-standard` -> `foreground_per_event`,
+> `background-detailed` -> `background_summary_then_reconcile`,
+> `background-fast` -> `lightweight_stateless`. The old v1 `qualityProfileClass` sketch is replaced
+> as a pre-1.0 docs-only correction because no live v1 events/saves/external consumers exist.
+> ADR-0101 is now `binding: true`.
+>
 > **FMX-135 Match-engine contract ratified — ADR-0096 binding single-WASM runtime
 > (2026-06-12).** FMX-135 reopened the Match-engine chain
 > ADR-0003 -> ADR-0049 -> ADR-0096 and the six `accepted` + `binding:false` ADRs
@@ -79,8 +94,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `InsolvencyCreditorWriteOffPosted` (external haircut → debt-restructuring gain; owner/related-party
 > forgiveness → equity contribution). `creditorWriteoffBand` collapses under ADR-0101 D2 using
 > `WorldAiMgmtRng:...:insolvency:<clubId>:writeoff:<creditorClass>:v1`; concrete account codes stay
-> **FMX-150**. ADR-0101 frontmatter remains `binding: false` until **FMX-147** closes D3; D2 and D4
-> clauses are binding.
+> **FMX-150**. FMX-147 closed the remaining D3 axis on 2026-06-13, so ADR-0101 is now fully
+> binding.
 
 > **FMX-149 MoneyBand → amountMinor collapse rule decided — ADR-0101 D2 = seeded-within-band,
 > clause binding (2026-06-12).** Closes the D2 collapse axis of ADR-0101 (audit epic
@@ -99,8 +114,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > **versioning = shared `costProfileVersion`** (one key governs collapse policy + magnitudes,
 > BF10/FMX-52) · **canonical `MoneyBand` pinned** (`{ lowMinor, highMinor }`, closed interval,
 > integer minor units per LI-7 — previously used but untyped) · **binding handling =**
-> ADR-0101 frontmatter stays `binding: false` until **FMX-147** closes the remaining axis; the
-> D2 clause itself is binding. Apply-work next: **FMX-147** (quality-profile enum).
+> ADR-0101 became fully binding when **FMX-147** closed the remaining quality-profile axis on
+> 2026-06-13.
 
 > **FMX-144 Wage + transfer-fee posting contracts defined — ADR-0105 accepted/binding
 > (2026-06-12).** Follow-up keystone of the accounting-integrity cluster (audit epic FMX-122):
@@ -162,7 +177,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > FMX-143 H1 — stays `accepted`); the bounded-context-map Club Management row gains the
 > "balanced double-entry postings" clause (no context-count change); **ADR-0101 D4 was unlocked**
 > and is now applied by **FMX-146**; collapse rule **FMX-149** and insolvency contract **FMX-146**
-> are closed, quality-profile enum **FMX-147** remains. Magnitudes unaffected (FMX-52 unchanged).
+> are closed, and quality-profile enum **FMX-147** closed the remaining ADR-0101 axis. Magnitudes
+> unaffected (FMX-52 unchanged).
 >
 > **FMX-143 Ratification-status SSOT reconciliation (2026-06-11).** The **Urgent** keystone of
 > the 2026-06-10 audit backlog (epic FMX-118): after the merged ratification PRs #153/#157–#161

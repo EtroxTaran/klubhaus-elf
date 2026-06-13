@@ -3,9 +3,9 @@ title: ADR-0101 Settlement value-collapse + quality-profile enum reconciliation 
 status: accepted
 tags: [adr, architecture, ddd, economy, settlement, determinism, replay, money-band, quality-profile, match-engine, insolvency, ledger, commercial-portfolio, club-management, reconciliation, fmx-audit]
 created: 2026-06-08
-updated: 2026-06-12
+updated: 2026-06-13
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -22,6 +22,7 @@ related:
   - [[../../50-Game-Design/GD-0008-finance-economy]]
   - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../../60-Research/determinism-and-replay]]
+  - [[../../60-Research/quality-profile-enum-settlement-path-2026-06-12]]
   - [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]]
   - [[../../60-Research/moneyband-amountminor-collapse-rule-2026-06-12]]
   - [[../../60-Research/background-fast-cost-settlement-2026-06-07]]
@@ -46,8 +47,7 @@ accepted
 > [[../../60-Research/moneyband-amountminor-collapse-rule-2026-06-12]] (floor/low-bound collapse
 > was research-rejected: systematic −n·w/2 season drift; midpoint was the co-equal pure lead;
 > seeded-within-band matches sim-game practice and the project's standing seeded-variance
-> posture, ADR-0086 D4=C). Frontmatter stays `binding: false` until the remaining axis closes
-> (**FMX-147** enum apply); the D2 clause itself is binding.
+> posture, ADR-0086 D4=C). D2 is binding and remains versioned behind `costProfileVersion`.
 
 > **D4 insolvency contract confirmed 2026-06-12 (FMX-146) — the D4 clause is binding.** Nico
 > approved the recommended plan line: ADR-0079/GD-0030 own the single shared
@@ -56,16 +56,22 @@ accepted
 > points-deduction and fire-sale-opening events are state/policy facts only; fire-sale settlement
 > reuses ADR-0105 registration disposal/write-off postings; and the only new insolvency-specific
 > posting is `InsolvencyCreditorWriteOffPosted`. Grounding:
-> [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]]. Frontmatter still stays
-> `binding: false` until FMX-147 closes D3; the D4 clause itself is binding.
+> [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]]. D4 is binding.
+
+> **D3 quality-profile contract confirmed 2026-06-13 (FMX-147) — this ADR is fully binding.** Nico
+> approved Option A: ADR-0070 `FixtureCommercialProfilesPublished.schemaVersion: 2`, canonical
+> four-value `qualityProfile`, and derived `settlementPath`; approved the
+> foreground/summary/lightweight mapping below; and chose the pre-1.0 replacement handling. Grounding:
+> [[../../60-Research/quality-profile-enum-settlement-path-2026-06-12]] plus supplemental
+> [[../../60-Research/raw-perplexity/raw-pre1-contract-replacement-2026-06-13]].
 
 > **D4 gate unlocked 2026-06-11 (FMX-145):** [[ADR-0095-balanced-transfer-ledger-posting-invariant]]
 > D1 was confirmed **A — balanced double-entry** (Nico live, `binding: true`), so the D4 "balanced
 > **iff** double-entry" clause resolves to **balanced, unconditionally** — every insolvency posting
 > MUST balance. The sequencing constraint ("this ADR sequences after the ADR-0050 entry-model
 > decision") is satisfied. The exact `MoneyBand → amountMinor` collapse rule (D2 — **FMX-149**)
-> and the named insolvency posting contract + shared enum (D4 — **FMX-146**) are now applied;
-> the quality-profile enum reconciliation is **FMX-147**.
+> and the named insolvency posting contract + shared enum (D4 — **FMX-146**) are applied; the
+> quality-profile enum reconciliation (D3 — **FMX-147**) is now applied too.
 
 > Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
@@ -174,6 +180,8 @@ and expand a single business event into **balanced** double-entry postings in th
   foreground per-event; `background-detailed` → foreground-equivalent-on-resim; `background-fast` →
   lightweight stateless path), replacing the 3-valued `qualityProfileClass` with a derived
   `settlementPath` field. · B: keep both enums and add a translation table only in ADR-0070's ACL.
+  · C: keep the 3-valued class and document a 4-to-3 mapping only (not recommended; preserves
+  route ambiguity).
 
 - **D4 — Insolvency postings + insolvency enum.** **A (recommended): a named
   insolvency-event → ledger-posting contract** (each of the three insolvency events maps to a named
@@ -184,11 +192,11 @@ and expand a single business event into **balanced** double-entry postings in th
 ## Decision
 
 Accepted decision line: **D1 = A, D2 = A, D3 = A, D4 = A.** Clause-level apply status:
-D2 is binding via FMX-149, D4 is binding via FMX-146 and D3 remains the FMX-147 apply-work before
-this ADR's frontmatter can flip to `binding: true`.
+D2 is binding via FMX-149, D4 is binding via FMX-146 and D3 is binding via FMX-147. ADR-0101 is
+fully binding.
 
 > D2's open sub-question (*which* rule) was decided 2026-06-12 (FMX-149): **seeded-within-band**
-> — see §"D2 ratified rule" below. D4 was applied by FMX-146; D3 apply-work continues as FMX-147.
+> — see §"D2 ratified rule" below. D4 was applied by FMX-146; D3 was applied by FMX-147.
 
 ### D2 — Deterministic `MoneyBand → amountMinor` collapse
 
@@ -253,6 +261,10 @@ code path against the simplest-proportional bar.
 
 ### D3 — One canonical quality-profile enum + explicit settlement-path mapping
 
+FMX-147 research
+([[../../60-Research/quality-profile-enum-settlement-path-2026-06-12]]) and Nico's 2026-06-13
+approval confirm this line.
+
 Adopt the **four** match-engine profiles as the single canonical enum portfolio-wide. Replace
 ADR-0070's `qualityProfileClass: 'backgroundFast' | 'standard' | 'expert'` with the four-valued profile
 plus a **derived** `settlementPath` field, mapped explicitly:
@@ -266,6 +278,14 @@ plus a **derived** `settlementPath` field, mapped explicitly:
 
 This removes the undefined 3→4 collapse and makes the settlement-path routing a **typed function of the
 canonical profile**, not an ambiguous string.
+
+Schema handling: ADR-0070 is updated to
+`FixtureCommercialProfilesPublished.schemaVersion: 2`. The old v1 `qualityProfileClass` sketch is
+replaced rather than preserved because FMX is still pre-implementation: there are no live events,
+persisted saves, external consumers or long-lived v1 payloads. This is a one-time pre-1.0
+documentation correction, not a relaxation of the future event-sourcing rule; once fixture-commercial
+profile payloads are implemented or published for integration, breaking changes require a new version
+or upcaster path. CommercialPortfolio may still translate into an internal local enum behind its ACL.
 
 ### D4 — Insolvency-event → ledger-posting contract + shared insolvency enum
 
@@ -386,7 +406,7 @@ canonical 4-profile enum (D3) removes a routing ambiguity that silently selects 
 insolvency posting contract (D4) is the only thing that makes ADR-0079's "ledger effects stay inside
 Club Management" actually *postable*, and unifying the two insolvency models removes a latent
 double-source-of-truth. The grounding confirms the canonical posture: **band for classification, exact
-collapsed `amountMinor` for accounting, pure-deterministic versioned collapse, balanced double-entry
+collapsed `amountMinor` for accounting, seeded versioned replayable collapse, balanced double-entry
 postings in the accounting projection.**
 
 ## Consequences
@@ -410,8 +430,9 @@ Negative / constraints:
 - ~~The exact band→`amountMinor` collapse function is left open (below) and must be ratified before the
   collapse clause is binding.~~ **Resolved 2026-06-12 (FMX-149):** seeded-within-band ratified —
   the D2 collapse clause is **binding** (see §"D2 ratified rule").
-- Replacing `qualityProfileClass` changes the published `FixtureCommercialProfile` shape — a schema
-  version bump on the ADR-0070 contract (its P4 immutable-version rule applies).
+- Replacing `qualityProfileClass` changes the published `FixtureCommercialProfile` shape. FMX-147
+  treats this as a pre-1.0 docs-only correction: safe now because no durable v1 payloads exist; after
+  implementation or integration publication, the ADR-0070 immutable-version rule applies.
 
 ## Risks
 
@@ -437,8 +458,10 @@ Negative / constraints:
   See §"D2 ratified rule" and [[../../60-Research/moneyband-amountminor-collapse-rule-2026-06-12]].
 - **Insolvency posting contract / shared enum:** **Resolved 2026-06-12 (FMX-146):** D4 is applied as
   the shared ADR-0079/GD-0030 `InsolvencyCaseStage` enum plus the event-to-posting mapping above.
-- **Remaining axis:** FMX-147 still applies D3's quality-profile enum reconciliation. Frontmatter
-  stays `binding: false` until that axis closes.
+- **Quality-profile enum:** **Resolved 2026-06-13 (FMX-147):** D3 is applied as ADR-0070
+  `FixtureCommercialProfilesPublished.schemaVersion: 2`, canonical four-value `qualityProfile`,
+  derived `settlementPath`, foreground/summary/lightweight mapping, and pre-1.0 replacement handling.
+  ADR-0101 frontmatter is now `binding: true`.
 
 ## Supersedes
 
@@ -458,6 +481,8 @@ None.
   [[../../50-Game-Design/match-engine]] — the canonical four quality profiles.
 - [[../../60-Research/determinism-and-replay]] — replay byte-identity requirement the collapse rule must
   satisfy.
+- [[../../60-Research/quality-profile-enum-settlement-path-2026-06-12]] — FMX-147 D3 research and
+  accepted canonical enum / settlement-path schema.
 - [[../../60-Research/background-fast-cost-settlement-2026-06-07]] /
   [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]] /
   [[../../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]] /

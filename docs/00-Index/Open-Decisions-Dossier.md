@@ -3,7 +3,7 @@ title: Open-Decisions Dossier — questions, recommendations, ratify checklist
 status: current
 tags: [meta, index, decisions, open-questions, dossier, fmx-105]
 created: 2026-06-07
-updated: 2026-06-12
+updated: 2026-06-13
 type: index
 binding: false
 related:
@@ -46,8 +46,10 @@ related:
 > ADR-0101's remaining axes are tracked as **FMX-149** (collapse rule — **decided 2026-06-12:
 > seeded-within-band, D2 clause binding**), **FMX-146** (insolvency posting contract — **decided
 > 2026-06-12: shared `InsolvencyCaseStage` + `InsolvencyCreditorWriteOffPosted`, D4 clause
-> binding**) and **FMX-147** (quality-profile enum, still remaining), with the concrete chart
-> of accounts as **FMX-150**. Authoritative records: [[Decision-Log]] + per-ADR frontmatter.
+> binding**) and **FMX-147** (quality-profile enum — **decided 2026-06-13: ADR-0070 schema v2 with
+> canonical `qualityProfile`, derived `settlementPath` and pre-1.0 replacement handling, D3 binding**),
+> with the concrete chart of accounts as **FMX-150**. Authoritative records: [[Decision-Log]] +
+> per-ADR frontmatter.
 
 > **Post-dossier FMX-135 closure (historical completeness, added 2026-06-12; dossier stays
 > closed).** FMX-135 resolved ADR-0096's runtime fork and the six-ADR `accepted` /
