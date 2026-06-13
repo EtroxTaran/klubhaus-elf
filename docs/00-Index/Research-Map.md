@@ -184,6 +184,23 @@ design notes.
   [[../60-Research/raw-perplexity/raw-sports-management-finance-ui-2026-06-13]],
   [[../60-Research/raw-perplexity/raw-chart-of-accounts-versioning-2026-06-13]].
 
+## Monetization Model and No-P2W Canon (FMX-191, 2026-06-13)
+
+- [[../60-Research/monetization-model-and-no-p2w-canon-2026-06-13]] -
+  FMX-191 synthesis for PM-2026-05-20-04-F-01. Recommends the model-level canon:
+  free core, deterministic cosmetics, optional non-power Supporter Club, later
+  cosmetic-only season card, no ads in MVP, no paid random rewards, strict
+  no-P2W entitlement taxonomy and ADR-0063 Investor isolation to singleplayer
+  only. Decision remains pending Nico in
+  [[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]; draft homes:
+  [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]] and
+  [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]].
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-monetization-model-market-precedents-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-monetization-legal-privacy-store-policy-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-no-pay-to-win-guardrails-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-monetization-source-checks-2026-06-13]].
+
 ## AI Narration Scope Freeze and Fallback Coverage (FMX-88, 2026-06-04)
 
 - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]

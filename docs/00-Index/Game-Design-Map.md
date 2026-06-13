@@ -3,7 +3,7 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-06-12
+updated: 2026-06-13
 type: map
 binding: false
 related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
@@ -18,7 +18,9 @@ future-scope or historical planning unless they are listed as binding
 (`accepted`/`approved`/`current`) below. Frontmatter is the status SSOT
 (ADR-0092); since the 2026-06-08 ratification all GD-0001–GD-0040 GDDRs are
 `accepted`, while the non-numbered system/mode notes are `draft` pending
-individual re-approval (FMX-143 H2). This means old `Future-scope notes` sections are not active work by default.
+individual re-approval (FMX-143 H2). GD-0041 is the FMX-191 monetization/no-P2W
+proposal and remains `draft` pending Nico. This means old `Future-scope notes`
+sections are not active work by default.
 
 ## Hub
 
@@ -45,6 +47,11 @@ individual re-approval (FMX-143 H2). This means old `Future-scope notes` section
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
+- [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]] -
+  draft FMX-191 monetization/no-P2W canon; decision pending Nico.
+- [[../60-Research/monetization-model-and-no-p2w-canon-2026-06-13]] -
+  FMX-191 research synthesis for the recommended free-core, cosmetics,
+  Supporter Club and no-P2W entitlement model.
 
 ## Fans + brand
 
@@ -192,6 +199,8 @@ reconciliation 2026-06-11):
   (`accepted`; the GDDR is the decision of record — see
   [[../50-Game-Design/README]] precedence rules). Wave-2-gated items inside
   accepted GDDRs remain scope-gated, not implementable.
+- **Not binding:** [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
+  is `draft` pending the FMX-191 Nico decision queue.
 - **Binding research synthesis:** [[../60-Research/player-strength-presentation]]
   (Impact Lens, no global OVR).
 - **Not binding (planning context):** the non-numbered system/mode notes
