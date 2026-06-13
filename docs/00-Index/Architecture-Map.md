@@ -158,6 +158,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft context-map change plus FMX-87 dialogue-intent/effect-result planning contracts; no implementation until accepted.
 - [ADR-0065 Narrative Media and Press Content Ownership](../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership.md) - draft extension of ADR-0054; no implementation until accepted.
 - [ADR-0107 Pricing and IAP Monetization Boundary](../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary.md) - draft FMX-191 monetization boundary for classified entitlements, no-P2W invariant, provider separation and privacy/legal gates; pending Nico D1-D5, no implementation until accepted.
+- [ADR-0108 No-Pay-to-Win and MP Fairness Invariant](../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant.md) - draft FMX-190 zero-effect invariant for real-money entitlements across shared saves, rankings, async groups, watch-party state, exports, official comparisons and future multiplayer; pending Nico D1-D5, no implementation until accepted.
 
 ## Rule
 

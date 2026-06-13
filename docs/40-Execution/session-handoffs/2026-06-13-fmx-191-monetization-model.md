@@ -12,6 +12,7 @@ related:
   - [[../../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]
   - [[../../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
   - [[../../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]]
+  - [[../../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
 ---
 
 # FMX-191 Monetization Model Handoff
@@ -52,8 +53,10 @@ related:
 
 ## Decisions Made
 
-- Scope split: FMX-191 handles model-level canon; FMX-190 remains the follow-up for
-  no-P2W CI/test enforcement and broader MP-fairness checks.
+- Scope split: FMX-191 handles model-level canon; FMX-190 is the follow-up for
+  no-P2W CI/test enforcement and broader MP-fairness checks. It now has draft
+  [[../../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]
+  as a non-binding proposal.
 - No final architecture/gameplay monetization decisions have been promoted yet.
 
 ## Blockers

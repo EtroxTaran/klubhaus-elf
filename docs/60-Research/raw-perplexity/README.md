@@ -200,6 +200,18 @@ Nico selected the monetization model / no-P2W canon issue.
 | [[raw-no-pay-to-win-guardrails-2026-06-13]] | Allowed/forbidden entitlement taxonomy and operational no-P2W test for shared competitive contexts | [[../monetization-model-and-no-p2w-canon-2026-06-13]] · [[../../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]] |
 | [[raw-monetization-source-checks-2026-06-13]] | Targeted official source checks for Apple, EU consumer rights, USK and Hattrick Supporter precedent | [[../monetization-model-and-no-p2w-canon-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]] |
 
+## FMX-190 follow-up Perplexity/Web research (2026-06-13)
+
+Perplexity research plus targeted official/tooling source checks were run during
+FMX-190 after Nico selected the no-P2W / MP-fairness invariant issue.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-no-p2w-mp-fairness-guardrails-2026-06-13]] | No-P2W definitions, soft P2W, paid information advantage, speed-ups, attempt volume, tradeability and paid randomness guardrails | [[../no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]] |
+| [[raw-football-manager-monetization-precedents-2026-06-13]] | Hattrick/supporter-style positive precedent and Top Eleven/OSM token-booster/scouting P2W perception | [[../no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]] |
+| [[raw-no-p2w-legal-store-policy-2026-06-13]] | Apple, Google, EUR-Lex and European Commission source checks for IAP, random item disclosure, consumer information and dark-pattern risks | [[../no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]] |
+| [[raw-no-p2w-test-gate-tooling-2026-06-13]] | DDD/modular-monolith invariant testing plus current Vitest Test Projects and fast-check property/model testing docs | [[../no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]] |
+
 ## FMX-67 follow-up Perplexity research (2026-06-05)
 
 Perplexity/Web research was run during FMX-67 after Nico selected the
