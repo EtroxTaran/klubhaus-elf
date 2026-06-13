@@ -3,7 +3,7 @@ title: ADR-0105 Wage + transfer-fee/amortisation ledger posting contracts
 status: accepted
 tags: [adr, architecture, economy, accounting, ledger, wages, staff, transfer-fees, amortisation, ias38, loans, club-management, determinism, fmx-144, accepted]
 created: 2026-06-12
-updated: 2026-06-12
+updated: 2026-06-13
 type: adr
 binding: true
 amends: [[ADR-0050-club-economy-accounting-ledger]]
@@ -16,6 +16,7 @@ related:
   - [[ADR-0075-loan-orchestration-process-manager]]
   - [[ADR-0058-club-economy-commercial-impact-boundary]]
   - [[ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]]
+  - [[ADR-0106-chart-of-accounts-and-category-catalog]]
   - [[../bounded-context-map]]
   - [[../../50-Game-Design/GD-0008-finance-economy]]
   - [[../../60-Research/wage-and-transfer-fee-posting-contracts-2026-06-11]]
@@ -36,6 +37,10 @@ accepted
 > [[../../60-Research/wage-and-transfer-fee-posting-contracts-2026-06-11]]
 > (IAS 38 / IAS 19 club practice + Football-Manager-style sim simplification).
 
+> **Account codes finalised 2026-06-13 (FMX-150).**
+> [[ADR-0106-chart-of-accounts-and-category-catalog]] replaces this ADR's provisional
+> account handles with canonical semantic dotted account codes and `chartOfAccountsVersion = 1`.
+
 ## Context
 
 [[ADR-0050-club-economy-accounting-ledger|ADR-0050]] names Club Management as the sole
@@ -52,8 +57,8 @@ delivers loan money flows as `LoanFinancialIntent`. All three stop at the ACL.
 mandates balanced postings (LI-1/LI-2) but leaves exactly these two flows unnamed.
 
 This ADR closes that hole. It **amends ADR-0050** by adding the named posting events
-below to its public contract. Account handles used here are **provisional** — the
-concrete chart of accounts is FMX-150 (ADR-0095 LI-9 two-level design).
+below to its public contract. Account handles used here are canonical
+[[ADR-0106-chart-of-accounts-and-category-catalog|ADR-0106]] account codes.
 
 ## Decision
 
@@ -90,16 +95,16 @@ Decided live 2026-06-12 (FMX-144):
 All events are Club-Management-posted, ADR-0095-conform (≥2 typed `accountCode` legs,
 Σ = 0, integer minor units), and idempotent under the listed key.
 
-| Event | Cadence / trigger | Legs (provisional accounts) | Idempotency key |
+| Event | Cadence / trigger | Legs (ADR-0106 accounts) | Idempotency key |
 |---|---|---|---|
-| `PlayerWageBlockPosted` | weekly, in `AdvanceClubEconomyWeek`; aggregates all active player contracts (`ContractFinancialIntent.wageMinor`) | Dr `expense.player_wages` (category-tagged) / Cr `liability.wages_payable` → cash leg on payment in the same tick | `player-wage-block:{clubId}:{seasonYear}:{weekIndex}` |
-| `StaffWageBlockPosted` | weekly, same tick; aggregates `StaffWagePosted` facts (ADR-0053) — this is the **named counterpart** to the `StaffWagePosted` ACL | Dr `expense.staff_wages` / Cr `liability.wages_payable` → cash leg on payment | `staff-wage-block:{clubId}:{seasonYear}:{weekIndex}` |
-| `ContractSigningCostPosted` | on `ContractFinancialIntent` with `signingBonusMinor`/`agentFeeMinor`, at `effectiveDate` (D6: immediate expense, never capitalised) | Dr `expense.signing_bonuses` + Dr `expense.agent_fees` / Cr `liability.contract_costs_payable` or cash | upstream `ContractFinancialIntent` eventId |
+| `PlayerWageBlockPosted` | weekly, in `AdvanceClubEconomyWeek`; aggregates all active player contracts (`ContractFinancialIntent.wageMinor`) | Dr `expense.player_wages` (category-tagged) / Cr `liability.wages_payable`; payment clears Dr `liability.wages_payable` / Cr `asset.cash_operating` in the same tick when paid | `player-wage-block:{clubId}:{seasonYear}:{weekIndex}` |
+| `StaffWageBlockPosted` | weekly, same tick; aggregates `StaffWagePosted` facts (ADR-0053) — this is the **named counterpart** to the `StaffWagePosted` ACL | Dr `expense.staff_wages` / Cr `liability.wages_payable`; payment clears Dr `liability.wages_payable` / Cr `asset.cash_operating` | `staff-wage-block:{clubId}:{seasonYear}:{weekIndex}` |
+| `ContractSigningCostPosted` | on `ContractFinancialIntent` with `signingBonusMinor`/`agentFeeMinor`, at `effectiveDate` (D6: immediate expense, never capitalised) | Dr `expense.contract_costs` / Cr `liability.contract_costs_payable` or Cr `asset.cash_operating` | upstream `ContractFinancialIntent` eventId |
 | `TransferFeeCapitalised` | buying club, at registration date; full fee recognised regardless of instalment schedule (IAS 38) | Dr `asset.player_registrations` / Cr `liability.transfer_payables` (per-instalment maturity in payload) | `transfer-fee-cap:{feeAgreementId}` |
-| `TransferInstalmentSettled` | per instalment due date; both directions; carries `kind: fee_instalment \| loan_fee \| breach_penalty` | payable side: Dr `liability.transfer_payables` / Cr `asset.cash`; receivable side: Dr `asset.cash` / Cr `asset.transfer_receivables` | `{feeAgreementId\|loanAgreementId}:{instalmentIndex}:{direction}` |
-| `RegistrationAmortisationPosted` | weekly, in `AdvanceClubEconomyWeek`, over remaining contract weeks (D3 floor + last-week remainder) | Dr `expense.registration_amortisation` / Cr `asset.player_registrations` (accumulated-amortisation contra) | `registration-amort:{registrationAssetId}:{seasonYear}:{weekIndex}` |
-| `RegistrationDisposalSettled` | selling club, on completed outgoing transfer: proceeds − net book value → the "profit on disposal of registrations" line | Dr `asset.transfer_receivables` (proceeds) + Cr `asset.player_registrations` (NBV) / balancing leg `income.registration_disposal_gains` or `expense.registration_disposal_losses` | upstream transfer-completed eventId |
-| `RegistrationWriteOffPosted` | termination/release or career-ending injury: derecognise remaining NBV as loss (impairment to nil) | Dr `expense.registration_write_offs` / Cr `asset.player_registrations` | upstream termination/injury eventId |
+| `TransferInstalmentSettled` | per instalment due date; both directions; carries `kind: fee_instalment \| loan_fee \| breach_penalty` | payable side: Dr `liability.transfer_payables` / Cr `asset.cash_operating`; receivable side: Dr `asset.cash_operating` / Cr `asset.receivable_transfer`; loan-fee/breach income uses `income.transfer_loan_fees` | `{feeAgreementId\|loanAgreementId}:{instalmentIndex}:{direction}` |
+| `RegistrationAmortisationPosted` | weekly, in `AdvanceClubEconomyWeek`, over remaining contract weeks (D3 floor + last-week remainder) | Dr `expense.registration_amortisation` / Cr `asset.player_registrations_accum_amortisation` | `registration-amort:{registrationAssetId}:{seasonYear}:{weekIndex}` |
+| `RegistrationDisposalSettled` | selling club, on completed outgoing transfer: proceeds − net book value → the "profit on disposal of registrations" line | Dr `asset.receivable_transfer` or `asset.cash_operating` for proceeds; derecognise cost/accumulated amortisation through `asset.player_registrations` + `asset.player_registrations_accum_amortisation`; balancing leg `income.registration_disposal_gains` or `expense.registration_disposal_losses_writeoffs` | upstream transfer-completed eventId |
+| `RegistrationWriteOffPosted` | termination/release or career-ending injury: derecognise remaining NBV as loss (impairment to nil) | Dr `expense.registration_disposal_losses_writeoffs` / Cr remaining net book value through `asset.player_registrations` + `asset.player_registrations_accum_amortisation` | upstream termination/injury eventId |
 
 Non-posting schedule fact (traceability, no ledger entry — like `CupForecastUpdated`):
 
@@ -112,9 +117,9 @@ Non-posting schedule fact (traceability, no ledger entry — like `CupForecastUp
 
 | `kind` | Posting contract |
 |---|---|
-| `wage_contribution` | Dedicated recharge legs riding the wage blocks: payer club posts Dr `expense.loan_wage_contribution` / Cr cash-payable inside its `PlayerWageBlockPosted`; payee (parent) club posts the mirrored Dr cash-receivable / Cr `income.loan_wage_recharge` leg in its block. Gross wage stays on the employing club's wage expense. |
-| `loan_fee` | `TransferInstalmentSettled` with `kind: loan_fee`; recognised in full at `effectiveDate` (D4 sub-fork) — expense at payer, income at payee; never capitalised (the registration stays on the parent's books and **keeps amortising during the loan**). |
-| `breach_penalty` | `TransferInstalmentSettled` with `kind: breach_penalty`; immediate expense/income at the breach settlement date. |
+| `wage_contribution` | Dedicated recharge legs riding the wage blocks: payer club posts Dr `expense.loan_wage_contribution` / Cr `asset.cash_operating` or `liability.trade_payables` inside its `PlayerWageBlockPosted`; payee (parent) club posts Dr `asset.cash_operating` or `asset.receivable_transfer` / Cr `income.loan_wage_recharge`. Gross wage stays on the employing club's wage expense. |
+| `loan_fee` | `TransferInstalmentSettled` with `kind: loan_fee`; recognised in full at `effectiveDate` (D4 sub-fork) — payer uses `expense.contract_costs` or `expense.other_operations`, payee uses `income.transfer_loan_fees`; never capitalised (the registration stays on the parent's books and **keeps amortising during the loan**). |
+| `breach_penalty` | `TransferInstalmentSettled` with `kind: breach_penalty`; immediate expense/income at the breach settlement date, using `expense.contract_costs` or `expense.other_operations` at payer and `income.transfer_loan_fees` at payee. |
 | `obligation_buy_fee` | On trigger the obligation becomes a normal permanent transfer: `TransferFeeCapitalised` + instalment schedule, keyed by the new `feeAgreementId` (LO3 hand-off). |
 
 ### Free transfers (D6)
@@ -145,8 +150,8 @@ legs apply.
   amounts without rewriting posted wages; administrator fire-sale completions reuse
   `RegistrationDisposalSettled` / `RegistrationWriteOffPosted` with `insolvencyCaseId`
   provenance rather than introducing insolvency-only transfer postings.
-- All account handles are provisional pending the FMX-150 chart of accounts; renaming an
-  account is a catalog-metadata change (LI-9), not a posting-contract change.
+- Account handles are canonical ADR-0106 codes. Future account additions are catalog-versioned
+  changes under ADR-0106 and do not change this event vocabulary.
 - Idempotency keys are natural keys, so deterministic replay (LI-8) re-derives identical
   postings; corrections use reversing entries (LI-4), never edits.
 

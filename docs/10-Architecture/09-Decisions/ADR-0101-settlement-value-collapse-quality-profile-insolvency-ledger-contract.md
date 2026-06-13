@@ -16,6 +16,7 @@ related:
   - [[ADR-0026-match-frame-contract]]
   - [[ADR-0049-swappable-spatial-event-match-engine]]
   - [[ADR-0058-club-economy-commercial-impact-boundary]]
+  - [[ADR-0106-chart-of-accounts-and-category-catalog]]
   - [[ADR-0061-club-management-sub-aggregate-audit]]
   - [[ADR-0018-systemic-events-and-player-lifecycle]]
   - [[../../50-Game-Design/match-engine]]
@@ -57,6 +58,12 @@ accepted
 > reuses ADR-0105 registration disposal/write-off postings; and the only new insolvency-specific
 > posting is `InsolvencyCreditorWriteOffPosted`. Grounding:
 > [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]]. D4 is binding.
+
+> **FMX-150 account codes confirmed 2026-06-13.**
+> [[ADR-0106-chart-of-accounts-and-category-catalog]] supplies the concrete accounts for
+> `InsolvencyCreditorWriteOffPosted`: external creditor haircuts credit
+> `income.debt_restructuring_gain`; owner/related-party forgiveness credits
+> `equity.owner_contribution`.
 
 > **D3 quality-profile contract confirmed 2026-06-13 (FMX-147) — this ADR is fully binding.** Nico
 > approved Option A: ADR-0070 `FixtureCommercialProfilesPublished.schemaVersion: 2`, canonical
@@ -366,19 +373,19 @@ InsolvencyCreditorWriteOffPosted {
   currency
   collapsePolicyRef?         # required when derived from creditorWriteoffBand
   postingRuleVersion
-  contraClassification       # debt_restructuring_gain | owner_equity_contribution
+  contraAccountCode          # income.debt_restructuring_gain | equity.owner_contribution
   idempotencyKey
 }
 ```
 
 Balanced leg direction:
 
-| Situation | Provisional leg shape |
+| Situation | ADR-0106 leg shape |
 |---|---|
 | External creditor haircut / CVA-like settlement | Dr/reduce liability · Cr `income.debt_restructuring_gain` |
 | Owner or related-party forgiveness in substance as capital support | Dr/reduce liability · Cr `equity.owner_contribution` |
 
-Concrete account codes are FMX-150; FMX-146 pins the event and account-category intent only.
+Concrete account codes are defined by ADR-0106; FMX-146 pins the event and account-category intent.
 The deterministic idempotency pattern is:
 
 ```text

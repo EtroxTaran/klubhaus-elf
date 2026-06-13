@@ -3,7 +3,7 @@ title: ADR-0050 Club Economy Accounting Ledger
 status: accepted
 tags: [adr, architecture, economy, accounting, club-management, financing, debt, commercial, cup, competition, matchday, catering, merchandise, operations, fan-service, investor, fmx-13, fmx-32, fmx-41, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, accepted]
 created: 2026-05-27
-updated: 2026-06-12
+updated: 2026-06-13
 type: adr
 binding: true
 supersedes:
@@ -11,11 +11,13 @@ amended_by:
   - [[ADR-0095-balanced-transfer-ledger-posting-invariant]]
   - [[ADR-0105-wage-and-transfer-fee-posting-contracts]]
   - [[ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]]
+  - [[ADR-0106-chart-of-accounts-and-category-catalog]]
 related:
   - [[ADR-0019-modular-monolith-ddd]]
   - [[ADR-0027-postgres-data-model]]
   - [[ADR-0028-postgres-transactional-outbox]]
   - [[ADR-0058-club-economy-commercial-impact-boundary]]
+  - [[ADR-0106-chart-of-accounts-and-category-catalog]]
   - [[ADR-0061-club-management-sub-aggregate-audit]]
   - [[ADR-0062-audience-and-atmosphere-context]]
   - [[../../50-Game-Design/GD-0008-finance-economy]]
@@ -55,6 +57,12 @@ accepted
 > policy/state facts with no immediate ledger posting; fire-sale completions reuse ADR-0105
 > registration disposal/write-off postings; creditor haircut/forgiveness uses the new balanced
 > `InsolvencyCreditorWriteOffPosted` contract.
+
+> **Amended (chart-of-accounts) by [[ADR-0106-chart-of-accounts-and-category-catalog]]**
+> on 2026-06-13 (FMX-150). ADR-0106 is the concrete ADR-0095 LI-9 catalog:
+> semantic dotted account codes, `chartOfAccountsVersion = 1`, separate
+> `categoryCatalogVersion = 1`, additive-only no-renumbering and Expert
+> statements plus account/category drilldown.
 
 ## Ratification note
 
@@ -210,7 +218,7 @@ Draft events:
 - `InvestorCashGrantPosted`
 - `InvestorEntitlementCashReversed` (FMX-50: refund/chargeback reconciliation)
 - `InsolvencyCreditorWriteOffPosted` (FMX-146: liability reduction with
-  `debt_restructuring_gain` or `owner_equity_contribution` contra classification)
+  `income.debt_restructuring_gain` or `equity.owner_contribution` contra account per ADR-0106)
 - `FinancingFacilityOpened` (FMX-49)
 - `FinancingDrawdownPosted` (FMX-49)
 - `FinancingInterestAccrued` (FMX-49)

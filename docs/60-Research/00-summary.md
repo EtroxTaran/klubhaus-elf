@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-135, fmx-146, fmx-147]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-135, fmx-146, fmx-147, fmx-150]
 updated: 2026-06-13
 ---
 
@@ -142,6 +142,20 @@ durable v1 payloads exist. Raw captures:
 [[raw-perplexity/raw-quality-profile-real-world-football-2026-06-12]],
 [[raw-perplexity/raw-quality-profile-sim-games-2026-06-12]],
 [[raw-perplexity/raw-pre1-contract-replacement-2026-06-13]].
+
+## Chart of Accounts and Category Catalog (FMX-150, 2026-06-13)
+
+[[chart-of-accounts-and-category-catalog-2026-06-13]] preserves the FMX-150
+research layer for ADR-0095 LI-9. It records Nico's accepted D1-D3: semantic
+dotted account codes, a 40-account medium chart plus a versioned `categoryCode`
+catalog, and an Expert finance surface based on statements plus account/category
+drilldown and an audit drawer. Accepted ADR:
+[[../10-Architecture/09-Decisions/ADR-0106-chart-of-accounts-and-category-catalog]].
+Raw captures:
+[[raw-perplexity/raw-chart-of-accounts-game-ledger-2026-06-13]],
+[[raw-perplexity/raw-football-club-accounting-families-2026-06-13]],
+[[raw-perplexity/raw-sports-management-finance-ui-2026-06-13]],
+[[raw-perplexity/raw-chart-of-accounts-versioning-2026-06-13]].
 
 ## Player Discipline Sub-Aggregate (FMX-80, 2026-06-05)
 
