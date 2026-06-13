@@ -140,6 +140,21 @@ design notes.
   [[../60-Research/raw-perplexity/raw-insolvency-ledger-ddd-accounting-2026-06-12]],
   [[../60-Research/raw-perplexity/raw-insolvency-ledger-games-2026-06-12]].
 
+## Match-Engine Contract Ratification (FMX-135, 2026-06-12)
+
+- [[../60-Research/match-engine-contract-ratification-2026-06-12]] -
+  FMX-135 synthesis for the ADR-0096 runtime fork and status/binding seam.
+  Grounds the accepted decision record with Perplexity refresh plus primary
+  Wasmtime/libm/pure-rand/OOTP checks. Nico approved D1=B single Rust/WASM
+  module everywhere, mandatory integer/fixed-point replay-bearing math, D2-A
+  quality-profile precedence, D3-A carry-forward / 9-stream cleanup, D4
+  single-WASM readiness spike and D5 cleanup of ADR-0096/0072/0077/0078/0086/
+  0087 to `accepted` / `binding: true`. Raw captures:
+  [[../60-Research/raw-perplexity/raw-match-engine-runtime-fork-2026-06-12]],
+  [[../60-Research/raw-perplexity/raw-match-engine-replay-quality-profiles-2026-06-12]].
+  Decision record:
+  [[../40-Execution/fmx-135-match-engine-contract-decision-queue-2026-06-12]].
+
 ## AI Narration Scope Freeze and Fallback Coverage (FMX-88, 2026-06-04)
 
 - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]

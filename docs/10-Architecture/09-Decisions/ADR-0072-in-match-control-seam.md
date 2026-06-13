@@ -3,9 +3,9 @@ title: ADR-0072 In-Match Control Seam & Intervention Determinism
 status: accepted
 tags: [adr, architecture, match, ui, controls, determinism, replay, canvas, performance, fmx-100]
 created: 2026-06-03
-updated: 2026-06-11
+updated: 2026-06-12
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -43,6 +43,10 @@ accepted
 > match renderer (ADR-0024) or the two-renderer strategy (ADR-0041), which stay
 > binding. Gameplay surface (kit, halftime, shouts) is in
 > [[../../50-Game-Design/GD-0025-in-match-controls]].
+
+> **FMX-135 status cleanup (2026-06-12):** Nico confirmed the FMX-143
+> ratification intent during the FMX-135 pass. This ADR remains `accepted` and is
+> now `binding: true`; the pre-ratification banner above stays historical context.
 
 ## Date
 
@@ -213,9 +217,9 @@ posture; a concrete perf gate ready for the first prototype.
 yet); the intervention buffer FSM + watch-party coordination are deferred to
 FMX-101; shout-effect magnitudes are calibration debt (FMX-52 via GD-0025).
 
-## HITL gate
+## Ratification / follow-up
 
-`proposed` / `binding: false`. D1–D4 chosen live by Nico 2026-06-03 (A/A/A/A).
+Accepted and binding. D1–D4 chosen live by Nico 2026-06-03 (A/A/A/A).
 Residual D-questions (halftime action set, speed-step count, shout cooldown/effect
 magnitudes, max queued subs) sit in GD-0025 for ratification. Ratified 2026-06-08 (#153)
 + merge; ADR-0024/0041 amendment notes apply in the same PR.

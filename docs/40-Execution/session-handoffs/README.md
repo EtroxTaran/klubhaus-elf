@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-12-fmx-135-match-engine-contract]] - FMX-135 match-engine contract
+  ratification: raw/synthesis research, decision record and accepted ADR
+  updates. Nico approved D1-D5 live on 2026-06-12: ADR-0096 is binding with one
+  Rust/WASM module everywhere (server Wasmtime, browser WebAssembly API),
+  mandatory integer/fixed-point replay-bearing math, D2-A quality-profile replay
+  precedence, D3-A carry-forward/9-stream cleanup and D4 single-WASM readiness
+  spike before Match runtime implementation. ADR-0072/0077/0078/0086/0087 were
+  also cleaned to `binding: true`.
 - [[2026-06-12-fmx-146-insolvency-ledger-contract]] - FMX-146 insolvency
   event-to-ledger posting contract: raw/synthesis research and accepted ADR/GDDR
   amendments for the ADR-0050 / ADR-0079 seam. Captures the selected line:
