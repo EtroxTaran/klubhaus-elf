@@ -1,9 +1,9 @@
 ---
 title: ADR-0070 FixtureCommercialProfile + CompetitionRevenueProfile publication contract
 status: accepted
-tags: [adr, architecture, league, competition, fixture, commercial, revenue, published-language, outbox, acl, fmx-78]
+tags: [adr, architecture, league, competition, fixture, commercial, revenue, published-language, outbox, acl, quality-profile, fmx-78, fmx-147]
 created: 2026-06-03
-updated: 2026-06-08
+updated: 2026-06-13
 accepted_at: 2026-06-03
 type: adr
 binding: true
@@ -18,11 +18,13 @@ related:
   - [[ADR-0019-modular-monolith-ddd]]
   - [[../bounded-context-map]]
   - [[../../60-Research/fixture-commercial-revenue-profiles-2026-06-03]]
+  - [[../../60-Research/quality-profile-enum-settlement-path-2026-06-12]]
   - [[../../60-Research/raw-perplexity/raw-fixture-commercial-revenue-profiles-2026-06-03]]
   - [[../../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
   - [[../../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
   - [[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]]
   - [[../../30-Implementation/club-economy-commercial-contracts]]
+  - [[ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]]
 ---
 
 # ADR-0070: FixtureCommercialProfile + CompetitionRevenueProfile publication contract
@@ -35,6 +37,15 @@ accepted
 > **D1 = A** event-plus-query, **D2 = A** League-owned stable fixture/commercial
 > rule facts only, **D3 = A** League owns rule/cadence profiles while
 > CommercialPortfolio owns accrual and settlement interpretation.
+
+> **FMX-147 schema amendment accepted 2026-06-13.** Nico confirmed ADR-0101 D3: this ADR now uses
+> `FixtureCommercialProfilesPublished.schemaVersion: 2`, replacing the old three-value
+> `qualityProfileClass` sketch with canonical `qualityProfile` (`competitive-full`,
+> `interactive-standard`, `background-detailed`, `background-fast`) plus derived
+> `settlementPath`. Because FMX is still docs-vault-only with no live v1 events, saves, external
+> consumers or durable integration fixtures, this is recorded as a pre-1.0 replacement rather than a
+> compatibility burden. Future breaking changes after implementation/publication require a new
+> version or upcaster path.
 
 ## Date
 
@@ -99,7 +110,7 @@ Nico ratified **D1 = A, D2 = A, D3 = A**:
 3. `CompetitionRevenueProfile` rule/cadence facts are League-owned, while
    CommercialPortfolio owns settlement, accrual and consumer interpretation.
 
-## Public contract sketch (ratified A/A/A)
+## Public contract sketch (ratified A/A/A + FMX-147 D3)
 
 ```ts
 CompetitionRevenueProfilePublished = {
@@ -166,7 +177,7 @@ CompetitionRevenueProfilePublished = {
 
 FixtureCommercialProfilesPublished = {
   eventId: EventId,
-  schemaVersion: 1,
+  schemaVersion: 2,
   idempotencyKey: string, // fixturesPublishedEventId:profileVersion
   publishedAt: Instant,
   fixturesPublishedEventId: EventId,
@@ -212,7 +223,15 @@ FixtureCommercialProfilesPublished = {
     abandonmentHandling: AbandonmentHandling,
     commercialSettlementAttachmentKey: string,
     operatingCostAttachmentKey: string,
-    qualityProfileClass: 'backgroundFast' | 'standard' | 'expert',
+    qualityProfile:
+      | 'competitive-full'
+      | 'interactive-standard'
+      | 'background-detailed'
+      | 'background-fast',
+    settlementPath:
+      | 'foreground_per_event'
+      | 'background_summary_then_reconcile'
+      | 'lightweight_stateless',
     provenance: ProfileProvenance
   }>
 }

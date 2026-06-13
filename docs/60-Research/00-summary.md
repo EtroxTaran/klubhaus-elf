@@ -1,8 +1,8 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-135, fmx-146]
-updated: 2026-06-12
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-135, fmx-146, fmx-147]
+updated: 2026-06-13
 ---
 
 # Research Summary
@@ -129,6 +129,19 @@ haircut/forgiveness uses the one new balanced
 [[raw-perplexity/raw-insolvency-ledger-real-world-2026-06-12]],
 [[raw-perplexity/raw-insolvency-ledger-ddd-accounting-2026-06-12]],
 [[raw-perplexity/raw-insolvency-ledger-games-2026-06-12]].
+
+## Quality-Profile Enum and Settlement-Path Reconciliation (FMX-147, 2026-06-12)
+
+[[quality-profile-enum-settlement-path-2026-06-12]] closes the research layer for
+the ADR-0101 D3 quality-profile seam and records Nico's accepted outcome:
+ADR-0070 `FixtureCommercialProfilesPublished.schemaVersion: 2` with the canonical
+four-value match quality profile plus a derived `settlementPath`, replacing the
+ambiguous v1 `qualityProfileClass` as a pre-1.0 docs-only correction because no
+durable v1 payloads exist. Raw captures:
+[[raw-perplexity/raw-quality-profile-enum-ddd-contract-2026-06-12]],
+[[raw-perplexity/raw-quality-profile-real-world-football-2026-06-12]],
+[[raw-perplexity/raw-quality-profile-sim-games-2026-06-12]],
+[[raw-perplexity/raw-pre1-contract-replacement-2026-06-13]].
 
 ## Player Discipline Sub-Aggregate (FMX-80, 2026-06-05)
 
