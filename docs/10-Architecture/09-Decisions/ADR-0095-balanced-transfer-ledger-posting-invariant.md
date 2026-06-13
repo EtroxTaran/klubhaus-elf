@@ -3,7 +3,7 @@ title: ADR-0095 Double-entry / balanced-transfer ledger posting invariant
 status: accepted
 tags: [adr, architecture, ddd, economy, accounting, ledger, double-entry, invariant, audit, event-sourcing, determinism, club-management, fmx-106]
 created: 2026-06-08
-updated: 2026-06-11
+updated: 2026-06-13
 type: adr
 binding: true
 amends: [[ADR-0050-club-economy-accounting-ledger]]
@@ -11,6 +11,7 @@ superseded_by:
 related:
   - [[ADR-0050-club-economy-accounting-ledger]]
   - [[ADR-0058-club-economy-commercial-impact-boundary]]
+  - [[ADR-0106-chart-of-accounts-and-category-catalog]]
   - [[ADR-0079-dynasty-board-ownership-and-bankruptcy]]
   - [[ADR-0086-background-fast-matchday-cost-settlement]]
   - [[ADR-0019-modular-monolith-ddd]]
@@ -40,6 +41,12 @@ accepted
 > (FMX-145), together with the chart-of-accounts granularity principle and the migration answer
 > (see §Decision); grounded in
 > [[../../60-Research/ledger-posting-shape-double-vs-single-entry-2026-06-11]].
+
+> **LI-9 concrete chart confirmed 2026-06-13 (FMX-150).**
+> [[ADR-0106-chart-of-accounts-and-category-catalog]] defines
+> `chartOfAccountsVersion = 1`, `categoryCatalogVersion = 1`, semantic dotted
+> account codes, additive-only no-renumbering and the Expert accounting drilldown
+> surface. ADR-0095 keeps the invariant; ADR-0106 supplies the catalog.
 
 > Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
@@ -195,8 +202,8 @@ only on an after-the-fact projection sweep.
   in-game "Expert accounting" P&L aggregates by category, the balance sheet by account. This is
   the embedded-ledger standard (Modern Treasury dimensions, TigerBeetle codes/`user_data`,
   Oracle GL tree-versioning) and keeps the chart proportionate. The **concrete account list +
-  category catalog is FMX-150's deliverable**; this ADR pins the principle and extends LI-9 to
-  cover both levels.
+  category catalog is defined by [[ADR-0106-chart-of-accounts-and-category-catalog|ADR-0106]]**;
+  this ADR pins the principle and extends LI-9 to cover both levels.
 - **Migration = none (pre-1.0).** The repository was reset to docs-vault-only on 2026-05-27;
   no implementation and **no live saves exist**. The balanced posting shape **is the v1 save
   schema**; no single-signed→balanced migration path is specified. The FMX-145 data-loss risk
@@ -259,9 +266,8 @@ Negative / constraints:
   events (matchday cost families, catering/merchandise lines, financing drawdown/interest, fan-event
   settlement, cup settlement) must now emit a balanced pair with explicit account codes rather than one
   signed number.
-- A **chart of accounts** must be defined before postings can be coded; this is new design surface
-  ADR-0050 deferred (granularity decided two-level 2026-06-11, FMX-145 — see §Decision; the
-  concrete account list + category catalog is FMX-150).
+- The **chart of accounts** is defined by ADR-0106. Any future account additions must follow
+  ADR-0106's additive-only no-renumbering discipline.
 - The accounting complexity **must not leak into non-finance contexts** — LI-6 + the existing
   sole-ledger-writer rule already protect this (other contexts keep emitting flat fact events; only
   Club Management's ACL turns a fact into a balanced pair), but it is a discipline to enforce in review.
@@ -282,9 +288,9 @@ Negative / constraints:
 All three original open questions are **resolved or routed** (2026-06-11, FMX-145):
 
 - **D1 — A vs B:** **decided A** (balanced double-entry) — Nico live 2026-06-11; see §Decision.
-- **Chart-of-accounts granularity:** **decided** — two-level (small fixed typed chart ~30–40
-  accounts + versioned `categoryCode` posting-metadata catalog); the concrete account list +
-  category catalog is **FMX-150**'s deliverable.
+- **Chart-of-accounts granularity and concrete catalog:** **decided** — two-level (small fixed
+  typed chart + versioned `categoryCode` posting-metadata catalog) in FMX-145, with the concrete
+  40-account catalog and versioning rules accepted in ADR-0106 / FMX-150.
 - **Band → `amountMinor` collapse point:** **routed** — owned by
   [[ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract]] D2; the exact
   collapse rule was **decided 2026-06-12 (FMX-149): seeded-within-band** — `collapseBand` draws

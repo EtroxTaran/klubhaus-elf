@@ -42,6 +42,11 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-13-fmx-150-chart-of-accounts]] - FMX-150 chart-of-accounts
+  decision packet: raw Perplexity captures, synthesis and accepted ADR-0106.
+  Nico approved semantic dotted account codes, a 40-account medium chart,
+  separate versioned `categoryCode` catalog and Expert statements plus
+  drilldown/audit drawer.
 - [[2026-06-12-fmx-147-quality-profile-reconciliation]] - FMX-147 quality-profile
   enum reconciliation: raw/synthesis research, Nico-approved D3 decision and
   accepted ADR-0070/ADR-0101 amendments. ADR-0070 now uses

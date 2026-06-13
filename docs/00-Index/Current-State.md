@@ -51,9 +51,18 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-150 Chart of Accounts accepted — ADR-0106 binding (2026-06-13).**
+> Linear FMX-150 is `In Progress` on branch `codex/fmx-150-chart-of-accounts`. Research
+> [[../60-Research/chart-of-accounts-and-category-catalog-2026-06-13]] (+ raw chart/game-ledger,
+> real-world football accounting, sports-management finance UI and versioning captures) grounds
+> accepted [[../10-Architecture/09-Decisions/ADR-0106-chart-of-accounts-and-category-catalog|ADR-0106]].
+> Nico approved D1-D3 live: semantic dotted account codes, a 40-account medium chart plus versioned
+> `categoryCode` catalog, and Expert accounting as statements plus account/category drilldown and
+> audit drawer. ADR-0106 is `accepted` / `binding: true`; ADR-0105/ADR-0101 account handles now use
+> the canonical chart.
+>
 > **FMX-147 Quality-profile enum reconciliation decided — ADR-0101 fully binding
-> (2026-06-13).** Linear FMX-147 is in progress on branch
-> `codex/fmx-147-quality-profile-reconciliation`. Research
+> (2026-06-13).** Merged to `main` via PR #169. Research
 > [[../60-Research/quality-profile-enum-settlement-path-2026-06-12]] (+ raw DDD/schema,
 > real-world football risk/category, sports-management game captures and supplemental pre-1.0
 > contract-replacement refresh) grounds Nico's D3 decision: ADR-0070
@@ -92,9 +101,9 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > ADR-0105 `RegistrationDisposalSettled` / `RegistrationWriteOffPosted` with `insolvencyCaseId`
 > provenance; creditor haircut/forgiveness uses the one new balanced posting
 > `InsolvencyCreditorWriteOffPosted` (external haircut → debt-restructuring gain; owner/related-party
-> forgiveness → equity contribution). `creditorWriteoffBand` collapses under ADR-0101 D2 using
-> `WorldAiMgmtRng:...:insolvency:<clubId>:writeoff:<creditorClass>:v1`; concrete account codes stay
-> **FMX-150**. FMX-147 closed the remaining D3 axis on 2026-06-13, so ADR-0101 is now fully
+> forgiveness → `equity.owner_contribution` per ADR-0106). `creditorWriteoffBand` collapses under
+> ADR-0101 D2 using `WorldAiMgmtRng:...:insolvency:<clubId>:writeoff:<creditorClass>:v1`.
+> FMX-147 closed the remaining D3 axis on 2026-06-13, so ADR-0101 is now fully
 > binding.
 
 > **FMX-149 MoneyBand → amountMinor collapse rule decided — ADR-0101 D2 = seeded-within-band,
@@ -136,8 +145,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > IAS-38-lite lean). New [[../10-Architecture/09-Decisions/ADR-0105-wage-and-transfer-fee-posting-contracts|ADR-0105]]
 > (accepted/binding, **amends ADR-0050**); ADR-0053/ADR-0075 carry counterpart cross-references;
 > the bounded-context-map Club Management row names the wage-block counterpart + Transfer→Ledger
-> ACL. Account handles provisional pending **FMX-150**; insolvency wage-cap handling is resolved by
-> ADR-0101 D4 / **FMX-146** as a future wage-block constraint, not a posting rewrite.
+> ACL. Concrete account codes are now defined by **FMX-150 / ADR-0106**; insolvency wage-cap handling
+> is resolved by ADR-0101 D4 / **FMX-146** as a future wage-block constraint, not a posting rewrite.
 >
 > **FMX-131 Standings authority clarified — League official ordering, Statistics projection
 > (2026-06-12).** Closes the ADR-0066 / ADR-0081 seam where both documents used "standings"
@@ -170,7 +179,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > **D1 = A** balanced double-entry postings (LI-1..LI-9 binding; LI-4 refined to the standard
 > *reversing entry* wording with `originalEntryId` link) · **CoA granularity = two-level** (small
 > fixed typed chart ~30–40 accounts + versioned `categoryCode` posting-metadata catalog;
-> Expert-P&L aggregates by category, balance sheet by account; concrete chart = **FMX-150**) ·
+> Expert-P&L aggregates by category, balance sheet by account; concrete chart = **ADR-0106 / FMX-150**) ·
 > **no save migration** (pre-1.0, no live saves since the 2026-05-27 reset; balanced shape = v1
 > schema) · **dossier sub-task = dated closure addendum** (dossier stays closed). ADR-0095 →
 > `binding: true`; ADR-0050 carries a dated shape-only amendment note (amendment pattern per

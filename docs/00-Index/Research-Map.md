@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-13
 type: map
 binding: false
-related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-real-world-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-ddd-accounting-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-games-2026-06-12]], [[../60-Research/quality-profile-enum-settlement-path-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-enum-ddd-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-real-world-football-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-sim-games-2026-06-12]], [[../60-Research/raw-perplexity/raw-pre1-contract-replacement-2026-06-13]]
+related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-real-world-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-ddd-accounting-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-games-2026-06-12]], [[../60-Research/quality-profile-enum-settlement-path-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-enum-ddd-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-real-world-football-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-sim-games-2026-06-12]], [[../60-Research/raw-perplexity/raw-pre1-contract-replacement-2026-06-13]], [[../60-Research/chart-of-accounts-and-category-catalog-2026-06-13]], [[../60-Research/raw-perplexity/raw-chart-of-accounts-game-ledger-2026-06-13]], [[../60-Research/raw-perplexity/raw-football-club-accounting-families-2026-06-13]], [[../60-Research/raw-perplexity/raw-sports-management-finance-ui-2026-06-13]], [[../60-Research/raw-perplexity/raw-chart-of-accounts-versioning-2026-06-13]]
 ---
 
 # Research Map
@@ -168,6 +168,21 @@ design notes.
   [[../60-Research/raw-perplexity/raw-quality-profile-real-world-football-2026-06-12]],
   [[../60-Research/raw-perplexity/raw-quality-profile-sim-games-2026-06-12]],
   [[../60-Research/raw-perplexity/raw-pre1-contract-replacement-2026-06-13]].
+
+## Chart of Accounts and Category Catalog (FMX-150, 2026-06-13)
+
+- [[../60-Research/chart-of-accounts-and-category-catalog-2026-06-13]] -
+  FMX-150 synthesis for ADR-0095 LI-9 and the provisional account handles in
+  ADR-0105 / ADR-0101. Records Nico's accepted D1-D3: semantic dotted account
+  codes, a 40-account medium chart, a separate versioned `categoryCode` catalog
+  and an Expert finance surface based on statements plus drilldown/audit
+  provenance. Accepted ADR:
+  [[../10-Architecture/09-Decisions/ADR-0106-chart-of-accounts-and-category-catalog]].
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-chart-of-accounts-game-ledger-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-football-club-accounting-families-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-sports-management-finance-ui-2026-06-13]],
+  [[../60-Research/raw-perplexity/raw-chart-of-accounts-versioning-2026-06-13]].
 
 ## AI Narration Scope Freeze and Fallback Coverage (FMX-88, 2026-06-04)
 
