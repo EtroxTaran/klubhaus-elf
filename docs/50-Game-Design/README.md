@@ -43,7 +43,7 @@ Implement gameplay only from `accepted`/`approved` game-design records (GDDRs ca
 individually re-approved). This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0041`; `GD-0041` is draft/pending) — the
+- **GDDRs** (`GD-0001`...`GD-0042`; `GD-0041` and `GD-0042` are draft/pending) — the
   decision-record chain from research into ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -79,7 +79,9 @@ contradict the GDDR of record. Wave-2-gated items inside accepted GDDRs remain
 scope-gated, not implementable.
 
 `GD-0041` is the new FMX-191 monetization/no-P2W proposal and remains `draft`
-until Nico answers the FMX-191 decision queue. FMX-190 prepared draft
+until Nico answers the FMX-191 decision queue. `GD-0042` is the FMX-133
+match-engine core model/calibration proposal and remains `draft` until Nico
+answers the FMX-133 decision queue. FMX-190 prepared draft
 [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]
 as the proposed project-wide no-P2W / shared-fairness enforcement invariant;
 it remains non-binding until Nico answers the FMX-190 decision queue.
@@ -127,6 +129,7 @@ it remains non-binding until Nico answers the FMX-190 decision queue.
 | [[GD-0039-c6-status-reconciliation-and-cluster-ratification-order]] | C6 status reconciliation & People-first cluster ratification order (FMX-105 sweep): canonical status note + fixed People → Staff Ops/Youth/Scouting → Discipline/Loans/Manager-signal order. | accepted | ADR-0052 |
 | [[GD-0040-future-contracts-clm-extraction-seam]] | Future Contracts/CLM extraction-seam (FMX-105 sweep): defer extraction but reserve an explicit ACL seam now so ADR-0073/0075 stop tracking the same future-CLM question in parallel. **Nico: option A.** | accepted | ADR-0073, ADR-0075 |
 | [[GD-0041-monetization-model-and-no-pay-to-win-canon]] | Monetization model and no-P2W canon (FMX-191): recommended free core + deterministic cosmetics + optional non-power Supporter Club + later cosmetic-only season card; strict allowed/forbidden entitlement classes; ADR-0063 Investor isolated to singleplayer. FMX-190 enforcement draft [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]] is pending Nico D1-D5. | draft | ADR-0107, ADR-0108 draft |
+| [[GD-0042-match-engine-core-model-and-calibration]] | Match-engine core model and calibration (FMX-133): recommended hybrid event-chain + xT/EPV utility + xG + attribute contests, v1 statistical envelopes, profile spatial-density rules and calibration/compatibility harness. Numeric representation stays closed by ADR-0096. Pending Nico D1-D6. | draft | ADR-0096, ADR-0026 |
 
 ## Core loop
 
@@ -200,6 +203,11 @@ it remains non-binding until Nico answers the FMX-190 decision queue.
 - [[GD-0026-set-piece-coach-readiness]] - draft set-piece-coach effect-readiness
   multiplier curve (FMX-69, G12); readiness gates ADR-0067 variant selectability.
 - [[match-engine]] - 2D event-based engine spec.
+- [[GD-0042-match-engine-core-model-and-calibration]] - draft FMX-133 core
+  model/calibration proposal; not binding until Nico approves D1-D6.
+- [[../60-Research/match-engine-core-model-2026-06-13]] - FMX-133 research
+  synthesis for statistical envelopes, action utility, game precedents and the
+  calibration harness.
 
 ## Modes
 

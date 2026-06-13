@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-13-fmx-133-match-engine-core-model]] - FMX-133 match-engine core
+  model decision packet: raw Perplexity/source-check captures, synthesis, HITL
+  queue and draft GD-0042. Recommended packet is A/A/A/A/A/A: hybrid
+  event-chain + xT/EPV utility + shot xG + attribute contests, broad v1
+  statistical envelopes, profile spatial-density rules, tiered calibration
+  harness and ADR-0096 numeric representation closure preserved.
 - [[2026-06-13-fmx-194-monetization-legal-gates]] - FMX-194 monetization legal
   gates decision packet: raw Perplexity/source captures, synthesis, compliance
   evidence home, HITL queue and draft ADR-0109. Recommended packet is A/A/A/A/A:

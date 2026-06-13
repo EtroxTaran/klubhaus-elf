@@ -51,6 +51,22 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-133 Match-engine core model prepared — decision pending
+> (2026-06-13).** Linear FMX-133 is `In Progress` on branch
+> `codex/fmx-133-match-engine-core-model`. Research
+> [[../60-Research/match-engine-core-model-2026-06-13]] (+ raw Perplexity captures
+> for real-world envelopes, action utility, game precedents, calibration harness
+> and source checks) recommends a hybrid event-chain + xT/EPV utility + shot xG +
+> weighted/logistic attribute-contest model, v1 statistical envelopes,
+> profile-specific spatial sample-density rules and a calibration/compatibility
+> harness. Draft
+> [[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration|GD-0042]]
+> is **not binding** until Nico approves D1-D6 in
+> [[../40-Execution/fmx-133-match-engine-core-model-decision-queue-2026-06-13]].
+> Recommended packet: A/A/A/A/A/A. Numeric representation remains closed by
+> [[../10-Architecture/09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface|ADR-0096]]
+> and is not reopened by FMX-133.
+>
 > **FMX-194 Monetization legal gates prepared — decision pending
 > (2026-06-13).** Linear FMX-194 is `In Progress` on branch
 > `codex/fmx-194-monetization-legal-gates`. Research
