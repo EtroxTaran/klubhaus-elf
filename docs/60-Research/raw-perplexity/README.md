@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, quality-profile, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-135, fmx-146, fmx-147, fmx-150]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, quality-profile, monetization, no-p2w, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-135, fmx-146, fmx-147, fmx-150, fmx-191]
 created: 2026-05-16
 updated: 2026-06-13
 type: index
@@ -187,6 +187,18 @@ UI and append-only versioning strands.
 | [[raw-football-club-accounting-families-2026-06-13]] | Real-world football club accounting families: player registrations, wages, receivables/payables, revenue, debt and write-offs | [[../chart-of-accounts-and-category-catalog-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0106-chart-of-accounts-and-category-catalog]] |
 | [[raw-sports-management-finance-ui-2026-06-13]] | Football/sports-management finance UI precedent for Quick / Standard / Expert accounting | [[../chart-of-accounts-and-category-catalog-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0106-chart-of-accounts-and-category-catalog]] |
 | [[raw-chart-of-accounts-versioning-2026-06-13]] | Additive chart/versioning, inactive-not-deleted codes and category-catalog replay rules | [[../chart-of-accounts-and-category-catalog-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0106-chart-of-accounts-and-category-catalog]] |
+
+## FMX-191 follow-up Perplexity/Web research (2026-06-13)
+
+Perplexity research and targeted official-source checks were run during FMX-191 after
+Nico selected the monetization model / no-P2W canon issue.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-monetization-model-market-precedents-2026-06-13]] | 2026 game monetization model comparison, football-manager genre precedents, Hattrick-style supporter model and paid-power risk | [[../monetization-model-and-no-p2w-canon-2026-06-13]] · [[../../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]] |
+| [[raw-monetization-legal-privacy-store-policy-2026-06-13]] | EU/German consumer-law, GDPR/ePrivacy, app-store policy, ratings and legal-review constraints for paid digital goods | [[../monetization-model-and-no-p2w-canon-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]] |
+| [[raw-no-pay-to-win-guardrails-2026-06-13]] | Allowed/forbidden entitlement taxonomy and operational no-P2W test for shared competitive contexts | [[../monetization-model-and-no-p2w-canon-2026-06-13]] · [[../../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]] |
+| [[raw-monetization-source-checks-2026-06-13]] | Targeted official source checks for Apple, EU consumer rights, USK and Hattrick Supporter precedent | [[../monetization-model-and-no-p2w-canon-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]] |
 
 ## FMX-67 follow-up Perplexity research (2026-06-05)
 

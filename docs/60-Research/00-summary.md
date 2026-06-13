@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-135, fmx-146, fmx-147, fmx-150]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, monetization, no-p2w, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-135, fmx-146, fmx-147, fmx-150, fmx-191]
 updated: 2026-06-13
 ---
 
@@ -156,6 +156,22 @@ Raw captures:
 [[raw-perplexity/raw-football-club-accounting-families-2026-06-13]],
 [[raw-perplexity/raw-sports-management-finance-ui-2026-06-13]],
 [[raw-perplexity/raw-chart-of-accounts-versioning-2026-06-13]].
+
+## Monetization Model and No-P2W Canon (FMX-191, 2026-06-13)
+
+[[monetization-model-and-no-p2w-canon-2026-06-13]] preserves the FMX-191
+research layer for the monetization pre-mortem finding
+PM-2026-05-20-04-F-01. It recommends a free core, deterministic cosmetics,
+optional non-power Supporter Club, later cosmetic-only season card and a strict
+no-P2W entitlement taxonomy. The decision remains pending Nico in
+[[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]; draft
+decision homes are [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
+and [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]].
+Raw captures:
+[[raw-perplexity/raw-monetization-model-market-precedents-2026-06-13]],
+[[raw-perplexity/raw-monetization-legal-privacy-store-policy-2026-06-13]],
+[[raw-perplexity/raw-no-pay-to-win-guardrails-2026-06-13]],
+[[raw-perplexity/raw-monetization-source-checks-2026-06-13]].
 
 ## Player Discipline Sub-Aggregate (FMX-80, 2026-06-05)
 

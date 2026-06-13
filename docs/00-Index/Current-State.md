@@ -51,6 +51,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-191 Monetization model / no-P2W canon prepared — decision pending
+> (2026-06-13).** Linear FMX-191 is `In Progress` on branch
+> `codex/fmx-191-monetization-model-no-p2w-canon`. Research
+> [[../60-Research/monetization-model-and-no-p2w-canon-2026-06-13]] (+ raw market/game,
+> legal/privacy/store, no-P2W guardrail and official source-check captures) recommends the
+> model-level canon: free core, deterministic cosmetics, optional non-power Supporter
+> Club, later cosmetic-only Club Season Card, no ads in MVP, no paid random rewards and a
+> strict allowed/forbidden entitlement taxonomy. Draft
+> [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon|GD-0041]] and
+> [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary|ADR-0107]]
+> are **not binding** until Nico approves D1-D5 in
+> [[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]. Recommended packet:
+> A/A/A/A/A. ADR-0063 Investor stays a singleplayer-only special case; FMX-190 remains
+> the follow-up for CI/test enforcement.
+>
 > **FMX-150 Chart of Accounts accepted — ADR-0106 binding (2026-06-13).**
 > Linear FMX-150 is `In Progress` on branch `codex/fmx-150-chart-of-accounts`. Research
 > [[../60-Research/chart-of-accounts-and-category-catalog-2026-06-13]] (+ raw chart/game-ledger,

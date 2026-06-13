@@ -3,7 +3,7 @@ title: Game Design Hub
 status: current
 tags: [game-design, index]
 created: 2026-05-15
-updated: 2026-06-12
+updated: 2026-06-13
 type: index
 binding: false
 related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[GD-0031-analytics-hub-and-statistics]], [[GD-0032-awards-honours-records-and-hall-of-fame]], [[GD-0033-national-team-dual-role]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../60-Research/national-team-dual-role-2026-06-06]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
@@ -43,8 +43,8 @@ Implement gameplay only from `accepted`/`approved` game-design records (GDDRs ca
 individually re-approved). This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0040`) — the decision-record chain from research into
-  ADRs (the *what was decided and why*);
+- **GDDRs** (`GD-0001`...`GD-0041`; `GD-0041` is draft/pending) — the
+  decision-record chain from research into ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
   works in depth*).
@@ -77,6 +77,9 @@ non-numbered system/mode notes are `draft` detailed specs pending individual
 re-approval (FMX-143 H2) — read them as planning context that must not
 contradict the GDDR of record. Wave-2-gated items inside accepted GDDRs remain
 scope-gated, not implementable.
+
+`GD-0041` is the new FMX-191 monetization/no-P2W proposal and remains `draft`
+until Nico answers the FMX-191 decision queue.
 
 | GDDR | System | Status | Feeds ADR |
 |---|---|---|---|
@@ -120,6 +123,7 @@ scope-gated, not implementable.
 | [[GD-0038-bounded-context-portfolio-trim-merge-review-gate]] | Bounded-context portfolio trim / merge-review gate (FMX-105 sweep): adopt the reconciled 28-context map as canonical, but keep the count under a standing merge-review gate; trim candidates that always co-change. **Nico: option B.** | accepted | ADR-0089 |
 | [[GD-0039-c6-status-reconciliation-and-cluster-ratification-order]] | C6 status reconciliation & People-first cluster ratification order (FMX-105 sweep): canonical status note + fixed People → Staff Ops/Youth/Scouting → Discipline/Loans/Manager-signal order. | accepted | ADR-0052 |
 | [[GD-0040-future-contracts-clm-extraction-seam]] | Future Contracts/CLM extraction-seam (FMX-105 sweep): defer extraction but reserve an explicit ACL seam now so ADR-0073/0075 stop tracking the same future-CLM question in parallel. **Nico: option A.** | accepted | ADR-0073, ADR-0075 |
+| [[GD-0041-monetization-model-and-no-pay-to-win-canon]] | Monetization model and no-P2W canon (FMX-191): recommended free core + deterministic cosmetics + optional non-power Supporter Club + later cosmetic-only season card; strict allowed/forbidden entitlement classes; ADR-0063 Investor isolated to singleplayer. **Pending Nico D1-D5.** | draft | ADR-0107 |
 
 ## Core loop
 
@@ -139,6 +143,8 @@ scope-gated, not implementable.
   financing tools: credit line, loan, sponsor advance, receivable factoring,
   restructuring, owner support and emergency-sale mandates separate from
   Investor.
+- [[GD-0041-monetization-model-and-no-pay-to-win-canon]] - draft FMX-191
+  monetization model and no-P2W canon; not binding until Nico approves D1-D5.
 - [[sponsorship-portfolio]] - 4-tier sponsor inventory at asset level.
 - [[stadium-and-campus]] - stadium tiers + Anstoss-style attractions + club campus.
 - [[../20-Features/feature-club-economy-mvp-pillar]] - draft MVP economy pillar for weekly ledger, full accounting and staged insolvency.

@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-13-fmx-191-monetization-model]] - FMX-191 monetization model and
+  no-P2W canon decision packet: raw Perplexity/Web captures, synthesis, HITL
+  queue and draft GD-0041 / ADR-0107. Recommended packet is A/A/A/A/A: free
+  core, deterministic cosmetics, optional non-power Supporter Club, later
+  cosmetic-only season card, ADR-0063 Investor isolated to singleplayer and
+  FMX-190 left for CI/test enforcement.
 - [[2026-06-13-fmx-150-chart-of-accounts]] - FMX-150 chart-of-accounts
   decision packet: raw Perplexity captures, synthesis and accepted ADR-0106.
   Nico approved semantic dotted account codes, a 40-account medium chart,

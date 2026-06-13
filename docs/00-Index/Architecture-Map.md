@@ -3,7 +3,7 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-06-12
+updated: 2026-06-13
 type: map
 binding: false
 related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/player-discipline]]
@@ -157,6 +157,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft context-map change; no implementation until accepted.
 - [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft context-map change plus FMX-87 dialogue-intent/effect-result planning contracts; no implementation until accepted.
 - [ADR-0065 Narrative Media and Press Content Ownership](../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership.md) - draft extension of ADR-0054; no implementation until accepted.
+- [ADR-0107 Pricing and IAP Monetization Boundary](../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary.md) - draft FMX-191 monetization boundary for classified entitlements, no-P2W invariant, provider separation and privacy/legal gates; pending Nico D1-D5, no implementation until accepted.
 
 ## Rule
 

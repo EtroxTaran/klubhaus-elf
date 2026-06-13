@@ -135,6 +135,7 @@ ADRs' frontmatter.
 | [[../10-Architecture/09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]] | accepted | **Mobile-delivery grounding + ratification** — ground iOS-push/EU-DMA claims, pin Capacitor 7.x; responsive PWA = source of truth, thin additive Capacitor shell. | New; **supersedes ADR-0025**. |
 | [[../10-Architecture/09-Decisions/ADR-0105-wage-and-transfer-fee-posting-contracts]] | accepted | **Wage + transfer-fee/amortisation posting contracts** — named ADR-0050 events for the wage block (`PlayerWageBlockPosted`/`StaffWageBlockPosted`) + transfer fee (`TransferFeeCapitalised`/`TransferInstalmentSettled`/`RegistrationAmortisationPosted`/disposal/write-off), full IAS 38, weekly cadence, natural idempotency keys, ADR-0075 loan-intent mapping. **6 forks decided live (Nico 2026-06-12, FMX-144)** incl. D1=B separate wage events + D6=C expense-everything overrides. | New; **amends ADR-0050** (adds the wage/transfer posting vocabulary). |
 | [[../10-Architecture/09-Decisions/ADR-0106-chart-of-accounts-and-category-catalog]] | accepted | **Chart of Accounts + category catalog** — FMX-150 D1-D3 accepted live by Nico 2026-06-13: semantic dotted account codes, a 40-account medium chart, versioned `categoryCode` catalog and Expert statements plus drilldown/audit drawer. | New; **amends ADR-0050/0095/0105/0101 account-code layer**; research [[../60-Research/chart-of-accounts-and-category-catalog-2026-06-13]]. |
+| [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]] | draft | **Pricing + IAP monetization boundary** — FMX-191 proposal only: classified entitlements, no-P2W invariant, provider boundary and privacy/legal gates for cosmetics, Supporter Club and ADR-0063 singleplayer Investor isolation. | Pending Nico D1-D5; research [[../60-Research/monetization-model-and-no-p2w-canon-2026-06-13]]; decision queue [[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]. |
 
 ## Process & Workflow ADRs (proposed 2026-05-27, draft)
 
@@ -174,6 +175,7 @@ PR as the work that needs them.
 | [[../10-Architecture/09-Decisions/ADR-0012-async-cadence-models]] | Product rules already approved | Implement cadence from game-design notes; ADR promotion is optional cleanup. |
 | [[../10-Architecture/09-Decisions/ADR-0014-state-machines]] | Future runtime-orchestration decision | Promote before changing league/week, transfer, watch-party or match state orchestration. |
 | [[../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides]] | Future UGC/data governance | Do not host or execute untrusted packs until moderation/security gates exist. |
+| [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]] | draft monetization boundary | Pending FMX-191 Nico approval; no SKU/provider/payment implementation may use it as binding authority yet. |
 
 ## Current Binding Non-ADR Inputs
 
