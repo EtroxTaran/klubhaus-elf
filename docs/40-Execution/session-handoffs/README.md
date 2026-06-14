@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-14-fmx-179-monorepo-workspace-bootstrap]] - FMX-179
+  monorepo/workspace bootstrap packet: raw Perplexity/source-check captures,
+  synthesis, decision queue, draft ADR-0114 and exact scaffold plan. Recommended
+  packet is D1-D8 = A/A/A/A/A/A/A/A: progressive one-context package catalog,
+  real foundation packages only, workspace package facades, pnpm workspace
+  linking + TypeScript references + Nx TypeScript plugin, no placeholder green
+  gates, `@klubhaus-elf/*` namespace, module owner metadata now / domain
+  CODEOWNERS later and scaffold-time version re-check/exact pinning.
 - [[2026-06-14-fmx-138-determinism-portfolio-principle]] - FMX-138
   portfolio determinism + seeded-variance principle packet: raw
   Perplexity/Web/source-check captures, synthesis, decision queue and draft

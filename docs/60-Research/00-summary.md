@@ -79,6 +79,25 @@ Executable contract:
 [[raw-perplexity/raw-code-phase-dod-monorepo-gates-2026-06-14]],
 [[raw-perplexity/raw-code-phase-dod-game-production-gates-2026-06-14]].
 
+## Monorepo Workspace Bootstrap (FMX-179, 2026-06-14)
+
+[[monorepo-workspace-bootstrap-2026-06-14]] preserves the FMX-179 research
+layer for the first real `apps/web` + `packages/*` bootstrap shape after
+ADR-0110. It recommends draft
+[[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]] and
+[[../30-Implementation/monorepo-workspace-bootstrap-plan]]: progressive
+one-context package catalog, real foundation packages only, workspace package
+facades replacing ADR-0019's old `src/domain/<context>` convention, pnpm
+workspace linking + TypeScript project references + Nx TypeScript plugin, no
+placeholder green gates and `@klubhaus-elf/*` namespace. Decision remains
+pending Nico in
+[[../40-Execution/fmx-179-monorepo-workspace-bootstrap-decision-queue-2026-06-14]].
+Raw captures:
+[[raw-perplexity/raw-monorepo-workspace-ddd-package-granularity-2026-06-14]],
+[[raw-perplexity/raw-monorepo-workspace-game-production-precedents-2026-06-14]],
+[[raw-perplexity/raw-monorepo-workspace-tooling-bootstrap-2026-06-14]],
+[[raw-perplexity/raw-monorepo-workspace-source-checks-2026-06-14]].
+
 ## Rivalry Commercial Signal Contract Reconciliation (FMX-134, 2026-06-14)
 
 [[rivalry-commercial-signal-contract-2026-06-14]] preserves the FMX-134

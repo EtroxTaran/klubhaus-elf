@@ -155,6 +155,7 @@ game is built.
 | [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]] | accepted | One issue ↔ one git worktree ↔ one branch per agent session; no work without an issue (override = Nico command). | New. |
 | [[../10-Architecture/09-Decisions/ADR-0046-team-topology-and-scaling]] | accepted | Future-scope: Lead Architect + Domain Leads, CODEOWNERS-by-domain, activates when the 2nd lead joins. | New; future-scope. |
 | [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]] | accepted | **Code-phase DoD transition contract** — docs-phase DoD active now (`node scripts/docs-check.mjs` plus status consistency when status/binding changes); code-phase DoD target-only until workspace/Nx/scripts/CI/app paths exist; Nx selected day one; `apps/web`/`packages/*` are target-only; pnpm currency routed to FMX-195. | New FMX-180; **amends ADR-0044/0045**; research [[../60-Research/code-phase-dod-transition-contract-2026-06-14]]; implementation checklist [[../30-Implementation/code-phase-dod-transition-contract]]. |
+| [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]] | draft | **Monorepo/workspace bootstrap** — FMX-179 proposal only: progressive one-context package catalog, real foundation packages only, pnpm workspace linking + TypeScript project references + Nx TypeScript plugin, no placeholder green gates, `@klubhaus-elf/*` package namespace and scaffold-time version re-check/exact pinning. | Pending Nico D1-D8; research [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]; scaffold plan [[../30-Implementation/monorepo-workspace-bootstrap-plan]]; decision queue [[../40-Execution/fmx-179-monorepo-workspace-bootstrap-decision-queue-2026-06-14]]. |
 
 ## Superseded ADRs
 
@@ -189,6 +190,7 @@ PR as the work that needs them.
 | [[../10-Architecture/09-Decisions/ADR-0111-rivalry-commercial-signal-contract-reconciliation]] | draft Rivalry/CommercialPortfolio contract reconciliation | Pending FMX-134 Nico approval; no accepted contract may remove or add `RivalryCommercialSignal` until D1-D3 are approved. |
 | [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]] | draft age assurance / rating evidence posture | Pending FMX-185 Nico approval and legal/store review; no age-gate, telemetry, rating, store metadata or paid activation implementation may use it as binding authority yet. |
 | [[../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle]] | draft determinism / seeded-variance portfolio principle | Pending FMX-138 Nico approval; no audit/replay, projection/measurement or variety/drama surface may cite the portfolio rule as binding until D1-D3 are approved. |
+| [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]] | draft monorepo/workspace bootstrap | Pending FMX-179 Nico approval; no workspace scaffold, package namespace, package-boundary convention or code-phase check activation may cite it as binding until D1-D8 are approved. |
 
 ## Current Binding Non-ADR Inputs
 

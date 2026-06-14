@@ -84,6 +84,27 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > when status/binding changes); code scripts, Storybook and app/package paths are
 > target-only until the transition checklist is green.
 >
+> **FMX-179 Monorepo/workspace bootstrap prepared — decision pending
+> (2026-06-14).** Linear FMX-179 is `In Progress` on branch
+> `codex/fmx-179-monorepo-workspace-bootstrap`. Research
+> [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]] (+ raw
+> Perplexity/source-check captures for DDD package granularity, comparable
+> game-production precedent, Nx/pnpm/TypeScript/Vitest/Playwright/Storybook
+> docs and npm registry latest checks) recommends draft
+> [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap|ADR-0114]]
+> plus scaffold plan
+> [[../30-Implementation/monorepo-workspace-bootstrap-plan]]. The packet is
+> **not binding** until Nico approves D1-D8 in
+> [[../40-Execution/fmx-179-monorepo-workspace-bootstrap-decision-queue-2026-06-14]].
+> Recommended packet: progressive one-context package catalog with no 28 empty
+> package roots, real foundation packages only, workspace package facades
+> replacing ADR-0019's old `src/domain/<context>` convention, pnpm workspace
+> linking + TypeScript project references + Nx `@nx/js/typescript`, no
+> placeholder green gates, `@klubhaus-elf/*` package namespace, module owner
+> metadata now / domain CODEOWNERS later and version re-check/exact pinning in
+> the scaffold PR. No workspace files or dependencies were added in this docs
+> packet.
+>
 > **FMX-134 RivalryCommercialSignal contract prepared — decision pending
 > (2026-06-14).** Linear FMX-134 is `In Progress` on branch
 > `codex/fmx-134-rivalry-commercial-signal`. Research

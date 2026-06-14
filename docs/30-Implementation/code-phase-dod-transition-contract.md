@@ -8,11 +8,14 @@ type: implementation
 binding: true
 related:
   - [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]]
+  - [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]]
   - [[agent-workflow-pattern]]
   - [[ci-and-review-process]]
   - [[mvp-implementation-roadmap]]
+  - [[monorepo-workspace-bootstrap-plan]]
   - [[../10-Architecture/09-Design-System]]
   - [[../60-Research/code-phase-dod-transition-contract-2026-06-14]]
+  - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]
   - [[../40-Execution/fmx-180-code-phase-dod-transition-decision-queue-2026-06-14]]
 ---
 
@@ -98,7 +101,10 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 
 ## Related Linear routing
 
-- FMX-179 owns the monorepo/workspace bootstrap shape.
+- FMX-179 owns the monorepo/workspace bootstrap shape; draft
+  [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]]
+  and [[monorepo-workspace-bootstrap-plan]] are the pending decision packet,
+  not yet an active scaffold contract.
 - FMX-175 owns deeper code-CI cleanup and stale code-check narratives.
 - FMX-176 owns lefthook/local-parity restoration.
 - FMX-195 owns the pnpm 11.1.2 -> current stable pin update surfaced during
@@ -107,9 +113,11 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 ## Related
 
 - [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]]
+- [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]]
 - [[agent-workflow-pattern]]
 - [[ci-and-review-process]]
 - [[mvp-implementation-roadmap]]
+- [[monorepo-workspace-bootstrap-plan]]
 - [[../10-Architecture/09-Design-System]]
 - [[../60-Research/code-phase-dod-transition-contract-2026-06-14]]
-
+- [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]
