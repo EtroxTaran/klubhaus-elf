@@ -1,8 +1,8 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-141, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
-updated: 2026-06-13
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, insolvency, ledger, chart-of-accounts, category-code, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-141, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
+updated: 2026-06-14
 ---
 
 # Research Summary
@@ -65,16 +65,23 @@ The current state is:
 - Evidence gates remain tracked through implementation: tests, drills, legal
   sign-off, release artifacts and production telemetry.
 
-## Opposition-template AI Consumption Contract (FMX-67, 2026-06-05)
+## Opposition-template AI Consumption Contract (FMX-67 / FMX-136, 2026-06-05 / 2026-06-14)
 
 [[opposition-template-ai-consumption-contract-2026-06-05]] closes the research
-layer for G11: AI-management planning supplies opponent-prep context, Tactics
+layer for G11: AI World Simulation supplies opponent-prep context, Tactics
 selects and publishes the self-contained
-`OppositionTemplateSelectedForMatchV1`, and Match freezes it into
-`TacticSnapshot` at `lineup_locked`. It feeds proposed
+`OppositionTemplateSelectedForMatchV1`, and Match consumes the embedded
+`TacticSnapshot.oppositionTemplate` slice at `lineup_locked`. It feeds accepted
+and binding
 [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]].
 Raw Perplexity/Web capture:
 [[raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]].
+
+[[opposition-template-ai-consumption-ratification-2026-06-14]] preserves the
+FMX-136 ratification cleanup: AI World canonical planning source, fail-fast
+`opposition_template_selection_missing` and snapshot-in-Tactic replay payload.
+Raw Perplexity/Web capture:
+[[raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]].
 
 ## Statistics & Analytics Read-Model Owner (FMX-94, 2026-06-05)
 
