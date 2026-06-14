@@ -3,7 +3,7 @@ title: Open-Decisions Dossier — questions, recommendations, ratify checklist
 status: current
 tags: [meta, index, decisions, open-questions, dossier, fmx-105]
 created: 2026-06-07
-updated: 2026-06-13
+updated: 2026-06-14
 type: index
 binding: false
 related:
@@ -18,6 +18,9 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]]
   - [[../10-Architecture/09-Decisions/ADR-0060-youth-academy-context]]
+  - [[../40-Execution/fmx-137-roguelite-tuning-decision-queue-2026-06-14]]
+  - [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]]
+  - [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
 ---
 
 # Open-Decisions Dossier
@@ -68,6 +71,19 @@ related:
 > [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
 > and [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]. Nico
 > still needs to approve D1-D5; this closed dossier is not reopened.
+
+> **Post-dossier FMX-137 roguelite tuning (historical completeness, added
+> 2026-06-14; dossier stays closed).** FMX-137 resolved the Create-a-Club
+> Roguelite §11 run-end and carry-slot tuning questions outside this dossier.
+> Nico approved the recommended D1-D6 packet by instructing implementation of
+> the proposed plan: staged run-end ladder, two unresolved month-end
+> liquidity/licence failures after rescue exhaustion, board loss through
+> GD-0030 `last_chance`, capped logarithmic functional carry slots to max 3,
+> light async kit-pattern visibility and deferred manager-archetype taxonomy.
+> Authoritative records:
+> [[../40-Execution/fmx-137-roguelite-tuning-decision-queue-2026-06-14]],
+> [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]] and
+> [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]].
 
 One place where everything still open across the domains **was decided**. Each item below is a
 crisp question with researched options and a **recommended answer** (grounded externally

@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-14-fmx-137-roguelite-tuning]] - FMX-137 Create-a-Club Roguelite
+  run tuning packet: raw Perplexity captures, synthesis, decision queue and
+  accepted GD-0044. Approved packet is D1-D6 = A/A/A/A/A/A: staged run-end
+  ladder, two unresolved month-end liquidity/licence failures after rescue
+  exhaustion, board loss through GD-0030 `last_chance`, capped logarithmic
+  functional carry slots to max 3, light async kit-pattern visibility and
+  deferred archetype taxonomy.
 - [[2026-06-13-fmx-141-gameplay-calibration-owner]] - FMX-141 gameplay
   calibration ownership packet: raw Perplexity/source-check captures, synthesis,
   draft GD-0043, gameplay calibration runbook, HITL queue and affected GDDR

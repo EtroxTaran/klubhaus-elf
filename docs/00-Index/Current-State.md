@@ -51,6 +51,22 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-137 Create-a-Club Roguelite run tuning accepted (2026-06-14).**
+> Branch `codex/fmx-137-roguelite-tuning` carries the docs packet. Research
+> [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
+> (+ raw Perplexity captures for football run-end precedent, comparable games
+> and roguelite meta-progression) grounds accepted
+> [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning|GD-0044]].
+> Nico approved the recommended D1-D6 packet by instructing implementation of
+> the proposed plan: staged run-end ladder, two unresolved month-end
+> liquidity/licence failures after rescue exhaustion, board control loss through
+> GD-0030 `last_chance`, capped logarithmic carry slots to max 3, light async
+> kit-pattern visibility and deferred manager-archetype taxonomy. Decision
+> record:
+> [[../40-Execution/fmx-137-roguelite-tuning-decision-queue-2026-06-14]].
+> The detailed [[../50-Game-Design/mode-create-a-club-roguelite]] note remains
+> `draft`; GD-0044 is the binding tuning record on conflicts.
+>
 > **FMX-141 Gameplay calibration ownership prepared — decision pending
 > (2026-06-13).** Linear FMX-141 is `In Progress` on branch
 > `codex/fmx-141-gameplay-calibration-owner`. Research

@@ -3,10 +3,10 @@ title: Feature - Roguelite MVP First Playable
 status: approved
 tags: [feature, mvp, roguelite, first-playable]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-06-14
 type: feature
 binding: true
-related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[feature-club-economy-mvp-pillar]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
+related: [[README]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[feature-club-economy-mvp-pillar]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
 ---
 
 # Feature - Roguelite MVP First Playable
@@ -41,6 +41,10 @@ In scope:
 - Manager-archetype MVP hooks: run-end fact capture, coarse style signals and a
   post-run reflection contract. Full perk selection, final taxonomy and
   cross-save legacy progression are not active MVP gameplay.
+- Roguelite run-end and carry-slot defaults from
+  [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]]: staged
+  financial/board loss gates, two unresolved month-end liquidity/licence
+  failures as the product grace default, and capped functional carry slots.
 - Server-confirmed progression; Dexie cache/drafts only.
 - Offline shell/read/draft behavior with explicit "requires connection" copy
   for final actions.
@@ -99,9 +103,15 @@ Feature: Roguelite MVP first playable
   Scenario: End a run with analysis hooks
     Given my Create-a-Club Roguelite run ends
     When the run-end flow is saved
-    Then the system records the run end reason and coarse style signals
+    Then the system records the run end reason, crisis path and coarse style signals
     And the post-run reflection may summarize my style
     But it does not promise final archetype unlocks or fixed perk thresholds
+
+  Scenario: Show financial run-end pressure before failure
+    Given my club has exhausted available rescue levers
+    When two consecutive month-end liquidity or licence checks remain unresolved
+    Then the run reaches the licence-loss run-end gate
+    And the run-end explanation shows the failed checks and missing recovery path
 ```
 
 ## Acceptance criteria
@@ -117,11 +127,17 @@ Feature: Roguelite MVP first playable
   scope.
 - Run-end analysis hooks preserve future Manager & Legacy progression while
   keeping final thresholds, labels and perk strength playtest-tunable.
+- Run-end and carry-slot behaviour follows
+  [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]]: staged
+  financial/board loss, two unresolved month-end liquidity/licence failures as
+  the default financial gate, and max three functional carry slots before
+  option/cosmetic/challenge unlocks take over.
 
 ## Related
 
 - [[../00-Index/MVP-Scope]]
 - [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]]
+- [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]]
 - [[../50-Game-Design/mode-create-a-club-roguelite]]
 - [[feature-club-economy-mvp-pillar]]
 - [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]]
