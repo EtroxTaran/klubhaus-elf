@@ -3,10 +3,10 @@ title: Game Design Hub
 status: current
 tags: [game-design, index]
 created: 2026-05-15
-updated: 2026-06-13
+updated: 2026-06-14
 type: index
 binding: false
-related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[GD-0031-analytics-hub-and-statistics]], [[GD-0032-awards-honours-records-and-hall-of-fame]], [[GD-0033-national-team-dual-role]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../60-Research/national-team-dual-role-2026-06-06]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
+related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[GD-0031-analytics-hub-and-statistics]], [[GD-0032-awards-honours-records-and-hall-of-fame]], [[GD-0033-national-team-dual-role]], [[GD-0044-create-a-club-roguelite-run-tuning]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../60-Research/national-team-dual-role-2026-06-06]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
 ---
 
 # Game Design Hub
@@ -43,7 +43,8 @@ Implement gameplay only from `accepted`/`approved` game-design records (GDDRs ca
 individually re-approved). This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0043`; `GD-0041`–`GD-0043` are draft/pending) — the
+- **GDDRs** (`GD-0001`...`GD-0044`; `GD-0041`–`GD-0043` are draft/pending,
+  `GD-0044` is accepted) — the
   decision-record chain from research into ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -86,7 +87,8 @@ calibration ownership proposal and remains `draft` until Nico answers the
 FMX-141 decision queue. FMX-190 prepared draft
 [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]
 as the proposed project-wide no-P2W / shared-fairness enforcement invariant;
-it remains non-binding until Nico answers the FMX-190 decision queue.
+it remains non-binding until Nico answers the FMX-190 decision queue. `GD-0044`
+is the accepted FMX-137 Create-a-Club Roguelite run tuning record.
 
 | GDDR | System | Status | Feeds ADR |
 |---|---|---|---|
@@ -133,6 +135,7 @@ it remains non-binding until Nico answers the FMX-190 decision queue.
 | [[GD-0041-monetization-model-and-no-pay-to-win-canon]] | Monetization model and no-P2W canon (FMX-191): recommended free core + deterministic cosmetics + optional non-power Supporter Club + later cosmetic-only season card; strict allowed/forbidden entitlement classes; ADR-0063 Investor isolated to singleplayer. FMX-190 enforcement draft [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]] is pending Nico D1-D5. | draft | ADR-0107, ADR-0108 draft |
 | [[GD-0042-match-engine-core-model-and-calibration]] | Match-engine core model and calibration (FMX-133): recommended hybrid event-chain + xT/EPV utility + xG + attribute contests, v1 statistical envelopes, profile spatial-density rules and calibration/compatibility harness. Numeric representation stays closed by ADR-0096. Pending Nico D1-D6. | draft | ADR-0096, ADR-0026 |
 | [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] | Gameplay calibration ownership and acceptance gate (FMX-141): recommended gameplay-wide calibration umbrella, 14-slot taxonomy, T0-T4 harness tiers, explicit tolerance/rebaseline policy and realism-vs-fun approval gate. Pending Nico D1-D5. | draft | none |
+| [[GD-0044-create-a-club-roguelite-run-tuning]] | Create-a-Club Roguelite run tuning (FMX-137): staged run-end ladder, two unresolved month-end liquidity/licence failures after rescue exhaustion, board control loss through GD-0030 `last_chance`, capped logarithmic carry slots to max 3, light async kit-pattern visibility and deferred archetype taxonomy. | accepted | ADR-0051, ADR-0082 |
 
 ## Core loop
 
@@ -220,7 +223,9 @@ it remains non-binding until Nico answers the FMX-190 decision queue.
 ## Modes
 
 - [[mode-create-a-club-roguelite]] - MVP first playable; permadeath + soft carries.
-- [[GD-0019-manager-archetype-roguelite-progression]] - draft Manager & Legacy
+- [[GD-0044-create-a-club-roguelite-run-tuning]] - accepted FMX-137 run-end and
+  carry-slot tuning record for Create-a-Club Roguelite.
+- [[GD-0019-manager-archetype-roguelite-progression]] - accepted Manager & Legacy
   progression hooks for Create-a-Club Roguelite.
 - [[mode-manage-a-club-career]] - Anstoss-2 "real manager career" + split confidence; visible as "comes later" in MVP.
 - [[singleplayer-baseline]] - the full reference experience.

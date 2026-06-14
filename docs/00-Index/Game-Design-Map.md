@@ -3,10 +3,10 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-06-13
+updated: 2026-06-14
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
 ---
 
 # Game Design Map
@@ -21,7 +21,8 @@ future-scope or historical planning unless they are listed as binding
 individual re-approval (FMX-143 H2). GD-0041 is the FMX-191 monetization/no-P2W
 proposal, GD-0042 is the FMX-133 match-engine core model/calibration proposal
 and GD-0043 is the FMX-141 gameplay calibration ownership proposal; all three
-remain `draft` pending Nico. This means old `Future-scope notes`
+remain `draft` pending Nico. GD-0044 is the accepted FMX-137 Create-a-Club
+Roguelite run-tuning record. This means old `Future-scope notes`
 sections are not active work by default.
 
 ## Hub
@@ -102,6 +103,9 @@ sections are not active work by default.
 - [[../50-Game-Design/mode-create-a-club-roguelite]] - MVP first playable.
 - [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]] - accepted
   Manager-Archetype Roguelite progression hooks.
+- [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]] - accepted
+  FMX-137 run-end, carry-slot, async cosmetic and archetype-taxonomy tuning for
+  Create-a-Club Roguelite.
 - [[../50-Game-Design/mode-manage-a-club-career]] - visible as "comes later"; post-MVP playable.
 - [[../50-Game-Design/singleplayer-baseline]]
 - [[../50-Game-Design/async-multiplayer-private-group]]
@@ -209,7 +213,8 @@ implementation; draft gameplay ideas can be used for planning but not as
 implementation specs. Since the 2026-06-08 ratification (#153, FMX-143
 reconciliation 2026-06-11):
 
-- **Binding: all GDDRs [[../50-Game-Design/GD-0001-core-loop|GD-0001]]–GD-0040**
+- **Binding: all GDDRs [[../50-Game-Design/GD-0001-core-loop|GD-0001]]–GD-0040
+  and [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning|GD-0044]]**
   (`accepted`; the GDDR is the decision of record — see
   [[../50-Game-Design/README]] precedence rules). Wave-2-gated items inside
   accepted GDDRs remain scope-gated, not implementable.

@@ -1,8 +1,8 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-141, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
-updated: 2026-06-13
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, quality-profile, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-137, fmx-141, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
+updated: 2026-06-14
 ---
 
 # Research Summary
@@ -150,6 +150,23 @@ fun/perception overrides. Raw captures:
 [[raw-perplexity/raw-gameplay-calibration-stochastic-harness-2026-06-13]],
 [[raw-perplexity/raw-gameplay-calibration-domain-slots-2026-06-13]],
 [[raw-perplexity/raw-gameplay-calibration-source-checks-2026-06-13]].
+
+## Roguelite Run-End and Carry Economy Tuning (FMX-137, 2026-06-14)
+
+[[roguelite-run-end-and-carry-economy-tuning-2026-06-14]] closes the research
+layer for the Create-a-Club Roguelite §11 tuning questions. It records Nico's
+approved D1-D6 packet: staged run-end ladder, two unresolved month-end
+liquidity/licence failures after rescue exhaustion, board control loss through
+GD-0030 `last_chance`, capped logarithmic carry slots to max 3 functional
+slots, light async kit-pattern visibility and deferred manager-archetype
+taxonomy. Accepted decision home:
+[[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]]. Decision
+record:
+[[../40-Execution/fmx-137-roguelite-tuning-decision-queue-2026-06-14]]. Raw
+captures:
+[[raw-perplexity/raw-roguelite-run-end-thresholds-2026-06-14]],
+[[raw-perplexity/raw-roguelite-comparable-games-2026-06-14]],
+[[raw-perplexity/raw-roguelite-meta-progression-best-practices-2026-06-14]].
 
 ## Insolvency Event-To-Ledger Posting Contract (FMX-146, 2026-06-12)
 

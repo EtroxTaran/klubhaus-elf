@@ -3,10 +3,10 @@ title: Mode - Create a Club Roguelite
 status: draft
 tags: [game-design, mode, roguelite, create-a-club]
 created: 2026-05-16
-updated: 2026-06-11
+updated: 2026-06-14
 type: game-design
 binding: false
-related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0019-manager-archetype-roguelite-progression]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/onboarding-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[mode-manage-a-club-career]], [[onboarding-and-tutorial]], [[economy-system]], [[club-dna-and-governance]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
+related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0019-manager-archetype-roguelite-progression]], [[GD-0044-create-a-club-roguelite-run-tuning]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/onboarding-strategy]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]], [[../40-Execution/fmx-137-roguelite-tuning-decision-queue-2026-06-14]], [[mode-manage-a-club-career]], [[onboarding-and-tutorial]], [[economy-system]], [[club-dna-and-governance]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]]
 ---
 
 # Mode - Create a Club Roguelite
@@ -22,20 +22,22 @@ related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0019-manage
 > The ratified GDDR layer ([[README|Game Design Hub]]) may cover the same system — the GDDR
 > is then the binding record.
 
-The signature mode of Klubhaus Elf. Permadeath on insolvency, but each
-run leaves *legacy* that makes the next run *different* (not easier).
-This note is **approved** at the level of the product rule. Sub-mechanic
-tuning remains `draft` and lives in linked notes.
+The signature mode of Klubhaus Elf. Permadeath on insolvency/control loss, but
+each run leaves *legacy* that makes the next run *different* (not easier).
+This detailed mode note remains `draft`; the resolved FMX-137 run-end and carry
+tuning is binding via accepted
+[[GD-0044-create-a-club-roguelite-run-tuning]].
 
-## 1. Approved product rule
+## 1. Core product rule
 
 > **A roguelite run is a single career-and-club lifecycle. Insolvency,
 > control loss, forced dissolution and deliberate retirement all end the
 > run. Persistence between runs is small, optional, structural - never raw
 > power.**
 
-This rule is binding for implementation. Detailed tuning is in
-[[economy-system]] §6 and [[club-dna-and-governance]].
+This rule is binding where repeated in accepted GDDRs. Detailed FMX-137 tuning
+is in [[GD-0044-create-a-club-roguelite-run-tuning]], with economy details in
+[[economy-system]] §6 and governance context in [[club-dna-and-governance]].
 
 ## 1.1 MVP-first slice
 
@@ -69,8 +71,8 @@ stateDiagram-v2
     Active --> Active: Season loop
     Active --> Crisis: Trigger threshold
     Crisis --> Recovery: Stabilise
-    Crisis --> Insolvency: Liquidity = 0
-    Crisis --> ControlLoss: Board veto
+    Crisis --> Insolvency: Licence loss / administration
+    Crisis --> ControlLoss: Board last-chance failed
     Recovery --> Active
     Active --> Retire: Player choice
     Insolvency --> RunEnd
@@ -98,9 +100,9 @@ A run ends when **any** of these occur:
 
 | End condition | Trigger |
 |---|---|
-| Insolvency | [[economy-system]] staged crisis reaches licence loss / run-end state |
-| Control loss | Board veto for N consecutive failed seasons |
-| Forced dissolution | League expulsion (compliance failure post grace period) |
+| Insolvency / licence loss | Staged crisis reaches licence loss / run-end after **two consecutive unresolved month-end liquidity/licence failures** once buffers and rescue levers are exhausted ([[GD-0044-create-a-club-roguelite-run-tuning]]) |
+| Control loss | GD-0030 board-confidence ladder reaches `last_chance` and fails after repeated season-level under-delivery; default = two consecutive failed expectation cycles through that ladder |
+| Forced dissolution | Rare/extreme league expulsion or compliance failure after grace period; reserved as an extreme run-end route |
 | Deliberate retirement | Player chooses to retire |
 | Achievement run | Optional special goal (e.g. promote 4 tiers in 10 years) |
 
@@ -113,16 +115,22 @@ Persisted between runs:
 | Carry type | Mechanic | Limits |
 |---|---|---|
 | **Option unlocks** | New club founding profiles, sponsor archetypes, youth philosophies | Unlocked by reaching milestones (e.g. promote 2 tiers, win cup) |
-| **Soft carries** | Scout contact, small credit bonus, cheaper plot, slight starting reputation | 1 slot at start; more slots earned by run length |
+| **Soft carries** | Scout contact, cheaper plot, slight starting reputation and other small structural options | 1 slot at start; capped logarithmic growth to max 3 functional slots by completed-season milestones |
 | **Manager talent tree** | Permanent manager-attribute upgrades (e.g. press, scout, training) | Tree-shaped; respec available |
 | **Narrative legacy** | Former runs + players appear in the universe | Read-only history |
 | **Cosmetic identity** | Crests, colour palettes, kit patterns | Unlock-and-keep |
 
 ### Carry budget rule
 
-A new run starts with **1 carry slot** by default. Slot count grows with
-*total run length across all prior runs*, not with successes alone. This
-rewards perseverance without rewarding gaming the failure state.
+A new run starts with **1 functional carry slot** by default. Functional slots
+grow by completed-season milestones across prior runs to a hard cap of **3**
+slots. The growth shape is logarithmic/diminishing-return, not a linear forever
+track.
+
+After 3 functional slots, progression widens founding-option pools, challenge
+variants, narrative echoes and cosmetics rather than adding more raw mechanical
+carry capacity. No MVP carry may increase starting cash, squad strength, stadium
+capacity, sponsor contracts, league reputation or squad attribute floors.
 
 ### 5.1 Manager-archetype hooks (FMX-16 draft)
 
@@ -206,13 +214,14 @@ When a private async group runs Create-a-Club mode
   procedural club to keep the bracket complete; the human re-enters next
   season.
 
-## 11. Open tuning questions
+## 11. FMX-137 resolved tuning defaults
 
-- N (consecutive months at liquidity ≤ 0) - tentative 2 months.
-- Board-veto-fail seasons - tentative 2 in a row.
-- Carry slot growth function - linear vs logarithmic. Current intent: 1
-  slot per ~50 in-game seasons summed across runs.
-- Should achievements unlock kit patterns visible to other players in
-  async groups? Yes - lightly badged.
-- Manager-archetype taxonomy and thresholds - intentionally not locked before
-  playtests; use style signals first, names later.
+Authoritative record: [[GD-0044-create-a-club-roguelite-run-tuning]].
+
+| Question | Resolved default | Remaining calibration / follow-up |
+|---|---|---|
+| Liquidity/licence run-end grace | Two consecutive unresolved month-end liquidity/licence failures after buffers and rescue levers are exhausted | Monetary bands, country/tier profiles and rescue magnitudes |
+| Board-control loss | Two failed expectation cycles only through GD-0030 `last_chance` failure | Board-confidence weights, owner patience modifiers and meeting targets |
+| Carry-slot growth | 1 starting functional slot; capped logarithmic growth to max 3 by completed-season milestones | Exact milestone values and category restrictions |
+| Async kit-pattern visibility | Yes, light feat-bound cosmetic badges visible in private async groups | Full social showcase, privacy controls and ranking surfaces |
+| Manager-archetype taxonomy | Defer final names and thresholds; save style signals first, authored-then-playtest-validated later | Final taxonomy, perks and prestige ladder |
