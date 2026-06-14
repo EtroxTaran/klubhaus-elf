@@ -168,6 +168,26 @@ design notes.
   [[../60-Research/raw-perplexity/raw-determinism-portfolio-realworld-football-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-determinism-portfolio-source-checks-2026-06-14]].
 
+## Command Signing and Save Trust (FMX-184, 2026-06-14)
+
+- [[../60-Research/command-signing-save-trust-2026-06-14]] -
+  FMX-184 synthesis for the dead pre-mortem ADR-0026/0028 command-signing and
+  save-trust concepts. Grounds accepted
+  [[../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture]]
+  and accepted
+  [[../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]]:
+  server-authoritative command validation plus mandatory app-managed/device
+  Ed25519 evidence from the first code phase, WebAuthn/passkeys only for
+  login/high-value ceremonies, derived save trust plus public eligibility, and
+  public save eligibility based on server/internal HMAC proof, command root,
+  engine/content hash and import/debug downgrade flags. Decision record:
+  [[../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]].
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-command-integrity-and-replay-protection-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-save-trust-provenance-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-command-save-trust-source-checks-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-hybrid-ed25519-command-evidence-2026-06-14]].
+
 ## Hidden-Attribute Reveal Owner Reconciliation (FMX-154, 2026-06-14)
 
 - [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]] -
