@@ -3,7 +3,7 @@ title: ADR-0077 Environment & Climate Context (Weather + Pitch)
 status: accepted
 tags: [adr, architecture, ddd, environment, climate, weather, pitch, match, stadium, league, determinism, replay, fmx-66]
 created: 2026-06-05
-updated: 2026-06-12
+updated: 2026-06-14
 type: adr
 binding: true
 supersedes:
@@ -27,6 +27,7 @@ related:
   - [[../../60-Research/raw-perplexity/raw-weather-realworld-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-weather-games-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-weather-determinism-2026-06-05]]
+  - [[../../60-Research/pitch-condition-state-ownership-2026-06-14]]
   - [[../../60-Research/determinism-and-replay]]
 ---
 
@@ -44,10 +45,11 @@ accepted
 > **`proposed` / `binding: false`.** FMX-66 (E2 epic FMX-58) closes audit gap
 > **G23** by pinning an owner + a replay-safe determinism path for weather and
 > pitch conditions. **D1–D4 were chosen live by Nico on 2026-06-05 = C, A, A, A.**
-> This ADR **proposes a new (20th) bounded context, "Environment & Climate"** but
-> **does not edit the binding `bounded-context-map.md`** — the map patch in
-> §"Map patch proposal" is applied only on ratification (per
-> [[../../90-Meta/vault-governance]], mirroring ADR-0064 / ADR-0075). It locks
+> At proposal time this ADR introduced the "Environment & Climate" bounded
+> context but **did not edit the binding `bounded-context-map.md`** because the
+> map/count patch was ratify-gated (per [[../../90-Meta/vault-governance]],
+> mirroring ADR-0064 / ADR-0075). ADR-0089 later reconciled the final portfolio
+> count to 28, and FMX-142 applied the map wording cleanup. It locks
 > **no numeric constants**: every magnitude, band, regime probability,
 > pitch-decay rate, WBGT band and forecast-error σ is **GD-0043
 > `environment.weatherPitch` calibration debt**
@@ -349,10 +351,10 @@ events.
   Matchday-Event-Engine consumes weather facts; Stadium Ops `PitchConditionChanged`
   consumes the weather input; CommercialPortfolio matchday-cost risk reads weather.
 
-## Map patch proposal (not applied — ratify-gated)
+## Map alignment (applied)
 
-On ratification, [[../bounded-context-map]] gains a **20th** bounded context,
-**Environment & Climate**, with:
+[[../bounded-context-map]] includes **Environment & Climate** in the ratified
+28-context catalog (portfolio count reconciled by ADR-0089) with:
 
 - Core elements: `SeasonClimateTemplate` (regime chain + W/D + distributions),
   `MatchWeatherRealization` (truth + forecast), pitch-weather interaction model.
@@ -361,12 +363,9 @@ On ratification, [[../bounded-context-map]] gains a **20th** bounded context,
 - Consumers: Match (snapshot @ `lineup_locked`), Audience & Atmosphere
   (atmosphere multiplier), Matchday-Event-Engine (weather policies), Stadium
   Operations (weather input to `PitchConditionChanged`), CommercialPortfolio
-  (matchday-cost risk). The Stadium Operations row gains a clause noting weather
-  is a **consumed input** to pitch condition. The context count line (19) becomes
-  20, and `src/domain/` gains an `environment-climate/` folder.
-
-The map patch is applied only through the ratification workflow (per
-[[../../90-Meta/vault-governance]]; same discipline as ADR-0064 / ADR-0075).
+  (matchday-cost risk). FMX-142 applies the wording cleanup: the Stadium
+  Operations row owns pitch-condition state and `PitchConditionChanged`;
+  Environment & Climate owns weather facts, forecasts and derivation rules only.
 
 ## Ratified boundary item
 
@@ -402,10 +401,12 @@ Positive:
 
 Negative / constraints:
 
-- Adds a **20th bounded context** (cross-context wiring + a new `src/domain`
-  folder) for a concern some teams fold into League/Stadium.
-- The Environment ↔ Stadium pitch-state boundary needs explicit ratification to
-  avoid two owners of pitch condition.
+- Adds an Environment & Climate bounded context (cross-context wiring + a
+  planned `src/domain/environment-climate/` folder) for a concern some teams
+  fold into League/Stadium; ADR-0089 reconciles it into the 28-context catalog.
+- The Environment / Stadium seam must stay explicit: Environment & Climate owns
+  weather input and derivation rules; Stadium Operations owns pitch-condition
+  state and remains the `PitchConditionChanged` emitter.
 - Per-fixture realization depends on stable fixture identity (ADR-0068) and the
   venue climate-zone reference being available before lock.
 
@@ -423,9 +424,7 @@ Remaining follow-up items before implementation:
   calibration behind
   `weatherModelVersion`;
 - the postponement/abandonment + re-fixturing slice (reserved hook) → a later
-  E2/League issue;
-- bounded-context-map wording cleanup if a later map pass needs to remove
-  pitch-state shorthand ambiguity.
+  E2/League issue.
 
 ## Supersedes
 

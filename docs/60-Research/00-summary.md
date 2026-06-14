@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
 updated: 2026-06-14
 ---
 
@@ -174,6 +174,20 @@ captures:
 [[raw-perplexity/raw-roguelite-run-end-thresholds-2026-06-14]],
 [[raw-perplexity/raw-roguelite-comparable-games-2026-06-14]],
 [[raw-perplexity/raw-roguelite-meta-progression-best-practices-2026-06-14]].
+
+## Pitch-Condition State Ownership Reconciliation (FMX-142, 2026-06-14)
+
+[[pitch-condition-state-ownership-2026-06-14]] closes the research layer for
+the ADR-0077 / bounded-context-map pitch-state ambiguity. It applies the
+accepted split: Stadium Operations owns pitch-condition state and
+`PitchConditionChanged`; Environment & Climate owns weather/climate facts,
+fallible forecasts and pitch-weather derivation rules consumed by Stadium
+Operations. Decision record:
+[[../40-Execution/fmx-142-pitch-condition-state-ownership-decision-queue-2026-06-14]].
+Raw captures:
+[[raw-perplexity/raw-pitch-condition-state-ownership-ddd-2026-06-14]],
+[[raw-perplexity/raw-pitch-condition-realworld-operations-2026-06-14]],
+[[raw-perplexity/raw-pitch-condition-game-precedents-2026-06-14]].
 
 ## Insolvency Event-To-Ledger Posting Contract (FMX-146, 2026-06-12)
 
