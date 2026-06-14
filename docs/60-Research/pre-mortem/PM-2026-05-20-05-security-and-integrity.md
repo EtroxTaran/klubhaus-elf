@@ -3,7 +3,7 @@ title: "Pre-Mortem 2026-05-20 · 05 · Security & Integrity"
 status: current
 tags: [research, pre-mortem, security, integrity, anti-tamper, save-format, anti-cheat, 2026-Q2]
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-14
 type: research
 binding: false
 report_id: PM-2026-05-20-05
@@ -24,6 +24,8 @@ related:
   - [[../gdpr-compliance]]
   - [[../../10-Architecture/09-Decisions/ADR-0005-save-format]]
   - [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+  - [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]]
+  - [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]]
   - [[../../30-Implementation/auth-flows]]
   - [[../../30-Implementation/session-management]]
   - [[../../30-Implementation/rate-limiting-anti-abuse]]
@@ -87,7 +89,15 @@ updated: 2026-05-22
 
 **Frühwarnindikatoren.** Save-Import-Schema-Mismatch-Spike (Forger-Tool im Umlauf). Existenz unsigner Exports in Production-Builds.
 
-**Mitigation.** Save-Schema v2 (siehe §Save-Format unten): Pflichtfelder `schema_version`, `save_id` (UUIDv7), `command_log_merkle_root`, `engine_bundle_hash`, `trust_level`, `server_hmac` (optional, vorhanden iff cloud-synced). Importe ohne Server-HMAC bekommen `trust_level: unverified` und sind von Leaderboards/Hall-of-Fame ausgeschlossen. ADR-0028 ratifiziert das.
+**Mitigation.** Save-Schema v2 (siehe §Save-Format unten): Pflichtfelder `schema_version`, `save_id` (UUIDv7), `command_log_merkle_root`, `engine_bundle_hash`, `trust_level`, `server_hmac` (optional, vorhanden iff cloud-synced). Importe ohne Server-HMAC bekommen `trust_level: unverified` und sind von Leaderboards/Hall-of-Fame ausgeschlossen.
+
+> **FMX-184 correction (2026-06-14):** The old sentence "ADR-0028 ratifies
+> this" is invalid after ADR re-numbering; current ADR-0028 is the Postgres
+> transactional outbox. The accepted home is
+> [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture|ADR-0116]]:
+> derived `SaveTrustLevel` plus `PublicEligibility`, internal server HMAC proof,
+> strict public downgrade rules and public surfaces limited to
+> server-verified/imported-verified eligible histories.
 
 **Verifikation.** Tampering-Test-Suite (siehe §Load-Tests): 12 Mutation-Klassen werden gegen den Import-Pfad geworfen; jede muss `reject` oder `unverified` ergeben.
 
@@ -128,12 +138,21 @@ updated: 2026-05-22
 
 **Frühwarnindikatoren.** `cmd_signature_invalid_total`, `cmd_nonce_replay_total`.
 
-**Mitigation.** Command-Bus mit Pflichtfeldern:
+**Mitigation (historical sketch).** Command-Bus mit Pflichtfeldern:
 ```
 { commandId: UUIDv7, payload: { … }, nonce: BLAKE3-128(commandId||clientTime||deviceKey),
   clientTime: ISO, deviceKey: ed25519-pub, signature: ed25519(commandId||payload||nonce||clientTime) }
 ```
-Server prüft Signatur, Nonce-Freshness (30-Tage-Bloom-Filter), Sender-Authorization, Time-Skew (< 60 s). Antwortet mit `CommandReceipt(commandId, serverTime, resultingStateHash, serverSig)`. Client validiert & speichert für späteren Replay-Beweis. ADR-0026 ratifiziert.
+Server prüft Signatur, Nonce-Freshness (30-Tage-Bloom-Filter), Sender-Authorization, Time-Skew (< 60 s). Antwortet mit `CommandReceipt(commandId, serverTime, resultingStateHash, serverSig)`. Client validiert & speichert für späteren Replay-Beweis.
+
+> **FMX-184 correction (2026-06-14):** The old sentence "ADR-0026 ratifies
+> this" is invalid after ADR re-numbering; current ADR-0026 is the Match Frame
+> Contract. The accepted home is
+> [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture|ADR-0115]].
+> FMX keeps server-authoritative validation, `commandId` idempotency,
+> `expectedVersion` and processed-command dedup as authority. It also requires a
+> full app-managed/device Ed25519 command-evidence envelope from the first code
+> phase; that signature is provenance evidence, not authority.
 
 **Verifikation.** Penetration-Test: forged Commands, replay'd Commands, expired Nonces — alle müssen `reject`.
 
@@ -528,16 +547,21 @@ updated: 2026-05-22
 
 ## Save-Format-Vorschlag (Schema v2)
 
-Ratifiziert durch geplante `ADR-0028 Save Import/Export Trust Levels`.
+Historical sketch. The intended `ADR-0028 Save Import/Export Trust Levels` never
+became that ADR; current ADR-0028 is Postgres transactional outbox. The accepted
+home is
+[[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture|ADR-0116]].
 
 ```typescript
 // packages/save-format/src/schema.ts (geplant)
 export type SaveTrustLevel =
   | 'local-only'               // Niemals synchronisiert; SP-Default.
-  | 'cloud-verified'           // Server hat Command-Log replayed und gegengezeichnet.
+  | 'server-verified'          // Server hat Command-Log/proof chain akzeptiert.
   | 'imported-unverified'      // Aus Datei importiert, nicht serverseitig geprüft.
-  | 'imported-verified'        // Importiert + serverseitig replayed → bit-identisch.
-  | 'unverified-by-engine-migration'; // War verified, Engine-Version migriert, Re-Verify ausstehend.
+  | 'imported-verified'        // Importiert + serverseitig proof-chain akzeptiert.
+  | 'unverified-by-engine-migration'
+  | 'dev-or-debug'
+  | 'invalid-or-modified';
 
 export interface SaveFileV2 {
   schema_version: 2;
@@ -549,8 +573,8 @@ export interface SaveFileV2 {
   command_log: ReadonlyArray<SignedCommand>;
   snapshot: ClubSnapshot;      // schema'd
   trust_level: SaveTrustLevel;
-  device_signature: string;    // ed25519 über (schema_version, save_id, merkle_root, snapshot_hash)
-  server_hmac?: string;        // HMAC-SHA-256 (nur bei cloud-verified)
+  device_signature: string;    // Ed25519 evidence over canonical bytes/root.
+  server_hmac?: string;        // HMAC-SHA-256 (nur bei server/imported-verified)
 }
 
 export interface SignedCommand {
@@ -574,10 +598,10 @@ export interface SignedCommand {
 |------|--------|-------------|------------------------------|--------------|
 | SP-Export → eigene Festplatte | Z2 → Z3 | Device-Signatur erzeugt | `local-only` | Keiner |
 | Lokales Save laden | Z3 → Z2 | Device-Signatur prüfen | unverändert | Keiner |
-| Cloud-Sync upload | Z2 → Z1 | Server replay'd Command-Log | `cloud-verified` (bei Erfolg) | Server-HMAC wird gesetzt |
-| Cloud-Sync download | Z1 → Z2 | Server-HMAC prüfen | `cloud-verified` | Keiner |
+| Cloud-Sync upload | Z2 → Z1 | Server prueft Command-Log/proof chain | `server-verified` (bei Erfolg) | Server-HMAC wird gesetzt |
+| Cloud-Sync download | Z1 → Z2 | Server-HMAC prüfen | `server-verified` | Keiner |
 | Community-Import (lokal nur) | Z5 → Z2 | Schema-Validate | `imported-unverified` | Spielbar, nicht für Leaderboards |
-| Community-Import + Server-Verify | Z5 → Z2 → Z1 | Schema + Server-Replay | `imported-verified` bei Bit-Identität | Eligible für Hall-of-Fame |
+| Community-Import + Server-Verify | Z5 → Z2 → Z1 | Schema + Server-Pruefung | `imported-verified` bei valider Proof-Chain | Eligible für Hall-of-Fame |
 
 ## Quantitatives Modell
 
@@ -681,16 +705,18 @@ Branchen-Erfahrung: 0,5–3 % der MP-Aktionen sind Cheat-Versuche. Bei 280k Comm
 
 ## ”žWenn wir nur 3 Dinge tun"-Liste
 
-1. **Command-Signing + Server-Re-Sim für Match-Resultate** (ADR-0026) — fängt 80 % aller offensichtlichen Tampering-Versuche.
-2. **Save-Schema v2 mit `trust_level` + Server-HMAC** (ADR-0028) — entkoppelt Spielbarkeit von Wettkampf-Eignung; macht SP-Foundation MP-kompatibel.
+1. **Command-Integrität + Server-Re-Sim für Match-Resultate** (accepted ADR-0115) — fängt offensichtliche Replay-/Duplication- und Regelverletzungsversuche über Server-Authority, `commandId`, `expectedVersion`, Audit-Dedup und app-managed Ed25519 evidence.
+2. **Save-Schema v2 mit `SaveTrustLevel` + Server-Proof** (accepted ADR-0116) — entkoppelt Spielbarkeit von Wettkampf-Eignung; macht SP-Foundation MP-kompatibel.
 3. **Determinism-CI-Gate als harter Block** vor jedem Merge — schützt Qualität *und* Anti-Cheat-Foundation simultan.
 
 ## Single-Player-Foundation-Check
 
 Single-Player darf permissiv sein — aber die *Datenstrukturen* sind dieselben wie für MP/BYOC:
 
-- Auch SP-Saves nutzen Save-Schema v2 mit `trust_level: local-only`.
-- Auch SP-Commands sind signiert — kostet ~50 µs/Command, ermöglicht später retro-aktiv Cloud-Verify.
+- Auch SP-Saves nutzen Save-Schema v2 mit `SaveTrustLevel: local-only`.
+- Auch SP-Commands nutzen denselben Command-Envelope mit `commandId` und
+  `expectedVersion` plus app-managed/device Ed25519 evidence; die Signatur ist
+  Nachweis-/Tamper-Evidence, nicht Server-Authority.
 - Auch SP-Match-Records speichern `engine_bundle_hash` — Determinismus-Replay funktioniert für Bug-Reports.
 - Auch SP-Save-Export ist `device_signed` — Spieler kann seinen eigenen Save später cloud-syncen oder teilen.
 

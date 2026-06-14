@@ -170,14 +170,14 @@ Iter-2-Findings (Security/Report 05 + BYOC/Report 06) sind **fett markiert**. BY
   [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-12]] ←” [[PM-2026-05-20-06-distributed-match-compute#PM-2026-05-20-06-F-04]].
 - **DSGVO-Erasure vs Audit-Aufbewahrung (NEU Iter 2)**: Pseudonymisierungs-Pflichten:
   [[PM-2026-05-20-04-monetization#PM-2026-05-20-04-F-06]] ←” [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-09]] ←” Runbook RB-S3.
-- **Command-Signing als Cross-Cutting-Foundation (NEU Iter 2)**: deckt Tampering, Replay-Schutz, Audit, BYOC ab:
+- **Command-Integritaet als Cross-Cutting-Foundation (NEU Iter 2)**: deckt Server-Validation, Replay-Schutz, Audit und spaetere Signatur-/BYOC-Erweiterungen ab:
   [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02]] ←” Authorization-Checks in [[PM-2026-05-20-01-architecture#Iteration 2 Addendum (2026-05-20) — Security & Single-Player-Foundation|Report 01]] ←” Anti-Cheat-Hebel in [[PM-2026-05-20-03-gameplay#Iteration 2 Addendum (2026-05-20) — Security & Single-Player-Foundation|Report 03]] ←” Webhook-Idempotenz in [[PM-2026-05-20-04-monetization#Iteration 2 Addendum (2026-05-20) — Security & Single-Player-Foundation|Report 04]].
 
 ## Top-Mitigations (nach Hebel: Score × 1/Aufwand) — Iter 1 + 2
 
 1. **Determinism-CI-Gate** (S-Aufwand, Score 20 × 4 Findings = sehr hoch). Adressiert: 02-F-02, 03-F-02, 05-F-03, Foundation für BYOC.
-2. **Save-Schema v2 mit trust_level + Server-HMAC (Iter 2)** (L-Aufwand, Score 25). Adressiert: 05-F-01, Foundation für 05-F-11, Single-Player-Foundation in 01/03 Addenda. **ADR-0028 (proposed).**
-3. **Command-Signing + Replay-Protection (Iter 2)** (L-Aufwand, Score 25). Adressiert: 05-F-02, indirekt 05-F-06, 05-F-08. **ADR-0026 (proposed).**
+2. **Save-Schema v2 mit `SaveTrustLevel` + Server-Proof (Iter 2)** (L-Aufwand, Score 25). Adressiert: 05-F-01, Foundation für 05-F-11, Single-Player-Foundation in 01/03 Addenda. **Accepted home: ADR-0115 (FMX-184).**
+3. **Command-Integritaet + Replay-Protection (Iter 2)** (L-Aufwand, Score 25). Adressiert: 05-F-02, indirekt 05-F-06, 05-F-08. **Accepted home: ADR-0114 (FMX-184).**
 4. **Restore-Drill automatisieren** (M-Aufwand, Score 25). Adressiert: 02-F-04.
 5. **Monetarisierungs-Hypothese committen** (M-Aufwand, Score 25). Adressiert: 04-F-01.
 6. **Mindest-Alert-Catalog + Dashboards-as-Code** (M-Aufwand, Score 20 + Cross-Cutting). Adressiert: 02-F-03, 01-F-09, neue Iter-2-Security-Alerts.
@@ -199,7 +199,8 @@ Iter-2-Findings (Security/Report 05 + BYOC/Report 06) sind **fett markiert**. BY
 ### T-90 bis T-60 — Foundation
 
 - **Determinism-CI-Gate live** (Mit #1).
-- **Save-Schema v2 + Command-Signing landed (Iter 2)** (Mit #2, #3); ADR-0026 + ADR-0028 approved.
+- **Save-trust + Command-Integritaet decision accepted** (Mit #2, #3);
+  ADR-0114 + ADR-0115 accepted before implementation.
 - **Migrations-Framework live** + erster echter Schema-Change in Staging (Mit #8).
 - **Mindest-Alert-Catalog deployt**, Dashboards-as-Code (Mit #6).
 - **Restore-Drill** als Monthly-Cron etabliert, RTO/RPO gemessen (Mit #4).
@@ -249,8 +250,8 @@ No row below is an unclassified documentation gap.
 | WAF / Bot-Management Provider | platform+security | Trigger-gated ops | Covered by rate-limiting/anti-abuse baseline; edge WAF is trigger-based. |
 | Helpdesk-Tool | support | Pre-launch ops | Concept-covered by ST-08 / ST-13; select before public support launch. |
 | Status-Page-Tool | platform | Pre-launch ops | Concept-covered by ST-02 / ST-07; select during launch hardening. |
-| Save-Schema v2 + trust_level | architecture+security | Architecture binding | Covered by ADR-0027 / ADR-0028 and ST-01 / ST-05. |
-| Command-Signing-Protokoll | architecture+security | Architecture/security | Concept-covered by ST-05; implement when command bus enters scope. |
+| Save-Schema v2 + `SaveTrustLevel` | architecture+security | Architecture binding | Concept-covered by ST-05; accepted home ADR-0115 (FMX-184). |
+| Command-Integritaets-Protokoll | architecture+security | Architecture/security | Concept-covered by ST-05; accepted home ADR-0114 (FMX-184). |
 | BYOC-Decision-Gate | product+platform | Future-scope gate | `accepted-risk`; do not implement before gate passes. |
 | Bug-Bounty-Programm | security | Pre-launch/post-launch security | Concept-covered by ST-05 / ST-17; pilot after responsible-disclosure path exists. |
 | Externer Pentest-Lieferant | security | Pre-launch evidence | Evidence gate before public launch; not a documentation gap. |

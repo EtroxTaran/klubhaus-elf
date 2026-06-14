@@ -148,6 +148,27 @@ Raw captures:
 [[raw-perplexity/raw-determinism-portfolio-realworld-football-2026-06-14]],
 [[raw-perplexity/raw-determinism-portfolio-source-checks-2026-06-14]].
 
+## Command Signing and Save Trust (FMX-184, 2026-06-14)
+
+[[command-signing-save-trust-2026-06-14]] preserves the FMX-184 research layer
+for command integrity, replay protection and save trust levels. It grounds
+accepted ADR-0115 plus ADR-0116: server-authoritative command validation with
+`commandId` idempotency, `expectedVersion`, processed-command dedup and Audit &
+Security replay facts; mandatory app-managed/device Ed25519 command evidence
+from the first code phase; WebAuthn/passkeys only for login or explicit
+high-value ceremonies; derived `SaveTrustLevel`/`PublicEligibility`; and public
+save eligibility derived from server/internal HMAC proof, command root,
+engine/content hash and downgrade flags. Decision record:
+[[../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]].
+Accepted decision homes:
+[[../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]],
+[[../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]].
+Raw captures:
+[[raw-perplexity/raw-command-integrity-and-replay-protection-2026-06-14]],
+[[raw-perplexity/raw-save-trust-provenance-2026-06-14]],
+[[raw-perplexity/raw-command-save-trust-source-checks-2026-06-14]],
+[[raw-perplexity/raw-hybrid-ed25519-command-evidence-2026-06-14]].
+
 ## LLM Prose Replay Determinism Floor (FMX-153, 2026-06-14)
 
 [[llm-prose-replay-determinism-floor-2026-06-14]] preserves the FMX-153

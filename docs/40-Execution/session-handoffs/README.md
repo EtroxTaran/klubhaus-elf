@@ -64,6 +64,14 @@ This is the **single** canonical handoff location. (An older
   portfolio role, use bounded seeded variance only through existing
   owner-context RNG streams and keep Hall-of-Fame induction pure deterministic
   for MVP unless a future approved owner-stream flavor rule is added.
+- [[2026-06-14-fmx-184-command-signing-save-trust]] - FMX-184 command-signing
+  and save-trust packet: raw Perplexity/source-check captures, synthesis,
+  decision record and accepted ADR-0115/ADR-0116. Approved packet is D1-D15:
+  server-authoritative commands plus mandatory app-managed/device Ed25519
+  evidence, passkeys only for login/high-value ceremonies, derived save trust
+  plus public eligibility, internal HMAC proof over root/hash evidence,
+  strict irreversible public downgrade rules and public features limited to
+  server-verified or imported-verified eligible histories.
 - [[2026-06-14-fmx-185-age-assurance]] - FMX-185 age assurance and IARC/USK
   rating-evidence packet: raw Perplexity/Web captures, synthesis, compliance
   evidence home, decision queue and draft ADR-0112. Recommended packet is
