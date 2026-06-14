@@ -81,6 +81,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > fan-side `derby_factor`, D3=A apply accepted ADR/map cleanup immediately after
 > approval.
 >
+> **FMX-185 Age assurance + IARC/USK rating evidence prepared — decision pending
+> (2026-06-14).** Linear FMX-185 is `In Progress` on branch
+> `codex/fmx-185-age-gate-age-assurance`. Research
+> [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]] (+ raw
+> Perplexity/source-check captures for GDPR/German youth protection, IARC/USK
+> evidence and comparable football-manager ratings) recommends draft
+> [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture|ADR-0112]]
+> plus compliance evidence home
+> [[../40-Compliance/age-assurance-and-rating-evidence]]. The packet is **not
+> binding** until Nico approves D1-D6 in
+> [[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]] and
+> legal/store review signs off actual artifacts. Recommended packet: D1=A 16+
+> self-declaration before account fields/optional telemetry, D2=A no under-16
+> account/refusal persistence/optional telemetry trail, D3=A no DOB at MVP,
+> D4=A IARC-first with USK direct only for non-participating/physical channels,
+> D5=A youth-protection review trigger with no default AVS/JmSchB appointment,
+> D6=A store/rating evidence packet blocks store or paid activation.
+>
 > **FMX-137 Create-a-Club Roguelite run tuning accepted (2026-06-14).**
 > Branch `codex/fmx-137-roguelite-tuning` carries the docs packet. Research
 > [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]

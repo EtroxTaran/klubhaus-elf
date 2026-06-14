@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-14-fmx-185-age-assurance]] - FMX-185 age assurance and IARC/USK
+  rating-evidence packet: raw Perplexity/Web captures, synthesis, compliance
+  evidence home, decision queue and draft ADR-0112. Recommended packet is
+  D1-D6 = A/A/A/A/A/A: 16+ self-declaration before account fields/optional
+  telemetry, no under-16 account/refusal persistence/optional telemetry trail,
+  no DOB at MVP, IARC-first rating path, no default AVS/JmSchB appointment
+  until risk triggers fire, and a store/rating evidence packet before store or
+  paid activation.
 - [[2026-06-14-fmx-134-rivalry-commercial-signal]] - FMX-134
   RivalryCommercialSignal orphan-contract packet: raw Perplexity/Web captures,
   synthesis, decision queue and draft ADR-0111. Recommended packet is D1/D2/D3

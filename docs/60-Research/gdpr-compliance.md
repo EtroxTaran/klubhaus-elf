@@ -3,7 +3,7 @@ title: GDPR Compliance — RoPA, lawful basis, retention, DPIA, DPO
 status: current
 tags: [research, gdpr, eprivacy, privacy, ropa, dpia, compliance]
 created: 2026-05-18
-updated: 2026-06-09
+updated: 2026-06-14
 type: research
 binding: true
 related:
@@ -11,6 +11,9 @@ related:
   - "[[telemetry-privacy]]"
   - "[[threat-model]]"
   - "[[../30-Implementation/privacy-and-consent]]"
+  - "[[age-assurance-and-iarc-rating-2026-06-14]]"
+  - "[[../40-Compliance/age-assurance-and-rating-evidence]]"
+  - "[[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]"
   - "[[../30-Implementation/auth-flows]]"
   - "[[../30-Implementation/session-management]]"
   - "[[../30-Implementation/account-recovery]]"
@@ -314,7 +317,11 @@ The RoPA accordingly omits any Art. 9 column.
 - GDPR Art. 8(1): for information-society services offered
   directly to a child, consent-based processing is lawful only
   with parental authorisation below a national threshold (13-16).
-- Germany sets the threshold at **16** (BDSG § 12).
+- Germany is treated as **16** for GDPR Art. 8 child-consent
+  planning because no current official BDSG source check found a
+  lowering clause. FMX-185 explicitly corrects the old BDSG §12
+  citation: official BDSG §12 concerns the Federal Commissioner's
+  `Amtsverhaeltnis`, not children's consent or GDPR Art. 8.
 - Our lawful basis for the core account is Art. 6(1)(b)
   contract, not consent — so Art. 8 strictly governs the consent
   layer only. However EDPB + national DPAs expect indie games
@@ -331,6 +338,10 @@ The RoPA accordingly omits any Art. 9 column.
 - **Do not collect date of birth**. The age gate result is a
   single boolean derived from the radio; we persist it as
   `user.attested_age_band = '16+'` with no date.
+- **No refusal persistence**: if the user answers "No", FMX creates
+  no account, stores no "under 16" flag and writes no optional
+  telemetry. The user may continue only through a no-account offline
+  route.
 - **Marketing posture**: we do not target under-16s (no
   cute/child-themed marketing copy, no age-flexible features
   marketed to children).
@@ -344,9 +355,11 @@ The RoPA accordingly omits any Art. 9 column.
   Kindes übermittelt wurden, kontaktiere uns; wir löschen sie
   unverzüglich." (parallel EN copy in the implementation note).
 
-This is the EDPB-acceptable "small-operator self-declaration"
-approach and matches the BfDI / CNIL / ICO 2024-2026 stance for
-non-high-risk services that don't actively target children.
+This is the risk-proportionate "small-operator self-declaration"
+approach for a non-high-risk service that does not actively target
+children. [[age-assurance-and-iarc-rating-2026-06-14]] documents
+the FMX-185 source refresh and the re-check triggers for DOB,
+parental consent or stronger age assurance.
 
 ## 7. Retention schedule
 
@@ -865,6 +878,8 @@ Default: **founder Nico**.
   <https://eur-lex.europa.eu/eli/dir/2002/58/oj>
 - BDSG (DE):
   <https://www.gesetze-im-internet.de/bdsg_2018/>
+- FMX-185 age-assurance source checks:
+  [[raw-perplexity/raw-age-assurance-source-checks-2026-06-14]]
 - EU AI Act (Regulation (EU) 2024/1689):
   <https://eur-lex.europa.eu/eli/reg/2024/1689/oj>
 - DSA (Regulation (EU) 2022/2065):

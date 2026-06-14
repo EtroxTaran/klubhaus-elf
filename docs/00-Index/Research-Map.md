@@ -133,6 +133,23 @@ design notes.
   [[../60-Research/raw-perplexity/raw-rivalry-commercial-signal-games-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-rivalry-commercial-signal-source-checks-2026-06-14]].
 
+## Age Assurance and IARC/USK Rating Evidence (FMX-185, 2026-06-14)
+
+- [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]] -
+  FMX-185 synthesis for the MVP age-gate and rating-evidence contract.
+  Recommends draft
+  [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]
+  plus [[../40-Compliance/age-assurance-and-rating-evidence]]: a 16+
+  self-declaration before account fields/optional telemetry, no under-16
+  account/refusal persistence/optional telemetry trail, no DOB at MVP, and a
+  store/rating evidence packet for IARC/USK. Decision remains pending Nico in
+  [[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]]. Raw
+  captures:
+  [[../60-Research/raw-perplexity/raw-age-assurance-legal-posture-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-age-rating-iarc-usk-evidence-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-football-manager-age-rating-precedents-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-age-assurance-source-checks-2026-06-14]].
+
 ## Hidden-Attribute Reveal Owner Reconciliation (FMX-154, 2026-06-14)
 
 - [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]] -

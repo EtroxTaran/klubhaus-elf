@@ -3,7 +3,7 @@ title: Auth Flows
 status: current
 tags: [implementation, auth, webauthn, passkeys, mfa, sessions, asvs, nist-800-63b]
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-06-14
 type: implementation
 binding: true
 adr:
@@ -13,6 +13,9 @@ adr:
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
 related:
   - "[[../60-Research/threat-model]]"
+  - "[[../60-Research/age-assurance-and-iarc-rating-2026-06-14]]"
+  - "[[../40-Compliance/age-assurance-and-rating-evidence]]"
+  - "[[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]"
   - "[[../95-Archive/gap-reports/wave-3-gap-analysis]]"
   - "[[../10-Architecture/bounded-context-map]]"
   - "[[audit-trail]]"
@@ -242,6 +245,10 @@ AAL2-capable credential (see §7).
 - **Mandatory profile fields**: email, display name (1–64
   characters), locale (BCP-47, pre-filled from `Accept-Language`),
   timezone (IANA, pre-filled from `Intl.DateTimeFormat`).
+- **Age gate**: the 16+ self-declaration from
+  [[privacy-and-consent]] §3.2 is shown before account fields and
+  before any optional telemetry surface. "No" creates no account and
+  no persisted refusal record.
 - **Consent**: explicit, unchecked-by-default checkbox for the
   Terms + Privacy Policy links. **No** pre-ticked boxes (EDPB
   Guidelines on Deceptive Design Patterns 03/2022).
@@ -259,9 +266,11 @@ sequenceDiagram
   participant E as Email provider
 
   U->>B: Open /signup
+  B->>U: Show 16+ age question before account fields
+  U->>B: Confirm 16+ or choose under-16 offline route
   B->>U: Show form (email, display name, locale, tz, consent)
   U->>B: Submit + accept Terms
-  B->>S: POST /api/auth/signup {email, displayName, locale, tz}
+  B->>S: POST /api/auth/signup {attestedAgeBand: "16+", email, displayName, locale, tz}
   S->>S: Rate-limit check (per IP + per email-domain, §8.3)
   S->>S: Reject if normalised email already used (generic message; §3.4)
   S->>S: Create pending user (email_verified_at = NULL)

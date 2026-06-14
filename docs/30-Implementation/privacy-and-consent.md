@@ -3,7 +3,7 @@ title: Privacy and Consent — implementation surface
 status: current
 tags: [implementation, gdpr, eprivacy, privacy, consent, dsar, deletion, age-gate, breach-runbook, community, naming, fmx-54]
 created: 2026-05-18
-updated: 2026-06-09
+updated: 2026-06-14
 type: implementation
 binding: true
 adr:
@@ -16,6 +16,9 @@ related:
   - "[[../60-Research/gdpr-compliance]]"
   - "[[../60-Research/telemetry-privacy]]"
   - "[[../60-Research/fan-persona-privacy-and-naming-2026-06-01]]"
+  - "[[../60-Research/age-assurance-and-iarc-rating-2026-06-14]]"
+  - "[[../40-Compliance/age-assurance-and-rating-evidence]]"
+  - "[[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]"
   - "[[../60-Research/threat-model]]"
   - "[[auth-flows]]"
   - "[[session-management]]"
@@ -221,9 +224,10 @@ to consent to at MVP).
 
 ### 3.2 16+ age gate
 
-Per [[../60-Research/gdpr-compliance]] §6, a **mandatory single
-radio question** appears at the top of the signup form before
-the email field:
+Per [[../60-Research/gdpr-compliance]] §6 and FMX-185 research
+[[../60-Research/age-assurance-and-iarc-rating-2026-06-14]], a
+**mandatory single radio question** appears at the top of the
+signup form before any account field or optional telemetry surface:
 
 ```
 Bist du 16 Jahre alt oder älter? *
@@ -250,12 +254,22 @@ Both radios are unchecked by default. On submit:
 - The user's "No" response is **not stored anywhere**. We do
   not want a record of someone declaring under-16 because that
   would itself create a children's-data processing record.
+- The "No" path does **not** initialise analytics/marketing SDKs,
+  does not enqueue optional telemetry and does not create a pending
+  account. Strictly necessary security/technical logs remain allowed
+  only if minimised and disclosed per [[client-telemetry]].
 
 The signup endpoint persists only `user.attested_age_band =
 '16+'` (a boolean-equivalent field, no date of birth) on
 successful account creation. The attestation is part of the
 contract record per Art. 6(1)(b); no explicit consent layer
 needed.
+
+FMX deliberately does **not** collect date of birth at MVP. A
+DOB-derived age-band model, parental-consent path or external
+age-verification system is a future HITL/legal decision and is
+triggered by the re-check list in
+[[../40-Compliance/age-assurance-and-rating-evidence]].
 
 ### 3.3 Privacy Notice link freshness
 
