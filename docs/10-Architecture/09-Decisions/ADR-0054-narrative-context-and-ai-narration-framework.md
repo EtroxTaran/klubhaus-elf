@@ -3,7 +3,7 @@ title: ADR-0054 Narrative Context and AI Narration Framework
 status: accepted
 tags: [adr, architecture, ddd, bounded-context, narrative, ai, llm, testing, mvp]
 created: 2026-05-28
-updated: 2026-06-11
+updated: 2026-06-14
 type: adr
 binding: false
 supersedes:
@@ -19,6 +19,7 @@ related:
   - [[../../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../../60-Research/player-discipline-sub-aggregate-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]]
+  - [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
   - [[../../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
@@ -26,6 +27,7 @@ related:
   - [[ADR-0019-modular-monolith-ddd]]
   - [[ADR-0030-llm-out-of-authoritative-state]]
   - [[ADR-0052-people-persona-and-skills-context]]
+  - [[ADR-0117-narrative-display-snapshot-replay-determinism-floor]]
   - [[ADR-0076-narrative-newsworthiness-event-contracts]]
   - [[ADR-0078-player-discipline-suspension-contracts]]
 ---
@@ -201,6 +203,10 @@ Planning contracts for the first implementation wave:
 - `NarrativeEnhancementResult`
 - `NarrativeValidationReport`
 - `NarrativeProvenance`
+- `NarrativeDisplaySnapshot`
+- `NarrativeSnapshotRef`
+- `NarrativeReplayPolicy`
+- `NarrativeSnapshotRecoveryReason`
 - `NarrativeEvalCase`
 - `FallbackCoverageManifest`
 - `NarrativeSceneFallbackFixture`
@@ -230,6 +236,12 @@ Authoritative domain facts
 
 The fallback is always renderable without provider access. LLM output may
 replace presentation copy only after validation passes.
+
+FMX-153 / ADR-0117 makes the final display snapshot durable for every
+revisitable surface. Reopen, inbox/history and match-replay paths render stored
+snapshot text verbatim and do not call a provider. Prompt/model/cache metadata
+is provenance only. Missing or corrupt snapshots use deterministic recovery
+templates with explicit recovery provenance.
 
 Every scene that can reach the runtime flow must be present in the
 `FallbackCoverageManifest`. The manifest links `NarrativeSceneType`,
@@ -273,6 +285,12 @@ The implementation framework is
 - Newsworthiness contract tests proving Narrative can render injury, contract
   expiry, board-pressure and transfer-rumour snapshots without cross-context
   joins, and proving `PlayerSuspended` remains an external Discipline contract.
+- Replay/reopen contract tests proving player-visible Template/LLM prose is
+  loaded from persisted `NarrativeDisplaySnapshot` text, not regenerated from a
+  provider/cache key.
+- Match-commentary boundary tests proving replay-visible `CommentaryLine`
+  snapshots reference committed match events but do not affect match event
+  logs, `MatchFrame` generation, replay hashes or ratings.
 - LLM-disabled render tests proving the complete manifest renders with no
   provider access.
 - Season simulation tests for repetition, stale memory, unresolved arcs and
@@ -314,10 +332,12 @@ None
 - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
 - [[../../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+- [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
 - [[../../30-Implementation/ai-narration-contract-testing-framework]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
 - [[../../20-Features/feature-ai-narration-mvp-pillar]]
 - [[ADR-0019-modular-monolith-ddd]]
 - [[ADR-0030-llm-out-of-authoritative-state]]
+- [[ADR-0117-narrative-display-snapshot-replay-determinism-floor]]
 - [[ADR-0052-people-persona-and-skills-context]]

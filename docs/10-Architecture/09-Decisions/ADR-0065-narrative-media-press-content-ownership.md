@@ -3,7 +3,7 @@ title: ADR-0065 Narrative Media and Press Content Ownership
 status: accepted
 tags: [adr, architecture, ddd, narrative, media, press, notification, people, llm, fmx-31]
 created: 2026-06-02
-updated: 2026-06-11
+updated: 2026-06-14
 type: adr
 binding: false
 supersedes:
@@ -17,10 +17,12 @@ related:
   - [[ADR-0043-notification-and-messaging-platform]]
   - [[ADR-0052-people-persona-and-skills-context]]
   - [[ADR-0054-narrative-context-and-ai-narration-framework]]
+  - [[ADR-0117-narrative-display-snapshot-replay-determinism-floor]]
   - [[../bounded-context-map]]
   - [[../../50-Game-Design/GD-0013-narrative-inbox]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../60-Research/narrative-content-bounded-context-2026-06-02]]
+  - [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
   - [[../../60-Research/raw-perplexity/raw-narrative-content-bounded-context-2026-06-02]]
   - [[../../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../../30-Implementation/domain-research-workflow]]
@@ -304,8 +306,10 @@ Draft effect-intent boundary:
   provenance and replay metadata per ADR-0027. Shared authored catalog data is
   versioned; save snapshots record the catalog version used.
 - Every storylet, article template, response option and tone variant has a
-  stable ID. Replays store IDs, seed, resolved parameters and effect intents,
-  not generated prose.
+  stable ID. Deterministic effect replay stores IDs, seed, resolved parameters
+  and effect intents. Player-visible revisitable prose stores the exact
+  `NarrativeDisplaySnapshot` text and provenance per ADR-0117; it is not
+  regenerated from the IDs/seed/prompt/cache metadata.
 - ICU message keys are stable. Placeholder contracts are validated before
   content ships; missing localization keys or mismatched placeholders fail
   content validation.
@@ -321,6 +325,9 @@ Draft effect-intent boundary:
   - content-safety check;
   - provenance with template/prompt/schema/model/provider versions;
   - kill switch and terminal fallback to deterministic templates.
+- Save reopen, inbox/history and replay-visible surfaces render stored display
+  snapshots verbatim. Missing/corrupt snapshots use deterministic recovery
+  templates with explicit recovery provenance, not silent LLM regeneration.
 - Generated text is display-only. It is never parsed into commands, facts,
   morale deltas, relationship changes, fan mood, board pressure or transfer
   willingness.

@@ -69,6 +69,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > proofs at sync checkpoints/public-submission milestones. Decision record:
 > [[../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]].
 >
+> **FMX-153 LLM prose replay determinism accepted — ADR-0117 binding
+> (2026-06-14).** Linear FMX-153 is `In Progress` on branch
+> `codex/fmx-153-llm-prose-replay-determinism`. Research
+> [[../60-Research/llm-prose-replay-determinism-floor-2026-06-14]] (+ raw
+> Perplexity/source-check captures) grounds accepted
+> [[../10-Architecture/09-Decisions/ADR-0117-narrative-display-snapshot-replay-determinism-floor|ADR-0117]].
+> Nico approved D1-D3 live: exact persisted display snapshots for all
+> player-visible revisitable Template/LLM prose, per-save Narrative-owned
+> snapshot/provenance storage, and match commentary as a Narrative artifact over
+> committed match events rather than `MatchFrame` or replay-bearing match state.
+> ADR-0030/0054/0065 now carry the floor, ADR-0026 carries the match carve-out,
+> and
+> [[../30-Implementation/ai-narration-contract-testing-framework]] includes the
+> replay/reopen contract suite.
+>
 > **FMX-180 Code-phase DoD transition accepted — ADR-0110 binding (2026-06-14).**
 > Linear FMX-180 is `In Progress` on branch
 > `codex/fmx-180-code-phase-dod-transition`. Research

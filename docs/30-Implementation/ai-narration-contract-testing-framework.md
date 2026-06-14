@@ -3,7 +3,7 @@ title: AI Narration Contract Testing Framework
 status: draft
 tags: [implementation, testing, ai, llm, narrative, contracts, mvp, fmx-3]
 created: 2026-05-28
-updated: 2026-06-05
+updated: 2026-06-14
 type: implementation
 binding: false
 linear: FMX-3
@@ -16,11 +16,13 @@ related:
   - [[../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
+  - [[../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
   - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+  - [[../10-Architecture/09-Decisions/ADR-0117-narrative-display-snapshot-replay-determinism-floor]]
   - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
   - [[mvp-implementation-roadmap]]
 ---
@@ -55,6 +57,7 @@ modules:
 | `provider-adapter` | Backend-only LLM calls, timeouts, retries, cost and model metadata |
 | `validator` | Schema, fact, safety, repetition and persona checks |
 | `provenance` | Display snapshot metadata, fallback reason, model/schema versions |
+| `snapshot-store` | Persist exact revisitable display text and replay/reopen it verbatim |
 | `news-fact-projection` | Consume source-owned newsworthy event snapshots into `NarrativeNewsFactProjection` without cross-context joins |
 | `memory` | Compact narrative memory snippets and stale-memory retirement |
 | `eval-harness` | Eval corpus loading, mocked/live runs, reports and playtest exports |
@@ -89,6 +92,14 @@ First-wave contracts:
 - `NarrativeValidationReport`: pass/fail checks and fallback reason.
 - `NarrativeProvenance`: source, provider/model, schema version, cache key,
   validation state and `aiGenerated`.
+- `NarrativeDisplaySnapshot`: exact rendered text plus provenance for
+  player-visible revisitable Template/LLM prose.
+- `NarrativeSnapshotRef`: stable reference from inbox/history/report/replay UI
+  surfaces to a stored display snapshot.
+- `NarrativeReplayPolicy`: declares whether a surface is replay-visible,
+  history-visible, ephemeral-only or recovery-only.
+- `NarrativeSnapshotRecoveryReason`: machine-readable reason for deterministic
+  fallback when a stored snapshot is missing, corrupt or incompatible.
 - `NarrativeEvalCase`: replayable eval fixture.
 - `FallbackCoverageManifest`: machine-readable coverage registry mapping each
   prose point / `NarrativeSceneType` to fallback template, fixture, LLM
@@ -126,6 +137,10 @@ they become concrete scripts in the CI process.
 | Newsworthiness ingestion | Injury, contract-expiry, board-pressure and transfer-rumour fixtures render from event snapshots only; no source-domain join is needed |
 | Fallback manifest coverage | Every prose point and `NarrativeSceneType` has `fallbackTemplateId`, fixture, deterministic render assertion and provenance assertion |
 | Deterministic fallback | Same seed/context/template version yields same fallback |
+| Replay/reopen exact snapshot | Same save reopened or match replayed renders the stored `NarrativeDisplaySnapshot` text verbatim |
+| Provider isolation on replay | Reopen/replay paths do not call the provider adapter and do not depend on prompt-cache hits |
+| Snapshot recovery | Missing/corrupt snapshot fixtures render deterministic recovery templates with explicit recovery provenance |
+| Match commentary boundary | Replay-visible commentary snapshots reference committed match events but do not alter event logs, `MatchFrame`, replay hashes or ratings |
 | Fact grounding | Output cannot contradict listed authoritative facts |
 | Intent determinism | Mechanics are identical for template and LLM wording when intent is same |
 | Dialogue effect ownership | Every selectable intent names exactly one owner context, policy key, band and visibility posture; Narrative cannot apply the effect |
@@ -155,6 +170,15 @@ Each failure should be useful: invented fact, persona mismatch, unsafe output,
 repetition, stale memory, provider failure, malformed response or disclosure
 gap.
 
+Add at least one replay/reopen fixture per revisitable surface:
+
+- original render stores exact text plus provenance;
+- reopened save renders byte-identical text;
+- provider adapter spy records zero calls during reopen/replay;
+- prompt/model/provider/cache version change leaves old snapshots unchanged;
+- missing/corrupt snapshot path renders deterministic recovery copy and records
+  `NarrativeSnapshotRecoveryReason`.
+
 ## Playtest Rubric
 
 Because Nico selected Playtest First, every narrative playtest should score:
@@ -179,6 +203,10 @@ Failures become corpus cases before prompt/model tuning is considered complete.
 - `LLM_MODE=disabled` renders every manifest fixture with no provider access.
 - Every live/provider path is optional, budgeted and kill-switchable.
 - No generated prose is parsed into domain commands or authoritative facts.
+- Save reopen, inbox/history and match replay render exact stored display
+  snapshots for all revisitable Template/LLM prose.
+- Replay/reopen paths never call a runtime provider and never treat cache keys
+  as output history.
 - Every dialogue effect is applied by the owning gameplay context from the
   selected intent and authoritative facts, never by Narrative or generated text.
 - All prompt payloads are minimized and redact user-authored names.
@@ -194,10 +222,12 @@ Failures become corpus cases before prompt/model tuning is considered complete.
 - [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]]
 - [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
+- [[../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
 - [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
+- [[../10-Architecture/09-Decisions/ADR-0117-narrative-display-snapshot-replay-determinism-floor]]
 - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
 - [[mvp-implementation-roadmap]]

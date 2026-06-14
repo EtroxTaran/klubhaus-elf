@@ -3,7 +3,7 @@ title: ADR-0030 LLM Out Of Authoritative State Boundary
 status: accepted
 tags: [adr, architecture, ai, llm, narrative, determinism, openrouter]
 created: 2026-05-27
-updated: 2026-06-11
+updated: 2026-06-14
 type: adr
 binding: false
 supersedes:
@@ -19,6 +19,7 @@ related:
   - [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
   - [[../../60-Research/narrative-content-pipeline]]
   - [[../../60-Research/determinism-and-replay]]
+  - [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
   - [[../../60-Research/pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
@@ -29,6 +30,7 @@ related:
   - [[ADR-0020-hybrid-online-mvp-offline-ready]]
   - [[ADR-0052-people-persona-and-skills-context]]
   - [[ADR-0054-narrative-context-and-ai-narration-framework]]
+  - [[ADR-0117-narrative-display-snapshot-replay-determinism-floor]]
 ---
 
 # ADR-0030: LLM Out Of Authoritative State Boundary
@@ -201,6 +203,31 @@ Runtime flag posture for MVP evaluation: feature-flagged, monitored and
 kill-switchable. The default-on/default-off rollout choice remains a Nico
 release decision after legal, safety and cost evidence exists.
 
+### FMX-153 replay/reopen determinism floor
+
+FMX-153 adds a binding floor through
+[[ADR-0117-narrative-display-snapshot-replay-determinism-floor]]: runtime LLM
+output is still non-authoritative, but once Template or LLM prose is visible
+and revisitable it becomes durable display history.
+
+The replay/reopen rules are:
+
+- Narrative persists the exact rendered text as a
+  `NarrativeDisplaySnapshot` with provenance.
+- Save reopen, inbox/history rendering and match replay render the stored text
+  verbatim.
+- Replay paths never call the provider and never rely on prompt-cache hits.
+- `cacheKey`, prompt/model/provider metadata, seed/fingerprint, request ID,
+  validation status and fallback reason are provenance only, not replay
+  authority.
+- If a snapshot is missing/corrupt, FMX renders the deterministic fallback from
+  committed facts/templates with explicit recovery provenance. It does not
+  silently regenerate old LLM prose.
+
+For match ticker prose, `CommentaryLine` remains a Narrative presentation
+artifact over committed `MatchEventLog` facts. It is not `MatchFrame`, not match
+event authority and not replay-bearing match state.
+
 ## Required Runtime Contract
 
 Any future implementation must expose a narrow enhancement contract:
@@ -214,6 +241,8 @@ Any future implementation must expose a narrow enhancement contract:
 - `NarrativeEnhancementResult` returns text plus provenance:
   `source: 'llm' | 'template'`, `aiGenerated`, `cacheKey`, request ID,
   model/provider metadata, validation status and fallback reason.
+- `NarrativeDisplaySnapshot` stores the exact visible text plus provenance for
+  every revisitable prose surface, including replay-visible commentary.
 - The fallback template is always rendered locally before the LLM call is
   awaited, so the UI can degrade immediately.
 - The LLM result may replace display copy only after schema validation,
@@ -353,6 +382,9 @@ Negative:
   is exceeded.
 - Match-ticker tests: key-event inputs cannot introduce facts absent from the
   committed `MatchEventLog`.
+- Replay/reopen tests: revisitable Template/LLM lines are rendered from
+  persisted `NarrativeDisplaySnapshot` text; provider calls and prompt-cache
+  lookups are forbidden in replay paths.
 - Persona-consistency tests across a simulated season for players, staff, board,
   journalists and fan reps.
 - Prompt-injection tests through generated names, club names, fan-group names
@@ -383,6 +415,7 @@ None
 - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
 - [[../../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+- [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
 - [[../../20-Features/feature-ai-narration-mvp-pillar]]
@@ -393,3 +426,4 @@ None
 - [[ADR-0020-hybrid-online-mvp-offline-ready]]
 - [[ADR-0052-people-persona-and-skills-context]]
 - [[ADR-0054-narrative-context-and-ai-narration-framework]]
+- [[ADR-0117-narrative-display-snapshot-replay-determinism-floor]]

@@ -3,13 +3,13 @@ title: ADR-0026 Match Frame Contract
 status: accepted
 tags: [adr, architecture, match-engine, match-view, contract, determinism]
 created: 2026-05-19
-updated: 2026-06-09
+updated: 2026-06-14
 accepted_at: 2026-05-19
 type: adr
 binding: true
 supersedes:
 superseded_by:
-related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-engine]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0041-presentation-renderer-strategy]], [[ADR-0004-data-model]], [[ADR-0022-animation-game-feel]], [[ADR-0021-revised-tech-stack]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/match-engine-simulation-model]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
+related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-engine]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0041-presentation-renderer-strategy]], [[ADR-0004-data-model]], [[ADR-0022-animation-game-feel]], [[ADR-0021-revised-tech-stack]], [[ADR-0117-narrative-display-snapshot-replay-determinism-floor]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/match-engine-simulation-model]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
 ---
 
 # ADR-0026: Match Frame Contract
@@ -134,6 +134,13 @@ A stateful helper `MatchWorldStateTracker` folds the event log forward and
 answers `getFrameAtSecond(eventLog, t, lineups)`. Forward-only folding from
 kickoff is O(events) and cheap; no reverse seeking, no snapshot cache at MVP.
 
+FMX-153 clarification: replay-visible match ticker/commentary text is not part
+of this rule's `MatchFrame` ban because it is not a match frame or match state.
+`CommentaryLine` / `NarrativeDisplaySnapshot` is Narrative-owned display
+history over committed match facts. It may reference match event IDs/indices,
+but it is excluded from match event-log authority, replay hashes, ratings,
+frame-builder inputs and resimulation logic.
+
 ### 5. Batching and frame cadence are fully decoupled
 
 The engine batches events (per virtual minute or every 20 events,
@@ -253,6 +260,8 @@ None.
   [[ADR-0022-animation-game-feel]] · [[ADR-0021-revised-tech-stack]]
 - [[../../60-Research/determinism-and-replay]] ·
   [[../../60-Research/match-engine-simulation-model]]
+- [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]] ·
+  [[ADR-0117-narrative-display-snapshot-replay-determinism-floor]]
 - [[ADR-0067-set-piece-variant-selection-determinism]] (proposed — extends the
   determinism boundary to set-piece variant selection; see appendix)
 

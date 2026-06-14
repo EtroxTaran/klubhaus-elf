@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, dod, monorepo, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-180, fmx-185, fmx-191, fmx-194]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, dod, monorepo, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-180, fmx-185, fmx-191, fmx-194]
 updated: 2026-06-14
 ---
 
@@ -168,6 +168,21 @@ Raw captures:
 [[raw-perplexity/raw-save-trust-provenance-2026-06-14]],
 [[raw-perplexity/raw-command-save-trust-source-checks-2026-06-14]],
 [[raw-perplexity/raw-hybrid-ed25519-command-evidence-2026-06-14]].
+
+## LLM Prose Replay Determinism Floor (FMX-153, 2026-06-14)
+
+[[llm-prose-replay-determinism-floor-2026-06-14]] preserves the FMX-153
+research layer for generated Narrative prose replay/reopen behavior. Nico
+approved the D1-D3 packet: exact persisted display snapshots for
+player-visible revisitable Template/LLM prose, per-save Narrative-owned
+snapshot/provenance storage and match commentary as Narrative display over
+committed match events rather than `MatchFrame` or match authority. Accepted
+ADR:
+[[../10-Architecture/09-Decisions/ADR-0117-narrative-display-snapshot-replay-determinism-floor]].
+Raw captures:
+[[raw-perplexity/raw-llm-prose-replay-determinism-floor-2026-06-14]],
+[[raw-perplexity/raw-narrative-replay-game-precedents-2026-06-14]],
+[[raw-perplexity/raw-llm-display-snapshot-source-checks-2026-06-14]].
 
 ## Opposition-template AI Consumption Contract (FMX-67 / FMX-136, 2026-06-05 / 2026-06-14)
 

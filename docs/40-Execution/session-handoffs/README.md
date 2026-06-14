@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-14-fmx-153-llm-prose-replay-determinism]] - FMX-153 LLM prose
+  replay determinism packet: raw Perplexity/source-check captures, synthesis,
+  decision queue and accepted ADR-0117. Approved packet is D1/D2/D3 = A/A/A:
+  exact persisted display snapshots for player-visible revisitable
+  Template/LLM prose, per-save Narrative-owned snapshot/provenance storage and
+  match commentary as Narrative display over committed match events rather than
+  `MatchFrame` or replay-bearing match state.
 - [[2026-06-14-fmx-179-monorepo-workspace-bootstrap]] - FMX-179
   monorepo/workspace bootstrap packet: raw Perplexity/source-check captures,
   synthesis, decision queue, draft ADR-0114 and exact scaffold plan. Recommended
