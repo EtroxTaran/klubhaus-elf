@@ -194,13 +194,14 @@ is the accepted FMX-137 Create-a-Club Roguelite run tuning record.
   for renewal, expiry, Bosman/pre-contract and free-agent signing ownership.
 - [[youth-academy-and-development]] - CA/PA range, age curves, loan rules.
 - [[training-load-and-medicine]] - training blocks, load model, medical pipeline.
-- [[GD-0020-eos-player-skills-personas-and-people]] - draft EOS player
+- [[GD-0020-eos-player-skills-personas-and-people]] - accepted EOS player
   skills/perks, staff target skills and persona/relationship model.
-- [[GD-0021-player-staff-development-and-decision-influence]] - draft factor
+- [[GD-0021-player-staff-development-and-decision-influence]] - accepted factor
   matrices for development, match, transfer and staff-pipeline decisions.
-- [[GD-0027-hidden-attribute-substrate-mapping]] - draft 8-meta/OCEAN → football-label
+- [[GD-0027-hidden-attribute-substrate-mapping]] - accepted 8-meta/OCEAN → football-label
   derivation (axes + flags), OCEAN persistence, Scouting-gated reveal bands and the
-  People/Training mentoring split (FMX-86, G22; unblocks ADR-0052).
+  People/Training mentoring split (FMX-86, G22; FMX-154 confirms People truth,
+  Scouting reveal and Squad/UI banded presentation).
 
 ## Tactics and match
 
@@ -263,7 +264,7 @@ is the accepted FMX-137 Create-a-Club Roguelite run tuning record.
   Playtest First evaluation layer; FMX-87 adds draft
   [[GD-0028-dialogue-intent-taxonomy-effect-matrix]] for finite intents and
   banded effects.
-- [[GD-0020-eos-player-skills-personas-and-people]] - draft People/persona
+- [[GD-0020-eos-player-skills-personas-and-people]] - accepted People/persona
   context cards and relationship constellations that feed dialogue.
 - [[GD-0024-ai-world-drift-algorithm]] - draft AI World Simulation drift
   mechanics for long-save rival emergence, giant collapse and regional/league

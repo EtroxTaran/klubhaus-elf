@@ -42,6 +42,11 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-14-fmx-154-hidden-attribute-reveal-contract]] - FMX-154 hidden-attribute
+  reveal contract cleanup: raw Perplexity/Web capture, synthesis and accepted
+  GD-0027/GD-0021 reconciliation. Confirmed line is People derives/owns hidden
+  persona-label truth, Scouting owns confidence/reveal state, and Squad/UI
+  presents banded read models; no new gameplay thresholds or ADRs.
 - [[2026-06-14-fmx-137-roguelite-tuning]] - FMX-137 Create-a-Club Roguelite
   run tuning packet: raw Perplexity captures, synthesis, decision queue and
   accepted GD-0044. Approved packet is D1-D6 = A/A/A/A/A/A: staged run-end

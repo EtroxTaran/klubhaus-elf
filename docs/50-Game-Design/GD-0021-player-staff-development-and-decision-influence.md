@@ -3,7 +3,7 @@ title: GD-0021 Player and Staff Development and Decision Influence
 status: accepted
 tags: [game-design, gddr, player-development, staff, transfers, skills, fmx-38]
 created: 2026-05-28
-updated: 2026-06-11
+updated: 2026-06-14
 type: game-design
 binding: false
 supersedes:
@@ -15,6 +15,7 @@ related:
   - [[GD-0006-transfers]]
   - [[GD-0007-youth]]
   - [[GD-0020-eos-player-skills-personas-and-people]]
+  - [[GD-0027-hidden-attribute-substrate-mapping]]
   - [[squad-and-club-structure]]
   - [[youth-academy-and-development]]
   - [[training-load-and-medicine]]
@@ -23,6 +24,7 @@ related:
   - [[tactics-system]]
   - [[../60-Research/player-staff-development-decision-model-2026-05-28]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+  - [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]]
   - [[../60-Research/systemic-events-player-development-venue-ops]]
   - [[../60-Research/player-strength-presentation]]
   - [[../60-Research/transfer-market-simulation]]
@@ -44,10 +46,10 @@ accepted
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
-> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
-> Draft only. This record proposes the canonical factor-matrix layer for how
-> player, staff and People-context facts influence gameplay and transfer
-> decisions. It is not implementable until Nico approves it.
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143; reconciled
+> 2026-06-14 by FMX-154):** This record proposed the canonical factor-matrix layer for
+> how player, staff and People-context facts influence gameplay and transfer decisions.
+> The current `accepted` frontmatter/body status is the single source of truth.
 
 ## Date
 
@@ -78,11 +80,11 @@ box modifiers.
 - **Domain ownership stays intact.** Squad & Player owns player base facts,
   Training owns training/load/development signals, Transfer owns negotiations
   and valuation, Staff Operations owns staff lifecycle/pipeline coverage, and
-  People remains a draft owner for persona, relationships and skill profiles.
+  People owns persona, relationships and skill profiles per accepted ADR-0052.
 - **Generated prose is presentation only.** Narrative or LLM phrasing never
   creates relationship deltas, promises, transfer facts, injuries, development
   deltas, match effects or economy facts.
-- **Player skills are the first active skill slice if GD-0020 is approved.**
+- **Player skills are the first active skill slice per accepted GD-0020.**
   They are visible specialisations, not attributes and not mandatory meta-builds.
 - **Staff skills are re-opened as an MVP decision.** The recommended planning
   option is narrow staff pipeline modifiers, but this requires Nico approval.
@@ -94,10 +96,10 @@ box modifiers.
 | Player attributes and hidden meta | Active base model | None | Further tuning only |
 | Impact Lens and scouting ranges | Active presentation model | None | More role weights and expert explanations |
 | Weekly player development | Active foundation | Final formula/caps later | Deeper loans and long-save tuning |
-| Player skills/perks | Draft active slice | Catalog, caps, snapshot policy | Larger catalog and deeper acquisition |
+| Player skills/perks | Accepted active slice | Catalog, caps, snapshot policy | Larger catalog and deeper acquisition |
 | Staff Operations | Active context | None | Staff continuity/turnover depth |
 | Staff skills | Target model | Option A/B/C below | Full staff skill UI/catalog if approved |
-| People/persona/relationships | Draft context and narration input | ADR-0052 acceptance | Deeper relationship UI and agent game |
+| People/persona/relationships | Accepted context and narration input | Relationship mechanics depth gates | Deeper relationship UI and agent game |
 | Transfer decision influence | Active foundation | People read-model bridge | Richer agent and media pressure |
 
 ## Factor matrices
@@ -113,9 +115,9 @@ box modifiers.
 | Role fit and tactic familiarity | Tactics / Training | Training, Squad & Player | Role learning and explanation tags | MVP foundation |
 | Morale and role happiness | Squad & Player | Training, Transfer | Development efficiency and sell/player-terms pressure | MVP foundation |
 | Health and injury history | Squad & Player | Squad & Player, Transfer | Growth suppression, availability, market risk | MVP foundation |
-| Hidden meta labels | Squad & Player with reveal rules | Training, Scouting, Transfer | Professionalism, pressure, adaptability, consistency | MVP foundation |
-| Mentoring relationship | People draft + Training/Squad facts | Squad & Player, Training | Slow hidden-meta/tendency influence | MVP hook |
-| Skill acquisition evidence | Training, Match, People draft | People draft | Player skill candidate creation | MVP player-skill slice |
+| Hidden meta labels | People derivation truth + Scouting reveal gate + Squad & Player banded presentation | Training, Scouting, Transfer | Professionalism, pressure, adaptability, consistency | MVP foundation |
+| Mentoring relationship | People + Training/Squad facts | Squad & Player, Training | Slow hidden-meta/tendency influence | MVP hook |
+| Skill acquisition evidence | Training, Match, People | People | Player skill candidate creation | MVP player-skill slice |
 | Loan environment | Transfer / League | Squad & Player | Development, integration, risk | Post-MVP depth |
 
 ### Match, tactics and player selection
@@ -125,10 +127,10 @@ box modifiers.
 | Visible attributes | Squad & Player | Match, Impact Lens | Base football outcomes and role fit | MVP foundation |
 | Position, role, duty, instructions | Tactics / Match setup | Match | Eligibility, action selection, shape | MVP foundation |
 | Tendencies | Squad & Player / Training evidence | Match | Action-choice probabilities | MVP foundation |
-| PlayerSkillProfileSnapshot | People draft | Match | Bounded trigger effects locked at line-up/tactic lock | MVP player-skill slice |
+| PlayerSkillProfileSnapshot | People | Match | Bounded trigger effects locked at line-up/tactic lock | MVP player-skill slice |
 | Tactical familiarity | Training / Tactics | Match | Shape correctness and execution | MVP foundation |
 | Fatigue/readiness/sharpness | Training + Squad & Player | Match, Impact Lens | Availability and current performance projection | MVP foundation |
-| Leadership/captaincy | Squad & Player + People draft labels | Squad & Player, Match projection | Morale/status context and mentoring | MVP hook |
+| Leadership/captaincy | Squad & Player + People labels | Squad & Player, Match projection | Morale/status context and mentoring | MVP hook |
 
 ### Transfer, contract and squad-planning decisions
 
@@ -138,11 +140,11 @@ box modifiers.
 | Scouting confidence | Scouting / Transfer | Transfer UI | Ranges, trust, hidden-label reveal | MVP foundation |
 | PlayerMarketProfile | Transfer from public inputs | Transfer | Reference value, asking band, availability label | MVP foundation |
 | Contract/wage state | Squad & Player, Club Management | Transfer | Contract risk, wage burden, affordability | MVP foundation |
-| Player agency labels | Squad & Player + People draft | Transfer | Player terms and wantaway pressure | MVP foundation |
-| Relationship with manager/director | People draft | Transfer | Terms fit, negotiation temperature, leak risk | MVP hook |
+| Player agency labels | Squad & Player + People | Transfer | Player terms and wantaway pressure | MVP foundation |
+| Relationship with manager/director | People | Transfer | Terms fit, negotiation temperature, leak risk | MVP hook |
 | Agent profile | Transfer + People actor identity | Transfer | Fee preference, patience, leak tendency | MVP simple agent identity |
 | Fan/board attachment | Fan Ecology / Club Management | Transfer | Protection score, backlash, shock-sale risk | MVP hook |
-| Injury/adaptation risk | Squad & Player + People draft | Transfer | Risk discount and integration warnings | MVP foundation |
+| Injury/adaptation risk | Squad & Player + People labels | Transfer | Risk discount and integration warnings | MVP foundation |
 | Recruitment pipeline quality | Staff Operations | Transfer / Scouting | Discovery, report accuracy, shortlist quality | MVP hook |
 
 ### Staff pipeline and staff-skill influence
@@ -153,9 +155,9 @@ box modifiers.
 | Role assignment | Staff Operations | Training, Transfer, Squad & Player, Match | Pipeline coverage and specialist availability | MVP foundation |
 | PipelineCoverageSnapshot | Staff Operations | UI and consuming domains | Bottleneck explanations and quality multipliers | MVP foundation |
 | Staff specialisation metadata | Staff Operations | Consuming domains | Coach/scout/medical/set-piece emphasis | MVP hook |
-| StaffSkillProfileSnapshot | People draft | Staff Operations + consumers | Optional staff-skill-aware pipeline effects | Decision gate |
-| Staff persona/relationships | People draft | Narrative, Training/Transfer as context | Advice tone, trust/conflict, future staff dynamics | MVP narration; mechanics gated |
-| Staff continuity/turnover | Staff Operations + People draft | Training, Squad & Player | Disruption and adaptation effects | Post-MVP |
+| StaffSkillProfileSnapshot | People | Staff Operations + consumers | Optional staff-skill-aware pipeline effects | Decision gate |
+| Staff persona/relationships | People | Narrative, Training/Transfer as context | Advice tone, trust/conflict, future staff dynamics | MVP narration; mechanics gated |
+| Staff continuity/turnover | Staff Operations + People | Training, Squad & Player | Disruption and adaptation effects | Post-MVP |
 
 ## Staff-skill MVP decision
 
@@ -182,9 +184,9 @@ These are planning names, not approved public APIs:
 - `StaffSkillProfileSnapshot`
 - `StaffPipelineCoverageSnapshot`
 
-If ADR-0052 is accepted, People should own persona, relationship and
-skill-profile read models. Consuming contexts apply effects through their own
-rules and never query People internals.
+ADR-0052 is accepted: People owns persona, relationship and skill-profile read
+models. Consuming contexts apply effects through their own rules and never query
+People internals.
 
 ## Acceptance scenarios
 
@@ -228,9 +230,7 @@ Feature: Player and staff decision influence
 
 ## Open
 
-- Approval of this GDDR as the canonical decision-influence layer.
 - Staff-skill MVP option A/B/C.
-- ADR-0052 acceptance for People / Persona & Skills.
 - Final first player skill catalog, tier names, caps and trigger envelopes.
 - Exact `DevelopmentDecisionContext` and `TransferDecisionContext` fields.
 - Relationship edge thresholds, decay and anti-spam rules.
@@ -255,7 +255,7 @@ Positive:
 
 Negative / constraints:
 
-- Adds another draft GDDR that must be kept aligned with GD-0020 and ADR-0052.
+- Keeps an accepted factor-matrix GDDR aligned with GD-0020, GD-0027 and ADR-0052.
 - Requires discipline so People does not duplicate Squad, Training or Transfer
   facts.
 - Staff-skill activation cannot proceed until Nico resolves the option gate.
@@ -272,6 +272,6 @@ None
 
 ## Related
 
-- Research: [[../60-Research/player-staff-development-decision-model-2026-05-28]]
-- Game design: [[GD-0020-eos-player-skills-personas-and-people]], [[youth-academy-and-development]], [[training-load-and-medicine]], [[transfer-market-and-contracts]]
+- Research: [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]]
+- Game design: [[GD-0020-eos-player-skills-personas-and-people]], [[GD-0027-hidden-attribute-substrate-mapping]], [[youth-academy-and-development]], [[training-load-and-medicine]], [[transfer-market-and-contracts]]
 - Feature specs: [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-player-lifecycle]], [[../20-Features/feature-training-medicine]], [[../20-Features/feature-transfer-market-ai-and-contracts]]
