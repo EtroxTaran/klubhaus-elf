@@ -42,11 +42,11 @@ target build plan.
 |---|---|
 | Goal | Repo can accept the first real code beat without non-existent commands or paths in the DoD |
 | Contexts | Platform / Meta |
-| Vault | [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[code-phase-dod-transition-contract]], [[ci-and-review-process]], [[agent-workflow-pattern]] |
+| Vault | [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], pending [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]], [[code-phase-dod-transition-contract]], [[monorepo-workspace-bootstrap-plan]], [[ci-and-review-process]], [[agent-workflow-pattern]] |
 | UI | None; design-system paths stay target-only until created |
-| Tests | `node scripts/docs-check.mjs`; then bootstrap must add real `pnpm`/Nx code scripts before code-phase gates activate |
+| Tests | `node scripts/docs-check.mjs`; then approved bootstrap must add real `pnpm`/Nx code scripts before code-phase gates activate; no placeholder Vitest/Playwright/Storybook/coverage greens for empty packages |
 | Authority | Process/tooling gate |
-| DoD | Workspace, Nx, root scripts, CI and design-system implementation paths exist before Slice 0 code starts |
+| DoD | Serialized foundation: FMX-180 accepted the phase-split DoD; FMX-179 prepares package-boundary decisions and exact scaffold plan; a later approved scaffold PR creates real workspace roots, Nx, root scripts, CI and design-system implementation paths before Slice 0 code starts |
 
 ### Slice 0 — Auth shell
 

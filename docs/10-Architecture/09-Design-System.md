@@ -192,9 +192,13 @@ see [[../90-Meta/github-issue-suite/issues/D-001-remaining-screens-by-phase]].
 
 Recorded so a future maintainer understands non-obvious choices:
 
-- **Test infra**: root `vitest.config.ts` runs a jsdom-scoped `web` project +
-  a node project for `packages/**`; coverage thresholds unchanged (85/85/85/75
-  per-file).
+- **Test infra target (FMX-179 clarification)**: the historical design export
+  assumed a root `vitest.config.ts` with a jsdom-scoped `web` project plus node
+  projects for `packages/**`. In the current docs-only repo those paths and
+  scripts do not exist. They become active only after approved bootstrap creates
+  real package targets; empty `packages/**` coverage gates are forbidden.
+  Target thresholds remain 85/85/85/75 per-file for packages with meaningful
+  product logic and tests.
 - **Coverage scoping**: framework wiring (`routes/**`, `routeTree.gen.ts`,
   server/router entry) and test utilities are excluded — *not* a threshold
   relaxation; all product logic stays gated.

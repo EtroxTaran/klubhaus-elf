@@ -509,6 +509,19 @@ single-composite-vs-multi-tag label model.
 |---|---|---|
 | [[raw-hidden-attribute-substrate-mapping-2026-06-05]] | OCEAN→football-label mapping + FM personality/media/trait derivation; FM/OOTP/NBA 2K scouting-gated reveal & attribute bands; persist-vs-derive a personality vector in deterministic/event-sourced sims; single-composite vs multi-tag labels (FM/CK3/RimWorld) with exclusion axes | [[../hidden-attribute-substrate-mapping-2026-06-05]] · [[../../50-Game-Design/GD-0027-hidden-attribute-substrate-mapping]] · [[../../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]] · [[../../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]] |
 
+## FMX-179 follow-up Perplexity/source-check research (2026-06-14)
+
+Perplexity, Context7, Ref and npm registry checks were run during FMX-179 after
+Nico selected the monorepo/workspace bootstrap issue and the Split Doc First
+scope.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-monorepo-workspace-ddd-package-granularity-2026-06-14]] | DDD package granularity for a TypeScript service-ready modular monolith: one package per context vs cluster packages vs technical packages vs progressive catalog | [[../monorepo-workspace-bootstrap-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]] |
+| [[raw-monorepo-workspace-game-production-precedents-2026-06-14]] | Game-production and football-manager precedent for UI/simulation/data separation and avoiding direct UI-to-sim coupling | [[../monorepo-workspace-bootstrap-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]] |
+| [[raw-monorepo-workspace-tooling-bootstrap-2026-06-14]] | Practical Nx/pnpm/TypeScript/Vitest/Playwright/Storybook bootstrap sequencing and no-placeholder gate activation | [[../monorepo-workspace-bootstrap-2026-06-14]] · [[../../30-Implementation/monorepo-workspace-bootstrap-plan]] |
+| [[raw-monorepo-workspace-source-checks-2026-06-14]] | Context7/Ref/npm registry source checks for Nx, pnpm, TypeScript, Vitest, Playwright, Storybook and exact latest observed versions | [[../monorepo-workspace-bootstrap-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]] |
+
 ## Rules
 
 - Raw notes may quote competitor names and product features for analysis only.

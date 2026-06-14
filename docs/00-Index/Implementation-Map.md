@@ -21,6 +21,7 @@ unless re-opened by a current issue or accepted ADR.
 
 - [Linear Task Tracking & GitHub Integration](../30-Implementation/linear-task-tracking.md) - Linear team FMX conventions (labels, states, project, issue/branch/PR rules) + GitHub integration.
 - [Code-Phase Definition of Done Transition Contract](../30-Implementation/code-phase-dod-transition-contract.md) - FMX-180 docs-phase -> code-phase bridge: active docs DoD, target-only code gates, Nx day-one bootstrap checklist and related Linear routing.
+- [Monorepo Workspace Bootstrap Plan](../30-Implementation/monorepo-workspace-bootstrap-plan.md) - FMX-179 non-binding scaffold plan for `apps/web` + `packages/*`: package catalog, namespace, Nx/pnpm/TypeScript linking, no-placeholder gates and bounded-context-map patch after ADR-0114 approval.
 - [Compliance Evidence](../40-Compliance/README.md) - legal/compliance artifact evidence home; currently includes the non-binding FMX-194 monetization legal gates checklist and FMX-185 age-assurance/rating evidence packet.
 - [Cursor Cloud Agent Workflow](../30-Implementation/cursor-cloud-agent-workflow.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
