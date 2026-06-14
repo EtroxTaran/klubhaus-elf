@@ -92,13 +92,20 @@ design notes.
 ## Opposition-template AI Consumption Contract (FMX-67, 2026-06-05)
 
 - [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]] -
-  FMX-67 synthesis for G11. Grounds proposed
+  FMX-67 synthesis for G11. Grounds accepted
   [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]]
   with real-world opposition analysis workflows, Football Manager/OOTP
   pre-match strategy precedents and deterministic replay constraints. Records
   Nico's selected defaults: split event model, final immutability at
   `lineup_locked` and dedicated `WorldAiMgmtRng` sub-label; raw capture:
   [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]].
+
+- [[../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]] -
+  FMX-136 ratification cleanup for accepted/binding ADR-0080. Grounds the AI
+  World Simulation planning-source owner, fail-fast
+  `opposition_template_selection_missing` behavior and embedded
+  `TacticSnapshot.oppositionTemplate` replay payload; raw capture:
+  [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]].
 
 ## Statistics & Analytics Read-Model Owner (FMX-94, 2026-06-05)
 

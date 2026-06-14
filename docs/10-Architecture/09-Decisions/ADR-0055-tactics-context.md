@@ -3,7 +3,7 @@ title: ADR-0055 Tactics Context
 status: accepted
 tags: [adr, architecture, ddd, tactics, set-pieces, fmx-28, fmx-37, accepted]
 created: 2026-05-28
-updated: 2026-06-08
+updated: 2026-06-14
 type: adr
 binding: true
 supersedes:
@@ -30,6 +30,8 @@ related:
   - [[../../60-Research/raw-perplexity/raw-tactics-persistence-2026-05-28]]
   - [[../../60-Research/opposition-template-ai-consumption-contract-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]]
+  - [[../../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]]
+  - [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]]
   - [[../../60-Research/tactics-and-formations]]
 ---
 
@@ -258,11 +260,12 @@ arguments:
   excludes sharing from Tactics' MVP contract; an `ImportSharedTactic`
   command is listed as deferred.
 
-Status stays `proposed` / `binding: false` until Nico ratifies.
+Status is `accepted` / `binding: true`; the historical proposal language in
+this section is retained as decision context.
 
 ## Decision
 
-Propose a dedicated **Tactics** bounded context.
+Accept a dedicated **Tactics** bounded context.
 
 If ratified, Tactics owns:
 
@@ -300,13 +303,12 @@ Tactics does **not** own:
 - Set-Piece-Coach role lifecycle (owned by Staff Operations per
   ADR-0053; Tactics consumes `SetPieceCoachReadinessUpdated`).
 - AI-manager opposition planning context and personality logic (owned by
-  League / Club / Transfer per `bounded-context-map.md §7` AI-manager note;
-  if ADR-0071 is ratified, AI World Simulation may become the planning source).
-  Tactics publishes the catalog. Proposed
-  [[ADR-0080-opposition-template-ai-consumption-contract]] narrows the
-  consumption contract by making Tactics the deterministic catalog selector and
-  publisher from a supplied AI-planning context; until ratified, ADR-0080 is
-  planning context only.
+  AI World Simulation per
+  [[ADR-0071-ai-world-simulation-context-and-drift-contract]] and
+  [[ADR-0080-opposition-template-ai-consumption-contract]]). League
+  Orchestration, Club Management and Transfer provide source facts/projections
+  through published language. Tactics publishes the catalog and deterministic
+  selected-template event; Match consumes the embedded snapshot.
 
 ## Public contract direction
 
@@ -442,8 +444,10 @@ Negative:
   Anti-Corruption Layer pattern from FMX-26 / ADR-0053 wage events.
 - Set-piece-coach effect-readiness curves remain post-MVP
   (Staff Operations specialisation metadata + playtest GDDR).
-- Opposition-template AI consumption (which AI-manager logic uses
-  which templates) is a separate beat.
+- Opposition-template AI consumption is governed by accepted
+  [[ADR-0080-opposition-template-ai-consumption-contract]]: AI World supplies
+  the planning context, Tactics selects/publishes the template and Match
+  consumes the embedded lock-time snapshot.
 - Cross-save preset sharing (ADR-0016) is FMX-33 Community Overlay's
   territory; explicit boundary.
 
@@ -488,24 +492,29 @@ None
   draft; no direct boundary requirement.
 - [[ADR-0016-community-dataset-overrides]] - cross-save preset sharing
   surface (FMX-33 Community Overlay Pipeline territory).
-- [[ADR-0067-set-piece-variant-selection-determinism]] - proposed; pins the
+- [[ADR-0067-set-piece-variant-selection-determinism]] - accepted; pins the
   deterministic set-piece variant-selection rule + `TacticSnapshot` set-piece
   fields (see appendix).
-- [[ADR-0074-tactical-identity-fingerprint-aggregation]] - proposed (FMX-68, G10);
+- [[ADR-0074-tactical-identity-fingerprint-aggregation]] - accepted (FMX-68, G10);
   supplies the aggregation algorithm (signal definitions, EWMA decay, empirical-Bayes
   confidence) for the `TacticalIdentityFingerprint` projection this ADR owns.
   Additive extension — this ADR's decision is unchanged.
-- [[ADR-0080-opposition-template-ai-consumption-contract]] - proposed (FMX-67, G11);
-  defines how AI-management planning supplies context, how Tactics selects and
-  publishes `OppositionTemplateSelectedForMatchV1`, and how Match freezes the
-  result into `TacticSnapshot` at `lineup_locked`. Additive extension — this
-  ADR's accepted Tactics ownership decision is unchanged unless ADR-0080 is
-  ratified.
+- [[ADR-0080-opposition-template-ai-consumption-contract]] - accepted and
+  binding (FMX-67 / FMX-136, G11); defines how AI World planning supplies
+  context, how Tactics selects and publishes
+  `OppositionTemplateSelectedForMatchV1`, and how Match consumes the embedded
+  `TacticSnapshot.oppositionTemplate` slice at `lineup_locked`. Additive
+  extension — this ADR's accepted Tactics ownership decision is unchanged.
 - [[../../60-Research/opposition-template-ai-consumption-contract-2026-06-05]]
   - FMX-67 synthesis and option matrix for the opposition-template AI
   consumption contract.
 - [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]]
   - FMX-67 raw source capture.
+- [[../../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]]
+  - FMX-136 ratification cleanup for AI World planning source, fail-fast lock
+  behavior and embedded `TacticSnapshot` payload.
+- [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]]
+  - FMX-136 raw source capture.
 
 ## Appendix: `TacticSnapshot` set-piece selection fields (accepted, FMX-70)
 
@@ -537,10 +546,11 @@ the module's `selectionMode`; deeply `readonly` per ADR-0026 rule 8. These field
 are produced through the existing `TacticLockSnapshotProduced` event; no new
 command/event is required.
 
-## Appendix: Opposition-template AI consumption contract (proposed, FMX-67)
+## Appendix: Opposition-template AI consumption contract (accepted, FMX-67 / FMX-136)
 
-> **Status: proposed** (Nico selected D1-D3 live on 2026-06-05; awaiting
-> ratification). Canonical spec + invariants in
+> **Status: accepted and binding** (D1-D3 selected by Nico on 2026-06-05;
+> D4-D6 approved by Nico on 2026-06-14 via FMX-136). Canonical spec +
+> invariants in
 > [[ADR-0080-opposition-template-ai-consumption-contract]].
 
 ADR-0055 establishes that Tactics owns `OppositionTemplate` records, while Match
@@ -548,20 +558,28 @@ only consumes a frozen `TacticSnapshot` at `lineup_locked`. It did not define
 how AI match-prep chooses one of those templates for a specific opponent
 (gap G11).
 
-ADR-0080 proposes the additive contract:
+ADR-0080 binds the additive contract:
 
-- AI-management planning owns *why and when* a planning context is requested:
+- AI World Simulation owns *why and when* a planning context is requested:
   fixture stakes, manager style, scouting confidence, opponent projection and
-  risk posture.
+  risk posture. League Orchestration, Club Management and Transfer provide
+  source facts/projections through published language.
 - Tactics owns the deterministic selector over its catalog and publishes the
   self-contained `OppositionTemplateSelectedForMatchV1` event.
 - Match consumes the Tactics-published event at `lineup_locked` and freezes the
-  selected template into `TacticSnapshot`. Match never silently chooses a
-  template and never joins Tactics or AI-management state.
+  selected-template slice into `TacticSnapshot`. Match never silently chooses a
+  template and never joins Tactics or AI World state.
 - Final selection is immutable at `lineup_locked`; `lineup_open` may expose a
   candidate for planning UI only.
 - Selection uses `WorldAiMgmtRng` with the versioned sub-label
   `worldAiMgmt:opposition-template:fixture:<fixtureId>:club:<clubId>:v1:select`,
   isolating out-of-match AI planning from MatchCoreRng and set-piece sub-labels.
+- Missing valid selection at lock fails with
+  `opposition_template_selection_missing`; any future fallback requires an
+  explicit Tactics-published event or ADR amendment.
+- Replays use `TacticSnapshot.oppositionTemplate`, including selected-template
+  event id, template id/version, archetype keys, planning input hash, selector
+  model version and `templateSnapshotHash`.
 
-No new bounded context or bounded-context-map edit is proposed by FMX-67.
+No new bounded context is added. FMX-136 only reconciles the already-accepted
+AI World source ownership from ADR-0071 into this contract.

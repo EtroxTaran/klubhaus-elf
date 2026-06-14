@@ -1,11 +1,11 @@
 ---
 title: ADR-0080 Opposition-template AI Consumption Contract
 status: accepted
-tags: [adr, architecture, tactics, opposition, ai, match, determinism, replay, fmx-67]
+tags: [adr, architecture, tactics, opposition, ai-world, match, determinism, replay, snapshot, fmx-67, fmx-136]
 created: 2026-06-05
-updated: 2026-06-11
+updated: 2026-06-14
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -24,6 +24,9 @@ related:
   - [[../../60-Research/determinism-and-replay]]
   - [[../../60-Research/opposition-template-ai-consumption-contract-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]]
+  - [[../../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]]
+  - [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]]
+  - [[../../40-Execution/fmx-136-opposition-template-ratification-decision-queue-2026-06-14]]
 ---
 
 # ADR-0080: Opposition-template AI Consumption Contract
@@ -35,6 +38,12 @@ accepted
 > Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+> **FMX-136 binding cleanup (2026-06-14):** Nico approved D4-D6:
+> **AI World Simulation** is the canonical planning source,
+> no valid selection at `lineup_locked` fails with
+> `opposition_template_selection_missing`, and
+> `BuildTacticSnapshotForMatch` embeds the selected-template slice in
+> `TacticSnapshot`. `binding: true`.
 
 > **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** FMX-67 closes E2 gap **G11** by pinning how
@@ -68,6 +77,10 @@ Research basis:
 [[../../60-Research/opposition-template-ai-consumption-contract-2026-06-05]]
 and raw capture
 [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]].
+FMX-136 source-owner / fail-fast / snapshot refresh:
+[[../../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]]
+and raw capture
+[[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]].
 
 ## Options Considered
 
@@ -95,23 +108,49 @@ and raw capture
 | B. `MatchCoreRng` | Template selection draws from Match RNG. | Keeps all match setup near Match, but selection is out-of-match planning and would perturb MatchCoreRng. |
 | **C. `WorldAiMgmtRng` (chosen)** | Template selection uses a dedicated AI-management sub-label. | **Chosen.** Isolates out-of-match AI planning from Match replay and set-piece sub-labels. |
 
+### D4 - Planning source after ADR-0071
+
+| Option | Description | Trade-off |
+|---|---|---|
+| **A. AI World Simulation (chosen)** | `planningContext.sourceContext` is `ai-world-simulation`; League, Club and Transfer supply input facts/projections. | **Chosen.** Matches accepted ADR-0071 and removes the stale source-owner fork. |
+| B. Four-source union | Keep League / Club / Transfer / AI World as possible source owners. | More flexible historically, but ambiguous after AI World ratification. |
+| C. Legacy lane until code | Preserve the older split until implementation exists. | Lowest doc churn, but contradicts the accepted bounded-context map. |
+
+### D5 - Missing selection at lock
+
+| Option | Description | Trade-off |
+|---|---|---|
+| **A. Fail fast (chosen)** | Match lock fails with `opposition_template_selection_missing`. | **Chosen.** Strongest replay and audit behavior; no hidden template enters authoritative Match state. |
+| B. Explicit default event | Tactics emits a versioned fallback-template event. | Valid future path if product wants soft failure, but it needs its own contract. |
+| C. Mode split | Competitive matches fail; background matches fallback. | Premature and risks divergent replay semantics. |
+
+### D6 - Replay-safe payload
+
+| Option | Description | Trade-off |
+|---|---|---|
+| **A. Snapshot in `TacticSnapshot` (chosen)** | Event carries identity/provenance/hash; `BuildTacticSnapshotForMatch` embeds the selected-template slice. | **Chosen.** Match replays without live Tactics or AI World joins while avoiding a full catalog copy. |
+| B. Full template body on event only | Event stores the full selected template; Match snapshot keeps only the event ref. | Auditable but heavier and forces replay to dereference event storage. |
+| C. ID + version only | Store only template id/version and recompute from Tactics catalog. | Too weak after catalog/model edits; replay can drift. |
+
 ## Decision
 
-Nico selected **D1 = C, D2 = B, D3 = C** live on 2026-06-05.
+Nico selected **D1 = C, D2 = B, D3 = C** live on 2026-06-05 and
+**D4 = A, D5 = A, D6 = A** live on 2026-06-14.
 
 ### 1. Ownership split
 
-- **AI-management planning** owns *why and when* a planning context is requested:
+- **AI World planning** owns *why and when* a planning context is requested:
   fixture stakes, manager style, scouting confidence, opponent projection,
-  rivalry/stakes and risk posture. Under the current map this remains the
-  existing AI-management lane (League / Club / Transfer split); if ADR-0071 is
-  ratified, **AI World Simulation** may become the planning-source context.
+  rivalry/stakes and risk posture. Under the accepted map, **AI World
+  Simulation** is the canonical planning-source context; League Orchestration,
+  Club Management and Transfer provide source facts/projections through their
+  published language, not planning-source ownership.
 - **Tactics** owns deterministic catalog selection from that supplied planning
   context and is the authoritative publisher of
   `OppositionTemplateSelectedForMatchV1`.
 - **Match** consumes the selection event and freezes the selected template into
   the lock-time `TacticSnapshot`. Match never selects templates and never joins
-  Tactics/AI tables.
+  Tactics or AI World tables.
 
 This amends ADR-0055's open wording without moving AI manager personality or
 world-drift ownership into Tactics: Tactics owns the catalog selector; the AI
@@ -125,9 +164,9 @@ final `OppositionTemplateSelectedForMatchV1` event produced for
 selectingClubId, lockVersion, modelVersion)`.
 
 If no valid selection exists at lock-time, the Match lock must fail fast with a
-domain error (`opposition_template_selection_missing`) or use an explicitly
-versioned default-template fallback emitted by Tactics. Match must not silently
-choose a template.
+domain error (`opposition_template_selection_missing`). Match must not silently
+choose a template. A future default-template fallback would require an
+explicitly versioned Tactics-published event or ADR amendment.
 
 ### 3. RNG sub-label
 
@@ -163,17 +202,14 @@ type OppositionTemplateSelectedForMatchV1 = {
   selectedTemplate: {
     oppositionTemplateId: OppositionTemplateId
     templateVersion: int
+    templateSnapshotHash: string
     archetypeKey: string
     subArchetypeKey: string | null
     managerSignatureKey: string | null
   }
 
   planningContext: {
-    sourceContext:
-      | 'league-orchestration'
-      | 'club-management'
-      | 'transfer'
-      | 'ai-world-simulation'
+    sourceContext: 'ai-world-simulation'
     modelVersion: string
     inputHash: string
     scoutingConfidenceBand: 'low' | 'medium' | 'high'
@@ -233,11 +269,32 @@ type BuildTacticSnapshotForMatchQuery = {
   selectedOppositionTemplateEventId: EventId
   lineupSnapshotRef: string
 }
+
+type TacticSnapshotOppositionTemplate = {
+  selectedTemplateEventId: EventId
+  oppositionTemplateId: OppositionTemplateId
+  templateVersion: int
+  templateSnapshotHash: string
+  archetypeKey: string
+  subArchetypeKey: string | null
+  managerSignatureKey: string | null
+  planningSourceContext: 'ai-world-simulation'
+  planningContextInputHash: string
+  selectorModelVersion: string
+}
+
+type BuildTacticSnapshotForMatchResult = {
+  tacticSnapshot: TacticSnapshot & {
+    oppositionTemplate: TacticSnapshotOppositionTemplate
+  }
+}
 ```
 
 `SelectOppositionTemplateForMatch` and `BuildTacticSnapshotForMatch` are Tactics
 public queries/commands in the planned `context-contracts/` surface. Match calls
-only the lock-time snapshot surface and receives immutable JSON.
+only the lock-time snapshot surface and receives immutable JSON. Match replays
+from `TacticSnapshot.oppositionTemplate`, not from live Tactics catalog rows,
+AI World planning state or mutable selector output.
 
 ## Invariants
 
@@ -247,17 +304,18 @@ only the lock-time snapshot surface and receives immutable JSON.
 | **OT2** | Same planning input hash + same `WorldAiMgmtRng` label + same selector version produces the same selected template. |
 | **OT3** | The final selected template is immutable at `lineup_locked`; later catalog edits do not affect the in-flight match or replay. |
 | **OT4** | MatchCoreRng and `setpiece:*` sub-labels are not used by template selection. |
-| **OT5** | `OppositionTemplateSelectedForMatchV1` is self-contained for Match; no cross-context joins are required. |
+| **OT5** | `OppositionTemplateSelectedForMatchV1` plus `TacticSnapshot.oppositionTemplate` are self-contained for Match; no cross-context joins are required. |
 | **OT6** | Set-piece variant resolution inside the selected template remains governed by ADR-0067. |
-| **OT7** | AI World Simulation may become the planning-source context if ADR-0071 is ratified, but the Tactics-to-Match event shape remains stable. |
+| **OT7** | AI World Simulation is the canonical planning-source context; source-domain facts remain owned by their source contexts and arrive through published language. |
+| **OT8** | Missing selection at `lineup_locked` fails with `opposition_template_selection_missing`; no silent fallback/default template is valid. |
 
 ## Consequences
 
 Positive:
 
 - Closes G11 without adding a bounded context.
-- Keeps Tactics as catalog owner, Match as runtime owner and AI-management as
-  planning-context owner.
+- Keeps Tactics as catalog owner, Match as runtime owner and AI World Simulation
+  as planning-source owner.
 - Preserves replay stability across future template edits and AI model changes.
 - Lets pre-match UI show candidates while keeping the final lock-time truth clean.
 
@@ -266,6 +324,8 @@ Negative / constraints:
 - Adds one new published event and one selector/query surface.
 - Requires `inputHash` and selector model-version discipline before any
   implementation.
+- Requires the Tactics snapshot builder to embed the selected-template slice in
+  every replay-bearing `TacticSnapshot`.
 - The exact scoring weights, template taxonomy, manager-style coefficients and
   scouting-confidence effects remain calibration/design debt.
 
@@ -282,4 +342,6 @@ None.
 - [[../state-machines/match]]
 - [[../../60-Research/opposition-template-ai-consumption-contract-2026-06-05]]
 - [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]]
-
+- [[../../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]]
+- [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]]
+- [[../../40-Execution/fmx-136-opposition-template-ratification-decision-queue-2026-06-14]]

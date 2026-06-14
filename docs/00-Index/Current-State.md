@@ -525,24 +525,31 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > a running build; they are the human-validation anchor the soak proxies are later
 > calibrated against. Authored `current` (research) / runbook `draft`; awaiting Nico.
 
-> **FMX-67 Opposition-template AI consumption contract (2026-06-05).**
+> **FMX-67 / FMX-136 Opposition-template AI consumption contract
+> (2026-06-05 / 2026-06-14).**
 > [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]]
 > (+ raw
-> [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]])
-> closes audit gap **G11** in E2 / FMX-58. Proposed
+> [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]];
+> ratification refresh:
+> [[../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]]
+> + raw
+> [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]])
+> closes audit gap **G11** in E2 / FMX-58. Accepted/binding
 > [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]]
 > keeps **Tactics** as opposition-template catalog + deterministic selector /
-> publisher owner, AI-management contexts as planning-context owner and **Match**
-> as the lock-time consumer. The selected
+> publisher owner, **AI World Simulation** as planning-source owner and
+> **Match** as the lock-time consumer. The selected
 > `OppositionTemplateSelectedForMatchV1` event is self-contained, idempotent per
-> fixture/club/lock/model and immutable at `lineup_locked`; Match freezes it
-> into `TacticSnapshot` and must not silently choose a fallback or join live
-> Tactics/AI state. **Nico chose D1-D3 = C/B/C live (2026-06-05):** split event
-> model, final immutability at `lineup_locked` and a dedicated
-> `WorldAiMgmtRng` sub-label. No new bounded context or map change. Template
-> taxonomy/weights, manager-style coefficients and scouting-confidence effects
-> remain future design/calibration debt. Authored `proposed`; awaiting Nico
-> ratify.
+> fixture/club/lock/model, carries `templateSnapshotHash` and is immutable at
+> `lineup_locked`; `BuildTacticSnapshotForMatch` embeds
+> `TacticSnapshot.oppositionTemplate` so Match never joins live Tactics or
+> AI World state. **Nico chose D1-D3 = C/B/C live (2026-06-05)** and
+> **D4-D6 = A/A/A live (2026-06-14):** split event model, final immutability at
+> `lineup_locked`, dedicated `WorldAiMgmtRng`, AI World canonical source,
+> fail-fast `opposition_template_selection_missing` and snapshot-in-Tactic
+> replay payload. No new bounded context. Template taxonomy/weights,
+> manager-style coefficients and scouting-confidence effects remain future
+> design/calibration debt.
 
 > **FMX-80 Player discipline sub-aggregate (2026-06-05).**
 > [[../60-Research/player-discipline-sub-aggregate-2026-06-05]]

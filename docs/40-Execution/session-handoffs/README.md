@@ -131,6 +131,13 @@ This is the **single** canonical handoff location. (An older
   as planning-context owner and Match as lock-time `TacticSnapshot` consumer;
   no new bounded context or map change. Template weights/taxonomy and
   scouting-confidence effects remain future calibration/design debt.
+- [[2026-06-14-fmx-136-opposition-template-ratification]] - FMX-136
+  opposition-template ratification cleanup: raw/synthesis research, decision
+  queue and accepted ADR-0080/ADR-0055/map reconciliation. Captures Nico's
+  D4-D6 choices: AI World Simulation canonical planning source, fail-fast
+  `opposition_template_selection_missing` and embedded
+  `TacticSnapshot.oppositionTemplate` replay payload. No new bounded context;
+  taxonomy/weights remain calibration debt.
 - [[2026-06-05-fmx-80-player-discipline]] - FMX-80 player discipline
   sub-aggregate: raw/synthesis research, proposed ADR-0078 and
   [[../../10-Architecture/state-machines/player-discipline]] for G18.
