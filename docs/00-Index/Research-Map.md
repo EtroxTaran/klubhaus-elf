@@ -173,9 +173,9 @@ design notes.
 - [[../60-Research/command-signing-save-trust-2026-06-14]] -
   FMX-184 synthesis for the dead pre-mortem ADR-0026/0028 command-signing and
   save-trust concepts. Grounds accepted
-  [[../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture]]
+  [[../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]]
   and accepted
-  [[../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]]:
+  [[../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]]:
   server-authoritative command validation plus mandatory app-managed/device
   Ed25519 evidence from the first code phase, WebAuthn/passkeys only for
   login/high-value ceremonies, derived save trust plus public eligibility, and

@@ -1,5 +1,5 @@
 ---
-title: ADR-0114 Command Integrity and Replay Protection Posture
+title: ADR-0115 Command Integrity and Replay Protection Posture
 status: accepted
 tags: [adr, architecture, security, command-signing, replay-protection, offline-sync, audit, fmx-184]
 created: 2026-06-14
@@ -20,10 +20,10 @@ related:
   - [[../../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]]
   - [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
   - [[ADR-0091-audit-security-context-definition]]
-  - [[ADR-0115-save-trust-levels-and-provenance-posture]]
+  - [[ADR-0116-save-trust-levels-and-provenance-posture]]
 ---
 
-# ADR-0114: Command Integrity and Replay Protection Posture
+# ADR-0115: Command Integrity and Replay Protection Posture
 
 ## Status
 
@@ -144,7 +144,7 @@ Costs / constraints:
   before relying on command signatures.
 - Device-key storage and revocation become part of the platform security model.
 - Public trust still depends on server verification and save/run provenance
-  from ADR-0115; device signatures alone are insufficient.
+  from ADR-0116; device signatures alone are insufficient.
 
 ## Follow-ups
 
@@ -160,4 +160,4 @@ Costs / constraints:
 - [[../../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]]
 - [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
 - [[ADR-0091-audit-security-context-definition]]
-- [[ADR-0115-save-trust-levels-and-provenance-posture]]
+- [[ADR-0116-save-trust-levels-and-provenance-posture]]

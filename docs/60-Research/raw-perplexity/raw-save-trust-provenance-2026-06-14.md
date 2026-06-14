@@ -9,7 +9,7 @@ binding: false
 linear: FMX-184
 related:
   - [[../command-signing-save-trust-2026-06-14]]
-  - [[../../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]]
+  - [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]]
   - [[../../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]]
 ---
 

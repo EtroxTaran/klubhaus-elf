@@ -12,8 +12,8 @@ related:
   - [[raw-perplexity/raw-save-trust-provenance-2026-06-14]]
   - [[raw-perplexity/raw-command-save-trust-source-checks-2026-06-14]]
   - [[raw-perplexity/raw-hybrid-ed25519-command-evidence-2026-06-14]]
-  - [[../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture]]
-  - [[../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]]
+  - [[../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]]
+  - [[../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]]
   - [[../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]]
   - [[../10-Architecture/09-Decisions/ADR-0005-save-format]]
   - [[../10-Architecture/09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]]
@@ -30,9 +30,9 @@ the ADR number collision: current ADR-0026, ADR-0027 and ADR-0028 are no longer
 the old intended security ADRs. Nico approved the FMX-184 packet on 2026-06-14,
 so the binding homes are:
 
-- [[../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture|ADR-0114]]
+- [[../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture|ADR-0115]]
   for command integrity, replay protection and the MVP signing posture.
-- [[../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture|ADR-0115]]
+- [[../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture|ADR-0116]]
   for save trust levels, provenance evidence and public eligibility gates.
 
 The decision record is preserved in
@@ -116,22 +116,22 @@ policy pattern: visible, deterministic and not reversible by client-side claim.
 
 | Decision | Accepted FMX-184 line | Binding home |
 |---|---|---|
-| D1 command-integrity authority | Server remains authoritative; signatures are evidence, not authority. | ADR-0114 |
-| D2 command envelope | Full signed command envelope from the first code phase. | ADR-0114 |
-| D3 WebAuthn/passkeys | Passkeys are for login/high-value ceremonies only, not per-command signing. | ADR-0114 |
-| D1-D3 reconciliation | Hybrid Ed25519: server-authoritative validation plus mandatory app-managed/device Ed25519 command evidence. | ADR-0114 |
-| D4 save trust vocabulary | Derived `SaveTrustLevel` plus derived `PublicEligibility`. | ADR-0115 |
-| D5 server provenance proof | Internal server HMAC over root/hash evidence. | ADR-0115 |
-| D6 public feature gates | Only server-verified or imported-verified eligible histories enter public HoF, leaderboards or async multiplayer. | ADR-0115 |
-| D7 key strategy | App-managed/device Ed25519 keys; never reuse passkey/WebAuthn private keys. | ADR-0114 |
-| D8 command/server receipts | Server HMAC/internal proof only for MVP; clients do not verify public signatures. | ADR-0115 |
-| D9 offline/import verification | Offline saves are eligibility-pending until server verification; same-account imports with valid proof can become imported-verified. | ADR-0115 |
-| D10 downgrade policy | Strict irreversible official-public downgrade for invalid proof, dev/debug, conflicting branch, unapproved engine/content hash or unverified import. | ADR-0115 |
-| D11 player-facing framing | Use Competitive/Sandbox status language with visible reason codes. | ADR-0115 |
-| D12 offline window | No fixed maximum offline window if the signed command log/proof chain verifies later. | ADR-0115 |
-| D13 bad signature/proof handling | Public/MP sync does not advance; rollback or rebase to the last accepted server checkpoint and tell the player. Local SP may continue as local/casual/sandbox. | ADR-0114 + ADR-0115 |
-| D14 signed bytes | Versioned canonical JSON/JCS-style UTF-8 representation. | ADR-0114 |
-| D15 proof cadence | Internal HMAC proofs at successful sync checkpoints and public-submission milestones. | ADR-0115 |
+| D1 command-integrity authority | Server remains authoritative; signatures are evidence, not authority. | ADR-0115 |
+| D2 command envelope | Full signed command envelope from the first code phase. | ADR-0115 |
+| D3 WebAuthn/passkeys | Passkeys are for login/high-value ceremonies only, not per-command signing. | ADR-0115 |
+| D1-D3 reconciliation | Hybrid Ed25519: server-authoritative validation plus mandatory app-managed/device Ed25519 command evidence. | ADR-0115 |
+| D4 save trust vocabulary | Derived `SaveTrustLevel` plus derived `PublicEligibility`. | ADR-0116 |
+| D5 server provenance proof | Internal server HMAC over root/hash evidence. | ADR-0116 |
+| D6 public feature gates | Only server-verified or imported-verified eligible histories enter public HoF, leaderboards or async multiplayer. | ADR-0116 |
+| D7 key strategy | App-managed/device Ed25519 keys; never reuse passkey/WebAuthn private keys. | ADR-0115 |
+| D8 command/server receipts | Server HMAC/internal proof only for MVP; clients do not verify public signatures. | ADR-0116 |
+| D9 offline/import verification | Offline saves are eligibility-pending until server verification; same-account imports with valid proof can become imported-verified. | ADR-0116 |
+| D10 downgrade policy | Strict irreversible official-public downgrade for invalid proof, dev/debug, conflicting branch, unapproved engine/content hash or unverified import. | ADR-0116 |
+| D11 player-facing framing | Use Competitive/Sandbox status language with visible reason codes. | ADR-0116 |
+| D12 offline window | No fixed maximum offline window if the signed command log/proof chain verifies later. | ADR-0116 |
+| D13 bad signature/proof handling | Public/MP sync does not advance; rollback or rebase to the last accepted server checkpoint and tell the player. Local SP may continue as local/casual/sandbox. | ADR-0115 + ADR-0116 |
+| D14 signed bytes | Versioned canonical JSON/JCS-style UTF-8 representation. | ADR-0115 |
+| D15 proof cadence | Internal HMAC proofs at successful sync checkpoints and public-submission milestones. | ADR-0116 |
 
 ## Implementation follow-ups
 
@@ -147,6 +147,6 @@ browser/Node WebCrypto surfaces.
 - [[raw-perplexity/raw-save-trust-provenance-2026-06-14]]
 - [[raw-perplexity/raw-command-save-trust-source-checks-2026-06-14]]
 - [[raw-perplexity/raw-hybrid-ed25519-command-evidence-2026-06-14]]
-- [[../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture]]
-- [[../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]]
+- [[../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]]
+- [[../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]]
 - [[../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]]

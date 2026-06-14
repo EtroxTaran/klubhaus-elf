@@ -22,8 +22,8 @@ related:
   - [[../gdpr-compliance]]
   - [[../../10-Architecture/09-Decisions/ADR-0005-save-format]]
   - [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
-  - [[../../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture]]
-  - [[../../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]]
+  - [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]]
+  - [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]]
   - [[../../30-Implementation/auth-flows]]
   - [[../../30-Implementation/session-management]]
   - [[../../30-Implementation/rate-limiting-anti-abuse]]
@@ -37,7 +37,7 @@ related:
 > **Status: current / historical threat-model layer.** FMX-184 corrected the old
 > intended ADR-number trail on 2026-06-14: current ADR-0026/0027/0028 are
 > already assigned to other accepted decisions. The accepted homes are
-> ADR-0114 for command integrity/replay protection and ADR-0115 for save trust
+> ADR-0115 for command integrity/replay protection and ADR-0116 for save trust
 > levels/provenance. BYOC quorum remains future-scope and unassigned until its
 > own decision gate.
 
@@ -106,9 +106,9 @@ Zellen: âœ… = mitigiert mit Verweis · âš ï¸ = teilweise · X = unmit
 
 | Boundary | Spoof | Tamper | Repudiation | Info-Disc | DoS | Eskalation |
 |----------|-------|--------|-------------|-----------|-----|------------|
-| Z5→Z2 (Save-Import) | âš ï¸ Schema-Validate · [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-04\|05-F-04]] | âœ… ADR-0115 trust/eligibility gate · [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-01\|05-F-01]] | — | âš ï¸ Save kann PII enthalten · [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-09\|05-F-09]] | âš ï¸ Size-Limit erforderlich · 05-F-04 | âš ï¸ Prototype-Pollution-Härtung · 05-F-04 |
-| Z2→Z1 (Commands) | âœ… ADR-0114 signed evidence + server authority · [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02\|05-F-02]] | âœ… ADR-0114 idempotency/replay checks · 05-F-02 | âš ï¸ Audit-Log completion still implementation gate · 05-F-08 | âœ… TLS · `auth-flows` | âš ï¸ Rate-Limits · `rate-limiting-anti-abuse` | âš ï¸ Authorization-Check · 05-F-06 |
-| Z3→Z2 (lokales Save laden) | — | âœ… AES-GCM plus ADR-0115 trust downgrade gate · 05-F-01 | — | — | — | — |
+| Z5→Z2 (Save-Import) | âš ï¸ Schema-Validate · [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-04\|05-F-04]] | âœ… ADR-0116 trust/eligibility gate · [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-01\|05-F-01]] | — | âš ï¸ Save kann PII enthalten · [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-09\|05-F-09]] | âš ï¸ Size-Limit erforderlich · 05-F-04 | âš ï¸ Prototype-Pollution-Härtung · 05-F-04 |
+| Z2→Z1 (Commands) | âœ… ADR-0115 signed evidence + server authority · [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02\|05-F-02]] | âœ… ADR-0115 idempotency/replay checks · 05-F-02 | âš ï¸ Audit-Log completion still implementation gate · 05-F-08 | âœ… TLS · `auth-flows` | âš ï¸ Rate-Limits · `rate-limiting-anti-abuse` | âš ï¸ Authorization-Check · 05-F-06 |
+| Z3→Z2 (lokales Save laden) | — | âœ… AES-GCM plus ADR-0116 trust downgrade gate · 05-F-01 | — | — | — | — |
 | Z1→Z0 (Context-Bus) | — | âš ï¸ In-Process-Bus · [[PM-2026-05-20-01-architecture#PM-2026-05-20-01-F-01\|01-F-01]] | âœ… Outbox-Audit · [[PM-2026-05-20-01-architecture#PM-2026-05-20-01-F-09\|01-F-09]] | — | âš ï¸ Lock-Contention · 01-F-02 | âš ï¸ Bounded-Context-Authz · 05-F-06 |
 | Z4→Z1 (BYOC-Validator-Vote) | âš ï¸ Future · [[PM-2026-05-20-06-distributed-match-compute#PM-2026-05-20-06-F-01\|06-F-01]] | âš ï¸ Future · 06-F-04 | âš ï¸ Future · 06-F-07 | âš ï¸ Tactic-Leak · 06-F-06 | âš ï¸ Geräte-Erschöpfung · 06-F-08 | âš ï¸ Engine-Patch · 06-F-04 |
 | Z2→Z2 (Save-Sharing) | — | âš ï¸ Signatur fehlt · 05-F-01 | — | âš ï¸ PII im Save · 05-F-09 | — | — |
@@ -144,15 +144,15 @@ Aufgenommen in Loki-Stream `stream=audit` und `stream=auth`, mit Grafana-Alerts:
 ## Relation zu existierenden Specs
 
 - **Erweitert** (nicht ersetzt):
-  - [[../../10-Architecture/09-Decisions/ADR-0005-save-format]] — Envelope bleibt; ADR-0115 ergänzt Trust/Eligibility Proof.
+  - [[../../10-Architecture/09-Decisions/ADR-0005-save-format]] — Envelope bleibt; ADR-0116 ergänzt Trust/Eligibility Proof.
   - [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]] — Bleibt MVP-Default; BYOC-Future-Scope steht außerhalb.
   - [[../../30-Implementation/auth-flows]], [[../../30-Implementation/session-management]] — Verweisen auf Threat-Model.
   - [[../../30-Implementation/rate-limiting-anti-abuse]] — Liefert Schwellen für Detection-Signale.
   - [[../../30-Implementation/privacy-and-consent]] — DSGVO-Kontext.
   - [[../determinism-and-replay]] — Determinismus als Anti-Cheat-Anker.
 - **Liefert Input für** aktuelle / künftige ADRs:
-  - [[../../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture]] (accepted, FMX-184)
-  - [[../../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]] (accepted, FMX-184)
+  - [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]] (accepted, FMX-184)
+  - [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]] (accepted, FMX-184)
   - BYOC Match Validation Quorum (future-scope, unassigned after ADR renumbering)
 
 ## Future-scope notes (classified future-scope)

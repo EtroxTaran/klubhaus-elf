@@ -24,8 +24,8 @@ related:
   - [[../gdpr-compliance]]
   - [[../../10-Architecture/09-Decisions/ADR-0005-save-format]]
   - [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
-  - [[../../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture]]
-  - [[../../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]]
+  - [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]]
+  - [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]]
   - [[../../30-Implementation/auth-flows]]
   - [[../../30-Implementation/session-management]]
   - [[../../30-Implementation/rate-limiting-anti-abuse]]
@@ -94,7 +94,7 @@ updated: 2026-05-22
 > **FMX-184 correction (2026-06-14):** The old sentence "ADR-0028 ratifies
 > this" is invalid after ADR re-numbering; current ADR-0028 is the Postgres
 > transactional outbox. The accepted home is
-> [[../../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture|ADR-0115]]:
+> [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture|ADR-0116]]:
 > derived `SaveTrustLevel` plus `PublicEligibility`, internal server HMAC proof,
 > strict public downgrade rules and public surfaces limited to
 > server-verified/imported-verified eligible histories.
@@ -148,7 +148,7 @@ Server prüft Signatur, Nonce-Freshness (30-Tage-Bloom-Filter), Sender-Authoriza
 > **FMX-184 correction (2026-06-14):** The old sentence "ADR-0026 ratifies
 > this" is invalid after ADR re-numbering; current ADR-0026 is the Match Frame
 > Contract. The accepted home is
-> [[../../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture|ADR-0114]].
+> [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture|ADR-0115]].
 > FMX keeps server-authoritative validation, `commandId` idempotency,
 > `expectedVersion` and processed-command dedup as authority. It also requires a
 > full app-managed/device Ed25519 command-evidence envelope from the first code
@@ -550,7 +550,7 @@ updated: 2026-05-22
 Historical sketch. The intended `ADR-0028 Save Import/Export Trust Levels` never
 became that ADR; current ADR-0028 is Postgres transactional outbox. The accepted
 home is
-[[../../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture|ADR-0115]].
+[[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture|ADR-0116]].
 
 ```typescript
 // packages/save-format/src/schema.ts (geplant)
@@ -705,8 +705,8 @@ Branchen-Erfahrung: 0,5–3 % der MP-Aktionen sind Cheat-Versuche. Bei 280k Comm
 
 ## ”žWenn wir nur 3 Dinge tun"-Liste
 
-1. **Command-Integrität + Server-Re-Sim für Match-Resultate** (accepted ADR-0114) — fängt offensichtliche Replay-/Duplication- und Regelverletzungsversuche über Server-Authority, `commandId`, `expectedVersion`, Audit-Dedup und app-managed Ed25519 evidence.
-2. **Save-Schema v2 mit `SaveTrustLevel` + Server-Proof** (accepted ADR-0115) — entkoppelt Spielbarkeit von Wettkampf-Eignung; macht SP-Foundation MP-kompatibel.
+1. **Command-Integrität + Server-Re-Sim für Match-Resultate** (accepted ADR-0115) — fängt offensichtliche Replay-/Duplication- und Regelverletzungsversuche über Server-Authority, `commandId`, `expectedVersion`, Audit-Dedup und app-managed Ed25519 evidence.
+2. **Save-Schema v2 mit `SaveTrustLevel` + Server-Proof** (accepted ADR-0116) — entkoppelt Spielbarkeit von Wettkampf-Eignung; macht SP-Foundation MP-kompatibel.
 3. **Determinism-CI-Gate als harter Block** vor jedem Merge — schützt Qualität *und* Anti-Cheat-Foundation simultan.
 
 ## Single-Player-Foundation-Check

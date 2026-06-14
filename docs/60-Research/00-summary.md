@@ -152,7 +152,7 @@ Raw captures:
 
 [[command-signing-save-trust-2026-06-14]] preserves the FMX-184 research layer
 for command integrity, replay protection and save trust levels. It grounds
-accepted ADR-0114 plus ADR-0115: server-authoritative command validation with
+accepted ADR-0115 plus ADR-0116: server-authoritative command validation with
 `commandId` idempotency, `expectedVersion`, processed-command dedup and Audit &
 Security replay facts; mandatory app-managed/device Ed25519 command evidence
 from the first code phase; WebAuthn/passkeys only for login or explicit
@@ -161,8 +161,8 @@ save eligibility derived from server/internal HMAC proof, command root,
 engine/content hash and downgrade flags. Decision record:
 [[../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]].
 Accepted decision homes:
-[[../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture]],
-[[../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]].
+[[../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]],
+[[../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]].
 Raw captures:
 [[raw-perplexity/raw-command-integrity-and-replay-protection-2026-06-14]],
 [[raw-perplexity/raw-save-trust-provenance-2026-06-14]],

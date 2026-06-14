@@ -59,7 +59,7 @@ This is the **single** canonical handoff location. (An older
   for MVP unless a future approved owner-stream flavor rule is added.
 - [[2026-06-14-fmx-184-command-signing-save-trust]] - FMX-184 command-signing
   and save-trust packet: raw Perplexity/source-check captures, synthesis,
-  decision record and accepted ADR-0114/ADR-0115. Approved packet is D1-D15:
+  decision record and accepted ADR-0115/ADR-0116. Approved packet is D1-D15:
   server-authoritative commands plus mandatory app-managed/device Ed25519
   evidence, passkeys only for login/high-value ceremonies, derived save trust
   plus public eligibility, internal HMAC proof over root/hash evidence,

@@ -9,8 +9,8 @@ binding: false
 linear: FMX-184
 related:
   - [[../../60-Research/command-signing-save-trust-2026-06-14]]
-  - [[../../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture]]
-  - [[../../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]]
+  - [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]]
+  - [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]]
   - [[../fmx-184-command-signing-save-trust-decision-queue-2026-06-14]]
 ---
 
@@ -32,13 +32,13 @@ related:
 - Saved raw Perplexity captures and source checks under
   `docs/60-Research/raw-perplexity/`.
 - Updated the branch onto current `origin/main`; main had claimed ADR-0113 for
-  FMX-138, so FMX-184 was renumbered to ADR-0114/ADR-0115.
+  FMX-138, so FMX-184 was renumbered to ADR-0115/ADR-0116.
 - Added synthesis:
   [[../../60-Research/command-signing-save-trust-2026-06-14]].
 - Added accepted ADR:
-  [[../../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture]].
+  [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]].
 - Added accepted ADR:
-  [[../../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]].
+  [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]].
 - Added accepted decision record:
   [[../fmx-184-command-signing-save-trust-decision-queue-2026-06-14]].
 - Swept front-door and pre-mortem notes so FMX-184 now appears as accepted.
@@ -77,8 +77,8 @@ Nico approved D1-D15 on 2026-06-14:
 ## Durable Notes Updated
 
 - [[../../60-Research/command-signing-save-trust-2026-06-14]]
-- [[../../10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture]]
-- [[../../10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture]]
+- [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]]
+- [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]]
 - [[../fmx-184-command-signing-save-trust-decision-queue-2026-06-14]]
 - [[../../60-Research/pre-mortem/PM-2026-05-20-05-security-and-integrity]]
 - [[../../60-Research/pre-mortem/threat-model]]
@@ -88,4 +88,4 @@ Nico approved D1-D15 on 2026-06-14:
 
 ## Promotion Needed
 
-No promotion pending. ADR-0114 and ADR-0115 are accepted/binding.
+No promotion pending. ADR-0115 and ADR-0116 are accepted/binding.

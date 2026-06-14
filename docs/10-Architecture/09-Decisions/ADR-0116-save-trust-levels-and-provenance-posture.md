@@ -1,5 +1,5 @@
 ---
-title: ADR-0115 Save Trust Levels and Provenance Posture
+title: ADR-0116 Save Trust Levels and Provenance Posture
 status: accepted
 tags: [adr, architecture, security, save-format, save-trust, provenance, hall-of-fame, leaderboards, fmx-184]
 created: 2026-06-14
@@ -22,10 +22,10 @@ related:
   - [[ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]]
   - [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
   - [[ADR-0091-audit-security-context-definition]]
-  - [[ADR-0114-command-integrity-and-replay-protection-posture]]
+  - [[ADR-0115-command-integrity-and-replay-protection-posture]]
 ---
 
-# ADR-0115: Save Trust Levels and Provenance Posture
+# ADR-0116: Save Trust Levels and Provenance Posture
 
 ## Status
 
@@ -173,4 +173,4 @@ Costs / constraints:
 - [[../../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]]
 - [[ADR-0005-save-format]]
 - [[ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]]
-- [[ADR-0114-command-integrity-and-replay-protection-posture]]
+- [[ADR-0115-command-integrity-and-replay-protection-posture]]

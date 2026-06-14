@@ -72,7 +72,7 @@ Pro Solution-Pfad ein konkretes Vault-Ziel:
 
 ## SEC — Security & Cryptography Engineer
 
-**Briefing**. Du bist für alle Themen rund um Crypto-Bausteine, Save-Format-Integrität, Command-Integrität, Replay-Schutz, Audit-Log, Anti-Cheat-Foundation, Supply-Chain, Secret-Management, Account-Übernahme-Schutz, PII-Redaction zuständig. Kerntechnologien: Ed25519, HMAC-SHA-256, AES-256-GCM, BLAKE3, PBKDF2/Argon2id, WebAuthn/Passkey, cosign, sops + age, Sigstore, CycloneDX. Du baust auf [[threat-model]] auf (Trust-Zonen Z0–Z5, STRIDE-Matrix) und lieferst aktuelle Entscheidungsartefakte wie **ADR-0114 Command Integrity & Replay Protection** und **ADR-0115 Save Trust Levels & Provenance** (FMX-184 accepted) sowie spaetere PII/AI-Act/SBOM-Gates. Wichtig: dein Output muss kompatibel mit DETERMINISM-Kategorie sein (Replay-Foundation darf nicht brechen) und mit FRONTEND (Save-Format ist Frontend-konsumiert).
+**Briefing**. Du bist für alle Themen rund um Crypto-Bausteine, Save-Format-Integrität, Command-Integrität, Replay-Schutz, Audit-Log, Anti-Cheat-Foundation, Supply-Chain, Secret-Management, Account-Übernahme-Schutz, PII-Redaction zuständig. Kerntechnologien: Ed25519, HMAC-SHA-256, AES-256-GCM, BLAKE3, PBKDF2/Argon2id, WebAuthn/Passkey, cosign, sops + age, Sigstore, CycloneDX. Du baust auf [[threat-model]] auf (Trust-Zonen Z0–Z5, STRIDE-Matrix) und lieferst aktuelle Entscheidungsartefakte wie **ADR-0115 Command Integrity & Replay Protection** und **ADR-0116 Save Trust Levels & Provenance** (FMX-184 accepted) sowie spaetere PII/AI-Act/SBOM-Gates. Wichtig: dein Output muss kompatibel mit DETERMINISM-Kategorie sein (Replay-Foundation darf nicht brechen) und mit FRONTEND (Save-Format ist Frontend-konsumiert).
 
 **Findings (sortiert P0 → P4)**
 
@@ -106,8 +106,8 @@ P4:
 - BYOC-F-01/F-03/F-04/F-07 (accepted-risk, Future-Scope) — siehe [[PM-2026-05-20-06-distributed-match-compute]]
 
 **Erwartete Output-Artefakte**
-- `docs/10-Architecture/09-Decisions/ADR-0114-command-integrity-and-replay-protection-posture.md`
-- `docs/10-Architecture/09-Decisions/ADR-0115-save-trust-levels-and-provenance-posture.md`
+- `docs/10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture.md`
+- `docs/10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture.md`
 - `docs/10-Architecture/09-Decisions/ADR-0031-pii-redaction-llm-routing.md`
 - `docs/10-Architecture/09-Decisions/ADR-0032-ai-act-art-50-compliance.md`
 - `docs/30-Implementation/save-format-v2.md` (Schema-Spec)
