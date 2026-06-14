@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-185, fmx-191, fmx-194]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-185, fmx-191, fmx-194]
 created: 2026-05-16
 updated: 2026-06-14
 type: index
@@ -28,6 +28,17 @@ The transcripts contain multiple parallel Perplexity answer iterations on the
 same prompts; we preserve the distinct content per topic rather than per
 iteration, because the iterations overlap heavily and the value is in the union
 of points raised across runs.
+
+## FMX-153 LLM prose replay determinism floor (2026-06-14)
+
+Perplexity-first research and targeted source checks for the accepted
+Narrative display snapshot replay floor.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-llm-prose-replay-determinism-floor-2026-06-14]] | LLM replay/reopen determinism, exact snapshot vs regeneration/cache/template fallback, and contract-test implications | [[../llm-prose-replay-determinism-floor-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0117-narrative-display-snapshot-replay-determinism-floor]] |
+| [[raw-narrative-replay-game-precedents-2026-06-14]] | Game/player-expectation precedent for news archives, match commentary and save history stability | [[../llm-prose-replay-determinism-floor-2026-06-14]] |
+| [[raw-llm-display-snapshot-source-checks-2026-06-14]] | OpenAI seed/cache, Temporal replay, Event Sourcing and Football Manager source checks | [[../llm-prose-replay-determinism-floor-2026-06-14]] |
 
 ## Files
 

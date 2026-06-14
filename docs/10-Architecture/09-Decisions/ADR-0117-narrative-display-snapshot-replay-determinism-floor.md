@@ -1,0 +1,224 @@
+---
+title: ADR-0117 Narrative Display Snapshot Replay Determinism Floor
+status: accepted
+tags: [adr, architecture, ai, llm, narrative, replay, determinism, match-engine, commentary, fmx-153]
+created: 2026-06-14
+updated: 2026-06-14
+type: adr
+binding: true
+linear: FMX-153
+supersedes:
+superseded_by:
+related:
+  - [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
+  - [[../../60-Research/raw-perplexity/raw-llm-prose-replay-determinism-floor-2026-06-14]]
+  - [[../../60-Research/raw-perplexity/raw-narrative-replay-game-precedents-2026-06-14]]
+  - [[../../60-Research/raw-perplexity/raw-llm-display-snapshot-source-checks-2026-06-14]]
+  - [[ADR-0026-match-frame-contract]]
+  - [[ADR-0027-postgres-data-model]]
+  - [[ADR-0030-llm-out-of-authoritative-state]]
+  - [[ADR-0054-narrative-context-and-ai-narration-framework]]
+  - [[ADR-0065-narrative-media-press-content-ownership]]
+  - [[../../30-Implementation/ai-narration-contract-testing-framework]]
+  - [[../../40-Execution/fmx-153-llm-prose-replay-determinism-decision-queue-2026-06-14]]
+---
+
+# ADR-0117: Narrative Display Snapshot Replay Determinism Floor
+
+## Status
+
+accepted
+
+Accepted 2026-06-14 for FMX-153 after Nico selected the recommended D1-D3
+packet:
+
+- D1=A Exact Snapshot;
+- D2=A Per-save Narrative log;
+- D3=A Commentary Artifact.
+
+This ADR is the binding amendment for ADR-0030, ADR-0054 and ADR-0065, and the
+binding match-boundary clarification for ADR-0026.
+
+## Date
+
+2026-06-14
+
+## Context
+
+ADR-0030 and ADR-0054 already keep runtime LLM output outside authoritative
+state. They allow Narrative to store display snapshots with provenance, but did
+not define the lower bound for save reopen or match replay. ADR-0065 also said
+replays store IDs, seeds, resolved parameters and effect intents, not generated
+prose. That is correct for deterministic effect replay, but incomplete for
+already displayed player-facing prose.
+
+FMX needs one replay rule before runtime Narrative is implemented:
+
+- A player reopens a save and sees an old article, board warning, press quote,
+  dialogue line or weekly summary.
+- A player replays a match and sees old ticker/commentary lines.
+- The provider, model, prompt, validation rules, prompt cache, route, locale
+  pack or template catalog may have changed since the text was first shown.
+
+Generated prose is not domain truth. It is still player-visible history. If old
+text silently changes, FMX loses trust and makes bugs hard to reproduce.
+
+## Decision
+
+### 1. Exact display snapshot is the replay/reopen floor
+
+Every visible Template or LLM prose item that is revisitable must be persisted
+as a `NarrativeDisplaySnapshot` once it is delivered to the player.
+
+The snapshot stores the exact rendered text and the metadata needed to explain
+it:
+
+- `snapshotId`;
+- `surfaceId` / `NarrativeSceneId`;
+- `source: 'llm' | 'template' | 'recovery_template'`;
+- `aiGenerated`;
+- exact rendered text;
+- locale and localization/catalog version;
+- fallback template ID/version;
+- prompt ID/version and schema version when LLM-eligible;
+- provider/model ID, request ID, seed/system fingerprint if available;
+- `cacheKey` / prompt-cache routing key if used;
+- validation status and fallback/recovery reason;
+- source fact/event references;
+- created-at in deterministic save time plus recorded wall-clock/audit time
+  where the future audit model allows it.
+
+Save reopen, inbox/history rendering and match replay render the stored text
+verbatim. They do not call a provider and do not attempt to regenerate the same
+LLM prose.
+
+### 2. Provider/cache metadata is provenance only
+
+`cacheKey`, prompt hashes, prompt-cache routing keys, model IDs, seed-like
+fields and system fingerprints help debugging, dedupe, regression tests and
+provider evaluation. They are not replay authority.
+
+Prompt/model/provider changes affect only future snapshots. Old snapshots stay
+unchanged unless a future explicit editorial/regeneration feature creates a new
+snapshot/version with a recorded supersession.
+
+### 3. Narrative owns the per-save snapshot store
+
+Narrative owns the per-save display-snapshot/provenance log. In the future code
+phase this can be implemented as a per-save Narrative table/log/projection
+under ADR-0027, likely adjacent to `narrative_event_log` and Narrative content
+instances. It is not a match-engine table and not a `MatchFrame` cache.
+
+The portable save/export contract must include this per-save Narrative data
+when it includes the rest of the save data. FMX-153 does not reopen ADR-0005's
+top-level envelope shape or define export UX.
+
+### 4. Match commentary is a Narrative artifact
+
+`CommentaryLine` / match ticker prose is a Narrative presentation artifact over
+committed match facts:
+
+- it may reference `matchId`, committed `MatchEventLog` event IDs/indices,
+  selected spatial context, lineups, locale and tone;
+- it may be generated by a template or validated LLM output through ADR-0030
+  and ADR-0054;
+- it must be persisted as a `NarrativeDisplaySnapshot` if replay-visible;
+- it must not be part of `MatchFrame`;
+- it must not enter match event-log authority, replay hashes, ratings,
+  simulation facts or frame-builder inputs;
+- it must not be parsed back into match events or commands.
+
+ADR-0026 remains intact: `MatchFrame` is derived on demand and never persisted.
+FMX-153 only adds a separate Narrative-owned display history for commentary.
+
+### 5. Missing/corrupt snapshot behavior is explicit recovery
+
+If a revisitable snapshot is missing, corrupt or fails a future compatibility
+check, FMX must not call a provider to "recreate" it silently.
+
+The recovery path is:
+
+1. render the deterministic fallback template from committed facts, template
+   ID/version and locale if enough data remains;
+2. label/store the resulting line as `source: 'recovery_template'` with a
+   recovery reason;
+3. surface validation/repair evidence to developer/support tooling.
+
+If enough data is not available for a truthful fallback, the UI must show a
+structured missing-content placeholder. It must not invent facts.
+
+## Options considered
+
+| Option | Meaning | Outcome |
+|---|---|---|
+| A. Exact Snapshot | Persist exact rendered text plus provenance and replay it verbatim. | **Selected by Nico.** |
+| B. Deterministic regenerate | Store prompt/model/cache metadata and regenerate old prose. | Rejected; LLM determinism and prompt caches are not durable output history. |
+| C. Template replay only | Recreate old presentation from committed facts/templates only. | Kept as recovery, rejected as primary because it rewrites player-visible LLM history. |
+
+| Storage home | Meaning | Outcome |
+|---|---|---|
+| A. Per-save Narrative log | Narrative owns display snapshots/provenance and references source facts. | **Selected by Nico.** |
+| B. Match event log | Store commentary text with match events. | Rejected; mixes presentation with match authority. |
+| C. Save envelope field | Put prose snapshots directly into ADR-0005's envelope. | Rejected for this beat; export shape remains separate. |
+
+| Match boundary | Meaning | Outcome |
+|---|---|---|
+| A. Commentary Artifact | Commentary is Narrative presentation over committed match events. | **Selected by Nico.** |
+| B. MatchFrame extension | Commentary is part of frame projection. | Rejected; frames are ephemeral/non-persisted. |
+| C. Match event payload | Commentary text becomes replay-bearing match event state. | Rejected; text is not simulation truth. |
+
+## Contract implications
+
+ADR-0030 / ADR-0054 public contracts gain these planning names:
+
+- `NarrativeDisplaySnapshot`;
+- `NarrativeDisplaySnapshotId`;
+- `NarrativeSnapshotRef`;
+- `NarrativeReplayPolicy`;
+- `NarrativeSnapshotRecoveryReason`.
+
+The exact TypeScript/Zod shape is implementation-gated. The invariant is not:
+player-visible, revisitable prose must have an exact persisted display
+snapshot.
+
+## Verification requirements
+
+The AI narration contract testing framework must include:
+
+- exact snapshot equality across save reopen;
+- exact snapshot equality across match replay when commentary is replay-visible;
+- provider spy proving reopen/replay never calls an LLM provider;
+- prompt/model/provider/cache version bump fixture proving old snapshots do not
+  change;
+- missing/corrupt snapshot fixture proving deterministic recovery-template
+  rendering and explicit recovery provenance;
+- architecture guard proving match replay/frame builders do not import provider
+  code or read generated prose as match authority;
+- export/import fixture, once export scope returns, proving per-save Narrative
+  snapshots travel with the save data.
+
+## Consequences
+
+Positive:
+
+- Stable player-visible history across reopen/replay.
+- Clear audit trail for generated and template text.
+- Lower provider dependency in replay/offline/support paths.
+- Keeps match determinism and `MatchFrame` semantics unchanged.
+
+Negative:
+
+- Per-save storage grows with visible Narrative surfaces.
+- Old phrasing errors remain part of history unless a future explicit
+  supersession/repair feature is added.
+- Snapshot migrations need care because text bytes are now historical display
+  artifacts, not disposable cache.
+
+## Related Docs
+
+- [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
+- [[ADR-0026-match-frame-contract]]
+- [[ADR-0030-llm-out-of-authoritative-state]]
+- [[ADR-0054-narrative-context-and-ai-narration-framework]]
+- [[ADR-0065-narrative-media-press-content-ownership]]
+- [[../../30-Implementation/ai-narration-contract-testing-framework]]

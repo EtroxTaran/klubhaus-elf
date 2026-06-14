@@ -168,6 +168,22 @@ design notes.
   [[../60-Research/raw-perplexity/raw-determinism-portfolio-realworld-football-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-determinism-portfolio-source-checks-2026-06-14]].
 
+## LLM Prose Replay Determinism Floor (FMX-153, 2026-06-14)
+
+- [[../60-Research/llm-prose-replay-determinism-floor-2026-06-14]] -
+  FMX-153 synthesis for the minimum deterministic replay/reopen contract for
+  generated Narrative prose. Grounds accepted
+  [[../10-Architecture/09-Decisions/ADR-0117-narrative-display-snapshot-replay-determinism-floor]]
+  with the binding floor: persist exact display snapshots for player-visible
+  revisitable Template/LLM prose, render snapshots verbatim on reopen/replay,
+  treat provider/cache metadata as provenance only and keep match commentary as
+  Narrative display over committed match events. Decision record:
+  [[../40-Execution/fmx-153-llm-prose-replay-determinism-decision-queue-2026-06-14]].
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-llm-prose-replay-determinism-floor-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-narrative-replay-game-precedents-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-llm-display-snapshot-source-checks-2026-06-14]].
+
 ## Hidden-Attribute Reveal Owner Reconciliation (FMX-154, 2026-06-14)
 
 - [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]] -
