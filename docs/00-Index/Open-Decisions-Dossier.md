@@ -85,6 +85,15 @@ related:
 > [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]] and
 > [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]].
 
+> **Post-dossier FMX-138 determinism portfolio principle (historical
+> completeness, added 2026-06-14; dossier stays closed).** FMX-138 packages the
+> cross-cutting deterministic-vs-seeded-variance question as a new pending queue
+> rather than reopening this dossier. Authoritative pending records:
+> [[../40-Execution/fmx-138-determinism-portfolio-principle-decision-queue-2026-06-14]],
+> [[../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle]]
+> and [[../60-Research/determinism-portfolio-principle-2026-06-14]]. Nico still
+> needs to approve D1-D3; this closed dossier is not reopened.
+
 One place where everything still open across the domains **was decided**. Each item below is a
 crisp question with researched options and a **recommended answer** (grounded externally
 2026-06-07 — Perplexity Sonar + Exa + DDD/sim literature; see the per-item research notes).
@@ -179,7 +188,8 @@ minimize/pseudonymize + retain-fact-sever-identifier.
 - **M2 · Hall-of-Fame voting RNG** ([[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract]]) —
   pure deterministic induction formula (no new `*Rng`) **→** vs stochastic `LegacyRng`/`HoFRng`.
   **→ pure formula** for MVP; if stochastic voting later, use an existing-stream sub-label, not a new
-  top-level RNG.
+  top-level RNG. Draft ADR-0113 / FMX-138 preserves this as a pending portfolio-principle
+  recommendation, not a binding amendment until Nico approves D1-D3.
 - **M3 · Pitch-condition state ownership** ([[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]]) —
   Stadium Operations keeps the pitch-condition state/aggregate; Environment & Climate owns weather as
   a consumed input **→** vs moving the pitch aggregate into Environment & Climate. **→ Stadium Ops keeps

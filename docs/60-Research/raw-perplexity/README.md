@@ -238,6 +238,21 @@ football-manager rating precedents and official source checks.
 | [[raw-football-manager-age-rating-precedents-2026-06-14]] | Football Manager, Top Eleven, OSM, Soccer Manager and Hattrick precedent for low ratings, IAP/ads/random-item disclosures and interaction-risk labels | [[../age-assurance-and-iarc-rating-2026-06-14]] |
 | [[raw-age-assurance-source-checks-2026-06-14]] | Targeted official source checks for GDPR/BDSG/JMStV/KJM/USK/IARC and current store/game precedent | [[../age-assurance-and-iarc-rating-2026-06-14]] · [[../../40-Compliance/age-assurance-and-rating-evidence]] |
 
+## FMX-138 follow-up Perplexity/Web research (2026-06-14)
+
+Perplexity research plus targeted source checks were run during FMX-138 after
+Nico selected the determinism + seeded-variance principle issue. The committed
+captures preserve deterministic replay/event-sourcing evidence, comparable
+sports-management-game precedent, real-world football uncertainty and the
+source-quality audit used to prepare draft ADR-0113.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-determinism-portfolio-simulation-architecture-2026-06-14]] | Deterministic simulation architecture, replay contracts, seeded PRNG discipline, event sourcing and lockstep implications for FMX audit/replay vs variety surfaces | [[../determinism-portfolio-principle-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle]] |
+| [[raw-determinism-portfolio-game-precedents-2026-06-14]] | Football Manager, OOTP, Hattrick, ManagerZone and other sports/strategy precedent for deterministic saves with seeded variety and hidden uncertainty | [[../determinism-portfolio-principle-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle]] |
+| [[raw-determinism-portfolio-realworld-football-2026-06-14]] | Real-world football measurement uncertainty, projection/display surfaces, scouting confidence and why exact audit facts should not be confused with forecast variety | [[../determinism-portfolio-principle-2026-06-14]] |
+| [[raw-determinism-portfolio-source-checks-2026-06-14]] | Targeted source-quality audit for deterministic lockstep/replay, event sourcing, game precedent and sports-science uncertainty claims | [[../determinism-portfolio-principle-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle]] |
+
 ## FMX-67 follow-up Perplexity research (2026-06-05)
 
 Perplexity/Web research was run during FMX-67 after Nico selected the

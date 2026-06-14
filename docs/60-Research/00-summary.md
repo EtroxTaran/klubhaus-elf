@@ -112,6 +112,23 @@ captures:
 [[raw-perplexity/raw-football-manager-age-rating-precedents-2026-06-14]],
 [[raw-perplexity/raw-age-assurance-source-checks-2026-06-14]].
 
+## Determinism Portfolio Principle (FMX-138, 2026-06-14)
+
+[[determinism-portfolio-principle-2026-06-14]] preserves the FMX-138 research
+layer for the cross-cutting deterministic-vs-seeded-variance portfolio rule. It
+recommends draft ADR-0113: audit/replay surfaces and projection/measurement
+surfaces remain pure deterministic; variety/drama surfaces may use bounded
+seeded variance through existing owner-context RNG streams, without introducing
+new top-level streams. Decision remains pending Nico in
+[[../40-Execution/fmx-138-determinism-portfolio-principle-decision-queue-2026-06-14]].
+Draft decision home:
+[[../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle]].
+Raw captures:
+[[raw-perplexity/raw-determinism-portfolio-simulation-architecture-2026-06-14]],
+[[raw-perplexity/raw-determinism-portfolio-game-precedents-2026-06-14]],
+[[raw-perplexity/raw-determinism-portfolio-realworld-football-2026-06-14]],
+[[raw-perplexity/raw-determinism-portfolio-source-checks-2026-06-14]].
+
 ## Opposition-template AI Consumption Contract (FMX-67 / FMX-136, 2026-06-05 / 2026-06-14)
 
 [[opposition-template-ai-consumption-contract-2026-06-05]] closes the research
