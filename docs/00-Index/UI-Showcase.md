@@ -2,7 +2,7 @@
 title: UI Showcase
 status: current
 tags: [meta, ui, design]
-updated: 2026-06-09
+updated: 2026-06-14
 ---
 
 # UI Showcase (Storybook)
@@ -19,20 +19,23 @@ updated: 2026-06-09
 > **eventual** app's component showcase and returns when the app is rebuilt. Durable
 > token reference: [[../10-Architecture/09-Design-Styleguide]].
 
-The **UI showcase** is the canonical *visual* reference for the project's
-design system. The code in `apps/web/src` stays authoritative on any conflict
-(see [[../10-Architecture/09-Design-System]] §13); the showcase is where you
-*see and explore* every piece rendered in isolation.
+The **live UI showcase today** is the interactive design styleguide described
+above. The Storybook component showcase below is the target app-code showcase;
+it becomes active only after
+[[../30-Implementation/code-phase-dod-transition-contract]] marks code phase
+active. The code in `apps/web/src` stays the target authority on any conflict
+(see [[../10-Architecture/09-Design-System]] §13), but no `apps/web` path exists
+in the current docs-only repo.
 
 ## Where it is
 
-It is deployed alongside this wiki — the **same** Dokploy stack, a separate
-subdomain, behind the **same** login as these docs:
+The live styleguide is deployed alongside this wiki — the **same** Dokploy stack,
+a separate subdomain, behind the **same** login as these docs:
 
-> ðŸ”— **<https://SHOWCASE_DOMAIN_PLACEHOLDER>**
+> **<https://SHOWCASE_DOMAIN_PLACEHOLDER>**
 
-Run it locally instead with `pnpm --filter @klubhaus-elf/web storybook`
-(http://localhost:6006).
+Target Storybook local command after code-phase activation:
+`pnpm --filter @klubhaus-elf/web storybook` (http://localhost:6006).
 
 ## What's in it
 
@@ -58,8 +61,7 @@ Each component also has an auto-generated **Docs** page (its prop API).
 
 ## Staying complete
 
-Every atom / composite / layout / screen ships a colocated `*.stories.tsx`;
-CI fails the build if a story is missing or broken, and `autodocs` documents
-new components automatically. So the showcase is a complete mirror of the
-design system today and stays that way as deferred screens land (see
-[[../10-Architecture/09-Design-System]] §10 for the 45-screen catalogue).
+After code-phase activation, every atom / composite / layout / screen ships a
+colocated `*.stories.tsx`; CI fails the build if a story is missing or broken,
+and `autodocs` documents new components automatically. Until then, this is the
+target Storybook contract, not an active docs-phase gate.

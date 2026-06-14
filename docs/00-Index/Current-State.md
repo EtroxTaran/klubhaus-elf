@@ -51,6 +51,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-180 Code-phase DoD transition accepted — ADR-0110 binding (2026-06-14).**
+> Linear FMX-180 is `In Progress` on branch
+> `codex/fmx-180-code-phase-dod-transition`. Research
+> [[../60-Research/code-phase-dod-transition-contract-2026-06-14]] (+ raw
+> Perplexity/tool captures) grounds accepted
+> [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract|ADR-0110]]
+> and current
+> [[../30-Implementation/code-phase-dod-transition-contract]]. Nico approved
+> D1-D4 live: phase-split DoD, Nx day one for code phase, `apps/web`/`packages/*`
+> target-only until bootstrap, and pnpm currency routed separately. FMX-195 was
+> created in Backlog for the pnpm 11.1.2 -> current-stable update. Active
+> docs-phase validation is `node scripts/docs-check.mjs` (+ status consistency
+> when status/binding changes); code scripts, Storybook and app/package paths are
+> target-only until the transition checklist is green.
+>
 > **FMX-137 Create-a-Club Roguelite run tuning accepted (2026-06-14).**
 > Branch `codex/fmx-137-roguelite-tuning` carries the docs packet. Research
 > [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]

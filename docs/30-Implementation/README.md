@@ -3,10 +3,10 @@ title: Implementation (Map of Content)
 status: current
 tags: [implementation, moc]
 created: 2026-05-17
-updated: 2026-06-04
+updated: 2026-06-14
 type: index
 binding: true
-related: [[../00-Index/Home]], [[agent-workflow-pattern]], [[../10-Architecture/README]], [[../00-Index/Documentation-V1]]
+related: [[../00-Index/Home]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../10-Architecture/README]], [[../00-Index/Documentation-V1]]
 ---
 
 # Implementation - Map of Content
@@ -18,6 +18,9 @@ operational runbooks. Current implementable notes are classified by
 ## Process and Workflow
 
 - [[agent-workflow-pattern]] - single source of truth for how agents work.
+- [[code-phase-dod-transition-contract]] - executable docs-phase -> code-phase
+  Definition-of-Done bridge; code gates are target-only until bootstrap creates
+  workspace, Nx, scripts, CI and app/package paths.
 - [[cursor-cloud-agent-workflow]] - cloud-agent operational steps.
 - [[ci-and-review-process]] - green-by-default enforcement.
 - [[design-sync-workflow]] - design export to codebase.

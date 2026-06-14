@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, dod, monorepo, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-180, fmx-191, fmx-194]
 updated: 2026-06-14
 ---
 
@@ -64,6 +64,20 @@ The current state is:
   cleanup unless promoted by owner decision.
 - Evidence gates remain tracked through implementation: tests, drills, legal
   sign-off, release artifacts and production telemetry.
+
+## Code-Phase DoD Transition Contract (FMX-180, 2026-06-14)
+
+[[code-phase-dod-transition-contract-2026-06-14]] closes the research layer for
+the post-reset Definition-of-Done mismatch. It records Nico's approved D1-D4
+packet: active docs-phase DoD only uses existing docs checks, code-phase DoD is
+target-only until the transition checklist is green, Nx is the day-one code
+runner, `apps/web`/`packages/*` remain target-only until bootstrap, and pnpm
+currency is routed separately to FMX-195. Accepted ADR:
+[[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]].
+Executable contract:
+[[../30-Implementation/code-phase-dod-transition-contract]]. Raw captures:
+[[raw-perplexity/raw-code-phase-dod-monorepo-gates-2026-06-14]],
+[[raw-perplexity/raw-code-phase-dod-game-production-gates-2026-06-14]].
 
 ## Opposition-template AI Consumption Contract (FMX-67 / FMX-136, 2026-06-05 / 2026-06-14)
 
