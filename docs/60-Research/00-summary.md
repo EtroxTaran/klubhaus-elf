@@ -79,6 +79,23 @@ Executable contract:
 [[raw-perplexity/raw-code-phase-dod-monorepo-gates-2026-06-14]],
 [[raw-perplexity/raw-code-phase-dod-game-production-gates-2026-06-14]].
 
+## Rivalry Commercial Signal Contract Reconciliation (FMX-134, 2026-06-14)
+
+[[rivalry-commercial-signal-contract-2026-06-14]] preserves the FMX-134
+research layer for the orphan `RivalryCommercialSignal` seam. It recommends a
+draft ADR-0111 cleanup: Rivalry System should not publish a commercial signal;
+CommercialPortfolio should derive commercial attractiveness, top-match pricing,
+sponsor-fit risk and settlement modifiers from `RivalryTierTransitioned`,
+`DerbyContext(matchId)` and other commercial inputs through a local
+ACL/projection; Audience & Atmosphere keeps fan-side `derby_factor`. Decision
+remains pending Nico in
+[[../40-Execution/fmx-134-rivalry-commercial-signal-decision-queue-2026-06-14]].
+Raw captures:
+[[raw-perplexity/raw-rivalry-commercial-signal-ddd-2026-06-14]],
+[[raw-perplexity/raw-rivalry-commercial-signal-realworld-2026-06-14]],
+[[raw-perplexity/raw-rivalry-commercial-signal-games-2026-06-14]],
+[[raw-perplexity/raw-rivalry-commercial-signal-source-checks-2026-06-14]].
+
 ## Opposition-template AI Consumption Contract (FMX-67 / FMX-136, 2026-06-05 / 2026-06-14)
 
 [[opposition-template-ai-consumption-contract-2026-06-05]] closes the research

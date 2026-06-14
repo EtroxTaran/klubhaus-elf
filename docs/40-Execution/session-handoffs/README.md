@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-14-fmx-134-rivalry-commercial-signal]] - FMX-134
+  RivalryCommercialSignal orphan-contract packet: raw Perplexity/Web captures,
+  synthesis, decision queue and draft ADR-0111. Recommended packet is D1/D2/D3
+  = B/A/A: remove the orphan signal, let CommercialPortfolio derive from
+  `RivalryTierTransitioned` / `DerbyContext` through a local ACL/projection,
+  keep fan-side `derby_factor` with Audience & Atmosphere and apply accepted
+  ADR/map cleanup after Nico approval.
 - [[2026-06-14-fmx-142-pitch-condition-state-ownership]] - FMX-142
   pitch-condition ownership reconciliation: raw Perplexity/Web captures,
   synthesis and decision queue. Confirmed accepted line is Stadium Operations

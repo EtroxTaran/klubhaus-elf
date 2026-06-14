@@ -119,6 +119,20 @@ design notes.
   [[../60-Research/raw-perplexity/raw-pitch-condition-realworld-operations-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-pitch-condition-game-precedents-2026-06-14]].
 
+## Rivalry Commercial Signal Contract Reconciliation (FMX-134, 2026-06-14)
+
+- [[../60-Research/rivalry-commercial-signal-contract-2026-06-14]] -
+  FMX-134 synthesis for the orphan `RivalryCommercialSignal` seam between
+  ADR-0057, ADR-0058 and the bounded-context map. Recommends the non-binding
+  ADR-0111 packet: delete the orphan signal, let CommercialPortfolio derive
+  commercial interpretation from `RivalryTierTransitioned` /
+  `DerbyContext(matchId)` through a local ACL/projection, and keep fan-side
+  `derby_factor` with Audience & Atmosphere. Raw captures:
+  [[../60-Research/raw-perplexity/raw-rivalry-commercial-signal-ddd-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-rivalry-commercial-signal-realworld-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-rivalry-commercial-signal-games-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-rivalry-commercial-signal-source-checks-2026-06-14]].
+
 ## Hidden-Attribute Reveal Owner Reconciliation (FMX-154, 2026-06-14)
 
 - [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]] -
