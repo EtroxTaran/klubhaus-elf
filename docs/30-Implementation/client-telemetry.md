@@ -3,11 +3,11 @@ title: Client Telemetry
 status: current
 tags: [implementation, telemetry, pwa, errors, performance, indexeddb]
 created: 2026-05-17
-updated: 2026-05-17
+updated: 2026-06-14
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]
-related: [[../60-Research/telemetry-privacy]], [[observability-runbook]]
+related: [[../60-Research/telemetry-privacy]], [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]], [[../40-Compliance/age-assurance-and-rating-evidence]], [[observability-runbook]]
 ---
 
 # Client Telemetry
@@ -107,6 +107,14 @@ Consent must be checked before:
 - writing optional events to IndexedDB;
 - flushing queued optional events;
 - enabling any future analytics tracker.
+
+Age eligibility must also be checked before any optional telemetry path:
+
+- no analytics/marketing SDK is initialised before the 16+ signup gate;
+- a user choosing "No, under 16" creates no account, no persisted refusal
+  record and no optional queued event;
+- strictly necessary security/technical logs remain separate from optional
+  telemetry and must be minimised and disclosed.
 
 ## Service Worker
 

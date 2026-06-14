@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, dod, monorepo, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-180, fmx-191, fmx-194]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, dod, monorepo, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-180, fmx-185, fmx-191, fmx-194]
 updated: 2026-06-14
 ---
 
@@ -95,6 +95,22 @@ Raw captures:
 [[raw-perplexity/raw-rivalry-commercial-signal-realworld-2026-06-14]],
 [[raw-perplexity/raw-rivalry-commercial-signal-games-2026-06-14]],
 [[raw-perplexity/raw-rivalry-commercial-signal-source-checks-2026-06-14]].
+
+## Age Assurance and IARC/USK Rating Evidence (FMX-185, 2026-06-14)
+
+[[age-assurance-and-iarc-rating-2026-06-14]] preserves the FMX-185 research
+layer for the MVP age-gate/rating-evidence contract. It recommends draft
+ADR-0112: a proportional 16+ self-declaration before account fields and optional
+telemetry, no under-16 account/refusal persistence/optional telemetry trail, and
+a separate IARC/USK evidence packet before store submission or paid activation.
+Decision remains pending Nico in
+[[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]]. Compliance
+evidence home: [[../40-Compliance/age-assurance-and-rating-evidence]]. Raw
+captures:
+[[raw-perplexity/raw-age-assurance-legal-posture-2026-06-14]],
+[[raw-perplexity/raw-age-rating-iarc-usk-evidence-2026-06-14]],
+[[raw-perplexity/raw-football-manager-age-rating-precedents-2026-06-14]],
+[[raw-perplexity/raw-age-assurance-source-checks-2026-06-14]].
 
 ## Opposition-template AI Consumption Contract (FMX-67 / FMX-136, 2026-06-05 / 2026-06-14)
 

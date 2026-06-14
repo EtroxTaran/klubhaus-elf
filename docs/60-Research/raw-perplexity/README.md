@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-185, fmx-191, fmx-194]
 created: 2026-05-16
 updated: 2026-06-14
 type: index
@@ -223,6 +223,20 @@ after Nico selected the monetization legal gates issue.
 | [[raw-refund-spent-cash-policy-2026-06-13]] | Immediate-delivery withdrawal waiver, already-spent consumable cash refund handling, Apple/Google/MoR reconciliation and no-P2W/shared-state constraints | [[../monetization-legal-gates-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]] |
 | [[raw-age-gate-and-soft-launch-gates-2026-06-13]] | Proportional age assurance, GDPR/minors, German youth-protection, DSA/dark-pattern and paid soft-launch artifact gates | [[../monetization-legal-gates-2026-06-13]] · [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]] |
 | [[raw-monetization-legal-source-checks-2026-06-13]] | Targeted official/provider source checks for Apple, Google, Paddle, Stripe, EU/DE consumer law, imprint, ratings and Capacitor purchase-integration constraints | [[../monetization-legal-gates-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]] |
+
+## FMX-185 follow-up Perplexity/Web research (2026-06-14)
+
+Perplexity research plus targeted official/source checks were run during
+FMX-185 after Nico selected the age gate and age-assurance issue. The committed
+captures preserve legal/product posture, IARC/USK artifact requirements,
+football-manager rating precedents and official source checks.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-age-assurance-legal-posture-2026-06-14]] | GDPR Art. 8, German child-consent posture, youth-protection officer triggers, AVS boundary and minimised self-declaration options for a low-risk MVP | [[../age-assurance-and-iarc-rating-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]] |
+| [[raw-age-rating-iarc-usk-evidence-2026-06-14]] | IARC/USK evidence chain, content inventory, questionnaire/certificate artifacts, store metadata and version-change review triggers | [[../age-assurance-and-iarc-rating-2026-06-14]] · [[../../40-Compliance/age-assurance-and-rating-evidence]] |
+| [[raw-football-manager-age-rating-precedents-2026-06-14]] | Football Manager, Top Eleven, OSM, Soccer Manager and Hattrick precedent for low ratings, IAP/ads/random-item disclosures and interaction-risk labels | [[../age-assurance-and-iarc-rating-2026-06-14]] |
+| [[raw-age-assurance-source-checks-2026-06-14]] | Targeted official source checks for GDPR/BDSG/JMStV/KJM/USK/IARC and current store/game precedent | [[../age-assurance-and-iarc-rating-2026-06-14]] · [[../../40-Compliance/age-assurance-and-rating-evidence]] |
 
 ## FMX-67 follow-up Perplexity research (2026-06-05)
 
