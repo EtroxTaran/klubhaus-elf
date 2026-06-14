@@ -107,6 +107,18 @@ design notes.
   `TacticSnapshot.oppositionTemplate` replay payload; raw capture:
   [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]].
 
+## Pitch-Condition State Ownership Reconciliation (FMX-142, 2026-06-14)
+
+- [[../60-Research/pitch-condition-state-ownership-2026-06-14]] -
+  FMX-142 synthesis for the ADR-0077 / bounded-context-map pitch-state
+  ambiguity. Confirms the accepted split: Stadium Operations owns
+  pitch-condition state and `PitchConditionChanged`; Environment & Climate
+  owns weather facts, forecasts and pitch-weather derivation rules. Raw
+  captures:
+  [[../60-Research/raw-perplexity/raw-pitch-condition-state-ownership-ddd-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-pitch-condition-realworld-operations-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-pitch-condition-game-precedents-2026-06-14]].
+
 ## Hidden-Attribute Reveal Owner Reconciliation (FMX-154, 2026-06-14)
 
 - [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]] -

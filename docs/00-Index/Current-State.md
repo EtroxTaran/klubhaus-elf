@@ -592,13 +592,29 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > research chain. No new `*Rng` (derivation pure). All thresholds + the visible-label cap =
 > calibration behind `personaLabelModelVersion`.
 
+> **FMX-142 pitch-condition state ownership reconciled (2026-06-14).**
+> Research [[../60-Research/pitch-condition-state-ownership-2026-06-14]]
+> (+ raw DDD, real-world operations and game-precedent captures) applies the
+> already accepted ADR-0077 split consistently: **Stadium Operations** owns
+> pitch-condition state, facility/usage inputs, pre-match pitch snapshot and the
+> `PitchConditionChanged` event; **Environment & Climate** owns weather/climate
+> generation, resolved match weather, fallible forecasts and pitch-weather
+> derivation rules consumed by Stadium Operations. [[../10-Architecture/bounded-context-map]]
+> no longer lists Environment & Climate as pitch-state owner or
+> `PitchConditionChanged` publisher; ADR-0018 venue/systemic-event wording and
+> the non-binding [[../10-Architecture/state-machines/pitch-condition]]
+> companion note were aligned. No new ADR, context, RNG stream or gameplay
+> magnitude decision. Decision record:
+> [[../40-Execution/fmx-142-pitch-condition-state-ownership-decision-queue-2026-06-14]].
+
 > **FMX-66 Weather ownership + RNG/determinism path (2026-06-05).** Closes audit gap
 > **G23** (E2 epic FMX-58 — Match Determinism & Tactical Contracts). Proposed
 > [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]]
 > + draft [[../50-Game-Design/GD-0029-weather-and-pitch-design-model]] + state machine
 > [[../10-Architecture/state-machines/pitch-condition]] pin an owner + a replay-safe
-> determinism path for weather and pitch. **D1 = a new (20th) "Environment & Climate"
-> bounded context** owns weather generation (seasonal regional **template** + bounded weekly
+> determinism path for weather and pitch. **D1 = a new "Environment & Climate"
+> bounded context** (ordinal/count reconciled by ADR-0089) owns weather generation
+> (seasonal regional **template** + bounded weekly
 > Markov **regimes** Fine/Unsettled/Stormy/Heatwave/Freeze → per-fixture **realization**) + the
 > pitch-weather model; **D2 = template+regimes→realization** (Richardson/WGEN paradigm, how
 > FM/OOTP work); **D3 = fallible deterministic forecast** ("truth + noised forecast" from a
@@ -620,8 +636,9 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `environment.weatherPitch`** calibration behind `weatherModelVersion`. Pitch-condition *state* ownership is resolved:
 > Stadium Operations keeps facility/usage state and remains the `PitchConditionChanged` emitter;
 > Environment & Climate owns weather inputs and derivation rules. The context-count/map change was
-> resolved by ADR-0089; FMX-135 adds no map patch. Ratified 2026-06-08; FMX-135 status cleanup
-> confirmed `binding: true` on 2026-06-12.
+> resolved by ADR-0089; FMX-142 applied the map/ADR wording cleanup on
+> 2026-06-14. Ratified 2026-06-08; FMX-135 status cleanup confirmed
+> `binding: true` on 2026-06-12.
 
 > **FMX-87 Dialogue intent taxonomy + mechanical effect matrix (2026-06-05).**
 > [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]

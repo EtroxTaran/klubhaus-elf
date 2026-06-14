@@ -3,11 +3,11 @@ title: ADR-0018 Systemic Events and Player Lifecycle Architecture
 status: accepted
 tags: [adr, architecture, events, player-development, injuries, narrative, venue]
 created: 2026-05-17
-updated: 2026-06-11
+updated: 2026-06-14
 accepted_at: 2026-05-17
 type: adr
 binding: true
-related: [[../../60-Research/systemic-events-player-development-venue-ops]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0028-postgres-transactional-outbox]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/narrative-content-pipeline]], [[../bounded-context-map]]
+related: [[../../60-Research/systemic-events-player-development-venue-ops]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0077-environment-and-climate-context-weather-and-pitch]], [[../../60-Research/determinism-and-replay]], [[../../60-Research/narrative-content-pipeline]], [[../bounded-context-map]]
 ---
 
 # ADR-0018: Systemic Events and Player Lifecycle Architecture
@@ -56,8 +56,8 @@ delegates the actual rule evaluation to the owning context.
 | Mentoring | Squad & Player owns groups and social state; Training contributes attendance/context | `MentoringGroupAssigned`, `MentoringInfluenceApplied`, `MentoringConflictRaised` |
 | Long-term injury risk | Training computes load/readiness; Squad & Player owns injury profile and persisted injury records | `InjuryRiskUpdated`, `TrainingInjuryOccurred`, `PlayerReturnedFromInjury` |
 | Match injuries | Match emits match injury facts using match RNG; Squad & Player persists availability impact | `MatchInjuryOccurred`, `PlayerAvailabilityChanged` |
-| Match-day operational events | Club Management owns stadium/fans/sponsors; Match and League provide fixture context | `MatchdayEventTriggered`, `SanctionRiskRaised` |
-| Venue operations | Club Management owns venue calendar, infrastructure, pitch state and revenue impact | `VenueEventBooked`, `VenueEventCompleted`, `PitchConditionChanged` |
+| Match-day operational events | Stadium Operations owns venue/stadium event timeline and facility-side incidents; Match and League provide fixture context; Audience & Atmosphere and CommercialPortfolio own fan/commercial inputs | `MatchdayEventTriggered`, `SanctionRiskRaised`, `FanIncidentLogged`, `MatchdayCommercialSettlementPosted` |
+| Venue operations | Stadium Operations owns venue calendar, infrastructure, facility condition and pitch-condition state; Environment & Climate supplies weather facts and pitch-weather derivation rules | `VenueEventBooked`, `VenueEventCompleted`, `PitchConditionChanged`, `MatchWeatherResolved` |
 | Narrative rendering | Notification/read projection layer consumes structured events and compiled catalogues | `NarrativeEventQueued`, message projection IDs |
 
 No context may read another context's internal tables to compute these
@@ -138,14 +138,17 @@ scouting and coaching expose uncertainty ranges.
 
 ## 6. Venue boundary
 
-Venue operations are part of Club Management. They include:
+Venue operations are part of Stadium Operations. Club Management consumes
+ledger-facing settlement facts and remains the sole finance-ledger writer per
+ADR-0050. Venue operations include:
 
 - non-matchday event calendar;
 - setup and teardown windows;
-- revenue and operating costs;
+- revenue/cost source facts consumed by CommercialPortfolio and Club Management;
 - pitch wear and match-prep conflicts;
-- security, sponsor and fan-segment effects;
-- compliance hooks.
+- security/compliance hooks;
+- sponsor and fan-segment effects supplied by CommercialPortfolio and Audience
+  & Atmosphere facts;
 
 The game simulates venue operations weekly or by event boundary. It does not
 simulate individual visitor/catering shifts.

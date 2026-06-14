@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-191, fmx-194]
 created: 2026-05-16
 updated: 2026-06-14
 type: index
@@ -301,6 +301,20 @@ governance inference.
 | [[raw-gameplay-calibration-stochastic-harness-2026-06-13]] | Deterministic replay plus Monte Carlo envelope harness, goodness-of-fit checks, metamorphic tests and rebaseline governance | [[../gameplay-calibration-ownership-and-harness-2026-06-13]] · [[../../30-Implementation/gameplay-calibration-and-soak-test-runbook]] |
 | [[raw-gameplay-calibration-domain-slots-2026-06-13]] | Proposed FMX gameplay calibration slots, metrics, harness tiers and lead-designer questions | [[../gameplay-calibration-ownership-and-harness-2026-06-13]] · [[../../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] |
 | [[raw-gameplay-calibration-source-checks-2026-06-13]] | Source-quality audit and verified source trail for OOTP, Paradox, xG, score modelling and simulation testing | [[../gameplay-calibration-ownership-and-harness-2026-06-13]] · [[../../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] |
+
+## FMX-142 follow-up Perplexity/Web research (2026-06-14)
+
+Perplexity/Web research was run during FMX-142 after Nico selected the
+pitch-condition ownership reconciliation issue. The committed captures preserve
+the DDD aggregate-owner argument, real-world stadium/pitch operations precedent
+and comparable-game weather/pitch treatment used to align ADR-0077, ADR-0018
+and the bounded-context map.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-pitch-condition-state-ownership-ddd-2026-06-14]] | DDD aggregate and bounded-context ownership for pitch state derived from upstream weather facts and local facility/usage state | [[../pitch-condition-state-ownership-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]] · [[../../10-Architecture/bounded-context-map]] |
+| [[raw-pitch-condition-realworld-operations-2026-06-14]] | Football stadium/facility/groundskeeping responsibility for pitch maintenance, playability inputs, weather risk and infrastructure levers | [[../pitch-condition-state-ownership-2026-06-14]] · [[../../10-Architecture/state-machines/pitch-condition]] |
+| [[raw-pitch-condition-game-precedents-2026-06-14]] | Sports-management game precedent for weather as contextual input and pitch/field condition as manager-facing tactical/facility lever | [[../pitch-condition-state-ownership-2026-06-14]] · [[../../50-Game-Design/GD-0029-weather-and-pitch-design-model]] |
 
 ## FMX-154 follow-up Perplexity/Web research (2026-06-14)
 

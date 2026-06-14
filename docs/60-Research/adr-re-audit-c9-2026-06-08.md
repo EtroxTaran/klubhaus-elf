@@ -86,8 +86,11 @@ the aggregate; Environment owns weather as input) — that is exactly the right 
 Issues (minor): (a) the "20th bounded context" framing in §Status/§Map-patch is now
 **superseded by ADR-0089** which fixes the final count at **28** with Environment & Climate as
 **#26** — ADR-0077's own prose still says "19 → 20", a stale internal number though the
-substance is unaffected. (b) The pitch-state ownership item remains genuinely open (see
-cross-ADR §X1). Neither undermines the decision.
+substance is unaffected. (b) The pitch-state ownership item was still open at
+this audit point; **FMX-142 resolved it on 2026-06-14** by applying the
+ADR-0077 split consistently: Stadium Operations owns pitch state and
+`PitchConditionChanged`; Environment & Climate owns weather facts and
+derivation rules. Neither undermines the decision.
 
 Recommendation: no new ADR needed for the model. On ratification, (i) apply the ADR-0089
 catalog count (#26, not "20th") rather than ADR-0077's local number, and (ii) ratify the

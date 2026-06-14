@@ -42,6 +42,11 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-14-fmx-142-pitch-condition-state-ownership]] - FMX-142
+  pitch-condition ownership reconciliation: raw Perplexity/Web captures,
+  synthesis and decision queue. Confirmed accepted line is Stadium Operations
+  owns pitch-condition state and `PitchConditionChanged`; Environment &
+  Climate owns weather facts, forecasts and pitch-weather derivation rules.
 - [[2026-06-14-fmx-154-hidden-attribute-reveal-contract]] - FMX-154 hidden-attribute
   reveal contract cleanup: raw Perplexity/Web capture, synthesis and accepted
   GD-0027/GD-0021 reconciliation. Confirmed line is People derives/owns hidden

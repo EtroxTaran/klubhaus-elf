@@ -67,7 +67,7 @@ The nine proposals:
 | 0064 | Scouting Activity | own BC |
 | 0065 | Narrative Media/Press content | **not a new BC — Narrative subdomain** |
 | 0071 | AI World Simulation | own BC |
-| 0077 | Environment & Climate | own BC (pitch-state owner sub-point — see ADR-0077) |
+| 0077 | Environment & Climate | own BC; pitch-state owner sub-point resolved in ADR-0077 and FMX-142 |
 | 0081 | Statistics & Analytics | own BC (projection-only) |
 | 0085 | Media Ecology | own BC |
 
@@ -167,8 +167,10 @@ Negative:
 - 28 contexts is a large surface to learn; mitigated by clusters + catalog + onboarding docs.
 - Requires the architecture-test invariant to stay enforced as contexts grow.
 - If a later proposal adds a 29th, this catalog must be updated in the same PR (single source of count).
-- Environment & Climate's internal pitch-state ownership sub-point (ADR-0077) is tracked separately as a
-  mini ratification item; it does not change the count.
+- Environment & Climate's internal pitch-state ownership sub-point (ADR-0077)
+  is resolved by ADR-0077 and the FMX-142 wording cleanup: Stadium Operations
+  owns pitch state; Environment & Climate owns weather facts and derivation
+  rules. It does not change the count.
 
 ## Supersedes
 
