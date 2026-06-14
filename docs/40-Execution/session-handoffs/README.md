@@ -47,6 +47,11 @@ This is the **single** canonical handoff location. (An older
   synthesis and decision queue. Confirmed accepted line is Stadium Operations
   owns pitch-condition state and `PitchConditionChanged`; Environment &
   Climate owns weather facts, forecasts and pitch-weather derivation rules.
+- [[2026-06-14-fmx-180-code-phase-dod-transition]] - FMX-180 executable
+  docs-phase -> code-phase DoD bridge: raw Perplexity/tool captures, synthesis,
+  decision queue, accepted ADR-0110 and current implementation checklist. Nico
+  approved phase-split DoD, Nx day one, target-only `apps/web`/`packages/*` paths
+  until bootstrap and separate pnpm currency issue FMX-195.
 - [[2026-06-14-fmx-154-hidden-attribute-reveal-contract]] - FMX-154 hidden-attribute
   reveal contract cleanup: raw Perplexity/Web capture, synthesis and accepted
   GD-0027/GD-0021 reconciliation. Confirmed line is People derives/owns hidden

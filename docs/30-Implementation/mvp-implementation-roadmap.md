@@ -3,10 +3,10 @@ title: MVP Implementation Roadmap
 status: current
 tags: [implementation, mvp, roadmap, roguelite, slices]
 created: 2026-05-19
-updated: 2026-05-28
+updated: 2026-06-14
 type: implementation
 binding: true
-related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[hybrid-online-pwa-strategy]], [[club-economy-accounting-ledger]], [[ai-narration-contract-testing-framework]]
+related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[hybrid-online-pwa-strategy]], [[club-economy-accounting-ledger]], [[ai-narration-contract-testing-framework]], [[code-phase-dod-transition-contract]]
 ---
 
 # MVP Implementation Roadmap
@@ -15,10 +15,12 @@ This is the **ordered build plan** for the Create-a-Club Roguelite first
 playable. Product scope lives in [[../00-Index/MVP-Scope]]; this note defines
 **how** to ship it in small, clickable slices.
 
-Each slice must ship with: vault delta (if behaviour changes), tests per
-[[ai-narration-contract-testing-framework]] where narration is touched,
-the broader `testing-strategy` once created, Storybook for touched UI, and
-green CI per [[ci-and-review-process]].
+Each code-phase slice must ship with: vault delta (if behaviour changes), tests
+per [[ai-narration-contract-testing-framework]] where narration is touched, the
+broader `testing-strategy` once created, Storybook for touched UI, and green CI
+per [[ci-and-review-process]]. These code-phase gates activate only after
+[[code-phase-dod-transition-contract]] is green; today the roadmap remains a
+target build plan.
 
 ## Slice template
 
@@ -33,6 +35,18 @@ green CI per [[ci-and-review-process]].
 | DoD | Same PR: implementation + tests + vault + green checks |
 
 ## Slices (build order)
+
+### Slice -1 — Code-phase foundation gate
+
+| Field | Value |
+|---|---|
+| Goal | Repo can accept the first real code beat without non-existent commands or paths in the DoD |
+| Contexts | Platform / Meta |
+| Vault | [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[code-phase-dod-transition-contract]], [[ci-and-review-process]], [[agent-workflow-pattern]] |
+| UI | None; design-system paths stay target-only until created |
+| Tests | `node scripts/docs-check.mjs`; then bootstrap must add real `pnpm`/Nx code scripts before code-phase gates activate |
+| Authority | Process/tooling gate |
+| DoD | Workspace, Nx, root scripts, CI and design-system implementation paths exist before Slice 0 code starts |
 
 ### Slice 0 — Auth shell
 

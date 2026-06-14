@@ -3,9 +3,9 @@ title: Agent Workflow Pattern
 status: draft
 tags: [implementation, process, workflow]
 created: 2026-05-17
-updated: 2026-05-27
+updated: 2026-06-14
 type: implementation
-related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../90-Meta/agent-memory-protocol]], [[../90-Meta/vault-governance]], [[ci-and-review-process]], [[cursor-cloud-agent-workflow]], [[design-sync-workflow]], [[../10-Architecture/09-Design-System]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]]
+related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../90-Meta/agent-memory-protocol]], [[../90-Meta/vault-governance]], [[ci-and-review-process]], [[code-phase-dod-transition-contract]], [[cursor-cloud-agent-workflow]], [[design-sync-workflow]], [[../10-Architecture/09-Design-System]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]]
 ---
 
 # Agent Workflow Pattern
@@ -69,11 +69,21 @@ Every beat follows this cycle. Do not skip a step; do not reorder.
   Independent feature beats may **fan out** in parallel.
 - Keep services and packages modular: a beat touches the minimum surface and
   respects existing boundaries (`apps/web`, `packages/*`).
+- During the current docs-only phase, `apps/web` and `packages/*` are intended
+  build-target paths, not active repository paths. Do not require them in a
+  docs-phase DoD until
+  [[code-phase-dod-transition-contract]] says the code-phase activation gate is
+  green.
 
 ## Design system is mandatory
 
 All UI is built **only** from the existing design system. There is no
 agent-defined styling or layout.
+
+> **Docs-phase activation guard (FMX-180 / ADR-0110).** The design system is
+> binding product/design memory now. Its `apps/web/src/*` implementation paths,
+> Storybook and code-story gates become active DoD only after the code-phase
+> transition checklist in [[code-phase-dod-transition-contract]] is green.
 
 - **Tokens:** colors, spacing, radius, fonts come from
   `apps/web/src/styles/app.css` CSS variables / Tailwind tokens.
@@ -173,16 +183,31 @@ as one-way and escalate.
 
 ## Review phases
 
-1. **Self-check:** `pnpm check` + `pnpm typecheck` + `pnpm test` (+ `pnpm
-   test:e2e` for app changes). "Works locally" is not done.
-2. **Draft PR** with the standard template sections filled, including the
-   design-system, knowledge-base-alignment, and modularity sections.
-3. **Review:** Bugbot (design-system + boundary + vault-delta flags) and human.
+Definition of done is phase-aware per
+[[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]]
+and [[code-phase-dod-transition-contract]].
+
+### Current docs-phase review
+
+1. **Self-check:** run `node scripts/docs-check.mjs`. Also run
+   `node scripts/status-consistency-check.mjs` when the beat changes ADR/GDDR
+   `status:` or `binding:` semantics.
+2. **Draft PR** with the standard template sections filled and `Closes FMX-‹n›`
+   as the first line.
+3. **Review/automation:** docs-phase required checks are `docs-check` +
+   `linear-id`; docs/low-risk PRs auto-merge when green per ADR-0044.
 4. **Green required checks** → squash-merge.
 
-Definition of done is [[ci-and-review-process]] **plus** the three gates above
-(design system, vault delta, knowledge-base alignment). Green-by-default still
-holds: a red required check is an incident, never a backlog item.
+### Target code-phase review
+
+After the code-phase transition checklist is green, code beats add:
+`pnpm check`, `pnpm typecheck`, `pnpm test` and the accepted app/e2e/Storybook
+commands for affected code. Those commands must exist before they can be active
+DoD. The target code-phase commands are rooted in `pnpm` but orchestrated via
+Nx targets per ADR-0110.
+
+Green-by-default still holds in every phase: a red required check is an incident,
+never a backlog item.
 
 ## See also
 

@@ -2,7 +2,7 @@
 title: Design System — Klubhaus DS
 status: current
 tags: [architecture, design, ui, accessibility]
-updated: 2026-06-09
+updated: 2026-06-14
 ---
 
 # Design System — Klubhaus DS
@@ -23,6 +23,13 @@ historical artifact — **the code and this doc win** on any conflict).
 > are the **intended build target**; the tokens/theme here are the canonical spec the
 > wiki theme derives from. Update procedure & recurring-migration path:
 > [[../30-Implementation/design-sync-workflow]].
+
+> **FMX-180 activation guard.** Until
+> [[../30-Implementation/code-phase-dod-transition-contract]] marks code phase
+> active, every `apps/web/src/*`, Storybook and colocated-story requirement in
+> this note is target-only. Docs/design work still uses this note as binding
+> product/design memory, but no docs-phase PR may fail because the app paths or
+> Storybook scripts do not exist yet.
 
 > **Tokenized · Reusable · Responsive — immer.** One token source (semantic
 > `--color-*` → runtime `--c-*`; never hardcode hex, see §2), reusable components,
@@ -228,6 +235,10 @@ docs vault — one Dokploy compose stack (`docker-compose.docs.yml`), separate
 subdomain (`SHOWCASE_DOMAIN`), behind the **same** fail-closed basic-auth as
 the vault (`DOCS_BASIC_AUTH`). Ops detail: `tools/docs-preview/README.md`.
 
+In the current docs-only phase, this section records the target code-phase
+contract. The Storybook package/script gate becomes active only after
+[[../30-Implementation/code-phase-dod-transition-contract]] is green.
+
 - **Completeness is a rule, not a goal.** Every atom, composite, layout and
   screen ships a colocated `*.stories.tsx`; a CI `build-storybook` job fails
   the build if a story is broken. Adding/changing a primitive without its
@@ -239,7 +250,7 @@ the vault (`DOCS_BASIC_AUTH`). Ops detail: `tools/docs-preview/README.md`.
 - **Future vision**: the deferred screens in §10 enter the showcase the same
   way — a colocated story when each lands; `autodocs` renders each
   component's prop API automatically, so the showcase grows by construction.
-- **Local**: `pnpm --filter @klubhaus-elf/web storybook`. Decorators
+- **Local (target-only until code phase):** `pnpm --filter @klubhaus-elf/web storybook`. Decorators
   (i18n + theme + a memory router so screen `Link`s are inert) live in
   `apps/web/.storybook/`.
 

@@ -234,6 +234,19 @@ design notes.
   [[../60-Research/raw-perplexity/raw-roguelite-comparable-games-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-roguelite-meta-progression-best-practices-2026-06-14]].
 
+## Code-Phase DoD Transition Contract (FMX-180, 2026-06-14)
+
+- [[../60-Research/code-phase-dod-transition-contract-2026-06-14]] -
+  FMX-180 synthesis for the post-reset executable Definition-of-Done gap.
+  Records Nico's approved D1-D4: phase-split DoD, Nx day one, target-only
+  `apps/web`/`packages/*` paths until bootstrap and separate pnpm-currency issue
+  FMX-195. Accepted ADR:
+  [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]];
+  executable checklist:
+  [[../30-Implementation/code-phase-dod-transition-contract]]. Raw captures:
+  [[../60-Research/raw-perplexity/raw-code-phase-dod-monorepo-gates-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-code-phase-dod-game-production-gates-2026-06-14]].
+
 ## Quality-Profile Enum and Settlement-Path Reconciliation (FMX-147, 2026-06-12)
 
 - [[../60-Research/quality-profile-enum-settlement-path-2026-06-12]] -

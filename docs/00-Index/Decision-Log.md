@@ -139,16 +139,17 @@ ADRs' frontmatter.
 | [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]] | draft | **No-Pay-to-Win + MP/shared fairness invariant** — FMX-190 proposal only: all real-money entitlements must be zero-effect on competitive shared state; paid information advantage is forbidden power; visible cosmetics are non-competitive only when mechanically inert; future Vitest/fast-check architecture gate is proposed-not-applied. | Pending Nico D1-D5; research [[../60-Research/no-pay-to-win-and-mp-fairness-invariant-2026-06-13]]; decision queue [[../40-Execution/fmx-190-no-p2w-mp-fairness-decision-queue-2026-06-13]]. |
 | [[../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]] | draft | **Payment provider + monetization legal gates** — FMX-194 proposal only: web MoR-first posture, native IAP boundary, refund/spent-cash policy, proportional age assurance and paid soft-launch compliance gate. | Pending Nico D1-D5; research [[../60-Research/monetization-legal-gates-2026-06-13]]; compliance checklist [[../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]; decision queue [[../40-Execution/fmx-194-monetization-legal-gates-decision-queue-2026-06-13]]. |
 
-## Process & Workflow ADRs (proposed 2026-05-27, draft)
+## Process & Workflow ADRs
 
 These decide *how the team works* (CI/CD, merge, agent workflow, scaling), not how the
-game is built. Draft until ratified.
+game is built.
 
 | ADR | Status | Decision | Lineage |
 |---|---|---|---|
 | [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]] | accepted | Portable pipeline (check logic in repo scripts, thin CI) + auto-merge-when-green (docs: no review; code: CODEOWNER review); `Closes` ⇒ issue Done. | New; updates the "only Nico merges" stance. |
 | [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]] | accepted | One issue ↔ one git worktree ↔ one branch per agent session; no work without an issue (override = Nico command). | New. |
 | [[../10-Architecture/09-Decisions/ADR-0046-team-topology-and-scaling]] | accepted | Future-scope: Lead Architect + Domain Leads, CODEOWNERS-by-domain, activates when the 2nd lead joins. | New; future-scope. |
+| [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]] | accepted | **Code-phase DoD transition contract** — docs-phase DoD active now (`node scripts/docs-check.mjs` plus status consistency when status/binding changes); code-phase DoD target-only until workspace/Nx/scripts/CI/app paths exist; Nx selected day one; `apps/web`/`packages/*` are target-only; pnpm currency routed to FMX-195. | New FMX-180; **amends ADR-0044/0045**; research [[../60-Research/code-phase-dod-transition-contract-2026-06-14]]; implementation checklist [[../30-Implementation/code-phase-dod-transition-contract]]. |
 
 ## Superseded ADRs
 
