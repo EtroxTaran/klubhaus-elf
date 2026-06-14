@@ -571,26 +571,26 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > FMX-52/Regulations-profile calibration. Ratified 2026-06-08; FMX-135 status
 > cleanup confirmed `binding: true` on 2026-06-12.
 
-> **FMX-86 Hidden-attribute substrate mapping (2026-06-05).** Closes audit gap **G22**
-> (E3 epic FMX-59; after FMX-85 loan PM — 3/4 of E3 now drafted) and **unblocks the
-> ADR-0052 People substrate boundary**. Draft
+> **FMX-86 / FMX-154 Hidden-attribute substrate mapping accepted + owner-reconciled
+> (2026-06-05 / 2026-06-14).** Closes audit gap **G22** and keeps the ADR-0052 People
+> substrate boundary explicit. Accepted
 > [[../50-Game-Design/GD-0027-hidden-attribute-substrate-mapping]] pins the deterministic
-> **meta/OCEAN → football-label** derivation: labels are assigned along **mutually-exclusive
+> **meta/OCEAN -> football-label** derivation: labels are assigned along **mutually-exclusive
 > axes** (Leadership / Temperament / Professionalism / Attachment / Openness / Media) plus
 > **orthogonal flags** (mentor, loner, demanding, ambitious, loyal), so a player reads as
-> *leader · volatile · homesick* without contradiction. **People** owns derivation (truth) +
+> *leader · volatile · homesick* without contradiction. **People** owns derivation truth +
 > the mentoring relationship/eligibility policy; **Training** owns the mentoring
-> development-outcome compute (numeric model → GD-0021); **Scouting** owns the **single**
+> development-outcome compute (numeric model -> GD-0021); **Scouting** owns the **single**
 > reveal gate (`HiddenFlagRevealLedger`, ADR-0064) surfacing **bands not point estimates**
-> (GD-0006), no cross-context join; raw OCEAN/meta is **never** surfaced. OCEAN is **persisted
-> as state** (derived at world-gen from hidden-meta + archetype seed, then mutated in place —
-> replay-safe, survives formula evolution). **Nico chose D1–D4 = A/A/A/A live (2026-06-05):**
-> persist-OCEAN / Scouting-gates-People-derives / mentoring-split / multi-label-with-axes.
-> Synthesis [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]] (+ raw 4-prompt
-> capture: OCEAN→label + FM personality system, FM/OOTP scouting-gated reveal bands,
-> persist-vs-derive in deterministic sims, single-vs-multi-tag labels). No new `*Rng`
-> (derivation pure). All thresholds + the visible-label cap = calibration behind
-> `personaLabelModelVersion`. Authored `draft`; awaiting Nico ratify.
+> (GD-0006), no cross-context join; **Squad & Player / UI** presents the banded read model;
+> raw OCEAN/meta is **never** surfaced. OCEAN is **persisted as state** (derived at world-gen
+> from hidden-meta + archetype seed, then mutated in place - replay-safe, survives formula
+> evolution). **Nico chose D1-D4 = A/A/A/A live (2026-06-05)** and FMX-154 confirmed the
+> accepted status + owner split on 2026-06-14. Synthesis
+> [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]] and reconciliation
+> [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]] preserve the
+> research chain. No new `*Rng` (derivation pure). All thresholds + the visible-label cap =
+> calibration behind `personaLabelModelVersion`.
 
 > **FMX-66 Weather ownership + RNG/determinism path (2026-06-05).** Closes audit gap
 > **G23** (E2 epic FMX-58 — Match Determinism & Tactical Contracts). Proposed
@@ -1792,8 +1792,8 @@ Use the temporal layers from the baseline:
   deterministic context-card inputs. Actor traits/intents may affect mechanics
   deterministically; generated prose may not. The current framework direction
   is a dedicated Narrative context plus Playtest First quality loop.
-- **Player/staff decision-influence re-evaluation (2026-05-28):** FMX-38 adds
-  draft factor matrices for development, match, transfer and staff-pipeline
+- **Player/staff decision-influence re-evaluation (2026-05-28; FMX-154 reconciled 2026-06-14):** FMX-38 adds
+  accepted factor matrices for development, match, transfer and staff-pipeline
   influence. Use GD-0021 as the planning map for owner/consumer relationships;
   do not treat staff-skill Option B as approved until Nico decides.
 - **Manager-Archetype Roguelite re-evaluation (2026-05-27):** Nico wants the

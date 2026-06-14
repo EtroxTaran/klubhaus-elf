@@ -302,6 +302,17 @@ governance inference.
 | [[raw-gameplay-calibration-domain-slots-2026-06-13]] | Proposed FMX gameplay calibration slots, metrics, harness tiers and lead-designer questions | [[../gameplay-calibration-ownership-and-harness-2026-06-13]] · [[../../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] |
 | [[raw-gameplay-calibration-source-checks-2026-06-13]] | Source-quality audit and verified source trail for OOTP, Paradox, xG, score modelling and simulation testing | [[../gameplay-calibration-ownership-and-harness-2026-06-13]] · [[../../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] |
 
+## FMX-154 follow-up Perplexity/Web research (2026-06-14)
+
+Perplexity/Web research was run during FMX-154 after Nico selected the
+hidden-attribute reveal contract cleanup issue. The committed capture preserves
+the DDD/event-sourcing ownership split, enterprise analogues and game-precedent
+cross-check used to reconcile GD-0027/GD-0021.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-hidden-attribute-reveal-owner-reconciliation-2026-06-14]] | Hidden persona-label truth ownership vs Scouting confidence/reveal state, with People truth, Scouting gate and Squad/UI banded read-model split | [[../hidden-attribute-reveal-owner-reconciliation-2026-06-14]] · [[../../50-Game-Design/GD-0027-hidden-attribute-substrate-mapping]] · [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]] |
+
 ## FMX-137 follow-up Perplexity research (2026-06-14)
 
 Perplexity research was run during FMX-137 after Nico selected the

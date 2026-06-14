@@ -3,10 +3,10 @@ title: GD-0027 Hidden-Attribute Substrate Mapping (8-meta / OCEAN → labels)
 status: accepted
 tags: [game-design, gddr, persona, ocean, player-skills, scouting, mentoring, determinism, fmx-86, gap-g22]
 created: 2026-06-05
-updated: 2026-06-13
+updated: 2026-06-14
 type: game-design
 binding: false
-related: [[README]], [[GD-0020-eos-player-skills-personas-and-people]], [[GD-0021-player-staff-development-and-decision-influence]], [[GD-0018-ai-narrative-personas-and-dialogue]], [[GD-0015-ip-clean-data]], [[GD-0006-transfers]], [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]], [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]]
+related: [[README]], [[GD-0020-eos-player-skills-personas-and-people]], [[GD-0021-player-staff-development-and-decision-influence]], [[GD-0018-ai-narrative-personas-and-dialogue]], [[GD-0015-ip-clean-data]], [[GD-0006-transfers]], [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]], [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]]
 supersedes:
 superseded_by:
 ---
@@ -21,15 +21,14 @@ accepted
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
 
-> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
-> **Draft / `binding: false`.** Closes audit gap **G22** (FMX-86, E3 epic FMX-59).
-> Decisions **D1–D4** were put to Nico live on 2026-06-05 (ask-first gate) and chosen
-> **A/A/A/A**. The document as a whole awaits ratification; all numeric thresholds are
-> flagged **(calibration)** and not locked. Implement gameplay only once `approved`.
-> Builds on the **binding direction** of GD-0020 (substrate decisions, not reopened) and
-> the proposed People (ADR-0052) / Scouting (ADR-0064) contexts; it specifies **derivation
-> logic + ownership**, deferring the mentoring numeric model to GD-0021. Unblocks the
-> **ADR-0052 substrate boundary**.
+> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143; reconciled
+> 2026-06-14 by FMX-154):** This record closed audit gap **G22** (FMX-86, E3 epic
+> FMX-59). Decisions **D1-D4** were put to Nico live on 2026-06-05 (ask-first gate)
+> and chosen **A/A/A/A**. The current `accepted` frontmatter/body status is the
+> single source of truth; no separate `approved` flip remains pending. Numeric
+> thresholds remain **(calibration)** and not locked. Builds on accepted GD-0020,
+> ADR-0052 and ADR-0064; it specifies **derivation logic + ownership**, deferring
+> the mentoring numeric model to GD-0021.
 
 ## Date
 
@@ -45,21 +44,21 @@ that mentoring and time genuinely move a young pro's character.
 
 ## The fixed frame (binding inputs this GDDR must obey)
 
-- **GD-0020 (draft, binding direction)** — "Keep 16+4+8": 8 hidden meta on 1–20
+- **GD-0020 (accepted, binding direction)** — "Keep 16+4+8": 8 hidden meta on 1-20
   (**Potential, Consistency, Pressure, Professionalism, Determination, Adaptability,
   Injury-Proneness, Big-Matches**); **OCEAN is internal substrate** (never shown directly);
   **football labels are the surface**. The 16+4+8 schema and "OCEAN internal" are **not
   reopened**.
-- **ADR-0052 (draft) People context** — owns the internal persona substrate, the OCEAN
+- **ADR-0052 (accepted) People context** — owns the internal persona substrate, the OCEAN
   vector, the **derived football labels**, and the social/mentoring/conflict interpretation
   policies. "OCEAN … never exposed directly … without derivation." → **People is the label
   derivation owner** and the persona truth source.
-- **ADR-0064 (proposed) Scouting Activity** — "Scouting gates the reveal, owners keep the
+- **ADR-0064 (accepted) Scouting Activity** — "Scouting gates the reveal, owners keep the
   truth"; `HiddenFlagRevealLedger` stores **reveal-state only** keyed to knowledge%, emits
   `HiddenFlagSurfaced`, **no cross-context join**. → **Scouting is the single reveal gate.**
 - **GD-0006 (approved/binding)** — "Risk surfaced as **ranges, not point estimates**." →
   revealed persona is shown as **bands**, never exact substrate values.
-- **GD-0021 (draft)** — mentoring is "slow hidden-meta/tendency influence", Owner = People +
+- **GD-0021 (accepted)** — mentoring is "slow hidden-meta/tendency influence", Owner = People +
   Training/Squad facts, Consumer = Squad & Player + Training. → the **numeric** mentoring
   model lives in GD-0021, not here.
 - **ADR-0030 (accepted/binding) + GD-0018** — generated prose is presentation-only; labels
@@ -72,7 +71,7 @@ that mentoring and time genuinely move a young pro's character.
 |---|---|---|---|
 | **D1** | OCEAN persistence model | **A — persist as state** | Derive OCEAN once at world-gen from hidden-meta + archetype seed, then **persist** it as authoritative save-state and **mutate in place** (mentoring/aging). Keep seed+meta for provenance. Event-sourcing + snapshot best practice: replay-safe, survives derivation-formula evolution, and is the only coherent option once the vector drifts. (vs B derive/cache only — breaks determinism on drift + formula change; vs lazy-persist-on-first-mutation — equivalent but adds per-actor state-machine complexity for a 5-float vector mutated early anyway.) |
 | **D2** | Reveal-rule owner | **A — Scouting gates, People derives** | Reuse ADR-0064's `HiddenFlagRevealLedger` as the **single** confidence-gated reveal mechanism for **all** hidden persona signals (flags + labels). People owns label derivation (truth); Squad & Player presents an estimated **band** read-model. No second reveal owner = no second source of truth; consistent with ADR-0064 + GD-0006. (vs B Squad & Player owns reveal — duplicates ADR-0064's gate; vs C People owns reveal — couples persona-truth to scouting-progress, contradicts ADR-0064.) |
-| **D3** | Mentoring-influence owner | **A — split: People policy + Training compute** | People owns the mentoring **relationship + eligibility + persona-fit policy**; Training owns the **development-outcome computation** (slow hidden-meta delta), consuming People's relationship facts + load. Matches ADR-0052 (People = social policy) AND GD-0021 (Training/Squad = development). Numeric model deferred to GD-0021. Proceeds as draft now (does not wait on ADR-0052 ratification). (vs B Training fully — pulls social judgement out of People; vs C People fully — puts a development-delta compute inside the persona context.) |
+| **D3** | Mentoring-influence owner | **A — split: People policy + Training compute** | People owns the mentoring **relationship + eligibility + persona-fit policy**; Training owns the **development-outcome computation** (slow hidden-meta delta), consuming People's relationship facts + load. Matches ADR-0052 (People = social policy) AND GD-0021 (Training/Squad = development). Numeric model deferred to GD-0021. FMX-154 confirms this as accepted owner language; it does not reopen ADR-0052. (vs B Training fully — pulls social judgement out of People; vs C People fully — puts a development-delta compute inside the persona context.) |
 | **D4** | Label model | **A — multi-label + exclusion axes** | A player carries several coexisting labels (e.g. leader + volatile + homesick), each from an orthogonal **axis** with per-axis mutual exclusion (can't be volatile AND unflappable); orthogonal **flags** coexist freely; cap ~2–3 on list views. Faithful to GD-0020's coexisting surface set + CK3/RimWorld practice; gives dialogue clean per-label hooks. (vs B hybrid 1-composite-word + tags — adds a composite layer GD-0020 doesn't define; vs C single composite only — cannot express orthogonal facets, information-lossy.) |
 
 ## Substrate recap (binding context — do not reopen)
@@ -175,8 +174,8 @@ GD-0021   ── owns the NUMERIC model (weights, decay, thresholds) — deferre
 ```
 
 - Drift produced by mentoring mutates the **persisted OCEAN / hidden-meta** in place (D1).
-- This GDDR proceeds in `draft` independently of ADR-0052 ratification; it **records the
-  boundary** ADR-0052 then ratifies.
+- This GDDR is `accepted`; FMX-154 confirms the boundary already ratified by ADR-0052:
+  People owns mentoring relationship/policy truth, Training owns the development compute.
 
 ## Invariants (each a checkable policy)
 
@@ -203,7 +202,7 @@ GD-0021   ── owns the NUMERIC model (weights, decay, thresholds) — deferre
 - [x] Mentoring-influence owner assigned with input contract + explicit GD-0021 deferral
       → D3 + §Mentoring ownership contract (P7).
 - [x] Label vocabulary IP-clean and reuses GD-0020's set → §Derivation model (P8).
-- [x] Notes it resolves G22 and unblocks the ADR-0052 substrate boundary; numeric items
+- [x] Notes it resolves G22 and keeps the ADR-0052 substrate boundary explicit; numeric items
       flagged as calibration → Status banner + §Feeds ADRs + R-CALIB.
 - [x] Open questions needing Nico's decision listed → §Open / next (none blocking; D1–D4 resolved).
 
@@ -213,7 +212,7 @@ GD-0021   ── owns the NUMERIC model (weights, decay, thresholds) — deferre
 across squad UI / scouting / dialogue (no more three-way drift); reveal reuses the single
 ADR-0064 gate (no second source of truth); persistence is replay-safe and survives formula
 evolution; multi-axis labels express real footballers (leader + volatile + homesick) without
-contradiction and give dialogue clean hooks; unblocks ADR-0052 ratification.
+contradiction and give dialogue clean hooks; keeps the ADR-0052 substrate boundary explicit.
 
 **Negative / constraints** — all tier thresholds + the visible-label cap are calibration debt
 behind `personaLabelModelVersion`; persisting OCEAN adds a small per-actor save field and a
@@ -224,19 +223,20 @@ join, but two owners to keep aligned.
 ## Feeds ADRs
 
 - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]] — provides the
-  substrate boundary People needs (label derivation owner, OCEAN persistence, reveal/mentoring
-  split); unblocks its ratification.
+  substrate boundary People uses (label derivation owner, OCEAN persistence, reveal/mentoring
+  split).
 - [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]] — confirms its
   `HiddenFlagRevealLedger` is the single reveal gate for persona labels too.
 
 ## Open / next
 
-- **Nico ratify** GD-0027 (`draft` → `approved`) → unblocks ADR-0052 ratification.
+- **Status reconciliation:** FMX-154 confirms `accepted` as the current truth; no
+  blocking status decision remains.
 - **GD-0043 `people.personaLabels` calibration:** all axis/flag thresholds,
   knowledge% reveal bands per signal, the per-list visible-label cap (~2–3) +
   display priority — behind `personaLabelModelVersion`.
 - **GD-0021:** the mentoring numeric model (weights/decay/thresholds) + its staff-skill option gate.
-- No blocking decisions remain (D1–D4 resolved live 2026-06-05).
+- No blocking decisions remain (D1-D4 resolved live 2026-06-05).
 
 ## Calibration slot (FMX-141)
 
@@ -249,7 +249,8 @@ join, but two owners to keep aligned.
 
 ## Related
 
-- Research: [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]] · raw
+- Research: [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]] ·
+  [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]] · raw
   [[../60-Research/raw-perplexity/raw-hidden-attribute-substrate-mapping-2026-06-05]] ·
   [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]] ·
   [[../60-Research/player-strength-presentation]]

@@ -107,6 +107,15 @@ design notes.
   `TacticSnapshot.oppositionTemplate` replay payload; raw capture:
   [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]].
 
+## Hidden-Attribute Reveal Owner Reconciliation (FMX-154, 2026-06-14)
+
+- [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]] -
+  FMX-154 synthesis for the GD-0027/GD-0021 ownership/status cleanup. Confirms
+  the accepted split: People owns hidden persona-label truth and derivation,
+  Scouting owns only confidence/reveal state via `HiddenFlagRevealLedger`, and
+  Squad & Player / UI presents banded read models. Raw capture:
+  [[../60-Research/raw-perplexity/raw-hidden-attribute-reveal-owner-reconciliation-2026-06-14]].
+
 ## Statistics & Analytics Read-Model Owner (FMX-94, 2026-06-05)
 
 - [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]] -
