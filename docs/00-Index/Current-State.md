@@ -99,6 +99,22 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > D5=A youth-protection review trigger with no default AVS/JmSchB appointment,
 > D6=A store/rating evidence packet blocks store or paid activation.
 >
+> **FMX-138 Portfolio determinism + seeded-variance principle prepared —
+> decision pending (2026-06-14).** Linear FMX-138 is `In Progress` on branch
+> `codex/fmx-138-determinism-seeded-variance-principle`. Research
+> [[../60-Research/determinism-portfolio-principle-2026-06-14]] (+ raw
+> Perplexity/source-check captures for deterministic replay, event sourcing,
+> comparable sports-management games and real-world football uncertainty)
+> recommends draft
+> [[../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle|ADR-0113]].
+> The packet is **not binding** until Nico approves D1-D3 in
+> [[../40-Execution/fmx-138-determinism-portfolio-principle-decision-queue-2026-06-14]].
+> Recommended packet: D1=A classify surfaces by portfolio role (audit/replay,
+> projection/measurement, variety/drama), D2=A use bounded seeded variance only
+> inside existing owner-context RNG streams, D3=A keep Hall-of-Fame induction
+> pure deterministic for MVP and allow future stochastic flavor only through an
+> existing owner stream.
+>
 > **FMX-137 Create-a-Club Roguelite run tuning accepted (2026-06-14).**
 > Branch `codex/fmx-137-roguelite-tuning` carries the docs packet. Research
 > [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]

@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-14-fmx-138-determinism-portfolio-principle]] - FMX-138
+  portfolio determinism + seeded-variance principle packet: raw
+  Perplexity/Web/source-check captures, synthesis, decision queue and draft
+  ADR-0113. Recommended packet is D1/D2/D3 = A/A/A: classify surfaces by
+  portfolio role, use bounded seeded variance only through existing
+  owner-context RNG streams and keep Hall-of-Fame induction pure deterministic
+  for MVP unless a future approved owner-stream flavor rule is added.
 - [[2026-06-14-fmx-185-age-assurance]] - FMX-185 age assurance and IARC/USK
   rating-evidence packet: raw Perplexity/Web captures, synthesis, compliance
   evidence home, decision queue and draft ADR-0112. Recommended packet is

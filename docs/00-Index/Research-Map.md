@@ -150,6 +150,24 @@ design notes.
   [[../60-Research/raw-perplexity/raw-football-manager-age-rating-precedents-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-age-assurance-source-checks-2026-06-14]].
 
+## Determinism Portfolio Principle (FMX-138, 2026-06-14)
+
+- [[../60-Research/determinism-portfolio-principle-2026-06-14]] -
+  FMX-138 synthesis for the cross-cutting deterministic-vs-seeded-variance
+  question across ADR-0018/0083/0086/0088 and GD-0024/GD-0036. Recommends
+  draft
+  [[../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle]]
+  with a three-surface classification: audit/replay surfaces and
+  projection/measurement surfaces stay pure deterministic; variety/drama
+  surfaces may use bounded seeded variance through existing owner-context RNG
+  streams. Decision remains pending Nico in
+  [[../40-Execution/fmx-138-determinism-portfolio-principle-decision-queue-2026-06-14]].
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-determinism-portfolio-simulation-architecture-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-determinism-portfolio-game-precedents-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-determinism-portfolio-realworld-football-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-determinism-portfolio-source-checks-2026-06-14]].
+
 ## Hidden-Attribute Reveal Owner Reconciliation (FMX-154, 2026-06-14)
 
 - [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]] -
