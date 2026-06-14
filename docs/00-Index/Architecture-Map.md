@@ -3,7 +3,7 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-06-13
+updated: 2026-06-14
 type: map
 binding: false
 related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/player-discipline]]
@@ -36,7 +36,11 @@ future-scope or historical context.
   after ADR-0089. FMX-131 clarifies the League/Statistics standings seam:
   League Orchestration owns tie-break rules, official ordering and
   promotion/relegation/rollover outcomes; Statistics & Analytics owns
-  projection-only standings history, leaders and analytics views.
+  projection-only standings history, leaders and analytics views. FMX-134
+  prepares a pending ADR-0111 cleanup for the Rivalry -> CommercialPortfolio
+  contract: recommended line is no `RivalryCommercialSignal`; CommercialPortfolio
+  derives commercial interpretation from `RivalryTierTransitioned` /
+  `DerbyContext(matchId)` through a local ACL/projection after Nico approval.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -159,6 +163,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0065 Narrative Media and Press Content Ownership](../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership.md) - draft extension of ADR-0054; no implementation until accepted.
 - [ADR-0107 Pricing and IAP Monetization Boundary](../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary.md) - draft FMX-191 monetization boundary for classified entitlements, no-P2W invariant, provider separation and privacy/legal gates; pending Nico D1-D5, no implementation until accepted.
 - [ADR-0108 No-Pay-to-Win and MP Fairness Invariant](../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant.md) - draft FMX-190 zero-effect invariant for real-money entitlements across shared saves, rankings, async groups, watch-party state, exports, official comparisons and future multiplayer; pending Nico D1-D5, no implementation until accepted.
+- [ADR-0111 Rivalry Commercial Signal Contract Reconciliation](../10-Architecture/09-Decisions/ADR-0111-rivalry-commercial-signal-contract-reconciliation.md) - draft FMX-134 proposal to remove the orphan `RivalryCommercialSignal`, derive CommercialPortfolio policy from Rivalry facts through a local ACL/projection and keep fan-side `derby_factor` in Audience & Atmosphere; pending Nico D1-D3, no implementation until accepted.
 
 ## Rule
 

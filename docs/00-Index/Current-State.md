@@ -66,6 +66,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > when status/binding changes); code scripts, Storybook and app/package paths are
 > target-only until the transition checklist is green.
 >
+> **FMX-134 RivalryCommercialSignal contract prepared — decision pending
+> (2026-06-14).** Linear FMX-134 is `In Progress` on branch
+> `codex/fmx-134-rivalry-commercial-signal`. Research
+> [[../60-Research/rivalry-commercial-signal-contract-2026-06-14]] (+ raw
+> Perplexity/source-check captures for DDD, real-world football commercial
+> effects and comparable games) recommends deleting the orphan
+> `RivalryCommercialSignal` contract instead of adding it to Rivalry. Draft
+> [[../10-Architecture/09-Decisions/ADR-0111-rivalry-commercial-signal-contract-reconciliation|ADR-0111]]
+> is **not binding** until Nico approves D1-D3 in
+> [[../40-Execution/fmx-134-rivalry-commercial-signal-decision-queue-2026-06-14]].
+> Recommended packet: D1=B CommercialPortfolio derives from
+> `RivalryTierTransitioned` / `DerbyContext`, D2=A Audience & Atmosphere owns
+> fan-side `derby_factor`, D3=A apply accepted ADR/map cleanup immediately after
+> approval.
+>
 > **FMX-137 Create-a-Club Roguelite run tuning accepted (2026-06-14).**
 > Branch `codex/fmx-137-roguelite-tuning` carries the docs packet. Research
 > [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]

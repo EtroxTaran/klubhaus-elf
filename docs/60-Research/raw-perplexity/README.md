@@ -316,6 +316,20 @@ and the bounded-context map.
 | [[raw-pitch-condition-realworld-operations-2026-06-14]] | Football stadium/facility/groundskeeping responsibility for pitch maintenance, playability inputs, weather risk and infrastructure levers | [[../pitch-condition-state-ownership-2026-06-14]] · [[../../10-Architecture/state-machines/pitch-condition]] |
 | [[raw-pitch-condition-game-precedents-2026-06-14]] | Sports-management game precedent for weather as contextual input and pitch/field condition as manager-facing tactical/facility lever | [[../pitch-condition-state-ownership-2026-06-14]] · [[../../50-Game-Design/GD-0029-weather-and-pitch-design-model]] |
 
+## FMX-134 follow-up Perplexity/Web research (2026-06-14)
+
+Perplexity research plus targeted source checks were run during FMX-134 after
+Nico selected the RivalryCommercialSignal orphan-contract issue. The committed
+captures preserve the DDD boundary argument, real-world derby commercial
+precedent and comparable-game treatment used to prepare draft ADR-0111.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-rivalry-commercial-signal-ddd-2026-06-14]] | DDD boundary comparison for upstream Rivalry facts vs downstream CommercialPortfolio commercial derivation | [[../rivalry-commercial-signal-contract-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0111-rivalry-commercial-signal-contract-reconciliation]] |
+| [[raw-rivalry-commercial-signal-realworld-2026-06-14]] | Real-world football derby effects on ticketing, attendance, safety/policing cost, hospitality and sponsor/media inference | [[../rivalry-commercial-signal-contract-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]] |
+| [[raw-rivalry-commercial-signal-games-2026-06-14]] | Football Manager, Hattrick and OOTP precedent for rivalry/fan/finance effects without an upstream commercial signal | [[../rivalry-commercial-signal-contract-2026-06-14]] · [[../../50-Game-Design/rivalry-system]] |
+| [[raw-rivalry-commercial-signal-source-checks-2026-06-14]] | Source-quality audit and verified source trail for DDD, football and comparable-game claims | [[../rivalry-commercial-signal-contract-2026-06-14]] |
+
 ## FMX-154 follow-up Perplexity/Web research (2026-06-14)
 
 Perplexity/Web research was run during FMX-154 after Nico selected the
