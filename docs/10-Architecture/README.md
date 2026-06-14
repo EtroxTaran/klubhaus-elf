@@ -3,7 +3,7 @@ title: Architecture (Map of Content)
 status: current
 tags: [architecture, moc]
 created: 2026-05-17
-updated: 2026-06-12
+updated: 2026-06-14
 type: index
 binding: true
 related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[05-Building-Blocks]], [[../00-Index/Documentation-V1]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
@@ -49,6 +49,9 @@ baseline for architecture-gap classification.
   stat lines, derived metrics, MVP Analytics Hub queries and Manager & Legacy
   handoff snapshots; FMX-131 keeps official ordering and season rollover in
   League Orchestration.
+- [[09-Decisions/ADR-0114-monorepo-workspace-bootstrap]] — draft FMX-179
+  monorepo/workspace bootstrap proposal; package-boundary convention, namespace
+  and code-gate activation remain pending Nico D1-D8.
 
 ## Modules
 

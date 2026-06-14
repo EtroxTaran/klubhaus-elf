@@ -41,6 +41,9 @@ future-scope or historical context.
   contract: recommended line is no `RivalryCommercialSignal`; CommercialPortfolio
   derives commercial interpretation from `RivalryTierTransitioned` /
   `DerbyContext(matchId)` through a local ACL/projection after Nico approval.
+  FMX-179 prepares pending ADR-0114 for the future workspace/package mapping:
+  progressive one-context package catalog, real packages only and
+  `@klubhaus-elf/*` namespace after Nico approval.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -156,6 +159,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0014 State Machines](../10-Architecture/09-Decisions/ADR-0014-state-machines.md) - promote before changing runtime orchestration.
 - [ADR-0015 Spectator Snapshot Streaming](../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming.md) - post-MVP watch-party layer.
 - [ADR-0016 Community Dataset Overrides](../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides.md) - future-scope until UGC moderation/security gates are implemented.
+- [ADR-0114 Monorepo Workspace Bootstrap](../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap.md) - draft FMX-179 package-boundary and workspace scaffold proposal; no workspace/package convention is binding until Nico approves D1-D8.
 - [ADR-0030 LLM Out Of Authoritative State Boundary](../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state.md) - draft Runtime-LLM re-evaluation for Broad Full Dialogue outside authoritative state; FMX-88 adds the fallback manifest, Article 50 gate and MVP no-export rule; FMX-87 clarifies mechanics consume selected finite intents, not generated prose; no implementation until accepted.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft context-map change; no implementation until accepted.
 - [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft context-map change; no implementation until accepted.

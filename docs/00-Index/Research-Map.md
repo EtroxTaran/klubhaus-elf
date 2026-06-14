@@ -296,6 +296,22 @@ design notes.
   [[../60-Research/raw-perplexity/raw-code-phase-dod-monorepo-gates-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-code-phase-dod-game-production-gates-2026-06-14]].
 
+## Monorepo Workspace Bootstrap (FMX-179, 2026-06-14)
+
+- [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]] -
+  FMX-179 synthesis for the first real `apps/web` + `packages/*` workspace
+  bootstrap shape after ADR-0110. Recommends draft
+  [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]]
+  and scaffold plan [[../30-Implementation/monorepo-workspace-bootstrap-plan]]:
+  progressive one-context package catalog, real foundation packages only,
+  workspace package facades, pnpm workspace linking + TypeScript project
+  references + Nx TypeScript plugin, no placeholder green gates and
+  `@klubhaus-elf/*` namespace pending Nico D1-D8. Raw captures:
+  [[../60-Research/raw-perplexity/raw-monorepo-workspace-ddd-package-granularity-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-monorepo-workspace-game-production-precedents-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-monorepo-workspace-tooling-bootstrap-2026-06-14]],
+  [[../60-Research/raw-perplexity/raw-monorepo-workspace-source-checks-2026-06-14]].
+
 ## Quality-Profile Enum and Settlement-Path Reconciliation (FMX-147, 2026-06-12)
 
 - [[../60-Research/quality-profile-enum-settlement-path-2026-06-12]] -

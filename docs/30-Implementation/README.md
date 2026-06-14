@@ -21,6 +21,10 @@ operational runbooks. Current implementable notes are classified by
 - [[code-phase-dod-transition-contract]] - executable docs-phase -> code-phase
   Definition-of-Done bridge; code gates are target-only until bootstrap creates
   workspace, Nx, scripts, CI and app/package paths.
+- [[monorepo-workspace-bootstrap-plan]] - FMX-179 non-binding scaffold plan for
+  the first real workspace: progressive context package catalog, real foundation
+  packages only, Nx/pnpm/TypeScript linking and no-placeholder gate activation
+  after ADR-0114 approval.
 - [[cursor-cloud-agent-workflow]] - cloud-agent operational steps.
 - [[ci-and-review-process]] - green-by-default enforcement.
 - [[design-sync-workflow]] - design export to codebase.
