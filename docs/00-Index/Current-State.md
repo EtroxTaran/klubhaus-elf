@@ -51,6 +51,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-184 Command signing + save trust accepted — ADR-0115/0116 binding
+> (2026-06-14).** Linear FMX-184 is `In Progress` on branch
+> `codex/fmx-184-command-signing-save-trust`. Research
+> [[../60-Research/command-signing-save-trust-2026-06-14]] (+ raw Perplexity
+> captures and source checks for WebCrypto/WebAuthn/idempotency, hybrid Ed25519
+> evidence and game eligibility precedent) grounds accepted
+> [[../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture|ADR-0115]]
+> and accepted
+> [[../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture|ADR-0116]].
+> Nico approved D1-D15 live: server-authoritative command acceptance plus
+> mandatory app-managed/device Ed25519 evidence from the first code phase,
+> passkeys only for login/high-value ceremonies, derived `SaveTrustLevel` plus
+> `PublicEligibility`, internal server HMAC proof over root/hash evidence,
+> strict irreversible public downgrade rules, no fixed offline window if the
+> proof chain later verifies, canonical JSON/JCS-style signed bytes and HMAC
+> proofs at sync checkpoints/public-submission milestones. Decision record:
+> [[../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]].
+>
 > **FMX-180 Code-phase DoD transition accepted — ADR-0110 binding (2026-06-14).**
 > Linear FMX-180 is `In Progress` on branch
 > `codex/fmx-180-code-phase-dod-transition`. Research

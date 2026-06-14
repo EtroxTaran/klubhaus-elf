@@ -3,7 +3,7 @@ title: "Pre-Mortem Findings Registry"
 status: current
 tags: [research, pre-mortem, registry, tracking, 2026-Q2]
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-14
 type: registry
 binding: false
 report_set: 2026-05-20
@@ -68,8 +68,8 @@ Diese müssen vor Public-Launch adressiert sein. Status `mitigated` bedeutet hie
 | [[PM-2026-05-20-01-architecture#PM-2026-05-20-01-F-02\|01-F-02]] — SurrealDB Single-Node SPOF | architecture | 25 | mitigated | Score 25 + Total-Outage-Risiko |
 | [[PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-04\|02-F-04]] — Backups nie restored | ops | 25 | mitigated | Score 25 + Datenverlust-Risiko |
 | [[PM-2026-05-20-04-monetization#PM-2026-05-20-04-F-01\|04-F-01]] — Keine Monetarisierungs-Hypothese | monetization | 25 | mitigated | Score 25 + Strategic-Blocker |
-| [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-01\|05-F-01]] — Save authentisiert Kenntnis, nicht Herkunft | security | 25 | mitigated | Score 25 + Anti-Cheat-Foundation |
-| [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02\|05-F-02]] — Commands nicht signiert / replay-protected | security | 25 | mitigated | Score 25 + Cheat-Vector |
+| [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-01\|05-F-01]] — Save authentisiert Kenntnis, nicht Herkunft | security | 25 | mitigated | Score 25 + Anti-Cheat-Foundation; accepted home ADR-0115 (FMX-184) |
+| [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02\|05-F-02]] — Commands nicht signiert / replay-protected | security | 25 | mitigated | Score 25 + Cheat-Vector; accepted home ADR-0114 (FMX-184) |
 | [[PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-05\|08-F-05]] — Marken-Kollision SEGA/SI | legal | 20 | mitigated | Pre-Launch sofort lösbar (Rebrand), aber Score 25 nach Public-Sichtbarkeit |
 | [[PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-06\|08-F-06]] — UGC DFL-Vereinslogos | legal | 20 | mitigated | DSA-Compliance vor Beta |
 | [[PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-11\|08-F-11]] — DSA Art. 16 Notice-and-Action | legal | 15 | mitigated | DSA-Compliance vor Public-Hosting |
@@ -329,7 +329,7 @@ Findings mit Mehrfach-Wirkung — gemeinsam fixen:
 - **"MVP ohne X"-Linie** komplettiert:
   Kein Runtime-LLM ([[PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]), kein Image-Upload ([[PM-2026-05-20-13-community-moderation-and-ugc#PM-2026-05-20-13-F-02]]), kein Free-Form-Chat ([[PM-2026-05-20-13-community-moderation-and-ugc#PM-2026-05-20-13-F-08]]), kein aktives Marketing ([[PM-2026-05-20-14-brand-pr-and-crisis-comms]]), kein Cloudflare-Workers-Lock ([[PM-2026-05-20-17-vendor-lifecycle-and-sustainability#PM-2026-05-20-17-F-06]]), kein WebAuthn-Required ([[PM-2026-05-20-15-browser-device-storage-matrix#PM-2026-05-20-15-F-08]]), keine Lootboxes ([[PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-10]]), keine Daily-Login-Streaks ([[PM-2026-05-20-18-responsible-gaming-and-open-source#PM-2026-05-20-18-F-04]]).
 
-- **Save-Schema v2 mit trust_level** Konvergenz aus 5 Reports:
+- **Save-Schema v2 mit `SaveTrustLevel`** Konvergenz aus 5 Reports (accepted home: ADR-0115, FMX-184):
   [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-01]] (Crypto-Anchor) ↔ [[PM-2026-05-20-06-distributed-match-compute|BYOC-Future]] ↔ [[PM-2026-05-20-12-long-term-balance-and-meta#PM-2026-05-20-12-F-08]] (versioned balance constants) ↔ [[PM-2026-05-20-15-browser-device-storage-matrix#PM-2026-05-20-15-F-03]] (Brotli + engine_bundle_hash) ↔ [[PM-2026-05-20-16-test-strategy-depth#PM-2026-05-20-16-F-05]] (Save-Forward-Compat-Matrix).
 
 - **DSGVO + DSA + BFSG + CRA Compliance-Stack** (4 regulatorische Stichtage 2026):
@@ -341,7 +341,7 @@ Findings mit Mehrfach-Wirkung — gemeinsam fixen:
 - **DSGVO-Erasure vs Audit-Aufbewahrung**:
   [[PM-2026-05-20-04-monetization#PM-2026-05-20-04-F-06]] (Steuer-Aufbewahrung 10 Jahre) ↔ [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-09]] (PII in Logs) ↔ [[PM-2026-05-20-13-community-moderation-and-ugc#PM-2026-05-20-13-F-09]] (Notice-Reporter-PII).
 
-- **Command-Signing als Cross-Cutting-Foundation**:
+- **Command-Integritaet als Cross-Cutting-Foundation** (accepted home: ADR-0114, FMX-184):
   [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02]] (Security) ↔ Authz-Checks in [[PM-2026-05-20-01-architecture]] ↔ Anti-Cheat-Hebel in [[PM-2026-05-20-03-gameplay]] ↔ Webhook-Idempotenz [[PM-2026-05-20-04-monetization]].
 
 ## Konvention für Fix-Verkettung
@@ -364,9 +364,9 @@ addresses: [PM-2026-05-20-XX-F-NN, PM-2026-05-20-XX-F-MM]
 
 | ADR | Topic | Aus Report |
 |---|---|---|
-| ADR-0026 | Command Signing & Replay Protection | 05 (Iter 2) |
-| ADR-0027 | BYOC Match Validation Quorum (Future-Scope) | 06 (Iter 2) |
-| ADR-0028 | Save Import/Export Trust Levels | 05 (Iter 2) |
+| ADR-0114 | Command Integrity & Replay Protection Posture | 05 (Iter 2), FMX-184 accepted |
+| Future ADR TBD | BYOC Match Validation Quorum (Future-Scope) | 06 (Iter 2), unassigned after ADR renumbering |
+| ADR-0115 | Save Trust Levels & Provenance Posture | 05 (Iter 2), FMX-184 accepted |
 | ADR-0029 | LLM Provider Selection & Fallback Chain | 11 (Iter 3) |
 | ADR-0030 | LLM-out-of-Authoritative-Game-State Boundary | 11 (Iter 3) |
 | ADR-0031 | PII Redaction & EU-LLM-Routing-Policy | 11 (Iter 3) |

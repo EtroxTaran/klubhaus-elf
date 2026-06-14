@@ -224,6 +224,19 @@ after Nico selected the monetization legal gates issue.
 | [[raw-age-gate-and-soft-launch-gates-2026-06-13]] | Proportional age assurance, GDPR/minors, German youth-protection, DSA/dark-pattern and paid soft-launch artifact gates | [[../monetization-legal-gates-2026-06-13]] · [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]] |
 | [[raw-monetization-legal-source-checks-2026-06-13]] | Targeted official/provider source checks for Apple, Google, Paddle, Stripe, EU/DE consumer law, imprint, ratings and Capacitor purchase-integration constraints | [[../monetization-legal-gates-2026-06-13]] · [[../../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]] |
 
+## FMX-184 follow-up Perplexity/Web research (2026-06-14)
+
+Perplexity research plus targeted MDN/OWASP/API/game-precedent source checks
+were run during FMX-184 after Nico selected the command-signing and save-trust
+issue.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-command-integrity-and-replay-protection-2026-06-14]] | Server-authoritative command validation vs Ed25519-signed commands vs WebAuthn/passkey ceremonies for offline-capable async-MP command integrity | [[../command-signing-save-trust-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]] |
+| [[raw-save-trust-provenance-2026-06-14]] | Save trust levels, server provenance proof, command roots, engine hashes, imported/unverified states and public eligibility gates | [[../command-signing-save-trust-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]] |
+| [[raw-command-save-trust-source-checks-2026-06-14]] | MDN WebCrypto/WebAuthn, Stripe idempotency, OWASP KDF posture, RFC 8032 and game eligibility precedent checks | [[../command-signing-save-trust-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]] · [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]] |
+| [[raw-hybrid-ed25519-command-evidence-2026-06-14]] | Follow-up source trail for the accepted hybrid: server-authoritative validation plus mandatory app-managed/device Ed25519 command evidence from the first code phase | [[../command-signing-save-trust-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]] |
+
 ## FMX-185 follow-up Perplexity/Web research (2026-06-14)
 
 Perplexity research plus targeted official/source checks were run during
