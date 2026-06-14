@@ -3,7 +3,7 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-06-13
+updated: 2026-06-14
 type: map
 binding: false
 related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/match-engine-core-model-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-real-world-envelopes-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-action-utility-models-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-game-precedents-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-calibration-harness-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-source-checks-2026-06-13]], [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-real-world-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-ddd-accounting-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-games-2026-06-12]], [[../60-Research/quality-profile-enum-settlement-path-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-enum-ddd-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-real-world-football-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-sim-games-2026-06-12]], [[../60-Research/raw-perplexity/raw-pre1-contract-replacement-2026-06-13]], [[../60-Research/chart-of-accounts-and-category-catalog-2026-06-13]], [[../60-Research/raw-perplexity/raw-chart-of-accounts-game-ledger-2026-06-13]], [[../60-Research/raw-perplexity/raw-football-club-accounting-families-2026-06-13]], [[../60-Research/raw-perplexity/raw-sports-management-finance-ui-2026-06-13]], [[../60-Research/raw-perplexity/raw-chart-of-accounts-versioning-2026-06-13]]
@@ -92,13 +92,20 @@ design notes.
 ## Opposition-template AI Consumption Contract (FMX-67, 2026-06-05)
 
 - [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]] -
-  FMX-67 synthesis for G11. Grounds proposed
+  FMX-67 synthesis for G11. Grounds accepted
   [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]]
   with real-world opposition analysis workflows, Football Manager/OOTP
   pre-match strategy precedents and deterministic replay constraints. Records
   Nico's selected defaults: split event model, final immutability at
   `lineup_locked` and dedicated `WorldAiMgmtRng` sub-label; raw capture:
   [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]].
+
+- [[../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]] -
+  FMX-136 ratification cleanup for accepted/binding ADR-0080. Grounds the AI
+  World Simulation planning-source owner, fail-fast
+  `opposition_template_selection_missing` behavior and embedded
+  `TacticSnapshot.oppositionTemplate` replay payload; raw capture:
+  [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]].
 
 ## Statistics & Analytics Read-Model Owner (FMX-94, 2026-06-05)
 

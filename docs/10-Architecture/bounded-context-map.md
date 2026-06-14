@@ -3,10 +3,10 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-06-12
+updated: 2026-06-14
 type: architecture
 binding: true
-related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]]
+related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]]
 ---
 
 # Bounded Context Map
@@ -111,6 +111,11 @@ world-drift orchestration (Rising Rival, Giant Collapse, Continental Era Shift)
 out of League/Club/Transfer scattered policy and into one publisher of
 self-contained `WorldDrift*` events. League keeps fixtures and seasons; Club
 Management keeps ledger authority; Youth/Data Generator keep regen internals.
+FMX-136 applies the same owner split to opposition-template match prep:
+AI World Simulation is the canonical planning-source context for
+[[09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], while
+League Orchestration, Club Management and Transfer provide source
+facts/projections through published language.
 
 The **Statistics & Analytics** projection-only bounded context (FMX-94,
 [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], ratified
@@ -243,6 +248,11 @@ aggregation per GD-0019 §MVP hook model; Staff Operations publishes
 `SetPieceCoachReadinessUpdated` for routine-quality multipliers.
 Cross-save preset sharing stays scoped to the FMX-33 Community Overlay
 Pipeline territory per [[09-Decisions/ADR-0016-community-dataset-overrides]].
+Opposition-template match prep follows
+[[09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]]:
+AI World Simulation supplies the planning context, Tactics selects/publishes
+`OppositionTemplateSelectedForMatchV1`, and Match consumes
+`TacticSnapshot.oppositionTemplate` at `lineup_locked`.
 
 Stadium Operations was ratified 2026-05-28 via
 [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]]
@@ -725,19 +735,21 @@ not MVP requirements.
 
 - Should Match Engine be a separately deployable service in MVP? No -
   modular monolith. Extraction is allowed post-MVP if perf demands it.
-- Where do "AI manager" decisions sit? Current binding map: in the League
-  context (for league-wide AI decisions + structural events) and in Club +
-  Transfer (for per-club AI behaviour). FMX-91 proposes superseding the
-  league-wide structural-event slice with a dedicated AI World Simulation BC in
-  [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], but
-  that remains proposed until ratified. Existing AI behaviour is locked in
+- Where do "AI manager" decisions sit? Current binding map: **AI World
+  Simulation** owns AI manager/club planning decisions and world-drift policy
+  per [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]].
+  League Orchestration, Club Management and Transfer still own their source
+  facts and commands. Existing AI behaviour is locked in
   [[../60-Research/ai-manager-behaviour]] (gap D4, 2026-05-17):
   utility-AI core + FSM situation classifier + heuristic constraints;
   `packages/ai-manager/` framework-agnostic; uses pre-allocated
   `WorldAiMgmtRng` + `MatchAiRng` from D8. Transfer-specific valuation,
   sell pressure, clause pricing and negotiation ownership are detailed in
   [[transfer-market-architecture]] and
-  [[../60-Research/transfer-market-simulation]].
+  [[../60-Research/transfer-market-simulation]]. Opposition-template match prep
+  is the FMX-136 special case: AI World supplies the planning context, Tactics
+  selects/publishes the template and Match consumes the frozen snapshot via
+  [[09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]].
 - Where do player development, injuries, venue events and narrative events
   sit? Locked in
   [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]]:
