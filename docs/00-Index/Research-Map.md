@@ -25,6 +25,13 @@ design notes.
   owns `T0`, 72-hour checkpoints, BfDI/national-authority route checks,
   severity mapping, RACI and drill cadence. Decision remains pending Nico in
   [FMX-183 decision queue](../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15.md).
+- [Responsible Gaming Binding Record](../60-Research/responsible-gaming-binding-record-2026-06-15.md) -
+  FMX-193 Perplexity-first and source-checked packet for the draft
+  responsible-gaming invariant: no paid random rewards, no coercive retention
+  loops, dark-pattern release self-audit, optional local session reminders,
+  versioned public statement and compliance evidence home. Decisions remain
+  pending in
+  [FMX-193 decision queue](../40-Execution/fmx-193-responsible-gaming-decision-queue-2026-06-15.md).
 - [Babylon Renderer Stack Cleanup](../60-Research/babylon-vs-three-floor-tier-budget-2026-06-15.md) -
   FMX-158 Perplexity-first and source-checked cleanup for the ADR-0047 renderer
   amendment: Babylon.js is the only planned optional 3D presentation stack,

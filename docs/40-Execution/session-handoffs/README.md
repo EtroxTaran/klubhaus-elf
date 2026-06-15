@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-15-fmx-193-responsible-gaming]] - FMX-193 responsible-gaming
+  binding record packet: raw Perplexity/source-check captures, synthesis, draft
+  decision queue, draft ADR-0122 and draft compliance home. Pending Nico D1-D7;
+  recommended packet is all A for dedicated ADR + compliance home, hard no paid
+  random rewards, dark-pattern release self-audit, optional local reminders,
+  versioned statement now, PM-18 OSS/license split-out and independent guardrail
+  acceptance before monetization SKU ratification.
 - [[2026-06-15-fmx-168-tooling-currency]] - FMX-168 tooling-currency sweep:
   raw Perplexity/source-check captures, synthesis, draft Stack Currency Ledger
   and Nico decision queue. Recommended packet is D1-D5=A: one vault ledger now,

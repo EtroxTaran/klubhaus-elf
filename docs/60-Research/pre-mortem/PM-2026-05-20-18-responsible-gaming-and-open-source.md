@@ -3,7 +3,7 @@ title: "Pre-Mortem 2026-05-20 · 18 · Responsible-Gaming & Open-Source-Strategy
 status: current
 tags: [research, pre-mortem, responsible-gaming, dark-patterns, oss, license, agpl, 2026-Q2]
 created: 2026-05-20
-updated: 2026-06-09
+updated: 2026-06-15
 type: research
 binding: false
 report_id: PM-2026-05-20-18
@@ -84,6 +84,12 @@ updated: 2026-05-22
 **Mitigation.** (1) **End-of-Run-Screen** mit expliziter Liste: *Was bleibt (Carry-Slot, Hall-of-Fame, XP), was verschwindet (Squad, Liga, Vertrag)*. (2) Keine Zeitdruck-Choices auf Run-Ende-Screen (kein Countdown). (3) ”žAre you sure?"-Confirm bei voluntary Insolvency-Trigger. (4) Dark-Pattern-Self-Audit-Checklist (15 Items) pre-merge.
 
 **Verifikation.** Audit-Checkliste manueller Review pro neuer UI; halbjährliche externe Peer-Review.
+
+**FMX-193 update (2026-06-15).** Draft
+[[../../10-Architecture/09-Decisions/ADR-0122-responsible-gaming-and-dark-pattern-invariant]]
+and draft [[../../40-Compliance/responsible-gaming]] carry the no-countdown /
+no-paid-pressure and dark-pattern self-audit mitigation as a pending D1-D7
+decision packet.
 
 ### PM-2026-05-20-18-F-02 — License-Decision blockt alle anderen OSS-Decisions
 
@@ -180,6 +186,12 @@ updated: 2026-05-22
 
 **Verifikation.** Quartärlicher Monitor auf gluecksspielrecht.de + Pinsent-Masons-Newsletter; Trigger bei DSA-Annex-Update oder DE-GlüStV-Reform.
 
+**FMX-193 update (2026-06-15).** Draft
+[[../../10-Architecture/09-Decisions/ADR-0122-responsible-gaming-and-dark-pattern-invariant]]
+keeps the no-loot-box posture as a proposed hard no-paid-random-rewards
+invariant, source-checked in
+[[../raw-perplexity/raw-responsible-gaming-source-checks-2026-06-15]].
+
 ### PM-2026-05-20-18-F-04 — EU DSA Art. 25 + Digital Fairness Act 2026 = regulatorische Achse
 
 ```yaml
@@ -228,6 +240,11 @@ updated: 2026-05-22
 
 **Verifikation.** Dark-Pattern-Audit-Tabelle (siehe CORE OUTPUT) quartärlich review.
 
+**FMX-193 update (2026-06-15).** The dark-pattern gate now has a draft release
+self-audit in [[../../40-Compliance/responsible-gaming]] and a draft decision
+home in
+[[../../10-Architecture/09-Decisions/ADR-0122-responsible-gaming-and-dark-pattern-invariant]].
+
 ### PM-2026-05-20-18-F-05 — Time-Spent-Reminder = low-cost, high-trust-signal
 
 ```yaml
@@ -267,6 +284,11 @@ updated: 2026-05-22
 **Mitigation.** Opt-in Session-Clock + soft ”žDu spielst seit 90 min — Pause?"-Toast nach 90/120/180 min (~4 h Dev-Task). Settings → ”žWellness" Toggle. Default ON für angemeldete <18 (wir haben 16+-gate, also 16/17-y-o); default OFF für 18+ mit prominentem Hinweis.
 
 **Verifikation.** Telemetry-Event `wellness.session.long_break_prompt_shown`; SLO Coverage ≥ 98 %.
+
+**FMX-193 update (2026-06-15).** The recommended packet changes this to an
+optional local session reminder with no required telemetry by default, pending
+Nico D4 in
+[[../../40-Execution/fmx-193-responsible-gaming-decision-queue-2026-06-15]].
 
 ### PM-2026-05-20-18-F-06 — Children's Data: 16+-Gate korrekt für DE, aber Enforcement = Theater ohne Age-Assurance
 
@@ -546,6 +568,11 @@ updated: 2026-05-22
 ```
 
 **Mitigation.** Statement-URL in Repo `docs/40-Compliance/responsible-gaming.md` + live unter `/responsible-gaming`.
+
+**FMX-193 update (2026-06-15).** Draft
+[[../../40-Compliance/responsible-gaming]] now contains the versioned public
+statement source; publishing the product route remains pending Nico D5 and the
+future app/site route.
 
 ## License-Decision-Matrix (CORE OUTPUT)
 

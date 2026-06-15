@@ -51,6 +51,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-193 Responsible-gaming packet pending (2026-06-15).** Branch
+> `codex/fmx-193-responsible-gaming-binding-record` prepares the PM-18
+> responsible-gaming closure. Research
+> [[../60-Research/responsible-gaming-binding-record-2026-06-15]] (+ raw
+> Perplexity/source-check captures) grounds draft
+> [[../10-Architecture/09-Decisions/ADR-0122-responsible-gaming-and-dark-pattern-invariant]]
+> plus draft [[../40-Compliance/responsible-gaming]]. No new rule is binding
+> until Nico accepts D1-D7 in
+> [[../40-Execution/fmx-193-responsible-gaming-decision-queue-2026-06-15]].
+> Recommended packet: dedicated ADR + compliance home, hard no paid random
+> rewards/loot boxes/paid packs/paid trading, dark-pattern release self-audit,
+> optional local session reminders, versioned public statement now, PM-18
+> OSS/license split-out and independent guardrail acceptance before monetization
+> SKU ratification.
+
 > **FMX-158 Babylon renderer-stack cleanup applied (2026-06-15).** Branch
 > `codex/fmx-158-crosscutting-babylon` reconciles active renderer guidance after
 > [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]]:
