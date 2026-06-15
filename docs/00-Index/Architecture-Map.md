@@ -51,6 +51,9 @@ future-scope or historical context.
   Offline Sync owns client queue/retry/rebase UX, while Audit & Security owns
   authoritative replay/dedup policy and processed-command state through a
   synchronous Command Reception capability before domain validation.
+  FMX-196 prepares pending ADR-0120 for deterministic simulation QA:
+  replay evidence levels, seed tiers, soak metrics, same-WASM parity and
+  save-forward/replay compatibility; it is non-binding until Nico approval.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -95,6 +98,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0027 Postgres Data Model](../10-Architecture/09-Decisions/ADR-0027-postgres-data-model.md)
 - [ADR-0028 Postgres Transactional Outbox](../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox.md)
 - [ADR-0119 Command Reception Dedup Seam](../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam.md) - accepted FMX-164 seam: command replay/dedup is a synchronous Audit & Security-owned reception capability, not the client Offline Sync queue and not an outbox consumer.
+- [ADR-0120 Deterministic Simulation QA and Save-Forward Matrix](../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix.md) - draft FMX-196 proposal only: deterministic simulation QA artifact levels, seed tiers, same-WASM parity, soak metrics and save-forward/replay compatibility boundary.
 - [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 - [ADR-0047 Babylon.js 3D Presentation Engine](../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine.md)
@@ -144,6 +148,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [Presentation Renderer Strategy](../60-Research/presentation-renderer-strategy.md)
 - [Performance Budgets](../60-Research/performance-budgets.md)
 - [Determinism and Replay](../60-Research/determinism-and-replay.md)
+- [Deterministic Simulation QA Harness](../60-Research/deterministic-simulation-qa-harness-2026-06-15.md)
 - [Data Generators](../60-Research/data-generators.md)
 - [AI Manager Behaviour](../60-Research/ai-manager-behaviour.md)
 - [Narrative Content Pipeline](../60-Research/narrative-content-pipeline.md)

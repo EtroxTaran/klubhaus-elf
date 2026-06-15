@@ -117,6 +117,20 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > (deterministic sim/replay/soak/save-forward matrix) and FMX-197
 > (PWA/offline/mobile/rollback/content-QA gates).
 >
+> **FMX-196 Deterministic simulation QA packet prepared — pending Nico
+> decisions (2026-06-15).** Linear FMX-196 is `In Progress` on branch
+> `codex/fmx-196-deterministic-simulation-qa`. Research
+> [[../60-Research/deterministic-simulation-qa-harness-2026-06-15]]
+> (+ raw Perplexity/source-check captures) prepares draft
+> [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
+> plus draft [[../40-Quality/deterministic-simulation-qa-harness]]. No new
+> binding rule exists until Nico approves D1-D7. Recommended path is all A:
+> L1/L2/L3 replay evidence, T0-T4 seed tiers, ADR-0096 profile gate split,
+> hard invariants plus realism/economy envelopes, career-save forward window
+> with version-pinned match replays, same-WASM Wasmtime + browser parity, and
+> approval-gated rebaseline/retention policy. Decision record:
+> [[../40-Execution/fmx-196-deterministic-simulation-qa-decision-queue-2026-06-15]].
+>
 > **FMX-164 Replay/dedup ownership seam accepted — ADR-0119 binding
 > (2026-06-15).** Linear FMX-164 is carried on branch
 > `codex/fmx-164-replay-dedup-seam`. Research

@@ -1,12 +1,12 @@
 ---
 title: Quality
 status: current
-tags: [architecture, quality, determinism, offline-first, performance, security, accessibility, i18n]
+tags: [architecture, quality, determinism, offline-first, performance, security, accessibility, i18n, soak-test, save-forward, fmx-196]
 created: 2026-05-15
 updated: 2026-06-15
 type: arch
 binding: false
-related: [[08-Crosscutting]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0008-mobile-first-ui]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0005-save-format]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../40-Quality/test-strategy]], [[../60-Research/test-strategy-adr-2026-06-14]], [[../60-Research/performance-budgets]], [[../60-Research/determinism-and-replay]], [[../30-Implementation/ci-and-review-process]]
+related: [[08-Crosscutting]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0008-mobile-first-ui]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0005-save-format]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]], [[../40-Quality/test-strategy]], [[../40-Quality/deterministic-simulation-qa-harness]], [[../60-Research/test-strategy-adr-2026-06-14]], [[../60-Research/deterministic-simulation-qa-harness-2026-06-15]], [[../60-Research/performance-budgets]], [[../60-Research/determinism-and-replay]], [[../30-Implementation/ci-and-review-process]]
 ---
 
 # Quality
@@ -20,6 +20,10 @@ Accepted [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]] and current
 [[../40-Quality/test-strategy]] are the FMX-177 future code-phase test-strategy
 packet; they stay target-only until code-phase bootstrap creates real scripts
 and package/app paths.
+Draft [[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
+and [[../40-Quality/deterministic-simulation-qa-harness]] are the FMX-196
+simulation-specific QA packet; they remain non-binding until Nico approves
+D1-D7.
 
 > Project phase: research / analysis / architecture planning — no development. The scenarios
 > below are the acceptance targets the implementation will be held to, not yet-shipped behaviour.
@@ -126,9 +130,16 @@ artifacts, scoped Stryker mutation testing, 85/85/85/75 base coverage threshold
 and portable CI-cost posture with a future local `xAi` runner gate. Those
 details remain target-only until real code-phase targets exist.
 
+FMX-196 proposes the deterministic simulation specialization in draft
+[[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
+and [[../40-Quality/deterministic-simulation-qa-harness]]: replay evidence
+levels, seed tiers, same-WASM parity, soak reports and save-forward/replay
+compatibility. It is not a binding gate until Nico approves the decision queue.
+
 ## Related
 
 - [[../30-Implementation/ci-and-review-process]] — enforcement model · [[../30-Implementation/agent-workflow-pattern]] — review phases
 - [[../40-Quality/test-strategy]] — FMX-177 current test strategy · [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]] — accepted ADR
+- [[../40-Quality/deterministic-simulation-qa-harness]] — FMX-196 draft simulation QA runbook · [[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]] — draft ADR
 - [[09-Decisions/ADR-0021-revised-tech-stack]] — toolchain decision
 - [[08-Crosscutting]] — arc42 sibling

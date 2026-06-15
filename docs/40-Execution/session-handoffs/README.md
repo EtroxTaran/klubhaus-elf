@@ -65,6 +65,12 @@ This is the **single** canonical handoff location. (An older
   Audit & Security owns authoritative replay/dedup through synchronous Command
   Reception, Offline Sync owns client queue/retry/rebase UX, and ADR-0028 stays
   post-commit publication/domain mutation trail.
+- [[2026-06-15-fmx-196-deterministic-simulation-qa]] - FMX-196 deterministic
+  simulation QA packet: raw Perplexity/source-check captures, synthesis, draft
+  decision queue, draft ADR-0120 and draft quality runbook. Pending Nico D1-D7;
+  recommended packet is all A for replay evidence levels, seed tiers, profile
+  gates, soak metrics, save-forward boundary, same-WASM parity and
+  rebaseline/retention policy.
 - [[2026-06-15-fmx-156-notification-platform]] - FMX-156 Notification platform
   ratification packet: ADR-0102 normalized to `draft` / `binding: false`,
   raw Perplexity/source-check captures and synthesis preserved, and D1-D5

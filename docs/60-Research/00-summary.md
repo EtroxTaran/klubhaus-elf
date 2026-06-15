@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, privacy, gdpr, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, replay-protection, idempotency, command-reception, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-164, fmx-177, fmx-180, fmx-183, fmx-185, fmx-191, fmx-194, fmx-195]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, privacy, gdpr, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, replay-protection, idempotency, command-reception, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-164, fmx-177, fmx-180, fmx-183, fmx-185, fmx-191, fmx-194, fmx-195, fmx-196]
 updated: 2026-06-15
 ---
 
@@ -146,6 +146,19 @@ a security rejection before domain validation. Decision record:
 captures:
 [[raw-perplexity/raw-replay-dedup-command-reception-2026-06-15]],
 [[raw-perplexity/raw-replay-dedup-source-checks-2026-06-15]].
+
+## Deterministic Simulation QA Harness (FMX-196, 2026-06-15)
+
+[[deterministic-simulation-qa-harness-2026-06-15]] preserves the FMX-196
+research layer for deterministic simulation QA, replay evidence, seed tiers,
+same-WASM parity, soak metrics and save-forward compatibility. It grounds draft
+[[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
+plus draft [[../40-Quality/deterministic-simulation-qa-harness]]. No new rule is
+binding until Nico answers D1-D7 in
+[[../40-Execution/fmx-196-deterministic-simulation-qa-decision-queue-2026-06-15]].
+Raw captures:
+[[raw-perplexity/raw-deterministic-simulation-qa-harness-2026-06-15]],
+[[raw-perplexity/raw-deterministic-simulation-qa-source-checks-2026-06-15]].
 
 ## Monorepo Workspace Bootstrap (FMX-179, 2026-06-14)
 

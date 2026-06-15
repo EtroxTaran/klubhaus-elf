@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, tooling, pnpm, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-183, fmx-185, fmx-191, fmx-194, fmx-195]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, tooling, pnpm, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-183, fmx-185, fmx-191, fmx-194, fmx-195, fmx-196]
 created: 2026-05-16
 updated: 2026-06-15
 type: index
@@ -87,6 +87,16 @@ test-strategy ADR and durable quality note.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-test-strategy-adr-2026-06-14]] | Tiered TypeScript/PWA/game-simulation test strategy, Vitest/Playwright split, fast-check replay evidence, Stryker scope, accessibility/performance/security gates and CI runner cost posture | [[../test-strategy-adr-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]] · [[../../40-Quality/test-strategy]] |
+
+## FMX-196 deterministic simulation QA harness (2026-06-15)
+
+Perplexity-first research and targeted source checks for the draft
+deterministic simulation QA harness, save-forward matrix and ADR-0120 packet.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-deterministic-simulation-qa-harness-2026-06-15]] | Perplexity discovery pass for replay artifact levels, seed tiers, soak statistics, save-forward policy, same-WASM parity and game precedents | [[../deterministic-simulation-qa-harness-2026-06-15]] · [[../../40-Quality/deterministic-simulation-qa-harness]] · [[../../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]] |
+| [[raw-deterministic-simulation-qa-source-checks-2026-06-15]] | Source checks for deterministic lockstep, Factorio desync reports, fast-check replay reports, Playwright traces, WebAssembly numeric semantics, Football Manager save compatibility, StatsBomb open data and rollback netcode precedent | [[../deterministic-simulation-qa-harness-2026-06-15]] |
 
 ## FMX-153 LLM prose replay determinism floor (2026-06-14)
 
