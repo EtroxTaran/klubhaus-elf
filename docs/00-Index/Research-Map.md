@@ -18,6 +18,11 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Babylon Renderer Stack Cleanup](../60-Research/babylon-vs-three-floor-tier-budget-2026-06-15.md) -
+  FMX-158 Perplexity-first and source-checked cleanup for the ADR-0047 renderer
+  amendment: Babylon.js is the only planned optional 3D presentation stack,
+  Canvas 2D remains match-authoritative and exact floor-tier thresholds stay a
+  future implementation measurement gate.
 - [Notification Offline Delivery and Ratification Packet](../60-Research/notification-offline-delivery-2026-06-15.md) -
   FMX-156 Perplexity-first and source-checked packet for ADR-0043 -> ADR-0102:
   inbox-first offline replay, Web Push/native push as best-effort
@@ -637,7 +642,7 @@ Tagging** in `findings-registry.md`.
 - [Telemetry, Privacy and GDPR - Locked Decisions](../60-Research/telemetry-privacy.md) — D11 (2026-05-17). Self-hosted diagnostics, consent categories, PII redaction, capped offline telemetry queues, retention, DSAR impact and ADR-0017 inputs.
 - [GDPR Compliance — RoPA, lawful basis, retention, DPIA, DPO](../60-Research/gdpr-compliance.md) — F6 (2026-05-18, `current binding`). Full Article 30 Record of Processing Activities (8 activities × 6 data categories); lawful basis per activity (Art. 6(1)(b) contract for the core service + Art. 6(1)(f) legitimate interest for security + observability with two formal LIAs); confirmed **no Art. 9 special categories** (passkey credentials are public-key material, not biometric); 16+ self-declaration age gate (no parental-consent flow at MVP, no DOB collected); **no third-country transfers** (sidesteps Chapter V SCC / TIA / DPF paperwork entirely; GitHub explicitly assessed as non-processor for user data); processor Art. 28 DPA list (Hetzner + transactional email vendor only); full per-category retention schedule with permanent-audit-but-pseudonymised-on-Art.17 policy and cryptographic erasure via F5 envelope burn; **voluntary DPIA** with three-part legitimate-interest assessments (security anomaly + observability); **DPO not required** (Art. 37 + § 38 BDSG thresholds both below — founder designated as Privacy Lead); compliance overhead estimate (~7-15 founder days launch + ~3-5 days/year ongoing); legal-landscape framing (GDPR yes / ePrivacy yes / DSA de minimis / DMA no / AI Act low-risk / NIS2 no); future-proof triggers documented (payments / analytics / external IdP / scaling). Companion to [[../30-Implementation/privacy-and-consent]]. Anchors on D11 telemetry-privacy + F1 threat-model + F2 / F3 / F5; closes F2 FU-6 + F2 FU-7 + F3 FU-8 + F5 FU-8 + F5 FU-9.
 - [Performance Budgets - Device Matrix, CWV Targets, CI Strategy](../60-Research/performance-budgets.md) — D9 (2026-05-17).
-- [Presentation Renderer Strategy - Canvas 2D plus Three/R3F](../60-Research/presentation-renderer-strategy.md) — 2026-05-22. Promotes the attached renderer report and follow-up review into the decision basis for ADR-0041: MVP match remains Canvas 2D; optional post-MVP 3D/2.5D scenes are presentation-only, lazy-loaded, device-gated and fallback-safe; Three/R3F is the only planned optional 3D stack.
+- [Presentation Renderer Strategy - Canvas 2D plus Babylon.js](../60-Research/presentation-renderer-strategy.md) — 2026-05-22, amended by ADR-0047 and cleaned up by FMX-158 on 2026-06-15. Promotes the attached renderer report and follow-up review into the decision basis for ADR-0041: MVP match remains Canvas 2D; optional post-MVP 3D/2.5D scenes are presentation-only, lazy-loaded, device-gated and fallback-safe; Babylon.js is the only planned optional 3D stack.
 - [Data Generators - Names, Crests, Cities, Clubs, Players - Locked Decisions](../60-Research/data-generators.md) — D2 (2026-05-17).
 - [AI Manager Behaviour - Architecture, Personalities, Difficulty, World Drift](../60-Research/ai-manager-behaviour.md) — D4 (2026-05-17).
 - [Tactics & Formations - Mobile-first Manager Game Tactics Depth](../60-Research/tactics-and-formations.md) — D3 (2026-05-17).

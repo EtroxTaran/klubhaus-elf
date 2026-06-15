@@ -225,7 +225,8 @@ Match and presentation render policy:
   roadmap (permanent product decision, gap D9). [[09-Decisions/ADR-0029-3d-presentation-layer]]
   scoped the ban to the live match render pipeline; [[09-Decisions/ADR-0041-presentation-renderer-strategy]]
   tightened the renderer portfolio so Canvas 2D remains the match renderer and
-  Three.js/R3F is the only planned optional 3D presentation stack.
+  [[09-Decisions/ADR-0047-babylon-3d-presentation-engine]] makes Babylon.js the
+  only planned optional 3D/2.5D presentation stack.
 - Two modes only: Text & Stats (first-class, Floor default) and
   2D canvas (primary, Standard / Premium default). Canvas frame cap
   30 fps on Standard, 60 fps on Premium.

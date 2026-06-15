@@ -3,7 +3,7 @@ title: MVP Implementation Roadmap
 status: current
 tags: [implementation, mvp, roadmap, roguelite, slices]
 created: 2026-05-19
-updated: 2026-06-14
+updated: 2026-06-15
 type: implementation
 binding: true
 related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[hybrid-online-pwa-strategy]], [[club-economy-accounting-ledger]], [[ai-narration-contract-testing-framework]], [[code-phase-dod-transition-contract]]
@@ -214,8 +214,8 @@ build on top of the loop validated by slices 0–6.
 | Goal | `/stadion` renders isometric 3D on Standard / Premium and existing 2D on Floor; same read-model on both paths |
 | Contexts | Club (read), Notification (telemetry events) |
 | Vault | [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]], [[3d-presentation-architecture]], [[../20-Features/feature-3d-presentation-layer]] |
-| UI | `SceneCanvas`, `CapabilityGate`, `IsoStadium` (+ 2D pendant story); 2D `stadium/*` composites preserved |
-| Tests | Unit (`scene-mapper/club-iso-stadium`), component (`CapabilityGate` all 6 branches), R3F snapshot (≤ 150 draw calls), e2e (provoked `WEBGL_lose_context`) |
+| UI | `SceneHost`, `CapabilityGate`, `IsoStadium` (+ 2D pendant story); 2D `stadium/*` composites preserved |
+| Tests | Unit (`scene-mapper/club-iso-stadium`), component (`CapabilityGate` all 6 branches), Babylon scene instrumentation (≤ 150 draw calls), e2e (provoked `WEBGL_lose_context`) |
 | Authority | Read-only (consumes confirmed club read-model) |
 | DoD | Bundle initial-critical unchanged; `scene-3d` chunk lazy-loaded; LICENSES.md complete |
 

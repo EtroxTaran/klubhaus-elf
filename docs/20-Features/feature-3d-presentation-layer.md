@@ -1,9 +1,9 @@
 ---
 title: Feature — 3D Presentation Layer (Stadium, Cutscenes, Backdrop)
 status: draft
-tags: [feature, presentation, 3d, stadium, cutscene, mobile, pwa]
+tags: [feature, presentation, 3d, babylon, stadium, cutscene, mobile, pwa]
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-06-15
 type: feature
 binding: false
 priority: post-mvp
@@ -19,6 +19,8 @@ superseded_by:
 
 > Authority: [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]
 > Architecture: [[../30-Implementation/3d-presentation-architecture]]
+> Renderer: Babylon.js per
+> [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]]
 > Roadmap: Phase 2 (after MVP slice 6) — see
 > [[../30-Implementation/mvp-implementation-roadmap]].
 
@@ -62,12 +64,13 @@ and [[../60-Research/performance-budgets]].
 
 ### Out of scope (explicit)
 
-- Live 3D match render (out of scope per ADR-0029 §10; the match renderer is governed by [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]] — Canvas 2D → PixiJS v8 WebGL — behind [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]]).
+- Live 3D match render (out of scope per ADR-0029 §10; the match renderer is governed by [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]] — Canvas 2D, PixiJS no longer planned — behind [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]]).
 - Animated full-stadium crowd (deferred indefinitely).
 - In-house Blender → glTF asset pipeline (separate ADR if needed).
 - Plot-by-plot SimCity stadium layout (Expert tier; tracked in
   [[feature-stadium-builder]]).
-- WebGPU renderer path (separate future ADR when R3F WebGPU stabilises).
+- WebGPU renderer path (separate future ADR when Babylon's WebGPU path and the
+  shipping device matrix are production-ready).
 - Capacitor WebView packaging itself (separate beat).
 
 ## Acceptance Criteria
@@ -84,8 +87,7 @@ and [[../60-Research/performance-budgets]].
   Standard / Premium and the existing 2D composites on Floor.
 - [ ] Storybook ships 3D and 2D pendant stories for the iso-stadium
   composite (same data fixture).
-- [ ] Vitest snapshot of the R3F scene tree asserts
-  `renderer.info.render.calls ≤ 150`.
+- [ ] Vitest/Babylon scene instrumentation asserts draw calls ≤ 150.
 - [ ] Provoked `WEBGL_lose_context` recovers via `webglcontextrestored`
   on first event; second loss within 60 s trips to the 2D fallback.
 - [ ] Initial-critical bundle unchanged; `scene-3d` chunk lazy-loaded.
@@ -96,8 +98,8 @@ and [[../60-Research/performance-budgets]].
 
 ### Slice 7b — Stadium backdrop
 
-- [ ] `<StadiumBackdrop>` composite renders a single static frame after
-  init (`frameloop="never"` after first frame).
+- [ ] `<StadiumBackdrop>` composite renders a single static frame after init
+  and then returns to demand-only rendering.
 - [ ] Three presets: `stadium-silhouette`, `floodlight`, `rainy-night`.
 - [ ] HDRI lazy-loaded; bundle inkrement < 60 kB gzipped on top of the
   shared 3D chunk.

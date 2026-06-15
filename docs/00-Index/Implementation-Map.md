@@ -24,6 +24,10 @@ unless re-opened by a current issue or accepted ADR.
 - [Code-CI Pipeline Contract](../60-Research/code-ci-pipeline-2026-06-15.md) - FMX-175 accepted future required context package: active `docs-check` / `linear-id`, future `quality` / `e2e` / `security` only after real code scripts, workflows and burn-in; D-002 names `cursor-smoke` / `configured` are historical only.
 - [pnpm Tooling Currency](../60-Research/pnpm-tooling-currency-2026-06-15.md) - FMX-195 source-checked active pnpm pin refresh to 11.7.0; code bootstrap still re-checks versions before adding workspace dependencies.
 - [Notification Offline Delivery and Ratification Packet](../60-Research/notification-offline-delivery-2026-06-15.md) - FMX-156 decision-pending packet for ADR-0102: inbox-first replay, Web Push/native push as best-effort wake/attention channels, conservative push suppression and package-version routing.
+- [3D Presentation Architecture](../30-Implementation/3d-presentation-architecture.md) -
+  post-MVP presentation-only Babylon.js scene-host guidance behind the
+  `SceneDescriptor` / `CapabilityGate` seam; live match render remains Canvas
+  2D and no 3D dependency is added in the docs-only phase.
 - [Monorepo Workspace Bootstrap Plan](../30-Implementation/monorepo-workspace-bootstrap-plan.md) - FMX-179 non-binding scaffold plan for `apps/web` + `packages/*`: package catalog, namespace, Nx/pnpm/TypeScript linking, no-placeholder gates and bounded-context-map patch after ADR-0114 approval.
 - [Compliance Evidence](../40-Compliance/README.md) - legal/compliance artifact evidence home; currently includes the non-binding FMX-194 monetization legal gates checklist and FMX-185 age-assurance/rating evidence packet.
 - [Cursor Cloud Agent Workflow](../30-Implementation/cursor-cloud-agent-workflow.md)

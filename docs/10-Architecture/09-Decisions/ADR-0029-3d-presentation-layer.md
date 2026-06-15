@@ -1,9 +1,9 @@
 ---
 title: ADR-0029 3D Presentation Layer (Stadium, Cutscenes, Backdrop)
 status: accepted
-tags: [adr, presentation, 3d, three-js, r3f, stadium, cutscene, pwa, mobile]
+tags: [adr, presentation, 3d, babylon, stadium, cutscene, pwa, mobile]
 created: 2026-05-20
-updated: 2026-06-11
+updated: 2026-06-15
 accepted_at: 2026-05-20
 type: adr
 binding: true
@@ -36,10 +36,10 @@ product.
 This ADR makes that distinction explicit and reusable for future
 contributors who would otherwise stop at the literal "no 3D ever" wording.
 
-> **AMENDED 2026-05-22 by [[ADR-0041-presentation-renderer-strategy]].** The
-> Three.js/R3F 3D Presentation Layer remains accepted. ADR-0041 tightens the
-> renderer portfolio: PixiJS is no longer a planned match-view upgrade, and
-> Babylon.js / PlayCanvas are not planned fallback engines.
+> **AMENDED 2026-05-22 by [[ADR-0041-presentation-renderer-strategy]].** The 3D
+> Presentation Layer remains accepted. ADR-0041 tightens the renderer portfolio:
+> PixiJS is no longer a planned match-view upgrade, and parallel fallback
+> engines are not planned.
 
 > **AMENDED 2026-05-27 by [[ADR-0047-babylon-3d-presentation-engine]].** §2's framework
 > choice is superseded: the optional 3D engine is now **Babylon.js** (not Three.js/R3F).
@@ -110,17 +110,19 @@ A 3D Presentation Layer is permitted **only** for the three use cases in
 remains the locked 2D Canvas + Text & Stats policy from
 [[../../60-Research/performance-budgets]] §6.
 
-### 2. Framework: Three.js + React Three Fiber
+### 2. Framework: Babylon.js
 
-R3F is adopted as the canonical 3D Presentation framework. Babylon.js
-and PlayCanvas are not adopted. ADR-0041 later tightens this from "future
-switch reserved" to "not planned unless a superseding ADR proves measured
-Three/R3F failure"; the `SceneDescriptor` contract below keeps domain code
-independent from renderer APIs.
+ADR-0047 supersedes this section's original Three.js/R3F framework choice:
+Babylon.js is the canonical optional 3D Presentation framework. Three.js/R3F and
+PlayCanvas are not planned fallback engines. A future renderer change requires a
+new ADR with measured Babylon.js failure, bundle and device data, plus a feature
+spec that cannot be met with the chosen stack.
 
-Packages permitted: `three`, `@react-three/fiber`, `@react-three/drei`,
-`@react-three/offscreen`, `three-stdlib`. No further 3D packages
-without a new ADR.
+No 3D packages are committed while the repo is docs-vault-only. When the
+implementation phase reaches this layer, the Babylon package set must be
+source-checked for the current stable version, imported modularly, pinned
+exactly and kept behind the `SceneDescriptor` contract below so domain code
+stays independent from renderer APIs.
 
 ### 3. SceneDescriptor as the hard boundary
 
@@ -158,14 +160,17 @@ so the visual diff is auditable.
 
 ### 5. Performance discipline is enforced, not aspirational
 
-- `<Canvas frameloop="demand" dpr={[1, 2]}>` for the non-animated iso
-  stadium view.
-- `react-three-offscreen` worker render path for all 3D composites where
-  `OffscreenCanvas` is supported (iOS Safari ≥ 16.4, Chromium, Firefox).
-- Draw-call budget ≤ 150 per scene, enforced via a Vitest test that
-  reads `renderer.info.render.calls` from `@react-three/test-renderer`.
-- All repeatable stadium modules via `InstancedMesh`.
-- glTF assets Draco-compressed; textures ≤ 1024×1024; HDRI ≤ 1 k.
+- Babylon scenes use explicit render-loop control: mostly static management
+  scenes render on demand or when descriptors/animations change; active
+  cutscenes may render continuously only for their scripted duration.
+- OffscreenCanvas worker rendering is a future capability gate, not a baseline;
+  use the main-thread Babylon adapter until a measured worker path is approved
+  for the target device matrix.
+- Draw-call budget ≤ 150 per scene, enforced through Babylon scene/engine
+  instrumentation in the implementation phase.
+- All repeatable stadium modules use Babylon thin instances or instances.
+- glTF/GLB assets use progressive loading where useful; textures ≤ 1024×1024;
+  HDRI ≤ 1 k.
 - The 3D code path lives in a dedicated Vite `manualChunk` and is
   lazy-loaded by route; initial-critical bundle stays unchanged.
 
@@ -231,26 +236,22 @@ plan and the precising statements in
 and **GSAP** for choreographed timelines including in-canvas tweening.
 For 3D Presentation composites under this ADR:
 
-- Scene-state values (camera position, light intensity, cutscene
-  beats, scripted character motion) MAY be tweened with **GSAP** —
-  the same state-tweening pattern ADR-0022 prescribes for the Canvas 2D
-  match view. R3F's `useFrame` reads the GSAP-tweened state on each
-  demand frame.
+- Scene-state values (camera position, light intensity, cutscene beats,
+  scripted character motion) MAY be tweened with **GSAP** — the same
+  state-tweening pattern ADR-0022 prescribes for the Canvas 2D match view. The
+  Babylon adapter reads the GSAP-tweened state on each scheduled render.
 - DOM overlays around the canvas (skip button, controls, post-cutscene
   CTA) use **Motion** per ADR-0022.
-- No third animation library is permitted under this ADR. R3F's
-  built-in `useAnimations` for glTF clip playback is in addition to,
-  not instead of, GSAP timeline orchestration.
+- No third animation library is permitted under this ADR. Babylon's built-in
+  glTF animation clip playback is in addition to, not instead of, GSAP timeline
+  orchestration.
 
 ## Rationale
 
-R3F over Babylon.js / PlayCanvas: the smallest bundle, the only option
-with native React bindings, on-demand rendering (battery-friendly for
-the non-animated stadium iso view), and the best fit for our existing
-TanStack-Start + shadcn + Storybook + Worker stack. Babylon's cinematic
-edge (Animation Retargeting, Node Particle Editor) is real but is
-out-of-scope for the MVP of this layer (stock assets, simple trophy
-lift) and is reserved as a future-ADR escalation trigger.
+Babylon.js over Three.js/R3F / PlayCanvas is recorded by ADR-0047: one optional
+engine-grade 3D stack for iso stadium/campus scenes, cutscenes and backdrops,
+without weakening the Canvas 2D match-render rule. The important architectural
+choice in this ADR is still the renderer boundary; Babylon sits behind it.
 
 A hard renderer boundary via `SceneDescriptor` is the single
 non-negotiable architectural choice. Every framework Bericht we read
@@ -274,13 +275,15 @@ Positive:
   improvised.
 - 2D family is preserved as a permanent first-class fallback rather
   than ripped out.
-- Renderer (Three.js) is swappable later (Babylon.js, WebGPU, even
-  offline Unreal render service) without touching domain code.
+- Renderer implementation remains swappable later by ADR (Three.js/R3F,
+  PlayCanvas, WebGPU-specific adapter, or offline render service) without
+  touching domain code.
 - Storybook 2D-pendant rule keeps the design system auditable.
 
 Negative:
 
-- Adds ~168 kB (gzipped, lazy-loaded) of base 3D code in its own chunk.
+- Adds a larger lazy-loaded 3D code path in its own chunk; implementation must
+  validate exact package size against current package versions and budgets.
 - Requires explicit fallback maintenance: every new 3D composite must
   ship its 2D counterpart and a `CapabilityGate` switch.
 - Introduces an asset pipeline (even stock-only), a new license-tracking
@@ -293,12 +296,11 @@ Future:
 
 - A walkout cutscene (Slice 7d) extends this ADR's cutscene category
   without further decision work, provided performance budgets hold.
-- WebGPU migration is a separate future ADR once R3F's WebGPU renderer
-  reaches production stability and our shipping device matrix has the
-  support.
-- If `Sparkles`/drei particles look too thin for trophy/goal moments,
-  the escalation path is a Babylon.js cutscene engine alongside R3F for
-  iso stadium — a new ADR that this one explicitly anticipates.
+- WebGPU migration is a separate future ADR once Babylon's WebGPU path and our
+  shipping device matrix have production-level support.
+- If Babylon's built-in particles or animation tooling are still insufficient
+  for trophy/goal moments, the escalation path is a future cinematic-pipeline
+  ADR, not an additional planned runtime engine.
 - An in-house Blender pipeline becomes a separate ADR if stock assets
   feel too generic at scale.
 
@@ -310,8 +312,8 @@ Future:
 - Every 3D composite MUST ship a 2D pendant story in Storybook.
 - The `CapabilityGate` MUST be the only entry point that decides 2D vs
   3D rendering; route components MUST NOT branch on tier directly.
-- `<Canvas>` instances MUST set `frameloop="demand"` unless an active
-  cutscene requires continuous render.
+- Babylon scene hosts MUST use explicit render-loop scheduling and avoid
+  continuous rendering unless an active cutscene requires it.
 - All 3D assets MUST be CC0/MIT and tracked in
   `public/assets/3d/LICENSES.md`.
 - A new 3D composite PR MUST update
