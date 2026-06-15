@@ -65,6 +65,20 @@ The current state is:
 - Evidence gates remain tracked through implementation: tests, drills, legal
   sign-off, release artifacts and production telemetry.
 
+## Notification Offline Delivery and Ratification Packet (FMX-156, 2026-06-15)
+
+[[notification-offline-delivery-2026-06-15]] preserves the decision-pending
+ADR-0043 -> ADR-0102 Notification platform packet. It recommends keeping
+ADR-0102 as the dedicated successor after Nico approval, using Postgres + Dexie
+inbox as the only read/replay surface, treating Web Push/native push as
+best-effort wake/attention channels, reconciling via watermark replay plus
+`DeliveryAttempt` idempotency and routing exact package pins to the
+dependency-currency/code-phase workflow. Raw captures:
+[[raw-perplexity/raw-notification-offline-delivery-2026-06-15]],
+[[raw-perplexity/raw-notification-offline-delivery-source-checks-2026-06-15]].
+Decision queue:
+[[../40-Execution/fmx-156-notification-platform-decision-queue-2026-06-15]].
+
 ## Code-Phase DoD Transition Contract (FMX-180, 2026-06-14)
 
 [[code-phase-dod-transition-contract-2026-06-14]] closes the research layer for
