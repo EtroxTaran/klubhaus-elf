@@ -2,7 +2,7 @@
 title: Design System — Klubhaus DS
 status: current
 tags: [architecture, design, ui, accessibility]
-updated: 2026-06-14
+updated: 2026-06-15
 ---
 
 # Design System — Klubhaus DS
@@ -197,8 +197,11 @@ Recorded so a future maintainer understands non-obvious choices:
   projects for `packages/**`. In the current docs-only repo those paths and
   scripts do not exist. They become active only after approved bootstrap creates
   real package targets; empty `packages/**` coverage gates are forbidden.
-  Target thresholds remain 85/85/85/75 per-file for packages with meaningful
-  product logic and tests.
+  FMX-177 / accepted
+  [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]] now owns the
+  coverage-threshold decision: 85/85/85/75 per-file for packages with
+  meaningful product logic and tests, target-only until code-phase bootstrap
+  creates real package targets.
 - **Coverage scoping**: framework wiring (`routes/**`, `routeTree.gen.ts`,
   server/router entry) and test utilities are excluded — *not* a threshold
   relaxation; all product logic stays gated.

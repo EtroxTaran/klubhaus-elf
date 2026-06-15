@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-14
+updated: 2026-06-15
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-14-fmx-177-test-strategy]] - FMX-177 test strategy and quality
+  gates packet: raw Perplexity/source-check captures, synthesis, decision
+  record, accepted ADR-0118 and current quality note. Nico accepted D1-D4=A,
+  D5=A (`85/85/85/75`) and D6=A-custom: portable GitHub-hosted path plus
+  future local `xAi` runner capability, inactive until a separate
+  compatibility/isolation/secrets/maintenance/cost gate proves it. Follow-ups:
+  FMX-196 deterministic sim/replay/soak/save-forward matrix and FMX-197
+  PWA/offline/mobile/rollback/content-QA gates.
 - [[2026-06-14-fmx-153-llm-prose-replay-determinism]] - FMX-153 LLM prose
   replay determinism packet: raw Perplexity/source-check captures, synthesis,
   decision queue and accepted ADR-0117. Approved packet is D1/D2/D3 = A/A/A:

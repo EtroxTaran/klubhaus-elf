@@ -1,9 +1,9 @@
 ---
 title: "Pre-Mortem 2026-05-20 · 16 · Test-Strategy-Depth"
-status: current
+status: superseded
 tags: [research, pre-mortem, testing, vitest, playwright, stryker, fast-check, determinism, 2026-Q2]
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-15
 type: research
 binding: false
 report_id: PM-2026-05-20-16
@@ -20,9 +20,23 @@ related:
   - [[PM-2026-05-20-10-accessibility-and-inclusion]]
   - [[PM-2026-05-20-12-long-term-balance-and-meta]]
   - [[../determinism-and-replay]]
+  - [[../test-strategy-adr-2026-06-14]]
+  - [[../../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]]
+  - [[../../40-Quality/test-strategy]]
+superseded_by:
+  - [[../test-strategy-adr-2026-06-14]]
+  - [[../../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]]
+  - [[../../40-Quality/test-strategy]]
 ---
 
 # Pre-Mortem 2026-05-20 · 16 · Test-Strategy-Depth
+
+> **Superseded 2026-06-14 by FMX-177.** This report remains historical
+> research input. It is no longer the current source of test-strategy
+> instructions because it names stale tool assumptions and the dead ADR-0040
+> placeholder. Use [[../test-strategy-adr-2026-06-14]], accepted
+> [[../../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]]
+> and current [[../../40-Quality/test-strategy]] for the FMX-177 decision.
 
 > **Failure-Headlines**
 > - ”žTest-Pyramid kollabiert: Unit-only, kein Mutation/Property — Off-by-One in Goal-Diff-Tiebreaker shipped — Replay zwischen v1.4 → v1.5 weg."

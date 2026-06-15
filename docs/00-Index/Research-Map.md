@@ -3,7 +3,7 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-06-14
+updated: 2026-06-15
 type: map
 binding: false
 related: [[Current-State]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/match-engine-core-model-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-real-world-envelopes-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-action-utility-models-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-game-precedents-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-calibration-harness-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-source-checks-2026-06-13]], [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-real-world-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-ddd-accounting-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-games-2026-06-12]], [[../60-Research/quality-profile-enum-settlement-path-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-enum-ddd-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-real-world-football-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-sim-games-2026-06-12]], [[../60-Research/raw-perplexity/raw-pre1-contract-replacement-2026-06-13]], [[../60-Research/chart-of-accounts-and-category-catalog-2026-06-13]], [[../60-Research/raw-perplexity/raw-chart-of-accounts-game-ledger-2026-06-13]], [[../60-Research/raw-perplexity/raw-football-club-accounting-families-2026-06-13]], [[../60-Research/raw-perplexity/raw-sports-management-finance-ui-2026-06-13]], [[../60-Research/raw-perplexity/raw-chart-of-accounts-versioning-2026-06-13]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]], [[../60-Research/raw-perplexity/raw-roguelite-run-end-thresholds-2026-06-14]], [[../60-Research/raw-perplexity/raw-roguelite-comparable-games-2026-06-14]], [[../60-Research/raw-perplexity/raw-roguelite-meta-progression-best-practices-2026-06-14]]
@@ -203,6 +203,22 @@ design notes.
   [[../60-Research/raw-perplexity/raw-llm-prose-replay-determinism-floor-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-narrative-replay-game-precedents-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-llm-display-snapshot-source-checks-2026-06-14]].
+
+## Test Strategy and Quality Gates (FMX-177, 2026-06-14)
+
+- [[../60-Research/test-strategy-adr-2026-06-14]] -
+  FMX-177 synthesis for replacing the stale pre-mortem `ADR-0040`
+  test-strategy target with accepted
+  [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]]
+  and current [[../40-Quality/test-strategy]]. Records Nico's accepted D1-D6
+  packet: tiered 16-layer quality strategy, Vitest projects + Playwright
+  E2E/PWA split, replayable fast-check property evidence, scoped Stryker
+  nightly/release first, 85/85/85/75 per-file base threshold and portable CI
+  with future local `xAi` runner capability gated by later compatibility,
+  isolation, secret, maintenance and cost proof. Decision record:
+  [[../40-Execution/fmx-177-test-strategy-decision-queue-2026-06-14]]. Raw
+  capture:
+  [[../60-Research/raw-perplexity/raw-test-strategy-adr-2026-06-14]].
 
 ## Hidden-Attribute Reveal Owner Reconciliation (FMX-154, 2026-06-14)
 
@@ -552,7 +568,7 @@ Tagging** in `findings-registry.md`.
 - [[../60-Research/pre-mortem/PM-2026-05-20-13-community-moderation-and-ugc]] — 11 Findings, max Score 25
 - [[../60-Research/pre-mortem/PM-2026-05-20-14-brand-pr-and-crisis-comms]] — 9 Findings + 12 Re-Branding-Candidates, max Score 25
 - [[../60-Research/pre-mortem/PM-2026-05-20-15-browser-device-storage-matrix]] — 9 Findings, max Score 25
-- [[../60-Research/pre-mortem/PM-2026-05-20-16-test-strategy-depth]] — 10 Findings + 16-Layer-Test-Pyramid, max Score 20
+- [[../60-Research/pre-mortem/PM-2026-05-20-16-test-strategy-depth]] — 10 Findings + 16-Layer-Test-Pyramid, max Score 20; superseded as current instruction source by FMX-177 [[../60-Research/test-strategy-adr-2026-06-14]]
 - [[../60-Research/pre-mortem/PM-2026-05-20-17-vendor-lifecycle-and-sustainability]] — 12 Findings + Vendor-Risk-Matrix, max Score 25
 - [[../60-Research/pre-mortem/PM-2026-05-20-18-responsible-gaming-and-open-source]] — 12 Findings + License-Decision-Matrix, max Score 20
 
