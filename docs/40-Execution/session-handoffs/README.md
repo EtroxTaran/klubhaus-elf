@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-15-fmx-130-career-bundestrainer-reconciliation]] - FMX-130 Career
+  Bundestrainer reconciliation: raw Perplexity/source-check captures,
+  synthesis, accepted decision queue and Career-mode cleanup. Nico chose
+  D1-D3=A/A/A: keep GD-0033's `rep >= 75 AND 5 seasons` gate with no trophy
+  shortcut, mark hard board-confidence numbers as calibration debt, and use
+  per-region reputation plus a global aggregate.
 - [[2026-06-15-fmx-170-postgres-schema-ceiling]] - FMX-170 PostgreSQL
   schema-ceiling packet: raw Perplexity/source-check captures, synthesis,
   accepted decision queue and binding ADR-0097 closure. Nico accepted D1-D3:

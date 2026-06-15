@@ -4,7 +4,7 @@ status: current
 binding: true
 tags: [research, late-game, endgame, continental, national-team, bundestrainer, ownership, takeover, hall-of-fame, legacy, longevity]
 created: 2026-05-17
-updated: 2026-05-28
+updated: 2026-06-15
 type: research
 related: [[ai-manager-behaviour]], [[data-generators]], [[onboarding-strategy]], [[tactics-and-formations]], [[manager-archetype-roguelite-2026-05-27]], [[cup-and-competition-revenue-profiles-2026-05-28]], [[../10-Architecture/09-Decisions/ADR-0007-naming-schema]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/mode-manage-a-club-career]], [[../50-Game-Design/mode-create-a-club-roguelite]], [[../50-Game-Design/regulations-and-compliance]], [[../50-Game-Design/economy-system]], [[../50-Game-Design/club-dna-and-governance]], [[anstoss-series-deep-dive]]
 ---
@@ -389,6 +389,15 @@ Friendly windows on remaining FIFA dates; especially intense in
 tournament-prep year.
 
 ## 4. National team mode
+
+> **FMX-130 reconciliation (2026-06-15):** this section is preserved as the
+> historical D6 research sketch. The current Career/GDDR truth for the
+> Bundestrainer unlock is [[../50-Game-Design/GD-0033-national-team-dual-role]]
+> and
+> [[../10-Architecture/09-Decisions/ADR-0084-national-team-dual-role-and-international-window-contract]]:
+> manager reputation >= 75 AND 5+ seasons, no trophy shortcut. Trophies feed
+> reputation; the old board-confidence `<20` offer floor is
+> `legacy.nationalTeam.offerWindow.boardConfidenceFloor` calibration debt.
 
 ### 4.1 Dual-role with 3 engagement levels
 
