@@ -10,7 +10,9 @@ linear: FMX-168
 related:
   - [[../60-Research/tooling-currency-sweep-2026-06-15]]
   - [[../60-Research/raw-perplexity/raw-tooling-currency-source-checks-2026-06-15]]
+  - [[../60-Research/raw-perplexity/raw-mutation-testing-gate-source-checks-2026-06-15]]
   - [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]]
+  - [[../40-Execution/fmx-172-stryker-mutation-gate-decision-queue-2026-06-15]]
   - [[code-phase-dod-transition-contract]]
   - [[monorepo-workspace-bootstrap-plan]]
   - [[../60-Research/pnpm-tooling-currency-2026-06-15]]
@@ -75,7 +77,7 @@ which decisions are still human-owned.
 | Vitest | Target-only | `4.1.9` | 1 | Vite 6/7/8 peer range; configure projects in code phase. |
 | Playwright | Target-only | `1.61.0` | 1 | Browser channel updates are part of test evidence. |
 | fast-check | Target-only | `4.8.0` | 1 | Preserve seeds/counterexamples in future test reports. |
-| Stryker core / Vitest runner | Target-only | `9.6.1` | 1 | Runner peers exact Stryker core and Vitest `>=2`. |
+| Stryker core / Vitest runner | Target-only | `9.6.1` | 1 | Runner peers exact Stryker core and Vitest `>=2`; FMX-172 confirms this source-checked pair for the draft mutation gate. |
 | Biome | Target-only | `2.5.0` | 1 | Formatting/lint rule changes need explicit config diff review. |
 | Paraglide JS | Target-only | `2.19.0` | 2 | Peer TypeScript `>=5.6`; i18n ADR remains separate. |
 | Tolgee React | Target-only | `7.1.1` | 2 | React 19 peer range. |

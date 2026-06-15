@@ -1,11 +1,11 @@
 ---
 title: CI & Review Process
 status: draft
-tags: [implementation, ci, process, quality, architecture-fitness, fmx-167]
+tags: [implementation, ci, process, quality, architecture-fitness, mutation, stryker, fmx-167, fmx-172]
 created: 2026-05-16
 updated: 2026-06-15
 type: implementation
-related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../40-Quality/test-strategy]], [[../40-Quality/architecture-fitness-function]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[../00-Index/Current-State]]
+related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../40-Quality/test-strategy]], [[../40-Quality/architecture-fitness-function]], [[../40-Quality/stryker-mutation-testing-gate]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]], [[../00-Index/Current-State]]
 ---
 
 # CI & Review Process
@@ -39,6 +39,13 @@ related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-p
 > no-cross-context-joins enforcement as an internal future `quality` subgate.
 > It is not a new branch-protection context and it is inactive until real
 > scanner scripts, violation fixtures, workflows and burn-in exist.
+>
+> **2026-06-15 - FMX-172 Stryker mutation gate pending.** Draft
+> [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]]
+> and [[../40-Quality/stryker-mutation-testing-gate]] refine the future
+> mutation-testing subgate, but they are non-binding until Nico accepts D1-D6.
+> The active docs-phase DoD is unchanged; mutation stays reporting/nightly/release
+> before any PR-blocking promotion and remains inside `quality` if promoted.
 
 **Principle: `main` and `develop` are always green.** A red required check
 is an incident, not a backlog item. Overruling a red check is reserved for
@@ -123,7 +130,9 @@ contexts:
 Non-core gates start as non-required/reporting, scheduled or release evidence:
 `storybook`, `a11y`, `lighthouse`, `game-smoke`, `mutation`, `soak`,
 save-forward compatibility and full browser/device matrices. A later PR may
-promote one only after it satisfies the same burn-in rule.
+promote one only after it satisfies the same burn-in rule. FMX-172's draft
+mutation packet narrows that rule for Stryker: baseline first, release/nightly
+proof before PR blocking and no standalone `mutation` branch-protection context.
 
 ## Flake policy
 
@@ -187,8 +196,9 @@ The repo is docs-vault-only. Code-CI, app e2e, Storybook and lefthook/local
 parity are target-only until the code-phase transition checklist is green.
 FMX-175 defines the future code-CI required context contract; FMX-176 tracks
 local-parity cleanup; FMX-179 tracks workspace bootstrap; FMX-167 defines the
-future architecture-fitness subgate inside `quality`; FMX-195 refreshed the
-active pnpm pin to 11.7.0.
+future architecture-fitness subgate inside `quality`; FMX-172 prepares the
+decision-pending Stryker mutation subgate; FMX-195 refreshed the active pnpm
+pin to 11.7.0.
 
 ## Related
 
@@ -200,4 +210,7 @@ active pnpm pin to 11.7.0.
 - [[../40-Quality/architecture-fitness-function]] — FMX-167 future `quality`
   subgate · [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
   — accepted architecture-fitness ADR
+- [[../40-Quality/stryker-mutation-testing-gate]] — FMX-172 future mutation
+  subgate proposal · [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]]
+  — draft Stryker mutation ADR
 - [[../00-Index/Current-State]] — live status · [[deployment-dokploy]] — gate before deploy
