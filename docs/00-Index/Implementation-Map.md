@@ -22,6 +22,7 @@ unless re-opened by a current issue or accepted ADR.
 - [Linear Task Tracking & GitHub Integration](../30-Implementation/linear-task-tracking.md) - Linear team FMX conventions (labels, states, project, issue/branch/PR rules) + GitHub integration.
 - [Code-Phase Definition of Done Transition Contract](../30-Implementation/code-phase-dod-transition-contract.md) - FMX-180 docs-phase -> code-phase bridge: active docs DoD, target-only code gates, Nx day-one bootstrap checklist and related Linear routing.
 - [pnpm Tooling Currency](../60-Research/pnpm-tooling-currency-2026-06-15.md) - FMX-195 source-checked active pnpm pin refresh to 11.7.0; code bootstrap still re-checks versions before adding workspace dependencies.
+- [Notification Offline Delivery and Ratification Packet](../60-Research/notification-offline-delivery-2026-06-15.md) - FMX-156 decision-pending packet for ADR-0102: inbox-first replay, Web Push/native push as best-effort wake/attention channels, conservative push suppression and package-version routing.
 - [Monorepo Workspace Bootstrap Plan](../30-Implementation/monorepo-workspace-bootstrap-plan.md) - FMX-179 non-binding scaffold plan for `apps/web` + `packages/*`: package catalog, namespace, Nx/pnpm/TypeScript linking, no-placeholder gates and bounded-context-map patch after ADR-0114 approval.
 - [Compliance Evidence](../40-Compliance/README.md) - legal/compliance artifact evidence home; currently includes the non-binding FMX-194 monetization legal gates checklist and FMX-185 age-assurance/rating evidence packet.
 - [Cursor Cloud Agent Workflow](../30-Implementation/cursor-cloud-agent-workflow.md)
@@ -29,10 +30,11 @@ unless re-opened by a current issue or accepted ADR.
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md) - current MVP PWA/offline-ready implementation stance.
 - [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md) - current persistence implementation stance.
 - [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md)
-  - current ADR-0043 implementation stance: first-party Notification
-  bounded context; Postgres durable truth; SurrealDB projection/live graph;
-  Dexie offline mirror; SSE MVP; Centrifugo scale path; Brevo default with
-  Mailjet fallback; Web Push/native push prepared behind adapters.
+  - non-binding FMX-156 implementation overlay while ADR-0102 is pending:
+  first-party Notification bounded context; Postgres durable truth; Dexie
+  offline inbox replay; SSE/Centrifugo/email/Web Push/native push as
+  best-effort accelerants; exact package pins routed to dependency-currency or
+  first code-phase Notification implementation.
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
   - draft FMX-3 implementation framework for Narrative contracts, eval corpus,
   safety/privacy tests, provider fallback, FMX-88 fallback manifest coverage,

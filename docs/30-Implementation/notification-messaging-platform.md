@@ -1,12 +1,13 @@
 ---
 title: Notification and Messaging Platform
 status: current
-tags: [implementation, notification, messaging, inbox, email, push, realtime, scheduler, gdpr]
+tags: [implementation, notification, messaging, inbox, email, push, realtime, scheduler, gdpr, offline, fmx-156]
 created: 2026-05-22
-updated: 2026-05-22
+updated: 2026-06-15
 type: implementation
-binding: true
+binding: false
 adr:
+  - "[[../10-Architecture/09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]]"
   - "[[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]"
   - "[[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]]"
   - "[[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]]"
@@ -24,9 +25,16 @@ related:
 
 ## Purpose
 
-This note implements ADR-0043. It defines the durable Notification bounded
-context, its channels, provider adapters, offline inbox behavior, delivery
-semantics, scheduling, rate limits, privacy requirements and migration process.
+This note preserves the Notification implementation stance from ADR-0043 and
+tracks the FMX-156 successor proposal in ADR-0102. It defines the durable
+Notification bounded context, its channels, provider adapters, offline inbox
+behavior, delivery semantics, scheduling, rate limits, privacy requirements and
+migration process.
+
+FMX-156 is **decision-pending**: this note is `binding: false` while ADR-0102 is
+`draft` / `binding: false`. The implementation posture below documents the
+recommended target, but no new code-phase behavior is binding until Nico
+accepts the D1-D5 packet.
 
 ## Scope
 
@@ -148,15 +156,38 @@ Old notifications store:
 
 The snapshot is what users saw. Template changes do not rewrite history.
 
+### FMX-156 pending offline-delivery clause
+
+Recommended target, awaiting Nico approval in
+[[../40-Execution/fmx-156-notification-platform-decision-queue-2026-06-15]]:
+
+- Persist first, deliver second: the Postgres notification record is durable
+  before SSE, email, Web Push or native push is attempted.
+- The in-app inbox plus Dexie mirror is the only read/replay surface. The UI
+  must not render notification truth from transient payloads.
+- Web Push and native push are wake/attention channels. They may be delayed,
+  expired, suppressed, dropped by platform policy or tied to invalid
+  subscriptions.
+- Reconnect replay uses a notification watermark such as `lastSeenVersion`.
+  Clients fetch records above the watermark and advance it only after applying
+  the inbox projection.
+- `DeliveryAttempt` idempotency prevents duplicate inbox entries and duplicate
+  channel attempts for the same notification/device/channel window.
+- Server-known read/seen or recent foreground-consumption evidence may suppress
+  redundant push across devices. Local/offline unsynced read state must not
+  delete or mutate the durable notification record, and redundant push is safer
+  than losing an urgent deadline.
+- No notification-content CRDT: notifications are owner-published facts.
+
 ## Channels
 
 | Channel | Timing | Rules |
 |---|---|---|
 | In-app inbox | MVP | Primary channel. Durable, offline mirrored, user-visible history. |
-| SSE | MVP | Wake-up/update channel only. Never the durable record. |
+| SSE | MVP | Online wake-up/update channel only. Never the durable record. |
 | Transactional email | MVP/pre-launch | Brevo default, Mailjet fallback, adapter-only access. |
-| Web Push | Pre-launch/post-MVP | Opt-in, VAPID, opaque `notification_id` payload only. |
-| Native push | Post-MVP | Capacitor shell only; same preference/subscription model. |
+| Web Push | Pre-launch/post-MVP | Opt-in, VAPID, opaque `notification_id` payload only; best-effort wake/attention, not replay truth. |
+| Native push | Post-MVP | Capacitor shell only; same preference/subscription model; platform caveats handled as best-effort. |
 | Centrifugo | First realtime scale step | Presence/history/recovery/fan-out; Redis only ephemeral engine. |
 | Watch-party chat | Post-MVP | Separate persisted message model and moderation decision. |
 | Discord/webhook user integrations | Post-MVP | Opt-in only; never default; privacy review required. |
@@ -308,22 +339,35 @@ Dependency updates:
 - Abuse: storm collapse, channel caps, async multiplayer deadline reminder
   coalescing, watch-party chat quota once chat is promoted.
 
-## Source Versions Locked by ADR-0043
+## Source-Version Status
 
-| Tool/library | Version |
-|---|---:|
-| React Email | 6.3.1 |
-| `@react-email/render` | 2.0.8 |
-| `web-push` | 3.6.7 |
-| `@types/web-push` | 3.6.4 |
-| `@capacitor/core` | 8.3.4 |
-| `@capacitor/push-notifications` | 8.1.1 |
+ADR-0043's source-version table is historical, not a package pin to implement
+without re-check. FMX-156 checked the current public sources on 2026-06-15:
+
+| Tool/library | ADR-0043 value | 2026-06-15 source check | Status |
+|---|---:|---:|---|
+| React Email | 6.3.1 | 6.6.0 | Stale; React Email 6 imports `render` from `react-email`. |
+| `@react-email/render` | 2.0.8 | 2.0.8 | Still current package, but React Email 6 treats unified `react-email` imports as the migration target. |
+| `web-push` | 3.6.7 | 3.6.7 | Still current. Re-check before code phase. |
+| `@types/web-push` | 3.6.4 | 3.6.4 | Still current. Re-check before code phase. |
+| `@capacitor/core` | 8.3.4 | 8.4.0 | Stale. |
+| `@capacitor/push-notifications` | 8.1.1 | 8.1.1 | Still current; peer range requires Capacitor 8. |
+
+Exact package updates belong to the dependency-currency/code-phase workflow
+(FMX-168/tooling follow-up or the first Notification implementation beat), not
+to this FMX-156 architecture ratification packet.
 
 ## Sources
 
 - Apple Web Push for Safari/iOS:
   <https://developer.apple.com/documentation/UserNotifications/sending-web-push-notifications-in-web-apps-and-browsers>
 - MDN Push API: <https://developer.mozilla.org/en-US/docs/Web/API/Push_API>
+- W3C Push API: <https://www.w3.org/TR/push-api/>
+- web.dev push notifications overview:
+  <https://web.dev/articles/push-notifications-overview>
+- Capacitor Push Notifications:
+  <https://capacitorjs.com/docs/apis/push-notifications>
+- web-push README: <https://github.com/web-push-libs/web-push>
 - Novu docs: <https://docs.novu.co/platform/how-novu-works>
 - Novu self-hosting requirements:
   <https://docs.novu.co/community/self-hosting-novu/overview>

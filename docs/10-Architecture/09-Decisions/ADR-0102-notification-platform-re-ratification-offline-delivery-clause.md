@@ -1,9 +1,9 @@
 ---
 title: ADR-0102 Notification platform re-ratification + offline-delivery clause
-status: accepted
-tags: [adr, architecture, notification, messaging, offline, pwa, sync, governance, supersede, fmx-106]
+status: draft
+tags: [adr, architecture, notification, messaging, offline, pwa, sync, governance, supersede, fmx-106, fmx-156]
 created: 2026-06-08
-updated: 2026-06-11
+updated: 2026-06-15
 type: adr
 binding: false
 supersedes: ADR-0043-notification-and-messaging-platform
@@ -19,6 +19,8 @@ related:
   - [[ADR-0076-narrative-newsworthiness-event-contracts]]
   - [[ADR-0081-statistics-analytics-read-model-owner]]
   - [[ADR-0085-media-ecology-context-and-outlet-operational-behaviour]]
+  - [[../../60-Research/notification-offline-delivery-2026-06-15]]
+  - [[../../40-Execution/fmx-156-notification-platform-decision-queue-2026-06-15]]
   - [[../../30-Implementation/notification-messaging-platform]]
   - [[../../30-Implementation/pwa-offline-strategy]]
   - [[../../00-Index/Open-Decisions-Dossier]]
@@ -28,196 +30,212 @@ related:
 
 ## Status
 
-accepted
+draft
 
-> Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
-> ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
-> status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+FMX-156 reopens this ADR as a coherent non-binding proposal. Earlier vault
+state had `status: accepted` with `binding: false` and body text that still
+said "awaiting Nico ratify"; that mixed state is not an implementable
+architecture decision. This file now uses one consistent state:
+`status: draft` / `binding: false`.
 
-> **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
-> **`draft` / `binding: false`.** Authored 2026-06-08 to resolve a status-drift + offline-seam gap on the
-> **Notification** bounded context surfaced in the open-decisions sweep. This is a **superseding ADR**:
-> it re-states [[ADR-0043-notification-and-messaging-platform]]'s decision **unchanged** under the current
-> decision gate, and **adds one additive clause** binding notification delivery to the offline-first
-> posture. It does **not** edit ADR-0043 (supersession is by this new file only). **Awaiting Nico ratify.**
+If Nico accepts the FMX-156 packet, promote this ADR to `accepted` /
+`binding: true`, keep [[ADR-0043-notification-and-messaging-platform]]
+superseded, and update the front-door summaries from "pending" to "binding".
 
 ## Date
 
-2026-06-08
+2026-06-15
 
 ## Context
 
-[[ADR-0043-notification-and-messaging-platform]] is the platform decision for notifications: a first-party
-DDD **Notification** bounded context, **Postgres** as system of record (with SurrealDB as a non-authoritative
-graph/live projection), **SSE for MVP → Centrifugo** as the realtime scale step, **Brevo/Mailjet** transactional
-email behind an `EmailGateway` port, **Web Push** (VAPID) prepared-not-critical, deferred native push, and a
-**Dexie** offline inbox mirror. **That decision content is sound and is not in dispute.** Two artefacts of the
-phase make it ambiguous, however:
+[[ADR-0043-notification-and-messaging-platform]] defined the original
+Notification platform: a first-party DDD **Notification** bounded context,
+Postgres as durable system of record, a Dexie inbox mirror for offline reads,
+SSE for MVP realtime wake-up/update, Centrifugo as the scale step,
+Brevo/Mailjet transactional email behind an `EmailGateway`, prepared Web Push
+with VAPID and a deferred native-push path through Capacitor.
 
-1. **Status drift.** ADR-0043's **frontmatter** says `status: draft` / `binding: true` (and carries an
-   `accepted_at`), while its **body** `## Status` heading says `accepted`. The repo-wide reopening to `draft`
-   (Current-State; all ADRs/GDDRs reopened) was applied to the frontmatter but not the body, so the file
-   **self-contradicts** on whether it is accepted. Four cluster ADRs nonetheless cite it as a settled anchor:
-   - [[ADR-0065-narrative-media-press-content-ownership]] — "ADR-0043 (Notification, accepted) owns durable
-     delivery, in-app inbox …";
-   - [[ADR-0076-narrative-newsworthiness-event-contracts]] — Narrative/Notification render-without-source-joins
-     contract;
-   - [[ADR-0081-statistics-analytics-read-model-owner]] — read-model/notification consumer boundary;
-   - [[ADR-0085-media-ecology-context-and-outlet-operational-behaviour]] — "**ADR-0043** (accepted)
-     Notification = delivery/inbox only" and "Notification delivers (ADR-0043)".
-   Each anchors on an ADR whose binding state is currently undefined.
+That content is still the right starting point, but FMX-156 found three gaps
+that prevent clean implementation:
 
-2. **Offline-seam gap.** ADR-0043 is dated 2026-05-22 and **predates** both [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
-   (which fixes the Offline Sync context's scope, the `commandId`/`expectedVersion`/`lastSeenVersion` seam, and
-   server-authoritative re-validation + rebase) and the **re-centred [[ADR-0002-offline-first]] offline-first
-   posture**. ADR-0043 correctly names the **in-app inbox as the primary channel that must work offline through
-   Dexie**, but its **online-only channels** (SSE/Centrifugo realtime, Brevo/Mailjet email, Web Push) are never
-   re-stated **against the offline-sync seam**: what a notification's lifecycle is while the client is offline,
-   how queued/undelivered notifications replay on reconnect, and which channels are authoritative-for-read vs
-   best-effort enhancements are left implicit. Under offline-first these must be explicit.
+1. **Ratification chain ambiguity.** ADR-0043 is superseded, while ADR-0102 was
+   marked `accepted` but not binding and still contained "awaiting Nico"
+   language. The active chain must have one explicit terminus.
+2. **Offline delivery precision.** Web Push and native push can wake runtimes
+   when the app is not open, and push services can queue messages while the user
+   agent is offline, but those channels are not FMX-owned durable logs and do
+   not prove the user saw the notification. The game needs an inbox-first
+   replay contract.
+3. **Version currency drift.** ADR-0043's source-version table contains old
+   package observations. June 15 source checks show `react-email` and
+   `@capacitor/core` have moved while `web-push`, `@types/web-push` and
+   `@capacitor/push-notifications` still match the old values. Exact package
+   pins are therefore a separate dependency-currency decision, not something to
+   ratify incidentally in this ADR.
 
-This ADR's job is **only** to (a) re-ratify ADR-0043's decision unchanged under the gate, fixing the status
-drift in one authoritative place, and (b) add the missing offline-delivery clause. **No channel, provider,
-package or boundary from ADR-0043 changes.**
+Research for FMX-156 is preserved in
+[[../../60-Research/notification-offline-delivery-2026-06-15]] and raw captures
+under [[../../60-Research/raw-perplexity/raw-notification-offline-delivery-2026-06-15]].
 
-## Options considered
+## Decision Questions
 
-- **D1 — How to resolve the drift + gap.**
-  - **A.** Treat the **frontmatter (`draft`) as truth** and add a one-line re-ratification note pointing at it.
-    Cheapest, but the **body still self-describes as `accepted`** (the contradiction the four cluster ADRs read),
-    and it does **not** close the offline-delivery gap at all.
-  - **B (RECOMMENDED).** Author this **small superseding ADR** that **re-states ADR-0043 unchanged** under the
-    current gate **and adds an explicit offline-delivery clause** (inbox-first as the authoritative-for-read
-    channel; SSE/Centrifugo/email/Web Push are best-effort **online enhancements**; undelivered notifications
-    replay via the [[ADR-0090-offline-sync-scope-and-conflict-strategy]] reconnect/version seam). Fixes the
-    status drift **and** the offline gap in one move while keeping the (sound) decision intact.
-  - **C.** Leave entirely as a **known phase artefact** documented only in the dossier. Lowest effort, **highest
-    future-confusion risk** — the body/frontmatter contradiction and the offline gap persist, and four
-    downstream ADRs keep anchoring on an undefined binding state.
+### D1 - Ratification shape
 
-## Decision
+| Option | Description | Recommendation |
+|---|---|---|
+| **A** | Keep ADR-0102 as the dedicated successor to ADR-0043, and after Nico approval promote it to `accepted` / `binding: true`. | **Yes** |
+| B | Fold the ratification into a generic governance/status ADR and leave this file as an offline-only note. | No |
+| C | Re-activate ADR-0043 directly and remove ADR-0102 from the chain. | No |
 
-Propose, awaiting Nico: **D1 = B.**
+Recommendation: **D1 = A**. The offline-delivery clause is
+Notification-domain-specific, so a dedicated successor ADR is clearer than a
+generic governance note. ADR-0043 remains historical and is not body-edited.
 
-### Re-ratification (decision content unchanged)
+### D2 - Authoritative notification read surface
 
-ADR-0043's decision is **re-stated verbatim in intent** and remains the platform decision:
+| Option | Description | Recommendation |
+|---|---|---|
+| **A** | Use Postgres notification records plus the Dexie inbox mirror as the only authoritative read/replay surface; all channels only accelerate awareness. | **Yes** |
+| B | Let Web Push/native push payloads carry renderable notification truth when available. | No |
+| C | Treat realtime frames as the primary source for online sessions and reconcile later. | No |
 
-- Notifications are a **first-party DDD bounded context** (Notification, ordinal-anchored per
-  [[ADR-0089-bounded-context-portfolio-reconciliation]] in the *Engagement & Narrative* cluster).
-- **Postgres is the durable system of record**; SurrealDB is a non-authoritative graph/live projection only;
-  **Dexie** mirrors the inbox for offline reads + local UI state.
-- The context owns `Notification`, `NotificationPreference`, `DeliveryAttempt`, `NotificationSubscription`,
-  `NotificationTemplateVersion`, `NotificationSchedule`.
-- Domain events enter via the **Postgres transactional outbox** ([[ADR-0028-postgres-transactional-outbox]]);
-  the notification record is **durable before any external channel is attempted**.
-- Channels: **in-app inbox** (primary, offline via Dexie); **realtime** SSE (MVP) → Centrifugo (scale)
-  per [[ADR-0023-realtime-transport]]; **email** Brevo→Mailjet behind `EmailGateway`; **Web Push** (VAPID,
-  opaque `notification_id` payload) prepared-not-critical; native push deferred to the Capacitor shell;
-  user chat/DM and SMS/WhatsApp out of MVP; ops alerts separate from user notifications. **Novu stays a future
-  spike, not a start dependency.**
+Recommendation: **D2 = A**. The server writes the durable notification before
+any external channel attempt. The UI renders from the inbox projection, not
+from a push/email/realtime payload.
 
-This supersession resets the binding state to a single, internally consistent value (this ADR's
-`status: draft` / `binding: false`), removing the ADR-0043 frontmatter↔body contradiction. **ADR-0043 is not
-edited**; its `superseded_by` linkage is expressed through this file's `Supersedes: ADR-0043`.
+### D3 - Push, offline and asleep behavior
 
-### Added offline-delivery clause (additive)
+| Option | Description | Recommendation |
+|---|---|---|
+| **A** | Treat Web Push/native push as best-effort wake/attention channels; they may be delayed, suppressed, expired or platform-limited, and reconnect replay always repairs missed state. | **Yes** |
+| B | Treat push-service queueing as enough durability for important gameplay notices. | No |
+| C | Remove push from the platform until a future mobile-only shell exists. | No |
 
-Bind notification delivery to the offline-first seam ([[ADR-0002-offline-first]], [[ADR-0090-offline-sync-scope-and-conflict-strategy]]):
+Recommendation: **D3 = A**. MDN, W3C and web.dev all support background push
+delivery semantics, but platform docs also show quotas, TTL/urgency/topic
+constraints, invalid subscriptions, Android Doze/Private Space caveats and
+native-shell data-only limitations. FMX should use push as an alert path, never
+as the record of truth.
 
-1. **Inbox-first, authoritative-for-read.** The durable Postgres notification record, mirrored into the
-   **Dexie inbox**, is the **single authoritative read surface**. The app's notification view always renders
-   from the inbox mirror, never from a transient channel. A user offline at delivery time **loses nothing**:
-   the record is durable server-side and arrives on the next sync.
-2. **Transient channels are best-effort online enhancements.** **SSE/Centrifugo realtime, email
-   (Brevo/Mailjet) and Web Push** are **delivery accelerants, not sources of truth.** A missed realtime frame,
-   an undelivered email, or a suppressed push **never** changes notification state — it only delays the moment
-   the user *sees* an already-durable record. No channel is on the offline read path.
-3. **Replay on reconnect via the ADR-0090 seam.** Undelivered/unseen notifications reconcile through the
-   **same reconnect + versioning seam** ADR-0090 mandates: each client inbox projection carries
-   `lastSeenVersion`; on reconnect the client rehydrates new notification records from the server
-   (outbox-sourced) above that watermark. **Notification delivery is server-authoritative** and consistent
-   with ADR-0090's "server always wins" model — there is **no client-side merge of notification content** and
-   **no CRDT** (notifications are owner-published facts, not multi-writer collaborative state). Read/seen state
-   is a **per-client local preference** that may sync last-write-wins (ADR-0090 D2 cosmetic-preference lane),
-   never affecting the record itself.
-4. **Idempotent, version-aware replay.** Replay reuses the existing `DeliveryAttempt` idempotency keys
-   (ADR-0043 Test Requirements) so reconnect-driven re-delivery never duplicates an inbox entry or re-fires a
-   push for an already-seen notification.
+### D4 - Replay, idempotency and suppression
 
-This clause is **purely additive**: it makes explicit the offline behaviour ADR-0043 already implied
-("In-app inbox … must work offline through Dexie", "Notification records are durable before any external
-channel is attempted") and aligns it with the now-ratified Offline Sync seam.
+| Option | Description | Recommendation |
+|---|---|---|
+| **A** | Use `lastSeenVersion`/watermark replay, stable notification ids and `DeliveryAttempt` idempotency. Suppress push only when the server already knows the notification is seen/read or recently foreground-consumed; tolerate redundant push when state is local/offline and unsynced. | **Yes** |
+| B | Make read/seen a global multi-device CRDT and use it to suppress all channels. | No |
+| C | Keep all read/seen state local-only and never suppress cross-device push. | No |
 
-## Rationale
+Recommendation: **D4 = A**. This keeps notification content server-owned and
+replayable, avoids CRDT complexity, and still prevents avoidable duplicate
+alerts when the server has reliable evidence.
 
-The decision content needs no change — the grounding behind ADR-0043 (first-party context for offline-survivable
-messaging, Postgres truth, Centrifugo realtime path, Brevo EU email, Web Push caveats) still holds and is cited
-in that file's own Sources. What is broken is **metadata coherence and an unstated seam**, both of which the gate
-requires to be authoritative and explicit. A superseding ADR is the vault's only sanctioned mechanism to correct
-a ratified-decision artefact without editing it (Supersede-not-overwrite, vault-governance), so Option B is the
-correct shape even though the substance is unchanged. Folding only the status fix into a governance ADR (see Open
-questions) would leave the offline clause homeless; the offline clause is **domain-specific to Notification** and
-therefore justifies a dedicated note rather than a one-line governance footnote. Option A leaves the body/frontmatter
-contradiction live; Option C leaves both defects unowned while four ADRs keep citing an undefined anchor.
+### D5 - Dependency-version handling
+
+| Option | Description | Recommendation |
+|---|---|---|
+| **A** | Do not ratify exact notification package pins in FMX-156; record June 15 source checks and route exact package updates to FMX-168/tooling or the first code-phase implementation. | **Yes** |
+| B | Update ADR-0102 with exact package pins now. | No |
+| C | Keep ADR-0043's old version table as binding. | No |
+
+Recommendation: **D5 = A**. FMX-156 should decide architecture behavior. Exact
+dependency pins must be verified again at implementation time and pinned in
+code/tooling, not frozen in an architecture ratification note.
+
+## Proposed Decision
+
+Awaiting Nico: **D1=A, D2=A, D3=A, D4=A, D5=A.**
+
+If accepted, ADR-0102 becomes the binding Notification platform terminus:
+
+- Notifications are a **first-party DDD bounded context** in the
+  *Engagement & Narrative* cluster.
+- **Postgres is the durable system of record** for notification records,
+  subscriptions, delivery attempts, preferences, schedules and template
+  versions.
+- **Dexie mirrors the inbox** for offline reads, local UI state and reconnect
+  recovery. Dexie is not authoritative.
+- Domain events enter through the **Postgres transactional outbox**; the
+  notification record is durable before SSE, email, Web Push or native push is
+  attempted.
+- **In-app inbox is the primary channel** and the only read/replay surface.
+- **SSE/Centrifugo, email, Web Push and native push are transient delivery
+  accelerants**. They may wake, alert, deep-link or update counters; they do not
+  own notification truth.
+- **Replay uses the ADR-0090 seam**: a client carries a notification
+  `lastSeenVersion`/watermark, reconnects, fetches records above the watermark
+  and advances the watermark only after applying the inbox projection.
+- **No CRDT for notification content.** Notifications are owner-published facts.
+  Read/seen/dismissed state is preference-like state that may sync LWW, while
+  server-known seen/read watermarks may suppress redundant push.
+- **Push payloads are opaque hints**: `notification_id`, `version`, category,
+  urgency and deep-link metadata only. No secret, provider credential or
+  personal data belongs in push payloads.
+- **Game cadence follows genre precedent**: central inbox/news feed, badges for
+  unseen items, critical-only must-answer gates, digest/batching for routine
+  reports, quiet hours and configurable push. Avoid red-dot spam and hidden
+  state that can only be recovered from an external alert.
 
 ## Consequences
 
 Positive:
 
-- The Notification platform's **binding state is unambiguous** (one consistent `draft`/`binding:false` value
-  here; the ADR-0043 body↔frontmatter contradiction is superseded, not patched).
-- **Offline delivery behaviour is explicit and gate-ratifiable**: inbox-first authoritative-for-read, transient
-  channels best-effort, replay via the ADR-0090 seam.
-- Four downstream ADRs ([[ADR-0065-narrative-media-press-content-ownership]],
-  [[ADR-0076-narrative-newsworthiness-event-contracts]], [[ADR-0081-statistics-analytics-read-model-owner]],
-  [[ADR-0085-media-ecology-context-and-outlet-operational-behaviour]]) re-anchor on a **current, internally
-  consistent** Notification ADR.
-- Notification delivery is now provably consistent with [[ADR-0002-offline-first]] and
-  [[ADR-0090-offline-sync-scope-and-conflict-strategy]].
+- ADR-0043 -> ADR-0102 has one explicit target once Nico approves it.
+- Offline players lose no notification truth; they replay from the inbox after
+  reconnect.
+- Web Push/native push can be useful without becoming a reliability or privacy
+  dependency.
+- Duplicate alerts are reduced where the server has reliable read/foreground
+  evidence, while offline/local-only state remains safe.
+- Exact package versions stay under the dependency-currency workflow.
 
 Negative / follow-up:
 
-- One more ADR in the chain; readers must follow ADR-0043 → ADR-0102 (mitigated by `Supersedes`/`related` links).
-- The offline clause adds a small implementation obligation: the inbox replay path must honour `lastSeenVersion`
-  watermarks and reuse `DeliveryAttempt` idempotency keys on reconnect (already implied by ADR-0043 Test
-  Requirements + ADR-0090, now explicit).
-- On final ratification, ADR-0043's `superseded_by` should be reflected in the Decision-Log index (index update,
-  not a body edit of ADR-0043).
+- Implementation must support notification watermarks, delivery idempotency and
+  subscription invalidation handling before enabling push.
+- Some redundant push is accepted when another device has only local/offline
+  unsynced seen state.
+- If Nico accepts this ADR, front-door summaries and implementation notes must
+  be promoted from "pending" to binding wording in the same follow-up.
 
 ## Risks
 
-**Low.** The decision content is **unchanged** — only metadata coherence + an additive offline clause. The clause
-restates behaviour ADR-0043 already implied and aligns it with the already-proposed ADR-0090 seam, so it forecloses
-nothing and introduces no new infrastructure, provider, package or boundary.
-
-## Open questions
-
-- **Fold into the governance ADR vs dedicated superseding ADR?** If the **status drift were the only concern** it
-  could be absorbed into a governance/status-reconciliation ADR. The **offline-delivery clause** is
-  Notification-domain-specific and justifies this dedicated note; if Nico prefers a single governance sweep for
-  *all* status-drift artefacts, this ADR could be reduced to the offline clause and cross-reference that sweep
-  for the re-ratification half.
+Low-to-medium while pending. The proposed architecture is conservative and
+source-backed, but it still changes the active Notification chain from a mixed
+`accepted`/`binding:false` state to an explicit proposal. No code should
+implement new Notification behavior from this ADR until Nico accepts D1-D5.
 
 ## Supersedes
 
-[[ADR-0043-notification-and-messaging-platform]] — re-stated unchanged under the current gate, plus the additive
-offline-delivery clause. **ADR-0043 is not edited**; its retirement is expressed solely via this file's
-`Supersedes: ADR-0043` frontmatter (Supersede-not-overwrite).
+[[ADR-0043-notification-and-messaging-platform]] - superseded source decision.
+FMX-156 does not body-edit ADR-0043; this file carries the successor proposal.
+
+## Sources
+
+- FMX synthesis:
+  [[../../60-Research/notification-offline-delivery-2026-06-15]]
+- Raw Perplexity/source-check capture:
+  [[../../60-Research/raw-perplexity/raw-notification-offline-delivery-2026-06-15]]
+- MDN Push API:
+  <https://developer.mozilla.org/en-US/docs/Web/API/Push_API>
+- W3C Push API Working Draft:
+  <https://www.w3.org/TR/push-api/>
+- web.dev push notifications overview:
+  <https://web.dev/articles/push-notifications-overview>
+- Apple Web Push for web apps and browsers:
+  <https://developer.apple.com/documentation/usernotifications/sending-web-push-notifications-in-web-apps-and-browsers>
+- Capacitor Push Notifications docs:
+  <https://capacitorjs.com/docs/apis/push-notifications>
+- React Email update/render docs:
+  <https://react.email/docs/getting-started/updating-react-email>
+- web-push README:
+  <https://github.com/web-push-libs/web-push>
 
 ## Related Docs
 
-- [[ADR-0043-notification-and-messaging-platform]] — superseded source decision (content re-stated unchanged).
-- [[ADR-0090-offline-sync-scope-and-conflict-strategy]] — offline-sync seam (`commandId`/`expectedVersion`/
-  `lastSeenVersion`, server-authoritative rebase) the offline clause reuses for replay.
-- [[ADR-0002-offline-first]] — offline-first posture the delivery clause binds to.
-- [[ADR-0028-postgres-transactional-outbox]] — canonical event channel feeding durable notification records.
-- [[ADR-0023-realtime-transport]] — SSE→Centrifugo realtime path (best-effort online enhancement).
-- [[ADR-0089-bounded-context-portfolio-reconciliation]] — places Notification in the *Engagement & Narrative*
-  cluster of the 28-context portfolio.
-- [[ADR-0065-narrative-media-press-content-ownership]] / [[ADR-0076-narrative-newsworthiness-event-contracts]] /
-  [[ADR-0081-statistics-analytics-read-model-owner]] / [[ADR-0085-media-ecology-context-and-outlet-operational-behaviour]]
-  — downstream ADRs that anchor on Notification = delivery/inbox.
-- [[../../30-Implementation/notification-messaging-platform]] — implementation note.
-- [[../../30-Implementation/pwa-offline-strategy]] — PWA caching/offline implementation note.
-- [[../../00-Index/Open-Decisions-Dossier]] — consolidated open-decision Q&A (status-drift + offline-seam entries).
+- [[../../40-Execution/fmx-156-notification-platform-decision-queue-2026-06-15]]
+- [[../../30-Implementation/notification-messaging-platform]]
+- [[../../30-Implementation/pwa-offline-strategy]]
+- [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
+- [[ADR-0002-offline-first]]
+- [[ADR-0028-postgres-transactional-outbox]]
+- [[ADR-0023-realtime-transport]]

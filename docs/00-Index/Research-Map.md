@@ -18,6 +18,12 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Notification Offline Delivery and Ratification Packet](../60-Research/notification-offline-delivery-2026-06-15.md) -
+  FMX-156 Perplexity-first and source-checked packet for ADR-0043 -> ADR-0102:
+  inbox-first offline replay, Web Push/native push as best-effort
+  wake/attention, conservative cross-device suppression and dependency-version
+  routing. Decision remains pending Nico in
+  [FMX-156 decision queue](../40-Execution/fmx-156-notification-platform-decision-queue-2026-06-15.md).
 - [pnpm Tooling Currency](../60-Research/pnpm-tooling-currency-2026-06-15.md) -
   FMX-195 source-checked update of the active pnpm pin to 11.7.0, preserving the
   npm dist-tag vs published-release caveat and the future bootstrap re-check

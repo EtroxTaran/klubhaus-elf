@@ -51,6 +51,18 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-156 Notification platform ratification packet pending (2026-06-15).**
+> Branch `codex/fmx-156-notification-platform-ratification` prepares the
+> ADR-0043 -> ADR-0102 cleanup. ADR-0102 is intentionally `draft` /
+> `binding: false` until Nico accepts D1-D5 in
+> [[../40-Execution/fmx-156-notification-platform-decision-queue-2026-06-15]].
+> Recommended packet: keep ADR-0102 as the dedicated successor, use Postgres +
+> Dexie inbox as the only authoritative read/replay surface, treat
+> SSE/email/Web Push/native push as best-effort wake/attention accelerants,
+> replay via notification watermarks and `DeliveryAttempt` idempotency, and
+> route exact package pins to dependency-currency/code-phase follow-up. Research:
+> [[../60-Research/notification-offline-delivery-2026-06-15]].
+
 > **FMX-195 pnpm tooling currency updated (2026-06-15).** Branch
 > `codex/fmx-195-pnpm-pin-current-stable` refreshes the active docs-phase pnpm
 > pin from `11.1.2` to `11.7.0` in `package.json` and `.mise.toml`. Research
@@ -2002,12 +2014,12 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
 - **Game-feel:** Motion + GSAP ([[../10-Architecture/09-Decisions/ADR-0022-animation-game-feel]]).
 - **Realtime:** SSE now → Centrifugo planned ([[../10-Architecture/09-Decisions/ADR-0023-realtime-transport]]).
 - **Notification/Messaging:** [[../10-Architecture/09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]]
-  locks a first-party Notification bounded context. PostgreSQL is durable
-  notification truth, SurrealDB is allowed as additive graph/live projection,
-  Dexie mirrors the in-app inbox offline, SSE is the MVP wake-up/update
-  channel, Centrifugo is the realtime scale path, Brevo is the default
-  transactional email provider with Mailjet fallback, and Web Push/native push
-  are prepared behind adapters.
+  is the FMX-156 successor proposal to ADR-0043 and remains `draft` /
+  `binding: false` until Nico accepts the decision queue. Recommended target:
+  first-party Notification bounded context; PostgreSQL durable notification
+  truth; Dexie in-app inbox mirror as offline read/replay surface; SSE,
+  Centrifugo, email, Web Push and native push as best-effort accelerants rather
+  than sources of truth; package pins handled by dependency-currency/code phase.
 - **Match view:** Canvas 2D first; PixiJS no longer planned ([[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]]);
   engine↔renderer seam pinned by [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]]
   (new `packages/match-contract` leaf package, events-only engine, derived non-

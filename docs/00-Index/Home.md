@@ -60,8 +60,9 @@ read top-to-bottom or use the left **Explorer** to browse the full tree.
   realtime transport (ADR-0023), renderer + frame contract
   (ADR-0024/0026/0041), DDD modular monolith (ADR-0019), multiplayer
   (ADR-0011), design system (ADR-0010), observability (ADR-0017), systemic
-  events (ADR-0018) and notification/messaging (ADR-0043). Superseded
-  predecessors (ADR-0001/0002/0004/0013) are kept as historical memory only.
+  events (ADR-0018) and notification/messaging (ADR-0043 historical,
+  ADR-0102 pending FMX-156 ratification). Superseded predecessors
+  (ADR-0001/0002/0004/0013) are kept as historical memory only.
 
 ## Product
 

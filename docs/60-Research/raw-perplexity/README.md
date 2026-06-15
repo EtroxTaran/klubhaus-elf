@@ -17,6 +17,16 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-156 notification offline delivery (2026-06-15)
+
+Perplexity-first research and targeted source checks for the ADR-0043 ->
+ADR-0102 Notification platform ratification packet.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-notification-offline-delivery-2026-06-15]] | Perplexity discovery pass for Web Push/offline delivery, durable inbox replay, idempotency, cross-device suppression and football-management UX precedents | [[../notification-offline-delivery-2026-06-15]] |
+| [[raw-notification-offline-delivery-source-checks-2026-06-15]] | MDN, W3C, web.dev, React Email, Capacitor, web-push, npm registry and Centrifugo source checks | [[../notification-offline-delivery-2026-06-15]] |
+
 ## FMX-195 pnpm tooling currency (2026-06-15)
 
 Perplexity-first research and targeted source checks for the active pnpm pin

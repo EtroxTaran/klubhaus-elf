@@ -3,7 +3,7 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-06-14
+updated: 2026-06-15
 type: map
 binding: false
 related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/player-discipline]]
@@ -41,6 +41,9 @@ future-scope or historical context.
   contract: recommended line is no `RivalryCommercialSignal`; CommercialPortfolio
   derives commercial interpretation from `RivalryTierTransitioned` /
   `DerbyContext(matchId)` through a local ACL/projection after Nico approval.
+  FMX-156 prepares pending ADR-0102 cleanup for the Notification platform:
+  inbox-first replay, Web Push/native push as best-effort accelerants and no
+  package-pin ratification until dependency-currency/code phase.
   FMX-179 prepares pending ADR-0114 for the future workspace/package mapping:
   progressive one-context package catalog, real packages only and
   `@klubhaus-elf/*` namespace after Nico approval.
@@ -89,7 +92,8 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0028 Postgres Transactional Outbox](../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox.md)
 - [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
-- [ADR-0043 Notification and Messaging Platform](../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform.md)
+- [ADR-0043 Notification and Messaging Platform](../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform.md) - superseded historical Notification platform source decision.
+- [ADR-0102 Notification Platform Re-ratification + Offline-delivery Clause](../10-Architecture/09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause.md) - draft FMX-156 successor proposal: keep ADR-0102 as ADR-0043 successor after Nico approval, use Postgres + Dexie inbox as authoritative replay surface and treat push/realtime/email as best-effort accelerants.
 - [ADR-0050 Club Economy Accounting Ledger](../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger.md) - accepted Club Management finance ledger, accounting projections, country economy profiles, cup cash/receivable/forecast events, matchday operating-cost ledger events and staged insolvency boundary.
 - [ADR-0058 Club Economy Commercial Impact Boundary](../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary.md) - accepted CommercialPortfolio boundary for ticketing, contracts, cup settlement, matchday operating-cost profiles, fan events and Investor entitlement policy.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft proposed Manager & Legacy context for manager identity, run analysis, archetype candidates and prestige/legacy selection.
@@ -107,7 +111,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 ## Current Binding Research and Specs
 
 - [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md)
-- [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md)
+- [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md) - non-binding FMX-156 implementation overlay while ADR-0102 remains decision-pending.
 - [Club Economy Accounting Ledger](../30-Implementation/club-economy-accounting-ledger.md) - draft implementation contracts for weekly ledger entries, economy read models and insolvency state.
 - [Club Economy Commercial Contracts](../30-Implementation/club-economy-commercial-contracts.md) - draft contracts for fan demand, ticketing, commercial contracts, cup/competition revenue, matchday operating costs, fan events and Investor grants.
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md)

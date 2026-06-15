@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-15-fmx-156-notification-platform]] - FMX-156 Notification platform
+  ratification packet: ADR-0102 normalized to `draft` / `binding: false`,
+  raw Perplexity/source-check captures and synthesis preserved, and D1-D5
+  recommendations queued for Nico. Recommended package is inbox-first replay,
+  Web Push/native push as best-effort wake/attention, conservative push
+  suppression and dependency-version routing to follow-up.
 - [[2026-06-15-fmx-195-pnpm-tooling-currency]] - FMX-195 pnpm tooling-currency
   update: active pins moved from pnpm 11.1.2 to 11.7.0, with raw
   Perplexity/source-check captures, synthesis and decision queue. Nico selected
