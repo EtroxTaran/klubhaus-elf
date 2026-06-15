@@ -1,15 +1,15 @@
 ---
-title: Presentation Renderer Strategy - Canvas 2D plus Three/R3F
+title: Presentation Renderer Strategy - Canvas 2D plus Babylon.js
 status: current
 binding: true
-tags: [research, rendering, pwa, 3d, stadium, presentation]
+tags: [research, rendering, pwa, 3d, stadium, presentation, babylon, fmx-158]
 created: 2026-05-22
-updated: 2026-05-22
+updated: 2026-06-15
 type: research
 related: [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[performance-budgets]], [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]], [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]], [[../50-Game-Design/match-engine]], [[../50-Game-Design/stadium-and-campus]], [[systemic-events-player-development-venue-ops]]
 ---
 
-# Presentation Renderer Strategy - Canvas 2D plus Three/R3F
+# Presentation Renderer Strategy - Canvas 2D plus Babylon.js
 
 > **2026-05-27 — engine updated by [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]].**
 > The optional 3D/2.5D engine is now **Babylon.js** (not Three.js/R3F). This note's
@@ -64,7 +64,7 @@ scene data.
 |---|---|
 | Text & Stats plus Canvas 2D match view | Full 3D match engine in the browser |
 | Canvas/SVG/DOM data overlays | Frame-by-frame physics simulation |
-| Optional Three/R3F stadium/campus viewer | AI-generated video pipeline |
+| Optional Babylon.js stadium/campus viewer | AI-generated video pipeline |
 | Curated non-interactive scenes: walk-in, trophy, celebration, selected highlight beat | Authoritative computation inside the renderer |
 | Scene contracts derived from committed event logs and venue read models | Required 3D on Floor tier |
 
@@ -95,46 +95,49 @@ Limits:
 
 Decision: Canvas 2D is enough until proven otherwise by performance data.
 
-### 4.2 Three.js + React Three Fiber - only planned optional 3D path
+### 4.2 Babylon.js - only planned optional 3D path
 
-Three.js/R3F is the only planned optional stack for PWA-native 2.5D/3D scenes.
+Babylon.js is the only planned optional stack for PWA-native 2.5D/3D scenes.
 
 Good for:
 
-- React-native integration in the current TanStack/React frontend.
 - Isometric or simple 3D cameras for stadium/campus views.
 - Small curated scenes with glTF assets: stadium inspection, trophy lift,
   tunnel/walk-in, short authored highlight beat.
-- Demand-driven/static scenes: React Three Fiber supports `frameloop="demand"`
-  so resting scenes do not continuously render.
+- Engine-grade scene, animation, material, particle and context-loss tooling
+  behind a thin lazy client adapter.
+- Explicit render-loop scheduling so resting scenes do not continuously render.
 - Lazy client-only mounting behind `PresentationSceneRenderer`.
 
 Limits:
 
-- It is a rendering library plus ecosystem, not a full game engine.
+- Babylon's package footprint is larger than the previous Three/R3F option, so
+  modular imports, lazy chunks and Floor-tier fallback matter more.
+- It has no native React binding in the accepted stack, so the app needs a thin
+  lifecycle adapter rather than a component-level 3D DSL.
 - Scene orchestration, asset rules, animation conventions, LOD and perf
   discipline are project responsibilities.
-- The compatibility baseline is Three.js `WebGLRenderer`; WebGPU is a later
-  capability gate, not a required runtime.
+- WebGPU is a later capability gate, not a required runtime.
 - Complex character animation pipelines, crowds and cinematic tooling require a
   separate feature spec before adoption.
 
-Decision: If we later need 3D, start with Three/R3F and make it succeed before
-considering an engine switch.
+Decision: If we later need 3D, start with Babylon.js behind the
+`PresentationSceneRenderer` seam and make it succeed before considering an
+engine switch.
 
 ## 5. Rejected planned paths
 
 | Technology | Decision | Reason |
 |---|---|---|
-| PixiJS | Not planned | Adds another scene graph and WebGL/WebGPU-backed renderer mainly for 2D effects. With Canvas 2D plus Three/R3F, this duplicates GPU/runtime complexity without a current product need. |
-| Babylon.js | Not planned | Strong web 3D engine, but planning it as a fallback creates an engine-switch path. Reconsider only if an accepted feature cannot be built responsibly with Three/R3F. |
+| PixiJS | Not planned | Adds another scene graph and WebGL/WebGPU-backed renderer mainly for 2D effects. With Canvas 2D plus Babylon.js, this duplicates GPU/runtime complexity without a current product need. |
+| Three.js/R3F | Not planned | Prior optional 3D choice, superseded by ADR-0047. Reconsider only if an accepted feature cannot be built responsibly with Babylon.js and a future ADR accepts the switch. |
 | PlayCanvas | Not planned | Full web game engine/editor ecosystem. Valuable for editor-first teams, but currently too likely to become a second frontend runtime. |
 
 PixiJS is only a future contingency if **all** of the following are true:
 
 - Canvas 2D misses measured Standard-tier performance or effect requirements.
 - The required surface is still purely 2D.
-- Three/R3F would be inappropriate because the feature does not need 3D.
+- Babylon.js would be inappropriate because the feature does not need 3D.
 - A new ADR accepts the added dependency, testing matrix and fallback policy.
 
 ## 6. Use-case fit
@@ -143,11 +146,11 @@ PixiJS is only a future contingency if **all** of the following are true:
 |---|---|---|
 | MVP match view | Canvas 2D via [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]] | Lowest risk, mobile reliable, already locked |
 | 2D match effects | Canvas 2D first; reduce or simplify effects before adding a renderer | Avoids PixiJS as a speculative planned migration |
-| Stadium/campus build-out board | DOM/SVG/Canvas first; Three/R3F only if real 3D assets are required | Building slots, upgrades and overlays matter more than free camera |
+| Stadium/campus build-out board | DOM/SVG/Canvas first; Babylon.js only if real 3D assets are required | Building slots, upgrades and overlays matter more than free camera |
 | Infrastructure overlays | DOM/SVG/Canvas over venue read models | KPI layers, queues, sponsor activation and heatmaps are data UI first |
-| Stadium inspection / campus viewer | Three/R3F | Optional, lazy-loaded, React-friendly |
-| Walk-in / trophy / celebration scene | Three/R3F | Small authored scene, no gameplay authority |
-| Match highlight beat | 2D event replay first; optional curated Three/R3F scene later | Only from committed event logs; never a realtime 3D match engine |
+| Stadium inspection / campus viewer | Babylon.js | Optional, lazy-loaded, presentation-only |
+| Walk-in / trophy / celebration scene | Babylon.js | Small authored scene, no gameplay authority |
+| Match highlight beat | 2D event replay first; optional curated Babylon.js scene later | Only from committed event logs; never a realtime 3D match engine |
 | Non-developer scene authoring | New ADR required | Do not reserve PlayCanvas without a concrete pipeline decision |
 
 ## 7. Renderer contract direction
@@ -207,10 +210,10 @@ Adopt a **two-renderer strategy**:
 
 1. Keep MVP match presentation on Text & Stats plus Canvas 2D.
 2. Do not plan PixiJS as a normal upgrade path.
-3. Use **Three.js + React Three Fiber** as the only planned optional PWA-native
+3. Use **Babylon.js** as the only planned optional PWA-native
    3D/2.5D stack.
-4. Treat Babylon.js and PlayCanvas as rejected/reserved paths that require a
-   superseding ADR and measured need.
+4. Treat Three.js/R3F and PlayCanvas as rejected/reserved paths that require a
+   future ADR and measured need.
 5. Keep all rendering non-authoritative and behind data-first scene contracts.
 
 This gives the game a credible path to richer moments without moving the core
@@ -221,12 +224,12 @@ migrations in advance.
 
 | Trigger | Action |
 |---|---|
-| First stadium/campus prototype is readable with 2D/isometric assets | Stay on DOM/SVG/Canvas; do not introduce Three/R3F |
-| First stadium/campus prototype needs real 3D assets | Build a Three/R3F spike behind `PresentationSceneRenderer` |
+| First stadium/campus prototype is readable with 2D/isometric assets | Stay on DOM/SVG/Canvas; do not introduce Babylon.js |
+| First stadium/campus prototype needs real 3D assets | Build a Babylon.js spike behind `PresentationSceneRenderer` |
 | Canvas match view misses measured Standard-tier budget | Optimize Canvas first; if still insufficient, open a new ADR for a 2D renderer change |
 | A curated 3D highlight is requested for player-facing roadmap | Add a GDDR/feature spec first; keep it post-MVP and non-authoritative |
 | Browser renderer exceeds Standard-tier budgets | Fall back to 2D/still presentation; do not raise the baseline device tier |
-| Three/R3F cannot meet an accepted feature after a spike | Superseding ADR may evaluate Babylon.js or PlayCanvas with measured evidence |
+| Babylon.js cannot meet an accepted feature after a spike | Future ADR may evaluate Three.js/R3F or PlayCanvas with measured evidence |
 
 ## 11. Sources
 
@@ -249,6 +252,9 @@ migrations in advance.
 - [Babylon.js specifications](https://www.babylonjs.com/specifications/):
   Babylon.js offers transparent WebGL/WebGPU support and a complete scene graph,
   which makes it an engine-level choice rather than a small renderer swap.
+- [[babylon-vs-three-floor-tier-budget-2026-06-15]] and
+  [[raw-perplexity/raw-babylon-renderer-stack-source-checks-2026-06-15]] update
+  the renderer-stack source checks after ADR-0047's Babylon amendment.
 - [PlayCanvas engine README](https://github.com/playcanvas/engine):
   PlayCanvas is a full web game engine with WebGL2/WebGPU graphics, animation,
   physics, sound, input and asset streaming.

@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, vitest, playwright, fast-check, stryker, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, replay-protection, idempotency, command-reception, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-164, fmx-177, fmx-180, fmx-185, fmx-191, fmx-194, fmx-195]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, replay-protection, idempotency, command-reception, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-164, fmx-177, fmx-180, fmx-185, fmx-191, fmx-194, fmx-195]
 updated: 2026-06-15
 ---
 
@@ -508,6 +508,16 @@ optional post-MVP 2.5D/3D presentation scenes only as non-authoritative,
 lazy-loaded, device-gated modules with fallback. **Babylon.js** is the planned
 optional 3D engine ([[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]]);
 Three.js/R3F (the earlier choice), PixiJS and PlayCanvas are not planned.
+
+## Babylon Renderer Stack Cleanup (FMX-158, 2026-06-15)
+
+[[babylon-vs-three-floor-tier-budget-2026-06-15]] is the Perplexity-first and
+source-checked cleanup packet for the ADR-0047 amendment. It confirms that no
+new dependency is added in the docs-only phase, `@babylonjs/core` current stable
+evidence is captured for future implementation re-checking, and the durable
+guidance is: Canvas 2D stays match-authoritative, Babylon.js is the only planned
+optional presentation 3D stack, and exact floor-tier thresholds remain an
+implementation measurement gate.
 
 ## Pre-Mortem Cluster (2026-05-20, 3 Iterationen)
 

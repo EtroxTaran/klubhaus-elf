@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-15-fmx-158-babylon-renderer-stack]] - FMX-158 Babylon renderer-stack
+  cleanup: raw Perplexity/source-check captures, synthesis, decision queue and
+  cross-vault guidance updates. Canvas 2D stays match-authoritative; Babylon.js
+  is the only planned optional presentation 3D stack; Three.js/R3F, PixiJS and
+  PlayCanvas are historical/rejected paths unless a future ADR reopens them
+  with measured evidence.
 - [[2026-06-15-fmx-175-code-ci-pipeline]] - FMX-175 code-CI context packet:
   raw Perplexity/source-check captures, synthesis, decision queue and
   ADR-0044/CI-process cleanup. Nico accepted script/domain-aligned future code

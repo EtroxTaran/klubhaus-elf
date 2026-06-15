@@ -3,7 +3,7 @@ title: ADR-0041 Two-Renderer Presentation Strategy
 status: accepted
 tags: [adr, architecture, rendering, pwa, 3d, stadium]
 created: 2026-05-22
-updated: 2026-06-08
+updated: 2026-06-15
 accepted_at: 2026-05-22
 type: adr
 binding: true
@@ -44,10 +44,14 @@ accepted
 - **2026-05-20:** [[ADR-0029-3d-presentation-layer]] accepted the post-MVP
   Three.js/R3F 3D Presentation Layer, while still carrying ADR-0024's planned
   PixiJS effects-upgrade wording for the match renderer.
-- **2026-05-22:** This ADR accepts the presentation-layer strategy and amends
-  the earlier PixiJS path and ADR-0029's fallback wording: Canvas 2D remains the
-  match renderer; PixiJS is not a planned migration; Three.js/R3F is the only
-  planned optional 3D/2.5D stack.
+- **2026-05-22:** This ADR accepted the presentation-layer strategy and amended
+  the earlier PixiJS path and ADR-0029's fallback wording: Canvas 2D remained the
+  match renderer; PixiJS was not a planned migration; Three.js/R3F was the
+  planned optional 3D/2.5D stack at that time.
+- **2026-05-27:** [[ADR-0047-babylon-3d-presentation-engine]] amended the optional
+  3D framework choice to Babylon.js. This ADR's two-renderer principle remains:
+  Canvas 2D for match/UI-adjacent 2D, Babylon.js only for optional
+  non-authoritative 3D/2.5D presentation scenes.
 
 ## Context
 
@@ -81,10 +85,9 @@ Adopt a **two-renderer presentation strategy**:
 - Scene inputs must be versioned descriptors derived from already-authoritative
   read models, committed match event logs or career facts.
 - The renderer returns no domain decisions and must have a 2D/still/text fallback.
-- **Three.js + React Three Fiber** is the only planned optional PWA-native
-  3D/2.5D stack.
-- **Babylon.js and PlayCanvas are not planned fallback engines.** Evaluating
-  either requires a superseding ADR with measured Three/R3F failure, bundle and
+- **Babylon.js** is the only planned optional PWA-native 3D/2.5D stack.
+- **Three.js/R3F and PlayCanvas are not planned fallback engines.** Evaluating
+  either requires a future ADR with measured Babylon.js failure, bundle and
   device data, and a feature spec that cannot be met with the chosen stack.
 
 ## Rationale
@@ -96,22 +99,20 @@ view.
 
 PixiJS would mainly buy a GPU-accelerated 2D scene graph. Its own renderer docs
 position WebGL/WebGL2 as the stable production backend, WebGPU as still maturing
-and Canvas as experimental. If Three/R3F is already the selected optional 3D
-path, PixiJS adds a second GPU runtime for 2D effects and a third rendering
-model beside DOM/Canvas and Three. That increases testing, context-loss, bundle
-and ownership cost without removing a known product risk.
+and Canvas as experimental. With Babylon.js selected by ADR-0047 as the optional
+3D path, PixiJS would add a second GPU runtime for 2D effects and a third
+rendering model beside DOM/Canvas and Babylon. That increases testing,
+context-loss, bundle and ownership cost without removing a known product risk.
 
-Three.js + React Three Fiber fits the current React/TanStack frontend best and
-can be mounted as a lazy client-only adapter. React Three Fiber's demand-driven
-rendering model is a good fit for mostly static management scenes such as a
-stadium/campus board. Three.js WebGLRenderer is the compatibility baseline;
-WebGPU is a later capability gate, not a baseline.
+The original Three.js/R3F rationale is now historical lineage. ADR-0047 records
+why Babylon.js is the accepted optional 3D presentation engine; this ADR keeps
+the stronger product rule that there is one optional 3D stack, not a portfolio
+of parallel engines.
 
-Babylon.js and PlayCanvas are valid web 3D engines, but planning them as
-fallbacks would create the engine-switch risk this ADR is meant to avoid.
-Babylon is more engine-like; PlayCanvas is a full web game engine/editor
-ecosystem. Neither should be a roadmap item unless Three/R3F is proven
-insufficient for a concrete accepted feature.
+Three.js/R3F and PlayCanvas remain valid web 3D alternatives, but planning them
+as fallbacks would create the engine-switch risk this ADR is meant to avoid.
+Neither should be a roadmap item unless Babylon.js is proven insufficient for a
+concrete accepted feature.
 
 ## Consequences
 
@@ -124,8 +125,8 @@ Positive:
   changing venue gameplay.
 - Curated highlight or ceremony scenes can reuse committed event/career facts
   and remain deterministic.
-- PixiJS/Babylon/PlayCanvas churn is avoided unless a future ADR proves a real
-  need.
+- PixiJS/Three.js/R3F/PlayCanvas churn is avoided unless a future ADR proves a
+  real need.
 
 Negative:
 
@@ -142,8 +143,8 @@ Negative:
 - No 3D renderer in the initial app shell.
 - No 3D requirement on Floor-tier devices.
 - No more than two planned renderer technologies: Canvas 2D for match/UI-adjacent
-  2D, Three.js/R3F for optional 3D/2.5D scenes.
-- No PixiJS, Babylon.js or PlayCanvas dependency without a superseding ADR.
+  2D, Babylon.js for optional 3D/2.5D scenes.
+- No PixiJS, Three.js/R3F or PlayCanvas dependency without a future ADR.
 - No hidden or uncommitted match data in scene descriptors.
 - No renderer-side randomness that affects domain state.
 - No gameplay buffs from visual fidelity; 3D is presentation only.

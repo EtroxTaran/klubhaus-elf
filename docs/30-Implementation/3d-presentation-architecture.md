@@ -1,9 +1,9 @@
 ---
-title: 3D Presentation Architecture (Three.js + R3F)
+title: 3D Presentation Architecture (Babylon.js)
 status: current
-tags: [implementation, presentation, 3d, three-js, r3f, stadium, cutscene, pwa, mobile, offscreen-canvas, context-loss]
+tags: [implementation, presentation, 3d, babylon, stadium, cutscene, pwa, mobile, context-loss]
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-06-15
 type: implementation
 binding: true
 linear:
@@ -15,7 +15,11 @@ superseded_by:
 
 # 3D Presentation Architecture
 
-> **2026-05-27 — engine = Babylon.js per [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]]** (replaces Three.js/R3F). The `SceneDescriptor` / `SceneRenderer` / `CapabilityGate` design and the 2D fallback below are unchanged; only the renderer implementation is Babylon. Title/`three-js` tags are historical.
+> **2026-06-15 — engine guidance reconciled to Babylon.js per
+> [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]].**
+> The `SceneDescriptor` / `SceneRenderer` / `CapabilityGate` design and the 2D
+> fallback are unchanged; the renderer implementation guidance below now names
+> Babylon.js as the only planned optional 3D stack.
 
 > Authority: [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]
 > Feature: [[../20-Features/feature-3d-presentation-layer]]
@@ -25,10 +29,9 @@ superseded_by:
 
 Implementation-level guide for the 3D Presentation Layer: file
 structure, the `SceneDescriptor` contract, the `CapabilityGate`
-2D/3D-fallback machine, the OffscreenCanvas worker path, the iOS
-context-loss recovery layers, and the stock-asset pipeline. This note
-is the canonical "how to build it" reference; the "why" lives in
-ADR-0029 and the framework Bericht synthesis below.
+2D/3D-fallback machine, the Babylon scene-host adapter, the iOS context-loss
+recovery layers, and the stock-asset pipeline. This note is the canonical "how
+to build it" reference; the "why" lives in ADR-0029, ADR-0041 and ADR-0047.
 
 ## Boundaries
 
@@ -107,7 +110,7 @@ export interface SceneRenderer {
 Invariants:
 
 - `SceneDescriptor` is **immutable** and **JSON-serialisable**. No
-  functions, no class instances, no DOM/Three references.
+  functions, no class instances, no DOM or renderer references.
 - A descriptor is the **only** thing crossing the boundary. Domain code
   produces it in `apps/web/src/lib/scene-mapper/*` adapters; renderer
   consumes it. Same data round-trips into Storybook fixtures.
@@ -128,15 +131,15 @@ apps/web/src/
     use-device-capabilities.ts             # tier + reduced-motion + save-data hook
     use-device-capabilities.test.ts
   components/3d/
-    scene-canvas.tsx                       # <Canvas> wrapper (frameloop, dpr, context-loss)
-    scene-canvas.stories.tsx
-    scene-renderer.tsx                     # discriminated render dispatch
+    scene-host.tsx                         # Babylon engine/scene host (loop, DPR, context-loss)
+    scene-host.stories.tsx
+    scene-renderer.tsx                     # discriminated Babylon render dispatch
     capability-gate.tsx                    # 2D-or-3D decision wrapper
     capability-gate.test.tsx
     context-loss.ts                        # useContextLossRecovery hook + helpers
     context-loss.test.ts
     iso-stadium/
-      iso-stadium.tsx                      # OrthographicCamera + InstancedMesh
+      iso-stadium.tsx                      # OrthographicCamera + thin instances
       iso-stadium.stories.tsx              # 3D story
       iso-stadium-2d.stories.tsx           # 2D pendant (reuses composites/stadium)
       iso-stadium.test.tsx
@@ -181,39 +184,38 @@ the same descriptor.
 The CapabilityGate is the **only** place that decides 2D vs 3D. Route
 components and feature screens never read the tier directly.
 
-## 5. SceneCanvas (`<Canvas>` wrapper)
+## 5. SceneHost (Babylon engine / scene host)
 
-`scene-canvas.tsx` wraps R3F's `<Canvas>` with:
+`scene-host.tsx` owns the Babylon `Engine`, `Scene`, canvas element and lifecycle:
 
-- `frameloop="demand"` by default; cutscene composites can opt into
-  `frameloop="always"` for their active duration.
-- `dpr={[1, 2]}` — DPR clamp at 2.0 per
+- Static management scenes render on demand or when their descriptor, camera or
+  animation state changes; active cutscene composites can run a continuous loop
+  only for their scripted duration.
+- Hardware scaling clamps effective DPR at 2.0 per
   [[../60-Research/performance-budgets]].
-- `gl={{ powerPreference: 'high-performance', antialias: true,
-  failIfMajorPerformanceCaveat: false }}`.
-- `onCreated({ gl, scene })` registers context-loss listeners and
-  records a `scene.render-init` telemetry event.
-- Lazy mount via `React.lazy` so the 3D chunk is loaded only on routes
-  that actually render a 3D composite.
+- Engine creation sets the power preference / antialiasing choices deliberately
+  and fails over to the 2D branch if WebGL initialisation throws.
+- The host registers context-loss listeners and records a `scene.render-init`
+  telemetry event.
+- Lazy mount via `React.lazy` so the 3D chunk is loaded only on routes that
+  actually render a 3D composite.
 
-OffscreenCanvas: when `'OffscreenCanvas' in window` and not on iOS
-< 16.4, `SceneCanvas` mounts via `<Canvas worker={…}>` using
-`react-three-offscreen` (drop-in). Otherwise it falls back to the
-main-thread `<Canvas>` automatically.
+OffscreenCanvas worker rendering is a later capability gate, not baseline
+guidance. It requires a measured browser/device support pass and a follow-up
+ADR/implementation beat before it becomes part of the stack.
 
 ## 6. iOS Safari context-loss — layered recovery
 
-Best practice synthesized from the framework Bericht §1.6 sources
-(three.js forum threads on iOS 17 / M3 / M4 context loss, R3F docs,
-PlayCanvas WebGL guidelines).
+Best practice synthesized from the framework Bericht §1.6 sources plus the
+Babylon reconciliation source checks.
 
 Hook: `useContextLossRecovery(canvas, descriptor)` in
 `components/3d/context-loss.ts`.
 
 Layer 1 — **Visibility pause.** `document.addEventListener
-('visibilitychange', …)` flips the demand frameloop to `'never'` when
-the tab is hidden and back to `'demand'` on visible. Prevents the
-majority of background-induced losses.
+('visibilitychange', …)` pauses the scene host when the tab is hidden and
+resumes demand rendering when visible. Prevents the majority of
+background-induced losses.
 
 Layer 2 — **`webglcontextlost` capture.**
 
@@ -221,8 +223,8 @@ Layer 2 — **`webglcontextlost` capture.**
 canvas.addEventListener('webglcontextlost', (e) => {
   e.preventDefault()
   loopState.set('paused')
-  // NO eager dispose — Three.js will reuse resource handles
-  // after restore. Disposing here causes the textures-disappear bug.
+  // NO eager dispose. Keep descriptor state intact and let the Babylon host
+  // restore/rebuild from the immutable descriptor.
   telemetry.event('scene.context-loss', { kind: descriptor.kind })
 }, { passive: false })
 ```
@@ -260,16 +262,15 @@ the descriptor `kind` only (no club/user identifiers).
 
 Hard rules, enforced where possible:
 
-- **Draw calls ≤ 150 per scene.** Vitest test reads
-  `renderer.info.render.calls` after first render via
-  `@react-three/test-renderer`; CI ratchet.
-- **Instancing mandatory** for repeated stadium modules (`InstancedMesh`).
+- **Draw calls ≤ 150 per scene.** Implementation-phase tests read Babylon scene
+  and engine instrumentation after first render; CI ratchet.
+- **Instances / thin instances mandatory** for repeated stadium modules.
 - **glTF + Draco** for all geometry; `KTX2` for textures where supported,
   ≤ 1024×1024.
 - **HDRI ≤ 1k**, shared across iso stadium + cutscenes via a small
   HDRI registry in `lib/scene-mapper/hdri.ts`.
-- **Vite `manualChunks`**: `three`, `@react-three/*`, and the
-  `components/3d/**` tree split into a `scene-3d` chunk, lazy-loaded.
+- **Vite `manualChunks`**: Babylon packages and the `components/3d/**` tree split
+  into a `scene-3d` chunk, lazy-loaded.
 - **Initial-critical bundle stays ≤ 200 KB gzipped** per
   [[../60-Research/performance-budgets]]. The Bundle-Size CI ratchet
   fails the PR if the initial-critical chunk grows.
@@ -316,7 +317,7 @@ Reference: `testing-strategy` (planned).
 | Unit | `scene-mapper/*` (read-model → descriptor) | Vitest |
 | Unit | `useDeviceCapabilities` branches | Vitest + Testing-Library |
 | Component | `CapabilityGate` all six fallback branches | Vitest + Testing-Library |
-| Snapshot | R3F scene tree per descriptor | `@react-three/test-renderer` |
+| Snapshot | Babylon scene graph / descriptor fixture invariants | Vitest + Babylon test harness |
 | Storybook | 3D story + 2D pendant story per composite | Storybook |
 | Bundle | `scene-3d` chunk size + initial-critical unchanged | Bundle-Size CI |
 | E2E | `/stadion` renders on `chromium` and `webkit` Playwright profiles | Playwright |
@@ -324,8 +325,8 @@ Reference: `testing-strategy` (planned).
 | Lighthouse | Performance budget on `/stadion` route | Lighthouse CI |
 
 JSDOM has no WebGL context, so live-pixel tests are not part of the
-unit/component suite. The `@react-three/test-renderer` covers scene
-graph invariants without needing a real GPU.
+unit/component suite. Descriptor and scene-graph invariants should use a
+Babylon-compatible test harness; browser-level rendering remains Playwright.
 
 ## 11. Roadmap slices (links)
 
@@ -335,8 +336,8 @@ Phase 2 (after MVP slice 6):
   CapabilityGate, context-loss, first iso composite.
 - **Slice 7b — Stadium backdrop** — static HDRI behind `/anpfiff`,
   `/halbzeit`.
-- **Slice 7c — Trophy-lift cutscene** — animated character + Sparkles
-  confetti, triggered by `RogueliteRunCompletedEvent`.
+- **Slice 7c — Trophy-lift cutscene** — animated character + Babylon particles
+  or equivalent lightweight confetti, triggered by `RogueliteRunCompletedEvent`.
 - **Slice 7d (optional)** — Walkout cutscene.
 
 Vault delta sequence: ADR-0029 + locked-notes update PR → Slice 7a code
@@ -358,6 +359,9 @@ registry); not the ADR.
 - 2026-05-20: Initial. Authored alongside
   [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]]
   and [[../20-Features/feature-3d-presentation-layer]].
+- 2026-06-15: FMX-158 reconciled implementation guidance to Babylon.js per
+  [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]];
+  no new runtime dependency added in docs-only phase.
 
 ## Related
 

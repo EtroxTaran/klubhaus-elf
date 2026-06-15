@@ -3,7 +3,7 @@ title: Documentation V1 Baseline
 status: current
 tags: [meta, baseline, v1, planning, architecture]
 created: 2026-05-22
-updated: 2026-05-27
+updated: 2026-06-15
 type: baseline
 binding: true
 supersedes: Documentation-Baseline-2026-05-22
@@ -166,8 +166,8 @@ Linear beat.
 - MVP match presentation remains Text & Stats plus Canvas 2D.
 - There is no interactive or authoritative browser 3D match view.
 - Optional post-MVP 2.5D/3D presentation scenes are non-authoritative,
-  lazy-loaded, fallback-safe and use Three.js + React Three Fiber only unless a
-  future ADR supersedes this.
+  lazy-loaded, fallback-safe and use Babylon.js only unless a future ADR
+  supersedes this.
 
 ### UX and Design System
 

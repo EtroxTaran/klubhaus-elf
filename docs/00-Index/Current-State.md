@@ -51,6 +51,17 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-158 Babylon renderer-stack cleanup applied (2026-06-15).** Branch
+> `codex/fmx-158-crosscutting-babylon` reconciles active renderer guidance after
+> [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]]:
+> Canvas 2D remains the match renderer; Babylon.js is the only planned optional
+> non-authoritative 3D/2.5D presentation stack; Three.js/R3F, PixiJS and
+> PlayCanvas are historical/rejected paths unless a future ADR with measured
+> evidence reopens them. Research:
+> [[../60-Research/babylon-vs-three-floor-tier-budget-2026-06-15]]. Decision
+> record:
+> [[../40-Execution/fmx-158-babylon-renderer-stack-decision-queue-2026-06-15]].
+
 > **FMX-156 Notification platform ratification packet pending (2026-06-15).**
 > Branch `codex/fmx-156-notification-platform-ratification` prepares the
 > ADR-0043 -> ADR-0102 cleanup. ADR-0102 is intentionally `draft` /
@@ -3557,7 +3568,7 @@ Implementation should start from
   - **Match render policy** - **no interactive or authoritative browser 3D match view** (permanent product decision; scoped by [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]] on 2026-05-20 and tightened by [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]] on 2026-05-22). Two modes only:
     - **Text & Stats** (first-class, not a fallback): DOM list at 1-2 Hz, stats sidebar; default on Floor; user-selectable everywhere.
     - **2D canvas** (primary, mandatory): HTML Canvas 2D (NOT WebGL); 30 fps cap on Standard, 60 fps on Premium; 720p internal resolution, DPR clamp at 2.0.
-  - **3D Presentation Layer** (post-MVP, Phase 2, accepted 2026-05-20 via [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]], tightened 2026-05-22 by [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]]) - Three.js + React Three Fiber for isometric stadium / campus view, kuratierte Event-Cutscenes (walkout, trophy lift, goal celebration) and static highlight backdrops. Gated by `SceneDescriptor` contract, mandatory 2D fallback on Floor / `prefers-reduced-motion` / Save-Data / iOS context-loss trip. Lives parallel to (not inside) the match renderer; match render itself follows [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]] (Canvas 2D first; PixiJS no longer planned) behind [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]].
+  - **3D Presentation Layer** (post-MVP, Phase 2, accepted 2026-05-20 via [[../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer]], tightened 2026-05-22 by [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], amended 2026-05-27 by [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]]) - Babylon.js for isometric stadium / campus view, kuratierte Event-Cutscenes (walkout, trophy lift, goal celebration) and static highlight backdrops. Gated by `SceneDescriptor` contract, mandatory 2D fallback on Floor / `prefers-reduced-motion` / Save-Data / iOS context-loss trip. Lives parallel to (not inside) the match renderer; match render itself follows [[../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction]] (Canvas 2D first; PixiJS no longer planned) behind [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract]].
   - **Battery-saver / reduced-motion / data-saver** auto-honoured via `prefers-reduced-motion`, `navigator.connection.saveData`, `prefers-reduced-data`.
   - **CI perf gate** (Phase 1, MVP, mandatory): Lighthouse CI + Playwright + injected `web-vitals` library on every PR; bundle-size CI per the budgets; match-engine perf gate per D1; storage assertion per A2.
   - **Phase 2** (post-MVP): add LambdaTest 1-slot weekly real-device job (~€1.5 k/yr) on Galaxy A54 / Pixel 7a / iPhone SE 3-class hardware.
