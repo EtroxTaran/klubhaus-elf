@@ -3,11 +3,11 @@ title: Audit Trail
 status: current
 tags: [implementation, audit, outbox, compliance, observability]
 created: 2026-05-17
-updated: 2026-05-22
+updated: 2026-06-15
 type: implementation
 binding: false
-adr: [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
-related: [[jobs-and-scheduler]], [[observability-runbook]], [[notification-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]]
+adr: [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0091-audit-security-context-definition]], [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]]
+related: [[jobs-and-scheduler]], [[observability-runbook]], [[notification-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
 ---
 
 # Audit Trail
@@ -18,21 +18,29 @@ Define the boundary between domain audit history and operational logs.
 
 ## Current Approach
 
-ADR-0028 states that the Postgres outbox **is** the audit trail:
+ADR-0028 states that the Postgres outbox is the committed domain-event
+publication path and domain mutation trail:
 
 - hot table: `outbox_event`, last 60 days;
 - cold archive: `outbox_event_archive_YYYY_MM`, kept forever;
 - consumer offsets: `consumer_event_offset`, retained 60 days.
 
-Operational logs in Loki are not the domain audit trail. They support
+Operational logs in Loki are not the domain mutation trail. They support
 debugging and incident triage only.
 
-## Audit Event Scope
+ADR-0091 and ADR-0119 add a separate security layer: Audit & Security owns the
+security audit log plus replay/dedup policy and processed-command state through
+Command Reception. Command-reception facts such as accepted, duplicate,
+pending and mismatched replay decisions are security facts, not a reason to
+turn the ADR-0028 outbox into the pre-commit command gate.
 
-Audit-relevant events include:
+## Domain Mutation Scope
 
-- authentication and account-security changes — concrete event
-  catalogue (per [[auth-flows]] F2 §2 + §6 + §8):
+Domain mutation events that warrant the ADR-0028 outbox/domain trail include:
+
+- authentication and account-security changes that are modeled as committed
+  Identity domain events — concrete event catalogue (per [[auth-flows]] F2 §2 +
+  §6 + §8):
   - `auth.signup_verified`
   - `auth.login_passkey`, `auth.login_password`, `auth.login_mfa`
   - `auth.password_changed`, `auth.password_reset_completed`
@@ -46,7 +54,6 @@ Audit-relevant events include:
     global-fail-spike — F2 §8.5);
 - save creation, archive, deletion and restore;
 - multiplayer group creation and membership changes;
-- submitted commands and server decisions;
 - transfer offers, acceptances, rejections and deadline closures;
 - match simulation/resolution summaries;
 - economy and sponsorship decisions;
@@ -64,7 +71,7 @@ Audit-relevant events include:
   - `notification.subscription_revoked`
   - `notification.digest_sent`
 
-Each audit event is a domain event with:
+Each outbox-backed domain mutation event is a domain event with:
 
 - `event_id`;
 - `correlation_id`;
@@ -76,18 +83,28 @@ Each audit event is a domain event with:
 - JSON payload validated by Zod;
 - `emitted_at`.
 
+Security command-reception facts are separate Audit & Security records. They
+cover accepted commands, duplicates, pending retries, mismatched hash/binding
+rejections, auth/authz security decisions, rate-limit triggers and anomaly
+flags with minimised integrity metadata. They are correlated to domain events
+when a command commits, but they are not raw domain payload dumps and are not
+published as ADR-0028 outbox events unless a domain context has also committed
+a domain fact.
+
 ## Operational Logs vs Audit
 
 | Concern | Store | Retention | Purpose |
 |---|---|---:|---|
-| Domain event history | PostgreSQL outbox / partitioned archive ([[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]]) | 60 days hot, monthly partitioned archive forever | business/audit truth |
+| Domain mutation history | PostgreSQL outbox / partitioned archive ([[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]]) | 60 days hot, monthly partitioned archive forever | committed business/domain trail |
+| Security command-reception facts | Audit & Security security audit log ([[../10-Architecture/09-Decisions/ADR-0091-audit-security-context-definition]], [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]]) | Policy-defined hot/warm/cold tiers | who attempted what under which security decision |
 | App/server logs | Loki | 14 days | debugging, incident triage |
 | Crash reports | GlitchTip | 30 days | error grouping and release regression |
 | Metrics | Prometheus | 15 months | trends, alerts, SLOs |
 | Traces | Tempo | 7 days | workflow debugging |
 
-Do not reconstruct business truth from Loki. Query the Audit context,
-which reads hot and archive tables transparently.
+Do not reconstruct business truth from Loki. Query the appropriate audit
+surface: domain mutation history from outbox hot/archive tables, and security
+command-reception facts from Audit & Security.
 
 ## Query Patterns
 

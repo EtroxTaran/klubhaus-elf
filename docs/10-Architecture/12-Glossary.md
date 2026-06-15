@@ -30,10 +30,11 @@ ADR / context.
 
 - **System of record** — PostgreSQL 18.x holds authoritative state; SurrealDB 1.x is a reserved, non-authoritative projection ([[09-Decisions/ADR-0027-postgres-data-model]], [[09-Decisions/ADR-0021-revised-tech-stack]]).
 - **Schema-per-save** — Each career save is isolated in its own Postgres schema; the documented scale ceiling has a cold/archive fallback ([[09-Decisions/ADR-0027-postgres-data-model]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]).
-- **Transactional outbox** — Domain events written to `outbox_event` in the **same transaction** as the state change; idempotent by UUIDv7 `event_id`; the outbox **is** the audit trail ([[09-Decisions/ADR-0028-postgres-transactional-outbox]]).
+- **Transactional outbox** — Domain events written to `outbox_event` in the **same transaction** as the state change; idempotent by UUIDv7 `event_id`; the outbox is the committed domain-event publication path and domain mutation trail, not the pre-commit command dedup gate ([[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0119-command-reception-dedup-seam]]).
 - **Event-carried state transfer** — A consumer derives state from a self-contained event payload (no cross-context join); e.g. League reading `WatchPartyScheduled` to set the deadline anchor ([[09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]]).
 - **Projection / read model** — A rebuildable derived view (no authoritative writes); statements/KPIs and Statistics & Analytics are projections, never sources of truth.
-- **Command queue / offline sync** — The narrow cloud-sync scope: a local outbox of player commands replayed on reconnect, with the ADR-defined conflict strategy ([[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]]).
+- **Command queue / offline sync** — The narrow cloud-sync scope: a local outbox of player commands replayed on reconnect, with the ADR-defined conflict/rebase UX strategy; authoritative server replay/dedup lives at Command Reception ([[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0119-command-reception-dedup-seam]]).
+- **Command Reception** — The synchronous server-side ingress capability that binds auth/session, hashes the canonical command payload, checks `commandId` replay/dedup state, then dispatches only accepted new commands to domain validation ([[09-Decisions/ADR-0119-command-reception-dedup-seam]]).
 
 ## Match engine & determinism
 
@@ -62,7 +63,7 @@ ADR / context.
 
 - **LLM out of authoritative state** — Narration/dialogue/media emit advisory intents only; they never apply state. A deterministic-template offline narration floor is mandatory ([[09-Decisions/ADR-0030-llm-out-of-authoritative-state]]).
 - **Anti-corruption layer (ACL) / Customer-Supplier** — DDD seam translating another context's published facts into the local model; e.g. CommercialPortfolio → Club Management ledger ([[bounded-context-map]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]]).
-- **Audit & Security context** — Owns the command log, replay protection and abuse/anomaly detection; the outbox doubles as the audit trail ([[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]]).
+- **Audit & Security context** — Owns the security audit log, replay/dedup policy and processed-command state through Command Reception, plus abuse/anomaly detection; it consumes outbox events but does not own the outbox or game-rule validation ([[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0119-command-reception-dedup-seam]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]]).
 
 ## See also
 

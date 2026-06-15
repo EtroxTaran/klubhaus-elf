@@ -33,6 +33,11 @@ design notes.
   FMX-195 source-checked update of the active pnpm pin to 11.7.0, preserving the
   npm dist-tag vs published-release caveat and the future bootstrap re-check
   guardrail.
+- [Replay/dedup ownership seam](../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15.md) -
+  FMX-164 Perplexity-first and source-checked packet for ADR-0119: Offline Sync
+  owns client queue/retry/rebase UX; Audit & Security owns authoritative
+  replay/dedup policy and processed-command state through Command Reception;
+  ADR-0028 remains post-commit event publication/domain mutation trail.
 - [Documentation Baseline 2026-05-22](Documentation-V1.md) - current
   temporal/structural closure baseline for vault gaps.
 - [Wave 3 Gap Analysis](../95-Archive/gap-reports/wave-3-gap-analysis.md) - superseded
@@ -202,6 +207,21 @@ design notes.
   [[../60-Research/raw-perplexity/raw-save-trust-provenance-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-command-save-trust-source-checks-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-hybrid-ed25519-command-evidence-2026-06-14]].
+
+## Replay/Dedup Ownership Seam (FMX-164, 2026-06-15)
+
+- [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]] -
+  FMX-164 synthesis for the ownership seam between Offline Sync, Audit &
+  Security, command validation and the transactional outbox. Grounds accepted
+  [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]]:
+  authoritative replay/dedup policy and processed-command state live in
+  Audit & Security's synchronous Command Reception capability; Offline Sync owns
+  client queue/retry/rebase UX; ADR-0028 remains post-commit publication/domain
+  mutation trail. Decision record:
+  [[../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]].
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-replay-dedup-command-reception-2026-06-15]],
+  [[../60-Research/raw-perplexity/raw-replay-dedup-source-checks-2026-06-15]].
 
 ## LLM Prose Replay Determinism Floor (FMX-153, 2026-06-14)
 

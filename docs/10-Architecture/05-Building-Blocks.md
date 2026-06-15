@@ -2,7 +2,7 @@
 title: Building Blocks
 status: current
 tags: [architecture]
-updated: 2026-06-08
+updated: 2026-06-15
 ---
 
 # Building Blocks
@@ -162,6 +162,13 @@ scoring and the GDPR retention/redaction policy. It does **not** own
 authentication (Identity & Access), domain command validation (each owning
 context re-validates) or the transactional outbox (ADR-0028 infrastructure it
 consumes).
+
+FMX-164 / [[09-Decisions/ADR-0119-command-reception-dedup-seam]] makes that
+replay/dedup responsibility synchronous at the command-reception boundary:
+receive command -> auth/session binding -> canonical payload hash ->
+`commandId` dedup/replay gate -> domain validation -> `expectedVersion` /
+append -> outbox + security facts. Offline Sync owns the client queue and rebase
+UX; the outbox remains committed-event publication/domain mutation trail.
 
 Story-thread ownership across the Narrative and Media Ecology contexts is split
 per [[09-Decisions/ADR-0100-story-thread-ownership-and-cross-context-naming]]:

@@ -141,7 +141,10 @@ access controls; **do not merge the domain audit trail and the security audit
 log** (it would pollute the domain event store and break the forensic boundary).
 Audit & Security *consumes* domain events + command metadata via the outbox; it
 never joins another context's tables, and it does not own domain validation,
-authentication or the outbox itself (ADR-0091).
+authentication or the outbox itself (ADR-0091). ADR-0119 adds the synchronous
+exception at the command-reception boundary: Audit & Security owns replay/dedup
+policy and processed-command state before domain dispatch, while the outbox
+stays post-commit publication.
 
 ## Privacy and Consent
 
@@ -267,10 +270,12 @@ behind a mandated migration seam: every command carries `commandId` (idempotency
 key) + `expectedVersion`, every client projection carries `lastSeenVersion`, the
 server API is command-oriented, and clients can always rehydrate projections from
 server events. The conflict strategy is **server-authoritative re-validation +
-rebase** for all core game commands — the server is the single authority, treats
-its outbox events as canonical, and rebases still-valid queued commands on
-conflict. CRDTs are **confined to watch-party collaborative overlays** (chat,
-shared markers) on their own sync channel; last-write-wins is allowed **only** for
+rebase** for all core game commands - the server is the single authority, treats
+committed events as canonical, and rebases still-valid queued commands on
+conflict. ADR-0119 puts authoritative replay/dedup at the server-side Command
+Reception gate before domain validation; Offline Sync owns the retry and rebase
+UX. CRDTs are **confined to watch-party collaborative overlays** (chat, shared
+markers) on their own sync channel; last-write-wins is allowed **only** for
 cosmetic local preferences, never for game state.
 
 Observability must not break offline-ready behavior or future offline-first

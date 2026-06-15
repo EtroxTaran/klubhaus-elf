@@ -3,7 +3,7 @@ title: ADR-0090 Offline Sync — MVP scope and conflict-resolution strategy
 status: accepted
 tags: [adr, architecture, offline, sync, pwa, crdt, conflict-resolution, determinism, fmx-103]
 created: 2026-06-07
-updated: 2026-06-11
+updated: 2026-06-15
 type: adr
 binding: false
 supersedes:
@@ -16,6 +16,9 @@ related:
   - [[ADR-0028-postgres-transactional-outbox]]
   - [[../bounded-context-map]]
   - [[../../60-Research/offline-sync-scope-and-conflict-strategy-2026-06-07]]
+  - [[../../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
+  - [[../../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]]
+  - [[ADR-0119-command-reception-dedup-seam]]
   - [[../../30-Implementation/pwa-offline-strategy]]
   - [[../../00-Index/Open-Decisions-Dossier]]
 ---
@@ -29,6 +32,10 @@ accepted
 > Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+> FMX-164 / ADR-0119 amends the replay/dedup seam on 2026-06-15: Offline Sync
+> owns client queue, retry/backoff, offline UX and `expectedVersion` rebase
+> presentation; Audit & Security owns authoritative replay/dedup policy and
+> processed-command state through the synchronous Command Reception capability.
 
 > **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Authored 2026-06-07 to close the Offline Sync "thin/undefined"
@@ -95,10 +102,13 @@ Propose, awaiting Nico:
   notification toggles), never for game state.
 
 If ratified, the **Offline Sync** context owns: cache-freshness + draft status metadata (MVP); and
-post-MVP the durable command outbox (IndexedDB), background-sync flush + exponential backoff, the
-idempotency/expected-version reconciliation loop, and the offline UX states. It does **not** own:
+post-MVP the durable command outbox (IndexedDB), background-sync flush + exponential backoff,
+client-side retry state, `expectedVersion` conflict presentation/rebase and the offline UX states.
+Per ADR-0119, authoritative server replay/dedup policy and processed-command state are owned by
+Audit & Security through the synchronous Command Reception capability. Offline Sync does **not** own:
 domain validation (each owning context re-validates its own commands), the canonical event store /
-outbox (ADR-0028), or the watch-party CRDT overlay module (separate sync channel).
+outbox (ADR-0028), server-side replay/dedup acceptance, or the watch-party CRDT overlay module
+(separate sync channel).
 
 ## Rationale
 
@@ -140,7 +150,10 @@ None. Extends ADR-0020 (offline-ready posture) and ADR-0008 (client-state seam) 
 - [[ADR-0020-hybrid-online-mvp-offline-ready]] - hybrid-online MVP, offline-ready posture.
 - [[ADR-0008-mobile-first-ui]] - client-state contract (Dexie drafts, expected-version, replay-queue
   seam) ratified via FMX-98.
-- [[ADR-0028-postgres-transactional-outbox]] - canonical event delivery channel.
+- [[ADR-0028-postgres-transactional-outbox]] - canonical committed-event delivery channel, not the
+  pre-commit command dedup gate.
+- [[ADR-0119-command-reception-dedup-seam]] - authoritative replay/dedup seam between Offline Sync,
+  Audit & Security, domain validation and ADR-0028.
 - [[ADR-0027-postgres-data-model]] - per-save / platform schema convention.
 - [[ADR-0019-modular-monolith-ddd]] - modular-monolith ground rules.
 - [[../bounded-context-map]] - Offline Sync context (scope fixed by this ADR; no map row change).

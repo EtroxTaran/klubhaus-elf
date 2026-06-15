@@ -3,7 +3,7 @@ title: ADR-0091 Audit & Security — context definition
 status: accepted
 tags: [adr, architecture, ddd, audit, security, anti-abuse, replay-protection, gdpr, fmx-104]
 created: 2026-06-07
-updated: 2026-06-11
+updated: 2026-06-15
 type: adr
 binding: false
 supersedes:
@@ -13,8 +13,11 @@ related:
   - [[ADR-0027-postgres-data-model]]
   - [[ADR-0028-postgres-transactional-outbox]]
   - [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
+  - [[ADR-0119-command-reception-dedup-seam]]
   - [[../bounded-context-map]]
   - [[../../60-Research/audit-security-context-definition-2026-06-07]]
+  - [[../../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
+  - [[../../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]]
   - [[../../30-Implementation/audit-trail]]
   - [[../../00-Index/Open-Decisions-Dossier]]
 ---
@@ -28,6 +31,10 @@ accepted
 > Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+> FMX-164 / ADR-0119 amends the replay/dedup seam on 2026-06-15: Audit &
+> Security owns replay/dedup policy and processed-command state through a
+> synchronous Command Reception capability, while domain contexts still own
+> game-rule validation and ADR-0028 remains post-commit event publication.
 
 > **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Authored 2026-06-07 to close the Audit & Security "thin/undefined"
@@ -79,7 +86,9 @@ If ratified, Audit & Security owns:
 - **Tamper-evidence** — per-record **hash-chaining** + periodic **signed checkpoints** (Merkle batching
   for efficient verification); separated signing keys, least-privilege access.
 - **Replay-protection / dedup state** — the processed-`commandId` store + nonce/`sequenceNo`/
-  `expectedVersion`/expiry verification that backs ADR-0090's command envelope.
+  expiry verification that backs ADR-0090/ADR-0115's command envelope. Per ADR-0119 this is exposed
+  through the synchronous Command Reception capability before domain validation. `expectedVersion`
+  conflicts remain domain/concurrency results that Offline Sync presents or rebases.
 - **Abuse / anomaly scoring + flags** and **moderation-workflow hooks** (review queue / sanction
   signals); flags are advisory, not auto-truth, unless very strong and explainable.
 - **Retention + redaction policy** for security evidence (hot/warm/cold tiers; pseudonymized
@@ -91,7 +100,8 @@ Audit & Security does **not** own:
   its own commands; the server re-simulates deterministically).
 - Authentication, accounts, roles, sessions, MFA (Identity & Access).
 - The transactional outbox / reliable event publication (ADR-0028 infrastructure) — Audit & Security
-  *consumes* domain events + command metadata via the outbox, never joins other contexts' tables.
+  *consumes* committed domain events + command metadata via the outbox for projections/forensics, but
+  the outbox is not the authoritative pre-commit replay/dedup decision.
 - The canonical domain event store (game/domain contexts).
 
 ## Rationale
@@ -135,6 +145,8 @@ None. Complements ADR-0028 (outbox), ADR-0090 (command envelope) and Identity & 
 - [[ADR-0028-postgres-transactional-outbox]] - event delivery infra Audit & Security consumes.
 - [[ADR-0090-offline-sync-scope-and-conflict-strategy]] - command envelope (idempotency +
   expected-version) whose dedup/replay state Audit & Security owns.
+- [[ADR-0119-command-reception-dedup-seam]] - synchronous Command Reception seam for replay/dedup
+  before domain validation.
 - [[ADR-0027-postgres-data-model]] - per-save / platform schema convention.
 - [[ADR-0019-modular-monolith-ddd]] - modular-monolith ground rules.
 - [[../../30-Implementation/audit-trail]] - existing audit-trail implementation note.

@@ -47,6 +47,12 @@ This is the **single** canonical handoff location. (An older
   ADR-0044/CI-process cleanup. Nico accepted script/domain-aligned future code
   contexts (`quality`, `e2e`, `security`), burn-in before branch protection and
   in-place D-002 compression; no code workflows or dependencies were added.
+- [[2026-06-15-fmx-164-replay-dedup-seam]] - FMX-164 replay/dedup ownership
+  seam packet: raw Perplexity/source-check captures, synthesis, accepted
+  decision queue and accepted ADR-0119. Approved packet is D1/D2/D3 = A/A/A:
+  Audit & Security owns authoritative replay/dedup through synchronous Command
+  Reception, Offline Sync owns client queue/retry/rebase UX, and ADR-0028 stays
+  post-commit publication/domain mutation trail.
 - [[2026-06-15-fmx-156-notification-platform]] - FMX-156 Notification platform
   ratification packet: ADR-0102 normalized to `draft` / `binding: false`,
   raw Perplexity/source-check captures and synthesis preserved, and D1-D5

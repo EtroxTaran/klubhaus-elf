@@ -63,9 +63,12 @@ schema-per-save **scale ceiling** plus a cold/archive fallback
 ([[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]).
 Domain events are published via a **transactional outbox** written in the same
 transaction as the state change
-([[09-Decisions/ADR-0028-postgres-transactional-outbox]]); the outbox is also the
-audit trail. **SurrealDB is reserved** as a non-authoritative projection only and
-must not hold authoritative state.
+([[09-Decisions/ADR-0028-postgres-transactional-outbox]]); the outbox is the
+committed domain-event publication path and domain mutation trail, while
+command-reception replay/dedup and security audit facts are owned separately by
+Audit & Security per [[09-Decisions/ADR-0119-command-reception-dedup-seam]].
+**SurrealDB is reserved** as a non-authoritative projection only and must not
+hold authoritative state.
 
 ## 4. LLM strictly out of authoritative state
 
@@ -93,6 +96,9 @@ singleplayer can be added later without redesign:
   a defined post-MVP conflict-resolution strategy
   ([[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]]), so the
   thin MVP does not foreclose the full sync engine.
+- Authoritative command replay/dedup is a server-side Command Reception
+  capability owned by Audit & Security, not the client queue and not an outbox
+  consumer ([[09-Decisions/ADR-0119-command-reception-dedup-seam]]).
 - Contracts remain versioned and storage-adapter-friendly.
 
 ## 6. Swappable renderer and transport interfaces

@@ -73,7 +73,7 @@ gate; budget figures defer to [[../60-Research/performance-budgets]].
 The audit trail is **split** by concern, and the two stores must not be conflated:
 
 - the **domain event store / transactional outbox** answers *"how did game state change?"* —
-  written same-transaction, idempotent by `event_id`, and is the domain audit trail
+  written same-transaction, idempotent by `event_id`, and is the domain mutation trail
   ([[09-Decisions/ADR-0028-postgres-transactional-outbox]]);
 - the **security audit log** (Audit & Security context) answers *"who attempted what, under
   which security decision, with what evidence?"* — append-only, hash-chained with signed
@@ -82,7 +82,7 @@ The audit trail is **split** by concern, and the two stores must not be conflate
 | ID | Stimulus | Response | Measure |
 |---|---|---|---|
 | **QS-4.1** | A command is received (incl. auth/authz decisions, replay rejections, rate-limit triggers, anomaly flags). | The security fact (who/what/when/why + integrity metadata, no raw PII/secrets/payloads) is appended to the security audit log. | Per-record hash-chaining + periodic signed checkpoints (Merkle batching); any tamper breaks chain verification ([[09-Decisions/ADR-0091-audit-security-context-definition]]). |
-| **QS-4.2** | A duplicate or replayed command (same `commandId`, stale nonce/`sequenceNo`/`expectedVersion`, or expired) arrives. | It is rejected via the replay-protection / dedup state owned by Audit & Security. | The processed-`commandId` store + envelope checks reject the duplicate; rejection is recorded as a security fact. |
+| **QS-4.2** | A duplicate or replayed command arrives. | Command Reception checks `commandId` + canonical payload hash + actor/session/save/run binding before domain validation. Same hash/binding returns the stored outcome or pending status; different hash/binding rejects as a security fact. | The processed-`commandId` store and envelope checks preserve ADR-0119 semantics; `expectedVersion` conflicts remain distinct concurrency results for Offline Sync rebase UX. |
 | **QS-4.3** | A GDPR erasure request lands on pseudonymised security evidence. | Re-identification lookups are severed without breaking the hash chain. | Facts retained, identifiers severed; minimisation + pseudonymisation upheld ([[09-Decisions/ADR-0091-audit-security-context-definition]]). |
 
 ### Q5 — Accessibility & mobile-first usability

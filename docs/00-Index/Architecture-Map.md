@@ -47,6 +47,10 @@ future-scope or historical context.
   FMX-179 prepares pending ADR-0114 for the future workspace/package mapping:
   progressive one-context package catalog, real packages only and
   `@klubhaus-elf/*` namespace after Nico approval.
+  FMX-164 accepts ADR-0119 for the command-reception replay/dedup seam:
+  Offline Sync owns client queue/retry/rebase UX, while Audit & Security owns
+  authoritative replay/dedup policy and processed-command state through a
+  synchronous Command Reception capability before domain validation.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -90,6 +94,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0026 Match Frame Contract](../10-Architecture/09-Decisions/ADR-0026-match-frame-contract.md)
 - [ADR-0027 Postgres Data Model](../10-Architecture/09-Decisions/ADR-0027-postgres-data-model.md)
 - [ADR-0028 Postgres Transactional Outbox](../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox.md)
+- [ADR-0119 Command Reception Dedup Seam](../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam.md) - accepted FMX-164 seam: command replay/dedup is a synchronous Audit & Security-owned reception capability, not the client Offline Sync queue and not an outbox consumer.
 - [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 - [ADR-0043 Notification and Messaging Platform](../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform.md) - superseded historical Notification platform source decision.

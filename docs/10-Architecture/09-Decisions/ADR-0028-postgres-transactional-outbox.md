@@ -3,13 +3,13 @@ title: ADR-0028 PostgreSQL Transactional Outbox (same-tx + poll-floor + LISTEN/N
 status: accepted
 tags: [adr, architecture, outbox, events, reliability, postgresql]
 created: 2026-05-19
-updated: 2026-06-08
+updated: 2026-06-15
 accepted_at: 2026-05-19
 type: adr
 binding: true
 supersedes: ADR-0013-transactional-outbox
 superseded_by:
-related: [[ADR-0013-transactional-outbox]], [[ADR-0021-revised-tech-stack]], [[ADR-0023-realtime-transport]], [[ADR-0027-postgres-data-model]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0014-state-machines]]
+related: [[ADR-0013-transactional-outbox]], [[ADR-0021-revised-tech-stack]], [[ADR-0023-realtime-transport]], [[ADR-0027-postgres-data-model]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0014-state-machines]], [[ADR-0119-command-reception-dedup-seam]], [[../../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
 ---
 
 # ADR-0028: PostgreSQL Transactional Outbox (same-tx + poll-floor + LISTEN/NOTIFY)
@@ -17,6 +17,11 @@ related: [[ADR-0013-transactional-outbox]], [[ADR-0021-revised-tech-stack]], [[A
 ## Status
 
 accepted
+
+FMX-164 / ADR-0119 amends the audit wording on 2026-06-15: this outbox is the
+committed domain-event publication path and the domain mutation trail. It is
+not the pre-commit command-reception replay/dedup gate and not the separate
+Audit & Security security audit log.
 
 ## Date
 
@@ -34,7 +39,9 @@ substrate change. The transactional-outbox *pattern* is preserved unchanged:
 - Idempotent by `event_id` (UUIDv7).
 - JSON payloads, Zod-validated at producer + consumer; unknown fields ignored.
 - Retention: hot table 60 days, cold archive forever in monthly partitions.
-- Outbox **is** the audit trail (no separate audit table).
+- Outbox **is** the domain mutation trail for committed domain events (no
+  separate platform domain-audit table). It is not the Audit & Security
+  security audit log and not the pre-commit command dedup gate.
 - Consumer-side idempotency via `consumer_event_offset (consumer_name,
   event_id)` UNIQUE.
 - Lag SLOs: warn >60s / >1000 pending, crit >300s / >10000.
@@ -169,13 +176,20 @@ the same drift check.
 - `outbox_pending_count`: warn > 1000, crit > 10000.
 - `outbox_publisher_attempts_exceeded_total`: any > 0 = page.
 
-### 7. Audit trail — the outbox IS the audit trail
+### 7. Domain mutation trail - the outbox is the committed domain-event trail
 
-No separate `audit_log` table at MVP. Every domain mutation that warrants
-audit emits an outbox event in the same transaction; the partitioned
-archive is the long-term audit store. F6 GDPR Art. 17 erasure follows
-ADR-0013's one-way HMAC pseudonymisation on archived audit events
-(mechanics unchanged; substrate is now Postgres `jsonb` payloads).
+No separate platform `audit_log` table is used for the domain mutation trail at
+MVP. Every committed domain mutation that warrants domain audit emits an outbox
+event in the same transaction; the partitioned archive is the long-term domain
+mutation store. F6 GDPR Art. 17 erasure follows ADR-0013's one-way HMAC
+pseudonymisation on archived domain audit events (mechanics unchanged; substrate
+is now Postgres `jsonb` payloads).
+
+This does not replace the separate Audit & Security security audit log from
+ADR-0091, and it does not own the pre-commit command replay/dedup decision from
+ADR-0119. Audit & Security may consume committed domain events via the outbox,
+but duplicate-command acceptance is decided synchronously before domain
+validation.
 
 ## Rationale
 
@@ -214,6 +228,8 @@ Negative / follow-up:
 
 - [[ADR-0013-transactional-outbox]] — superseded predecessor
 - [[ADR-0027-postgres-data-model]] — sibling rework
+- [[ADR-0119-command-reception-dedup-seam]] — clarifies that command dedup is a
+  pre-domain reception decision, not an outbox-consumer responsibility
 - [[ADR-0021-revised-tech-stack]] · [[ADR-0023-realtime-transport]] ·
   [[ADR-0019-modular-monolith-ddd]] · [[ADR-0011-server-authoritative-multiplayer]] ·
   [[ADR-0014-state-machines]]
