@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, replay-protection, idempotency, command-reception, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-164, fmx-177, fmx-180, fmx-185, fmx-191, fmx-194, fmx-195]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, privacy, gdpr, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, replay-protection, idempotency, command-reception, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-164, fmx-177, fmx-180, fmx-183, fmx-185, fmx-191, fmx-194, fmx-195]
 updated: 2026-06-15
 ---
 
@@ -64,6 +64,20 @@ The current state is:
   cleanup unless promoted by owner decision.
 - Evidence gates remain tracked through implementation: tests, drills, legal
   sign-off, release artifacts and production telemetry.
+
+## BfDI Breach Notification Playbook (FMX-183, 2026-06-15)
+
+[[breach-notification-runbook-2026-06-15]] closes the research layer for wiring
+the GDPR Art. 33/34 breach-notification operational drill into
+[[../30-Implementation/incident-response]]. It preserves the current split:
+[[../30-Implementation/privacy-and-consent]] §9 remains the binding legal
+decision tree and DE/EN user template, while incident-response owns `T0`,
+72-hour checkpoints, BfDI/national-authority route verification, Art. 33
+checklist, severity mapping, RACI and drill cadence. Raw captures:
+[[raw-perplexity/raw-breach-notification-runbook-2026-06-15]],
+[[raw-perplexity/raw-breach-notification-runbook-source-checks-2026-06-15]].
+Decision queue:
+[[../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15]].
 
 ## Notification Offline Delivery and Ratification Packet (FMX-156, 2026-06-15)
 

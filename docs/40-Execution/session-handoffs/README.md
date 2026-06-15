@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-15-fmx-183-bfdi-breach-notification]] - FMX-183 BfDI breach
+  notification playbook: raw Perplexity/source-check captures, synthesis,
+  decision queue and incident-response runbook update. Privacy-and-consent §9
+  remains the binding Art. 33/34 legal tree/template; incident-response now
+  owns `T0`, 72-hour checkpoints, BfDI/national-authority route verification,
+  severity mapping, RACI, Art. 33 checklist, Art. 34 handoff and drill cadence.
 - [[2026-06-15-fmx-158-babylon-renderer-stack]] - FMX-158 Babylon renderer-stack
   cleanup: raw Perplexity/source-check captures, synthesis, decision queue and
   cross-vault guidance updates. Canvas 2D stays match-authoritative; Babylon.js

@@ -3,7 +3,7 @@ title: Privacy and Consent — implementation surface
 status: current
 tags: [implementation, gdpr, eprivacy, privacy, consent, dsar, deletion, age-gate, breach-runbook, community, naming, fmx-54]
 created: 2026-05-18
-updated: 2026-06-14
+updated: 2026-06-15
 type: implementation
 binding: true
 adr:
@@ -26,6 +26,8 @@ related:
   - "[[audit-trail]]"
   - "[[notification-messaging-platform]]"
   - "[[incident-response]]"
+  - "[[../60-Research/breach-notification-runbook-2026-06-15]]"
+  - "[[../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15]]"
 ---
 
 # Privacy and Consent — implementation surface
@@ -736,8 +738,11 @@ flowchart TD
 - **First notification can be partial**: per WP250 §71-72,
   submitting an initial Art. 33 notification with the
   available facts and updating later is explicitly allowed.
-- **Where to file (BfDI online form)**: bookmarked in
-  [[incident-response]] + the Privacy Lead's internal note.
+- **Where to file (BfDI online form)**: [[incident-response]] §GDPR Breach
+  Notification names the current BfDI Lucom form bookmark
+  ([Meldung von Datenschutzverletzungen](https://formulare.bfdi.bund.de/lip/action/invoke.do?id=BfDIDSverstoesse))
+  and requires live competent-authority verification via the EDPB/national-DPA
+  route during drills and incidents.
 - **Contents** (Art. 33(3)): nature of the breach, categories
   of data subjects + records affected (approx.), Privacy Lead
   contact, likely consequences, measures taken / proposed.
@@ -791,7 +796,9 @@ The detailed step-by-step runbook (containment, triage, key
 rotation, communication, post-mortem, lessons learned) lives
 in [[incident-response]] + the F11 secrets-management runbook.
 This F6 note locks the **GDPR-side decision tree + user
-template**; [[incident-response]] owns the operational drill.
+template**; [[incident-response]] owns the operational drill,
+including `T0`, BfDI/national-authority route verification,
+severity mapping, Art. 33 checklist, RACI and drill cadence.
 
 ## 10. Vendor DPA checklist (Art. 28)
 
@@ -872,6 +879,7 @@ When considering a new vendor:
 | Per release   | Privacy Notice update if material change                                         | Privacy Lead   |
 | Quarterly     | RoPA review (verify processors, retention, categories still match production)    | Privacy Lead   |
 | Quarterly     | EDPB + national DPA guidance scan for material updates                           | Privacy Lead   |
+| Semiannually  | BfDI/national-authority breach form link + Privacy Lead/counsel contact check    | Privacy Lead   |
 | Annually      | DPIA review ([[../60-Research/gdpr-compliance]] §8)                              | Privacy Lead   |
 | Annually      | Breach-notification drill (incident-response runbook)                            | Privacy Lead + tech |
 | Per incident  | Breach assessment + Art. 33/34 decision + post-mortem                            | Privacy Lead   |
@@ -959,7 +967,7 @@ Default: **confirmed**.
 | FU-4  | Build Settings → Privacy & Data screen + per-category expandable view | F2 + design-system primitives |
 | FU-5  | Write the Privacy Notice content (DE + EN) using §2.1 structure     | Privacy Lead |
 | FU-6  | Write the Terms of Service draft (links from Privacy Notice)         | F8 (P2)  |
-| FU-7  | Wire BfDI breach-notification link into incident-response runbook    | [[incident-response]] |
+| FU-7  | Closed 2026-06-15 via FMX-183: BfDI breach-notification link and operational Art. 33/34 drill wired into [[incident-response]] | [[incident-response]] |
 | FU-8  | Implement audit-archive pseudonymisation pass on Art. 17 grace expiry | E10 (Identity & Access context) |
 | FU-9  | Implement per-locale Privacy Notice rendering + Accept-Language fallback | F2 + i18n |
 | FU-10 | Annual DPIA + RoPA review automation reminder                       | F11 / calendar |
@@ -988,8 +996,12 @@ Default: **confirmed**.
 - WP250 rev. 01 (breach notification) endorsed by EDPB.
 - EDPB Opinion 5/2014 on anonymisation techniques (+ 2020-2024 updates).
 - BfDI Muss-Liste (mandatory DPIA list, DE).
+- EDPB DPA notification routing index
+  (<https://www.edpb.europa.eu/notify-data-breach_en>).
 - BfDI online breach-notification form
-  ([Meldung von Datenschutzverletzungen](https://www.bfdi.bund.de/EN/Buerger/Inhalte/AlltagsThemen/Datenpannen.html))
+  ([Meldung von Datenschutzverletzungen](https://formulare.bfdi.bund.de/lip/action/invoke.do?id=BfDIDSverstoesse)).
+- FMX-183 source-checked breach-notification packet:
+  [[../60-Research/breach-notification-runbook-2026-06-15]].
 - CNIL RoPA + Privacy Notice templates.
 
 ### Project-internal anchors

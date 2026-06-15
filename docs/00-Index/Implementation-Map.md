@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-15
 type: map
 binding: false
-related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]]
+related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]], [[../30-Implementation/incident-response]], [[../60-Research/breach-notification-runbook-2026-06-15]]
 ---
 
 # Implementation Map
@@ -24,6 +24,7 @@ unless re-opened by a current issue or accepted ADR.
 - [Code-CI Pipeline Contract](../60-Research/code-ci-pipeline-2026-06-15.md) - FMX-175 accepted future required context package: active `docs-check` / `linear-id`, future `quality` / `e2e` / `security` only after real code scripts, workflows and burn-in; D-002 names `cursor-smoke` / `configured` are historical only.
 - [pnpm Tooling Currency](../60-Research/pnpm-tooling-currency-2026-06-15.md) - FMX-195 source-checked active pnpm pin refresh to 11.7.0; code bootstrap still re-checks versions before adding workspace dependencies.
 - [Notification Offline Delivery and Ratification Packet](../60-Research/notification-offline-delivery-2026-06-15.md) - FMX-156 decision-pending packet for ADR-0102: inbox-first replay, Web Push/native push as best-effort wake/attention channels, conservative push suppression and package-version routing.
+- [BfDI Breach Notification Playbook](../60-Research/breach-notification-runbook-2026-06-15.md) - FMX-183 decision-pending packet for GDPR Art. 33/34 operations: `privacy-and-consent` keeps the legal tree/template; `incident-response` owns the 72-hour drill, BfDI/national-authority route check, RACI and severity mapping.
 - [3D Presentation Architecture](../30-Implementation/3d-presentation-architecture.md) -
   post-MVP presentation-only Babylon.js scene-host guidance behind the
   `SceneDescriptor` / `CapabilityGate` seam; live match render remains Canvas
@@ -149,7 +150,10 @@ unless re-opened by a current issue or accepted ADR.
   DE/EN user-facing 429 copy; future-proof B2B per-org +
   paid-tier burst + WebSocket / SSE extension points. Closes
   F1 Q5 + F2 FU-5 + F3 FU-9.
-- [Incident Response](../30-Implementation/incident-response.md)
+- [Incident Response](../30-Implementation/incident-response.md) - operational
+  incident handling including the FMX-183 GDPR/BfDI breach-notification drill
+  for `T0`, Art. 33 authority checklist, Art. 34 handoff, severity mapping,
+  RACI and drill cadence.
 - [Secrets Management](../30-Implementation/secrets-management.md) — F11
   (2026-05-18, `current binding`). Full runbook for sops + age +
   direnv repo layout + 15-category secret inventory (A-O) with

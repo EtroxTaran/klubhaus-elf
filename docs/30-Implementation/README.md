@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-15
 type: index
 binding: true
-related: [[../00-Index/Home]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../10-Architecture/README]], [[../00-Index/Documentation-V1]]
+related: [[../00-Index/Home]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[incident-response]], [[../60-Research/breach-notification-runbook-2026-06-15]], [[../10-Architecture/README]], [[../00-Index/Documentation-V1]]
 ---
 
 # Implementation - Map of Content
@@ -52,7 +52,9 @@ operational runbooks. Current implementable notes are classified by
 - [[account-recovery]] - account key and recovery flows.
 - [[privacy-and-consent]] - GDPR/ePrivacy implementation surface.
 - [[rate-limiting-anti-abuse]] - quotas, anti-griefing and abuse response.
-- [[incident-response]] - incident handling.
+- [[incident-response]] - incident handling, including the FMX-183
+  GDPR/BfDI breach-notification operational drill (`T0`, 72-hour checkpoints,
+  Art. 33 checklist, Art. 34 handoff, RACI and drill cadence).
 - [[secrets-management]] - full secrets and restore-drill runbook.
 - [[secrets-rotation]] - narrow Cloud-Agent credential boundary policy.
 - [[transfer-market-implementation-plan]] - transfer-market implementation slice.
