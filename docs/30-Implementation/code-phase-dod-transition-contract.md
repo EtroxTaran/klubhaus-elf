@@ -1,7 +1,7 @@
 ---
 title: Code-Phase Definition of Done Transition Contract
 status: current
-tags: [implementation, process, ci, dod, monorepo, nx, fmx-180]
+tags: [implementation, process, ci, dod, monorepo, nx, architecture-fitness, fmx-167, fmx-180]
 created: 2026-06-14
 updated: 2026-06-15
 type: implementation
@@ -9,8 +9,10 @@ binding: true
 related:
   - [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]]
   - [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]]
+  - [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
   - [[agent-workflow-pattern]]
   - [[ci-and-review-process]]
+  - [[../40-Quality/architecture-fitness-function]]
   - [[mvp-implementation-roadmap]]
   - [[monorepo-workspace-bootstrap-plan]]
   - [[../10-Architecture/09-Design-System]]
@@ -18,11 +20,13 @@ related:
   - [[../60-Research/pnpm-tooling-currency-2026-06-15]]
   - [[../60-Research/tooling-currency-sweep-2026-06-15]]
   - [[../60-Research/code-ci-pipeline-2026-06-15]]
+  - [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]]
   - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]
   - [[../40-Execution/fmx-180-code-phase-dod-transition-decision-queue-2026-06-14]]
   - [[../40-Execution/fmx-195-pnpm-tooling-currency-decision-queue-2026-06-15]]
   - [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]]
   - [[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]]
+  - [[../40-Execution/fmx-167-architecture-fitness-function-decision-queue-2026-06-15]]
 ---
 
 # Code-Phase Definition of Done Transition Contract
@@ -69,6 +73,7 @@ After the transition checklist below is green, code beats add these gates:
 | Root quality entrypoint | `pnpm check` wraps the code-phase quality graph. |
 | Type safety | `pnpm typecheck` runs TypeScript project references through Nx targets. |
 | Unit/property/contract tests | `pnpm test` runs the Nx test graph for affected or required projects. |
+| Architecture fitness | Future `quality` includes `dependency-cruiser` import/path/cycle checks plus custom TypeScript/SQL scanner checks for Drizzle schema, relation/FK, query join and migration boundary violations. |
 | E2E/app checks | `pnpm test:e2e` or the accepted app-specific script runs for app/flow changes. |
 | UI showcase | Storybook is built/checked for touched UI projects; every changed atom/composite/layout/screen has a colocated story. |
 | Code CI | ADR-0044/FMX-175 code-phase contexts `quality`, `e2e` and `security` are required only after real scripts/workflows exist, burn in green and CODEOWNER review applies to code paths. |
@@ -98,6 +103,10 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 - ADR-0044/FMX-175 required contexts (`quality`, `e2e`, `security`) are updated
   only after the corresponding scripts and workflows are green on real PR
   evidence.
+- FMX-167 architecture-fitness prerequisites exist before the gate is made
+  hard: context owner metadata, public-entrypoint metadata, table ownership
+  metadata, real scanner scripts and violation fixtures for imports, joins,
+  FKs and ownerless shared tables.
 - CODEOWNER/review routing for code paths is active before code PRs can merge.
 - The design-system implementation paths named in
   [[../10-Architecture/09-Design-System]] exist and Storybook can run against
@@ -117,6 +126,9 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
   required contexts are `quality`, `e2e` and `security` after bootstrap and
   burn-in.
 - FMX-176 owns lefthook/local-parity restoration.
+- FMX-167 owns the accepted future architecture-fitness quality subgate:
+  no cross-context internal imports, no shared tables, no cross-context joins
+  and no cross-context relations/FKs after scanner implementation and burn-in.
 - FMX-195 refreshed the active pnpm pin from 11.1.2 to 11.7.0 after June 15
   source checks. Future code bootstrap still re-checks current tool versions
   before adding workspace dependencies.
@@ -131,8 +143,10 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 
 - [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]]
 - [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]]
+- [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
 - [[agent-workflow-pattern]]
 - [[ci-and-review-process]]
+- [[../40-Quality/architecture-fitness-function]]
 - [[mvp-implementation-roadmap]]
 - [[monorepo-workspace-bootstrap-plan]]
 - [[../10-Architecture/09-Design-System]]
@@ -140,4 +154,5 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 - [[../60-Research/pnpm-tooling-currency-2026-06-15]]
 - [[../60-Research/tooling-currency-sweep-2026-06-15]]
 - [[../60-Research/code-ci-pipeline-2026-06-15]]
+- [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]]
 - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]

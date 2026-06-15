@@ -1,12 +1,12 @@
 ---
 title: Quality
 status: current
-tags: [architecture, quality, determinism, offline-first, performance, security, accessibility, i18n, soak-test, save-forward, fmx-196]
+tags: [architecture, quality, determinism, offline-first, performance, security, accessibility, i18n, architecture-fitness, bounded-context, dependency-cruiser, soak-test, save-forward, fmx-167, fmx-196]
 created: 2026-05-15
 updated: 2026-06-15
 type: arch
 binding: false
-related: [[08-Crosscutting]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0008-mobile-first-ui]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0005-save-format]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]], [[../40-Quality/test-strategy]], [[../40-Quality/deterministic-simulation-qa-harness]], [[../60-Research/test-strategy-adr-2026-06-14]], [[../60-Research/deterministic-simulation-qa-harness-2026-06-15]], [[../60-Research/performance-budgets]], [[../60-Research/determinism-and-replay]], [[../30-Implementation/ci-and-review-process]]
+related: [[08-Crosscutting]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0008-mobile-first-ui]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0005-save-format]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]], [[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[../40-Quality/test-strategy]], [[../40-Quality/deterministic-simulation-qa-harness]], [[../40-Quality/architecture-fitness-function]], [[../60-Research/test-strategy-adr-2026-06-14]], [[../60-Research/deterministic-simulation-qa-harness-2026-06-15]], [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]], [[../60-Research/performance-budgets]], [[../60-Research/determinism-and-replay]], [[../30-Implementation/ci-and-review-process]]
 ---
 
 # Quality
@@ -24,6 +24,11 @@ Draft [[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matri
 and [[../40-Quality/deterministic-simulation-qa-harness]] are the FMX-196
 simulation-specific QA packet; they remain non-binding until Nico approves
 D1-D7.
+Accepted [[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
+and [[../40-Quality/architecture-fitness-function]] add the FMX-167 future
+code-phase architecture-fitness subgate inside `quality`. It hard-fails core
+bounded-context/storage-boundary violations after real scanner scripts,
+workflows and burn-in exist.
 
 > Project phase: research / analysis / architecture planning — no development. The scenarios
 > below are the acceptance targets the implementation will be held to, not yet-shipped behaviour.
@@ -41,6 +46,7 @@ In priority order for an offline-first, deterministic, mobile-first PWA:
 | **Q5** | **Accessibility & mobile-first usability** | One-handed portrait, WCAG 2.2 AA, the floor-tier experience must stay usable. | [[09-Decisions/ADR-0008-mobile-first-ui]] |
 | **Q6** | **Internationalisation correctness** | DE-source, 5 MVP locales; ICU correctness and the offline locale-precache budget. | [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]] |
 | **Q7** | **Save integrity & migration safety** | Saves and portable exports must round-trip, stay tamper-evident and migrate forward only. | [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]] (amends [[09-Decisions/ADR-0005-save-format]]) |
+| **Q8** | **Architecture boundary integrity** | The service-ready modular monolith promise depends on contexts not importing each other's internals or joining each other's tables. | [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]] |
 
 ## 2. Quality scenarios
 
@@ -112,6 +118,14 @@ The audit trail is **split** by concern, and the two stores must not be conflate
 | **QS-7.2** | A portable export protected by a user passphrase is created. | The passphrase path uses Argon2id (WASM), loaded only on export/import; the device-backup path keeps PBKDF2-SHA256 @ 600 k on the at-rest hot path. | KDF discriminated by `kdfAlgo`; no `envelopeVersion` break; WASM never on the per-decrypt hot path ([[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]] Δ1). |
 | **QS-7.3** | A friend imports a portable export whose active community packs are not all present locally. | The import surfaces the missing-pack gate (lead: block + explain) rather than silently loading a divergent world. | `SavePayload.activePacks` (packId + version + contentHash) travels in the envelope and is checked against the local `PackRegistry` on import ([[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]] Δ2/Δ3). |
 
+### Q8 — Architecture boundary integrity
+
+| ID | Stimulus | Response | Measure |
+|---|---|---|---|
+| **QS-8.1** | A code change imports another bounded context's internal module, schema or persistence surface. | The future architecture-fitness import gate rejects the change. | `dependency-cruiser` forbidden rules fail the `quality` gate after code-phase activation ([[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]). |
+| **QS-8.2** | A Drizzle schema/relation/query change crosses context storage ownership. | The future scanner rejects cross-context table ownership, `.references(...)`, `relations(...)` or joins. | Custom TypeScript/SQL scanners fail on known-bad violation fixtures and real source/migration violations. |
+| **QS-8.3** | A team needs data from another context for a screen or report. | The owner context publishes a public query, event or read model instead of exposing private tables. | No ownerless shared lookup table or convenience cross-context read lands without an accepted ADR/current-doc exception with owner, Linear link and expiry. |
+
 ## 3. Quality gates & enforcement
 
 Quality gates include Biome, TypeScript strict, Vitest coverage, Playwright
@@ -136,10 +150,17 @@ and [[../40-Quality/deterministic-simulation-qa-harness]]: replay evidence
 levels, seed tiers, same-WASM parity, soak reports and save-forward/replay
 compatibility. It is not a binding gate until Nico approves the decision queue.
 
+FMX-167 accepts architecture fitness as an internal future `quality` subgate in
+[[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]] and
+[[../40-Quality/architecture-fitness-function]]. The active docs-phase DoD is
+unchanged; future code phase hard-fails the core boundary violations only after
+real scanner scripts, violation fixtures, workflows and burn-in exist.
+
 ## Related
 
 - [[../30-Implementation/ci-and-review-process]] — enforcement model · [[../30-Implementation/agent-workflow-pattern]] — review phases
 - [[../40-Quality/test-strategy]] — FMX-177 current test strategy · [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]] — accepted ADR
 - [[../40-Quality/deterministic-simulation-qa-harness]] — FMX-196 draft simulation QA runbook · [[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]] — draft ADR
+- [[../40-Quality/architecture-fitness-function]] — FMX-167 architecture-fitness runbook · [[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]] — accepted ADR
 - [[09-Decisions/ADR-0021-revised-tech-stack]] — toolchain decision
 - [[08-Crosscutting]] — arc42 sibling

@@ -1,7 +1,7 @@
 ---
 title: Test Strategy
 status: current
-tags: [quality, testing, ci, vitest, playwright, fast-check, stryker, determinism, accessibility, performance, security, fmx-177, fmx-196]
+tags: [quality, testing, ci, vitest, playwright, fast-check, stryker, determinism, accessibility, performance, security, architecture-fitness, dependency-cruiser, fmx-167, fmx-177, fmx-196]
 created: 2026-06-14
 updated: 2026-06-15
 type: quality
@@ -14,6 +14,8 @@ related:
   - [[../40-Execution/fmx-177-test-strategy-decision-queue-2026-06-14]]
   - [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
   - [[deterministic-simulation-qa-harness]]
+  - [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
+  - [[architecture-fitness-function]]
   - [[../10-Architecture/10-Quality]]
   - [[../30-Implementation/ci-and-review-process]]
 ---
@@ -43,6 +45,7 @@ post-reset repo until bootstrap work creates real targets per ADR-0110.
 | Component/DOM tests | Code phase | Code phase | Code phase | Vitest DOM and selective Browser Mode. |
 | Property tests | Smoke | Deep run | Stress run | fast-check with replay artifacts. |
 | Integration/contract tests | Required | Required | Required | Context/persistence/API/schema contracts. |
+| Architecture fitness | Code phase | Code phase | Release evidence | Future `quality` subgate: import boundaries plus Drizzle/schema/query/migration storage-boundary scanners. |
 | Playwright E2E/PWA | Smoke | Browser/device matrix | Full release matrix | Offline, mobile viewport, key journeys. |
 | Accessibility | Automated smoke | Broader automated | Automated + manual | axe/Lighthouse/Storybook plus manual focus/reduced-motion. |
 | Determinism replay | Smoke seeds | Larger seed set | Stress seed set | Byte-identical replay and entropy guards. |
@@ -65,6 +68,7 @@ post-reset repo until bootstrap work creates real targets per ADR-0110.
 | Storybook test-runner | Interaction/a11y checks for curated design-system stories after showcase exists. |
 | Lighthouse / LHCI | Performance, a11y and PWA budget evidence after app exists. |
 | cdxgen / dependency scanners | SBOM and dependency evidence for release/security gates. |
+| dependency-cruiser + custom AST/SQL scanners | FMX-167 architecture-fitness gate for context import boundaries, Drizzle schema/query ownership and migration SQL checks after code bootstrap. |
 
 ## Base thresholds
 
@@ -157,6 +161,10 @@ Follow-up gaps remain outside FMX-177 and should be tracked separately:
   save-forward compatibility matrix now have a non-binding FMX-196 packet:
   [[deterministic-simulation-qa-harness]] and draft
   [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]];
+- architecture fitness for no shared tables / no cross-context joins is now
+  accepted in FMX-167:
+  [[architecture-fitness-function]] and
+  [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]];
 - PWA storage/offline/mobile degradation matrix;
 - release rollback and content-validation QA gates.
 
@@ -165,6 +173,8 @@ Follow-up gaps remain outside FMX-177 and should be tracked separately:
 - [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]]
 - [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
 - [[deterministic-simulation-qa-harness]]
+- [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
+- [[architecture-fitness-function]]
 - [[../60-Research/test-strategy-adr-2026-06-14]]
 - [[../60-Research/raw-perplexity/raw-test-strategy-adr-2026-06-14]]
 - [[../30-Implementation/ci-and-review-process]]

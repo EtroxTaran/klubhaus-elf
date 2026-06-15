@@ -48,6 +48,13 @@ This is the **single** canonical handoff location. (An older
   stable numeric latest with explicit source-conflict ledger, PostgreSQL 18.x
   as future code bootstrap target after approval, latest-stable compatibility
   bundle at bootstrap and dependency automation after the real workspace exists.
+- [[2026-06-15-fmx-167-architecture-fitness-function]] - FMX-167 architecture
+  fitness function packet: raw Perplexity/source-check captures, synthesis,
+  accepted decision queue, accepted ADR-0121 and current quality runbook. Nico
+  accepted D1/D2/D3 = A/A/A: `dependency-cruiser` plus custom TypeScript/SQL
+  scanners, hard-fail core boundary/storage violations after real code-phase
+  scripts and burn-in, and no code dependencies or fake scripts in docs-only
+  phase.
 - [[2026-06-15-fmx-183-bfdi-breach-notification]] - FMX-183 BfDI breach
   notification playbook: raw Perplexity/source-check captures, synthesis,
   decision queue and incident-response runbook update. Privacy-and-consent §9

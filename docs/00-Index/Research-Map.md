@@ -41,6 +41,12 @@ design notes.
   branch-protection contexts: active `docs-check` / `linear-id`, future
   `quality` / `e2e` / `security` after real scripts, workflows and burn-in, and
   D-002 cleanup as historical lessons only.
+- [Architecture Fitness Function for No Shared Tables](../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15.md) -
+  FMX-167 Perplexity-first and source-checked packet for the future code-phase
+  no-shared-tables / no-cross-context-joins enforcement: `dependency-cruiser`
+  for import boundaries, custom TypeScript/SQL scanners for Drizzle/schema/query
+  and migration boundaries, and hard failure for core violations after real
+  `quality` scripts/workflows burn in.
 - [pnpm Tooling Currency](../60-Research/pnpm-tooling-currency-2026-06-15.md) -
   FMX-195 source-checked update of the active pnpm pin to 11.7.0, preserving the
   npm dist-tag vs published-release caveat and the future bootstrap re-check
