@@ -37,6 +37,16 @@ refresh.
 | [[raw-pnpm-tooling-currency-2026-06-15]] | Perplexity discovery pass for pnpm 11 pinning, Node compatibility and workspace/code-phase guardrails | [[../pnpm-tooling-currency-2026-06-15]] |
 | [[raw-pnpm-source-checks-2026-06-15]] | npm registry, GitHub release, Context7 and Ref checks for `pnpm@11.7.0` | [[../pnpm-tooling-currency-2026-06-15]] |
 
+## FMX-175 code-CI pipeline contract (2026-06-15)
+
+Perplexity-first research and targeted source checks for the future code-phase
+required context package and D-002 cleanup.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-code-ci-pipeline-2026-06-15]] | Perplexity discovery pass for branch-protection naming, PR/nightly/release split, Nx/pnpm monorepo CI and game/simulation QA precedent | [[../code-ci-pipeline-2026-06-15]] |
+| [[raw-code-ci-pipeline-source-checks-2026-06-15]] | GitHub, pnpm, Nx, Vitest, Playwright, fast-check, StrykerJS, Storybook, Lighthouse CI, cdxgen and simulation-determinism source checks | [[../code-ci-pipeline-2026-06-15]] |
+
 ## Source documents (private, not committed)
 
 - `Football Manager Game – Vollständige Feature-Recherche & Konzeptbibliothek.md` (≈580 lines, feature catalogue)

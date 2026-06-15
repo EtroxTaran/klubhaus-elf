@@ -3,7 +3,7 @@ title: "ADR-0044: CI/CD Strategy & Merge Policy"
 status: accepted
 tags: [adr, architecture, ci, process]
 created: 2026-05-27
-updated: 2026-06-11
+updated: 2026-06-15
 type: adr
 binding: false
 supersedes:
@@ -20,6 +20,10 @@ accepted
 > Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+> FMX-175 amended the target code-phase required-context package on 2026-06-15:
+> after real scripts/workflows and burn-in, code branch protection uses
+> `quality`, `e2e` and `security`; D-002-era `cursor-smoke` and `configured`
+> names are historical only.
 
 ## Date
 
@@ -60,9 +64,11 @@ code CI (test/lint/type/e2e) returns in the build phase.
    - **`Closes FMX-<n>`** in the PR auto-closes the linked Linear issue on merge;
      **1 PR ↔ 1 issue** (see [[ADR-0045-issue-first-worktree-workflow]]).
 3. **Docs-phase activation now:** `docs-check` + `linear-id` required on `main`,
-   GitHub auto-merge enabled, **0 reviews** for docs. Build-phase: add code checks
-   (test/lint/type/validation) as required and switch on the **CODEOWNER-review**
-   requirement for code paths.
+   GitHub auto-merge enabled, **0 reviews** for docs. Code phase later adds the
+   script/domain-aligned required contexts `quality`, `e2e` and `security` only
+   after the backing repo scripts, workflows and real targets exist and have
+   burned in green. CODEOWNER review then applies for code paths. `cursor-smoke`,
+   `configured` and standalone `lighthouse` are not required-context names.
 
 ## Rationale
 
@@ -81,13 +87,16 @@ Positive:
 - No vendor lock-in; checks reproducible locally.
 - No manual merge bottleneck for green PRs; `main` stays protected.
 - Clean path to code-phase (add checks + review) and to multi-lead (CODEOWNER routing).
+- No placeholder code-CI contexts: branch protection can require only checks
+  that real workflows provide.
 
 Negative:
 
 - Docs auto-merge means an agent's green docs PR lands without human eyes — mitigated
   by `docs:check` + the same-PR vault rules + `linear-id` traceability.
-- A bootstrap step is needed: the first PR adding the `docs-check` workflow must land
-  before that check can be made *required*.
+- A bootstrap step is needed before any new required check can be activated:
+  the workflow and repo script must exist and pass on real PR evidence before
+  branch protection is updated.
 
 ## Supersedes
 
@@ -98,4 +107,5 @@ protection in [[../../30-Implementation/ci-and-review-process]] (reconciled ther
 ## Related Docs
 
 - [[../../30-Implementation/ci-and-review-process]] · [[../../30-Implementation/linear-task-tracking]] · [[../../30-Implementation/agent-workflow-pattern]]
+- [[../../60-Research/code-ci-pipeline-2026-06-15]] · [[../../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]]
 - [[ADR-0045-issue-first-worktree-workflow]] · [[ADR-0046-team-topology-and-scaling]]

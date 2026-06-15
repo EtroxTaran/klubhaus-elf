@@ -21,6 +21,10 @@ operational runbooks. Current implementable notes are classified by
 - [[code-phase-dod-transition-contract]] - executable docs-phase -> code-phase
   Definition-of-Done bridge; code gates are target-only until bootstrap creates
   workspace, Nx, scripts, CI and app/package paths.
+- [[../60-Research/code-ci-pipeline-2026-06-15]] - FMX-175 accepted code-CI
+  context contract: active `docs-check` / `linear-id`, future `quality` /
+  `e2e` / `security` after real scripts, workflows and burn-in; D-002
+  `cursor-smoke` / `configured` names are historical only.
 - [[monorepo-workspace-bootstrap-plan]] - FMX-179 non-binding scaffold plan for
   the first real workspace: progressive context package catalog, real foundation
   packages only, Nx/pnpm/TypeScript linking and no-placeholder gate activation
