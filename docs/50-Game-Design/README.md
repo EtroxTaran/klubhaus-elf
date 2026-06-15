@@ -43,8 +43,8 @@ Implement gameplay only from `accepted`/`approved` game-design records (GDDRs ca
 individually re-approved). This folder has two
 complementary record shapes:
 
-- **GDDRs** (`GD-0001`...`GD-0044`; `GD-0041`–`GD-0043` are draft/pending,
-  `GD-0044` is accepted) — the
+- **GDDRs** (`GD-0001`...`GD-0045`; `GD-0041`–`GD-0043` and `GD-0045` are
+  draft/pending, `GD-0044` is accepted) — the
   decision-record chain from research into ADRs (the *what was decided and why*);
 - **system and mode notes** such as [[core-loop]], [[match-engine]], and
   [[transfer-market-and-contracts]] — the detailed system specs (the *how it
@@ -88,7 +88,9 @@ FMX-141 decision queue. FMX-190 prepared draft
 [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]
 as the proposed project-wide no-P2W / shared-fairness enforcement invariant;
 it remains non-binding until Nico answers the FMX-190 decision queue. `GD-0044`
-is the accepted FMX-137 Create-a-Club Roguelite run tuning record.
+is the accepted FMX-137 Create-a-Club Roguelite run tuning record. `GD-0045`
+is the FMX-192 cosmetic identity catalog proposal and remains `draft` until
+Nico answers the FMX-192 decision queue.
 
 | GDDR | System | Status | Feeds ADR |
 |---|---|---|---|
@@ -136,6 +138,7 @@ is the accepted FMX-137 Create-a-Club Roguelite run tuning record.
 | [[GD-0042-match-engine-core-model-and-calibration]] | Match-engine core model and calibration (FMX-133): recommended hybrid event-chain + xT/EPV utility + xG + attribute contests, v1 statistical envelopes, profile spatial-density rules and calibration/compatibility harness. Numeric representation stays closed by ADR-0096. Pending Nico D1-D6. | draft | ADR-0096, ADR-0026 |
 | [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] | Gameplay calibration ownership and acceptance gate (FMX-141): recommended gameplay-wide calibration umbrella, 14-slot taxonomy, T0-T4 harness tiers, explicit tolerance/rebaseline policy and realism-vs-fun approval gate. Pending Nico D1-D5. | draft | none |
 | [[GD-0044-create-a-club-roguelite-run-tuning]] | Create-a-Club Roguelite run tuning (FMX-137): staged run-end ladder, two unresolved month-end liquidity/licence failures after rescue exhaustion, board control loss through GD-0030 `last_chance`, capped logarithmic carry slots to max 3, light async kit-pattern visibility and deferred archetype taxonomy. | accepted | ADR-0051, ADR-0082 |
+| [[GD-0045-cosmetic-identity-catalog]] | Cosmetic identity catalog (FMX-192): proposed free Create-a-Club baseline identity, eight-family cosmetic taxonomy, deterministic non-tradeable/no-RNG acquisition classes, item+bundle IP/accessibility evidence and pricing/legal handoff hooks. Pending Nico D1-D7. | draft | ADR-0107, ADR-0108 draft |
 
 ## Core loop
 
@@ -184,6 +187,10 @@ is the accepted FMX-137 Create-a-Club Roguelite run tuning record.
 - [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]] -
   FMX-54 fan-persona privacy, fictional aggregate boundary, IP-safe
   social-world naming and Community Overlay future-gate research.
+- [[GD-0045-cosmetic-identity-catalog]] - draft FMX-192 cosmetic identity
+  catalog proposal; not binding until Nico approves D1-D7.
+- [[../20-Features/feature-cosmetic-identity-catalog]] - draft feature slice
+  for the cosmetic identity catalog.
 
 ## Sporting core
 

@@ -24,6 +24,22 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-192 Cosmetic identity catalog packet pending (2026-06-15).** Branch
+> `codex/fmx-192-cosmetic-identity-catalog` prepares the cosmetic identity
+> catalog for Create-a-Club baseline identity, earned/advanced identity
+> variants, IP-clean crest/kit/palette/sponsor layers, no-P2W acquisition
+> classes and pricing/legal handoff hooks. Research
+> [[../60-Research/cosmetic-identity-catalog-2026-06-15]] (+ raw
+> Perplexity/source-check captures) grounds draft
+> [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] plus draft
+> [[../20-Features/feature-cosmetic-identity-catalog]]. No catalog rule is
+> binding until Nico accepts D1-D7 in
+> [[../40-Execution/fmx-192-cosmetic-identity-catalog-decision-queue-2026-06-15]].
+> Recommended packet is all A: draft GDDR + feature note, free baseline
+> identity, narrow eight-family taxonomy, deterministic non-tradeable/no-RNG
+> acquisition, light gated async visibility, item+bundle IP/accessibility
+> evidence and a later cosmetic-only deterministic season card.
+
 > **FMX-172 Stryker mutation-testing gate packet pending
 > (2026-06-15).** Branch `codex/fmx-172-stryker-mutation-gate`
 > prepares the ADR-0118 follow-up for scoped Stryker mutation-testing
