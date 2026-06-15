@@ -22,6 +22,7 @@ unless re-opened by a current issue or accepted ADR.
 - [Linear Task Tracking & GitHub Integration](../30-Implementation/linear-task-tracking.md) - Linear team FMX conventions (labels, states, project, issue/branch/PR rules) + GitHub integration.
 - [Code-Phase Definition of Done Transition Contract](../30-Implementation/code-phase-dod-transition-contract.md) - FMX-180 docs-phase -> code-phase bridge: active docs DoD, target-only code gates, Nx day-one bootstrap checklist and related Linear routing.
 - [Code-CI Pipeline Contract](../60-Research/code-ci-pipeline-2026-06-15.md) - FMX-175 accepted future required context package: active `docs-check` / `linear-id`, future `quality` / `e2e` / `security` only after real code scripts, workflows and burn-in; D-002 names `cursor-smoke` / `configured` are historical only.
+- [Architecture Fitness Function](../40-Quality/architecture-fitness-function.md) - FMX-167 accepted future `quality` subgate for no cross-context internals, no shared tables, no cross-context joins/FKs and no ownerless lookup tables; uses `dependency-cruiser` plus custom TypeScript/SQL scanners after code bootstrap and burn-in.
 - [pnpm Tooling Currency](../60-Research/pnpm-tooling-currency-2026-06-15.md) - FMX-195 source-checked active pnpm pin refresh to 11.7.0; code bootstrap still re-checks versions before adding workspace dependencies.
 - [Notification Offline Delivery and Ratification Packet](../60-Research/notification-offline-delivery-2026-06-15.md) - FMX-156 decision-pending packet for ADR-0102: inbox-first replay, Web Push/native push as best-effort wake/attention channels, conservative push suppression and package-version routing.
 - [BfDI Breach Notification Playbook](../60-Research/breach-notification-runbook-2026-06-15.md) - FMX-183 decision-pending packet for GDPR Art. 33/34 operations: `privacy-and-consent` keeps the legal tree/template; `incident-response` owns the 72-hour drill, BfDI/national-authority route check, RACI and severity mapping.
@@ -65,6 +66,10 @@ unless re-opened by a current issue or accepted ADR.
   same-WASM parity, soak reports, save-forward matrix and approval-gated
   rebaseline/retention policy; remains non-binding until Nico approves
   ADR-0120 / D1-D7.
+- [Architecture Fitness Function](../40-Quality/architecture-fitness-function.md)
+  - accepted FMX-167 quality runbook for future import, Drizzle/schema/query and
+  migration boundary scanners; no code scripts or dependencies are active in
+  docs-only phase.
 - [SurrealDB Integration](../30-Implementation/surrealdb-integration.md) - superseded historical substrate note; do not implement.
 - [Deployment Dokploy](../30-Implementation/deployment-dokploy.md)
 - [Observability Runbook](../30-Implementation/observability-runbook.md)

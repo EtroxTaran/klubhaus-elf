@@ -85,6 +85,22 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../60-Research/code-ci-pipeline-2026-06-15]]. Decision record:
 > [[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]].
 
+> **FMX-167 Architecture fitness function accepted — ADR-0121 binding
+> (2026-06-15).** Branch
+> `codex/fmx-167-architecture-fitness-function` defines the future code-phase
+> enforcement for the accepted no-shared-tables / no-cross-context-joins
+> invariant. The future `quality` context gains an internal architecture-fitness
+> subgate: `dependency-cruiser` for import/path/cycle rules plus custom
+> TypeScript/SQL scanners for Drizzle schema, relations, FKs, query joins,
+> raw SQL and migrations. Current docs-phase DoD is unchanged; no scripts or
+> dependencies were added. Research:
+> [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]].
+> Accepted ADR:
+> [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]].
+> Quality runbook: [[../40-Quality/architecture-fitness-function]]. Decision
+> record:
+> [[../40-Execution/fmx-167-architecture-fitness-function-decision-queue-2026-06-15]].
+
 > **FMX-195 pnpm tooling currency updated (2026-06-15).** Branch
 > `codex/fmx-195-pnpm-pin-current-stable` refreshes the active docs-phase pnpm
 > pin from `11.1.2` to `11.7.0` in `package.json` and `.mise.toml`. Research
