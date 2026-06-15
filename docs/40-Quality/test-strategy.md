@@ -1,7 +1,7 @@
 ---
 title: Test Strategy
 status: current
-tags: [quality, testing, ci, vitest, playwright, fast-check, stryker, determinism, accessibility, performance, security, architecture-fitness, dependency-cruiser, fmx-167, fmx-177, fmx-196]
+tags: [quality, testing, ci, vitest, playwright, fast-check, stryker, determinism, accessibility, performance, security, architecture-fitness, dependency-cruiser, pwa, offline, mobile, rollback, content-qa, fmx-167, fmx-177, fmx-196, fmx-197]
 created: 2026-06-14
 updated: 2026-06-15
 type: quality
@@ -16,6 +16,10 @@ related:
   - [[deterministic-simulation-qa-harness]]
   - [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
   - [[architecture-fitness-function]]
+  - [[../10-Architecture/09-Decisions/ADR-0124-pwa-offline-mobile-release-content-qa-gates]]
+  - [[pwa-offline-mobile-release-content-qa-gates]]
+  - [[../60-Research/pwa-offline-mobile-release-content-qa-gates-2026-06-15]]
+  - [[../40-Execution/fmx-197-pwa-offline-mobile-release-content-qa-decision-queue-2026-06-15]]
   - [[../10-Architecture/10-Quality]]
   - [[../30-Implementation/ci-and-review-process]]
 ---
@@ -165,8 +169,10 @@ Follow-up gaps remain outside FMX-177 and should be tracked separately:
   accepted in FMX-167:
   [[architecture-fitness-function]] and
   [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]];
-- PWA storage/offline/mobile degradation matrix;
-- release rollback and content-validation QA gates.
+- PWA storage/offline/mobile degradation, release rollback and
+  content-validation QA gates now have a non-binding FMX-197 packet:
+  [[pwa-offline-mobile-release-content-qa-gates]] and draft
+  [[../10-Architecture/09-Decisions/ADR-0124-pwa-offline-mobile-release-content-qa-gates]].
 
 ## Related
 
@@ -175,6 +181,8 @@ Follow-up gaps remain outside FMX-177 and should be tracked separately:
 - [[deterministic-simulation-qa-harness]]
 - [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
 - [[architecture-fitness-function]]
+- [[../10-Architecture/09-Decisions/ADR-0124-pwa-offline-mobile-release-content-qa-gates]]
+- [[pwa-offline-mobile-release-content-qa-gates]]
 - [[../60-Research/test-strategy-adr-2026-06-14]]
 - [[../60-Research/raw-perplexity/raw-test-strategy-adr-2026-06-14]]
 - [[../30-Implementation/ci-and-review-process]]

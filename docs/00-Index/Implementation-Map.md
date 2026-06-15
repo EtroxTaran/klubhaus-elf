@@ -66,6 +66,11 @@ unless re-opened by a current issue or accepted ADR.
   same-WASM parity, soak reports, save-forward matrix and approval-gated
   rebaseline/retention policy; remains non-binding until Nico approves
   ADR-0120 / D1-D7.
+- [PWA Offline Mobile Release Content QA Gates](../40-Quality/pwa-offline-mobile-release-content-qa-gates.md)
+  - draft FMX-197 quality runbook for hybrid-online offline degradation,
+  storage/quota/eviction UX, service-worker rollback, staged release evidence,
+  content-pack validation, pseudo-loc/generated-content safety and versioned
+  rebaseline records; remains non-binding until Nico approves ADR-0124 / D1-D7.
 - [Architecture Fitness Function](../40-Quality/architecture-fitness-function.md)
   - accepted FMX-167 quality runbook for future import, Drizzle/schema/query and
   migration boundary scanners; no code scripts or dependencies are active in

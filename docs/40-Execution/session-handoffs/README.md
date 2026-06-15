@@ -50,6 +50,14 @@ This is the **single** canonical handoff location. (An older
   `PrincipalContext`; domain memberships, payments/entitlements, age policy,
   Offline Sync queues, Community Overlay pack lifecycle and Audit & Security
   retention stay outside.
+- [[2026-06-15-fmx-197-pwa-offline-mobile-release-qa]] - FMX-197
+  PWA/offline/mobile release/content-QA packet: raw Perplexity/source-check
+  captures, synthesis, draft decision queue, draft ADR-0124 and draft quality
+  runbook. Pending Nico D1-D7; recommended packet is all A for hybrid-online
+  offline contract, tiered storage budgets/eviction UX, user-mediated SW update
+  plus no-op/rescue rollback, staged rollout gates, manifested content-pack
+  validation, template-first generated/localized content gates and versioned
+  evidence/rebaseline records.
 - [[2026-06-15-fmx-193-responsible-gaming]] - FMX-193 responsible-gaming
   binding record packet: raw Perplexity/source-check captures, synthesis, draft
   decision queue, draft ADR-0122 and draft compliance home. Pending Nico D1-D7;
