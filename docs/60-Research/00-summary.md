@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, privacy, gdpr, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, replay-protection, idempotency, command-reception, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-164, fmx-177, fmx-180, fmx-183, fmx-185, fmx-191, fmx-194, fmx-195, fmx-196]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, architecture-fitness, dependency-cruiser, bounded-context, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, privacy, gdpr, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, replay-protection, idempotency, command-reception, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-164, fmx-167, fmx-177, fmx-180, fmx-183, fmx-185, fmx-191, fmx-194, fmx-195, fmx-196]
 updated: 2026-06-15
 ---
 
@@ -130,6 +130,24 @@ creation to the code-phase bootstrap. Raw captures:
 [[raw-perplexity/raw-code-ci-pipeline-source-checks-2026-06-15]].
 Decision record:
 [[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]].
+
+## Architecture Fitness Function for No Shared Tables (FMX-167, 2026-06-15)
+
+[[architecture-fitness-function-no-shared-tables-2026-06-15]] preserves the
+FMX-167 research layer for future code-phase enforcement of the no shared
+tables / no cross-context joins invariant. Nico accepted D1=A
+`dependency-cruiser` plus custom TypeScript/SQL scanners, D2=A hard failure for
+core violations after real `quality` scripts/workflows burn in and D3=A
+accepted ADR now with no code dependencies in docs-only phase. Accepted ADR:
+[[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]].
+Quality runbook: [[../40-Quality/architecture-fitness-function]]. Decision
+record:
+[[../40-Execution/fmx-167-architecture-fitness-function-decision-queue-2026-06-15]].
+Raw captures:
+[[raw-perplexity/raw-architecture-fitness-import-boundaries-2026-06-15]],
+[[raw-perplexity/raw-architecture-fitness-db-boundaries-2026-06-15]],
+[[raw-perplexity/raw-architecture-fitness-precedents-2026-06-15]],
+[[raw-perplexity/raw-architecture-fitness-source-checks-2026-06-15]].
 
 ## Replay/Dedup Ownership Seam (FMX-164, 2026-06-15)
 

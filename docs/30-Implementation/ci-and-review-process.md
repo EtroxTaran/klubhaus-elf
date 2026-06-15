@@ -1,11 +1,11 @@
 ---
 title: CI & Review Process
 status: draft
-tags: [implementation, ci, process, quality]
+tags: [implementation, ci, process, quality, architecture-fitness, fmx-167]
 created: 2026-05-16
 updated: 2026-06-15
 type: implementation
-related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../40-Quality/test-strategy]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../00-Index/Current-State]]
+related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../40-Quality/test-strategy]], [[../40-Quality/architecture-fitness-function]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[../00-Index/Current-State]]
 ---
 
 # CI & Review Process
@@ -32,6 +32,13 @@ related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-p
 > start as reporting/nightly/release evidence unless later promoted. The
 > D-002-era `cursor-smoke` and `configured` names are historical incident
 > vocabulary only, not future required contexts.
+>
+> **2026-06-15 - FMX-167 architecture fitness accepted.** Accepted
+> [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
+> and [[../40-Quality/architecture-fitness-function]] add no-shared-tables /
+> no-cross-context-joins enforcement as an internal future `quality` subgate.
+> It is not a new branch-protection context and it is inactive until real
+> scanner scripts, violation fixtures, workflows and burn-in exist.
 
 **Principle: `main` and `develop` are always green.** A red required check
 is an incident, not a backlog item. Overruling a red check is reserved for
@@ -99,12 +106,17 @@ save-forward-compatibility, soak/calibration, a11y/performance/security and CI
 cost posture with a future local `xAi` runner gate. Do not treat these details
 as required checks until real workspace targets exist.
 
+FMX-167's accepted ADR-0121 adds the architecture-fitness subgate to future
+`quality`: `dependency-cruiser` for import/path/cycle rules plus custom
+TypeScript/SQL scanners for Drizzle schema, relation/FK, query join and
+migration checks. It does not add a standalone required status context.
+
 FMX-175 packages those target checks into future required branch-protection
 contexts:
 
 | Future context | Backing root entrypoint | Activation |
 |---|---|---|
-| `quality` | `pnpm check` or the accepted successor root script. It wraps Biome/format, typecheck, unit/domain/component/property smoke and contract checks through Nx affected targets. | Required only after the script, workflow and real targets exist and burn in green. |
+| `quality` | `pnpm check` or the accepted successor root script. It wraps Biome/format, typecheck, unit/domain/component/property smoke, contract checks and FMX-167 architecture-fitness checks through Nx affected targets. | Required only after the script, workflow and real targets exist and burn in green. |
 | `e2e` | `pnpm test:e2e` or the accepted app-specific E2E root script. It runs Playwright critical journey/offline/PWA smoke with deterministic fixtures and traces. | Required only after the app exists and smoke flows are stable. |
 | `security` | Future root security/SBOM script. It runs secret/dependency/SBOM/license evidence and emits release-grade artifacts when applicable. | Required only after the security script is real and fast enough for PR use. |
 
@@ -174,7 +186,8 @@ branch protection. Do not list `cursor-smoke`, `configured` or standalone
 The repo is docs-vault-only. Code-CI, app e2e, Storybook and lefthook/local
 parity are target-only until the code-phase transition checklist is green.
 FMX-175 defines the future code-CI required context contract; FMX-176 tracks
-local-parity cleanup; FMX-179 tracks workspace bootstrap; FMX-195 refreshed the
+local-parity cleanup; FMX-179 tracks workspace bootstrap; FMX-167 defines the
+future architecture-fitness subgate inside `quality`; FMX-195 refreshed the
 active pnpm pin to 11.7.0.
 
 ## Related
@@ -184,4 +197,7 @@ active pnpm pin to 11.7.0.
 - [[../60-Research/code-ci-pipeline-2026-06-15]] — FMX-175 code-CI context
   research · [[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]]
   — accepted D1-D4 packet
+- [[../40-Quality/architecture-fitness-function]] — FMX-167 future `quality`
+  subgate · [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
+  — accepted architecture-fitness ADR
 - [[../00-Index/Current-State]] — live status · [[deployment-dokploy]] — gate before deploy

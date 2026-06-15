@@ -54,6 +54,10 @@ future-scope or historical context.
   FMX-196 prepares pending ADR-0120 for deterministic simulation QA:
   replay evidence levels, seed tiers, soak metrics, same-WASM parity and
   save-forward/replay compatibility; it is non-binding until Nico approval.
+  FMX-167 accepts ADR-0121 for architecture fitness: future code-phase
+  `quality` hard-fails cross-context internals, schema/table imports, Drizzle
+  relation/FK violations, cross-context joins and ownerless shared lookup
+  tables after real scanner scripts and burn-in exist.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -99,6 +103,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0028 Postgres Transactional Outbox](../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox.md)
 - [ADR-0119 Command Reception Dedup Seam](../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam.md) - accepted FMX-164 seam: command replay/dedup is a synchronous Audit & Security-owned reception capability, not the client Offline Sync queue and not an outbox consumer.
 - [ADR-0120 Deterministic Simulation QA and Save-Forward Matrix](../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix.md) - draft FMX-196 proposal only: deterministic simulation QA artifact levels, seed tiers, same-WASM parity, soak metrics and save-forward/replay compatibility boundary.
+- [ADR-0121 Architecture Fitness Function for No Shared Tables](../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables.md) - accepted FMX-167 future code-phase quality subgate: `dependency-cruiser` import rules plus custom TypeScript/SQL scanners for no cross-context internals, no shared tables and no cross-context joins/FKs.
 - [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 - [ADR-0047 Babylon.js 3D Presentation Engine](../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine.md)
