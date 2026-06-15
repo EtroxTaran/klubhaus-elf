@@ -28,7 +28,7 @@ AI balance, dynasty/long-run simulation balance and balance-patch methodology.
 The Perplexity answer was directionally useful but over-claimed several
 Football Manager / EHM internals and returned weak citations. This capture is
 therefore treated as precedent input, not authoritative evidence. FMX-141 uses
-the stronger source-check capture for cited claims and marks FMX-specific
+the stronger source-check capture for cited claims and marks Klubhaus Elf-specific
 governance as design inference.
 
 ## Extracted findings

@@ -18,7 +18,7 @@ related:
 ## Linear
 
 - Issue: FMX-80
-- PR: https://github.com/EtroxTaran/football-manager-x/pull/138
+- PR: https://github.com/EtroxTaran/klubhaus-elf/pull/138
 
 ## Goals
 
@@ -33,7 +33,7 @@ related:
 - Synced `main` and created branch
   `codex/fmx-80-player-discipline-sub-aggregate`.
 - Captured Perplexity/source research for current football discipline rules,
-  management-game precedent and FMX-specific DDD ownership options.
+  management-game precedent and Klubhaus Elf-specific DDD ownership options.
 - Captured Nico's D1-D4 choices.
 - Added raw research, synthesis, proposed ADR-0078 and
   [[../../10-Architecture/state-machines/player-discipline]].

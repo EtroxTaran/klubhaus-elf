@@ -38,7 +38,7 @@ Perplexity was asked for comparable sports management game handling of financial
   - enough abstraction that the player understands consequences without reading legal detail.
 - The fun comes from constraints and choices, not from detailed insolvency procedure. The model should create crisis pressure, credible consequences and recovery stories while keeping ledger truth deterministic and boring.
 
-## FMX-specific extraction
+## Klubhaus Elf-specific extraction
 
 | Game-facing pattern | FMX implication |
 |---|---|

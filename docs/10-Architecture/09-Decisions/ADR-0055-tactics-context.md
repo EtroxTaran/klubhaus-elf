@@ -48,7 +48,7 @@ accepted
 ## Ratification
 
 Nico accepted Option C on 2026-05-28 after reviewing the FMX-28 dossier
-(PR [#90](https://github.com/EtroxTaran/football-manager-x/pull/90)).
+(PR [#90](https://github.com/EtroxTaran/klubhaus-elf/pull/90)).
 The §Recommendation below names Option C; the synthesis at
 [[../../60-Research/tactics-persistence-bounded-context-2026-05-28]]
 documents the three converging arguments (DDD canonical split criteria,

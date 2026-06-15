@@ -87,7 +87,7 @@ design notes.
   [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
   and state machine [[../10-Architecture/state-machines/player-discipline]] with
   official discipline-rule source checks, football-manager genre precedent and
-  FMX-specific DDD ownership trade-offs. Records Nico's selected defaults:
+  Klubhaus Elf-specific DDD ownership trade-offs. Records Nico's selected defaults:
   Squad & Player process manager/sub-aggregate, straight-red appeals only,
   profile-driven suspension scopes and appeal resolution before the next
   relevant fixture; raw capture:

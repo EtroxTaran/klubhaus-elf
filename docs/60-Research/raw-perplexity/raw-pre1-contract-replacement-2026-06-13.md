@@ -38,7 +38,7 @@ carry.
 - ADR wording should name the stabilization trigger: published-for-integration, external consumer
   adoption, or durable data persistence.
 
-## FMX-specific extraction
+## Klubhaus Elf-specific extraction
 
 | Best practice | FMX-147 implication |
 |---|---|

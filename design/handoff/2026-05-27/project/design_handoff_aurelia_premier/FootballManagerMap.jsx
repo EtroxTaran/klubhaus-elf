@@ -1,6 +1,6 @@
 // FootballManagerMap.jsx
 // ------------------------------------------------------------------
-// Production-ready React Three Fiber tycoon map for Football Manager X.
+// Production-ready React Three Fiber tycoon map for Klubhaus Elf.
 // Drop this file into a Vite + React project that already has:
 //   npm i three @react-three/fiber @react-three/drei
 //

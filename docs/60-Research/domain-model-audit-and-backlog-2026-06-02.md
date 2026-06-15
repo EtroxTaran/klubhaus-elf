@@ -606,7 +606,7 @@ The existing structure (00-Index hub-and-spoke, 09-Decisions ADRs, 50-Game-Desig
 # Section G — Planning-Agent Blueprint (reusable framework)
 
 > **What this is.** A copy-pasteable operating procedure a future planning agent
-> applies to *any* Football Manager X backlog issue. It encodes the FMX
+> applies to *any* Klubhaus Elf backlog issue. It encodes the FMX
 > governance contract (agents **propose**, Nico **decides**), the read-first /
 > research-grounded / ask-first / supersede-disciplined workflow, and the
 > same-PR vault-update rule. Fill the `«slots»`. Nothing here authorizes a

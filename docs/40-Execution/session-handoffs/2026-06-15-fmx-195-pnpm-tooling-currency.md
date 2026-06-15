@@ -31,7 +31,12 @@ related:
 - Preserved raw Perplexity findings plus source checks in the vault.
 - Added synthesis and decision queue for the 11.7.0 target decision.
 - Updated current process/front-door docs for the resolved active pin.
-- Validated with `node scripts/docs-check.mjs`, `pnpm docs:check` and
+- Normalized legacy repo/project naming to `klubhaus-elf` / **Klubhaus Elf**
+  across governance, Linear/GitHub setup notes, pre-mortem/legal rebrand notes,
+  historical PR references and design handoff labels.
+- Initial pin update validated with `node scripts/docs-check.mjs`,
+  `pnpm docs:check` and `git diff --check`; naming cleanup revalidated with
+  `node scripts/docs-check.mjs`, a legacy-name `rg` check and
   `git diff --check`.
 
 ## Open Tasks
@@ -67,6 +72,8 @@ related:
 - [[../../00-Index/Research-Map]]
 - [[../../00-Index/Implementation-Map]]
 - [[../../60-Research/00-summary]]
+- Repo/project naming references in governance, pre-mortem/legal, raw research,
+  handoff and design-handoff notes.
 
 ## Promotion Needed
 

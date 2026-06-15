@@ -237,7 +237,7 @@ gameplay behaviour and patch-note evidence.
 ## Combined implications for ADR-0051 ratification
 
 1. **Snapshot-at-creation determinism** is the canonical industry pattern, not
-   an FMX-specific invention. ADR-0051's rule "a running save must never read
+   an Klubhaus Elf-specific invention. ADR-0051's rule "a running save must never read
    mutable cross-save meta after creation" matches every surveyed title.
 2. **Own bounded context for cross-run meta** is the DDD-correct answer when
    the meta has domain rules (which Manager & Legacy does: archetype

@@ -122,7 +122,7 @@ mid-season/pre-contract opening and season end.
 |---|---|---|
 | Transfer owns contract lifecycle | Good for deal-shaped negotiations. | Rejected. Transfer's current FSM assumes `seller_club_id` and owns transient negotiation cases, not long-lived roster obligations. It would make every expiry query depend on Transfer even when no market case exists. |
 | **Squad & Player owns contract lifecycle** | Matches existing FMX map and ADR-0052: player base data, contracts and squad status live with Squad & Player. | **Chosen by Nico for FMX-81.** Keeps one source of truth for "is this player contractually attached to this club?" while Transfer remains the process owner for renewal / pre-contract / free-agent cases. |
-| New Contracts bounded context | Generic DDD CLM best practice when contract rules are large enough to become their own business capability. | Rejected for this beat. It would add a new context before there is enough FMX-specific pressure. Keep as a future extraction seam if contract complexity outgrows Squad & Player. |
+| New Contracts bounded context | Generic DDD CLM best practice when contract rules are large enough to become their own business capability. | Rejected for this beat. It would add a new context before there is enough Klubhaus Elf-specific pressure. Keep as a future extraction seam if contract complexity outgrows Squad & Player. |
 
 ## 4. Proposed FMX landing
 

@@ -39,7 +39,7 @@ Perplexity was asked for best practices in DDD/event-sourced financial systems t
 - Estimates and bands should normally collapse before ledger posting. If a system must book estimates, use accrual/reserve accounts with a future reversal and actual settlement entry.
 - Bounded contexts can own domain facts without owning ledger writes. For FMX, Club Management can remain the sole ledger writer while other sub-aggregates publish state/policy events inside the same bounded context.
 
-## FMX-specific extraction
+## Klubhaus Elf-specific extraction
 
 | Best practice | FMX implication |
 |---|---|

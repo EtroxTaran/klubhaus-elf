@@ -12,7 +12,7 @@ related: [[vault-governance]], [[agent-memory-protocol]], [[../30-Implementation
 # Collaboration & Decision Protocol
 
 Canonical home for **who decides what**, the **ask-first decision gate**, and the
-**current project phase** for Football Manager X. This note is the FMX-specific
+**current project phase** for Klubhaus Elf. This note is the Klubhaus Elf-specific
 expression of the cross-project principles in the machine-global agent
 definitions (`~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`). Operational
 step-by-step lives in [[agent-memory-protocol]] and
@@ -48,7 +48,7 @@ module boundaries, public APIs / contracts, scope, or security/privacy**:
    a clear recommendation**.
 3. Wait for Nico's go-ahead; record the ratified outcome as an ADR/GDDR.
 
-This is the FMX expression of the stop conditions and HITL escalation in
+This is the Klubhaus Elf expression of the stop conditions and HITL escalation in
 [[../30-Implementation/agent-workflow-pattern]]; escalation runs through Linear
 (team FMX), beat set to Blocked. **Never shorten a path just because it is faster
 or easier** — thoroughness and durable foundations before speed; development does
@@ -103,7 +103,7 @@ Approved MCP servers + research wiring: [[mcp-memory-integration]].
 
 - Cross-project principles live in the machine-global agent definitions
   (`~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`).
-- This note is the FMX-specific, canonical expression. **Cursor has no
+- This note is the Klubhaus Elf-specific, canonical expression. **Cursor has no
   machine-global file** and receives the same baseline via the repo `AGENTS.md`
   and `.cursor/rules/01-collaboration.mdc`, which point here.
 

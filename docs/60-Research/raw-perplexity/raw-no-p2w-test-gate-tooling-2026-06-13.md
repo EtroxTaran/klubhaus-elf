@@ -65,7 +65,7 @@ fast-check:
   and
   <https://github.com/dubzzz/fast-check/blob/main/website/docs/advanced/model-based-testing.md?plain=1#L5#model-based-testing>
 
-## FMX-specific test-gate implications
+## Klubhaus Elf-specific test-gate implications
 
 - Do not introduce new dependencies in the docs-only phase.
 - Specify the future implementation as a dedicated Vitest project, e.g.

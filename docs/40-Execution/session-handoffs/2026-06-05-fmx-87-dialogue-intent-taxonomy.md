@@ -16,7 +16,7 @@ related:
 ## Linear
 
 - Issue: FMX-87
-- PR: https://github.com/EtroxTaran/football-manager-x/pull/136
+- PR: https://github.com/EtroxTaran/klubhaus-elf/pull/136
 
 ## Done this session
 

@@ -27,14 +27,13 @@ related:
 
 # Pre-Mortem 2026-05-20 · 08 · Legal, Consumer-Law & Tax (beyond DSGVO)
 
-> **Rebrand-Hinweis (2026-06-09):** Der historische Arbeitstitel
-> `football-manager-x` wird in diesem Dokument bewusst beibehalten, weil er
-> dokumentiert, *warum* die Marken-Kollision (F-05) ein Risiko war. Die
-> Kollision ist durch den Rebrand zu **Klubhaus Elf** (Slug `klubhaus-elf`,
-> Domain `klubhaus-elf.de`) aufgelöst.
+> **Rebrand-Hinweis (2026-06-15):** Dieses Dokument ist auf den aktiven Namen
+> **Klubhaus Elf** (Slug `klubhaus-elf`, Domain `klubhaus-elf.de`)
+> normalisiert. Die historische Marken-Kollisionsanalyse bleibt erhalten, weil
+> sie dokumentiert, warum der Rebrand nötig war.
 
 > **Failure-Headline-Kandidaten**
-> - ”žSEGA/Sports-Interactive-Abmahnung wegen 'football-manager-x' — Streitwert 75 k €, Anwaltskosten + Unterlassungserklärung."
+> - ”žSEGA/Sports-Interactive-Abmahnung wegen markennaher Arbeitsbenennung — Streitwert 75 k €, Anwaltskosten + Unterlassungserklärung."
 > - ”žDFL-Anwaltsschreiben wegen 4.218 UGC-Saves mit 'FC Bayern München' + Wappen-Upload — 12 k € + erzwungene Reverse-Image-Lookup-Pipeline."
 > - ”žCosmetics-Pack-Launch ohne Probability-Disclosure → einstweilige Verfügung Verbraucherschutzverein."
 > - ”žOSS-Schwelle 10 k € in Q3 verpasst → Nachforderung MwSt in 7 EU-Ländern, Schätzbescheid 18 k €."
@@ -234,7 +233,7 @@ updated: 2026-06-13
 
 ---
 
-### PM-2026-05-20-08-F-05 — Marken-Kollision ”žfootball-manager-x" mit Sports Interactive/SEGA
+### PM-2026-05-20-08-F-05 — Marken-Kollision der Arbeitsbenennung mit Sports Interactive/SEGA
 
 ```yaml
 id: PM-2026-05-20-08-F-05
@@ -277,11 +276,11 @@ created: 2026-05-20
 updated: 2026-05-22
 ```
 
-**Hypothese.** ”žfootball-manager-x" enthält identische Wortkombination einer EU/DE-Marke in Nice 9 (Computer-Software) + 41 (Spiele) — exakt unsere Klassen. Abmahnschreiben über UK-/DE-Großkanzlei (Bird&Bird, Hogan Lovells, Taylor Wessing) ist Frage von Wochen sobald Public. Streitwert 50–100 k €, Abmahnkosten 1.400–2.500 € + eigene, plus Zwangs-Rename unter Zeitdruck mit Verlust aller Brand-Assets.
+**Hypothese.** Die damalige Arbeitsbenennung enthielt eine identische Wortkombination einer EU/DE-Marke in Nice 9 (Computer-Software) + 41 (Spiele) — exakt unsere Klassen. Abmahnschreiben über UK-/DE-Großkanzlei (Bird&Bird, Hogan Lovells, Taylor Wessing) ist Frage von Wochen sobald Public. Streitwert 50–100 k €, Abmahnkosten 1.400–2.500 € + eigene, plus Zwangs-Rename unter Zeitdruck mit Verlust aller Brand-Assets.
 
 **Mitigation.** **Sofortiger Rebrand vor jedem Public-Asset**. FTO-Recherche durch DE-Markenanwältin auf 2–3 Top-Kandidaten (Heimrunde/Klubkönig/Formationfuchs aus Report 14). DPMA-Anmeldung (€ 290 + ggf. € 200 beschleunigt), EUIPO später (€ 850). Defensive Domain-Sicherung 3 Finalisten × 4 TLDs (~€ 360/Jahr).
 
-**Verifikation.** FTO-Memo dokumentiert. Marken-Anmeldung als Gate-Bedingung für Marketing. CI-Lint: Repo-Rename vollständig (`grep -ri "football-manager-x"` = 0 außer CHANGELOG).
+**Verifikation.** FTO-Memo dokumentiert. Marken-Anmeldung als Gate-Bedingung für Marketing. CI-Lint: Repo-/Projektbenennung vollständig auf `klubhaus-elf` / **Klubhaus Elf** normalisiert.
 
 ---
 
@@ -723,7 +722,7 @@ updated: 2026-05-22
 4. Brief-Template an Anfragenden: Pseudonymisierung-Erklärung.
 5. Audit-Log + Ablaufdatum tracken; finale Löschung im monatlichen Cleanup-Job.
 
-### RB-08-3 Trademark Cease-and-Desist SEGA/SI für ”žfootball-manager-x"
+### RB-08-3 Trademark Cease-and-Desist SEGA/SI für markennahe Arbeitsbenennung
 1. **Day 0**: C&D lesen, Anwalt SEGA/SI identifizieren (vermutlich UK-Kanzlei wie Bird&Bird, Browne Jacobson), Notice quittieren ohne inhaltliche Stellungnahme.
 2. **Day 0–2**: Eigener Fachanwalt IT-Recht; FTO-Risiko = hoch; Re-Branding-Optionen aus Report 14 vorbereiten.
 3. **Day 2–7**: Übergangsfrist verhandeln (typ. 30–90 Tage Sunset); Token-Inventur (Domain, App-Store, Social-Handles, GitHub-Repo).

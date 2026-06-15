@@ -25,7 +25,7 @@ root scripts, pnpm recursive scripts, Nx and Turborepo.
 
 ## Source-quality note
 
-The agile/Definition-of-Done sources are broad process guidance, not FMX-specific
+The agile/Definition-of-Done sources are broad process guidance, not Klubhaus Elf-specific
 technical policy. Official tool docs and registry checks were used for library
 and tooling facts. Tool-version facts are temporal and must be re-verified at
 the bootstrap beat.

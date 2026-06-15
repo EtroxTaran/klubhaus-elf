@@ -29,7 +29,7 @@ Perplexity was asked for DDD/event-sourcing best practice on a drifted enum that
 - A canonical published enum is justified when the value is already a cross-portfolio contract, is governed by one owner, and downstream consumers only need a stable reference to that owner-owned concept.
 - If a downstream context needs a derived business route, publish or compute a named derived field instead of overloading the upstream enum.
 
-## FMX-specific extraction
+## Klubhaus Elf-specific extraction
 
 | Best practice | FMX implication |
 |---|---|

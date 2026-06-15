@@ -35,7 +35,7 @@ accepted
 ## Ratification
 
 Nico accepted Option A on 2026-05-28 after reviewing the FMX-25 dossier
-(PR [#85](https://github.com/EtroxTaran/football-manager-x/pull/85), merged
+(PR [#85](https://github.com/EtroxTaran/klubhaus-elf/pull/85), merged
 as commit `7a4563e`). The §Recommendation below names Option A; the
 synthesis at
 [[../../60-Research/manager-legacy-bounded-context-2026-05-28]] documents
