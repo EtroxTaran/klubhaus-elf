@@ -48,6 +48,14 @@ design notes.
   versioned public statement and compliance evidence home. Decisions remain
   pending in
   [FMX-193 decision queue](../40-Execution/fmx-193-responsible-gaming-decision-queue-2026-06-15.md).
+- [Cosmetic Identity Catalog](../60-Research/cosmetic-identity-catalog-2026-06-15.md) -
+  FMX-192 Perplexity-first and source-checked packet for draft
+  [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] and
+  [[../20-Features/feature-cosmetic-identity-catalog]]: free Create-a-Club
+  baseline identity, eight-family cosmetic taxonomy, deterministic
+  non-tradeable/no-RNG acquisition classes, IP/accessibility evidence and
+  pricing/legal handoff hooks. Decisions remain pending in
+  [FMX-192 decision queue](../40-Execution/fmx-192-cosmetic-identity-catalog-decision-queue-2026-06-15.md).
 - [PWA Offline Mobile Release Content QA Gates](../60-Research/pwa-offline-mobile-release-content-qa-gates-2026-06-15.md) -
   FMX-197 Perplexity-first and source-checked packet for the ADR-0118
   follow-up: hybrid-online offline degradation, storage/quota/eviction UX,

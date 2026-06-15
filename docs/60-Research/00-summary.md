@@ -247,6 +247,25 @@ guardrail acceptance before SKU ratification. Raw captures:
 [[raw-perplexity/raw-responsible-gaming-game-precedents-2026-06-15]],
 [[raw-perplexity/raw-responsible-gaming-source-checks-2026-06-15]].
 
+## Cosmetic Identity Catalog (FMX-192, 2026-06-15)
+
+[[cosmetic-identity-catalog-2026-06-15]] preserves the FMX-192 research layer
+for a cosmetic identity catalog across Create-a-Club baseline identity,
+earned/advanced cosmetic variants, IP-clean crest/kit/palette/sponsor layers,
+no-P2W acquisition classes and future pricing/legal hooks. It grounds draft
+[[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] plus draft
+[[../20-Features/feature-cosmetic-identity-catalog]]. No catalog rule is
+binding until Nico answers D1-D7 in
+[[../40-Execution/fmx-192-cosmetic-identity-catalog-decision-queue-2026-06-15]].
+Recommended packet is all A: draft GDDR + feature note, free baseline identity,
+narrow eight-family taxonomy, deterministic/non-tradeable/no-RNG acquisition,
+light gated async visibility, item+bundle IP/accessibility evidence and a later
+cosmetic-only deterministic season card. Raw captures:
+[[raw-perplexity/raw-cosmetic-identity-realworld-football-2026-06-15]],
+[[raw-perplexity/raw-cosmetic-identity-game-precedents-2026-06-15]],
+[[raw-perplexity/raw-cosmetic-identity-catalog-ux-2026-06-15]],
+[[raw-perplexity/raw-cosmetic-identity-source-checks-2026-06-15]].
+
 ## PWA Offline Mobile Release Content QA Gates (FMX-197, 2026-06-15)
 
 [[pwa-offline-mobile-release-content-qa-gates-2026-06-15]] preserves the
