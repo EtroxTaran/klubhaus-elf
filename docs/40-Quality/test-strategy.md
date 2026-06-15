@@ -1,7 +1,7 @@
 ---
 title: Test Strategy
 status: current
-tags: [quality, testing, ci, vitest, playwright, fast-check, stryker, determinism, accessibility, performance, security, fmx-177]
+tags: [quality, testing, ci, vitest, playwright, fast-check, stryker, determinism, accessibility, performance, security, fmx-177, fmx-196]
 created: 2026-06-14
 updated: 2026-06-15
 type: quality
@@ -12,6 +12,8 @@ related:
   - [[../60-Research/test-strategy-adr-2026-06-14]]
   - [[../60-Research/raw-perplexity/raw-test-strategy-adr-2026-06-14]]
   - [[../40-Execution/fmx-177-test-strategy-decision-queue-2026-06-14]]
+  - [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
+  - [[deterministic-simulation-qa-harness]]
   - [[../10-Architecture/10-Quality]]
   - [[../30-Implementation/ci-and-review-process]]
 ---
@@ -151,14 +153,18 @@ Accepted on 2026-06-15:
 
 Follow-up gaps remain outside FMX-177 and should be tracked separately:
 
-- deterministic simulation replay harness and soak/calibration metrics;
-- save-forward compatibility matrix;
+- deterministic simulation replay harness, soak/calibration metrics and
+  save-forward compatibility matrix now have a non-binding FMX-196 packet:
+  [[deterministic-simulation-qa-harness]] and draft
+  [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]];
 - PWA storage/offline/mobile degradation matrix;
 - release rollback and content-validation QA gates.
 
 ## Related
 
 - [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]]
+- [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
+- [[deterministic-simulation-qa-harness]]
 - [[../60-Research/test-strategy-adr-2026-06-14]]
 - [[../60-Research/raw-perplexity/raw-test-strategy-adr-2026-06-14]]
 - [[../30-Implementation/ci-and-review-process]]

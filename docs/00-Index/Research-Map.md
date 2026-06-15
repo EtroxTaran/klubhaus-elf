@@ -50,6 +50,11 @@ design notes.
   owns client queue/retry/rebase UX; Audit & Security owns authoritative
   replay/dedup policy and processed-command state through Command Reception;
   ADR-0028 remains post-commit event publication/domain mutation trail.
+- [Deterministic Simulation QA Harness](../60-Research/deterministic-simulation-qa-harness-2026-06-15.md) -
+  FMX-196 Perplexity-first and source-checked packet for draft ADR-0120:
+  replay evidence levels, seed tiers, statistical soak metrics, runtime parity
+  and save-forward/replay compatibility boundaries. Decisions remain pending in
+  [FMX-196 decision queue](../40-Execution/fmx-196-deterministic-simulation-qa-decision-queue-2026-06-15.md).
 - [Documentation Baseline 2026-05-22](Documentation-V1.md) - current
   temporal/structural closure baseline for vault gaps.
 - [Wave 3 Gap Analysis](../95-Archive/gap-reports/wave-3-gap-analysis.md) - superseded
@@ -234,6 +239,20 @@ design notes.
   Raw captures:
   [[../60-Research/raw-perplexity/raw-replay-dedup-command-reception-2026-06-15]],
   [[../60-Research/raw-perplexity/raw-replay-dedup-source-checks-2026-06-15]].
+
+## Deterministic Simulation QA Harness (FMX-196, 2026-06-15)
+
+- [[../60-Research/deterministic-simulation-qa-harness-2026-06-15]] -
+  FMX-196 synthesis for deterministic simulation QA, replay artifact tiers,
+  seed fixture cadence, soak statistics, same-WASM parity and save-forward vs
+  version-pinned replay compatibility. Grounds draft
+  [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
+  plus draft [[../40-Quality/deterministic-simulation-qa-harness]]. No decision
+  is binding until Nico answers D1-D7 in
+  [[../40-Execution/fmx-196-deterministic-simulation-qa-decision-queue-2026-06-15]].
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-deterministic-simulation-qa-harness-2026-06-15]],
+  [[../60-Research/raw-perplexity/raw-deterministic-simulation-qa-source-checks-2026-06-15]].
 
 ## LLM Prose Replay Determinism Floor (FMX-153, 2026-06-14)
 

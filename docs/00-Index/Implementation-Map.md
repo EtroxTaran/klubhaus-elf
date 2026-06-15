@@ -60,6 +60,11 @@ unless re-opened by a current issue or accepted ADR.
   - draft FMX-141 non-economy gameplay calibration method: named slots, T0-T4
   harness tiers, slot/parameter/scenario sheets, envelope checks and
   baseline/rebaseline policy.
+- [Deterministic Simulation QA Harness](../40-Quality/deterministic-simulation-qa-harness.md)
+  - draft FMX-196 quality runbook for replay evidence levels, seed tiers,
+  same-WASM parity, soak reports, save-forward matrix and approval-gated
+  rebaseline/retention policy; remains non-binding until Nico approves
+  ADR-0120 / D1-D7.
 - [SurrealDB Integration](../30-Implementation/surrealdb-integration.md) - superseded historical substrate note; do not implement.
 - [Deployment Dokploy](../30-Implementation/deployment-dokploy.md)
 - [Observability Runbook](../30-Implementation/observability-runbook.md)
