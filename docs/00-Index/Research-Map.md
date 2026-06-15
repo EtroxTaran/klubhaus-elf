@@ -41,6 +41,13 @@ design notes.
   versioned public statement and compliance evidence home. Decisions remain
   pending in
   [FMX-193 decision queue](../40-Execution/fmx-193-responsible-gaming-decision-queue-2026-06-15.md).
+- [PWA Offline Mobile Release Content QA Gates](../60-Research/pwa-offline-mobile-release-content-qa-gates-2026-06-15.md) -
+  FMX-197 Perplexity-first and source-checked packet for the ADR-0118
+  follow-up: hybrid-online offline degradation, storage/quota/eviction UX,
+  service-worker rollback, staged release evidence, content-pack validation,
+  pseudo-loc/generated-content safety and versioned rebaseline records.
+  Decisions remain pending in
+  [FMX-197 decision queue](../40-Execution/fmx-197-pwa-offline-mobile-release-content-qa-decision-queue-2026-06-15.md).
 - [Babylon Renderer Stack Cleanup](../60-Research/babylon-vs-three-floor-tier-budget-2026-06-15.md) -
   FMX-158 Perplexity-first and source-checked cleanup for the ADR-0047 renderer
   amendment: Babylon.js is the only planned optional 3D presentation stack,

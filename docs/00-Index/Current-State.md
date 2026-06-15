@@ -24,6 +24,22 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-197 PWA/offline/mobile release/content-QA packet pending
+> (2026-06-15).** Branch
+> `codex/fmx-197-pwa-offline-mobile-release-qa` prepares the ADR-0118
+> follow-up for PWA storage/offline/mobile degradation, service-worker
+> rollback, staged release gates and content-validation QA. Research
+> [[../60-Research/pwa-offline-mobile-release-content-qa-gates-2026-06-15]]
+> (+ raw Perplexity/source-check captures) grounds draft
+> [[../10-Architecture/09-Decisions/ADR-0124-pwa-offline-mobile-release-content-qa-gates]]
+> plus draft [[../40-Quality/pwa-offline-mobile-release-content-qa-gates]].
+> No new rule is binding until Nico accepts D1-D7 in
+> [[../40-Execution/fmx-197-pwa-offline-mobile-release-content-qa-decision-queue-2026-06-15]].
+> Recommended packet is all A: hybrid-online offline contract, tiered storage
+> budgets/eviction UX, user-mediated SW update plus no-op/rescue rollback,
+> staged rollout gates, manifested content-pack validation, template-first
+> generated/localized content gates and versioned evidence/rebaseline records.
+
 > **2026-06-08 — Decision portfolio re-ratified (merged 2026-06-08/09 via PRs
 > #153/#157–#161 — merge was the ratification act).** All 76 reopened ADRs + 36 GDDRs
 > were re-ratified (69 ADRs → `accepted`, 7 → `superseded` by new wave ADRs; the 4
