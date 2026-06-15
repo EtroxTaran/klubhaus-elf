@@ -3,7 +3,7 @@ title: Code-Phase Definition of Done Transition Contract
 status: current
 tags: [implementation, process, ci, dod, monorepo, nx, fmx-180]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-15
 type: implementation
 binding: true
 related:
@@ -15,8 +15,10 @@ related:
   - [[monorepo-workspace-bootstrap-plan]]
   - [[../10-Architecture/09-Design-System]]
   - [[../60-Research/code-phase-dod-transition-contract-2026-06-14]]
+  - [[../60-Research/pnpm-tooling-currency-2026-06-15]]
   - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]
   - [[../40-Execution/fmx-180-code-phase-dod-transition-decision-queue-2026-06-14]]
+  - [[../40-Execution/fmx-195-pnpm-tooling-currency-decision-queue-2026-06-15]]
 ---
 
 # Code-Phase Definition of Done Transition Contract
@@ -27,7 +29,7 @@ checklist agents use.
 
 ## Current repo inventory
 
-As of 2026-06-14:
+As of 2026-06-15:
 
 | Surface | Current fact | DoD consequence |
 |---|---|---|
@@ -35,7 +37,7 @@ As of 2026-06-14:
 | Missing root scripts | `check`, `typecheck`, `test`, `test:e2e`, Storybook/build scripts | These are target-only until bootstrap creates them. |
 | Workspace layout | No `pnpm-workspace.yaml`, no `apps/`, no `packages/` | Package/app gates cannot be active today. |
 | CI workflows | `docs-check`, `linear-link-check`, post-merge cleanup, docs redeploy | Required checks are docs-phase checks only. |
-| Tool pins | Node 22, pnpm 11.1.2, PostgreSQL 17 | pnpm currency is tracked separately in FMX-195. |
+| Tool pins | Node 22, pnpm 11.7.0, PostgreSQL 17 | pnpm currency was refreshed by FMX-195; re-check again before code bootstrap. |
 
 ## Active docs-phase DoD
 
@@ -107,8 +109,9 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
   not yet an active scaffold contract.
 - FMX-175 owns deeper code-CI cleanup and stale code-check narratives.
 - FMX-176 owns lefthook/local-parity restoration.
-- FMX-195 owns the pnpm 11.1.2 -> current stable pin update surfaced during
-  FMX-180 research.
+- FMX-195 refreshed the active pnpm pin from 11.1.2 to 11.7.0 after June 15
+  source checks. Future code bootstrap still re-checks current tool versions
+  before adding workspace dependencies.
 
 ## Related
 
@@ -120,4 +123,5 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 - [[monorepo-workspace-bootstrap-plan]]
 - [[../10-Architecture/09-Design-System]]
 - [[../60-Research/code-phase-dod-transition-contract-2026-06-14]]
+- [[../60-Research/pnpm-tooling-currency-2026-06-15]]
 - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]

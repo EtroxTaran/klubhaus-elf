@@ -40,7 +40,7 @@ accepted
 ## Ratification
 
 Nico accepted Option B on 2026-05-28 after reviewing the FMX-26 dossier
-(PR [#87](https://github.com/EtroxTaran/football-manager-x/pull/87)).
+(PR [#87](https://github.com/EtroxTaran/klubhaus-elf/pull/87)).
 The §Recommendation below names Option B; the synthesis at
 [[../../60-Research/staff-backroom-bounded-context-2026-05-28]] documents
 the three converging arguments (DDD canonical split criteria, real-world

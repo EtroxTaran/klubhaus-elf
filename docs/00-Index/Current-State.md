@@ -51,6 +51,18 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-195 pnpm tooling currency updated (2026-06-15).** Branch
+> `codex/fmx-195-pnpm-pin-current-stable` refreshes the active docs-phase pnpm
+> pin from `11.1.2` to `11.7.0` in `package.json` and `.mise.toml`. Research
+> [[../60-Research/pnpm-tooling-currency-2026-06-15]] (+ raw Perplexity and
+> source-check captures) records the June 15 source conflict: npm `latest` /
+> `latest-11` still pointed at `11.6.0`, while `pnpm@11.7.0` was already
+> published to npm and GitHub as a public non-prerelease artifact. Nico selected
+> the newest-published-version rule for this beat; future code/workspace
+> bootstrap still re-checks tool versions before adding dependencies. Decision
+> record:
+> [[../40-Execution/fmx-195-pnpm-tooling-currency-decision-queue-2026-06-15]].
+
 > **FMX-177 Test strategy and quality gates accepted (2026-06-15).** Linear
 > FMX-177 is carried on branch
 > `codex/fmx-177-test-strategy-adr`. Research
@@ -113,10 +125,10 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > and current
 > [[../30-Implementation/code-phase-dod-transition-contract]]. Nico approved
 > D1-D4 live: phase-split DoD, Nx day one for code phase, `apps/web`/`packages/*`
-> target-only until bootstrap, and pnpm currency routed separately. FMX-195 was
-> created in Backlog for the pnpm 11.1.2 -> current-stable update. Active
-> docs-phase validation is `node scripts/docs-check.mjs` (+ status consistency
-> when status/binding changes); code scripts, Storybook and app/package paths are
+> target-only until bootstrap, and pnpm currency routed separately. FMX-195
+> refreshed the active pnpm pin to `11.7.0` on 2026-06-15. Active docs-phase
+> validation is `node scripts/docs-check.mjs` (+ status consistency when
+> status/binding changes); code scripts, Storybook and app/package paths are
 > target-only until the transition checklist is green.
 >
 > **FMX-179 Monorepo/workspace bootstrap prepared — decision pending

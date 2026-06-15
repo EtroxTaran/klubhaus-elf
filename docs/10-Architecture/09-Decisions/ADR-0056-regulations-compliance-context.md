@@ -43,7 +43,7 @@ accepted
 ## Ratification
 
 Nico accepted Option B on 2026-05-28 after reviewing the FMX-30 dossier
-(PR [#93](https://github.com/EtroxTaran/football-manager-x/pull/93)).
+(PR [#93](https://github.com/EtroxTaran/klubhaus-elf/pull/93)).
 The §Recommendation below names Option B; the synthesis at
 [[../../60-Research/regulations-compliance-bounded-context-2026-05-28]]
 documents the three converging arguments (DDD canonical Tax-catalog

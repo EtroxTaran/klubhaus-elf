@@ -56,7 +56,7 @@ wages, transfers/amortisation and insolvency write-offs.
 
 ## Notes for synthesis
 
-The research supports a stable medium chart, not a detailed per-cost chart. The main FMX-specific
+The research supports a stable medium chart, not a detailed per-cost chart. The main Klubhaus Elf-specific
 decision is code style: semantic dotted codes align with the existing ADR vocabulary and are safer
 for human-readable docs; numeric ranges align with classic accounting but add an extra translation
 layer for a game-facing system.

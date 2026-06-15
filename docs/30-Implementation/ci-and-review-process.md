@@ -101,9 +101,9 @@ as required checks until real workspace targets exist.
 - Code-phase local parity is target-only until FMX-176 / the bootstrap work
   restores lefthook and the code scripts. Do not describe nonexistent hooks as
   active.
-- Use the pinned toolchain in the repo. As of FMX-180, pnpm currency drift is
-  tracked separately in FMX-195; do not update or normalize it inside unrelated
-  DoD/process beats.
+- Use the pinned toolchain in the repo. As of FMX-195, active docs-phase tooling
+  pins pnpm 11.7.0; future code bootstrap still re-checks tool versions before
+  adding workspace dependencies.
 
 ## Override policy (utmost unusual only)
 
@@ -142,7 +142,7 @@ names.
 The repo is docs-vault-only. Code-CI, app e2e, Storybook and lefthook/local
 parity are target-only until the code-phase transition checklist is green.
 FMX-175 and FMX-176 track deeper code-CI/local-parity cleanup; FMX-179 tracks
-workspace bootstrap; FMX-195 tracks pnpm pin currency.
+workspace bootstrap; FMX-195 refreshed the active pnpm pin to 11.7.0.
 
 ## Related
 

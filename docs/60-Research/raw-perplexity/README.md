@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-185, fmx-191, fmx-194]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, tooling, pnpm, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-185, fmx-191, fmx-194, fmx-195]
 created: 2026-05-16
 updated: 2026-06-15
 type: index
@@ -16,6 +16,16 @@ research transcripts and attached research reports (German source language).
 They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
+
+## FMX-195 pnpm tooling currency (2026-06-15)
+
+Perplexity-first research and targeted source checks for the active pnpm pin
+refresh.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-pnpm-tooling-currency-2026-06-15]] | Perplexity discovery pass for pnpm 11 pinning, Node compatibility and workspace/code-phase guardrails | [[../pnpm-tooling-currency-2026-06-15]] |
+| [[raw-pnpm-source-checks-2026-06-15]] | npm registry, GitHub release, Context7 and Ref checks for `pnpm@11.7.0` | [[../pnpm-tooling-currency-2026-06-15]] |
 
 ## Source documents (private, not committed)
 

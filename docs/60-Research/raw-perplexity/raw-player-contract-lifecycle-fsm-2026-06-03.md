@@ -70,7 +70,7 @@ User: compare how Football Manager / FM Mobile, Top Eleven, Soccer Manager,
 FIFA Manager / Anstoss-style games handle contract renewal, expiring contracts,
 approach-to-sign/Bosman, free agents, expiry warnings, counter-offers and
 transfer inbox opportunities. End with best-practice recommendations for a
-mobile-first offline-ready Football Manager X MVP that must avoid a thin one-shot
+mobile-first offline-ready Klubhaus Elf MVP that must avoid a thin one-shot
 renewal loop.
 
 ## Captured answer 2 — Summary
@@ -136,7 +136,7 @@ recommendation and public contract/event implications.
     is primarily roster/player-state truth.
   - Transfer as owner only in a highly transfer-centric design, with the warning
     that this conflates transient deal negotiation with long-lived obligations.
-- FMX-specific handling:
+- Klubhaus Elf-specific handling:
   - the generic "new Contracts context" advice is recorded as a future extraction
     option, not adopted in FMX-81;
   - existing FMX notes already place player contracts inside Squad & Player;

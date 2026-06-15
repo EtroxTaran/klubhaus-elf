@@ -110,7 +110,7 @@ commit ⇄ PR auto-link is confirmed working.
    - `needs-decision` (replaced by `needs:nico-decision`)
 2. **Add workflow state `Blocked`** (type *started*); optionally rename `Todo` → `Planned`.
 3. **Linear → Settings → Integrations → GitHub:** install the app (org level),
-   grant `EtroxTaran/football-manager-x`, enable **PR linking**, set
+   grant `EtroxTaran/klubhaus-elf`, enable **PR linking**, set
    **Branch format = identifier-title**, add automations *PR opened → In Progress*
    and *PR merged → Done*. If personal/account git automation is enabled, branch
    creation may also assign and move issues forward for human users; agents still

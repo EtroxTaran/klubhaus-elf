@@ -93,7 +93,7 @@ B) dedicated Narrative/Media bounded context, C) inside People/Persona.
 - Option B is best-practice: a dedicated Narrative/Media owner exposes published
   contracts and read models; Notification consumes delivery-ready display
   snapshots; People supplies actor/persona cards through public queries.
-- FMX-specific translation: because ADR-0054 already proposes a Narrative
+- Klubhaus Elf-specific translation: because ADR-0054 already proposes a Narrative
   context, FMX-31 should not add a second "Media" context. It should extend
   Narrative to own the Press/Media authoring subdomain.
 

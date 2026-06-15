@@ -352,10 +352,10 @@ no real-club/logo corpus test.
 **Closes concept gap for:** 14-F-01, 14-F-02, 14-F-03, 14-F-04, 14-F-05,
 14-F-06, 14-F-07, 14-F-08, 14-F-09.
 
-**Decision.** `football-manager-x` is a working title only (resolved by the
-2026-06-09 rebrand to Klubhaus Elf). Before public visibility, pick an IP-clean
-brand candidate and get legal search. Brand voice:
-founder-led, transparent, German-first, no fake studio scale.
+**Decision.** The active repo/project slug is `klubhaus-elf`, resolved by the
+2026-06-09 rebrand to **Klubhaus Elf**. Before public visibility, keep the
+IP-clean brand-search gate in place. Brand voice: founder-led, transparent,
+German-first, no fake studio scale.
 
 **Best practice.** FTO memo before marketing, crisis templates, mention
 monitoring, press kit, one-page voice guide.

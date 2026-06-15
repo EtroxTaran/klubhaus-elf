@@ -23,17 +23,17 @@ related:
 
 # Pre-Mortem 2026-05-20 · 14 · Brand, PR, Crisis Comms + Re-Branding Proposals
 
-> **Rebrand-Hinweis (2026-06-09):** Der historische Arbeitstitel
-> `football-manager-x` und die hier vorgeschlagenen Re-Branding-Kandidaten
-> sind als Entscheidungsgrundlage erhalten. Der Rebrand wurde durchgeführt:
-> das Produkt heißt jetzt **Klubhaus Elf** (Slug `klubhaus-elf`, Domain
-> `klubhaus-elf.de`). Diese Datei dokumentiert *warum* der Rebrand nötig war.
+> **Rebrand-Hinweis (2026-06-15):** Diese Datei ist auf den aktiven Namen
+> **Klubhaus Elf** (Slug `klubhaus-elf`, Domain `klubhaus-elf.de`)
+> normalisiert. Die vorgeschlagenen Re-Branding-Kandidaten bleiben als
+> historische Entscheidungsgrundlage erhalten, weil sie dokumentieren, warum der
+> Rebrand nötig war.
 
 > **Failure-Headlines**
 > - ”žSports Interactive (SEGA)-Abmahnung — Rebrand 3 Wochen vor Soft-Launch — alle Wishlists, Discord, Pressekontakte verloren."
 > - ”žFootball-Reddit-Thread mit 4 k Upvotes 'Pay-to-Win-Klon' — 18 h Schweigen — kein Pressekit zur Korrektur."
 > - ”žYouTube-Influencer entdeckt Stealth-Beta, 200k Views; Server bei 12k unerwarteten Sign-ups — 'Wir machen kein Marketing'-Out-of-Office wird Lachnummer."
-> - ”žSave-Korruptions-Bug viral — defensiv statt blameless reagiert — #FootballManagerXSaveScam trending 6 Tage."
+> - ”žSave-Korruptions-Bug viral — defensiv statt blameless reagiert — #KlubhausElfSaveScam trending 6 Tage."
 > - ”žRe-Brand-Kandidat zwischen Domain-Recherche und Anmeldung von Cybersquatter geschnappt — fünfstellige Auktion."
 
 ## Top Failure-Hypothesen
@@ -49,7 +49,7 @@ impact: 5
 score: 25
 confidence: high
 early_warning:
-  - signal: "Erster Crawler-Hit / Search-Indexing der Domain football-manager-x.*"
+  - signal: "Erster Crawler-Hit / Search-Indexing eines noch nicht FTO-geprüften Domain-Slugs"
   - signal: "Erste externe Erwähnung (Blog/Reddit/Discord außerhalb interner Tests)"
   - signal: "Eingehende Briefpost / E-Mail UK/DE-IP-Kanzlei (Bird&Bird, Hogan Lovells, Taylor Wessing)"
 mitigation_summary: "Sofort-Rebrand vor jedem Public-Asset; FTO durch DE-Markenanwältin; DPMA + ggf. EUIPO; defensive Domain-Sicherung Top-3-Finalisten"

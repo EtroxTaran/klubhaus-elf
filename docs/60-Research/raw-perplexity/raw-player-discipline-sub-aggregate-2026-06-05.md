@@ -64,7 +64,7 @@ Regulations, Narrative/Notifications.
   post-match inbox items and simple appeal prompts. The manager should not run a
   full tribunal minigame.
 
-## Prompt 2 - FMX-specific ownership cross-check
+## Prompt 2 - Klubhaus Elf-specific ownership cross-check
 
 System: DDD architecture reviewer for FMX. Consider existing FMX decisions:
 Match owns match facts; Squad & Player owns player availability and player

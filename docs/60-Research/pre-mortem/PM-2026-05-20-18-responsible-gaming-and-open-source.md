@@ -23,12 +23,9 @@ related:
 
 # Pre-Mortem 2026-05-20 · 18 · Responsible-Gaming, Dark-Patterns & Open-Source-Strategy
 
-> **Rebrand-Hinweis (2026-06-09):** Repo-/Working-Title-Referenzen wie
-> `EtroxTaran/football-manager-x` und `football-manager-x-client` /
-> `football-manager-x-backend` sind als historische Planungsgrundlage erhalten.
-> Das Produkt heißt seit dem 2026-06-09-Rebrand **Klubhaus Elf** (Slug
-> `klubhaus-elf`); ein zukünftiger Split-Repo würde entsprechend
-> `klubhaus-elf-client` / `klubhaus-elf-backend` heißen.
+> **Rebrand-Hinweis (2026-06-15):** Repo-/Projektbezeichnungen sind auf
+> `EtroxTaran/klubhaus-elf`, **Klubhaus Elf** und die möglichen Split-Repos
+> `klubhaus-elf-client` / `klubhaus-elf-backend` normalisiert.
 
 > **Failure-Headlines**
 > - ”žIndie unter MIT — 8 Mo später dominieren 3 Hosted-Forks von Bootleg-Anbietern den DACH-Markt; Original 0 zahlende Kunden."
@@ -117,7 +114,7 @@ sources:
     accessed: "2026-05-20"
     publisher: "GitHub"
     confidence: high
-verification_notes: "Aktuell `EtroxTaran/football-manager-x` ohne LICENSE = default 'All Rights Reserved' (Berner Konvention). Public lesbar, rechtlich nicht nutzbar. Worst of both worlds: discoverable but not contributable, untrusted."
+verification_notes: "Aktuell `EtroxTaran/klubhaus-elf` ohne LICENSE = default 'All Rights Reserved' (Berner Konvention). Public lesbar, rechtlich nicht nutzbar. Worst of both worlds: discoverable but not contributable, untrusted."
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
 status: mitigated
@@ -331,7 +328,7 @@ confidence: high
 early_warning:
   - metric: "Architektur-Review server-authoritative-Code in public repo"
     threshold: "> 0"
-mitigation_summary: "Split-Repo: football-manager-x-client (OSS, AGPL or MIT) + football-manager-x-backend (proprietär, closed). Brand-Trademark Welle-2-Report-14 Rebrand. Replay-Server-Endpoints unter ToS, nicht über OSS-Lizenz nutzbar"
+mitigation_summary: "Split-Repo: klubhaus-elf-client (OSS, AGPL or MIT) + klubhaus-elf-backend (proprietär, closed). Brand-Trademark Welle-2-Report-14 Rebrand. Replay-Server-Endpoints unter ToS, nicht über OSS-Lizenz nutzbar"
 linked_adrs: []
 linked_specs: [[PM-2026-05-20-14-brand-pr-and-crisis-comms]]
 linked_code: []
@@ -358,7 +355,7 @@ updated: 2026-05-22
 
 **Hypothese.** Wenn Game-State + Determinism-Seed-Engine + Liga-Backend server-side bleiben und NICHT in repo, ist Code-Fork ein nicht-funktionierender Client. ”žOpen client, closed server"-Pattern (Element/Matrix-hub, Mastodon-instance). Permissive licenses werden damit weniger riskant.
 
-**Mitigation.** (1) **Split-Repo**: `football-manager-x-client` (OSS, AGPL or MIT) + `football-manager-x-backend` (proprietär closed). (2) Brand-Trademark Welle-2-Report-14 Rebrand vor Public-Launch. (3) Replay-Server-Endpoints unter ToS, nicht über OSS-Lizenz nutzbar.
+**Mitigation.** (1) **Split-Repo**: `klubhaus-elf-client` (OSS, AGPL or MIT) + `klubhaus-elf-backend` (proprietär closed). (2) Brand-Trademark Welle-2-Report-14 Rebrand vor Public-Launch. (3) Replay-Server-Endpoints unter ToS, nicht über OSS-Lizenz nutzbar.
 
 **Verifikation.** Architektur-Review: kein server-authoritative-Code im public repo. CI-Check: Sensitive-Files-Pattern (`*/server/*.match.engine.ts`) blocked from public-branch.
 
@@ -446,7 +443,7 @@ updated: 2026-05-22
 
 **Mitigation.** Scorecard-Action in CI; Badge in README. Quick-Wins (Solo erreichbar ~7.0): Branch-Protection (main), Code-Review (require PR), Pinned-Dependencies (Renovate/Dependabot), Signed-Releases (sigstore cosign), CI-Tests, License-Check, SAST (CodeQL free), Dangerous-Workflow, SECURITY.md, Token-Permissions least-privilege.
 
-**Verifikation.** scorecard.dev/viewer/?uri=github.com/EtroxTaran/football-manager-x — score ≥ 7.0.
+**Verifikation.** scorecard.dev/viewer/?uri=github.com/EtroxTaran/klubhaus-elf — score ≥ 7.0.
 
 ### PM-2026-05-20-18-F-10 — DCO ist correct contributor-mechanism für Solo pre-License-Decision
 
@@ -562,7 +559,7 @@ updated: 2026-05-22
 | **Commons Clause + MIT** | source-available | 3.5 | non-commercial OK; "selling" prohibited (vage) | Redis-bridge-period only, abandoned | **NO** — Redis case-study (2018–2024) zeigt abandonment; vague "selling"; community-perception negativ |
 | **All Rights Reserved** (no LICENSE) | no | 1 (cannot fork legally) | nothing | many proprietary indie | **NO** — Schrödinger-state: public aber unusable. Worst of both. Discoverable but not contributable, untrusted, no OSS-trust-signal |
 
-### Recommendation: **AGPL-3.0 für `football-manager-x-client` (split off), `football-manager-x-backend` proprietär closed-source**
+### Recommendation: **AGPL-3.0 für `klubhaus-elf-client` (split off), `klubhaus-elf-backend` proprietär closed-source**
 
 **Rationale (kurz):**
 1. Strongest game-industry precedent ist GPL-family (Mindustry, Veloren, Endless Sky).
@@ -594,7 +591,7 @@ updated: 2026-05-22
 
 > **Responsible Gaming — Our Commitment**
 >
-> Football Manager X is built to be enjoyed in measured sessions, not consumed in marathons. We deliberately design against engagement traps: there are no daily login streaks, no time-limited "last chance" offers, no random-purchase boxes, and no monetization mechanics that punish absence. The Roguelite Insolvency mode is a creative-tension feature, not a guilt loop — every run-end screen clearly shows what carries forward and what does not, and you can stop at any time without losing progress that wasn't already earned.
+> Klubhaus Elf is built to be enjoyed in measured sessions, not consumed in marathons. We deliberately design against engagement traps: there are no daily login streaks, no time-limited "last chance" offers, no random-purchase boxes, and no monetization mechanics that punish absence. The Roguelite Insolvency mode is a creative-tension feature, not a guilt loop — every run-end screen clearly shows what carries forward and what does not, and you can stop at any time without losing progress that wasn't already earned.
 >
 > If you are 16 or older (the minimum age to use this game in Germany under GDPR Art. 8), you can enable an optional Session Reminder in Settings → Wellness. After 90 minutes of continuous play, a gentle reminder will suggest a break. You can adjust or disable this at any time.
 >
@@ -623,7 +620,7 @@ updated: 2026-05-22
 - Top 25 %: €200–800/Mo.
 - Top 5 % mit active community/streaming/PR: €1.500–5.000/Mo.
 
-Baseline football-manager-x bei 10k DAU, no marketing: **€50–200/Mo Jahr 1**, growing zu €200–800 Jahr 2 falls Twitch/YouTube-Community formt. Patreon/Ko-fi ~+50 % additional channel.
+Baseline klubhaus-elf bei 10k DAU, no marketing: **€50–200/Mo Jahr 1**, growing zu €200–800 Jahr 2 falls Twitch/YouTube-Community formt. Patreon/Ko-fi ~+50 % additional channel.
 
 ### USK rating cost (DE)
 
@@ -647,7 +644,7 @@ Baseline football-manager-x bei 10k DAU, no marketing: **€50–200/Mo Jahr 1**
 
 ## Future-scope decisions (classified future-scope)
 1. **License-Choice für Client-Repo**: AGPL-3.0 (empfohlen) vs GPLv3 vs MIT vs deferred (proprietary closed bis post-MVP) — **bis Welle-3 entscheiden**, blocking contributor outreach + GitHub Sponsors eligibility.
-2. **Split-Repo für Backend**: Wann fork `football-manager-x` in `*-client` (OSS) + `*-backend` (private)? Jetzt, bei MVP-Feature-Freeze, oder bei Public-Launch?
+2. **Split-Repo für Backend**: Wann fork `klubhaus-elf` in `*-client` (OSS) + `*-backend` (private)? Jetzt, bei MVP-Feature-Freeze, oder bei Public-Launch?
 3. **Contributor-Mechanism**: DCO (empfohlen) vs CLA vs neither (private-by-invite-only)?
 4. **Responsible-Gaming-Statement publication**: jetzt pre-MVP oder erst bei Public-Launch? Empfehlung: **jetzt** — kostet nichts, setzt Standard.
 5. **Wellness-prompt default-on threshold**: Default ON für alle < 18, OFF für 18+? Oder ON für alle mit easy toggle-off?

@@ -19,7 +19,7 @@ related:
 ## Prompt
 
 Research a current 2026 TypeScript/PWA/game-simulation test strategy for
-Football Manager X. Compare real-world engineering practice and other games /
+Klubhaus Elf. Compare real-world engineering practice and other games /
 simulation-heavy products for:
 
 1. Vitest browser/component testing versus Playwright-heavy testing;
@@ -250,7 +250,7 @@ Source:
 
 ## Real-world and game/simulation knowledge
 
-The research points to four FMX-specific testing realities:
+The research points to four Klubhaus Elf-specific testing realities:
 
 1. **Football manager games are long-horizon simulations.** Bugs often emerge
    through compounding season loops, transfer/economy feedback or save

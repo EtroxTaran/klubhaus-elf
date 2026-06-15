@@ -127,7 +127,7 @@ manager games and narrative game systems. Cite concrete sources where possible
 and distinguish confirmed public mechanics from design inference.
 
 User: analyze real-world football-manager game precedents and narrative-game
-precedents for AI-assisted narrative in Football Manager X. Compare Football
+precedents for AI-assisted narrative in Klubhaus Elf. Compare Football
 Manager / Anstoss-style simulation-first design, Paradox/Crusader Kings/Stellaris
 event scripting, Failbetter storylets and AI Dungeon-style generative text.
 Recommend which FMX surfaces can allow optional LLM prose enhancement and which

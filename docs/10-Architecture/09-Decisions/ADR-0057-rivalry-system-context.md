@@ -41,7 +41,7 @@ accepted
 ## Ratification
 
 Nico accepted Option C on 2026-05-28 after reviewing the FMX-34 dossier
-(PR [#95](https://github.com/EtroxTaran/football-manager-x/pull/95)).
+(PR [#95](https://github.com/EtroxTaran/klubhaus-elf/pull/95)).
 The §Recommendation below names Option C; the synthesis at
 [[../../60-Research/rivalry-system-bounded-context-2026-05-28]]
 documents the three converging arguments (DDD canonical scoring-

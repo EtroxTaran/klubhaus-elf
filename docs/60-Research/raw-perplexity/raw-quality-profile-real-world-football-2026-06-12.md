@@ -28,7 +28,7 @@ Perplexity was asked how real football differentiates fixtures by match importan
 - Match type and competition stage matter. Finals, derbies, playoffs, continental fixtures and title/relegation pressure carry different crowd, media and commercial weight from routine league fixtures.
 - Real-world categories are multi-axis. Risk, commercial category, sporting importance and broadcast selection are related but not the same concept.
 
-## FMX-specific extraction
+## Klubhaus Elf-specific extraction
 
 | Real-world pattern | FMX implication |
 |---|---|

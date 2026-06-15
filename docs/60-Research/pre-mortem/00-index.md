@@ -43,13 +43,12 @@ related:
 
 # Pre-Mortem 2026-05-20 · Cluster Index
 
-> **Rebrand-Hinweis (2026-06-09):** Der historische Arbeitstitel
-> `football-manager-x` ist in diesem Cluster bewusst erhalten — er dokumentiert
-> u.a. die Marken-Kollision (08-F-05 / 14-F-01), *warum* ein Rebrand nötig war.
-> Der Rebrand ist erfolgt: das Produkt heißt jetzt **Klubhaus Elf** (Slug
-> `klubhaus-elf`, Domain `klubhaus-elf.de`).
+> **Rebrand-Hinweis (2026-06-15):** Dieser Cluster ist auf den aktiven Namen
+> **Klubhaus Elf** (Slug `klubhaus-elf`, Domain `klubhaus-elf.de`)
+> normalisiert. Die historischen Findings zur Marken-Kollision bleiben erhalten,
+> weil sie dokumentieren, warum der Rebrand nötig war.
 
-> **Frage, die diese Übung beantwortet:** Was sind die wahrscheinlichsten Gründe, dass football-manager-x in sechs Monaten bei 10.000 Spielern gescheitert ist — und was tun wir *jetzt*, damit das nicht passiert?
+> **Frage, die diese Übung beantwortet:** Was sind die wahrscheinlichsten Gründe, dass Klubhaus Elf in sechs Monaten bei 10.000 Spielern gescheitert ist — und was tun wir *jetzt*, damit das nicht passiert?
 
 Diese Pre-Mortem ist ein **Intent-Layer**-Dokument (`binding: false`). Empfehlungen werden über ADRs/GDDRs ratifiziert, nicht direkt aus diesem Cluster implementiert.
 
@@ -125,7 +124,7 @@ Vollständige Prioritäts-Sortierung in [[findings-registry]].
 5. **Security-Fundament unvollständig.** AES-GCM-Save authentisiert *Kenntnis*, nicht *Herkunft*; Commands nicht signiert/replay-geschützt; Supply-Chain unkontrolliert. ([[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-01|05-F-01]] P0, [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02|05-F-02]] P0)
 6. **Single-Player-Foundation MP-/BYOC-tragend oder bricht später.** Save-Schema v2 + Command-Modell + Determinismus von Anfang an MP-/BYOC-kompatibel.
 7. **DSA + BFSG + EAA + CRA + AI-Act-Stack** (4 regulatorische Stichtage 2026/2027). ([[PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-11|08-F-11]] P0, [[PM-2026-05-20-13-community-moderation-and-ugc#PM-2026-05-20-13-F-01|13-F-01]] P0, [[PM-2026-05-20-10-accessibility-and-inclusion#PM-2026-05-20-10-F-01|10-F-01]] P0 + [[PM-2026-05-20-10-accessibility-and-inclusion#PM-2026-05-20-10-F-02|10-F-02]] P1, [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability#PM-2026-05-20-17-F-07|17-F-07]] P0)
-8. **Marken-Kollision SEGA/SI ”žfootball-manager-x"** — Rebrand vor Public-Launch zwingend. Top-3-Finalisten: Heimrunde / Klubkönig / Formationfuchs. ([[PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-05|08-F-05]] P0, [[PM-2026-05-20-14-brand-pr-and-crisis-comms#PM-2026-05-20-14-F-01|14-F-01]] P0)
+8. **Historische Marken-Kollision SEGA/SI** — Rebrand vor Public-Launch war zwingend; die aktive Benennung ist **Klubhaus Elf**. ([[PM-2026-05-20-08-legal-consumer-law-and-tax#PM-2026-05-20-08-F-05|08-F-05]] P0, [[PM-2026-05-20-14-brand-pr-and-crisis-comms#PM-2026-05-20-14-F-01|14-F-01]] P0)
 
 > **Leitsatz Iteration 2/3.** *Single-Player ist das Fundament — aber jedes Datenformat, jeder Command-Pfad und jede State-Übergangsfunktion wird so entworfen, dass sie auch unter dem strengeren Vertrauensmodell von async Multiplayer und (zukünftig) Distributed Match Compute trägt. Ein Stack mit zuschaltbarem Trust-Level — nicht zwei Stacks. MVP-Linie: kein Runtime-LLM, kein Image-Upload, kein Free-Form-Chat, kein aktives Marketing, kein Cloudflare-Workers-Lock, keine Lootboxes, keine Daily-Login-Streaks.*
 

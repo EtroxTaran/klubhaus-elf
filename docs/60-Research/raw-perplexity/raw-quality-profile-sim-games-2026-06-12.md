@@ -28,7 +28,7 @@ Perplexity was asked how football/baseball/sports-management games distinguish f
 - Offscreen mass simulation needs cheap routing and minimal micromanagement; otherwise long-save pacing breaks.
 - When a match can later be inspected/resimulated in more detail, the system needs a reconciliation mechanism rather than silent reinterpretation of the original summary.
 
-## FMX-specific extraction
+## Klubhaus Elf-specific extraction
 
 | Game precedent | FMX implication |
 |---|---|

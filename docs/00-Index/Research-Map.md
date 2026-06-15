@@ -18,6 +18,10 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [pnpm Tooling Currency](../60-Research/pnpm-tooling-currency-2026-06-15.md) -
+  FMX-195 source-checked update of the active pnpm pin to 11.7.0, preserving the
+  npm dist-tag vs published-release caveat and the future bootstrap re-check
+  guardrail.
 - [Documentation Baseline 2026-05-22](Documentation-V1.md) - current
   temporal/structural closure baseline for vault gaps.
 - [Wave 3 Gap Analysis](../95-Archive/gap-reports/wave-3-gap-analysis.md) - superseded
@@ -83,7 +87,7 @@ design notes.
   [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]]
   and state machine [[../10-Architecture/state-machines/player-discipline]] with
   official discipline-rule source checks, football-manager genre precedent and
-  FMX-specific DDD ownership trade-offs. Records Nico's selected defaults:
+  Klubhaus Elf-specific DDD ownership trade-offs. Records Nico's selected defaults:
   Squad & Player process manager/sub-aggregate, straight-red appeals only,
   profile-driven suspension scopes and appeal resolution before the next
   relevant fixture; raw capture:

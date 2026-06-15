@@ -3,7 +3,7 @@
 > **Status:** Plan-Phase, 19. Mai 2026
 > **Zielgruppe:** implementierende Entwickler:innen + Designreviewer
 > **Quelle:** Prototyp `design_handoff_aurelia_premier/` (Babel-Standalone)
-> **Produkt:** **Football Manager X** (intern: Aurelia Premier)
+> **Produkt:** **Klubhaus Elf** (intern: Aurelia Premier)
 > **Ziel:** **Design-System-Lieferung** auf **Vite + TanStack + shadcn/ui +
 > Radix + Tailwind**. Alle Komponenten sind genau die, die später in
 > Production zum Einsatz kommen — nicht zwei parallele Welten.
