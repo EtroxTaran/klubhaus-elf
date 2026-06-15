@@ -3,7 +3,7 @@ title: GD-0028 Dialogue Intent Taxonomy and Effect Matrix
 status: accepted
 tags: [game-design, gddr, narrative, dialogue, intents, effects, ai, llm, fmx-87, gap-g13]
 created: 2026-06-05
-updated: 2026-06-13
+updated: 2026-06-15
 type: game-design
 binding: false
 related:
@@ -15,6 +15,7 @@ related:
   - [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
   - [[audience-and-atmosphere]]
   - [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+  - [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]]
   - [[../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
   - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
@@ -24,6 +25,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]]
   - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
+  - [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
 ---
 
 # GD-0028: Dialogue Intent Taxonomy and Effect Matrix
@@ -275,6 +277,10 @@ result read-only for follow-up rendering and provenance.
   are GD-0043 `dialogue.trustMorale` calibration work.
 - FMX-82 owns final media-outlet cadence/reach/stance interactions with
   press/media intents.
+- FMX-162 prepares the cross-producer effect-intent catalog that reconciles
+  these dialogue intents with ADR-0065 press aliases and ADR-0085 media coverage
+  intents. It remains non-binding until Nico accepts
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
 - ADR-0052 ratification must settle final People/persona ownership before
   implementation.
 - Content authoring must add fallback templates and manifest fixtures per
@@ -302,8 +308,10 @@ draft proposed design.
 ## Related
 
 - [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
+- [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]]
 - [[../60-Research/raw-perplexity/raw-dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 - [[GD-0018-ai-narrative-personas-and-dialogue]]
 - [[GD-0020-eos-player-skills-personas-and-people]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../30-Implementation/ai-narration-contract-testing-framework]]
+- [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]

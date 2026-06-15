@@ -3,7 +3,7 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-06-14
+updated: 2026-06-15
 type: map
 binding: false
 related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
@@ -131,6 +131,11 @@ sections are not active work by default.
 - [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]] - accepted
   FMX-87 dialogue-intent taxonomy and effect matrix for player, staff, board,
   press/media, fan-rep and agent surfaces.
+- [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]] - FMX-162
+  decision-pending synthesis for reconciling GD-0028 dialogue/press intents,
+  ADR-0065 press aliases and ADR-0085 media coverage effect-intents into one
+  advisory catalog. Draft ADR:
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 - [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]] - accepted deterministic
   world-drift design for Rising Rival, Giant Collapse and Continental Era Shift.

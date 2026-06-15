@@ -34,6 +34,13 @@ design notes.
   owns `T0`, 72-hour checkpoints, BfDI/national-authority route checks,
   severity mapping, RACI and drill cadence. Decision remains pending Nico in
   [FMX-183 decision queue](../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15.md).
+- [Effect-intent Taxonomy Across Narrative and Media Ecology](../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15.md) -
+  FMX-162 Perplexity-first and source-checked packet for draft
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]:
+  one advisory published-language catalog across Narrative dialogue/press and
+  Media Ecology coverage, owner-context validation and a future exhaustive
+  mapping conformance test. Decisions remain pending in
+  [FMX-162 decision queue](../40-Execution/fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15.md).
 - [Responsible Gaming Binding Record](../60-Research/responsible-gaming-binding-record-2026-06-15.md) -
   FMX-193 Perplexity-first and source-checked packet for the draft
   responsible-gaming invariant: no paid random rewards, no coercive retention

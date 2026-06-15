@@ -56,6 +56,20 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > budgets/eviction UX, user-mediated SW update plus no-op/rescue rollback,
 > staged rollout gates, manifested content-pack validation, template-first
 > generated/localized content gates and versioned evidence/rebaseline records.
+>
+> **FMX-162 Effect-intent taxonomy packet pending (2026-06-15).** Branch
+> `codex/fmx-162-effect-intent-taxonomy` prepares the cross-producer advisory
+> effect-intent catalog for Narrative dialogue/press and Media Ecology coverage.
+> Research
+> [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]] plus raw
+> Perplexity/source-check captures grounds draft
+> [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
+> Recommended packet: one canonical published-language catalog, producers emit
+> advisory intent metadata only, owner contexts validate/clamp/reject and emit
+> authoritative result events, People stays a gate/scaler owner for v1, visible
+> bounded history/audit outcomes, and a future exhaustive mapping contract test.
+> No new rule is binding until Nico answers D1-D7 in
+> [[../40-Execution/fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15]].
 
 > **2026-06-08 — Decision portfolio re-ratified (merged 2026-06-08/09 via PRs
 > #153/#157–#161 — merge was the ratification act).** All 76 reopened ADRs + 36 GDDRs

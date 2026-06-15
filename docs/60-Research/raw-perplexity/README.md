@@ -27,6 +27,19 @@ Art. 33/34 breach-notification operational drill into incident response.
 | [[raw-breach-notification-runbook-2026-06-15]] | Perplexity discovery pass for Germany-based online game/PWA breach notification, 72-hour process, severity mapping, RACI and player communication | [[../breach-notification-runbook-2026-06-15]] |
 | [[raw-breach-notification-runbook-source-checks-2026-06-15]] | GDPR Art. 33/34, EDPB routing/guidelines, BfDI form and FMX local source checks | [[../breach-notification-runbook-2026-06-15]] |
 
+## FMX-162 effect-intent taxonomy (2026-06-15)
+
+Perplexity-first research and targeted source checks for the cross-producer
+advisory effect-intent taxonomy across Narrative dialogue/press and Media
+Ecology coverage.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-effect-intent-taxonomy-realworld-2026-06-15]] | Perplexity discovery pass for real-world football/media pressure, morale, rumours, fan sentiment and board-pressure causal pathways | [[../effect-intent-taxonomy-cross-producer-2026-06-15]] |
+| [[raw-effect-intent-taxonomy-game-precedents-2026-06-15]] | Perplexity discovery pass for comparable game/media/dialogue systems, player-readable causality and spam/opacity pitfalls | [[../effect-intent-taxonomy-cross-producer-2026-06-15]] |
+| [[raw-effect-intent-taxonomy-ddd-contracts-2026-06-15]] | Perplexity discovery pass for DDD published language, ACLs, versioned event contracts, idempotency and conformance tests | [[../effect-intent-taxonomy-cross-producer-2026-06-15]] |
+| [[raw-effect-intent-taxonomy-source-checks-2026-06-15]] | Source checks for EA FC 25, Football Manager, OOTP, Microsoft DDD/domain events, Zod 4 and football coach-pressure studies | [[../effect-intent-taxonomy-cross-producer-2026-06-15]] |
+
 ## FMX-193 responsible gaming binding record (2026-06-15)
 
 Perplexity-first research and targeted source checks for the draft

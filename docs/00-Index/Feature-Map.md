@@ -3,7 +3,7 @@ title: Feature Map
 status: current
 tags: [feature, meta]
 created: 2026-05-16
-updated: 2026-06-12
+updated: 2026-06-15
 type: map
 binding: false
 related: [[Project-Goals]], [[MVP-Scope]], [[Game-Design-Map]], [[Documentation-V1]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../20-Features/feature-statistics-analytics-hub-mvp]]
@@ -30,7 +30,9 @@ documentation gaps.
   framework, Playtest First quality loop, Runtime-LLM gates and FMX-88 fallback
   coverage/no-export constraints; FMX-83 adds source-owned newsworthy event
   snapshots for Narrative surfaces; FMX-87 adds finite dialogue intents and a
-  draft effect-owner matrix for player/staff/board/press/fan/agent surfaces.
+  draft effect-owner matrix for player/staff/board/press/fan/agent surfaces;
+  FMX-162 prepares a non-binding cross-producer effect-intent catalog in
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
 - [[../20-Features/feature-eos-player-skills-and-people-context]] — draft
   FMX-23 player-skill/perk and People/persona slice for MVP planning, now
   linked to GD-0021 decision-influence hooks.

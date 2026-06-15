@@ -3,12 +3,13 @@ title: GD-0034 Media-Outlet Ecology Model
 status: accepted
 tags: [game-design, gddr, media, media-ecology, outlets, press, editorial-stance, narrative, fmx-82]
 created: 2026-06-07
-updated: 2026-06-13
+updated: 2026-06-15
 type: gddr
 binding: false
 linear: FMX-82
 related:
   - [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]]
+  - [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
   - [[../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]]
   - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
   - [[GD-0013-narrative-inbox]]
@@ -17,6 +18,7 @@ related:
   - [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
   - [[GD-0015-ip-clean-data]]
   - [[../60-Research/media-outlet-operational-behaviour-2026-06-07]]
+  - [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]]
   - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
 ---
 
@@ -157,6 +159,7 @@ Harness: T1/T3 outlet-cadence, stance-drift and long-save media-density sweeps i
 ## Open / deferred
 
 - The RNG label (`WorldAiMgmtRng` media sub-label vs a dedicated `MediaRng`) — ADR-0085 open item.
-- The full outlet→effect-intent taxonomy (coordination with Audience & Atmosphere, Club Management,
-  Squad & Player) — a later follow-up.
+- The full outlet→effect-intent taxonomy is prepared by FMX-162 in
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
+  and remains non-binding until Nico accepts its decision queue.
 - Authored outlet archetype/name catalogues (content scope, not a design decision here).
