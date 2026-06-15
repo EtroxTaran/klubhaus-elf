@@ -3,7 +3,7 @@ title: ADR-0027 PostgreSQL Data Model (per-save schema isolation, Drizzle source
 status: accepted
 tags: [adr, architecture, data, postgresql, drizzle, schema, saves]
 created: 2026-05-19
-updated: 2026-06-08
+updated: 2026-06-15
 accepted_at: 2026-05-19
 type: adr
 binding: true
@@ -75,8 +75,11 @@ For each major substrate question:
   rivalries) are defined once in TypeScript and provisioned once per save.
 - **Delete** = `DROP SCHEMA save_<…> CASCADE` after the 30-day grace window
   ([[ADR-0004-data-model]] §6.1 unchanged).
-- **Archive / unarchive** = state flip on `save_registry.state`; schema stays
-  in place.
+- **Archive / unarchive** = amended by ADR-0097 / FMX-170. `active` saves keep
+  one live `save_<uuidv7hex>` schema. `archived` saves drop out of the live
+  catalog only after the encrypted save blob or equivalent logical archive
+  artifact has been written, checksummed and indexed; unarchive/re-activation
+  re-provisions the schema before the save becomes active again.
 - **Hotseat → MP promotion** ([[ADR-0011-server-authoritative-multiplayer]])
   = transactional `INSERT … SELECT` across schemas in the same Postgres
   database (no two-phase commit needed). Cheaper and safer than the
@@ -138,12 +141,16 @@ changes.
   `attribute: smallint('attribute').notNull(),` plus a table-level
   `check('attribute_bounds', sql\`attribute BETWEEN 0 AND 100\`)`.
 - **SCHEMALESS tables** (`match_event`, `outbox_event`, archive partitions,
-  `audit_log`, `narrative_event_log`, `notification`, `finance_ledger`,
+  `narrative_event_log`, `notification`, `finance_ledger`,
   `training_outcome`, `sync_status`): a single `payload jsonb not null`
   column validated by per-event Zod at producer **and** consumer
   boundaries. The producer cannot bypass Zod (lint rule: no raw
   `db.insert(…outbox_event).values({payload: …})` without going through the
   typed helper).
+
+  `audit_log` is intentionally absent. ADR-0097 / FMX-170 drops the orphaned
+  platform `audit_log` table; the outbox is the domain trail and ADR-0091's
+  Audit & Security log is the security trail.
 
 ### 5. Identity model — UUIDv7, app-generated, opaque branded refs
 
@@ -269,16 +276,20 @@ Cross-context branded UUIDs preserve [[ADR-0019-modular-monolith-ddd]] §6.
 Positive:
 
 - Strict isolation enforced by Postgres, not by convention.
-- `DROP SCHEMA … CASCADE` makes archive/delete trivial and fast.
+- `DROP SCHEMA … CASCADE` makes delete and verified archive cleanup simple.
 - Hotseat → MP import is a same-database transaction (no 2PC, no cross-DB
   copy).
-- Single connection pool + one `pg_dump`/PITR on Hetzner.
+- Single connection pool + one whole-cluster backup/PITR posture on Hetzner;
+  per-schema logical artifacts are archive/restore tools, not the only backup.
 - Drizzle types flow end-to-end (no codegen drift).
 
 Negative / follow-up:
 
 - Per-save migration fan-out is now a real engineering concern (handled by
   A2 lazy + `schema_version`).
+- Archive/restore is no longer a cheap state flip. It is a verified
+  archive-artifact + schema re-provision lifecycle governed by ADR-0097's
+  300/1000 live-schema SLO.
 - Graph traversals use typed recursive CTEs (Drizzle `sql`/`.with()`); fine
   for our modest graph needs (scouting, relationships), not a property-graph
   workload.

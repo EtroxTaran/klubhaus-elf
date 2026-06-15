@@ -42,6 +42,11 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-15-fmx-170-postgres-schema-ceiling]] - FMX-170 PostgreSQL
+  schema-ceiling packet: raw Perplexity/source-check captures, synthesis,
+  accepted decision queue and binding ADR-0097 closure. Nico accepted D1-D3:
+  300/1000 live-schema SLO, user-confirmed hybrid archive pressure and no
+  platform `audit_log`.
 - [[2026-06-15-fmx-162-effect-intent-taxonomy]] - FMX-162 effect-intent
   taxonomy packet: raw Perplexity/source-check captures, synthesis, draft
   decision queue and draft ADR-0126. Pending Nico D1-D7; recommended packet is

@@ -24,6 +24,19 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-170 PostgreSQL schema-ceiling SLO accepted — ADR-0097 binding
+> closure (2026-06-15).** Nico accepted the FMX-170 D1-D3 packet:
+> **300/1000** live save schemas per single Dokploy Postgres node
+> (soft-warn / hard-stop), **user-confirmed hybrid** archive pressure
+> (least-recently-played can be suggested, never silently archived/deleted), and
+> **drop platform `audit_log`** (outbox = domain trail, Audit & Security log =
+> security trail). Research
+> [[../60-Research/postgres-schema-ceiling-slo-benchmark-2026-06-15]] plus raw
+> Perplexity/source-check captures grounds the update. ADR:
+> [[../10-Architecture/09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]
+> now has `binding: true`; [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]
+> carries the dated amendment cleanup for archive/unarchive and `audit_log`.
+
 > **FMX-172 Stryker mutation-testing gate packet pending
 > (2026-06-15).** Branch `codex/fmx-172-stryker-mutation-gate`
 > prepares the ADR-0118 follow-up for scoped Stryker mutation-testing

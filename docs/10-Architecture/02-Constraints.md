@@ -3,7 +3,7 @@ title: Constraints
 status: current
 tags: [architecture]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-15
 type: arch
 related: [[01-Introduction]], [[04-Solution-Strategy]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../00-Index/MVP-Scope]]
 ---
@@ -17,7 +17,8 @@ related: [[01-Introduction]], [[04-Solution-Strategy]], [[09-Decisions/ADR-0021-
   stack on Hetzner ([[09-Decisions/ADR-0044-cicd-and-merge-policy]]); it must stay
   operable on one node.
 - **PostgreSQL 18.x is the system of record**, with a documented schema-per-save
-  scale ceiling and cold/archive fallback
+  scale ceiling (**300** soft-warn / **1000** hard-stop live save schemas per
+  single Dokploy node) and cold/archive fallback
   ([[09-Decisions/ADR-0027-postgres-data-model]],
   [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]).
 - **Deterministic match engine** across runtimes, on an integer / fixed-point

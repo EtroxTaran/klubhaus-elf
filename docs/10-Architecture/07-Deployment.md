@@ -3,7 +3,7 @@ title: Deployment
 status: current
 tags: [architecture, deployment, dokploy, observability]
 created: 2026-05-15
-updated: 2026-06-09
+updated: 2026-06-15
 type: architecture
 binding: false
 related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]], [[09-Decisions/ADR-0044-cicd-and-merge-policy]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]], [[09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]], [[../30-Implementation/deployment-dokploy]], [[../30-Implementation/observability-runbook]]
@@ -20,7 +20,8 @@ policy in ADR-0044: all check logic lives in repo scripts (runnable
 locally and from a thin CI workflow, no vendor lock-in), and green PRs
 auto-merge on strict branch protection (docs: no review; code → `main`:
 ≥1 CODEOWNER review). The single-node Postgres target is the node the
-ADR-0097 per-node schema ceiling is scoped to.
+ADR-0097 per-node schema ceiling is scoped to: **soft-warn at 300 live
+save schemas and hard-stop at 1000**.
 
 ## Environments
 
@@ -41,8 +42,9 @@ MVP runtime services:
   trail (ADR-0028/0097); there is **no** platform `audit_log` table
   (dropped by ADR-0097) — the **security** trail is the Audit & Security
   context's own append-only log. Archived saves drop out of the live
-  catalog into row-level/blob storage; the per-node live-schema count is a
-  monitored ceiling (ADR-0097).
+  catalog into row-level/blob storage only after verified archive material
+  exists; the per-node live-schema count is a monitored SLO: warn at 300,
+  hard-stop at 1000 (ADR-0097 / FMX-170).
 - `outbox-publisher`: future long-running worker for the ADR-0028 Postgres
   outbox to ADR-0023 realtime fan-out.
 - `scheduler`: future long-running worker for timers, countdowns, notification
@@ -133,6 +135,12 @@ Initial retention:
   (ADR-0097); the separate security trail is owned by the Audit & Security
   context, not a platform `audit_log` table.
 
+Save-archive operations are retention-adjacent but distinct from telemetry
+retention: at 300 live save schemas the node emits capacity warning signals; at
+1000 it blocks new active save creation/reactivation until the player confirms
+an archive/delete action or a future capacity decision adds another node/shard.
+LRU is a suggested candidate order only, never a silent active-career archive.
+
 Telemetry volumes are separate from Postgres save/notification data. Backup
 priority:
 
@@ -142,6 +150,14 @@ priority:
 4. Prometheus metrics if needed for long-range SLO history.
 5. Loki/Tempo raw data only when incident/legal hold requires it.
 6. SurrealDB projection data only if projection rebuild cost becomes material.
+
+For save archives, whole-cluster physical backup + WAL/PITR remains the disaster
+recovery baseline. Per-save archive/restore artifacts may use PostgreSQL
+schema-filtered logical exports or the encrypted save envelope, but a live schema
+is not dropped until the archive artifact is written, checksummed, indexed and
+restorable. Restore provisions and validates a schema before flipping a save
+back to `active`; the planning SLO is within 30 minutes for a typical archived
+save until real save-size measurements replace it.
 
 ## Deployment Rules
 
