@@ -3061,12 +3061,14 @@ Implementation should start from
       Control / Bit = Match-Only / Newbie = Light Touch).
     - **Top-nav toggle** `[Club] / [Nation]` with "Next Action" bar
       showing context.
-    - **Unlock**: manager rep ≥ 75 AND (5+ seasons OR 3+ major club
-      trophies).
-    - **Job offers** spawn post-tournament + on board confidence
-      < 20. Direct offer if user in top 3 candidates; "Apply" via
-      Job Center otherwise. Priority: matching nationality + recent
-      success in country + global rep.
+    - **Unlock**: manager rep ≥ 75 AND 5+ in-game seasons; the old
+      trophy shortcut is removed by FMX-130 / GD-0033 and trophies feed
+      reputation instead.
+    - **Job offers** spawn post-tournament and later from a calibrated
+      national-coach confidence floor. Direct offer if user in top 3
+      candidates; "Apply" via Job Center otherwise. Priority: matching
+      nationality + strong regional/national reputation + recent success in
+      country + global aggregate rep.
     - **Squad**: 23 players (3 GKs + 20 outfield) for tournaments
       AND call-up windows.
     - **Eligibility** per D2 §10.4: birth + up to 2 heritage

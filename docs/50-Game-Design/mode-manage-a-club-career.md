@@ -1,12 +1,12 @@
 ---
 title: Mode - Manage a Club Career
 status: draft
-tags: [game-design, mode, career, anstoss]
+tags: [game-design, mode, career, anstoss, national-team, bundestrainer, fmx-130]
 created: 2026-05-16
-updated: 2026-06-11
+updated: 2026-06-15
 type: game-design
 binding: false
-related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/onboarding-strategy]], [[../60-Research/late-game-systems]], [[mode-create-a-club-roguelite]], [[onboarding-and-tutorial]], [[club-dna-and-governance]], [[fan-ecology]]
+related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[GD-0033-national-team-dual-role]], [[../10-Architecture/09-Decisions/ADR-0084-national-team-dual-role-and-international-window-contract]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/onboarding-strategy]], [[../60-Research/late-game-systems]], [[../60-Research/career-bundestrainer-reconciliation-2026-06-15]], [[mode-create-a-club-roguelite]], [[onboarding-and-tutorial]], [[club-dna-and-governance]], [[fan-ecology]]
 ---
 
 # Mode - Manage a Club Career
@@ -142,15 +142,22 @@ Severance + reputation impact follow contract clauses.
 ## 7. Bundestrainer career arc (long-term goal)
 
 The Anstoss-style long-term arc: a successful club career opens national-
-team coaching offers. Locked in [[../60-Research/late-game-systems]]
-(gap D6, 2026-05-17):
+team coaching offers. FMX-130 reconciles this Career note to the current
+national-team design record in [[GD-0033-national-team-dual-role]] and
+[[../10-Architecture/09-Decisions/ADR-0084-national-team-dual-role-and-international-window-contract]];
+[[../60-Research/late-game-systems]] remains the historical D6 research input.
 
 - **Dual-role**: user manages club + national team simultaneously
   (FM/Anstoss style) with **3 engagement levels** (Full Control /
   Match-Only / Light Touch) toggleable per save.
-- **Unlock**: manager rep ≥ 75 AND (5+ seasons OR 3+ major club trophies).
-- **Job offers** spawn post-tournament + on board confidence < 20.
-  Priority: matching nationality + recent success in country + global rep.
+- **Unlock**: manager rep ≥ 75 AND 5+ in-game seasons. The old
+  "OR 3 major club trophies" shortcut is removed; trophies raise reputation
+  instead of bypassing tenure.
+- **Job offers** spawn after major tournaments and, post-MVP, when the sitting
+  national coach's board-confidence floor is crossed. The exact floor is
+  `legacy.nationalTeam.offerWindow.boardConfidenceFloor` calibration debt, not
+  a fixed `<20` rule. Priority: matching nationality + strong regional/national
+  reputation + recent success in country + global aggregate reputation.
 - Tournament cycle: IFC Nations Championship every 4 years +
   Continental Championships offset 2 years → big tournament every 2 years.
 - Assistant national team coach intermediate step **deferred to Phase 4**
@@ -158,8 +165,10 @@ team coaching offers. Locked in [[../60-Research/late-game-systems]]
 - Club coach → director of football → club CEO sub-game still
   Phase 3+ (separate from Bundestrainer arc).
 
-Full design + tournament management UX + squad selection rules:
-[[../60-Research/late-game-systems]] §4.
+Full current design + tournament management UX + squad selection rules:
+[[GD-0033-national-team-dual-role]]; historical research input:
+[[../60-Research/late-game-systems]] §4. FMX-130 source checks and decision
+record: [[../60-Research/career-bundestrainer-reconciliation-2026-06-15]].
 
 ## 8. UI tier interactions
 
@@ -195,9 +204,14 @@ once per season.
 
 ## 11. Open tuning questions
 
-- Confidence threshold for warning vs sack - tentative 30 / 15.
+- Confidence thresholds for warning vs sack remain calibration debt under
+  `dynasty.ownershipBoard`; the old 30 / 15 values are source/research seed
+  values, not ratified constants.
 - Severance and gardening leave - tied to contract clauses set at hire.
-- Should reputation be a single number or per-region? Per-region with a
-  global aggregate.
+- National-team job-offer floor remains
+  `legacy.nationalTeam.offerWindow.boardConfidenceFloor` calibration debt.
+- Reputation model direction: per-region reputation with a global aggregate
+  for player-facing gates; exact aggregation curve deferred to
+  `legacy.nationalTeam` calibration.
 - "Resign in protest" option - yes; affects reputation positively for
   fans, negatively for other boards.
