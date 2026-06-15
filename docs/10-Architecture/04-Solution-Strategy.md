@@ -3,7 +3,7 @@ title: Solution Strategy
 status: current
 tags: [architecture]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-15
 type: arch
 related: [[01-Introduction]], [[02-Constraints]], [[05-Building-Blocks]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[09-Decisions/ADR-0027-postgres-data-model]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0024-match-renderer-abstraction]], [[09-Decisions/ADR-0023-realtime-transport]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[bounded-context-map]], [[../50-Game-Design/GD-0037-offline-narration-tier-on-device-webgpu]], [[../00-Index/MVP-Scope]]
 ---
@@ -59,7 +59,8 @@ PostgreSQL 18.x is the authoritative store
 ([[09-Decisions/ADR-0021-revised-tech-stack]],
 [[09-Decisions/ADR-0027-postgres-data-model]]): per-save schema isolation with
 the Drizzle schema as source of truth, operating within a documented
-schema-per-save **scale ceiling** plus a cold/archive fallback
+schema-per-save **300 soft-warn / 1000 hard-stop live-schema ceiling** plus a
+verified cold/archive fallback
 ([[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]).
 Domain events are published via a **transactional outbox** written in the same
 transaction as the state change
