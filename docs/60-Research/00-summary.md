@@ -104,6 +104,19 @@ the newest-published-version rule for this beat, so the active repo pins now use
 [[raw-perplexity/raw-pnpm-tooling-currency-2026-06-15]],
 [[raw-perplexity/raw-pnpm-source-checks-2026-06-15]].
 
+## Code-CI Pipeline Contract (FMX-175, 2026-06-15)
+
+[[code-ci-pipeline-2026-06-15]] closes the stale post-reset code-CI check-name
+gap. Nico accepted the D1-D4 packet: keep active docs-phase required checks as
+`docs-check` + `linear-id`; use future code-phase required contexts `quality`,
+`e2e` and `security` only after real root scripts, workflows, targets and
+burn-in exist; compress D-002 into historical lessons; and leave code workflow
+creation to the code-phase bootstrap. Raw captures:
+[[raw-perplexity/raw-code-ci-pipeline-2026-06-15]],
+[[raw-perplexity/raw-code-ci-pipeline-source-checks-2026-06-15]].
+Decision record:
+[[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]].
+
 ## Replay/Dedup Ownership Seam (FMX-164, 2026-06-15)
 
 [[replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]] preserves the
