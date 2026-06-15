@@ -27,6 +27,18 @@ Art. 33/34 breach-notification operational drill into incident response.
 | [[raw-breach-notification-runbook-2026-06-15]] | Perplexity discovery pass for Germany-based online game/PWA breach notification, 72-hour process, severity mapping, RACI and player communication | [[../breach-notification-runbook-2026-06-15]] |
 | [[raw-breach-notification-runbook-source-checks-2026-06-15]] | GDPR Art. 33/34, EDPB routing/guidelines, BfDI form and FMX local source checks | [[../breach-notification-runbook-2026-06-15]] |
 
+## FMX-193 responsible gaming binding record (2026-06-15)
+
+Perplexity-first research and targeted source checks for the draft
+responsible-gaming invariant, dark-pattern gate, public statement and compliance
+home.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-responsible-gaming-legal-regulatory-2026-06-15]] | Perplexity discovery pass for EU/Germany responsible gaming, loot-box legal risk, DSA/dark-pattern direction, IARC/USK evidence and public statement posture | [[../responsible-gaming-binding-record-2026-06-15]] |
+| [[raw-responsible-gaming-game-precedents-2026-06-15]] | Perplexity discovery pass for football-manager and live-service sports-manager precedents, including low-pressure/no-advantage and random-IAP counterexamples | [[../responsible-gaming-binding-record-2026-06-15]] |
+| [[raw-responsible-gaming-source-checks-2026-06-15]] | Source checks for DSA, USK/IARC descriptors, WHO/BIÖG wellbeing guidance, Austrian loot-box commentary, Hattrick and Top Eleven | [[../responsible-gaming-binding-record-2026-06-15]] |
+
 ## FMX-158 Babylon renderer stack cleanup (2026-06-15)
 
 Perplexity-first research and targeted source checks for reconciling active

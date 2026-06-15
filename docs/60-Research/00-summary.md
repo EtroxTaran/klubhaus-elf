@@ -137,7 +137,7 @@ captures:
 
 [[identity-access-context-definition-2026-06-15]] preserves the FMX-163
 research layer for accepted
-[[../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]]:
+[[../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]:
 Identity & Access owns account, credential, session, registered-device and
 global-role/claim truth; publishes `PrincipalContext` snapshots and
 auth/security identity events; and uses passkey-first plus password fallback as
@@ -211,6 +211,23 @@ binding until Nico answers D1-D7 in
 Raw captures:
 [[raw-perplexity/raw-deterministic-simulation-qa-harness-2026-06-15]],
 [[raw-perplexity/raw-deterministic-simulation-qa-source-checks-2026-06-15]].
+
+## Responsible Gaming Binding Record (FMX-193, 2026-06-15)
+
+[[responsible-gaming-binding-record-2026-06-15]] preserves the FMX-193
+research layer for the responsible-gaming invariant, dark-pattern guardrail,
+public statement and compliance evidence home. It grounds draft
+[[../10-Architecture/09-Decisions/ADR-0122-responsible-gaming-and-dark-pattern-invariant]]
+plus draft [[../40-Compliance/responsible-gaming]]. No new rule is binding until
+Nico answers D1-D7 in
+[[../40-Execution/fmx-193-responsible-gaming-decision-queue-2026-06-15]].
+Recommended packet is all A: dedicated ADR + compliance home, hard no paid
+random rewards, dark-pattern release self-audit, optional local reminders,
+versioned statement now, OSS/license split to a separate issue and independent
+guardrail acceptance before SKU ratification. Raw captures:
+[[raw-perplexity/raw-responsible-gaming-legal-regulatory-2026-06-15]],
+[[raw-perplexity/raw-responsible-gaming-game-precedents-2026-06-15]],
+[[raw-perplexity/raw-responsible-gaming-source-checks-2026-06-15]].
 
 ## Monorepo Workspace Bootstrap (FMX-179, 2026-06-14)
 

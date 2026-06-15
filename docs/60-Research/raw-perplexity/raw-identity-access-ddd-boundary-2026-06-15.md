@@ -10,7 +10,7 @@ linear: FMX-163
 related:
   - [[../identity-access-context-definition-2026-06-15]]
   - [[raw-identity-access-source-checks-2026-06-15]]
-  - [[../../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]]
+  - [[../../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]
   - [[../../40-Execution/fmx-163-identity-access-decision-queue-2026-06-15]]
   - [[../../10-Architecture/bounded-context-map]]
 ---
@@ -89,5 +89,5 @@ and command authorization in the owning domain contexts.
 
 - [[../identity-access-context-definition-2026-06-15]]
 - [[raw-identity-access-source-checks-2026-06-15]]
-- [[../../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]]
+- [[../../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]
 

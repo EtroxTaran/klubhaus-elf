@@ -13,7 +13,7 @@ related:
   - [[../60-Research/raw-perplexity/raw-identity-access-security-privacy-2026-06-15]]
   - [[../60-Research/raw-perplexity/raw-identity-access-game-platform-precedents-2026-06-15]]
   - [[../60-Research/raw-perplexity/raw-identity-access-source-checks-2026-06-15]]
-  - [[../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]]
+  - [[../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]
 ---
 
 # FMX-163 Identity & Access Decision Queue
@@ -76,5 +76,5 @@ age/payment policy and schemas.
 ## Related
 
 - [[../60-Research/identity-access-context-definition-2026-06-15]]
-- [[../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]]
+- [[../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]
 

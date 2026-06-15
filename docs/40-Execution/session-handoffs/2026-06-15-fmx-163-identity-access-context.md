@@ -9,7 +9,7 @@ binding: false
 linear: FMX-163
 related:
   - [[../../60-Research/identity-access-context-definition-2026-06-15]]
-  - [[../../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]]
+  - [[../../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]
   - [[../fmx-163-identity-access-decision-queue-2026-06-15]]
 ---
 
@@ -28,7 +28,7 @@ related:
   game/platform precedents.
 - Added source-check note with primary/official references and caveats.
 - Recorded Nico's accepted D1-D3 packet.
-- Added accepted ADR-0122 for the Identity & Access context definition.
+- Added accepted ADR-0123 for the Identity & Access context definition.
 - Updated the bounded-context map, building-blocks guidance and front-door
   vault indexes.
 
@@ -44,7 +44,7 @@ related:
 
 ## Changed vault paths
 
-- `docs/10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition.md`
+- `docs/10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition.md`
 - `docs/60-Research/identity-access-context-definition-2026-06-15.md`
 - `docs/60-Research/raw-perplexity/raw-identity-access-*.md`
 - `docs/40-Execution/fmx-163-identity-access-decision-queue-2026-06-15.md`
@@ -54,5 +54,4 @@ related:
 
 ## Needs promotion
 
-- None. ADR-0122 is already accepted/binding per Nico's D1-D3 approval.
-
+- None. ADR-0123 is already accepted/binding per Nico's D1-D3 approval.

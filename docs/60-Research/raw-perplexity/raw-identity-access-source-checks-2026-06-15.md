@@ -12,7 +12,7 @@ related:
   - [[raw-identity-access-ddd-boundary-2026-06-15]]
   - [[raw-identity-access-security-privacy-2026-06-15]]
   - [[raw-identity-access-game-platform-precedents-2026-06-15]]
-  - [[../../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]]
+  - [[../../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]
   - [[../../30-Implementation/auth-flows]]
   - [[../../30-Implementation/session-management]]
   - [[../../30-Implementation/privacy-and-consent]]
@@ -62,7 +62,7 @@ protocol.
 ## Related
 
 - [[../identity-access-context-definition-2026-06-15]]
-- [[../../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]]
+- [[../../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]
 - [[../../30-Implementation/auth-flows]]
 - [[../../30-Implementation/session-management]]
 - [[../../30-Implementation/privacy-and-consent]]

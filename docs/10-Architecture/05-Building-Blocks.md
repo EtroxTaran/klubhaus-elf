@@ -153,7 +153,7 @@ provenance, evals and provider adapter boundaries.
 
 The **Identity & Access** context (Platform & Governance cluster) is explicit
 and narrow per
-[[09-Decisions/ADR-0122-identity-access-context-definition]]. It owns account,
+[[09-Decisions/ADR-0123-identity-access-context-definition]]. It owns account,
 credential, session, registered-device and global-role/claim truth; publishes
 opaque account/session/device identifiers, `PrincipalContext` snapshots and
 auth/security identity events; and keeps passkey-first plus password fallback as

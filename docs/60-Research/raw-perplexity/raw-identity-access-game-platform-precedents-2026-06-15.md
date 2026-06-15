@@ -10,7 +10,7 @@ linear: FMX-163
 related:
   - [[../identity-access-context-definition-2026-06-15]]
   - [[raw-identity-access-source-checks-2026-06-15]]
-  - [[../../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]]
+  - [[../../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]
   - [[../../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]]
   - [[../../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
 ---
@@ -67,5 +67,5 @@ for platform precedent.
 
 - [[../identity-access-context-definition-2026-06-15]]
 - [[raw-identity-access-source-checks-2026-06-15]]
-- [[../../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]]
+- [[../../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]
 
