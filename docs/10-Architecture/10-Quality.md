@@ -3,10 +3,10 @@ title: Quality
 status: current
 tags: [architecture, quality, determinism, offline-first, performance, security, accessibility, i18n]
 created: 2026-05-15
-updated: 2026-06-09
+updated: 2026-06-15
 type: arch
 binding: false
-related: [[08-Crosscutting]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0008-mobile-first-ui]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0005-save-format]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[../60-Research/performance-budgets]], [[../60-Research/determinism-and-replay]], [[../30-Implementation/ci-and-review-process]]
+related: [[08-Crosscutting]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0008-mobile-first-ui]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0005-save-format]], [[09-Decisions/ADR-0021-revised-tech-stack]], [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../40-Quality/test-strategy]], [[../60-Research/test-strategy-adr-2026-06-14]], [[../60-Research/performance-budgets]], [[../60-Research/determinism-and-replay]], [[../30-Implementation/ci-and-review-process]]
 ---
 
 # Quality
@@ -16,6 +16,10 @@ This chapter records the **ratified quality goals** for **Klubhaus Elf** and the
 testable. It reflects ratified decisions only; the measurable budgets it cites live in
 [[../60-Research/performance-budgets]] (binding) and the enforcement model in
 [[../30-Implementation/ci-and-review-process]]. It does not introduce new decisions.
+Accepted [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]] and current
+[[../40-Quality/test-strategy]] are the FMX-177 future code-phase test-strategy
+packet; they stay target-only until code-phase bootstrap creates real scripts
+and package/app paths.
 
 > Project phase: research / analysis / architecture planning — no development. The scenarios
 > below are the acceptance targets the implementation will be held to, not yet-shipped behaviour.
@@ -106,15 +110,25 @@ The audit trail is **split** by concern, and the two stores must not be conflate
 
 ## 3. Quality gates & enforcement
 
-Quality gates are Biome, TypeScript strict, Vitest coverage, Playwright offline smoke
-coverage, Lighthouse + Web-Vitals budgets, determinism golden-replay + lint gates, bundle-size
-budgets, the i18n CI gate set, and code review. `main`/`develop` are kept green by default; the
-enforcement model, flake policy, and the (rare) override policy are defined in
-[[../30-Implementation/ci-and-review-process]]. The full per-PR perf gate, device matrix and
-budget tables are in [[../60-Research/performance-budgets]] (binding).
+Quality gates include Biome, TypeScript strict, Vitest coverage, Playwright
+offline smoke coverage, Lighthouse + Web-Vitals budgets, determinism
+golden-replay + lint gates, bundle-size budgets, the i18n CI gate set and code
+review once code phase creates real targets. `main`/`develop` are kept green by
+default; the enforcement model, flake policy, and the rare override policy are
+defined in [[../30-Implementation/ci-and-review-process]]. The full per-PR perf
+gate, device matrix and budget tables are in
+[[../60-Research/performance-budgets]] (binding).
+
+FMX-177 accepts the detailed code-phase test-strategy ladder in
+[[09-Decisions/ADR-0118-test-strategy-and-quality-gates]] and
+[[../40-Quality/test-strategy]]: Vitest/Playwright split, fast-check replay
+artifacts, scoped Stryker mutation testing, 85/85/85/75 base coverage threshold
+and portable CI-cost posture with a future local `xAi` runner gate. Those
+details remain target-only until real code-phase targets exist.
 
 ## Related
 
 - [[../30-Implementation/ci-and-review-process]] — enforcement model · [[../30-Implementation/agent-workflow-pattern]] — review phases
+- [[../40-Quality/test-strategy]] — FMX-177 current test strategy · [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]] — accepted ADR
 - [[09-Decisions/ADR-0021-revised-tech-stack]] — toolchain decision
 - [[08-Crosscutting]] — arc42 sibling

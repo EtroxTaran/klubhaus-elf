@@ -3,7 +3,7 @@ title: Implementation (Map of Content)
 status: current
 tags: [implementation, moc]
 created: 2026-05-17
-updated: 2026-06-14
+updated: 2026-06-15
 type: index
 binding: true
 related: [[../00-Index/Home]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../10-Architecture/README]], [[../00-Index/Documentation-V1]]
@@ -27,6 +27,9 @@ operational runbooks. Current implementable notes are classified by
   after ADR-0114 approval.
 - [[cursor-cloud-agent-workflow]] - cloud-agent operational steps.
 - [[ci-and-review-process]] - green-by-default enforcement.
+- [[../40-Quality/test-strategy]] - FMX-177 current future code-phase test
+  strategy; binding through accepted ADR-0118 but target-only until real code
+  targets exist.
 - [[design-sync-workflow]] - design export to codebase.
 - [[linear-task-tracking]] - Linear (team FMX) conventions + GitHub branch/PR integration.
 - [[domain-research-workflow]] - canonical six-phase beat for closing bounded-context gaps in Phase 1.

@@ -63,6 +63,26 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > record:
 > [[../40-Execution/fmx-195-pnpm-tooling-currency-decision-queue-2026-06-15]].
 
+> **FMX-177 Test strategy and quality gates accepted (2026-06-15).** Linear
+> FMX-177 is carried on branch
+> `codex/fmx-177-test-strategy-adr`. Research
+> [[../60-Research/test-strategy-adr-2026-06-14]] (+ raw Perplexity/source-check
+> captures for Vitest, Playwright, fast-check, Stryker, a11y, Lighthouse,
+> SBOM/dependency, runner-cost and runner-hardening evidence) grounds accepted
+> [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]]
+> plus current [[../40-Quality/test-strategy]]. Nico approved D1=A tiered
+> 16-layer strategy, D2=A Vitest projects +
+> Playwright E2E split, D3=A replayable property-test evidence, D4=A scoped
+> Stryker nightly/release first, D5=A 85/85/85/75 per-file base threshold for
+> meaningful first-party product logic and D6=A-custom portable CI: active
+> GitHub-hosted/docs-phase path plus future local `xAi` runner capability after
+> a separate compatibility, isolation, secret, maintenance and cost gate. `xAi`
+> means Nico's own local stack, not xAI/Grok. The old PM-2026-05-20-16
+> test-strategy pre-mortem is now superseded as an instruction source and kept
+> as historical input only. Out-of-scope follow-ups are split into FMX-196
+> (deterministic sim/replay/soak/save-forward matrix) and FMX-197
+> (PWA/offline/mobile/rollback/content-QA gates).
+>
 > **FMX-184 Command signing + save trust accepted — ADR-0115/0116 binding
 > (2026-06-14).** Linear FMX-184 is `In Progress` on branch
 > `codex/fmx-184-command-signing-save-trust`. Research

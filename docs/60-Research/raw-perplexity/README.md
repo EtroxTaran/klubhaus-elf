@@ -39,6 +39,15 @@ same prompts; we preserve the distinct content per topic rather than per
 iteration, because the iterations overlap heavily and the value is in the union
 of points raised across runs.
 
+## FMX-177 test strategy and quality gates (2026-06-14)
+
+Perplexity-first research and targeted source checks for the accepted
+test-strategy ADR and durable quality note.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-test-strategy-adr-2026-06-14]] | Tiered TypeScript/PWA/game-simulation test strategy, Vitest/Playwright split, fast-check replay evidence, Stryker scope, accessibility/performance/security gates and CI runner cost posture | [[../test-strategy-adr-2026-06-14]] · [[../../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]] · [[../../40-Quality/test-strategy]] |
+
 ## FMX-153 LLM prose replay determinism floor (2026-06-14)
 
 Perplexity-first research and targeted source checks for the accepted

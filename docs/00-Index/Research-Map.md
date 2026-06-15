@@ -208,6 +208,22 @@ design notes.
   [[../60-Research/raw-perplexity/raw-narrative-replay-game-precedents-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-llm-display-snapshot-source-checks-2026-06-14]].
 
+## Test Strategy and Quality Gates (FMX-177, 2026-06-14)
+
+- [[../60-Research/test-strategy-adr-2026-06-14]] -
+  FMX-177 synthesis for replacing the stale pre-mortem `ADR-0040`
+  test-strategy target with accepted
+  [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]]
+  and current [[../40-Quality/test-strategy]]. Records Nico's accepted D1-D6
+  packet: tiered 16-layer quality strategy, Vitest projects + Playwright
+  E2E/PWA split, replayable fast-check property evidence, scoped Stryker
+  nightly/release first, 85/85/85/75 per-file base threshold and portable CI
+  with future local `xAi` runner capability gated by later compatibility,
+  isolation, secret, maintenance and cost proof. Decision record:
+  [[../40-Execution/fmx-177-test-strategy-decision-queue-2026-06-14]]. Raw
+  capture:
+  [[../60-Research/raw-perplexity/raw-test-strategy-adr-2026-06-14]].
+
 ## Hidden-Attribute Reveal Owner Reconciliation (FMX-154, 2026-06-14)
 
 - [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]] -
@@ -556,7 +572,7 @@ Tagging** in `findings-registry.md`.
 - [[../60-Research/pre-mortem/PM-2026-05-20-13-community-moderation-and-ugc]] — 11 Findings, max Score 25
 - [[../60-Research/pre-mortem/PM-2026-05-20-14-brand-pr-and-crisis-comms]] — 9 Findings + 12 Re-Branding-Candidates, max Score 25
 - [[../60-Research/pre-mortem/PM-2026-05-20-15-browser-device-storage-matrix]] — 9 Findings, max Score 25
-- [[../60-Research/pre-mortem/PM-2026-05-20-16-test-strategy-depth]] — 10 Findings + 16-Layer-Test-Pyramid, max Score 20
+- [[../60-Research/pre-mortem/PM-2026-05-20-16-test-strategy-depth]] — 10 Findings + 16-Layer-Test-Pyramid, max Score 20; superseded as current instruction source by FMX-177 [[../60-Research/test-strategy-adr-2026-06-14]]
 - [[../60-Research/pre-mortem/PM-2026-05-20-17-vendor-lifecycle-and-sustainability]] — 12 Findings + Vendor-Risk-Matrix, max Score 25
 - [[../60-Research/pre-mortem/PM-2026-05-20-18-responsible-gaming-and-open-source]] — 12 Findings + License-Decision-Matrix, max Score 20
 
