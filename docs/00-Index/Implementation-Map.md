@@ -45,7 +45,8 @@ unless re-opened by a current issue or accepted ADR.
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
   - draft FMX-3 implementation framework for Narrative contracts, eval corpus,
   safety/privacy tests, provider fallback, FMX-88 fallback manifest coverage,
-  Playtest First, FMX-153 replay/reopen exact-snapshot suites and CI tiers.
+  Playtest First, FMX-153 replay/reopen exact-snapshot suites, FMX-162's future
+  `effect-intent-catalog-exhaustive-mapping` contract test and CI tiers.
 - [Club Economy Accounting Ledger](../30-Implementation/club-economy-accounting-ledger.md)
   - draft FMX-13 ledger contracts for weekly finance facts, accounting
   projections and staged insolvency.

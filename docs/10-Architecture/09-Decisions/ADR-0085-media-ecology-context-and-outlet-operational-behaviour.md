@@ -3,7 +3,7 @@ title: ADR-0085 Media Ecology Context and Outlet Operational Behaviour
 status: accepted
 tags: [adr, architecture, ddd, media, media-ecology, outlets, press, narrative, audience, notification, determinism, fmx-82]
 created: 2026-06-07
-updated: 2026-06-11
+updated: 2026-06-15
 type: adr
 binding: false
 supersedes:
@@ -22,12 +22,14 @@ related:
   - [[ADR-0065-narrative-media-press-content-ownership]]
   - [[ADR-0071-ai-world-simulation-context-and-drift-contract]]
   - [[ADR-0076-narrative-newsworthiness-event-contracts]]
+  - [[ADR-0125-cross-producer-effect-intent-taxonomy]]
   - [[../bounded-context-map]]
   - [[../../50-Game-Design/GD-0034-media-outlet-ecology-model]]
   - [[../../50-Game-Design/GD-0013-narrative-inbox]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../50-Game-Design/GD-0015-ip-clean-data]]
   - [[../../60-Research/media-outlet-operational-behaviour-2026-06-07]]
+  - [[../../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]]
   - [[../../60-Research/raw-perplexity/raw-media-outlet-games-2026-06-07]]
   - [[../../60-Research/raw-perplexity/raw-media-outlet-realworld-2026-06-07]]
   - [[../../60-Research/raw-perplexity/raw-media-outlet-ddd-determinism-2026-06-07]]
@@ -334,8 +336,9 @@ Remaining ratification / follow-up items before implementation:
 - all numeric magnitudes → **FMX-52** behind `mediaEcologyModelVersion`;
 - additive Related pointers to ADR-0065 / ADR-0054 / ADR-0062 / ADR-0076 (apply on ratify);
 - the bounded-context-map 19→20 patch (apply on ratify);
-- the outlet→fan-mood/board/morale effect-intent taxonomy needs coordination with Audience &
-  Atmosphere, Club Management and Squad & Player (a later E4/E-economy follow-up).
+- the outlet→fan-mood/board/morale effect-intent taxonomy is prepared by
+  FMX-162 in [[ADR-0125-cross-producer-effect-intent-taxonomy]] and remains
+  non-binding until Nico accepts that packet.
 
 ## Supersedes
 
@@ -344,6 +347,7 @@ None.
 ## Related Docs
 
 - [[../../60-Research/media-outlet-operational-behaviour-2026-06-07]]
+- [[../../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]]
 - [[../../60-Research/raw-perplexity/raw-media-outlet-games-2026-06-07]]
 - [[../../60-Research/raw-perplexity/raw-media-outlet-realworld-2026-06-07]]
 - [[../../60-Research/raw-perplexity/raw-media-outlet-ddd-determinism-2026-06-07]]
@@ -355,3 +359,4 @@ None.
 - [[ADR-0052-people-persona-and-skills-context]]
 - [[ADR-0062-audience-and-atmosphere-context]]
 - [[ADR-0071-ai-world-simulation-context-and-drift-contract]]
+- [[ADR-0125-cross-producer-effect-intent-taxonomy]]

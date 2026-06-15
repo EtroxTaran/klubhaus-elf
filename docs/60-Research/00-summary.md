@@ -79,6 +79,24 @@ checklist, severity mapping, RACI and drill cadence. Raw captures:
 Decision queue:
 [[../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15]].
 
+## Effect-intent Taxonomy Across Narrative and Media Ecology (FMX-162, 2026-06-15)
+
+[[effect-intent-taxonomy-cross-producer-2026-06-15]] preserves the FMX-162
+Perplexity-first and source-checked packet for reconciling Narrative
+dialogue/press intents and Media Ecology coverage intents into one advisory
+published-language catalog. It grounds draft
+[[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]:
+producers emit advisory metadata only, owner contexts validate/clamp/reject and
+emit authoritative result events, People remains a gate/scaler owner for v1,
+and a future code-phase `effect-intent-catalog-exhaustive-mapping` conformance
+test checks one owner + one policy key per intent. Decisions remain pending in
+[[../40-Execution/fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15]].
+Raw captures:
+[[raw-perplexity/raw-effect-intent-taxonomy-realworld-2026-06-15]],
+[[raw-perplexity/raw-effect-intent-taxonomy-game-precedents-2026-06-15]],
+[[raw-perplexity/raw-effect-intent-taxonomy-ddd-contracts-2026-06-15]],
+[[raw-perplexity/raw-effect-intent-taxonomy-source-checks-2026-06-15]].
+
 ## Notification Offline Delivery and Ratification Packet (FMX-156, 2026-06-15)
 
 [[notification-offline-delivery-2026-06-15]] preserves the decision-pending

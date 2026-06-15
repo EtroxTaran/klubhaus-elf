@@ -3,7 +3,7 @@ title: ADR-0065 Narrative Media and Press Content Ownership
 status: accepted
 tags: [adr, architecture, ddd, narrative, media, press, notification, people, llm, fmx-31]
 created: 2026-06-02
-updated: 2026-06-14
+updated: 2026-06-15
 type: adr
 binding: false
 supersedes:
@@ -18,11 +18,13 @@ related:
   - [[ADR-0052-people-persona-and-skills-context]]
   - [[ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[ADR-0117-narrative-display-snapshot-replay-determinism-floor]]
+  - [[ADR-0125-cross-producer-effect-intent-taxonomy]]
   - [[../bounded-context-map]]
   - [[../../50-Game-Design/GD-0013-narrative-inbox]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../60-Research/narrative-content-bounded-context-2026-06-02]]
   - [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
+  - [[../../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]]
   - [[../../60-Research/raw-perplexity/raw-narrative-content-bounded-context-2026-06-02]]
   - [[../../30-Implementation/ai-narration-contract-testing-framework]]
   - [[../../30-Implementation/domain-research-workflow]]
@@ -375,8 +377,10 @@ Negative:
   ADR-0054.
 - Later implementation needs content validation tooling before press content is
   safe to ship.
-- Effect-intent taxonomy needs coordination with Squad & Player, Audience &
-  Atmosphere, Club Management, Transfer and People.
+- FMX-162 prepares a cross-producer effect-intent taxonomy in
+  [[ADR-0125-cross-producer-effect-intent-taxonomy]]. Until Nico accepts that
+  packet, the bare press intents in this ADR remain advisory placeholders and
+  must be interpreted through the existing owning-context rules.
 - Legal/product review still decides the final user-facing AI disclosure
   surface.
 
@@ -440,11 +444,13 @@ None.
 ## Related Docs
 
 - [[../../60-Research/narrative-content-bounded-context-2026-06-02]]
+- [[../../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]]
 - [[../../60-Research/raw-perplexity/raw-narrative-content-bounded-context-2026-06-02]]
 - [[ADR-0030-llm-out-of-authoritative-state]]
 - [[ADR-0043-notification-and-messaging-platform]]
 - [[ADR-0052-people-persona-and-skills-context]]
 - [[ADR-0054-narrative-context-and-ai-narration-framework]]
+- [[ADR-0125-cross-producer-effect-intent-taxonomy]]
 - [[../../50-Game-Design/GD-0013-narrative-inbox]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../../30-Implementation/ai-narration-contract-testing-framework]]
