@@ -135,7 +135,7 @@ sections are not active work by default.
   decision-pending synthesis for reconciling GD-0028 dialogue/press intents,
   ADR-0065 press aliases and ADR-0085 media coverage effect-intents into one
   advisory catalog. Draft ADR:
-  [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]].
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 - [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]] - accepted deterministic
   world-drift design for Rising Rival, Giant Collapse and Continental Era Shift.

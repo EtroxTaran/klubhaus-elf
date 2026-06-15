@@ -46,7 +46,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > Research
 > [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]] plus raw
 > Perplexity/source-check captures grounds draft
-> [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]].
+> [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
 > Recommended packet: one canonical published-language catalog, producers emit
 > advisory intent metadata only, owner contexts validate/clamp/reject and emit
 > authoritative result events, People stays a gate/scaler owner for v1, visible

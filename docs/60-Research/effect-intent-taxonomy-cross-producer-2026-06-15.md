@@ -12,7 +12,7 @@ related:
   - [[raw-perplexity/raw-effect-intent-taxonomy-game-precedents-2026-06-15]]
   - [[raw-perplexity/raw-effect-intent-taxonomy-ddd-contracts-2026-06-15]]
   - [[raw-perplexity/raw-effect-intent-taxonomy-source-checks-2026-06-15]]
-  - [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+  - [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
   - [[../40-Execution/fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15]]
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]]
@@ -39,7 +39,7 @@ FMX-162 closes the planning gap left between:
   outlet -> fan/board/player taxonomy.
 
 This synthesis is non-binding. It feeds the draft contract proposal
-[[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+[[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
 and the Nico decision queue
 [[../40-Execution/fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15]].
 
@@ -108,7 +108,7 @@ Recommended Nico selections are:
 |---|---|---|
 | Taxonomy shape | **One canonical published-language catalog** | Closes the cross-producer gap without making a shared domain model. |
 | Authority boundary | **Advisory intent only; owner contexts apply** | Matches ADR-0030/0054/0065/0085 and DDD integration-event guidance. |
-| Catalog owner | **Dedicated cross-cutting ADR-0125** | Avoids making Narrative or Media Ecology the owner of consumer policy mappings. |
+| Catalog owner | **Dedicated cross-cutting ADR-0126** | Avoids making Narrative or Media Ecology the owner of consumer policy mappings. |
 | V1 scope | **All named GD-0028, ADR-0065 and ADR-0085 intents** | Makes the existing contract checkable now; all numeric magnitudes stay in GD-0043 slots. |
 | People role | **Gate/scaler owner, not default effect owner** | Preserves GD-0028 primary owners while still routing persona/receptivity through People-owned projections. |
 | Visibility | **Small bounded visible outcomes plus audit/history** | Avoids opaque safe-answer farming and preserves deterministic replay trust. |
@@ -138,7 +138,7 @@ People is represented as:
 
 The questions in
 [[../40-Execution/fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15]]
-must be answered before ADR-0125 can become accepted/binding.
+must be answered before ADR-0126 can become accepted/binding.
 
 ## Related
 
@@ -146,5 +146,5 @@ must be answered before ADR-0125 can become accepted/binding.
 - [[raw-perplexity/raw-effect-intent-taxonomy-game-precedents-2026-06-15]]
 - [[raw-perplexity/raw-effect-intent-taxonomy-ddd-contracts-2026-06-15]]
 - [[raw-perplexity/raw-effect-intent-taxonomy-source-checks-2026-06-15]]
-- [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+- [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
 - [[../40-Execution/fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15]]

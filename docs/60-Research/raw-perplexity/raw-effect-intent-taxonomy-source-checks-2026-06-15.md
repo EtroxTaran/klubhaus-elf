@@ -9,7 +9,7 @@ binding: false
 linear: FMX-162
 related:
   - [[../effect-intent-taxonomy-cross-producer-2026-06-15]]
-  - [[../../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+  - [[../../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
 ---
 
 # Raw source checks - Effect-intent taxonomy
@@ -177,4 +177,4 @@ amplifier around performance outcomes.
 - [[raw-effect-intent-taxonomy-realworld-2026-06-15]]
 - [[raw-effect-intent-taxonomy-game-precedents-2026-06-15]]
 - [[raw-effect-intent-taxonomy-ddd-contracts-2026-06-15]]
-- [[../../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+- [[../../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]

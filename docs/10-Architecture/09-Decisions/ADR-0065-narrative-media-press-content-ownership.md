@@ -18,7 +18,7 @@ related:
   - [[ADR-0052-people-persona-and-skills-context]]
   - [[ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[ADR-0117-narrative-display-snapshot-replay-determinism-floor]]
-  - [[ADR-0125-cross-producer-effect-intent-taxonomy]]
+  - [[ADR-0126-cross-producer-effect-intent-taxonomy]]
   - [[../bounded-context-map]]
   - [[../../50-Game-Design/GD-0013-narrative-inbox]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
@@ -378,7 +378,7 @@ Negative:
 - Later implementation needs content validation tooling before press content is
   safe to ship.
 - FMX-162 prepares a cross-producer effect-intent taxonomy in
-  [[ADR-0125-cross-producer-effect-intent-taxonomy]]. Until Nico accepts that
+  [[ADR-0126-cross-producer-effect-intent-taxonomy]]. Until Nico accepts that
   packet, the bare press intents in this ADR remain advisory placeholders and
   must be interpreted through the existing owning-context rules.
 - Legal/product review still decides the final user-facing AI disclosure
@@ -450,7 +450,7 @@ None.
 - [[ADR-0043-notification-and-messaging-platform]]
 - [[ADR-0052-people-persona-and-skills-context]]
 - [[ADR-0054-narrative-context-and-ai-narration-framework]]
-- [[ADR-0125-cross-producer-effect-intent-taxonomy]]
+- [[ADR-0126-cross-producer-effect-intent-taxonomy]]
 - [[../../50-Game-Design/GD-0013-narrative-inbox]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../../30-Implementation/ai-narration-contract-testing-framework]]

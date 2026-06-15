@@ -32,7 +32,7 @@ documentation gaps.
   snapshots for Narrative surfaces; FMX-87 adds finite dialogue intents and a
   draft effect-owner matrix for player/staff/board/press/fan/agent surfaces;
   FMX-162 prepares a non-binding cross-producer effect-intent catalog in
-  [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]].
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
 - [[../20-Features/feature-eos-player-skills-and-people-context]] — draft
   FMX-23 player-skill/perk and People/persona slice for MVP planning, now
   linked to GD-0021 decision-influence hooks.

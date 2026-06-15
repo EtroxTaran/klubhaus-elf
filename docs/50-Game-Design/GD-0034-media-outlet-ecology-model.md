@@ -9,7 +9,7 @@ binding: false
 linear: FMX-82
 related:
   - [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]]
-  - [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+  - [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
   - [[../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]]
   - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
   - [[GD-0013-narrative-inbox]]
@@ -160,6 +160,6 @@ Harness: T1/T3 outlet-cadence, stance-drift and long-save media-density sweeps i
 
 - The RNG label (`WorldAiMgmtRng` media sub-label vs a dedicated `MediaRng`) — ADR-0085 open item.
 - The full outlet→effect-intent taxonomy is prepared by FMX-162 in
-  [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
   and remains non-binding until Nico accepts its decision queue.
 - Authored outlet archetype/name catalogues (content scope, not a design decision here).

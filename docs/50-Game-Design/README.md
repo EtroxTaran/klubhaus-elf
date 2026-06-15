@@ -267,7 +267,7 @@ is the accepted FMX-137 Create-a-Club Roguelite run tuning record.
 - [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]] - FMX-162
   decision-pending synthesis for one advisory published-language catalog across
   Narrative dialogue/press and Media Ecology coverage effect-intents. Draft ADR:
-  [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]].
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
 - [[GD-0020-eos-player-skills-personas-and-people]] - accepted People/persona
   context cards and relationship constellations that feed dialogue.
 - [[GD-0024-ai-world-drift-algorithm]] - draft AI World Simulation drift

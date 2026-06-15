@@ -36,7 +36,7 @@ design notes.
   [FMX-183 decision queue](../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15.md).
 - [Effect-intent Taxonomy Across Narrative and Media Ecology](../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15.md) -
   FMX-162 Perplexity-first and source-checked packet for draft
-  [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]:
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]:
   one advisory published-language catalog across Narrative dialogue/press and
   Media Ecology coverage, owner-context validation and a future exhaustive
   mapping conformance test. Decisions remain pending in

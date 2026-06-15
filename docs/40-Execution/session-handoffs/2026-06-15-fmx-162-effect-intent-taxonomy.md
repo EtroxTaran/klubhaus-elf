@@ -9,7 +9,7 @@ binding: false
 linear: FMX-162
 related:
   - [[../../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]]
-  - [[../../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+  - [[../../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
   - [[../fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15]]
 ---
 
@@ -32,7 +32,7 @@ until Nico accepts or changes D1-D7.
 - [[../../60-Research/raw-perplexity/raw-effect-intent-taxonomy-game-precedents-2026-06-15]]
 - [[../../60-Research/raw-perplexity/raw-effect-intent-taxonomy-ddd-contracts-2026-06-15]]
 - [[../../60-Research/raw-perplexity/raw-effect-intent-taxonomy-source-checks-2026-06-15]]
-- [[../../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+- [[../../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
 - [[../fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15]]
 
 ## Packet status
@@ -43,7 +43,7 @@ Recommended packet: **D1-D7 = A/A/A/A/A/A/A**:
 
 - one canonical published-language catalog, not a shared domain model;
 - advisory intents only, with owner-context validation/application;
-- dedicated ADR-0125 as catalog governance home;
+- dedicated ADR-0126 as catalog governance home;
 - full v1 catalog accounting for GD-0028, ADR-0065 and ADR-0085 names;
 - People supplies persona/receptivity gates and scalers for v1;
 - visible bounded outcomes plus history/audit rows;
@@ -53,11 +53,11 @@ Recommended packet: **D1-D7 = A/A/A/A/A/A/A**:
 
 If Nico accepts D1-D7, promote:
 
-- [[../../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+- [[../../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
   to `accepted` / `binding: true`;
 - ADR-0065 and ADR-0085 deferred taxonomy flags from placeholders to resolved
-  pointers at ADR-0125;
-- the bounded-context-map clause proposed in ADR-0125;
+  pointers at ADR-0126;
+- the bounded-context-map clause proposed in ADR-0126;
 - future code-phase contract-test planning for
   `effect-intent-catalog-exhaustive-mapping`.
 
@@ -66,4 +66,4 @@ slots.
 
 ## Blockers
 
-- Nico must answer D1-D7 before ADR-0125 becomes binding.
+- Nico must answer D1-D7 before ADR-0126 becomes binding.

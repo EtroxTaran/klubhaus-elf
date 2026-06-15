@@ -25,7 +25,7 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
   - [[../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership]]
   - [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]]
-  - [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+  - [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
 ---
 
 # GD-0028: Dialogue Intent Taxonomy and Effect Matrix
@@ -280,7 +280,7 @@ result read-only for follow-up rendering and provenance.
 - FMX-162 prepares the cross-producer effect-intent catalog that reconciles
   these dialogue intents with ADR-0065 press aliases and ADR-0085 media coverage
   intents. It remains non-binding until Nico accepts
-  [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]].
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
 - ADR-0052 ratification must settle final People/persona ownership before
   implementation.
 - Content authoring must add fallback templates and manifest fixtures per
@@ -314,4 +314,4 @@ draft proposed design.
 - [[GD-0020-eos-player-skills-personas-and-people]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../30-Implementation/ai-narration-contract-testing-framework]]
-- [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+- [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]

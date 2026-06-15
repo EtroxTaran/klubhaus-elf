@@ -9,7 +9,7 @@ binding: false
 linear: FMX-162
 related:
   - [[../effect-intent-taxonomy-cross-producer-2026-06-15]]
-  - [[../../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+  - [[../../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
   - [[../../40-Execution/fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15]]
 ---
 
@@ -67,4 +67,4 @@ not be canonized:
 
 - [[../effect-intent-taxonomy-cross-producer-2026-06-15]]
 - [[raw-effect-intent-taxonomy-source-checks-2026-06-15]]
-- [[../../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+- [[../../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]

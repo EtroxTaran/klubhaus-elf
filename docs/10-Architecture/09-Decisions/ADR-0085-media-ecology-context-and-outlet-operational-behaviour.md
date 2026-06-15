@@ -22,7 +22,7 @@ related:
   - [[ADR-0065-narrative-media-press-content-ownership]]
   - [[ADR-0071-ai-world-simulation-context-and-drift-contract]]
   - [[ADR-0076-narrative-newsworthiness-event-contracts]]
-  - [[ADR-0125-cross-producer-effect-intent-taxonomy]]
+  - [[ADR-0126-cross-producer-effect-intent-taxonomy]]
   - [[../bounded-context-map]]
   - [[../../50-Game-Design/GD-0034-media-outlet-ecology-model]]
   - [[../../50-Game-Design/GD-0013-narrative-inbox]]
@@ -337,7 +337,7 @@ Remaining ratification / follow-up items before implementation:
 - additive Related pointers to ADR-0065 / ADR-0054 / ADR-0062 / ADR-0076 (apply on ratify);
 - the bounded-context-map 19→20 patch (apply on ratify);
 - the outlet→fan-mood/board/morale effect-intent taxonomy is prepared by
-  FMX-162 in [[ADR-0125-cross-producer-effect-intent-taxonomy]] and remains
+  FMX-162 in [[ADR-0126-cross-producer-effect-intent-taxonomy]] and remains
   non-binding until Nico accepts that packet.
 
 ## Supersedes
@@ -359,4 +359,4 @@ None.
 - [[ADR-0052-people-persona-and-skills-context]]
 - [[ADR-0062-audience-and-atmosphere-context]]
 - [[ADR-0071-ai-world-simulation-context-and-drift-contract]]
-- [[ADR-0125-cross-producer-effect-intent-taxonomy]]
+- [[ADR-0126-cross-producer-effect-intent-taxonomy]]

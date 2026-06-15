@@ -9,7 +9,7 @@ binding: false
 linear: FMX-162
 related:
   - [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]]
-  - [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+  - [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
   - [[../60-Research/raw-perplexity/raw-effect-intent-taxonomy-realworld-2026-06-15]]
   - [[../60-Research/raw-perplexity/raw-effect-intent-taxonomy-game-precedents-2026-06-15]]
   - [[../60-Research/raw-perplexity/raw-effect-intent-taxonomy-ddd-contracts-2026-06-15]]
@@ -54,7 +54,7 @@ Nico decides.
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| **A. Dedicated cross-cutting ADR-0125** | ADR-0125 is the catalog governance home; consumers own policy semantics. | **Recommended.** Neither producer owns the other's consumer mappings. |
+| **A. Dedicated cross-cutting ADR-0126** | ADR-0126 is the catalog governance home; consumers own policy semantics. | **Recommended.** Neither producer owns the other's consumer mappings. |
 | B. Narrative owns the catalog | Narrative owns all dialogue, press and media effect-intent mappings. | Too much Narrative overreach; weak for Media Ecology coverage facts. |
 | C. Consumer contexts own separate accepted-key registries | Every owner publishes its own list and producers adapt to them. | Strong local ownership but poor cross-producer discoverability. |
 
@@ -66,7 +66,7 @@ Nico decides.
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| **A. Account for every GD-0028, ADR-0065 and ADR-0085 named intent now** | Draft ADR-0125 includes the complete v1 mapping table, including aliases for ADR-0065/0085 bare IDs. | **Recommended.** Closes the exact FMX-162 gap and makes later tests exhaustive. |
+| **A. Account for every GD-0028, ADR-0065 and ADR-0085 named intent now** | Draft ADR-0126 includes the complete v1 mapping table, including aliases for ADR-0065/0085 bare IDs. | **Recommended.** Closes the exact FMX-162 gap and makes later tests exhaustive. |
 | B. Only press/media rows now | Map only ADR-0065 and ADR-0085; leave broader GD-0028 rows as-is. | Faster, but the dialogue/press boundary would still have two catalog shapes. |
 | C. Only a governance rule now | Define the rule and defer all rows. | Too abstract; acceptance criteria require an accounted-for catalog. |
 
@@ -121,7 +121,7 @@ Nico decides.
 - 2026-06-15: Source checks preserved for EA FC 25, Football Manager, OOTP,
   Microsoft DDD/domain events, football coach-pressure studies and Zod 4
   conformance-shape docs.
-- 2026-06-15: Draft ADR-0125 prepared with a full v1 catalog and aliases for
+- 2026-06-15: Draft ADR-0126 prepared with a full v1 catalog and aliases for
   ADR-0065/0085 bare IDs.
 
 ## Proposed packet
@@ -131,11 +131,11 @@ Recommended selection: **D1-D7 = A/A/A/A/A/A/A**.
 If accepted:
 
 - Promote
-  [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+  [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
   to `accepted` / `binding: true`.
 - Mark ADR-0065's and ADR-0085's deferred effect-intent taxonomy flags as
-  resolved by ADR-0125.
-- Add the bounded-context-map clause proposed in ADR-0125.
+  resolved by ADR-0126.
+- Add the bounded-context-map clause proposed in ADR-0126.
 - Keep exact magnitudes in GD-0043 calibration slots.
 - Add the future code-phase test
   `effect-intent-catalog-exhaustive-mapping` when the workspace exists.
@@ -143,7 +143,7 @@ If accepted:
 ## Related
 
 - [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]]
-- [[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]
+- [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
 - [[../60-Research/raw-perplexity/raw-effect-intent-taxonomy-realworld-2026-06-15]]
 - [[../60-Research/raw-perplexity/raw-effect-intent-taxonomy-game-precedents-2026-06-15]]
 - [[../60-Research/raw-perplexity/raw-effect-intent-taxonomy-ddd-contracts-2026-06-15]]

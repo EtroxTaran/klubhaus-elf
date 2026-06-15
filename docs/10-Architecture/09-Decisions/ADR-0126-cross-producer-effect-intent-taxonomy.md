@@ -1,5 +1,5 @@
 ---
-title: ADR-0125 Cross-producer effect-intent taxonomy
+title: ADR-0126 Cross-producer effect-intent taxonomy
 status: draft
 tags: [adr, architecture, ddd, effect-intent, narrative, media-ecology, press, dialogue, published-language, fmx-162]
 created: 2026-06-15
@@ -26,7 +26,7 @@ related:
   - [[../../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
 ---
 
-# ADR-0125: Cross-producer effect-intent taxonomy
+# ADR-0126: Cross-producer effect-intent taxonomy
 
 ## Status
 
@@ -243,7 +243,7 @@ Suggested clause for [[../bounded-context-map]] once ratified:
 
 ```text
 Effect-intent contract: Narrative and Media Ecology publish advisory
-EffectIntentId metadata through the ADR-0125 catalog. Each intent has exactly
+EffectIntentId metadata through the ADR-0126 catalog. Each intent has exactly
 one primary owner context and one effectPolicyKey. Producers never apply
 effects; owner contexts validate, clamp/reject and emit authoritative result
 events. People/persona projections may gate or scale owner policies, but

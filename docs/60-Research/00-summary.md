@@ -85,7 +85,7 @@ Decision queue:
 Perplexity-first and source-checked packet for reconciling Narrative
 dialogue/press intents and Media Ecology coverage intents into one advisory
 published-language catalog. It grounds draft
-[[../10-Architecture/09-Decisions/ADR-0125-cross-producer-effect-intent-taxonomy]]:
+[[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]:
 producers emit advisory metadata only, owner contexts validate/clamp/reject and
 emit authoritative result events, People remains a gate/scaler owner for v1,
 and a future code-phase `effect-intent-catalog-exhaustive-mapping` conformance

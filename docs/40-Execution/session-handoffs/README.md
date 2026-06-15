@@ -44,7 +44,7 @@ This is the **single** canonical handoff location. (An older
 
 - [[2026-06-15-fmx-162-effect-intent-taxonomy]] - FMX-162 effect-intent
   taxonomy packet: raw Perplexity/source-check captures, synthesis, draft
-  decision queue and draft ADR-0125. Pending Nico D1-D7; recommended packet is
+  decision queue and draft ADR-0126. Pending Nico D1-D7; recommended packet is
   all A for one published-language catalog, advisory-only producer metadata,
   owner-context validation/application, full v1 catalog rows, People as
   gate/scaler owner, visible bounded audit/history and a future exhaustive
