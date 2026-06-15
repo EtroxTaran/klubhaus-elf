@@ -58,6 +58,14 @@ This is the **single** canonical handoff location. (An older
   plus no-op/rescue rollback, staged rollout gates, manifested content-pack
   validation, template-first generated/localized content gates and versioned
   evidence/rebaseline records.
+- [[2026-06-15-fmx-172-stryker-mutation-gate]] - FMX-172 Stryker
+  mutation-testing gate packet: raw Perplexity/source-check captures,
+  synthesis, draft decision queue, draft ADR-0125 and draft quality runbook.
+  Pending Nico D1-D6; recommended packet is all A for ADR-0118 high-risk
+  deterministic/domain scope, baseline-first 70/80/90 activation,
+  reporting/nightly/release cadence before any PR subgate, latest-stable
+  Stryker/Vitest pairing at adoption, CI-only incremental artifacts and strict
+  deterministic survivor triage.
 - [[2026-06-15-fmx-193-responsible-gaming]] - FMX-193 responsible-gaming
   binding record packet: raw Perplexity/source-check captures, synthesis, draft
   decision queue, draft ADR-0122 and draft compliance home. Pending Nico D1-D7;

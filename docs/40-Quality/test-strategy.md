@@ -1,7 +1,7 @@
 ---
 title: Test Strategy
 status: current
-tags: [quality, testing, ci, vitest, playwright, fast-check, stryker, determinism, accessibility, performance, security, architecture-fitness, dependency-cruiser, pwa, offline, mobile, rollback, content-qa, fmx-167, fmx-177, fmx-196, fmx-197]
+tags: [quality, testing, ci, vitest, playwright, fast-check, stryker, mutation, determinism, accessibility, performance, security, architecture-fitness, dependency-cruiser, pwa, offline, mobile, rollback, content-qa, fmx-167, fmx-172, fmx-177, fmx-196, fmx-197]
 created: 2026-06-14
 updated: 2026-06-15
 type: quality
@@ -12,6 +12,10 @@ related:
   - [[../60-Research/test-strategy-adr-2026-06-14]]
   - [[../60-Research/raw-perplexity/raw-test-strategy-adr-2026-06-14]]
   - [[../40-Execution/fmx-177-test-strategy-decision-queue-2026-06-14]]
+  - [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]]
+  - [[stryker-mutation-testing-gate]]
+  - [[../60-Research/mutation-testing-gate-2026-06-15]]
+  - [[../40-Execution/fmx-172-stryker-mutation-gate-decision-queue-2026-06-15]]
   - [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
   - [[deterministic-simulation-qa-harness]]
   - [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
@@ -55,7 +59,7 @@ post-reset repo until bootstrap work creates real targets per ADR-0110.
 | Determinism replay | Smoke seeds | Larger seed set | Stress seed set | Byte-identical replay and entropy guards. |
 | Save-forward compatibility | Changed save code | Matrix | Matrix | Supported versions only. |
 | Soak/calibration | Not default | 50-year envelopes | 50-year envelopes | Long-horizon economy/competition stability. |
-| Mutation testing | Not default first | Scoped Stryker | Scoped Stryker | PR gate only after measured stability. |
+| Mutation testing | Not default first | Scoped Stryker | Scoped Stryker | PR gate only after measured stability; FMX-172 draft refines activation. |
 | Visual regression | Curated only | Curated | Curated | Avoid blanket flaky story snapshots. |
 | Performance/Web Vitals | Smoke | Budget drift | Device-floor evidence | LHCI/Web Vitals once app exists. |
 | Security/dependency/SBOM | Fast scan | Deeper scan | Release artifact | cdxgen/SBOM and dependency evidence. |
@@ -68,7 +72,7 @@ post-reset repo until bootstrap work creates real targets per ADR-0110.
 | Vitest | Unit/domain, DOM/component, selective Browser Mode, coverage, property integration. |
 | Playwright Test | User journeys, offline/PWA, cross-browser/device smoke, a11y integration, browser traces. |
 | fast-check | Input-space/property invariants with replayable counterexamples. |
-| StrykerJS | Mutation quality for deterministic/domain packages, first on scheduled cadence. |
+| StrykerJS | Mutation quality for deterministic/domain packages, first on scheduled cadence; FMX-172 draft defines the pending gate details. |
 | Storybook test-runner | Interaction/a11y checks for curated design-system stories after showcase exists. |
 | Lighthouse / LHCI | Performance, a11y and PWA budget evidence after app exists. |
 | cdxgen / dependency scanners | SBOM and dependency evidence for release/security gates. |
@@ -123,6 +127,12 @@ above. The initial scoped threshold target is 70 break / 80 low / 90 high after
 baseline. Do not activate a mutation gate for broad UI glue before the codebase
 has measured runtime and stable baselines.
 
+FMX-172 adds a non-binding packet for those activation details:
+[[stryker-mutation-testing-gate]] and draft
+[[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]].
+Until Nico accepts D1-D6, this note remains the binding general strategy and
+FMX-172 remains planning context only.
+
 ## Accessibility evidence
 
 Automated a11y gates should fail on critical/serious violations in targeted
@@ -161,6 +171,10 @@ Accepted on 2026-06-15:
 
 Follow-up gaps remain outside FMX-177 and should be tracked separately:
 
+- Stryker mutation-testing activation details now have a non-binding FMX-172
+  packet:
+  [[stryker-mutation-testing-gate]] and draft
+  [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]];
 - deterministic simulation replay harness, soak/calibration metrics and
   save-forward compatibility matrix now have a non-binding FMX-196 packet:
   [[deterministic-simulation-qa-harness]] and draft
@@ -177,6 +191,10 @@ Follow-up gaps remain outside FMX-177 and should be tracked separately:
 ## Related
 
 - [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]]
+- [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]]
+- [[stryker-mutation-testing-gate]]
+- [[../60-Research/mutation-testing-gate-2026-06-15]]
+- [[../40-Execution/fmx-172-stryker-mutation-gate-decision-queue-2026-06-15]]
 - [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
 - [[deterministic-simulation-qa-harness]]
 - [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]

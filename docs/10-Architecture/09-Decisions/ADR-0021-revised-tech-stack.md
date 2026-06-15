@@ -1,15 +1,15 @@
 ---
 title: ADR-0021 Revised Tech Stack
 status: accepted
-tags: [adr, architecture, database, state, validation]
+tags: [adr, architecture, database, state, validation, testing]
 created: 2026-05-19
-updated: 2026-06-09
+updated: 2026-06-15
 accepted_at: 2026-05-19
 type: adr
 binding: true
 supersedes: ADR-0001-tech-stack
 superseded_by:
-related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0022-animation-game-feel]], [[ADR-0023-realtime-transport]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0025-mobile-delivery]], [[ADR-0043-notification-and-messaging-platform]], [[../11-Risks]]
+related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0022-animation-game-feel]], [[ADR-0023-realtime-transport]], [[ADR-0024-match-renderer-abstraction]], [[ADR-0025-mobile-delivery]], [[ADR-0043-notification-and-messaging-platform]], [[ADR-0118-test-strategy-and-quality-gates]], [[ADR-0125-stryker-mutation-testing-gate]], [[../11-Risks]]
 ---
 
 # ADR-0021: Revised Tech Stack
@@ -66,7 +66,9 @@ password-hash correction is recorded in the F2 [[../../30-Implementation/auth-fl
 **Retained from ADR-0001, unchanged:** TanStack Start (now GA), React,
 TanStack Router, Tailwind, the Klubhaus design system + Storybook,
 Dexie/IndexedDB (client cache/drafts), Biome, Vitest, Playwright, fast-check,
-Stryker, pnpm, Docker. Deployment stays Dokploy with a mandatory mitigations +
+Stryker, pnpm, Docker. Stryker is retained here as the mutation-testing tool;
+gate activation is governed by accepted ADR-0118 and the pending FMX-172
+draft [[ADR-0125-stryker-mutation-testing-gate]]. Deployment stays Dokploy with a mandatory mitigations +
 Kamal-2 escape-hatch note (see [[../11-Risks]] and
 [[../../30-Implementation/deployment-dokploy]]).
 
