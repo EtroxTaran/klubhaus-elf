@@ -232,7 +232,8 @@ PR as the work that needs them.
 - [[../60-Research/determinism-and-replay]] - deterministic simulation and replay rules.
 - [[../60-Research/performance-budgets]] - device, bundle, memory, storage and match-render budgets.
 - [[../60-Research/threat-model]] - binding security reference.
-- [[../60-Research/gdpr-compliance]] and [[../30-Implementation/privacy-and-consent]] - GDPR/ePrivacy posture and implementation surface.
+- [[../60-Research/gdpr-compliance]] and [[../30-Implementation/privacy-and-consent]] - GDPR/ePrivacy posture and implementation surface; [[../30-Implementation/privacy-and-consent]] §9 remains the binding Art. 33/34 decision tree and user-notification template.
+- [[../30-Implementation/incident-response]] and [[../60-Research/breach-notification-runbook-2026-06-15]] - FMX-183 operational GDPR/BfDI breach-notification drill and source-checked research packet. Decision queue remains pending Nico in [[../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15]]; do not treat the broader incident-response note as newly binding without approval.
 - [[../30-Implementation/auth-flows]], [[../30-Implementation/session-management]], [[../30-Implementation/account-recovery]], [[../30-Implementation/rate-limiting-anti-abuse]], [[../30-Implementation/secrets-management]] - current security/ops specs.
 
 ## Rule

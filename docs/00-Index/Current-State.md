@@ -2565,6 +2565,26 @@ Surfaces 6 minimal product-owner Q&A (Brevo email vendor,
 age-gate language, pseudonymisation, backup non-scrub
 disclosure, DPIA/LIAs co-located in the research note, Privacy
 Lead designation) + 10 deferred follow-ups (FU-1..FU-10).
+
+## BfDI breach-notification operational playbook (2026-06-15)
+
+FMX-183 adds the operational GDPR Art. 33/34 breach-notification drill to
+[[../30-Implementation/incident-response]] and closes
+[[../30-Implementation/privacy-and-consent]] FU-7. The split is:
+
+- [[../30-Implementation/privacy-and-consent]] §9 remains the binding legal
+  decision tree and DE/EN Art. 34 user template.
+- [[../30-Implementation/incident-response]] now owns `T0`, 72-hour
+  checkpoints, BfDI/national-authority route verification, Art. 33 filing
+  checklist, severity mapping, RACI, Art. 34 handoff and drill cadence.
+- [[../60-Research/breach-notification-runbook-2026-06-15]] preserves the
+  Perplexity discovery and source-checked synthesis; raw captures live in
+  [[../60-Research/raw-perplexity/raw-breach-notification-runbook-2026-06-15]]
+  and
+  [[../60-Research/raw-perplexity/raw-breach-notification-runbook-source-checks-2026-06-15]].
+- Decision package D1-D5 remains pending Nico in
+  [[../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15]];
+  do not flip the broader incident-response note to binding unless Nico asks.
 ## Secrets management runbook locked (2026-05-18)
 
 [[../30-Implementation/secrets-management]] is the binding F11
