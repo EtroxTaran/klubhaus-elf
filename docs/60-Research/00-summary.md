@@ -366,6 +366,21 @@ CI-cost/runner posture with a future local `xAi` runner gate. Decision record:
 capture:
 [[raw-perplexity/raw-test-strategy-adr-2026-06-14]].
 
+## Mutation Testing Gate (FMX-172, 2026-06-15)
+
+[[mutation-testing-gate-2026-06-15]] preserves the FMX-172 research layer for
+the ADR-0118 Stryker follow-up. It grounds draft
+[[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]]
+plus draft [[../40-Quality/stryker-mutation-testing-gate]]: high-risk
+deterministic/domain scope, baseline-first 70 break / 80 low / 90 high
+activation, reporting -> nightly/release -> possible PR subgate cadence,
+latest-stable Stryker/Vitest pairing at adoption, CI-only incremental cache and
+deterministic survivor triage. Decisions remain pending in
+[[../40-Execution/fmx-172-stryker-mutation-gate-decision-queue-2026-06-15]].
+Raw captures:
+[[raw-perplexity/raw-mutation-testing-gate-2026-06-15]],
+[[raw-perplexity/raw-mutation-testing-gate-source-checks-2026-06-15]].
+
 ## Opposition-template AI Consumption Contract (FMX-67 / FMX-136, 2026-06-05 / 2026-06-14)
 
 [[opposition-template-ai-consumption-contract-2026-06-05]] closes the research

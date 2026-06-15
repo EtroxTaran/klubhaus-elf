@@ -50,6 +50,17 @@ staged release gates and content-validation QA.
 | [[raw-pwa-offline-mobile-release-content-qa-2026-06-15]] | Perplexity discovery pass for hybrid-online offline degradation, storage budgets, SW update/rollback, staged rollout, content packs, pseudo-loc/generated-content safety and comparable game precedent | [[../pwa-offline-mobile-release-content-qa-gates-2026-06-15]] |
 | [[raw-pwa-offline-mobile-release-content-qa-source-checks-2026-06-15]] | Source checks for MDN/web.dev storage, Chrome/Workbox SW lifecycle and quota, Google Play/Apple staged rollouts, Microsoft pseudo-loc, OWASP prompt injection and the public FM25 cancellation statement | [[../pwa-offline-mobile-release-content-qa-gates-2026-06-15]] |
 
+## FMX-172 Stryker mutation gate (2026-06-15)
+
+Perplexity-first research and targeted source checks for the ADR-0118
+follow-up on Stryker mutation scope, thresholds, cadence, incremental artifacts
+and deterministic survivor triage.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-mutation-testing-gate-2026-06-15]] | Perplexity discovery pass for TypeScript/Vitest/Stryker mutation-gate policy, deterministic game-code survivor handling and comparable simulation precedent | [[../mutation-testing-gate-2026-06-15]] |
+| [[raw-mutation-testing-gate-source-checks-2026-06-15]] | Source checks for Stryker configuration, incremental mode, Vitest runner, npm registry package versions and Vitest project/coverage guidance | [[../mutation-testing-gate-2026-06-15]] |
+
 ## FMX-158 Babylon renderer stack cleanup (2026-06-15)
 
 Perplexity-first research and targeted source checks for reconciling active

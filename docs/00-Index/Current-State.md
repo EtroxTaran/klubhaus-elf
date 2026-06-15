@@ -24,6 +24,23 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-172 Stryker mutation-testing gate packet pending
+> (2026-06-15).** Branch `codex/fmx-172-stryker-mutation-gate`
+> prepares the ADR-0118 follow-up for scoped Stryker mutation-testing
+> activation, thresholds, CI cadence, incremental artifacts and deterministic
+> survivor triage. Research
+> [[../60-Research/mutation-testing-gate-2026-06-15]] (+ raw
+> Perplexity/source-check captures) grounds draft
+> [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]]
+> plus draft [[../40-Quality/stryker-mutation-testing-gate]]. No new rule is
+> binding until Nico accepts D1-D6 in
+> [[../40-Execution/fmx-172-stryker-mutation-gate-decision-queue-2026-06-15]].
+> Recommended packet is all A: ADR-0118 high-risk deterministic/domain scope,
+> baseline-first 70 break / 80 low / 90 high thresholds, reporting ->
+> nightly/release -> possible PR subgate cadence, latest-stable Stryker/Vitest
+> source-checked pairing at adoption, CI-only incremental cache/artifacts and
+> strict handling of non-equivalent deterministic survivors as test defects.
+
 > **FMX-197 PWA/offline/mobile release/content-QA packet pending
 > (2026-06-15).** Branch
 > `codex/fmx-197-pwa-offline-mobile-release-qa` prepares the ADR-0118
