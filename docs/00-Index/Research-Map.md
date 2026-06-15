@@ -24,6 +24,11 @@ design notes.
   wake/attention, conservative cross-device suppression and dependency-version
   routing. Decision remains pending Nico in
   [FMX-156 decision queue](../40-Execution/fmx-156-notification-platform-decision-queue-2026-06-15.md).
+- [Code-CI Pipeline Contract](../60-Research/code-ci-pipeline-2026-06-15.md) -
+  FMX-175 Perplexity-first and source-checked packet for future code-CI
+  branch-protection contexts: active `docs-check` / `linear-id`, future
+  `quality` / `e2e` / `security` after real scripts, workflows and burn-in, and
+  D-002 cleanup as historical lessons only.
 - [pnpm Tooling Currency](../60-Research/pnpm-tooling-currency-2026-06-15.md) -
   FMX-195 source-checked update of the active pnpm pin to 11.7.0, preserving the
   npm dist-tag vs published-release caveat and the future bootstrap re-check

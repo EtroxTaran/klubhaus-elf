@@ -63,6 +63,17 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > route exact package pins to dependency-currency/code-phase follow-up. Research:
 > [[../60-Research/notification-offline-delivery-2026-06-15]].
 
+> **FMX-175 Code-CI context contract accepted (2026-06-15).** Branch
+> `codex/fmx-175-code-ci-pipeline` reconciles ADR-0044 and
+> [[../30-Implementation/ci-and-review-process]] with the docs-vault reset.
+> Current required checks remain `docs-check` + `linear-id`; future code-phase
+> required contexts are `quality`, `e2e` and `security` only after real root
+> scripts, workflows, targets and burn-in exist. `cursor-smoke`, `configured`
+> and standalone `lighthouse` are historical D-002 vocabulary, not future
+> required contexts. Research:
+> [[../60-Research/code-ci-pipeline-2026-06-15]]. Decision record:
+> [[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]].
+
 > **FMX-195 pnpm tooling currency updated (2026-06-15).** Branch
 > `codex/fmx-195-pnpm-pin-current-stable` refreshes the active docs-phase pnpm
 > pin from `11.1.2` to `11.7.0` in `package.json` and `.mise.toml`. Research

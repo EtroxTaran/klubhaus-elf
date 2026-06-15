@@ -24,14 +24,27 @@ related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-p
 > Vitest/Playwright/property/mutation/determinism/a11y/perf/security gate
 > ladder. They do not change today's docs-phase DoD and stay target-only until
 > bootstrap creates real scripts, workflows and app/package paths.
+>
+> **2026-06-15 - FMX-175 code-CI context contract accepted.** Future
+> code-phase branch protection uses script/domain-aligned contexts after real
+> scripts, workflows and burn-in exist: `quality`, `e2e` and `security`.
+> `lighthouse`, `a11y`, `storybook`, `game-smoke`, `mutation` and soak gates
+> start as reporting/nightly/release evidence unless later promoted. The
+> D-002-era `cursor-smoke` and `configured` names are historical incident
+> vocabulary only, not future required contexts.
 
 **Principle: `main` and `develop` are always green.** A red required check
 is an incident, not a backlog item. Overruling a red check is reserved for
 an *utmost unusual* situation and is gated by the override policy below.
 
-## Why this exists (root-cause of the chronic-red incident)
+## Why this exists (historical D-002 lessons)
 
-CI had been red on `main` across multiple merges. Post-mortem:
+Before the docs-vault reset, CI had been red on `main` across multiple merges.
+This is historical context, not today's repo state. The current repository has
+no app code, Storybook, E2E app, Lighthouse target, `apps/`, `packages/` or
+`pnpm-workspace.yaml`.
+
+D-002 still preserves four durable lessons:
 
 1. **Merging red was tolerated.** PR #13 merged with `lighthouse` failing
    (the hydrated Office Hub blew the Total Blocking Time budget — see
@@ -47,7 +60,9 @@ CI had been red on `main` across multiple merges. Post-mortem:
    Biome-unsupported files (YAML/MD), so docs/CI commits couldn't pass the
    local gate — discouraging the small green-keeping fixes.
 
-All four are fixed; this doc makes the green-by-default state enforceable.
+All four are preserved as guardrails. They are not active required checks in
+the docs-only repo. Future code-CI must not reintroduce placeholder contexts or
+branch-protection entries before real scripts and workflows exist.
 
 ## Definition of done
 
@@ -84,11 +99,26 @@ save-forward-compatibility, soak/calibration, a11y/performance/security and CI
 cost posture with a future local `xAi` runner gate. Do not treat these details
 as required checks until real workspace targets exist.
 
+FMX-175 packages those target checks into future required branch-protection
+contexts:
+
+| Future context | Backing root entrypoint | Activation |
+|---|---|---|
+| `quality` | `pnpm check` or the accepted successor root script. It wraps Biome/format, typecheck, unit/domain/component/property smoke and contract checks through Nx affected targets. | Required only after the script, workflow and real targets exist and burn in green. |
+| `e2e` | `pnpm test:e2e` or the accepted app-specific E2E root script. It runs Playwright critical journey/offline/PWA smoke with deterministic fixtures and traces. | Required only after the app exists and smoke flows are stable. |
+| `security` | Future root security/SBOM script. It runs secret/dependency/SBOM/license evidence and emits release-grade artifacts when applicable. | Required only after the security script is real and fast enough for PR use. |
+
+Non-core gates start as non-required/reporting, scheduled or release evidence:
+`storybook`, `a11y`, `lighthouse`, `game-smoke`, `mutation`, `soak`,
+save-forward compatibility and full browser/device matrices. A later PR may
+promote one only after it satisfies the same burn-in rule.
+
 ## Flake policy
 
 - Transient failures are retried in CI (`playwright.config.ts`
-  `retries: 2`; Lighthouse asserts the **median of 3** runs). This reduces
-  noise; it does **not** lower any threshold or budget.
+  `retries: 2`; Lighthouse CI collects multiple runs, default 3, and uses the
+  configured assertion aggregation). This reduces noise; it does **not** lower
+  any threshold or budget.
 - A test that flakes is **fixed at its source** (stabilise the wait, remove
   the race) — never deleted, `.skip`-ed, or its assertion weakened to go
   green. Weakening a gate to pass CI is explicitly forbidden
@@ -133,19 +163,25 @@ Code-phase protection is target-only until the bootstrap creates and proves the
 scripts/workflows. When activated, required contexts must map to real repo
 scripts and ADR-0044's CODEOWNER-review rule for code paths.
 
-The exact code-phase required contexts are pending the bootstrap PR that creates
-real targets. ADR-0118 defines the target gate families, not nonexistent check
-names.
+FMX-175 fixes the target required context package as `quality`, `e2e` and
+`security`. Bootstrap must first create the backing scripts/workflows as
+non-required checks, prove them green on real PR evidence and only then update
+branch protection. Do not list `cursor-smoke`, `configured` or standalone
+`lighthouse` as required contexts.
 
 ## Current state
 
 The repo is docs-vault-only. Code-CI, app e2e, Storybook and lefthook/local
 parity are target-only until the code-phase transition checklist is green.
-FMX-175 and FMX-176 track deeper code-CI/local-parity cleanup; FMX-179 tracks
-workspace bootstrap; FMX-195 refreshed the active pnpm pin to 11.7.0.
+FMX-175 defines the future code-CI required context contract; FMX-176 tracks
+local-parity cleanup; FMX-179 tracks workspace bootstrap; FMX-195 refreshed the
+active pnpm pin to 11.7.0.
 
 ## Related
 
 - [[../10-Architecture/10-Quality]] — arc42 quality view this enforces
 - [[agent-workflow-pattern]] — review phases · [[code-phase-dod-transition-contract]] — phase gate · [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]] — toolchain
+- [[../60-Research/code-ci-pipeline-2026-06-15]] — FMX-175 code-CI context
+  research · [[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]]
+  — accepted D1-D4 packet
 - [[../00-Index/Current-State]] — live status · [[deployment-dokploy]] — gate before deploy

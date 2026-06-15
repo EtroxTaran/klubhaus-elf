@@ -88,8 +88,9 @@ grouping needs product input (flagged in D-001).
 
 Zero external deps; network only via `curl` writing to a file (never piped to
 a shell); no `.env*`/secret reads; no app or vault edits — honors
-`.cursor/rules/99-safety.mdc`. CI syntax-checks the script in the
-`cursor-smoke` job.
+`.cursor/rules/99-safety.mdc`. Current docs-phase validation is `docs-check`;
+the historical `cursor-smoke` job name is not an active required context and
+must not return except as a real, explicitly defined future workflow.
 
 ## Related
 

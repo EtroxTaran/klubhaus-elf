@@ -16,9 +16,11 @@ related:
   - [[../10-Architecture/09-Design-System]]
   - [[../60-Research/code-phase-dod-transition-contract-2026-06-14]]
   - [[../60-Research/pnpm-tooling-currency-2026-06-15]]
+  - [[../60-Research/code-ci-pipeline-2026-06-15]]
   - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]
   - [[../40-Execution/fmx-180-code-phase-dod-transition-decision-queue-2026-06-14]]
   - [[../40-Execution/fmx-195-pnpm-tooling-currency-decision-queue-2026-06-15]]
+  - [[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]]
 ---
 
 # Code-Phase Definition of Done Transition Contract
@@ -67,7 +69,7 @@ After the transition checklist below is green, code beats add these gates:
 | Unit/property/contract tests | `pnpm test` runs the Nx test graph for affected or required projects. |
 | E2E/app checks | `pnpm test:e2e` or the accepted app-specific script runs for app/flow changes. |
 | UI showcase | Storybook is built/checked for touched UI projects; every changed atom/composite/layout/screen has a colocated story. |
-| Code CI | ADR-0044 code-phase checks are required and CODEOWNER review applies to code paths. |
+| Code CI | ADR-0044/FMX-175 code-phase contexts `quality`, `e2e` and `security` are required only after real scripts/workflows exist, burn in green and CODEOWNER review applies to code paths. |
 | Vault delta | Behaviour, architecture, operations and user-facing changes still update the vault in the same PR. |
 
 Root scripts remain the public contract for humans and CI. Internally, they use
@@ -91,8 +93,9 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 - TypeScript solution/project references are wired for packages that compile
   TypeScript.
 - CI invokes repo scripts as thin triggers, not duplicated GitHub-only logic.
-- ADR-0044 required checks are updated only after the corresponding scripts and
-  workflows are green on a real PR.
+- ADR-0044/FMX-175 required contexts (`quality`, `e2e`, `security`) are updated
+  only after the corresponding scripts and workflows are green on real PR
+  evidence.
 - CODEOWNER/review routing for code paths is active before code PRs can merge.
 - The design-system implementation paths named in
   [[../10-Architecture/09-Design-System]] exist and Storybook can run against
@@ -107,7 +110,10 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
   [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]]
   and [[monorepo-workspace-bootstrap-plan]] are the pending decision packet,
   not yet an active scaffold contract.
-- FMX-175 owns deeper code-CI cleanup and stale code-check narratives.
+- FMX-175 owns the accepted future code-CI context package and stale D-002
+  cleanup: active docs checks stay `docs-check` + `linear-id`; future code
+  required contexts are `quality`, `e2e` and `security` after bootstrap and
+  burn-in.
 - FMX-176 owns lefthook/local-parity restoration.
 - FMX-195 refreshed the active pnpm pin from 11.1.2 to 11.7.0 after June 15
   source checks. Future code bootstrap still re-checks current tool versions
@@ -124,4 +130,5 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 - [[../10-Architecture/09-Design-System]]
 - [[../60-Research/code-phase-dod-transition-contract-2026-06-14]]
 - [[../60-Research/pnpm-tooling-currency-2026-06-15]]
+- [[../60-Research/code-ci-pipeline-2026-06-15]]
 - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]
