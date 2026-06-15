@@ -151,6 +151,18 @@ of the ratified 28-context portfolio per ADR-0089. People owns actor/persona
 truth; Narrative owns scene/context-card assembly, fallback templates, validation,
 provenance, evals and provider adapter boundaries.
 
+The **Identity & Access** context (Platform & Governance cluster) is explicit
+and narrow per
+[[09-Decisions/ADR-0123-identity-access-context-definition]]. It owns account,
+credential, session, registered-device and global-role/claim truth; publishes
+opaque account/session/device identifiers, `PrincipalContext` snapshots and
+auth/security identity events; and keeps passkey-first plus password fallback as
+the target auth posture. It does **not** own save/watch-party/domain
+memberships, business authorization, payments/entitlements, age-assurance
+policy, Community Overlay pack lifecycle, Offline Sync queues or Audit &
+Security retention. Domains consume principal context and still validate their
+own commands.
+
 The **Audit & Security** context (Platform & Governance cluster) is an *explicit
 but narrow* bounded context per
 [[09-Decisions/ADR-0091-audit-security-context-definition]]: its mandate is

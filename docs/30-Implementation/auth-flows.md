@@ -12,6 +12,7 @@ adr:
   - "[[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]"
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
 related:
+  - "[[../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]"
   - "[[../60-Research/threat-model]]"
   - "[[../60-Research/age-assurance-and-iarc-rating-2026-06-14]]"
   - "[[../40-Compliance/age-assurance-and-rating-evidence]]"
@@ -28,6 +29,10 @@ This note resolves Wave 3 gap **F2** (Auth flows) and is the **binding
 implementation specification** for sign-up, sign-in, MFA, account
 recovery, session bootstrap, and the user-visible touch points of the
 Identity & Access bounded context.
+
+FMX-163 / [[../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]
+now owns the context boundary and public contract. This note remains the
+implementation-detail flow/spec layer beneath that ADR.
 
 F2 anchors on:
 

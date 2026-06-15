@@ -18,6 +18,15 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Identity & Access Context Definition](../60-Research/identity-access-context-definition-2026-06-15.md) -
+  FMX-163 Perplexity-first and source-checked context-definition packet for
+  accepted
+  [[../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition]]:
+  core Identity & Access only, passkey-first plus password fallback, explicit
+  `PrincipalContext` public contract and clear cuts away from domain
+  memberships, payments/entitlements, age policy, Offline Sync queues,
+  Community Overlay pack lifecycle and Audit & Security retention. Decision
+  accepted in [FMX-163 decision queue](../40-Execution/fmx-163-identity-access-decision-queue-2026-06-15.md).
 - [BfDI Breach Notification Playbook](../60-Research/breach-notification-runbook-2026-06-15.md) -
   FMX-183 Perplexity-first and source-checked packet for GDPR Art. 33/34
   operational response: [[../30-Implementation/privacy-and-consent]] §9 remains
