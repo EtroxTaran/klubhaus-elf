@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-14
+updated: 2026-06-15
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -42,6 +42,11 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-15-fmx-195-pnpm-tooling-currency]] - FMX-195 pnpm tooling-currency
+  update: active pins moved from pnpm 11.1.2 to 11.7.0, with raw
+  Perplexity/source-check captures, synthesis and decision queue. Nico selected
+  the newest-published-version rule despite npm `latest` / `latest-11` still
+  pointing at 11.6.0 on June 15.
 - [[2026-06-14-fmx-153-llm-prose-replay-determinism]] - FMX-153 LLM prose
   replay determinism packet: raw Perplexity/source-check captures, synthesis,
   decision queue and accepted ADR-0117. Approved packet is D1/D2/D3 = A/A/A:

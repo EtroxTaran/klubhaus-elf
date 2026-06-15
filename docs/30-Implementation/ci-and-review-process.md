@@ -3,7 +3,7 @@ title: CI & Review Process
 status: draft
 tags: [implementation, ci, process, quality]
 created: 2026-05-16
-updated: 2026-06-14
+updated: 2026-06-15
 type: implementation
 related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../00-Index/Current-State]]
 ---
@@ -87,9 +87,9 @@ must exist and pass before they can be made required.
 - Code-phase local parity is target-only until FMX-176 / the bootstrap work
   restores lefthook and the code scripts. Do not describe nonexistent hooks as
   active.
-- Use the pinned toolchain in the repo. As of FMX-180, pnpm currency drift is
-  tracked separately in FMX-195; do not update or normalize it inside unrelated
-  DoD/process beats.
+- Use the pinned toolchain in the repo. As of FMX-195, active docs-phase tooling
+  pins pnpm 11.7.0; future code bootstrap still re-checks tool versions before
+  adding workspace dependencies.
 
 ## Override policy (utmost unusual only)
 
@@ -124,7 +124,7 @@ scripts and ADR-0044's CODEOWNER-review rule for code paths.
 The repo is docs-vault-only. Code-CI, app e2e, Storybook and lefthook/local
 parity are target-only until the code-phase transition checklist is green.
 FMX-175 and FMX-176 track deeper code-CI/local-parity cleanup; FMX-179 tracks
-workspace bootstrap; FMX-195 tracks pnpm pin currency.
+workspace bootstrap; FMX-195 refreshed the active pnpm pin to 11.7.0.
 
 ## Related
 

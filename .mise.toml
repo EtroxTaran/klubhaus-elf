@@ -1,6 +1,6 @@
 [tools]
 node = "22"
-pnpm = "11.1.2"
+pnpm = "11.7.0"
 postgres = "17"
 
 [env]

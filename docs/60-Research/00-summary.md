@@ -1,8 +1,8 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, dod, monorepo, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-180, fmx-185, fmx-191, fmx-194]
-updated: 2026-06-14
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-180, fmx-185, fmx-191, fmx-194, fmx-195]
+updated: 2026-06-15
 ---
 
 # Research Summary
@@ -78,6 +78,17 @@ Executable contract:
 [[../30-Implementation/code-phase-dod-transition-contract]]. Raw captures:
 [[raw-perplexity/raw-code-phase-dod-monorepo-gates-2026-06-14]],
 [[raw-perplexity/raw-code-phase-dod-game-production-gates-2026-06-14]].
+
+## pnpm Tooling Currency (FMX-195, 2026-06-15)
+
+[[pnpm-tooling-currency-2026-06-15]] closes the active package-manager pin drift
+surfaced by FMX-180. It records the June 15 source conflict: npm `latest` /
+`latest-11` still pointed at `11.6.0`, while `pnpm@11.7.0` was already
+published to npm and GitHub as a public non-prerelease artifact. Nico selected
+the newest-published-version rule for this beat, so the active repo pins now use
+`pnpm@11.7.0`. Raw captures:
+[[raw-perplexity/raw-pnpm-tooling-currency-2026-06-15]],
+[[raw-perplexity/raw-pnpm-source-checks-2026-06-15]].
 
 ## Monorepo Workspace Bootstrap (FMX-179, 2026-06-14)
 
