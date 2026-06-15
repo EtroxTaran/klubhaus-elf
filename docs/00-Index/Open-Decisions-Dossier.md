@@ -3,7 +3,7 @@ title: Open-Decisions Dossier — questions, recommendations, ratify checklist
 status: current
 tags: [meta, index, decisions, open-questions, dossier, fmx-105]
 created: 2026-06-07
-updated: 2026-06-14
+updated: 2026-06-15
 type: index
 binding: false
 related:
@@ -21,6 +21,9 @@ related:
   - [[../40-Execution/fmx-137-roguelite-tuning-decision-queue-2026-06-14]]
   - [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]]
   - [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
+  - [[../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]]
+  - [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]]
+  - [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
 ---
 
 # Open-Decisions Dossier
@@ -93,6 +96,17 @@ related:
 > [[../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle]]
 > and [[../60-Research/determinism-portfolio-principle-2026-06-14]]. Nico still
 > needs to approve D1-D3; this closed dossier is not reopened.
+
+> **Post-dossier FMX-164 replay/dedup ownership seam (historical completeness,
+> added 2026-06-15; dossier stays closed).** FMX-164 resolved the post-ADR-0090/
+> 0091/0115 seam outside this dossier. Nico approved D1/D2/D3 = A/A/A:
+> authoritative replay/dedup policy and processed-command state live in
+> Audit & Security's synchronous Command Reception capability; Offline Sync owns
+> client queue/retry/rebase UX; ADR-0028 remains post-commit publication/domain
+> mutation trail. Authoritative records:
+> [[../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]],
+> [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]] and
+> [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]].
 
 > **Post-dossier FMX-179 monorepo/workspace bootstrap (historical
 > completeness, added 2026-06-14; dossier stays closed).** FMX-179 packages the

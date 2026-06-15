@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, vitest, playwright, fast-check, stryker, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-177, fmx-180, fmx-185, fmx-191, fmx-194, fmx-195]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, vitest, playwright, fast-check, stryker, pitch, weather, stadium, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, replay-protection, idempotency, command-reception, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-164, fmx-177, fmx-180, fmx-185, fmx-191, fmx-194, fmx-195]
 updated: 2026-06-15
 ---
 
@@ -103,6 +103,22 @@ the newest-published-version rule for this beat, so the active repo pins now use
 `pnpm@11.7.0`. Raw captures:
 [[raw-perplexity/raw-pnpm-tooling-currency-2026-06-15]],
 [[raw-perplexity/raw-pnpm-source-checks-2026-06-15]].
+
+## Replay/Dedup Ownership Seam (FMX-164, 2026-06-15)
+
+[[replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]] preserves the
+FMX-164 research layer for command replay/dedup ownership. It grounds accepted
+[[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]]:
+authoritative replay/dedup policy and processed-command state live in an
+Audit & Security-owned synchronous Command Reception capability; Offline Sync
+owns client queue/retry/rebase UX; ADR-0028 remains committed-event publication
+and domain mutation trail. Same `commandId` + same canonical hash/binding
+returns the first stored outcome or pending status; mismatched hash/binding is
+a security rejection before domain validation. Decision record:
+[[../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]]. Raw
+captures:
+[[raw-perplexity/raw-replay-dedup-command-reception-2026-06-15]],
+[[raw-perplexity/raw-replay-dedup-source-checks-2026-06-15]].
 
 ## Monorepo Workspace Bootstrap (FMX-179, 2026-06-14)
 

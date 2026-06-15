@@ -95,6 +95,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > (deterministic sim/replay/soak/save-forward matrix) and FMX-197
 > (PWA/offline/mobile/rollback/content-QA gates).
 >
+> **FMX-164 Replay/dedup ownership seam accepted — ADR-0119 binding
+> (2026-06-15).** Linear FMX-164 is carried on branch
+> `codex/fmx-164-replay-dedup-seam`. Research
+> [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
+> (+ raw Perplexity/source-check captures) grounds accepted
+> [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]].
+> Nico approved D1-D3 live: authoritative replay/dedup lives in a synchronous
+> Audit & Security-owned Command Reception capability, not in client Offline
+> Sync and not in an outbox consumer; same `commandId` + same canonical payload
+> hash/binding returns the first stored outcome or pending status; mismatched
+> hash/binding is a security rejection before domain validation. The canonical
+> command path is receive command -> auth/session binding -> canonical payload
+> hash -> `commandId` dedup/replay gate -> domain validation ->
+> `expectedVersion`/append -> outbox + security facts. Offline Sync owns client
+> queue/retry/rebase UX; ADR-0028 remains committed-event publication/domain
+> mutation trail. Decision record:
+> [[../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]].
+>
 > **FMX-184 Command signing + save trust accepted — ADR-0115/0116 binding
 > (2026-06-14).** Linear FMX-184 is `In Progress` on branch
 > `codex/fmx-184-command-signing-save-trust`. Research

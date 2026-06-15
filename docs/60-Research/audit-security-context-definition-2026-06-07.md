@@ -3,12 +3,14 @@ title: Audit & Security context — definition grounding 2026-06-07
 status: draft
 tags: [research, audit, security, anti-abuse, replay-protection, gdpr, ddd, fmx-104]
 created: 2026-06-07
-updated: 2026-06-07
+updated: 2026-06-15
 type: research
 binding: false
 sourceType: external
 related:
   - [[../10-Architecture/09-Decisions/ADR-0091-audit-security-context-definition]]
+  - [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]]
+  - [[replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
   - [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]]
   - [[../30-Implementation/audit-trail]]
 ---
@@ -17,6 +19,13 @@ related:
 
 Closes the "thin/undefined" Audit & Security context. The bounded-context map lists only "command log,
 replay protection, abuse detection, audit trail, anomaly flags" with no design. ADR-0091 defines it.
+
+> **FMX-164 amendment note (2026-06-15):** this 2026-06-07 research remains the
+> grounding for ADR-0091, but ADR-0119 is now the binding owner/order seam for
+> replay/dedup. `expectedVersion` conflicts are distinct concurrency/rebase
+> results owned by the domain/server response and Offline Sync UX, while
+> Audit & Security owns replay/dedup policy and processed-command state through
+> Command Reception.
 
 ## Open calls
 

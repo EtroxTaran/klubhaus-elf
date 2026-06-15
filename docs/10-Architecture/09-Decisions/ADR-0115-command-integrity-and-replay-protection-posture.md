@@ -3,7 +3,7 @@ title: ADR-0115 Command Integrity and Replay Protection Posture
 status: accepted
 tags: [adr, architecture, security, command-signing, replay-protection, offline-sync, audit, fmx-184]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-15
 type: adr
 binding: true
 addresses: [PM-2026-05-20-05-F-02]
@@ -17,9 +17,12 @@ related:
   - [[../../60-Research/raw-perplexity/raw-command-integrity-and-replay-protection-2026-06-14]]
   - [[../../60-Research/raw-perplexity/raw-command-save-trust-source-checks-2026-06-14]]
   - [[../../60-Research/raw-perplexity/raw-hybrid-ed25519-command-evidence-2026-06-14]]
+  - [[../../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
   - [[../../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]]
+  - [[../../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]]
   - [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
   - [[ADR-0091-audit-security-context-definition]]
+  - [[ADR-0119-command-reception-dedup-seam]]
   - [[ADR-0116-save-trust-levels-and-provenance-posture]]
 ---
 
@@ -31,6 +34,10 @@ accepted
 
 Accepted 2026-06-14 by Nico for FMX-184. Decision queue:
 [[../../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]].
+
+FMX-164 / ADR-0119 amends the command-reception ordering on 2026-06-15. Replay/dedup
+checks run after auth/session binding and canonical payload hashing, before domain
+validation; `expectedVersion` conflicts remain distinct concurrency results.
 
 ## Context
 
@@ -60,8 +67,9 @@ FMX uses a **server-authoritative signed-evidence command envelope** for MVP.
 ### D1 - command authority
 
 The server remains the only authority for accepting commands. A command is valid
-only after server-side authentication/session binding, authorization, domain
-validation, idempotency/dedup, replay checks and `expectedVersion` checks.
+only after server-side authentication/session binding, authorization, canonical
+payload hashing, idempotency/dedup, replay checks, domain validation and
+`expectedVersion` checks.
 
 Client signatures are mandatory evidence, not authority. FMX must not use
 wording such as "signed means uncheatable" or "client-verified".
@@ -85,6 +93,11 @@ Every mutating command envelope includes:
 The server records processed command IDs and rejects duplicate IDs whose
 canonical payload hash or actor/save binding differs from the first accepted
 record.
+
+ADR-0119 defines the duplicate semantics: same `commandId` + same canonical
+payload hash and binding returns the first stored outcome or pending status;
+same `commandId` + different hash or actor/session/save/run/aggregate binding
+is rejected before domain validation.
 
 ### D3 - WebAuthn/passkeys
 
@@ -157,7 +170,10 @@ Costs / constraints:
 
 - [[../../60-Research/command-signing-save-trust-2026-06-14]]
 - [[../../60-Research/raw-perplexity/raw-hybrid-ed25519-command-evidence-2026-06-14]]
+- [[../../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
 - [[../../40-Execution/fmx-184-command-signing-save-trust-decision-queue-2026-06-14]]
+- [[../../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]]
 - [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
 - [[ADR-0091-audit-security-context-definition]]
+- [[ADR-0119-command-reception-dedup-seam]]
 - [[ADR-0116-save-trust-levels-and-provenance-posture]]
