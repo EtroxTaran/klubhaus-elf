@@ -3,9 +3,9 @@ title: CI & Review Process
 status: draft
 tags: [implementation, ci, process, quality]
 created: 2026-05-16
-updated: 2026-06-14
+updated: 2026-06-15
 type: implementation
-related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../00-Index/Current-State]]
+related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../40-Quality/test-strategy]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../00-Index/Current-State]]
 ---
 
 # CI & Review Process
@@ -17,6 +17,13 @@ related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-p
 > without review per ADR-0044. Code-phase checks and CODEOWNER review return only
 > after the bootstrap PR creates the workspace, scripts, CI and real app/package
 > paths.
+>
+> **2026-06-15 — FMX-177 test strategy accepted.** Accepted
+> [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]]
+> and current [[../40-Quality/test-strategy]] define the future code-phase
+> Vitest/Playwright/property/mutation/determinism/a11y/perf/security gate
+> ladder. They do not change today's docs-phase DoD and stay target-only until
+> bootstrap creates real scripts, workflows and app/package paths.
 
 **Principle: `main` and `develop` are always green.** A red required check
 is an incident, not a backlog item. Overruling a red check is reserved for
@@ -70,6 +77,13 @@ also require the accepted code scripts and CI checks. Root `pnpm` scripts are
 the human/CI entrypoints and wrap Nx targets per ADR-0110. Code-phase checks
 must exist and pass before they can be made required.
 
+FMX-177's accepted ADR-0118 is the target source for the detailed gate ladder:
+Vitest projects, Playwright E2E/PWA, fast-check replay evidence, scoped
+Stryker mutation testing, base coverage threshold, deterministic replay,
+save-forward-compatibility, soak/calibration, a11y/performance/security and CI
+cost posture with a future local `xAi` runner gate. Do not treat these details
+as required checks until real workspace targets exist.
+
 ## Flake policy
 
 - Transient failures are retried in CI (`playwright.config.ts`
@@ -118,6 +132,10 @@ Docs-phase branch protection requires docs checks only:
 Code-phase protection is target-only until the bootstrap creates and proves the
 scripts/workflows. When activated, required contexts must map to real repo
 scripts and ADR-0044's CODEOWNER-review rule for code paths.
+
+The exact code-phase required contexts are pending the bootstrap PR that creates
+real targets. ADR-0118 defines the target gate families, not nonexistent check
+names.
 
 ## Current state
 

@@ -3,7 +3,7 @@ title: "Pre-Mortem 2026-05-20 · Execution Index (Expertise-Kategorien)"
 status: current
 tags: [research, pre-mortem, execution, index, expertise, agent-brief, 2026-Q2]
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-06-15
 type: index
 binding: false
 report_set: 2026-05-20
@@ -56,7 +56,7 @@ Pro Solution-Pfad ein konkretes Vault-Ziel:
 | [FRONTEND](#frontend) | Frontend Engineer (PWA/Browser) | ~24 | 2 | Storage-Strategy, Compression-Config, i18n-Library, RUM-Setup |
 | [DETERMINISM](#determinism) | Game-Engine / Determinism Engineer | ~11 | 1 | ADR-0030 LLM-Boundary, Determinism-CI-Gate, Save-Forward-Compat-Matrix |
 | [GAMEDESIGN](#gamedesign) | Game-Design (Balance/Narrative/Long-Term) | ~16 | 0 | GDDRs, Markov-Slot-Pipeline, Balance-Constants-Versions |
-| [TEST](#test) | Test-Engineering / QA | ~10 | 0 | ADR-0040 Test-Pyramid, CI-Pipeline, axe-core-Setup |
+| [TEST](#test) | Test-Engineering / QA | ~10 | 0 | Superseded by FMX-177 ADR-0118 test strategy packet, CI-Pipeline, axe-core-Setup |
 | [A11Y](#a11y) | Accessibility / Design-System / UX | ~13 | 1 | react-aria-DnD, axe-core-CI, BFSG-Statement, Voice-Style-Guide |
 | [LEGAL](#legal) | Legal / Compliance / DPO | ~18 | 3 | AGB, Impressum, FTO-Memo, DSA-Notice-Workflow, OSS-Registration |
 | [PRODUCT](#product) | Product / Monetization / Analytics | ~10 | 1 | Monetisierungs-GDDR, PostHog-Setup, Feature-Flags |
@@ -182,7 +182,7 @@ P4:
 
 ## PLATFORM — Platform / DevOps / SRE
 
-**Briefing**. Du bist für CI/CD, Hetzner-Infrastruktur, Cloud-Migration-Pfad, Backups, Observability-Stack (OTel+Loki+Prometheus+Tempo+Grafana+GlitchTip), Incident-Response, Status-Page, DNS-Resilience, Secret-Management (sops+age), Container-Signing (cosign), Vendor-Lifecycle. Liefere ADRs **0037 SBOM + License-CI**, **0038 Domain & DNS Resilience**, **0040 Test-Pyramid + CI-Hybrid**. Cross-Refs: [[PM-2026-05-20-02-tech-and-ops]], [[PM-2026-05-20-07-live-ops-and-client-telemetry]], [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability]].
+**Briefing**. Du bist für CI/CD, Hetzner-Infrastruktur, Cloud-Migration-Pfad, Backups, Observability-Stack (OTel+Loki+Prometheus+Tempo+Grafana+GlitchTip), Incident-Response, Status-Page, DNS-Resilience, Secret-Management (sops+age), Container-Signing (cosign), Vendor-Lifecycle. Historisch nannte dieser Index **0040 Test-Pyramid + CI-Hybrid**; FMX-177 ersetzt diesen Zielslot durch accepted [[../../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]] + current [[../../40-Quality/test-strategy]]. Liefere weiterhin ADRs **0037 SBOM + License-CI** und **0038 Domain & DNS Resilience**. Cross-Refs: [[PM-2026-05-20-02-tech-and-ops]], [[PM-2026-05-20-07-live-ops-and-client-telemetry]], [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability]].
 
 **Findings**
 
@@ -215,7 +215,7 @@ P4:
 **Erwartete Output-Artefakte**
 - `docs/10-Architecture/09-Decisions/ADR-0037-sbom-license-ci-gate.md`
 - `docs/10-Architecture/09-Decisions/ADR-0038-domain-dns-resilience.md`
-- `docs/10-Architecture/09-Decisions/ADR-0040-test-pyramid-ci-hybrid.md`
+- `docs/10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates.md` (FMX-177 accepted; replaces the old ADR-0040 placeholder)
 - `.github/workflows/sbom-and-license.yml`
 - `.github/workflows/ci.yml` ausgebaut (Hybrid GH + Hetzner-Runner)
 - `infra/terraform/` Hetzner Cloud + Fly.io Cold-Standby-Modul
@@ -295,7 +295,7 @@ P4:
 
 ## DETERMINISM — Game-Engine / Determinism Engineer
 
-**Briefing**. Du sorgst dafür, dass die Match-Engine bit-identisch replizierbar ist über Browser, Engine-Versionen und Server↔Client. Stack: TypeScript, PCG32 (pure-rand), 8 RNG-Streams (ADR-0003), fast-check für Property-Tests, Stryker für Mutation-Tests. Liefere **ADR-0030 LLM-out-of-Authoritative-State-Boundary**, **ADR-0040 Test-Pyramid mit Tiered-Determinism**. Hartes Constraint: jede deine Implementation darf weder `Math.random` noch `Date.now` noch externe nicht-deterministische Libs in `packages/match-engine/**` einführen. Cross-Refs: [[PM-2026-05-20-05-security-and-integrity]], [[PM-2026-05-20-12-long-term-balance-and-meta]], [[PM-2026-05-20-16-test-strategy-depth]], [[../determinism-and-replay]].
+**Briefing**. Du sorgst dafür, dass die Match-Engine bit-identisch replizierbar ist über Browser, Engine-Versionen und Server↔Client. Stack: TypeScript, PCG32 (pure-rand), 8 RNG-Streams (ADR-0003), fast-check für Property-Tests, Stryker für Mutation-Tests. Liefere **ADR-0030 LLM-out-of-Authoritative-State-Boundary**; die historische **ADR-0040 Test-Pyramid mit Tiered-Determinism** ist durch die akzeptierte FMX-177 ADR [[../../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]] ersetzt. Hartes Constraint: jede deine Implementation darf weder `Math.random` noch `Date.now` noch externe nicht-deterministische Libs in `packages/match-engine/**` einführen. Cross-Refs: [[PM-2026-05-20-05-security-and-integrity]], [[PM-2026-05-20-12-long-term-balance-and-meta]], [[PM-2026-05-20-16-test-strategy-depth]], [[../determinism-and-replay]].
 
 **Findings**
 
@@ -319,7 +319,7 @@ P4 (Future-Scope BYOC):
 
 **Erwartete Output-Artefakte**
 - `docs/10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state.md`
-- `docs/10-Architecture/09-Decisions/ADR-0040-test-pyramid-tiered-determinism.md` (gemeinsam mit TEST)
+- `docs/10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates.md` (gemeinsam mit TEST; accepted FMX-177)
 - `docs/30-Implementation/determinism-replay-protocol.md`
 - `docs/30-Implementation/balance-constants-versioning.md` (Temporal-Pattern)
 - `docs/30-Implementation/match-engine-invariants.md`
@@ -385,7 +385,7 @@ P4:
 
 ## TEST — Test-Engineering / QA
 
-**Briefing**. Du baust die 16-Layer-Test-Pyramide (Unit/Property/Mutation/Component/Visual/Integration/E2E/A11y/Determinism/Forward-Compat/Soak/Cross-Browser/Chaos/Perf/Security/Load/DAST). Stack: Vitest 3 + Playwright + Stryker + fast-check + Argos + axe-core + Lighthouse-CI + k6 + Toxiproxy + OWASP-ZAP. Liefere **ADR-0040 Test-Pyramid-CI-Hybrid**. Cross-Refs zu jedem anderen Kategorien-Vertical (du baust ihre Verifikations-Gates).
+**Briefing**. Du baust die 16-Layer-Test-Pyramide (Unit/Property/Mutation/Component/Visual/Integration/E2E/A11y/Determinism/Forward-Compat/Soak/Cross-Browser/Chaos/Perf/Security/Load/DAST). Stack und Tool-Versionen sind nicht mehr aus diesem historischen Index zu übernehmen: FMX-177 prüfte 2026-06-15 die aktuellen offiziellen Quellen und akzeptiert Vitest 4 / Playwright / Stryker / fast-check via [[../../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]] + [[../../40-Quality/test-strategy]]. Cross-Refs zu jedem anderen Kategorien-Vertical (du baust ihre Verifikations-Gates).
 
 **Findings**
 
@@ -397,7 +397,7 @@ P1:
 - [[PM-2026-05-20-16-test-strategy-depth#PM-2026-05-20-16-F-10\|16-F-10]] — CI-Budget Hybrid (Score 20)
 
 P2:
-- [[PM-2026-05-20-16-test-strategy-depth#PM-2026-05-20-16-F-01\|16-F-01]] — Vitest 3 Browser-Mode (Score 16)
+- [[PM-2026-05-20-16-test-strategy-depth#PM-2026-05-20-16-F-01\|16-F-01]] — Vitest Browser-Mode baseline (historical Vitest 3 wording superseded by FMX-177 current-version checks; Score 16)
 - [[PM-2026-05-20-10-accessibility-and-inclusion#PM-2026-05-20-10-F-11\|10-F-11]] — axe-core CI (Score 16, **Cross-Ref A11Y**)
 
 P3:
@@ -408,7 +408,7 @@ P3:
 - [[PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-09\|02-F-09]] — Coverage-Ratchet greenfield-blind (Score 9)
 
 **Erwartete Output-Artefakte**
-- `docs/10-Architecture/09-Decisions/ADR-0040-test-pyramid-ci-hybrid.md`
+- `docs/10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates.md` (FMX-177 accepted; replaces the old ADR-0040 placeholder)
 - `.github/workflows/ci.yml` (Hybrid GH-PR + Hetzner-Nightly + Release)
 - `docs/40-Quality/test-strategy.md` (16-Layer-Pyramide dokumentiert)
 - `docs/40-Quality/mutation-trend.md` (Stryker Tier-A-Scope)

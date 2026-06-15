@@ -3,7 +3,7 @@ title: "Pre-Mortem Findings Registry"
 status: current
 tags: [research, pre-mortem, registry, tracking, 2026-Q2]
 created: 2026-05-20
-updated: 2026-06-14
+updated: 2026-06-15
 type: registry
 binding: false
 report_set: 2026-05-20
@@ -152,7 +152,7 @@ Diese müssen vor Public-Launch adressiert sein. Status `mitigated` bedeutet hie
 | [[PM-2026-05-20-14-brand-pr-and-crisis-comms#PM-2026-05-20-14-F-06\|14-F-06]] — Mention-Monitoring nicht aufgesetzt | brand | 15 | mitigated |
 | [[PM-2026-05-20-14-brand-pr-and-crisis-comms#PM-2026-05-20-14-F-07\|14-F-07]] — Crisis-Message-Archetypes (7 Templates) | brand | 16 | mitigated |
 | [[PM-2026-05-20-15-browser-device-storage-matrix#PM-2026-05-20-15-F-04\|15-F-04]] — Web-Worker OOM auf 3 GB Android | browser-performance | 16 | mitigated |
-| [[PM-2026-05-20-16-test-strategy-depth#PM-2026-05-20-16-F-01\|16-F-01]] — Vitest 3 Browser-Mode Baseline | testing | 16 | mitigated |
+| [[PM-2026-05-20-16-test-strategy-depth#PM-2026-05-20-16-F-01\|16-F-01]] — Vitest Browser-Mode Baseline (historical Vitest 3 wording superseded by FMX-177 / ADR-0118) | testing | 16 | mitigated |
 | [[PM-2026-05-20-17-vendor-lifecycle-and-sustainability#PM-2026-05-20-17-F-04\|17-F-04]] — Stripe-Gaming-High-Risk vs Paddle-MoR-Lock | vendor-payment | 15 | mitigated |
 
 ---
@@ -378,7 +378,7 @@ addresses: [PM-2026-05-20-XX-F-NN, PM-2026-05-20-XX-F-MM]
 | ADR-0037 | SBOM + License-Compliance CI-Gate (CRA-2026/2027) | 17 (Iter 3) |
 | ADR-0038 | Domain & DNS Resilience (INWX + Cloudflare-DNS + Registry-Lock) | 17 (Iter 3) |
 | ADR-0039 | Storage Strategy (gzip-CompressionStream, Quota-Probe, LRU) | 15 (Iter 3) |
-| ADR-0040 | Test-Strategy-Pyramid (16 Layer, Tiered Determinism, CI Hybrid) | 16 (Iter 3) |
+| ADR-0118 accepted (replaces historical ADR-0040 placeholder) | Test-Strategy-Pyramid (16 Layer, Tiered Determinism, CI Hybrid) | 16 (Iter 3) |
 
 ## Re-Review
 
