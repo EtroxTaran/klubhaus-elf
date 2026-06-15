@@ -133,6 +133,25 @@ captures:
 [[raw-perplexity/raw-tooling-currency-realworld-games-2026-06-15]],
 [[raw-perplexity/raw-tooling-currency-source-checks-2026-06-15]].
 
+## Identity & Access Context Definition (FMX-163, 2026-06-15)
+
+[[identity-access-context-definition-2026-06-15]] preserves the FMX-163
+research layer for accepted
+[[../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]]:
+Identity & Access owns account, credential, session, registered-device and
+global-role/claim truth; publishes `PrincipalContext` snapshots and
+auth/security identity events; and uses passkey-first plus password fallback as
+the target posture. Domain memberships, business authorization,
+payments/entitlements, age-assurance policy, Offline Sync queues, Community
+Overlay pack lifecycle and Audit & Security retention stay outside Identity.
+Decision record:
+[[../40-Execution/fmx-163-identity-access-decision-queue-2026-06-15]]. Raw
+captures:
+[[raw-perplexity/raw-identity-access-ddd-boundary-2026-06-15]],
+[[raw-perplexity/raw-identity-access-security-privacy-2026-06-15]],
+[[raw-perplexity/raw-identity-access-game-platform-precedents-2026-06-15]],
+[[raw-perplexity/raw-identity-access-source-checks-2026-06-15]].
+
 ## Code-CI Pipeline Contract (FMX-175, 2026-06-15)
 
 [[code-ci-pipeline-2026-06-15]] closes the stale post-reset code-CI check-name

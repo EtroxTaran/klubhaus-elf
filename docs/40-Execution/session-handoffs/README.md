@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-15-fmx-163-identity-access-context]] - FMX-163 Identity & Access
+  context-definition packet: raw Perplexity/source-check captures, synthesis,
+  accepted decision queue and accepted ADR-0122. Nico accepted D1/D2/D3 =
+  A/A/A: core I&A only, passkey-first plus password fallback and binding ADR.
+  Identity owns account/session/device/global-claim truth and publishes
+  `PrincipalContext`; domain memberships, payments/entitlements, age policy,
+  Offline Sync queues, Community Overlay pack lifecycle and Audit & Security
+  retention stay outside.
 - [[2026-06-15-fmx-168-tooling-currency]] - FMX-168 tooling-currency sweep:
   raw Perplexity/source-check captures, synthesis, draft Stack Currency Ledger
   and Nico decision queue. Recommended packet is D1-D5=A: one vault ledger now,

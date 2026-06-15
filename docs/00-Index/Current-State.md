@@ -51,6 +51,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > "accepted/approved/locked" narration, the frontmatter of the linked note is
 > authoritative (ADR-0092).
 
+> **FMX-163 Identity & Access context definition accepted — ADR-0122 binding
+> (2026-06-15).** Branch
+> `codex/fmx-163-identity-access-context-contract` closes the thin Platform &
+> Governance Identity gap. Identity & Access now owns account, credential,
+> session, registered-device and global-role/claim truth; publishes
+> `PrincipalContext` snapshots and auth/security identity events; and keeps a
+> passkey-first plus password-fallback posture. It explicitly does not own
+> save/watch-party/domain memberships, business authorization,
+> payments/entitlements, age-assurance policy, Offline Sync queues, Community
+> Overlay pack lifecycle or Audit & Security retention. Research:
+> [[../60-Research/identity-access-context-definition-2026-06-15]]. Accepted ADR:
+> [[../10-Architecture/09-Decisions/ADR-0122-identity-access-context-definition]].
+> Decision record:
+> [[../40-Execution/fmx-163-identity-access-decision-queue-2026-06-15]].
+
 > **FMX-158 Babylon renderer-stack cleanup applied (2026-06-15).** Branch
 > `codex/fmx-158-crosscutting-babylon` reconciles active renderer guidance after
 > [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]]:
