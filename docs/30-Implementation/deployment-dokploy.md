@@ -3,7 +3,7 @@ title: Dokploy Deployment
 status: current
 tags: [deployment, implementation, dokploy, observability]
 created: 2026-05-15
-updated: 2026-06-09
+updated: 2026-06-15
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
@@ -60,8 +60,11 @@ dashboards together.
 Initial compose services:
 
 - `app`: TanStack Start / Vinxi app.
-- `postgres`: system of record for platform data, per-save schemas,
-  notification records, outbox and audit archive.
+- `postgres`: system of record for platform data, **per-active-save** schemas,
+  notification records and the outbox/archive. ADR-0097 / FMX-170 sets the
+  single-node live-schema SLO: warn at 300 active save schemas and hard-stop at
+  1000. There is no platform `audit_log`; the outbox is the domain trail and
+  Audit & Security owns the separate security trail.
 
 Planned runtime additions from accepted ADRs:
 
@@ -157,7 +160,12 @@ Configure retention to match ADR-0017:
 - Client offline telemetry: max 24 hours before send/drop.
 
 Domain audit retention is not configured here; ADR-0028 stores it in
-Postgres outbox/archive partitions.
+Postgres outbox/archive partitions. Save archive pressure is governed by
+ADR-0097: warn at 300 live save schemas and block new active save
+creation/reactivation at 1000 until the player confirms an archive/delete action
+or a later capacity decision adds another node/shard. The least-recently-played
+save may be suggested as a candidate, but active careers are never silently
+archived or deleted.
 
 ## Backups
 
@@ -172,6 +180,16 @@ Backup priority:
 
 Restore tests should prove that Grafana dashboards, alert rules and
 GlitchTip source maps survive a stack rebuild.
+
+PostgreSQL disaster recovery and save archiving are separate:
+
+- Whole-cluster physical backup + WAL/PITR remains the recovery baseline.
+- Per-save archive artifacts may be schema-filtered logical exports or the
+  encrypted save envelope, indexed with checksum, version and size metadata.
+- A live save schema is dropped only after the archive artifact is verified.
+- Restore provisions and validates a schema before the save returns to `active`;
+  the planning SLO is within 30 minutes for a typical archived save until code
+  phase measurements replace it.
 
 ## Alert Delivery
 

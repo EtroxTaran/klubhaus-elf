@@ -1,10 +1,10 @@
 ---
 title: ADR-0005 Save Format and Versioning
 status: accepted
-amended_by: [[ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[ADR-0020-hybrid-online-mvp-offline-ready]]
+amended_by: [[ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]
 tags: [adr, save, encryption, compression, versioning, e2ee]
 created: 2026-05-15
-updated: 2026-06-11
+updated: 2026-06-15
 accepted_at: 2026-05-16
 type: adr
 binding: true
@@ -303,7 +303,10 @@ module (per D8 §3.6). No silent re-simulation under a new engine.
   *"You have 10 active saves. Archive one to create a new save."*
 - **Server-side hard cap**: 50 saves total per user (active +
   archived).
-- **Archive** is reversible (just a state flip in `save_registry`).
+- **Archive** is reversible from the player's perspective. ADR-0097 / FMX-170
+  changes the server-side storage contract: archived saves drop out of the live
+  Postgres schema catalog only after verified archive material exists, and
+  reactivation re-provisions the per-save schema.
 - **Delete** is one-way with a 30-day grace period before the per-
   save Postgres schema is dropped (`DROP SCHEMA … CASCADE`,
   [[ADR-0027-postgres-data-model]] §1). During grace the user can
