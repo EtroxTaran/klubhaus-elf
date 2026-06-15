@@ -18,11 +18,13 @@ related:
   - [[../10-Architecture/09-Design-System]]
   - [[../60-Research/code-phase-dod-transition-contract-2026-06-14]]
   - [[../60-Research/pnpm-tooling-currency-2026-06-15]]
+  - [[../60-Research/tooling-currency-sweep-2026-06-15]]
   - [[../60-Research/code-ci-pipeline-2026-06-15]]
   - [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]]
   - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]
   - [[../40-Execution/fmx-180-code-phase-dod-transition-decision-queue-2026-06-14]]
   - [[../40-Execution/fmx-195-pnpm-tooling-currency-decision-queue-2026-06-15]]
+  - [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]]
   - [[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]]
   - [[../40-Execution/fmx-167-architecture-fitness-function-decision-queue-2026-06-15]]
 ---
@@ -130,6 +132,12 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 - FMX-195 refreshed the active pnpm pin from 11.1.2 to 11.7.0 after June 15
   source checks. Future code bootstrap still re-checks current tool versions
   before adding workspace dependencies.
+- FMX-168 owns the draft Stack Currency Ledger and wider tooling-currency
+  decision packet. It records the PostgreSQL 17 active pin vs PostgreSQL 18.x
+  current-stable drift, TanStack/React/TypeScript/build-tool compatibility
+  checks and future automation boundary. No ledger policy or PostgreSQL target
+  change is binding until Nico approves
+  [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]].
 
 ## Related
 
@@ -144,6 +152,7 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 - [[../10-Architecture/09-Design-System]]
 - [[../60-Research/code-phase-dod-transition-contract-2026-06-14]]
 - [[../60-Research/pnpm-tooling-currency-2026-06-15]]
+- [[../60-Research/tooling-currency-sweep-2026-06-15]]
 - [[../60-Research/code-ci-pipeline-2026-06-15]]
 - [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]]
 - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]

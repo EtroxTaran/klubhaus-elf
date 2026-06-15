@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, architecture-fitness, dependency-cruiser, bounded-context, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, privacy, gdpr, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, pnpm, replay-protection, idempotency, command-reception, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-164, fmx-167, fmx-177, fmx-180, fmx-183, fmx-185, fmx-191, fmx-194, fmx-195, fmx-196]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, architecture-fitness, dependency-cruiser, bounded-context, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, privacy, gdpr, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-164, fmx-167, fmx-168, fmx-177, fmx-180, fmx-183, fmx-185, fmx-191, fmx-194, fmx-195, fmx-196]
 updated: 2026-06-15
 ---
 
@@ -117,6 +117,21 @@ the newest-published-version rule for this beat, so the active repo pins now use
 `pnpm@11.7.0`. Raw captures:
 [[raw-perplexity/raw-pnpm-tooling-currency-2026-06-15]],
 [[raw-perplexity/raw-pnpm-source-checks-2026-06-15]].
+
+## Tooling Currency Sweep (FMX-168, 2026-06-15)
+
+[[tooling-currency-sweep-2026-06-15]] preserves the Perplexity-first and
+source-checked stack-currency packet for the future code bootstrap. It adds
+draft [[../30-Implementation/stack-currency-ledger]] and records current source
+signals for React/TanStack, TypeScript, Vite/Rsbuild, Nx, Drizzle, PostgreSQL,
+Capacitor, Babylon.js, quality tooling and i18n. The packet is intentionally
+non-binding: PostgreSQL 18.x target alignment, latest-stable compatibility
+bundle, source-conflict policy and automation timing remain pending Nico in
+[[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]]. Raw
+captures:
+[[raw-perplexity/raw-tooling-currency-sweep-2026-06-15]],
+[[raw-perplexity/raw-tooling-currency-realworld-games-2026-06-15]],
+[[raw-perplexity/raw-tooling-currency-source-checks-2026-06-15]].
 
 ## Code-CI Pipeline Contract (FMX-175, 2026-06-15)
 

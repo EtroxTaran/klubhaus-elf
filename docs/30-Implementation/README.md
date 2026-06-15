@@ -21,6 +21,10 @@ operational runbooks. Current implementable notes are classified by
 - [[code-phase-dod-transition-contract]] - executable docs-phase -> code-phase
   Definition-of-Done bridge; code gates are target-only until bootstrap creates
   workspace, Nx, scripts, CI and app/package paths.
+- [[stack-currency-ledger]] - FMX-168 draft tooling-currency ledger for
+  source-checked package/tool rows, source-conflict policy, risk rings and
+  bootstrap compatibility gates. Pending Nico approval in
+  [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]].
 - [[../60-Research/code-ci-pipeline-2026-06-15]] - FMX-175 accepted code-CI
   context contract: active `docs-check` / `linear-id`, future `quality` /
   `e2e` / `security` after real scripts, workflows and burn-in; D-002
