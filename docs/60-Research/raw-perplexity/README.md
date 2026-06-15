@@ -17,6 +17,19 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-192 cosmetic identity catalog (2026-06-15)
+
+Perplexity-first research and targeted source checks for the decision-pending
+cosmetic identity catalog, free baseline Create-a-Club identity, IP-clean kit /
+crest taxonomy, no-P2W acquisition classes and pricing/legal hooks.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-cosmetic-identity-realworld-football-2026-06-15]] | Perplexity discovery pass for real-world football identity systems, crest/kit/sponsor/IP-clean constraints and accessibility/readability | [[../cosmetic-identity-catalog-2026-06-15]] |
+| [[raw-cosmetic-identity-game-precedents-2026-06-15]] | Perplexity discovery pass for Hattrick-style no-advantage support, cosmetic monetization precedent, random-pack/tradeability risks and season-card guardrails | [[../cosmetic-identity-catalog-2026-06-15]] |
+| [[raw-cosmetic-identity-catalog-ux-2026-06-15]] | Perplexity discovery pass for item families, acquisition classes, entitlement fields, locked/equipped states and pricing hooks | [[../cosmetic-identity-catalog-2026-06-15]] |
+| [[raw-cosmetic-identity-source-checks-2026-06-15]] | Source checks for Hattrick, Apple, Google Play, IARC/USK, WCAG, football branding and secondary monetization analysis | [[../cosmetic-identity-catalog-2026-06-15]] |
+
 ## FMX-183 BfDI breach notification playbook (2026-06-15)
 
 Perplexity-first research and targeted source checks for wiring the GDPR

@@ -41,6 +41,10 @@ documentation gaps.
   standings/leaders, form, comparisons, maps/heatmaps and Manager & Legacy
   handoff snapshots; standings views use League-owned official ordering per
   FMX-131.
+- [[../20-Features/feature-cosmetic-identity-catalog]] - draft FMX-192
+  cosmetic identity catalog slice for Create-a-Club baseline identity,
+  IP-clean crest/kit/palette taxonomy, deterministic no-P2W acquisition classes
+  and pricing/legal handoff hooks.
 
 ## Seed Epics
 
@@ -68,6 +72,7 @@ documentation gaps.
 - [[../20-Features/feature-eos-player-skills-and-people-context]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../20-Features/feature-statistics-analytics-hub-mvp]]
+- [[../20-Features/feature-cosmetic-identity-catalog]]
 - [[../20-Features/feature-systemic-event-director]]
 - [[../20-Features/feature-sponsorship-portfolio]]
 - [[../20-Features/feature-fan-ecology-ui]]

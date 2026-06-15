@@ -19,10 +19,11 @@ future-scope or historical planning unless they are listed as binding
 (ADR-0092); since the 2026-06-08 ratification all GD-0001–GD-0040 GDDRs are
 `accepted`, while the non-numbered system/mode notes are `draft` pending
 individual re-approval (FMX-143 H2). GD-0041 is the FMX-191 monetization/no-P2W
-proposal, GD-0042 is the FMX-133 match-engine core model/calibration proposal
-and GD-0043 is the FMX-141 gameplay calibration ownership proposal; all three
-remain `draft` pending Nico. GD-0044 is the accepted FMX-137 Create-a-Club
-Roguelite run-tuning record. This means old `Future-scope notes`
+proposal, GD-0042 is the FMX-133 match-engine core model/calibration proposal,
+GD-0043 is the FMX-141 gameplay calibration ownership proposal and GD-0045 is
+the FMX-192 cosmetic identity catalog proposal; all four remain `draft`
+pending Nico. GD-0044 is the accepted FMX-137 Create-a-Club Roguelite
+run-tuning record. This means old `Future-scope notes`
 sections are not active work by default.
 
 ## Hub
@@ -66,6 +67,10 @@ sections are not active work by default.
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
+- [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] - draft FMX-192
+  cosmetic identity catalog proposal; decision pending Nico.
+- [[../20-Features/feature-cosmetic-identity-catalog]] - draft feature slice
+  for Create-a-Club baseline identity and cosmetic catalog hooks.
 
 ## Sporting core
 
@@ -228,7 +233,9 @@ reconciliation 2026-06-11):
   [[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] is `draft`
   pending the FMX-133 Nico decision queue;
   [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
-  is `draft` pending the FMX-141 Nico decision queue; related draft
+  is `draft` pending the FMX-141 Nico decision queue;
+  [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] is `draft` pending the
+  FMX-192 Nico decision queue; related draft
   [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
   is the FMX-190 enforcement proposal pending its own Nico decision queue.
 - **Binding research synthesis:** [[../60-Research/player-strength-presentation]]

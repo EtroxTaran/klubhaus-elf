@@ -47,6 +47,13 @@ This is the **single** canonical handoff location. (An older
   accepted decision queue and binding ADR-0097 closure. Nico accepted D1-D3:
   300/1000 live-schema SLO, user-confirmed hybrid archive pressure and no
   platform `audit_log`.
+- [[2026-06-15-fmx-192-cosmetic-identity-catalog]] - FMX-192 cosmetic identity
+  catalog packet: raw Perplexity/source-check captures, synthesis, draft
+  GD-0045, draft feature slice and decision queue. Pending Nico D1-D7;
+  recommended packet is all A for draft GDDR + feature note, free baseline
+  identity, eight-family taxonomy, deterministic non-tradeable/no-RNG
+  acquisition, light gated async visibility, item+bundle IP/accessibility
+  evidence and a later cosmetic-only deterministic season card.
 - [[2026-06-15-fmx-162-effect-intent-taxonomy]] - FMX-162 effect-intent
   taxonomy packet: raw Perplexity/source-check captures, synthesis, draft
   decision queue and draft ADR-0126. Pending Nico D1-D7; recommended packet is

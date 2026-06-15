@@ -3,7 +3,7 @@ title: Features
 status: current
 tags: [feature, index]
 created: 2026-05-15
-updated: 2026-06-12
+updated: 2026-06-15
 type: index
 binding: false
 related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-V1]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[feature-statistics-analytics-hub-mvp]]
@@ -42,6 +42,9 @@ stubs as future-scope planning, not open documentation gaps.
   Key Findings, Last Match, Team/Player Analysis, standings/leaders, form,
   comparison, maps/heatmaps and Manager & Legacy handoff snapshots. FMX-131
   keeps official standings/rollover authority in League Orchestration.
+- [[feature-cosmetic-identity-catalog]] - draft FMX-192 cosmetic identity
+  catalog slice for free Create-a-Club baseline identity, IP-clean
+  crest/kit/palette taxonomy and no-P2W pricing hooks.
 
 Older feature stubs may contain historical "In scope (MVP)" headings. The
 canonical MVP scope is [[../00-Index/MVP-Scope]]; use it before interpreting
@@ -62,6 +65,7 @@ those headings.
   People/persona context planning.
 - [[feature-ai-narration-mvp-pillar]] — AI narration MVP pillar.
 - [[feature-statistics-analytics-hub-mvp]] - MVP Analytics Hub and statistics.
+- [[feature-cosmetic-identity-catalog]] - cosmetic identity catalog planning.
 - [[feature-systemic-event-director]] — Deterministic event orchestration across owning domains.
 - [[feature-sponsorship-portfolio]] — Asset-level sponsor inventory + side conditions.
 - [[feature-fan-ecology-ui]] — 6-segment supporter dashboard.
