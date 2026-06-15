@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-15-fmx-168-tooling-currency]] - FMX-168 tooling-currency sweep:
+  raw Perplexity/source-check captures, synthesis, draft Stack Currency Ledger
+  and Nico decision queue. Recommended packet is D1-D5=A: one vault ledger now,
+  stable numeric latest with explicit source-conflict ledger, PostgreSQL 18.x
+  as future code bootstrap target after approval, latest-stable compatibility
+  bundle at bootstrap and dependency automation after the real workspace exists.
 - [[2026-06-15-fmx-183-bfdi-breach-notification]] - FMX-183 BfDI breach
   notification playbook: raw Perplexity/source-check captures, synthesis,
   decision queue and incident-response runbook update. Privacy-and-consent §9

@@ -45,6 +45,13 @@ design notes.
   FMX-195 source-checked update of the active pnpm pin to 11.7.0, preserving the
   npm dist-tag vs published-release caveat and the future bootstrap re-check
   guardrail.
+- [Tooling Currency Sweep](../60-Research/tooling-currency-sweep-2026-06-15.md) -
+  FMX-168 Perplexity-first and source-checked stack-currency packet for the
+  future code bootstrap: draft
+  [Stack Currency Ledger](../30-Implementation/stack-currency-ledger.md),
+  source-conflict policy, PostgreSQL 17 vs 18.x drift, latest-stable
+  compatibility bundle and automation timing. Decisions remain pending in
+  [FMX-168 decision queue](../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15.md).
 - [Replay/dedup ownership seam](../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15.md) -
   FMX-164 Perplexity-first and source-checked packet for ADR-0119: Offline Sync
   owns client queue/retry/rebase UX; Audit & Security owns authoritative

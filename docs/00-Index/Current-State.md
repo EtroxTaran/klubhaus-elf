@@ -96,6 +96,23 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > bootstrap still re-checks tool versions before adding dependencies. Decision
 > record:
 > [[../40-Execution/fmx-195-pnpm-tooling-currency-decision-queue-2026-06-15]].
+>
+> **FMX-168 Tooling currency sweep prepared — pending Nico decisions
+> (2026-06-15).** Branch `codex/fmx-168-tooling-currency-sweep` adds
+> [[../60-Research/tooling-currency-sweep-2026-06-15]] plus draft
+> [[../30-Implementation/stack-currency-ledger]]. The packet records the
+> active pin reality (Node 22, pnpm 11.7.0, PostgreSQL 17), current source
+> checks for the future stack (React 19.2.7, TypeScript 6.0.3, TanStack Start
+> 1.168.25, Nx 22.7.5, Drizzle ORM 0.45.2, Babylon.js 9.12.0, Capacitor 8.4.0
+> and related tooling) and the PostgreSQL 17 vs current-stable PostgreSQL 18.x
+> drift. No new dependency, automation or database target decision is binding
+> until Nico approves D1-D5 in
+> [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]].
+> Recommended packet is all A: one stack ledger now with machine-readable export
+> later, stable numeric latest with explicit source-conflict ledger, PostgreSQL
+> 18.x as the future code bootstrap target after approval, latest-stable
+> compatibility bundle at bootstrap and automation after the real workspace
+> exists.
 
 > **FMX-177 Test strategy and quality gates accepted (2026-06-15).** Linear
 > FMX-177 is carried on branch
