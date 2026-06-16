@@ -17,6 +17,16 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-188 LLM prompt-injection defensive contract (2026-06-16)
+
+Perplexity-first discovery and targeted source checks for defending Narrative
+LLM prose against prompt injection from untrusted UGC/community-pack text.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-llm-prompt-injection-defensive-contract-ugc-2026-06-16]] | Perplexity discovery pass for direct/indirect prompt injection, role/delimiter isolation, input sanitization, schema-bound output, fact grounding, no-tool isolation, deterministic fallback, red-team tests and UGC platform precedents | [[../llm-prompt-injection-defensive-contract-ugc-2026-06-16]] |
+| [[raw-llm-prompt-injection-defensive-contract-source-checks-2026-06-16]] | Source checks for OWASP LLM01, OWASP prompt-injection cheat sheet, OpenRouter structured outputs, Zod 4 strict objects, Steam Workshop, Roblox security/text filtering and CurseForge modpack packaging precedent | [[../llm-prompt-injection-defensive-contract-ugc-2026-06-16]] |
+
 ## FMX-151 HoF induction voting RNG reconciliation (2026-06-16)
 
 Perplexity-first discovery and targeted source checks for reconciling Linear

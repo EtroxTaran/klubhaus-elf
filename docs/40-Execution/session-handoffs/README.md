@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-16-fmx-188-prompt-injection-defensive-contract]] - FMX-188
+  prompt-injection defensive contract for untrusted UGC/community-pack text in
+  Narrative LLM prose: raw Perplexity/source-check captures, synthesis,
+  decision queue and proposed patches to ADR-0030, ADR-0059, ADR-0098 and the
+  AI narration contract-testing framework. Pending Nico D1-D6; recommendation
+  is UGC-as-flavor with hard guardrails, air-gapped narrator as default/kill
+  switch, strict output schema, fail-closed review and mandatory red-team
+  corpus.
 - [[2026-06-16-fmx-151-hof-induction-reconciliation]] - FMX-151
   Hall-of-Fame induction RNG reconciliation: raw Perplexity/source-check
   captures, synthesis and decision record closing stale open wording against

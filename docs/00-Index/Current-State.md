@@ -24,6 +24,25 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-188 prompt-injection defensive contract packet pending
+> (2026-06-16).** Branch
+> `codex/fmx-188-prompt-injection-ugc-narrative` prepares the defensive
+> contract for untrusted UGC/community-pack text in Narrative LLM prose.
+> Research
+> [[../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
+> plus raw Perplexity/source-check captures grounds proposed patches to
+> [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]],
+> [[../30-Implementation/ai-narration-contract-testing-framework]],
+> [[../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]]
+> and
+> [[../10-Architecture/09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]].
+> No new rule is binding until Nico accepts D1-D6 in
+> [[../40-Execution/fmx-188-prompt-injection-defensive-contract-decision-queue-2026-06-16]].
+> Recommended packet: UGC-as-flavor with hard guardrails as target, air-gapped
+> narrator as default/kill switch, Community Overlay text trust gate, strict
+> Narrative prompt/output envelopes, no-tool/no-write LLM boundary, fail-closed
+> fallback/review and mandatory malicious-pack red-team corpus.
+
 > **FMX-186 erasure-vs-HGB retention partition accepted (2026-06-16).**
 > Branch `codex/fmx-186-erasure-hgb-retention-partition` defines the
 > field-level payment/receipt/shared-history partition for GDPR Art. 17 erasure

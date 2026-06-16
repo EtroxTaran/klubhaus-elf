@@ -3,7 +3,7 @@ title: AI Narration Contract Testing Framework
 status: draft
 tags: [implementation, testing, ai, llm, narrative, contracts, mvp, fmx-3]
 created: 2026-05-28
-updated: 2026-06-14
+updated: 2026-06-16
 type: implementation
 binding: false
 linear: FMX-3
@@ -17,6 +17,9 @@ related:
   - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../60-Research/raw-perplexity/raw-newsworthiness-event-publication-semantics-2026-06-04]]
   - [[../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
+  - [[../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
+  - [[../60-Research/raw-perplexity/raw-llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
+  - [[../60-Research/raw-perplexity/raw-llm-prompt-injection-defensive-contract-source-checks-2026-06-16]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
@@ -56,6 +59,8 @@ modules:
 | `fallback-manifest` | Maintain CI-verifiable coverage for every prose point and scene type |
 | `provider-adapter` | Backend-only LLM calls, timeouts, retries, cost and model metadata |
 | `validator` | Schema, fact, safety, repetition and persona checks |
+| `ugc-text-trust` | Consume Community Overlay text refs, trust class, policy version and sanitized/escaped text eligibility |
+| `prompt-envelope` | Build role-separated prompts from trusted facts, forbidden claims, escaped untrusted text refs, task metadata and fallback ID |
 | `provenance` | Display snapshot metadata, fallback reason, model/schema versions |
 | `snapshot-store` | Persist exact revisitable display text and replay/reopen it verbatim |
 | `news-fact-projection` | Consume source-owned newsworthy event snapshots into `NarrativeNewsFactProjection` without cross-context joins |
@@ -87,7 +92,16 @@ First-wave contracts:
   visibility posture and follow-up display needs.
 - `ForbiddenClaim`: explicit unsupported fact category for this scene.
 - `NarrativeContextCard`: complete scene input.
+- `CommunityTextRef`: pack text reference from Community Overlay with
+  `packId`, `packVersion`, `contentHash`, `fieldPath`, trust class,
+  `policyVersion`, `llmEligible` and length cap.
+- `NarrativePromptEnvelope`: strict prompt-builder input that separates
+  trusted facts, forbidden claims, escaped untrusted text refs, task metadata
+  and fallback template ID.
 - `NarrativeEnhancementRequest`: context card plus provider/safety budget.
+- `NarrativeOutputEnvelope`: strict provider response wrapper containing
+  display lines, used fact refs, used text refs and risk flags; unknown keys
+  are validation failures.
 - `NarrativeEnhancementResult`: text plus source and provenance.
 - `NarrativeValidationReport`: pass/fail checks and fallback reason.
 - `NarrativeProvenance`: source, provider/model, schema version, cache key,
@@ -115,7 +129,12 @@ First-wave contracts:
 
 Use Zod 4 strict object schemas at runtime boundaries and infer TypeScript
 types from those schemas. Export JSON Schema only from the same schemas used by
-runtime validation.
+runtime validation. FMX-188 requires `z.strictObject(...)` at provider-output
+boundaries because plain object parsing strips unknown keys by default; extra
+fields from a provider response are suspicious and must fail closed. Provider
+JSON Schema strict mode (for example OpenRouter structured outputs on
+compatible model IDs) is an optimization, never a replacement for local
+validation and deterministic fallback.
 
 ## CI Tiers
 
@@ -134,6 +153,8 @@ they become concrete scripts in the CI process.
 |---|---|
 | Contract shape | Unknown keys rejected; required provenance/fallback fields present |
 | Context assembly | Only public read-model facts appear; no raw user/PII/internal IDs |
+| UGC text trust | Community text refs without current `community_sanitized` + `llmEligible: true` verdict never enter a provider prompt |
+| Prompt envelope isolation | Trusted facts, task instructions and escaped untrusted text refs remain separate; delimiter/role spoofing from UGC cannot alter task or schema fields |
 | Newsworthiness ingestion | Injury, contract-expiry, board-pressure and transfer-rumour fixtures render from event snapshots only; no source-domain join is needed |
 | Fallback manifest coverage | Every prose point and `NarrativeSceneType` has `fallbackTemplateId`, fixture, deterministic render assertion and provenance assertion |
 | Deterministic fallback | Same seed/context/template version yields same fallback |
@@ -146,6 +167,7 @@ they become concrete scripts in the CI process.
 | Dialogue effect ownership | Every selectable intent names exactly one owner context, policy key, band and visibility posture; Narrative cannot apply the effect |
 | Provider resilience | Timeout, 429, 5xx, malformed JSON and schema failures fall back |
 | Safety/privacy | Prompt injection, system-prompt extraction, unsafe content and PII leaks fail |
+| UGC prompt-injection corpus | Malicious community-pack fixtures for direct overrides, indirect injection in lore/articles/chants, delimiter escapes, role-label spoofing, command-shaped JSON fields and obfuscated variants fail closed |
 | Persona drift | Actor tone and stance stay within allowed stress/persona corridor |
 | Repetition | Actor/scene line reuse stays below playtest-tuned caps |
 | Memory coherence | Promises/conflicts resolve or expire; stale memory does not surface |
@@ -214,6 +236,13 @@ Failures become corpus cases before prompt/model tuning is considered complete.
 - Provider/model changes rerun the narrative corpus before rollout.
 - Generated text export/share stays out of MVP unless a later legal-gated policy
   is ratified.
+- UGC/community-pack text does not reach a provider unless the Community Overlay
+  text trust gate returns a current sanitized, LLM-eligible text ref.
+- Provider responses are accepted only through strict local schema validation;
+  provider-side structured outputs are required where selected models support
+  them but are not trusted without local validation.
+- Any prompt-injection or text-trust failure uses deterministic fallback and
+  records evidence for review.
 
 ## Related
 
@@ -223,6 +252,7 @@ Failures become corpus cases before prompt/model tuning is considered complete.
 - [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 - [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]]
 - [[../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
+- [[../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
 - [[../20-Features/feature-ai-narration-mvp-pillar]]
 - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
