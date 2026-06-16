@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, architecture-fitness, dependency-cruiser, bounded-context, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, tooling, pnpm, pwa, offline, mobile, rollback, content-qa, career, national-team, bundestrainer, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-167, fmx-183, fmx-185, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, erasure, retention, hgb, ao, shared-history, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, runtime, replay, snapshot, quality-profile, architecture-fitness, dependency-cruiser, bounded-context, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, tooling, pnpm, pwa, offline, mobile, rollback, content-qa, career, national-team, bundestrainer, ai, llm, fallback, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-153, fmx-158, fmx-167, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 created: 2026-05-16
 updated: 2026-06-16
 type: index
@@ -16,6 +16,19 @@ research transcripts and attached research reports (German source language).
 They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
+
+## FMX-186 erasure vs HGB retention partition (2026-06-16)
+
+Perplexity-first research and targeted source checks for the field-level
+payment/receipt/shared-history partition between GDPR Article 17 erasure and
+HGB/AO statutory retention.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-erasure-hgb-retention-partition-2026-06-16]] | Perplexity discovery pass for SaaS/indie payment-record field partitioning, pseudonymization, finance-record isolation, key separation and deterministic DSAR deletion sets | [[../erasure-vs-hgb-retention-partition-2026-06-16]] |
+| [[raw-account-deletion-purchase-retention-game-platforms-2026-06-16]] | Perplexity discovery pass for game/platform account deletion, purchase retention, deleted-user placeholders, invoice export and no entitlement resurrection after deletion | [[../erasure-vs-hgb-retention-partition-2026-06-16]] |
+| [[raw-erasure-hgb-retention-shared-history-2026-06-16]] | Perplexity discovery pass for shared multiplayer history, UGC, moderation, fraud, chargeback and audit evidence under account deletion | [[../erasure-vs-hgb-retention-partition-2026-06-16]] |
+| [[raw-erasure-hgb-retention-source-checks-2026-06-16]] | Source checks for GDPR Articles 17/4/5, official HGB 257, official AO 147, Apple and Google deletion/disclosure policy and FMX local privacy/audit/payment notes | [[../erasure-vs-hgb-retention-partition-2026-06-16]] |
 
 ## FMX-130 career Bundestrainer reconciliation (2026-06-15)
 

@@ -1,11 +1,33 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, architecture-fitness, dependency-cruiser, bounded-context, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, privacy, gdpr, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, career, national-team, bundestrainer, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-152, fmx-153, fmx-158, fmx-164, fmx-167, fmx-168, fmx-170, fmx-177, fmx-180, fmx-183, fmx-185, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, architecture-fitness, dependency-cruiser, bounded-context, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, career, national-team, bundestrainer, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-152, fmx-153, fmx-158, fmx-164, fmx-167, fmx-168, fmx-170, fmx-177, fmx-180, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 updated: 2026-06-16
 ---
 
 # Research Summary
+
+## Erasure vs HGB Retention Partition (FMX-186, 2026-06-16)
+
+[[erasure-vs-hgb-retention-partition-2026-06-16]] preserves the FMX-186
+Perplexity-first and source-checked packet for GDPR Article 17 account erasure
+vs German HGB/AO payment/receipt/shared-history retention. It corrects the
+broad 10/6 shorthand to the official 10/8/6 retention buckets, recommends
+detached mapping and hybrid shared-history handling, defines a field-level
+`erase_now` / `pseudonymize` / `retain_as_fact` / `do_not_store` table, keeps
+finance records in a separate key domain, erases the account-to-finance mapping
+after final purge unless a legal hold/dispute exists, and names the future
+deterministic DSAR retained-set test. Draft ADR:
+[[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]].
+Decision queue:
+[[../40-Execution/fmx-186-erasure-hgb-retention-decision-queue-2026-06-16]].
+Legal/accounting review gate:
+[[../40-Compliance/payment-retention-legal-review-evidence-2026-06-16]].
+Raw captures:
+[[raw-perplexity/raw-erasure-hgb-retention-partition-2026-06-16]],
+[[raw-perplexity/raw-account-deletion-purchase-retention-game-platforms-2026-06-16]],
+[[raw-perplexity/raw-erasure-hgb-retention-shared-history-2026-06-16]],
+[[raw-perplexity/raw-erasure-hgb-retention-source-checks-2026-06-16]].
 
 ## Staff Skill MVP Scope (FMX-152, 2026-06-15)
 

@@ -3,11 +3,11 @@ title: Audit Trail
 status: current
 tags: [implementation, audit, outbox, compliance, observability]
 created: 2026-05-17
-updated: 2026-06-15
+updated: 2026-06-16
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0091-audit-security-context-definition]], [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]]
-related: [[jobs-and-scheduler]], [[observability-runbook]], [[notification-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
+related: [[jobs-and-scheduler]], [[observability-runbook]], [[notification-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]], [[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]], [[../60-Research/erasure-vs-hgb-retention-partition-2026-06-16]]
 ---
 
 # Audit Trail
@@ -132,6 +132,12 @@ Audit payloads still follow minimisation:
 Account deletion must follow F6 policy. Some audit rows may be retained
 for legal/security reasons but should be minimised or pseudonymised where
 possible.
+
+Future payment/receipt retention is a separate finance/legal record class, not
+a platform `audit_log`. Draft
+[[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]
+proposes the field-level `finance_records` partition and key-separation model.
+This audit note remains the authority for outbox and Audit & Security surfaces.
 
 ## Tamper Evidence
 

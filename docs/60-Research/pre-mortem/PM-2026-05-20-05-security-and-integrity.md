@@ -688,9 +688,16 @@ Branchen-Erfahrung: 0,5–3 % der MP-Aktionen sind Cheat-Versuche. Bei 280k Comm
 5. **Followup:** Passwort-Reuse-Check (haveibeenpwned-API).
 
 ### RB-S3: DSGVO-Auskunfts-/Löschanfrage in Konflikt mit Audit-Aufbewahrung
+
+> **FMX-186 note (2026-06-16):** This runbook remains a historical risk sketch.
+> Field-level payment/receipt erasure-vs-retention partitioning is now routed to
+> [[../erasure-vs-hgb-retention-partition-2026-06-16]] and draft
+> [[../../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]].
+> Do not implement payment/receipt field handling from this sketch alone.
+
 1. **Detect:** Privacy-Anfrage via Email/Portal eintrudelt.
 2. **Triage:** Account + zugehörige Audit-Events identifizieren.
-3. **Action:** Pseudonymisierung der Audit-Events (PII-Felder → Hash); Account-Daten löschen via kryptografische Erasure; Steuer-relevante Records (falls Premium) bleiben gemäß 10-Jahre-Pflicht aber pseudonymisiert.
+3. **Action:** Pseudonymisierung der Audit-Events (PII-Felder → Hash); Account-Daten löschen via kryptografische Erasure; Steuer-relevante Records (falls Premium) bleiben gemäß ADR-0127/HGB-AO 10/8/6-Feldpartition aber pseudonymisiert bzw. identity-severed.
 4. **Comms:** Brief-Template an Anfragenden mit Aufschlüsselung was wann gelöscht/aufbewahrt wurde.
 5. **Followup:** DSAR-Export-Test im CI prüft, dass Anfrage automatisiert beantwortbar ist.
 

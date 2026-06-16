@@ -1,9 +1,9 @@
 ---
 title: Compliance Evidence
 status: current
-tags: [compliance, legal, evidence, monetization, privacy, consumer-law, age-assurance, ratings]
+tags: [compliance, legal, evidence, monetization, privacy, consumer-law, age-assurance, ratings, gdpr, retention, fmx-186]
 created: 2026-06-13
-updated: 2026-06-15
+updated: 2026-06-16
 type: index
 binding: false
 related:
@@ -12,9 +12,11 @@ related:
   - [[../60-Research/monetization-legal-gates-2026-06-13]]
   - [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]]
   - [[../60-Research/responsible-gaming-binding-record-2026-06-15]]
+  - [[../60-Research/erasure-vs-hgb-retention-partition-2026-06-16]]
   - [[monetization-legal-gates-evidence-2026-06-13]]
   - [[age-assurance-and-rating-evidence]]
   - [[responsible-gaming]]
+  - [[payment-retention-legal-review-evidence-2026-06-16]]
 ---
 
 # Compliance Evidence
@@ -26,6 +28,10 @@ Linear issue explicitly promotes it.
 
 ## Current notes
 
+- [[payment-retention-legal-review-evidence-2026-06-16]] - FMX-186
+  legal/accounting review gate for payment/receipt retention fields, HGB/AO
+  buckets, provider split, mapping expiry and DSAR retained-set behavior.
+  Prepared alongside draft ADR-0127; still open before real paid activation.
 - [[responsible-gaming]] - FMX-193 draft responsible-gaming compliance home:
   public statement, no paid random rewards/no dark-pattern guardrails and
   release self-audit evidence. Non-binding until ADR-0122 is accepted.

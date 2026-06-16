@@ -716,9 +716,17 @@ updated: 2026-05-22
 6. Lessons-Learned in `docs/60-Research/legal-incidents.md`.
 
 ### RB-08-2 DSAR / Right-to-be-Forgotten vs steuerliche Aufbewahrung
+
+> **FMX-186 note (2026-06-16):** This runbook remains a historical risk sketch.
+> The proposed field-level source of truth is
+> [[../erasure-vs-hgb-retention-partition-2026-06-16]] plus
+> [[../../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]].
+> It corrects the implementation detail into an explicit 10/8/6 retention
+> bucket model, finance-key separation and deterministic DSAR partitioner.
+
 1. DSAR triagieren; auf Art. 17 markieren.
-2. Konflikt: § 257 HGB / § 147 AO 8–10 Jahre — **Vorrang vor Art. 17 GDPR** via Art. 17(3)(b).
-3. Rechnungsdaten in separate `finance_records`-Tabelle; PII-Felder pseudonymisieren ("ANONYMIZED"), Steuer-relevante Felder bleiben.
+2. Konflikt: § 257 HGB / § 147 AO 10/8/6 Jahre — **Vorrang vor Art. 17 GDPR** via Art. 17(3)(b), soweit gesetzliche Aufbewahrung greift.
+3. Rechnungsdaten in separate `finance_records`-Tabelle; Account-Mapping loeschen/severed nach finaler Loeschung, direkte PII nur behalten, wenn sie Teil des gesetzlichen Belegs oder Legal Holds ist; steuer-relevante Felder bleiben bis Ablaufdatum.
 4. Brief-Template an Anfragenden: Pseudonymisierung-Erklärung.
 5. Audit-Log + Ablaufdatum tracken; finale Löschung im monatlichen Cleanup-Job.
 

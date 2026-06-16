@@ -1,9 +1,9 @@
 ---
 title: Privacy and Consent — implementation surface
 status: current
-tags: [implementation, gdpr, eprivacy, privacy, consent, dsar, deletion, age-gate, breach-runbook, community, naming, fmx-54]
+tags: [implementation, gdpr, eprivacy, privacy, consent, dsar, deletion, age-gate, breach-runbook, community, naming, fmx-54, fmx-186]
 created: 2026-05-18
-updated: 2026-06-15
+updated: 2026-06-16
 type: implementation
 binding: true
 adr:
@@ -12,6 +12,7 @@ adr:
   - "[[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]"
   - "[[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]"
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
+  - "[[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]"
 related:
   - "[[../60-Research/gdpr-compliance]]"
   - "[[../60-Research/telemetry-privacy]]"
@@ -28,6 +29,9 @@ related:
   - "[[incident-response]]"
   - "[[../60-Research/breach-notification-runbook-2026-06-15]]"
   - "[[../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15]]"
+  - "[[../60-Research/erasure-vs-hgb-retention-partition-2026-06-16]]"
+  - "[[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]"
+  - "[[../40-Execution/fmx-186-erasure-hgb-retention-decision-queue-2026-06-16]]"
 ---
 
 # Privacy and Consent — implementation surface
@@ -84,8 +88,12 @@ follow-ups:
 
 - The behavioural-analytics consent layer → **H7 / G3** when
   analytics actually ship.
-- The payments-related consent + receipt-retention layer →
-  future ADR when payments enter scope.
+- The payments-related consent + provider-specific payment UX layer →
+  future ADR/provider work when payments enter scope. FMX-186 now provides the
+  draft receipt-retention/shared-history erasure partition in
+  [[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]
+  plus [[../60-Research/erasure-vs-hgb-retention-partition-2026-06-16]];
+  legal/accounting review still gates real paid activation.
 - The OAuth IdP linking privacy UX → **F2 §3.6** post-MVP
   deferred surface.
 - Hosted community-pack / UGC distribution privacy handling →
@@ -639,6 +647,15 @@ expiry because:
 The Privacy Notice §13 + the deletion confirmation modal both
 disclose this.
 
+**Future payment/receipt exception (FMX-186 / ADR-0127).** The guarantee above
+is the current account/save erasure guarantee. If paid flows are accepted later,
+[[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]
+requires a separate `finance_records` retention class and finance key domain so
+HGB/AO-required invoice/payment facts remain readable until statutory expiry
+while account/save keys are still destroyed. The proposed partition is
+pending Nico approval; legal/accounting review confirms the retained fields
+before real payment activation.
+
 ### 8.3 Confirmation modal copy
 
 **EN**:
@@ -971,6 +988,7 @@ Default: **confirmed**.
 | FU-8  | Implement audit-archive pseudonymisation pass on Art. 17 grace expiry | E10 (Identity & Access context) |
 | FU-9  | Implement per-locale Privacy Notice rendering + Accept-Language fallback | F2 + i18n |
 | FU-10 | Annual DPIA + RoPA review automation reminder                       | F11 / calendar |
+| FU-11 | Complete FMX-186 legal/accounting review before implementing payment/receipt erasure-vs-retention partitioning for paid activation | Privacy Lead + legal/accounting |
 
 ## 14. Sources
 
@@ -983,8 +1001,13 @@ Default: **confirmed**.
   Art. 5(3) terminal-equipment storage.
 - BDSG § 12 (children's threshold 16), § 38 (DPO threshold 20).
 - TMG § 5 (Impressum requirement, DE).
-- § 257 HGB (10-year retention for commercial records, future
-  payments only).
+- § 257 HGB (official 10/8/6 retention split; future payments only
+  after ADR-0127 plus legal/accounting activation review).
+- § 147 AO (tax record retention, machine-readable/evaluable electronic
+  records; future payments only after ADR-0127 plus legal/accounting activation
+  review).
+- FMX-186 source-checked erasure-vs-retention packet:
+  [[../60-Research/erasure-vs-hgb-retention-partition-2026-06-16]].
 
 ### EDPB + national-DPA guidance
 

@@ -3,7 +3,7 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-06-15
+updated: 2026-06-16
 type: map
 binding: false
 related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/player-discipline]]
@@ -65,6 +65,10 @@ future-scope or historical context.
   Community Overlay pack lifecycle and Audit & Security retention.
   FMX-162 prepares draft ADR-0126 for the Narrative/Media Ecology advisory
   effect-intent taxonomy; it is non-binding until Nico answers D1-D7.
+  FMX-186 prepares draft ADR-0127 for the GDPR Article 17 vs HGB/AO
+  payment/receipt/shared-history partition: current 10/8/6 retention buckets,
+  separate finance key domain, detachable account-to-finance mapping,
+  deterministic DSAR retained-set tests and review-gated paid activation.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
