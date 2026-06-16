@@ -18,6 +18,13 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Bounded-context Merge-review Gate Reconciliation](../60-Research/bounded-context-merge-review-gate-2026-06-16.md) -
+  FMX-160 Perplexity-first and source-checked reconciliation of the stale
+  28-final-vs-gate wording. It applies the already-ratified 2026-06-08
+  GD-0038 / ADR-0089 Option B decision: the 28-context map is the canonical
+  catalog and ceiling under a standing merge-review gate, not an immutable
+  final target. Decision record:
+  [FMX-160 decision record](../40-Execution/fmx-160-context-portfolio-gate-decision-record-2026-06-16.md).
 - [LLM Prompt Injection Defensive Contract for UGC Narrative](../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16.md) -
   FMX-188 Perplexity-first and source-checked packet for defending Narrative
   LLM prose against prompt injection from untrusted UGC/community-pack text.

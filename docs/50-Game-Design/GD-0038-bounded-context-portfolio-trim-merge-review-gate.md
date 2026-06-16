@@ -1,14 +1,16 @@
 ---
 title: GD-0038 Bounded-context portfolio trim / merge-review gate
 status: accepted
-tags: [game-design, gddr, bounded-context, ddd, portfolio, governance, scope, merge-review, cognitive-load, fmx-105]
+tags: [game-design, gddr, bounded-context, ddd, portfolio, governance, scope, merge-review, cognitive-load, fmx-105, fmx-160]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-16
 type: gddr
 binding: false
 linear: FMX-105
 related:
   - [[../10-Architecture/09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]]
+  - [[../60-Research/bounded-context-merge-review-gate-2026-06-16]]
+  - [[../40-Execution/fmx-160-context-portfolio-gate-decision-record-2026-06-16]]
   - [[../10-Architecture/09-Decisions/ADR-0046-team-topology-and-scaling]]
   - [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]]
   - [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]]
@@ -24,14 +26,12 @@ related:
 
 # GD-0038: Bounded-context portfolio trim / merge-review gate
 
-> **Status `draft` · `binding: false`.** A scope / portfolio-governance companion to **ADR-0089**.
-> ADR-0089 proposes **D1 = A** (accept all nine new contexts ⇒ **19 → 28**, as written) and is itself
-> still `proposed` at authoring time (since ratified 2026-06-08, #153). This GDDR does **not** touch ADR-0089 — it argues that the
-> ADR's own **D1 A-vs-B** axis is worth keeping *genuinely open* as a standing, first-class
-> **merge-review gate**, rather than treating 28 as final the moment ADR-0089 lands. Per the decision
-> gate (`docs/90-Meta/collaboration-and-decision-protocol.md`) this is **options + a recommendation +
-> a confidence level for Nico to ratify** — nothing here is accepted, and it does not supersede or
-> re-open ADR-0089's other axes (D2 numbering, D3 clusters), which it explicitly leans on.
+> **Status `accepted` · `binding: false`.** Ratified 2026-06-08 as the **Option B**
+> companion to [[../10-Architecture/09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]]
+> ([[../40-Execution/decision-queue-2026-06-08-ratified]]). FMX-160 reconciled the
+> stale draft body wording on 2026-06-16. Current reading: ADR-0089's **28-context
+> catalog remains canonical**, but the count is an actively managed **ceiling**
+> under this standing merge-review gate, not an immutable final target.
 
 ## Why this exists
 
@@ -47,8 +47,7 @@ Three things make the question live rather than academic:
    large surface to learn", and its D3 governance already adopts "a standing review to **merge** any
    pair that always co-changes." The merge-review is therefore *already in the decision* — it is just
    filed as a footnote under "accept all nine" rather than as a first-class gate. This GDDR promotes
-   it, and keeps **D1 = B** ("collapse some of the nine to sub-aggregates") alive as the lever that
-   review pulls.
+   it as the accepted gate, with any future collapse handled only by a fresh merge decision.
 2. **The grounding it cites points the same way.** The reconciliation research
    ([[../60-Research/bounded-context-portfolio-reconciliation-2026-06-07]]) lists, as portfolio
    governance, both "own each *cluster*, not all 28 equally" and "willingness to **merge** contexts
@@ -75,8 +74,9 @@ To stay inside the decision gate and avoid re-litigating settled ADRs:
   architecture-test invariant) as the right scaffolding — indeed Option B *depends* on the cluster
   grouping as the unit of ownership.
 
-It asks one scoped thing: **should "28" be ratified as final, or as a ceiling with a live merge-review
-gate that can trim back to a smaller standing count before MVP?**
+It records one scoped decision: **"28" is ratified as the canonical catalog and ceiling, with a live
+merge-review gate that can trim back to a smaller standing count before MVP if co-change evidence
+supports it.**
 
 ## 2. Merge candidates the gate would watch (illustrative, not pre-decided)
 
@@ -104,7 +104,7 @@ unit at scale is **the cluster** (ADR-0089 D3), so a merge inside a cluster is l
   matches the ADR exactly. *Con:* the count is then "decided", and the well-documented cognitive-load
   cost of 28 contexts on a small pre-MVP team is carried in full with only a soft, unscheduled review
   to relieve it; the merge lever tends to atrophy once "28 = final" is the published number.
-- **B — Keep D1 A-vs-B genuinely open as a standing merge-review gate (recommended).** Land ADR-0089's
+- **B — Keep D1 A-vs-B genuinely open as a standing merge-review gate (accepted).** Land ADR-0089's
   catalog/ordinal/cluster work *and* its re-basing of the stale 11/19 framings, but ratify the count as
   a **ceiling under an active gate**, not as final. Promote the merge-review to a first-class, scheduled
   governance step with the §2 watch-list as its starting agenda; trim any candidate that demonstrably
@@ -123,7 +123,7 @@ unit at scale is **the cluster** (ADR-0089 D3), so a merge inside a cluster is l
 
 ## 4. Recommendation
 
-**Option B — treat the merge-review as a first-class ongoing gate rather than accepting 28 as final.**
+**Accepted: Option B — treat the merge-review as a first-class ongoing gate rather than accepting 28 as final.**
 ADR-0089's structural reconciliation (catalog, ordinal key, clusters, no-shared-tables invariant,
 re-basing the stale 11/19 framings) is sound and should land; nothing in B blocks it. B differs only in
 how the *count* is framed: a **ceiling actively managed down by co-change evidence**, not a finished
@@ -132,25 +132,24 @@ grounding (Jovanović "refactoring overgrown bounded contexts"; Team Topologies 
 "merge contexts that always co-change"). The **cluster** (ADR-0089 D3) is the natural ownership and
 merge unit at scale, so the gate operates cheaply within cluster boundaries.
 
-This is fundamentally a **scope judgement for Nico**: pursue B only if he wants the context count
-**actively managed** rather than fixed. If he prefers to bank 28 and revisit opportunistically, A is a
-legitimate and lower-process choice — the cost is purely the soft, unscheduled review. **B is not a
-reason to delay ratifying ADR-0089**; it is a rider on *how* its D1 is ratified (final vs ceiling-with-
-gate) plus the §2 starting agenda.
+The 2026-06-08 ratification ledger records this as Nico's choice for GD-0038 /
+ADR-0089: adopt the 28-context map as the canonical count source, but keep the
+count under a standing merge-review gate and trim candidates that always
+co-change. **B is not a reason to delay or re-open ADR-0089**; it is the accepted
+reading of how ADR-0089's count is governed.
 
 **Confidence: medium.** The DDD direction (count is secondary to coupling/cognitive load; merge on
 co-change) is well-grounded and is ADR-0089's own position. The *medium* (not high) reflects that
 whether 28 is "too many for now" is genuinely scope/taste-dependent and that the named §2 candidates
-are illustrative — their co-change is plausible but unproven until modules exist. No external lookup
-changes this; the relevant best-practice is already captured in the reconciliation research.
+are illustrative — their co-change is plausible but unproven until modules exist. FMX-160 source
+checks reaffirm the best-practice line without adding a new decision.
 
-## 5. If Option B is ratified — shape of the gate (sketch, not binding)
+## 5. Accepted gate shape
 
-Indicative only; concrete cadence/owner is Nico's to set:
-
-- **Owner:** portfolio/architecture lead (today Nico per ADR-0046); the gate is a standing agenda item,
-  not a new role.
-- **Cadence:** per milestone, or triggered whenever two modules' apply-PRs touch each other N times.
+- **Owner:** portfolio/architecture lead (today Nico per the collaboration protocol); the gate is a
+  standing agenda item, not a new role.
+- **Cadence:** per milestone, or triggered when repeated co-change becomes visible. A numeric threshold
+  is future code-phase evidence work once PR/file history exists.
 - **Input:** the §2 watch-list plus any newly observed co-change pair; the cluster catalog (ADR-0089 D3)
   as the grouping lens.
 - **Decision per candidate:** "still distinct" (record why) **or** "merge" → emit a **new draft ADR**
@@ -170,7 +169,7 @@ Indicative only; concrete cadence/owner is Nico's to set:
 ## Related
 
 - [[../10-Architecture/09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]] — the parent
-  decision; this GDDR keeps its **D1 = B** alive as a standing gate and accepts its D2/D3.
+  decision; this GDDR records its accepted **D1 = B** gate reading and accepts its D2/D3.
 - [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]] — projection-only
   owner; a primary §2 merge-watch candidate.
 - [[../10-Architecture/09-Decisions/ADR-0064-scouting-activity-context]] — scouting/transfer co-change
@@ -181,4 +180,8 @@ Indicative only; concrete cadence/owner is Nico's to set:
   11/19-context framing ADR-0089 re-bases onto the 28-catalog.
 - [[../60-Research/bounded-context-portfolio-reconciliation-2026-06-07]] — grounding: count vs
   coupling/cognitive load; clusters; "merge contexts that always co-change".
+- [[../60-Research/bounded-context-merge-review-gate-2026-06-16]] — FMX-160 source-checked
+  reconciliation applying the 2026-06-08 Option B decision.
+- [[../40-Execution/fmx-160-context-portfolio-gate-decision-record-2026-06-16]] — issue-level decision
+  record; no new Nico decision was required.
 - [[../00-Index/Open-Decisions-Dossier]] — consolidated open-decision Q&A.
