@@ -10,13 +10,12 @@ updated: 2026-06-15
 ## Staff Skill MVP Scope (FMX-152, 2026-06-15)
 
 [[staff-skill-mvp-scope-2026-06-15]] preserves the FMX-152 Perplexity-first
-and source-checked packet for the open GD-0021 staff-skill MVP gate. It
-recommends D1-D4 = **B/A/A/A**: activate staff skills only as narrow Staff
-Operations pipeline modifiers, promote through a GD-0021 subsection after Nico
-approval, expose banded pipeline explanations instead of full cards, and keep
-the contract boundary as People `StaffSkillProfileSnapshot` -> Staff Operations
-pipeline projection -> consumer-context application. Decisions remain pending
-in
+and source-checked packet for the GD-0021 staff-skill MVP gate. Nico accepted
+D1-D4 = **B/A/A/A** on 2026-06-16: activate staff skills only as narrow Staff
+Operations pipeline modifiers, promote through GD-0021, expose banded pipeline
+explanations instead of full cards, and keep the contract boundary as People
+`StaffSkillProfileSnapshot` -> Staff Operations `PipelineCoverageSnapshot`
+bands -> consumer-context application. Decision record:
 [[../40-Execution/fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15]].
 Raw captures:
 [[raw-perplexity/raw-staff-skill-mvp-scope-realworld-2026-06-15]],
@@ -1397,14 +1396,16 @@ and draft [[../30-Implementation/ai-narration-contract-testing-framework]].
 
 [[eos-player-staff-skills-and-personas-2026-05-28]] promotes the player/staff
 values raw report plus FMX-23 follow-up research into a draft path for clearer
-player individuality, active player skills/perks, staff-skill target modeling,
-mixed OCEAN + football-domain personas and relationship constellations.
+player individuality, active player skills/perks, FMX-152 narrow staff pipeline
+modifiers, mixed OCEAN + football-domain personas and relationship
+constellations.
 
 Current draft direction:
 
 - Keep the **16+4+8** player attribute basis from [[data-generators]].
 - Add player skills/perks as separate visible specializations, not attributes.
-- Plan staff skills as a target model, with MVP activation focused on players.
+- Plan staff skills as narrow GD-0021/FMX-152 pipeline modifiers, with full
+  staff skill cards deferred.
 - Use OCEAN only as an internal substrate; expose football-domain labels.
 - Propose a People / Persona & Skills context for actors, relationships,
   skill profiles and deterministic dialogue context cards.
@@ -1432,9 +1433,8 @@ Current draft direction:
   transfer/squad planning, staff pipeline effects and mentoring.
 - Keep generated prose non-authoritative for relationships, transfers,
   injuries, promises, development deltas and match effects.
-- Re-open staff-skill MVP activation as an explicit A/B/C decision. The
-  recommendation is Option B: narrow staff pipeline modifiers, not full staff
-  skill-card gameplay.
+- Staff-skill MVP activation is closed by FMX-152 as Option B: narrow staff
+  pipeline modifiers, not full staff skill-card gameplay.
 
 This feeds draft
 [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]],

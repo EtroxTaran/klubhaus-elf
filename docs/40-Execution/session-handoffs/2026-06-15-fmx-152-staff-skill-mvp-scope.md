@@ -3,7 +3,7 @@ title: Handoff FMX-152 staff skill MVP scope
 status: open
 tags: [meta, execution, handoff, staff, skills, fmx-152]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-16
 type: handoff
 binding: false
 related:
@@ -16,7 +16,7 @@ related:
 ## Linear
 
 - Issue: FMX-152
-- State: In Progress
+- State: In Review after PR update
 - Branch: `codex/fmx-152-staff-skill-mvp-scope`
 
 ## Done this session
@@ -32,18 +32,19 @@ related:
   [[../../60-Research/staff-skill-mvp-scope-2026-06-15]].
 - Created Nico decision queue:
   [[../fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15]].
+- 2026-06-16: Nico accepted recommended packet **D1-D4 = B/A/A/A**.
+- Promoted GD-0021, GD-0020, feature note, ADR traceability and front-door
+  wording from pending to accepted.
 
 ## Open / next step
 
-- Nico must decide D1-D4 in the FMX-152 decision queue.
-- Recommended packet: **D1-D4 = B/A/A/A**.
-- After approval, promote GD-0021 and front-door wording from pending to
-  accepted. Do not change staff-skill mechanics before approval.
+- Merge PR after checks are green.
+- Future follow-ups must still define formula weights, bands, final skill names,
+  caps, full staff cards and staff progression before implementation.
 
 ## Blockers
 
-- HITL decision required for staff-skill MVP scope, visibility and contract
-  boundary.
+- None for FMX-152 scope after Nico accepted D1-D4.
 
 ## Changed vault paths
 
@@ -54,14 +55,12 @@ related:
 - `docs/60-Research/raw-perplexity/raw-staff-skill-mvp-scope-source-checks-2026-06-15.md`
 - `docs/40-Execution/fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15.md`
 - Front-door notes linking to the packet.
+- `docs/50-Game-Design/GD-0020-eos-player-skills-personas-and-people.md`
+- `docs/20-Features/feature-eos-player-skills-and-people-context.md`
+- `docs/10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md`
+- `docs/10-Architecture/09-Decisions/ADR-0053-staff-operations-context.md`
 
 ## Needs promotion
 
-- If Nico accepts D1-D4, update:
-  - [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
-  - [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
-  - [[../../20-Features/feature-eos-player-skills-and-people-context]]
-  - [[../../00-Index/Current-State]]
-  - [[../../00-Index/Research-Map]]
-  - [[../../60-Research/00-summary]]
-  - [[../../00-Index/Decision-Log]] if the promotion changes a decision record.
+- None for the D1-D4 promotion. Remaining details are future design/balance
+  follow-ups, not FMX-152 blockers.

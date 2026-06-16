@@ -37,10 +37,10 @@ design notes.
   accepted in [FMX-163 decision queue](../40-Execution/fmx-163-identity-access-decision-queue-2026-06-15.md).
 - [Staff Skill MVP Scope](../60-Research/staff-skill-mvp-scope-2026-06-15.md) -
   FMX-152 Perplexity-first and source-checked packet for the GD-0021
-  staff-skill MVP activation gate. It recommends narrow Staff Operations
-  pipeline modifiers, GD-0021-only promotion after approval, banded pipeline
-  explanations rather than full cards and the People -> Staff Operations ->
-  consumer-context contract boundary. Decisions remain pending in
+  staff-skill MVP activation gate. Nico accepted narrow Staff Operations
+  pipeline modifiers, GD-0021-only promotion, banded pipeline explanations
+  rather than full cards and the People -> Staff Operations -> consumer-context
+  contract boundary on 2026-06-16. Decision record:
   [FMX-152 decision queue](../40-Execution/fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15.md).
 - [BfDI Breach Notification Playbook](../60-Research/breach-notification-runbook-2026-06-15.md) -
   FMX-183 Perplexity-first and source-checked packet for GDPR Art. 33/34
@@ -1065,7 +1065,8 @@ before any promotion.
 - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]] — FMX-23
   synthesis of the Player & Staff Values report plus follow-up Perplexity/Web
   research into a draft path: retain 16+4+8 attributes, add player skills/perks
-  as a separate visible layer, model staff skills as target system, use hidden
+  as a separate visible layer, model staff skills as narrow GD-0021/FMX-152
+  pipeline modifiers, use hidden
   OCEAN as persona substrate and propose People / Persona & Skills as a new
   bounded context. Feeds draft
   [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]],
@@ -1089,8 +1090,7 @@ before any promotion.
 - [[../60-Research/staff-skill-mvp-scope-2026-06-15]] — FMX-152 refresh of
   the GD-0021 staff-skill MVP decision gate. Source-checks real-world backroom
   specialization, Football Manager/EA FC game precedents and DDD/CQRS
-  contracts. Recommended packet is D1-D4 = B/A/A/A, but all decisions remain
-  pending Nico in
+  contracts. Nico accepted D1-D4 = B/A/A/A on 2026-06-16 in
   [[../40-Execution/fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15]].
 
 ## Swappable Spatial-Event Match Engine (2026-05-27)

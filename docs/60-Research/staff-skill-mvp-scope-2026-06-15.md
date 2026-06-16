@@ -3,7 +3,7 @@ title: "Staff skill MVP scope packet (FMX-152)"
 status: current
 tags: [research, synthesis, staff, skills, player-development, backroom, game-precedent, ddd, fmx-152]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-16
 type: research
 binding: false
 linear: FMX-152
@@ -24,20 +24,18 @@ related:
 
 ## Scope
 
-FMX-152 resolves the still-open GD-0021 question: are staff skills target-only,
+FMX-152 resolves the now-closed GD-0021 question: are staff skills target-only,
 narrow MVP pipeline modifiers, or full visible staff skill-card gameplay?
 
-This packet is intentionally non-binding. It preserves the Perplexity-first
-research chain, source checks and a recommendation, then asks Nico to decide.
-Until Nico answers, GD-0021's current rule remains: staff skills are target-model
-hooks only, while Staff Operations still owns lifecycle, role assignment and
-pipeline coverage.
+This packet is intentionally non-binding research. It preserves the
+Perplexity-first research chain, source checks, recommendation and Nico's
+accepted D1-D4 outcome. The binding gameplay rule is promoted in GD-0021.
 
-`raw Perplexity -> source checks -> this synthesis -> Nico D1-D4 -> GD/ADR/spec promotion`
+`raw Perplexity -> source checks -> this synthesis -> Nico D1-D4 accepted -> GD-0021 promotion`
 
-## Recommendation
+## Accepted recommendation
 
-Recommend **D1 = B - Narrow pipeline modifiers**.
+Nico accepted **D1-D4 = B/A/A/A** on 2026-06-16.
 
 Staff skills should become MVP-active only through Staff Operations pipeline
 quality read models consumed by Training, Scouting, Medical and Match-Day. The
@@ -127,17 +125,17 @@ outputs. They should not become the cross-context integration contract.
 | Option | Meaning | Assessment |
 |---|---|---|
 | A - Target-only | Staff skills stay documented for future design only; staff has lifecycle, roles, coverage and specializations but no active skill-profile mechanics. | Safest for scope and balance, but leaves staff skills mostly cosmetic and fails to close the GD-0021 "staff matters mechanically" gap. |
-| **B - Narrow pipeline modifiers** | Staff skills affect only Staff Operations pipeline-quality/modifier read models consumed by Training, Scouting, Medical and Match-Day. | **Recommended.** Smallest active gameplay slice that matches real-world specialization, FM genre precedent and DDD boundaries. |
+| **B - Narrow pipeline modifiers** | Staff skills affect only Staff Operations pipeline-quality/modifier read models consumed by Training, Scouting, Medical and Match-Day. | **Accepted.** Smallest active gameplay slice that matches real-world specialization, FM genre precedent and DDD boundaries. |
 | C - Full staff skill cards | Staff profiles are visible and mechanically active across systems with a staff skill catalog, UI and cross-system effects. | Richest fantasy, but too broad for MVP without catalog, UI, balance, replay and staff-progression decisions. |
 
-## Recommended contract shape if B is accepted
+## Accepted contract shape
 
 Planning names only, not approved public APIs:
 
 - People owns `StaffSkillProfileSnapshot`.
-- Staff Operations consumes the People snapshot plus role assignment and emits
-  `StaffPipelineQualityModifierSnapshot` or an extension of the existing
-  `PipelineCoverageSnapshot`.
+- Staff Operations consumes the People snapshot plus role assignment and extends
+  the existing `PipelineCoverageSnapshot` vocabulary with staff-skill-aware
+  modifier/explanation bands.
 - Training, Scouting, Medical and Match-Day consume the staff-pipeline snapshot
   and apply their own bounded formulas.
 - UI may show banded reasons:
@@ -148,19 +146,20 @@ Planning names only, not approved public APIs:
 - No final numeric weights, thresholds, skill names, caps, card layout or
   progression rates are approved by this packet.
 
-## Decisions needed from Nico
+## Decisions accepted by Nico
 
 See
 [[../40-Execution/fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15]]
-for the full options and recommendations.
+for the full options, recommendations and accepted record.
 
 Short version:
 
-- D1: Staff-skill MVP scope - recommend B.
-- D2: GDDR promotion shape - recommend updating GD-0021 with an explicit
-  Option B subsection after approval, not creating a new GDDR unless C wins.
-- D3: MVP visibility - recommend banded pipeline explanations, not full cards.
-- D4: Contract boundary - recommend People profile truth -> Staff Operations
+- D1: Staff-skill MVP scope - accepted B.
+- D2: GDDR promotion shape - accepted A, update GD-0021 rather than creating a
+  new GDDR.
+- D3: MVP visibility - accepted A, banded pipeline explanations rather than
+  full cards.
+- D4: Contract boundary - accepted A, People profile truth -> Staff Operations
   pipeline projection -> consumer-context application.
 
 ## Sources

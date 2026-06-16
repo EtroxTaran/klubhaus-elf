@@ -3,7 +3,7 @@ title: Feature - EOS Player Skills and People Context
 status: draft
 tags: [feature, player-skills, people, persona, mvp, fmx-23]
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-06-16
 type: feature
 binding: false
 linear: FMX-23
@@ -14,6 +14,7 @@ related:
   - [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
   - [[../60-Research/player-staff-development-decision-model-2026-05-28]]
+  - [[../60-Research/staff-skill-mvp-scope-2026-06-15]]
   - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   - [[feature-ai-narration-mvp-pillar]]
@@ -44,10 +45,13 @@ In scope for the first active slice:
 - GD-0021 decision-influence hooks that define which skill/persona/
   relationship facts may be consumed by development, match, transfer and staff
   pipeline decisions.
+- FMX-152 staff-skill MVP slice: Staff Operations exposes staff-skill-aware
+  pipeline bands/explanations to Training, Scouting, Medical and Match-Day.
 
-In scope as target model, not MVP-active gameplay:
+In scope as target model, not MVP-active full-card gameplay:
 
-- Staff skill/perk cards.
+- Full staff skill/perk cards, staff catalog, staff progression and staff
+  synergy trees.
 - Relationship graph UI beyond focused mentoring/dialogue contexts.
 
 In scope for MVP narration context, but not mechanical skill gameplay:
@@ -106,9 +110,10 @@ Feature: EOS player skills and people context
 - Documentation distinguishes attributes, tendencies, skills/perks, persona
   substrate and relationships.
 - MVP skill/perk slice is player-focused.
-- Staff skills are modeled as future target without accidental MVP scope
-  expansion.
-- Staff-skill MVP activation stays behind the GD-0021 A/B/C decision gate.
+- Staff skills are MVP-active only as the FMX-152 narrow pipeline-modifier
+  slice, not as full staff skill-card gameplay.
+- Staff-skill formulas, bands and full-card UI remain outside this feature until
+  separately approved.
 - Cross-system skill/persona effects point to GD-0021 factor matrices instead
   of being duplicated in feature specs.
 - Non-player actors are context-card capable for MVP narration without granting

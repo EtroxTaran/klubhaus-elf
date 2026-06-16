@@ -3,7 +3,7 @@ title: ADR-0052 People, Persona and Skills Context
 status: accepted
 tags: [adr, architecture, ddd, people, persona, player-skills, fmx-23]
 created: 2026-05-28
-updated: 2026-06-11
+updated: 2026-06-16
 type: adr
 binding: false
 supersedes:
@@ -19,6 +19,7 @@ related:
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
   - [[../../60-Research/player-staff-development-decision-model-2026-05-28]]
+  - [[../../60-Research/staff-skill-mvp-scope-2026-06-15]]
   - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../../60-Research/people-persona-skills-bounded-context-2026-06-07]]
   - [[../../20-Features/feature-eos-player-skills-and-people-context]]
@@ -249,7 +250,9 @@ Negative:
 - Requires careful contract design so People does not duplicate Squad or Match
   truth.
 - Needs catalog versioning and snapshot rules before implementation.
-- Staff skills require follow-up GDDR depth before active gameplay use.
+- Full staff skill-card gameplay still requires follow-up GDDR depth; FMX-152
+  only activates narrow staff pipeline modifiers via GD-0021 and Staff
+  Operations.
 
 ## Supersedes
 
@@ -259,6 +262,7 @@ None
 
 - [[../../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
 - [[../../60-Research/player-staff-development-decision-model-2026-05-28]]
+- [[../../60-Research/staff-skill-mvp-scope-2026-06-15]]
 - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
 - [[../../60-Research/people-persona-skills-bounded-context-2026-06-07]]
 - [[../../00-Index/Open-Decisions-Dossier]]

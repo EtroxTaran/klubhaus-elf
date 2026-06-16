@@ -3,7 +3,7 @@ title: FMX-152 staff skill MVP scope decision queue
 status: current
 tags: [execution, decision-queue, staff, skills, player-development, backroom, fmx-152]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-16
 type: decision-queue
 binding: false
 linear: FMX-152
@@ -20,8 +20,8 @@ related:
 
 # FMX-152 staff skill MVP scope decision queue
 
-This is the HITL decision packet for FMX-152. No option below is accepted until
-Nico decides.
+This is the HITL decision record for FMX-152. Nico accepted the recommended
+packet on 2026-06-16: **D1-D4 = B/A/A/A**.
 
 ## Context
 
@@ -32,8 +32,7 @@ GD-0021 already names the staff-skill MVP choice:
 - C - Full staff skill cards.
 
 FMX-152 refreshes that choice with Perplexity-first research, source checks and
-a concrete promotion path. The recommendation is **B**, but the vault stays
-non-binding until Nico approves.
+a concrete promotion path. The accepted outcome is **B**.
 
 ## D1 - Staff-skill MVP activation scope
 
@@ -45,7 +44,7 @@ non-binding until Nico approves.
 
 **Recommendation:** B.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted 2026-06-16 - B.
 
 ## D2 - Promotion shape after approval
 
@@ -57,7 +56,7 @@ non-binding until Nico approves.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted 2026-06-16 - A.
 
 ## D3 - MVP player visibility
 
@@ -69,7 +68,7 @@ non-binding until Nico approves.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted 2026-06-16 - A.
 
 ## D4 - Contract boundary
 
@@ -81,7 +80,7 @@ non-binding until Nico approves.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted 2026-06-16 - A.
 
 ## Decision record
 
@@ -94,26 +93,26 @@ non-binding until Nico approves.
 - 2026-06-15: Source checks preserved for Sports Interactive staff attributes,
   EA FC 26 Career Mode, Sports Data Campus set-piece specialization, Microsoft
   DDD/CQRS and Martin Fowler bounded contexts.
+- 2026-06-16: Nico accepted the recommended packet: **D1-D4 = B/A/A/A**.
 
-## Proposed packet
+## Accepted packet
 
-Recommended selection: **D1-D4 = B/A/A/A**.
+Accepted selection: **D1-D4 = B/A/A/A**.
 
-If accepted:
+Applied follow-up:
 
 - Update
   [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
   to close the staff-skill MVP decision gate as Option B.
 - Keep staff-skill public planning names non-final until a future schema/API
   pass.
-- Add `StaffPipelineQualityModifierSnapshot` as a planning name only if Nico
-  wants the explicit read-model name; otherwise extend the existing
-  `PipelineCoverageSnapshot` vocabulary.
+- Extend the existing `PipelineCoverageSnapshot` vocabulary with banded
+  staff-skill-aware modifier/explanation fields; do not add a new public
+  `StaffPipelineQualityModifierSnapshot` name yet.
 - Keep full staff skill cards, staff skill catalog, staff progression and
   staff synergy trees post-MVP unless separately approved.
 - Update Current-State, Research Summary, Research Map, Decision-Log and any
-  affected feature note from "pending" to "accepted" wording in the same
-  follow-up PR.
+  affected feature note from "pending" to "accepted" wording.
 
 ## Related
 
