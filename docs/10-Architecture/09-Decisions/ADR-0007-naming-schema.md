@@ -299,8 +299,9 @@ until a separate DSA/UGC/privacy/AI-transparency gate is prepared and approved.
   stream with `:narrative:*` labels.
 - **Phase 2 locale rollout** (Tier 2 buckets) post-MVP.
 - **Server-side world genesis** (per ADR-0019 §service extraction):
-  hot-seat-to-async-MP promotion (per ADR-0011) can re-generate the
-  same world server-side from the master seed.
+  server-created MP sessions can re-generate their own IP-clean world setup
+  server-side from the MP seed. FMX-189 forbids using hotseat/SP saves as MP
+  seed material.
 
 ## Design source
 

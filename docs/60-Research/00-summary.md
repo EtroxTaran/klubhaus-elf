@@ -7,6 +7,21 @@ updated: 2026-06-16
 
 # Research Summary
 
+## Investor MP Transition Neutralization (FMX-189, 2026-06-16)
+
+[[investor-mp-transition-neutralization-2026-06-16]] preserves the FMX-189
+Perplexity-first and source-checked packet for Investor MP-denied semantics and
+the broader SP/MP separation correction. Nico accepted a hard wall:
+singleplayer, hotseat, local and imported saves never seed or enter
+server-authoritative MP; multiplayer starts from MP-owned server setup state;
+Investor and any real-money time-saving/player-buy payload are
+`singleplayer_only`; MP -> SP export remains future/open and cannot reopen
+SP -> MP. Decision record:
+[[../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16]].
+Raw captures:
+[[raw-perplexity/raw-investor-mp-transition-neutralization-2026-06-16]],
+[[raw-perplexity/raw-investor-mp-transition-neutralization-source-checks-2026-06-16]].
+
 ## Sporting Core Context-definition Maturity (FMX-132, 2026-06-16)
 
 [[sporting-core-context-definition-maturity-2026-06-16]] preserves the FMX-132

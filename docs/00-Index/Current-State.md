@@ -58,6 +58,27 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > required for FMX-160; future numeric co-change thresholds or named cluster
 > stewards remain optional follow-up decisions once code/team history exists.
 
+> **FMX-189 absolute SP/MP separation accepted (2026-06-16).**
+> Nico clarified the global mode rule while closing Investor
+> `MP_DENIED` semantics: singleplayer, hotseat, local and imported saves are
+> never multiplayer-eligible and cannot seed, enter or mutate a
+> server-authoritative MP session. Multiplayer starts through the MP
+> lobby/server from MP-owned setup state; clients then send only MP commands.
+> Investor and any real-money time-saving/player-buy payload are
+> `singleplayer_only`; account payment/audit history may remain visible, but no
+> cash, roster, player, standings, fixture, ledger or entitlement payload can
+> reach MP. Research:
+> [[../60-Research/investor-mp-transition-neutralization-2026-06-16]] plus raw
+> Perplexity/source-check captures. Decision record:
+> [[../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16]].
+> Reconciled docs: [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]],
+> [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]],
+> [[../10-Architecture/09-Decisions/ADR-0005-save-format]],
+> [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]],
+> [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]] and
+> [[../30-Implementation/club-economy-commercial-contracts]]. MP -> SP export
+> remains future/open and cannot reopen SP -> MP promotion.
+
 > **FMX-155 loan-cap and obligation catalog accepted (2026-06-16).**
 > Branch `codex/fmx-155-loan-cap-obligation-catalog` closes ADR-0075's
 > Regulations data follow-up for loans. Nico accepted D1-D5:
@@ -2413,7 +2434,9 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   [[../50-Game-Design/progressive-disclosure-ui]],
   [[../50-Game-Design/tactics-system]])
 - **Singleplayer remains the long-term baseline**: every system ships first in
-  singleplayer; multiplayer rules are additive constraints. The MVP is a
+  singleplayer; multiplayer rules are additive constraints over shared system
+  concepts, not imported singleplayer state. FMX-189 forbids SP/hotseat/imported
+  saves as MP seeds. The MVP is a
   narrower Roguelite-first slice.
   ([[../50-Game-Design/singleplayer-baseline]])
 - **Match engine gameplay profile**: swappable server-authoritative
@@ -3015,9 +3038,10 @@ Implementation should start from
 - **ADR-0011 Server-Authoritative Multiplayer** (accepted 2026-05-16,
   gap B2). Server is the only authority for MP state. New product
   rules locked in this gap:
-  - **Hotseat handoff**: a local hotseat save can be promoted into an
-    async MP group via a one-way server-validated upload. After
-    acceptance the device save is read-only for the promoted club.
+  - **FMX-189 mode separation amendment**: singleplayer, hotseat, local and
+    imported saves are not multiplayer-eligible. MP sessions are created by
+    the server from MP-owned setup state; no SP/hotseat/imported payload can
+    seed MP.
   - **AI vs AI match policy**: server simulates every fixture with the
     same deterministic engine contract and a relevance-based quality
     profile. Human-involving matches store full event logs. AI vs AI

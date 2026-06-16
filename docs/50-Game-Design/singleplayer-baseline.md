@@ -3,7 +3,7 @@ title: Singleplayer Baseline
 status: draft
 tags: [game-design, mode, singleplayer, baseline]
 created: 2026-05-16
-updated: 2026-06-11
+updated: 2026-06-16
 type: game-design
 binding: false
 related: [[README]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/mode-design-research]], [[../60-Research/match-engine-runtime-strategy]], [[mode-create-a-club-roguelite]], [[mode-manage-a-club-career]], [[match-engine]], [[async-multiplayer-private-group]]
@@ -26,6 +26,10 @@ Singleplayer is the **full reference experience**, not the lite mode.
 Multiplayer rules are derived from singleplayer by *adding* constraints
 (deadlines, defaults, no-mid-week-mode-switches). Approved at the product
 level.
+
+FMX-189 clarifies that "derived" means rules/system concepts are reused, not
+that singleplayer state carries into multiplayer. Singleplayer, hotseat and
+imported/local saves are never multiplayer-eligible.
 
 > MVP sequencing note: this remains the long-term reference experience. The MVP
 > is a narrower [[mode-create-a-club-roguelite]] first playable per
@@ -83,6 +87,7 @@ Per [[../10-Architecture/09-Decisions/ADR-0005-save-format]]:
 - Multiple slots per profile.
 - Each save is self-contained (game-version + dataset version included).
 - Export / import as a single JSON file (with version migration on import).
+  These imports are singleplayer/local authority only; they cannot seed MP.
 
 ## 6. Compute model
 

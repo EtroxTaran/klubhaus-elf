@@ -18,6 +18,13 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Investor MP Transition Neutralization](../60-Research/investor-mp-transition-neutralization-2026-06-16.md) -
+  FMX-189 Perplexity-first and source-checked packet for the accepted absolute
+  SP/MP separation rule. Nico clarified that singleplayer, hotseat, local and
+  imported saves never seed server-authoritative MP; Investor and real-money
+  time-saving payloads are `singleplayer_only`; MP -> SP remains future/open.
+  Decision record:
+  [FMX-189 decision record](../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16.md).
 - [Sporting Core Context-definition Maturity](../60-Research/sporting-core-context-definition-maturity-2026-06-16.md) -
   FMX-132 Perplexity-first and source-checked packet for defining Match,
   Training and Squad & Player as three draft Original-11 context-definition
@@ -630,6 +637,20 @@ design notes.
   [[../60-Research/raw-perplexity/raw-football-manager-monetization-precedents-2026-06-13]],
   [[../60-Research/raw-perplexity/raw-no-p2w-legal-store-policy-2026-06-13]],
   [[../60-Research/raw-perplexity/raw-no-p2w-test-gate-tooling-2026-06-13]].
+
+## Investor MP Transition Neutralization (FMX-189, 2026-06-16)
+
+- [[../60-Research/investor-mp-transition-neutralization-2026-06-16]] -
+  FMX-189 synthesis for `InvestorAllowState=MP_DENIED` and the broader
+  SP/MP mode-separation correction. The accepted rule is a hard wall, not a
+  neutralization filter: singleplayer, hotseat, local and imported saves are
+  never multiplayer-eligible; MP sessions are server-created from MP-owned
+  setup state; Investor/time-saving/player-buy payloads are SP-only. Decision
+  record:
+  [[../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16]].
+  Raw captures:
+  [[../60-Research/raw-perplexity/raw-investor-mp-transition-neutralization-2026-06-16]],
+  [[../60-Research/raw-perplexity/raw-investor-mp-transition-neutralization-source-checks-2026-06-16]].
 
 ## Monetization Legal Gates (FMX-194, 2026-06-13)
 

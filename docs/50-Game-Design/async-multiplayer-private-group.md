@@ -3,7 +3,7 @@ title: Async Multiplayer - Private Group with Two Cadence Models
 status: draft
 tags: [game-design, mode, multiplayer, async]
 created: 2026-05-16
-updated: 2026-06-11
+updated: 2026-06-16
 type: game-design
 binding: false
 related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/match-engine-runtime-strategy]], [[singleplayer-baseline]], [[match-engine]], [[watch-party-and-conference]], [[transfer-negotiations-p2p]], [[../10-Architecture/state-machines/league-week]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
@@ -25,6 +25,10 @@ related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Rese
 The flagship multiplayer mode. Invite-only friend groups, server-paced,
 with **two configurable cadence models** (Fixed and Dynamic) sharing one
 core. Approved at the product level; tuning remains `draft`.
+
+FMX-189 clarifies the creation boundary: private async groups start from
+server-owned MP setup state. Singleplayer, hotseat, local or imported saves
+cannot be used to seed or join this mode.
 
 ## 1. Approved product rules
 
@@ -52,6 +56,10 @@ At group creation the admin picks:
 - **Cadence parameters** (see §4).
 - **Watch-party permissions**.
 - **Pause-vote quorum**.
+
+The admin does not upload or promote a singleplayer/hotseat save. All clubs,
+fixtures, economy, rosters and entitlement-relevant state in the group are
+created or assigned through the MP server flow.
 
 ## 3. Cadence model A: Fixed
 

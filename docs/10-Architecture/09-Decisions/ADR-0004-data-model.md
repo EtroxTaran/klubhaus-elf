@@ -3,7 +3,7 @@ title: ADR-0004 Data Model — Domain Entities, Schemas, Saves
 status: superseded
 tags: [adr, architecture, data, surrealdb, dexie, schema, saves]
 created: 2026-05-15
-updated: 2026-06-11
+updated: 2026-06-16
 accepted_at: 2026-05-16
 type: adr
 binding: true
@@ -15,6 +15,12 @@ related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-mult
 # ADR-0004: Data Model — Domain Entities, Schemas, Saves
 
 > **Superseded — historical memory only.** This document is superseded by [[ADR-0027-postgres-data-model]] and must not be implemented. The current decision/spec lives there; see also [[../../00-Index/Decision-Log]] for the authoritative index. Retained for historical context per the vault's supersede discipline.
+>
+> **FMX-189 historical correction (2026-06-16):** the old Hotseat -> MP
+> promotion idea below was explicitly revoked by
+> [[ADR-0011-server-authoritative-multiplayer]] and
+> [[../../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16]].
+> Singleplayer, hotseat and imported/local saves are not multiplayer-eligible.
 
 ## Status
 
@@ -85,9 +91,10 @@ Each **per-save DB** owns the mutable game state for one save:
 leagues, clubs, squads, training, transfers, matches, watch-parties,
 notifications, fan-segment state, sponsor contracts.
 
-Hotseat → MP promotion is a **snapshot-and-import** between two
-per-save DBs orchestrated by the platform DB (per ADR-0011 §Hotseat
-handoff + D14 §1).
+Historical note: the original gap-B2 design described Hotseat -> MP promotion
+as a snapshot/import between per-save DBs. FMX-189 revoked that path. Current
+architecture creates multiplayer state only through server-authenticated MP
+session provisioning; SP/hotseat/imported saves are not MP seed material.
 
 ### 2. Schema strategy — hybrid SCHEMAFULL/SCHEMALESS
 
@@ -303,8 +310,8 @@ table trap (which makes cross-pool queries painful).
   every other context (per ADR-0019).
 - Deterministic match replay is straightforward: every save persists
   its full RNG state per D8.
-- Encrypted at rest by default (per B2): tamper-resistant saves +
-  trustworthy hotseat → MP handoff.
+- Encrypted at rest by default (per B2): tamper-resistant saves and portable
+  backups. FMX-189 removes any multiplayer authority from those exports.
 - Save format is forward-compatible (versioned envelope + phased
   migrations).
 - Women's football, junior open, mixed-eligibility competitions are
@@ -378,9 +385,9 @@ CI enforcement:
 - [[../../60-Research/determinism-and-replay]] — D8 locked PRNG / RNG
   streams / replay format / numeric representation / 12
   save-determinism rules.
-- [[ADR-0011-server-authoritative-multiplayer]] — B2 locked hotseat
-  handoff (snapshot-and-import between per-save DBs); AI vs AI seed-
-  only storage; encrypted saves.
+- [[ADR-0011-server-authoritative-multiplayer]] — B2 locked the historical
+  hotseat handoff idea plus AI vs AI seed-only storage and encrypted saves;
+  FMX-189 later revoked the handoff and made SP/MP separation absolute.
 - [[ADR-0013-transactional-outbox]] — B4 locked outbox table layout
   (lives in platform DB).
 - Perplexity research, 2026-05-16 (gap A4). Four-question Q&A:

@@ -3,13 +3,13 @@ title: ADR-0027 PostgreSQL Data Model (per-save schema isolation, Drizzle source
 status: accepted
 tags: [adr, architecture, data, postgresql, drizzle, schema, saves]
 created: 2026-05-19
-updated: 2026-06-15
+updated: 2026-06-16
 accepted_at: 2026-05-19
 type: adr
 binding: true
 supersedes: ADR-0004-data-model
 amended_by: [[ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]
-related: [[ADR-0004-data-model]], [[ADR-0021-revised-tech-stack]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../bounded-context-map]]
+related: [[ADR-0004-data-model]], [[ADR-0021-revised-tech-stack]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../../60-Research/investor-mp-transition-neutralization-2026-06-16]], [[../../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16]], [[../bounded-context-map]]
 ---
 
 # ADR-0027: PostgreSQL Data Model (per-save schema isolation, Drizzle source of truth)
@@ -80,18 +80,18 @@ For each major substrate question:
   catalog only after the encrypted save blob or equivalent logical archive
   artifact has been written, checksummed and indexed; unarchive/re-activation
   re-provisions the schema before the save becomes active again.
-- **Hotseat → MP promotion** ([[ADR-0011-server-authoritative-multiplayer]])
-  = transactional `INSERT … SELECT` across schemas in the same Postgres
-  database (no two-phase commit needed). Cheaper and safer than the
-  SurrealDB cross-namespace export/import.
+- **Multiplayer session provisioning**
+  ([[ADR-0011-server-authoritative-multiplayer]]) = server-created MP
+  `save_<uuidv7hex>` schema from MP setup state only. Singleplayer, hotseat,
+  portable-import and local-save payloads are not eligible as source state.
 
 Rationale: only schema-per-save *mechanically* enforces the
 [[ADR-0019-modular-monolith-ddd]] §6 strict isolation contract — a wrong
 `search_path` yields **relation-not-found**, never a silent cross-tenant
 read. Row-level tenancy fails this test (a missed `WHERE saveId=` predicate
 silently leaks across saves). Database-per-save breaks single-node connection
-economics and cross-database transactional Hotseat import on Hetzner. See
-[[../11-Risks]] for the accepted-risk row.
+economics and adds avoidable operational overhead on Hetzner. See [[../11-Risks]]
+for the accepted-risk row.
 
 ### 2. Per-save migration model — lazy on save-open (A2)
 
@@ -265,9 +265,10 @@ Every choice closes one of the redesign questions surfaced by the
 SurrealDB-mechanic inventory. Schema-per-save is the only option that
 preserves the strict-isolation contract mechanically (the most load-bearing
 ADR-0019 §6 invariant). Lazy migration matches the resim-driven save model
-without forcing deploy-time fan-out. Drizzle-as-source-of-truth + a
-generated standalone Zod mirror reconciles ADR-0021's "no codegen of the
-schema itself" with ADR-0004's "validation mirror is a standalone
+without forcing deploy-time fan-out. Multiplayer provisioning stays inside the
+server-owned MP path and does not import SP/hotseat schemas into MP. Drizzle-as-
+source-of-truth + a generated standalone Zod mirror reconciles ADR-0021's "no
+codegen of the schema itself" with ADR-0004's "validation mirror is a standalone
 zero-dep package". The integer-only model is preserved in the type map.
 Cross-context branded UUIDs preserve [[ADR-0019-modular-monolith-ddd]] §6.
 
@@ -277,8 +278,8 @@ Positive:
 
 - Strict isolation enforced by Postgres, not by convention.
 - `DROP SCHEMA … CASCADE` makes delete and verified archive cleanup simple.
-- Hotseat → MP import is a same-database transaction (no 2PC, no cross-DB
-  copy).
+- Server-created MP session provisioning is a same-cluster operation and never
+  trusts SP/hotseat/imported save payloads as MP truth.
 - Single connection pool + one whole-cluster backup/PITR posture on Hetzner;
   per-schema logical artifacts are archive/restore tools, not the only backup.
 - Drizzle types flow end-to-end (no codegen drift).

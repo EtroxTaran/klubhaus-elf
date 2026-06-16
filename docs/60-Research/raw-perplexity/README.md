@@ -17,6 +17,16 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-189 investor MP transition neutralization (2026-06-16)
+
+Perplexity-first discovery and targeted source checks for `InvestorAllowState`
+MP-denied semantics and the accepted global SP/MP separation rule.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-investor-mp-transition-neutralization-2026-06-16]] | Perplexity discovery pass for SP/MP save separation, SP-only paid time-saving, server-authoritative MP, comparable-game precedents and platform disclosure implications | [[../investor-mp-transition-neutralization-2026-06-16]] |
+| [[raw-investor-mp-transition-neutralization-source-checks-2026-06-16]] | Source checks for Apple, Google Play, Google Voided Purchases, Hattrick, Last Epoch and Minecraft; weak community/tutorial sources left pattern-only | [[../investor-mp-transition-neutralization-2026-06-16]] |
+
 ## FMX-132 sporting core context definitions (2026-06-16)
 
 Perplexity-first research and targeted source checks for defining Match,

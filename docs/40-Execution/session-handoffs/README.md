@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-16-fmx-189-investor-mp-separation]] - FMX-189 Investor MP
+  separation: raw Perplexity/source-check captures, synthesis, accepted
+  decision record and Canon patches for ADR-0011/0027/0005/0063, GD-0022 and
+  Commercial contracts. Current truth: SP, hotseat, local and imported saves
+  are never multiplayer-eligible; MP starts from server-owned setup state;
+  Investor/time-saving payloads are singleplayer-only.
 - [[2026-06-16-fmx-132-sporting-core-contexts]] - FMX-132 Sporting Core
   context-definition packet: raw Perplexity/source-check captures, synthesis,
   decision queue and draft ADR-0129/0130/0131 for Match, Training and Squad &

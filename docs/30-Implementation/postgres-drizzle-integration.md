@@ -162,7 +162,7 @@ Reinforces [[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]] §6
 | Isolation test | open `withSave(saveA)`, attempt to read a `saveB` table → expect relation-not-found |
 | Outbox atomicity | in one tx write a state row + outbox row, force rollback → assert neither persists |
 | Bounds (fast-check) | generate money/bp/attribute/coordinate values; assert CHECK constraints reject out-of-range and Zod mirrors the same bounds |
-| Hotseat import | `provisionSave(src)`, write state, `snapshotAndImport(src,dst)` in one tx → assert dst is state-equivalent and src untouched |
+| MP save provisioning | `createMultiplayerSave(sessionSetup)`, provision schema from MP-owned setup state -> assert no SP/hotseat/import payload is accepted |
 
 ## SurrealDB
 

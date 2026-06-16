@@ -4,7 +4,7 @@ status: accepted
 amended_by: [[ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]
 tags: [adr, save, encryption, compression, versioning, e2ee]
 created: 2026-05-15
-updated: 2026-06-15
+updated: 2026-06-16
 accepted_at: 2026-05-16
 type: adr
 binding: true
@@ -231,6 +231,13 @@ type SavePayload = {
 }
 ```
 
+Portable exports and imported saves are not multiplayer seed authority. FMX-189
+amends the save contract: a `singleplayer` or `hotseat` payload is
+`multiplayerEligible=false` by policy, and an `mp_member` payload is a local
+cache/backup of server-owned MP state, not a portable source for creating or
+joining another MP session. No save envelope can override
+[[ADR-0011-server-authoritative-multiplayer]]'s server-created MP lifecycle.
+
 Each context's `*Snapshot` is the union of its typed-column
 (SCHEMAFULL-governance) + `jsonb`-payload (SCHEMALESS-governance) table
 rows scoped to this save ([[ADR-0027-postgres-data-model]] §4). Per
@@ -447,9 +454,9 @@ CI enforcement:
 - [[ADR-0004-data-model]] → substrate now [[ADR-0027-postgres-data-model]]
   (gap A4) — envelope shape sketch, save lifecycle, Phase-2 cloud-sync
   direction.
-- [[ADR-0011-server-authoritative-multiplayer]] (gap B2) —
-  encryption mandate, hotseat → MP handoff, AI vs AI seed-only
-  storage.
+- [[ADR-0011-server-authoritative-multiplayer]] (gap B2 + FMX-189) —
+  encryption mandate, server-created MP lifecycle, absolute SP/MP separation
+  and AI vs AI seed-only storage.
 - [[../../60-Research/determinism-and-replay]] (gap D8) — RNG state
   schema, engine-version pinning, 12 save-determinism rules.
 - [[../../60-Research/surrealdb-schema-patterns]] (gap D14, original

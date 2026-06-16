@@ -1256,7 +1256,8 @@ password, with the same Redis throttling as password reset.
 - [[../10-Architecture/09-Decisions/ADR-0005-save-format]] §3 KDF,
   §10 lifecycle, §11 restore flow.
 - [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
-  encryption mandate, hotseat → MP handoff implies auth.
+  encryption mandate plus FMX-189 server-created MP lifecycle and SP/MP
+  separation.
 - [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
   audit events `auth.signup_verified`, `auth.login_*`,
   `auth.recovery_code_used`, `auth.anomaly.*`.
