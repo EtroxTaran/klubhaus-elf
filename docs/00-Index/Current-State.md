@@ -836,7 +836,7 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../60-Research/raw-perplexity/raw-awards-honours-records-hof-determinism-2026-06-06|determinism]])
 > grounds proposed
 > [[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract]]
-> and draft [[../50-Game-Design/GD-0032-awards-honours-records-and-hall-of-fame]]. **Extends
+> and [[../50-Game-Design/GD-0032-awards-honours-records-and-hall-of-fame]]. **Extends
 > ADR-0051 (Manager & Legacy) additively** (new ADR + one-line Related pointer; **no rewrite**)
 > to own awards/honours generation, the **in-world Hall of Fame** and the **cross-save
 > legacy/HoF + legend ranking + manager prestige** (read-only-at-world-gen). **Per-save
@@ -851,11 +851,13 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > ADR-0051 · per-save records + cross-save legends · raw facts + versioned formula · **full HoF
 > in MVP** (Nico override of the recommended reserved-stub — all magnitudes routed to **GD-0043
 > `legacy.hof`** calibration; era-normalization + scarcity caps built in as first-class knobs). **Declares no
-> new `*Rng`** (in-world induction is a pure deterministic formula). **Open ratification item:**
-> stochastic in-world voting would need a seeded `LegacyRng`/`HoFRng` (ADR-0083 proposes the
-> no-new-RNG path). Archetype taxonomy/prestige-ladder = post-MVP (G3); national-team inputs
-> reserved (FMX-84). bounded-context-map patch proposed-not-applied (ratify gate; no
-> context-count change). Authored `proposed`/`draft`; awaiting Nico ratify.
+> new `*Rng`**: in-world induction is a pure deterministic formula and "voting" is deterministic
+> presentation flavour. **FMX-151 reconciliation (2026-06-16):** the stale open HoF-voting
+> fork is closed against the 2026-06-08 ratification record; future stochastic voting requires a
+> fresh Nico decision and an existing-stream sub-label, not a top-level `LegacyRng`/`HoFRng`.
+> Archetype taxonomy/prestige-ladder = post-MVP (G3); national-team inputs are contracted as a
+> forward-additive reserved `factId` via FMX-84. bounded-context-map patch landed at ratify
+> (no context-count change).
 
 > **FMX-94 Statistics & Analytics read-model owner (2026-06-05).**
 > [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]]

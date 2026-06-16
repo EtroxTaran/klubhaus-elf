@@ -212,8 +212,8 @@ minimize/pseudonymize + retain-fact-sever-identifier.
 - **M2 · Hall-of-Fame voting RNG** ([[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract]]) —
   pure deterministic induction formula (no new `*Rng`) **→** vs stochastic `LegacyRng`/`HoFRng`.
   **→ pure formula** for MVP; if stochastic voting later, use an existing-stream sub-label, not a new
-  top-level RNG. Draft ADR-0113 / FMX-138 preserves this as a pending portfolio-principle
-  recommendation, not a binding amendment until Nico approves D1-D3.
+  top-level RNG. FMX-151 reconciled stale Linear/open-question wording on 2026-06-16; draft
+  ADR-0113 / FMX-138 must not silently reopen this accepted pure declaration.
 - **M3 · Pitch-condition state ownership** ([[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]]) —
   Stadium Operations keeps the pitch-condition state/aggregate; Environment & Climate owns weather as
   a consumed input **→** vs moving the pitch aggregate into Environment & Climate. **→ Stadium Ops keeps
