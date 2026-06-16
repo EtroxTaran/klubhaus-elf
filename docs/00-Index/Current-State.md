@@ -24,6 +24,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-186 erasure-vs-HGB retention partition accepted (2026-06-16).**
+> Branch `codex/fmx-186-erasure-hgb-retention-partition` defines the
+> field-level payment/receipt/shared-history partition for GDPR Art. 17 erasure
+> vs HGB/AO statutory retention. Nico accepted D1-D3: current HGB/AO 10/8/6
+> retention buckets, detached account-to-finance identity mapping, and hybrid
+> shared-history handling (delete private data, anonymize shared game/UGC/economy
+> history, retain minimal pseudonymous moderation/fraud/chargeback/audit evidence
+> under narrow legal purposes). Research
+> [[../60-Research/erasure-vs-hgb-retention-partition-2026-06-16]] plus raw
+> Perplexity/source-check captures grounds accepted
+> [[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]
+> and the legal-review evidence hook
+> [[../40-Compliance/payment-retention-legal-review-evidence-2026-06-16]].
+> Legal/accounting review remains required before real paid activation and can
+> refine provider-specific fields without reopening the accepted architecture
+> principle. Decision record:
+> [[../40-Execution/fmx-186-erasure-hgb-retention-decision-queue-2026-06-16]].
+
 > **FMX-140 live-match pause ratification cleanup applied (2026-06-16).**
 > Branch `codex/fmx-140-in-match-pause-vote-ratification` reconciles the
 > accepted ADR-0087/GD-0035 pause-vote packet with Nico's FMX-140 answers.

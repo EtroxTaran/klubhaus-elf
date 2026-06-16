@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-16-fmx-186-erasure-hgb-retention]] - FMX-186 erasure-vs-HGB
+  retention packet: raw Perplexity/source-check captures, synthesis, accepted
+  decision record, accepted ADR-0127 and legal-review evidence hook. Nico
+  accepted current HGB/AO 10/8/6 buckets, detached account-to-finance mapping
+  and hybrid shared-history handling; legal/accounting review remains open
+  before paid activation.
 - [[2026-06-16-fmx-140-live-match-pause-ratification]] - FMX-140 live-match
   pause ratification cleanup: raw Perplexity/source-check captures, synthesis,
   accepted decision queue and ADR-0087/GD-0035/state-machine cleanup. Nico
