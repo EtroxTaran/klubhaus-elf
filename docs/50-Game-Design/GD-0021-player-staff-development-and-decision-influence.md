@@ -3,7 +3,7 @@ title: GD-0021 Player and Staff Development and Decision Influence
 status: accepted
 tags: [game-design, gddr, player-development, staff, transfers, skills, fmx-38]
 created: 2026-05-28
-updated: 2026-06-14
+updated: 2026-06-15
 type: game-design
 binding: false
 supersedes:
@@ -24,6 +24,7 @@ related:
   - [[tactics-system]]
   - [[../60-Research/player-staff-development-decision-model-2026-05-28]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+  - [[../60-Research/staff-skill-mvp-scope-2026-06-15]]
   - [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]]
   - [[../60-Research/systemic-events-player-development-venue-ops]]
   - [[../60-Research/player-strength-presentation]]
@@ -86,8 +87,11 @@ box modifiers.
   deltas, match effects or economy facts.
 - **Player skills are the first active skill slice per accepted GD-0020.**
   They are visible specialisations, not attributes and not mandatory meta-builds.
-- **Staff skills are re-opened as an MVP decision.** The recommended planning
-  option is narrow staff pipeline modifiers, but this requires Nico approval.
+- **Staff skills are MVP-active only as narrow pipeline modifiers.** FMX-152
+  accepted Option B on 2026-06-16: People owns `StaffSkillProfileSnapshot`,
+  Staff Operations maps it through role assignment into staff-skill-aware
+  `PipelineCoverageSnapshot` bands, and Training, Scouting, Medical and
+  Match-Day apply their own bounded rules.
 
 ## Phase model
 
@@ -98,7 +102,7 @@ box modifiers.
 | Weekly player development | Active foundation | Final formula/caps later | Deeper loans and long-save tuning |
 | Player skills/perks | Accepted active slice | Catalog, caps, snapshot policy | Larger catalog and deeper acquisition |
 | Staff Operations | Active context | None | Staff continuity/turnover depth |
-| Staff skills | Target model | Option A/B/C below | Full staff skill UI/catalog if approved |
+| Staff skills | Narrow pipeline modifiers | Formula, bands and tuning only | Full staff skill UI/catalog if separately approved |
 | People/persona/relationships | Accepted context and narration input | Relationship mechanics depth gates | Deeper relationship UI and agent game |
 | Transfer decision influence | Active foundation | People read-model bridge | Richer agent and media pressure |
 
@@ -155,23 +159,38 @@ box modifiers.
 | Role assignment | Staff Operations | Training, Transfer, Squad & Player, Match | Pipeline coverage and specialist availability | MVP foundation |
 | PipelineCoverageSnapshot | Staff Operations | UI and consuming domains | Bottleneck explanations and quality multipliers | MVP foundation |
 | Staff specialisation metadata | Staff Operations | Consuming domains | Coach/scout/medical/set-piece emphasis | MVP hook |
-| StaffSkillProfileSnapshot | People | Staff Operations + consumers | Optional staff-skill-aware pipeline effects | Decision gate |
+| StaffSkillProfileSnapshot | People | Staff Operations + consumers | Narrow staff-skill-aware pipeline effects | MVP accepted via FMX-152 |
 | Staff persona/relationships | People | Narrative, Training/Transfer as context | Advice tone, trust/conflict, future staff dynamics | MVP narration; mechanics gated |
 | Staff continuity/turnover | Staff Operations + People | Training, Squad & Player | Disruption and adaptation effects | Post-MVP |
 
 ## Staff-skill MVP decision
 
-Nico needs to decide whether staff skills become active in MVP.
+Nico accepted Option B on 2026-06-16 via FMX-152.
 
 | Option | Decision | Outcome |
 |---|---|---|
 | A - Target-only | Staff skills stay documented for future design only. | Staff has contracts, roles, coverage and specialisations, but no skill-profile mechanics. |
-| B - Narrow pipeline modifiers | Staff skills can affect only Staff Operations pipeline-quality read models consumed by Training, Scouting, Medical and Match-Day. | Recommended. Staff matters mechanically without full staff-card gameplay. |
+| B - Narrow pipeline modifiers | Staff skills can affect only Staff Operations pipeline-quality read models consumed by Training, Scouting, Medical and Match-Day. | **Accepted for MVP.** Staff matters mechanically without full staff-card gameplay. |
 | C - Full staff skill cards | Staff skill profiles are visible and mechanically active across systems. | Richest fantasy, but too broad without a catalog, UI and balance pass. |
 
-Recommendation: **Option B**. It is the smallest useful MVP activation. It must
-still be approved explicitly; until then, implementation keeps staff skills as
-target-model hooks only.
+Decision: **Option B**. It is the smallest useful MVP activation. It does not
+approve a full staff skill-card UI/catalog, staff progression, staff synergy
+trees, numeric weights, thresholds, skill names, caps or formulas.
+
+FMX-152 refreshed this gate on 2026-06-15 with Perplexity-first research,
+source checks and a Nico decision queue; Nico accepted D1-D4 = B/A/A/A on
+2026-06-16:
+[[../60-Research/staff-skill-mvp-scope-2026-06-15]] and
+[[../40-Execution/fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15]].
+
+Accepted contract:
+
+- People owns `StaffSkillProfileSnapshot`.
+- Staff Operations consumes the snapshot plus role assignment and extends
+  `PipelineCoverageSnapshot` with staff-skill-aware modifier/explanation bands.
+- Training, Scouting, Medical and Match-Day consume the staff-pipeline snapshot
+  and apply their own bounded formulas.
+- MVP visibility is banded pipeline explanation, not full visible staff cards.
 
 ## Candidate read models
 
@@ -230,12 +249,13 @@ Feature: Player and staff decision influence
 
 ## Open
 
-- Staff-skill MVP option A/B/C.
 - Final first player skill catalog, tier names, caps and trigger envelopes.
 - Exact `DevelopmentDecisionContext` and `TransferDecisionContext` fields.
 - Relationship edge thresholds, decay and anti-spam rules.
-- Whether staff-skill effects are visible in MVP UI or only explained through
-  pipeline coverage.
+- Staff-skill formula weights, modifier bands, tuning envelopes and consumer
+  formulas.
+- Full staff skill cards, staff skill catalog, staff progression and staff
+  synergy trees remain post-MVP unless separately approved.
 
 ## Rationale
 
@@ -258,7 +278,7 @@ Negative / constraints:
 - Keeps an accepted factor-matrix GDDR aligned with GD-0020, GD-0027 and ADR-0052.
 - Requires discipline so People does not duplicate Squad, Training or Transfer
   facts.
-- Staff-skill activation cannot proceed until Nico resolves the option gate.
+- Staff-skill implementation still requires formula/band tuning before code.
 
 ## Supersedes
 
@@ -268,7 +288,7 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 - [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]]
-- Future ADR/GDDR if staff-skill MVP activation is accepted.
+- Future ADR/GDDR only if full staff skill-card gameplay is promoted.
 
 ## Related
 

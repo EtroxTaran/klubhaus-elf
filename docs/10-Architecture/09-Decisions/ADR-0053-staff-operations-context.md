@@ -3,7 +3,7 @@ title: ADR-0053 Staff Operations Context
 status: accepted
 tags: [adr, architecture, ddd, staff, backroom, lifecycle, fmx-26, fmx-36, accepted]
 created: 2026-05-28
-updated: 2026-06-12
+updated: 2026-06-16
 type: adr
 binding: true
 supersedes:
@@ -23,6 +23,7 @@ related:
   - [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
   - [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
   - [[../../60-Research/player-staff-development-decision-model-2026-05-28]]
+  - [[../../60-Research/staff-skill-mvp-scope-2026-06-15]]
   - [[../../60-Research/staff-backroom-bounded-context-2026-05-28]]
   - [[../../60-Research/raw-perplexity/raw-staff-backroom-2026-05-28]]
 ---
@@ -192,12 +193,12 @@ arguments:
   query; Staff Operations references staff by `ActorId`. Discipline
   required to not duplicate persona/skill data. Mitigation: explicit
   query boundary - Staff Operations never stores persona traits.
-- **GD-0020 staff-skill activation post-MVP.** Staff skills as gameplay
-  effects are explicitly deferred by FMX-23. This ADR plans the
-  structural ownership; effect activation comes in a later beat. Not
-  blocking.
+- **Full staff skill-card gameplay remains post-MVP.** FMX-152 accepts only
+  narrow staff-skill-aware pipeline modifiers through GD-0021. This ADR owns the
+  structural Staff Operations side; consumer contexts still own exact formulas.
 
-Status stays `proposed` / `binding: false` until Nico ratifies.
+FMX-152 amends only the staff-skill activation wording; the Staff Operations
+bounded-context decision remains accepted as recorded above.
 
 ## Decision
 
@@ -272,7 +273,8 @@ Draft read models:
 - `RoleAssignmentBoard` - all configured slots with assigned actors and
   free slots.
 - `PipelineCoverageSnapshot` - six-pipeline coverage view plus quality
-  multipliers for the UI bottleneck visualiser.
+  multipliers and staff-skill-aware explanation bands for the UI bottleneck
+  visualiser.
 - `WageScheduleProjection` - weekly + monthly + annual projected wage
   cost per club, broken down by role.
 
@@ -341,11 +343,11 @@ Negative:
   ratification).
 - Requires event consumption across Training, Transfer, Squad & Player,
   Match, Club Management and Notification. Coordination grows.
-- Staff-skill effect activation (GD-0020 post-MVP) needs follow-up
-  ADRs / GDDRs naming which consuming contexts apply which effects. FMX-38 now
-  tracks the MVP option gate in
-  [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]:
-  target-only, narrow pipeline modifiers or full staff skill-card gameplay.
+- FMX-152 activates staff skills only as narrow Staff Operations pipeline
+  modifiers through
+  [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]].
+  Exact consumer formulas, modifier bands and full staff skill-card gameplay
+  remain follow-up design/balance work.
 - Pipeline-coverage read-model schema is provisional until playtest.
 
 ## Supersedes
@@ -368,9 +370,11 @@ None
 - [[../../50-Game-Design/GD-0007-youth]] - Head-of-Youth + youth-scout
   wage→quality coupling.
 - [[../../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
-  - Staff target model; staff-skill effect activation post-MVP.
+  - Staff target model; FMX-152 narrow pipeline modifier activation.
 - [[../../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]]
-  - Factor matrices and staff-skill MVP option gate.
+  - Factor matrices and accepted staff-skill MVP Option B.
+- [[../../60-Research/staff-skill-mvp-scope-2026-06-15]] - FMX-152
+  source-checked decision packet for narrow staff pipeline modifiers.
 - [[../../60-Research/player-staff-development-decision-model-2026-05-28]]
   - FMX-38 research synthesis for player/staff decision influence.
 - [[ADR-0019-modular-monolith-ddd]] - modular monolith ground rules.

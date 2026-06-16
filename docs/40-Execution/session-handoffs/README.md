@@ -42,6 +42,11 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-15-fmx-152-staff-skill-mvp-scope]] - FMX-152 staff-skill MVP
+  scope packet: raw Perplexity/source-check captures, synthesis and decision
+  queue. Nico accepted D1-D4 = B/A/A/A on 2026-06-16: narrow Staff Operations
+  pipeline modifiers, GD-0021 promotion, banded pipeline explanations and
+  People -> Staff Operations -> consumer-context contract boundary.
 - [[2026-06-15-fmx-130-career-bundestrainer-reconciliation]] - FMX-130 Career
   Bundestrainer reconciliation: raw Perplexity/source-check captures,
   synthesis, accepted decision queue and Career-mode cleanup. Nico chose

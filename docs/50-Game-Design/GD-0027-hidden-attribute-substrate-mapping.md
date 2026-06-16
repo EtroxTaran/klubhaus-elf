@@ -235,7 +235,8 @@ join, but two owners to keep aligned.
 - **GD-0043 `people.personaLabels` calibration:** all axis/flag thresholds,
   knowledge% reveal bands per signal, the per-list visible-label cap (~2–3) +
   display priority — behind `personaLabelModelVersion`.
-- **GD-0021:** the mentoring numeric model (weights/decay/thresholds) + its staff-skill option gate.
+- **GD-0021:** the mentoring numeric model (weights/decay/thresholds) +
+  staff-skill modifier formula/band tuning after FMX-152 accepted Option B.
 - No blocking decisions remain (D1-D4 resolved live 2026-06-05).
 
 ## Calibration slot (FMX-141)

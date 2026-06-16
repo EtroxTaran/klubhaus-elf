@@ -3,7 +3,7 @@ title: Game Design Hub
 status: current
 tags: [game-design, index]
 created: 2026-05-15
-updated: 2026-06-15
+updated: 2026-06-16
 type: index
 binding: false
 related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[GD-0031-analytics-hub-and-statistics]], [[GD-0032-awards-honours-records-and-hall-of-fame]], [[GD-0033-national-team-dual-role]], [[GD-0044-create-a-club-roguelite-run-tuning]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../60-Research/national-team-dual-role-2026-06-06]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
@@ -113,8 +113,8 @@ Nico answers the FMX-192 decision queue.
 | [[GD-0017-mvp-scope-and-mode-sequencing]] | MVP scope & mode sequencing | accepted | ADR-0020 |
 | [[GD-0018-ai-narrative-personas-and-dialogue]] | AI narrative personas, Full Dialogue, All Active actor context, Narrative context, FMX-88 fallback coverage/no-export freeze and Playtest First evaluation | accepted | ADR-0030, ADR-0054 |
 | [[GD-0019-manager-archetype-roguelite-progression]] | Manager archetype roguelite progression; FMX-16 hooks, playtest-tunable taxonomy and prestige counterweight | accepted | ADR-0051 |
-| [[GD-0020-eos-player-skills-personas-and-people]] | EOS player skills/perks, staff target skills, personas and People-context planning | accepted | ADR-0052 |
-| [[GD-0021-player-staff-development-and-decision-influence]] | Player/staff development and decision-influence factor matrices; staff-skill MVP gate | accepted | ADR-0052, ADR-0053 |
+| [[GD-0020-eos-player-skills-personas-and-people]] | EOS player skills/perks, FMX-152 narrow staff pipeline modifiers, personas and People-context planning | accepted | ADR-0052 |
+| [[GD-0021-player-staff-development-and-decision-influence]] | Player/staff development and decision-influence factor matrices; FMX-152 accepts staff-skill Option B narrow pipeline modifiers | accepted | ADR-0052, ADR-0053 |
 | [[GD-0022-economy-commercial-impact-and-contracts]] | Economy commercial impact map; ticketing, season-ticket lifecycle/accrual, fan-demand elasticity, commercial contract lifecycle/breach, catering, merchandise, cup/competition revenue profiles, matchday operating costs, fan events and Investor clean SP cash | accepted | ADR-0050, ADR-0058 |
 | [[GD-0023-ai-club-economy-behaviour]] | AI club economy behaviour; five financial-policy archetypes over manager archetypes, three financial regimes (Healthy/Stressed/Distressed), soft diegetic homeostasis (no AI stat cheats), staged distress with rare bounded insolvency, tiered fidelity, country distress personalities, structured rationale tags | accepted | ADR-0050, ADR-0051, ADR-0058 |
 | [[GD-0024-ai-world-drift-algorithm]] | AI world-drift algorithm; Rising Rival, Giant Collapse and Continental Era Shift / rising nations as deterministic, legible, capped structural drift events with GD-0043 `world.drift` calibration handoff | accepted | ADR-0071 |
@@ -202,9 +202,10 @@ Nico answers the FMX-192 decision queue.
 - [[youth-academy-and-development]] - CA/PA range, age curves, loan rules.
 - [[training-load-and-medicine]] - training blocks, load model, medical pipeline.
 - [[GD-0020-eos-player-skills-personas-and-people]] - accepted EOS player
-  skills/perks, staff target skills and persona/relationship model.
+  skills/perks, narrow staff pipeline modifiers and persona/relationship model.
 - [[GD-0021-player-staff-development-and-decision-influence]] - accepted factor
-  matrices for development, match, transfer and staff-pipeline decisions.
+  matrices for development, match, transfer and staff-pipeline decisions;
+  FMX-152 accepts staff-skill Option B.
 - [[GD-0027-hidden-attribute-substrate-mapping]] - accepted 8-meta/OCEAN → football-label
   derivation (axes + flags), OCEAN persistence, Scouting-gated reveal bands and the
   People/Training mentoring split (FMX-86, G22; FMX-154 confirms People truth,

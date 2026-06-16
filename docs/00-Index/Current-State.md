@@ -24,6 +24,15 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-152 Staff-skill MVP scope accepted (2026-06-16).** Nico accepted
+> D1-D4 = **B/A/A/A**: staff skills are MVP-active only as narrow Staff
+> Operations pipeline modifiers, the promotion lives in GD-0021, MVP visibility
+> is banded pipeline explanations instead of full staff cards, and the contract
+> boundary is People `StaffSkillProfileSnapshot` -> Staff Operations
+> `PipelineCoverageSnapshot` bands -> consumer-context application. Research:
+> [[../60-Research/staff-skill-mvp-scope-2026-06-15]]. Decision record:
+> [[../40-Execution/fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15]].
+
 > **FMX-170 PostgreSQL schema-ceiling SLO accepted — ADR-0097 binding
 > closure (2026-06-15).** Nico accepted the FMX-170 D1-D3 packet:
 > **300/1000** live save schemas per single Dokploy Postgres node
@@ -2083,7 +2092,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../20-Features/feature-eos-player-skills-and-people-context]] and draft
 > [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 > now capture the proposed target: active MVP player skills/perks as a separate
-> visible layer, staff skills as target model, hidden OCEAN as internal persona
+> visible layer, staff skills as narrow GD-0021/FMX-152 pipeline modifiers,
+> hidden OCEAN as internal persona
 > substrate, relationship constellations for character depth and a proposed
 > People / Persona & Skills context. All concrete catalogs, values, storage
 > shape and context acceptance remain Nico-gated draft decisions.
@@ -2094,9 +2104,8 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > now bridge attributes, hidden meta, player skills, personas, relationships,
 > Staff Operations, Training, Transfers and Impact Lens through factor matrices.
 > The goal is explainable development/transfer/staff decisions without formulas
-> or final balance constants. Staff-skill MVP activation is re-opened as an
-> explicit A/B/C decision; the documented recommendation is Option B, narrow
-> pipeline modifiers, but it is not approved.
+> or final balance constants. Staff-skill MVP activation is closed by FMX-152:
+> Nico accepted Option B, narrow pipeline modifiers, on 2026-06-16.
 
 > **FMX-3 AI Narration MVP pillar expansion (2026-05-28).** Nico directed that
 > narration must be ready in the MVP as the world/emotion layer, not deferred
@@ -2164,10 +2173,10 @@ Use the temporal layers from the baseline:
   deterministic context-card inputs. Actor traits/intents may affect mechanics
   deterministically; generated prose may not. The current framework direction
   is a dedicated Narrative context plus Playtest First quality loop.
-- **Player/staff decision-influence re-evaluation (2026-05-28; FMX-154 reconciled 2026-06-14):** FMX-38 adds
+- **Player/staff decision-influence re-evaluation (2026-05-28; FMX-154 reconciled 2026-06-14; FMX-152 accepted 2026-06-16):** FMX-38 adds
   accepted factor matrices for development, match, transfer and staff-pipeline
   influence. Use GD-0021 as the planning map for owner/consumer relationships;
-  do not treat staff-skill Option B as approved until Nico decides.
+  staff-skill Option B is now approved only as narrow pipeline modifiers.
 - **Manager-Archetype Roguelite re-evaluation (2026-05-27):** Nico wants the
   report anchored for the MVP, but as hooks only. The first playable should
   capture run-end facts and style signals; final archetype families, thresholds,
