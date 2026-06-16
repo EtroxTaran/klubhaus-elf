@@ -17,6 +17,19 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-132 sporting core context definitions (2026-06-16)
+
+Perplexity-first research and targeted source checks for defining Match,
+Training and Squad & Player as Original-11 Sporting Core context-definition
+ADRs.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-sporting-core-contexts-ddd-boundaries-2026-06-16]] | DDD bounded-context definition docs, context maps, published language, ACLs and ADR structure | [[../sporting-core-context-definition-maturity-2026-06-16]] |
+| [[raw-sporting-core-contexts-realworld-2026-06-16]] | Real-world football operations split across match, training/performance and squad/player administration | [[../sporting-core-context-definition-maturity-2026-06-16]] |
+| [[raw-sporting-core-contexts-game-precedents-2026-06-16]] | Comparable-game precedent and source-quality caveats for Match/Training/Squad separation | [[../sporting-core-context-definition-maturity-2026-06-16]] |
+| [[raw-sporting-core-contexts-source-checks-2026-06-16]] | Source checks for Fowler, Microsoft Learn, Context Mapper, IFAB, SoccerGuard and Football Manager official hub | [[../sporting-core-context-definition-maturity-2026-06-16]] |
+
 ## FMX-155 loan cap and obligation catalog (2026-06-16)
 
 Perplexity-first research and targeted source checks for ADR-0075's Regulations

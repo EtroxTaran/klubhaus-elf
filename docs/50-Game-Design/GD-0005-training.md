@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-11
 type: game-design
 binding: true
-related: [[README]], [[GD-0003-squad-players]], [[GD-0001-core-loop]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]]
+related: [[README]], [[GD-0003-squad-players]], [[GD-0001-core-loop]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/club-boss-analysis]], [[../60-Research/sporting-core-context-definition-maturity-2026-06-16]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0130-training-context-definition]]
 ---
 
 # GD-0005: Training & Development
@@ -50,9 +50,15 @@ as a real, punishing trade-off against injuries.
 
 ## Open (Wave 2)
 
-- No dedicated Wave-2 item; intersects **R2-03** (tactics/training contract)
-  and **R2-19** glossary terms (`condition`, `freshness`, `Eingespielt`).
-  Numeric calibration of training/youth investment is implicitly R2-02/R2-06.
+- **R2-03** (tactics/training contract) is deferred to FMX-132 D5 and draft
+  [[../10-Architecture/09-Decisions/ADR-0130-training-context-definition]].
+  Proposed closure: Tactics owns `RoleProfileForPosition` and locked
+  `TacticSnapshot`; Training consumes role profiles and emits
+  readiness/familiarity/development signals; Match consumes only the locked
+  snapshot. This is not implementable until Nico accepts D5.
+- **R2-19** glossary terms (`condition`, `freshness`, `Eingespielt`) remain
+  open. Numeric calibration of training/youth investment is implicitly
+  R2-02/R2-06 and GD-0043.
 
 ## Rationale
 

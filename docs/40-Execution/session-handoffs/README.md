@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-16-fmx-132-sporting-core-contexts]] - FMX-132 Sporting Core
+  context-definition packet: raw Perplexity/source-check captures, synthesis,
+  decision queue and draft ADR-0129/0130/0131 for Match, Training and Squad &
+  Player. Pending Nico D1-D7; recommendation is dedicated draft ADRs, Squad &
+  Player durable player-state ownership, Training signal ownership, Match
+  fixture-scoped event/simulation ownership and GD-0005 R2-03 closure after
+  approval.
 - [[2026-06-16-fmx-155-loan-cap-obligation-catalog]] - FMX-155 loan-cap and
   obligation catalog: raw Perplexity/source-check captures, synthesis, accepted
   decision queue, ADR-0075/GD-0006/regulations cleanup and front-door updates.

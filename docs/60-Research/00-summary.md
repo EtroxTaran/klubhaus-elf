@@ -7,6 +7,23 @@ updated: 2026-06-16
 
 # Research Summary
 
+## Sporting Core Context-definition Maturity (FMX-132, 2026-06-16)
+
+[[sporting-core-context-definition-maturity-2026-06-16]] preserves the FMX-132
+Perplexity-first and source-checked packet for defining the Original-11
+Sporting Core contexts Match, Training and Squad & Player. It recommends three
+dedicated context-definition ADRs rather than fragmented concern rows:
+[[../10-Architecture/09-Decisions/ADR-0129-match-context-definition]],
+[[../10-Architecture/09-Decisions/ADR-0130-training-context-definition]] and
+[[../10-Architecture/09-Decisions/ADR-0131-squad-and-player-context-definition]].
+All remain draft/non-binding pending Nico D1-D7 in
+[[../40-Execution/fmx-132-sporting-core-context-definitions-decision-queue-2026-06-16]].
+Raw captures:
+[[raw-perplexity/raw-sporting-core-contexts-ddd-boundaries-2026-06-16]],
+[[raw-perplexity/raw-sporting-core-contexts-realworld-2026-06-16]],
+[[raw-perplexity/raw-sporting-core-contexts-game-precedents-2026-06-16]],
+[[raw-perplexity/raw-sporting-core-contexts-source-checks-2026-06-16]].
+
 ## Loan Cap and Obligation Catalog (FMX-155, 2026-06-16)
 
 [[loan-cap-and-obligation-catalog-2026-06-16]] preserves the FMX-155

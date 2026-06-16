@@ -24,6 +24,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-132 Sporting Core context definitions pending (2026-06-16).**
+> Branch `codex/fmx-132-sporting-core-contexts` prepares the non-binding
+> context-definition packet for Original-11 Match, Training and Squad & Player.
+> Research
+> [[../60-Research/sporting-core-context-definition-maturity-2026-06-16]]
+> plus raw Perplexity/source-check captures grounds draft
+> [[../10-Architecture/09-Decisions/ADR-0129-match-context-definition]],
+> [[../10-Architecture/09-Decisions/ADR-0130-training-context-definition]]
+> and
+> [[../10-Architecture/09-Decisions/ADR-0131-squad-and-player-context-definition]].
+> No new boundary is binding until Nico accepts D1-D7 in
+> [[../40-Execution/fmx-132-sporting-core-context-definitions-decision-queue-2026-06-16]].
+> Recommended packet is all A: three dedicated context ADRs, Squad & Player as
+> durable availability/player-state owner, Training as load/readiness/development
+> signal owner, Match as fixture-scoped simulation/event owner, current
+> pause/intervention events kept current, GD-0005 R2-03 closed as boundary-defined
+> after approval and ADRs promoted only after Nico signs off.
+
 > **FMX-160 bounded-context portfolio gate reconciled (2026-06-16).**
 > Branch `codex/fmx-160-context-portfolio-gate` applies the already-ratified
 > 2026-06-08 GD-0038 / ADR-0089 Option B decision: the 28-context map remains
