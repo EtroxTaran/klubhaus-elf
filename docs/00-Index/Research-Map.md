@@ -25,6 +25,14 @@ design notes.
   time-saving payloads are `singleplayer_only`; MP -> SP remains future/open.
   Decision record:
   [FMX-189 decision record](../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16.md).
+- [Sporting Core Context-definition Maturity](../60-Research/sporting-core-context-definition-maturity-2026-06-16.md) -
+  FMX-132 Perplexity-first and source-checked packet for defining Match,
+  Training and Squad & Player as three draft Original-11 context-definition
+  ADRs. Recommended packet: dedicated ADRs, Squad & Player durable
+  availability/player-state ownership, Training load/readiness/development
+  signal ownership, Match fixture-scoped simulation/event ownership, and
+  GD-0005 R2-03 closure after Nico D5 approval. Decisions remain pending in
+  [FMX-132 decision queue](../40-Execution/fmx-132-sporting-core-context-definitions-decision-queue-2026-06-16.md).
 - [Loan Cap and Obligation Catalog](../60-Research/loan-cap-and-obligation-catalog-2026-06-16.md) -
   FMX-155 Perplexity-first and source-checked packet for ADR-0075's
   Regulations data follow-up. Nico accepted layered loan-cap profiles, a

@@ -36,10 +36,10 @@ change, not a refactor.
 | **Identity & Access** | `Account`, credentials, sessions, registered devices, global roles/claims, principal context, account deletion/recovery initiation (ADR-0122) | `PrincipalContext`, session/device validity, global claim snapshots, auth/security identity events |
 | **League Orchestration** | Season, week, match-day, mode, pause, quorum; **Competition & Season registry** sub-aggregate cluster (ADR-0066): `Competition` + `Season` reference entities, `LeagueCompetitionSeason` edition aggregate, `PyramidConfiguration` (tier order + promotion/relegation), participants by `ClubId` ref, League-owned tie-break rule + official current/final ordering | League status, deadlines, lifecycle events; `CompetitionRevenueProfilePublished` / `FixtureCommercialProfilesPublished` / profile snapshot queries / `SeasonAdvanced`; `GetOfficialCompetitionStandings` / `CompetitionStandingsFinalizedV1` |
 | **Club Management** | Finance ledger (sole writer; balanced double-entry postings per ADR-0095; wage-block + transfer-fee/amortisation posting contracts per ADR-0105: `PlayerWageBlockPosted` / `StaffWageBlockPosted` as counterpart to the `StaffWagePosted` + `ContractFinancialIntent` ACLs, `TransferFeeCapitalised` / `TransferInstalmentSettled` / `RegistrationAmortisationPosted` as the Transfer→Ledger ACL incl. `LoanFinancialIntent` mapping), accounting projections, budget envelopes, board pressure, insolvency state | Club state, economy snapshots, board pressure |
-| **Squad & Player** | Player base data, fitness, morale, contracts, injuries | Impact Lens projections, squad projections, player state |
-| **Training** | Training plan, load, development signals | Training outcomes, fatigue signals, growth deltas |
+| **Squad & Player** | Player base data, durable availability, fitness/form/morale, contracts, injuries, discipline and applied development state (definition proposal: ADR-0131) | Impact Lens projections, squad projections, player state, availability snapshots, contract/discipline/injury facts |
+| **Training** | Training plan, load, readiness, development signals, role-familiarity/set-piece readiness signals (definition proposal: ADR-0130) | Training outcomes, fatigue/readiness signals, growth deltas, set-piece readiness facts |
 | **Transfer** | Market valuation, opportunities, offers, clause packages, negotiation cases, deadlines, escalation | Transfer state, valuation bands, pressure signals, completed deals |
-| **Match** | Line-up, tactic lock, simulation, results | Result, match events, replay stream |
+| **Match** | Line-up, tactic snapshot lock, intervention buffer, deterministic simulation, results and event log (definition proposal: ADR-0129) | Result, match events, replay stream, match report facts |
 | **Watch Party** | Polls, scheduling, broadcast, conference | Watch-party status, event timeline |
 | **Notification** | Durable notifications, inbox, preferences, subscriptions, schedules, delivery attempts, provider adapters, push preparation, digests | User-facing message projections, unread counters, delivery/audit events |
 | **Manager & Legacy** | Manager profile, run analysis snapshots, manager style signals, archetype candidates, legacy unlock catalog, prestige profile | Post-run reflection projections, legacy/prestige configuration for new-save creation, archetype candidate board |
@@ -87,6 +87,14 @@ boundaries; a context may relate across clusters:
 4. **Recruitment, People & Career** — Transfer, Scouting, Youth Academy, People / Persona & Skills, Manager & Legacy.
 5. **Engagement & Narrative** — Narrative, Media Ecology, Notification, Watch Party.
 6. **Platform & Governance** — Identity & Access, Offline Sync, Audit & Security, Community Overlay Pipeline.
+
+FMX-132 adds non-binding context-definition proposals for three Original-11
+Sporting Core contexts: [[09-Decisions/ADR-0129-match-context-definition]]
+(Match), [[09-Decisions/ADR-0130-training-context-definition]] (Training) and
+[[09-Decisions/ADR-0131-squad-and-player-context-definition]] (Squad & Player).
+They are draft sources until Nico answers
+[[../40-Execution/fmx-132-sporting-core-context-definitions-decision-queue-2026-06-16]];
+the accepted map/count does not change.
 
 The **Competition & Season registry** was ratified 2026-06-02 via
 [[09-Decisions/ADR-0066-competition-registry-sub-aggregate]] (FMX-79, closing the
@@ -594,10 +602,12 @@ No JOIN across context boundaries. No shared lookup tables that bypass
 the rule.
 
 Systemic event rules follow the same contract discipline. For example,
-Training may emit `TrainingWeekProcessed` and `InjuryRiskUpdated`, Squad &
-Player may emit `PlayerDevelopmentDeltaApplied` and `TrainingInjuryOccurred`,
-Club Management may emit `VenueEventBooked` and `MatchdayEventTriggered`,
-and Notification may render deterministic projections from those facts.
+Training may emit `TrainingWeekProcessed`, `InjuryRiskUpdated` and
+`TrainingInjuryOccurred`; Squad & Player may emit
+`PlayerDevelopmentDeltaApplied`, `PlayerAvailabilityChanged` and
+`PlayerReturnedFromInjury`; Match may emit `MatchInjuryOccurred`; Club
+Management may emit `VenueEventBooked` and `MatchdayEventTriggered`; and
+Notification may render deterministic projections from those facts.
 
 FMX-13 adds the Club Economy accounting boundary
 ([[09-Decisions/ADR-0050-club-economy-accounting-ledger]]),

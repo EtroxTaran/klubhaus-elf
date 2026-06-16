@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-16
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/live-match-pause-ratification-2026-06-16]], [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]]
+related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/live-match-pause-ratification-2026-06-16]], [[../../60-Research/sporting-core-context-definition-maturity-2026-06-16]], [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]], [[../09-Decisions/ADR-0129-match-context-definition]]
 ---
 
 # State Machine - Match
@@ -190,6 +190,11 @@ deterministic safe point; passive spectator replay/pause is presentation-only.
 
 ## 7. Events emitted
 
+Status note: the list below is current for the match state machine. The
+intervention and pause events are current via ADR-0087/FMX-140; `MatchInjuryOccurred`
+is the match-owned injury fact named by ADR-0018. Durable availability effects
+remain Squad & Player-owned.
+
 - `MatchScheduled`
 - `MatchLineupOpened`
 - `MatchLineupLocked`
@@ -201,6 +206,7 @@ deterministic safe point; passive spectator replay/pause is presentation-only.
 - `MatchPostponed`
 - `InterventionBuffered` / `InterventionApplied` / `InterventionRejected` *(ADR-0087; §5.1)*
 - `MatchPaused` / `MatchResumed` *(ADR-0087/FMX-140; deterministic response to Watch-Party `PauseMatch`/`ResumeMatch` commands; wall-clock stays out of the seeded engine per §6)*
+- `MatchInjuryOccurred` *(ADR-0018; match fact consumed by Squad & Player for durable availability effects)*
 
 ## 8. Failure / recovery
 
