@@ -69,6 +69,10 @@ future-scope or historical context.
   payment/receipt/shared-history partition: current 10/8/6 retention buckets,
   separate finance key domain, detachable account-to-finance mapping,
   deterministic DSAR retained-set tests and review-gated paid activation.
+  FMX-187 accepts ADR-0128 for webhook receiver security: provider-native proof
+  verification, raw-body preservation, delivery/event dedupe,
+  business-object idempotency, optional-only IP allowlisting, provider
+  reconciliation and pentest-before-bounty launch posture.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -117,6 +121,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0121 Architecture Fitness Function for No Shared Tables](../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables.md) - accepted FMX-167 future code-phase quality subgate: `dependency-cruiser` import rules plus custom TypeScript/SQL scanners for no cross-context internals, no shared tables and no cross-context joins/FKs.
 - [ADR-0123 Identity & Access Context Definition](../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition.md) - accepted FMX-163 context definition: Identity & Access owns account/session/device/global-claim truth and publishes `PrincipalContext`, while domain memberships, payments/entitlements, sync queues, community pack lifecycle and audit retention stay outside.
 - [ADR-0124 PWA Offline Mobile Release Content QA Gates](../10-Architecture/09-Decisions/ADR-0124-pwa-offline-mobile-release-content-qa-gates.md) - draft FMX-197 proposal only: hybrid-online offline degradation, storage/quota/eviction UX, service-worker rollback, staged release evidence and content-pack/localization/generated-content QA gates.
+- [ADR-0128 Webhook Receiver Security Contract](../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract.md) - accepted FMX-187 receiver contract: provider-native signature/JWT/signed-payload verification, raw-body preservation, delivery/event dedupe, business-object idempotency, optional-only IP allowlisting, provider reconciliation and pentest-before-bounty posture.
 - [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 - [ADR-0047 Babylon.js 3D Presentation Engine](../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine.md)

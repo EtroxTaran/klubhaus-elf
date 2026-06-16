@@ -50,6 +50,12 @@ This is the **single** canonical handoff location. (An older
   is UGC-as-flavor with hard guardrails, air-gapped narrator as default/kill
   switch, strict output schema, fail-closed review and mandatory red-team
   corpus.
+- [[2026-06-16-fmx-187-webhook-receiver-security]] - FMX-187 webhook receiver
+  security packet: raw Perplexity/source-check captures, synthesis, accepted
+  decision record, accepted ADR-0128 and security evidence hook. Nico accepted
+  a dedicated ADR, provider-native crypto/JWT/signed-payload verification plus
+  delivery/event and business-object dedupe, and focused external pentest before
+  public beta/paid launch with public bug bounty deferred until maturity.
 - [[2026-06-16-fmx-151-hof-induction-reconciliation]] - FMX-151
   Hall-of-Fame induction RNG reconciliation: raw Perplexity/source-check
   captures, synthesis and decision record closing stale open wording against

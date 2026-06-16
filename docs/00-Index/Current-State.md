@@ -43,6 +43,23 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > Narrative prompt/output envelopes, no-tool/no-write LLM boundary, fail-closed
 > fallback/review and mandatory malicious-pack red-team corpus.
 
+> **FMX-187 webhook receiver security accepted (2026-06-16).** Branch
+> `codex/fmx-187-webhook-receiver-security` closes the historical
+> PM-2026-05-20-05-F-07 webhook-forgery gap with accepted
+> [[../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract]].
+> Nico accepted D1-D3: dedicated ADR home, provider-native crypto/JWT/signed
+> payload verification plus delivery/event and business-object dedupe, and
+> focused external pentest before public beta/paid launch with public bug bounty
+> deferred until triage/disclosure/budget are mature. Research:
+> [[../60-Research/webhook-receiver-security-and-pentest-bugbounty-2026-06-16]].
+> Decision record:
+> [[../40-Execution/fmx-187-webhook-receiver-security-decision-queue-2026-06-16]].
+> Future code must preserve raw bodies/signing headers, reject stale/duplicate
+> deliveries before domain mutation, dedupe entitlements by `storeTransactionRef`
+> or provider equivalent, reconcile provider state and save evidence in
+> [[../40-Compliance/webhook-receiver-security-evidence-2026-06-16]]. Paid
+> activation remains gated by ADR-0109/legal review and implementation evidence.
+
 > **FMX-186 erasure-vs-HGB retention partition accepted (2026-06-16).**
 > Branch `codex/fmx-186-erasure-hgb-retention-partition` defines the
 > field-level payment/receipt/shared-history partition for GDPR Art. 17 erasure

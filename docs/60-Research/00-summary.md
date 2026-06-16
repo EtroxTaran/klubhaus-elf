@@ -36,6 +36,25 @@ Raw captures:
 [[raw-perplexity/raw-hof-induction-voting-rng-2026-06-16]],
 [[raw-perplexity/raw-hof-induction-voting-source-checks-2026-06-16]].
 
+## Webhook Receiver Security Contract (FMX-187, 2026-06-16)
+
+[[webhook-receiver-security-and-pentest-bugbounty-2026-06-16]] preserves the
+FMX-187 Perplexity-first and source-checked packet for the accepted webhook
+receiver security contract. It closes PM-2026-05-20-05-F-07 with
+provider-native signature/JWT/signed-payload verification before trusted
+parsing, raw-body preservation, delivery/event dedupe, business-object
+idempotency, optional-only IP allowlisting, provider reconciliation and the
+accepted testing order: focused external pentest before public beta/paid launch,
+public bug bounty only after triage/disclosure/budget maturity. Accepted ADR:
+[[../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract]].
+Decision record:
+[[../40-Execution/fmx-187-webhook-receiver-security-decision-queue-2026-06-16]].
+Evidence hook:
+[[../40-Compliance/webhook-receiver-security-evidence-2026-06-16]].
+Raw captures:
+[[raw-perplexity/raw-webhook-receiver-security-pentest-bugbounty-2026-06-16]],
+[[raw-perplexity/raw-webhook-receiver-security-source-checks-2026-06-16]].
+
 ## Erasure vs HGB Retention Partition (FMX-186, 2026-06-16)
 
 [[erasure-vs-hgb-retention-partition-2026-06-16]] preserves the FMX-186

@@ -38,6 +38,17 @@ ratified ADR-0083 decision.
 | [[raw-hof-induction-voting-rng-2026-06-16]] | Perplexity discovery pass for real-world HoF process structure, comparable-game HoF/awards patterns, deterministic formula vs seeded voting and long-save mitigation knobs | [[../hof-induction-voting-reconciliation-2026-06-16]] |
 | [[raw-hof-induction-voting-source-checks-2026-06-16]] | Source checks for Pro Football Hall of Fame, College Football Hall of Fame, prior FMX HoF captures and the June 8 ratification trail | [[../hof-induction-voting-reconciliation-2026-06-16]] |
 
+## FMX-187 webhook receiver security contract (2026-06-16)
+
+Perplexity-first research and targeted source checks for provider webhook
+verification, replay prevention, idempotency, IP allowlisting posture,
+pentest timing and bug-bounty sequencing.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-webhook-receiver-security-pentest-bugbounty-2026-06-16]] | Perplexity discovery pass for webhook receiver security, payment/app-store/GitHub provider patterns, real-world SaaS/security practice and pentest-vs-bounty sequencing | [[../webhook-receiver-security-and-pentest-bugbounty-2026-06-16]] |
+| [[raw-webhook-receiver-security-source-checks-2026-06-16]] | Source checks for Stripe replay/best practices, GitHub HMAC validation, Apple signed notification verification, Google Pub/Sub authenticated push and FMX local payment/security notes | [[../webhook-receiver-security-and-pentest-bugbounty-2026-06-16]] |
+
 ## FMX-186 erasure vs HGB retention partition (2026-06-16)
 
 Perplexity-first research and targeted source checks for the field-level
