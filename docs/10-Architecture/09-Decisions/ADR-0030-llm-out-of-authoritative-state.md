@@ -3,7 +3,7 @@ title: ADR-0030 LLM Out Of Authoritative State Boundary
 status: accepted
 tags: [adr, architecture, ai, llm, narrative, determinism, openrouter]
 created: 2026-05-27
-updated: 2026-06-14
+updated: 2026-06-16
 type: adr
 binding: false
 supersedes:
@@ -20,6 +20,9 @@ related:
   - [[../../60-Research/narrative-content-pipeline]]
   - [[../../60-Research/determinism-and-replay]]
   - [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
+  - [[../../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
+  - [[../../60-Research/raw-perplexity/raw-llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
+  - [[../../60-Research/raw-perplexity/raw-llm-prompt-injection-defensive-contract-source-checks-2026-06-16]]
   - [[../../60-Research/pre-mortem/PM-2026-05-20-11-ai-llm-dependency-and-fallbacks]]
   - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
   - [[../../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
@@ -293,6 +296,39 @@ Prompt payloads must not contain:
 Use placeholder tokens such as `{{manager_name}}`, `{{club_name}}` and
 `{{player_name_1}}`, then substitute locally after validation.
 
+### FMX-188 untrusted UGC prompt-injection boundary (proposal)
+
+FMX-188 adds a decision-pending defensive contract for any future path where
+community-pack / UGC text can influence runtime LLM prose. It does not make UGC
+trusted and does not authorize a runtime release. The proposed contract is:
+
+- Treat all community-pack text as untrusted data, including pack
+  descriptions, club lore, fan-group copy, chants, media copy, slogans and
+  imported names.
+- Community Overlay classifies pack text before Narrative can reference it.
+  Only `community_sanitized` text refs with `llmEligible: true` may enter a
+  runtime LLM prompt; ambiguous, stale, unavailable or rejected trust verdicts
+  force deterministic fallback.
+- Narrative builds a structured prompt envelope with separate trusted facts,
+  forbidden claims, escaped untrusted text refs, task metadata and fallback
+  template ID. Raw UGC is never string-interpolated into a free-form prompt.
+- Untrusted text is flavor-only. Scores, injuries, money, standings, transfers,
+  board pressure, morale, relationship values, policy keys and all other
+  factual/mechanical claims come only from authoritative fact refs.
+- Provider output must satisfy a strict local schema before display. Unknown
+  keys, command-shaped fields, tool-call-like fields, overlong text, markup /
+  script payloads, prompt-leakage attempts, fact contradictions or unsafe
+  content fail closed.
+- Provider-side structured output may be used where supported, but local Zod 4
+  strict validation remains mandatory.
+- The provider adapter has no tools, no command handlers, no domain write
+  access and no direct Community Overlay trust-decision authority.
+- Any prompt-injection, text-trust, schema, fact, safety, provider, cost or
+  timeout failure leaves the already-rendered deterministic fallback in place.
+
+Recommended Nico decision packet:
+[[../../40-Execution/fmx-188-prompt-injection-defensive-contract-decision-queue-2026-06-16]].
+
 ## Compliance Boundary
 
 Nico's product preference is first-exposure AI disclosure plus a central
@@ -389,6 +425,13 @@ Negative:
   journalists and fan reps.
 - Prompt-injection tests through generated names, club names, fan-group names
   and media text.
+- FMX-188 UGC prompt-injection tests, if ratified: malicious pack text fixtures
+  cover direct override attempts, indirect injection in lore / articles /
+  chants, delimiter escape attempts, role-label spoofing, prompt-leakage
+  requests, command-shaped JSON fields and obfuscated variants. Passing means
+  generated prose never changes authoritative state, never survives strict
+  validation with unsafe/extra fields, falls back deterministically on every
+  violation and never triggers a provider call on replay/reopen.
 - Monitoring from day one: calls, input/output tokens, estimated cost, latency,
   provider errors, fallback rate, safety rejections and per-match budget
   exhaustion.
@@ -416,6 +459,7 @@ None
 - [[../../60-Research/ai-narration-testing-framework-2026-05-28]]
 - [[../../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]]
 - [[../../60-Research/llm-prose-replay-determinism-floor-2026-06-14]]
+- [[../../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
 - [[../../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
 - [[../../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]]
 - [[../../20-Features/feature-ai-narration-mvp-pillar]]
