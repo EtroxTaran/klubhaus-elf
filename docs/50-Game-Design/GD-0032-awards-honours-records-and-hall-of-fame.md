@@ -17,6 +17,8 @@ related:
   - [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]]
   - [[../60-Research/dynasty-flatline-and-prestige-metric-inputs-2026-06-05]]
   - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
+  - [[../60-Research/hof-induction-voting-reconciliation-2026-06-16]]
+  - [[../40-Execution/fmx-151-hof-induction-reconciliation-decision-record-2026-06-16]]
 ---
 
 # GD-0032: Awards, Honours, Records & Hall of Fame
@@ -130,13 +132,15 @@ GD-0019 prestige.
 - **Induction** runs at the relevant watermark (season-end / career-end) via the
   formula-preselect model; voting is deterministic presentation flavour (§6).
 
-## 6. Open ratification item
+## 6. Resolved induction determinism
 
 **In-world induction determinism / RNG.** Cross-save HoF is computed outside the sim (no
-determinism constraint). In-world induction is deterministic sim state. **Recommended:** a
+determinism constraint). In-world induction is deterministic sim state. The MVP decision is a
 **pure deterministic formula** (no new `*Rng`); "voting" is deterministic flavour over the
-formula. Genuinely stochastic in-world voting would need a new seeded `LegacyRng`/`HoFRng`
-sub-label (ADR-0018 §3). ADR-0083 proposes the no-new-RNG path.
+formula. Genuinely stochastic in-world voting is future scope: it needs a fresh Nico decision
+and must use a sub-label of an existing owner RNG stream, not a new top-level
+`LegacyRng`/`HoFRng` (ADR-0018 §3). FMX-151 reconciled the stale open-question wording to
+the 2026-06-08 ADR-0083 ratification record.
 
 ## 7. Calibration debt (`legacy.hof`, GD-0043)
 
@@ -154,3 +158,9 @@ Statistics metric definitions (GD-0031); archetype taxonomy + prestige-ladder sh
 post-MVP, Nico-gated); national-team caps/tournament inputs (reserved — FMX-84); user-authored
 formulas / export-share / similarity search / deep cross-save record books beyond the curated
 legend ranking (post-MVP per ADR-0081).
+
+## Related
+
+- [[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract]]
+- [[../60-Research/hof-induction-voting-reconciliation-2026-06-16]]
+- [[../40-Execution/fmx-151-hof-induction-reconciliation-decision-record-2026-06-16]]

@@ -18,6 +18,14 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [HoF Induction Voting Reconciliation](../60-Research/hof-induction-voting-reconciliation-2026-06-16.md) -
+  FMX-151 Perplexity-first and source-checked reconciliation of the stale
+  Hall-of-Fame induction RNG fork. It preserves the 2026-06-08 ADR-0083
+  decision: MVP in-world induction is a pure deterministic formula, "voting" is
+  deterministic presentation flavour, no active `LegacyRng`/`HoFRng` exists,
+  and future stochastic voting requires a fresh Nico decision plus an existing
+  owner-stream sub-label. Decision record:
+  [FMX-151 decision record](../40-Execution/fmx-151-hof-induction-reconciliation-decision-record-2026-06-16.md).
 - [Erasure vs HGB Retention Partition](../60-Research/erasure-vs-hgb-retention-partition-2026-06-16.md) -
   FMX-186 Perplexity-first and source-checked packet for accepted
   [[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]:

@@ -42,6 +42,10 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-16-fmx-151-hof-induction-reconciliation]] - FMX-151
+  Hall-of-Fame induction RNG reconciliation: raw Perplexity/source-check
+  captures, synthesis and decision record closing stale open wording against
+  the 2026-06-08 ADR-0083 ratified pure deterministic MVP induction choice.
 - [[2026-06-16-fmx-186-erasure-hgb-retention]] - FMX-186 erasure-vs-HGB
   retention packet: raw Perplexity/source-check captures, synthesis, accepted
   decision record, accepted ADR-0127 and legal-review evidence hook. Nico

@@ -1,11 +1,25 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, runtime, replay, snapshot, quality-profile, testing, quality, ci, architecture-fitness, dependency-cruiser, bounded-context, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, career, national-team, bundestrainer, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-152, fmx-153, fmx-158, fmx-164, fmx-167, fmx-168, fmx-170, fmx-177, fmx-180, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, architecture-fitness, dependency-cruiser, bounded-context, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, career, national-team, bundestrainer, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-152, fmx-153, fmx-158, fmx-164, fmx-167, fmx-168, fmx-170, fmx-177, fmx-180, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 updated: 2026-06-16
 ---
 
 # Research Summary
+
+## HoF Induction Voting Reconciliation (FMX-151, 2026-06-16)
+
+[[hof-induction-voting-reconciliation-2026-06-16]] preserves the FMX-151
+Perplexity-first and source-checked reconciliation of the stale
+pure-formula-vs-seeded-voting Linear fork. The current decision remains the
+2026-06-08 ADR-0083 ratification: MVP in-world Hall-of-Fame induction is a
+pure deterministic formula, "voting" is deterministic presentation flavour, no
+active `LegacyRng`/`HoFRng` exists, and any future stochastic voting needs a
+fresh Nico decision plus an existing owner-stream sub-label. Decision record:
+[[../40-Execution/fmx-151-hof-induction-reconciliation-decision-record-2026-06-16]].
+Raw captures:
+[[raw-perplexity/raw-hof-induction-voting-rng-2026-06-16]],
+[[raw-perplexity/raw-hof-induction-voting-source-checks-2026-06-16]].
 
 ## Erasure vs HGB Retention Partition (FMX-186, 2026-06-16)
 

@@ -25,6 +25,8 @@ related:
   - [[../../60-Research/raw-perplexity/raw-awards-honours-records-hof-games-2026-06-06]]
   - [[../../60-Research/raw-perplexity/raw-awards-honours-records-hof-realworld-2026-06-06]]
   - [[../../60-Research/raw-perplexity/raw-awards-honours-records-hof-determinism-2026-06-06]]
+  - [[../../60-Research/hof-induction-voting-reconciliation-2026-06-16]]
+  - [[../../40-Execution/fmx-151-hof-induction-reconciliation-decision-record-2026-06-16]]
 ---
 
 # ADR-0083: Awards, Honours, Records & Hall-of-Fame Contract
@@ -263,19 +265,22 @@ None
 
 ## HITL gate
 
-`proposed` / `binding: false`. D1–D4 chosen live by Nico 2026-06-06 (D4=B is Nico's override
-of the recommended reserved-stub). **One open ratification item:** whether in-world HoF
-induction stays a **pure deterministic formula** (recommended — no new `*Rng`) or gains
-genuinely stochastic seeded voting (new `LegacyRng`/`HoFRng` sub-label, ADR-0018 §3). All
-numeric magnitudes are **GD-0043 `legacy.hof` calibration debt** and do not block ratification of the
-contract shape. Archetype taxonomy + prestige-ladder shape remain post-MVP / Nico-gated
-(GD-0019); national-team inputs remain a reserved stub pending FMX-84.
-**2026-06-07 (open-decisions sweep) recommendation:** keep in-world HoF induction a **pure
-deterministic formula** (no new `*Rng`) for MVP; if stochastic voting is later wanted, add a
-*sub-label of an existing stream* per ADR-0018 §3, **not** a new top-level `LegacyRng`/`HoFRng`.
-See [[../../00-Index/Open-Decisions-Dossier]] (mini-point M2; decided per recommendation). Ratified 2026-06-08 (#153) +
-merge; the ADR-0051 additive pointer and the bounded-context-map patch apply in the
-ratifying PR.
+D1–D4 were chosen live by Nico on 2026-06-06 (D4=B is Nico's override of the
+recommended reserved-stub) and ratified on 2026-06-08 (#153). **Resolved
+ratification item:** in-world HoF induction stays a **pure deterministic
+formula** for MVP and declares no new `*Rng`. "Voting" is deterministic
+presentation flavour over the formula output. If genuinely stochastic voting is
+wanted later, it requires a fresh Nico decision and must add a *sub-label of an
+existing owner stream* per ADR-0018 §3, **not** a new top-level
+`LegacyRng`/`HoFRng`. All numeric magnitudes remain **GD-0043 `legacy.hof`
+calibration debt** and do not block the contract shape. Archetype taxonomy +
+prestige-ladder shape remain post-MVP / Nico-gated (GD-0019); national-team
+inputs are contracted as a forward-additive reserved `factId` via ADR-0084.
+
+FMX-151 (2026-06-16) reconciles stale Linear/open-question wording to the
+2026-06-08 ratified choice. See
+[[../../60-Research/hof-induction-voting-reconciliation-2026-06-16]] and
+[[../../40-Execution/fmx-151-hof-induction-reconciliation-decision-record-2026-06-16]].
 
 ## Related Docs
 
@@ -283,6 +288,8 @@ ratifying PR.
 - [[../../60-Research/raw-perplexity/raw-awards-honours-records-hof-games-2026-06-06]] — comparable-games prior art.
 - [[../../60-Research/raw-perplexity/raw-awards-honours-records-hof-realworld-2026-06-06]] — real-world football taxonomy.
 - [[../../60-Research/raw-perplexity/raw-awards-honours-records-hof-determinism-2026-06-06]] — determinism architecture.
+- [[../../60-Research/hof-induction-voting-reconciliation-2026-06-16]] — FMX-151 reconciliation/source-check confirming the pure deterministic MVP induction decision.
+- [[../../40-Execution/fmx-151-hof-induction-reconciliation-decision-record-2026-06-16]] — decision record for closing FMX-151.
 - [[ADR-0051-manager-and-legacy-context]] — **owner**; this ADR extends its scope additively.
 - [[ADR-0081-statistics-analytics-read-model-owner]] — Statistics owns per-save records; supplies `SeasonAnalyticsHandoffSnapshot`.
 - [[ADR-0082-manager-style-signal-and-run-analysis-contract]] — run-analysis envelope (prestige context; consumed, not re-opened).
