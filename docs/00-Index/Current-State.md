@@ -24,6 +24,18 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-152 Staff-skill MVP scope packet pending (2026-06-15).** Branch
+> `codex/fmx-152-staff-skill-mvp-scope` prepares the GD-0021 staff-skill
+> activation decision. Research
+> [[../60-Research/staff-skill-mvp-scope-2026-06-15]] plus raw
+> Perplexity/source-check captures recommends D1-D4 = **B/A/A/A**: narrow Staff
+> Operations pipeline modifiers, GD-0021-only promotion after approval, banded
+> pipeline explanations instead of full staff cards, and the People
+> `StaffSkillProfileSnapshot` -> Staff Operations pipeline projection ->
+> consumer-context application boundary. No staff-skill MVP mechanic is binding
+> until Nico answers
+> [[../40-Execution/fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15]].
+
 > **FMX-170 PostgreSQL schema-ceiling SLO accepted — ADR-0097 binding
 > closure (2026-06-15).** Nico accepted the FMX-170 D1-D3 packet:
 > **300/1000** live save schemas per single Dokploy Postgres node

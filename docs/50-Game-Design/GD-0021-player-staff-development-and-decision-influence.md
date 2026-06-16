@@ -3,7 +3,7 @@ title: GD-0021 Player and Staff Development and Decision Influence
 status: accepted
 tags: [game-design, gddr, player-development, staff, transfers, skills, fmx-38]
 created: 2026-05-28
-updated: 2026-06-14
+updated: 2026-06-15
 type: game-design
 binding: false
 supersedes:
@@ -24,6 +24,7 @@ related:
   - [[tactics-system]]
   - [[../60-Research/player-staff-development-decision-model-2026-05-28]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
+  - [[../60-Research/staff-skill-mvp-scope-2026-06-15]]
   - [[../60-Research/hidden-attribute-reveal-owner-reconciliation-2026-06-14]]
   - [[../60-Research/systemic-events-player-development-venue-ops]]
   - [[../60-Research/player-strength-presentation]]
@@ -172,6 +173,13 @@ Nico needs to decide whether staff skills become active in MVP.
 Recommendation: **Option B**. It is the smallest useful MVP activation. It must
 still be approved explicitly; until then, implementation keeps staff skills as
 target-model hooks only.
+
+FMX-152 refreshed this gate on 2026-06-15 with Perplexity-first research,
+source checks and a Nico decision queue:
+[[../60-Research/staff-skill-mvp-scope-2026-06-15]] and
+[[../40-Execution/fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15]].
+The recommendation remains Option B, but no staff-skill MVP mechanic is binding
+until Nico accepts the FMX-152 D1-D4 packet.
 
 ## Candidate read models
 

@@ -27,6 +27,13 @@ design notes.
   memberships, payments/entitlements, age policy, Offline Sync queues,
   Community Overlay pack lifecycle and Audit & Security retention. Decision
   accepted in [FMX-163 decision queue](../40-Execution/fmx-163-identity-access-decision-queue-2026-06-15.md).
+- [Staff Skill MVP Scope](../60-Research/staff-skill-mvp-scope-2026-06-15.md) -
+  FMX-152 Perplexity-first and source-checked packet for the GD-0021
+  staff-skill MVP activation gate. It recommends narrow Staff Operations
+  pipeline modifiers, GD-0021-only promotion after approval, banded pipeline
+  explanations rather than full cards and the People -> Staff Operations ->
+  consumer-context contract boundary. Decisions remain pending in
+  [FMX-152 decision queue](../40-Execution/fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15.md).
 - [BfDI Breach Notification Playbook](../60-Research/breach-notification-runbook-2026-06-15.md) -
   FMX-183 Perplexity-first and source-checked packet for GDPR Art. 33/34
   operational response: [[../30-Implementation/privacy-and-consent]] §9 remains
@@ -1071,6 +1078,12 @@ before any promotion.
   [[../20-Features/feature-training-medicine]],
   [[../20-Features/feature-transfer-market-ai-and-contracts]] and
   [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]].
+- [[../60-Research/staff-skill-mvp-scope-2026-06-15]] — FMX-152 refresh of
+  the GD-0021 staff-skill MVP decision gate. Source-checks real-world backroom
+  specialization, Football Manager/EA FC game precedents and DDD/CQRS
+  contracts. Recommended packet is D1-D4 = B/A/A/A, but all decisions remain
+  pending Nico in
+  [[../40-Execution/fmx-152-staff-skill-mvp-scope-decision-queue-2026-06-15]].
 
 ## Swappable Spatial-Event Match Engine (2026-05-27)
 

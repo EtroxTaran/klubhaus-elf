@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-15-fmx-152-staff-skill-mvp-scope]] - FMX-152 staff-skill MVP
+  scope packet: raw Perplexity/source-check captures, synthesis and decision
+  queue. Pending Nico D1-D4; recommended packet is B/A/A/A for narrow Staff
+  Operations pipeline modifiers, GD-0021 promotion after approval, banded
+  pipeline explanations and People -> Staff Operations -> consumer-context
+  contract boundary.
 - [[2026-06-15-fmx-170-postgres-schema-ceiling]] - FMX-170 PostgreSQL
   schema-ceiling packet: raw Perplexity/source-check captures, synthesis,
   accepted decision queue and binding ADR-0097 closure. Nico accepted D1-D3:
