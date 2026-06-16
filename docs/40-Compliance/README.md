@@ -31,7 +31,7 @@ Linear issue explicitly promotes it.
 - [[payment-retention-legal-review-evidence-2026-06-16]] - FMX-186
   legal/accounting review gate for payment/receipt retention fields, HGB/AO
   buckets, provider split, mapping expiry and DSAR retained-set behavior.
-  Prepared alongside draft ADR-0127; still open before real paid activation.
+  Promoted by accepted ADR-0127; still open before real paid activation.
 - [[responsible-gaming]] - FMX-193 draft responsible-gaming compliance home:
   public statement, no paid random rewards/no dark-pattern guardrails and
   release self-audit evidence. Non-binding until ADR-0122 is accepted.

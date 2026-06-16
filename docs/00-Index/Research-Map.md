@@ -19,15 +19,15 @@ design notes.
 
 - [Research Summary](../60-Research/00-summary.md)
 - [Erasure vs HGB Retention Partition](../60-Research/erasure-vs-hgb-retention-partition-2026-06-16.md) -
-  FMX-186 Perplexity-first and source-checked packet for draft
+  FMX-186 Perplexity-first and source-checked packet for accepted
   [[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]:
   GDPR Art. 17 account erasure vs HGB/AO payment/receipt/shared-history
   retention, current 10/8/6 buckets, field-level
   `erase_now` / `pseudonymize` / `retain_as_fact` / `do_not_store` table,
   separate finance key domain, erased account-to-finance mapping after final
   purge, hybrid shared-history anonymization and deterministic DSAR partitioner.
-  Nico decision D1-D7 is pending in
-  [FMX-186 decision queue](../40-Execution/fmx-186-erasure-hgb-retention-decision-queue-2026-06-16.md);
+  Nico accepted D1-D3 in
+  [FMX-186 decision record](../40-Execution/fmx-186-erasure-hgb-retention-decision-queue-2026-06-16.md);
   legal/accounting review remains a paid-activation gate.
 - [Live Match Pause Ratification](../60-Research/live-match-pause-ratification-2026-06-16.md) -
   FMX-140 Perplexity-first and source-checked cleanup of accepted

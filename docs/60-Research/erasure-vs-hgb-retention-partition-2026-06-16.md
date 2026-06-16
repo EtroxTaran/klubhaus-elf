@@ -35,9 +35,9 @@ FMX-186 closes the planning gap between:
 - older pre-mortem runbooks RB-S3 and RB-08-2, which sketch the right direction
   but do not give a field-level rule.
 
-This synthesis is the non-binding research basis for proposed
+This synthesis is the non-binding research basis for accepted
 [[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]
-and the Nico decision queue
+and the Nico decision record
 [[../40-Execution/fmx-186-erasure-hgb-retention-decision-queue-2026-06-16]].
 
 No payment code, payment provider, tax setup or schema is introduced in this
@@ -86,9 +86,9 @@ only deletion flow. The Privacy Center should let the user export purchase or
 invoice records before final deletion, and post-deletion game history should
 use deleted-user placeholders instead of preserving old display names.
 
-## Recommended Posture
+## Accepted Posture
 
-Recommended FMX-186 posture for Nico's decision:
+Nico accepted the recommended FMX-186 posture on 2026-06-16:
 
 - use the current HGB/AO law split (10 years books/annual-accounting records,
   8 years booking vouchers/invoices/receipts, 6 years commercial/tax
@@ -102,7 +102,7 @@ Recommended FMX-186 posture for Nico's decision:
 
 Legal/accounting review remains required before real paid flows ship.
 
-The recommended rule:
+The accepted rule:
 
 - `finance_records` is a separate legal/accounting retention class, not an
   extension of account/profile data and not the dropped platform `audit_log`.
@@ -240,7 +240,7 @@ identifier.
 
 ## User Experience Requirements
 
-If Nico accepts ADR-0127, product requirements around deletion should include:
+Accepted ADR-0127 requires the product requirements around deletion to include:
 
 - The delete modal must disclose the retained finance exception in plain DE/EN
   copy.
