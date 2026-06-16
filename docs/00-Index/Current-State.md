@@ -3,7 +3,7 @@ title: Current State
 status: current
 tags: [meta, current-state, execution, hot]
 created: 2026-05-16
-updated: 2026-06-15
+updated: 2026-06-16
 type: index
 binding: true
 related: [[Agent-Onboarding]], [[Project-Goals]], [[MVP-Scope]], [[Decision-Log]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[Documentation-V1]], [[../90-Meta/collaboration-and-decision-protocol]], [[../60-Research/ai-narrative-runtime-integration]], [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0077-environment-and-climate-context-weather-and-pitch]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/pitch-condition]], [[../10-Architecture/state-machines/player-discipline]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/fan-demand-price-elasticity-2026-05-28]], [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]], [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/loan-orchestration-process-manager-2026-06-04]], [[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]], [[../10-Architecture/state-machines/loan-orchestration]], [[../60-Research/top5-country-economy-profiles-2026-05-29]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/catering-and-merchandise-operations-2026-06-01]], [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]], [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/club-financing-tools-2026-06-01]], [[../60-Research/economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/player-staff-development-decision-model-2026-05-28]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/onboarding-and-tutorial]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]], [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]], [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]], [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0029-weather-and-pitch-design-model]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../50-Game-Design/GD-0008-finance-economy]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-eos-player-skills-and-people-context]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../20-Features/feature-statistics-analytics-hub-mvp]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]], [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0053-staff-operations-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../30-Implementation/club-economy-commercial-contracts]], [[../10-Architecture/09-Decisions/ADR-0082-manager-style-signal-and-run-analysis-contract]], [[../60-Research/manager-archetype-mvp-hooks-and-perk-prestige-2026-06-05]], [[../10-Architecture/09-Decisions/ADR-0083-awards-honours-records-and-hall-of-fame-contract]], [[../50-Game-Design/GD-0032-awards-honours-records-and-hall-of-fame]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]], [[../50-Game-Design/GD-0034-media-outlet-ecology-model]], [[../60-Research/media-outlet-operational-behaviour-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0086-background-fast-matchday-cost-settlement]], [[../60-Research/background-fast-cost-settlement-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]], [[../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]], [[../60-Research/live-match-intervention-buffer-and-pause-vote-2026-06-07]], [[../10-Architecture/09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]], [[../50-Game-Design/GD-0036-transfer-escalation-and-inactivity-pressure]], [[../60-Research/fmx-102-async-escalation-and-deadline-source-of-truth-2026-06-07]]
@@ -23,6 +23,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > ask-first decision gate, and this phase are defined in
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
+
+> **FMX-140 live-match pause ratification cleanup applied (2026-06-16).**
+> Branch `codex/fmx-140-in-match-pause-vote-ratification` reconciles the
+> accepted ADR-0087/GD-0035 pause-vote packet with Nico's FMX-140 answers.
+> Research [[../60-Research/live-match-pause-ratification-2026-06-16]]
+> plus raw Perplexity/source-check captures grounds the amendment. ADR-0087
+> remains `accepted` / `binding: true`; `match.md §5.1` and
+> `watch-party.md §5.2` are current, not draft. Accepted line: active-manager
+> pause uses Design 1 (authoritative sim suspended at deterministic safe
+> points), spectator pause/replay stays presentation-only, MVP includes one
+> longer tactics pause per managed side per half, Watch Party owns local
+> pause-trust tier, Head Coach/host gets +1 ordinary pause/half plus one veto
+> override, trusted tier gets +1 ordinary pause/half, and all extra privileges
+> are audit-gated/revocable behind `pausePrivilegePolicyVersion`. No
+> bounded-context-map change; exact values remain GD-0043 / FMX-52 calibration.
 
 > **FMX-170 PostgreSQL schema-ceiling SLO accepted — ADR-0097 binding
 > closure (2026-06-15).** Nico accepted the FMX-170 D1-D3 packet:
@@ -705,9 +720,9 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../60-Research/raw-perplexity/raw-inmatch-intervention-rate-limiting-2026-06-07|rate-limiting]],
 > [[../60-Research/raw-perplexity/raw-intervention-buffer-pause-saga-ddd-2026-06-07|ddd]]; builds on
 > FMX-100 [[../60-Research/raw-perplexity/raw-deterministic-intervention-buffering-2026-06-03]])
-> grounds proposed
+> grounds accepted
 > [[../10-Architecture/09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]] and
-> draft [[../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]]. **Match** owns a
+> accepted [[../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]]. **Match** owns a
 > deterministic `InterventionBufferPolicy` **value object** bounding buffered interventions per
 > acceptance point (global ~8 + per-type caps: subs ≤3 / 1 tactical package / 1 shout; order
 > `(boundaryIndex, commandId)`; subs dedup, tactics+shouts last-write-wins) + a typed, replay-safe
@@ -718,14 +733,17 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > Coordination is **event-only** (`PauseMatch`/`ResumeMatch` ↔ `MatchPaused`/`MatchResumed`); all
 > wall-clock abuse-protection lives in the saga; **no wall-clock enters the seeded engine** and it
 > **declares no new `*Rng`** (buffering/ordering/rejection are pure). §7 live-coaching matrix
-> ownership split (Watch Party sets rules; Match enforces acceptance windows via an ACL). 14
-> invariants (IB1–IB7, PV1–PV7); ADR-0072 **extended not re-opened**; **no bounded-context-map
-> change** (contract among existing ratified Match/Watch Party). Draft amendments to
-> `state-machines/match.md` (§5.1) + `state-machines/watch-party.md` (§5.2) authored in the same PR
-> (flip to current on ratify). **Nico chose D1–D4 = A/A/A/A live (2026-06-07):** bounded per-type
+> ownership split (Watch Party sets rules; Match enforces acceptance windows via an ACL). 16
+> invariants (IB1–IB7, PV1–PV9); ADR-0072 **extended not re-opened**; **no bounded-context-map
+> change** (contract among existing ratified Match/Watch Party). State-machine amendments in
+> `state-machines/match.md` (§5.1) + `state-machines/watch-party.md` (§5.2) are current as of
+> FMX-140. **Nico chose D1–D4 = A/A/A/A live (2026-06-07):** bounded per-type
 > buffer · typed deterministic rejection · hybrid veto/quorum consent · discrete per-half pause
-> budget. All magnitudes = **GD-0043 `match.liveIntervention`** behind `interventionPolicyVersion`.
-> Ratified 2026-06-08; FMX-135 status cleanup confirmed `binding: true` on 2026-06-12.
+> budget. FMX-140 adds Design 1 active-manager pause semantics, MVP tactics pause, local
+> pause-trust tier, Head Coach/host + trusted-tier additive privileges and audit-gated revocation.
+> All magnitudes = **GD-0043 `match.liveIntervention`** behind `interventionPolicyVersion` /
+> `pausePrivilegePolicyVersion`. Ratified 2026-06-08; FMX-135 status cleanup confirmed
+> `binding: true` on 2026-06-12; FMX-140 cleanup applied 2026-06-16.
 
 > **FMX-92 Background-fast matchday cost-settlement pipeline (2026-06-07).** Closes audit gap
 > **G21** and the **last open child of E6 / FMX-62** (Economy Settlement Pipelines & Read-Models;

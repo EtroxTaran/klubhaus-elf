@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-15
+updated: 2026-06-16
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]]
@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-16-fmx-140-live-match-pause-ratification]] - FMX-140 live-match
+  pause ratification cleanup: raw Perplexity/source-check captures, synthesis,
+  accepted decision queue and ADR-0087/GD-0035/state-machine cleanup. Nico
+  chose Design 1 active-manager pause semantics, one MVP tactics pause per
+  managed side per half, local pause-trust tier, small Head Coach/host +
+  trusted-tier additive ordinary-pause privileges and audit-gated revocation.
 - [[2026-06-15-fmx-130-career-bundestrainer-reconciliation]] - FMX-130 Career
   Bundestrainer reconciliation: raw Perplexity/source-check captures,
   synthesis, accepted decision queue and Career-mode cleanup. Nico chose
