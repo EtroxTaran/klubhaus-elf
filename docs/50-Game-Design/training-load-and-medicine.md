@@ -187,8 +187,9 @@ reduces block effectiveness.
 
 Staff Operations owns role assignment, pipeline coverage and specialisation
 metadata. Training consumes those facts through the GD-0021 factor matrix and
-applies bounded effects. Staff-skill profile effects remain gated until Nico
-approves a staff-skill MVP option.
+applies bounded effects. FMX-152 accepts staff-skill profile effects only as
+narrow Staff Operations pipeline modifiers; Training still owns exact formulas,
+bands and tuning.
 
 ## 10. Future-scope notes (classified future-scope)
 

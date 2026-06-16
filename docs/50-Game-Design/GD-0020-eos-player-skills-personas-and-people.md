@@ -3,7 +3,7 @@ title: GD-0020 EOS Player Skills, Personas and People
 status: accepted
 tags: [game-design, gddr, player-skills, persona, people, fmx-23]
 created: 2026-05-28
-updated: 2026-06-11
+updated: 2026-06-16
 type: game-design
 binding: false
 supersedes:
@@ -19,6 +19,7 @@ related:
   - [[training-load-and-medicine]]
   - [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]]
   - [[../60-Research/player-staff-development-decision-model-2026-05-28]]
+  - [[../60-Research/staff-skill-mvp-scope-2026-06-15]]
   - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../20-Features/feature-eos-player-skills-and-people-context]]
   - [[../20-Features/feature-ai-narration-mvp-pillar]]
@@ -61,9 +62,10 @@ real relationship history without inventing facts.
 - **Player skills/perks are separate from attributes.** A skill/perk is a
   visible, sparse specialization over existing football calculations. It is
   never a new numeric attribute, never a global OVR and never a hidden stat.
-- **MVP activates player skills first for gameplay effects.** Player
-  skills/perks are the first active mechanical slice. Staff skills remain target
-  gameplay unless separately ratified.
+- **MVP activates player skills first as full skill profiles.** Player
+  skills/perks are the first active mechanical slice with visible skill
+  profiles. Staff skills are MVP-active only as the narrow GD-0021/FMX-152
+  pipeline-modifier slice, not as full staff skill-card gameplay.
 - **MVP activates all actor classes for persona context.** Players, staff,
   board contacts, journalists, media outlets, fan segments, named fan groups,
   fan reps and agents need generated persona/context-card inputs for narration
@@ -154,14 +156,16 @@ Staff uses the same conceptual split:
 - staff persona: internal OCEAN substrate plus football labels like
   disciplinarian, player coach, analyst, mentor, recruiter.
 
-Staff skills apply through the owning domain. People may own the staff persona
-and relationship profile, but Training, Squad, Transfer/Scouting and Medical
-rules apply their own gameplay effects.
+Staff skills apply through the owning domain. People owns the
+`StaffSkillProfileSnapshot`; Staff Operations maps assigned staff into
+staff-skill-aware `PipelineCoverageSnapshot` bands; Training, Scouting, Medical
+and Match-Day apply their own gameplay effects.
 
 Cross-system staff and player effects are governed by
-[[GD-0021-player-staff-development-and-decision-influence]]. Staff-skill MVP
-activation remains an explicit option gate there; this GDDR alone does not make
-staff skill profiles active gameplay.
+[[GD-0021-player-staff-development-and-decision-influence]]. FMX-152 accepted
+the narrow staff-skill MVP slice on 2026-06-16; this GDDR still does not approve
+full staff skill cards, a staff skill catalog, staff progression or exact
+numeric effects.
 
 ## Persona and dialogue model
 
@@ -230,7 +234,7 @@ Can change without a new GDDR:
 Needs Nico decision and GDDR/ADR update:
 
 - expanding the 16+4+8 attribute schema;
-- making staff skills active MVP gameplay;
+- making full staff skill-card gameplay active in MVP;
 - removing staff/board/media/fan actor context from the MVP narration target;
 - allowing OCEAN to directly modify match/economy results;
 - allowing generated prose to create or change facts;
@@ -248,9 +252,8 @@ Needs Nico decision and GDDR/ADR update:
 - Exact balance caps for match effects.
 - Exact split between People-owned actor identity and Narrative-owned media
   publication/outlet state.
-- Staff-skill MVP activation option: target-only, narrow pipeline modifiers or
-  full staff skill-card gameplay. See
-  [[GD-0021-player-staff-development-and-decision-influence]].
+- Staff-skill formula weights, modifier bands and consumer-context application
+  details. See [[GD-0021-player-staff-development-and-decision-influence]].
 
 ## Rationale
 

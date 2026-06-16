@@ -163,7 +163,8 @@ Selling compares `sellPressure` with `protectionScore`. Buying starts from role
 need, squad age profile, tactical fit, budget and manager / owner personality.
 Staff Operations recruitment-pipeline quality may influence discovery,
 shortlist quality and report confidence through GD-0021; staff-skill profile
-effects stay gated until Nico chooses the staff-skill MVP option.
+effects are accepted by FMX-152 only as narrow Staff Operations pipeline
+modifiers. Transfer/Scouting still owns exact formulas, bands and tuning.
 
 ## 9. Economy Integration
 
