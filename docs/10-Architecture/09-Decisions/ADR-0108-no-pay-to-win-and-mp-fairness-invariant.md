@@ -147,7 +147,8 @@ ADR-0063's Investor is now treated as a special case of this wider invariant:
 - `InvestorAllowState = MP-denied` for every shared/ranked/async/watch-party/export/
   official-comparison/future-MP surface.
 - A save or account that has received singleplayer paid assistance cannot become an
-  official competitive/shared save without neutralization or exclusion.
+  official competitive/shared save. FMX-189 resolves the earlier
+  neutralization/exclusion fork as a hard SP/Hotseat/import -> MP prohibition.
 - Refund/revocation changes entitlement state only; it must not rewrite competitive
   simulation facts or create MP/share advantages.
 

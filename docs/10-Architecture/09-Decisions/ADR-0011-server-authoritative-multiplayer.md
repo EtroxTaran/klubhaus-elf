@@ -3,11 +3,11 @@ title: ADR-0011 Server-Authoritative Multiplayer
 status: accepted
 tags: [adr, architecture, multiplayer, security]
 created: 2026-05-16
-updated: 2026-06-11
+updated: 2026-06-16
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/raw-perplexity/raw-architecture]]
+related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0063-investor-entitlement-and-payment-boundary]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/investor-mp-transition-neutralization-2026-06-16]], [[../../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16]], [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
 # ADR-0011: Server-Authoritative Multiplayer
@@ -61,31 +61,39 @@ effect is final until the server confirms it.
 | Singleplayer | Local client | None |
 | Hotseat / pass-and-play (one device, N humans) | Local client | None |
 | Private async multiplayer group | Server | Required for any action's *effect* |
-| Hotseat save promoted into async MP group | Server (after one-way handoff) | Required at promotion time + thereafter |
+| SP / hotseat / portable-import save entering MP | Not eligible | Forbidden |
 
-### Hotseat handoff (gap B2 outcome)
+### Mode separation amendment (FMX-189 outcome)
 
-Hotseat saves are local-authoritative but a hotseat save **can be
-promoted** into an async MP group via a one-way handoff:
+FMX-189 amends the earlier gap B2 hotseat-handoff idea. Nico's 2026-06-16
+decision is stricter: **singleplayer and multiplayer are absolutely separate**.
+Singleplayer, hotseat, local and imported saves are non-competitive authority
+classes and must never seed, enter or mutate server-authoritative multiplayer
+state.
 
-1. User exports the hotseat save (encrypted JSON envelope, see
-   [[ADR-0005-save-format]]).
-2. User uploads it to an MP group's "promote from hotseat" flow.
-3. Server validates: decrypts with the user's account key, runs schema
-   validation, runs an integrity check (event-log replay against the
-   stored seed if present, or a checksum if event log is absent).
-4. On success, the save's canonical state becomes the server's truth for
-   that user's club inside the MP group.
-5. From that point forward, the hotseat save is **read-only on the
-   device** for the promoted club (the server is authority).
-6. The handoff is one-way - there is no "demote MP back to hotseat".
+The MP lifecycle is now:
 
-This unlocks a real product use case (play a season at home with a
-friend on one device, then promote it into an async group) without
-weakening the trust model: the server runs the integrity check before
-accepting the save.
+1. Players create or join an MP lobby/group.
+2. The server authenticates members and creates the MP save/session from
+   MP-owned setup state.
+3. Clients submit only multiplayer commands.
+4. The server validates commands against MP state and is the only authority for
+   matches, transfers, training, fixtures, squads, standings, economy and
+   shared history.
 
-Detail: Wave 3 gap D12 (`R2-12 multiplayer-feasibility`).
+No MP command/API may accept a singleplayer save export, hotseat save, portable
+import, local snapshot, singleplayer roster, SP ledger, SP standings or
+SP-scoped entitlement payload as MP seed data. This is a product/fairness rule,
+not only an anti-cheat implementation detail.
+
+The account may still own global account history or cosmetic/supporter
+entitlements, but any stat/economy/time-saving payload marked
+`singleplayer_only` has zero multiplayer effect. Investor-specific scope is
+defined by [[ADR-0063-investor-entitlement-and-payment-boundary]] and
+[[../../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]].
+
+MP -> SP export is not decided here. If it becomes product scope, it needs a
+separate ADR/GDDR and cannot reopen SP -> MP promotion.
 
 ### AI vs AI match policy (gap B2 outcome)
 
@@ -144,8 +152,8 @@ to singleplayer, hotseat and MP-local-cache alike.
 
 - Encryption: AES-GCM 256 via Web Crypto API.
 - Key derivation: PBKDF2 from the user's account secret + device salt
-  (singleplayer) or from the account secret (hotseat handoff
-  candidates).
+  (singleplayer / hotseat device backup) or the portable-export path in
+  [[ADR-0005-save-format]].
 - Integrity check: AEAD tag of AES-GCM.
 - Export envelope: encrypted payload + ciphertext-authenticated header
   with `engine_version`, `save_version`, `created_at`.
@@ -184,10 +192,9 @@ frequency.
   works).
 - Audit trail is meaningful via the transactional outbox.
 - Watch-party spectators see a consistent feed.
-- Hotseat → async promotion is a real product feature with a clear
-  integrity story.
-- Encrypted saves protect users on shared devices and gate the hotseat
-  handoff (server can trust uploaded saves' contents).
+- The SP/MP wall removes save-import laundering as a multiplayer attack path.
+- Encrypted saves protect users on shared devices and portable backups without
+  granting those backups multiplayer authority.
 
 ### Negative
 
@@ -239,9 +246,12 @@ The following compliance rules apply to all server + client code:
 - Multiplayer matches MUST be simulated server-side.
 - Saves on disk MUST be encrypted (AES-GCM 256 via Web Crypto, key
   derived from account secret + device salt).
-- Hotseat saves uploaded for promotion MUST pass server validation
-  (schema, integrity, optional event-log replay) before becoming MP
-  truth.
+- Multiplayer create/join/import APIs MUST reject singleplayer, hotseat,
+  portable-import and local-save payloads with a typed policy reason before any
+  domain mutation.
+- MP services MUST NOT deserialize SP save payloads, read SP-only entitlement
+  payloads or derive MP setup from SP progress, squads, money, standings,
+  fixtures, ledger entries or history.
 - Offline-replayed commands that conflict with current state MUST be
   rejected with a typed reason; auto-rebase is forbidden at MVP.
 
@@ -260,5 +270,11 @@ CI enforcement:
   managers - server vs client AI-match simulation". Recommendation:
   hybrid server-sim with on-demand re-simulation, ~50 % storage
   reduction at zero trust cost.
-- Wave 3 gap B2 Q&A with Nico (2026-05-16): hotseat handoff, AI-match
-  hybrid, encrypted saves, hard-reject offline conflict.
+- Wave 3 gap B2 Q&A with Nico (2026-05-16): historical hotseat handoff idea,
+  AI-match hybrid, encrypted saves, hard-reject offline conflict.
+- FMX-189 decision record (2026-06-16):
+  [[../../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16]]
+  supersedes the hotseat-handoff idea with absolute SP/MP separation.
+- FMX-189 research:
+  [[../../60-Research/investor-mp-transition-neutralization-2026-06-16]] plus
+  source checks against Apple, Google Play, Hattrick, Last Epoch and Minecraft.

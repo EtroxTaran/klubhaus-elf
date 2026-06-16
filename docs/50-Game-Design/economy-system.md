@@ -413,7 +413,7 @@ provenance and has no gameplay penalty:
 - no owner-control change;
 - no debt;
 - no fan or sponsor backlash;
-- no multiplayer effect;
+- no multiplayer effect and no SP-save path into multiplayer;
 - no change to wage, debt, compliance or demand formulas.
 
 It buys liquidity only. A club with a negative weekly operating loop will still

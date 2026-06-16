@@ -83,7 +83,8 @@ The boundary rejects any entitlement that can:
 - increase competitive attempt volume or skip a competitive time gate;
 - convert, trade or refund into competitive resources;
 - cross from singleplayer paid state into async groups, rankings, watch-party state,
-  official comparisons or future multiplayer.
+  official comparisons or future multiplayer. FMX-189 resolves this as a hard
+  SP/hotseat/imported-save -> MP prohibition, not a neutralization flow.
 
 ### 3. Provider boundary
 

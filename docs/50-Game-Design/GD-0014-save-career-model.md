@@ -49,7 +49,8 @@ exportable, never silently corrupted.
   (anstoss-series-deep-dive §8).
 - **User-owned saves**: export/import a single versioned save envelope remains
   required post-MVP; user-facing export/import is not part of the first
-  playable.
+  playable. FMX-189 clarifies that exported/imported singleplayer or hotseat
+  saves are not multiplayer-eligible.
 - **Autosave: three rotating slots** (`current`, `autosave_n-1`,
   `autosave_n-2`) + a manual slot; "Restore previous" is an explicit UI action,
   never a silent fallback (pwa-offline-patterns §3.5/§12).
@@ -63,9 +64,10 @@ exportable, never silently corrupted.
 ## Open (Wave 2)
 
 - **R2-08 (critical)** — save-determinism/replay format (event log vs snapshot
-  vs delta). **R2-12 (medium)** — hotseat multi-manager may change the shape
-  before ADR-0004 locks. Optional save-export encryption (passphrase, never
-  default-on); save-format linter CLI; autosave quota-eviction policy.
+  vs delta). **R2-12 (medium, historical)** — hotseat multi-manager can shape
+  local save UX, but FMX-189 forbids SP/hotseat save promotion into MP. Optional
+  save-export encryption (passphrase, never default-on); save-format linter CLI;
+  autosave quota-eviction policy.
 
 ## Rationale
 

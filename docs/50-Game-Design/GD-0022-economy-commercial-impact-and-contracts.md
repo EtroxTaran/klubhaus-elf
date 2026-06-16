@@ -616,10 +616,19 @@ Investor is a special singleplayer entitlement:
 - does not change club ownership, fan trust, debt, board confidence, sponsor
   fit, wage pressure, compliance thresholds or market behaviour;
 - cannot appear in multiplayer or competitive shared-state modes;
+- does not create any path from a singleplayer, hotseat, local or imported save
+  into multiplayer;
+- remains account-visible for payment/audit history, but the cash/time-saving
+  payload is usable only in isolated singleplayer saves;
 - requires platform-store, disclosure and consumer-law review before activation.
 
 The design intent is clear: the player may buy time, but not a repaired
 business model.
+
+Acceptance scenario: given an account has a singleplayer Investor grant, when
+the player creates or joins an online MP league with friends, the MP server
+creates fresh MP state and receives no singleplayer cash, roster, player,
+standing, fixture, ledger or entitlement payload.
 
 ## FMX-49 commercial financing boundary
 

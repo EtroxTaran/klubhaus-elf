@@ -51,8 +51,9 @@ namespace: klubhaus_elf
   audit trail, abuse detection.
 - One namespace keeps DBA / connection-pool operations simple at
   Dokploy single-node scale.
-- Hotseat → MP handoff is a *snapshot import* into a new save DB, not
-  a row-level cross-DB join.
+- Historical note: this research originally modelled Hotseat -> MP handoff as a
+  snapshot import into a new save DB. FMX-189 revoked that path; current
+  architecture creates MP saves from MP-owned server setup state only.
 
 ### What lives in the platform DB
 
@@ -84,8 +85,13 @@ backup / restore / clone / delete.
 
 ### Cross-save operations
 
+> **FMX-189 correction:** the Hotseat -> MP handoff below is historical
+> research context, not current architecture. See
+> [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
+> and [[../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16]].
+
 - **List a user's saves**: query `save_registry` in the platform DB.
-- **Hotseat → MP handoff**:
+- **Historical revoked handoff sketch**:
   1. Freeze the source save (mark read-only in `save_registry`).
   2. Export an encrypted snapshot of the source save DB.
   3. Server validates the snapshot (decrypt, schema check, integrity

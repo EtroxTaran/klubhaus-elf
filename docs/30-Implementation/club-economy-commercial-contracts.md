@@ -674,6 +674,9 @@ entitlement policy and by Club Management for the final ledger posting.
 | `skuId` | Store SKU. |
 | `cashGrantMinor` | Exact in-game cash amount. |
 | `currencyProfile` | In-game currency profile. |
+| `modeScope` | `singleplayer_only`; economic payload cannot be applied outside SP. |
+| `mpEffectPolicy` | `none`; no multiplayer offer, grant, ledger, read-model or setup effect. |
+| `sharedStateEligible` | `false`; grant cannot seed shared saves, rankings, leaderboards or MP sessions. |
 | `platform` | Web, iOS, Android, desktop, etc. |
 | `storeTransactionRef` | Opaque transaction reference. |
 | `grantedAt` | Grant timestamp. |
@@ -684,10 +687,13 @@ entitlement policy and by Club Management for the final ledger posting.
 | `accountBinding` | Entitlement binds to the account, not the save; re-derived on import (FMX-50). |
 | `auditTrail` | `userId`, `platform`, `skuId`, `storeTransactionRef`, `disclosureVersion`, `grantedAt`, `cashGrantMinor`, `ledgerEntryId`, `status` (FMX-50). |
 
-Rules (FMX-50 refines):
+Rules (FMX-50 refines; FMX-189 hardens MP separation):
 
-- only accepted in singleplayer saves; multiplayer/leaderboard hard-denied; offline
-  deferred until server-confirmed (no offline self-grant);
+- only accepted in singleplayer saves; multiplayer/leaderboard/shared-state
+  surfaces are hard-denied; offline grants are deferred until server-confirmed
+  SP application (no offline self-grant);
+- singleplayer, hotseat, portable-import and local saves are never
+  multiplayer-eligible, so an Investor-affected save has no MP transition path;
 - provider webhooks are accepted only after ADR-0128 receiver verification,
   replay rejection and delivery/event dedupe;
 - **server-authoritative + two-layer idempotent**: the receiver dedupes provider
@@ -696,10 +702,11 @@ Rules (FMX-50 refines):
   `paid -> entitled` may fire only once; webhooks (Apple ASSN / Google RTDN)
   require reconciliation jobs for misses/refunds;
 - posts one `investor_entitlement_cash_grant` ledger entry (ADR-0050 single writer);
-- entitlement is **account-bound, not save-bound** — imported saves re-bind from
-  the account, never trust save bytes;
+- entitlement is **account-bound, not save-bound** for audit/history and
+  SP-eligible application. Imported saves may re-bind only inside singleplayer;
+  imported/local/hotseat payloads are never accepted as multiplayer seed data;
 - refund/void/chargeback flips to `refunded`/`revoked` and reverses/flags the cash
-  per policy, **without changing simulation rules or multiplayer state**;
+  per policy in SP, **without changing simulation rules or multiplayer state**;
 - does not mutate ownership, board, fan, sponsor, debt or compliance state.
 
 Compliance + payment boundary (SKU catalog, billing paths, refund/revocation,

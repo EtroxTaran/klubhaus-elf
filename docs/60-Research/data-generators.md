@@ -122,8 +122,8 @@ Where we differ from every competitor:
   side without burning IndexedDB.
 - **Same generators run client-side AND post-MVP server-side** (per
   ADR-0019 service extraction). World genesis runs in a Web Worker on
-  the client at MVP; server-side genesis is a future capability for
-  hot-seat-to-async-MP promotion.
+  the client at MVP; server-side genesis remains useful for server-created MP
+  sessions, but FMX-189 forbids hotseat/SP saves as MP seed material.
 - **No 3D crest rendering** (per D9) — pure SVG, scales to all DPRs,
   ~1-3 KB per crest. Bundle-friendly + offline-friendly.
 

@@ -26,8 +26,10 @@ related:
   - [[ADR-0128-webhook-receiver-security-contract]]
   - [[../../60-Research/monetization-legal-gates-2026-06-13]]
   - [[../../60-Research/webhook-receiver-security-and-pentest-bugbounty-2026-06-16]]
+  - [[../../60-Research/investor-mp-transition-neutralization-2026-06-16]]
   - [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]
   - [[../../40-Compliance/webhook-receiver-security-evidence-2026-06-16]]
+  - [[../../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16]]
 ---
 
 # ADR-0063: Investor Entitlement and Payment Boundary
@@ -158,6 +160,27 @@ Club Management as sole ledger writer. Treat the **vendor sub-decision (B1/B2)**
 strictness** as **HITL gates** pending Nico + legal review. No bounded-context
 boundary changes; no gameplay change.
 
+### FMX-189 mode-separation amendment (accepted 2026-06-16)
+
+Nico clarified that singleplayer and multiplayer are globally separated, not
+connected by a neutralization flow. A singleplayer, hotseat, local or imported
+save is never multiplayer-eligible and cannot seed or enter a
+server-authoritative MP session. Therefore `InvestorAllowState=MP-denied` means
+the account may retain payment/audit history, but the Investor cash payload has
+no MP offer, no MP grant, no MP ledger posting, no MP read-model effect and no
+save-transition path.
+
+Consequences:
+
+- Investor economic payload is `singleplayer_only`.
+- Multiplayer session creation is owned by the MP server/lobby and starts from
+  MP-owned setup state, never from SP/hotseat/import payloads.
+- Refund/revocation reconciles SP entitlement state and SP ledger policy only;
+  it never rewrites MP facts, standings, squads, matches, fixtures or shared
+  history.
+- MP -> SP export remains an undecided future topic and cannot reopen SP -> MP
+  eligibility.
+
 ## Public contract direction (proposed)
 
 CommercialPortfolio commands/events (extends ADR-0058):
@@ -173,13 +196,15 @@ CommercialPortfolio commands/events (extends ADR-0058):
 - `InvestorPaymentFailed` (new)
 - `InvestorDisclosureAcknowledged` (versioned)
 
-Read models: `InvestorOfferCatalog` (SKU, real price incl. VAT, cash amount),
-`InvestorEntitlementHistory` (status, platform, transaction ref, disclosure
-version, audit), `InvestorAllowState` (SP-allowed / MP-denied / offline-deferred).
+Read models: `InvestorOfferCatalog` (SKU, real price incl. VAT, cash amount,
+`modeScope=singleplayer_only`), `InvestorEntitlementHistory` (status, platform,
+transaction ref, disclosure version, audit), `InvestorAllowState` (`SP_ALLOWED`,
+`MP_DENIED`, `OFFLINE_DEFERRED_SP_ONLY`).
 
 Boundary invariants: SP-only; MP hard-denied; account-bound not save-bound;
-exactly-once; refund reconciles the entitlement without changing simulation rules
-or multiplayer; every grant captures `disclosureVersion`.
+exactly-once; no SP/hotseat/import save is multiplayer-eligible; refund
+reconciles the entitlement without changing simulation rules or multiplayer;
+every grant captures `disclosureVersion`.
 
 ## Rationale
 
