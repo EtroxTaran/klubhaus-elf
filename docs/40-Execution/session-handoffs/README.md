@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-16
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-16-fmx-178-release-versioning-app-build]] - FMX-178 release
+  versioning/app-build packet: raw Perplexity/source-check captures, synthesis,
+  draft ADR-0132, draft runbook and decision queue. Pending Nico D1-D7;
+  recommendation is SemVer technical version plus player label, generated
+  `release.json`, build-once/promote-digest Dokploy flow, prompt-to-refresh PWA
+  update UX, app/API/save/content compatibility matrix, SBOM/provenance evidence
+  and named release captain before beta.
 - [[2026-06-16-fmx-181-branch-protection-ruleset-activation]] - FMX-181
   branch-protection ruleset activation: raw Perplexity/source-check captures,
   synthesis, accepted decision record, live GitHub ruleset `17748728` for the

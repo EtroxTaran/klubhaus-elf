@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-16
 type: map
 binding: false
-related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]], [[../30-Implementation/incident-response]], [[../60-Research/breach-notification-runbook-2026-06-15]], [[../60-Research/branch-protection-codeowner-activation-2026-06-16]]
+related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]], [[../30-Implementation/incident-response]], [[../30-Implementation/release-versioning-app-build-process]], [[../60-Research/breach-notification-runbook-2026-06-15]], [[../60-Research/branch-protection-codeowner-activation-2026-06-16]], [[../60-Research/release-versioning-process-2026-06-16]]
 ---
 
 # Implementation Map
@@ -33,6 +33,7 @@ unless re-opened by a current issue or accepted ADR.
   `SceneDescriptor` / `CapabilityGate` seam; live match render remains Canvas
   2D and no 3D dependency is added in the docs-only phase.
 - [Monorepo Workspace Bootstrap Plan](../30-Implementation/monorepo-workspace-bootstrap-plan.md) - FMX-179 non-binding scaffold plan for `apps/web` + `packages/*`: package catalog, namespace, Nx/pnpm/TypeScript linking, no-placeholder gates and bounded-context-map patch after ADR-0114 approval.
+- [Release Versioning and App Build Process](../30-Implementation/release-versioning-app-build-process.md) - FMX-178 draft runbook for future app release identity: SemVer plus player label, generated `release.json`, build-once/promote-digest Dokploy flow, PWA update UX, save/content compatibility, SBOM/provenance evidence and beta release captain after ADR-0132 approval.
 - [Compliance Evidence](../40-Compliance/README.md) - legal/compliance artifact evidence home; currently includes the non-binding FMX-194 monetization legal gates checklist and FMX-185 age-assurance/rating evidence packet.
 - [Cursor Cloud Agent Workflow](../30-Implementation/cursor-cloud-agent-workflow.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)

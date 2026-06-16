@@ -24,6 +24,20 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-178 release versioning/app-build packet pending (2026-06-16).**
+> Branch `codex/fmx-178-release-versioning-app-build` prepares the non-binding
+> release identity proposal for the future app build. Research
+> [[../60-Research/release-versioning-process-2026-06-16]] plus raw
+> Perplexity/source-check captures grounds draft
+> [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]]
+> and draft runbook [[../30-Implementation/release-versioning-app-build-process]].
+> Recommendation is D1-D7=A: SemVer technical version plus player-facing label,
+> generated `release.json`, build-once/promote-digest Dokploy flow,
+> prompt-to-refresh PWA update UX, four-layer app/API/save/content compatibility,
+> SBOM/provenance evidence and a named release captain with dry-run before beta.
+> No release process is binding until Nico approves
+> [[../40-Execution/fmx-178-release-versioning-app-build-decision-queue-2026-06-16]].
+
 > **FMX-181 branch-protection ruleset mirror active (2026-06-16).**
 > GitHub ruleset
 > [`17748728`](https://github.com/EtroxTaran/klubhaus-elf/rules/17748728)

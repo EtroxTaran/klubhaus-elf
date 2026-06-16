@@ -69,10 +69,14 @@ future-scope or historical context.
   payment/receipt/shared-history partition: current 10/8/6 retention buckets,
   separate finance key domain, detachable account-to-finance mapping,
   deterministic DSAR retained-set tests and review-gated paid activation.
-  FMX-187 accepts ADR-0128 for webhook receiver security: provider-native proof
-  verification, raw-body preservation, delivery/event dedupe,
-  business-object idempotency, optional-only IP allowlisting, provider
-  reconciliation and pentest-before-bounty launch posture.
+	  FMX-187 accepts ADR-0128 for webhook receiver security: provider-native proof
+	  verification, raw-body preservation, delivery/event dedupe,
+	  business-object idempotency, optional-only IP allowlisting, provider
+	  reconciliation and pentest-before-bounty launch posture.
+	  FMX-178 prepares draft ADR-0132 for release versioning and app-build
+	  identity: SemVer plus player label, generated `release.json`,
+	  build-once/promote-digest Dokploy flow, PWA update UX, compatibility matrix
+	  and SBOM/provenance release evidence pending Nico approval.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -122,6 +126,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0123 Identity & Access Context Definition](../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition.md) - accepted FMX-163 context definition: Identity & Access owns account/session/device/global-claim truth and publishes `PrincipalContext`, while domain memberships, payments/entitlements, sync queues, community pack lifecycle and audit retention stay outside.
 - [ADR-0124 PWA Offline Mobile Release Content QA Gates](../10-Architecture/09-Decisions/ADR-0124-pwa-offline-mobile-release-content-qa-gates.md) - draft FMX-197 proposal only: hybrid-online offline degradation, storage/quota/eviction UX, service-worker rollback, staged release evidence and content-pack/localization/generated-content QA gates.
 - [ADR-0128 Webhook Receiver Security Contract](../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract.md) - accepted FMX-187 receiver contract: provider-native signature/JWT/signed-payload verification, raw-body preservation, delivery/event dedupe, business-object idempotency, optional-only IP allowlisting, provider reconciliation and pentest-before-bounty posture.
+- [ADR-0132 Release Versioning and App Build Process](../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process.md) - draft FMX-178 proposal only: SemVer technical version plus player label, generated `release.json`, immutable digest promotion/rollback, PWA update UX, save/content compatibility and release evidence.
 - [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 - [ADR-0047 Babylon.js 3D Presentation Engine](../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine.md)
