@@ -18,6 +18,14 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [LLM Prompt Injection Defensive Contract for UGC Narrative](../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16.md) -
+  FMX-188 Perplexity-first and source-checked packet for defending Narrative
+  LLM prose against prompt injection from untrusted UGC/community-pack text.
+  It proposes a Community Overlay text trust gate, Narrative prompt/output
+  envelopes, strict Zod/provider validation, no-tool/no-write isolation,
+  deterministic fallback and a malicious-pack red-team corpus. Decisions remain
+  pending in
+  [FMX-188 decision queue](../40-Execution/fmx-188-prompt-injection-defensive-contract-decision-queue-2026-06-16.md).
 - [HoF Induction Voting Reconciliation](../60-Research/hof-induction-voting-reconciliation-2026-06-16.md) -
   FMX-151 Perplexity-first and source-checked reconciliation of the stale
   Hall-of-Fame induction RNG fork. It preserves the 2026-06-08 ADR-0083

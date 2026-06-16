@@ -3,7 +3,7 @@ title: ADR-0059 Community Overlay Pipeline Context
 status: accepted
 tags: [adr, architecture, ddd, community, overlay, import, privacy, gdpr, dsa, naming, fmx-33, fmx-54, risk-legal]
 created: 2026-05-28
-updated: 2026-06-11
+updated: 2026-06-16
 type: adr
 binding: false
 supersedes:
@@ -27,6 +27,9 @@ related:
   - [[../../60-Research/community-overlay-pipeline-bounded-context-2026-05-28]]
   - [[../../60-Research/community-overlay-pipeline-decision-2026-06-07]]
   - [[../../60-Research/fan-persona-privacy-and-naming-2026-06-01]]
+  - [[../../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
+  - [[../../60-Research/raw-perplexity/raw-llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
+  - [[../../60-Research/raw-perplexity/raw-llm-prompt-injection-defensive-contract-source-checks-2026-06-16]]
   - [[../../60-Research/raw-perplexity/raw-community-overlay-pipeline-2026-05-28]]
   - [[../../00-Index/Open-Decisions-Dossier]]
 ---
@@ -314,6 +317,48 @@ It adds a required gate if this ADR is later accepted:
 
 Status stays `proposed` / `binding: false` until Nico ratifies.
 
+### FMX-188 UGC text trust amendment (proposal)
+
+FMX-188 adds a decision-pending text trust rule for any community-pack text
+that could later feed Narrative LLM prose. This is separate from the FMX-112 /
+FMX-54 IP-clean and privacy/persona naming gates: a text field can be
+IP-clean and still be unsafe for prompt construction.
+
+If Nico accepts FMX-188, Community Overlay also owns:
+
+- text-field classification for imported pack descriptions, club lore,
+  fan-group copy, chants, media/outlet copy, slogans, supporter text and other
+  community-authored prose fields;
+- a `CommunityTextRef` record with `packId`, `packVersion`, `contentHash`,
+  `fieldPath`, `trustClass`, `policyVersion`, `llmEligible` and length cap;
+- prompt-injection screening for role labels, system-prompt references,
+  delimiter escape attempts, script/markup payloads, command-shaped fragments
+  and unsafe content;
+- sanitized/escaped display text refs for Narrative, never raw prompt-ready
+  strings;
+- review/quarantine evidence when a text field is rejected or requires manual
+  review.
+
+Community Overlay does **not** own provider prompts, provider schemas or LLM
+fallback behavior. Narrative owns those runtime contracts through ADR-0030 /
+ADR-0054. Audit & Security owns cross-cutting security evidence and alerting.
+
+Proposed trust classes:
+
+```ts
+type CommunityTextTrustClass =
+  | 'trusted_core'
+  | 'community_untrusted'
+  | 'community_sanitized'
+  | 'community_review_required'
+  | 'community_rejected'
+```
+
+Only `community_sanitized` refs with `llmEligible: true` may be consumed by a
+future UGC-aware Narrative prompt. If the trust verdict is missing, stale,
+ambiguous or rejected, Narrative must use deterministic fallback or omit the
+UGC flavor.
+
 ## Decision
 
 Propose a dedicated **Community Overlay Pipeline** bounded context.
@@ -395,6 +440,8 @@ Draft read models:
   disclaimer status + activation history.
 - `ActivePacksInSave(saveId)` - immutable snapshot of activated
   packs for a given save.
+- `CommunityTextRefs(packId)` - proposed FMX-188 read model for text trust
+  classification, policy version, content hash, field path and LLM eligibility.
 - `PackConflictAnalysis(packIds)` - dependency + override conflict
   surface for UI preview before activation.
 - `IPSafetyAuditTrail(packId)` - audit log for `risk:legal` review.

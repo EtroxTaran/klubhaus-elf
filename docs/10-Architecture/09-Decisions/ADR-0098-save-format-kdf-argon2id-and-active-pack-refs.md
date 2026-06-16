@@ -3,7 +3,7 @@ title: ADR-0098 Save-format KDF upgrade (Argon2id passphrase path) + active-pack
 status: accepted
 tags: [adr, save, encryption, kdf, argon2id, pbkdf2, community-packs, determinism, offline-first, p2p, supersession]
 created: 2026-06-08
-updated: 2026-06-11
+updated: 2026-06-16
 type: adr
 binding: false
 amends: [[ADR-0005-save-format]]
@@ -13,6 +13,7 @@ related:
   - [[ADR-0005-save-format]]
   - [[ADR-0016-community-dataset-overrides]]
   - [[ADR-0059-community-overlay-pipeline-context]]
+  - [[../../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
   - [[ADR-0027-postgres-data-model]]
   - [[ADR-0020-hybrid-online-mvp-offline-ready]]
   - [[ADR-0051-manager-and-legacy-context]]
@@ -224,6 +225,25 @@ determinism rule) **travel inside the portable envelope**, closing the export↔
 coupling gap. The array MAY be empty (core-only save). Validated against ADR-0027 Zod +
 `CHECK` bounds.
 
+#### FMX-188 prompt-injection note for active-pack refs (proposal)
+
+`activePacks` preserves which pack snapshot a save used; it does **not** make
+that pack text trusted for Narrative LLM prompts. If FMX-188 is accepted, import
+and save-open flows that expose community-pack text to Narrative must resolve
+each pack ref through ADR-0059's text trust gate:
+
+- `packId`, `version` and `contentHash` identify the exact pack text snapshot;
+- Community Overlay owns the current `CommunityTextRef` trust verdict for each
+  prose field;
+- Narrative may consume only sanitized, LLM-eligible text refs;
+- missing, stale, mismatched or rejected text trust evidence keeps the save
+  loadable but disables UGC-aware LLM flavor for that text and uses
+  deterministic fallback.
+
+This keeps save determinism/loadability separate from prompt-safety trust. A
+portable export can prove which pack text it refers to without proving that the
+text is safe to put into a model prompt.
+
 ### Δ3 — import flow gains a missing-pack gate (ADR-0005 §11)
 
 The §11 "Importing a Portable export file" flow gains a step between Zod-parse and quota
@@ -293,6 +313,9 @@ is recorded only in this file's `supersedes:` frontmatter.
 - [[ADR-0059-community-overlay-pipeline-context]] — per-save immutable `ActivePacksSnapshot`
   / `ActivePacksInSave` read model; pack activation is save-creation-only. Δ2 puts that
   snapshot into the portable payload.
+- [[../../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16]] — FMX-188
+  proposed text trust rule: `activePacks` content hashes identify pack snapshots but do not
+  by themselves authorize pack text as LLM input.
 - [[ADR-0027-postgres-data-model]] — Zod + `CHECK` bounds the new `activePacks` field
   validates against; per-save schema isolation.
 - [[ADR-0020-hybrid-online-mvp-offline-ready]] — amends ADR-0005 MVP timing; "avoid schema

@@ -7,6 +7,21 @@ updated: 2026-06-16
 
 # Research Summary
 
+## LLM Prompt Injection Defensive Contract for UGC Narrative (FMX-188, 2026-06-16)
+
+[[llm-prompt-injection-defensive-contract-ugc-2026-06-16]] preserves the
+FMX-188 Perplexity-first and source-checked packet for defending Narrative LLM
+prose against prompt injection from untrusted UGC/community-pack text. It
+separates FMX-112-style IP/content cleanliness from prompt safety, proposes a
+Community Overlay `CommunityTextRef` trust gate, a Narrative prompt envelope,
+strict Zod/provider output validation, no-tool/no-write LLM isolation,
+deterministic fallback and an OWASP-style malicious-pack eval corpus.
+Decisions remain pending in
+[[../40-Execution/fmx-188-prompt-injection-defensive-contract-decision-queue-2026-06-16]].
+Raw captures:
+[[raw-perplexity/raw-llm-prompt-injection-defensive-contract-ugc-2026-06-16]],
+[[raw-perplexity/raw-llm-prompt-injection-defensive-contract-source-checks-2026-06-16]].
+
 ## HoF Induction Voting Reconciliation (FMX-151, 2026-06-16)
 
 [[hof-induction-voting-reconciliation-2026-06-16]] preserves the FMX-151
