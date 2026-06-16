@@ -1,9 +1,9 @@
 ---
 title: GD-0035 Live-Coaching Intervention & Pause Rules
 status: accepted
-tags: [game-design, gddr, match, watch-party, live-coaching, intervention-buffer, pause-vote, anti-grief, multiplayer, fmx-101]
+tags: [game-design, gddr, match, watch-party, live-coaching, intervention-buffer, pause-vote, tactics-pause, reputation, anti-grief, multiplayer, fmx-101, fmx-140]
 created: 2026-06-07
-updated: 2026-06-13
+updated: 2026-06-16
 type: gddr
 binding: false
 linear: FMX-101
@@ -17,16 +17,20 @@ related:
   - [[../10-Architecture/state-machines/match]]
   - [[../10-Architecture/state-machines/watch-party]]
   - [[../60-Research/live-match-intervention-buffer-and-pause-vote-2026-06-07]]
+  - [[../60-Research/live-match-pause-ratification-2026-06-16]]
+  - [[../40-Execution/fmx-140-live-match-pause-ratification-decision-queue-2026-06-16]]
   - [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
 ---
 
 # GD-0035: Live-Coaching Intervention & Pause Rules
 
-> **Status `draft`.** The gameplay-design companion to **ADR-0087** (architecture/contracts).
-> Authored after Nico chose FMX-101 D1–D4 live (2026-06-07, all = A). All numeric magnitudes are
-> **GD-0043 `match.liveIntervention` calibration** behind `interventionPolicyVersion` / a pause-policy version + per-group
-> config — this note pins *shapes, feel and directions*, not final values. Cross-linked from
-> `watch-party-and-conference.md §7` and `GD-0025`.
+> **Status `accepted`.** The gameplay-design companion to **ADR-0087** (architecture/contracts).
+> Authored after Nico chose FMX-101 D1–D4 live (2026-06-07, all = A), then amended by FMX-140
+> (2026-06-16) for Design 1 pause semantics, MVP tactics pause, local pause-trust tier and small
+> additive Head Coach/host privileges. All numeric magnitudes are **GD-0043
+> `match.liveIntervention` calibration** behind `interventionPolicyVersion` /
+> `pausePrivilegePolicyVersion` + per-group config — this note pins *shapes, feel and directions*,
+> not final values. Cross-linked from `watch-party-and-conference.md §7` and `GD-0025`.
 
 ## Why this exists
 
@@ -110,9 +114,43 @@ reports).
 half, group cap per half, cooldown, max pause duration, the consent mode, and who may pause
 (anyone / host / host + co-hosts). Friends can run it loose; open lobbies can harden it.
 
+### Tactics pause (FMX-140)
+
+The MVP also includes a **longer tactics pause** as a separate pause kind, not as a larger ordinary
+deliberate pause:
+
+- one tactics pause per **managed side** per half;
+- no banking into the next half and no stacking with another tactics pause;
+- longer than the ordinary deliberate pause, but always under a hard policy ceiling and mandatory
+  auto-resume;
+- takes effect at the same deterministic pause boundary as ordinary deliberate pause;
+- all exact values (duration, cooldown interaction, shared-pause handling when both sides request)
+  stay in `match.liveIntervention` calibration.
+
+The tactics pause exists for deep menu work and halftime-like tactical review during active
+multiplayer. It is a game-world concession, not a real-football rule: real football gives managers
+no timeout, so the game keeps it scarce, visible and auditable.
+
+### Local trust tier and role privileges (FMX-140)
+
+Pause privilege is **local to the group/competition**, never an account-wide social score.
+Watch Party owns a `PauseTrustTier` derived from completed sessions, abandon facts, accepted
+reports, cooldown history and pause audit. The tier is used only for pause governance.
+
+MVP additive privileges:
+
+- **Head Coach/host**: +1 ordinary deliberate pause per half and one veto override.
+- **Trusted tier**: +1 ordinary deliberate pause per half.
+- **Restricted/revoked tier**: loses additive privileges for the policy cooldown window.
+
+Privileges are intentionally small. They never bypass platform ceilings for single-pause duration,
+total paused time per half, auto-resume, no carry-over or always-on audit. Abuse handling is
+audit-gated: abandon/report/cooldown facts drive revocation through `pausePrivilegePolicyVersion`.
+
 While paused, the tactics panel opens for everyone with a clear note that **changes apply after
 resume** — the pause is for *coaching*, not a free break. A pause never speeds up or alters the
-match itself; it only suspends the shared view (see the determinism note below).
+match itself; active-manager pause suspends the authoritative match at a deterministic safe point,
+while spectator replay/pause remains presentation-only (see the determinism note below).
 
 ## 3. Default magnitudes (provisional — `match.liveIntervention`, GD-0043)
 
@@ -126,6 +164,10 @@ Indicative starting points to be tuned on a running build; **none are locked fro
 | Deliberate pause: group cap / half | `min(managers×2, 6)` | per-group + `match.liveIntervention` |
 | Cooldown between pauses | ~90s in-match | per-group + `match.liveIntervention` |
 | Max pause duration (auto-resume) | ~20s (ceiling 60s) | per-group + `match.liveIntervention`; **ceiling fixed** |
+| Tactics pause budget | 1 / managed side / half | per-group + `match.liveIntervention`; **no carry-over** |
+| Tactics pause duration | longer than ordinary pause; ceiling by policy profile | per-group + `pausePrivilegePolicyVersion`; **auto-resume fixed** |
+| Head Coach/host additive privilege | +1 ordinary pause / half + 1 veto override | local group policy; hard platform ceilings still apply |
+| Trusted-tier additive privilege | +1 ordinary pause / half | local `PauseTrustTier`; revocable by audit |
 | Veto / vote window | ~3s | per-group + `match.liveIntervention` |
 
 ## 4. Determinism note (player-invisible, design-critical)
@@ -138,10 +180,10 @@ why two people watching the same replay always see the same match, regardless of
 
 ## 5. Reserved for later (post-MVP)
 
-- A separate longer "tactics pause" type (one per half) for deep menu work.
-- Reputation-sensitive guardrails (habitual pausers get longer personal cooldowns).
-- A designated "Head Coach" role with +1 pause and a single veto-override per half (a coach's-
-  challenge analogue).
+- Richer whiteboard/coaching-room tools inside the tactics pause.
+- League/admin-specific privilege profiles beyond the small MVP additive model.
+- Account-wide reputation is explicitly **not** part of the MVP pause system; reopening it would
+  require a new HITL privacy/fairness decision.
 
 ## Calibration slot (FMX-141)
 

@@ -3,10 +3,10 @@ title: State Machine - Match
 status: current
 tags: [architecture, state-machine, match]
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-06-16
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/match-engine]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/match-engine]], [[../../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/live-match-pause-ratification-2026-06-16]], [[../09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]]
 ---
 
 # State Machine - Match
@@ -81,10 +81,11 @@ Per [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]] and
   result.
 - Watch party / replay consumes the same stream.
 
-## 5.1 Intervention buffer policy (draft — FMX-101)
+## 5.1 Intervention buffer policy (current — ADR-0087 / FMX-140)
 
-> **Draft amendment (FMX-101 / proposed ADR-0087).** Fills the buffer state-machine that
-> ADR-0072 (in-match control seam) explicitly deferred to G24. Not binding until ratified.
+> **Current amendment.** Fills the buffer state-machine that ADR-0072 (in-match control seam)
+> explicitly deferred to G24. ADR-0087 is accepted/binding; FMX-140 confirmed this state-machine
+> section as current on 2026-06-16.
 
 ADR-0072 fixed *when* an accepted intervention applies (light → `immediateNextTick`; heavy →
 `nextSemanticBoundary` ∈ {deadBall, restart, halftime}; atomic `TacticSnapshot` swap). The
@@ -179,10 +180,13 @@ Disconnect handling is part of the match state, not the engine core.
 | Singleplayer/live coaching disconnect | Server pauses the watched match for a reconnect window; default 5 minutes. After the deadline it auto-continues from the last valid intervention state. |
 | Async match viewer disconnect | Match continues; reconnect resumes from the latest event cursor if live, otherwise opens replay. |
 | Watch-party active manager disconnect | Delegated to the watch-party group rule; match may pause only for configured active participants. |
+| Watch-party deliberate/tactics pause | Match pauses only when Watch Party emits `PauseMatch`; it resumes only from `ResumeMatch` or the accepted auto-resume command. |
 | Passive spectator disconnect | Never pauses the match; reconnect resumes live stream or replay. |
 
 Pause windows are operational timers. They must not enter the deterministic
 engine as wall-clock time; only accepted interventions become replay events.
+Active-manager deliberate/tactics pauses suspend Match progression at a
+deterministic safe point; passive spectator replay/pause is presentation-only.
 
 ## 7. Events emitted
 
@@ -195,8 +199,8 @@ engine as wall-clock time; only accepted interventions become replay events.
 - `MatchCompleted`
 - `MatchReported`
 - `MatchPostponed`
-- `InterventionBuffered` / `InterventionApplied` / `InterventionRejected` *(draft — FMX-101/ADR-0087; §5.1)*
-- `MatchPaused` / `MatchResumed` *(draft — FMX-101/ADR-0087; deterministic response to Watch-Party `PauseMatch`/`ResumeMatch` commands; wall-clock stays out of the seeded engine per §6)*
+- `InterventionBuffered` / `InterventionApplied` / `InterventionRejected` *(ADR-0087; §5.1)*
+- `MatchPaused` / `MatchResumed` *(ADR-0087/FMX-140; deterministic response to Watch-Party `PauseMatch`/`ResumeMatch` commands; wall-clock stays out of the seeded engine per §6)*
 
 ## 8. Failure / recovery
 

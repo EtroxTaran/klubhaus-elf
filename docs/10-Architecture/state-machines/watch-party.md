@@ -3,10 +3,10 @@ title: State Machine - Watch Party
 status: current
 tags: [architecture, state-machine, watch-party, multiplayer]
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-06-16
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/watch-party-and-conference]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../09-Decisions/ADR-0015-spectator-snapshot-streaming]], [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
+related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/watch-party-and-conference]], [[../../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/live-match-pause-ratification-2026-06-16]], [[../09-Decisions/ADR-0015-spectator-snapshot-streaming]], [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]]
 ---
 
 # State Machine - Watch Party
@@ -109,13 +109,15 @@ Default: `activeManagers`.
 - Abuse protection belongs here: pause budgets, cooldowns and audit events are
   watch-party orchestration concerns, not match-engine logic.
 
-## 5.2 Deliberate pause-vote rule (draft — FMX-101)
+## 5.2 Deliberate pause-vote rule (current — ADR-0087 / FMX-140)
 
-> **Draft amendment (FMX-101 / proposed ADR-0087).** Adds the deliberate, manager-initiated
-> pause that §5.1 (disconnect pause) does not cover, closing gap G24. Not binding until ratified.
+> **Current amendment.** Adds the deliberate, manager-initiated pause that §5.1 (disconnect pause)
+> does not cover, closing gap G24. ADR-0087 is accepted/binding; FMX-140 confirmed this
+> state-machine section as current on 2026-06-16 and added MVP tactics pause plus local
+> pause-trust privileges.
 
 A **deliberate** pause is distinct from the §5.1 **disconnect** pause (which stays automatic,
-free, longer, budget-less). It is a Watch-Party **process manager / saga**
+system-triggered and not counted against deliberate/tactics budgets). It is a Watch-Party **process manager / saga**
 (`PauseControlProcess`, keyed `(watchPartyId, matchId)`) — separate from the disconnect-pause
 process; both may emit `PauseMatch`, so Match never learns who asked. All wall-clock state
 (budget, cooldown, quorum, timers) lives here, never in the engine (ADR-0087 PV1).
@@ -129,6 +131,9 @@ deliberatePauseGlobalCapPerHalf    = integer, default min(managers*2, 6)
 deliberatePauseCooldownSeconds     = integer, default 90  (in-match)
 deliberatePauseMaxDurationSeconds  = integer, default 20  (HARD CEILING 60)
 pauseConsentMode                   = vetoWindow (2 mgrs) | majorityVote (3+); window ~3s
+tacticsPauseBudgetPerHalf          = integer, default 1   (per managed side)
+tacticsPauseMaxDurationSeconds     = integer, policy-profile ceiling
+pausePrivilegePolicyVersion        = integer
 ```
 
 - **Consent (D3)**: 2 managers → unilateral request + 3s veto window; 3+ → majority vote
@@ -140,8 +145,15 @@ pauseConsentMode                   = vetoWindow (2 mgrs) | majorityVote (3+); wi
 - **Determinism**: a pause reaches Match only as a `PauseMatch` command; Match emits `MatchPaused`
   and **suspends sim progress** (the next deterministic acceptance point does not move); wall-clock
   never enters the seeded engine (restates match.md §6; ADR-0087 PV3/PV7).
+- **FMX-140 tactics pause**: a separate `pauseKind = tactics` grants one longer coaching window per
+  managed side per half, with mandatory auto-resume, no stacking, no banking and all exact values
+  behind `pausePrivilegePolicyVersion`.
+- **FMX-140 local privilege layer**: `PauseTrustTier` is scoped to the watch-party group or
+  competition. Head Coach/host gets +1 ordinary deliberate pause per half plus one veto override;
+  trusted tier gets +1 ordinary deliberate pause per half; every extra privilege is audit-gated
+  and revocable. There is no global account social score.
 
-See [[../09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]] (invariants PV1–PV7)
+See [[../09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]] (invariants PV1–PV9)
 and [[../../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]].
 
 ## 6. Conference variant
@@ -174,22 +186,26 @@ watch_party {                            # strongly-typed (typed cols + CHECK)
   disconnect_pause_mode: text + CHECK IN (off | active_managers | all_managers),
   disconnect_pause_window_s: integer,
   disconnect_pause_budget_per_half: integer,
-  # deliberate pause-vote (draft — FMX-101/ADR-0087; §5.2) — distinct from disconnect pause
+  # deliberate pause-vote (ADR-0087/FMX-140; §5.2) — distinct from disconnect pause
   deliberate_pause_budget_per_half: integer,
   deliberate_pause_global_cap_per_half: integer,
   deliberate_pause_cooldown_s: integer,
   deliberate_pause_max_duration_s: integer,   # CHECK <= 60 (platform ceiling)
+  tactics_pause_budget_per_half: integer,     # default 1 per managed side / half
+  tactics_pause_max_duration_s: integer,      # policy-profile ceiling + auto-resume
   pause_consent_mode: text + CHECK IN (veto_window | majority_vote),
+  pause_privilege_policy_version: integer,
   chat_enabled: boolean
 }
 
-watch_party_pause_event {                # audit child table (draft — FMX-101/ADR-0087)
+watch_party_pause_event {                # audit child table (ADR-0087/FMX-140)
   id: uuid (UUIDv7, app-generated, PK),
   watch_party_id: uuid (intra-context FK to watch_party),
   member_id: uuid (MemberId, opaque branded ref)?,   # null for auto/system events
   half: integer,
-  kind: text + CHECK IN (vote_opened | vote_enacted | resumed | request_rejected | budget_debited | budget_exhausted),
-  reason_code: text?,                    # Cooldown | NoBudget | GlobalCapReached | NotAllowed | Vetoed | QuorumNotMet
+  pause_kind: text + CHECK IN (deliberate | tactics | disconnect),
+  kind: text + CHECK IN (vote_opened | vote_enacted | resumed | request_rejected | budget_debited | budget_exhausted | privilege_changed),
+  reason_code: text?,                    # Cooldown | NoBudget | GlobalCapReached | NotAllowed | Vetoed | QuorumNotMet | PrivilegeRevoked
   occurred_at: timestamptz              # operational wall-clock (audit only, never feeds the engine)
 }
 
@@ -198,7 +214,9 @@ watch_party_participant {                # junction table (surrogate PK)
   watch_party_id: uuid (intra-context FK to watch_party),
   member_id: uuid (MemberId, opaque branded ref),
   joined_at: timestamptz,
-  left_at: timestamptz?
+  left_at: timestamptz?,
+  pause_trust_tier: text + CHECK IN (new | trusted | restricted),
+  pause_privilege_revoked_until: timestamptz?
 }
 ```
 
@@ -211,8 +229,9 @@ watch_party_participant {                # junction table (surrogate PK)
 - `WatchPartyLive`
 - `WatchPartyCompleted`
 - `WatchPartyCancelled`
-- `PauseVoteOpened` / `PauseVoteEnacted` / `PauseResumed` / `PauseRequestRejected` *(draft — FMX-101/ADR-0087; §5.2 deliberate pause-vote, distinct from §5.1 disconnect pause)*
-- emits commands `PauseMatch` / `ResumeMatch` to Match (consumes `MatchPaused` / `MatchResumed`) *(draft)*
+- `PauseVoteOpened` / `PauseVoteEnacted` / `PauseResumed` / `PauseRequestRejected` *(ADR-0087/FMX-140; §5.2 deliberate/tactics pause, distinct from §5.1 disconnect pause)*
+- `PausePrivilegeChanged` *(FMX-140; audit-gated local trust/privilege change)*
+- emits commands `PauseMatch` / `ResumeMatch` to Match (consumes `MatchPaused` / `MatchResumed`)
 
 ## 9. Failure / recovery
 
@@ -232,9 +251,9 @@ watch_party_participant {                # junction table (surrogate PK)
 - Spectator delay math holds under variable network conditions.
 - Disconnect pause mode respects passive-vs-active participants, timeout and
   pause budget.
-- *(draft — FMX-101/ADR-0087)* Deliberate pause-vote respects consent mode (veto vs quorum),
-  per-manager-per-half budget, cooldown, max-duration auto-resume and no carry-over; every
-  pause/resume/rejected-request emits an attributed audit event.
+- Deliberate/tactics pause respects consent mode (veto vs quorum), per-manager/per-side-per-half
+  budgets, cooldown, max-duration auto-resume and no carry-over; every pause/resume/rejected
+  request and local privilege change emits an attributed audit event.
 
 ## 11. Future-scope notes (classified future-scope)
 
