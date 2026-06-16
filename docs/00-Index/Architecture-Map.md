@@ -99,11 +99,11 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 
 - [ADR-0003 Match Engine](../10-Architecture/09-Decisions/ADR-0003-match-engine.md) - historical TypeScript-first target, superseded as planning target by ADR-0049.
 - [ADR-0049 Swappable Spatial-Event Match Engine](../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine.md) - draft replacement target for match-engine boundary/runtime.
-- [ADR-0005 Save Format](../10-Architecture/09-Decisions/ADR-0005-save-format.md)
+- [ADR-0005 Save Format](../10-Architecture/09-Decisions/ADR-0005-save-format.md) - encrypted save/export envelope; FMX-189 clarifies portable SP/hotseat/imported saves have no MP seed authority.
 - [ADR-0007 Naming Schema](../10-Architecture/09-Decisions/ADR-0007-naming-schema.md)
 - [ADR-0009 Cursor Orchestration](../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration.md)
 - [ADR-0010 Design System](../10-Architecture/09-Decisions/ADR-0010-design-system.md)
-- [ADR-0011 Server-Authoritative Multiplayer](../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer.md)
+- [ADR-0011 Server-Authoritative Multiplayer](../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer.md) - accepted server-only MP authority; FMX-189 replaces the older hotseat-handoff idea with absolute SP/MP separation and server-created MP sessions.
 - [ADR-0017 Observability and Logging](../10-Architecture/09-Decisions/ADR-0017-observability-logging.md)
 - [ADR-0018 Systemic Events and Player Lifecycle Architecture](../10-Architecture/09-Decisions/ADR-0018-systemic-events-and-player-lifecycle.md)
 - [ADR-0019 Service-ready Modular Monolith + DDD](../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd.md)
@@ -114,7 +114,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0024 Match Renderer Abstraction](../10-Architecture/09-Decisions/ADR-0024-match-renderer-abstraction.md)
 - [ADR-0025 Mobile Delivery](../10-Architecture/09-Decisions/ADR-0025-mobile-delivery.md)
 - [ADR-0026 Match Frame Contract](../10-Architecture/09-Decisions/ADR-0026-match-frame-contract.md)
-- [ADR-0027 Postgres Data Model](../10-Architecture/09-Decisions/ADR-0027-postgres-data-model.md)
+- [ADR-0027 Postgres Data Model](../10-Architecture/09-Decisions/ADR-0027-postgres-data-model.md) - accepted schema-per-save/Drizzle model; MP saves are provisioned from MP setup state, never imported from SP/hotseat/local payloads.
 - [ADR-0028 Postgres Transactional Outbox](../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox.md)
 - [ADR-0119 Command Reception Dedup Seam](../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam.md) - accepted FMX-164 seam: command replay/dedup is a synchronous Audit & Security-owned reception capability, not the client Offline Sync queue and not an outbox consumer.
 - [ADR-0120 Deterministic Simulation QA and Save-Forward Matrix](../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix.md) - draft FMX-196 proposal only: deterministic simulation QA artifact levels, seed tiers, same-WASM parity, soak metrics and save-forward/replay compatibility boundary.
@@ -129,6 +129,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0102 Notification Platform Re-ratification + Offline-delivery Clause](../10-Architecture/09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause.md) - draft FMX-156 successor proposal: keep ADR-0102 as ADR-0043 successor after Nico approval, use Postgres + Dexie inbox as authoritative replay surface and treat push/realtime/email as best-effort accelerants.
 - [ADR-0050 Club Economy Accounting Ledger](../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger.md) - accepted Club Management finance ledger, accounting projections, country economy profiles, cup cash/receivable/forecast events, matchday operating-cost ledger events and staged insolvency boundary.
 - [ADR-0058 Club Economy Commercial Impact Boundary](../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary.md) - accepted CommercialPortfolio boundary for ticketing, contracts, cup settlement, matchday operating-cost profiles, fan events and Investor entitlement policy.
+- [ADR-0063 Investor Entitlement and Payment Boundary](../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary.md) - accepted Investor entitlement/payment boundary; FMX-189 clarifies `MP_DENIED` as no MP offer, grant, ledger, read-model effect or save-transition path.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft proposed Manager & Legacy context for manager identity, run analysis, archetype candidates and prestige/legacy selection.
 - [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft proposed People context for actor personas, relationship graph, player/staff skill profiles and deterministic context cards.
 - [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft proposed Narrative context for scene selection, context-card assembly, templates, fallback coverage manifest, validation, provenance, evals and provider adapter boundary; FMX-87 adds finite dialogue-intent/effect result planning contracts while effects stay with source domains.

@@ -50,8 +50,9 @@ ADR-0013).
   (composite-build safe).
 - The typed `withOutbox(tx, event)` helper (no raw outbox inserts allowed —
   ADR-0028 §1).
-- `provisionSave(saveId)` / `dropSave(saveId)` / `snapshotAndImport(src,dst)`
-  (Hotseat→MP) — all in one transaction across schemas.
+- `provisionSave(saveId)` / `dropSave(saveId)` plus MP-only
+  `provisionMultiplayerSave(sessionSetup)`; MP provisioning uses server-owned
+  setup state and never imports SP/hotseat save payloads.
 
 ## Inputs
 

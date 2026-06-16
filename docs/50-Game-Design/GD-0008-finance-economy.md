@@ -88,8 +88,9 @@ choices before the run collapses.
   fan-service campaigns feed the same Club Management ledger.
 - **Investor is clean SP cash if activated.** Nico rejected balance penalties
   for the real-money Investor grant. It is a singleplayer-only cash entitlement:
-  no debt, no owner control, no fan backlash, no multiplayer advantage. It still
-  does not repair structural overspending.
+  no debt, no owner control, no fan backlash, no multiplayer advantage and no
+  SP-save path into multiplayer. It still does not repair structural
+  overspending.
 
 ## Open before approval
 

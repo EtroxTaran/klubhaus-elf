@@ -74,7 +74,7 @@ The launch model is proposed as:
 | Cosmetic club identity | Kits, badge variants, profile frames, cosmetic trophies, UI themes, stadium skins, supporter banners | Must not affect match readability, outcomes, economy, hidden information or competitive grouping. |
 | Supporter Club QoL/history | Longer club-history views, replay archive, cosmetic preset slots, profile/social curation | Must be non-authoritative and must not reveal hidden state, automate decisions or improve competitive opportunity volume. |
 | Account services | Manager/club rename, cosmetic reset, non-ranked account service | Must have no rank, reward, fixture, economy, squad or matchmaking effect. |
-| Singleplayer Investor cash | ADR-0063 clean SP entitlement cash | Must remain isolated to singleplayer saves and never export into shared rankings, async groups, watch-party states or future multiplayer. |
+| Singleplayer Investor cash | ADR-0063 clean SP entitlement cash | Must remain isolated to singleplayer saves; FMX-189 forbids SP/hotseat/imported-save use as MP seed state and therefore no Investor payload can export into shared rankings, async groups, watch-party states or future multiplayer. |
 
 ## Forbidden entitlement classes
 

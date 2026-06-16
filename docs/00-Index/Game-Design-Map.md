@@ -59,6 +59,9 @@ sections are not active work by default.
 - [[../60-Research/no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] -
   FMX-190 research synthesis for the proposed project-wide no-P2W / shared-state
   zero-effect invariant that enforces the FMX-191 promise.
+- [[../60-Research/investor-mp-transition-neutralization-2026-06-16]] -
+  FMX-189 accepted clarification: Investor/time-saving payloads are
+  singleplayer-only, and SP/hotseat/imported saves never seed multiplayer.
 
 ## Fans + brand
 
