@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, erasure, retention, hgb, ao, shared-history, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, architecture-fitness, dependency-cruiser, bounded-context, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, tooling, pnpm, pwa, offline, mobile, rollback, content-qa, career, national-team, bundestrainer, ai, llm, fallback, transfer, loan, obligation-to-buy, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-153, fmx-155, fmx-158, fmx-160, fmx-167, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, erasure, retention, hgb, ao, shared-history, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, architecture-fitness, dependency-cruiser, bounded-context, rulesets, branch-protection, codeowners, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, tooling, pnpm, pwa, offline, mobile, rollback, content-qa, career, national-team, bundestrainer, ai, llm, fallback, transfer, loan, obligation-to-buy, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-153, fmx-155, fmx-158, fmx-160, fmx-167, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 created: 2026-05-16
 updated: 2026-06-16
 type: index
@@ -16,6 +16,17 @@ research transcripts and attached research reports (German source language).
 They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
+
+## FMX-181 branch protection ruleset and CODEOWNER activation (2026-06-16)
+
+Perplexity-first discovery and targeted source checks for GitHub ruleset
+migration, docs-phase branch-protection mirroring and staged CODEOWNER/review
+activation.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-branch-protection-codeowner-rulesets-2026-06-16]] | Perplexity discovery pass for classic branch protection -> repository ruleset migration, solo-lead bypass, required checks and staged review/CODEOWNER activation | [[../branch-protection-codeowner-activation-2026-06-16]] |
+| [[raw-branch-protection-codeowner-source-checks-2026-06-16]] | Official GitHub source checks and live API verification for ruleset `17748728` | [[../branch-protection-codeowner-activation-2026-06-16]] |
 
 ## FMX-189 investor MP transition neutralization (2026-06-16)
 

@@ -24,6 +24,20 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-181 branch-protection ruleset mirror active (2026-06-16).**
+> GitHub ruleset
+> [`17748728`](https://github.com/EtroxTaran/klubhaus-elf/rules/17748728)
+> now mirrors the docs-phase `main` protection: PR required, `linear-id` and
+> `docs-check` required, deletion/non-fast-forward blocked and linear history
+> required. Classic branch protection remains active until a later tracked issue
+> verifies the mirror over real PRs and retires redundant settings. Nico has
+> PR-bypass only. Research:
+> [[../60-Research/branch-protection-codeowner-activation-2026-06-16]] plus raw
+> Perplexity/source-check captures. Decision record:
+> [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]].
+> One approval plus CODEOWNER review remains deferred until real code paths and
+> green `quality`/`e2e`/`security` evidence exist.
+
 > **FMX-132 Sporting Core context definitions pending (2026-06-16).**
 > Branch `codex/fmx-132-sporting-core-contexts` prepares the non-binding
 > context-definition packet for Original-11 Match, Training and Squad & Player.

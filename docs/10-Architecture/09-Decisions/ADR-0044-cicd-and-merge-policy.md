@@ -3,12 +3,12 @@ title: "ADR-0044: CI/CD Strategy & Merge Policy"
 status: accepted
 tags: [adr, architecture, ci, process]
 created: 2026-05-27
-updated: 2026-06-15
+updated: 2026-06-16
 type: adr
 binding: false
 supersedes:
 superseded_by:
-related: [[../../30-Implementation/ci-and-review-process]], [[../../30-Implementation/linear-task-tracking]], [[../../30-Implementation/agent-workflow-pattern]], [[ADR-0045-issue-first-worktree-workflow]], [[../../00-Index/Decision-Log]]
+related: [[../../30-Implementation/ci-and-review-process]], [[../../30-Implementation/linear-task-tracking]], [[../../30-Implementation/agent-workflow-pattern]], [[ADR-0045-issue-first-worktree-workflow]], [[../../00-Index/Decision-Log]], [[../../60-Research/branch-protection-codeowner-activation-2026-06-16]], [[../../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]]
 ---
 
 # ADR-0044: CI/CD Strategy & Merge Policy
@@ -24,6 +24,11 @@ accepted
 > after real scripts/workflows and burn-in, code branch protection uses
 > `quality`, `e2e` and `security`; D-002-era `cursor-smoke` and `configured`
 > names are historical only.
+> FMX-181 amended the GitHub enforcement surface on 2026-06-16: ruleset
+> `17748728` is now the active docs-phase mirror for `main`; classic branch
+> protection remains in place until verified over real PRs; Nico has PR-bypass
+> only; review/CODEOWNER hardening waits for real code paths plus green
+> `quality`, `e2e` and `security` evidence.
 
 ## Date
 
@@ -69,6 +74,14 @@ code CI (test/lint/type/e2e) returns in the build phase.
    after the backing repo scripts, workflows and real targets exist and have
    burned in green. CODEOWNER review then applies for code paths. `cursor-smoke`,
    `configured` and standalone `lighthouse` are not required-context names.
+4. **GitHub ruleset migration:** repository ruleset
+   [`17748728`](https://github.com/EtroxTaran/klubhaus-elf/rules/17748728)
+   mirrors the current docs-phase protection for the default branch: pull
+   request required, `linear-id` and `docs-check` required, deletion and
+   non-fast-forward pushes blocked and linear history required. The existing
+   classic branch protection stays in place as a safety net until a later issue
+   proves the mirror stable and retires redundant settings. Nico is the only
+   bypass actor, and that bypass is pull-request-only.
 
 ## Rationale
 
@@ -89,6 +102,8 @@ Positive:
 - Clean path to code-phase (add checks + review) and to multi-lead (CODEOWNER routing).
 - No placeholder code-CI contexts: branch protection can require only checks
   that real workflows provide.
+- Ruleset `17748728` gives FMX a live GitHub ruleset baseline without changing
+  docs-phase review burden.
 
 Negative:
 
@@ -97,6 +112,8 @@ Negative:
 - A bootstrap step is needed before any new required check can be activated:
   the workflow and repo script must exist and pass on real PR evidence before
   branch protection is updated.
+- Until classic branch protection is retired, blocked-merge debugging must check
+  both the active ruleset and the classic `main` protection.
 
 ## Supersedes
 
@@ -108,4 +125,5 @@ protection in [[../../30-Implementation/ci-and-review-process]] (reconciled ther
 
 - [[../../30-Implementation/ci-and-review-process]] · [[../../30-Implementation/linear-task-tracking]] · [[../../30-Implementation/agent-workflow-pattern]]
 - [[../../60-Research/code-ci-pipeline-2026-06-15]] · [[../../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]]
+- [[../../60-Research/branch-protection-codeowner-activation-2026-06-16]] · [[../../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]]
 - [[ADR-0045-issue-first-worktree-workflow]] · [[ADR-0046-team-topology-and-scaling]]
