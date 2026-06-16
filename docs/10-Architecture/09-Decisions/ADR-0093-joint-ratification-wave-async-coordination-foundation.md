@@ -1,9 +1,9 @@
 ---
 title: ADR-0093 Joint ratification wave — promote the async-coordination foundation (ADR-0012 cadence + ADR-0014 state machines) and land ADR-0088 + ADR-0089
 status: accepted
-tags: [adr, architecture, governance, ratification, async, cadence, state-machine, bounded-context, fmx-64, fmx-102, fmx-105]
+tags: [adr, architecture, governance, ratification, async, cadence, state-machine, bounded-context, fmx-64, fmx-102, fmx-105, fmx-160]
 created: 2026-06-08
-updated: 2026-06-11
+updated: 2026-06-16
 type: adr
 binding: false
 supersedes:
@@ -17,6 +17,9 @@ related:
   - [[ADR-0028-postgres-transactional-outbox]]
   - [[ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]]
   - [[ADR-0089-bounded-context-portfolio-reconciliation]]
+  - [[../../50-Game-Design/GD-0038-bounded-context-portfolio-trim-merge-review-gate]]
+  - [[../../60-Research/bounded-context-merge-review-gate-2026-06-16]]
+  - [[../../40-Execution/fmx-160-context-portfolio-gate-decision-record-2026-06-16]]
   - [[ADR-0018-systemic-events-and-player-lifecycle]]
   - [[ADR-0030-llm-out-of-authoritative-state]]
   - [[../state-machines/README]]
@@ -38,13 +41,16 @@ accepted
 > Adopted `accepted` 2026-06-08 — authored and ratified in the same sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+> FMX-160 closed the remaining 28-final-vs-gate open question on 2026-06-16:
+> ADR-0089's catalog is canonical, and GD-0038 keeps the count under a standing
+> merge-review gate.
 
 > **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`draft` / `binding: false`.** Authored 2026-06-08. This is a **governance/sequencing** ADR, not a
 > new technical decision: it proposes to ratify **four interdependent ADRs in one wave** so that no
 > downstream ADR rests on a still-parked dependency. It **does not edit** any of the four target ADRs
 > (ratify gate) — promotion notes and the stale-citation redirects below describe what the apply-PR
-> does when Nico ratifies. Nothing here is accepted; awaiting Nico ratify.
+> would do when Nico ratified. This historical banner is no longer the current decision text.
 
 ## Date
 
@@ -116,7 +122,7 @@ This ADR does **not** re-open any of the four technical decisions; it sequences 
 
 ## Decision
 
-Propose, awaiting Nico: **Option A — one joint ratification wave.**
+Accepted 2026-06-08: **Option A — one joint ratification wave.**
 
 The four form a single dependency cluster: ADR-0012 + ADR-0014 are the **foundation** (cadence
 invariant + explicit FSMs); ADR-0088 is a **contract that resolves ADR-0012's rule and adds an FSM**;
@@ -135,9 +141,10 @@ At ratify (apply-PR, not this ADR):
 3. **ADR-0088 lands** (D1–D7 = A/A/A/B/A/A/A); its four state-machine draft amendments flip to current.
    **Make the `contract_version` bump explicit** on `WatchPartyScheduled` and `MatchdayOpened` (new
    derived-lock / anchor fields). This MUST NOT be silently skipped on already-ratified events.
-4. **ADR-0089 lands** (D1/D2/D3 = A/A/A); the bounded-context-map adopts the 28-context catalog and the
-   six clusters. **Retire ADR-0019's stale "eleven bounded contexts" wording** via ADR-0089's catalog
-   as the single source of count — addressed in ADR-0089's map-patch, not by editing ADR-0019.
+4. **ADR-0089 lands** with the 28-context catalog and six clusters; GD-0038 supplies the accepted
+   standing merge-review gate, so the count is governed as a ceiling rather than an immutable final
+   target. **Retire ADR-0019's stale "eleven bounded contexts" wording** via ADR-0089's catalog as the
+   single source of count — addressed in ADR-0089's map-patch, not by editing ADR-0019.
 
 ## Rationale
 
@@ -166,7 +173,8 @@ Positive:
 Negative / constraints:
 
 - **28 contexts is a large surface** for a pre-MVP small team (see [[GD-0038-bounded-context-portfolio-trim-merge-review-gate|GD-0038]] below); the cluster grouping +
-  catalog are the agreed mitigation, but the wave makes the large count *binding*.
+  catalog are the agreed mitigation, and GD-0038 keeps the count actively managed through a standing
+  merge-review gate.
 - The **`contract_version` bump on already-ratified events** (`WatchPartyScheduled`, `MatchdayOpened`)
   must not be silently skipped — it is a discipline cost the apply-PR must honour explicitly.
 - A joint wave is a larger single ratify decision than four small ones; the gate review is heavier in
@@ -174,10 +182,10 @@ Negative / constraints:
 
 ## Risks
 
-- **Large binding surface.** Making 28 contexts binding in the same wave that promotes the foundation
-  concentrates a lot of architecture into one ratify. Mitigation: ADR-0089's clusters/catalog +
-  standing merge-review; the merge-review can stay an open gate (see open questions) without blocking
-  the foundation promotion.
+- **Large catalog surface.** Making the 28-context catalog current in the same wave that promotes the
+  foundation concentrates a lot of architecture into one ratify. Mitigation: ADR-0089's
+  clusters/catalog plus GD-0038's standing merge-review gate; FMX-160 confirms the gate is accepted,
+  not still open.
 - **Silent contract bump.** If the apply-PR extends `WatchPartyScheduled` / `MatchdayOpened` without an
   explicit `contract_version` increment, replay/audit (ADR-0011, ADR-0028) breaks silently. Mitigation:
   make the bump an explicit checklist item at ratify.
@@ -185,11 +193,10 @@ Negative / constraints:
   treating `broadcast_at` wall-clock scheduling as if it were inside the seeded engine. Mitigation: the
   promotion note states the wall-clock-vs-seeded-engine split.
 
-## Open questions
+## Closed and Remaining Questions
 
-- Is **ADR-0089 D1 (accept 28)** final at this ratify, or kept **open as a merge-review gate** — i.e.
-  ratify the foundation (0012/0014/0088) now and hold the 28-count as a standing review item (per the
-  GD below)? Both are coherent; this ADR recommends ratifying together but flags the gate option.
+- **Closed by FMX-160 / GD-0038:** ADR-0089's 28-context catalog is current, and the count is kept
+  under the standing merge-review gate. It is not an open 28-final-vs-gate question anymore.
 - Confirm at ratify: **`TransferRng = stream #7`** (locked-9 unchanged, no new `*Rng`) and the
   **`contract_version` discipline** on `WatchPartyScheduled` / `MatchdayOpened`.
 
@@ -197,7 +204,7 @@ Negative / constraints:
 
 **High** — on the *sequencing* recommendation (ratify the dependency root with its dependents). The
 underlying technical decisions are out of scope here; their own confidence lives in ADR-0088 and
-ADR-0089. The one genuinely open axis (28 final vs 28-as-gate) is surfaced as an open question for Nico.
+ADR-0089. FMX-160 closes the former 28-final-vs-gate axis in favor of the accepted GD-0038 gate.
 
 ## Supersedes
 
@@ -213,7 +220,10 @@ respective apply-PRs (and ADR-0089's map-patch), never by this ADR.
 - [[ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]] — the last backlog item;
   lands in the wave (closes E8/FMX-64).
 - [[ADR-0089-bounded-context-portfolio-reconciliation]] — the 28-context catalog + ordinal key; lands in
-  the wave and retires ADR-0019's "eleven".
+  the wave and retires ADR-0019's "eleven"; FMX-160 clarifies the count is governed as a ceiling.
+- [[../../50-Game-Design/GD-0038-bounded-context-portfolio-trim-merge-review-gate]] /
+  [[../../60-Research/bounded-context-merge-review-gate-2026-06-16]] — accepted gate and FMX-160
+  reconciliation.
 - [[ADR-0011-server-authoritative-multiplayer]] — `binding: true`, cites parked ADR-0014; provenance gap
   this wave closes.
 - [[ADR-0013-transactional-outbox]] → [[ADR-0028-postgres-transactional-outbox]] — the redirect carried

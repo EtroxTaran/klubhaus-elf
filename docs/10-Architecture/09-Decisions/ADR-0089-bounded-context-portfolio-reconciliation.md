@@ -1,9 +1,9 @@
 ---
-title: ADR-0089 Bounded-context portfolio reconciliation and final count
+title: ADR-0089 Bounded-context portfolio reconciliation and managed count
 status: accepted
-tags: [adr, architecture, ddd, bounded-context, modular-monolith, governance, fmx-105]
+tags: [adr, architecture, ddd, bounded-context, modular-monolith, governance, fmx-105, fmx-160]
 created: 2026-06-07
-updated: 2026-06-11
+updated: 2026-06-16
 type: adr
 binding: false
 supersedes:
@@ -23,10 +23,12 @@ related:
   - [[ADR-0081-statistics-analytics-read-model-owner]]
   - [[ADR-0085-media-ecology-context-and-outlet-operational-behaviour]]
   - [[../../60-Research/bounded-context-portfolio-reconciliation-2026-06-07]]
+  - [[../../60-Research/bounded-context-merge-review-gate-2026-06-16]]
+  - [[../../40-Execution/fmx-160-context-portfolio-gate-decision-record-2026-06-16]]
   - [[../../00-Index/Open-Decisions-Dossier]]
 ---
 
-# ADR-0089: Bounded-context portfolio reconciliation and final count
+# ADR-0089: Bounded-context portfolio reconciliation and managed count
 
 ## Status
 
@@ -35,14 +37,17 @@ accepted
 > Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `proposed`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+> FMX-160 reconciled the ratify-with-amendment outcome on 2026-06-16: the 28-context
+> catalog is canonical, but the count is a ceiling under GD-0038's standing
+> merge-review gate, not an immutable final target.
 
 > **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Authored 2026-06-07. Resolves the structural knot where **nine**
 > parallel ADRs each propose a new bounded context and each defers its map-patch "to reconcile with the
 > other parallel proposals" — several literally claiming to be "the 20th". This ADR is the single place
-> that fixes the **final catalog, count, ordinal numbering and cluster grouping**, so the individual
-> apply-PRs land coherently. It **does not edit `bounded-context-map.md`** (ratify gate); it supplies
-> the canonical target the map adopts when Nico ratifies. Awaiting Nico ratify.
+> that fixes the historical target **catalog, count, ordinal numbering and cluster grouping**, so the
+> individual apply-PRs land coherently. This historical banner is no longer the current decision text;
+> FMX-160's status note above is the current count posture.
 
 ## Date
 
@@ -75,8 +80,9 @@ Nine become own bounded contexts (0065 folds into Narrative) ⇒ **19 → 28**.
 
 ## Options considered
 
-- **D1 — Portfolio.** **A. Accept all nine as own-BCs (28 total) ← recommended** · B. Collapse some of
-  the nine to sub-aggregates to keep the count lower · C. Defer additions / freeze at 19.
+- **D1 — Portfolio.** **A. Accept all nine as own-BCs and treat 28 as final** · **B. Adopt the
+  28-context catalog as canonical and manage it as a ceiling under GD-0038's standing merge-review
+  gate ← accepted** · C. Defer additions / freeze at 19.
 - **D2 — Numbering rule (resolves the multiply-claimed "20th").** **A. Canonical catalog + fixed ordinal
   key by ADR number; map re-derives positions 20–28 from the catalog at each apply-PR ← recommended** ·
   B. First-to-ratify takes the next free ordinal (path-dependent, churns prose) · C. Renumber the whole
@@ -86,16 +92,24 @@ Nine become own bounded contexts (0065 folds into Narrative) ⇒ **19 → 28**.
 
 ## Decision
 
-Propose, awaiting Nico: **D1 = A, D2 = A, D3 = A.**
+Accepted 2026-06-08 and reconciled by FMX-160:
 
-### D1 — Accept the 28-context portfolio
+- **D1 = B / ratify-with-amendment.** Adopt the 28-context catalog, ordinal key
+  and clusters as canonical, but treat the count as an actively managed ceiling
+  under [[../../50-Game-Design/GD-0038-bounded-context-portfolio-trim-merge-review-gate]].
+- **D2 = A.** Use the canonical catalog plus fixed ordinal key by ADR number.
+- **D3 = A.** Group the 28 into six subdomain clusters plus a context catalog
+  and explicit no-shared-table architecture-test invariant.
+
+### D1 — Adopt the 28-context catalog as a managed ceiling
 
 Count is **not** the architectural cost in a modular monolith; coupling/integration-surface and
 cognitive load are (Evans/Vernon/Team-Topologies). Each of the nine passed its own bounded-context test
 (distinct ubiquitous language, invariants, lifecycle, consumers, data) and carries a Nico direction;
 ADR-0065 correctly stays a Narrative subdomain (its invariants co-change with Narrative). They remain
 in-process logical modules behind commands/queries/events with no shared tables (ADR-0019 §5, ADR-0027),
-so extraction stays a deployment change. **The map's final ratified count is 28.**
+so extraction stays a deployment change. **The map's canonical catalog currently contains 28 contexts,
+and GD-0038 / FMX-160 govern that count as a ceiling under a standing merge-review gate.**
 
 ### D2 — Canonical catalog + fixed ordinal key
 
@@ -139,7 +153,7 @@ not new boundaries, and a context may relate across clusters):
 
 Plus: keep an authoritative **context catalog** (the §1 table is it) and make the **no-cross-context
 table joins / no shared tables** rule an explicit architecture-test invariant (already implied by
-ADR-0019/0027), and adopt a standing review to **merge** any pair that always co-changes.
+ADR-0019/0027), and adopt GD-0038's standing review to **merge** any pair that always co-changes.
 
 ## Rationale
 
@@ -150,7 +164,8 @@ complex single-player + async game" given subdomain alignment, controlled coupli
 context map and cluster grouping. Each of the nine is independently justified and Nico-directed, so
 collapsing them now would re-litigate settled decisions and create the coupling debt those ADRs
 documented. The only real risk — cognitive load — is addressed by the cluster grouping and catalog, not
-by suppressing genuine boundaries. The canonical ordinal key removes the "everyone is the 20th"
+by suppressing genuine boundaries. FMX-160 keeps that mitigation active by treating 28 as a managed
+ceiling rather than a final target. The canonical ordinal key removes the "everyone is the 20th"
 ambiguity without making numbering depend on ratification order.
 
 ## Consequences
@@ -158,9 +173,11 @@ ambiguity without making numbering depend on ratification order.
 Positive:
 
 - One coherent target map; the nine apply-PRs stop colliding on "the 20th".
-- Final count (28) and per-context ordinal are fixed and ratification-order-independent.
+- Current count (28) and per-context ordinal are fixed and ratification-order-independent until a later
+  explicit merge/split decision changes the catalog.
 - Cluster grouping caps cognitive load and gives future service-extraction seams.
-- No premature merging; settled per-context decisions are preserved.
+- No premature merging; settled per-context decisions are preserved while the count stays actively
+  governed by GD-0038's merge-review gate.
 
 Negative:
 
@@ -191,6 +208,10 @@ guarantees stable ordinals so no re-applied row shifts.
 
 - [[../../60-Research/bounded-context-portfolio-reconciliation-2026-06-07]] - grounding (count vs
   coupling/cognitive-load; modular-monolith tolerance; nano-context heuristics; portfolio governance).
+- [[../../60-Research/bounded-context-merge-review-gate-2026-06-16]] - FMX-160 source-checked
+  reconciliation applying the 2026-06-08 Option B gate decision.
+- [[../../40-Execution/fmx-160-context-portfolio-gate-decision-record-2026-06-16]] - issue-level
+  decision record for the ratify-with-amendment outcome.
 - [[ADR-0019-modular-monolith-ddd]] - logical contexts, extraction = deployment change.
 - [[ADR-0027-postgres-data-model]] - no shared tables / per-context storage isolation.
 - [[../bounded-context-map]] - target of the proposed-not-applied catalog patch.
