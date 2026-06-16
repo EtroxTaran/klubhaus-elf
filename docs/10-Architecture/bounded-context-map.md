@@ -3,7 +3,7 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-06-15
+updated: 2026-06-16
 type: architecture
 binding: true
 related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]], [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]], [[../60-Research/identity-access-context-definition-2026-06-15]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[09-Decisions/ADR-0123-identity-access-context-definition]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[../40-Quality/architecture-fitness-function]]
@@ -62,9 +62,12 @@ change, not a refactor.
 | **Statistics & Analytics** | Projection-only read model (ADR-0081): official counts vs derived estimates, analytics hub, per-save immutable standings/history snapshots; no global OVR; no official-ordering or rollover authority | Analytics/statistics projections (read-only), standings history, league leaders, season-history snapshots |
 | **Media Ecology** | Persistent opinionated outlets (Type/Stance/Reach/Reliability/Cadence), `CoverageThread` aggregate (ADR-0100), deterministic scoring + per-edition budget, stance drift | Coverage facts, advisory effect-intents (never applies effects, ADR-0030) |
 
-The ratified portfolio is **28 bounded contexts** (19 → 28), fixed by
-[[09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]] with a stable
-ordinal key by ADR number (positions 20–28 are the nine rows above).
+The canonical portfolio catalog currently contains **28 bounded contexts**
+(19 -> 28), fixed by [[09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]]
+with a stable ordinal key by ADR number (positions 20-28 are the nine rows
+above). FMX-160 / [[../50-Game-Design/GD-0038-bounded-context-portfolio-trim-merge-review-gate]]
+frames 28 as an actively managed ceiling under a standing merge-review gate,
+not an immutable final target.
 [[09-Decisions/ADR-0065-narrative-media-press-content-ownership]] is **not** a new
 context — it is a Narrative subdomain.
 

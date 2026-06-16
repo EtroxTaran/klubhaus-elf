@@ -24,6 +24,22 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-160 bounded-context portfolio gate reconciled (2026-06-16).**
+> Branch `codex/fmx-160-context-portfolio-gate` applies the already-ratified
+> 2026-06-08 GD-0038 / ADR-0089 Option B decision: the 28-context map remains
+> the canonical catalog, ordinal key and six-cluster source, but **28 is an
+> actively managed ceiling under a standing merge-review gate**, not an
+> immutable final target. Research:
+> [[../60-Research/bounded-context-merge-review-gate-2026-06-16]] plus raw
+> Perplexity/source-check captures. Decision record:
+> [[../40-Execution/fmx-160-context-portfolio-gate-decision-record-2026-06-16]].
+> Reconciled docs: [[../50-Game-Design/GD-0038-bounded-context-portfolio-trim-merge-review-gate]],
+> [[../10-Architecture/09-Decisions/ADR-0089-bounded-context-portfolio-reconciliation]],
+> [[../10-Architecture/09-Decisions/ADR-0093-joint-ratification-wave-async-coordination-foundation]]
+> and [[../10-Architecture/bounded-context-map]]. No new Nico decision was
+> required for FMX-160; future numeric co-change thresholds or named cluster
+> stewards remain optional follow-up decisions once code/team history exists.
+
 > **FMX-155 loan-cap and obligation catalog accepted (2026-06-16).**
 > Branch `codex/fmx-155-loan-cap-obligation-catalog` closes ADR-0075's
 > Regulations data follow-up for loans. Nico accepted D1-D5:

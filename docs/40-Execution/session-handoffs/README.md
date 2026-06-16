@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-16
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]]
 ---
 
 # Session Handoffs
@@ -48,6 +48,12 @@ This is the **single** canonical handoff location. (An older
   Nico accepted layered `LoanRegulationProfile`, focused
   `ObligationConditionCatalog`, Regulations-owned shape, static per-save
   snapshots and exact inspectable clause visibility.
+- [[2026-06-16-fmx-160-context-portfolio-gate]] - FMX-160 bounded-context
+  portfolio gate reconciliation: raw Perplexity/source-check captures,
+  synthesis and decision record applying Nico's 2026-06-08 GD-0038 / ADR-0089
+  Option B decision. Current truth: ADR-0089's 28-context map is the canonical
+  catalog and ceiling under GD-0038's standing merge-review gate, not an
+  immutable final target.
 - [[2026-06-16-fmx-188-prompt-injection-defensive-contract]] - FMX-188
   prompt-injection defensive contract for untrusted UGC/community-pack text in
   Narrative LLM prose: raw Perplexity/source-check captures, synthesis,

@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, architecture-fitness, dependency-cruiser, bounded-context, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, career, national-team, bundestrainer, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, transfer, loan, obligation-to-buy, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-164, fmx-167, fmx-168, fmx-170, fmx-177, fmx-180, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, architecture-fitness, dependency-cruiser, bounded-context, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, career, national-team, bundestrainer, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, transfer, loan, obligation-to-buy, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-160, fmx-164, fmx-167, fmx-168, fmx-170, fmx-177, fmx-180, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 updated: 2026-06-16
 ---
 
@@ -22,6 +22,20 @@ Decision record:
 Raw captures:
 [[raw-perplexity/raw-loan-cap-obligation-catalog-2026-06-16]],
 [[raw-perplexity/raw-loan-cap-obligation-source-checks-2026-06-16]].
+
+## Bounded-context Merge-review Gate Reconciliation (FMX-160, 2026-06-16)
+
+[[bounded-context-merge-review-gate-2026-06-16]] preserves the FMX-160
+Perplexity-first and source-checked reconciliation of stale bounded-context
+count wording. The current truth is the 2026-06-08 GD-0038 / ADR-0089 Option B
+decision: ADR-0089's 28-context map remains the canonical catalog, ordinal key
+and six-cluster source, but 28 is an actively managed ceiling under
+GD-0038's standing merge-review gate, not an immutable final target. Decision
+record:
+[[../40-Execution/fmx-160-context-portfolio-gate-decision-record-2026-06-16]].
+Raw captures:
+[[raw-perplexity/raw-bounded-context-merge-review-gate-2026-06-16]],
+[[raw-perplexity/raw-bounded-context-merge-review-gate-source-checks-2026-06-16]].
 
 ## LLM Prompt Injection Defensive Contract for UGC Narrative (FMX-188, 2026-06-16)
 
