@@ -37,6 +37,16 @@ design notes.
   Nico accepted D1-D3 in
   [FMX-186 decision record](../40-Execution/fmx-186-erasure-hgb-retention-decision-queue-2026-06-16.md);
   legal/accounting review remains a paid-activation gate.
+- [Webhook Receiver Security and Pentest-Bug Bounty Posture](../60-Research/webhook-receiver-security-and-pentest-bugbounty-2026-06-16.md) -
+  FMX-187 Perplexity-first and source-checked packet for accepted
+  [[../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract]]:
+  provider-native proof verification before trusted parsing,
+  raw-body preservation, delivery/event dedupe, business-object idempotency,
+  optional-only IP allowlisting, provider reconciliation and
+  pentest-before-bounty launch posture. Nico accepted D1-D3 in
+  [FMX-187 decision record](../40-Execution/fmx-187-webhook-receiver-security-decision-queue-2026-06-16.md);
+  future paid activation still needs ADR-0109/legal gates and implementation
+  evidence.
 - [Live Match Pause Ratification](../60-Research/live-match-pause-ratification-2026-06-16.md) -
   FMX-140 Perplexity-first and source-checked cleanup of accepted
   ADR-0087/GD-0035: Design 1 active-manager pause semantics, one longer MVP

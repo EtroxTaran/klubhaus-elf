@@ -1,9 +1,9 @@
 ---
 title: "Pre-Mortem 2026-05-20 · 05 · Security & Integrity"
 status: current
-tags: [research, pre-mortem, security, integrity, anti-tamper, save-format, anti-cheat, 2026-Q2]
+tags: [research, pre-mortem, security, integrity, anti-tamper, save-format, anti-cheat, webhook, pentest, 2026-Q2]
 created: 2026-05-20
-updated: 2026-06-14
+updated: 2026-06-16
 type: research
 binding: false
 report_id: PM-2026-05-20-05
@@ -26,10 +26,13 @@ related:
   - [[../../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]]
   - [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture]]
   - [[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture]]
+  - [[../../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract]]
+  - [[../webhook-receiver-security-and-pentest-bugbounty-2026-06-16]]
   - [[../../30-Implementation/auth-flows]]
   - [[../../30-Implementation/session-management]]
   - [[../../30-Implementation/rate-limiting-anti-abuse]]
   - [[../../30-Implementation/privacy-and-consent]]
+  - [[../../40-Compliance/webhook-receiver-security-evidence-2026-06-16]]
 ---
 
 # Pre-Mortem 2026-05-20 · 05 · Security & Integrity
@@ -343,24 +346,34 @@ confidence: high
 early_warning:
   - metric: "webhook_signature_invalid_total"
     threshold: "> 0"
-mitigation_summary: "Webhook-Signaturen prüfen (Stripe `stripe-signature`); Idempotenz via eventId; IP-Allow-List wo möglich"
-linked_adrs: []
-linked_specs: [[PM-2026-05-20-04-monetization]]
+mitigation_summary: "ADR-0128: provider-native signature/JWT/signed-payload verification before trusted parsing, raw-body preservation, delivery/event dedupe, business-object idempotency, optional-only IP allowlisting, provider reconciliation and pentest-first launch gate"
+linked_adrs: [[../../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract]]
+linked_specs: [[PM-2026-05-20-04-monetization]], [[../webhook-receiver-security-and-pentest-bugbounty-2026-06-16]], [[../../40-Compliance/webhook-receiver-security-evidence-2026-06-16]]
 linked_code:
   - "apps/web/src/server/webhooks/* (geplant)"
-linked_issues: []
+linked_issues:
+  - FMX-187
 resolved_by:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
+  - [[../../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract]]
+  - [[../../40-Execution/fmx-187-webhook-receiver-security-decision-queue-2026-06-16]]
 status: mitigated
 owner_suggested: platform
 effort: S
 created: 2026-05-20
-updated: 2026-05-22
+updated: 2026-06-16
 ```
 
 **Hypothese.** Webhook-Endpoints (Stripe-IPN, GitHub-MCP für Auto-PR-Reviewer, sentry-glitchtip-Alerts) sind öffentlich erreichbar. Ohne Signatur-Validation kann ein Angreifer ”žbezahlte" Entitlements grant'en oder Audit-Log-Spam verursachen.
 
-**Mitigation.** Stripe `stripe-signature` Header prüfen mit Webhook-Secret; Idempotenz via `eventId` aus Payload (30 Tage Replay-Window); WebHook-Receiver hinter Cloudflare mit IP-Allow-List wo Provider statisch.
+**Mitigation.** FMX-187 routes implementation to accepted
+[[../../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract]]:
+provider-native signature/JWT/signed-payload verification before trusted
+parsing, raw-body preservation, provider freshness checks, delivery/event
+dedupe, business-object idempotency, optional-only IP allowlisting, provider
+reconciliation and a focused external pentest before public beta/paid launch.
+The old "30 Tage Replay-Window" wording is retained only as a delivery/event
+dedupe-record planning window, not as permission to accept stale signatures.
 
 ---
 
@@ -664,11 +677,18 @@ Branchen-Erfahrung: 0,5–3 % der MP-Aktionen sind Cheat-Versuche. Bei 280k Comm
 - Scope: Web, Auth, Save-Import/Export, Webhook-Endpoints, API.
 - Lieferant: Externe Security-Boutique, ggf. via yeswehack.
 - Budget: 3–5 Tester-Tage, ~5–8 k €.
+- **FMX-187 / ADR-0128 accepted closure:** focused external pentest is required
+  before public beta or real paid activation for webhook/payment/control
+  surfaces. Exact supplier, calendar date and budget remain procurement
+  decisions.
 
 ### Bug-Bounty (post-Launch, optional)
 
 - Phase 1: Discord-only-Pool, max 500 € pro Critical, max 2 k €/Monat Budget.
 - Phase 2: HackerOne / yeswehack, falls Phase 1 zu wenig Findings liefert.
+- **FMX-187 / ADR-0128 accepted closure:** public bug bounty is deferred until
+  receiver controls, triage owner, disclosure text, duplicate policy and budget
+  are mature. A private/trusted reporter pilot may precede public expansion.
 
 ## Runbook-Skizzen
 
@@ -705,8 +725,12 @@ Branchen-Erfahrung: 0,5–3 % der MP-Aktionen sind Cheat-Versuche. Bei 280k Comm
 
 - **OQ-S-01.** Passkey-Device-Key direkt für Command-Signing — Ergonomie vs Hygiene?
 - **OQ-S-02.** Welche Loki-Felder dürfen unredigiert bleiben (Allow-List)?
-- **OQ-S-03.** Bug-Bounty: Discord-Pilot ja/nein, Budget?
-- **OQ-S-04.** Externes Pentest-Engagement: Lieferant, Timing, Budget.
+- **OQ-S-03 (resolved by FMX-187 / ADR-0128).** Public bug bounty is deferred;
+  private/trusted reporter pilot is optional later after triage, disclosure and
+  budget are approved.
+- **OQ-S-04 (resolved by FMX-187 / ADR-0128).** Focused external pentest is
+  required before public beta or real paid activation for webhook/payment/control
+  surfaces; exact vendor, date and budget remain procurement decisions.
 - **OQ-S-05.** Engine-Versions-Storage-Policy: wie viele alte Engine-Builds halten wir vorrätig?
 - **OQ-S-06.** Cloud-Sync für SP-Saves opt-in oder opt-out?
 

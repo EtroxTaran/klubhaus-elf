@@ -6,8 +6,8 @@ created: 2026-05-17
 updated: 2026-06-16
 type: implementation
 binding: false
-adr: [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0091-audit-security-context-definition]], [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]]
-related: [[jobs-and-scheduler]], [[observability-runbook]], [[notification-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]], [[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]], [[../60-Research/erasure-vs-hgb-retention-partition-2026-06-16]]
+adr: [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0091-audit-security-context-definition]], [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]], [[../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract]]
+related: [[jobs-and-scheduler]], [[observability-runbook]], [[notification-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]], [[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]], [[../60-Research/erasure-vs-hgb-retention-partition-2026-06-16]], [[../60-Research/webhook-receiver-security-and-pentest-bugbounty-2026-06-16]], [[../40-Compliance/webhook-receiver-security-evidence-2026-06-16]]
 ---
 
 # Audit Trail
@@ -34,6 +34,11 @@ Command Reception. Command-reception facts such as accepted, duplicate,
 pending and mismatched replay decisions are security facts, not a reason to
 turn the ADR-0028 outbox into the pre-commit command gate.
 
+ADR-0128 extends the same reception discipline to external provider webhooks:
+verification failures, freshness rejects, duplicate deliveries, duplicate
+business objects and reconciliation mismatches are Audit & Security facts. Only
+verified normalized outcomes should reach domain mutation events.
+
 ## Domain Mutation Scope
 
 Domain mutation events that warrant the ADR-0028 outbox/domain trail include:
@@ -58,7 +63,7 @@ Domain mutation events that warrant the ADR-0028 outbox/domain trail include:
 - match simulation/resolution summaries;
 - economy and sponsorship decisions;
 - admin actions;
-- content moderation actions for community datasets.
+- content moderation actions for community datasets;
 - notification preference changes, subscription lifecycle, delivery state and
   provider webhook decisions:
   - `notification.created`
@@ -70,6 +75,12 @@ Domain mutation events that warrant the ADR-0028 outbox/domain trail include:
   - `notification.subscription_created`
   - `notification.subscription_revoked`
   - `notification.digest_sent`
+- verified payment/provider webhook outcomes after ADR-0128 receiver checks:
+  - `payment.webhook_verified`
+  - `payment.webhook_rejected`
+  - `payment.webhook_duplicate_detected`
+  - `payment.entitlement_double_grant_prevented`
+  - `payment.provider_reconciliation_mismatch`
 
 Each outbox-backed domain mutation event is a domain event with:
 

@@ -1,9 +1,9 @@
 ---
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
-tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, financing, debt, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, fmx-78]
+tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, security, webhook, financing, debt, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, fmx-78, fmx-187]
 created: 2026-05-28
-updated: 2026-06-03
+updated: 2026-06-16
 type: implementation
 binding: false
 linear: FMX-41
@@ -26,6 +26,8 @@ related:
   - [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]
   - [[../60-Research/club-financing-tools-2026-06-01]]
   - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
+  - [[../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract]]
+  - [[../60-Research/webhook-receiver-security-and-pentest-bugbounty-2026-06-16]]
   - [[../60-Research/fan-service-campaign-catalog-and-effects-2026-06-01]]
   - [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]]
   - [[../10-Architecture/09-Decisions/ADR-0070-fixture-commercial-revenue-profile-contract]]
@@ -66,6 +68,12 @@ receivable factoring. CommercialPortfolio owns the contract amendment,
 cash-versus-recognition schedule, receivable schedule, contract-liability and
 fair-value evidence; Club Management owns the actual financing facility,
 drawdown, covenant, insolvency and ledger-posting decisions.
+
+FMX-187 / ADR-0128 adds the receiver-security gate before future
+payment/control webhooks can influence this contract surface: provider proof
+verification, raw-body preservation, delivery/event dedupe, business-object
+idempotency, reconciliation and pentest evidence are required before
+`InvestorEntitlementGrant` can be driven by webhook input.
 
 This is draft planning only. It becomes implementation authority only after the
 relevant GDDR/ADR path is approved.
@@ -680,9 +688,13 @@ Rules (FMX-50 refines):
 
 - only accepted in singleplayer saves; multiplayer/leaderboard hard-denied; offline
   deferred until server-confirmed (no offline self-grant);
-- **server-authoritative + idempotent by `storeTransactionRef`** (provider
-  transaction id); `paid -> entitled` may fire only once; webhooks (Apple ASSN /
-  Google RTDN) processed idempotently with a reconciliation job for misses/refunds;
+- provider webhooks are accepted only after ADR-0128 receiver verification,
+  replay rejection and delivery/event dedupe;
+- **server-authoritative + two-layer idempotent**: the receiver dedupes provider
+  delivery/event ids, while CommercialPortfolio dedupes the entitlement by
+  `storeTransactionRef` or provider transaction/purchase-token equivalent;
+  `paid -> entitled` may fire only once; webhooks (Apple ASSN / Google RTDN)
+  require reconciliation jobs for misses/refunds;
 - posts one `investor_entitlement_cash_grant` ledger entry (ADR-0050 single writer);
 - entitlement is **account-bound, not save-bound** — imported saves re-bind from
   the account, never trust save bytes;
@@ -697,6 +709,9 @@ specified in proposed
 and researched in
 [[../60-Research/investor-compliance-and-entitlement-boundary-2026-06-01]]. Final
 vendor, refund-of-spent-cash policy and activation timing remain HITL/legal gates.
+Webhook receiver verification, replay/idempotency and pentest evidence are
+specified in accepted
+[[../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract]].
 
 ## Settlement flow
 

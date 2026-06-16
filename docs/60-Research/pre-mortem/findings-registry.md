@@ -3,7 +3,7 @@ title: "Pre-Mortem Findings Registry"
 status: current
 tags: [research, pre-mortem, registry, tracking, 2026-Q2]
 created: 2026-05-20
-updated: 2026-06-15
+updated: 2026-06-16
 type: registry
 binding: false
 report_set: 2026-05-20
@@ -31,6 +31,7 @@ related:
   - [[../../95-Archive/gap-reports/gap-closure-concept-2026-05-22]]
   - [[../../95-Archive/gap-reports/wave-3-gap-analysis]]
   - [[../../00-Index/Current-State]]
+  - [[../../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract]]
 ---
 
 # Pre-Mortem Findings Registry — 2026-05-20

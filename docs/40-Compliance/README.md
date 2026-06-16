@@ -1,7 +1,7 @@
 ---
 title: Compliance Evidence
 status: current
-tags: [compliance, legal, evidence, monetization, privacy, consumer-law, age-assurance, ratings, gdpr, retention, fmx-186]
+tags: [compliance, legal, evidence, monetization, privacy, consumer-law, age-assurance, ratings, gdpr, retention, security, webhook, fmx-186, fmx-187]
 created: 2026-06-13
 updated: 2026-06-16
 type: index
@@ -17,6 +17,7 @@ related:
   - [[age-assurance-and-rating-evidence]]
   - [[responsible-gaming]]
   - [[payment-retention-legal-review-evidence-2026-06-16]]
+  - [[webhook-receiver-security-evidence-2026-06-16]]
 ---
 
 # Compliance Evidence
@@ -28,6 +29,11 @@ Linear issue explicitly promotes it.
 
 ## Current notes
 
+- [[webhook-receiver-security-evidence-2026-06-16]] - FMX-187 evidence hook
+  for ADR-0128 receiver implementation: provider docs re-check, raw-body
+  preservation, signature/JWT/signed-payload verification, replay/dedupe tests,
+  provider reconciliation smoke, metrics/audit, payload-retention review,
+  focused pentest and later bug-bounty readiness.
 - [[payment-retention-legal-review-evidence-2026-06-16]] - FMX-186
   legal/accounting review gate for payment/receipt retention fields, HGB/AO
   buckets, provider split, mapping expiry and DSAR retained-set behavior.

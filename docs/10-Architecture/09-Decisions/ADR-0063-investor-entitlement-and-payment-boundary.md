@@ -1,9 +1,9 @@
 ---
 title: ADR-0063 Investor Entitlement and Payment Boundary
 status: accepted
-tags: [adr, architecture, economy, investor, monetization, entitlement, iap, payment, compliance, legal, risk-legal, fmx-50, proposed]
+tags: [adr, architecture, economy, investor, monetization, entitlement, iap, payment, compliance, legal, security, webhook, risk-legal, fmx-50, fmx-187, proposed]
 created: 2026-06-01
-updated: 2026-06-13
+updated: 2026-06-16
 type: adr
 binding: false
 supersedes:
@@ -23,8 +23,11 @@ related:
   - [[../../60-Research/pre-mortem/PM-2026-05-20-04-monetization]]
   - [[../../60-Research/pre-mortem/PM-2026-05-20-08-legal-consumer-law-and-tax]]
   - [[ADR-0109-payment-provider-and-monetization-legal-gates]]
+  - [[ADR-0128-webhook-receiver-security-contract]]
   - [[../../60-Research/monetization-legal-gates-2026-06-13]]
+  - [[../../60-Research/webhook-receiver-security-and-pentest-bugbounty-2026-06-16]]
   - [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]
+  - [[../../40-Compliance/webhook-receiver-security-evidence-2026-06-16]]
 ---
 
 # ADR-0063: Investor Entitlement and Payment Boundary
@@ -77,6 +80,10 @@ monetization/legal pre-mortems (PM-2026-05-20-04, -08).
   consequential but should **not be a one-way door**.
 - Entitlement granting must be **exactly-once** and **server-authoritative**
   (idempotency, at-least-once webhooks, reconciliation).
+- Webhook receiver verification, replay rejection and delivery/business dedupe
+  are now governed by
+  [[ADR-0128-webhook-receiver-security-contract|ADR-0128]] before any
+  entitlement command is trusted.
 - Final legal sign-off is a HITL gate (PM-04-F-06, PM-08).
 
 ## Options considered
@@ -134,6 +141,14 @@ legal-sensitive gates in
 recommendations remain pending Nico/legal approval and do not change this ADR's
 binding status by themselves.
 
+FMX-187 adds the binding receiver-security contract in
+[[ADR-0128-webhook-receiver-security-contract|ADR-0128]]. That contract does not
+choose the payment provider. It defines the verify-before-parse, raw-body
+preservation, replay rejection, delivery/event dedupe, business-object
+idempotency, provider reconciliation and pentest-before-bounty posture that all
+future payment/control webhooks must satisfy before they can drive
+`ConfirmInvestorEntitlement` or revocation/reconciliation flows.
+
 ## Recommendation
 
 Adopt **Option B** for MVP planning: a `PaymentProviderPort` plus a
@@ -147,6 +162,9 @@ boundary changes; no gameplay change.
 
 CommercialPortfolio commands/events (extends ADR-0058):
 
+- Provider webhook payloads are not direct domain commands. They must first pass
+  ADR-0128 receiver verification and dedupe, then produce normalized facts for
+  CommercialPortfolio.
 - `InitiateInvestorPurchase` / `ConfirmInvestorEntitlement` (idempotent by
   `storeTransactionRef`)
 - `ReconcileInvestorEntitlement` (refund / void / chargeback)
@@ -179,6 +197,8 @@ Positive:
 - Vendor-swappable, exactly-once, audited entitlement isolated from gameplay/MP.
 - Consumer-law + age-rating obligations are explicit contracts.
 - Secrets boundary extends cleanly to store/PSP credentials.
+- Webhook ingress now has a separate accepted receiver-security contract
+  instead of relying on this payment ADR alone.
 
 Negative / constraints:
 
@@ -202,3 +222,6 @@ None.
 - [[ADR-0050-club-economy-accounting-ledger]]
 - [[ADR-0058-club-economy-commercial-impact-boundary]]
 - [[ADR-0025-mobile-delivery]]
+- [[ADR-0128-webhook-receiver-security-contract]]
+- [[../../60-Research/webhook-receiver-security-and-pentest-bugbounty-2026-06-16]]
+- [[../../40-Compliance/webhook-receiver-security-evidence-2026-06-16]]
