@@ -65,8 +65,8 @@ Before launch, re-check current official/provider docs for:
 - This checklist does not draft legal text.
 - Payment provider legal role depends on the final contract, not marketing copy.
 - Payment/receipt erasure-vs-retention partitioning is now a separate FMX-186
-  review gate under accepted ADR-0127; legal/accounting review must still
-  confirm provider-specific retained fields before paid activation.
+  review gate under draft ADR-0127; Nico D1-D7 and legal/accounting review must
+  still confirm provider-specific retained fields before paid activation.
 - Age-gate strictness can change if FMX later adds UGC, chat, betting-like
   mechanics, paid random rewards, adult content or more aggressive monetization.
 - Legal review may choose a stricter refund policy than the current recommended

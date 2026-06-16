@@ -12,14 +12,14 @@ updated: 2026-06-16
 [[erasure-vs-hgb-retention-partition-2026-06-16]] preserves the FMX-186
 Perplexity-first and source-checked packet for GDPR Article 17 account erasure
 vs German HGB/AO payment/receipt/shared-history retention. It corrects the
-broad 10/6 shorthand to the official 10/8/6 retention buckets, records Nico's
-accepted detach-mapping and hybrid shared-history choices, defines a field-level
+broad 10/6 shorthand to the official 10/8/6 retention buckets, recommends
+detached mapping and hybrid shared-history handling, defines a field-level
 `erase_now` / `pseudonymize` / `retain_as_fact` / `do_not_store` table, keeps
 finance records in a separate key domain, erases the account-to-finance mapping
 after final purge unless a legal hold/dispute exists, and names the future
-deterministic DSAR retained-set test. Accepted ADR:
+deterministic DSAR retained-set test. Draft ADR:
 [[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]].
-Decision record:
+Decision queue:
 [[../40-Execution/fmx-186-erasure-hgb-retention-decision-queue-2026-06-16]].
 Legal/accounting review gate:
 [[../40-Compliance/payment-retention-legal-review-evidence-2026-06-16]].

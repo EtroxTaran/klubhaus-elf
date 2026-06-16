@@ -134,9 +134,9 @@ for legal/security reasons but should be minimised or pseudonymised where
 possible.
 
 Future payment/receipt retention is a separate finance/legal record class, not
-a platform `audit_log`. Accepted
+a platform `audit_log`. Draft
 [[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]
-defines the field-level `finance_records` partition and key-separation model.
+proposes the field-level `finance_records` partition and key-separation model.
 This audit note remains the authority for outbox and Audit & Security surfaces.
 
 ## Tamper Evidence

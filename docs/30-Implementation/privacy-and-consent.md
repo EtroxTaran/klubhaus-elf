@@ -90,7 +90,7 @@ follow-ups:
   analytics actually ship.
 - The payments-related consent + provider-specific payment UX layer →
   future ADR/provider work when payments enter scope. FMX-186 now provides the
-  accepted receipt-retention/shared-history erasure partition in
+  draft receipt-retention/shared-history erasure partition in
   [[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]
   plus [[../60-Research/erasure-vs-hgb-retention-partition-2026-06-16]];
   legal/accounting review still gates real paid activation.
@@ -653,7 +653,7 @@ is the current account/save erasure guarantee. If paid flows are accepted later,
 requires a separate `finance_records` retention class and finance key domain so
 HGB/AO-required invoice/payment facts remain readable until statutory expiry
 while account/save keys are still destroyed. The proposed partition is
-accepted for planning; legal/accounting review confirms the retained fields
+pending Nico approval; legal/accounting review confirms the retained fields
 before real payment activation.
 
 ### 8.3 Confirmation modal copy

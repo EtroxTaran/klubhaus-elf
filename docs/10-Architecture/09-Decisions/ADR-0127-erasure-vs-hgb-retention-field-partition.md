@@ -1,11 +1,11 @@
 ---
 title: ADR-0127 Erasure vs HGB retention field partition
-status: accepted
+status: draft
 tags: [adr, architecture, privacy, gdpr, erasure, retention, hgb, ao, payments, finance-records, dsar, fmx-186]
 created: 2026-06-16
 updated: 2026-06-16
 type: adr
-binding: true
+binding: false
 linear: FMX-186
 amends:
   - [[ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]
@@ -32,17 +32,13 @@ related:
 
 ## Status
 
-accepted
+draft
 
-Accepted 2026-06-16 by Nico for FMX-186. Decision record:
-[[../../40-Execution/fmx-186-erasure-hgb-retention-decision-queue-2026-06-16]].
-
-This ADR is binding planning truth for the data/key partition between account
-erasure and legally retained finance/shared-history facts. It does not activate
-real-money payment processing. Legal/accounting review remains a paid-activation
-gate through
-[[../../40-Compliance/payment-retention-legal-review-evidence-2026-06-16]] and
-ADR-0109.
+> **Decision gate.** This is the FMX-186 proposal only. It is non-binding until
+> Nico answers D1-D7 in
+> [[../../40-Execution/fmx-186-erasure-hgb-retention-decision-queue-2026-06-16]]
+> and legal/accounting review confirms the retained finance fields before real
+> payment activation.
 
 ## Context
 
@@ -67,9 +63,9 @@ The unresolved conflict is payments and shared history:
 Without a field-level rule, FMX could either over-delete statutory records or
 over-retain account identity.
 
-## Decision
+## Proposed Decision
 
-FMX adopts a hybrid erasure-vs-retention partition:
+The recommended FMX-186 posture is a hybrid erasure-vs-retention partition:
 
 1. Account/profile/auth/session/device/private-save data follows the existing
    account-erasure flow and account-key destruction.
@@ -113,25 +109,25 @@ or a public legal notice in the docs-only phase.
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| **A. Current HGB/AO law split** | Use 10 years for books/annual-accounting records, 8 years for booking vouchers and 6 years for commercial/tax correspondence, counted from calendar-year end. | **Accepted.** Source-checked against official HGB 257 and AO 147; corrects older broad 10-year shorthand. |
-| B. Generic 10/6 shorthand | Treat most invoice/payment records as 10 years and correspondence as 6 years. | Rejected as stale and too broad for booking vouchers. |
+| **A. Current HGB/AO law split** | Use 10 years for books/annual-accounting records, 8 years for booking vouchers and 6 years for commercial/tax correspondence, counted from calendar-year end. | **Recommended.** Source-checked against official HGB 257 and AO 147; corrects older broad 10-year shorthand. |
+| B. Generic 10/6 shorthand | Treat most invoice/payment records as 10 years and correspondence as 6 years. | Not recommended; stale and too broad for booking vouchers. |
 | C. Provider-only retention | Let a future MoR/PSP/store be the sole retention holder. | Possible later only if legal review proves FMX is not the record holder for the relevant facts. |
 
 ### D2 - Identity partition
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| **A. Detach account mapping** | Delete game account/profile data, retain legally required facts, destroy or sever `account_id -> finance_subject_id` mapping as far as lawful, and restrict retained facts to legal/retention purposes. | **Accepted.** Best balance of Article 17, HGB/AO readability and data minimization. |
-| B. Keep account id on finance rows | Retention/support lookup remains easy. | Rejected for direct identity over-retention. |
-| C. Fully anonymize immediately | Remove all re-identification paths at deletion time. | Rejected where invoice/dispute/tax records need meaningful evidence or legal claims are active. |
+| **A. Detach account mapping** | Delete game account/profile data, retain legally required facts, destroy or sever `account_id -> finance_subject_id` mapping as far as lawful, and restrict retained facts to legal/retention purposes. | **Recommended.** Best balance of Article 17, HGB/AO readability and data minimization. |
+| B. Keep account id on finance rows | Retention/support lookup remains easy. | Not recommended; direct identity over-retention. |
+| C. Fully anonymize immediately | Remove all re-identification paths at deletion time. | Not recommended where invoice/dispute/tax records need meaningful evidence or legal claims are active. |
 
 ### D3 - Shared history / UGC / safety evidence
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| **A. Hybrid retain with anonymization** | Delete private singleplayer/profile data; anonymize shared MP/UGC/economy history; retain minimal pseudonymous moderation/fraud/chargeback/audit evidence under narrow legal purposes. | **Accepted.** Matches game/platform precedent and keeps other players' histories coherent without preserving deleted identity. |
-| B. Delete all shared history authored by the user | Remove every multiplayer, UGC and community trace. | Rejected; breaks other players' histories and can destroy moderation/legal evidence. |
-| C. Keep shared history unchanged | Preserve old names/profile links everywhere. | Rejected; over-retains account identity and fails the erasure expectation. |
+| **A. Hybrid retain with anonymization** | Delete private singleplayer/profile data; anonymize shared MP/UGC/economy history; retain minimal pseudonymous moderation/fraud/chargeback/audit evidence under narrow legal purposes. | **Recommended.** Matches game/platform precedent and keeps other players' histories coherent without preserving deleted identity. |
+| B. Delete all shared history authored by the user | Remove every multiplayer, UGC and community trace. | Not recommended; breaks other players' histories and can destroy moderation/legal evidence. |
+| C. Keep shared history unchanged | Preserve old names/profile links everywhere. | Not recommended; over-retains account identity and fails the erasure expectation. |
 
 ## Field Contract
 
