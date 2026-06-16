@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-16
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-16-fmx-155-loan-cap-obligation-catalog]] - FMX-155 loan-cap and
+  obligation catalog: raw Perplexity/source-check captures, synthesis, accepted
+  decision queue, ADR-0075/GD-0006/regulations cleanup and front-door updates.
+  Nico accepted layered `LoanRegulationProfile`, focused
+  `ObligationConditionCatalog`, Regulations-owned shape, static per-save
+  snapshots and exact inspectable clause visibility.
 - [[2026-06-16-fmx-188-prompt-injection-defensive-contract]] - FMX-188
   prompt-injection defensive contract for untrusted UGC/community-pack text in
   Narrative LLM prose: raw Perplexity/source-check captures, synthesis,

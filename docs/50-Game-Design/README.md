@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-06-16
 type: index
 binding: false
-related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[GD-0031-analytics-hub-and-statistics]], [[GD-0032-awards-honours-records-and-hall-of-fame]], [[GD-0033-national-team-dual-role]], [[GD-0044-create-a-club-roguelite-run-tuning]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../60-Research/national-team-dual-role-2026-06-06]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
+related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00-Index/Documentation-V1]], [[GD-0012-onboarding]], [[GD-0006-transfers]], [[transfer-market-and-contracts]], [[regulations-and-compliance]], [[GD-0027-hidden-attribute-substrate-mapping]], [[GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[GD-0029-weather-and-pitch-design-model]], [[GD-0030-dynasty-board-and-ownership]], [[GD-0031-analytics-hub-and-statistics]], [[GD-0032-awards-honours-records-and-hall-of-fame]], [[GD-0033-national-team-dual-role]], [[GD-0044-create-a-club-roguelite-run-tuning]], [[../60-Research/awards-honours-records-hof-owner-2026-06-06]], [[../60-Research/national-team-dual-role-2026-06-06]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]], [[../60-Research/hidden-attribute-substrate-mapping-2026-06-05]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]], [[../60-Research/weather-and-pitch-conditions-2026-06-05]], [[../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
 ---
 
 # Game Design Hub
@@ -99,7 +99,7 @@ Nico answers the FMX-192 decision queue.
 | [[GD-0003-squad-players]] | Squad, players & attributes | accepted | ADR-0027, ADR-0003 |
 | [[GD-0004-tactics]] | Tactics & formations | accepted | ADR-0003, ADR-0008 |
 | [[GD-0005-training]] | Training & development | accepted | ADR-0003 |
-| [[GD-0006-transfers]] | Transfers & scouting; FMX-81 adds proposed contract renewal / expiry / Bosman / free-agent lifecycle appendix | accepted | ADR-0027, ADR-0073 |
+| [[GD-0006-transfers]] | Transfers & scouting; FMX-81 adds proposed contract renewal / expiry / Bosman / free-agent lifecycle appendix; FMX-155 accepts loan-cap profile + obligation-condition catalog gameplay rules | accepted | ADR-0027, ADR-0073, ADR-0075 |
 | [[GD-0007-youth]] | Youth academy | accepted | ADR-0027, ADR-0007 |
 | [[GD-0008-finance-economy]] | Finance, economy & stadium; FMX-13 weekly ledger / full-accounting draft plus FMX-49 in-world financing tools | accepted | ADR-0027, ADR-0050 |
 | [[GD-0009-league-structure]] | League & competition structure | accepted | ADR-0007, ADR-0027 |
@@ -199,6 +199,8 @@ Nico answers the FMX-192 decision queue.
 - [[transfer-market-and-contracts]] - AI club selling, valuation bands, clause packages, player terms and tiered market simulation.
 - [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]] - FMX-81 synthesis
   for renewal, expiry, Bosman/pre-contract and free-agent signing ownership.
+- [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]] - FMX-155
+  accepted loan-cap profile and obligation-condition catalog for the loan saga.
 - [[youth-academy-and-development]] - CA/PA range, age curves, loan rules.
 - [[training-load-and-medicine]] - training blocks, load model, medical pipeline.
 - [[GD-0020-eos-player-skills-personas-and-people]] - accepted EOS player

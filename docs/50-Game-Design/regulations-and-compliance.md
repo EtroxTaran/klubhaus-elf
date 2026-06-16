@@ -1,12 +1,12 @@
 ---
 title: Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
 status: draft
-tags: [game-design, regulations, compliance, leagues, promotion, economy, financing, debt, cup, competition, matchday, security, sanctions, fmx-41, fmx-45, fmx-46, fmx-49]
+tags: [game-design, regulations, compliance, leagues, promotion, economy, financing, debt, cup, competition, matchday, security, sanctions, transfer, loan, obligation-to-buy, fmx-41, fmx-45, fmx-46, fmx-49, fmx-155]
 created: 2026-05-16
-updated: 2026-06-11
+updated: 2026-06-16
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/late-game-systems]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/club-financing-tools-2026-06-01]], [[stadium-and-campus]], [[matchday-event-engine]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[transfer-market-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../30-Implementation/club-economy-commercial-contracts]]
+related: [[README]], [[GD-0006-transfers]], [[../60-Research/regulations-and-pyramids-research]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]], [[../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]], [[../60-Research/late-game-systems]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/club-financing-tools-2026-06-01]], [[stadium-and-campus]], [[matchday-event-engine]], [[economy-system]], [[GD-0022-economy-commercial-impact-and-contracts]], [[transfer-market-and-contracts]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0056-regulations-compliance-context]], [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]], [[../30-Implementation/club-economy-commercial-contracts]]
 ---
 
 # Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
@@ -146,6 +146,161 @@ FMX-81 adds player-contract eligibility hooks:
   eligibility; it does not rewrite Squad & Player contract truth.
 - Free-agent policy must distinguish **pre-existing free agents** from
   **post-window free agents**. Exact top-5 values remain data-profile work.
+
+## 7.1 Loan cap profiles and obligation catalog (FMX-155)
+
+FMX-155 promotes the loan-cap and obligation-to-buy data shape needed by
+[[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]].
+This section is the detailed Regulations home; the accepted player-facing
+summary is in [[GD-0006-transfers]].
+
+### 7.1.1 Ownership and snapshot rule
+
+Regulations & Compliance owns:
+
+- `LoanRegulationProfile` — a layered, versioned profile for cap, duration,
+  exemption, same-counterparty and anti-circumvention checks;
+- `ObligationConditionCatalog` — the allowed condition types for loan
+  option/obligation clauses.
+
+Transfer owns `LoanAgreement`, calls `LoanCapVerdict`, evaluates
+`EvaluateObligationToBuy` over logged facts and emits the conversion handoff.
+It never embeds cap values, exemption rules or domestic profile numbers.
+
+At save creation, the active stock profile plus accepted community overrides is
+copied into the per-save `EffectiveRuleSet`. Running saves do not read mutable
+global legal data. Scheduled future changes may exist only if authored into the
+snapshot at creation.
+
+### 7.1.2 `LoanRegulationProfile`
+
+Each profile has:
+
+```text
+LoanRegulationProfile =
+  profileId
+  profileVersion
+  countryProfile
+  competitionProfile?
+  seasonRange
+  globalBaseline
+  domesticOverlay
+  durationPolicy
+  exemptionPolicies
+  antiCircumventionPolicy
+  obligationConditionCatalogVersion
+```
+
+`LoanCapVerdict(parentClubId, loaneeClubId, season, playerAge,
+clubTrainedFlag)` returns:
+
+```text
+LoanCapVerdict =
+  passes
+  profileId
+  profileVersion
+  countedLayerResults[]
+  exemptLayerResults[]
+  violations[]
+  warnings[]
+```
+
+Violation reason codes are stable FMX codes, for example:
+`global_in_cap_exceeded`, `global_out_cap_exceeded`, `domestic_in_cap_exceeded`,
+`domestic_out_cap_exceeded`, `same_counterparty_cap_exceeded`,
+`duration_too_short`, `duration_too_long`, `subloan_forbidden`,
+`bridge_guard_review`, `same_window_acquisition_blocked`,
+`exemption_missing_training_evidence`.
+
+### 7.1.3 Global baseline layer
+
+The global baseline is the shared loan-rule substrate:
+
+| Parameter | FMX baseline |
+|---|---|
+| Maximum counted incoming loans | 6 |
+| Maximum counted outgoing loans | 6 |
+| Maximum counted loans from/to one same counterparty | 3 each direction |
+| Young home-developed exemption | Exempt from counting caps when both age profile and club-trained evidence match. |
+| Duration | Window-to-window minimum, max one year. Renewal requires explicit player consent. |
+| Sub-loan | Forbidden while loan is active. |
+| Bridge guard | Rapid middle-club two-step transfer path produces a review/violation reason. |
+
+The game never copies legal wording. Player-facing text uses fictional FMX
+language such as "counting cap", "development exemption" and "same-club lane".
+
+### 7.1.4 Domestic profile presets
+
+These presets are IP-clean data profiles. Country-like labels are internal
+authoring shorthand; release copy uses fictional league/association names.
+
+| Profile | Domestic incoming | Domestic outgoing | Same counterparty | Extra flags |
+|---|---:|---:|---:|---|
+| England-like strict | 2 active / 4 season registrations | No exact outgoing cap in v1; still counted for anti-hoarding and pair checks | 1 incoming from same club | Overseas loans use global layer; same-window acquisition block; one domestic goalkeeper loan flag. |
+| Germany-like development | 6 active counted | 6 active counted | 3 | U21 local-player exemption; up to two U23 development/affiliate loans can be exempt when profile flag is active. |
+| France-like asymmetric | 5 active | 7 active | 2 outgoing to same club | International six/six remains separate; non-EU loanee interaction stays in registration/work-permit policy. |
+| Italy-like transitional | 8 active counted | 8 active counted | 3 | Fictional high-movement profile; U23/development exemption flag; source-review before public legal claims. |
+| Spain-like balanced | 6 active counted | 6 active counted | 3 | Fictional balanced profile; optional matchday same-source cap. |
+| Abstract fallback | 6 active counted | 6 active counted | 3 | Global anti-hoarding shape plus young home-developed exemption. |
+
+Implementation must treat every numeric value above as data. Community packs may
+override them only through Regulations schema/semantic validation and per-save
+snapshot merge. If a profile field is unset, the validator must either inherit
+from the global baseline or mark the profile invalid; silent "no restriction" is
+not allowed for MVP stock profiles.
+
+### 7.1.5 Obligation-to-buy condition catalog
+
+The focused v1 catalog contains only deterministic conditions over logged facts:
+
+| Type | Parameters | Fact owner | Result |
+|---|---|---|---|
+| `minimumAppearances` | competition scope, threshold, cameo rule | Match facts / Statistics projection | True when eligible logged appearances meet threshold. |
+| `minimumMinutes` | competition scope, minute or percent threshold | Match facts | True when logged minutes meet threshold. |
+| `teamPromoted` | competition scope | League Orchestration | True after official season finalization. |
+| `teamAvoidedRelegation` | competition scope | League Orchestration | True when final league result is not relegated. |
+| `teamQualifiedForCompetitionClass` | fictional class id, season | League Orchestration | True when the club qualifies for the class. |
+| `fixedOptionWindow` | start, deadline, actor | Transfer calendar / loan agreement | Enables option exercise and deadline warnings. |
+
+Allowed composition:
+
+- `single`;
+- one-level `allOf`;
+- one-level `anyOf`.
+
+Rejected for v1: nested DSL, arbitrary scripts, xG/KPI triggers, training grade,
+morale, hidden manager opinion, market value, finance-ratio triggers and manual
+judgement.
+
+### 7.1.6 Evaluation and UI
+
+`EvaluateObligationToBuy` is a pure function over:
+
+- `LoanAgreement` snapshot;
+- `ObligationConditionCatalog` snapshot;
+- Match appearance/minute facts;
+- League final-outcome facts;
+- save calendar/window facts.
+
+Missing or ambiguous required facts return `notTriggered` with a
+`needsReview` audit reason. No obligation auto-fires from incomplete data.
+
+UI tiers:
+
+| Tier | Surface |
+|---|---|
+| Quick | "Loan allowed / blocked" badge and "obligation risk" warning. |
+| Standard | Exact cap reason and exact trigger thresholds. |
+| Expert | Profile version, counted/exempt loan list, source fact ids and full condition-evaluation breakdown. |
+
+### 7.1.7 Remaining boundaries
+
+- Loan-quality weights, minutes-ratio thresholds and penalty magnitudes remain
+  FMX-52 / GD-0043 calibration.
+- Legal/IP review is required before public copy claims real-world domestic
+  rule equivalence.
+- Future code-phase work must ship contract tests for cap counting, exemption
+  predicates, shallow condition composition and missing-fact behavior.
 
 ## 8. Operations rules
 

@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-16
 type: map
 binding: false
-related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
+related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/regulations-and-compliance]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]], [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
 ---
 
 # Game Design Map
@@ -79,6 +79,9 @@ sections are not active work by default.
 - [[../50-Game-Design/transfer-market-and-contracts]]
 - [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]] - FMX-81
   contract renewal, expiry, Bosman/pre-contract and free-agent signing synthesis.
+- [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]] - FMX-155
+  accepted loan-cap profiles, obligation-to-buy condition catalog and
+  Regulations-owned per-save rule snapshots for GD-0006/ADR-0075.
 - [[../50-Game-Design/youth-academy-and-development]]
 - [[../50-Game-Design/training-load-and-medicine]]
 - [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]] -

@@ -24,6 +24,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-155 loan-cap and obligation catalog accepted (2026-06-16).**
+> Branch `codex/fmx-155-loan-cap-obligation-catalog` closes ADR-0075's
+> Regulations data follow-up for loans. Nico accepted D1-D5:
+> layered `LoanRegulationProfile` profiles, focused
+> `ObligationConditionCatalog`, Regulations-owned data shape, static per-save
+> rule snapshot and exact inspectable clause visibility. Research:
+> [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]] plus raw
+> Perplexity/source-check captures. Decision record:
+> [[../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]].
+> ADR-0075 is accepted/binding with the FMX-155 amendment; GD-0006 records the
+> accepted gameplay surface, and [[../50-Game-Design/regulations-and-compliance]]
+> holds the detailed Regulations profile/catalog. Remaining work is FMX-52 /
+> GD-0043 calibration plus later legal/IP review before public real-world rule
+> equivalence claims.
+
 > **FMX-188 prompt-injection defensive contract packet pending
 > (2026-06-16).** Branch
 > `codex/fmx-188-prompt-injection-ugc-narrative` prepares the defensive

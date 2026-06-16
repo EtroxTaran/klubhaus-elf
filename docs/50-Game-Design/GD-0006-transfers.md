@@ -3,10 +3,10 @@ title: GD-0006 Transfers & Scouting
 status: accepted
 tags: [game-design, gddr, transfers]
 created: 2026-05-17
-updated: 2026-06-11
+updated: 2026-06-16
 type: game-design
 binding: true
-related: [[README]], [[GD-0013-narrative-inbox]], [[GD-0010-ai-world]], [[transfer-market-and-contracts]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]]
+related: [[README]], [[GD-0013-narrative-inbox]], [[GD-0010-ai-world]], [[transfer-market-and-contracts]], [[regulations-and-compliance]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]], [[../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]], [[../10-Architecture/09-Decisions/ADR-0004-data-model]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]]
 ---
 
 # GD-0006: Transfers & Scouting
@@ -111,6 +111,34 @@ The MVP design includes the dimensions; exact values are data/profile work:
 | Italy-like | Window discipline plus audited-payables / eligibility pressure. |
 | France-like | Wage-control/regulator review can make no-fee signings fail finance fit. |
 
+## FMX-155 appendix — loan caps and obligation conditions (accepted)
+
+Loans are full transfer packages, not a separate mini-game. Accepted player-facing
+rules:
+
+- Transfer owns the loan agreement and negotiation loop; Regulations owns
+  eligibility and cap verdicts.
+- Every loan-cap failure must surface a precise reason: global baseline,
+  domestic profile, same-counterparty cap, exemption failure, duration/window
+  failure or anti-circumvention guard.
+- Country-like loan-cap presets are FMX fictional profiles layered on a global
+  baseline. They must be inspectable but not marketed as literal legal clones.
+- A loan may include an option-to-buy or an obligation-to-buy. Obligations use a
+  focused deterministic catalog only:
+  `minimumAppearances`, `minimumMinutes`, `teamPromoted`,
+  `teamAvoidedRelegation`, `teamQualifiedForCompetitionClass`,
+  `fixedOptionWindow`.
+- Conditions may be single, one-level `allOf` or one-level `anyOf`. No nested
+  scripts, xG/KPI, morale, market-value, finance-ratio or manual judgement
+  trigger ships in v1.
+- Standard/Expert UI shows exact trigger thresholds and the logged facts used
+  for evaluation; Quick shows a concise badge and warning. Hidden auto-buy
+  clauses are forbidden.
+
+Detailed Regulations data lives in [[regulations-and-compliance]] and the
+source packet [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]].
+Architecture contract: [[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]].
+
 ## Supersedes
 
 None
@@ -119,8 +147,11 @@ None
 
 - [[../10-Architecture/09-Decisions/ADR-0004-data-model]] (`transfer_offer`, RELATE graph)
 - [[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration]] (AI behaviour epics)
+- [[../10-Architecture/09-Decisions/ADR-0075-loan-orchestration-process-manager]] (loan saga,
+  cap verdict and buy-clause evaluation)
 
 ## Related
 
 - Research: [[../60-Research/club-boss-analysis]] · [[../60-Research/anstoss-series-deep-dive]]
+- FMX-155 research: [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]]
 - [[README]] — hub · siblings: [[GD-0013-narrative-inbox]] · [[GD-0010-ai-world]] · [[GD-0007-youth]]
