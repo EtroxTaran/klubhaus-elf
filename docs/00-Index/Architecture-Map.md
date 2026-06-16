@@ -65,7 +65,7 @@ future-scope or historical context.
   Community Overlay pack lifecycle and Audit & Security retention.
   FMX-162 prepares draft ADR-0126 for the Narrative/Media Ecology advisory
   effect-intent taxonomy; it is non-binding until Nico answers D1-D7.
-  FMX-186 prepares draft ADR-0127 for the GDPR Article 17 vs HGB/AO
+  FMX-186 accepts ADR-0127 for the GDPR Article 17 vs HGB/AO
   payment/receipt/shared-history partition: current 10/8/6 retention buckets,
   separate finance key domain, detachable account-to-finance mapping,
   deterministic DSAR retained-set tests and review-gated paid activation.

@@ -691,7 +691,7 @@ Branchen-Erfahrung: 0,5–3 % der MP-Aktionen sind Cheat-Versuche. Bei 280k Comm
 
 > **FMX-186 note (2026-06-16):** This runbook remains a historical risk sketch.
 > Field-level payment/receipt erasure-vs-retention partitioning is now routed to
-> [[../erasure-vs-hgb-retention-partition-2026-06-16]] and draft
+> [[../erasure-vs-hgb-retention-partition-2026-06-16]] and accepted
 > [[../../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]].
 > Do not implement payment/receipt field handling from this sketch alone.
 

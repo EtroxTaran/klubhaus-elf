@@ -17,9 +17,9 @@ related:
 
 # Payment Retention Legal Review Evidence
 
-This is the compliance evidence hook for FMX-186. Draft ADR-0127 proposes the
-architecture partition, but both Nico D1-D7 approval and legal/accounting review
-are still required before real payment activation.
+This is the compliance evidence hook for FMX-186. ADR-0127 is accepted as the
+architecture partition, but this review stays open until legal/accounting review
+approves the final payment field set and provider split.
 
 ## Gate
 

@@ -718,7 +718,7 @@ updated: 2026-05-22
 ### RB-08-2 DSAR / Right-to-be-Forgotten vs steuerliche Aufbewahrung
 
 > **FMX-186 note (2026-06-16):** This runbook remains a historical risk sketch.
-> The proposed field-level source of truth is
+> The accepted field-level source of truth is
 > [[../erasure-vs-hgb-retention-partition-2026-06-16]] plus
 > [[../../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]].
 > It corrects the implementation detail into an explicit 10/8/6 retention
