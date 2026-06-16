@@ -3,7 +3,7 @@ title: State Machine - Loan Orchestration
 status: current
 tags: [architecture, state-machine, transfer, loan, saga, fmx-85, proposed]
 created: 2026-06-04
-updated: 2026-06-08
+updated: 2026-06-16
 type: state-machine
 binding: false
 related:
@@ -18,6 +18,7 @@ related:
   - [[transfer]]
   - [[youth-academy]]
   - [[../../60-Research/loan-orchestration-process-manager-2026-06-04]]
+  - [[../../60-Research/loan-cap-and-obligation-catalog-2026-06-16]]
 ---
 
 # State Machine - Loan Orchestration (proposed)
@@ -182,7 +183,7 @@ monitor_state)`.
 | Match minutes fact arrives out of order / duplicated | Monitor recompute is idempotent on `(loan_agreement_id, fixture_id)`; last-fixture cursor prevents double-count |
 | `LoanConvertedToPermanent` hand-off to transfer-completion fails | PM keeps `completed`; retry via outbox per ADR-0028; no half-converted state |
 | Club Management ACL rejects a `LoanFinancialIntent` | Outbox retry; PM does not advance financial state until ack |
-| Obligation conditions ambiguous at `completed` | Conditions evaluator is a deterministic pure function; ties resolve to `returned` (no auto-buy) and log for analyst review |
+| Obligation conditions ambiguous at `completed` | FMX-155 focused conditions evaluator returns `notTriggered` plus `needsReview`; no auto-buy fires from missing/ambiguous facts |
 | RNG sub-label collision | Forbidden by ADR-0018 §3; the PM introduces no new `*Rng` (AI negotiation reuses Transfer's) |
 
 ## 8. Test strategy

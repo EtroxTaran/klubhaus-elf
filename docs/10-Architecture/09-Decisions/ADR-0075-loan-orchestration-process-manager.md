@@ -3,9 +3,9 @@ title: ADR-0075 Loan-Orchestration Process Manager
 status: accepted
 tags: [adr, architecture, ddd, transfer, loan, squad, match, regulations, club-management, youth, fmx-85]
 created: 2026-06-04
-updated: 2026-06-12
+updated: 2026-06-16
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -28,6 +28,8 @@ related:
   - [[../../50-Game-Design/regulations-and-compliance]]
   - [[../../60-Research/loan-orchestration-process-manager-2026-06-04]]
   - [[../../60-Research/raw-perplexity/raw-loan-orchestration-2026-06-04]]
+  - [[../../60-Research/loan-cap-and-obligation-catalog-2026-06-16]]
+  - [[../../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]]
 ---
 
 # ADR-0075: Loan-Orchestration Process Manager
@@ -48,6 +50,14 @@ accepted
 > **no numeric constants** (loan-quality weights, minutes thresholds, penalty sizes and exact
 > domestic loan caps are calibration/Regulations data). A 1-row bounded-context-map
 > clarification is proposed in §Map patch proposal but is **not** applied until ratification.
+
+> **FMX-155 amendment (2026-06-16):** Nico accepted the Regulations data follow-up in
+> [[../../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]].
+> `LoanCapVerdict` now reads a Regulations-owned, layered
+> `LoanRegulationProfile`, and `EvaluateObligationToBuy` uses the focused
+> `ObligationConditionCatalog` in
+> [[../../60-Research/loan-cap-and-obligation-catalog-2026-06-16]]. The remaining numeric
+> playing-time / loan-quality / penalty magnitudes stay FMX-52 calibration.
 
 ## Date
 
@@ -88,6 +98,11 @@ contractual-only and never override selection) and (b) genre precedent (FM's ful
 mechanically-tracked playing-time promise + implicit loan-quality; EA-FC's simpler loan-to-buy;
 OOTP's development-as-separate-from-contract analogue).
 
+FMX-155 extends that basis with the accepted Regulations data packet
+[[../../60-Research/loan-cap-and-obligation-catalog-2026-06-16]] and raw/source-check captures:
+[[../../60-Research/raw-perplexity/raw-loan-cap-obligation-catalog-2026-06-16]] and
+[[../../60-Research/raw-perplexity/raw-loan-cap-obligation-source-checks-2026-06-16]].
+
 ## Decision options (PM host)
 
 | Option | Description | Trade-off |
@@ -119,9 +134,11 @@ queries and events.
   minutes.
 - **Regulations & Compliance** owns eligibility verdicts the PM **queries**:
   `CurrentTransferWindow`, `RegistrationEligibilityVerdict`, `WorkPermitVerdict`, and the
-  **loan-cap verdict** (simultaneous 6/6, 3-between-same-clubs, U-21/club-trained exemptions per
-  RSTP Art. 10; exact **domestic** numbers are Regulations data). The PM passes player
-  age/club-trained flags into the query and never embeds the caps itself.
+  **loan-cap verdict**. FMX-155 makes the data owner explicit: Regulations owns the versioned
+  `LoanRegulationProfile` (global baseline + domestic overlay + exemptions + anti-circumvention
+  policy) and the focused `ObligationConditionCatalog`. The PM passes player age,
+  home-developed/club-trained flags and existing counted-loan facts into the query and never
+  embeds cap numbers, exemption predicates or domestic profile values itself.
 - **Club Management** is the sole ledger writer. The PM emits **financial intents** (loan fee,
   wage-contribution schedule, breach penalty, obligation-buy fee) consumed through Club
   Management's ACL.
@@ -216,8 +233,9 @@ Draft queries (Regulations, read-only):
 - `CurrentTransferWindow(competition, date)`
 - `RegistrationEligibilityVerdict(playerId, loaneeClubId, loanStartDate)`
 - `WorkPermitVerdict(playerId, loaneeClubId, date)`
-- `LoanCapVerdict(parentClubId, loaneeClubId, season, playerAge, clubTrainedFlag)` — global 6/6,
-  same-two-clubs ≤3, U-21/club-trained exemptions; **domestic numbers are Regulations data**.
+- `LoanCapVerdict(parentClubId, loaneeClubId, season, playerAge, clubTrainedFlag)` — reads the
+  Regulations `LoanRegulationProfile` snapshot and returns pass/fail with profile version,
+  counted/exempt breakdown, violated layer and stable reason codes.
 
 Draft events emitted:
 
@@ -252,7 +270,7 @@ LoanStarted =
   wageSplit { totalMinor, paidByLoaneeMinor, paidByParentMinor }
   recallPolicy { recallableFrom?, mutualOnly }
   playingTimeAgreement? { roleBand, expectedMinutesTarget }
-  buyClause? { kind: option|obligation, feeMinor, conditions? }
+  buyClause? { kind: option|obligation, feeMinor, conditions? }  # conditions reference the FMX-155 focused catalog
   noPlayVsParent
 ```
 
@@ -379,7 +397,8 @@ Negative / constraints:
   permanent-transfer negotiation; implementers must not fold it into the club-to-club FSM.
 - The conditional obligation-to-buy couples the loan PM to the transfer-completion path + a
   conditions evaluator earlier than a minimal loan model would.
-- Regulations must carry domestic loan-cap parameters before implementation.
+- Regulations must carry the FMX-155 `LoanRegulationProfile` and focused
+  `ObligationConditionCatalog` in the per-save rule snapshot before implementation.
 
 ## HITL gate
 
@@ -393,7 +412,10 @@ Authored as `proposed` after Nico selected the FMX-85 planning defaults live (20
 Remaining ratification / follow-up items before implementation:
 
 - numeric loan-quality weights, minutes-ratio thresholds and penalty magnitudes → **FMX-52** calibration;
-- exact **domestic** RSTP loan-cap parameters + the obligation-condition catalog depth → **Regulations** data follow-up;
+- exact **domestic** loan-cap parameters + the obligation-condition catalog depth → **resolved by
+  FMX-155**:
+  [[../../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]] /
+  [[../../60-Research/loan-cap-and-obligation-catalog-2026-06-16]];
 - whether a future **Contracts/CLM** bounded context absorbs loan + staff + commercial contracts once those land (kept as an extraction seam, mirroring ADR-0073);
 - the 1-row bounded-context-map clarification (apply on ratify).
 
@@ -401,6 +423,8 @@ Remaining ratification / follow-up items before implementation:
 
 - [[../../60-Research/loan-orchestration-process-manager-2026-06-04]]
 - [[../../60-Research/raw-perplexity/raw-loan-orchestration-2026-06-04]]
+- [[../../60-Research/loan-cap-and-obligation-catalog-2026-06-16]]
+- [[../../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]]
 - [[../state-machines/loan-orchestration]]
 - [[../state-machines/transfer]]
 - [[../state-machines/youth-academy]]
