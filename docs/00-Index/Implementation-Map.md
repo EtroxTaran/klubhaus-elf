@@ -3,10 +3,10 @@ title: Implementation Map
 status: current
 tags: [implementation, meta]
 created: 2026-05-16
-updated: 2026-06-15
+updated: 2026-06-16
 type: map
 binding: false
-related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]], [[../30-Implementation/incident-response]], [[../60-Research/breach-notification-runbook-2026-06-15]]
+related: [[Architecture-Map]], [[Current-State]], [[Documentation-V1]], [[../30-Implementation/incident-response]], [[../60-Research/breach-notification-runbook-2026-06-15]], [[../60-Research/branch-protection-codeowner-activation-2026-06-16]]
 ---
 
 # Implementation Map
@@ -21,6 +21,7 @@ unless re-opened by a current issue or accepted ADR.
 
 - [Linear Task Tracking & GitHub Integration](../30-Implementation/linear-task-tracking.md) - Linear team FMX conventions (labels, states, project, issue/branch/PR rules) + GitHub integration.
 - [Code-Phase Definition of Done Transition Contract](../30-Implementation/code-phase-dod-transition-contract.md) - FMX-180 docs-phase -> code-phase bridge: active docs DoD, target-only code gates, Nx day-one bootstrap checklist and related Linear routing.
+- [Branch Protection Ruleset and CODEOWNER Activation](../60-Research/branch-protection-codeowner-activation-2026-06-16.md) - FMX-181 accepted GitHub ruleset migration posture: active docs-phase `main` ruleset mirror `17748728`, classic branch protection kept until verified, Nico PR-bypass only and CODEOWNER/review hardening deferred to real code paths plus green `quality` / `e2e` / `security` evidence.
 - [Code-CI Pipeline Contract](../60-Research/code-ci-pipeline-2026-06-15.md) - FMX-175 accepted future required context package: active `docs-check` / `linear-id`, future `quality` / `e2e` / `security` only after real code scripts, workflows and burn-in; D-002 names `cursor-smoke` / `configured` are historical only.
 - [Architecture Fitness Function](../40-Quality/architecture-fitness-function.md) - FMX-167 accepted future `quality` subgate for no cross-context internals, no shared tables, no cross-context joins/FKs and no ownerless lookup tables; uses `dependency-cruiser` plus custom TypeScript/SQL scanners after code bootstrap and burn-in.
 - [Stryker Mutation Testing Gate](../40-Quality/stryker-mutation-testing-gate.md) - FMX-172 decision-pending future mutation gate: scoped high-risk deterministic/domain surfaces, baseline-first 70/80/90 threshold activation, CI-only incremental artifacts and deterministic survivor triage; remains non-binding until Nico approves ADR-0125 / D1-D6.

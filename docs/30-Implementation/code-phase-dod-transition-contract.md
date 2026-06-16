@@ -1,9 +1,9 @@
 ---
 title: Code-Phase Definition of Done Transition Contract
 status: current
-tags: [implementation, process, ci, dod, monorepo, nx, architecture-fitness, fmx-167, fmx-180]
+tags: [implementation, process, ci, dod, monorepo, nx, architecture-fitness, rulesets, branch-protection, codeowners, fmx-167, fmx-180, fmx-181]
 created: 2026-06-14
-updated: 2026-06-15
+updated: 2026-06-16
 type: implementation
 binding: true
 related:
@@ -20,12 +20,14 @@ related:
   - [[../60-Research/pnpm-tooling-currency-2026-06-15]]
   - [[../60-Research/tooling-currency-sweep-2026-06-15]]
   - [[../60-Research/code-ci-pipeline-2026-06-15]]
+  - [[../60-Research/branch-protection-codeowner-activation-2026-06-16]]
   - [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]]
   - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]
   - [[../40-Execution/fmx-180-code-phase-dod-transition-decision-queue-2026-06-14]]
   - [[../40-Execution/fmx-195-pnpm-tooling-currency-decision-queue-2026-06-15]]
   - [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]]
   - [[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]]
+  - [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]]
   - [[../40-Execution/fmx-167-architecture-fitness-function-decision-queue-2026-06-15]]
 ---
 
@@ -59,7 +61,7 @@ A docs-phase beat is done when all of the following are true:
 | Vault reflection | Canonical docs, front-door indexes and session handoff are updated in the same PR. |
 | Validation | `node scripts/docs-check.mjs` passes. |
 | Status validation | `node scripts/status-consistency-check.mjs` passes when the PR changes ADR/GDDR status or `binding:` semantics. |
-| CI expectation | GitHub required checks are `docs-check` + `linear-id`; docs/low-risk PRs auto-merge when green per ADR-0044. |
+| CI expectation | GitHub required checks are `docs-check` + `linear-id`; ruleset `17748728` mirrors the docs-phase `main` protection while classic protection remains active; docs/low-risk PRs auto-merge when green per ADR-0044. |
 
 The active docs-phase DoD must not require commands or paths that do not exist
 in the repository.
@@ -76,7 +78,7 @@ After the transition checklist below is green, code beats add these gates:
 | Architecture fitness | Future `quality` includes `dependency-cruiser` import/path/cycle checks plus custom TypeScript/SQL scanner checks for Drizzle schema, relation/FK, query join and migration boundary violations. |
 | E2E/app checks | `pnpm test:e2e` or the accepted app-specific script runs for app/flow changes. |
 | UI showcase | Storybook is built/checked for touched UI projects; every changed atom/composite/layout/screen has a colocated story. |
-| Code CI | ADR-0044/FMX-175 code-phase contexts `quality`, `e2e` and `security` are required only after real scripts/workflows exist, burn in green and CODEOWNER review applies to code paths. |
+| Code CI | ADR-0044/FMX-175/FMX-181 code-phase contexts `quality`, `e2e` and `security` are required only after real scripts/workflows exist, burn in green and CODEOWNER review applies to code paths. |
 | Vault delta | Behaviour, architecture, operations and user-facing changes still update the vault in the same PR. |
 
 Root scripts remain the public contract for humans and CI. Internally, they use
@@ -103,6 +105,12 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 - ADR-0044/FMX-175 required contexts (`quality`, `e2e`, `security`) are updated
   only after the corresponding scripts and workflows are green on real PR
   evidence.
+- FMX-181 Stage 0 ruleset mirror accumulates real PR evidence before a later
+  tracked issue retires redundant classic branch protection settings before or
+  alongside code-phase hardening.
+- One required approval plus CODEOWNER review is activated only after real code
+  paths exist, CODEOWNERS patterns are validated and the backing
+  `quality`/`e2e`/`security` checks have green evidence.
 - FMX-167 architecture-fitness prerequisites exist before the gate is made
   hard: context owner metadata, public-entrypoint metadata, table ownership
   metadata, real scanner scripts and violation fixtures for imports, joins,
@@ -125,6 +133,9 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
   cleanup: active docs checks stay `docs-check` + `linear-id`; future code
   required contexts are `quality`, `e2e` and `security` after bootstrap and
   burn-in.
+- FMX-181 owns the accepted GitHub ruleset migration posture: Stage 0 active
+  ruleset mirror now, classic branch protection retained until verified, Nico
+  PR-bypass only and CODEOWNER/review enforcement deferred to code evidence.
 - FMX-176 owns lefthook/local-parity restoration.
 - FMX-167 owns the accepted future architecture-fitness quality subgate:
   no cross-context internal imports, no shared tables, no cross-context joins

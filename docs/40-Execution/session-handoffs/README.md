@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-16
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-16-fmx-181-branch-protection-ruleset-activation]] - FMX-181
+  branch-protection ruleset activation: raw Perplexity/source-check captures,
+  synthesis, accepted decision record, live GitHub ruleset `17748728` for the
+  default-branch docs-phase mirror, ADR-0044/process amendments and Stage 2
+  trigger preserved: 1 approval plus CODEOWNER review only after real code
+  paths and green `quality`/`e2e`/`security` evidence.
 - [[2026-06-16-fmx-189-investor-mp-separation]] - FMX-189 Investor MP
   separation: raw Perplexity/source-check captures, synthesis, accepted
   decision record and Canon patches for ADR-0011/0027/0005/0063, GD-0022 and

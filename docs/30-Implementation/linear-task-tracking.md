@@ -1,12 +1,12 @@
 ---
 title: Linear Task Tracking & GitHub Integration
 status: current
-tags: [meta, implementation, linear, github, tracking]
+tags: [meta, implementation, linear, github, tracking, rulesets, branch-protection, codeowners, fmx-181]
 created: 2026-05-27
-updated: 2026-06-02
+updated: 2026-06-16
 type: implementation
 binding: true
-related: [[../90-Meta/collaboration-and-decision-protocol]], [[agent-workflow-pattern]], [[../90-Meta/vault-governance]], [[../00-Index/Current-State]], [[../00-Index/Decision-Log]], [[../10-Architecture/bounded-context-map]], [[../90-Meta/mcp-memory-integration]]
+related: [[../90-Meta/collaboration-and-decision-protocol]], [[agent-workflow-pattern]], [[../90-Meta/vault-governance]], [[../00-Index/Current-State]], [[../00-Index/Decision-Log]], [[../10-Architecture/bounded-context-map]], [[../90-Meta/mcp-memory-integration]], [[../60-Research/branch-protection-codeowner-activation-2026-06-16]], [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]]
 ---
 
 # Linear Task Tracking & GitHub Integration
@@ -80,6 +80,11 @@ The Linear issue ID in the **branch name** is the auto-link key.
   (PR required, no force-push/deletion, linear history). Docs/low-risk: green required
   checks (`docs-check` + `linear-id`) → merges, **no review, no manual Nico-merge**.
   Code → `main`: green checks **plus ≥1 CODEOWNER review** (activates with code-CI).
+- **GitHub rulesets:** FMX-181 activated ruleset
+  [`17748728`](https://github.com/EtroxTaran/klubhaus-elf/rules/17748728) as
+  the default-branch docs-phase mirror. Classic `main` branch protection remains
+  active until the mirror has real PR evidence and a later issue retires
+  redundant settings.
 - **Attribution:** Linear **assignee = responsible human (Nico)**. Agents are
   **GitHub-only actors**, not mapped to Linear users; commits stay authored as
   `Nico <dev@etrox.de>` (repo rule: agents are assistants, not authors). Which
@@ -96,8 +101,11 @@ Done by agent (2026-05-27, [[../00-Index/Current-State|FMX-1]]): project
 good labels kept: `type:chore|research|adr|doc`, `area:transfer`. On GitHub (via
 `gh`): merge method set to **squash-only** (+ delete-branch-on-merge), and `main`
 **branch-protected** (PR required, 0 approvals, no force-push/deletion, linear
-history, admin-bypass on — the solo merger is not locked out). Issue ⇄ branch ⇄
-commit ⇄ PR auto-link is confirmed working.
+history, admin-bypass on — the solo merger is not locked out). FMX-181 added
+active repository ruleset `17748728` as a docs-phase mirror for the default
+branch: PR required, `docs-check` + `linear-id`, deletion/non-fast-forward
+blocked, linear history required, 0 reviews, no CODEOWNER review and Nico
+PR-bypass only. Issue ⇄ branch ⇄ commit ⇄ PR auto-link is confirmed working.
 
 ### One-time cleanup & wiring — Nico (UI/OAuth; the MCP cannot do these)
 
@@ -115,9 +123,11 @@ commit ⇄ PR auto-link is confirmed working.
    and *PR merged → Done*. If personal/account git automation is enabled, branch
    creation may also assign and move issues forward for human users; agents still
    use the explicit Linear-MCP claim rule. Leave **GitHub Sync off**.
-4. **GitHub (later, optional):** add required status checks to the `main`
-   protection once CI returns, and decide whether to require ≥1 review (left off
-   now — solo merger). Squash-only + base branch protection are already applied.
+4. **GitHub (later, tracked issue):** after ruleset `17748728` has real PR
+   evidence, decide whether to retire redundant classic `main` branch
+   protection settings. When code phase returns, add `quality` / `e2e` /
+   `security` only after real scripts/workflows burn in green, then require
+   1 approval plus CODEOWNER review for code-owned paths.
 
 ## Related
 
@@ -127,4 +137,5 @@ commit ⇄ PR auto-link is confirmed working.
 - [[../00-Index/Current-State]] · [[../00-Index/Decision-Log]] · [[../50-Game-Design/README]]
 - [[../10-Architecture/bounded-context-map]] — source of the `area:` clusters
 - [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]] — CI/CD + auto-merge policy
+- [[../60-Research/branch-protection-codeowner-activation-2026-06-16]] — FMX-181 ruleset activation
 - [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]] — issue-first + worktree

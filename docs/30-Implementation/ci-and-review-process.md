@@ -1,11 +1,11 @@
 ---
 title: CI & Review Process
 status: draft
-tags: [implementation, ci, process, quality, architecture-fitness, mutation, stryker, fmx-167, fmx-172]
+tags: [implementation, ci, process, quality, architecture-fitness, mutation, stryker, rulesets, branch-protection, codeowners, fmx-167, fmx-172, fmx-181]
 created: 2026-05-16
-updated: 2026-06-15
+updated: 2026-06-16
 type: implementation
-related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../40-Quality/test-strategy]], [[../40-Quality/architecture-fitness-function]], [[../40-Quality/stryker-mutation-testing-gate]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]], [[../00-Index/Current-State]]
+related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../40-Quality/test-strategy]], [[../40-Quality/architecture-fitness-function]], [[../40-Quality/stryker-mutation-testing-gate]], [[../60-Research/branch-protection-codeowner-activation-2026-06-16]], [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]], [[../00-Index/Current-State]]
 ---
 
 # CI & Review Process
@@ -32,6 +32,15 @@ related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-p
 > start as reporting/nightly/release evidence unless later promoted. The
 > D-002-era `cursor-smoke` and `configured` names are historical incident
 > vocabulary only, not future required contexts.
+>
+> **2026-06-16 - FMX-181 ruleset mirror active.** GitHub ruleset
+> [`17748728`](https://github.com/EtroxTaran/klubhaus-elf/rules/17748728)
+> now mirrors the docs-phase `main` protection: PR required, `linear-id` and
+> `docs-check` required, deletion/force-push blocked and linear history
+> required. Classic branch protection remains active until the mirror is proven
+> over real PRs. Nico has PR-bypass only. One approval plus CODEOWNER review is
+> deferred until real code paths and green `quality`/`e2e`/`security` evidence
+> exist.
 >
 > **2026-06-15 - FMX-167 architecture fitness accepted.** Accepted
 > [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
@@ -89,6 +98,8 @@ contract is satisfied:
 - `node scripts/status-consistency-check.mjs` passes when the PR changes
   ADR/GDDR `status:` or `binding:` semantics.
 - GitHub required checks are `docs-check` + `linear-id`.
+- GitHub ruleset `17748728` and classic branch protection both enforce the
+  current docs-phase `main` guardrails.
 - Research, decisions, process changes and handoff notes are saved in the vault
   when the beat changes durable knowledge.
 - The three workflow gates in [[agent-workflow-pattern]] hold: design-system
@@ -180,6 +191,21 @@ Docs-phase branch protection requires docs checks only:
 - `docs-check`
 - `linear-id`
 
+FMX-181 adds an active repository ruleset mirror for the default branch:
+
+- ruleset ID `17748728`, `FMX-181 main docs-phase protection mirror`;
+- pull request required before updating `main`;
+- branch deletion and non-fast-forward pushes blocked;
+- linear history required;
+- required checks `linear-id` + `docs-check`;
+- 0 required reviews and no CODEOWNER review during docs phase;
+- Nico / `EtroxTaran` is the only bypass actor, and bypass mode is
+  pull-request-only.
+
+The older classic `main` branch protection intentionally remains active during
+the migration. Until a later issue retires it, agents must inspect both the
+ruleset and classic protection when diagnosing a blocked merge.
+
 Code-phase protection is target-only until the bootstrap creates and proves the
 scripts/workflows. When activated, required contexts must map to real repo
 scripts and ADR-0044's CODEOWNER-review rule for code paths.
@@ -194,11 +220,11 @@ branch protection. Do not list `cursor-smoke`, `configured` or standalone
 
 The repo is docs-vault-only. Code-CI, app e2e, Storybook and lefthook/local
 parity are target-only until the code-phase transition checklist is green.
-FMX-175 defines the future code-CI required context contract; FMX-176 tracks
-local-parity cleanup; FMX-179 tracks workspace bootstrap; FMX-167 defines the
-future architecture-fitness subgate inside `quality`; FMX-172 prepares the
-decision-pending Stryker mutation subgate; FMX-195 refreshed the active pnpm
-pin to 11.7.0.
+FMX-181 has activated the docs-phase ruleset mirror; FMX-175 defines the future
+code-CI required context contract; FMX-176 tracks local-parity cleanup; FMX-179
+tracks workspace bootstrap; FMX-167 defines the future architecture-fitness
+subgate inside `quality`; FMX-172 prepares the decision-pending Stryker
+mutation subgate; FMX-195 refreshed the active pnpm pin to 11.7.0.
 
 ## Related
 
@@ -207,6 +233,10 @@ pin to 11.7.0.
 - [[../60-Research/code-ci-pipeline-2026-06-15]] — FMX-175 code-CI context
   research · [[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]]
   — accepted D1-D4 packet
+- [[../60-Research/branch-protection-codeowner-activation-2026-06-16]] —
+  FMX-181 ruleset/CODEOWNER activation research ·
+  [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]]
+  — accepted Stage 0 ruleset mirror packet
 - [[../40-Quality/architecture-fitness-function]] — FMX-167 future `quality`
   subgate · [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
   — accepted architecture-fitness ADR

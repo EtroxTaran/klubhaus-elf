@@ -18,6 +18,12 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Branch Protection Ruleset and CODEOWNER Activation](../60-Research/branch-protection-codeowner-activation-2026-06-16.md) -
+  FMX-181 Perplexity-first and source-checked packet for the accepted GitHub
+  ruleset migration posture: active default-branch docs-phase mirror
+  `17748728`, classic branch protection kept until verified, Nico PR-bypass
+  only and review/CODEOWNER hardening deferred to real code paths plus green
+  `quality`/`e2e`/`security` evidence.
 - [Investor MP Transition Neutralization](../60-Research/investor-mp-transition-neutralization-2026-06-16.md) -
   FMX-189 Perplexity-first and source-checked packet for the accepted absolute
   SP/MP separation rule. Nico clarified that singleplayer, hotseat, local and
