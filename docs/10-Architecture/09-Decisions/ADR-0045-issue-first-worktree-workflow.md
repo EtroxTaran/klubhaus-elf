@@ -3,12 +3,12 @@ title: "ADR-0045: Issue-first + Git-Worktree Agent Workflow"
 status: accepted
 tags: [adr, architecture, process, workflow]
 created: 2026-05-27
-updated: 2026-06-11
+updated: 2026-06-17
 type: adr
 binding: false
 supersedes:
 superseded_by:
-related: [[../../30-Implementation/agent-workflow-pattern]], [[../../30-Implementation/linear-task-tracking]], [[ADR-0044-cicd-and-merge-policy]], [[../../00-Index/Decision-Log]]
+related: [[../../30-Implementation/agent-workflow-pattern]], [[../../30-Implementation/linear-task-tracking]], [[ADR-0044-cicd-and-merge-policy]], [[ADR-0103-multi-agent-orchestration-conflict-serialization]], [[../../00-Index/Decision-Log]], [[../../60-Research/branch-naming-workflow-reconciliation-2026-06-17]], [[../../40-Execution/fmx-174-branch-naming-decision-record-2026-06-17]]
 ---
 
 # ADR-0045: Issue-first + Git-Worktree Agent Workflow
@@ -20,6 +20,13 @@ accepted
 > Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **FMX-174 amendment (2026-06-17):** Branch naming is now reconciled as strict
+> issue-key naming for normal PR work: agents use `claude|codex|cursor/fmx-<n>-<slug>`;
+> humans use `feat/fmx-<n>-<slug>`. Historical `tool/<theme>` / `tool/<thema>`
+> wording is not a standing accepted branch family. It is allowed only when Nico
+> explicitly overrides issue-first traceability for that instance and records replacement
+> traceability before branch creation.
 
 ## Date
 
@@ -49,6 +56,8 @@ isolation** model explicit and decides how hard to enforce it now.
    - Worktrees share the repo object store; **never** `cp -r` a checkout and **never**
      nest worktrees. Cleanup is automatic on merge (`delete-branch-on-merge`) plus
      periodic `git worktree prune`.
+   - ADR-0045 is the canonical branch/worktree owner. ADR-0103 references this ADR for
+     branch naming; it does not define an alternate `‹tool›/‹thema›` normal form.
 2. **No work without an issue.** Every branch/PR carries its `fmx-‹n›` /
    `FMX-‹n›` id; `.github/workflows/linear-link-check.yml` already fails a PR that
    lacks it. 1 PR ↔ 1 issue, `Closes FMX-‹n›` (see [[ADR-0044-cicd-and-merge-policy]]).
@@ -56,7 +65,8 @@ isolation** model explicit and decides how hard to enforce it now.
    **only on Nico's explicit command** for that instance. A **hard-enforcement hook**
    (blocks agent work that has no associated issue) is specified but stays **OFF**
    until Nico arms it; until then enforcement is advisory + the PR-level
-   `linear-link-check`.
+   `linear-link-check`. An override must name the replacement traceability before a
+   branch exists and does not create a generic `no-ref` branch form.
 
 ## Rationale
 
@@ -71,6 +81,8 @@ the research/no-dev phase and Nico's "arm it on my command" preference.
 Positive:
 
 - Collision-free parallel agents; clean per-issue traceability; supports auto-merge/close.
+- FMX-174 closes ADR-0103 D2 by keeping branch naming single-sourced here and aligned
+  with the live `linear-link-check` gate.
 
 Negative:
 
@@ -86,3 +98,6 @@ None.
 
 - [[../../30-Implementation/agent-workflow-pattern]] · [[../../30-Implementation/linear-task-tracking]]
 - [[ADR-0044-cicd-and-merge-policy]] · [[ADR-0046-team-topology-and-scaling]]
+- [[ADR-0103-multi-agent-orchestration-conflict-serialization]]
+- [[../../60-Research/branch-naming-workflow-reconciliation-2026-06-17]]
+- [[../../40-Execution/fmx-174-branch-naming-decision-record-2026-06-17]]

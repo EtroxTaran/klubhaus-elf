@@ -1,11 +1,24 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, rulesets, branch-protection, codeowners, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, career, national-team, bundestrainer, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, transfer, loan, obligation-to-buy, policy-catalog, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-164, fmx-167, fmx-168, fmx-170, fmx-177, fmx-178, fmx-180, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, rulesets, branch-protection, codeowners, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, career, national-team, bundestrainer, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, transfer, loan, obligation-to-buy, policy-catalog, workflow, branch-naming, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-164, fmx-167, fmx-168, fmx-170, fmx-174, fmx-177, fmx-178, fmx-180, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 updated: 2026-06-17
 ---
 
 # Research Summary
+
+## Branch-Naming Workflow Reconciliation (FMX-174, 2026-06-17)
+
+[[branch-naming-workflow-reconciliation-2026-06-17]] preserves the FMX-174
+Perplexity-first and source-checked packet for reconciling ADR-0045, ADR-0103,
+the Decision Log and the live `linear-link-check` branch rule. Nico accepted
+strict issue-key branch naming: agents use `claude|codex|cursor/fmx-<n>-<slug>`;
+humans use `feat/fmx-<n>-<slug>`. `tool/<theme>` / `tool/<thema>` is now
+historical/non-normal and requires explicit Nico override plus replacement
+traceability for a specific no-issue instance. Decision record:
+[[../40-Execution/fmx-174-branch-naming-decision-record-2026-06-17]]. Raw
+captures: [[raw-perplexity/raw-branch-naming-workflow-2026-06-17]],
+[[raw-perplexity/raw-branch-naming-source-checks-2026-06-17]].
 
 ## DriftConsumerPolicyRef Contract (FMX-139, 2026-06-17)
 

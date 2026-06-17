@@ -652,10 +652,16 @@ cards.)
 ### ADR-0045 — Issue-first + Git-Worktree Agent Workflow
 - **One-line:** One-issue↔one-worktree↔one-branch with staged enforcement is the standard low-cost parallel-agent model; needs a small branch-naming reconciliation.
 - **Current status:** draft. **Disposition:** ratify-with-amendment.
-- **Open D-question — two coexisting branch-naming conventions (tool/fmx-n-slug vs claude/<thema>):**
+- **Historical open D-question — two coexisting branch-naming conventions (tool/fmx-n-slug vs claude/<thema>):**
   - **(A)** amend ADR-0045 to record BOTH accepted forms — `tool/fmx-n-slug` for issue-scoped work, `tool/<thema>` for cross-cutting/meta sweeps — and state which gates apply to each. ★ *recommended*
   - **(B)** tighten to one form (`tool/fmx-n-slug` only), treat `claude/<thema>` as a violation to migrate.
   - *Confidence:* low. Workflow-ergonomics call for Nico.
+- **FMX-174 update (2026-06-17):** Nico later selected the strict issue-key branch form.
+  Current truth supersedes this open-queue recommendation: normal PR work uses
+  `tool/fmx-n-slug` / `feat/fmx-n-slug`; `tool/<thema>` is historical/non-normal unless
+  Nico explicitly authorizes a specific no-issue instance with replacement traceability.
+  See [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]] and
+  [[../60-Research/branch-naming-workflow-reconciliation-2026-06-17]].
 - **dependsOn:** ADR-0092 · **Audit:** [[adr-re-audit-c9-2026-06-08]].
 
 ### ADR-0046 — Team Topology & Multi-Lead Scaling
