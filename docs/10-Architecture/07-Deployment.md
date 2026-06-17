@@ -1,12 +1,12 @@
 ---
 title: Deployment
 status: current
-tags: [architecture, deployment, dokploy, observability]
+tags: [architecture, deployment, dokploy, observability, release, versioning]
 created: 2026-05-15
-updated: 2026-06-15
+updated: 2026-06-16
 type: architecture
 binding: false
-related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]], [[09-Decisions/ADR-0044-cicd-and-merge-policy]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]], [[09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]], [[../30-Implementation/deployment-dokploy]], [[../30-Implementation/observability-runbook]]
+related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]], [[09-Decisions/ADR-0044-cicd-and-merge-policy]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]], [[09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]], [[09-Decisions/ADR-0132-release-versioning-app-build-process]], [[../30-Implementation/deployment-dokploy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/release-versioning-app-build-process]]
 ---
 
 # Deployment
@@ -165,6 +165,10 @@ save until real save-size measurements replace it.
 - No production secret is written to logs or telemetry.
 - Source maps uploaded for crash reporting are protected operational
   artifacts.
+- Draft ADR-0132 proposes that future app releases build once, deploy by
+  immutable OCI digest and record release/build/save/content identity in
+  `release.json`; this is pending Nico approval and is not active deployment
+  policy yet.
 - Telemetry services are version-pinned once introduced; upgrades happen
   in a planned maintenance window.
 - Alerts must be tested in dev before enabling production notification

@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, erasure, retention, hgb, ao, shared-history, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, architecture-fitness, dependency-cruiser, bounded-context, rulesets, branch-protection, codeowners, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, tooling, pnpm, pwa, offline, mobile, rollback, content-qa, career, national-team, bundestrainer, ai, llm, fallback, transfer, loan, obligation-to-buy, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-153, fmx-155, fmx-158, fmx-160, fmx-167, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, erasure, retention, hgb, ao, shared-history, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, rulesets, branch-protection, codeowners, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, onboarding, ftue, contract-lifecycle, tooling, pnpm, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, career, national-team, bundestrainer, ai, llm, fallback, transfer, loan, obligation-to-buy, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-167, fmx-178, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 created: 2026-05-16
 updated: 2026-06-17
 type: index
@@ -29,6 +29,17 @@ comparable game/platform precedents and future CRDT/collaboration posture.
 | [[raw-watch-party-context-ownership-realworld-2026-06-17]] | Real-world sports watch-party/co-viewing patterns, session admission, chat/moderation and synchronization/delay implications | [[../watch-party-context-ownership-2026-06-17]] |
 | [[raw-watch-party-context-ownership-games-2026-06-17]] | Comparable game/platform precedent across Football Manager Versus Mode, Discord Activities and collaborative-overlay/CRDT patterns | [[../watch-party-context-ownership-2026-06-17]] |
 | [[raw-watch-party-context-ownership-source-checks-2026-06-17]] | Source checks for Fowler, Microsoft Learn, Discord Activities, Football Manager Versus Mode, Yjs and Automerge; weak community/blog evidence downgraded | [[../watch-party-context-ownership-2026-06-17]] |
+
+## FMX-178 release versioning and app build process (2026-06-16)
+
+Perplexity-first discovery and targeted source checks for app release
+versioning, build identity, immutable Docker/Dokploy promotion, rollback, PWA
+update UX, telemetry release fields and save/content compatibility.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-release-versioning-app-build-2026-06-16]] | Perplexity discovery pass for SemVer vs CalVer/player labels, `release.json`, OCI digests, Dokploy promotion, PWA update UX, telemetry release fields and save/content compatibility | [[../release-versioning-process-2026-06-16]] |
+| [[raw-release-versioning-source-checks-2026-06-16]] | Source checks for SemVer, Docker digests, GitHub attestations/SBOM, SLSA provenance, Dokploy rollbacks, Workbox, Sentry-compatible releases, Football Manager update behavior and Google Play artifact precedent | [[../release-versioning-process-2026-06-16]] |
 
 ## FMX-181 branch protection ruleset and CODEOWNER activation (2026-06-16)
 

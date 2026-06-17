@@ -3,10 +3,10 @@ title: Implementation (Map of Content)
 status: current
 tags: [implementation, moc]
 created: 2026-05-17
-updated: 2026-06-15
+updated: 2026-06-16
 type: index
 binding: true
-related: [[../00-Index/Home]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[incident-response]], [[../60-Research/breach-notification-runbook-2026-06-15]], [[../10-Architecture/README]], [[../00-Index/Documentation-V1]]
+related: [[../00-Index/Home]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[release-versioning-app-build-process]], [[incident-response]], [[../60-Research/breach-notification-runbook-2026-06-15]], [[../10-Architecture/README]], [[../00-Index/Documentation-V1]]
 ---
 
 # Implementation - Map of Content
@@ -33,6 +33,9 @@ operational runbooks. Current implementable notes are classified by
   the first real workspace: progressive context package catalog, real foundation
   packages only, Nx/pnpm/TypeScript linking and no-placeholder gate activation
   after ADR-0114 approval.
+- [[release-versioning-app-build-process]] - FMX-178 draft release runbook for
+  future app versioning, generated `release.json`, immutable Dokploy promotion,
+  rollback, PWA update UX and beta release ownership after ADR-0132 approval.
 - [[cursor-cloud-agent-workflow]] - cloud-agent operational steps.
 - [[ci-and-review-process]] - green-by-default enforcement.
 - [[../40-Quality/test-strategy]] - FMX-177 current future code-phase test
