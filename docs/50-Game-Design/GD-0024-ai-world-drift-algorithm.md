@@ -1,12 +1,12 @@
 ---
 title: GD-0024 AI World-Drift Algorithm
 status: accepted
-tags: [game-design, gddr, ai-world, world-drift, dynasty, determinism, fmx-91]
+tags: [game-design, gddr, ai-world, world-drift, dynasty, determinism, policy-catalog, fmx-91, fmx-139]
 created: 2026-06-03
-updated: 2026-06-13
+updated: 2026-06-17
 type: game-design
 binding: false
-related: [[README]], [[GD-0010-ai-world]], [[GD-0011-career-progression]], [[GD-0023-ai-club-economy-behaviour]], [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/raw-perplexity/raw-ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/late-game-systems]], [[../60-Research/determinism-and-replay]], [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]]
+related: [[README]], [[GD-0010-ai-world]], [[GD-0011-career-progression]], [[GD-0023-ai-club-economy-behaviour]], [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/raw-perplexity/raw-ai-world-drift-algorithm-2026-06-03]], [[../60-Research/drift-consumer-policy-ref-contract-2026-06-17]], [[../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-ddd-2026-06-17]], [[../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-realworld-2026-06-17]], [[../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-games-2026-06-17]], [[../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-source-checks-2026-06-17]], [[../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/late-game-systems]], [[../60-Research/determinism-and-replay]], [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]]
 ---
 
 # GD-0024: AI World-Drift Algorithm
@@ -24,6 +24,13 @@ accepted
 > AI World Simulation as proposed bounded context, hybrid RNG allocation,
 > reputation-first rising-nations scope and two-level caps. This GDDR remains
 > non-binding until ratified through the normal game-design gate.
+
+> **FMX-139 proposed amendment (2026-06-17, pending Nico):**
+> `DriftConsumerPolicyRef` becomes a hybrid ref/snapshot proposal with AI World
+> Simulation owning `WorldDriftPolicyCatalog` identity/versioning, while
+> GD-0043/FMX-52 keeps final values and consumer contexts apply their own
+> effects. See
+> [[../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]].
 
 ## Date
 
@@ -50,6 +57,10 @@ can drift in strength without the player feeling hidden rubber-banding.
   effects are consumed by the owning contexts.
 - **No final constants in this GDDR.** Thresholds, probabilities and magnitudes
   are banded parameter families routed to GD-0043 `world.drift` calibration.
+- **Consumer policy refs are explainable contract handles, not hidden buffs.**
+  FMX-139 proposes that each ref carries a catalog version, target context,
+  effect family, label/explanation keys and minimal resolved snapshot so
+  consumers can project effects without current AI World table reads.
 
 ## Drift loop
 
@@ -132,7 +143,10 @@ Effects:
 - `ContinentalEraShifted` with region/league profile delta;
 - coefficient/slot-pressure facts for future League work;
 - reputation, commercial and transfer-pull modifiers;
-- `youthDiffusionHint` as a follow-up interface only.
+- `youthDiffusionHint` as a follow-up interface only. FMX-139 recommends making
+  this a reserved typed `DriftConsumerPolicyRef` with
+  `effectFamily: youth-diffusion` and `activationStatus: reserved`, not an active
+  youth-generation mechanic.
 
 ## Pacing
 
@@ -156,6 +170,8 @@ Every major drift event needs:
 - a public explanation after it fires;
 - a compact "why" breakdown in Quick/Standard/Expert depth;
 - a season-history entry for the newspaper/archive layer.
+- policy-ref labels and explanation tags resolved into player-facing text rather
+  than raw `policyRefId` values.
 
 Examples of explanation facts: title vacuum, owner investment project,
 financial stress, wage burden, aging core, coefficient trend and regional
@@ -187,6 +203,9 @@ byte-identical event sequence under identical seeds.
 - How future Youth/Data Generator work consumes `youthDiffusionHint`.
 - Whether multi-continent per-confederation caps activate before post-MVP
   continental competitions.
+- Whether Nico accepts FMX-139 D1-D4: hybrid `DriftConsumerPolicyRef`, AI World
+  Simulation `WorldDriftPolicyCatalog` ownership, reserved typed
+  `youthDiffusionHint` and proposed-only promotion path.
 
 ## Calibration slot (FMX-141)
 

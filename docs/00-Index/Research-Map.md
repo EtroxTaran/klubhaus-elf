@@ -18,6 +18,15 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [DriftConsumerPolicyRef Contract](../60-Research/drift-consumer-policy-ref-contract-2026-06-17.md) -
+  FMX-139 Perplexity-first and source-checked packet for the
+  `DriftConsumerPolicyRef` placeholder in ADR-0071/GD-0024. Recommended packet:
+  hybrid ref/snapshot contract, AI World Simulation owns
+  `WorldDriftPolicyCatalog` identity/versioning, GD-0043/FMX-52 owns final
+  values, consumer contexts apply effects from ACL projections and
+  `youthDiffusionHint` is a reserved typed ref pending Youth/Data work.
+  Decisions remain pending in
+  [FMX-139 decision queue](../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17.md).
 - [Watch Party Context Ownership](../60-Research/watch-party-context-ownership-2026-06-17.md) -
   FMX-159 Perplexity-first and source-checked packet for defining Watch Party
   as a party-scoped session/social orchestration context. Recommended packet:

@@ -1,9 +1,9 @@
 ---
 title: ADR-0079 Dynasty Board, Ownership & Bankruptcy FSMs
 status: accepted
-tags: [adr, architecture, ddd, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, club-management, determinism, replay, fmx-89]
+tags: [adr, architecture, ddd, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, club-management, determinism, replay, world-drift, fmx-89, fmx-139]
 created: 2026-06-05
-updated: 2026-06-12
+updated: 2026-06-17
 type: adr
 binding: false
 supersedes:
@@ -23,6 +23,8 @@ related:
   - [[../../50-Game-Design/GD-0010-ai-world]]
   - [[../../60-Research/dynasty-board-ownership-bankruptcy-2026-06-05]]
   - [[../../60-Research/insolvency-ledger-posting-contract-2026-06-12]]
+  - [[../../60-Research/drift-consumer-policy-ref-contract-2026-06-17]]
+  - [[../../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]]
   - [[../../60-Research/raw-perplexity/raw-board-confidence-real-world-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-club-takeover-administration-real-world-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-board-ownership-comparable-games-2026-06-05]]
@@ -94,6 +96,13 @@ Pre-existing constraints this ADR must honour:
   `worldAiMgmt:structural:year:<y>:takeover:<clubId>` and
   `worldAiMgmt:drift:season:<s>:owner-resistance:<clubId>` sub-labels. **FMX-89
   consumes these; it does not redefine them.**
+- **FMX-139 proposed amendment:** when this ADR consumes
+  `forcedSalePolicyRef`, `transferRestrictionPolicyRef` or
+  `boardCrisisPolicyRef`, the consumer projection should use the event's hybrid
+  `DriftConsumerPolicyRef` snapshot and catalog version. It must not query AI
+  World Simulation's current catalog tables during replay. This remains pending
+  Nico in
+  [[../../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]].
 - **Determinism** ([[../../60-Research/determinism-and-replay]]): stream #1
   `WorldRng` (world drift / league restructure / board events), stream #2
   `WorldAiMgmtRng` (out-of-match AI-management decisions); seed by
@@ -263,6 +272,13 @@ FMX-146 narrows "ledger effects" to actual economic events: stage/policy events
 do not post, completed fire sales reuse ADR-0105 registration postings and creditor
 haircuts use ADR-0050 `InsolvencyCreditorWriteOffPosted`.
 
+FMX-139 proposed consumer rule: `GiantCollapseTriggered.forcedSalePolicyRef`,
+`transferRestrictionPolicyRef` and `boardCrisisPolicyRef` are copied into the
+Board & Ownership ACL projection with their `policyCatalogVersion`,
+`effectFamily`, severity, duration bands and constraint tags. Club Management
+applies ownership/insolvency semantics from that projection; AI World Simulation
+only publishes the drift fact.
+
 ## Invariants
 
 | # | Invariant |
@@ -374,6 +390,9 @@ Remaining ratification / follow-up items before implementation:
   E5/League issue (league registration + save structure);
 - late-game UI surfaces (board-meeting dialogue, ownership news) → gaps G4-G6;
 - the 1-line bounded-context-map Club Management clause (apply on ratify).
+- FMX-139 decision on hybrid drift-consumer policy refs before future
+  implementation treats `forcedSalePolicyRef`, `transferRestrictionPolicyRef` or
+  `boardCrisisPolicyRef` as binding input.
 
 ## Supersedes
 

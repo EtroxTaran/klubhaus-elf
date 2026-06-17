@@ -24,6 +24,21 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-139 DriftConsumerPolicyRef contract pending (2026-06-17).**
+> Branch `codex/fmx-139-drift-policy-ref-contract` prepares the non-binding
+> contract packet for the `DriftConsumerPolicyRef` placeholder in ADR-0071 /
+> GD-0024. Research
+> [[../60-Research/drift-consumer-policy-ref-contract-2026-06-17]]
+> plus raw Perplexity/source-check captures proposes a hybrid ref/snapshot shape:
+> stable policy ref id, `WorldDriftPolicyCatalog` version, effect family, target
+> context, label/explanation keys and a minimal resolved snapshot for deterministic
+> consumer ACL projections. Recommendation is D1=C, D2=A, D3=B, D4=A: hybrid
+> contract, AI World Simulation owns policy-catalog identity/versioning, GD-0043
+> / FMX-52 owns final values, consumer contexts apply effects, and
+> `youthDiffusionHint` is a reserved typed ref until Youth/Data work approves
+> active mechanics. No policy-ref schema is binding until Nico answers
+> [[../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]].
+
 > **FMX-159 Watch Party context definition pending (2026-06-17).**
 > Branch `codex/fmx-159-watch-party-context-ownership` prepares the non-binding
 > context-definition packet for Watch Party as an Engagement & Narrative
