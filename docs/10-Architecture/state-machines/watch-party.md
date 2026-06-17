@@ -3,10 +3,10 @@ title: State Machine - Watch Party
 status: current
 tags: [architecture, state-machine, watch-party, multiplayer]
 created: 2026-05-16
-updated: 2026-06-16
+updated: 2026-06-17
 type: state-machine
 binding: false
-related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/watch-party-and-conference]], [[../../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/live-match-pause-ratification-2026-06-16]], [[../09-Decisions/ADR-0015-spectator-snapshot-streaming]], [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]]
+related: [[README]], [[../bounded-context-map]], [[../../50-Game-Design/watch-party-and-conference]], [[../../50-Game-Design/GD-0035-live-coaching-intervention-and-pause-rules]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/live-match-pause-ratification-2026-06-16]], [[../../60-Research/watch-party-context-ownership-2026-06-17]], [[../09-Decisions/ADR-0099-spectator-watch-party-streaming-over-committed-event-log]], [[../09-Decisions/ADR-0133-watch-party-context-definition]], [[../09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../09-Decisions/ADR-0087-live-match-intervention-buffer-and-pause-vote]]
 ---
 
 # State Machine - Watch Party
@@ -81,12 +81,19 @@ These deadlines are carried to League Orchestration via `WatchPartyScheduled` (�
 
 ## 5. Spectator stream
 
-When `live`, the watch-party service consumes the match service's
-snapshot / event stream. Configurable spectator delay (15-60 s) per group
-rule.
+When `live`, Watch Party consumes Match's committed event-log/replay cursor
+stream. Configurable spectator delay (15-60 s) is a Watch Party delivery-time
+policy per group rule; it does not create a persisted spectator snapshot source
+of truth.
 
 Architecture detail:
-[[../09-Decisions/ADR-0015-spectator-snapshot-streaming]].
+[[../09-Decisions/ADR-0099-spectator-watch-party-streaming-over-committed-event-log]].
+
+Draft ownership detail:
+[[../09-Decisions/ADR-0133-watch-party-context-definition]] proposes that Watch
+Party owns party-scoped broadcast/session state, chat, markers, moderation and
+pause-vote orchestration, while Match remains simulation/event-log/replay
+authority.
 
 ## 5.1 Disconnect pause rule
 
@@ -170,6 +177,12 @@ branded UUIDv7 columns (no cross-context `references()`). Participants are a
 RELATE-style edge with lifecycle, modelled as a junction table with a surrogate
 UUIDv7 PK (`watch_party_participant`); embedded scalar lists stay `jsonb`.
 
+FMX-159 / [[../09-Decisions/ADR-0133-watch-party-context-definition]] keeps
+these as Watch Party-owned storage concepts while ADR-0133 is draft. Future
+code-phase schema names may differ, but the proposed consistency boundaries are
+party lifecycle, participants/roles, schedule poll, live session, pause-control
+process, chat thread, marker layer and moderation log.
+
 ```text
 watch_party {                            # strongly-typed (typed cols + CHECK)
   id: uuid (UUIDv7, app-generated, PK),
@@ -232,6 +245,10 @@ watch_party_participant {                # junction table (surrogate PK)
 - `PauseVoteOpened` / `PauseVoteEnacted` / `PauseResumed` / `PauseRequestRejected` *(ADR-0087/FMX-140; §5.2 deliberate/tactics pause, distinct from §5.1 disconnect pause)*
 - `PausePrivilegeChanged` *(FMX-140; audit-gated local trust/privilege change)*
 - emits commands `PauseMatch` / `ResumeMatch` to Match (consumes `MatchPaused` / `MatchResumed`)
+- draft FMX-159 social events: `WatchPartyParticipantJoined` /
+  `WatchPartyParticipantLeft` / `WatchPartyRoleChanged` /
+  `WatchPartyChatMessagePosted` / `WatchPartyMarkerAdded` /
+  `WatchPartyModerationActionRecorded` / `WatchPartyPrimaryMatchChanged`
 
 ## 9. Failure / recovery
 
@@ -260,5 +277,8 @@ watch_party_participant {                # junction table (surrogate PK)
 - Should conference watch-parties have their own state record per match
   or one record per conference? Recommendation: one per conference, with
   `target_matches` array.
+- FMX-159 proposes one primary match for MVP Watch Party, with conference
+  secondary feeds and `WatchPartyPrimaryMatchChanged` as additive future
+  coordination. Match still owns every underlying event log.
 - Recording / replay availability post-completion - replay always
   available; spectator delay does not apply on replay.

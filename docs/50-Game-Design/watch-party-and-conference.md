@@ -3,10 +3,10 @@ title: Watch Party and Conference Mode
 status: draft
 tags: [game-design, mode, multiplayer, watch-party, conference]
 created: 2026-05-16
-updated: 2026-06-11
+updated: 2026-06-17
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[async-multiplayer-private-group]], [[../10-Architecture/state-machines/watch-party]]
+related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../60-Research/watch-party-context-ownership-2026-06-17]], [[async-multiplayer-private-group]], [[../10-Architecture/state-machines/watch-party]], [[../10-Architecture/09-Decisions/ADR-0099-spectator-watch-party-streaming-over-committed-event-log]], [[../10-Architecture/09-Decisions/ADR-0133-watch-party-context-definition]]
 ---
 
 # Watch Party and Conference Mode
@@ -98,17 +98,21 @@ stateDiagram-v2
 
 ## 6. Broadcast architecture
 
-Technical detail: [[../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming]].
+Technical detail:
+[[../10-Architecture/09-Decisions/ADR-0099-spectator-watch-party-streaming-over-committed-event-log]].
+Draft context-owner detail:
+[[../10-Architecture/09-Decisions/ADR-0133-watch-party-context-definition]].
 
 Summary:
 
 - Match simulated **server-authoritative** on the match service.
-- Periodic snapshots / event frames produced.
-- A separate spectator / replay service consumes the stream.
+- Match owns the committed event log / replay stream.
+- Watch Party consumes the stream for party-scoped broadcast/session state.
 - Spectators read it with **configurable delay** (15-60 s) to neutralise
   voice/chat coaching edge.
 - Active managers see live (or quasi-live for human-vs-human).
-- Chat live.
+- Chat, markers and moderation are Watch Party social state in the FMX-159
+  draft proposal.
 - Voice via external (e.g. Discord) - not in scope to host.
 
 ## 7. Live coaching rules
@@ -167,3 +171,7 @@ others. Conference is *additive* viewing, not replacement.
 - Auto-proposal trigger: which fixture properties qualify as
   "highlightable"? Documented in [[../50-Game-Design/rivalry-system]] §5
   and per match-day in [[../50-Game-Design/matchday-event-engine]].
+- FMX-159 draft proposes one primary match for MVP Watch Party and keeps
+  conference secondary feeds additive; no conference behavior is binding until
+  [[../10-Architecture/09-Decisions/ADR-0133-watch-party-context-definition]]
+  is accepted.

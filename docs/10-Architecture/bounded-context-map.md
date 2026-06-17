@@ -3,7 +3,7 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-06-16
+updated: 2026-06-17
 type: architecture
 binding: true
 related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]], [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]], [[../60-Research/identity-access-context-definition-2026-06-15]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[09-Decisions/ADR-0123-identity-access-context-definition]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[../40-Quality/architecture-fitness-function]]
@@ -40,7 +40,7 @@ change, not a refactor.
 | **Training** | Training plan, load, readiness, development signals, role-familiarity/set-piece readiness signals (definition proposal: ADR-0130) | Training outcomes, fatigue/readiness signals, growth deltas, set-piece readiness facts |
 | **Transfer** | Market valuation, opportunities, offers, clause packages, negotiation cases, deadlines, escalation | Transfer state, valuation bands, pressure signals, completed deals |
 | **Match** | Line-up, tactic snapshot lock, intervention buffer, deterministic simulation, results and event log (definition proposal: ADR-0129) | Result, match events, replay stream, match report facts |
-| **Watch Party** | Polls, scheduling, broadcast, conference | Watch-party status, event timeline |
+| **Watch Party** | Session lifecycle, scheduling/polls, participants/roles, broadcast cursor, spectator delay, conference coordination, pause-vote orchestration and party-scoped chat/markers/moderation (definition proposal: ADR-0133) | Watch-party status, schedule/deadline events, participant/role facts, party timeline/chat/marker projections, `PauseMatch`/`ResumeMatch` commands to Match |
 | **Notification** | Durable notifications, inbox, preferences, subscriptions, schedules, delivery attempts, provider adapters, push preparation, digests | User-facing message projections, unread counters, delivery/audit events |
 | **Manager & Legacy** | Manager profile, run analysis snapshots, manager style signals, archetype candidates, legacy unlock catalog, prestige profile | Post-run reflection projections, legacy/prestige configuration for new-save creation, archetype candidate board |
 | **Staff Operations** | Staff contract lifecycle, role assignment, pipeline coverage, wage schedule, specialisation metadata | Staff roster + role-assignment board projections, pipeline-coverage snapshots, wage events for the Club Management ledger |
@@ -94,6 +94,15 @@ Sporting Core contexts: [[09-Decisions/ADR-0129-match-context-definition]]
 [[09-Decisions/ADR-0131-squad-and-player-context-definition]] (Squad & Player).
 They are draft sources until Nico answers
 [[../40-Execution/fmx-132-sporting-core-context-definitions-decision-queue-2026-06-16]];
+the accepted map/count does not change.
+
+FMX-159 adds a non-binding context-definition proposal for
+[[09-Decisions/ADR-0133-watch-party-context-definition]] (Watch Party).
+If accepted, Watch Party owns party-scoped session/social orchestration while
+Match remains simulation/event-log/replay authority, Notification remains
+delivery/inbox/preference owner and Offline Sync remains sync/rebase and
+collaboration infrastructure. It is draft until Nico answers
+[[../40-Execution/fmx-159-watch-party-context-ownership-decision-queue-2026-06-17]];
 the accepted map/count does not change.
 
 The **Competition & Season registry** was ratified 2026-06-02 via
@@ -457,6 +466,24 @@ Narrative owns the narration framework. People remains the source of
 actor/persona truth, Notification remains the delivery owner, and
 Match/Squad/Club/Fan/Transfer contexts remain the authoritative fact owners.
 
+### 1.4 Watch Party context (FMX-159)
+
+[[09-Decisions/ADR-0133-watch-party-context-definition]] is a draft,
+non-binding proposal. If accepted, Watch Party owns party-scoped lifecycle,
+poll/schedule, participant/role, broadcast/session, spectator-delay,
+conference, pause-vote, chat, marker and moderation state.
+
+The proposed relationship is explicit:
+
+- Match owns simulation, committed event log, replay execution, frame contract,
+  intervention application and result authority.
+- Notification owns durable notifications, inbox, preferences, schedules,
+  provider attempts, suppression and delivery/audit events.
+- Offline Sync owns client queue/rebase/collaboration mechanics, not
+  Watch Party social semantics.
+- MVP chat/markers remain server-ordered append-only events; CRDT-style
+  editable overlays are future-scope.
+
 ## 2. Context map (high-level)
 
 ```mermaid
@@ -713,7 +740,7 @@ Anticipated extraction order when scaling demands it:
 1. **Match worker** - heaviest CPU + needs anti-cheat isolation.
 2. **Job scheduler / Outbox publisher** - long-running supervisor.
 3. **Spectator service** - high fan-out per
-   [[09-Decisions/ADR-0015-spectator-snapshot-streaming]].
+   [[09-Decisions/ADR-0099-spectator-watch-party-streaming-over-committed-event-log]].
 4. **Notification service** - independent scaling per push volume.
 
 Notification extraction follows
@@ -795,8 +822,10 @@ not MVP requirements.
   domain-owned policies inside Training, Squad & Player, Club Management,
   Match, League and Notification, coordinated by deterministic event
   orchestration. No generic random-event bounded context.
-- Spectator stream: own context or in Match? Own context (Watch Party)
-  because it has independent state machine and scheduling.
+- FMX-159 proposes Watch Party as the owner for spectator/watch-party
+  orchestration while Match owns the committed event log and replay stream.
+  This remains draft until
+  [[09-Decisions/ADR-0133-watch-party-context-definition]] is accepted.
 - 3D Presentation Layer (post-MVP, iso-stadium / cutscenes /
   backdrops) is **not** a bounded context. It is a UI/presentation
   adapter that consumes existing read-models and domain events
