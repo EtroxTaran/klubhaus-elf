@@ -3,10 +3,10 @@ title: Architecture (Map of Content)
 status: current
 tags: [architecture, moc]
 created: 2026-05-17
-updated: 2026-06-14
+updated: 2026-06-16
 type: index
 binding: true
-related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[05-Building-Blocks]], [[../00-Index/Documentation-V1]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]]
+related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[05-Building-Blocks]], [[../00-Index/Documentation-V1]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[09-Decisions/ADR-0132-release-versioning-app-build-process]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/release-versioning-process-2026-06-16]]
 ---
 
 # Architecture — Map of Content
@@ -52,6 +52,10 @@ baseline for architecture-gap classification.
 - [[09-Decisions/ADR-0114-monorepo-workspace-bootstrap]] — draft FMX-179
   monorepo/workspace bootstrap proposal; package-boundary convention, namespace
   and code-gate activation remain pending Nico D1-D8.
+- [[09-Decisions/ADR-0132-release-versioning-app-build-process]] — draft
+  FMX-178 release versioning/app-build proposal; SemVer/release manifest,
+  immutable digest promotion, PWA update UX and beta release gate remain pending
+  Nico D1-D7.
 
 ## Modules
 

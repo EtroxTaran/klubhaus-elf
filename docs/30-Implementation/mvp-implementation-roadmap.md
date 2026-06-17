@@ -1,12 +1,12 @@
 ---
 title: MVP Implementation Roadmap
 status: current
-tags: [implementation, mvp, roadmap, roguelite, slices]
+tags: [implementation, mvp, roadmap, roguelite, slices, release, versioning]
 created: 2026-05-19
-updated: 2026-06-15
+updated: 2026-06-16
 type: implementation
 binding: true
-related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[hybrid-online-pwa-strategy]], [[club-economy-accounting-ledger]], [[ai-narration-contract-testing-framework]], [[code-phase-dod-transition-contract]]
+related: [[../00-Index/MVP-Scope]], [[../20-Features/feature-roguelite-mvp-first-playable]], [[../20-Features/feature-club-economy-mvp-pillar]], [[../20-Features/feature-ai-narration-mvp-pillar]], [[../50-Game-Design/GD-0017-mvp-scope-and-mode-sequencing]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../10-Architecture/09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]], [[hybrid-online-pwa-strategy]], [[club-economy-accounting-ledger]], [[ai-narration-contract-testing-framework]], [[code-phase-dod-transition-contract]], [[release-versioning-app-build-process]]
 ---
 
 # MVP Implementation Roadmap
@@ -42,11 +42,11 @@ target build plan.
 |---|---|
 | Goal | Repo can accept the first real code beat without non-existent commands or paths in the DoD |
 | Contexts | Platform / Meta |
-| Vault | [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], pending [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]], [[code-phase-dod-transition-contract]], [[monorepo-workspace-bootstrap-plan]], [[ci-and-review-process]], [[agent-workflow-pattern]] |
+| Vault | [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], pending [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]], pending [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]], [[code-phase-dod-transition-contract]], [[monorepo-workspace-bootstrap-plan]], [[release-versioning-app-build-process]], [[ci-and-review-process]], [[agent-workflow-pattern]] |
 | UI | None; design-system paths stay target-only until created |
 | Tests | `node scripts/docs-check.mjs`; then approved bootstrap must add real `pnpm`/Nx code scripts before code-phase gates activate; no placeholder Vitest/Playwright/Storybook/coverage greens for empty packages |
 | Authority | Process/tooling gate |
-| DoD | Serialized foundation: FMX-180 accepted the phase-split DoD; FMX-179 prepares package-boundary decisions and exact scaffold plan; a later approved scaffold PR creates real workspace roots, Nx, root scripts, CI and design-system implementation paths before Slice 0 code starts |
+| DoD | Serialized foundation: FMX-180 accepted the phase-split DoD; FMX-179 prepares package-boundary decisions and exact scaffold plan; FMX-178 adds a pending release-versioning beta gate; later approved foundation/release PRs create real workspace roots, Nx, root scripts, CI, design-system implementation paths, release manifest generation, source-map identity, Dokploy digest promotion/rollback proof and save/content compatibility fixtures before public beta |
 
 ### Slice 0 — Auth shell
 

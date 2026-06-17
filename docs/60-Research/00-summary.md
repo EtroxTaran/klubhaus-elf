@@ -1,11 +1,26 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, rulesets, branch-protection, codeowners, architecture-fitness, dependency-cruiser, bounded-context, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, career, national-team, bundestrainer, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, transfer, loan, obligation-to-buy, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-160, fmx-164, fmx-167, fmx-168, fmx-170, fmx-177, fmx-180, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, rulesets, branch-protection, codeowners, architecture-fitness, dependency-cruiser, bounded-context, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, career, national-team, bundestrainer, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, transfer, loan, obligation-to-buy, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-160, fmx-164, fmx-167, fmx-168, fmx-170, fmx-177, fmx-178, fmx-180, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 updated: 2026-06-16
 ---
 
 # Research Summary
+
+## Release Versioning and App Build Process (FMX-178, 2026-06-16)
+
+[[release-versioning-process-2026-06-16]] preserves the FMX-178
+Perplexity-first and source-checked packet for the future app release identity:
+SemVer technical version plus player label, generated `release.json`,
+build-once/promote-digest Dokploy flow, prompt-to-refresh PWA update UX,
+four-layer app/API/save/content compatibility, SBOM/provenance evidence and a
+named release captain before beta. Draft ADR:
+[[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]].
+Decision queue:
+[[../40-Execution/fmx-178-release-versioning-app-build-decision-queue-2026-06-16]].
+Raw captures:
+[[raw-perplexity/raw-release-versioning-app-build-2026-06-16]],
+[[raw-perplexity/raw-release-versioning-source-checks-2026-06-16]].
 
 ## Branch Protection Ruleset and CODEOWNER Activation (FMX-181, 2026-06-16)
 

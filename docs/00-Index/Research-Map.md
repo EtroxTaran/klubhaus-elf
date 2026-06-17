@@ -18,6 +18,14 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Release Versioning and App Build Process](../60-Research/release-versioning-process-2026-06-16.md) -
+  FMX-178 Perplexity-first and source-checked packet for the draft
+  [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]]:
+  SemVer technical version plus player label, generated `release.json`,
+  build-once/promote-digest Dokploy flow, prompt-to-refresh PWA update UX,
+  app/API/save/content compatibility, SBOM/provenance evidence and named release
+  captain before beta. Decisions remain pending in
+  [FMX-178 decision queue](../40-Execution/fmx-178-release-versioning-app-build-decision-queue-2026-06-16.md).
 - [Branch Protection Ruleset and CODEOWNER Activation](../60-Research/branch-protection-codeowner-activation-2026-06-16.md) -
   FMX-181 Perplexity-first and source-checked packet for the accepted GitHub
   ruleset migration posture: active default-branch docs-phase mirror

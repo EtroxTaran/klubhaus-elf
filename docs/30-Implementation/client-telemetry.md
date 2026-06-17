@@ -1,13 +1,13 @@
 ---
 title: Client Telemetry
 status: current
-tags: [implementation, telemetry, pwa, errors, performance, indexeddb]
+tags: [implementation, telemetry, pwa, errors, performance, indexeddb, release, versioning]
 created: 2026-05-17
-updated: 2026-06-14
+updated: 2026-06-16
 type: implementation
 binding: false
-adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]]
-related: [[../60-Research/telemetry-privacy]], [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]], [[../40-Compliance/age-assurance-and-rating-evidence]], [[observability-runbook]]
+adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]]
+related: [[../60-Research/telemetry-privacy]], [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]], [[../40-Compliance/age-assurance-and-rating-evidence]], [[observability-runbook]], [[release-versioning-app-build-process]]
 ---
 
 # Client Telemetry
@@ -23,6 +23,23 @@ The app currently has no telemetry SDK. `apps/web/public/sw-register.js`
 swallows service worker registration failures so the bootstrap shell stays
 usable. Future implementation must keep that UX resilience while sending
 a redacted diagnostic event when allowed.
+
+## Draft Release Identity
+
+Draft [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]]
+proposes the concrete fields behind this note's generic release/build id:
+
+- `releaseVersion`;
+- `playerReleaseLabel`;
+- `buildId`;
+- `releaseChannel`;
+- `contentVersion`;
+- `saveSchemaVersion`.
+
+These fields are low-risk diagnostic context when they contain no player or
+save payload data. Server-only artifact evidence such as full image digest,
+SBOM/provenance refs and deploy approver stays in operational release records
+unless a future accepted telemetry rule explicitly allows it.
 
 ## Signals To Capture
 
@@ -81,7 +98,10 @@ Before queueing or sending, remove:
 
 Allowed context:
 
-- release/build id;
+- release/build id, concretely `releaseVersion` and `buildId` after ADR-0132
+  approval;
+- release channel;
+- content version and save schema version;
 - route id or screen name;
 - feature area;
 - browser family/version;
@@ -142,7 +162,8 @@ Source maps may be uploaded to GlitchTip for crash triage. They are
 protected operational artifacts:
 
 - never publicly served by default;
-- tied to release/build id;
+- tied to the same release/build id used by telemetry events and source-map
+  upload (`releaseVersion` plus `buildId` after ADR-0132 approval);
 - retained with crash reports unless an incident requires longer hold.
 
 ## Tests To Add With Implementation
@@ -165,4 +186,6 @@ protected operational artifacts:
 
 ## Change History
 
+- 2026-06-16: Added non-binding FMX-178 / ADR-0132 release-identity field
+  references.
 - 2026-05-17: Created for ADR-0017.

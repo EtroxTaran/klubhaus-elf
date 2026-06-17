@@ -1,13 +1,13 @@
 ---
 title: Dokploy Deployment
 status: current
-tags: [deployment, implementation, dokploy, observability]
+tags: [deployment, implementation, dokploy, observability, release, versioning]
 created: 2026-05-15
-updated: 2026-06-15
+updated: 2026-06-16
 type: implementation
 binding: false
-adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
-related: [[../10-Architecture/07-Deployment]], [[observability-runbook]], [[client-telemetry]]
+adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]]
+related: [[../10-Architecture/07-Deployment]], [[observability-runbook]], [[client-telemetry]], [[release-versioning-app-build-process]]
 ---
 
 # Dokploy Deployment
@@ -34,6 +34,26 @@ and the self-hosted observability stack selected by ADR-0017.
 
 - `klubhaus-elf-dev`: branch `develop`, domain `dev.klubhaus-elf.de`
 - `klubhaus-elf-prod`: branch `main`, domain `klubhaus-elf.de`
+
+## Draft Release Promotion Overlay
+
+FMX-178 proposes a future app-release overlay in
+[[release-versioning-app-build-process]] and draft
+[[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]].
+It is not active until Nico approves the decision queue.
+
+If accepted, app releases use this rule:
+
+- build the Docker image once;
+- record the immutable OCI digest in `release.json`;
+- verify that digest in dev/staging;
+- promote the same digest to production;
+- roll back to a prior known-good digest/manifest through Dokploy
+  registry-backed rollback;
+- never treat `:latest`, branch names or moving aliases as release truth.
+
+This resolves the known stale-`:latest` risk without changing the owner-approved
+Dokploy/Hetzner deployment choice.
 
 ## Required Nico-provided access
 

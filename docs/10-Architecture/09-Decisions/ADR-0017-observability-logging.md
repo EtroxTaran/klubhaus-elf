@@ -1,13 +1,13 @@
 ---
 title: ADR-0017 Self-hosted Observability and Logging
 status: accepted
-tags: [adr, architecture, observability, logging, monitoring, telemetry, gdpr]
+tags: [adr, architecture, observability, logging, monitoring, telemetry, gdpr, release]
 created: 2026-05-17
-updated: 2026-06-11
+updated: 2026-06-16
 accepted_at: 2026-05-17
 type: adr
 binding: true
-related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0043-notification-and-messaging-platform]], [[../08-Crosscutting]], [[../../30-Implementation/observability-runbook]], [[../../30-Implementation/client-telemetry]]
+related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0043-notification-and-messaging-platform]], [[ADR-0132-release-versioning-app-build-process]], [[../08-Crosscutting]], [[../../30-Implementation/observability-runbook]], [[../../30-Implementation/client-telemetry]], [[../../30-Implementation/release-versioning-app-build-process]]
 ---
 
 # ADR-0017: Self-hosted Observability and Logging
@@ -23,6 +23,13 @@ related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[
 > the node (Mimir). GlitchTip is confirmed over self-hosted Sentry (~16 GB / 40+
 > containers — rejected at this scale). Substrate note: references to "SurrealDB"
 > as a log/metric *source* now mean Postgres per [[ADR-0021-revised-tech-stack]].
+
+> **FMX-178 planning reference (2026-06-16, non-binding).** Draft
+> [[ADR-0132-release-versioning-app-build-process]] proposes the concrete
+> `releaseVersion` / `buildId` / content / save-schema fields that will populate
+> this ADR's generic release/build diagnostic field if Nico approves it.
+> Until then, ADR-0017 remains binding only on the generic release/build id and
+> source-map tie.
 
 ## Status
 
@@ -132,7 +139,9 @@ encrypted save blobs or full IndexedDB records.
 
 Allowed correlation fields are release/build id, route/screen id,
 feature area, pseudonymous telemetry subject id, request/correlation id
-and non-user-entered aggregate ids when operationally necessary.
+and non-user-entered aggregate ids when operationally necessary. FMX-178
+proposes the concrete release/build field names in draft ADR-0132; those names
+are not binding until Nico approves that ADR.
 
 ### 5. Ingestion topology
 
