@@ -137,6 +137,14 @@ AI World Simulation is the canonical planning-source context for
 League Orchestration, Club Management and Transfer provide source
 facts/projections through published language.
 
+FMX-139 proposes a pending clarification to the AI World row: AI World
+Simulation would own `WorldDriftPolicyCatalog` identity/versioning for
+`DriftConsumerPolicyRef` values carried by drift events, while GD-0043/FMX-52
+keeps numeric calibration and consumers apply effects inside their own
+contexts. Until Nico answers
+[[../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]],
+this is a non-binding contract proposal, not a map/count change.
+
 The **Statistics & Analytics** projection-only bounded context (FMX-94,
 [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], ratified
 `accepted` 2026-06-08) is part of the §1 table. It gives standings,

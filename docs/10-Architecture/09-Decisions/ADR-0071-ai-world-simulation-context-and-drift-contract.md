@@ -1,9 +1,9 @@
 ---
 title: ADR-0071 AI World Simulation context and drift contract
 status: accepted
-tags: [adr, architecture, ai-world, world-drift, ddd, determinism, rng, published-language, fmx-91]
+tags: [adr, architecture, ai-world, world-drift, ddd, determinism, rng, published-language, policy-catalog, fmx-91, fmx-139]
 created: 2026-06-03
-updated: 2026-06-11
+updated: 2026-06-17
 type: adr
 binding: false
 supersedes:
@@ -20,6 +20,12 @@ related:
   - [[../../50-Game-Design/GD-0010-ai-world]]
   - [[../../60-Research/ai-world-drift-algorithm-2026-06-03]]
   - [[../../60-Research/raw-perplexity/raw-ai-world-drift-algorithm-2026-06-03]]
+  - [[../../60-Research/drift-consumer-policy-ref-contract-2026-06-17]]
+  - [[../../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-ddd-2026-06-17]]
+  - [[../../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-realworld-2026-06-17]]
+  - [[../../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-games-2026-06-17]]
+  - [[../../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-source-checks-2026-06-17]]
+  - [[../../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]]
   - [[../../60-Research/ai-manager-behaviour]]
   - [[../../60-Research/late-game-systems]]
   - [[../../60-Research/determinism-and-replay]]
@@ -40,6 +46,12 @@ accepted
 > FMX-91 draft. Nico selected the proposed direction on 2026-06-03, but this ADR
 > remains `proposed` / `binding: false` until ratified through the normal
 > architecture gate.
+
+> **FMX-139 proposed amendment (2026-06-17, pending Nico):**
+> [[../../60-Research/drift-consumer-policy-ref-contract-2026-06-17]] defines a
+> concrete hybrid `DriftConsumerPolicyRef` proposal and AI World Simulation
+> `WorldDriftPolicyCatalog` ownership split. It is not binding until Nico answers
+> [[../../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]].
 
 ## Date
 
@@ -122,12 +134,21 @@ AI World Simulation owns:
 - `WorldDriftEventLog`
 - `ContinentalEraState`
 
+FMX-139 proposes adding `WorldDriftPolicyCatalog` as AI World Simulation's
+producer-side published-language catalog for drift-consumer policy refs. The
+proposal keeps final numeric calibration in FMX-52/GD-0043 and keeps consumer
+application in the owning consumer contexts.
+
 Public outputs:
 
 - `RisingRivalTriggered`
 - `GiantCollapseTriggered`
 - `ContinentalEraShifted`
 - `WorldDriftParameterSheetPublished`
+
+FMX-139 proposed output, pending Nico:
+
+- `WorldDriftPolicyCatalogVersionPublished`
 
 Public queries:
 
@@ -198,6 +219,62 @@ type ContinentalEraShifted = WorldDriftEventBase & {
 All ranges are calibrated through FMX-52. No event carries final cash amounts or
 direct ledger entries.
 
+### FMX-139 proposed `DriftConsumerPolicyRef` contract
+
+Pending Nico, world-drift events use a hybrid ref/snapshot shape:
+
+```ts
+type DriftConsumerPolicyRef = {
+  policyRefId: DriftPolicyRefId
+  policyCatalog: 'world-drift-consumer-policy'
+  policyCatalogVersion: int
+  effectFamily:
+    | 'forced-sale'
+    | 'transfer-restriction'
+    | 'board-crisis'
+    | 'consumer-finance'
+    | 'commercial-baseline'
+    | 'youth-diffusion'
+  ownerContext: 'AI World Simulation'
+  targetContext:
+    | 'Club Management'
+    | 'CommercialPortfolio'
+    | 'Transfer'
+    | 'Youth Academy'
+    | 'Data Generator'
+  scope: 'club' | 'league' | 'region' | 'competition'
+  activationStatus: 'active' | 'reserved'
+  policyLabelKey: string
+  explanationTagKeys: string[]
+  resolvedSnapshot: {
+    severity:
+      | 'advisory'
+      | 'soft-restriction'
+      | 'hard-restriction'
+      | 'existential'
+    durationSeasonBand?: RangeInt
+    valueBandRefs?: Record<string, RangeBp | RangeInt>
+    constraintTags: string[]
+  }
+  provenance: {
+    driftProfileVersion: int
+    generatedByEventId: EventId
+  }
+}
+```
+
+If accepted:
+
+- `policyCatalogVersion` is immutable once published for a save/engine version.
+- `policyRefId` without catalog version and resolved snapshot is invalid for a
+  world-drift event.
+- `resolvedSnapshot` carries bands, tags and consumer constraints only; it does
+  not carry final cash amounts, exact ledger postings or youth-generation values.
+- Consumers may enrich UI from catalogs, but replay and ACL projection must not
+  require current AI World Simulation table reads.
+- New effect semantics require a new catalog version and, if payload meaning
+  changes, a new event schema version.
+
 ## RNG labels
 
 Proposed sub-labels:
@@ -228,6 +305,18 @@ existing sequence.
 7. MVP drama caps are global; per-confederation caps are reserved and inactive
    until ratified.
 
+FMX-139 proposed additional invariants, pending Nico:
+
+8. `DriftConsumerPolicyRef` is a published-language contract; consumers never
+   persist AI World Simulation internal catalog rows.
+9. Every drift-consumer policy ref carries a stable id, catalog version and
+   minimal resolved snapshot sufficient for consumer ACL projection.
+10. Club Management, CommercialPortfolio, Transfer and future Youth/Data work own
+    application of the ref; AI World Simulation owns drift-event publication and
+    policy-ref identity/versioning only.
+11. `youthDiffusionHint` is a reserved typed ref until a Youth/Data follow-up
+    approves active youth-generation mechanics.
+
 ## Consequences
 
 Positive:
@@ -251,3 +340,7 @@ Negative / constraints:
 - FMX-84 consumes `ContinentalEraShifted` for late-game/national-team arcs.
 - Youth/Data Generator follow-up decides how `youthDiffusionHint` affects regen
   or youth distribution, if at all.
+- FMX-139 decision queue decides whether to accept the proposed hybrid
+  `DriftConsumerPolicyRef`, AI World Simulation `WorldDriftPolicyCatalog`
+  ownership split and reserved `youthDiffusionHint` semantics:
+  [[../../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]].
