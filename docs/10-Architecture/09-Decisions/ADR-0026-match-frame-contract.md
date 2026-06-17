@@ -3,7 +3,7 @@ title: ADR-0026 Match Frame Contract
 status: accepted
 tags: [adr, architecture, match-engine, match-view, contract, determinism]
 created: 2026-05-19
-updated: 2026-06-14
+updated: 2026-06-17
 accepted_at: 2026-05-19
 type: adr
 binding: true
@@ -17,6 +17,12 @@ related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-eng
 ## Status
 
 accepted
+
+> **FMX-182 reference note (2026-06-17):** Older pre-mortem/security drafts used
+> `ADR-0026` as a placeholder for "Command Signing." That mapping is invalid.
+> Current ADR-0026 is only the Match Frame Contract. The accepted command
+> integrity/replay-protection home is
+> [[ADR-0115-command-integrity-and-replay-protection-posture]].
 
 ## Date
 

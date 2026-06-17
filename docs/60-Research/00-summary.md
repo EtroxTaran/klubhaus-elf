@@ -7,6 +7,20 @@ updated: 2026-06-17
 
 # Research Summary
 
+## Security ADR Reference Hygiene (FMX-182, 2026-06-17)
+
+[[security-adr-reference-hygiene-2026-06-17]] preserves the FMX-182
+Perplexity-first and source-checked packet for reconciling stale security ADR
+references in the pre-mortem/threat-model corpus. Current truth: ADR-0026 is
+only Match Frame Contract, ADR-0027 is only PostgreSQL Data Model and ADR-0028
+is only PostgreSQL Transactional Outbox. Historical command-signing intent maps
+to ADR-0115; historical save-trust/provenance intent maps to ADR-0116; BYOC
+Match Validation Quorum remains future-scope/unassigned. Decision record:
+[[../40-Execution/fmx-182-security-adr-reference-hygiene-decision-record-2026-06-17]].
+Raw captures:
+[[raw-perplexity/raw-security-adr-reference-hygiene-2026-06-17]],
+[[raw-perplexity/raw-security-adr-reference-hygiene-source-checks-2026-06-17]].
+
 ## Local-Parity Lefthook Gate (FMX-176, 2026-06-17)
 
 [[local-parity-lefthook-2026-06-17]] preserves the FMX-176 Perplexity-first and

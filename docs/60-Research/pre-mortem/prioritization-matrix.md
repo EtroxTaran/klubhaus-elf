@@ -88,7 +88,7 @@ Strategische Entscheidungen, brauchen Sprint-Planung:
 | [[PM-2026-05-20-02-tech-and-ops#PM-2026-05-20-02-F-04\|02-F-04]] — Backups Restore-Drill | 25 | L |
 | [[PM-2026-05-20-04-monetization#PM-2026-05-20-04-F-01\|04-F-01]] — Monetarisierungs-Hypothese | 25 | L (strategic) |
 | [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-01\|05-F-01]] — Save-Schema v2 | 25 | L |
-| [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02\|05-F-02]] — Command Signing | 25 | L |
+| [[PM-2026-05-20-05-security-and-integrity#PM-2026-05-20-05-F-02\|05-F-02]] — Command Integrity / Replay Protection (accepted home ADR-0115; historical "Command Signing" label corrected by FMX-182) | 25 | L |
 | [[PM-2026-05-20-10-accessibility-and-inclusion#PM-2026-05-20-10-F-01\|10-F-01]] — react-aria DnD für Tactic-Board | 25 | M-L |
 | [[PM-2026-05-20-12-long-term-balance-and-meta#PM-2026-05-20-12-F-08\|12-F-08]] — Versioned Balance Constants | 20 | L |
 | [[PM-2026-05-20-13-community-moderation-and-ugc#PM-2026-05-20-13-F-02\|13-F-02]] — § 86a Wappen-Pipeline | 20 | L |

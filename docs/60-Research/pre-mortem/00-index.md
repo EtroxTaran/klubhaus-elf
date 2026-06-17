@@ -175,8 +175,8 @@ Iter-2-Findings (Security/Report 05 + BYOC/Report 06) sind **fett markiert**. BY
 ## Top-Mitigations (nach Hebel: Score × 1/Aufwand) — Iter 1 + 2
 
 1. **Determinism-CI-Gate** (S-Aufwand, Score 20 × 4 Findings = sehr hoch). Adressiert: 02-F-02, 03-F-02, 05-F-03, Foundation für BYOC.
-2. **Save-Schema v2 mit `SaveTrustLevel` + Server-Proof (Iter 2)** (L-Aufwand, Score 25). Adressiert: 05-F-01, Foundation für 05-F-11, Single-Player-Foundation in 01/03 Addenda. **Accepted home: ADR-0115 (FMX-184).**
-3. **Command-Integritaet + Replay-Protection (Iter 2)** (L-Aufwand, Score 25). Adressiert: 05-F-02, indirekt 05-F-06, 05-F-08. **Accepted home: ADR-0114 (FMX-184).**
+2. **Save-Schema v2 mit `SaveTrustLevel` + Server-Proof (Iter 2)** (L-Aufwand, Score 25). Adressiert: 05-F-01, Foundation für 05-F-11, Single-Player-Foundation in 01/03 Addenda. **Accepted home: ADR-0116 (FMX-184; FMX-182 reference hygiene).**
+3. **Command-Integritaet + Replay-Protection (Iter 2)** (L-Aufwand, Score 25). Adressiert: 05-F-02, indirekt 05-F-06, 05-F-08. **Accepted home: ADR-0115 (FMX-184; FMX-182 reference hygiene).**
 4. **Restore-Drill automatisieren** (M-Aufwand, Score 25). Adressiert: 02-F-04.
 5. **Monetarisierungs-Hypothese committen** (M-Aufwand, Score 25). Adressiert: 04-F-01.
 6. **Mindest-Alert-Catalog + Dashboards-as-Code** (M-Aufwand, Score 20 + Cross-Cutting). Adressiert: 02-F-03, 01-F-09, neue Iter-2-Security-Alerts.
@@ -199,7 +199,8 @@ Iter-2-Findings (Security/Report 05 + BYOC/Report 06) sind **fett markiert**. BY
 
 - **Determinism-CI-Gate live** (Mit #1).
 - **Save-trust + Command-Integritaet decision accepted** (Mit #2, #3);
-  ADR-0114 + ADR-0115 accepted before implementation.
+  ADR-0115 + ADR-0116 accepted before implementation. FMX-182 confirms
+  these are conceptual mitigation homes, not implementation-complete claims.
 - **Migrations-Framework live** + erster echter Schema-Change in Staging (Mit #8).
 - **Mindest-Alert-Catalog deployt**, Dashboards-as-Code (Mit #6).
 - **Restore-Drill** als Monthly-Cron etabliert, RTO/RPO gemessen (Mit #4).
@@ -249,8 +250,8 @@ No row below is an unclassified documentation gap.
 | WAF / Bot-Management Provider | platform+security | Trigger-gated ops | Covered by rate-limiting/anti-abuse baseline; edge WAF is trigger-based. |
 | Helpdesk-Tool | support | Pre-launch ops | Concept-covered by ST-08 / ST-13; select before public support launch. |
 | Status-Page-Tool | platform | Pre-launch ops | Concept-covered by ST-02 / ST-07; select during launch hardening. |
-| Save-Schema v2 + `SaveTrustLevel` | architecture+security | Architecture binding | Concept-covered by ST-05; accepted home ADR-0115 (FMX-184). |
-| Command-Integritaets-Protokoll | architecture+security | Architecture/security | Concept-covered by ST-05; accepted home ADR-0114 (FMX-184). |
+| Save-Schema v2 + `SaveTrustLevel` | architecture+security | Architecture binding | Concept-covered by ST-05; accepted home ADR-0116 (FMX-184; FMX-182 reference hygiene). |
+| Command-Integritaets-Protokoll | architecture+security | Architecture/security | Concept-covered by ST-05; accepted home ADR-0115 (FMX-184; FMX-182 reference hygiene). |
 | BYOC-Decision-Gate | product+platform | Future-scope gate | `accepted-risk`; do not implement before gate passes. |
 | Bug-Bounty-Programm | security | Pre-launch/post-launch security | Concept-covered by ST-05 / ST-17; pilot after responsible-disclosure path exists. |
 | Externer Pentest-Lieferant | security | Pre-launch evidence | Evidence gate before public launch; not a documentation gap. |

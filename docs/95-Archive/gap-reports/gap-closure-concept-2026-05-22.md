@@ -173,6 +173,13 @@ has a `trust_level` (`local-only`, `cloud-verified`, `imported-unverified`,
 `imported-verified`, `unverified-by-engine-migration`). Hall of Fame, public
 achievements and async MP require server-verifiable state.
 
+**FMX-182 reference hygiene.** This archived concept track now maps to accepted
+current homes [[../../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture|ADR-0115]]
+for command integrity/replay protection and
+[[../../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture|ADR-0116]]
+for save trust/provenance. Historical "ADR command signing" / "ADR save trust"
+wording in this archive is conceptual, not implementation-complete.
+
 **Best practice.** Ed25519 command signatures, UUIDv7 command IDs,
 server-signed receipts, nonce/replay window, AEAD AAD-bound envelopes,
 strict Zod validation and size limits on imports.
@@ -450,7 +457,9 @@ cost-saving shortcut.
 **Differenzierung.** We reserve future community compute without compromising
 launch trust.
 
-**Required artefacts.** Future ADR only after gate; no MVP code.
+**Required artefacts.** Future ADR only after gate; no MVP code. FMX-182
+confirms the old `ADR-0027 BYOC Match Validation Quorum` placeholder is
+invalid; current ADR-0027 is the PostgreSQL data model.
 
 **Verification.** Gate review, not implementation.
 

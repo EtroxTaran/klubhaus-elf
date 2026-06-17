@@ -39,7 +39,9 @@ related:
 > already assigned to other accepted decisions. The accepted homes are
 > ADR-0115 for command integrity/replay protection and ADR-0116 for save trust
 > levels/provenance. BYOC quorum remains future-scope and unassigned until its
-> own decision gate.
+> own decision gate. FMX-182 confirms that these are reference-hygiene mappings:
+> pre-mortem `mitigated` means conceptually addressed by accepted ADRs, not
+> implemented unless a later implementation artifact says so.
 
 ## Leitsatz
 

@@ -3,7 +3,7 @@ title: ADR-0027 PostgreSQL Data Model (per-save schema isolation, Drizzle source
 status: accepted
 tags: [adr, architecture, data, postgresql, drizzle, schema, saves]
 created: 2026-05-19
-updated: 2026-06-16
+updated: 2026-06-17
 accepted_at: 2026-05-19
 type: adr
 binding: true
@@ -17,6 +17,11 @@ related: [[ADR-0004-data-model]], [[ADR-0021-revised-tech-stack]], [[ADR-0019-mo
 ## Status
 
 accepted
+
+> **FMX-182 reference note (2026-06-17):** Older pre-mortem/security drafts used
+> `ADR-0027` as a placeholder for "BYOC Match Validation Quorum." That mapping
+> is invalid. Current ADR-0027 is only the PostgreSQL Data Model. BYOC remains
+> future-scope/unassigned until its own decision gate and ADR.
 
 ## Date
 

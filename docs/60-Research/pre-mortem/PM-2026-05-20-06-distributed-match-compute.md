@@ -62,7 +62,7 @@ Match-Result = Quorum-of-(N=5) Re-Simulations mit Server-Fallback
                                                        consistent → +1
 ```
 
-**Spannung zu ADR-0011.** ADR-0011 ist ”žServer-Authoritative" als MVP-Pattern. BYOC ist *”žQuorum-Validated mit Server-Fallback"* — der Server bleibt finale Autorität (kann jederzeit re-simulieren), aber im Happy-Path spart er sich die CPU. Falls BYOC gebaut wird, beschreibt ein neuer `ADR-0027 BYOC Match Validation Quorum` die Erweiterung — ADR-0011 wird *nicht* superseded, sondern *ergänzt* mit einem Modus-Switch.
+**Spannung zu ADR-0011.** ADR-0011 ist ”žServer-Authoritative" als MVP-Pattern. BYOC ist *”žQuorum-Validated mit Server-Fallback"* — der Server bleibt finale Autorität (kann jederzeit re-simulieren), aber im Happy-Path spart er sich die CPU. Falls BYOC gebaut wird, beschreibt ein neuer, dann zu nummerierender BYOC-ADR die Erweiterung. FMX-182 bestätigt: das alte Platzhalter-Label `ADR-0027 BYOC Match Validation Quorum` ist ungültig; aktuelle ADR-0027 ist das PostgreSQL-Datenmodell. ADR-0011 wird *nicht* superseded, sondern *ergänzt* mit einem Modus-Switch.
 
 ## Top Failure-Hypothesen
 

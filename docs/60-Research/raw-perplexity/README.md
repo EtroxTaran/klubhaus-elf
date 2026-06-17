@@ -17,6 +17,17 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-182 security ADR reference hygiene (2026-06-17)
+
+Perplexity-first discovery and targeted source checks for reconciling stale
+security ADR references in the pre-mortem/threat-model corpus without reusing
+ADR numbers or inventing a new architecture decision.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-security-adr-reference-hygiene-2026-06-17]] | Perplexity discovery pass for ADR numbering immutability, historical correction notes, conceptual mitigation wording and server-authority/save-trust precedents | [[../security-adr-reference-hygiene-2026-06-17]] |
+| [[raw-security-adr-reference-hygiene-source-checks-2026-06-17]] | Source checks for Nygard/ADR repository/AWS ADR practice and game server-authority evidence from Unity, LootLocker and Gambetta | [[../security-adr-reference-hygiene-2026-06-17]] |
+
 ## FMX-176 local-parity Lefthook gate (2026-06-17)
 
 Perplexity-first discovery and targeted source checks for restoring docs-phase

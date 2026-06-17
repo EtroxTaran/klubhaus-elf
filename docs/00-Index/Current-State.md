@@ -24,6 +24,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-182 security ADR reference hygiene applied (2026-06-17).** Branch
+> `codex/fmx-182-security-adr-reference-hygiene` reconciles stale security
+> references in the pre-mortem/threat-model corpus. Current truth:
+> [[../10-Architecture/09-Decisions/ADR-0026-match-frame-contract|ADR-0026]] is
+> only Match Frame Contract,
+> [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model|ADR-0027]] is
+> only PostgreSQL Data Model and
+> [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox|ADR-0028]]
+> is only PostgreSQL Transactional Outbox. Historical command-signing intent maps
+> to [[../10-Architecture/09-Decisions/ADR-0115-command-integrity-and-replay-protection-posture|ADR-0115]];
+> historical save-trust intent maps to
+> [[../10-Architecture/09-Decisions/ADR-0116-save-trust-levels-and-provenance-posture|ADR-0116]];
+> BYOC Match Validation Quorum remains future-scope/unassigned. Pre-mortem
+> `status: mitigated` means conceptually addressed by accepted decisions unless
+> later implementation evidence says otherwise. Research:
+> [[../60-Research/security-adr-reference-hygiene-2026-06-17]]. Decision record:
+> [[../40-Execution/fmx-182-security-adr-reference-hygiene-decision-record-2026-06-17]].
+
 > **FMX-176 local-parity Lefthook accepted (2026-06-17).** Branch
 > `codex/fmx-176-local-parity` restores local hook parity for the active
 > docs-phase gate only. `lefthook@2.1.9` is exact-pinned, `pre-push` runs
