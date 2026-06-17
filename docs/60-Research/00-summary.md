@@ -7,6 +7,18 @@ updated: 2026-06-17
 
 # Research Summary
 
+## Local-Parity Lefthook Gate (FMX-176, 2026-06-17)
+
+[[local-parity-lefthook-2026-06-17]] preserves the FMX-176 Perplexity-first and
+source-checked packet for restoring docs-phase local hook parity. Nico accepted
+a hybrid scope: exact-pin `lefthook@2.1.9`, run `pnpm docs:check` in
+`pre-push`, expose `pnpm hooks:install` / `pnpm hooks:run:pre-push`, keep
+`docs:status-check` manual and defer Biome/Nx/lint-staged/code hooks until
+workspace bootstrap. Decision record:
+[[../40-Execution/fmx-176-local-parity-decision-record-2026-06-17]]. Raw
+captures: [[raw-perplexity/raw-local-parity-lefthook-2026-06-17]],
+[[raw-perplexity/raw-local-parity-lefthook-source-checks-2026-06-17]].
+
 ## Branch-Naming Workflow Reconciliation (FMX-174, 2026-06-17)
 
 [[branch-naming-workflow-reconciliation-2026-06-17]] preserves the FMX-174

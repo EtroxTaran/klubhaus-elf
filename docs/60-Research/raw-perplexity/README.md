@@ -17,6 +17,16 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-176 local-parity Lefthook gate (2026-06-17)
+
+Perplexity-first discovery and targeted source checks for restoring docs-phase
+local hook parity without adding placeholder code-phase gates.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-local-parity-lefthook-2026-06-17]] | Perplexity discovery pass for JS/TS pnpm+Nx local/CI parity, docs-only hooks, pre-push vs pre-commit and game/simulation gate cadence | [[../local-parity-lefthook-2026-06-17]] |
+| [[raw-local-parity-lefthook-source-checks-2026-06-17]] | Source checks for Lefthook 2.1.9, pnpm v11 build-script approval, Biome 2.5.0 CLI posture and current FMX docs-phase constraints | [[../local-parity-lefthook-2026-06-17]] |
+
 ## FMX-174 branch-naming workflow reconciliation (2026-06-17)
 
 Perplexity-first discovery and targeted source checks for reconciling strict

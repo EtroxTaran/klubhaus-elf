@@ -9,6 +9,11 @@
     "docs:status-check": "node scripts/status-consistency-check.mjs",
     "docs:export:notebooklm": "node scripts/export-notebooklm.mjs",
     "docs:preview": "node tools/docs-preview/preview.mjs",
-    "sync:design": "node scripts/design-sync.mjs"
+    "sync:design": "node scripts/design-sync.mjs",
+    "hooks:install": "lefthook install",
+    "hooks:run:pre-push": "lefthook run pre-push --force --no-auto-install"
+  },
+  "devDependencies": {
+    "lefthook": "2.1.9"
   }
 }

@@ -1,9 +1,9 @@
 ---
 title: Code-Phase Definition of Done Transition Contract
 status: current
-tags: [implementation, process, ci, dod, monorepo, nx, architecture-fitness, rulesets, branch-protection, codeowners, fmx-167, fmx-180, fmx-181]
+tags: [implementation, process, ci, dod, monorepo, nx, architecture-fitness, rulesets, branch-protection, codeowners, lefthook, local-parity, fmx-167, fmx-176, fmx-180, fmx-181]
 created: 2026-06-14
-updated: 2026-06-16
+updated: 2026-06-17
 type: implementation
 binding: true
 related:
@@ -19,6 +19,7 @@ related:
   - [[../60-Research/code-phase-dod-transition-contract-2026-06-14]]
   - [[../60-Research/pnpm-tooling-currency-2026-06-15]]
   - [[../60-Research/tooling-currency-sweep-2026-06-15]]
+  - [[../60-Research/local-parity-lefthook-2026-06-17]]
   - [[../60-Research/code-ci-pipeline-2026-06-15]]
   - [[../60-Research/branch-protection-codeowner-activation-2026-06-16]]
   - [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]]
@@ -27,6 +28,7 @@ related:
   - [[../40-Execution/fmx-195-pnpm-tooling-currency-decision-queue-2026-06-15]]
   - [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]]
   - [[../40-Execution/fmx-175-code-ci-pipeline-decision-queue-2026-06-15]]
+  - [[../40-Execution/fmx-176-local-parity-decision-record-2026-06-17]]
   - [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]]
   - [[../40-Execution/fmx-167-architecture-fitness-function-decision-queue-2026-06-15]]
 ---
@@ -39,15 +41,15 @@ checklist agents use.
 
 ## Current repo inventory
 
-As of 2026-06-15:
+As of 2026-06-17:
 
 | Surface | Current fact | DoD consequence |
 |---|---|---|
-| Root scripts | `docs:check`, `docs:status-check`, `docs:export:notebooklm`, `docs:preview`, `sync:design` | Only docs/design-vault scripts can be active DoD today. |
+| Root scripts | `docs:check`, `docs:status-check`, `docs:export:notebooklm`, `docs:preview`, `sync:design`, `hooks:install`, `hooks:run:pre-push` | Only docs/design-vault scripts and the docs-phase hook wrapper can be active DoD today. |
 | Missing root scripts | `check`, `typecheck`, `test`, `test:e2e`, Storybook/build scripts | These are target-only until bootstrap creates them. |
-| Workspace layout | No `pnpm-workspace.yaml`, no `apps/`, no `packages/` | Package/app gates cannot be active today. |
+| Workspace layout | `pnpm-workspace.yaml` exists only for `allowBuilds.lefthook: true`; no `apps/`, no `packages/`, no package globs, no `nx.json` | Package/app gates cannot be active today. FMX-179 still owns the real workspace scaffold. |
 | CI workflows | `docs-check`, `linear-link-check`, post-merge cleanup, docs redeploy | Required checks are docs-phase checks only. |
-| Tool pins | Node 22, pnpm 11.7.0, PostgreSQL 17 | pnpm currency was refreshed by FMX-195; re-check again before code bootstrap. |
+| Tool pins | Node 22, pnpm 11.7.0, Lefthook 2.1.9, PostgreSQL 17 | pnpm currency was refreshed by FMX-195; Lefthook was checked by FMX-176; re-check code tools before code bootstrap. |
 
 ## Active docs-phase DoD
 
@@ -60,6 +62,7 @@ A docs-phase beat is done when all of the following are true:
 | Research preservation | Raw research capture and synthesis are saved when external or tool research informed the outcome. |
 | Vault reflection | Canonical docs, front-door indexes and session handoff are updated in the same PR. |
 | Validation | `node scripts/docs-check.mjs` passes. |
+| Local hook parity | `pnpm hooks:run:pre-push` passes, or the same `pnpm docs:check` command is run directly when hook execution is unavailable. |
 | Status validation | `node scripts/status-consistency-check.mjs` passes when the PR changes ADR/GDDR status or `binding:` semantics. |
 | CI expectation | GitHub required checks are `docs-check` + `linear-id`; ruleset `17748728` mirrors the docs-phase `main` protection while classic protection remains active; docs/low-risk PRs auto-merge when green per ADR-0044. |
 
@@ -89,8 +92,9 @@ and cacheable outputs from the first code-phase scaffold.
 
 Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 
-- Workspace scaffold exists: `pnpm-workspace.yaml`, `nx.json`, real `apps/web`
-  and initial `packages/*` roots.
+- Workspace scaffold exists: `pnpm-workspace.yaml` declares real package globs,
+  `nx.json`, real `apps/web` and initial `packages/*` roots. The FMX-176
+  `allowBuilds.lefthook` policy file alone is not enough.
 - Nx is installed and pinned exactly at the current stable version verified at
   bootstrap time. The npm registry reported `nx@22.7.5` on 2026-06-14, but the
   bootstrap beat must re-check before pinning.
@@ -136,7 +140,9 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 - FMX-181 owns the accepted GitHub ruleset migration posture: Stage 0 active
   ruleset mirror now, classic branch protection retained until verified, Nico
   PR-bypass only and CODEOWNER/review enforcement deferred to code evidence.
-- FMX-176 owns lefthook/local-parity restoration.
+- FMX-176 owns the accepted docs-phase Lefthook/local-parity restoration:
+  `pre-push` -> `pnpm docs:check`, manual `docs:status-check`, and no
+  Biome/Nx/lint-staged/code hooks until real paths and scripts exist.
 - FMX-167 owns the accepted future architecture-fitness quality subgate:
   no cross-context internal imports, no shared tables, no cross-context joins
   and no cross-context relations/FKs after scanner implementation and burn-in.

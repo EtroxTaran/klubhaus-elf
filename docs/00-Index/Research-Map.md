@@ -18,6 +18,13 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Local-Parity Lefthook Gate](../60-Research/local-parity-lefthook-2026-06-17.md) -
+  FMX-176 Perplexity-first and source-checked packet for the accepted
+  docs-phase local hook restoration: exact-pinned `lefthook@2.1.9`,
+  `pre-push` -> `pnpm docs:check`, explicit hook scripts, manual
+  `docs:status-check`, and no Biome/Nx/lint-staged/code hooks until real
+  app/package paths and scripts exist. Decision record:
+  [FMX-176 decision record](../40-Execution/fmx-176-local-parity-decision-record-2026-06-17.md).
 - [Branch-Naming Workflow Reconciliation](../60-Research/branch-naming-workflow-reconciliation-2026-06-17.md) -
   FMX-174 Perplexity-first and source-checked packet for reconciling ADR-0045,
   ADR-0103, the Decision Log and the live `linear-link-check` rule. Accepted
