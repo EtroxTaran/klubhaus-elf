@@ -43,7 +43,7 @@ related:
 | Decision | Choice | Note |
 |---|---|---|
 | **ADR-0104** — Mobile delivery (supersedes ADR-0025) | **B** | Grounding pass: ground iOS-push/EU-DMA claims to dated sources, pin Capacitor 7.x, explicit ratification; direction unchanged (responsive PWA = source of truth, thin additive Capacitor shell, no web-code fork). Re-check EU-DMA before build. |
-| **ADR-0045** — Branch-naming convention | **A** | Record BOTH accepted forms — `tool/fmx-n-slug` for issue-scoped work, `tool/<thema>` for cross-cutting/meta sweeps — and state which gates apply to each. |
+| **ADR-0045** — Branch-naming convention | **A** | Historical 2026-06-08 choice: record BOTH accepted forms — `tool/fmx-n-slug` for issue-scoped work, `tool/<thema>` for cross-cutting/meta sweeps — and state which gates apply to each. **FMX-174 correction (2026-06-17):** Nico later selected strict issue-key branches as current truth; see ADR-0045 and [[../60-Research/branch-naming-workflow-reconciliation-2026-06-17]]. |
 
 ## Bulk-accepted (★-recommended disposition)
 

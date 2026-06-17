@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-17
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-17-fmx-174-branch-naming]] - FMX-174 branch-naming
+  reconciliation: raw Perplexity/source-check captures, synthesis, accepted
+  decision record and ADR/process cleanup. Current truth: normal PR work uses
+  strict issue-key branches (`claude|codex|cursor/fmx-<n>-<slug>` for agents,
+  `feat/fmx-<n>-<slug>` for humans); topic-only `tool/<theme>` /
+  `tool/<thema>` is historical/non-normal unless Nico authorizes one instance
+  with replacement traceability.
 - [[2026-06-17-fmx-139-drift-consumer-policy-ref]] - FMX-139
   DriftConsumerPolicyRef contract packet: raw Perplexity/source-check captures,
   synthesis, decision queue and proposed ADR-0071/GD-0024/ADR-0079 amendments

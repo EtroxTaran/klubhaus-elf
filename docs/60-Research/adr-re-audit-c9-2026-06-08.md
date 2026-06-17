@@ -3,7 +3,7 @@ title: ADR re-audit — cluster C9 (Environment / Cross-cutting / Ops / Governan
 status: draft
 tags: [research, audit, adr-re-audit, c9, observability, ci-cd, worktree, team-topology, cursor, audit-security, naming, weather-pitch, governance]
 created: 2026-06-08
-updated: 2026-06-08
+updated: 2026-06-17
 type: research
 binding: false
 related:
@@ -30,6 +30,8 @@ related:
   - [[determinism-and-replay]]
   - [[../90-Meta/collaboration-and-decision-protocol]]
   - [[../00-Index/Open-Decisions-Dossier]]
+  - [[branch-naming-workflow-reconciliation-2026-06-17]]
+  - [[../40-Execution/fmx-174-branch-naming-decision-record-2026-06-17]]
 ---
 
 # ADR re-audit — cluster C9 (Environment / Cross-cutting / Ops / Governance / Security)
@@ -43,6 +45,13 @@ team topology ([[../10-Architecture/09-Decisions/ADR-0046-team-topology-and-scal
 cursor orchestration ([[../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration|0009]]),
 audit/security ([[../10-Architecture/09-Decisions/ADR-0091-audit-security-context-definition|0091]]),
 naming schema ([[../10-Architecture/09-Decisions/ADR-0007-naming-schema|0007]]).
+
+> **FMX-174 supersession note (2026-06-17):** This audit remains historical input.
+> Its branch-naming recommendation to record both `tool/fmx-n-slug` and `tool/<thema>`
+> as accepted forms is superseded by [[branch-naming-workflow-reconciliation-2026-06-17]]
+> and [[../40-Execution/fmx-174-branch-naming-decision-record-2026-06-17]]. Current truth:
+> normal PR work uses strict issue-key branches; topic-only wording is historical/non-normal
+> unless Nico approves a specific no-issue instance with replacement traceability.
 
 **Decision gate ([[../90-Meta/collaboration-and-decision-protocol]]): every recommendation
 below is options + a recommendation + confidence, for Nico to ratify. Nothing here is

@@ -24,6 +24,19 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-174 Branch-naming reconciliation accepted (2026-06-17).** Branch
+> `codex/fmx-174-branch-naming` reconciles ADR-0045, ADR-0103, the Decision Log
+> and the live `linear-link-check` workflow. Nico selected strict issue-key
+> branch naming for normal PR work: agents use
+> `claude|codex|cursor/fmx-<n>-<slug>`; humans use `feat/fmx-<n>-<slug>`.
+> Topic-only `tool/<theme>` / `tool/<thema>` is historical/non-normal and
+> requires explicit Nico override plus replacement traceability for a specific
+> no-issue instance. Research:
+> [[../60-Research/branch-naming-workflow-reconciliation-2026-06-17]]. Decision
+> record:
+> [[../40-Execution/fmx-174-branch-naming-decision-record-2026-06-17]]. ADR-0045
+> remains the canonical branch/worktree owner; ADR-0103 D2 is closed.
+
 > **FMX-139 DriftConsumerPolicyRef contract pending (2026-06-17).**
 > Branch `codex/fmx-139-drift-policy-ref-contract` prepares the non-binding
 > contract packet for the `DriftConsumerPolicyRef` placeholder in ADR-0071 /

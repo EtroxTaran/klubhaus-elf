@@ -3,7 +3,7 @@ title: "ADR-0103: Multi-agent orchestration & conflict serialization"
 status: accepted
 tags: [adr, meta, process, workflow, multi-agent, orchestration, fmx-103]
 created: 2026-06-08
-updated: 2026-06-11
+updated: 2026-06-17
 type: adr
 binding: false
 supersedes: ADR-0009-cursor-orchestration
@@ -17,6 +17,8 @@ related:
   - [[../../30-Implementation/cursor-cloud-agent-workflow]]
   - [[../../90-Meta/collaboration-and-decision-protocol]]
   - [[../../00-Index/Open-Decisions-Dossier]]
+  - [[../../60-Research/branch-naming-workflow-reconciliation-2026-06-17]]
+  - [[../../40-Execution/fmx-174-branch-naming-decision-record-2026-06-17]]
 ---
 
 # ADR-0103: Multi-agent orchestration & conflict serialization
@@ -36,6 +38,12 @@ accepted
 > independent beats** — and re-bases it on the now-canonical, **tool-agnostic** agent-ops
 > stack (ADR-0044/0045/0046) that covers all three agents (Claude, Codex, Cursor).
 > Low-priority, agent-workflow housekeeping. Awaiting Nico ratify.
+
+> **FMX-174 amendment (2026-06-17):** D2 is resolved by
+> [[ADR-0045-issue-first-worktree-workflow]]. Normal PR work uses strict issue-key
+> branches (`claude|codex|cursor/fmx-<n>-<slug>` for agents, `feat/fmx-<n>-<slug>`
+> for humans). The older `‹tool›/‹thema›` wording is historical/non-normal and
+> requires explicit Nico override plus replacement traceability for a specific instance.
 
 ## Date
 
@@ -108,15 +116,16 @@ ask-first gate as a `needs:nico-decision`.
     *ordering policy* for shared-contract edits) and would require **editing** 0045, which is a
     separate ratified-direction ADR; also loses a clean named home for the heuristic.
 
-- **D2 — Branch-naming reconciliation (open).** Whether to also reconcile the two branch-name
-  forms in circulation — `‹tool›/fmx-‹n›-‹slug›` (ADR-0045) vs the `‹tool›/‹thema›` form used in
-  the global agent instructions and on this very branch (`claude/open-decisions-dossier`) —
-  **here**, or as a small **amendment to [[ADR-0045-issue-first-worktree-workflow]]** (which
-  owns branch naming). See Open Questions.
+- **D2 — Branch-naming reconciliation (resolved by FMX-174).** Branch naming is owned by
+  [[ADR-0045-issue-first-worktree-workflow]]. Normal PR work uses strict issue-key branches:
+  `‹tool›/fmx-‹n›-‹slug›` for agents and `feat/fmx-‹n›-‹slug›` for humans. The older
+  `‹tool›/‹thema›` wording is historical/non-normal, not a standing accepted branch family.
+  See [[../../60-Research/branch-naming-workflow-reconciliation-2026-06-17]].
 
 ## Decision
 
-Propose, awaiting Nico: **D1 = A.** D2 is left open (see Open Questions).
+Accepted: **D1 = A.** D2 is resolved by FMX-174 as an amendment to
+[[ADR-0045-issue-first-worktree-workflow]].
 
 ### D1 — Supersede ADR-0009 with a tool-agnostic orchestration ADR
 
@@ -151,6 +160,21 @@ ADR-0009's frontmatter `binding: true` / body `accepted` are **not** carried for
 is `draft` / `binding: false` under the current gate. ADR-0009 is left **unedited**; its
 retirement is recorded here and (on ratify) in [[../../00-Index/Decision-Log]] /
 [[../../00-Index/Open-Decisions-Dossier]].
+
+### D2 — Branch naming single-sourced in ADR-0045
+
+FMX-174 closes the branch-form ambiguity without making ADR-0103 the workflow owner.
+The current rule lives in [[ADR-0045-issue-first-worktree-workflow]]:
+
+```text
+agents: claude|codex|cursor/fmx-<n>-<slug>
+humans: feat/fmx-<n>-<slug>
+```
+
+`tool/<theme>` / `tool/<thema>` remains historical/non-normal wording. It is not a
+standing accepted branch family and cannot bypass `.github/workflows/linear-link-check.yml`.
+Nico may authorize no-issue work only for a specific instance, with replacement traceability
+recorded before branch creation.
 
 ## Rationale
 
@@ -187,7 +211,8 @@ Negative:
 - ADR-0009 remains on disk as a superseded artifact (by design — supersession ≠ deletion); a
   reader must follow `superseded_by` to reach the current rule. Decision-Log will carry the
   pointer.
-- The branch-naming inconsistency (D2) is **not** resolved by this ADR and stays open.
+- Branch naming now depends on ADR-0045 as the single owner; future branch-form changes must
+  amend ADR-0045 instead of this orchestration ADR.
 
 ## Risks
 
@@ -197,11 +222,8 @@ making ADR-0103 the explicit head the others reference.
 
 ## Open Questions
 
-- **D2 — Branch-naming form.** Two forms are live: `‹tool›/fmx-‹n›-‹slug›`
-  ([[ADR-0045-issue-first-worktree-workflow]] §1) and `‹tool›/‹thema›` (global agent instructions
-  / this branch `claude/open-decisions-dossier`). Reconcile **here**, or as a small **amendment to
-  ADR-0045** (which owns branch naming)? Recommendation leans to an **ADR-0045 amendment** so
-  branch naming stays single-sourced, but it is Nico's call.
+- **D2 — Resolved 2026-06-17 by FMX-174.** Branch naming stays single-sourced in
+  [[ADR-0045-issue-first-worktree-workflow]]; normal PR work uses strict issue-key branches.
 - Should the **file/interface/config exclusivity check** (step 2) ever be hard-enforced (a hook),
   or stay advisory like the issue-first hook in [[ADR-0045-issue-first-worktree-workflow]] §3
   ("OFF until Nico arms it")? Default: stay advisory in the docs phase.
@@ -223,6 +245,10 @@ contradictory `accepted`/`binding: true`/`draft` status are **retired**. ADR-000
   protection, `Closes FMX-‹n›`).
 - [[ADR-0046-team-topology-and-scaling]] — **ownership/Conway** seam deciding which contracts are
   shared and who serializes them.
+- [[../../60-Research/branch-naming-workflow-reconciliation-2026-06-17]] — FMX-174 branch-naming
+  source checks and reconciliation.
+- [[../../40-Execution/fmx-174-branch-naming-decision-record-2026-06-17]] — Nico-selected strict
+  issue-key decision record.
 - [[../../30-Implementation/agent-workflow-pattern]] · [[../../30-Implementation/cursor-cloud-agent-workflow]] —
   process docs; the latter is the Cursor-specific implementation of the now-generalised rule.
 - [[../../90-Meta/collaboration-and-decision-protocol]] — phase + ask-first gate (nothing accepted).

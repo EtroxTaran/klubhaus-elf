@@ -3,9 +3,9 @@ title: Agent Workflow Pattern
 status: draft
 tags: [implementation, process, workflow]
 created: 2026-05-17
-updated: 2026-06-14
+updated: 2026-06-17
 type: implementation
-related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../90-Meta/agent-memory-protocol]], [[../90-Meta/vault-governance]], [[ci-and-review-process]], [[code-phase-dod-transition-contract]], [[cursor-cloud-agent-workflow]], [[design-sync-workflow]], [[../10-Architecture/09-Design-System]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]]
+related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../90-Meta/agent-memory-protocol]], [[../90-Meta/vault-governance]], [[ci-and-review-process]], [[code-phase-dod-transition-contract]], [[cursor-cloud-agent-workflow]], [[design-sync-workflow]], [[../10-Architecture/09-Design-System]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../60-Research/branch-naming-workflow-reconciliation-2026-06-17]], [[../40-Execution/fmx-174-branch-naming-decision-record-2026-06-17]]
 ---
 
 # Agent Workflow Pattern
@@ -43,7 +43,9 @@ Every beat follows this cycle. Do not skip a step; do not reorder.
    first visible action, then work it in its **own git worktree + branch**
    `‹tool›/fmx-‹n›-slug` — one issue ↔ one worktree ↔ one branch
    ([[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow|ADR-0045]]).
-   **No work without an issue**; the only exception is an explicit Nico override.
+   **No work without an issue**; the only exception is an explicit Nico override with
+   replacement traceability recorded before branch creation. Topic-only `tool/<theme>` /
+   `tool/<thema>` branches are historical/non-normal, not a standing accepted branch form.
 2. **Confirm understanding.** Re-state the beat's intent and acceptance
    criteria. If anything is unclear → **stop and escalate** (see *Ask, don't
    work around*). Do not proceed on a guess.

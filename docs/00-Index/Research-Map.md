@@ -18,6 +18,12 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Branch-Naming Workflow Reconciliation](../60-Research/branch-naming-workflow-reconciliation-2026-06-17.md) -
+  FMX-174 Perplexity-first and source-checked packet for reconciling ADR-0045,
+  ADR-0103, the Decision Log and the live `linear-link-check` rule. Accepted
+  current truth: normal PR work uses strict issue-key branches; topic-only
+  `tool/<theme>` / `tool/<thema>` is historical/non-normal unless Nico approves
+  a specific no-issue instance with replacement traceability.
 - [DriftConsumerPolicyRef Contract](../60-Research/drift-consumer-policy-ref-contract-2026-06-17.md) -
   FMX-139 Perplexity-first and source-checked packet for the
   `DriftConsumerPolicyRef` placeholder in ADR-0071/GD-0024. Recommended packet:

@@ -3,10 +3,10 @@ title: Linear Task Tracking & GitHub Integration
 status: current
 tags: [meta, implementation, linear, github, tracking, rulesets, branch-protection, codeowners, fmx-181]
 created: 2026-05-27
-updated: 2026-06-16
+updated: 2026-06-17
 type: implementation
 binding: true
-related: [[../90-Meta/collaboration-and-decision-protocol]], [[agent-workflow-pattern]], [[../90-Meta/vault-governance]], [[../00-Index/Current-State]], [[../00-Index/Decision-Log]], [[../10-Architecture/bounded-context-map]], [[../90-Meta/mcp-memory-integration]], [[../60-Research/branch-protection-codeowner-activation-2026-06-16]], [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]]
+related: [[../90-Meta/collaboration-and-decision-protocol]], [[agent-workflow-pattern]], [[../90-Meta/vault-governance]], [[../00-Index/Current-State]], [[../00-Index/Decision-Log]], [[../10-Architecture/bounded-context-map]], [[../90-Meta/mcp-memory-integration]], [[../60-Research/branch-protection-codeowner-activation-2026-06-16]], [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]], [[../60-Research/branch-naming-workflow-reconciliation-2026-06-17]], [[../40-Execution/fmx-174-branch-naming-decision-record-2026-06-17]]
 ---
 
 # Linear Task Tracking & GitHub Integration
@@ -69,6 +69,9 @@ The Linear issue ID in the **branch name** is the auto-link key.
 
 - **Branch + worktree:** one issue ↔ one git worktree ↔ one branch (ADR-0045).
   Humans `feat/fmx-<n>-<slug>`; agents `claude|codex|cursor/fmx-<n>-<slug>`.
+  Topic-only `tool/<theme>` / `tool/<thema>` is historical/non-normal and is not
+  a standing accepted branch family. A no-issue branch requires explicit Nico
+  approval plus replacement traceability before branch creation.
 - **PR title:** `[FMX-<n>] …`. **PR body first line:** `Closes FMX-<n>` — **1 PR ↔
   1 issue**, merge auto-closes it (`Part of FMX-<n>` only when one issue truly needs
   several PRs).
