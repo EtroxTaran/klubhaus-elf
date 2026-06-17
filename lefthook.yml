@@ -1,0 +1,7 @@
+pre-push:
+  jobs:
+    - name: docs-check
+      tags:
+        - docs
+        - local-parity
+      run: pnpm docs:check

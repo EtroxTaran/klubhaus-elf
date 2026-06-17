@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-17-fmx-176-local-parity]] - FMX-176 local-parity Lefthook
+  restoration: raw Perplexity/source-check captures, synthesis, accepted
+  decision record and process updates. Current truth: `lefthook@2.1.9` is
+  exact-pinned, `pre-push` runs `pnpm docs:check`, `docs:status-check` remains
+  manual for ADR/GDDR status or binding changes, and Biome/Nx/lint-staged/code
+  hooks stay target-only until real code paths and scripts exist.
 - [[2026-06-17-fmx-174-branch-naming]] - FMX-174 branch-naming
   reconciliation: raw Perplexity/source-check captures, synthesis, accepted
   decision record and ADR/process cleanup. Current truth: normal PR work uses

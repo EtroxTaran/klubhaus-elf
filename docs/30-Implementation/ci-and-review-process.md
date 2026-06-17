@@ -1,11 +1,11 @@
 ---
 title: CI & Review Process
 status: draft
-tags: [implementation, ci, process, quality, architecture-fitness, mutation, stryker, rulesets, branch-protection, codeowners, fmx-167, fmx-172, fmx-181]
+tags: [implementation, ci, process, quality, architecture-fitness, mutation, stryker, rulesets, branch-protection, codeowners, lefthook, local-parity, fmx-167, fmx-172, fmx-176, fmx-181]
 created: 2026-05-16
-updated: 2026-06-16
+updated: 2026-06-17
 type: implementation
-related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../40-Quality/test-strategy]], [[../40-Quality/architecture-fitness-function]], [[../40-Quality/stryker-mutation-testing-gate]], [[../60-Research/branch-protection-codeowner-activation-2026-06-16]], [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]], [[../00-Index/Current-State]]
+related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../40-Quality/test-strategy]], [[../40-Quality/architecture-fitness-function]], [[../40-Quality/stryker-mutation-testing-gate]], [[../60-Research/local-parity-lefthook-2026-06-17]], [[../40-Execution/fmx-176-local-parity-decision-record-2026-06-17]], [[../60-Research/branch-protection-codeowner-activation-2026-06-16]], [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]], [[../00-Index/Current-State]]
 ---
 
 # CI & Review Process
@@ -55,6 +55,14 @@ related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-p
 > mutation-testing subgate, but they are non-binding until Nico accepts D1-D6.
 > The active docs-phase DoD is unchanged; mutation stays reporting/nightly/release
 > before any PR-blocking promotion and remains inside `quality` if promoted.
+>
+> **2026-06-17 - FMX-176 docs-phase local hook active.** Lefthook is restored
+> for the active docs gate only: exact-pinned `lefthook@2.1.9`, `pre-push`
+> runs `pnpm docs:check`, and `pnpm hooks:install` /
+> `pnpm hooks:run:pre-push` expose the workflow. `docs:status-check` remains a
+> manual conditional check for ADR/GDDR `status:` or `binding:` semantics.
+> Biome, Nx, lint-staged and code hooks remain target-only until real
+> app/package paths and scripts exist.
 
 **Principle: `main` and `develop` are always green.** A red required check
 is an incident, not a backlog item. Overruling a red check is reserved for
@@ -64,8 +72,9 @@ an *utmost unusual* situation and is gated by the override policy below.
 
 Before the docs-vault reset, CI had been red on `main` across multiple merges.
 This is historical context, not today's repo state. The current repository has
-no app code, Storybook, E2E app, Lighthouse target, `apps/`, `packages/` or
-`pnpm-workspace.yaml`.
+no app code, Storybook, E2E app, Lighthouse target, `apps/` or `packages/`.
+FMX-176 adds a root `pnpm-workspace.yaml` only for pnpm v11
+`allowBuilds.lefthook: true`; it is not the app/package workspace scaffold.
 
 D-002 still preserves four durable lessons:
 
@@ -95,6 +104,8 @@ A docs-phase PR is mergeable only when all active checks are green and the vault
 contract is satisfied:
 
 - `node scripts/docs-check.mjs` passes.
+- `pnpm hooks:run:pre-push` passes, or the same `pnpm docs:check` command is
+  run directly when hook execution is unavailable.
 - `node scripts/status-consistency-check.mjs` passes when the PR changes
   ADR/GDDR `status:` or `binding:` semantics.
 - GitHub required checks are `docs-check` + `linear-id`.
@@ -158,11 +169,12 @@ proof before PR blocking and no standalone `mutation` branch-protection context.
 
 ## Local ↔ CI parity
 
-- Docs-phase local parity is `node scripts/docs-check.mjs` plus
-  `node scripts/status-consistency-check.mjs` when status/binding changes.
-- Code-phase local parity is target-only until FMX-176 / the bootstrap work
-  restores lefthook and the code scripts. Do not describe nonexistent hooks as
-  active.
+- Docs-phase local parity is the active Lefthook `pre-push` job
+  `pnpm docs:check` plus manual `node scripts/status-consistency-check.mjs`
+  when ADR/GDDR status or binding semantics change.
+- Code-phase local parity remains target-only until bootstrap creates real
+  app/package paths and code scripts. Do not describe nonexistent Biome, Nx,
+  lint-staged or code-test hooks as active.
 - Use the pinned toolchain in the repo. As of FMX-195, active docs-phase tooling
   pins pnpm 11.7.0; future code bootstrap still re-checks tool versions before
   adding workspace dependencies.
@@ -218,10 +230,11 @@ branch protection. Do not list `cursor-smoke`, `configured` or standalone
 
 ## Current state
 
-The repo is docs-vault-only. Code-CI, app e2e, Storybook and lefthook/local
-parity are target-only until the code-phase transition checklist is green.
-FMX-181 has activated the docs-phase ruleset mirror; FMX-175 defines the future
-code-CI required context contract; FMX-176 tracks local-parity cleanup; FMX-179
+The repo is docs-vault-only. Code-CI, app e2e, Storybook, Biome/Nx code hooks
+and app/package workspace gates are target-only until the code-phase transition
+checklist is green. FMX-176 has restored docs-phase local parity with a
+Lefthook `pre-push` docs gate. FMX-181 has activated the docs-phase ruleset
+mirror; FMX-175 defines the future code-CI required context contract; FMX-179
 tracks workspace bootstrap; FMX-167 defines the future architecture-fitness
 subgate inside `quality`; FMX-172 prepares the decision-pending Stryker
 mutation subgate; FMX-195 refreshed the active pnpm pin to 11.7.0.

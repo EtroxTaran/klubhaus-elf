@@ -24,6 +24,19 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-176 local-parity Lefthook accepted (2026-06-17).** Branch
+> `codex/fmx-176-local-parity` restores local hook parity for the active
+> docs-phase gate only. `lefthook@2.1.9` is exact-pinned, `pre-push` runs
+> `pnpm docs:check`, and `pnpm hooks:install` / `pnpm hooks:run:pre-push`
+> expose the hook workflow. `docs:status-check` remains manual for ADR/GDDR
+> `status:` or `binding:` changes. The new `pnpm-workspace.yaml` is only a pnpm
+> v11 build-approval policy file (`allowBuilds.lefthook: true`), not the
+> FMX-179 app/package workspace scaffold. Research:
+> [[../60-Research/local-parity-lefthook-2026-06-17]]. Decision record:
+> [[../40-Execution/fmx-176-local-parity-decision-record-2026-06-17]]. Biome,
+> Nx, lint-staged and code hooks stay target-only until real code paths and
+> scripts exist.
+
 > **FMX-174 Branch-naming reconciliation accepted (2026-06-17).** Branch
 > `codex/fmx-174-branch-naming` reconciles ADR-0045, ADR-0103, the Decision Log
 > and the live `linear-link-check` workflow. Nico selected strict issue-key
