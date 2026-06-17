@@ -3,10 +3,10 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-16
+updated: 2026-06-17
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-17-fmx-159-watch-party-context-ownership]] - FMX-159 Watch Party
+  context-definition packet: raw Perplexity/source-check captures, synthesis,
+  decision queue and draft ADR-0133 for party-scoped lifecycle, participants,
+  broadcast/session state, spectator delay, conference coordination,
+  pause-vote orchestration, chat, markers and moderation. Pending Nico D1-D8;
+  recommendation is Watch Party as social/session owner, Match as
+  event-log/replay authority, Notification as delivery owner and Offline Sync
+  as sync/rebase/collaboration infrastructure.
 - [[2026-06-16-fmx-181-branch-protection-ruleset-activation]] - FMX-181
   branch-protection ruleset activation: raw Perplexity/source-check captures,
   synthesis, accepted decision record, live GitHub ruleset `17748728` for the
