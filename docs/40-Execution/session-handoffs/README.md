@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-17
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-17-fmx-182-security-adr-reference-hygiene]] - FMX-182 security ADR
+  reference hygiene: raw Perplexity/source-check captures, synthesis, accepted
+  decision record and correction notes for the stale ADR-0026/0027/0028 security
+  placeholders. Current truth: ADR-0115 owns command integrity/replay
+  protection, ADR-0116 owns save trust/provenance and BYOC Match Validation
+  Quorum remains future-scope/unassigned.
 - [[2026-06-17-fmx-176-local-parity]] - FMX-176 local-parity Lefthook
   restoration: raw Perplexity/source-check captures, synthesis, accepted
   decision record and process updates. Current truth: `lefthook@2.1.9` is

@@ -3,7 +3,7 @@ title: ADR-0028 PostgreSQL Transactional Outbox (same-tx + poll-floor + LISTEN/N
 status: accepted
 tags: [adr, architecture, outbox, events, reliability, postgresql]
 created: 2026-05-19
-updated: 2026-06-15
+updated: 2026-06-17
 accepted_at: 2026-05-19
 type: adr
 binding: true
@@ -22,6 +22,12 @@ FMX-164 / ADR-0119 amends the audit wording on 2026-06-15: this outbox is the
 committed domain-event publication path and the domain mutation trail. It is
 not the pre-commit command-reception replay/dedup gate and not the separate
 Audit & Security security audit log.
+
+> **FMX-182 reference note (2026-06-17):** Older pre-mortem/security drafts used
+> `ADR-0028` as a placeholder for "Save Import/Export Trust Levels." That
+> mapping is invalid. Current ADR-0028 is only the PostgreSQL Transactional
+> Outbox. The accepted save trust/provenance home is
+> [[ADR-0116-save-trust-levels-and-provenance-posture]].
 
 ## Date
 
