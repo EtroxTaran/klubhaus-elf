@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-18
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-18-fmx-161-icu-mf1-risk-register]] - FMX-161 ICU-MF1
+  risk-register reconciliation: raw Perplexity/source-check captures,
+  synthesis and decision queue for replacing the stale broad "ICU-MF1
+  validation pending" risk with resolved-for-MVP plus residual
+  Slavic/case-heavy locale gate. Current recommendation: Paraglide native
+  variants + `Intl.PluralRules` cover MVP plural category selection; ICU MF1 is
+  optional plugin syntax; first Slavic/case-heavy locale or ICU-syntax migration
+  reopens the risk. Pending Nico D1-D4.
 - [[2026-06-18-fmx-165-command-queue-seam]] - FMX-165 ADR-0090
   command-queue seam propagation: raw Perplexity/source-check captures,
   synthesis and decision record applying accepted ADR-0090/ADR-0119 to

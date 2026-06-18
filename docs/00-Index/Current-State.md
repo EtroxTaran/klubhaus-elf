@@ -24,6 +24,19 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-161 ICU-MF1 risk-register reconciliation pending Nico (2026-06-18).**
+> Branch `codex/fmx-161-icu-mf1-risk-reconciliation` reconciles the stale
+> `11-Risks` ICU-MF1 row with ADR-0094's 2026-06-09 validation note. Research:
+> [[../60-Research/icu-mf1-risk-register-reconciliation-2026-06-18]].
+> Decision queue:
+> [[../40-Execution/fmx-161-icu-mf1-risk-register-decision-queue-2026-06-18]].
+> Current recommendation: treat the broad ICU-MF1 concern as resolved for MVP
+> locales DE/EN/FR/ES/IT because Paraglide variants use `Intl.PluralRules` and
+> ICU MF1 is optional plugin syntax, while keeping an active reopen gate before
+> the first Slavic/case-heavy locale or ICU-syntax authoring migration. Nico
+> still needs to confirm whether PL/CZ/RU or another case-heavy locale is
+> near-term; if yes, keep the residual risk active and run an i18n spike.
+
 > **FMX-165 ADR-0090 command-queue seam propagated (2026-06-18).** Branch
 > `codex/fmx-165-command-queue-seam` applies already accepted ADR-0090 D1=A/D2=A
 > and ADR-0119's replay/dedup seam to downstream docs. Research:
