@@ -3,7 +3,7 @@ title: ADR-0090 Offline Sync — MVP scope and conflict-resolution strategy
 status: accepted
 tags: [adr, architecture, offline, sync, pwa, crdt, conflict-resolution, determinism, fmx-103]
 created: 2026-06-07
-updated: 2026-06-15
+updated: 2026-06-18
 type: adr
 binding: false
 supersedes:
@@ -16,9 +16,12 @@ related:
   - [[ADR-0028-postgres-transactional-outbox]]
   - [[../bounded-context-map]]
   - [[../../60-Research/offline-sync-scope-and-conflict-strategy-2026-06-07]]
+  - [[../../60-Research/adr-0090-command-queue-seam-propagation-2026-06-18]]
   - [[../../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
+  - [[../../40-Execution/fmx-165-command-queue-seam-decision-record-2026-06-18]]
   - [[../../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]]
   - [[ADR-0119-command-reception-dedup-seam]]
+  - [[../../30-Implementation/hybrid-online-pwa-strategy]]
   - [[../../30-Implementation/pwa-offline-strategy]]
   - [[../../00-Index/Open-Decisions-Dossier]]
 ---
@@ -36,13 +39,16 @@ accepted
 > owns client queue, retry/backoff, offline UX and `expectedVersion` rebase
 > presentation; Audit & Security owns authoritative replay/dedup policy and
 > processed-command state through the synchronous Command Reception capability.
+> FMX-165 propagates the accepted command-queue seam on 2026-06-18 into the
+> bounded-context map and current hybrid-online PWA strategy. This is not a new
+> decision, context-count change or boundary move.
 
 > **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > **`proposed` / `binding: false`.** Authored 2026-06-07 to close the Offline Sync "thin/undefined"
 > gap surfaced in the open-decisions sweep. Defines what the ratified **Offline Sync** bounded context
 > owns at MVP and the post-MVP conflict-resolution strategy, so the narrow MVP does not foreclose the
-> full sync engine. Awaiting Nico ratify. No bounded-context-map change (Offline Sync already exists in
-> the ratified table; this ADR only fixes its internal scope + contracts).
+> full sync engine. The ADR did not add or remove a bounded context; FMX-165 later propagated the
+> accepted internal scope/contracts into the existing Offline Sync map row and PWA strategy.
 
 ## Date
 
@@ -87,7 +93,7 @@ collaborative, non-authoritative surfaces (chat/overlays).
 
 ## Decision
 
-Propose, awaiting Nico:
+Accepted:
 
 - **D1 = A.** Offline Sync stays a **thin context at MVP** — Service-Worker cache (stale-while-revalidate
   for read models: fixtures, tables) + **Dexie drafts** + synchronous commands. **Mandate the migration
@@ -101,7 +107,7 @@ Propose, awaiting Nico:
   with its own sync channel; **last-write-wins is allowed only for cosmetic local preferences** (theme,
   notification toggles), never for game state.
 
-If ratified, the **Offline Sync** context owns: cache-freshness + draft status metadata (MVP); and
+After ratification, the **Offline Sync** context owns: cache-freshness + draft status metadata (MVP); and
 post-MVP the durable command outbox (IndexedDB), background-sync flush + exponential backoff,
 client-side retry state, `expectedVersion` conflict presentation/rebase and the offline UX states.
 Per ADR-0119, authoritative server replay/dedup policy and processed-command state are owned by
@@ -156,6 +162,11 @@ None. Extends ADR-0020 (offline-ready posture) and ADR-0008 (client-state seam) 
   Audit & Security, domain validation and ADR-0028.
 - [[ADR-0027-postgres-data-model]] - per-save / platform schema convention.
 - [[ADR-0019-modular-monolith-ddd]] - modular-monolith ground rules.
-- [[../bounded-context-map]] - Offline Sync context (scope fixed by this ADR; no map row change).
-- [[../../30-Implementation/pwa-offline-strategy]] - PWA caching/offline implementation note.
+- [[../bounded-context-map]] - Offline Sync context row; FMX-165 propagates the accepted seam without
+  changing context count or boundary.
+- [[../../30-Implementation/hybrid-online-pwa-strategy]] - current PWA implementation strategy using
+  the accepted `CommandQueue` seam.
+- [[../../30-Implementation/pwa-offline-strategy]] - superseded PWA caching/offline implementation note.
 - [[../../00-Index/Open-Decisions-Dossier]] - consolidated open-decision Q&A.
+- [[../../60-Research/adr-0090-command-queue-seam-propagation-2026-06-18]] - FMX-165 propagation
+  evidence and source checks.

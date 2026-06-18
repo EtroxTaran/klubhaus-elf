@@ -3,10 +3,10 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-17
+updated: 2026-06-18
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,15 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-18-fmx-165-command-queue-seam]] - FMX-165 ADR-0090
+  command-queue seam propagation: raw Perplexity/source-check captures,
+  synthesis and decision record applying accepted ADR-0090/ADR-0119 to
+  `hybrid-online-pwa-strategy` and `bounded-context-map`. Current truth: all
+  PWA game-state writes route through `CommandQueue`; commands carry
+  `commandId` + `expectedVersion`; projections carry `lastSeenVersion`;
+  clients rehydrate from server events before rebase; Offline Sync owns client
+  queue/retry/rebase UX while Audit & Security Command Reception owns
+  authoritative replay/dedup policy and processed-command state.
 - [[2026-06-17-fmx-182-security-adr-reference-hygiene]] - FMX-182 security ADR
   reference hygiene: raw Perplexity/source-check captures, synthesis, accepted
   decision record and correction notes for the stale ADR-0026/0027/0028 security
