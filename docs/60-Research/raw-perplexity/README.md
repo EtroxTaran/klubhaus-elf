@@ -3,7 +3,7 @@ title: Raw Perplexity Research Transcripts
 status: raw
 tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, erasure, retention, hgb, ao, shared-history, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, rulesets, branch-protection, codeowners, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, policy-catalog, onboarding, ftue, contract-lifecycle, tooling, pnpm, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, career, national-team, bundestrainer, ai, llm, fallback, transfer, loan, obligation-to-buy, workflow, branch-naming, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-167, fmx-174, fmx-178, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 created: 2026-05-16
-updated: 2026-06-17
+updated: 2026-06-18
 type: index
 binding: false
 related: [[../00-summary]], [[../../00-Index/Research-Map]], [[../loan-cap-and-obligation-catalog-2026-06-16]], [[raw-loan-cap-obligation-catalog-2026-06-16]], [[raw-loan-cap-obligation-source-checks-2026-06-16]], [[../breach-notification-runbook-2026-06-15]], [[raw-breach-notification-runbook-2026-06-15]], [[raw-breach-notification-runbook-source-checks-2026-06-15]], [[../chart-of-accounts-and-category-catalog-2026-06-13]], [[../opposition-template-ai-consumption-ratification-2026-06-14]], [[../roguelite-run-end-and-carry-economy-tuning-2026-06-14]], [[../incoming-design-research-2026-05-27]], [[../manager-archetype-roguelite-2026-05-27]], [[../swappable-spatial-event-match-engine-2026-05-27]], [[../eos-player-staff-skills-and-personas-2026-05-28]], [[../ai-narration-world-and-dialogue-mvp-2026-05-28]], [[../ai-narration-testing-framework-2026-05-28]], [[../ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../newsworthiness-event-publication-semantics-2026-06-04]], [[../dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../player-discipline-sub-aggregate-2026-06-05]], [[../opposition-template-ai-consumption-contract-2026-06-05]], [[../statistics-analytics-read-model-owner-2026-06-05]], [[../standings-authority-league-vs-statistics-2026-06-12]], [[../insolvency-ledger-posting-contract-2026-06-12]], [[../quality-profile-enum-settlement-path-2026-06-12]], [[../narrative-content-bounded-context-2026-06-02]], [[../commercial-contract-lifecycle-and-breach-model-2026-05-28]], [[../cup-and-competition-revenue-profiles-2026-05-28]], [[../fixture-commercial-revenue-profiles-2026-06-03]], [[../ai-world-drift-algorithm-2026-06-03]], [[../onboarding-guided-first-season-2026-06-03]], [[../player-contract-lifecycle-fsm-2026-06-03]], [[../matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../catering-and-merchandise-operations-2026-06-01]], [[../investor-compliance-and-entitlement-boundary-2026-06-01]], [[../fan-service-campaign-catalog-and-effects-2026-06-01]], [[../club-financing-tools-2026-06-01]], [[../economy-calibration-and-soak-test-scenarios-2026-06-01]], [[../fan-persona-privacy-and-naming-2026-06-01]]
@@ -16,6 +16,17 @@ research transcripts and attached research reports (German source language).
 They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
+
+## FMX-165 ADR-0090 command queue seam propagation (2026-06-18)
+
+Perplexity-first discovery and targeted source checks for propagating accepted
+ADR-0090/ADR-0119 command-queue, rehydration and replay/dedup ownership seams
+into the bounded-context map and current hybrid-online PWA strategy.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-adr-0090-command-queue-seam-propagation-2026-06-18]] | Perplexity discovery pass for documenting `CommandQueue`, `commandId`, `expectedVersion`, `lastSeenVersion`, command-oriented API, event rehydration and server-authoritative rebase without duplicating schemas | [[../adr-0090-command-queue-seam-propagation-2026-06-18]] |
+| [[raw-adr-0090-command-queue-seam-source-checks-2026-06-18]] | Source checks for Replicache-like sync, MDN Background Sync limits, Dexie/IndexedDB storage, event sourcing, CRDT scope and DDD context-map layering | [[../adr-0090-command-queue-seam-propagation-2026-06-18]] |
 
 ## FMX-182 security ADR reference hygiene (2026-06-17)
 

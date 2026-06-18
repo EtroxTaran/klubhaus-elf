@@ -3,7 +3,7 @@ title: Open-Decisions Dossier — questions, recommendations, ratify checklist
 status: current
 tags: [meta, index, decisions, open-questions, dossier, fmx-105]
 created: 2026-06-07
-updated: 2026-06-15
+updated: 2026-06-18
 type: index
 binding: false
 related:
@@ -24,6 +24,8 @@ related:
   - [[../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]]
   - [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]]
   - [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
+  - [[../60-Research/adr-0090-command-queue-seam-propagation-2026-06-18]]
+  - [[../40-Execution/fmx-165-command-queue-seam-decision-record-2026-06-18]]
 ---
 
 # Open-Decisions Dossier
@@ -107,6 +109,17 @@ related:
 > [[../40-Execution/fmx-164-replay-dedup-seam-decision-queue-2026-06-15]],
 > [[../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam]] and
 > [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]].
+
+> **Post-dossier FMX-165 command-queue seam propagation (historical
+> completeness, added 2026-06-18; dossier stays closed).** FMX-165 does not
+> reopen A4. It propagates accepted ADR-0090 D1=A/D2=A and ADR-0119's seam into
+> [[../30-Implementation/hybrid-online-pwa-strategy]] and
+> [[../10-Architecture/bounded-context-map]]: `CommandQueue`, `commandId`,
+> `expectedVersion`, projection `lastSeenVersion`, command-oriented API, event
+> rehydration, server-authoritative rebase, CRDT only for Watch Party overlays
+> and LWW only for cosmetic prefs. Authoritative records:
+> [[../60-Research/adr-0090-command-queue-seam-propagation-2026-06-18]] and
+> [[../40-Execution/fmx-165-command-queue-seam-decision-record-2026-06-18]].
 
 > **Post-dossier FMX-179 monorepo/workspace bootstrap (historical
 > completeness, added 2026-06-14; dossier stays closed).** FMX-179 packages the
