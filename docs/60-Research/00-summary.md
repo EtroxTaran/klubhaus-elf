@@ -1,7 +1,7 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, rulesets, branch-protection, codeowners, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, career, national-team, bundestrainer, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, transfer, loan, obligation-to-buy, policy-catalog, workflow, branch-naming, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-164, fmx-167, fmx-168, fmx-170, fmx-174, fmx-177, fmx-178, fmx-180, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, rulesets, branch-protection, codeowners, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, command-queue, career, national-team, bundestrainer, i18n, locale, paraglide, intl, risk-register, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, transfer, loan, obligation-to-buy, policy-catalog, workflow, branch-naming, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-161, fmx-164, fmx-165, fmx-167, fmx-168, fmx-169, fmx-170, fmx-174, fmx-177, fmx-178, fmx-180, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 updated: 2026-06-18
 ---
 
@@ -20,6 +20,53 @@ Recommended decisions are D1=C, D2=A, D3=B, D4=A now / B later in
 [[../40-Execution/fmx-169-per-context-module-notes-decision-queue-2026-06-18]].
 Raw captures: [[raw-perplexity/raw-per-context-module-notes-2026-06-18]],
 [[raw-perplexity/raw-per-context-module-notes-source-checks-2026-06-18]].
+
+## Observability Trace Backend Re-add Trigger (FMX-171, 2026-06-18)
+
+[[observability-trace-backend-readd-trigger-2026-06-18]] preserves the FMX-171
+Perplexity-first and source-checked packet for replacing ADR-0017's qualitative
+Tempo/Mimir re-add wording with concrete draft signals. Recommendation pending
+Nico: re-add Tempo only after a split runtime path exists and one
+staging/production incident cannot be localised with Loki + Prometheus within 30
+minutes; re-add Mimir when 15-month Prometheus retention would require
+`--storage.tsdb.retention.size` above 80% of dedicated TSDB disk for seven
+daily checks; keep span coverage now but production trace export no-op /
+`AlwaysOffSampler` / no exporter until Tempo is enabled. Decision queue:
+[[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]].
+Raw captures:
+[[raw-perplexity/raw-observability-trace-backend-readd-trigger-2026-06-18]],
+[[raw-perplexity/raw-observability-trace-backend-source-checks-2026-06-18]].
+
+## ICU-MF1 Risk Register Reconciliation (FMX-161, 2026-06-18)
+
+[[icu-mf1-risk-register-reconciliation-2026-06-18]] preserves the FMX-161
+Perplexity-first and source-checked packet for reconciling `11-Risks` with
+ADR-0094's ICU-MF1 validation note. Current recommendation: the broad ICU-MF1
+risk is resolved for MVP locales DE/EN/FR/ES/IT because Paraglide native
+variants use `Intl.PluralRules` and ICU MF1 is optional plugin syntax; keep an
+active reopen gate before first Slavic/case-heavy locale support or ICU-syntax
+authoring migration. Source checks corrected the raw simplification that MVP
+locales are one/other-only: current CLDR/Intl can expose `many` for FR/ES/IT,
+so the control is catalog QA plus casus-slot data. Decision queue:
+[[../40-Execution/fmx-161-icu-mf1-risk-register-decision-queue-2026-06-18]].
+Raw captures:
+[[raw-perplexity/raw-icu-mf1-risk-register-reconciliation-2026-06-18]],
+[[raw-perplexity/raw-icu-mf1-risk-register-source-checks-2026-06-18]].
+
+## ADR-0090 Command Queue Seam Propagation (FMX-165, 2026-06-18)
+
+[[adr-0090-command-queue-seam-propagation-2026-06-18]] preserves the FMX-165
+Perplexity-first and source-checked packet for applying accepted ADR-0090 and
+ADR-0119 to downstream docs. Current truth: all PWA game-state writes go
+through `CommandQueue`; commands carry `commandId` and `expectedVersion`;
+confirmed projections carry `lastSeenVersion`; command responses return a new
+version plus emitted events or a typed rejection; clients rehydrate from server
+events before rebase; Background Sync is best-effort only; CRDT remains future
+Watch Party overlay scope and LWW remains cosmetic prefs only. Decision record:
+[[../40-Execution/fmx-165-command-queue-seam-decision-record-2026-06-18]]. Raw
+captures:
+[[raw-perplexity/raw-adr-0090-command-queue-seam-propagation-2026-06-18]],
+[[raw-perplexity/raw-adr-0090-command-queue-seam-source-checks-2026-06-18]].
 
 ## Security ADR Reference Hygiene (FMX-182, 2026-06-17)
 

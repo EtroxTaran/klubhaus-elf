@@ -3,11 +3,11 @@ title: ADR-0017 Self-hosted Observability and Logging
 status: accepted
 tags: [adr, architecture, observability, logging, monitoring, telemetry, gdpr, release]
 created: 2026-05-17
-updated: 2026-06-16
+updated: 2026-06-18
 accepted_at: 2026-05-17
 type: adr
 binding: true
-related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0043-notification-and-messaging-platform]], [[ADR-0132-release-versioning-app-build-process]], [[../08-Crosscutting]], [[../../30-Implementation/observability-runbook]], [[../../30-Implementation/client-telemetry]], [[../../30-Implementation/release-versioning-app-build-process]]
+related: [[../../60-Research/telemetry-privacy]], [[../../60-Research/observability-trace-backend-readd-trigger-2026-06-18]], [[../../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]], [[ADR-0002-offline-first]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0043-notification-and-messaging-platform]], [[ADR-0132-release-versioning-app-build-process]], [[../08-Crosscutting]], [[../../30-Implementation/observability-runbook]], [[../../30-Implementation/client-telemetry]], [[../../30-Implementation/release-versioning-app-build-process]]
 ---
 
 # ADR-0017: Self-hosted Observability and Logging
@@ -18,9 +18,10 @@ related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[
 > + Grafana + Alloy + GlitchTip + Cosign**. **Tempo and Mimir are deferred** —
 > they add ~3–5 GB RAM and upgrade/2am surface for zero pre-scale payoff, and
 > Alloy already future-proofs re-adding them as a collector-config + container
-> change. Re-add trigger: multiple deployed services with cross-service latency
-> not explainable from logs+metrics (Tempo), or Prometheus local TSDB outgrowing
-> the node (Mimir). GlitchTip is confirmed over self-hosted Sentry (~16 GB / 40+
+> change. The original qualitative re-add trigger is being tightened by the
+> **FMX-171 proposed amendment** below; until Nico approves it, the concrete
+> thresholds remain proposal text, not a new accepted clause. GlitchTip is
+> confirmed over self-hosted Sentry (~16 GB / 40+
 > containers — rejected at this scale). Substrate note: references to "SurrealDB"
 > as a log/metric *source* now mean Postgres per [[ADR-0021-revised-tech-stack]].
 
@@ -30,6 +31,20 @@ related: [[../../60-Research/telemetry-privacy]], [[ADR-0002-offline-first]], [[
 > this ADR's generic release/build diagnostic field if Nico approves it.
 > Until then, ADR-0017 remains binding only on the generic release/build id and
 > source-map tie.
+
+> **FMX-171 proposed amendment (2026-06-18, pending Nico):**
+> [[../../60-Research/observability-trace-backend-readd-trigger-2026-06-18]]
+> proposes concrete Tempo/Mimir re-add signals and an MVP span policy. Tempo is
+> re-added only when `TempoBackendRequired` fires: after at least two
+> independently deployed runtime services participate in one user-visible path,
+> a production/staging incident cannot be localised with Loki + Prometheus
+> within 30 minutes of triage start. Mimir is re-added only when
+> `MimirBackendRequired` fires: the daily Prometheus capacity check shows that
+> required 15-month retention would need `--storage.tsdb.retention.size` above
+> 80% of the dedicated TSDB disk for seven consecutive days. Span coverage is
+> designed now, but MVP production trace export stays no-op /
+> `AlwaysOffSampler` / no exporter until Tempo is enabled. Pending Nico:
+> [[../../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]].
 
 ## Status
 
@@ -75,7 +90,7 @@ crash/error reporting in v1.
 |---|---|---|
 | Structured logs | Grafana Loki | Store app, worker, container, PostgreSQL, optional SurrealDB, Redis/Centrifugo and reverse-proxy logs |
 | Metrics | Prometheus | Store service health, latency, queue, sync, worker and resource metrics |
-| Traces | Grafana Tempo | Store sampled distributed traces after v1 logs/metrics are stable |
+| Traces | Grafana Tempo (deferred at MVP) | Store sampled distributed traces after the FMX-171 Tempo trigger is approved and fires |
 | Collector / agent | Grafana Alloy | Receive OTLP, collect logs, scrape/forward metrics, ship to LGTM |
 | Dashboards / alerting | Grafana | Dashboards, alert rules, incident triage |
 | Crash/error reporting | GlitchTip with Sentry-compatible SDKs | Browser/Node errors, releases, source maps, crash grouping |
@@ -102,7 +117,9 @@ Operational data is split into five classes:
    worker restarts and resource usage. Stored in Prometheus.
 4. **Traces**: sampled workflows spanning browser fetch, TanStack server
    functions, PostgreSQL queries, outbox publishing, realtime transport and
-   background workers. Stored in Tempo.
+   background workers. At MVP these are a span-coverage contract only; production
+   trace export is no-op / `AlwaysOffSampler` / no exporter until Tempo is
+   enabled.
 5. **Domain audit events**: authoritative business/audit history via
    ADR-0028 PostgreSQL outbox and archive partitions. These are not stored in
    Loki and have their own retention policy.
@@ -162,7 +179,7 @@ flowchart LR
     otelNode --> alloy
     alloy --> loki[Loki]
     alloy --> prometheus[Prometheus]
-    alloy --> tempo[Tempo]
+    alloy -. traces when enabled .-> tempo[Tempo - deferred]
     loki --> grafana[Grafana]
     prometheus --> grafana
     tempo --> grafana
@@ -182,7 +199,7 @@ Initial retention policy:
 | Raw Loki logs | 14 days |
 | GlitchTip crash reports | 30 days |
 | Prometheus metrics | 15 months |
-| Tempo traces | 7 days |
+| Tempo traces | 7 days once enabled |
 | Client offline telemetry queue | max 24 hours |
 | Domain audit events | ADR-0028: hot 60 days, archive forever |
 
@@ -204,6 +221,29 @@ The initial alert set is symptom-first:
 
 Noisy debug alerts are rejected until real production data proves they
 are useful.
+
+### 8. Proposed Tempo/Mimir re-add and span policy (FMX-171)
+
+Pending Nico's decision queue, use this policy text as the concrete proposed
+amendment:
+
+- `TempoBackendRequired` fires when a production or staging incident occurs
+  after at least two independently deployed runtime services participate in one
+  user-visible request/command/event path, and the operator cannot localise the
+  slow or failing hop from Loki logs plus Prometheus metrics within 30 minutes
+  of incident triage start.
+- `MimirBackendRequired` fires when the daily Prometheus capacity check shows
+  that keeping 15 months of metrics would require
+  `--storage.tsdb.retention.size` above 80% of the dedicated Prometheus TSDB
+  disk allocation for seven consecutive days.
+- OTel span coverage points are part of the architecture contract now, but
+  production span export is off until Tempo is enabled. The off profile is
+  no-op tracing or `AlwaysOffSampler` plus no exporter; if autoconfiguration is
+  used, `OTEL_TRACES_EXPORTER=none` is the safety setting.
+- Do not emit sampled spans to Alloy only to drop them while Tempo is absent.
+
+If Nico approves FMX-171 D1-D4, this section becomes the binding ADR-0017
+amendment and the older qualitative trigger wording is treated as historical.
 
 ## Alternatives Considered
 

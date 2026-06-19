@@ -37,6 +37,33 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > canonical ownership split is binding until Nico answers
 > [[../40-Execution/fmx-169-per-context-module-notes-decision-queue-2026-06-18]].
 
+> **FMX-161 ICU-MF1 risk-register reconciliation pending Nico (2026-06-18).**
+> Branch `codex/fmx-161-icu-mf1-risk-reconciliation` reconciles the stale
+> `11-Risks` ICU-MF1 row with ADR-0094's 2026-06-09 validation note. Research:
+> [[../60-Research/icu-mf1-risk-register-reconciliation-2026-06-18]].
+> Decision queue:
+> [[../40-Execution/fmx-161-icu-mf1-risk-register-decision-queue-2026-06-18]].
+> Current recommendation: treat the broad ICU-MF1 concern as resolved for MVP
+> locales DE/EN/FR/ES/IT because Paraglide variants use `Intl.PluralRules` and
+> ICU MF1 is optional plugin syntax, while keeping an active reopen gate before
+> the first Slavic/case-heavy locale or ICU-syntax authoring migration. Nico
+> still needs to confirm whether PL/CZ/RU or another case-heavy locale is
+> near-term; if yes, keep the residual risk active and run an i18n spike.
+
+> **FMX-165 ADR-0090 command-queue seam propagated (2026-06-18).** Branch
+> `codex/fmx-165-command-queue-seam` applies already accepted ADR-0090 D1=A/D2=A
+> and ADR-0119's replay/dedup seam to downstream docs. Research:
+> [[../60-Research/adr-0090-command-queue-seam-propagation-2026-06-18]].
+> Decision record:
+> [[../40-Execution/fmx-165-command-queue-seam-decision-record-2026-06-18]].
+> Current PWA truth: all game-state writes route through `CommandQueue`; commands
+> carry `commandId` + `expectedVersion`; confirmed client projections carry
+> `lastSeenVersion`; command responses return a new version plus emitted events
+> or a typed rejection; clients rehydrate from server events before rebase.
+> Offline Sync owns client queue/retry/rebase UX and projection freshness. Audit
+> & Security Command Reception keeps authoritative replay/dedup policy and
+> processed-command state. No context-count or boundary change.
+
 > **FMX-182 security ADR reference hygiene applied (2026-06-17).** Branch
 > `codex/fmx-182-security-adr-reference-hygiene` reconciles stale security
 > references in the pre-mortem/threat-model corpus. Current truth:
@@ -2504,7 +2531,10 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   parallel to (not inside) the match renderer; gated by `SceneDescriptor`
   contract + 2D fallback on Floor / `prefers-reduced-motion` / Save-Data /
   iOS context-loss trip.
-- **Observability:** lean MVP profile; Tempo/Mimir deferred (ADR-0017 amended).
+- **Observability:** lean MVP profile; Tempo/Mimir deferred (ADR-0017
+  amended). FMX-171 proposes concrete pending triggers: Tempo after split
+  runtime path + one 30-minute Loki/Prometheus localisation failure; Mimir when
+  15-month Prometheus retention needs >80% TSDB disk for seven daily checks.
 - **Auth:** F2 already locked Argon2id (review premise was wrong); only library
   refined to `@node-rs/argon2`. Deps pinned + Renovate (no more `"latest"`).
 - **Secrets (F11):** Category B is now Postgres `DATABASE_URL` + roles;
@@ -2607,8 +2637,9 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   parameterized queries.
 - Game saves live in IndexedDB via Dexie.
 - Observability is self-hosted by default: OpenTelemetry JS +
-  Grafana Loki / Prometheus / Tempo / Alloy + Grafana, with GlitchTip
-  for crash/error reporting. See
+  Grafana Loki / Prometheus / Alloy + Grafana, with GlitchTip for crash/error
+  reporting. Tempo and Mimir are deferred; FMX-171 proposes concrete re-add
+  triggers and an instrument-now/collect-later span policy pending Nico. See
   [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]].
 
 ## Classified Future Architecture (Baseline 2026-05-22)
@@ -4178,12 +4209,14 @@ Implementation should start from
     is superseded; only the transactional-outbox intent carries forward.
 - **ADR-0017 Observability and Logging** (accepted 2026-05-17, gap
   D11/C6/E3). Self-hosted operational monitoring is the default:
-  OpenTelemetry JS instrumentation; Grafana Loki, Prometheus, Tempo,
-  Alloy and Grafana for logs/metrics/traces/dashboards; GlitchTip via
-  Sentry-compatible SDKs for crash/error reporting. Client diagnostics
-  are privacy-minimised, redacted before local queueing/sending and
-  capped when stored offline. Product analytics are deferred to H7/G3
-  and must not be mixed into operational logs.
+  OpenTelemetry JS instrumentation; Grafana Loki, Prometheus, Alloy and Grafana
+  for logs/metrics/dashboards; GlitchTip via Sentry-compatible SDKs for
+  crash/error reporting. Tempo/Mimir remain deferred at MVP. FMX-171 proposes
+  concrete re-add signals and span export-off policy pending Nico:
+  [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]].
+  Client diagnostics are privacy-minimised, redacted before local
+  queueing/sending and capped when stored offline. Product analytics are
+  deferred to H7/G3 and must not be mixed into operational logs.
 - **ADR-0018 Systemic Events and Player Lifecycle Architecture**
   (accepted 2026-05-17). Player development, mentoring, injuries,
   systemic events, narrative rendering and venue operations are

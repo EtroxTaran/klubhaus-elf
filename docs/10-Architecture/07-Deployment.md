@@ -3,10 +3,10 @@ title: Deployment
 status: current
 tags: [architecture, deployment, dokploy, observability, release, versioning]
 created: 2026-05-15
-updated: 2026-06-16
+updated: 2026-06-18
 type: architecture
 binding: false
-related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]], [[09-Decisions/ADR-0044-cicd-and-merge-policy]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]], [[09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]], [[09-Decisions/ADR-0132-release-versioning-app-build-process]], [[../30-Implementation/deployment-dokploy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/release-versioning-app-build-process]]
+related: [[09-Decisions/ADR-0017-observability-logging]], [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]], [[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]], [[09-Decisions/ADR-0044-cicd-and-merge-policy]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]], [[09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]], [[09-Decisions/ADR-0132-release-versioning-app-build-process]], [[../30-Implementation/deployment-dokploy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/release-versioning-app-build-process]]
 ---
 
 # Deployment
@@ -93,15 +93,16 @@ ADR-0017 adds an observability group:
   forwarding.
 - `loki`: short-retention operational logs.
 - `prometheus`: metrics and alert inputs.
-- `tempo`: sampled traces after v1 logs/metrics are stable.
+- `tempo`: deferred trace backend; add only after the FMX-171
+  `TempoBackendRequired` trigger is approved and fires.
 - `grafana`: dashboards and alerting UI.
 - `glitchtip`: crash/error reporting via Sentry-compatible SDKs.
 - `glitchtip-postgres` / `glitchtip-redis`: GlitchTip backing services
   if required by the chosen deployment image.
 
-Grafana, Prometheus, Loki, Tempo and GlitchTip are admin-only. They must
-not be exposed as public anonymous dashboards. Access should be behind
-Dokploy/Traefik auth, VPN, or another explicit admin gate.
+Grafana, Prometheus, Loki, Tempo when deployed and GlitchTip are admin-only.
+They must not be exposed as public anonymous dashboards. Access should be
+behind Dokploy/Traefik auth, VPN, or another explicit admin gate.
 
 ## Network Boundaries
 
@@ -113,7 +114,7 @@ Public routes:
 Private routes:
 
 - Grafana UI;
-- Loki / Prometheus / Tempo APIs;
+- Loki / Prometheus APIs, plus Tempo APIs when Tempo is deployed;
 - Alloy internal OTLP endpoints;
 - Postgres, SurrealDB, Redis and Centrifugo;
 - GlitchTip admin UI unless intentionally exposed behind auth.
@@ -128,8 +129,8 @@ Initial retention:
 
 - Loki raw logs: 14 days.
 - GlitchTip crash reports: 30 days.
-- Prometheus metrics: 15 months.
-- Tempo traces: 7 days.
+- Prometheus metrics: 15 months while it fits the dedicated TSDB disk budget.
+- Tempo traces: 7 days once Tempo is enabled.
 - Domain trail (the outbox): ADR-0028 Postgres hot 60 days + monthly
   archive partitions forever. This is the canonical domain audit trail
   (ADR-0097); the separate security trail is owned by the Audit & Security
@@ -140,6 +141,11 @@ retention: at 300 live save schemas the node emits capacity warning signals; at
 1000 it blocks new active save creation/reactivation until the player confirms
 an archive/delete action or a future capacity decision adds another node/shard.
 LRU is a suggested candidate order only, never a silent active-career archive.
+
+FMX-171 proposes a concrete Mimir storage trigger: re-add Mimir when the daily
+Prometheus capacity check shows that 15-month retention would require
+`--storage.tsdb.retention.size` above 80% of dedicated Prometheus TSDB disk for
+seven consecutive days.
 
 Telemetry volumes are separate from Postgres save/notification data. Backup
 priority:

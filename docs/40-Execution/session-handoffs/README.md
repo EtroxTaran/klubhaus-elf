@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-18
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -49,6 +49,31 @@ This is the **single** canonical handoff location. (An older
   League Orchestration, Squad & Player, Training, Tactics, Transfer, Club
   Management and Offline Sync, with `bounded-context-map` remaining the
   canonical catalog/edge/folder index.
+- [[2026-06-18-fmx-171-observability-trigger-span-policy]] - FMX-171
+  observability trace-backend trigger and MVP span policy: raw
+  Perplexity/source-check captures, synthesis, decision queue and proposed
+  ADR-0017/crosscutting/deployment/runbook amendments. Pending Nico D1-D4;
+  recommendation is Tempo only after split runtime path plus one 30-minute
+  Loki/Prometheus localisation failure, Mimir only when 15-month Prometheus
+  retention needs >80% TSDB disk for seven daily checks, and span coverage now
+  with production trace export off until Tempo is enabled.
+- [[2026-06-18-fmx-161-icu-mf1-risk-register]] - FMX-161 ICU-MF1
+  risk-register reconciliation: raw Perplexity/source-check captures,
+  synthesis and decision queue for replacing the stale broad "ICU-MF1
+  validation pending" risk with resolved-for-MVP plus residual
+  Slavic/case-heavy locale gate. Current recommendation: Paraglide native
+  variants + `Intl.PluralRules` cover MVP plural category selection; ICU MF1 is
+  optional plugin syntax; first Slavic/case-heavy locale or ICU-syntax migration
+  reopens the risk. Pending Nico D1-D4.
+- [[2026-06-18-fmx-165-command-queue-seam]] - FMX-165 ADR-0090
+  command-queue seam propagation: raw Perplexity/source-check captures,
+  synthesis and decision record applying accepted ADR-0090/ADR-0119 to
+  `hybrid-online-pwa-strategy` and `bounded-context-map`. Current truth: all
+  PWA game-state writes route through `CommandQueue`; commands carry
+  `commandId` + `expectedVersion`; projections carry `lastSeenVersion`;
+  clients rehydrate from server events before rebase; Offline Sync owns client
+  queue/retry/rebase UX while Audit & Security Command Reception owns
+  authoritative replay/dedup policy and processed-command state.
 - [[2026-06-17-fmx-182-security-adr-reference-hygiene]] - FMX-182 security ADR
   reference hygiene: raw Perplexity/source-check captures, synthesis, accepted
   decision record and correction notes for the stale ADR-0026/0027/0028 security

@@ -3,11 +3,11 @@ title: Observability Runbook
 status: current
 tags: [implementation, observability, logging, monitoring, incident-response]
 created: 2026-05-17
-updated: 2026-05-22
+updated: 2026-06-18
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
-related: [[client-telemetry]], [[deployment-dokploy]], [[jobs-and-scheduler]], [[audit-trail]], [[incident-response]]
+related: [[client-telemetry]], [[deployment-dokploy]], [[jobs-and-scheduler]], [[audit-trail]], [[incident-response]], [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]], [[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]]
 ---
 
 # Observability Runbook
@@ -24,7 +24,8 @@ ADR-0017 selects:
 - GlitchTip for crash/error reports.
 - Grafana Loki for logs.
 - Prometheus for metrics.
-- Tempo for traces.
+- Tempo for traces only after the FMX-171 `TempoBackendRequired` trigger is
+  approved and fires.
 - Grafana Alloy for collection.
 - Grafana for dashboards and alerting.
 - OpenTelemetry JS for instrumentation.
@@ -46,9 +47,10 @@ Minimum dashboards before beta:
   `outbox_publish_total`, `outbox_publish_failures_total`,
   `redis_stream_lag_per_consumer_group`.
 - **Telemetry pipeline**: Alloy ingest, Loki write failures, Prometheus
-  scrape health, Tempo ingest, GlitchTip queue health, disk usage.
+  scrape health, GlitchTip queue health, disk usage and Tempo ingest once
+  Tempo is enabled.
 - **Performance**: Web Vitals sample, server p95/p99 latency, slow
-  PostgreSQL spans, match worker duration.
+  PostgreSQL span coverage once tracing is enabled, match worker duration.
 
 ## Alerts
 
@@ -67,6 +69,7 @@ Initial alert policy:
 | Redis consumer lag | rising above normal | stale consumer group |
 | Telemetry ingest | partial drop | blind spot across a signal class |
 | Disk usage | > 75% | > 90% |
+| Prometheus retention budget | 15-month projection > 70% TSDB disk | FMX-171 proposed Mimir trigger: > 80% for 7 daily checks |
 
 Alerts must include: dashboard link, suspected service, runbook link and
 first triage query.
@@ -105,7 +108,7 @@ Retention policy:
 - Loki raw logs: 14 days.
 - GlitchTip crash reports: 30 days.
 - Prometheus metrics: 15 months.
-- Tempo traces: 7 days.
+- Tempo traces: 7 days once enabled.
 
 Retention job failures are alertable because they create privacy and disk
 risks.
@@ -121,10 +124,26 @@ Back up:
 Do not treat Loki or Tempo as the business audit trail. Restoring domain
 history uses PostgreSQL outbox/archive partitions per ADR-0028.
 
+## FMX-171 Proposed Trigger Checks
+
+Pending Nico approval, operators use these runbook checks:
+
+- `TempoBackendRequired`: a staging/production incident crosses at least two
+  independently deployed runtime services in a user-visible path, and Loki +
+  Prometheus cannot localise the slow/failing hop within 30 minutes of triage
+  start.
+- `MimirBackendRequired`: the daily Prometheus capacity check shows that keeping
+  15 months of metrics would require `--storage.tsdb.retention.size` above 80%
+  of the dedicated Prometheus TSDB disk for seven consecutive days.
+
+The MVP tracing off profile is no-op tracing or `AlwaysOffSampler` plus no
+exporter. Do not export sampled spans to a collector solely to drop them while
+Tempo is absent.
+
 ## Access
 
-Grafana, Loki, Prometheus, Tempo and GlitchTip are admin-only. Access is
-granted by operational need and removed when no longer needed.
+Grafana, Loki, Prometheus, Tempo when deployed and GlitchTip are admin-only.
+Access is granted by operational need and removed when no longer needed.
 
 Source maps are sensitive operational artifacts. They are available only
 to maintainers who can triage production crashes.
