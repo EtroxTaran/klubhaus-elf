@@ -7,6 +7,26 @@ updated: 2026-06-19
 
 # Research Summary
 
+## SurrealDB Deferral Re-evaluation Watch (FMX-166, 2026-06-19)
+
+[[surrealdb-deferral-reevaluation-watch-2026-06-19]] preserves the FMX-166
+Perplexity-first and source-checked packet for replacing the stale SurrealDB
+`1.x`/`2.x` watch wording. Current conclusion: PostgreSQL + Drizzle remains the
+system of record and SurrealDB remains deferred / Assess, but any future Trial
+must source-check and exact-pin the then-current stable SurrealDB line. On
+2026-06-19 the observed current stable patch is 3.1.4, so `1.x` is no longer a
+valid planning pin. Recommendation pending Nico: compound trigger
+(`ProductNeedGraphLive` plus ops/security/recovery readiness), Lead
+Architect/Data Platform owner, quarterly plus event-driven watch, and
+non-authoritative rebuildable projection Trial only. Pending decisions D1-D5
+live in
+[[../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]].
+Raw captures:
+[[raw-perplexity/raw-fmx-166-surrealdb-deferral-reevaluation-2026-06-19]],
+[[raw-perplexity/raw-fmx-166-surrealdb-deferral-governance-2026-06-19]],
+[[raw-perplexity/raw-fmx-166-surrealdb-deferral-game-precedents-2026-06-19]],
+[[raw-perplexity/raw-fmx-166-surrealdb-deferral-source-checks-2026-06-19]].
+
 ## Argon2id WASM KDF Validation (FMX-173, 2026-06-19)
 
 [[argon2id-wasm-kdf-validation-2026-06-19]] preserves the FMX-173

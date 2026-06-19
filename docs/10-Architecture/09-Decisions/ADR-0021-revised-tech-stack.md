@@ -3,7 +3,7 @@ title: ADR-0021 Revised Tech Stack
 status: accepted
 tags: [adr, architecture, database, state, validation, testing]
 created: 2026-05-19
-updated: 2026-06-15
+updated: 2026-06-19
 accepted_at: 2026-05-19
 type: adr
 binding: true
@@ -86,6 +86,15 @@ Kamal-2 escape-hatch note (see [[../11-Risks]] and
    selects SurrealDB as an allowed additive projection/live-graph store for
    notification and inbox read models. PostgreSQL remains the durable system of
    record; SurrealDB does not own money/progression/notification truth.
+
+   2026-06-19 FMX-166 source-check note: the historical "pin stable 1.x /
+   re-evaluate 2.x" wording is stale. SurrealDB remains **deferred /
+   Assess**, not adopted; if a future feature reaches Trial, FMX must
+   source-check and exact-pin the then-current stable SurrealDB line instead of
+   inheriting an old major-line pin. On 2026-06-19 the observed current stable
+   patch is 3.1.4. The proposed owner/trigger gate is recorded in
+   [[../../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]]
+   and remains pending Nico approval.
 2. **State — split.** TanStack Query (+ persist-client over IndexedDB) for all
    server-mirrored state; **Zustand v5** for client/UI/match-simulation state
    (replaces ad-hoc React Context for app/game state). **Not TanStack Store** —

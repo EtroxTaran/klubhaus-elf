@@ -18,6 +18,15 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [SurrealDB Deferral Re-evaluation Watch](../60-Research/surrealdb-deferral-reevaluation-watch-2026-06-19.md) -
+  FMX-166 Perplexity-first and source-checked packet replacing the stale
+  "stable 1.x / re-evaluate 2.x" SurrealDB deferral wording. Recommendation
+  pending Nico: keep SurrealDB deferred / Assess, use a compound graph/live
+  product-need plus current-stable operations-readiness trigger, assign the
+  Lead Architect/Data Platform watch owner, run quarterly plus event-driven
+  checks and require any future Trial to be non-authoritative, rebuildable and
+  exact-pinned to the then-current stable line. Decisions remain pending in
+  [FMX-166 decision queue](../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19.md).
 - [Argon2id WASM KDF Validation](../60-Research/argon2id-wasm-kdf-validation-2026-06-19.md) -
   FMX-173 Perplexity-first and source-checked packet for ADR-0098's portable
   export passphrase path. Recommendation pending Nico: first spike with

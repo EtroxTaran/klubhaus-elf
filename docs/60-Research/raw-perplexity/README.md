@@ -17,6 +17,19 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-166 SurrealDB deferral watch (2026-06-19)
+
+Perplexity-first discovery and targeted source checks for replacing the stale
+SurrealDB `1.x`/`2.x` watch wording with a concrete owner, trigger and
+current-stable-at-Trial rule.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-fmx-166-surrealdb-deferral-reevaluation-2026-06-19]] | SurrealDB current stable line, maturity, release process, live-query/graph surface and why old major-line wording is stale | [[../surrealdb-deferral-reevaluation-watch-2026-06-19]] |
+| [[raw-fmx-166-surrealdb-deferral-governance-2026-06-19]] | Deferred-technology governance triggers, owner/cadence options and Assess/Trial/Adopt gate shape | [[../surrealdb-deferral-reevaluation-watch-2026-06-19]] |
+| [[raw-fmx-166-surrealdb-deferral-game-precedents-2026-06-19]] | Game/product graph-live candidates versus workloads that should remain PostgreSQL/read-model first | [[../surrealdb-deferral-reevaluation-watch-2026-06-19]] |
+| [[raw-fmx-166-surrealdb-deferral-source-checks-2026-06-19]] | Official SurrealDB releases, GitHub tag, roadmap/docs, Context7/Ref and local FMX source checks | [[../surrealdb-deferral-reevaluation-watch-2026-06-19]] |
+
 ## FMX-173 Argon2id WASM KDF validation (2026-06-19)
 
 Perplexity-first discovery and targeted source checks for validating ADR-0098's
