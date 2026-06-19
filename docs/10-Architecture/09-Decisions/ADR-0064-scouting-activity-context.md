@@ -3,7 +3,7 @@ title: ADR-0064 Scouting Activity Context
 status: accepted
 tags: [adr, architecture, ddd, scouting, recruitment, transfer, squad-club, intelligence-context, supporting-subdomain, fmx-27]
 created: 2026-06-02
-updated: 2026-06-11
+updated: 2026-06-19
 type: adr
 binding: false
 supersedes:
@@ -27,7 +27,12 @@ related:
   - [[../../50-Game-Design/GD-0006-transfers]]
   - [[../../50-Game-Design/GD-0015-ip-clean-data]]
   - [[../../60-Research/scouting-activity-bounded-context-2026-06-02]]
+  - [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
   - [[../../60-Research/raw-perplexity/raw-scouting-activity-bounded-context-2026-06-02]]
+  - [[../../60-Research/raw-perplexity/raw-fmx-157-opposition-scouting-2026-06-19]]
+  - [[../../60-Research/raw-perplexity/raw-fmx-157-handoff-schemas-2026-06-19]]
+  - [[../../60-Research/raw-perplexity/raw-fmx-157-source-checks-2026-06-19]]
+  - [[../../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]]
   - [[../../60-Research/transfer-market-simulation]]
   - [[../../30-Implementation/domain-research-workflow]]
 ---
@@ -235,6 +240,14 @@ query; Scouting owns scout *activity*; Transfer / Squad & Player / Youth Academy
 - **Opposition-scouting scope creep.** Mitigation: per HITL decision 2,
   recruitment-only at MVP; `OppositionScoutingRequested` is a reserved
   placeholder, full opposition model deferred to a later Tactics-adjacent ticket.
+- **FMX-157 pending handoff detail.** The follow-up packet
+  [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
+  recommends that Scouting owns `ExternalYouthProspectIdentified` production
+  and opposition-report execution/freshness, while Youth Academy and Tactics
+  store consumer ACL snapshots. It also recommends a split opposition hook:
+  Scouting produces the report, Tactics interprets it into match-plan /
+  template inputs, and Match still consumes only frozen Tactics snapshots. This
+  remains non-binding until Nico accepts FMX-157 D1-D6.
 - **Creative IP-safe naming.** No real scout, agency or data-provider names
   embedded as samples; sample names follow Nico's vault-wide evocative-but-
   clearly-not-real rule (GD-0015 + ADR-0007).

@@ -3,7 +3,7 @@ title: ADR-0080 Opposition-template AI Consumption Contract
 status: accepted
 tags: [adr, architecture, tactics, opposition, ai-world, match, determinism, replay, snapshot, fmx-67, fmx-136]
 created: 2026-06-05
-updated: 2026-06-14
+updated: 2026-06-19
 type: adr
 binding: true
 supersedes:
@@ -25,8 +25,12 @@ related:
   - [[../../60-Research/opposition-template-ai-consumption-contract-2026-06-05]]
   - [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]]
   - [[../../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]]
+  - [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
   - [[../../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-ratification-2026-06-14]]
+  - [[../../60-Research/raw-perplexity/raw-fmx-157-opposition-scouting-2026-06-19]]
+  - [[../../60-Research/raw-perplexity/raw-fmx-157-source-checks-2026-06-19]]
   - [[../../40-Execution/fmx-136-opposition-template-ratification-decision-queue-2026-06-14]]
+  - [[../../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]]
 ---
 
 # ADR-0080: Opposition-template AI Consumption Contract
@@ -53,6 +57,14 @@ accepted
 > No new bounded context and no map-structure change. Tactics owns the
 > deterministic catalog selection and selection event; AI-management contexts own
 > the planning context; Match only consumes the frozen result.
+
+> **FMX-157 pending follow-up (2026-06-19):**
+> [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
+> recommends keeping `OppositionScoutingRequested` as a split hook upstream of
+> this ADR: Scouting owns report execution/freshness/confidence and Tactics owns
+> interpretation into the existing opposition-template/match-plan surfaces. This
+> does not reopen ADR-0080's accepted AI World/Tactics/Match ownership split and
+> is not binding until Nico accepts FMX-157 D4-D6.
 
 ## Date
 

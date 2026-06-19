@@ -3,7 +3,7 @@ title: State Machine - Loan Orchestration
 status: current
 tags: [architecture, state-machine, transfer, loan, saga, fmx-85, proposed]
 created: 2026-06-04
-updated: 2026-06-16
+updated: 2026-06-19
 type: state-machine
 binding: false
 related:
@@ -19,6 +19,8 @@ related:
   - [[youth-academy]]
   - [[../../60-Research/loan-orchestration-process-manager-2026-06-04]]
   - [[../../60-Research/loan-cap-and-obligation-catalog-2026-06-16]]
+  - [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
+  - [[../../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]]
 ---
 
 # State Machine - Loan Orchestration (proposed)
@@ -27,6 +29,14 @@ related:
 > (FMX-85; accepted 2026-06-08). This note is the **current** FSM surface the **Transfer-led
 > Loan-Orchestration Process Manager** owns. It becomes binding for implementation when the
 > project enters the development phase (`binding: true`).
+
+> **FMX-157 pending follow-up (2026-06-19):** a narrower `YouthLoanedV1`
+> handoff payload from Youth Academy into this PM is proposed in
+> [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
+> and
+> [[../../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]].
+> The current `LoanAgreement` states and PM ownership remain unchanged until
+> Nico accepts that queue.
 
 Transfer hosts a **Loan-Orchestration Process Manager / Saga** (Vernon canonical
 long-running-process pattern, same shape as the Youth Academy cohort coordinator) that owns:

@@ -3,7 +3,7 @@ title: ADR-0075 Loan-Orchestration Process Manager
 status: accepted
 tags: [adr, architecture, ddd, transfer, loan, squad, match, regulations, club-management, youth, fmx-85]
 created: 2026-06-04
-updated: 2026-06-16
+updated: 2026-06-19
 type: adr
 binding: true
 supersedes:
@@ -29,7 +29,11 @@ related:
   - [[../../60-Research/loan-orchestration-process-manager-2026-06-04]]
   - [[../../60-Research/raw-perplexity/raw-loan-orchestration-2026-06-04]]
   - [[../../60-Research/loan-cap-and-obligation-catalog-2026-06-16]]
+  - [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
   - [[../../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]]
+  - [[../../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]]
+  - [[../../60-Research/raw-perplexity/raw-fmx-157-handoff-schemas-2026-06-19]]
+  - [[../../60-Research/raw-perplexity/raw-fmx-157-source-checks-2026-06-19]]
 ---
 
 # ADR-0075: Loan-Orchestration Process Manager
@@ -58,6 +62,14 @@ accepted
 > `ObligationConditionCatalog` in
 > [[../../60-Research/loan-cap-and-obligation-catalog-2026-06-16]]. The remaining numeric
 > playing-time / loan-quality / penalty magnitudes stay FMX-52 calibration.
+
+> **FMX-157 pending follow-up (2026-06-19):**
+> [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
+> sketches a versioned `YouthLoanedV1` producer event from Youth Academy into
+> this Transfer-led PM. The recommendation does not change the PM host,
+> `LoanAgreement` ownership, Regulations eligibility, Match minutes authority or
+> Club Management ledger path. It only asks Nico to approve the producer-event +
+> consumer-ACL/snapshot pattern and minimal youth-loan payload in FMX-157 D5.
 
 ## Date
 
@@ -255,6 +267,10 @@ Draft events consumed:
 - `YouthLoaned` (Youth Academy — PM entry point)
 - Match per-fixture minutes facts (authoritative minutes)
 - `SeasonAdvanced` / window-open ticks (League Orchestration, via Regulations window queries)
+
+FMX-157 candidate payload details for `YouthLoaned` remain pending in
+[[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
+and are not part of this ADR until Nico accepts the decision queue.
 
 Availability and reinstatement payloads are self-contained (no consumer joins back):
 

@@ -17,6 +17,20 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-157 Manager Legacy / Scouting / Youth Feed Follow-ups (2026-06-19)
+
+Perplexity-first discovery and targeted source checks for unresolved Youth
+Academy audit/retention, Scouting -> Youth Academy discovery, Youth Academy ->
+Transfer `YouthLoaned`, opposition-scouting report ownership and Manager &
+Legacy youth-summary handoffs.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-fmx-157-academy-audit-retention-2026-06-19]] | Academy category audit analogue, cohort-history retention and Manager & Legacy youth summaries | [[../manager-legacy-scouting-youth-feed-followups-2026-06-19]] |
+| [[raw-fmx-157-opposition-scouting-2026-06-19]] | Opposition scouting report owner split and player-expectation/workflow discovery | [[../manager-legacy-scouting-youth-feed-followups-2026-06-19]] |
+| [[raw-fmx-157-handoff-schemas-2026-06-19]] | Producer-owned events, consumer ACL snapshots and handoff schema options | [[../manager-legacy-scouting-youth-feed-followups-2026-06-19]] |
+| [[raw-fmx-157-source-checks-2026-06-19]] | Source checks for EPPP, DDD bounded contexts, domain/integration events, private data ownership and event sourcing | [[../manager-legacy-scouting-youth-feed-followups-2026-06-19]] |
+
 ## FMX-166 SurrealDB deferral watch (2026-06-19)
 
 Perplexity-first discovery and targeted source checks for replacing the stale

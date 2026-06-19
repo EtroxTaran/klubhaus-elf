@@ -3,7 +3,7 @@ title: ADR-0060 Youth Academy Context
 status: accepted
 tags: [adr, architecture, ddd, youth, academy, lifecycle, fmx-29, proposed]
 created: 2026-05-28
-updated: 2026-06-11
+updated: 2026-06-19
 type: adr
 binding: false
 supersedes:
@@ -31,7 +31,11 @@ related:
   - [[../../50-Game-Design/GD-0019-manager-archetype-roguelite-progression]]
   - [[../../60-Research/youth-academy-bounded-context-2026-05-28]]
   - [[../../60-Research/youth-academy-context-decision-2026-06-07]]
+  - [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
   - [[../../60-Research/raw-perplexity/raw-youth-academy-2026-05-28]]
+  - [[../../60-Research/raw-perplexity/raw-fmx-157-academy-audit-retention-2026-06-19]]
+  - [[../../60-Research/raw-perplexity/raw-fmx-157-source-checks-2026-06-19]]
+  - [[../../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]]
   - [[../../00-Index/Open-Decisions-Dossier]]
 ---
 
@@ -312,6 +316,18 @@ arguments:
   the productivity score read model; the multi-year audit-cycle
   Process Manager (audit-window FSM, downgrade-trigger policy,
   central-funding bonus posting) is a follow-up beat.
+
+> **FMX-157 pending follow-up (2026-06-19):**
+> [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
+> and
+> [[../../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]]
+> preserve the non-binding recommendation that Youth Academy owns the
+> `AcademyCategoryAuditCycle`, long-save cohort-history summaries and
+> `AcademyPipelineSummaryUpdated` producer surface, while Manager & Legacy
+> consumes immutable snapshots only. Recommended defaults are a two-academy-
+> season audit cadence, five seasons of full cohort detail and 20+ seasons of
+> yearly summaries/milestones, but these values are not binding until Nico
+> accepts FMX-157 D1-D6.
 
 Status stays `proposed` / `binding: false` until Nico ratifies.
 

@@ -42,6 +42,13 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-19-fmx-157-manager-legacy-scouting-youth-feed]] - FMX-157
+  Manager Legacy / Scouting / Youth feed packet: raw Perplexity/source-check
+  captures, synthesis and decision queue for Youth Academy audit/retention,
+  Scouting -> Youth Academy discovery, Youth Academy -> Transfer `YouthLoaned`,
+  opposition-scouting reports and Manager & Legacy youth-summary feeds. Pending
+  Nico D1-D6; no cadence, retention window, event envelope or opposition split
+  is binding.
 - [[2026-06-19-fmx-166-surrealdb-deferral-watch]] - FMX-166 SurrealDB
   deferral watch packet: raw Perplexity/source-check captures, synthesis and
   decision queue for replacing stale `1.x`/`2.x` wording with a current-stable
