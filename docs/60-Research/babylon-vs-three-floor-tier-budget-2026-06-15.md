@@ -39,6 +39,11 @@ authority or reopen ADR-0047.
 | Active stale text | `08-Crosscutting` still said Three.js/R3F was the only planned optional 3D presentation stack. |
 | Existing budgets | The active Floor tier keeps Text & Stats forced and has strict heap / JS transfer limits. Optional 3D is post-MVP, lazy-loaded, device-gated and fallback-safe. |
 
+> **FMX-198 refresh (2026-06-19):** this Babylon package row is a June 15
+> source snapshot. [[version-pin-audit-2026-06-19]] observes
+> `@babylonjs/core@9.13.0` as current stable; the accepted optional-Babylon
+> decision is unchanged and must still be rechecked before implementation.
+
 ## Findings
 
 ### Babylon remains the accepted single optional stack
@@ -127,4 +132,3 @@ See
 - [[../40-Execution/fmx-158-babylon-renderer-stack-decision-queue-2026-06-15]]
 - [[../10-Architecture/08-Crosscutting]]
 - [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]]
-

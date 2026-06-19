@@ -91,8 +91,8 @@ Kamal-2 escape-hatch note (see [[../11-Risks]] and
    re-evaluate 2.x" wording is stale. SurrealDB remains **deferred /
    Assess**, not adopted; if a future feature reaches Trial, FMX must
    source-check and exact-pin the then-current stable SurrealDB line instead of
-   inheriting an old major-line pin. On 2026-06-19 the observed current stable
-   patch is 3.1.4. The proposed owner/trigger gate is recorded in
+   inheriting an old major-line pin. FMX-198 refreshed the same-day observation
+   to current stable patch 3.1.5 on 2026-06-19. The proposed owner/trigger gate is recorded in
    [[../../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]]
    and remains pending Nico approval.
 2. **State — split.** TanStack Query (+ persist-client over IndexedDB) for all

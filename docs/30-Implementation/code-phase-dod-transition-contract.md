@@ -1,9 +1,9 @@
 ---
 title: Code-Phase Definition of Done Transition Contract
 status: current
-tags: [implementation, process, ci, dod, monorepo, nx, architecture-fitness, rulesets, branch-protection, codeowners, lefthook, local-parity, fmx-167, fmx-176, fmx-180, fmx-181]
+tags: [implementation, process, ci, dod, monorepo, nx, architecture-fitness, rulesets, branch-protection, codeowners, lefthook, local-parity, fmx-167, fmx-176, fmx-180, fmx-181, fmx-198]
 created: 2026-06-14
-updated: 2026-06-17
+updated: 2026-06-19
 type: implementation
 binding: true
 related:
@@ -24,6 +24,7 @@ related:
   - [[../60-Research/branch-protection-codeowner-activation-2026-06-16]]
   - [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]]
   - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]
+  - [[../60-Research/version-pin-audit-2026-06-19]]
   - [[../40-Execution/fmx-180-code-phase-dod-transition-decision-queue-2026-06-14]]
   - [[../40-Execution/fmx-195-pnpm-tooling-currency-decision-queue-2026-06-15]]
   - [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]]
@@ -31,6 +32,7 @@ related:
   - [[../40-Execution/fmx-176-local-parity-decision-record-2026-06-17]]
   - [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]]
   - [[../40-Execution/fmx-167-architecture-fitness-function-decision-queue-2026-06-15]]
+  - [[../40-Execution/fmx-198-version-pin-audit-decision-queue-2026-06-19]]
 ---
 
 # Code-Phase Definition of Done Transition Contract
@@ -49,7 +51,7 @@ As of 2026-06-17:
 | Missing root scripts | `check`, `typecheck`, `test`, `test:e2e`, Storybook/build scripts | These are target-only until bootstrap creates them. |
 | Workspace layout | `pnpm-workspace.yaml` exists only for `allowBuilds.lefthook: true`; no `apps/`, no `packages/`, no package globs, no `nx.json` | Package/app gates cannot be active today. FMX-179 still owns the real workspace scaffold. |
 | CI workflows | `docs-check`, `linear-link-check`, post-merge cleanup, docs redeploy | Required checks are docs-phase checks only. |
-| Tool pins | Node 22, pnpm 11.7.0, Lefthook 2.1.9, PostgreSQL 17 | pnpm currency was refreshed by FMX-195; Lefthook was checked by FMX-176; re-check code tools before code bootstrap. |
+| Tool pins | Node 22, pnpm 11.7.0, Lefthook 2.1.9, PostgreSQL 17 | FMX-198 found pnpm 11.7.0 stale vs 11.8.0, Node 22 supported but not current LTS, PostgreSQL 17 supported but not latest stable, and Lefthook 2.1.9 current. D1-D3 remain Nico-owned before active pin mutation. |
 
 ## Active docs-phase DoD
 
@@ -96,8 +98,9 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
   `nx.json`, real `apps/web` and initial `packages/*` roots. The FMX-176
   `allowBuilds.lefthook` policy file alone is not enough.
 - Nx is installed and pinned exactly at the current stable version verified at
-  bootstrap time. The npm registry reported `nx@22.7.5` on 2026-06-14, but the
-  bootstrap beat must re-check before pinning.
+  bootstrap time. FMX-198 observed `nx@23.0.0` as latest stable on
+  2026-06-19, which is a major bump from the June 14 `22.7.5` observation; the
+  bootstrap beat must re-check and treat adoption/migration as HITL.
 - Root scripts exist and are executable: `check`, `typecheck`, `test`, app e2e
   script, Storybook/build script and docs scripts. They cannot be placeholders
   that silently skip required targets.

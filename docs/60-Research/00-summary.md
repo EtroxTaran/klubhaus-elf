@@ -1,11 +1,28 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, rulesets, branch-protection, codeowners, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, command-queue, career, national-team, bundestrainer, i18n, locale, paraglide, intl, risk-register, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, transfer, loan, obligation-to-buy, policy-catalog, argon2id, kdf, hash-wasm, workflow, branch-naming, supporter-groups, audience, atmosphere, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-148, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-161, fmx-164, fmx-165, fmx-167, fmx-168, fmx-169, fmx-170, fmx-173, fmx-174, fmx-177, fmx-178, fmx-180, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, rulesets, branch-protection, codeowners, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, command-queue, career, national-team, bundestrainer, i18n, locale, paraglide, intl, risk-register, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, transfer, loan, obligation-to-buy, policy-catalog, argon2id, kdf, hash-wasm, workflow, branch-naming, supporter-groups, audience, atmosphere, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-148, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-161, fmx-164, fmx-165, fmx-167, fmx-168, fmx-169, fmx-170, fmx-173, fmx-174, fmx-177, fmx-178, fmx-180, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197, fmx-198]
 updated: 2026-06-19
 ---
 
 # Research Summary
+
+## Version Pin Audit (FMX-198, 2026-06-19)
+
+[[version-pin-audit-2026-06-19]] preserves the FMX-198 Perplexity-discovery and
+source-checked audit of pinned and version-like framework/library/tool
+references. Current finding: `lefthook@2.1.9`, Stryker/Vitest
+`9.6.1`/`4.1.9`, React/DOM `19.2.7`, TypeScript `6.0.3`, Drizzle ORM
+`0.45.2`, `hash-wasm@4.12.0`, Playwright `1.61.0`, Biome `2.5.0` and Vite
+`8.0.16` are current source-check facts; active `pnpm@11.7.0` is stale vs
+`11.8.0`; Node 22 and PostgreSQL 17 are supported but not newest stable/LTS;
+Nx moved to 23.0.0; Capacitor core moved to 8.4.1; XState moved to 5.32.1;
+Storybook current stable is 10.4.6; Paraglide/Tolgee exact observations moved;
+and SurrealDB current stable evidence moved to 3.1.5. Pending decisions D1-D6 live in
+[[../40-Execution/fmx-198-version-pin-audit-decision-queue-2026-06-19]]. Raw
+captures:
+[[raw-perplexity/raw-fmx-198-version-pin-audit-2026-06-19]],
+[[raw-perplexity/raw-fmx-198-version-source-checks-2026-06-19]].
 
 ## Named Supporter Group Consent DSA and Naming (FMX-148, 2026-06-19)
 
@@ -48,7 +65,7 @@ Perplexity-first and source-checked packet for replacing the stale SurrealDB
 `1.x`/`2.x` watch wording. Current conclusion: PostgreSQL + Drizzle remains the
 system of record and SurrealDB remains deferred / Assess, but any future Trial
 must source-check and exact-pin the then-current stable SurrealDB line. On
-2026-06-19 the observed current stable patch is 3.1.4, so `1.x` is no longer a
+2026-06-19 the observed current stable patch is 3.1.5, so `1.x` is no longer a
 valid planning pin. Recommendation pending Nico: compound trigger
 (`ProductNeedGraphLive` plus ops/security/recovery readiness), Lead
 Architect/Data Platform owner, quarterly plus event-driven watch, and

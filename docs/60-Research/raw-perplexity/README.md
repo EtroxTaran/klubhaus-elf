@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, erasure, retention, hgb, ao, shared-history, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, rulesets, branch-protection, codeowners, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, policy-catalog, onboarding, ftue, contract-lifecycle, tooling, pnpm, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, career, national-team, bundestrainer, i18n, locale, paraglide, intl, risk-register, argon2id, kdf, hash-wasm, ai, llm, fallback, transfer, loan, obligation-to-buy, workflow, branch-naming, supporter-groups, audience, atmosphere, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-148, fmx-150, fmx-151, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-161, fmx-167, fmx-173, fmx-174, fmx-178, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, erasure, retention, hgb, ao, shared-history, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, rulesets, branch-protection, codeowners, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, policy-catalog, onboarding, ftue, contract-lifecycle, tooling, pnpm, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, career, national-team, bundestrainer, i18n, locale, paraglide, intl, risk-register, argon2id, kdf, hash-wasm, ai, llm, fallback, transfer, loan, obligation-to-buy, workflow, branch-naming, supporter-groups, audience, atmosphere, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-148, fmx-150, fmx-151, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-161, fmx-167, fmx-173, fmx-174, fmx-178, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197, fmx-198]
 created: 2026-05-16
 updated: 2026-06-19
 type: index
@@ -25,6 +25,17 @@ ADR-0112 after Nico approved D1-D6 = A/A/A/A/A/A.
 | File | Topic | Synthesis target |
 |---|---|---|
 | [[raw-age-assurance-freshness-check-2026-06-19]] | Freshness pass for GDPR Art. 8, KJM/USK AVS scope, JMStV youth-protection representative trigger, IARC/USK digital rating path and comparable-game rating pressure | [[../age-assurance-and-iarc-rating-2026-06-14]] |
+
+## FMX-198 version pin audit (2026-06-19)
+
+Perplexity discovery and official source checks for active and target-only
+version references. Perplexity returned several conflicting version claims, so
+the source-check note is the evidence layer used by the synthesis.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-fmx-198-version-pin-audit-2026-06-19]] | Perplexity discovery for current/stale package pins, with conflicts preserved | [[../version-pin-audit-2026-06-19]] |
+| [[raw-fmx-198-version-source-checks-2026-06-19]] | npm/GitHub/Node/PostgreSQL/Context7/Ref source checks for current stable versions | [[../version-pin-audit-2026-06-19]] |
 
 ## FMX-148 Named Supporter Group Surface (2026-06-19)
 

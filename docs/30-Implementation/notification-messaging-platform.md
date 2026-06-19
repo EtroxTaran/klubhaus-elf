@@ -1,9 +1,9 @@
 ---
 title: Notification and Messaging Platform
 status: current
-tags: [implementation, notification, messaging, inbox, email, push, realtime, scheduler, gdpr, offline, fmx-156]
+tags: [implementation, notification, messaging, inbox, email, push, realtime, scheduler, gdpr, offline, fmx-156, fmx-198]
 created: 2026-05-22
-updated: 2026-06-15
+updated: 2026-06-19
 type: implementation
 binding: false
 adr:
@@ -19,6 +19,7 @@ related:
   - "[[jobs-and-scheduler]]"
   - "[[../50-Game-Design/GD-0013-narrative-inbox]]"
   - "[[../50-Game-Design/async-multiplayer-private-group]]"
+  - "[[../60-Research/version-pin-audit-2026-06-19]]"
 ---
 
 # Notification and Messaging Platform
@@ -342,20 +343,21 @@ Dependency updates:
 ## Source-Version Status
 
 ADR-0043's source-version table is historical, not a package pin to implement
-without re-check. FMX-156 checked the current public sources on 2026-06-15:
+without re-check. FMX-156 checked the current public sources on 2026-06-15;
+FMX-198 refreshed the package observations on 2026-06-19:
 
-| Tool/library | ADR-0043 value | 2026-06-15 source check | Status |
+| Tool/library | ADR-0043 value | 2026-06-19 source check | Status |
 |---|---:|---:|---|
-| React Email | 6.3.1 | 6.6.0 | Stale; React Email 6 imports `render` from `react-email`. |
-| `@react-email/render` | 2.0.8 | 2.0.8 | Still current package, but React Email 6 treats unified `react-email` imports as the migration target. |
+| React Email | 6.3.1 | 6.6.3 | Stale; React Email 6 imports `render` from `react-email`. |
+| `@react-email/render` | 2.0.8 | 2.0.9 | Stale as a package observation; React Email 6 treats unified `react-email` imports as the migration target. |
 | `web-push` | 3.6.7 | 3.6.7 | Still current. Re-check before code phase. |
 | `@types/web-push` | 3.6.4 | 3.6.4 | Still current. Re-check before code phase. |
-| `@capacitor/core` | 8.3.4 | 8.4.0 | Stale. |
-| `@capacitor/push-notifications` | 8.1.1 | 8.1.1 | Still current; peer range requires Capacitor 8. |
+| `@capacitor/core` | 8.3.4 | 8.4.1 | Stale. Capacitor 8 is the current stable line; ADR-0104's 7.x mobile baseline still needs a Nico re-pin decision. |
+| `@capacitor/push-notifications` | 8.1.1 | 8.1.1 | Still current; official plugin tags express Capacitor compatibility. |
 
 Exact package updates belong to the dependency-currency/code-phase workflow
-(FMX-168/tooling follow-up or the first Notification implementation beat), not
-to this FMX-156 architecture ratification packet.
+(FMX-198/FMX-168 tooling follow-up or the first Notification implementation
+beat), not to this FMX-156 architecture ratification packet.
 
 ## Sources
 
