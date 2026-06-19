@@ -49,12 +49,12 @@ baseline for architecture-gap classification.
   stat lines, derived metrics, MVP Analytics Hub queries and Manager & Legacy
   handoff snapshots; FMX-131 keeps official ordering and season rollover in
   League Orchestration.
-- [[09-Decisions/ADR-0114-monorepo-workspace-bootstrap]] — draft FMX-179
-  monorepo/workspace bootstrap proposal; package-boundary convention, namespace
-  and code-gate activation remain pending Nico D1-D8.
+- [[09-Decisions/ADR-0114-monorepo-workspace-bootstrap]] — accepted FMX-179
+  monorepo/workspace bootstrap accepted record; package-boundary convention, namespace
+  and code-gate activation remain accepted by Nico 2026-06-19 D1-D8.
 - [[09-Decisions/ADR-0132-release-versioning-app-build-process]] — draft
-  FMX-178 release versioning/app-build proposal; SemVer/release manifest,
-  immutable digest promotion, PWA update UX and beta release gate remain pending
+  FMX-178 release versioning/app-build accepted record; SemVer/release manifest,
+  immutable digest promotion, PWA update UX and beta release gate are accepted
   Nico D1-D7.
 
 ## Modules

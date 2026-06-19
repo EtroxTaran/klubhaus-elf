@@ -41,7 +41,7 @@ Minimum dashboards before beta:
   container restarts, current release.
 - **Client stability**: crash-free sessions, errors by release, service
   worker failures, IndexedDB failures, failed PWA updates.
-- **Offline sync**: pending commands, failed commands, replay duration,
+- **Offline sync**: accepted commands, failed commands, replay duration,
   retry exhaustion, rejected-with-reason counts.
 - **Outbox**: `outbox_pending_count`, `outbox_oldest_age_seconds`,
   `outbox_publish_total`, `outbox_publish_failures_total`,
@@ -64,7 +64,7 @@ Initial alert policy:
 | Service worker | registration/runtime spike | offline shell unavailable |
 | IndexedDB | quota / transaction spike | save durability at risk |
 | Outbox age | > 60 s | > 300 s |
-| Outbox pending | > 1,000 | > 10,000 |
+| Outbox accepted | > 1,000 | > 10,000 |
 | Publish failures | > 1% 5 min | > 5% 5 min |
 | Redis consumer lag | rising above normal | stale consumer group |
 | Telemetry ingest | partial drop | blind spot across a signal class |
@@ -126,7 +126,7 @@ history uses PostgreSQL outbox/archive partitions per ADR-0028.
 
 ## FMX-171 Proposed Trigger Checks
 
-Pending Nico approval, operators use these runbook checks:
+Accepted by Nico 2026-06-19, operators use these runbook checks:
 
 - `TempoBackendRequired`: a staging/production incident crosses at least two
   independently deployed runtime services in a user-visible path, and Loki +

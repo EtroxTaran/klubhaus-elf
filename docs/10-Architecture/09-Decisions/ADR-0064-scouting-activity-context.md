@@ -1,11 +1,11 @@
 ---
 title: ADR-0064 Scouting Activity Context
 status: accepted
-tags: [adr, architecture, ddd, scouting, recruitment, transfer, squad-club, intelligence-context, supporting-subdomain, fmx-27]
+tags: [adr, architecture, ddd, scouting, recruitment, transfer, squad-club, intelligence-context, supporting-subdomain, fmx-27, accepted]
 created: 2026-06-02
 updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -38,6 +38,11 @@ related:
 ---
 
 # ADR-0064: Scouting Activity Context
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
 
 ## Status
 
@@ -247,7 +252,7 @@ query; Scouting owns scout *activity*; Transfer / Squad & Player / Youth Academy
   store consumer ACL snapshots. It also recommends a split opposition hook:
   Scouting produces the report, Tactics interprets it into match-plan /
   template inputs, and Match still consumes only frozen Tactics snapshots. This
-  remains non-binding until Nico accepts FMX-157 D1-D6.
+  is binding after Nico approved FMX-157 D1-D6 on 2026-06-19.
 - **Creative IP-safe naming.** No real scout, agency or data-provider names
   embedded as samples; sample names follow Nico's vault-wide evocative-but-
   clearly-not-real rule (GD-0015 + ADR-0007).
@@ -561,7 +566,7 @@ split" group per ADR-0019 §5.
 ## Supersedes
 
 None — ADR-0064 introduces a new bounded context. It refines (does not
-supersede) the draft GDDR `scouting-and-recruitment.md` (Activity-Owner section
+supersede) the accepted GDDR `scouting-and-recruitment.md` (Activity-Owner section
 added in the same PR) and is downstream of ADR-0052 (People identity).
 
 ## Related Docs

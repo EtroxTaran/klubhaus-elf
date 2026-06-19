@@ -25,7 +25,7 @@ related:
 - Synced `main` and claimed FMX-196 in Linear.
 - Created branch/worktree `codex/fmx-196-deterministic-simulation-qa`.
 - Captured Perplexity-first research and source checks.
-- Added decision-pending synthesis, draft ADR-0120 and draft quality runbook.
+- Added synthesis, accepted ADR-0120 and current quality runbook.
 - Added Nico decision queue D1-D7 with recommendations.
 - Updated front-door indexes and raw/handoff maps.
 
@@ -56,5 +56,5 @@ related:
 
 ## Needs promotion
 
-- ADR-0120 and the deterministic simulation QA runbook need promotion only
-  after Nico approves the pending decision packet.
+- ADR-0120 and the deterministic simulation QA runbook were promoted after Nico
+  approved the decision packet on 2026-06-19.

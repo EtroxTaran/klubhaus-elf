@@ -25,7 +25,7 @@ related:
 - Synced `main` and claimed FMX-172 in Linear.
 - Created branch/worktree `codex/fmx-172-stryker-mutation-gate`.
 - Captured Perplexity-first research and official/primary source checks.
-- Added decision-pending synthesis, draft ADR-0125 and draft quality runbook.
+- Added synthesis, accepted ADR-0125 and current quality runbook.
 - Added Nico decision queue D1-D6 with recommendations.
 - Updated front-door indexes, test strategy, CI process, research summary and
   raw/handoff maps.
@@ -57,5 +57,5 @@ related:
 
 ## Needs promotion
 
-- ADR-0125 and the Stryker mutation-testing runbook need promotion only after
-  Nico approves the pending decision packet.
+- ADR-0125 and the Stryker mutation-testing runbook were promoted after Nico
+  approved the decision packet on 2026-06-19.

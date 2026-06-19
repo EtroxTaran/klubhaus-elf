@@ -1,15 +1,20 @@
 ---
 title: Watch Party and Conference Mode
-status: draft
-tags: [game-design, mode, multiplayer, watch-party, conference]
+status: accepted
+tags: [game-design, mode, multiplayer, watch-party, conference, accepted]
 created: 2026-05-16
-updated: 2026-06-17
+updated: 2026-06-19
 type: game-design
-binding: false
+binding: true
 related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../60-Research/watch-party-context-ownership-2026-06-17]], [[async-multiplayer-private-group]], [[../10-Architecture/state-machines/watch-party]], [[../10-Architecture/09-Decisions/ADR-0099-spectator-watch-party-streaming-over-committed-event-log]], [[../10-Architecture/09-Decisions/ADR-0133-watch-party-context-definition]]
 ---
 
 # Watch Party and Conference Mode
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this game-design record is now
+> binding according to its approved scope.
+
 
 > **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
 > reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08

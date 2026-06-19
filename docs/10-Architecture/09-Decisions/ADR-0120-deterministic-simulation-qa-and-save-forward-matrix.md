@@ -1,11 +1,11 @@
 ---
 title: ADR-0120 Deterministic Simulation QA and Save-Forward Matrix
-status: draft
-tags: [adr, architecture, determinism, replay, soak-test, save-forward, match-engine, quality, fmx-196]
+status: accepted
+tags: [adr, architecture, determinism, replay, soak-test, save-forward, match-engine, quality, fmx-196, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 linear: FMX-196
 amends:
   - [[ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]
@@ -25,11 +25,16 @@ related:
 
 # ADR-0120: Deterministic Simulation QA and Save-Forward Matrix
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-Prepared for FMX-196 on 2026-06-15. Not binding until Nico approves D1-D7 in
+Prepared for FMX-196 on 2026-06-15. Binding after Nico approved D1-D7 on 2026-06-19 in
 [[../../40-Execution/fmx-196-deterministic-simulation-qa-decision-queue-2026-06-15]].
 
 ## Date

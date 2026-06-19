@@ -79,7 +79,7 @@ MVP ownership:
 
 ## Local Baseline
 
-Accepted local decisions constrain the proposal:
+Accepted local decisions constrain the accepted record:
 
 - ADR-0019: bounded contexts own data and publish contracts; no cross-context
   joins.
@@ -106,14 +106,14 @@ Accepted local decisions constrain the proposal:
 | B. Keep Watch Party as thin state-machine doc only | Update `watch-party.md` and the bounded-context map, no ADR. | Cheap now, but leaves chat/markers/CRDT/notification ownership ambiguous. |
 | C. Move social surfaces to Notification or Match | Let Match or Notification own more of the party runtime. | Conflicts with existing owner boundaries: Match must stay deterministic and Notification must stay delivery-focused. |
 
-Recommendation: **A**, with ADR-0133 draft until Nico approves D1-D8 in the
+Recommendation: **A**, with ADR-0133 draft after Nico approved D1-D8 on 2026-06-19 in the
 decision queue.
 
 ## Proposed Context Shape
 
 Watch Party owns party-scoped social and viewing truth:
 
-- proposal, poll, schedule, setup-lock, live, completed and cancelled lifecycle;
+- accepted record, poll, schedule, setup-lock, live, completed and cancelled lifecycle;
 - participants, roles, local pause-trust tiers and group-scoped privileges;
 - schedule polls and derived broadcast/session state;
 - spectator delay policy, broadcast cursor and conference coordination;
@@ -182,13 +182,13 @@ Medium/low-confidence inputs:
 
 ## Decision Status
 
-Awaiting Nico in
+Accepted by Nico 2026-06-19 in
 [[../40-Execution/fmx-159-watch-party-context-ownership-decision-queue-2026-06-17]].
 
 Until then:
 
 - ADR-0133 is draft/non-binding;
-- bounded-context map and state-machine edits are descriptive proposal hooks
-  where they touch pending choices;
-- no implementation may use the draft ADR as accepted authority.
+- bounded-context map and state-machine edits are descriptive accepted record hooks
+  where they touch accepted choices;
+- no implementation may use the accepted ADR as accepted authority.
 

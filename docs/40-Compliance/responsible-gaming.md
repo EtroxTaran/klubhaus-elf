@@ -1,11 +1,11 @@
 ---
 title: "Responsible gaming"
-status: draft
+status: current
 tags: [compliance, responsible-gaming, dark-patterns, monetization, loot-boxes, iarc, usk, fmx-193]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: compliance
-binding: false
+binding: true
 linear: FMX-193
 related:
   - [[README]]
@@ -18,6 +18,11 @@ related:
 ---
 
 # Responsible gaming
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
 
 ## Status
 

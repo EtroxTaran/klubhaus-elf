@@ -1,11 +1,11 @@
 ---
 title: FMX-161 ICU-MF1 Risk Register Decision Queue
-status: draft
-tags: [execution, decision-queue, fmx-161, i18n, locale, risk-register, paraglide, intl]
+status: accepted
+tags: [execution, decision-queue, fmx-161, i18n, locale, risk-register, paraglide, intl, accepted]
 created: 2026-06-18
-updated: 2026-06-18
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-161
 related:
   - [[../60-Research/icu-mf1-risk-register-reconciliation-2026-06-18]]
@@ -18,9 +18,14 @@ related:
 
 # FMX-161 ICU-MF1 Risk Register Decision Queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-161.
+
+
 ## Status
 
-Awaiting Nico. This queue reconciles a stale risk-register/front-door line with
+Accepted by Nico on 2026-06-19. This queue reconciles a stale risk-register/front-door line with
 accepted ADR-0094 evidence, but the residual locale-scope confirmation should be
 answered before the PR is marked ready.
 
@@ -105,3 +110,8 @@ If approved:
 This makes the risk-register row resolved-for-MVP, keeps the residual reopen
 gate explicit and avoids expanding FMX-161 beyond the stale risk-register
 reconciliation.
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=B**.
+
+No open Nico decision remains for FMX-161.

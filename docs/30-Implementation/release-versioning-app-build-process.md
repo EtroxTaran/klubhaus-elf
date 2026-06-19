@@ -1,11 +1,11 @@
 ---
 title: Release Versioning and App Build Process
-status: draft
+status: current
 tags: [implementation, release, versioning, app-build, dokploy, pwa, telemetry, provenance, sbom, fmx-178]
 created: 2026-06-16
-updated: 2026-06-16
+updated: 2026-06-19
 type: implementation
-binding: false
+binding: true
 linear: FMX-178
 related:
   - [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]]
@@ -17,6 +17,11 @@ related:
 ---
 
 # Release Versioning and App Build Process
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
 
 This is the draft operational runbook for FMX-178. It becomes active only if
 Nico accepts

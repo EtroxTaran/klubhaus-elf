@@ -1,11 +1,11 @@
 ---
 title: ADR-0071 AI World Simulation context and drift contract
 status: accepted
-tags: [adr, architecture, ai-world, world-drift, ddd, determinism, rng, published-language, policy-catalog, fmx-91, fmx-139]
+tags: [adr, architecture, ai-world, world-drift, ddd, determinism, rng, published-language, policy-catalog, fmx-91, fmx-139, accepted]
 created: 2026-06-03
-updated: 2026-06-17
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -34,6 +34,11 @@ related:
 
 # ADR-0071: AI World Simulation context and drift contract
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
 accepted
@@ -47,10 +52,10 @@ accepted
 > remains `proposed` / `binding: false` until ratified through the normal
 > architecture gate.
 
-> **FMX-139 proposed amendment (2026-06-17, pending Nico):**
+> **FMX-139 proposed amendment (2026-06-17, accepted by Nico 2026-06-19):**
 > [[../../60-Research/drift-consumer-policy-ref-contract-2026-06-17]] defines a
-> concrete hybrid `DriftConsumerPolicyRef` proposal and AI World Simulation
-> `WorldDriftPolicyCatalog` ownership split. It is not binding until Nico answers
+> concrete hybrid `DriftConsumerPolicyRef` accepted record and AI World Simulation
+> `WorldDriftPolicyCatalog` ownership split. It is binding after Nico approved D1-D4 on 2026-06-19 in
 > [[../../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]].
 
 ## Date
@@ -136,7 +141,7 @@ AI World Simulation owns:
 
 FMX-139 proposes adding `WorldDriftPolicyCatalog` as AI World Simulation's
 producer-side published-language catalog for drift-consumer policy refs. The
-proposal keeps final numeric calibration in FMX-52/GD-0043 and keeps consumer
+accepted record keeps final numeric calibration in FMX-52/GD-0043 and keeps consumer
 application in the owning consumer contexts.
 
 Public outputs:
@@ -146,7 +151,7 @@ Public outputs:
 - `ContinentalEraShifted`
 - `WorldDriftParameterSheetPublished`
 
-FMX-139 proposed output, pending Nico:
+FMX-139 proposed output, accepted by Nico 2026-06-19:
 
 - `WorldDriftPolicyCatalogVersionPublished`
 
@@ -221,7 +226,7 @@ direct ledger entries.
 
 ### FMX-139 proposed `DriftConsumerPolicyRef` contract
 
-Pending Nico, world-drift events use a hybrid ref/snapshot shape:
+Accepted by Nico 2026-06-19, world-drift events use a hybrid ref/snapshot shape:
 
 ```ts
 type DriftConsumerPolicyRef = {
@@ -305,7 +310,7 @@ existing sequence.
 7. MVP drama caps are global; per-confederation caps are reserved and inactive
    until ratified.
 
-FMX-139 proposed additional invariants, pending Nico:
+FMX-139 proposed additional invariants, accepted by Nico 2026-06-19:
 
 8. `DriftConsumerPolicyRef` is a published-language contract; consumers never
    persist AI World Simulation internal catalog rows.

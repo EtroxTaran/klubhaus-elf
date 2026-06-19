@@ -1,11 +1,11 @@
 ---
 title: ADR-0079 Dynasty Board, Ownership & Bankruptcy FSMs
 status: accepted
-tags: [adr, architecture, ddd, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, club-management, determinism, replay, world-drift, fmx-89, fmx-139]
+tags: [adr, architecture, ddd, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, club-management, determinism, replay, world-drift, fmx-89, fmx-139, accepted]
 created: 2026-06-05
-updated: 2026-06-17
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -35,6 +35,11 @@ related:
 ---
 
 # ADR-0079: Dynasty Board, Ownership & Bankruptcy FSMs
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
 
 ## Status
 
@@ -100,7 +105,7 @@ Pre-existing constraints this ADR must honour:
   `forcedSalePolicyRef`, `transferRestrictionPolicyRef` or
   `boardCrisisPolicyRef`, the consumer projection should use the event's hybrid
   `DriftConsumerPolicyRef` snapshot and catalog version. It must not query AI
-  World Simulation's current catalog tables during replay. This remains pending
+  World Simulation's current catalog tables during replay. This is accepted
   Nico in
   [[../../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]].
 - **Determinism** ([[../../60-Research/determinism-and-replay]]): stream #1
@@ -344,7 +349,7 @@ Outbox for all emitted events.
 - **Contract tests:** AI World Simulation drift facts consumed as transition
   triggers; Manager & Legacy consumes `ManagerSacked`/run-end facts for analysis.
 
-## Map patch proposal (not applied — ratify-gated)
+## Map patch accepted record (not applied — ratify-gated)
 
 On ratification, [[../bounded-context-map]] gains a one-line clause on the **Club
 Management** row noting the new **Board & Ownership** sub-aggregate set
@@ -375,7 +380,7 @@ Negative / constraints:
 
 ## HITL gate
 
-Authored `proposed` after Nico chose the FMX-89 planning defaults live
+Ratified as accepted after Nico chose the FMX-89 planning defaults live
 (2026-06-05): **D1 = C** (Club Management sub-aggregates), **D2 = A** (core MVP +
 reserved tail), **D3 = A** (`WorldAiMgmtRng` + deterministic board ladder),
 **D4 = A** (6 named presets on a trait space).

@@ -58,13 +58,13 @@ accepted
 > deterministic catalog selection and selection event; AI-management contexts own
 > the planning context; Match only consumes the frozen result.
 
-> **FMX-157 pending follow-up (2026-06-19):**
+> **FMX-157 accepted follow-up (2026-06-19):**
 > [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
 > recommends keeping `OppositionScoutingRequested` as a split hook upstream of
 > this ADR: Scouting owns report execution/freshness/confidence and Tactics owns
 > interpretation into the existing opposition-template/match-plan surfaces. This
 > does not reopen ADR-0080's accepted AI World/Tactics/Match ownership split and
-> is not binding until Nico accepts FMX-157 D4-D6.
+> is binding after Nico accepted FMX-157 D4-D6.
 
 ## Date
 

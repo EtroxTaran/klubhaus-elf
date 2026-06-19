@@ -1,11 +1,11 @@
 ---
 title: FMX-191 Monetization model decision queue
-status: current
-tags: [execution, decision-queue, monetization, no-p2w, pricing, pending, fmx-191]
+status: accepted
+tags: [execution, decision-queue, monetization, no-p2w, pricing, pending, fmx-191, accepted]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-191
 addresses: [PM-2026-05-20-04-F-01]
 related:
@@ -18,11 +18,16 @@ related:
 
 # FMX-191 Monetization model decision queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-191.
+
+
 This is the HITL decision queue for FMX-191. It turns the research synthesis
 [[../60-Research/monetization-model-and-no-p2w-canon-2026-06-13]] into explicit
-Nico decisions before [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon|GD-0041]]
-or [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary|ADR-0107]]
-can become binding.
+Nico decisions for accepted
+[[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon|GD-0041]]
+and [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary|ADR-0107]].
 
 Scope premise already selected in this beat: **FMX-191 = model-level canon**.
 FMX-190 is the follow-up for CI/test enforcement and multiplayer fairness
@@ -90,8 +95,13 @@ as a non-binding proposal.
 - 2026-06-13: draft [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon|GD-0041]]
   and [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary|ADR-0107]]
   prepared as non-binding proposal records.
-- Pending Nico: D1-D5 above.
+- Accepted by Nico 2026-06-19: D1-D5 above.
 
 ## Recommended approval packet
 
 Approve **D1=A, D2=A, D3=A, D4=A, D5=A**.
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A**.
+
+No open Nico decision remains for FMX-191.

@@ -49,9 +49,9 @@ three new accepted ADRs:
   watermarks. It does not read live producer state and does not become a second
   source of youth, scouting or loan truth.
 
-Recommended packet for Nico is D1-D6 in
+Accepted packet is D1-D6 in
 [[../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]].
-Nothing in this note is binding until Nico accepts the choices.
+The approved choices are binding after Nico approved them on 2026-06-19.
 
 ## Source-checked basis
 

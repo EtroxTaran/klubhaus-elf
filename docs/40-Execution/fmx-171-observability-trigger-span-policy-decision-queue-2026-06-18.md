@@ -1,11 +1,11 @@
 ---
 title: FMX-171 Observability Trigger and Span Policy Decision Queue
-status: draft
-tags: [execution, decision-queue, observability, tracing, tempo, mimir, prometheus, opentelemetry, alloy, fmx-171]
+status: accepted
+tags: [execution, decision-queue, observability, tracing, tempo, mimir, prometheus, opentelemetry, alloy, fmx-171, accepted]
 created: 2026-06-18
-updated: 2026-06-18
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-171
 related:
   - [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]]
@@ -19,10 +19,15 @@ related:
 
 # FMX-171 Observability Trigger and Span Policy Decision Queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-171.
+
+
 ## Status
 
-Awaiting Nico. This queue records recommendations only. The Tempo/Mimir trigger
-thresholds and MVP span policy do not become binding until Nico answers.
+Accepted by Nico on 2026-06-19. This queue records recommendations only. The Tempo/Mimir trigger
+thresholds and MVP span policy do not become binding after Nico approved it on 2026-06-19.
 
 ## D1 - Tempo Re-add Trigger
 
@@ -84,8 +89,8 @@ for data that is intentionally not retained.
 
 Options:
 
-- **A. Keep FMX-171 wording as a proposed amendment in this PR, then promote it
-  to binding after Nico approves D1-D3.**
+- **A. Accepted: promote FMX-171 wording to binding after Nico approved D1-D4 on
+  2026-06-19.**
 - **B. Treat the agent recommendation as accepted because ADR-0017 is already
   accepted.**
 - **C. Do not edit canonical docs until after a separate discussion.**
@@ -114,3 +119,8 @@ Operator interpretation:
 ## Nico Decision Log
 
 Pending.
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=C, D2=A, D3=B, D4=A**.
+
+No open Nico decision remains for FMX-171.

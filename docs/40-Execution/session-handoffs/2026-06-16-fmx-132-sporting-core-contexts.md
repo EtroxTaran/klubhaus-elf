@@ -63,6 +63,6 @@ related:
 
 ## Needs promotion
 
-- Draft ADRs promote only after Nico approves D1-D7.
-- No implementation work is authorized by this packet while ADRs remain draft.
-
+- ADRs promoted after Nico approved D1-D7 on 2026-06-19.
+- No implementation work is authorized by this packet beyond the accepted docs
+  closure.

@@ -25,8 +25,8 @@ related:
 
 ## Scope
 
-FMX-193 creates the decision-pending responsible-gaming packet for the PM-18
-responsible-gaming findings. It defines the recommended home for:
+FMX-193 creates the accepted responsible-gaming packet for the PM-18
+responsible-gaming findings. It defines the current home for:
 
 - no paid random rewards / loot boxes;
 - dark-pattern and pressure-loop bans;
@@ -147,4 +147,3 @@ until Nico answers D1-D7 in
 - [[../10-Architecture/09-Decisions/ADR-0122-responsible-gaming-and-dark-pattern-invariant]]
 - [[../40-Compliance/responsible-gaming]]
 - [[../40-Execution/fmx-193-responsible-gaming-decision-queue-2026-06-15]]
-

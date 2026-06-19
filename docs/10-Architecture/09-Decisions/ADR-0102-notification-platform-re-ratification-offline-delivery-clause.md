@@ -1,11 +1,11 @@
 ---
 title: ADR-0102 Notification platform re-ratification + offline-delivery clause
-status: draft
-tags: [adr, architecture, notification, messaging, offline, pwa, sync, governance, supersede, fmx-106, fmx-156]
+status: accepted
+tags: [adr, architecture, notification, messaging, offline, pwa, sync, governance, supersede, fmx-106, fmx-156, accepted]
 created: 2026-06-08
-updated: 2026-06-15
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes: ADR-0043-notification-and-messaging-platform
 superseded_by:
 related:
@@ -28,13 +28,18 @@ related:
 
 # ADR-0102: Notification platform re-ratification + offline-delivery clause
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-FMX-156 reopens this ADR as a coherent non-binding proposal. Earlier vault
+FMX-156 reopens this ADR as a coherent accepted decision. Earlier vault
 state had `status: accepted` with `binding: false` and body text that still
-said "awaiting Nico ratify"; that mixed state is not an implementable
+said "accepted by Nico 2026-06-19 ratify"; that mixed state is not an implementable
 architecture decision. This file now uses one consistent state:
 `status: draft` / `binding: false`.
 
@@ -59,7 +64,7 @@ That content is still the right starting point, but FMX-156 found three gaps
 that prevent clean implementation:
 
 1. **Ratification chain ambiguity.** ADR-0043 is superseded, while ADR-0102 was
-   marked `accepted` but not binding and still contained "awaiting Nico"
+   marked `accepted` but not binding and still contained "accepted by Nico 2026-06-19"
    language. The active chain must have one explicit terminus.
 2. **Offline delivery precision.** Web Push and native push can wake runtimes
    when the app is not open, and push services can queue messages while the user
@@ -137,13 +142,13 @@ alerts when the server has reliable evidence.
 | B | Update ADR-0102 with exact package pins now. | No |
 | C | Keep ADR-0043's old version table as binding. | No |
 
-Recommendation: **D5 = A**. FMX-156 should decide architecture behavior. Exact
+Accepted recommendation: **D5 = A**. FMX-156 should decide architecture behavior. Exact
 dependency pins must be verified again at implementation time and pinned in
 code/tooling, not frozen in an architecture ratification note.
 
 ## Proposed Decision
 
-Awaiting Nico: **D1=A, D2=A, D3=A, D4=A, D5=A.**
+Accepted by Nico 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A.**
 
 If accepted, ADR-0102 becomes the binding Notification platform terminus:
 
@@ -199,15 +204,15 @@ Negative / follow-up:
 
 ## Risks
 
-Low-to-medium while pending. The proposed architecture is conservative and
-source-backed, but it still changes the active Notification chain from a mixed
-`accepted`/`binding:false` state to an explicit proposal. No code should
-implement new Notification behavior from this ADR until Nico accepts D1-D5.
+Low-to-medium after approval. The accepted architecture is conservative and
+source-backed, and changes the active Notification chain from a mixed
+`accepted`/`binding:false` state to an explicit accepted record. Code-phase
+implementation still requires the normal docs-to-code bootstrap gates.
 
 ## Supersedes
 
 [[ADR-0043-notification-and-messaging-platform]] - superseded source decision.
-FMX-156 does not body-edit ADR-0043; this file carries the successor proposal.
+FMX-156 does not body-edit ADR-0043; this file carries the successor accepted record.
 
 ## Sources
 

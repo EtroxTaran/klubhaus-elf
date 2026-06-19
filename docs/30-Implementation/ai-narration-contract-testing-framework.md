@@ -1,11 +1,11 @@
 ---
 title: AI Narration Contract Testing Framework
-status: draft
+status: current
 tags: [implementation, testing, ai, llm, narrative, contracts, mvp, fmx-3]
 created: 2026-05-28
-updated: 2026-06-16
+updated: 2026-06-19
 type: implementation
-binding: false
+binding: true
 linear: FMX-3
 related:
   - [[../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
@@ -32,9 +32,14 @@ related:
 
 # AI Narration Contract Testing Framework
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+current
 
 This note is an implementation planning target for the docs-only phase. It is
 not code authority until the linked ADR/GDDR set is ratified.

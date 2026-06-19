@@ -67,8 +67,8 @@ password-hash correction is recorded in the F2 [[../../30-Implementation/auth-fl
 TanStack Router, Tailwind, the Klubhaus design system + Storybook,
 Dexie/IndexedDB (client cache/drafts), Biome, Vitest, Playwright, fast-check,
 Stryker, pnpm, Docker. Stryker is retained here as the mutation-testing tool;
-gate activation is governed by accepted ADR-0118 and the pending FMX-172
-draft [[ADR-0125-stryker-mutation-testing-gate]]. Deployment stays Dokploy with a mandatory mitigations +
+gate activation is governed by accepted ADR-0118 and the accepted FMX-172
+accepted [[ADR-0125-stryker-mutation-testing-gate]]. Deployment stays Dokploy with a mandatory mitigations +
 Kamal-2 escape-hatch note (see [[../11-Risks]] and
 [[../../30-Implementation/deployment-dokploy]]).
 
@@ -94,7 +94,7 @@ Kamal-2 escape-hatch note (see [[../11-Risks]] and
    inheriting an old major-line pin. FMX-198 refreshed the same-day observation
    to current stable patch 3.1.5 on 2026-06-19. The proposed owner/trigger gate is recorded in
    [[../../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]]
-   and remains pending Nico approval.
+   and remains accepted by Nico 2026-06-19.
 2. **State — split.** TanStack Query (+ persist-client over IndexedDB) for all
    server-mirrored state; **Zustand v5** for client/UI/match-simulation state
    (replaces ad-hoc React Context for app/game state). **Not TanStack Store** —

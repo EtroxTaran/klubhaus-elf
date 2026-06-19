@@ -1,11 +1,11 @@
 ---
 title: FMX-132 Sporting Core Context Definitions Decision Queue
-status: draft
-tags: [execution, decision-queue, ddd, bounded-context, sporting-core, match, training, squad-player, fmx-132]
+status: accepted
+tags: [execution, decision-queue, ddd, bounded-context, sporting-core, match, training, squad-player, fmx-132, accepted]
 created: 2026-06-16
-updated: 2026-06-16
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-132
 related:
   - [[../60-Research/sporting-core-context-definition-maturity-2026-06-16]]
@@ -20,16 +20,21 @@ related:
 
 # FMX-132 Sporting Core Context Definitions Decision Queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-132.
+
+
 ## Status
 
-Awaiting Nico. This queue records recommendations only; no Match/Training/Squad
-& Player context-definition ADR becomes binding until Nico answers.
+Accepted by Nico on 2026-06-19. This queue records recommendations only; no Match/Training/Squad
+& Player context-definition ADR becomes binding after Nico approved it on 2026-06-19.
 
 ## D1 - Documentation Shape
 
 Options:
 
-- **A. Three dedicated context-definition ADRs.** One draft ADR each for Match,
+- **A. Three dedicated context-definition ADRs.** One accepted ADR each for Match,
   Training and Squad & Player, each with boundary, aggregate inventory,
   published language and ACLs.
 - **B. One Sporting Core umbrella ADR.** One larger ADR covers all three
@@ -159,4 +164,9 @@ Operational interpretation:
 ## Nico Decision Log
 
 Pending.
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A, D7=A**.
+
+No open Nico decision remains for FMX-132.
 

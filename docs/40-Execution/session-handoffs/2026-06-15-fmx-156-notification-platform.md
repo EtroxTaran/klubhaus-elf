@@ -21,7 +21,7 @@ related:
 - Claim FMX-156 and repair the ADR-0043 -> ADR-0102 Notification platform
   chain.
 - Preserve Perplexity discovery, source checks, synthesis and decision packet.
-- Keep architecture non-binding until Nico decides.
+- Promote the architecture after Nico approval.
 
 ## Completed
 
@@ -36,24 +36,25 @@ related:
   [[../fmx-156-notification-platform-decision-queue-2026-06-15]].
 - Normalized ADR-0102 to `status: draft` / `binding: false` with D1-D5
   recommendations for Nico.
-- Updated the Notification implementation note with the pending offline replay
+- Updated the Notification implementation note with the accepted offline replay
   and push-suppression target plus source-version status.
 
 ## Open Tasks
 
 - Nico decision needed: D1-D5 in the decision queue.
 - If accepted, promote ADR-0102 to `accepted` / `binding: true` and update
-  front-door wording from pending to binding.
+  front-door wording from accepted to binding.
 - Push/open the PR and link it to Linear.
 
 ## Decisions Made
 
-- No architecture decision made by the agent. Recommended packet is D1-D5 =
-  A/A/A/A/A, pending Nico.
+- No architecture decision made by the agent. Approved packet is D1-D5 =
+  A/A/A/A/A, accepted by Nico 2026-06-19.
 
 ## Blockers
 
-- ADR-0102 cannot be accepted/binding until Nico approves the decision packet.
+- No approval blocker remains. ADR-0102 is accepted/binding after Nico approved
+  the decision packet on 2026-06-19.
 
 ## Durable Notes Updated
 

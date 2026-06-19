@@ -18,7 +18,7 @@ references. Current finding: `lefthook@2.1.9`, Stryker/Vitest
 `11.8.0`; Node 22 and PostgreSQL 17 are supported but not newest stable/LTS;
 Nx moved to 23.0.0; Capacitor core moved to 8.4.1; XState moved to 5.32.1;
 Storybook current stable is 10.4.6; Paraglide/Tolgee exact observations moved;
-and SurrealDB current stable evidence moved to 3.1.5. Pending decisions D1-D6 live in
+and SurrealDB current stable evidence moved to 3.1.5. Accepted decisions D1-D6 live in
 [[../40-Execution/fmx-198-version-pin-audit-decision-queue-2026-06-19]]. Raw
 captures:
 [[raw-perplexity/raw-fmx-198-version-pin-audit-2026-06-19]],
@@ -46,11 +46,11 @@ Raw captures:
 FMX-157 Perplexity-first and source-checked packet for unresolved Youth Academy
 audit/retention, Scouting -> Youth Academy discovery, Youth Academy -> Transfer
 `YouthLoaned`, opposition-scouting report ownership and Manager & Legacy
-youth-summary feeds. Recommendation pending Nico: targeted amendments to
+youth-summary feeds. Accepted recommendation: targeted amendments to
 existing ADR/state-machine homes, Youth Academy owns audit/history summaries,
 Scouting owns discovery and opposition-report execution/freshness, Tactics owns
 match-plan/template interpretation, Transfer consumes `YouthLoaned`, and Manager
-& Legacy consumes immutable summaries only. Pending decisions D1-D6 live in
+& Legacy consumes immutable summaries only. Accepted decisions D1-D6 live in
 [[../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]].
 Raw captures:
 [[raw-perplexity/raw-fmx-157-academy-audit-retention-2026-06-19]],
@@ -66,10 +66,10 @@ Perplexity-first and source-checked packet for replacing the stale SurrealDB
 system of record and SurrealDB remains deferred / Assess, but any future Trial
 must source-check and exact-pin the then-current stable SurrealDB line. On
 2026-06-19 the observed current stable patch is 3.1.5, so `1.x` is no longer a
-valid planning pin. Recommendation pending Nico: compound trigger
+valid planning pin. Accepted recommendation: compound trigger
 (`ProductNeedGraphLive` plus ops/security/recovery readiness), Lead
 Architect/Data Platform owner, quarterly plus event-driven watch, and
-non-authoritative rebuildable projection Trial only. Pending decisions D1-D5
+non-authoritative rebuildable projection Trial only. Accepted decisions D1-D5
 live in
 [[../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]].
 Raw captures:
@@ -82,7 +82,7 @@ Raw captures:
 
 [[argon2id-wasm-kdf-validation-2026-06-19]] preserves the FMX-173
 Perplexity-first and source-checked validation packet for ADR-0098's protected
-portable-export passphrase path. Recommendation pending Nico: use exact-pinned
+portable-export passphrase path. Accepted recommendation: use exact-pinned
 `hash-wasm@4.12.0` for the first code-phase spike, keep the OWASP Argon2id floor
 as the minimum, run the KDF in one Web Worker, lazy-load the module outside the
 initial shell while making it offline-available after install, gate target-device
@@ -109,7 +109,7 @@ ADR-0026/ADR-0028 owner map. Closure record:
 [[per-context-module-notes-2026-06-18]] preserves the FMX-169
 Perplexity-first and source-checked packet for deciding whether FMX should add
 per-bounded-context module notes for the 28-context catalog. Recommendation is
-pending Nico: use a staged hybrid where
+accepted by Nico 2026-06-19: use a staged hybrid where
 [[../10-Architecture/bounded-context-map]] stays canonical for the context
 catalog, cluster map, relationship topology and source-folder mapping, while
 short per-context interface cards are added only for a first MVP-critical slice.
@@ -212,7 +212,7 @@ Perplexity-first and source-checked packet for defining the
 events. It recommends a hybrid ref/snapshot contract with stable policy ref id,
 `WorldDriftPolicyCatalog` version, effect family, target context,
 label/explanation keys and a minimal resolved snapshot for replay-safe consumer
-ACL projections. Decisions remain pending in
+ACL projections. Decisions were accepted on 2026-06-19 in
 [[../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]]:
 D1=C hybrid ref, D2=A AI World owns catalog identity/versioning while GD-0043 /
 FMX-52 owns final values, D3=B reserved typed `youthDiffusionHint`, D4=A
@@ -233,7 +233,7 @@ broadcast/session state, spectator delay, conference coordination, pause-vote
 orchestration, chat, markers and moderation logs. Match remains simulation,
 event-log and replay authority; Notification remains delivery/inbox/preference
 owner; Offline Sync remains sync/rebase/collaboration infrastructure. All
-decisions remain pending in
+decisions were accepted on 2026-06-19 in
 [[../40-Execution/fmx-159-watch-party-context-ownership-decision-queue-2026-06-17]].
 Raw captures:
 [[raw-perplexity/raw-watch-party-context-ownership-ddd-2026-06-17]],
@@ -293,7 +293,7 @@ dedicated context-definition ADRs rather than fragmented concern rows:
 [[../10-Architecture/09-Decisions/ADR-0129-match-context-definition]],
 [[../10-Architecture/09-Decisions/ADR-0130-training-context-definition]] and
 [[../10-Architecture/09-Decisions/ADR-0131-squad-and-player-context-definition]].
-All remain draft/non-binding pending Nico D1-D7 in
+All remain draft/non-binding accepted by Nico 2026-06-19 D1-D7 in
 [[../40-Execution/fmx-132-sporting-core-context-definitions-decision-queue-2026-06-16]].
 Raw captures:
 [[raw-perplexity/raw-sporting-core-contexts-ddd-boundaries-2026-06-16]],
@@ -310,7 +310,7 @@ focused `ObligationConditionCatalog`, Regulations-owned data shape, static
 per-save rule snapshot and exact inspectable clause visibility. The packet
 source-checks FIFA/RSTP, Premier League, DFL, Ligue 1/LFP and Sports
 Interactive Football Manager precedent, while treating Italy-like and
-Spain-like caps as fictional profile presets pending later legal/source review.
+Spain-like caps as fictional profile presets accepted later legal/source review.
 Decision record:
 [[../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]].
 Raw captures:
@@ -340,7 +340,7 @@ separates FMX-112-style IP/content cleanliness from prompt safety, proposes a
 Community Overlay `CommunityTextRef` trust gate, a Narrative prompt envelope,
 strict Zod/provider output validation, no-tool/no-write LLM isolation,
 deterministic fallback and an OWASP-style malicious-pack eval corpus.
-Decisions remain pending in
+Decisions were accepted on 2026-06-19 in
 [[../40-Execution/fmx-188-prompt-injection-defensive-contract-decision-queue-2026-06-16]].
 Raw captures:
 [[raw-perplexity/raw-llm-prompt-injection-defensive-contract-ugc-2026-06-16]],
@@ -550,7 +550,7 @@ published-language catalog. It grounds draft
 producers emit advisory metadata only, owner contexts validate/clamp/reject and
 emit authoritative result events, People remains a gate/scaler owner for v1,
 and a future code-phase `effect-intent-catalog-exhaustive-mapping` conformance
-test checks one owner + one policy key per intent. Decisions remain pending in
+test checks one owner + one policy key per intent. Decisions were accepted on 2026-06-19 in
 [[../40-Execution/fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15]].
 Raw captures:
 [[raw-perplexity/raw-effect-intent-taxonomy-realworld-2026-06-15]],
@@ -560,8 +560,8 @@ Raw captures:
 
 ## Notification Offline Delivery and Ratification Packet (FMX-156, 2026-06-15)
 
-[[notification-offline-delivery-2026-06-15]] preserves the decision-pending
-ADR-0043 -> ADR-0102 Notification platform packet. It recommends keeping
+[[notification-offline-delivery-2026-06-15]] preserves the accepted
+ADR-0043 -> ADR-0102 Notification platform packet. It keeps
 ADR-0102 as the dedicated successor after Nico approval, using Postgres + Dexie
 inbox as the only read/replay surface, treating Web Push/native push as
 best-effort wake/attention channels, reconciling via watermark replay plus
@@ -601,11 +601,11 @@ the newest-published-version rule for this beat, so the active repo pins now use
 
 [[tooling-currency-sweep-2026-06-15]] preserves the Perplexity-first and
 source-checked stack-currency packet for the future code bootstrap. It adds
-draft [[../30-Implementation/stack-currency-ledger]] and records current source
+accepted [[../30-Implementation/stack-currency-ledger]] and records current source
 signals for React/TanStack, TypeScript, Vite/Rsbuild, Nx, Drizzle, PostgreSQL,
 Capacitor, Babylon.js, quality tooling and i18n. The packet is intentionally
 non-binding: PostgreSQL 18.x target alignment, latest-stable compatibility
-bundle, source-conflict policy and automation timing remain pending Nico in
+bundle, source-conflict policy and automation timing remain accepted by Nico 2026-06-19 in
 [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]]. Raw
 captures:
 [[raw-perplexity/raw-tooling-currency-sweep-2026-06-15]],
@@ -684,8 +684,8 @@ captures:
 research layer for deterministic simulation QA, replay evidence, seed tiers,
 same-WASM parity, soak metrics and save-forward compatibility. It grounds draft
 [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
-plus draft [[../40-Quality/deterministic-simulation-qa-harness]]. No new rule is
-binding until Nico answers D1-D7 in
+plus accepted [[../40-Quality/deterministic-simulation-qa-harness]]. No new rule is
+binding after Nico approved it on 2026-06-19 D1-D7 in
 [[../40-Execution/fmx-196-deterministic-simulation-qa-decision-queue-2026-06-15]].
 Raw captures:
 [[raw-perplexity/raw-deterministic-simulation-qa-harness-2026-06-15]],
@@ -697,10 +697,10 @@ Raw captures:
 research layer for the responsible-gaming invariant, dark-pattern guardrail,
 public statement and compliance evidence home. It grounds draft
 [[../10-Architecture/09-Decisions/ADR-0122-responsible-gaming-and-dark-pattern-invariant]]
-plus draft [[../40-Compliance/responsible-gaming]]. No new rule is binding until
-Nico answers D1-D7 in
+plus accepted [[../40-Compliance/responsible-gaming]]. The new rules are binding
+after Nico approved D1-D7 on 2026-06-19 in
 [[../40-Execution/fmx-193-responsible-gaming-decision-queue-2026-06-15]].
-Recommended packet is all A: dedicated ADR + compliance home, hard no paid
+Approved packet is all A: dedicated ADR + compliance home, hard no paid
 random rewards, dark-pattern release self-audit, optional local reminders,
 versioned statement now, OSS/license split to a separate issue and independent
 guardrail acceptance before SKU ratification. Raw captures:
@@ -716,9 +716,9 @@ earned/advanced cosmetic variants, IP-clean crest/kit/palette/sponsor layers,
 no-P2W acquisition classes and future pricing/legal hooks. It grounds draft
 [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] plus draft
 [[../20-Features/feature-cosmetic-identity-catalog]]. No catalog rule is
-binding until Nico answers D1-D7 in
+binding after Nico approved it on 2026-06-19 D1-D7 in
 [[../40-Execution/fmx-192-cosmetic-identity-catalog-decision-queue-2026-06-15]].
-Recommended packet is all A: draft GDDR + feature note, free baseline identity,
+Approved packet is all A: accepted GDDR + feature note, free baseline identity,
 narrow eight-family taxonomy, deterministic/non-tradeable/no-RNG acquisition,
 light gated async visibility, item+bundle IP/accessibility evidence and a later
 cosmetic-only deterministic season card. Raw captures:
@@ -731,12 +731,12 @@ cosmetic-only deterministic season card. Raw captures:
 
 [[pwa-offline-mobile-release-content-qa-gates-2026-06-15]] preserves the
 FMX-197 research layer for PWA/offline/mobile degradation, service-worker
-rollback, staged release gates and content-validation QA. It grounds draft
+rollback, staged release gates and content-validation QA. It grounds accepted
 [[../10-Architecture/09-Decisions/ADR-0124-pwa-offline-mobile-release-content-qa-gates]]
-plus draft [[../40-Quality/pwa-offline-mobile-release-content-qa-gates]]. No
-new rule is binding until Nico answers D1-D7 in
+plus accepted [[../40-Quality/pwa-offline-mobile-release-content-qa-gates]]. The
+new rule is binding after Nico approved D1-D7 on 2026-06-19 in
 [[../40-Execution/fmx-197-pwa-offline-mobile-release-content-qa-decision-queue-2026-06-15]].
-Recommended packet is all A: hybrid-online offline contract, tiered storage
+Approved packet is all A: hybrid-online offline contract, tiered storage
 budgets/eviction UX, user-mediated SW update plus no-op/rescue rollback,
 staged rollout gates, manifested content-pack validation, template-first
 generated/localized content gates and versioned evidence/rebaseline records.
@@ -755,7 +755,7 @@ one-context package catalog, real foundation packages only, workspace package
 facades replacing ADR-0019's old `src/domain/<context>` convention, pnpm
 workspace linking + TypeScript project references + Nx TypeScript plugin, no
 placeholder green gates and `@klubhaus-elf/*` namespace. Decision remains
-pending Nico in
+accepted by Nico 2026-06-19 in
 [[../40-Execution/fmx-179-monorepo-workspace-bootstrap-decision-queue-2026-06-14]].
 Raw captures:
 [[raw-perplexity/raw-monorepo-workspace-ddd-package-granularity-2026-06-14]],
@@ -767,12 +767,12 @@ Raw captures:
 
 [[rivalry-commercial-signal-contract-2026-06-14]] preserves the FMX-134
 research layer for the orphan `RivalryCommercialSignal` seam. It recommends a
-draft ADR-0111 cleanup: Rivalry System should not publish a commercial signal;
+accepted ADR-0111 cleanup: Rivalry System should not publish a commercial signal;
 CommercialPortfolio should derive commercial attractiveness, top-match pricing,
 sponsor-fit risk and settlement modifiers from `RivalryTierTransitioned`,
 `DerbyContext(matchId)` and other commercial inputs through a local
 ACL/projection; Audience & Atmosphere keeps fan-side `derby_factor`. Decision
-remains pending Nico in
+remains accepted by Nico 2026-06-19 in
 [[../40-Execution/fmx-134-rivalry-commercial-signal-decision-queue-2026-06-14]].
 Raw captures:
 [[raw-perplexity/raw-rivalry-commercial-signal-ddd-2026-06-14]],
@@ -803,10 +803,10 @@ captures:
 
 [[determinism-portfolio-principle-2026-06-14]] preserves the FMX-138 research
 layer for the cross-cutting deterministic-vs-seeded-variance portfolio rule. It
-recommends draft ADR-0113: audit/replay surfaces and projection/measurement
+recommends accepted ADR-0113: audit/replay surfaces and projection/measurement
 surfaces remain pure deterministic; variety/drama surfaces may use bounded
 seeded variance through existing owner-context RNG streams, without introducing
-new top-level streams. Decision remains pending Nico in
+new top-level streams. Decision remains accepted by Nico 2026-06-19 in
 [[../40-Execution/fmx-138-determinism-portfolio-principle-decision-queue-2026-06-14]].
 Draft decision home:
 [[../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle]].
@@ -872,11 +872,11 @@ capture:
 [[mutation-testing-gate-2026-06-15]] preserves the FMX-172 research layer for
 the ADR-0118 Stryker follow-up. It grounds draft
 [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]]
-plus draft [[../40-Quality/stryker-mutation-testing-gate]]: high-risk
+plus accepted [[../40-Quality/stryker-mutation-testing-gate]]: high-risk
 deterministic/domain scope, baseline-first 70 break / 80 low / 90 high
 activation, reporting -> nightly/release -> possible PR subgate cadence,
 latest-stable Stryker/Vitest pairing at adoption, CI-only incremental cache and
-deterministic survivor triage. Decisions remain pending in
+deterministic survivor triage. Decisions were accepted on 2026-06-19 in
 [[../40-Execution/fmx-172-stryker-mutation-gate-decision-queue-2026-06-15]].
 Raw captures:
 [[raw-perplexity/raw-mutation-testing-gate-2026-06-15]],
@@ -947,7 +947,7 @@ GD-0002's match-model gates. It recommends a hybrid event-chain +
 xT/EPV-style utility + shot xG + weighted/logistic attribute-contest model,
 v1 statistical envelopes, profile-specific spatial sample density and a
 calibration harness with golden replays, seed sweeps, goodness-of-fit tests and
-background-fast compatibility checks. Decision remains pending Nico in
+background-fast compatibility checks. Decision remains accepted by Nico 2026-06-19 in
 [[../40-Execution/fmx-133-match-engine-core-model-decision-queue-2026-06-13]];
 draft decision home is
 [[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]]. Raw captures:
@@ -965,9 +965,9 @@ recommends draft
 [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
 and [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]] so
 accepted GDDRs point to concrete slots instead of generic FMX-52 economy
-calibration. Decision remains pending Nico in
+calibration. Decision remains accepted by Nico 2026-06-19 in
 [[../40-Execution/fmx-141-gameplay-calibration-decision-queue-2026-06-13]].
-Recommended packet: gameplay-wide umbrella, 14-slot taxonomy, T0-T4 harness
+Approved packet: gameplay-wide umbrella, 14-slot taxonomy, T0-T4 harness
 tiers, Nico-owned rebaseline authority until delegated and realism-anchored
 fun/perception overrides. Raw captures:
 [[raw-perplexity/raw-gameplay-calibration-sim-precedents-2026-06-13]],
@@ -1053,7 +1053,7 @@ Raw captures:
 research layer for the monetization pre-mortem finding
 PM-2026-05-20-04-F-01. It recommends a free core, deterministic cosmetics,
 optional non-power Supporter Club, later cosmetic-only season card and a strict
-no-P2W entitlement taxonomy. The decision remains pending Nico in
+no-P2W entitlement taxonomy. The decision remains accepted by Nico 2026-06-19 in
 [[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]; draft
 decision homes are [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
 and [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]].
@@ -1067,11 +1067,11 @@ Raw captures:
 
 [[no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] preserves the FMX-190
 research layer for the project-wide no-P2W / shared-state fairness invariant. It
-recommends a dedicated draft ADR: real-money entitlements may unlock presentation,
+recommends a dedicated accepted ADR: real-money entitlements may unlock presentation,
 identity, account service or isolated singleplayer assistance, but must have zero
 effect on competitive shared state. It treats paid information advantage as
 forbidden power, classifies mechanically inert visible cosmetics as non-competitive
-and proposes a future Vitest/fast-check architecture gate. Decision remains pending
+and proposes a future Vitest/fast-check architecture gate. Decision is accepted
 Nico in [[../40-Execution/fmx-190-no-p2w-mp-fairness-decision-queue-2026-06-13]];
 draft decision home is
 [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]].
@@ -1088,7 +1088,7 @@ for ADR-0063's open legal-sensitive gates. It recommends web MoR-first payment
 provider posture with direct PSP fallback, Apple/Google IAP for native in-app
 digital cash, immediate-delivery waiver plus unspent-only revocation and no
 gameplay rollback, proportional age assurance and a paid activation compliance
-gate. Decision remains pending Nico in
+gate. Decision remains accepted by Nico 2026-06-19 in
 [[../40-Execution/fmx-194-monetization-legal-gates-decision-queue-2026-06-13]];
 draft decision home is
 [[../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates]]
@@ -1246,10 +1246,10 @@ balance constants and Progressive UI. The original Investor line is amended by
 FMX-41: if activated, Investor is clean singleplayer cash with no debt,
 owner-control, fan-penalty or multiplayer effect.
 
-This feeds draft [[../50-Game-Design/GD-0008-finance-economy]], draft
+This feeds accepted [[../50-Game-Design/GD-0008-finance-economy]], draft
 [[../20-Features/feature-club-economy-mvp-pillar]], draft
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
-draft [[../30-Implementation/club-economy-accounting-ledger]].
+accepted [[../30-Implementation/club-economy-accounting-ledger]].
 
 ## Club Economy Impact Map and Commercial Contracts (2026-05-28)
 
@@ -1271,7 +1271,7 @@ economy.
 This feeds draft
 [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], accepted
 [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
-and draft [[../30-Implementation/club-economy-commercial-contracts]].
+and accepted [[../30-Implementation/club-economy-commercial-contracts]].
 
 ## Player Contract Lifecycle FSM (2026-06-03)
 
@@ -1310,7 +1310,7 @@ surfaces and never joins source-domain state while rendering. Raw capture:
 
 This feeds proposed
 [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]],
-draft [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
+accepted [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
 [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]],
 [[../20-Features/feature-ai-narration-mvp-pillar]] and
 [[../30-Implementation/ai-narration-contract-testing-framework]].
@@ -1327,8 +1327,8 @@ bounded scaling. Raw capture:
 
 This feeds draft
 [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]],
-draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]],
-draft [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
+accepted [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]],
+accepted [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]],
 [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]],
 [[../20-Features/feature-ai-narration-mvp-pillar]] and
 [[../30-Implementation/ai-narration-contract-testing-framework]].
@@ -1343,7 +1343,7 @@ It rejects one global elasticity constant, keeps numbers as tunable profile
 ranges, and documents country-profile tendencies for Germany, England, Spain,
 Italy and France.
 
-This refines draft [[../50-Game-Design/audience-and-atmosphere]], draft
+This refines accepted [[../50-Game-Design/audience-and-atmosphere]], draft
 [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]], draft
 [[../50-Game-Design/economy-system]] and draft
 [[../30-Implementation/club-economy-commercial-contracts]].
@@ -1414,7 +1414,7 @@ This refines draft
 [[../50-Game-Design/stadium-and-campus]], draft
 [[../20-Features/feature-club-economy-mvp-pillar]], accepted
 [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
-and draft [[../30-Implementation/club-economy-commercial-contracts]].
+and accepted [[../30-Implementation/club-economy-commercial-contracts]].
 
 ## Cup and Competition Revenue Profiles (2026-05-28)
 
@@ -1449,7 +1449,7 @@ This refines draft
 [[../20-Features/feature-club-economy-mvp-pillar]], accepted
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]],
 accepted [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
-and draft [[../30-Implementation/club-economy-commercial-contracts]].
+and accepted [[../30-Implementation/club-economy-commercial-contracts]].
 
 ## Matchday Operating Costs and Risk-Cost Settlement (2026-05-29)
 
@@ -1632,7 +1632,7 @@ This refines binding
 [[../50-Game-Design/community-editor-and-datasets]], proposed
 [[../10-Architecture/09-Decisions/ADR-0059-community-overlay-pipeline-context]],
 binding [[../30-Implementation/privacy-and-consent]], current
-[[data-generators]] and draft [[../50-Game-Design/sponsorship-portfolio]].
+[[data-generators]] and accepted [[../50-Game-Design/sponsorship-portfolio]].
 
 ## AI Club Economy Behaviour (2026-06-01)
 
@@ -1663,7 +1663,7 @@ Proposed model:
   explainability (full narration deferred).
 
 AI owner support is in-fiction (equity / soft loan), never the singleplayer Investor.
-Feeds draft [[../50-Game-Design/GD-0023-ai-club-economy-behaviour]] and resolves the
+Feeds accepted [[../50-Game-Design/GD-0023-ai-club-economy-behaviour]] and resolves the
 economy slice of [[../50-Game-Design/GD-0010-ai-world]] R2-04/R2-06. All ratio bands
 and damper gains are IP-clean calibration inputs for the FMX-52 capstone. Raw passes:
 [[raw-perplexity/raw-ai-club-economy-behaviour-2026-06-01]].
@@ -1701,7 +1701,7 @@ This refines draft
 [[../50-Game-Design/regulations-and-compliance]], draft
 [[../20-Features/feature-club-economy-mvp-pillar]], accepted
 [[../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger]] and
-draft [[../30-Implementation/club-economy-accounting-ledger]]. Thresholds,
+accepted [[../30-Implementation/club-economy-accounting-ledger]]. Thresholds,
 media-advance activation, board guarantees, emergency-sale hardness and supplier
 arrears depth remain Nico-gated decisions.
 
@@ -1732,7 +1732,7 @@ Current draft direction:
 
 The executable contract (fixtures, seeds, invariants, parameter/scenario sheets) is in
 [[../30-Implementation/economy-calibration-and-soak-test-runbook]]; it cross-links
-draft [[../50-Game-Design/economy-system]] §12 and consumes
+accepted [[../50-Game-Design/economy-system]] §12 and consumes
 [[ai-club-economy-behaviour-2026-06-01]], [[top5-country-economy-profiles-2026-05-29]],
 [[club-financing-tools-2026-06-01]], [[determinism-and-replay]] and
 [[pre-mortem/PM-2026-05-20-16-test-strategy-depth]]. No ADR/GDDR changed; final
@@ -1760,8 +1760,8 @@ Original 2026-05-27 draft direction:
 - Nico prefers central info/settings disclosure; legal sufficiency remains
   unresolved until the Article 50 release gate.
 
-This feeds draft [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
-and draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
+This feeds accepted [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]]
+and accepted [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
 
 ## AI Narration, World and Dialogue MVP (2026-05-28)
 
@@ -1786,8 +1786,8 @@ Current draft direction:
 This amends draft
 [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], draft
 [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]],
-draft [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]],
-draft [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+accepted [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]],
+accepted [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
 and adds [[../20-Features/feature-ai-narration-mvp-pillar]].
 
 ## AI Narration Testing and Framework (2026-05-28)
@@ -1802,7 +1802,7 @@ gates, season-simulation checks and a playtest rubric for emotional continuity.
 
 This feeds draft
 [[../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]]
-and draft [[../30-Implementation/ai-narration-contract-testing-framework]].
+and accepted [[../30-Implementation/ai-narration-contract-testing-framework]].
 
 ## EOS Player, Staff, Skills and Personas (2026-05-28)
 
@@ -1850,7 +1850,7 @@ Current draft direction:
 
 This feeds draft
 [[../50-Game-Design/GD-0021-player-staff-development-and-decision-influence]],
-amends draft [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
+amends accepted [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]]
 and informs the player lifecycle, training medicine and transfer-market feature
 specs.
 
@@ -1878,7 +1878,7 @@ Current draft direction:
 
 This feeds draft
 [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
-and amends draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
+and amends accepted [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]]
 for key-event match ticker commentary.
 
 ## Isometric Stadium & Campus Presentation (2026-05-27)

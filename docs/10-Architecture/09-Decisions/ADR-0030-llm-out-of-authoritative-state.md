@@ -1,11 +1,11 @@
 ---
 title: ADR-0030 LLM Out Of Authoritative State Boundary
 status: accepted
-tags: [adr, architecture, ai, llm, narrative, determinism, openrouter]
+tags: [adr, architecture, ai, llm, narrative, determinism, openrouter, accepted]
 created: 2026-05-27
-updated: 2026-06-16
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -37,6 +37,11 @@ related:
 ---
 
 # ADR-0030: LLM Out Of Authoritative State Boundary
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
 
 ## Status
 
@@ -296,11 +301,11 @@ Prompt payloads must not contain:
 Use placeholder tokens such as `{{manager_name}}`, `{{club_name}}` and
 `{{player_name_1}}`, then substitute locally after validation.
 
-### FMX-188 untrusted UGC prompt-injection boundary (proposal)
+### FMX-188 untrusted UGC prompt-injection boundary (accepted)
 
-FMX-188 adds a decision-pending defensive contract for any future path where
+FMX-188 adds an accepted defensive contract for any future path where
 community-pack / UGC text can influence runtime LLM prose. It does not make UGC
-trusted and does not authorize a runtime release. The proposed contract is:
+trusted and does not authorize a runtime release. The accepted contract is:
 
 - Treat all community-pack text as untrusted data, including pack
   descriptions, club lore, fan-group copy, chants, media copy, slogans and

@@ -1,11 +1,11 @@
 ---
 title: FMX-172 Stryker mutation gate decision queue
-status: current
-tags: [execution, decision-queue, testing, quality, mutation, stryker, vitest, determinism, ci, fmx-172]
+status: accepted
+tags: [execution, decision-queue, testing, quality, mutation, stryker, vitest, determinism, ci, fmx-172, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-172
 related:
   - [[../60-Research/mutation-testing-gate-2026-06-15]]
@@ -17,8 +17,12 @@ related:
 
 # FMX-172 Stryker mutation gate decision queue
 
-This is the HITL decision packet for FMX-172. No option below is accepted until
-Nico decides.
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-172.
+
+
+This is the HITL decision packet for FMX-172. Nico accepted the approved packet on 2026-06-19.
 
 ## D1 - mutation scope
 
@@ -30,7 +34,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D2 - threshold and baseline model
 
@@ -42,7 +46,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D3 - CI placement and blocking cadence
 
@@ -54,7 +58,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D4 - Stryker/Vitest config and version posture
 
@@ -66,7 +70,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D5 - incremental cache and artifact policy
 
@@ -78,7 +82,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D6 - deterministic survivor policy
 
@@ -90,7 +94,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## Decision record
 
@@ -101,8 +105,8 @@ Nico decides.
   `codex/fmx-172-stryker-mutation-gate`.
 - 2026-06-15: Perplexity-first research saved and weak citations separated
   from source-checked evidence.
-- 2026-06-15: Decision-pending synthesis, draft ADR-0125 and draft quality
-  runbook prepared.
+- 2026-06-15: Decision synthesis, ADR-0125 and current quality runbook prepared;
+  promoted after Nico approval on 2026-06-19.
 
 ## Proposed packet
 
@@ -121,6 +125,13 @@ longer listed as a follow-up gap.
 - If not, which specific decision should change: D1, D2, D3, D4, D5 or D6?
 - Should mutation become eligible for PR blocking after burn-in, or should it
   remain release/nightly-only even for high-risk deterministic packages?
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A**.
+
+No open Nico decision remains for FMX-172.
 
 ## Related
 

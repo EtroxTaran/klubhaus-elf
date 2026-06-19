@@ -1,11 +1,11 @@
 ---
 title: FMX-159 Watch Party Context Ownership Decision Queue
-status: draft
-tags: [execution, decision-queue, ddd, bounded-context, watch-party, match, notification, offline-sync, crdt, fmx-159]
+status: accepted
+tags: [execution, decision-queue, ddd, bounded-context, watch-party, match, notification, offline-sync, crdt, fmx-159, accepted]
 created: 2026-06-17
-updated: 2026-06-17
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-159
 related:
   - [[../60-Research/watch-party-context-ownership-2026-06-17]]
@@ -20,16 +20,21 @@ related:
 
 # FMX-159 Watch Party Context Ownership Decision Queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-159.
+
+
 ## Status
 
-Awaiting Nico. This queue records recommendations only; no Watch Party
-context-definition ADR becomes binding until Nico answers.
+Accepted by Nico on 2026-06-19. This queue records recommendations only; no Watch Party
+context-definition ADR becomes binding after Nico approved it on 2026-06-19.
 
 ## D1 - Documentation Shape
 
 Options:
 
-- **A. Dedicated Watch Party context-definition ADR.** One draft ADR records
+- **A. Dedicated Watch Party context-definition ADR.** One accepted ADR records
   scope, aggregate inventory, published language, consumed facts and ACLs.
 - **B. State-machine-only cleanup.** Patch `watch-party.md` and the
   bounded-context map without a canonical ADR.
@@ -150,7 +155,7 @@ coordination.
 Options:
 
 - **A. Keep ADR-0133 draft/non-binding in this PR and patch stale ADR-0015
-  spectator references to ADR-0099 plus the draft ADR-0133 hook.**
+  spectator references to ADR-0099 plus the accepted ADR-0133 hook.**
 - **B. Accept ADR-0133 in this PR based on agent recommendation.**
 - **C. Avoid source cleanup until after approval.**
 
@@ -178,4 +183,9 @@ Operational interpretation:
 ## Nico Decision Log
 
 Pending.
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A, D7=A, D8=A**.
+
+No open Nico decision remains for FMX-159.
 

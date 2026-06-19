@@ -19,9 +19,9 @@ related:
 
 ## Goals
 
-- Define the missing release/versioning and app-build identity proposal.
+- Define the missing release/versioning and app-build identity accepted record.
 - Preserve Perplexity-first research plus source checks.
-- Keep all architecture decisions pending Nico approval.
+- Keep all architecture decisions accepted 2026-06-19 Nico approval.
 
 ## Completed
 
@@ -34,7 +34,7 @@ related:
 - Source-checked primary docs for SemVer, Docker digests, GitHub artifact
   attestations, SLSA provenance, Dokploy rollbacks, Workbox service-worker
   lifecycle, Sentry-compatible releases and Football Manager update behavior.
-- Added draft ADR-0132 and draft release runbook.
+- Added accepted ADR-0132 and accepted release runbook.
 - Added FMX-178 decision queue with D1-D7 recommendations.
 - Updated front doors and adjacent deployment/telemetry/roadmap notes with
   non-binding references.
@@ -59,7 +59,7 @@ related:
 
 ## Blockers
 
-- FMX-178 remains decision-pending until Nico approves or changes D1-D7.
+- FMX-178 remains accepted until Nico approves or changes D1-D7.
 
 ## Durable Notes Updated
 
@@ -76,5 +76,5 @@ related:
 
 ## Promotion Needed
 
-- After Nico approval, convert draft references from "proposal only" to active
+- After Nico approval, convert draft references from "accepted decision" to active
   release requirements and update Linear/PR status accordingly.

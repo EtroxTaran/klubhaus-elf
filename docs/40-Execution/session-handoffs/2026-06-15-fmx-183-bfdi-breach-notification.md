@@ -45,14 +45,14 @@ related:
 ## Open Tasks
 
 - Nico decision needed: D1-D5 in the decision queue.
-- If accepted, promote front-door wording from decision-pending to accepted and
+- If accepted, promote front-door wording from accepted to accepted and
   keep the operational home split stable.
 - Push/open the PR and link it to Linear.
 
 ## Decisions Made
 
 - No architecture, privacy or legal decision made by the agent. Recommended
-  packet is D1-D5 = A/A/A/A/A, pending Nico.
+  packet is D1-D5 = A/A/A/A/A, accepted by Nico 2026-06-19.
 
 ## Blockers
 

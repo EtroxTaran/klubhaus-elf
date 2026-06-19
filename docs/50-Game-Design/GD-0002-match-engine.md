@@ -1,15 +1,20 @@
 ---
 title: GD-0002 Match Engine & Simulation Model
 status: accepted
-tags: [game-design, gddr, match-engine, spatial-event]
+tags: [game-design, gddr, match-engine, spatial-event, accepted]
 created: 2026-05-17
-updated: 2026-06-13
+updated: 2026-06-19
 type: game-design
-binding: false
+binding: true
 related: [[README]], [[match-engine]], [[GD-0004-tactics]], [[GD-0010-ai-world]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../60-Research/anstoss-series-deep-dive]], [[../95-Archive/gap-reports/research-wave-2-gaps]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/modules/match-engine]]
 ---
 
 # GD-0002: Match Engine & Simulation Model
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this game-design record is now
+> binding according to its approved scope.
+
 
 ## Status
 
@@ -56,7 +61,7 @@ from the same committed event/spatial truth.
 
 ## Open / spike gates
 
-> **FMX-133 proposed closure packet (2026-06-13, pending Nico).**
+> **FMX-133 proposed closure packet (2026-06-13, accepted by Nico 2026-06-19).**
 > [[GD-0042-match-engine-core-model-and-calibration]] prepares the remaining
 > match-model and calibration decisions as a non-binding D1-D6 packet. The
 > ADR-0096 runtime/numeric closures below are already accepted; the GD-0042

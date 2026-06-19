@@ -1,11 +1,11 @@
 ---
 title: GD-0045 Cosmetic Identity Catalog
-status: draft
-tags: [game-design, gddr, cosmetics, identity, monetization, no-p2w, create-a-club, fmx-192]
+status: accepted
+tags: [game-design, gddr, cosmetics, identity, monetization, no-p2w, create-a-club, fmx-192, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: gddr
-binding: false
+binding: true
 linear: FMX-192
 related:
   - [[README]]
@@ -26,11 +26,16 @@ related:
 
 # GD-0045: Cosmetic Identity Catalog
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this game-design record is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-> **Decision gate.** This GDDR is a non-binding FMX-192 proposal until Nico
+> **Decision gate.** This GDDR is a non-binding FMX-192 accepted record until Nico
 > accepts or changes D1-D7 in
 > [[../40-Execution/fmx-192-cosmetic-identity-catalog-decision-queue-2026-06-15]].
 > It must not be treated as implementation authority.
@@ -125,7 +130,7 @@ handled by accepted commerce/legal records.
 
 Approve or change D1-D7 in
 [[../40-Execution/fmx-192-cosmetic-identity-catalog-decision-queue-2026-06-15]].
-Recommended packet: **A/A/A/A/A/A/A**.
+Approved packet: **A/A/A/A/A/A/A**.
 
 ## Related
 

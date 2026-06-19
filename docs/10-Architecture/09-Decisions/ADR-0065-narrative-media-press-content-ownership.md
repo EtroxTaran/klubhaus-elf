@@ -1,11 +1,11 @@
 ---
 title: ADR-0065 Narrative Media and Press Content Ownership
 status: accepted
-tags: [adr, architecture, ddd, narrative, media, press, notification, people, llm, fmx-31]
+tags: [adr, architecture, ddd, narrative, media, press, notification, people, llm, fmx-31, accepted]
 created: 2026-06-02
-updated: 2026-06-15
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -31,6 +31,11 @@ related:
 ---
 
 # ADR-0065: Narrative Media and Press Content Ownership
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
 
 ## Status
 

@@ -19,10 +19,10 @@ future-scope or historical planning unless they are listed as binding
 (ADR-0092); since the 2026-06-08 ratification all GD-0001–GD-0040 GDDRs are
 `accepted`, while the non-numbered system/mode notes are `draft` pending
 individual re-approval (FMX-143 H2). GD-0041 is the FMX-191 monetization/no-P2W
-proposal, GD-0042 is the FMX-133 match-engine core model/calibration proposal,
-GD-0043 is the FMX-141 gameplay calibration ownership proposal and GD-0045 is
-the FMX-192 cosmetic identity catalog proposal; all four remain `draft`
-pending Nico. GD-0044 is the accepted FMX-137 Create-a-Club Roguelite
+accepted record, GD-0042 is the FMX-133 match-engine core model/calibration accepted record,
+GD-0043 is the FMX-141 gameplay calibration ownership accepted record and GD-0045 is
+the FMX-192 cosmetic identity catalog accepted record; all four are accepted
+accepted by Nico 2026-06-19. GD-0044 is the accepted FMX-137 Create-a-Club Roguelite
 run-tuning record. This means old `Future-scope notes`
 sections are not active work by default.
 
@@ -52,12 +52,12 @@ sections are not active work by default.
 - [[../60-Research/cup-and-competition-revenue-profiles-2026-05-28]]
 - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
 - [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]] -
-  draft FMX-191 monetization/no-P2W canon; decision pending Nico.
+  accepted FMX-191 monetization/no-P2W canon; decision accepted 2026-06-19 Nico.
 - [[../60-Research/monetization-model-and-no-p2w-canon-2026-06-13]] -
   FMX-191 research synthesis for the recommended free-core, cosmetics,
   Supporter Club and no-P2W entitlement model.
 - [[../60-Research/no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] -
-  FMX-190 research synthesis for the proposed project-wide no-P2W / shared-state
+  FMX-190 research synthesis for the accepted project-wide no-P2W / shared-state
   zero-effect invariant that enforces the FMX-191 promise.
 - [[../60-Research/investor-mp-transition-neutralization-2026-06-16]] -
   FMX-189 accepted clarification: Investor/time-saving payloads are
@@ -70,9 +70,9 @@ sections are not active work by default.
 - [[../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
 - [[../60-Research/commercial-contract-lifecycle-and-breach-model-2026-05-28]]
 - [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]]
-- [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] - draft FMX-192
-  cosmetic identity catalog proposal; decision pending Nico.
-- [[../20-Features/feature-cosmetic-identity-catalog]] - draft feature slice
+- [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] - accepted FMX-192
+  cosmetic identity catalog accepted record; decision accepted 2026-06-19 Nico.
+- [[../20-Features/feature-cosmetic-identity-catalog]] - current feature slice
   for Create-a-Club baseline identity and cosmetic catalog hooks.
 
 ## Sporting core
@@ -100,9 +100,9 @@ sections are not active work by default.
 - [[../50-Game-Design/set-pieces]]
 - [[../50-Game-Design/match-engine]]
 - [[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] -
-  draft FMX-133 core model/calibration proposal; pending Nico D1-D6.
+  accepted FMX-133 core model/calibration accepted record; accepted by Nico 2026-06-19 D1-D6.
 - [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] -
-  draft FMX-141 gameplay calibration ownership proposal; pending Nico D1-D5.
+  accepted FMX-141 gameplay calibration ownership accepted record; accepted by Nico 2026-06-19 D1-D5.
 - [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]]
 - [[../60-Research/match-engine-core-model-2026-06-13]] - FMX-133 synthesis for
   statistical envelopes, xG/EPV/action utility, profile density and calibration
@@ -144,7 +144,7 @@ sections are not active work by default.
   FMX-87 dialogue-intent taxonomy and effect matrix for player, staff, board,
   press/media, fan-rep and agent surfaces.
 - [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]] - FMX-162
-  decision-pending synthesis for reconciling GD-0028 dialogue/press intents,
+  accepted synthesis for reconciling GD-0028 dialogue/press intents,
   ADR-0065 press aliases and ADR-0085 media coverage effect-intents into one
   advisory catalog. Draft ADR:
   [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
@@ -161,7 +161,7 @@ sections are not active work by default.
   lesson, deterministic feed-card scoring and keyboard-first / WCAG 2.2 AA
   route requirements.
 - [[../50-Game-Design/onboarding-and-tutorial]] - detailed onboarding system
-  spec (`draft`, pending individual re-approval — FMX-143 H4).
+  spec (`draft`, accepted individual re-approval — FMX-143 H4).
 - [[../60-Research/onboarding-guided-first-season-2026-06-03]] - FMX-99 research
   synthesis for R2-05.
 - [[../50-Game-Design/progressive-disclosure-ui]]
@@ -236,20 +236,20 @@ reconciliation 2026-06-11):
   [[../50-Game-Design/README]] precedence rules). Wave-2-gated items inside
   accepted GDDRs remain scope-gated, not implementable.
 - **Not binding:** [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
-  is `draft` pending the FMX-191 Nico decision queue;
+  is `draft` accepted the FMX-191 Nico decision queue;
   [[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] is `draft`
-  pending the FMX-133 Nico decision queue;
+  accepted the FMX-133 Nico decision queue;
   [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
-  is `draft` pending the FMX-141 Nico decision queue;
-  [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] is `draft` pending the
+  is `draft` accepted the FMX-141 Nico decision queue;
+  [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] is `draft` accepted the
   FMX-192 Nico decision queue; related draft
   [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
-  is the FMX-190 enforcement proposal pending its own Nico decision queue.
+  is the FMX-190 enforcement accepted record accepted its own Nico decision queue.
 - **Binding research synthesis:** [[../60-Research/player-strength-presentation]]
   (Impact Lens, no global OVR).
 - **Not binding (planning context):** the non-numbered system/mode notes
   (mode-create-a-club-roguelite, mode-manage-a-club-career,
   singleplayer-baseline, onboarding-and-tutorial, tactics-system, match-engine,
-  transfer-market-and-contracts, …) are `draft` pending individual re-approval
+  transfer-market-and-contracts, …) are `draft` accepted individual re-approval
   (FMX-143 H2/H4); fan-ecology is `superseded`. They must not contradict the
   GDDR of record.

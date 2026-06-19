@@ -1,11 +1,11 @@
 ---
 title: ADR-0131 Squad & Player Context Definition
-status: draft
-tags: [adr, architecture, ddd, bounded-context, sporting-core, squad-player, player-state, availability, contracts, discipline, fmx-132]
+status: accepted
+tags: [adr, architecture, ddd, bounded-context, sporting-core, squad-player, player-state, availability, contracts, discipline, fmx-132, accepted]
 created: 2026-06-16
-updated: 2026-06-16
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 linear: FMX-132
 amends:
   - [[ADR-0018-systemic-events-and-player-lifecycle]]
@@ -30,11 +30,16 @@ related:
 
 # ADR-0131: Squad & Player Context Definition
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-Prepared for FMX-132 on 2026-06-16. Not binding until Nico approves D1-D7 in
+Prepared for FMX-132 on 2026-06-16. Binding after Nico approved D1-D7 on 2026-06-19 in
 [[../../40-Execution/fmx-132-sporting-core-context-definitions-decision-queue-2026-06-16]].
 
 ## Date
@@ -118,7 +123,7 @@ Current accepted/current event families:
 - `PreContractWindowOpened`
 - `PreContractAgreed`
 
-Proposal-only event names pending Nico/code-phase refinement:
+accepted event names accepted by Nico 2026-06-19/code-phase refinement:
 
 - `PlayerMoraleChanged`
 - `PlayerFitnessStateChanged`
@@ -182,7 +187,7 @@ Queries/read models, draft public language:
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. Squad & Player owns durable player state and aggregate families | Training/Match emit signals/facts; Squad & Player applies state. | **Recommended, awaiting Nico.** Matches ADR-0018/0073/0078. |
+| A. Squad & Player owns durable player state and aggregate families | Training/Match emit signals/facts; Squad & Player applies state. | **Recommended, accepted by Nico 2026-06-19.** Matches ADR-0018/0073/0078. |
 | B. Keep only a generic `Player` aggregate listed | Avoids detail. | Leaves too much ambiguity for implementation. |
 | C. Split Medical or Contracts now | Add new contexts now. | Premature portfolio growth; GD-0040 keeps Contracts as extraction seam only. |
 
@@ -212,4 +217,3 @@ Negative / constraints:
 - [[../../50-Game-Design/GD-0040-future-contracts-clm-extraction-seam]]
 - [[../state-machines/player-contract-lifecycle]]
 - [[../state-machines/player-discipline]]
-

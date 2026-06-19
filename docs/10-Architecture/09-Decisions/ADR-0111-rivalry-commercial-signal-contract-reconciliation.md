@@ -1,11 +1,11 @@
 ---
 title: ADR-0111 Rivalry Commercial Signal Contract Reconciliation
-status: draft
-tags: [adr, architecture, ddd, rivalry, commercial, derby, bounded-context, contract, fmx-134]
+status: accepted
+tags: [adr, architecture, ddd, rivalry, commercial, derby, bounded-context, contract, fmx-134, accepted]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 amends:
   - [[ADR-0057-rivalry-system-context]]
   - [[ADR-0058-club-economy-commercial-impact-boundary]]
@@ -23,9 +23,14 @@ related:
 
 # ADR-0111: Rivalry Commercial Signal Contract Reconciliation
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
 > **Decision gate.** This ADR is the non-binding FMX-134 proposal. It becomes
 > binding only if Nico approves D1-D3 in

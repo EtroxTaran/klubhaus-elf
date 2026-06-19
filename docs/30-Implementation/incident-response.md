@@ -3,14 +3,19 @@ title: Incident Response
 status: current
 tags: [implementation, operations, incident-response, observability, gdpr, privacy, breach-notification, bfdi, fmx-183]
 created: 2026-05-17
-updated: 2026-06-15
+updated: 2026-06-19
 type: implementation
-binding: false
+binding: true
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]
 related: [[observability-runbook]], [[deployment-dokploy]], [[audit-trail]], [[../60-Research/telemetry-privacy]], [[privacy-and-consent]], [[secrets-management]], [[../60-Research/breach-notification-runbook-2026-06-15]], [[../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15]]
 ---
 
 # Incident Response
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
 
 ## Purpose
 

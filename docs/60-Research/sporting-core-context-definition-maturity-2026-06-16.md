@@ -95,7 +95,7 @@ Accepted local decisions already constrain the answer:
 | B. One Sporting Core umbrella ADR | One large ADR defines all three contexts and the seams between them. | Lower document count, but high risk of a mixed omnibus ADR and future edit conflicts. |
 | C. Keep fragmented rows/per-feature ADRs | Update the map and rely on existing ADRs. | Cheapest now, but leaves R2-03/open ownership ambiguity and makes future implementation teams reconstruct the boundary from scattered notes. |
 
-Recommendation: **A**, with all three ADRs draft until Nico approves D1-D7 in
+Recommendation: **A**, with all three ADRs draft after Nico approved D1-D7 on 2026-06-19 in
 the decision queue.
 
 ## Proposed Context Shape
@@ -144,9 +144,9 @@ the persistent tactics library.
 
 ## Event-status Cleanup
 
-FMX-132 should not invent a new Sporting Core mega-event catalog. The draft ADRs
+FMX-132 should not invent a new Sporting Core mega-event catalog. The accepted ADRs
 collect the current published language per context and mark additional names as
-proposal-only.
+accepted record-only.
 
 Current accepted/ratified event families used by the drafts:
 
@@ -168,7 +168,7 @@ Current accepted/ratified event families used by the drafts:
   `ContractRenewed`, `PlayerContractLifecycleAdvanced`,
   `PreContractWindowOpened`, `PreContractAgreed`.
 
-Names not already accepted are explicitly proposal-only in ADR-0129/0130/0131.
+Names not already accepted are explicitly accepted record-only in ADR-0129/0130/0131.
 
 ## GD-0005 R2-03 Handling
 
@@ -184,13 +184,13 @@ Recommended closure:
 
 ## Decision Status
 
-Awaiting Nico in
+Accepted by Nico 2026-06-19 in
 [[../40-Execution/fmx-132-sporting-core-context-definitions-decision-queue-2026-06-16]].
 
 Until then:
 
 - ADR-0129/0130/0131 are draft/non-binding;
 - bounded-context map updates are descriptive and proposed where they touch
-  pending choices;
-- no implementation may use the draft ADRs as accepted authority.
+  accepted choices;
+- no implementation may use the accepted ADRs as accepted authority.
 

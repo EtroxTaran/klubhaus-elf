@@ -28,21 +28,21 @@ stubs as future-scope planning, not open documentation gaps.
 - [[feature-roguelite-mvp-first-playable]] — approved first playable scope,
   amended with FMX-16 manager-archetype run-analysis hooks.
 - [[feature-transfer-market-ai-and-contracts]] - approved transfer-market foundation and explanation layer.
-- [[feature-club-economy-mvp-pillar]] - draft FMX-13 economy MVP pillar:
+- [[feature-club-economy-mvp-pillar]] - accepted FMX-13 economy MVP pillar:
   weekly ledger, full accounting, commercial contracts and staged insolvency.
-- [[feature-ai-narration-mvp-pillar]] - draft FMX-3 AI narration MVP pillar:
+- [[feature-ai-narration-mvp-pillar]] - accepted FMX-3 AI narration MVP pillar:
   Full Dialogue, All Active actor context, Narrative context framework,
   Playtest First, template fallback, Runtime-LLM gates and FMX-88 fallback
   manifest/no-export constraints, with FMX-87 finite dialogue intents and
   effect-owner matrix planning.
-- [[feature-eos-player-skills-and-people-context]] - draft FMX-23 feature
+- [[feature-eos-player-skills-and-people-context]] - accepted FMX-23 feature
   slice for player skills/perks, People context, persona context cards and
   GD-0021 decision-influence hooks.
-- [[feature-statistics-analytics-hub-mvp]] - draft FMX-94 MVP Analytics Hub:
+- [[feature-statistics-analytics-hub-mvp]] - accepted FMX-94 MVP Analytics Hub:
   Key Findings, Last Match, Team/Player Analysis, standings/leaders, form,
   comparison, maps/heatmaps and Manager & Legacy handoff snapshots. FMX-131
   keeps official standings/rollover authority in League Orchestration.
-- [[feature-cosmetic-identity-catalog]] - draft FMX-192 cosmetic identity
+- [[feature-cosmetic-identity-catalog]] - accepted FMX-192 cosmetic identity
   catalog slice for free Create-a-Club baseline identity, IP-clean
   crest/kit/palette taxonomy and no-P2W pricing hooks.
 

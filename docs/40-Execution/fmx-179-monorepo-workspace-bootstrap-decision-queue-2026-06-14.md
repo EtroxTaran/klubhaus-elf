@@ -1,11 +1,11 @@
 ---
 title: FMX-179 monorepo workspace bootstrap decision queue
-status: current
-tags: [execution, decision-queue, monorepo, workspace, nx, pnpm, ddd, pending, fmx-179]
+status: accepted
+tags: [execution, decision-queue, monorepo, workspace, nx, pnpm, ddd, pending, fmx-179, accepted]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-179
 related:
   - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]
@@ -16,9 +16,14 @@ related:
 
 # FMX-179 monorepo workspace bootstrap decision queue
 
-This queue converts the FMX-179 research into explicit Nico decisions before
-draft [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap|ADR-0114]]
-can become binding or a follow-up PR can create workspace files.
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-179.
+
+
+This queue records Nico's accepted FMX-179 decisions for
+[[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap|ADR-0114]]
+and any follow-up PR that creates workspace files.
 
 ## D1 - bounded-context package granularity
 
@@ -111,13 +116,20 @@ can become binding or a follow-up PR can create workspace files.
   main, so this beat uses ADR-0114.
 - 2026-06-14: Perplexity-first research, Context7/Ref source checks and npm
   registry checks saved.
-- 2026-06-14: synthesis, draft ADR-0114 and scaffold plan prepared as
+- 2026-06-14: synthesis, accepted ADR-0114 and scaffold plan prepared as
   non-binding proposal records.
-- Pending Nico: D1-D8 above.
+- Accepted by Nico 2026-06-19: D1-D8 above.
 
 ## Recommended approval packet
 
 Approve **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A, D7=A, D8=A**.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A, D7=A, D8=A**.
+
+No open Nico decision remains for FMX-179.
 
 ## Related
 

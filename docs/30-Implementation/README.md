@@ -21,9 +21,9 @@ operational runbooks. Current implementable notes are classified by
 - [[code-phase-dod-transition-contract]] - executable docs-phase -> code-phase
   Definition-of-Done bridge; code gates are target-only until bootstrap creates
   workspace, Nx, scripts, CI and app/package paths.
-- [[stack-currency-ledger]] - FMX-168 draft tooling-currency ledger for
+- [[stack-currency-ledger]] - FMX-168 accepted tooling-currency ledger for
   source-checked package/tool rows, source-conflict policy, risk rings and
-  bootstrap compatibility gates. Pending Nico approval in
+  bootstrap compatibility gates. Accepted by Nico 2026-06-19 in
   [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]].
 - [[../60-Research/code-ci-pipeline-2026-06-15]] - FMX-175 accepted code-CI
   context contract: active `docs-check` / `linear-id`, future `quality` /
@@ -33,7 +33,7 @@ operational runbooks. Current implementable notes are classified by
   the first real workspace: progressive context package catalog, real foundation
   packages only, Nx/pnpm/TypeScript linking and no-placeholder gate activation
   after ADR-0114 approval.
-- [[release-versioning-app-build-process]] - FMX-178 draft release runbook for
+- [[release-versioning-app-build-process]] - FMX-178 accepted release runbook for
   future app versioning, generated `release.json`, immutable Dokploy promotion,
   rollback, PWA update UX and beta release ownership after ADR-0132 approval.
 - [[cursor-cloud-agent-workflow]] - cloud-agent operational steps.

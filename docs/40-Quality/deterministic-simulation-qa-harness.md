@@ -1,11 +1,11 @@
 ---
 title: Deterministic Simulation QA Harness
-status: draft
+status: current
 tags: [quality, determinism, replay, soak-test, save-forward, match-engine, fmx-196]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: quality
-binding: false
+binding: true
 linear: FMX-196
 related:
   - [[../60-Research/deterministic-simulation-qa-harness-2026-06-15]]
@@ -20,6 +20,11 @@ related:
 ---
 
 # Deterministic Simulation QA Harness
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
 
 This is the non-binding FMX-196 draft runbook for deterministic simulation QA.
 It becomes binding only if Nico accepts draft

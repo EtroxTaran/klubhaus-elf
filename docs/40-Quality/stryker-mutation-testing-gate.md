@@ -1,11 +1,11 @@
 ---
 title: Stryker Mutation Testing Gate
-status: draft
+status: current
 tags: [quality, testing, mutation, stryker, vitest, determinism, ci, fmx-172]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: quality
-binding: false
+binding: true
 linear: FMX-172
 related:
   - [[../60-Research/mutation-testing-gate-2026-06-15]]
@@ -18,6 +18,11 @@ related:
 ---
 
 # Stryker Mutation Testing Gate
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
 
 This is the non-binding FMX-172 draft runbook. It becomes binding only if Nico
 accepts draft

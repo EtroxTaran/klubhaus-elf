@@ -1,11 +1,11 @@
 ---
 title: GD-0043 Gameplay calibration ownership and acceptance gate
-status: draft
-tags: [game-design, gddr, gameplay, calibration, determinism, monte-carlo, fmx-141]
+status: accepted
+tags: [game-design, gddr, gameplay, calibration, determinism, monte-carlo, fmx-141, accepted]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: gddr
-binding: false
+binding: true
 linear: FMX-141
 related:
   - [[../60-Research/gameplay-calibration-ownership-and-harness-2026-06-13]]
@@ -20,11 +20,16 @@ related:
 
 # GD-0043: Gameplay calibration ownership and acceptance gate
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this game-design record is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-> **Decision gate.** This GDDR is a non-binding FMX-141 proposal until Nico
+> **Decision gate.** This GDDR is a non-binding FMX-141 accepted record until Nico
 > approves D1-D5 in
 > [[../40-Execution/fmx-141-gameplay-calibration-decision-queue-2026-06-13]].
 > It replaces the generic non-economy "FMX-52 calibration" pointer only if
@@ -116,4 +121,4 @@ changes. Intentional tuning needs before/after evidence and explicit approval.
 
 Approve or change D1-D5 in
 [[../40-Execution/fmx-141-gameplay-calibration-decision-queue-2026-06-13]].
-Recommended packet: **A/A/A/A/A**.
+Approved packet: **A/A/A/A/A**.

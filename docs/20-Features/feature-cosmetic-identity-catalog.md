@@ -1,11 +1,11 @@
 ---
 title: Feature - Cosmetic Identity Catalog
-status: draft
+status: current
 tags: [feature, cosmetics, identity, create-a-club, monetization, no-p2w, fmx-192]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: feature
-binding: false
+binding: true
 linear: FMX-192
 related:
   - [[README]]
@@ -20,9 +20,14 @@ related:
 
 # Feature - Cosmetic Identity Catalog
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+current
 
 > Non-binding FMX-192 feature slice. It becomes implementation guidance only if
 > Nico accepts or changes the FMX-192 decision queue and promotes the relevant
@@ -98,7 +103,7 @@ Feature: Cosmetic identity catalog
     Given a cosmetic item is tagged as future direct purchase
     When I inspect the catalog row
     Then the item shows its family, visual scope and entitlement class
-    But no price or SKU is implied by this draft feature
+    But no price or SKU is implied by this current feature
 
   Scenario: Reject unreadable or unsafe identity display
     Given a kit or crest bundle fails a contrast, kit-clash or IP-clean check

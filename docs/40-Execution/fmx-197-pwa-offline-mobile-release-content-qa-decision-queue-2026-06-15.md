@@ -1,11 +1,11 @@
 ---
 title: FMX-197 PWA offline mobile release content QA decision queue
-status: current
-tags: [execution, decision-queue, pwa, offline, mobile, rollback, content-qa, localization, llm, quality, fmx-197]
+status: accepted
+tags: [execution, decision-queue, pwa, offline, mobile, rollback, content-qa, localization, llm, quality, fmx-197, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-197
 related:
   - [[../60-Research/pwa-offline-mobile-release-content-qa-gates-2026-06-15]]
@@ -17,8 +17,12 @@ related:
 
 # FMX-197 PWA offline mobile release content QA decision queue
 
-This is the HITL decision packet for FMX-197. No option below is accepted until
-Nico decides.
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-197.
+
+
+This is the HITL decision packet for FMX-197. Nico accepted the approved packet on 2026-06-19.
 
 ## D1 - offline/degradation scope
 
@@ -30,7 +34,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D2 - storage budget and eviction policy
 
@@ -42,7 +46,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D3 - service-worker update and rollback
 
@@ -54,7 +58,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D4 - rollout and release evidence
 
@@ -66,7 +70,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D5 - content-pack validation gates
 
@@ -78,7 +82,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D6 - generated/localized content safety
 
@@ -90,7 +94,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D7 - evidence retention and rebaseline
 
@@ -102,7 +106,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## Decision record
 
@@ -113,8 +117,8 @@ Nico decides.
   `codex/fmx-197-pwa-offline-mobile-release-qa`.
 - 2026-06-15: Perplexity-first research saved and weak citations separated
   from source-checked evidence.
-- 2026-06-15: Decision-pending synthesis, draft ADR-0124 and draft quality
-  runbook prepared.
+- 2026-06-15: Decision synthesis, ADR-0124 and current quality runbook prepared;
+  promoted after Nico approval on 2026-06-19.
 
 ## Proposed packet
 
@@ -133,6 +137,13 @@ is listed as accepted rather than follow-up.
 - If not, which specific decision should change: D1, D2, D3, D4, D5, D6 or D7?
 - Should any release/content evidence be kept longer than the recommended
   versioned evidence record?
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A, D7=A**.
+
+No open Nico decision remains for FMX-197.
 
 ## Related
 

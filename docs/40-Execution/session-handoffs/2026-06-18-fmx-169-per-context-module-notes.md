@@ -54,7 +54,7 @@ None. The packet is non-binding and awaits Nico.
 
 ## Blockers
 
-Architecture-surface decision pending.
+Architecture-surface decision accepted 2026-06-19.
 
 ## Durable Notes Updated
 

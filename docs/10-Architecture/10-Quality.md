@@ -20,9 +20,9 @@ Accepted [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]] and current
 [[../40-Quality/test-strategy]] are the FMX-177 future code-phase test-strategy
 packet; they stay target-only until code-phase bootstrap creates real scripts
 and package/app paths.
-Draft [[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
+Accepted [[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
 and [[../40-Quality/deterministic-simulation-qa-harness]] are the FMX-196
-simulation-specific QA packet; they remain non-binding until Nico approves
+simulation-specific QA packet; they are binding after Nico approved on 2026-06-19
 D1-D7.
 Accepted [[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
 and [[../40-Quality/architecture-fitness-function]] add the FMX-167 future
@@ -160,7 +160,7 @@ real scanner scripts, violation fixtures, workflows and burn-in exist.
 
 - [[../30-Implementation/ci-and-review-process]] — enforcement model · [[../30-Implementation/agent-workflow-pattern]] — review phases
 - [[../40-Quality/test-strategy]] — FMX-177 current test strategy · [[09-Decisions/ADR-0118-test-strategy-and-quality-gates]] — accepted ADR
-- [[../40-Quality/deterministic-simulation-qa-harness]] — FMX-196 draft simulation QA runbook · [[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]] — draft ADR
+- [[../40-Quality/deterministic-simulation-qa-harness]] — FMX-196 draft simulation QA runbook · [[09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]] — accepted ADR
 - [[../40-Quality/architecture-fitness-function]] — FMX-167 architecture-fitness runbook · [[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]] — accepted ADR
 - [[09-Decisions/ADR-0021-revised-tech-stack]] — toolchain decision
 - [[08-Crosscutting]] — arc42 sibling

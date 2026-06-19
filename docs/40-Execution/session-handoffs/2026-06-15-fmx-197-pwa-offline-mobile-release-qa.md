@@ -26,7 +26,7 @@ related:
 - Created branch/worktree
   `codex/fmx-197-pwa-offline-mobile-release-qa`.
 - Captured Perplexity-first research and source checks.
-- Added decision-pending synthesis, draft ADR-0124 and draft quality runbook.
+- Added synthesis, accepted ADR-0124 and current quality runbook.
 - Added Nico decision queue D1-D7 with recommendations.
 - Updated front-door indexes, test strategy, research summary and raw/handoff
   maps.
@@ -58,5 +58,5 @@ related:
 
 ## Needs promotion
 
-- ADR-0124 and the PWA/offline/mobile/release/content-QA runbook need
-  promotion only after Nico approves the pending decision packet.
+- ADR-0124 and the PWA/offline/mobile/release/content-QA runbook were promoted
+  after Nico approved the decision packet on 2026-06-19.

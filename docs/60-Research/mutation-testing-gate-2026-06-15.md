@@ -27,7 +27,7 @@ scope, thresholds, CI placement, incremental artifacts and deterministic
 game-code handling.
 
 This packet does not add code, dependencies or CI workflows. It stays
-non-binding until Nico accepts D1-D6 in
+binding after Nico approved D1-D6 on 2026-06-19 in
 [[../40-Execution/fmx-172-stryker-mutation-gate-decision-queue-2026-06-15]].
 
 ## Current authority

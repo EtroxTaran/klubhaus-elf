@@ -1,11 +1,11 @@
 ---
 title: GD-0041 Monetization Model and No-Pay-to-Win Canon
-status: draft
-tags: [game-design, gddr, monetization, no-p2w, pricing, cosmetics, supporter, fmx-191]
+status: accepted
+tags: [game-design, gddr, monetization, no-p2w, pricing, cosmetics, supporter, fmx-191, accepted]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: gddr
-binding: false
+binding: true
 addresses: [PM-2026-05-20-04-F-01]
 related:
   - [[../60-Research/monetization-model-and-no-p2w-canon-2026-06-13]]
@@ -20,11 +20,16 @@ related:
 
 # GD-0041: Monetization Model and No-Pay-to-Win Canon
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this game-design record is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-> **Decision gate.** This GDDR is a non-binding FMX-191 proposal until Nico approves
+> **Decision gate.** This GDDR is a non-binding FMX-191 accepted record until Nico approves
 > the D1-D5 packet in
 > [[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]. It is written in
 > "if ratified" language and must not be treated as implementation authority yet.
@@ -42,12 +47,12 @@ FMX already has one monetized gameplay-adjacent concept:
 Investor cash. This GDDR does not reopen that payment boundary. It proposes the
 game-design rule that keeps it isolated from shared competition.
 
-FMX-190 follows this model-level canon with draft
+FMX-190 follows this model-level canon with accepted
 [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]:
-the proposed project-wide enforcement invariant for no-P2W, shared saves,
+the project-wide enforcement invariant for no-P2W, shared saves,
 rankings, async groups, watch-party state, official comparisons, exports and
-future multiplayer. ADR-0108 is also non-binding until Nico approves its D1-D5
-packet.
+future multiplayer. ADR-0108 is also binding after Nico approved D1-D5 on
+2026-06-19.
 
 ## Proposed decision if ratified
 
@@ -115,12 +120,12 @@ the SKU fails this GDDR unless Nico explicitly supersedes the canon.
 - Concrete prices, SKU ids, tax, refund, withdrawal, PSP/MoR, Apple/Google purchase
   integration and age-gate implementation.
 - CI/test enforcement implementation; FMX-190 now provides the proposed
-  draft ADR-0108 contract, but no code gate exists until the app/toolchain
+  accepted ADR-0108 contract, but no code gate exists until the app/toolchain
   returns and Nico accepts the decision packet.
 - Product analytics vendor and consent implementation.
 
 ## Open Nico decisions
 
 Approve or change the D1-D5 packet in
-[[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]. Recommended packet:
+[[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]. Approved packet:
 **A/A/A/A/A**.

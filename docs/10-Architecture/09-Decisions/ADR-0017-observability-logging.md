@@ -19,8 +19,8 @@ related: [[../../60-Research/telemetry-privacy]], [[../../60-Research/observabil
 > they add ~3–5 GB RAM and upgrade/2am surface for zero pre-scale payoff, and
 > Alloy already future-proofs re-adding them as a collector-config + container
 > change. The original qualitative re-add trigger is being tightened by the
-> **FMX-171 proposed amendment** below; until Nico approves it, the concrete
-> thresholds remain proposal text, not a new accepted clause. GlitchTip is
+> **FMX-171 accepted amendment** below; until Nico approves it, the concrete
+> thresholds remain accepted record text, not a new accepted clause. GlitchTip is
 > confirmed over self-hosted Sentry (~16 GB / 40+
 > containers — rejected at this scale). Substrate note: references to "SurrealDB"
 > as a log/metric *source* now mean Postgres per [[ADR-0021-revised-tech-stack]].
@@ -32,7 +32,7 @@ related: [[../../60-Research/telemetry-privacy]], [[../../60-Research/observabil
 > Until then, ADR-0017 remains binding only on the generic release/build id and
 > source-map tie.
 
-> **FMX-171 proposed amendment (2026-06-18, pending Nico):**
+> **FMX-171 accepted amendment (2026-06-18, accepted by Nico 2026-06-19):**
 > [[../../60-Research/observability-trace-backend-readd-trigger-2026-06-18]]
 > proposes concrete Tempo/Mimir re-add signals and an MVP span policy. Tempo is
 > re-added only when `TempoBackendRequired` fires: after at least two
@@ -43,7 +43,7 @@ related: [[../../60-Research/telemetry-privacy]], [[../../60-Research/observabil
 > required 15-month retention would need `--storage.tsdb.retention.size` above
 > 80% of the dedicated TSDB disk for seven consecutive days. Span coverage is
 > designed now, but MVP production trace export stays no-op /
-> `AlwaysOffSampler` / no exporter until Tempo is enabled. Pending Nico:
+> `AlwaysOffSampler` / no exporter until Tempo is enabled. Accepted by Nico 2026-06-19:
 > [[../../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]].
 
 ## Status
@@ -157,8 +157,8 @@ encrypted save blobs or full IndexedDB records.
 Allowed correlation fields are release/build id, route/screen id,
 feature area, pseudonymous telemetry subject id, request/correlation id
 and non-user-entered aggregate ids when operationally necessary. FMX-178
-proposes the concrete release/build field names in draft ADR-0132; those names
-are not binding until Nico approves that ADR.
+proposes the concrete release/build field names in accepted ADR-0132; those names
+are binding after Nico approved that ADR.
 
 ### 5. Ingestion topology
 
@@ -224,7 +224,7 @@ are useful.
 
 ### 8. Proposed Tempo/Mimir re-add and span policy (FMX-171)
 
-Pending Nico's decision queue, use this policy text as the concrete proposed
+Accepted by Nico 2026-06-19's decision queue, use this policy text as the concrete proposed
 amendment:
 
 - `TempoBackendRequired` fires when a production or staging incident occurs

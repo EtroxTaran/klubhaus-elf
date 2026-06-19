@@ -37,8 +37,8 @@ related:
 
 ## Blockers
 
-- No implementation blocker. The calibration taxonomy remains non-binding until
-  Nico approves it.
+- No approval blocker remains. Nico approved D1-D5 on 2026-06-19; the
+  calibration taxonomy is binding.
 
 ## Changed vault paths
 
@@ -51,4 +51,4 @@ related:
 
 ## Needs promotion
 
-- GD-0043 can become binding only after Nico approves D1-D5.
+- GD-0043 is binding after Nico approved D1-D5 on 2026-06-19.

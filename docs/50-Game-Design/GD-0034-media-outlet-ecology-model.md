@@ -1,11 +1,11 @@
 ---
 title: GD-0034 Media-Outlet Ecology Model
 status: accepted
-tags: [game-design, gddr, media, media-ecology, outlets, press, editorial-stance, narrative, fmx-82]
+tags: [game-design, gddr, media, media-ecology, outlets, press, editorial-stance, narrative, fmx-82, accepted]
 created: 2026-06-07
-updated: 2026-06-15
+updated: 2026-06-19
 type: gddr
-binding: false
+binding: true
 linear: FMX-82
 related:
   - [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]]
@@ -23,6 +23,11 @@ related:
 ---
 
 # GD-0034: Media-Outlet Ecology Model
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this game-design record is now
+> binding according to its approved scope.
+
 
 > **Status `draft`.** The gameplay-design companion to **ADR-0085** (architecture/boundary).
 > Authored after Nico chose FMX-82 D1–D4 live (2026-06-07). All numeric magnitudes are
@@ -159,7 +164,7 @@ Harness: T1/T3 outlet-cadence, stance-drift and long-save media-density sweeps i
 ## Open / deferred
 
 - The RNG label (`WorldAiMgmtRng` media sub-label vs a dedicated `MediaRng`) — ADR-0085 open item.
-- The full outlet→effect-intent taxonomy is prepared by FMX-162 in
+- The full outlet→effect-intent taxonomy is accepted by FMX-162 in
   [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]
-  and remains non-binding until Nico accepts its decision queue.
+  and is binding after Nico approved the decision queue on 2026-06-19.
 - Authored outlet archetype/name catalogues (content scope, not a design decision here).

@@ -1,11 +1,11 @@
 ---
 title: "FMX-192 cosmetic identity catalog decision queue"
-status: current
-tags: [execution, decision-queue, cosmetics, identity, monetization, no-p2w, fmx-192]
+status: accepted
+tags: [execution, decision-queue, cosmetics, identity, monetization, no-p2w, fmx-192, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-192
 related:
   - [[../60-Research/cosmetic-identity-catalog-2026-06-15]]
@@ -20,22 +20,27 @@ related:
 
 # FMX-192 cosmetic identity catalog decision queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-192.
+
+
 ## Beat state
 
 - Linear: FMX-192 moved from Backlog to In Progress on 2026-06-15.
 - Branch/worktree: `codex/fmx-192-cosmetic-identity-catalog` at
   `/tmp/fmx-192-cosmetic-identity-catalog`.
 - Base: refreshed `main` / `origin/main` at `0623009` before work started.
-- Packet: raw research, source checks, synthesis, draft GD-0045, draft feature
+- Packet: raw research, source checks, synthesis, accepted GD-0045, current feature
   slice and handoff prepared.
-- Binding status: non-binding until Nico answers D1-D7.
+- Binding status: binding after Nico approved D1-D7 on 2026-06-19.
 
-## Nico decisions needed
+## Accepted Nico Decisions
 
 ### D1 - Record shape
 
-Option A: Use draft [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] plus
-draft [[../20-Features/feature-cosmetic-identity-catalog]], no new ADR for this
+Option A: Use accepted [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]] plus
+accepted [[../20-Features/feature-cosmetic-identity-catalog]], no new ADR for this
 beat.
 
 Option B: Add a new ADR for the catalog contract now.
@@ -144,9 +149,15 @@ while preserving a future non-power product hook.
 - Keep pricing/SKU/payment/refund questions routed to the commerce/legal
   packets rather than smuggling them into this catalog.
 
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A, D7=A**.
+
+No open Nico decision remains for FMX-192.
+
 ## Related
 
 - [[../60-Research/cosmetic-identity-catalog-2026-06-15]]
 - [[../50-Game-Design/GD-0045-cosmetic-identity-catalog]]
 - [[../20-Features/feature-cosmetic-identity-catalog]]
-

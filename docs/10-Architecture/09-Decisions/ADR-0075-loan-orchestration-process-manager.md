@@ -53,7 +53,7 @@ accepted
 > Management, and consuming `YouthLoaned`. This ADR adds **no new bounded context** and locks
 > **no numeric constants** (loan-quality weights, minutes thresholds, penalty sizes and exact
 > domestic loan caps are calibration/Regulations data). A 1-row bounded-context-map
-> clarification is proposed in §Map patch proposal but is **not** applied until ratification.
+> clarification is proposed in §Map patch accepted record but is **not** applied until ratification.
 
 > **FMX-155 amendment (2026-06-16):** Nico accepted the Regulations data follow-up in
 > [[../../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]].
@@ -63,7 +63,7 @@ accepted
 > [[../../60-Research/loan-cap-and-obligation-catalog-2026-06-16]]. The remaining numeric
 > playing-time / loan-quality / penalty magnitudes stay FMX-52 calibration.
 
-> **FMX-157 pending follow-up (2026-06-19):**
+> **FMX-157 accepted follow-up (2026-06-19):**
 > [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
 > sketches a versioned `YouthLoanedV1` producer event from Youth Academy into
 > this Transfer-led PM. The recommendation does not change the PM host,
@@ -268,7 +268,7 @@ Draft events consumed:
 - Match per-fixture minutes facts (authoritative minutes)
 - `SeasonAdvanced` / window-open ticks (League Orchestration, via Regulations window queries)
 
-FMX-157 candidate payload details for `YouthLoaned` remain pending in
+FMX-157 candidate payload details for `YouthLoaned` were accepted on 2026-06-19 in
 [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
 and are not part of this ADR until Nico accepts the decision queue.
 
@@ -387,7 +387,7 @@ Outbox per ADR-0028 for all emitted events and financial intents.
   `LoanCapVerdict`/window queries match the agreed shape; Match minutes facts match; Youth
   `YouthLoaned` materialises a `proposed` loan.
 
-## Map patch proposal (not applied — ratify-gated)
+## Map patch accepted record (not applied — ratify-gated)
 
 No new bounded context. On ratification, the [[../bounded-context-map]] §1 **Transfer** row gains
 a clause: *"hosts the Loan-Orchestration Process Manager (saga) coordinating Squad & Player /

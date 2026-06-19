@@ -35,7 +35,7 @@ The runtime/numeric substrate is already accepted: one Rust-authored WASM module
 everywhere with mandatory integer/fixed-point replay-bearing math. FMX-133 uses
 that as an input.
 
-This synthesis is non-binding until Nico approves the decision packet in
+This synthesis is binding after Nico approved the decision packet on 2026-06-19 in
 [[../40-Execution/fmx-133-match-engine-core-model-decision-queue-2026-06-13]].
 
 ## Evidence synthesis
@@ -175,4 +175,3 @@ Approve D1-D6 as **A/A/A/A/A/A** in
   [[raw-perplexity/raw-match-engine-calibration-harness-2026-06-13]].
 - Stronger source checks:
   [[raw-perplexity/raw-match-engine-source-checks-2026-06-13]].
-

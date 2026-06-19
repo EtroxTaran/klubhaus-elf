@@ -1,11 +1,11 @@
 ---
 title: ADR-0109 Payment Provider and Monetization Legal Gates
-status: draft
-tags: [adr, architecture, monetization, payment, merchant-of-record, refund, age-gate, compliance, legal, fmx-194]
+status: accepted
+tags: [adr, architecture, monetization, payment, merchant-of-record, refund, age-gate, compliance, legal, fmx-194, accepted]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 amends:
   - [[ADR-0063-investor-entitlement-and-payment-boundary]]
   - [[ADR-0107-pricing-and-iap-monetization-boundary]]
@@ -27,9 +27,14 @@ related:
 
 # ADR-0109: Payment Provider and Monetization Legal Gates
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
 > **Decision gate.** This ADR is the non-binding FMX-194 proposal. It becomes
 > binding only if Nico approves D1-D5 in

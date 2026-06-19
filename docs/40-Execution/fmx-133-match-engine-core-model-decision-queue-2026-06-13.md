@@ -1,11 +1,11 @@
 ---
 title: FMX-133 Match-engine core model decision queue
-status: current
-tags: [execution, decision-queue, match-engine, calibration, pending, fmx-133]
+status: accepted
+tags: [execution, decision-queue, match-engine, calibration, pending, fmx-133, accepted]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-133
 related:
   - [[../60-Research/match-engine-core-model-2026-06-13]]
@@ -17,10 +17,15 @@ related:
 
 # FMX-133 Match-engine core model decision queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-133.
+
+
 This is the HITL decision queue for FMX-133. It turns
 [[../60-Research/match-engine-core-model-2026-06-13]] into explicit Nico decisions
-before [[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration|GD-0042]]
-can become binding or supersede GD-0002's open gates.
+for accepted [[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration|GD-0042]]
+and the superseded GD-0002 open gates.
 
 ## D1 - action utility architecture
 
@@ -91,9 +96,13 @@ can become binding or supersede GD-0002's open gates.
   but uneven.
 - 2026-06-13: Draft [[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration|GD-0042]]
   prepared as the non-binding proposed closure packet.
-- Pending Nico: D1-D6 above.
+- Accepted by Nico 2026-06-19: D1-D6 above.
 
 ## Recommended approval packet
 
 Approve **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A**.
+## Approved Packet
 
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A**.
+
+No open Nico decision remains for FMX-133.
