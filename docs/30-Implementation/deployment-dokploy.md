@@ -3,11 +3,11 @@ title: Dokploy Deployment
 status: current
 tags: [deployment, implementation, dokploy, observability, release, versioning]
 created: 2026-05-15
-updated: 2026-06-16
+updated: 2026-06-18
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]]
-related: [[../10-Architecture/07-Deployment]], [[observability-runbook]], [[client-telemetry]], [[release-versioning-app-build-process]]
+related: [[../10-Architecture/07-Deployment]], [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]], [[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]], [[observability-runbook]], [[client-telemetry]], [[release-versioning-app-build-process]]
 ---
 
 # Dokploy Deployment
@@ -119,13 +119,14 @@ clearly separated section in the main stack:
 | `alloy` | log/metric/trace collection | private except explicit browser ingest proxy |
 | `loki` | operational logs | private |
 | `prometheus` | metrics | private |
-| `tempo` | traces | private |
+| `tempo` | deferred trace backend; add after FMX-171 `TempoBackendRequired` | private |
 | `glitchtip` | crash/error reporting | ingest public; admin protected |
 | `glitchtip-postgres` | GlitchTip data | private |
 | `glitchtip-redis` | GlitchTip queue/cache | private |
 
-Prometheus/Tempo may be added after Loki/GlitchTip if rollout needs to
-stay smaller. The accepted target remains the full stack.
+Tempo stays out of the MVP compose group until Nico approves FMX-171 and
+`TempoBackendRequired` fires. Prometheus is part of the MVP metrics profile;
+Mimir is added only if the FMX-171 Prometheus retention-budget trigger fires.
 
 ## Routing and Access
 
@@ -139,7 +140,7 @@ Protected/admin-only:
 
 - Grafana UI;
 - GlitchTip admin UI;
-- Prometheus, Loki and Tempo APIs;
+- Prometheus and Loki APIs, plus Tempo APIs when Tempo is deployed;
 - Alloy debug UI / internal endpoints;
 - Postgres, SurrealDB, Redis and Centrifugo.
 
@@ -163,7 +164,7 @@ Persist separately:
 - Grafana data, dashboards and alert rules.
 - Loki chunks/index.
 - Prometheus time-series database.
-- Tempo trace blocks.
+- Tempo trace blocks once Tempo is enabled.
 - GlitchTip database and uploaded source maps.
 
 Do not co-locate telemetry volumes with encrypted save data in a way that
@@ -176,8 +177,13 @@ Configure retention to match ADR-0017:
 - Loki: 14 days raw logs.
 - GlitchTip: 30 days crash reports.
 - Prometheus: 15 months metrics.
-- Tempo: 7 days traces.
+- Tempo: 7 days traces once enabled.
 - Client offline telemetry: max 24 hours before send/drop.
+
+FMX-171 proposed Mimir trigger: add Mimir/remote-write when the daily
+Prometheus capacity check shows that 15-month metrics retention would require
+`--storage.tsdb.retention.size` above 80% of dedicated Prometheus TSDB disk for
+seven consecutive days.
 
 Domain audit retention is not configured here; ADR-0028 stores it in
 Postgres outbox/archive partitions. Save archive pressure is governed by

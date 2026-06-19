@@ -7,6 +7,22 @@ updated: 2026-06-18
 
 # Research Summary
 
+## Observability Trace Backend Re-add Trigger (FMX-171, 2026-06-18)
+
+[[observability-trace-backend-readd-trigger-2026-06-18]] preserves the FMX-171
+Perplexity-first and source-checked packet for replacing ADR-0017's qualitative
+Tempo/Mimir re-add wording with concrete draft signals. Recommendation pending
+Nico: re-add Tempo only after a split runtime path exists and one
+staging/production incident cannot be localised with Loki + Prometheus within 30
+minutes; re-add Mimir when 15-month Prometheus retention would require
+`--storage.tsdb.retention.size` above 80% of dedicated TSDB disk for seven
+daily checks; keep span coverage now but production trace export no-op /
+`AlwaysOffSampler` / no exporter until Tempo is enabled. Decision queue:
+[[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]].
+Raw captures:
+[[raw-perplexity/raw-observability-trace-backend-readd-trigger-2026-06-18]],
+[[raw-perplexity/raw-observability-trace-backend-source-checks-2026-06-18]].
+
 ## ICU-MF1 Risk Register Reconciliation (FMX-161, 2026-06-18)
 
 [[icu-mf1-risk-register-reconciliation-2026-06-18]] preserves the FMX-161

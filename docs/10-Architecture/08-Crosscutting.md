@@ -3,10 +3,10 @@ title: Crosscutting Concerns
 status: current
 tags: [architecture, security, quality, observability, logging]
 created: 2026-05-15
-updated: 2026-06-08
+updated: 2026-06-18
 type: architecture
 binding: false
-related: [[09-Decisions/ADR-0017-observability-logging]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[09-Decisions/ADR-0100-story-thread-ownership-and-cross-context-naming]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/telemetry-privacy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/client-telemetry]]
+related: [[09-Decisions/ADR-0017-observability-logging]], [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]], [[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[09-Decisions/ADR-0100-story-thread-ownership-and-cross-context-naming]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/telemetry-privacy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/client-telemetry]]
 ---
 
 # Crosscutting Concerns
@@ -29,8 +29,20 @@ ADR-0017 2026-05-19 amendment) is:
 
 Grafana Tempo (traces) and Mimir are **deferred** at MVP per the ADR-0017
 amendment; Alloy keeps them re-addable as a collector-config + container change.
-Tracing spans (below) are an OpenTelemetry instrumentation contract regardless of
-whether the Tempo backend is deployed yet.
+FMX-171 proposes the concrete trigger policy. Until Nico approves it, the
+current draft is:
+
+- Tempo when `TempoBackendRequired` fires: after a split runtime path exists,
+  one incident cannot be localised with Loki + Prometheus within 30 minutes.
+- Mimir when `MimirBackendRequired` fires: 15-month Prometheus retention would
+  need `--storage.tsdb.retention.size` above 80% of dedicated TSDB disk for
+  seven consecutive daily checks.
+
+Tracing spans (below) are an OpenTelemetry **coverage contract** regardless of
+whether the Tempo backend is deployed yet. At MVP, production span export is
+off: no-op tracing or `AlwaysOffSampler` plus no exporter; with
+autoconfiguration, `OTEL_TRACES_EXPORTER=none` is the off-profile safety flag.
+Do not emit sampled spans to Alloy only to drop them while Tempo is absent.
 
 Operational logs, crash reports, metrics, traces, domain audit events and the
 security audit log are different data classes. Do not collapse them into one
@@ -327,7 +339,7 @@ ship.
 
 - Server-only secrets stay behind server functions or server-only modules.
 - CSP must include only approved telemetry endpoints before production.
-- Grafana, Loki, Prometheus, Tempo and GlitchTip are admin-only.
+- Grafana, Loki, Prometheus, Tempo when deployed and GlitchTip are admin-only.
 - Source maps uploaded for crash reporting are protected operational
   assets, not public artifacts.
 - Production credentials, `.env*`, keys and secret stores are never read

@@ -17,6 +17,17 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-171 Observability trace backend re-add trigger (2026-06-18)
+
+Perplexity-first discovery and targeted source checks for concrete Tempo/Mimir
+re-add signals, Prometheus local TSDB retention budget and OpenTelemetry JS
+MVP span posture.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-observability-trace-backend-readd-trigger-2026-06-18]] | Perplexity discovery pass for trace-backend adoption triggers, Prometheus TSDB pressure, Mimir timing and OTel JS no-export/no-sampling options | [[../observability-trace-backend-readd-trigger-2026-06-18]] |
+| [[raw-observability-trace-backend-source-checks-2026-06-18]] | Source checks for Prometheus storage, Mimir, Tempo metrics-from-traces, Alloy OTLP pipelines, OTel JS sampler/exporter config and current stable versions | [[../observability-trace-backend-readd-trigger-2026-06-18]] |
+
 ## FMX-165 ADR-0090 command queue seam propagation (2026-06-18)
 
 Perplexity-first discovery and targeted source checks for propagating accepted

@@ -18,6 +18,15 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Observability Trace Backend Re-add Trigger](../60-Research/observability-trace-backend-readd-trigger-2026-06-18.md) -
+  FMX-171 Perplexity-first and source-checked packet for concrete Tempo/Mimir
+  re-add signals and MVP span policy. Recommendation pending Nico:
+  `TempoBackendRequired` after split runtime path plus one 30-minute
+  Loki/Prometheus localisation failure; `MimirBackendRequired` when 15-month
+  Prometheus retention needs `--storage.tsdb.retention.size` above 80% of
+  dedicated TSDB disk for seven daily checks; span coverage now with production
+  trace export off until Tempo is enabled. Decision queue:
+  [FMX-171 decision queue](../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18.md).
 - [ICU-MF1 Risk Register Reconciliation](../60-Research/icu-mf1-risk-register-reconciliation-2026-06-18.md) -
   FMX-161 Perplexity-first and source-checked packet for reconciling the stale
   `11-Risks` "i18n ICU-MF1 validation pending" row with ADR-0094's
