@@ -3,10 +3,10 @@ title: Crosscutting Concerns
 status: current
 tags: [architecture, security, quality, observability, logging]
 created: 2026-05-15
-updated: 2026-06-18
+updated: 2026-06-19
 type: architecture
 binding: false
-related: [[09-Decisions/ADR-0017-observability-logging]], [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]], [[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[09-Decisions/ADR-0100-story-thread-ownership-and-cross-context-naming]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/telemetry-privacy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/client-telemetry]]
+related: [[09-Decisions/ADR-0017-observability-logging]], [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]], [[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0091-audit-security-context-definition]], [[09-Decisions/ADR-0092-vault-governance-status-ssot-and-reference-integrity-sweep]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0094-i18n-stack-and-locale-scope]], [[09-Decisions/ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[09-Decisions/ADR-0100-story-thread-ownership-and-cross-context-naming]], [[09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/telemetry-privacy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/client-telemetry]], [[../60-Research/argon2id-wasm-kdf-validation-2026-06-19]], [[../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19]]
 ---
 
 # Crosscutting Concerns
@@ -351,6 +351,13 @@ ship.
   the OWASP-preferred memory-hard KDF) for the **portable-export passphrase** —
   the only brute-forceable, P2P-travelling secret — loaded only on the
   export/import path. The `kdfAlgo` envelope field discriminates the two.
+  FMX-173 adds a non-binding validation packet: exact-pinned `hash-wasm@4.12.0`
+  is the recommended first provider, the OWASP Argon2id floor is the minimum
+  profile, KDF work stays in one Web Worker, offline availability is required
+  after install/precache, and module/performance failure must fail closed unless
+  Nico approves a different fallback. See
+  [[../60-Research/argon2id-wasm-kdf-validation-2026-06-19]] and
+  [[../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19]].
 
 ## Accessibility and Internationalisation
 
