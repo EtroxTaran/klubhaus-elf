@@ -1,13 +1,14 @@
 ---
 title: FMX-185 age assurance handoff
-status: current
+status: promoted
 tags: [execution, handoff, age-gate, age-assurance, compliance, fmx-185]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: handoff
 binding: false
 linear: FMX-185
 related:
+  - [[2026-06-19-fmx-185-age-assurance-promotion]]
   - [[../../60-Research/age-assurance-and-iarc-rating-2026-06-14]]
   - [[../../40-Compliance/age-assurance-and-rating-evidence]]
   - [[../../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]
@@ -15,6 +16,10 @@ related:
 ---
 
 # FMX-185 age assurance handoff
+
+> **Promoted 2026-06-19 by [[2026-06-19-fmx-185-age-assurance-promotion]].**
+> Nico approved D1-D6 = A/A/A/A/A/A; ADR-0112 is now accepted/binding. This
+> older handoff remains the original research-session record.
 
 ## Goals
 
@@ -42,19 +47,17 @@ related:
 
 ## Open Tasks
 
-- Nico to approve or change D1-D6 in the decision queue.
-- If approved later, promote ADR-0112 to accepted/binding and sweep pending
-  wording.
 - Legal review still required before public release or any paid activation.
 
 ## Decisions Made
 
-No binding project decisions were made by the agent. Recommended packet:
-D1/D2/D3/D4/D5/D6 = A/A/A/A/A/A.
+No binding project decisions were made in this original research session.
+Nico approved the recommended D1/D2/D3/D4/D5/D6 = A/A/A/A/A/A packet later on
+2026-06-19; see [[2026-06-19-fmx-185-age-assurance-promotion]].
 
 ## Blockers
 
-- ADR-0112 remains draft until Nico approval.
+- Historical blocker resolved 2026-06-19. ADR-0112 is accepted/binding.
 
 ## Durable Notes Updated
 
@@ -69,4 +72,5 @@ D1/D2/D3/D4/D5/D6 = A/A/A/A/A/A.
 
 ## Promotion Needed
 
-Promote ADR-0112 only after Nico accepts the decision queue.
+None. Promotion completed 2026-06-19 in
+[[2026-06-19-fmx-185-age-assurance-promotion]].

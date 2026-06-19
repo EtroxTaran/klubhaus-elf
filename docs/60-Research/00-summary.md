@@ -766,18 +766,21 @@ Raw captures:
 ## Age Assurance and IARC/USK Rating Evidence (FMX-185, 2026-06-14)
 
 [[age-assurance-and-iarc-rating-2026-06-14]] preserves the FMX-185 research
-layer for the MVP age-gate/rating-evidence contract. It recommends draft
-ADR-0112: a proportional 16+ self-declaration before account fields and optional
-telemetry, no under-16 account/refusal persistence/optional telemetry trail, and
-a separate IARC/USK evidence packet before store submission or paid activation.
-Decision remains pending Nico in
+layer for the MVP age-gate/rating-evidence contract. Nico accepted the D1-D6 =
+A/A/A/A/A/A packet on 2026-06-19 and promoted ADR-0112: a proportional 16+
+self-declaration before account fields and optional telemetry, no under-16
+account/refusal persistence/optional telemetry trail, no DOB, and a separate
+IARC/USK evidence packet before store submission or paid activation. Legal/store
+review still gates public release, storefront submission and paid activation.
+Decision record:
 [[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]]. Compliance
 evidence home: [[../40-Compliance/age-assurance-and-rating-evidence]]. Raw
 captures:
 [[raw-perplexity/raw-age-assurance-legal-posture-2026-06-14]],
 [[raw-perplexity/raw-age-rating-iarc-usk-evidence-2026-06-14]],
 [[raw-perplexity/raw-football-manager-age-rating-precedents-2026-06-14]],
-[[raw-perplexity/raw-age-assurance-source-checks-2026-06-14]].
+[[raw-perplexity/raw-age-assurance-source-checks-2026-06-14]] and
+[[raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]].
 
 ## Determinism Portfolio Principle (FMX-138, 2026-06-14)
 

@@ -3,7 +3,7 @@ title: Architecture Map
 status: current
 tags: [architecture, meta]
 created: 2026-05-16
-updated: 2026-06-16
+updated: 2026-06-19
 type: map
 binding: false
 related: [[Decision-Log]], [[Current-State]], [[MVP-Scope]], [[Documentation-V1]], [[../60-Research/matchday-operating-costs-and-risk-cost-settlement-2026-05-29]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../10-Architecture/09-Decisions/ADR-0073-player-contract-lifecycle-fsm]], [[../10-Architecture/09-Decisions/ADR-0076-narrative-newsworthiness-event-contracts]], [[../10-Architecture/09-Decisions/ADR-0078-player-discipline-suspension-contracts]], [[../10-Architecture/09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[../10-Architecture/09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[../10-Architecture/state-machines/player-discipline]]
@@ -77,6 +77,11 @@ future-scope or historical context.
 	  identity: SemVer plus player label, generated `release.json`,
 	  build-once/promote-digest Dokploy flow, PWA update UX, compatibility matrix
 	  and SBOM/provenance release evidence pending Nico approval.
+  FMX-185 accepts ADR-0112 for the age-assurance and rating-evidence posture:
+  16+ self-declaration before account fields/optional telemetry, no DOB or
+  under-16 refusal trail, IARC-first digital-store evidence and JMStV §7
+  content/business-risk review with legal/store review still gating release,
+  storefront submission and paid activation.
 - [[../10-Architecture/05-Building-Blocks]] - module map.
 - [[../10-Architecture/modules/web]]
 - [[../10-Architecture/modules/ui]]
@@ -213,7 +218,6 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0107 Pricing and IAP Monetization Boundary](../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary.md) - draft FMX-191 monetization boundary for classified entitlements, no-P2W invariant, provider separation and privacy/legal gates; pending Nico D1-D5, no implementation until accepted.
 - [ADR-0108 No-Pay-to-Win and MP Fairness Invariant](../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant.md) - draft FMX-190 zero-effect invariant for real-money entitlements across shared saves, rankings, async groups, watch-party state, exports, official comparisons and future multiplayer; pending Nico D1-D5, no implementation until accepted.
 - [ADR-0111 Rivalry Commercial Signal Contract Reconciliation](../10-Architecture/09-Decisions/ADR-0111-rivalry-commercial-signal-contract-reconciliation.md) - draft FMX-134 proposal to remove the orphan `RivalryCommercialSignal`, derive CommercialPortfolio policy from Rivalry facts through a local ACL/projection and keep fan-side `derby_factor` in Audience & Atmosphere; pending Nico D1-D3, no implementation until accepted.
-- [ADR-0112 Age Assurance and Rating Evidence Posture](../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture.md) - draft FMX-185 proposal for the 16+ self-declaration gate, under-16 refusal/telemetry minimisation and IARC/USK evidence packet; pending Nico D1-D6 plus legal/store review, no implementation until accepted.
 - [ADR-0126 Cross-producer Effect-intent Taxonomy](../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy.md) - draft FMX-162 proposal for a single published-language advisory effect-intent catalog across Narrative dialogue/press and Media Ecology coverage; pending Nico D1-D7, no implementation until accepted.
 
 ## Rule

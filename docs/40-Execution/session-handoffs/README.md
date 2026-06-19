@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-19
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-19-fmx-148-named-supporter-group]], [[2026-06-19-fmx-166-surrealdb-deferral-watch]], [[2026-06-19-fmx-173-argon2id-kdf-validation]], [[2026-06-19-fmx-105-save-trust-reconciliation]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-19-fmx-185-age-assurance-promotion]], [[2026-06-19-fmx-148-named-supporter-group]], [[2026-06-19-fmx-166-surrealdb-deferral-watch]], [[2026-06-19-fmx-173-argon2id-kdf-validation]], [[2026-06-19-fmx-105-save-trust-reconciliation]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,11 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-19-fmx-185-age-assurance-promotion]] - FMX-185 promotion sweep:
+  Nico approved D1-D6 = A/A/A/A/A/A after a Perplexity freshness pass and
+  source checks; ADR-0112 and the age-assurance/rating evidence checklist are
+  accepted/binding planning truth. Legal/store review still gates public
+  release, storefront submission and paid activation.
 - [[2026-06-19-fmx-148-named-supporter-group]] - FMX-148 named supporter-group
   surface: raw Perplexity/source-check captures, synthesis, decision record and
   ADR/index amendments closing ADR-0062's `NamedSupporterGroup` stub. Accepted
@@ -358,14 +363,11 @@ This is the **single** canonical handoff location. (An older
   plus public eligibility, internal HMAC proof over root/hash evidence,
   strict irreversible public downgrade rules and public features limited to
   server-verified or imported-verified eligible histories.
-- [[2026-06-14-fmx-185-age-assurance]] - FMX-185 age assurance and IARC/USK
-  rating-evidence packet: raw Perplexity/Web captures, synthesis, compliance
-  evidence home, decision queue and draft ADR-0112. Recommended packet is
-  D1-D6 = A/A/A/A/A/A: 16+ self-declaration before account fields/optional
-  telemetry, no under-16 account/refusal persistence/optional telemetry trail,
-  no DOB at MVP, IARC-first rating path, no default AVS/JmSchB appointment
-  until risk triggers fire, and a store/rating evidence packet before store or
-  paid activation.
+- [[2026-06-14-fmx-185-age-assurance]] - FMX-185 original age assurance and
+  IARC/USK rating-evidence packet: raw Perplexity/Web captures, synthesis,
+  compliance evidence home, decision queue and then-draft ADR-0112. Superseded
+  as the current handoff by [[2026-06-19-fmx-185-age-assurance-promotion]],
+  which records Nico's approval and ADR-0112 promotion.
 - [[2026-06-14-fmx-134-rivalry-commercial-signal]] - FMX-134
   RivalryCommercialSignal orphan-contract packet: raw Perplexity/Web captures,
   synthesis, decision queue and draft ADR-0111. Recommended packet is D1/D2/D3

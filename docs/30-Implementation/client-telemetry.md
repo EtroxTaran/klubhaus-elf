@@ -3,10 +3,10 @@ title: Client Telemetry
 status: current
 tags: [implementation, telemetry, pwa, errors, performance, indexeddb, release, versioning]
 created: 2026-05-17
-updated: 2026-06-18
+updated: 2026-06-19
 type: implementation
 binding: false
-adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]]
+adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]], [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]]
 related: [[../60-Research/telemetry-privacy]], [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]], [[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]], [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]], [[../40-Compliance/age-assurance-and-rating-evidence]], [[observability-runbook]], [[release-versioning-app-build-process]]
 ---
 
@@ -135,6 +135,8 @@ Consent must be checked before:
 
 Age eligibility must also be checked before any optional telemetry path:
 
+- this age-eligibility subset is binding through accepted ADR-0112 even though
+  this wider telemetry note remains non-binding;
 - no analytics/marketing SDK is initialised before the 16+ signup gate;
 - a user choosing "No, under 16" creates no account, no persisted refusal
   record and no optional queued event;

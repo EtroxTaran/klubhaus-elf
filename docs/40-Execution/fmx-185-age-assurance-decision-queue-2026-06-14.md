@@ -1,14 +1,15 @@
 ---
 title: FMX-185 age assurance decision queue
 status: current
-tags: [execution, decision-queue, age-gate, age-assurance, ratings, iarc, usk, legal, pending, fmx-185]
+tags: [execution, decision-queue, age-gate, age-assurance, ratings, iarc, usk, legal, accepted, fmx-185]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-185
 related:
   - [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]]
+  - [[../60-Research/raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]]
   - [[../40-Compliance/age-assurance-and-rating-evidence]]
   - [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]
   - [[../30-Implementation/privacy-and-consent]]
@@ -18,11 +19,11 @@ related:
 
 # FMX-185 age assurance decision queue
 
-This is the HITL decision queue for FMX-185. It turns the research synthesis
-[[../60-Research/age-assurance-and-iarc-rating-2026-06-14]] into explicit Nico
-decisions before draft
+This is the HITL decision record for FMX-185. It records Nico's approval of the
+research synthesis [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]]
+and promoted
 [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture|ADR-0112]]
-can become binding.
+to accepted/binding on 2026-06-19.
 
 ## D1 - age-gate data model
 
@@ -34,6 +35,8 @@ can become binding.
 
 **Recommendation:** A.
 
+**Decision:** A, accepted 2026-06-19.
+
 ## D2 - under-16 refusal and telemetry
 
 | Option | Meaning | Assessment |
@@ -43,6 +46,8 @@ can become binding.
 | C. Let under-16 users create restricted accounts | Youth-account feature set. | Defer; needs parent controls, data retention and product policy decisions. |
 
 **Recommendation:** A.
+
+**Decision:** A, accepted 2026-06-19.
 
 ## D3 - strong age verification / AVS strictness
 
@@ -54,6 +59,8 @@ can become binding.
 
 **Recommendation:** A.
 
+**Decision:** A, accepted 2026-06-19.
+
 ## D4 - IARC/USK evidence home
 
 | Option | Meaning | Assessment |
@@ -63,6 +70,8 @@ can become binding.
 | C. Create per-release folders now | Pre-create release-specific evidence hierarchy. | Overkill until a release/app-shell exists. |
 
 **Recommendation:** A.
+
+**Decision:** A, accepted 2026-06-19.
 
 ## D5 - youth protection officer trigger
 
@@ -74,6 +83,8 @@ can become binding.
 
 **Recommendation:** A.
 
+**Decision:** A, accepted 2026-06-19.
+
 ## D6 - scope split with FMX-193
 
 | Option | Meaning | Assessment |
@@ -82,6 +93,8 @@ can become binding.
 | B. Fold responsible gaming into FMX-185 | Add no-lootbox/no-dark-pattern statement now. | Too broad and duplicates FMX-193. |
 
 **Recommendation:** A.
+
+**Decision:** A, accepted 2026-06-19.
 
 ## Decision record
 
@@ -95,14 +108,20 @@ can become binding.
 - 2026-06-14: compliance evidence home created in
   [[../40-Compliance/age-assurance-and-rating-evidence]].
 - 2026-06-14: draft ADR-0112 prepared as a non-binding proposal record.
-- Pending Nico: D1-D6 above.
+- 2026-06-19: Perplexity freshness pass plus official/source checks preserved
+  in [[../60-Research/raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]].
+- 2026-06-19: Nico selected the recommended FMX-185 A-set and instructed
+  implementation. D1-D6 are accepted as A/A/A/A/A/A.
+- 2026-06-19: ADR-0112 promoted to accepted/binding; legal/store review still
+  gates public release, storefront submission and paid activation.
 
-## Recommended approval packet
+## Approved packet
 
-Approve **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A**.
+Approved **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A**.
 
 ## Related
 
 - [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]]
+- [[../60-Research/raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]]
 - [[../40-Compliance/age-assurance-and-rating-evidence]]
 - [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]

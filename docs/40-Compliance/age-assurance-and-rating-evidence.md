@@ -3,14 +3,15 @@ title: "Age assurance and rating evidence"
 status: current
 tags: [compliance, legal, age-gate, age-assurance, ratings, iarc, usk, pegi, privacy, fmx-185]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: compliance
-binding: false
+binding: true
 linear: FMX-185
 related:
   - [[README]]
   - [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]]
   - [[../60-Research/raw-perplexity/raw-age-assurance-source-checks-2026-06-14]]
+  - [[../60-Research/raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]]
   - [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]
   - [[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]]
   - [[../30-Implementation/privacy-and-consent]]
@@ -22,22 +23,23 @@ related:
 
 ## Status
 
-Current planning checklist. **Not legal advice and not legally approved.** This
-note becomes a release blocker only if Nico accepts ADR-0112 or a later legal
-review promotes it.
+Current binding planning checklist via accepted
+[[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture|ADR-0112]].
+**Not legal advice and not legally approved.** Public release, storefront
+submission and paid activation still require named legal/store review evidence.
 
 ## Current posture
 
 | Surface | Current evidence / requirement | Status |
 |---|---|---|
-| Age gate | 16+ self-declaration before account fields; no DOB; successful account stores only `attested_age_band = '16+'`. | proposed |
-| Under-16 refusal | No account, no persisted "No", no optional telemetry; route to no-account offline play. | proposed |
-| Optional telemetry | No analytics/marketing SDK before age/consent eligibility. MVP has no product analytics. | proposed |
-| Strong AVS | Not required for current low-risk MVP; trigger on adult/harmful/gambling/betting-like/paid-random/high-risk UGC/chat scope. | proposed |
-| IARC evidence | Save questionnaire export/screenshots, certificate/code, regional ratings, descriptors and storefront metadata per submitted build. | proposed |
-| USK path | Digital IARC storefront path first; physical Germany release or non-IARC channel requires direct USK/legal review. | proposed |
-| Youth protection officer | Re-check JMStV §7 before public launch, monetization, USK/IARC submission, USK 12+ signal, chat/UGC or sustained commercial operation; do not use 50k MAU as a legal threshold. | proposed |
-| Legal review | Named reviewer, date, scope, residual risks and go/no-go before public release or paid activation. | proposed |
+| Age gate | 16+ self-declaration before account fields; no DOB; successful account stores only `attested_age_band = '16+'`. | accepted |
+| Under-16 refusal | No account, no persisted "No", no optional telemetry; route to no-account offline play. | accepted |
+| Optional telemetry | No analytics/marketing SDK before age/consent eligibility. MVP has no product analytics. | accepted |
+| Strong AVS | Not required for current low-risk MVP; trigger on adult/harmful/gambling/betting-like/paid-random/high-risk UGC/chat scope. | accepted |
+| IARC evidence | Save questionnaire export/screenshots, certificate/code, regional ratings, descriptors and storefront metadata per submitted build. | accepted |
+| USK path | Digital IARC storefront path first; physical Germany release or non-IARC channel requires direct USK/legal review. | accepted |
+| Youth protection officer | Re-check JMStV §7 before public launch, monetization, USK/IARC submission, USK 12+ signal, chat/UGC or sustained commercial operation; do not use 50k MAU as a legal threshold. | accepted |
+| Legal review | Named reviewer, date, scope, residual risks and go/no-go before public release or paid activation. | release gate |
 
 ## Evidence to save per rating-relevant release
 
@@ -71,6 +73,7 @@ review promotes it.
 ## Related
 
 - [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]]
+- [[../60-Research/raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]]
 - [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]
 - [[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]]
 - [[../30-Implementation/privacy-and-consent]]

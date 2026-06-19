@@ -714,23 +714,24 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > fan-side `derby_factor`, D3=A apply accepted ADR/map cleanup immediately after
 > approval.
 >
-> **FMX-185 Age assurance + IARC/USK rating evidence prepared — decision pending
-> (2026-06-14).** Linear FMX-185 is `In Progress` on branch
-> `codex/fmx-185-age-gate-age-assurance`. Research
+> **FMX-185 Age assurance + IARC/USK rating evidence accepted (2026-06-19).**
+> Linear FMX-185 is `In Progress` on branch
+> `codex/fmx-185-age-assurance-promotion` for the promotion sweep. Research
 > [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]] (+ raw
 > Perplexity/source-check captures for GDPR/German youth protection, IARC/USK
-> evidence and comparable football-manager ratings) recommends draft
+> evidence, comparable football-manager ratings and the 2026-06-19 freshness
+> check) now supports accepted
 > [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture|ADR-0112]]
 > plus compliance evidence home
-> [[../40-Compliance/age-assurance-and-rating-evidence]]. The packet is **not
-> binding** until Nico approves D1-D6 in
-> [[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]] and
-> legal/store review signs off actual artifacts. Recommended packet: D1=A 16+
-> self-declaration before account fields/optional telemetry, D2=A no under-16
-> account/refusal persistence/optional telemetry trail, D3=A no DOB at MVP,
-> D4=A IARC-first with USK direct only for non-participating/physical channels,
-> D5=A youth-protection review trigger with no default AVS/JmSchB appointment,
-> D6=A store/rating evidence packet blocks store or paid activation.
+> [[../40-Compliance/age-assurance-and-rating-evidence]]. Nico approved D1-D6 =
+> A/A/A/A/A/A in
+> [[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]]:
+> 16+ self-declaration before account fields/optional telemetry, no under-16
+> account/refusal persistence/optional telemetry trail, no DOB at MVP,
+> IARC-first with USK direct only for non-participating/physical channels,
+> youth-protection review trigger with no default AVS/JmSchB appointment and
+> store/rating evidence blocking store or paid activation. Legal/store review
+> still gates public release, storefront submission and paid activation.
 >
 > **FMX-138 Portfolio determinism + seeded-variance principle prepared —
 > decision pending (2026-06-14).** Linear FMX-138 is `In Progress` on branch

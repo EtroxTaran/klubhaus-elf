@@ -3,7 +3,7 @@ title: "Age assurance and IARC rating evidence (FMX-185)"
 status: current
 tags: [research, synthesis, age-gate, age-assurance, gdpr, jmstv, kjm, iarc, usk, compliance, fmx-185]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: research
 binding: false
 linear: FMX-185
@@ -12,6 +12,7 @@ related:
   - [[raw-perplexity/raw-age-rating-iarc-usk-evidence-2026-06-14]]
   - [[raw-perplexity/raw-football-manager-age-rating-precedents-2026-06-14]]
   - [[raw-perplexity/raw-age-assurance-source-checks-2026-06-14]]
+  - [[raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]]
   - [[../40-Compliance/age-assurance-and-rating-evidence]]
   - [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]
   - [[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]]
@@ -30,9 +31,9 @@ age-assurance and age-rating evidence packet for the current PWA planning
 phase.
 
 This note is research and product/compliance planning, not legal advice. The
-non-binding decision home is
+binding decision home is
 [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture|ADR-0112]]
-and the HITL queue is
+and the HITL decision record is
 [[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]].
 
 ## Evidence synthesis
@@ -127,9 +128,26 @@ FMX should choose the lower-risk side of that precedent: no paid random items,
 no launch ads, no launch free-text chat/UGC, and exact rating artifacts saved
 before any app-shell/store release.
 
-## Recommended approval packet
+## 2026-06-19 freshness and approval delta
 
-| Decision | Recommendation | Rationale |
+Nico approved the recommended D1-D6 packet as A/A/A/A/A/A on 2026-06-19, after
+the freshness pass and official/source checks preserved in
+[[raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]]. That pass did
+not find a material reason to change the June 14 recommendation:
+
+- GDPR Art. 8 still supports using 16 as the conservative child-consent
+  threshold for optional consent-dependent processing.
+- KJM-grade AVS remains a trigger-only future path for adult/harmful or
+  comparable high-risk scope, not the current low-risk MVP default.
+- IARC/USK remains the preferred digital-storefront rating path for
+  participating storefronts; physical Germany/non-IARC channels still require
+  direct USK/legal handling.
+- The old "50k MAU" youth-protection-officer trigger remains unsupported as a
+  legal threshold and is replaced by JMStV §7 content/business-risk review.
+
+## Approved packet
+
+| Decision | Approved option | Rationale |
 |---|---|---|
 | D1 age-gate data model | **A. Keep 16+ self-declaration, no DOB, store only successful `attested_age_band = '16+'`.** | Best data-minimisation fit for current low-risk MVP and existing privacy surface. |
 | D2 under-16 refusal and telemetry | **A. Hard no-account refusal, no persisted refusal, no optional telemetry; offline/no-account route only.** | Satisfies PM-18 F-06 while avoiding a children's-data record. |
@@ -138,11 +156,10 @@ before any app-shell/store release.
 | D5 youth protection officer trigger | **A. Replace 50k MAU with JMStV §7 content/business-risk watch plus self-regulation carve-out.** | Current source checks do not support 50k MAU as law. |
 | D6 scope split | **A. Keep FMX-185 to age assurance/rating evidence; leave responsible-gaming/no-dark-pattern statement to FMX-193.** | Prevents overlapping legal/product packets while preserving cross-links. |
 
-## Open Nico decisions
+## Decision outcome
 
-ADR-0112 is a draft. Nico must approve or change D1-D6 in
-[[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]] before any
-ADR becomes binding.
+ADR-0112 is accepted/binding for planning. Legal/store review remains required
+before public release, storefront submission or paid activation.
 
 ## Related
 
@@ -150,6 +167,7 @@ ADR becomes binding.
 - [[raw-perplexity/raw-age-rating-iarc-usk-evidence-2026-06-14]]
 - [[raw-perplexity/raw-football-manager-age-rating-precedents-2026-06-14]]
 - [[raw-perplexity/raw-age-assurance-source-checks-2026-06-14]]
+- [[raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]]
 - [[../40-Compliance/age-assurance-and-rating-evidence]]
 - [[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]
 - [[../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]]
