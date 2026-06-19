@@ -18,6 +18,13 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Per-Context Module Notes Surface](../60-Research/per-context-module-notes-2026-06-18.md) -
+  FMX-169 Perplexity-first and source-checked packet for deciding whether the
+  28 bounded contexts need per-context module notes. Recommended packet, pending
+  Nico: staged hybrid. Keep `bounded-context-map` canonical for catalog,
+  relationship topology and folder mapping; add short local interface cards for
+  a first MVP-critical slice only after approval. Decisions remain pending in
+  [FMX-169 decision queue](../40-Execution/fmx-169-per-context-module-notes-decision-queue-2026-06-18.md).
 - [Observability Trace Backend Re-add Trigger](../60-Research/observability-trace-backend-readd-trigger-2026-06-18.md) -
   FMX-171 Perplexity-first and source-checked packet for concrete Tempo/Mimir
   re-add signals and MVP span policy. Recommendation pending Nico:

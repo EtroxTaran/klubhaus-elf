@@ -1,11 +1,25 @@
 ---
 title: Research Summary
 status: current
-tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, rulesets, branch-protection, codeowners, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, command-queue, career, national-team, bundestrainer, i18n, locale, paraglide, intl, risk-register, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, transfer, loan, obligation-to-buy, policy-catalog, workflow, branch-naming, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-161, fmx-164, fmx-165, fmx-167, fmx-168, fmx-170, fmx-174, fmx-177, fmx-178, fmx-180, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, rulesets, branch-protection, codeowners, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, command-queue, career, national-team, bundestrainer, i18n, locale, paraglide, intl, risk-register, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, transfer, loan, obligation-to-buy, policy-catalog, workflow, branch-naming, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-161, fmx-164, fmx-165, fmx-167, fmx-168, fmx-169, fmx-170, fmx-174, fmx-177, fmx-178, fmx-180, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 updated: 2026-06-18
 ---
 
 # Research Summary
+
+## Per-Context Module Notes Surface (FMX-169, 2026-06-18)
+
+[[per-context-module-notes-2026-06-18]] preserves the FMX-169
+Perplexity-first and source-checked packet for deciding whether FMX should add
+per-bounded-context module notes for the 28-context catalog. Recommendation is
+pending Nico: use a staged hybrid where
+[[../10-Architecture/bounded-context-map]] stays canonical for the context
+catalog, cluster map, relationship topology and source-folder mapping, while
+short per-context interface cards are added only for a first MVP-critical slice.
+Recommended decisions are D1=C, D2=A, D3=B, D4=A now / B later in
+[[../40-Execution/fmx-169-per-context-module-notes-decision-queue-2026-06-18]].
+Raw captures: [[raw-perplexity/raw-per-context-module-notes-2026-06-18]],
+[[raw-perplexity/raw-per-context-module-notes-source-checks-2026-06-18]].
 
 ## Observability Trace Backend Re-add Trigger (FMX-171, 2026-06-18)
 

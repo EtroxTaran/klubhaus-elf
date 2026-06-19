@@ -17,6 +17,17 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-169 per-context module notes (2026-06-18)
+
+Perplexity-first discovery and targeted source checks for deciding whether FMX
+should add per-bounded-context module notes for the 28-context catalog or keep
+`bounded-context-map` §4 as the only target surface.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-per-context-module-notes-2026-06-18]] | DDD modular-monolith documentation patterns, central context map vs per-context notes vs hybrid, and comparable game/simulation documentation discovery | [[../per-context-module-notes-2026-06-18]] |
+| [[raw-per-context-module-notes-source-checks-2026-06-18]] | Source checks for Microsoft bounded-context guidance, DDD Crew Bounded Context Canvas, AsyncAPI, Godot, OpenTTD and OpenRA | [[../per-context-module-notes-2026-06-18]] |
+
 ## FMX-171 Observability trace backend re-add trigger (2026-06-18)
 
 Perplexity-first discovery and targeted source checks for concrete Tempo/Mimir

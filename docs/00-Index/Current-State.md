@@ -24,6 +24,19 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-169 per-context module notes pending (2026-06-18).**
+> Branch `codex/fmx-169-per-context-module-notes` prepares the non-binding
+> decision packet for whether FMX should add one module note per bounded context
+> or keep [[../10-Architecture/bounded-context-map]] §4 as the sole target
+> surface. Research
+> [[../60-Research/per-context-module-notes-2026-06-18]] plus raw
+> Perplexity/source-check captures recommends a staged hybrid: keep the map
+> canonical for the 28-context catalog, cluster map, relationship topology and
+> source-folder mapping; add short per-context interface cards only for a first
+> MVP-critical slice after Nico approval. No context-note template, path or
+> canonical ownership split is binding until Nico answers
+> [[../40-Execution/fmx-169-per-context-module-notes-decision-queue-2026-06-18]].
+
 > **FMX-161 ICU-MF1 risk-register reconciliation pending Nico (2026-06-18).**
 > Branch `codex/fmx-161-icu-mf1-risk-reconciliation` reconciles the stale
 > `11-Risks` ICU-MF1 row with ADR-0094's 2026-06-09 validation note. Research:
