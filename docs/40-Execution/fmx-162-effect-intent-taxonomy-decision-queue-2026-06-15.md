@@ -1,11 +1,11 @@
 ---
 title: FMX-162 Effect-intent taxonomy decision queue
-status: current
-tags: [execution, decision-queue, effect-intent, narrative, media-ecology, press, dialogue, fmx-162]
+status: accepted
+tags: [execution, decision-queue, effect-intent, narrative, media-ecology, press, dialogue, fmx-162, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-162
 related:
   - [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]]
@@ -23,8 +23,12 @@ related:
 
 # FMX-162 Effect-intent taxonomy decision queue
 
-This is the HITL decision packet for FMX-162. No option below is accepted until
-Nico decides.
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-162.
+
+
+This is the HITL decision packet for FMX-162. Nico accepted the approved packet on 2026-06-19.
 
 ## D1 - Taxonomy shape
 
@@ -36,7 +40,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D2 - Authority boundary
 
@@ -48,7 +52,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D3 - Catalog ownership
 
@@ -60,7 +64,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D4 - V1 scope and rows
 
@@ -72,7 +76,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D5 - People / relationship ownership
 
@@ -84,7 +88,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D6 - Visibility and audit posture
 
@@ -96,7 +100,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D7 - Conformance timing
 
@@ -108,7 +112,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## Decision record
 
@@ -139,6 +143,13 @@ If accepted:
 - Keep exact magnitudes in GD-0043 calibration slots.
 - Add the future code-phase test
   `effect-intent-catalog-exhaustive-mapping` when the workspace exists.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A, D7=A**.
+
+No open Nico decision remains for FMX-162.
 
 ## Related
 

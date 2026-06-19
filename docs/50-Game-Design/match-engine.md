@@ -1,15 +1,20 @@
 ---
 title: Match Engine - Swappable Spatial-Event Specification
-status: draft
-tags: [game-design, match-engine, simulation, spatial-event]
+status: accepted
+tags: [game-design, match-engine, simulation, spatial-event, accepted]
 created: 2026-05-16
-updated: 2026-06-13
+updated: 2026-06-19
 type: game-design
-binding: false
+binding: true
 related: [[README]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]], [[../10-Architecture/09-Decisions/ADR-0003-match-engine]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy]], [[../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../60-Research/match-engine-simulation-model]], [[../60-Research/match-engine-runtime-strategy]], [[../60-Research/determinism-and-replay]], [[../60-Research/performance-budgets]], [[../60-Research/presentation-renderer-strategy]], [[../60-Research/tactics-and-formations]], [[tactics-system]], [[fan-ecology]], [[set-pieces]], [[singleplayer-baseline]], [[async-multiplayer-private-group]]
 ---
 
 # Match Engine - Swappable Spatial-Event Specification
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this game-design record is now
+> binding according to its approved scope.
+
 
 > **Status note (2026-06-11, FMX-143):** This system/mode note is `status: draft` — it was
 > reopened 2026-05-27 and was **not** among the 133 decisions ratified in the 2026-06-08
@@ -25,7 +30,7 @@ related: [[README]], [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatia
 > **FMX-133 proposal note (2026-06-13):** [[GD-0042-match-engine-core-model-and-calibration]]
 > proposes the concrete core model for action utility, xG/EPV, attribute math,
 > statistical envelopes, quality-profile spatial density and calibration harness.
-> It is `draft` / non-binding until Nico approves
+> It is `draft` / binding after Nico approved it on 2026-06-19
 > [[../40-Execution/fmx-133-match-engine-core-model-decision-queue-2026-06-13|the FMX-133 decision queue]].
 
 The target match engine is **spatial-event, not outcome-first and not a
@@ -137,7 +142,7 @@ The action utility layer must expose tactical causality:
 - star-focal play biases candidate actions toward the focal player within
   tactical and positional plausibility.
 
-### 1.3.1 Proposed FMX-133 action utility model
+### 1.3.1 Accepted FMX-133 action utility model
 
 Pending [[GD-0042-match-engine-core-model-and-calibration|GD-0042]] approval,
 `choose_action` is proposed as a deterministic utility selection over plausible
@@ -311,7 +316,7 @@ Match quality profile is separate from UI tier and device tier.
 | `background-detailed` | Important AI fixtures in active leagues | Summary plus selected event/key-stat data; replay can re-sim on demand |
 | `background-fast` | Rest-world fixtures and long-term world simulation | Result, injuries, form, table, reputation and economy effects only |
 
-Proposed FMX-133 spatial density (pending GD-0042 approval):
+Accepted FMX-133 spatial density (pending GD-0042 approval):
 
 | Profile | Spatial/event density |
 |---|---|

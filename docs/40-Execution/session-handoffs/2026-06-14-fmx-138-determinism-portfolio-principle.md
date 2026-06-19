@@ -29,7 +29,7 @@ related:
   `codex/fmx-138-determinism-seeded-variance-principle`.
 - Ran Perplexity-first research for simulation architecture, sports-management
   precedent, real-world football uncertainty and source checks.
-- Added synthesis, raw captures, draft ADR-0113 and decision queue.
+- Added synthesis, raw captures, accepted ADR-0113 and decision queue.
 - Back-linked Open-Decisions-Dossier M2 so HoF voting is not isolated.
 
 ## Open Tasks
@@ -65,4 +65,4 @@ None binding. Recommended packet:
 
 ## Promotion Needed
 
-ADR-0113 remains draft/non-binding until Nico approves D1-D3.
+ADR-0113 remains draft/binding after Nico approved it on 2026-06-19 D1-D3.

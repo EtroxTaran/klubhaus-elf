@@ -34,7 +34,7 @@ This note is research synthesis only. The proposed game-design home is
 [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon|GD-0041]];
 the proposed architecture/payment-boundary home is
 [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary|ADR-0107]].
-Both remain `draft` until Nico approves the decision packet in
+Both are accepted after Nico approved the decision packet on 2026-06-19 in
 [[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]].
 
 ## Current constraints
@@ -135,7 +135,7 @@ Any future SKU or entitlement fails the canon if it can:
 - Product analytics vendor and consent implementation.
 - SKU IDs, store copy, UI layout and checkout flow.
 - CI/test enforcement implementation of the no-P2W taxonomy. FMX-190 now has
-  draft ADR-0108 as the proposed contract, pending Nico approval.
+  accepted ADR-0108 as the proposed contract, accepted by Nico 2026-06-19.
 
 ## Open Nico decisions
 

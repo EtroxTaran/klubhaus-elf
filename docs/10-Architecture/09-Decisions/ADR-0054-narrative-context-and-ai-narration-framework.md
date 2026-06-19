@@ -1,11 +1,11 @@
 ---
 title: ADR-0054 Narrative Context and AI Narration Framework
 status: accepted
-tags: [adr, architecture, ddd, bounded-context, narrative, ai, llm, testing, mvp]
+tags: [adr, architecture, ddd, bounded-context, narrative, ai, llm, testing, mvp, accepted]
 created: 2026-05-28
-updated: 2026-06-14
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -33,6 +33,11 @@ related:
 ---
 
 # ADR-0054: Narrative Context and AI Narration Framework
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
 
 ## Status
 

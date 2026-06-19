@@ -1,11 +1,11 @@
 ---
 title: PWA Offline Mobile Release Content QA Gates
-status: draft
+status: current
 tags: [quality, pwa, offline, mobile, service-worker, rollback, content-qa, localization, llm, fmx-197]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: quality
-binding: false
+binding: true
 linear: FMX-197
 related:
   - [[../60-Research/pwa-offline-mobile-release-content-qa-gates-2026-06-15]]
@@ -17,6 +17,11 @@ related:
 ---
 
 # PWA Offline Mobile Release Content QA Gates
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
 
 This is the non-binding FMX-197 draft runbook. It becomes binding only if Nico
 accepts draft

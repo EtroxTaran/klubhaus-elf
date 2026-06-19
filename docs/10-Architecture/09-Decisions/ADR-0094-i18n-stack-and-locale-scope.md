@@ -1,11 +1,11 @@
 ---
 title: ADR-0094 i18n stack & locale scope (supersedes ADR-0006)
 status: accepted
-tags: [adr, i18n, l10n, icu, paraglide, tolgee, formatjs, locale, offline-pwa, ssr, fmx-i18n-depth-pass]
+tags: [adr, i18n, l10n, icu, paraglide, tolgee, formatjs, locale, offline-pwa, ssr, fmx-i18n-depth-pass, accepted]
 created: 2026-06-08
-updated: 2026-06-11
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes: ADR-0006-i18n
   - [[ADR-0006-i18n]]
 superseded_by:
@@ -24,6 +24,11 @@ related:
 ---
 
 # ADR-0094: i18n stack & locale scope (supersedes ADR-0006)
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
 
 ## Status
 
@@ -120,7 +125,7 @@ Paraglide + Tolgee stack direction.
 
 ## Decision
 
-Propose, awaiting Nico: **Option A** — **Paraglide JS + `format.js` Intl polyfills + Tolgee self-hosted**,
+Propose, accepted by Nico 2026-06-19: **Option A** — **Paraglide JS + `format.js` Intl polyfills + Tolgee self-hosted**,
 **MVP locales DE/EN/FR/ES/IT (DE source)**, ICU-MF1 as the (optional) ICU-syntax contract. **The
 ICU-MF1 validation flagged here is resolved for the MVP locale set — see the validation note below.**
 

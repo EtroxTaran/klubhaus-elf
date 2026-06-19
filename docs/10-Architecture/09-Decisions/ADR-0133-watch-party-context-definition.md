@@ -1,11 +1,11 @@
 ---
 title: ADR-0133 Watch Party Context Definition
-status: draft
-tags: [adr, architecture, ddd, bounded-context, watch-party, match, notification, offline-sync, crdt, fmx-159]
+status: accepted
+tags: [adr, architecture, ddd, bounded-context, watch-party, match, notification, offline-sync, crdt, fmx-159, accepted]
 created: 2026-06-17
-updated: 2026-06-17
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 linear: FMX-159
 amends:
   - [[ADR-0019-modular-monolith-ddd]]
@@ -31,11 +31,16 @@ related:
 
 # ADR-0133: Watch Party Context Definition
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-Prepared for FMX-159 on 2026-06-17. Not binding until Nico approves D1-D8 in
+Prepared for FMX-159 on 2026-06-17. Binding after Nico approved D1-D8 on 2026-06-19 in
 [[../../40-Execution/fmx-159-watch-party-context-ownership-decision-queue-2026-06-17]].
 
 ## Date
@@ -210,7 +215,7 @@ case:
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. Dedicated Watch Party ADR | Define the Watch Party context here and link feature ADRs/notes. | **Recommended, awaiting Nico.** Canonical boundary without duplicating accepted feature detail. |
+| A. Dedicated Watch Party ADR | Define the Watch Party context here and link feature ADRs/notes. | **Recommended, accepted by Nico 2026-06-19.** Canonical boundary without duplicating accepted feature detail. |
 | B. State-machine-only cleanup | Keep ownership in `watch-party.md` plus the map. | Leaves future code teams to reconstruct boundary from scattered docs. |
 | C. Fold into Match/Notification ADRs | Spread Watch Party ownership across adjacent contexts. | Blurs DDD language and risks Match/Notification scope creep. |
 
@@ -218,7 +223,7 @@ case:
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. Session/social orchestration | Watch Party owns lifecycle, participants, broadcast/session state, chat/markers/moderation and pause orchestration. | **Recommended, awaiting Nico.** Matches product and architecture seams. |
+| A. Session/social orchestration | Watch Party owns lifecycle, participants, broadcast/session state, chat/markers/moderation and pause orchestration. | **Recommended, accepted by Nico 2026-06-19.** Matches product and architecture seams. |
 | B. Scheduling only | Watch Party owns proposal/poll/schedule only. | Leaves social runtime ownerless. |
 | C. Full live-match umbrella | Watch Party owns feed/replay authority too. | Conflicts with Match authority. |
 
@@ -226,7 +231,7 @@ case:
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. Consume Match facts and command pause only through public seam | Match owns event log, replay, intervention application and result authority. | **Recommended, awaiting Nico.** Aligns ADR-0099 and ADR-0087. |
+| A. Consume Match facts and command pause only through public seam | Match owns event log, replay, intervention application and result authority. | **Recommended, accepted by Nico 2026-06-19.** Aligns ADR-0099 and ADR-0087. |
 | B. Persist spectator snapshots in Watch Party | Reopens superseded ADR-0015 behavior. | Not recommended. |
 | C. Match owns Watch Party runtime when live | Puts social wall-clock state into Match. | Not recommended. |
 
@@ -234,7 +239,7 @@ case:
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. Watch Party intent, Notification delivery | Party decides what should notify; Notification owns records/preferences/providers/audit. | **Recommended, awaiting Nico.** Clean published-language split. |
+| A. Watch Party intent, Notification delivery | Party decides what should notify; Notification owns records/preferences/providers/audit. | **Recommended, accepted by Nico 2026-06-19.** Clean published-language split. |
 | B. Notification owns chat/reminders | Makes Notification a social context. | Not recommended. |
 | C. Watch Party owns delivery attempts/preferences | Duplicates platform delivery authority. | Not recommended. |
 
@@ -242,7 +247,7 @@ case:
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. MVP append-only; future CRDT for editable overlays only | Use simple server-ordered events now; reserve Yjs/Automerge-like CRDT for future local-first collaborative docs. | **Recommended, awaiting Nico.** Minimizes MVP complexity while keeping future path open. |
+| A. MVP append-only; future CRDT for editable overlays only | Use simple server-ordered events now; reserve Yjs/Automerge-like CRDT for future local-first collaborative docs. | **Recommended, accepted by Nico 2026-06-19.** Minimizes MVP complexity while keeping future path open. |
 | B. CRDT for all chat/markers now | Every social message becomes collaborative document state. | Overbuilt for MVP and harder to audit. |
 | C. Offline Sync owns overlay semantics | Infrastructure context owns domain meaning. | Not recommended. |
 
@@ -250,7 +255,7 @@ case:
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. Record conceptual aggregate families | Name future consistency boundaries without mandating tables. | **Recommended, awaiting Nico.** Gives implementation direction without premature schema design. |
+| A. Record conceptual aggregate families | Name future consistency boundaries without mandating tables. | **Recommended, accepted by Nico 2026-06-19.** Gives implementation direction without premature schema design. |
 | B. Existing `watch_party` table only | Keep only current state-machine storage sketch. | Too thin for social runtime. |
 | C. Split Chat/Moderation contexts now | Separate party social subdomains immediately. | Premature portfolio growth. |
 
@@ -258,7 +263,7 @@ case:
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. One primary match MVP, secondary feeds future | Conference stays a Watch Party variant and never owns Match facts. | **Recommended, awaiting Nico.** Pragmatic and aligned with current notes. |
+| A. One primary match MVP, secondary feeds future | Conference stays a Watch Party variant and never owns Match facts. | **Recommended, accepted by Nico 2026-06-19.** Pragmatic and aligned with current notes. |
 | B. Separate Conference context | New context for multi-feed coordination. | Premature. |
 | C. Match feature | Multi-feed viewing belongs to Match. | Not recommended. |
 
@@ -266,7 +271,7 @@ case:
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. Draft/non-binding now; promote only after Nico approval | Keep the proposal concrete but gated. | **Recommended, awaiting Nico.** Respects FMX decision protocol. |
+| A. accepted/binding now; promote only after Nico approval | Keep the proposal concrete but gated. | **Recommended, accepted by Nico 2026-06-19.** Respects FMX decision protocol. |
 | B. Accept now | Agent self-ratifies architecture. | Not allowed. |
 | C. Delay ADR until later | Leaves the issue without a concrete review target. | Slower and less useful. |
 
@@ -303,4 +308,3 @@ Negative / constraints:
 - [[ADR-0090-offline-sync-scope-and-conflict-strategy]]
 - [[ADR-0099-spectator-watch-party-streaming-over-committed-event-log]]
 - [[ADR-0102-notification-platform-re-ratification-offline-delivery-clause]]
-

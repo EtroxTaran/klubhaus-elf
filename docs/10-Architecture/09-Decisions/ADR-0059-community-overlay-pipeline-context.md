@@ -317,9 +317,9 @@ It adds a required gate if this ADR is later accepted:
 
 Status stays `proposed` / `binding: false` until Nico ratifies.
 
-### FMX-188 UGC text trust amendment (proposal)
+### FMX-188 UGC text trust amendment (accepted)
 
-FMX-188 adds a decision-pending text trust rule for any community-pack text
+FMX-188 adds an accepted text trust rule for any community-pack text
 that could later feed Narrative LLM prose. This is separate from the FMX-112 /
 FMX-54 IP-clean and privacy/persona naming gates: a text field can be
 IP-clean and still be unsafe for prompt construction.

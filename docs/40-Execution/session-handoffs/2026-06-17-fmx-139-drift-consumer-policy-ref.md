@@ -61,7 +61,6 @@ related:
 
 ## Needs promotion
 
-- FMX-139 D1-D4 promotes only after Nico approval.
-- No implementation work is authorized by this packet while it remains
-  decision-pending.
-
+- FMX-139 D1-D4 promoted after Nico approval on 2026-06-19.
+- No implementation work is authorized by this packet beyond the accepted docs
+  closure.

@@ -1,11 +1,11 @@
 ---
 title: ADR-0122 Responsible Gaming and Dark-Pattern Invariant
-status: draft
-tags: [adr, architecture, responsible-gaming, dark-patterns, monetization, compliance, loot-boxes, fmx-193]
+status: accepted
+tags: [adr, architecture, responsible-gaming, dark-patterns, monetization, compliance, loot-boxes, fmx-193, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 linear: FMX-193
 amends:
   - [[ADR-0107-pricing-and-iap-monetization-boundary]]
@@ -27,11 +27,16 @@ related:
 
 # ADR-0122: Responsible Gaming and Dark-Pattern Invariant
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-Prepared for FMX-193 on 2026-06-15. Not binding until Nico approves D1-D7 in
+Prepared for FMX-193 on 2026-06-15. Binding after Nico approved D1-D7 on 2026-06-19 in
 [[../../40-Execution/fmx-193-responsible-gaming-decision-queue-2026-06-15]].
 
 ## Date
@@ -130,7 +135,7 @@ own founder/legal decision packet.
 
 ### D7 - Relation to monetization drafts
 
-If accepted, ADR-0122 can become binding independently of ADR-0107/0108/GD-0041.
+ADR-0122 is binding independently of ADR-0107/0108/GD-0041.
 It blocks paid randomness and dark patterns before final monetization SKUs are
 approved. It does not approve any SKU, price, payment provider, supporter tier
 or store policy.
@@ -205,7 +210,7 @@ If accepted:
   descriptors;
 - monetization SKU decisions remain separately gated.
 
-If rejected or changed, keep this ADR draft/non-binding and update
+If rejected or changed, keep this ADR accepted/binding and update
 [[../../40-Execution/fmx-193-responsible-gaming-decision-queue-2026-06-15]]
 with Nico's selected options.
 
@@ -217,4 +222,3 @@ with Nico's selected options.
 - [[ADR-0107-pricing-and-iap-monetization-boundary]]
 - [[ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
 - [[../../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
-

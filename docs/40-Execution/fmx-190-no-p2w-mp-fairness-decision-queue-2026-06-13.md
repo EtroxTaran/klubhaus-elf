@@ -1,11 +1,11 @@
 ---
 title: FMX-190 No-P2W and MP-fairness decision queue
-status: current
-tags: [execution, decision-queue, monetization, no-p2w, multiplayer, fairness, pending, fmx-190]
+status: accepted
+tags: [execution, decision-queue, monetization, no-p2w, multiplayer, fairness, pending, fmx-190, accepted]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-190
 related:
   - [[../60-Research/no-pay-to-win-and-mp-fairness-invariant-2026-06-13]]
@@ -17,11 +17,16 @@ related:
 
 # FMX-190 No-P2W and MP-fairness decision queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-190.
+
+
 This is the HITL decision queue for FMX-190. It turns the research synthesis
 [[../60-Research/no-pay-to-win-and-mp-fairness-invariant-2026-06-13]] into explicit
-Nico decisions before
+Nico decisions for accepted
 [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]
-can become binding.
+.
 
 Scope premise: FMX-190 enforces the FMX-191 no-P2W promise. It does not reopen
 the monetization model or FMX-194 legal/provider gates.
@@ -81,11 +86,18 @@ the monetization model or FMX-194 legal/provider gates.
 - 2026-06-13: FMX-190 claimed and moved to `In Progress`.
 - 2026-06-13: Perplexity research and official/tooling source checks saved.
 - 2026-06-13: draft ADR-0108 prepared as a non-binding proposal record.
-- Pending Nico: D1-D5 above.
+- Accepted by Nico 2026-06-19: D1-D5 above.
 
 ## Recommended approval packet
 
 Approve **D1=A, D2=A, D3=A, D4=A, D5=A**.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A**.
+
+No open Nico decision remains for FMX-190.
 
 ## Related
 

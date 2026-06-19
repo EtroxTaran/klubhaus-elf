@@ -132,10 +132,10 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 
 ## Related Linear routing
 
-- FMX-179 owns the monorepo/workspace bootstrap shape; draft
+- FMX-179 owns the monorepo/workspace bootstrap shape; accepted
   [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]]
-  and [[monorepo-workspace-bootstrap-plan]] are the pending decision packet,
-  not yet an active scaffold contract.
+  and [[monorepo-workspace-bootstrap-plan]] are the binding scaffold contract
+  after Nico approved D1-D7 on 2026-06-19.
 - FMX-175 owns the accepted future code-CI context package and stale D-002
   cleanup: active docs checks stay `docs-check` + `linear-id`; future code
   required contexts are `quality`, `e2e` and `security` after bootstrap and
@@ -152,11 +152,11 @@ Code-phase work is inactive until a bootstrap/foundation PR completes this list:
 - FMX-195 refreshed the active pnpm pin from 11.1.2 to 11.7.0 after June 15
   source checks. Future code bootstrap still re-checks current tool versions
   before adding workspace dependencies.
-- FMX-168 owns the draft Stack Currency Ledger and wider tooling-currency
+- FMX-168 owns the accepted Stack Currency Ledger and wider tooling-currency
   decision packet. It records the PostgreSQL 17 active pin vs PostgreSQL 18.x
   current-stable drift, TanStack/React/TypeScript/build-tool compatibility
-  checks and future automation boundary. No ledger policy or PostgreSQL target
-  change is binding until Nico approves
+  checks and future automation boundary. Ledger policy and PostgreSQL target
+  changes are binding after Nico approved D1-D5 on 2026-06-19 in
   [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]].
 
 ## Related

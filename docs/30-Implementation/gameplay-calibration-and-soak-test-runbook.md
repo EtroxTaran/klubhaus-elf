@@ -1,11 +1,11 @@
 ---
 title: Gameplay Calibration and Soak-Test Runbook - Draft
-status: draft
+status: current
 tags: [implementation, gameplay, calibration, soak-test, determinism, monte-carlo, gddr, fmx-141]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: implementation
-binding: false
+binding: true
 linear: FMX-141
 related:
   - [[../60-Research/gameplay-calibration-ownership-and-harness-2026-06-13]]
@@ -15,11 +15,16 @@ related:
 
 # Gameplay Calibration and Soak-Test Runbook - Draft
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
+
 Executable-intent companion to
 [[../60-Research/gameplay-calibration-ownership-and-harness-2026-06-13]] and
 [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]].
 It defines the reusable method for non-economy gameplay calibration. It does
-not set final numeric constants and is not binding until Nico approves GD-0043.
+not set final numeric constants and is binding after Nico approved GD-0043.
 
 ## 1. Scope split
 

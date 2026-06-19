@@ -57,5 +57,5 @@ related:
 
 ## Needs promotion
 
-- [[../../30-Implementation/stack-currency-ledger]] needs promotion only after
-  Nico approves the pending decision packet.
+- [[../../30-Implementation/stack-currency-ledger]] was promoted after Nico
+  approved the decision packet on 2026-06-19.

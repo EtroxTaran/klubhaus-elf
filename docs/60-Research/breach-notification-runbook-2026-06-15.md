@@ -106,12 +106,12 @@ Game/live-service best practice adds channel selection:
 | Analytics/log export with IP/device/user ids | SEV2/SEV3 | Assess; likely if user-tied logs are exposed outside approved processor boundary. | Usually only if account access, sensitive content or high abuse risk follows. |
 | Public analytics property id only | SEV4 | No Art. 33; document no personal-data breach. | No Art. 34. |
 
-## Decision needed from Nico
+## Accepted Decision
 
 See
 [[../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15]]
-for D1-D5 options and recommendations. Until Nico accepts, this packet stays
-non-binding and the issue should remain decision-pending.
+for D1-D5 options and recommendations. Nico accepted the packet on 2026-06-19;
+this packet is binding/current for the docs-vault operational posture.
 
 ## Sources
 

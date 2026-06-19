@@ -22,9 +22,9 @@ related:
 
 ## Status
 
-Draft / decision-pending for FMX-188. This packet does not ratify a runtime LLM
-release and does not make community-pack text trusted. It proposes the concrete
-defensive contract Nico must approve before untrusted UGC/community-pack text
+Accepted for FMX-188. This packet does not ratify a runtime LLM release and
+does not make community-pack text trusted. It records the concrete defensive
+contract Nico approved on 2026-06-19 before untrusted UGC/community-pack text
 can enter a Narrative LLM prompt.
 
 ## Problem

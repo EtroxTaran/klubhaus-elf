@@ -1,11 +1,11 @@
 ---
 title: ADR-0085 Media Ecology Context and Outlet Operational Behaviour
 status: accepted
-tags: [adr, architecture, ddd, media, media-ecology, outlets, press, narrative, audience, notification, determinism, fmx-82]
+tags: [adr, architecture, ddd, media, media-ecology, outlets, press, narrative, audience, notification, determinism, fmx-82, accepted]
 created: 2026-06-07
-updated: 2026-06-15
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 amended_by: [[ADR-0100-story-thread-ownership-and-cross-context-naming]]
@@ -37,6 +37,11 @@ related:
 ---
 
 # ADR-0085: Media Ecology Context and Outlet Operational Behaviour
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
 
 > **AMENDED on 2026-06-08 by [[ADR-0100-story-thread-ownership-and-cross-context-naming]]**
 > — the **thread-ownership / thread-naming portions only** (StoryThread origination /
@@ -338,7 +343,7 @@ Remaining ratification / follow-up items before implementation:
 - the bounded-context-map 19→20 patch (apply on ratify);
 - the outlet→fan-mood/board/morale effect-intent taxonomy is prepared by
   FMX-162 in [[ADR-0126-cross-producer-effect-intent-taxonomy]] and remains
-  non-binding until Nico accepts that packet.
+  binding after Nico approved it on 2026-06-19 that packet.
 
 ## Supersedes
 

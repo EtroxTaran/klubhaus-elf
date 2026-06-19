@@ -87,7 +87,7 @@ Pros:
 Cons:
 
 - Highest duplication and churn risk while many context contracts remain draft
-  or decision-pending.
+  or explicitly unresolved.
 - Easy to accidentally ratify unsettled contract details by writing them as
   current module notes.
 - Large same-PR surface area for a documentation-structure decision.

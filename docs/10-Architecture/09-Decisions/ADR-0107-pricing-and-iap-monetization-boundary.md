@@ -1,11 +1,11 @@
 ---
 title: ADR-0107 Pricing and IAP Monetization Boundary
-status: draft
-tags: [adr, architecture, monetization, pricing, iap, entitlement, no-p2w, privacy, fmx-191]
+status: accepted
+tags: [adr, architecture, monetization, pricing, iap, entitlement, no-p2w, privacy, fmx-191, accepted]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 amends: [[ADR-0063-investor-entitlement-and-payment-boundary]]
 supersedes:
 superseded_by:
@@ -24,9 +24,14 @@ related:
 
 # ADR-0107: Pricing and IAP Monetization Boundary
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
 > **Decision gate.** This ADR is the non-binding architecture proposal for FMX-191.
 > It becomes binding only if Nico approves D1-D5 in
@@ -46,15 +51,15 @@ Existing decision memory:
 - [[../../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
   proposes the product/game-design rule: free core, cosmetics, Supporter Club, no
   paid power and singleplayer-only Investor isolation.
-- FMX-194 produced draft
+- FMX-194 produced accepted
   [[ADR-0109-payment-provider-and-monetization-legal-gates|ADR-0109]] as the
-  proposed provider, refund, withdrawal, age-gate and paid-activation legal
-  gate. It remains non-binding until Nico approves its D1-D5 packet and legal
+  provider, refund, withdrawal, age-gate and paid-activation legal
+  gate. It is binding after Nico approved D1-D5 on 2026-06-19; legal
   review signs off actual artifacts.
-- FMX-190 produced draft
+- FMX-190 produced accepted
   [[ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]] as the
-  proposed project-wide no-P2W contract-test and MP/shared-fairness CI invariant.
-  It remains non-binding until Nico approves its D1-D5 packet.
+  project-wide no-P2W contract-test and MP/shared-fairness CI invariant.
+  It is binding after Nico approved D1-D5 on 2026-06-19.
 
 ## Decision if ratified
 

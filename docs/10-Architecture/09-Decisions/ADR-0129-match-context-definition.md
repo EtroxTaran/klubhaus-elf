@@ -1,11 +1,11 @@
 ---
 title: ADR-0129 Match Context Definition
-status: draft
-tags: [adr, architecture, ddd, bounded-context, sporting-core, match, simulation, events, fmx-132]
+status: accepted
+tags: [adr, architecture, ddd, bounded-context, sporting-core, match, simulation, events, fmx-132, accepted]
 created: 2026-06-16
-updated: 2026-06-16
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 linear: FMX-132
 amends:
   - [[ADR-0018-systemic-events-and-player-lifecycle]]
@@ -30,11 +30,16 @@ related:
 
 # ADR-0129: Match Context Definition
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-Prepared for FMX-132 on 2026-06-16. Not binding until Nico approves D1-D7 in
+Prepared for FMX-132 on 2026-06-16. Binding after Nico approved D1-D7 on 2026-06-19 in
 [[../../40-Execution/fmx-132-sporting-core-context-definitions-decision-queue-2026-06-16]].
 
 ## Date
@@ -163,7 +168,7 @@ Queries/read models, draft public language:
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. Dedicated Match ADR | Define Match boundary here and link feature ADRs. | **Recommended, awaiting Nico.** Clear canonical source without duplicating accepted detail. |
+| A. Dedicated Match ADR | Define Match boundary here and link feature ADRs. | **Recommended, accepted by Nico 2026-06-19.** Clear canonical source without duplicating accepted detail. |
 | B. Umbrella Sporting Core ADR | Put Match/Training/Squad together. | Higher merge-conflict and omnibus risk. |
 | C. Fragmented status quo | Leave Match scattered across map/state-machine/feature ADRs. | Keeps current ambiguity. |
 
@@ -171,7 +176,7 @@ Queries/read models, draft public language:
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. Current event set from match.md + ADR-0018 + ADR-0087/FMX-140 | Treat pause/intervention events as current and lifecycle/player effects as external. | **Recommended, awaiting Nico.** |
+| A. Current event set from match.md + ADR-0018 + ADR-0087/FMX-140 | Treat pause/intervention events as current and lifecycle/player effects as external. | **Recommended, accepted by Nico 2026-06-19.** |
 | B. Demote pause/intervention to draft | Reopens already accepted pause/intervention work. | Not recommended. |
 | C. Add player/training lifecycle to Match | Makes Match own durable player effects. | Conflicts with ADR-0018. |
 
@@ -200,4 +205,3 @@ Negative / constraints:
 - [[ADR-0072-in-match-control-seam]]
 - [[ADR-0087-live-match-intervention-buffer-and-pause-vote]]
 - [[ADR-0096-match-engine-cross-runtime-determinism-numeric-surface]]
-

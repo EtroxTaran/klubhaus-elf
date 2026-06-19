@@ -1,14 +1,20 @@
 ---
 title: CI & Review Process
-status: draft
+status: current
 tags: [implementation, ci, process, quality, architecture-fitness, mutation, stryker, rulesets, branch-protection, codeowners, lefthook, local-parity, fmx-167, fmx-172, fmx-176, fmx-181]
 created: 2026-05-16
-updated: 2026-06-17
+updated: 2026-06-19
 type: implementation
+binding: true
 related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-phase-dod-transition-contract]], [[../40-Quality/test-strategy]], [[../40-Quality/architecture-fitness-function]], [[../40-Quality/stryker-mutation-testing-gate]], [[../60-Research/local-parity-lefthook-2026-06-17]], [[../40-Execution/fmx-176-local-parity-decision-record-2026-06-17]], [[../60-Research/branch-protection-codeowner-activation-2026-06-16]], [[../40-Execution/fmx-181-branch-protection-ruleset-activation-decision-record-2026-06-16]], [[../10-Architecture/09-Decisions/ADR-0001-tech-stack]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../10-Architecture/09-Decisions/ADR-0118-test-strategy-and-quality-gates]], [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]], [[../00-Index/Current-State]]
 ---
 
 # CI & Review Process
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
 
 > **2026-06-14 — FMX-180 phase contract.** ADR-0110 and
 > [[code-phase-dod-transition-contract]] are the executable source for the
@@ -49,10 +55,10 @@ related: [[../10-Architecture/10-Quality]], [[agent-workflow-pattern]], [[code-p
 > It is not a new branch-protection context and it is inactive until real
 > scanner scripts, violation fixtures, workflows and burn-in exist.
 >
-> **2026-06-15 - FMX-172 Stryker mutation gate pending.** Draft
+> **2026-06-15 - FMX-172 Stryker mutation gate accepted.** Accepted
 > [[../10-Architecture/09-Decisions/ADR-0125-stryker-mutation-testing-gate]]
 > and [[../40-Quality/stryker-mutation-testing-gate]] refine the future
-> mutation-testing subgate, but they are non-binding until Nico accepts D1-D6.
+> mutation-testing subgate; they are binding after Nico approved D1-D6 on 2026-06-19.
 > The active docs-phase DoD is unchanged; mutation stays reporting/nightly/release
 > before any PR-blocking promotion and remains inside `quality` if promoted.
 >
@@ -177,7 +183,7 @@ proof before PR blocking and no standalone `mutation` branch-protection context.
   lint-staged or code-test hooks as active.
 - Use the pinned toolchain in the repo. As of FMX-198, active docs-phase
   tooling still pins pnpm 11.7.0, but source checks observe 11.8.0 as current
-  stable; update is pending Nico D1 in
+  stable; update is accepted by Nico 2026-06-19 D1 in
   [[../40-Execution/fmx-198-version-pin-audit-decision-queue-2026-06-19]].
   Future code bootstrap still re-checks tool versions before adding workspace
   dependencies.
@@ -239,8 +245,8 @@ checklist is green. FMX-176 has restored docs-phase local parity with a
 Lefthook `pre-push` docs gate. FMX-181 has activated the docs-phase ruleset
 mirror; FMX-175 defines the future code-CI required context contract; FMX-179
 tracks workspace bootstrap; FMX-167 defines the future architecture-fitness
-subgate inside `quality`; FMX-172 prepares the decision-pending Stryker
-mutation subgate; FMX-195 refreshed the active pnpm pin to 11.7.0.
+subgate inside `quality`; FMX-172 accepts the Stryker mutation subgate;
+FMX-195 refreshed the active pnpm pin to 11.7.0.
 
 ## Related
 

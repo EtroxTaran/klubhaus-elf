@@ -1,11 +1,11 @@
 ---
 title: Monorepo Workspace Bootstrap Plan
-status: draft
+status: current
 tags: [implementation, plan, monorepo, workspace, nx, pnpm, code-phase, fmx-179]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: implementation
-binding: false
+binding: true
 related:
   - [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]]
   - [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]
@@ -17,8 +17,13 @@ related:
 
 # Monorepo Workspace Bootstrap Plan
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
+
 This is the exact follow-up scaffold plan proposed by FMX-179. It is
-non-binding until Nico approves
+binding after Nico approved it on 2026-06-19
 [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap|ADR-0114]]
 and its decision queue.
 

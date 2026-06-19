@@ -1,11 +1,11 @@
 ---
 title: FMX-188 Prompt Injection Defensive Contract Decision Queue
-status: draft
-tags: [execution, decision-queue, ai, llm, prompt-injection, narrative, ugc, community-packs, security, fmx-188]
+status: accepted
+tags: [execution, decision-queue, ai, llm, prompt-injection, narrative, ugc, community-packs, security, fmx-188, accepted]
 created: 2026-06-16
-updated: 2026-06-16
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-188
 related:
   - [[../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
@@ -17,10 +17,15 @@ related:
 
 # FMX-188 Prompt Injection Defensive Contract Decision Queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-188.
+
+
 ## Status
 
-Awaiting Nico. This queue records recommendations only; no FMX-188 guardrail is
-binding until Nico answers.
+Accepted by Nico on 2026-06-19. This queue records recommendations only; no FMX-188 guardrail is
+binding after Nico approved it on 2026-06-19.
 
 ## D1 - LLM UGC Exposure Posture
 
@@ -137,4 +142,8 @@ Operational interpretation:
 
 ## Nico Decision Log
 
-Pending.
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=B target + A default/kill switch, D2=A, D3=A, D4=A, D5=A, D6=A**.
+
+No open Nico decision remains for FMX-188.

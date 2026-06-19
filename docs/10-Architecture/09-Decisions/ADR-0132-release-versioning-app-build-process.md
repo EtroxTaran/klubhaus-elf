@@ -1,11 +1,11 @@
 ---
 title: ADR-0132 Release Versioning and App Build Process
-status: draft
-tags: [adr, architecture, release, versioning, app-build, dokploy, pwa, telemetry, provenance, sbom, fmx-178, draft]
+status: accepted
+tags: [adr, architecture, release, versioning, app-build, dokploy, pwa, telemetry, provenance, sbom, fmx-178, draft, accepted]
 created: 2026-06-16
-updated: 2026-06-16
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 linear: FMX-178
 amends:
   - [[ADR-0017-observability-logging]]
@@ -23,9 +23,14 @@ related:
 
 # ADR-0132: Release Versioning and App Build Process
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
 > **Proposal only (FMX-178).** This ADR defines the recommended release
 > versioning and app-build identity contract after Perplexity-first research and
@@ -37,7 +42,7 @@ draft
 ## Date
 
 - Drafted: 2026-06-16
-- Binding status: pending Nico
+- Binding status: accepted by Nico 2026-06-19
 
 ## Context
 
@@ -130,7 +135,7 @@ human memory or ambiguous "current production" shorthand.
 
 ## Proposed Decision
 
-Pending Nico approval:
+Accepted by Nico 2026-06-19 approval:
 
 - **D1 = A:** SemVer is the canonical technical app version. Git tags may use
   `vX.Y.Z`; the manifest stores `X.Y.Z`. Before stable public compatibility,

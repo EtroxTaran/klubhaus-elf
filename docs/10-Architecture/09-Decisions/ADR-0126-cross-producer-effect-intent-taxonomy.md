@@ -1,11 +1,11 @@
 ---
 title: ADR-0126 Cross-producer effect-intent taxonomy
-status: draft
-tags: [adr, architecture, ddd, effect-intent, narrative, media-ecology, press, dialogue, published-language, fmx-162]
+status: accepted
+tags: [adr, architecture, ddd, effect-intent, narrative, media-ecology, press, dialogue, published-language, fmx-162, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 linear: FMX-162
 supersedes:
 superseded_by:
@@ -28,12 +28,17 @@ related:
 
 # ADR-0126: Cross-producer effect-intent taxonomy
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-> **Decision gate.** This is the FMX-162 proposal only. It is non-binding until
-> Nico answers D1-D7 in
+> **Decision gate.** This is the FMX-162 accepted decision. It is binding after
+> Nico approved D1-D7 on 2026-06-19 in
 > [[../../40-Execution/fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15]].
 
 ## Context

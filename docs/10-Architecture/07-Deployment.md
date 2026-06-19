@@ -180,7 +180,7 @@ save until real save-size measurements replace it.
   artifacts.
 - Draft ADR-0132 proposes that future app releases build once, deploy by
   immutable OCI digest and record release/build/save/content identity in
-  `release.json`; this is pending Nico approval and is not active deployment
+  `release.json`; this is accepted by Nico 2026-06-19 and is not active deployment
   policy yet.
 - Telemetry services are version-pinned once introduced; upgrades happen
   in a planned maintenance window.

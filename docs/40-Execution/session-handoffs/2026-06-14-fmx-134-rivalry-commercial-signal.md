@@ -70,6 +70,5 @@ related:
 
 ## Promotion Needed
 
-- Promote ADR-0111 from `draft` to `accepted` only after Nico approves D1-D3 and
-  the accepted ADR/map cleanup has been applied.
-
+- ADR-0111 was promoted from `draft` to `accepted` after Nico approved D1-D3 on
+  2026-06-19 and the ADR/map cleanup was applied.

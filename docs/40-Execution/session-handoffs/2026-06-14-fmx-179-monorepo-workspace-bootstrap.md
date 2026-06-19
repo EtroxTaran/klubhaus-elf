@@ -20,7 +20,7 @@ related:
 
 - Define the monorepo/workspace bootstrap shape before any scaffold code lands.
 - Preserve Perplexity, Context7, Ref and registry research.
-- Prepare all Nico decisions needed for package granularity, namespace,
+- Prepare all Accepted Nico decisions for package granularity, namespace,
   workspace linking and code-gate activation.
 
 ## Completed
@@ -31,7 +31,7 @@ related:
   game-production precedent and practical Nx/pnpm bootstrap sequencing.
 - Ran Context7/Ref source checks for Nx, pnpm, TypeScript, Vitest, Playwright
   and Storybook, plus npm registry latest checks.
-- Added raw captures, synthesis, draft ADR-0114, decision queue and scaffold
+- Added raw captures, synthesis, accepted ADR-0114, decision queue and scaffold
   plan.
 - Updated front-door notes and clarified design-system coverage wording as
   target-only until real packages exist.
@@ -45,7 +45,7 @@ related:
 
 ## Decisions Made
 
-None binding. Recommended packet:
+None binding. Approved packet:
 
 - D1=A: progressive one-context package catalog.
 - D2=A: real foundation packages only.
@@ -78,4 +78,4 @@ None binding. Recommended packet:
 
 ## Promotion Needed
 
-ADR-0114 remains draft/non-binding until Nico approves D1-D8.
+ADR-0114 remains draft/binding after Nico approved it on 2026-06-19 D1-D8.

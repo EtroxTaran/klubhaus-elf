@@ -1,11 +1,11 @@
 ---
 title: ADR-0063 Investor Entitlement and Payment Boundary
 status: accepted
-tags: [adr, architecture, economy, investor, monetization, entitlement, iap, payment, compliance, legal, security, webhook, risk-legal, fmx-50, fmx-187, proposed]
+tags: [adr, architecture, economy, investor, monetization, entitlement, iap, payment, compliance, legal, security, webhook, risk-legal, fmx-50, fmx-187, proposed, accepted]
 created: 2026-06-01
-updated: 2026-06-16
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -33,6 +33,11 @@ related:
 ---
 
 # ADR-0063: Investor Entitlement and Payment Boundary
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
 
 ## Status
 
@@ -140,7 +145,7 @@ legal-sensitive gates in
 [[ADR-0109-payment-provider-and-monetization-legal-gates|ADR-0109]],
 [[../../60-Research/monetization-legal-gates-2026-06-13]] and
 [[../../40-Compliance/monetization-legal-gates-evidence-2026-06-13]]. Those
-recommendations remain pending Nico/legal approval and do not change this ADR's
+recommendations remain accepted by Nico 2026-06-19/legal approval and do not change this ADR's
 binding status by themselves.
 
 FMX-187 adds the binding receiver-security contract in
@@ -157,7 +162,7 @@ Adopt **Option B** for MVP planning: a `PaymentProviderPort` plus a
 server-authoritative `InvestorEntitlement` state machine inside CommercialPortfolio,
 Club Management as sole ledger writer. Treat the **vendor sub-decision (B1/B2)**,
 **refund-of-spent-cash policy**, **soft-launch activation timing** and **age-gate
-strictness** as **HITL gates** pending Nico + legal review. No bounded-context
+strictness** as **HITL gates** accepted by Nico 2026-06-19 + legal review. No bounded-context
 boundary changes; no gameplay change.
 
 ### FMX-189 mode-separation amendment (accepted 2026-06-16)

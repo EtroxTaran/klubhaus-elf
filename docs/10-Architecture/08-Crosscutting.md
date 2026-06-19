@@ -351,11 +351,10 @@ ship.
   the OWASP-preferred memory-hard KDF) for the **portable-export passphrase** —
   the only brute-forceable, P2P-travelling secret — loaded only on the
   export/import path. The `kdfAlgo` envelope field discriminates the two.
-  FMX-173 adds a non-binding validation packet: exact-pinned `hash-wasm@4.12.0`
+  FMX-173 adds an accepted validation packet: exact-pinned `hash-wasm@4.12.0`
   is the recommended first provider, the OWASP Argon2id floor is the minimum
   profile, KDF work stays in one Web Worker, offline availability is required
-  after install/precache, and module/performance failure must fail closed unless
-  Nico approves a different fallback. See
+  after install/precache, and module/performance failure must fail closed. See
   [[../60-Research/argon2id-wasm-kdf-validation-2026-06-19]] and
   [[../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19]].
 

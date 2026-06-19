@@ -18,7 +18,7 @@ related: [[../00-Index/Game-Design-Map]], [[../00-Index/Current-State]], [[../00
 > Scope-calls decided live by Nico; record in
 > [[../40-Execution/decision-queue-2026-06-08-ratified|the ratification ledger]].
 > This supersedes the 2026-05-27 reopen note below. **GDDRs are binding again;**
-> the non-numbered system/mode notes remain `draft` (fan-ecology: `superseded`) pending
+> the non-numbered system/mode notes are accepted (fan-ecology: `superseded`) pending
 > individual re-approval
 > (see [[../40-Execution/ratification-status-inventory-2026-06-11|status inventory]], FMX-143).
 >
@@ -74,23 +74,22 @@ A junior should never have to guess. Apply this order:
 | AI managers & world | [[GD-0010-ai-world]] (`accepted`, Wave-2 gated) | — |
 
 Since the 2026-06-08 ratification the GDDR layer is `accepted` (binding); the
-non-numbered system/mode notes are `draft` detailed specs pending individual
+non-numbered system/mode notes are `draft` detailed specs accepted individual
 re-approval (FMX-143 H2) — read them as planning context that must not
 contradict the GDDR of record. Wave-2-gated items inside accepted GDDRs remain
 scope-gated, not implementable.
 
-`GD-0041` is the FMX-191 monetization/no-P2W proposal and remains `draft`
-until Nico answers the FMX-191 decision queue. `GD-0042` is the FMX-133
-match-engine core model/calibration proposal and remains `draft` until Nico
-answers the FMX-133 decision queue. `GD-0043` is the FMX-141 gameplay
-calibration ownership proposal and remains `draft` until Nico answers the
-FMX-141 decision queue. FMX-190 prepared draft
+`GD-0041` is the FMX-191 monetization/no-P2W accepted record after Nico approved
+the FMX-191 decision queue. `GD-0042` is the FMX-133 match-engine core
+model/calibration accepted record after Nico approved the FMX-133 decision
+queue. `GD-0043` is the FMX-141 gameplay calibration ownership accepted record
+after Nico approved the FMX-141 decision queue. FMX-190 prepared accepted
 [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]
-as the proposed project-wide no-P2W / shared-fairness enforcement invariant;
-it remains non-binding until Nico answers the FMX-190 decision queue. `GD-0044`
+as the project-wide no-P2W / shared-fairness enforcement invariant; it is
+binding after Nico approved the FMX-190 decision queue on 2026-06-19. `GD-0044`
 is the accepted FMX-137 Create-a-Club Roguelite run tuning record. `GD-0045`
-is the FMX-192 cosmetic identity catalog proposal and remains `draft` until
-Nico answers the FMX-192 decision queue.
+is the FMX-192 cosmetic identity catalog accepted record after Nico approved the
+FMX-192 decision queue.
 
 | GDDR | System | Status | Feeds ADR |
 |---|---|---|---|
@@ -117,7 +116,7 @@ Nico answers the FMX-192 decision queue.
 | [[GD-0021-player-staff-development-and-decision-influence]] | Player/staff development and decision-influence factor matrices; FMX-152 accepts staff-skill Option B narrow pipeline modifiers | accepted | ADR-0052, ADR-0053 |
 | [[GD-0022-economy-commercial-impact-and-contracts]] | Economy commercial impact map; ticketing, season-ticket lifecycle/accrual, fan-demand elasticity, commercial contract lifecycle/breach, catering, merchandise, cup/competition revenue profiles, matchday operating costs, fan events and Investor clean SP cash | accepted | ADR-0050, ADR-0058 |
 | [[GD-0023-ai-club-economy-behaviour]] | AI club economy behaviour; five financial-policy archetypes over manager archetypes, three financial regimes (Healthy/Stressed/Distressed), soft diegetic homeostasis (no AI stat cheats), staged distress with rare bounded insolvency, tiered fidelity, country distress personalities, structured rationale tags | accepted | ADR-0050, ADR-0051, ADR-0058 |
-| [[GD-0024-ai-world-drift-algorithm]] | AI world-drift algorithm; Rising Rival, Giant Collapse and Continental Era Shift / rising nations as deterministic, legible, capped structural drift events with GD-0043 `world.drift` calibration handoff. FMX-139 proposes the pending `DriftConsumerPolicyRef` hybrid ref/snapshot contract and reserved `youthDiffusionHint` semantics. | accepted | ADR-0071 |
+| [[GD-0024-ai-world-drift-algorithm]] | AI world-drift algorithm; Rising Rival, Giant Collapse and Continental Era Shift / rising nations as deterministic, legible, capped structural drift events with GD-0043 `world.drift` calibration handoff. FMX-139 proposes the accepted `DriftConsumerPolicyRef` hybrid ref/snapshot contract and reserved `youthDiffusionHint` semantics. | accepted | ADR-0071 |
 | [[GD-0025-in-match-controls]] | In-match controls & live-control kit (FMX-100, resolves GD-0016 R2-16 gameplay half); one MVP interaction tier — queued subs, mentality presets, formation-swap, 3 cooldown shouts, 3 speeds + free pause; halftime modal; deterministic shout-effect contract with provisional playtest-tunable magnitudes; text&stats accessible path | accepted | ADR-0072 |
 | [[GD-0026-set-piece-coach-readiness]] | Set-piece-coach effect-readiness multiplier curve (FMX-69, closes gap G12); per-variant readiness via bounded exponential, coach specialisation (ADR-0053) scales the learning rate, two-layer category+variant granularity, decay + hysteresis selectability gate frozen into the TacticSnapshot (ADR-0067); `SetPieceCoachReadinessUpdated` emitted by Training; constants = GD-0043 `setPieces.readiness` calibration | accepted | ADR-0053, ADR-0067 (additive amend) |
 | [[GD-0027-hidden-attribute-substrate-mapping]] | Hidden-attribute substrate mapping (FMX-86, closes gap G22, unblocks ADR-0052 boundary); deterministic meta/OCEAN → football-label derivation via mutually-exclusive label axes + orthogonal flags; OCEAN persisted as state (derive-at-gen, mutate in place); reveal reuses Scouting's `HiddenFlagRevealLedger` gate (bands not point estimates, no join); mentoring split = People policy + Training compute (numeric model → GD-0021); thresholds = calibration. **D1–D4 = A/A/A/A** | accepted | ADR-0052, ADR-0064 |
@@ -134,11 +133,11 @@ Nico answers the FMX-192 decision queue.
 | [[GD-0038-bounded-context-portfolio-trim-merge-review-gate]] | Bounded-context portfolio trim / merge-review gate (FMX-105 sweep): adopt the reconciled 28-context map as canonical, but keep the count under a standing merge-review gate; trim candidates that always co-change. **Nico: option B.** | accepted | ADR-0089 |
 | [[GD-0039-c6-status-reconciliation-and-cluster-ratification-order]] | C6 status reconciliation & People-first cluster ratification order (FMX-105 sweep): canonical status note + fixed People → Staff Ops/Youth/Scouting → Discipline/Loans/Manager-signal order. | accepted | ADR-0052 |
 | [[GD-0040-future-contracts-clm-extraction-seam]] | Future Contracts/CLM extraction-seam (FMX-105 sweep): defer extraction but reserve an explicit ACL seam now so ADR-0073/0075 stop tracking the same future-CLM question in parallel. **Nico: option A.** | accepted | ADR-0073, ADR-0075 |
-| [[GD-0041-monetization-model-and-no-pay-to-win-canon]] | Monetization model and no-P2W canon (FMX-191): recommended free core + deterministic cosmetics + optional non-power Supporter Club + later cosmetic-only season card; strict allowed/forbidden entitlement classes; ADR-0063 Investor isolated to singleplayer. FMX-190 enforcement draft [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]] is pending Nico D1-D5. | draft | ADR-0107, ADR-0108 draft |
-| [[GD-0042-match-engine-core-model-and-calibration]] | Match-engine core model and calibration (FMX-133): recommended hybrid event-chain + xT/EPV utility + xG + attribute contests, v1 statistical envelopes, profile spatial-density rules and calibration/compatibility harness. Numeric representation stays closed by ADR-0096. Pending Nico D1-D6. | draft | ADR-0096, ADR-0026 |
-| [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] | Gameplay calibration ownership and acceptance gate (FMX-141): recommended gameplay-wide calibration umbrella, 14-slot taxonomy, T0-T4 harness tiers, explicit tolerance/rebaseline policy and realism-vs-fun approval gate. Pending Nico D1-D5. | draft | none |
+| [[GD-0041-monetization-model-and-no-pay-to-win-canon]] | Monetization model and no-P2W canon (FMX-191): recommended free core + deterministic cosmetics + optional non-power Supporter Club + later cosmetic-only season card; strict allowed/forbidden entitlement classes; ADR-0063 Investor isolated to singleplayer. FMX-190 enforcement accepted [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]] is accepted by Nico 2026-06-19 D1-D5. | accepted | ADR-0107, ADR-0108 accepted |
+| [[GD-0042-match-engine-core-model-and-calibration]] | Match-engine core model and calibration (FMX-133): recommended hybrid event-chain + xT/EPV utility + xG + attribute contests, v1 statistical envelopes, profile spatial-density rules and calibration/compatibility harness. Numeric representation stays closed by ADR-0096. Accepted by Nico 2026-06-19 D1-D6. | accepted | ADR-0096, ADR-0026 |
+| [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] | Gameplay calibration ownership and acceptance gate (FMX-141): recommended gameplay-wide calibration umbrella, 14-slot taxonomy, T0-T4 harness tiers, explicit tolerance/rebaseline policy and realism-vs-fun approval gate. Accepted by Nico 2026-06-19 D1-D5. | accepted | none |
 | [[GD-0044-create-a-club-roguelite-run-tuning]] | Create-a-Club Roguelite run tuning (FMX-137): staged run-end ladder, two unresolved month-end liquidity/licence failures after rescue exhaustion, board control loss through GD-0030 `last_chance`, capped logarithmic carry slots to max 3, light async kit-pattern visibility and deferred archetype taxonomy. | accepted | ADR-0051, ADR-0082 |
-| [[GD-0045-cosmetic-identity-catalog]] | Cosmetic identity catalog (FMX-192): proposed free Create-a-Club baseline identity, eight-family cosmetic taxonomy, deterministic non-tradeable/no-RNG acquisition classes, item+bundle IP/accessibility evidence and pricing/legal handoff hooks. Pending Nico D1-D7. | draft | ADR-0107, ADR-0108 draft |
+| [[GD-0045-cosmetic-identity-catalog]] | Cosmetic identity catalog (FMX-192): proposed free Create-a-Club baseline identity, eight-family cosmetic taxonomy, deterministic non-tradeable/no-RNG acquisition classes, item+bundle IP/accessibility evidence and pricing/legal handoff hooks. Accepted by Nico 2026-06-19 D1-D7. | accepted | ADR-0107, ADR-0108 accepted |
 
 ## Core loop
 
@@ -158,11 +157,11 @@ Nico answers the FMX-192 decision queue.
   financing tools: credit line, loan, sponsor advance, receivable factoring,
   restructuring, owner support and emergency-sale mandates separate from
   Investor.
-- [[GD-0041-monetization-model-and-no-pay-to-win-canon]] - draft FMX-191
-  monetization model and no-P2W canon; not binding until Nico approves D1-D5.
+- [[GD-0041-monetization-model-and-no-pay-to-win-canon]] - accepted FMX-191
+  monetization model and no-P2W canon; binding after Nico approved D1-D5.
 - [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]] -
-  draft FMX-190 no-P2W / shared-state fairness invariant and future test-gate
-  proposal; not binding until Nico approves D1-D5.
+  accepted FMX-190 no-P2W / shared-state fairness invariant and future test-gate
+  accepted record; binding after Nico approved D1-D5.
 - [[sponsorship-portfolio]] - 4-tier sponsor inventory at asset level.
 - [[stadium-and-campus]] - stadium tiers + Anstoss-style attractions + club campus.
 - [[../20-Features/feature-club-economy-mvp-pillar]] - draft MVP economy pillar for weekly ledger, full accounting and staged insolvency.
@@ -187,9 +186,9 @@ Nico answers the FMX-192 decision queue.
 - [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]] -
   FMX-54 fan-persona privacy, fictional aggregate boundary, IP-safe
   social-world naming and Community Overlay future-gate research.
-- [[GD-0045-cosmetic-identity-catalog]] - draft FMX-192 cosmetic identity
-  catalog proposal; not binding until Nico approves D1-D7.
-- [[../20-Features/feature-cosmetic-identity-catalog]] - draft feature slice
+- [[GD-0045-cosmetic-identity-catalog]] - accepted FMX-192 cosmetic identity
+  catalog accepted record; binding after Nico approved D1-D7.
+- [[../20-Features/feature-cosmetic-identity-catalog]] - current feature slice
   for the cosmetic identity catalog.
 
 ## Sporting core
@@ -220,12 +219,12 @@ Nico answers the FMX-192 decision queue.
 - [[GD-0026-set-piece-coach-readiness]] - draft set-piece-coach effect-readiness
   multiplier curve (FMX-69, G12); readiness gates ADR-0067 variant selectability.
 - [[match-engine]] - 2D event-based engine spec.
-- [[GD-0042-match-engine-core-model-and-calibration]] - draft FMX-133 core
-  model/calibration proposal; not binding until Nico approves D1-D6.
-- [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] - draft
-  FMX-141 gameplay calibration ownership proposal; not binding until Nico
-  approves D1-D5.
-- [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]] - draft
+- [[GD-0042-match-engine-core-model-and-calibration]] - accepted FMX-133 core
+  model/calibration accepted record; binding after Nico approved D1-D6.
+- [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]] - accepted
+  FMX-141 gameplay calibration ownership record; binding after Nico approved
+  D1-D5 on 2026-06-19.
+- [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]] - accepted
   non-economy gameplay calibration method and slot register.
 - [[../60-Research/match-engine-core-model-2026-06-13]] - FMX-133 research
   synthesis for statistical envelopes, action utility, game precedents and the
@@ -275,7 +274,7 @@ Nico answers the FMX-192 decision queue.
   [[GD-0028-dialogue-intent-taxonomy-effect-matrix]] for finite intents and
   banded effects.
 - [[../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15]] - FMX-162
-  decision-pending synthesis for one advisory published-language catalog across
+  accepted synthesis for one advisory published-language catalog across
   Narrative dialogue/press and Media Ecology coverage effect-intents. Draft ADR:
   [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
 - [[GD-0020-eos-player-skills-personas-and-people]] - accepted People/persona
@@ -302,7 +301,7 @@ Nico answers the FMX-192 decision queue.
   reach (domain) ≠ delivery (Notification) ≠ feed (UI) split. Companion to the
   new Media Ecology context
   [[../10-Architecture/09-Decisions/ADR-0085-media-ecology-context-and-outlet-operational-behaviour]].
-  FMX-162 prepares the pending cross-producer `media.*` effect-intent catalog
+  FMX-162 prepares the accepted cross-producer `media.*` effect-intent catalog
   mapping for this model.
 
 ## UX

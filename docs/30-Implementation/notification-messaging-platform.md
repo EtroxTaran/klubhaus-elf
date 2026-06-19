@@ -5,7 +5,7 @@ tags: [implementation, notification, messaging, inbox, email, push, realtime, sc
 created: 2026-05-22
 updated: 2026-06-19
 type: implementation
-binding: false
+binding: true
 adr:
   - "[[../10-Architecture/09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]]"
   - "[[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]"
@@ -24,18 +24,22 @@ related:
 
 # Notification and Messaging Platform
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
+
 ## Purpose
 
 This note preserves the Notification implementation stance from ADR-0043 and
-tracks the FMX-156 successor proposal in ADR-0102. It defines the durable
+tracks the FMX-156 successor accepted record in ADR-0102. It defines the durable
 Notification bounded context, its channels, provider adapters, offline inbox
 behavior, delivery semantics, scheduling, rate limits, privacy requirements and
 migration process.
 
-FMX-156 is **decision-pending**: this note is `binding: false` while ADR-0102 is
-`draft` / `binding: false`. The implementation posture below documents the
-recommended target, but no new code-phase behavior is binding until Nico
-accepts the D1-D5 packet.
+FMX-156 is accepted: this note is `binding: true` and ADR-0102 is `accepted` /
+`binding: true` after Nico approved D1-D5 on 2026-06-19. The implementation
+posture below is the current Notification target.
 
 ## Scope
 
@@ -157,9 +161,9 @@ Old notifications store:
 
 The snapshot is what users saw. Template changes do not rewrite history.
 
-### FMX-156 pending offline-delivery clause
+### FMX-156 accepted offline-delivery clause
 
-Recommended target, awaiting Nico approval in
+Recommended target, accepted by Nico 2026-06-19 approval in
 [[../40-Execution/fmx-156-notification-platform-decision-queue-2026-06-15]]:
 
 - Persist first, deliver second: the Postgres notification record is durable
@@ -232,7 +236,7 @@ Preferences are resolved in this order:
 5. quiet hours and digest settings.
 
 Mandatory security/account notices cannot be disabled. Gameplay reminders,
-digests and social notifications can be disabled or collapsed depending on
+digests and social notifications can be disabled or collapsed deaccepted on
 category.
 
 Required preference fields:

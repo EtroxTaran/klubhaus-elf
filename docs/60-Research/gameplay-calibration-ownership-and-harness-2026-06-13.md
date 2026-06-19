@@ -32,7 +32,7 @@ gates.
 This synthesis proposes a gameplay-wide calibration umbrella:
 [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate|GD-0043]]
 plus [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]. It is
-non-binding until Nico approves the decision packet in
+binding after Nico approved the decision packet on 2026-06-19 in
 [[../40-Execution/fmx-141-gameplay-calibration-decision-queue-2026-06-13]].
 
 ## Evidence synthesis

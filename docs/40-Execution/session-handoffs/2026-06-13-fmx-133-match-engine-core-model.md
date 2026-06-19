@@ -18,8 +18,8 @@ related:
 ## Goals
 
 - Prepare the FMX-133 match-engine core model decision packet.
-- Save Perplexity research, source checks, synthesis and all pending decisions.
-- Update the draft match-engine note and GDDR/index surfaces without self-ratifying.
+- Save Perplexity research, source checks, synthesis and the decision queue.
+- Update the match-engine note and GDDR/index surfaces after Nico approval.
 
 ## Completed
 
@@ -41,9 +41,9 @@ related:
 
 ## Open Tasks
 
-- Nico must decide D1-D6 before GD-0042 can become binding.
-- If Nico approves, promote GD-0042 to `accepted` / `binding: true` and update
-  GD-0002's open gates from pending proposal to closed/superseded.
+- Nico approved D1-D6 on 2026-06-19; GD-0042 is now `accepted` /
+  `binding: true`.
+- GD-0002's open gates were updated from pending proposal to accepted closure.
 - Future implementation must build the calibration harness and record evidence.
 
 ## Decisions Made
@@ -64,4 +64,3 @@ None binding. Recommended packet is D1=A, D2=A, D3=A, D4=A, D5=A, D6=A.
 
 If Nico approves the packet, promote GD-0042 and update GD-0002, Current-State,
 Game Design Hub/Map and research references in the same PR.
-

@@ -1,11 +1,11 @@
 ---
 title: ADR-0060 Youth Academy Context
 status: accepted
-tags: [adr, architecture, ddd, youth, academy, lifecycle, fmx-29, proposed]
+tags: [adr, architecture, ddd, youth, academy, lifecycle, fmx-29, proposed, accepted]
 created: 2026-05-28
 updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -40,6 +40,11 @@ related:
 ---
 
 # ADR-0060: Youth Academy Context
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
 
 ## Status
 
@@ -217,7 +222,7 @@ slider all owned by Staff Operations.
   Operations' scope by ratified ADR.
 - **Trade-off:** weak; ratified ADR-0053 §Decision rules this out.
 
-## Decision questions (open — awaiting Nico, 2026-06-07)
+## Decision questions (open — accepted by Nico 2026-06-19, 2026-06-07)
 
 Re-grounded in [[../../60-Research/youth-academy-context-decision-2026-06-07]]
 (DDD cadence/lifecycle heuristics; EPPP/NLZ/UEFA-HGP structure; FM/OOTP/EHM youth modelling).
@@ -241,7 +246,7 @@ Regulations with Academy as the fact/history owner — a one-line clarification 
 ## Recommendation
 
 **Option C (Youth Academy as own bounded context, 17th or 18th
-depending on ADR-0059 ratification order).** Three converging
+deaccepted on ADR-0059 ratification order).** Three converging
 arguments:
 
 1. **DDD canonical criteria fire strongest in wave (synthesis F4).**
@@ -317,19 +322,18 @@ arguments:
   Process Manager (audit-window FSM, downgrade-trigger policy,
   central-funding bonus posting) is a follow-up beat.
 
-> **FMX-157 pending follow-up (2026-06-19):**
+> **FMX-157 accepted follow-up (2026-06-19):**
 > [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
 > and
 > [[../../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]]
-> preserve the non-binding recommendation that Youth Academy owns the
+> preserve the accepted recommendation that Youth Academy owns the
 > `AcademyCategoryAuditCycle`, long-save cohort-history summaries and
 > `AcademyPipelineSummaryUpdated` producer surface, while Manager & Legacy
 > consumes immutable snapshots only. Recommended defaults are a two-academy-
 > season audit cadence, five seasons of full cohort detail and 20+ seasons of
-> yearly summaries/milestones, but these values are not binding until Nico
-> accepts FMX-157 D1-D6.
+> yearly summaries/milestones. Nico approved FMX-157 D1-D6 on 2026-06-19.
 
-Status stays `proposed` / `binding: false` until Nico ratifies.
+Status is `accepted` / `binding: true` after Nico ratified the FMX-157 follow-up.
 
 ## Decision
 
@@ -551,9 +555,9 @@ Negative:
 - Cohort-history retention policy across 20+ in-game seasons is open
   question; ties to Manager & Legacy archive (Future-scope §10).
 
-## Map patch proposal
+## Map patch accepted record
 
-Order-tolerant proposal that applies when this ADR is accepted.
+Order-tolerant accepted record that applies when this ADR is accepted.
 Sequencing: if ADR-0059 (Community Overlay Pipeline) is ratified
 first, Youth Academy is the 18th bounded context; if FMX-29 lands
 first, it is the 17th. Both apply-PRs are independent and can land in
@@ -690,7 +694,7 @@ None.
 - [[ADR-0059-community-overlay-pipeline-context]] - pack-manifest
   validation upstream (proposed); Youth Academy BC owns semantic
   validation per Vernon when ADR-0059 ratifies.
-- [[../bounded-context-map]] - target of §Map patch proposal.
+- [[../bounded-context-map]] - target of §Map patch accepted record.
 - [[../state-machines/youth-academy]] - FSM diagram + transitions
   (this ADR introduces the new state-machine note).
 - [[../../30-Implementation/domain-research-workflow]] - six-phase

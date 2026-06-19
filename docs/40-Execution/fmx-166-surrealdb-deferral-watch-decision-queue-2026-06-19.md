@@ -1,11 +1,11 @@
 ---
 title: FMX-166 SurrealDB Deferral Watch Decision Queue
-status: open
-tags: [execution, decision-queue, fmx-166, surrealdb, postgresql, graph, realtime, projection, adr]
+status: accepted
+tags: [execution, decision-queue, fmx-166, surrealdb, postgresql, graph, realtime, projection, adr, accepted]
 created: 2026-06-19
 updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-166
 owner: Nico
 related:
@@ -19,6 +19,11 @@ related:
 ---
 
 # FMX-166 SurrealDB Deferral Watch Decision Queue
+
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-166.
+
 
 ## Context
 
@@ -41,7 +46,7 @@ SurrealDB adoption or version pin is binding until these decisions are accepted.
 
 Recommendation: **C**.
 
-Decision: [ ] A [ ] B [ ] C [ ] D [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D2 - Owner and cadence
 
@@ -53,7 +58,7 @@ Decision: [ ] A [ ] B [ ] C [ ] D [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D3 - Version posture
 
@@ -66,7 +71,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] D [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D4 - Assess -> Trial -> Adopt gate
 
@@ -78,7 +83,7 @@ Decision: [ ] A [ ] B [ ] C [ ] D [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D5 - Canonical homes
 
@@ -90,7 +95,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## Required follow-up after Nico decision
 
@@ -100,6 +105,13 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
   handoff.
 - If Nico chooses a new ADR (D5-B), draft it as `status: draft`,
   `binding: false` until accepted.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=C, D2=A, D3=A, D4=A, D5=A**.
+
+No open Nico decision remains for FMX-166.
 
 ## Related
 

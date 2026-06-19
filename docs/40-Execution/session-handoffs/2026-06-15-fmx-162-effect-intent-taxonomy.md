@@ -22,8 +22,7 @@ related:
 ## Linear
 
 FMX-162 was moved from `Backlog` to `In Progress` on 2026-06-15 before branch
-or file work. The packet remains decision-pending; keep Linear `In Progress`
-until Nico accepts or changes D1-D7.
+or file work. Nico approved D1-D7 on 2026-06-19; the packet is accepted.
 
 ## Durable notes updated
 

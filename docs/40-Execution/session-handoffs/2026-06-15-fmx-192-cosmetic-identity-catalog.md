@@ -36,9 +36,9 @@ related:
   - [[../../60-Research/raw-perplexity/raw-cosmetic-identity-source-checks-2026-06-15]]
 - Added synthesis:
   [[../../60-Research/cosmetic-identity-catalog-2026-06-15]].
-- Added draft GDDR:
+- Added accepted GDDR:
   [[../../50-Game-Design/GD-0045-cosmetic-identity-catalog]].
-- Added draft feature slice:
+- Added current feature slice:
   [[../../20-Features/feature-cosmetic-identity-catalog]].
 - Added Nico decision queue:
   [[../fmx-192-cosmetic-identity-catalog-decision-queue-2026-06-15]].
@@ -53,12 +53,12 @@ related:
 ## Decisions Made
 
 None. The packet recommends **D1-D7 = A/A/A/A/A/A/A**, but the decisions are
-pending Nico.
+accepted by Nico 2026-06-19.
 
 ## Blockers
 
-- No implementation blocker. Governance blocker by design: draft/non-binding
-  until Nico accepts or changes the packet.
+- No approval blocker remains. Nico approved the packet on 2026-06-19 and the
+  cosmetic identity catalog is accepted/binding.
 
 ## Durable Notes Updated
 
@@ -70,4 +70,3 @@ pending Nico.
 ## Promotion Needed
 
 - Promote only after Nico explicitly accepts the decision queue.
-

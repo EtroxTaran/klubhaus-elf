@@ -1,11 +1,11 @@
 ---
 title: GD-0042 Match-engine core model and calibration
-status: draft
-tags: [game-design, gddr, match-engine, xg, xt, epv, calibration, quality-profile, fmx-133]
+status: accepted
+tags: [game-design, gddr, match-engine, xg, xt, epv, calibration, quality-profile, fmx-133, accepted]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: gddr
-binding: false
+binding: true
 linear: FMX-133
 related:
   - [[../60-Research/match-engine-core-model-2026-06-13]]
@@ -24,11 +24,16 @@ related:
 
 # GD-0042: Match-engine core model and calibration
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this game-design record is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-> **Decision gate.** This GDDR is a non-binding FMX-133 proposal until Nico approves
+> **Decision gate.** This GDDR is a non-binding FMX-133 accepted record until Nico approves
 > the D1-D6 packet in
 > [[../40-Execution/fmx-133-match-engine-core-model-decision-queue-2026-06-13]]. It is
 > written in "if ratified" language and must not be treated as implementation
@@ -184,4 +189,4 @@ and pause budgets stay owned by the live-control/watch-party records, not FMX-13
 
 Approve or change D1-D6 in
 [[../40-Execution/fmx-133-match-engine-core-model-decision-queue-2026-06-13]].
-Recommended packet: **A/A/A/A/A/A**.
+Approved packet: **A/A/A/A/A/A**.

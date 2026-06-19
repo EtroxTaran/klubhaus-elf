@@ -1,11 +1,11 @@
 ---
 title: FMX-138 determinism portfolio principle decision queue
-status: current
-tags: [execution, decision-queue, determinism, seeded-variance, rng, gameplay, pending, fmx-138]
+status: accepted
+tags: [execution, decision-queue, determinism, seeded-variance, rng, gameplay, pending, fmx-138, accepted]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-138
 related:
   - [[../60-Research/determinism-portfolio-principle-2026-06-14]]
@@ -16,11 +16,16 @@ related:
 
 # FMX-138 determinism portfolio principle decision queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-138.
+
+
 This is the HITL decision queue for FMX-138. It turns the research synthesis
 [[../60-Research/determinism-portfolio-principle-2026-06-14]] into explicit Nico
-decisions before draft
+decisions for accepted
 [[../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle|ADR-0113]]
-can become binding.
+.
 
 ## D1 - portfolio principle
 
@@ -62,11 +67,18 @@ can become binding.
 - 2026-06-14: synthesis created in
   [[../60-Research/determinism-portfolio-principle-2026-06-14]].
 - 2026-06-14: draft ADR-0113 prepared as a non-binding proposal record.
-- Pending Nico: D1-D3 above.
+- Accepted by Nico 2026-06-19: D1-D3 above.
 
 ## Recommended approval packet
 
 Approve **D1=A, D2=A, D3=A**.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A**.
+
+No open Nico decision remains for FMX-138.
 
 ## Related
 

@@ -1,11 +1,11 @@
 ---
 title: ADR-0089 Bounded-context portfolio reconciliation and managed count
 status: accepted
-tags: [adr, architecture, ddd, bounded-context, modular-monolith, governance, fmx-105, fmx-160]
+tags: [adr, architecture, ddd, bounded-context, modular-monolith, governance, fmx-105, fmx-160, accepted]
 created: 2026-06-07
-updated: 2026-06-16
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:
@@ -29,6 +29,11 @@ related:
 ---
 
 # ADR-0089: Bounded-context portfolio reconciliation and managed count
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
 
 ## Status
 

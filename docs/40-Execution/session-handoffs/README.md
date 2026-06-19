@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-19
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-19-fmx-198-version-pin-audit]], [[2026-06-19-fmx-185-age-assurance-promotion]], [[2026-06-19-fmx-148-named-supporter-group]], [[2026-06-19-fmx-166-surrealdb-deferral-watch]], [[2026-06-19-fmx-173-argon2id-kdf-validation]], [[2026-06-19-fmx-105-save-trust-reconciliation]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-19-open-decision-closure]], [[2026-06-19-fmx-198-version-pin-audit]], [[2026-06-19-fmx-185-age-assurance-promotion]], [[2026-06-19-fmx-148-named-supporter-group]], [[2026-06-19-fmx-166-surrealdb-deferral-watch]], [[2026-06-19-fmx-173-argon2id-kdf-validation]], [[2026-06-19-fmx-105-save-trust-reconciliation]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,13 +42,17 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-19-open-decision-closure]] - Cross-packet open-decision closure:
+  Nico approved all recommended options on 2026-06-19; 29 active decision queues
+  and 163 individual decisions are accepted/binding, related ADR/GDDR/runbook
+  notes were promoted, and no active open Nico decision queue remains.
 - [[2026-06-19-fmx-198-version-pin-audit]] - FMX-198 version-pin audit:
   raw Perplexity/source-check captures, synthesis, stack-ledger refresh and
   decision queue for active pnpm, Node, PostgreSQL, Capacitor and target-only
   package row currency, plus completion-audit coverage for XState,
   Storybook/Vite, i18n, architecture-fitness/test-support packages,
-  match-engine helper libs, Motion and Centrifugo historical rows. Pending
-  Nico D1-D6; no active toolchain files were mutated.
+  match-engine helper libs, Motion and Centrifugo historical rows. Accepted by
+  Nico 2026-06-19 D1-D6; no active toolchain files were mutated.
 - [[2026-06-19-fmx-185-age-assurance-promotion]] - FMX-185 promotion sweep:
   Nico approved D1-D6 = A/A/A/A/A/A after a Perplexity freshness pass and
   source checks; ADR-0112 and the age-assurance/rating evidence checklist are
@@ -64,20 +68,21 @@ This is the **single** canonical handoff location. (An older
   Manager Legacy / Scouting / Youth feed packet: raw Perplexity/source-check
   captures, synthesis and decision queue for Youth Academy audit/retention,
   Scouting -> Youth Academy discovery, Youth Academy -> Transfer `YouthLoaned`,
-  opposition-scouting reports and Manager & Legacy youth-summary feeds. Pending
-  Nico D1-D6; no cadence, retention window, event envelope or opposition split
-  is binding.
+  opposition-scouting reports and Manager & Legacy youth-summary feeds. Accepted
+  by Nico 2026-06-19 D1-D6; cadence, retention window, event envelope and
+  opposition split choices are binding.
 - [[2026-06-19-fmx-166-surrealdb-deferral-watch]] - FMX-166 SurrealDB
   deferral watch packet: raw Perplexity/source-check captures, synthesis and
   decision queue for replacing stale `1.x`/`2.x` wording with a current-stable
   at future Trial rule, compound graph/live product-need trigger, owner/cadence
-  recommendation and non-authoritative rebuildable projection gate. Pending
-  Nico D1-D5; SurrealDB remains deferred / Assess and no version pin is binding.
+  recommendation and non-authoritative rebuildable projection gate. Accepted by
+  Nico 2026-06-19 D1-D5; SurrealDB remains deferred / Assess with the approved
+  watch policy.
 - [[2026-06-19-fmx-173-argon2id-kdf-validation]] - FMX-173 Argon2id
   WASM KDF validation packet: raw Perplexity/source-check captures, synthesis
   and decision queue for provider, OWASP floor, Worker/mobile benchmark gate,
-  PWA offline-loading, fallback posture and passphrase normalization. Pending
-  Nico D1-D6; no provider/parameter/fallback rule is binding yet.
+  PWA offline-loading, fallback posture and passphrase normalization. Accepted
+  by Nico 2026-06-19 D1-D6; provider/parameter/fallback rules are binding.
 - [[2026-06-19-fmx-105-save-trust-reconciliation]] - FMX-105 closure sweep:
   raw Perplexity/source-check captures, synthesis and closure record proving the
   stale save-trust/command-integrity issue is already covered by accepted
@@ -87,14 +92,14 @@ This is the **single** canonical handoff location. (An older
 - [[2026-06-18-fmx-169-per-context-module-notes]] - FMX-169 per-context
   module-note surface packet: raw Perplexity/source-check captures, synthesis
   and decision queue for central map only vs all-28 notes vs staged hybrid.
-  Pending Nico D1-D4; recommendation is staged hybrid, first slice Match,
+  Accepted by Nico 2026-06-19 D1-D4; recommendation is staged hybrid, first slice Match,
   League Orchestration, Squad & Player, Training, Tactics, Transfer, Club
   Management and Offline Sync, with `bounded-context-map` remaining the
   canonical catalog/edge/folder index.
 - [[2026-06-18-fmx-171-observability-trigger-span-policy]] - FMX-171
   observability trace-backend trigger and MVP span policy: raw
   Perplexity/source-check captures, synthesis, decision queue and proposed
-  ADR-0017/crosscutting/deployment/runbook amendments. Pending Nico D1-D4;
+  ADR-0017/crosscutting/deployment/runbook amendments. Accepted by Nico 2026-06-19 D1-D4;
   recommendation is Tempo only after split runtime path plus one 30-minute
   Loki/Prometheus localisation failure, Mimir only when 15-month Prometheus
   retention needs >80% TSDB disk for seven daily checks, and span coverage now
@@ -106,7 +111,7 @@ This is the **single** canonical handoff location. (An older
   Slavic/case-heavy locale gate. Current recommendation: Paraglide native
   variants + `Intl.PluralRules` cover MVP plural category selection; ICU MF1 is
   optional plugin syntax; first Slavic/case-heavy locale or ICU-syntax migration
-  reopens the risk. Pending Nico D1-D4.
+  reopens the risk. Accepted by Nico 2026-06-19 D1-D4.
 - [[2026-06-18-fmx-165-command-queue-seam]] - FMX-165 ADR-0090
   command-queue seam propagation: raw Perplexity/source-check captures,
   synthesis and decision record applying accepted ADR-0090/ADR-0119 to
@@ -138,21 +143,21 @@ This is the **single** canonical handoff location. (An older
 - [[2026-06-17-fmx-139-drift-consumer-policy-ref]] - FMX-139
   DriftConsumerPolicyRef contract packet: raw Perplexity/source-check captures,
   synthesis, decision queue and proposed ADR-0071/GD-0024/ADR-0079 amendments
-  for a hybrid ref/snapshot contract. Pending Nico D1-D4; recommendation is
+  for a hybrid ref/snapshot contract. Accepted by Nico 2026-06-19 D1-D4; recommendation is
   hybrid ref, AI World `WorldDriftPolicyCatalog` identity/versioning, GD-0043 /
   FMX-52 final calibration, consumer-owned application and reserved typed
   `youthDiffusionHint`.
 - [[2026-06-17-fmx-159-watch-party-context-ownership]] - FMX-159 Watch Party
   context-definition packet: raw Perplexity/source-check captures, synthesis,
-  decision queue and draft ADR-0133 for party-scoped lifecycle, participants,
+  decision queue and accepted ADR-0133 for party-scoped lifecycle, participants,
   broadcast/session state, spectator delay, conference coordination,
-  pause-vote orchestration, chat, markers and moderation. Pending Nico D1-D8;
+  pause-vote orchestration, chat, markers and moderation. Accepted by Nico 2026-06-19 D1-D8;
   recommendation is Watch Party as social/session owner, Match as
   event-log/replay authority, Notification as delivery owner and Offline Sync
   as sync/rebase/collaboration infrastructure.
 - [[2026-06-16-fmx-178-release-versioning-app-build]] - FMX-178 release
   versioning/app-build packet: raw Perplexity/source-check captures, synthesis,
-  draft ADR-0132, draft runbook and decision queue. Pending Nico D1-D7;
+  accepted ADR-0132, current runbook and decision queue. Accepted by Nico 2026-06-19 D1-D7;
   recommendation is SemVer technical version plus player label, generated
   `release.json`, build-once/promote-digest Dokploy flow, prompt-to-refresh PWA
   update UX, app/API/save/content compatibility matrix, SBOM/provenance evidence
@@ -171,8 +176,8 @@ This is the **single** canonical handoff location. (An older
   Investor/time-saving payloads are singleplayer-only.
 - [[2026-06-16-fmx-132-sporting-core-contexts]] - FMX-132 Sporting Core
   context-definition packet: raw Perplexity/source-check captures, synthesis,
-  decision queue and draft ADR-0129/0130/0131 for Match, Training and Squad &
-  Player. Pending Nico D1-D7; recommendation is dedicated draft ADRs, Squad &
+  decision queue and accepted ADR-0129/0130/0131 for Match, Training and Squad &
+  Player. Accepted by Nico 2026-06-19 D1-D7; recommendation is dedicated accepted ADRs, Squad &
   Player durable player-state ownership, Training signal ownership, Match
   fixture-scoped event/simulation ownership and GD-0005 R2-03 closure after
   approval.
@@ -192,7 +197,7 @@ This is the **single** canonical handoff location. (An older
   prompt-injection defensive contract for untrusted UGC/community-pack text in
   Narrative LLM prose: raw Perplexity/source-check captures, synthesis,
   decision queue and proposed patches to ADR-0030, ADR-0059, ADR-0098 and the
-  AI narration contract-testing framework. Pending Nico D1-D6; recommendation
+  AI narration contract-testing framework. Accepted by Nico 2026-06-19 D1-D6; recommendation
   is UGC-as-flavor with hard guardrails, air-gapped narrator as default/kill
   switch, strict output schema, fail-closed review and mandatory red-team
   corpus.
@@ -236,14 +241,14 @@ This is the **single** canonical handoff location. (An older
   platform `audit_log`.
 - [[2026-06-15-fmx-192-cosmetic-identity-catalog]] - FMX-192 cosmetic identity
   catalog packet: raw Perplexity/source-check captures, synthesis, draft
-  GD-0045, draft feature slice and decision queue. Pending Nico D1-D7;
-  recommended packet is all A for draft GDDR + feature note, free baseline
+  GD-0045, current feature slice and decision queue. Accepted by Nico 2026-06-19 D1-D7;
+  approved packet is all A for accepted GDDR + feature note, free baseline
   identity, eight-family taxonomy, deterministic non-tradeable/no-RNG
   acquisition, light gated async visibility, item+bundle IP/accessibility
   evidence and a later cosmetic-only deterministic season card.
 - [[2026-06-15-fmx-162-effect-intent-taxonomy]] - FMX-162 effect-intent
   taxonomy packet: raw Perplexity/source-check captures, synthesis, draft
-  decision queue and draft ADR-0126. Pending Nico D1-D7; recommended packet is
+  decision queue and accepted ADR-0126. Accepted by Nico 2026-06-19 D1-D7; approved packet is
   all A for one published-language catalog, advisory-only producer metadata,
   owner-context validation/application, full v1 catalog rows, People as
   gate/scaler owner, visible bounded audit/history and a future exhaustive
@@ -258,30 +263,30 @@ This is the **single** canonical handoff location. (An older
   retention stay outside.
 - [[2026-06-15-fmx-197-pwa-offline-mobile-release-qa]] - FMX-197
   PWA/offline/mobile release/content-QA packet: raw Perplexity/source-check
-  captures, synthesis, draft decision queue, draft ADR-0124 and draft quality
-  runbook. Pending Nico D1-D7; recommended packet is all A for hybrid-online
+  captures, synthesis, draft decision queue, accepted ADR-0124 and current quality
+  runbook. Accepted by Nico 2026-06-19 D1-D7; approved packet is all A for hybrid-online
   offline contract, tiered storage budgets/eviction UX, user-mediated SW update
   plus no-op/rescue rollback, staged rollout gates, manifested content-pack
   validation, template-first generated/localized content gates and versioned
   evidence/rebaseline records.
 - [[2026-06-15-fmx-172-stryker-mutation-gate]] - FMX-172 Stryker
   mutation-testing gate packet: raw Perplexity/source-check captures,
-  synthesis, draft decision queue, draft ADR-0125 and draft quality runbook.
-  Pending Nico D1-D6; recommended packet is all A for ADR-0118 high-risk
+  synthesis, draft decision queue, accepted ADR-0125 and current quality runbook.
+  Accepted by Nico 2026-06-19 D1-D6; approved packet is all A for ADR-0118 high-risk
   deterministic/domain scope, baseline-first 70/80/90 activation,
   reporting/nightly/release cadence before any PR subgate, latest-stable
   Stryker/Vitest pairing at adoption, CI-only incremental artifacts and strict
   deterministic survivor triage.
 - [[2026-06-15-fmx-193-responsible-gaming]] - FMX-193 responsible-gaming
   binding record packet: raw Perplexity/source-check captures, synthesis, draft
-  decision queue, draft ADR-0122 and draft compliance home. Pending Nico D1-D7;
-  recommended packet is all A for dedicated ADR + compliance home, hard no paid
+  decision queue, accepted ADR-0122 and current compliance home. Accepted by Nico 2026-06-19 D1-D7;
+  approved packet is all A for dedicated ADR + compliance home, hard no paid
   random rewards, dark-pattern release self-audit, optional local reminders,
   versioned statement now, PM-18 OSS/license split-out and independent guardrail
   acceptance before monetization SKU ratification.
 - [[2026-06-15-fmx-168-tooling-currency]] - FMX-168 tooling-currency sweep:
   raw Perplexity/source-check captures, synthesis, draft Stack Currency Ledger
-  and Nico decision queue. Recommended packet is D1-D5=A: one vault ledger now,
+  and Nico decision queue. Approved packet is D1-D5=A: one vault ledger now,
   stable numeric latest with explicit source-conflict ledger, PostgreSQL 18.x
   as future code bootstrap target after approval, latest-stable compatibility
   bundle at bootstrap and dependency automation after the real workspace exists.
@@ -317,8 +322,8 @@ This is the **single** canonical handoff location. (An older
   post-commit publication/domain mutation trail.
 - [[2026-06-15-fmx-196-deterministic-simulation-qa]] - FMX-196 deterministic
   simulation QA packet: raw Perplexity/source-check captures, synthesis, draft
-  decision queue, draft ADR-0120 and draft quality runbook. Pending Nico D1-D7;
-  recommended packet is all A for replay evidence levels, seed tiers, profile
+  decision queue, accepted ADR-0120 and current quality runbook. Accepted by Nico 2026-06-19 D1-D7;
+  approved packet is all A for replay evidence levels, seed tiers, profile
   gates, soak metrics, save-forward boundary, same-WASM parity and
   rebaseline/retention policy.
 - [[2026-06-15-fmx-156-notification-platform]] - FMX-156 Notification platform
@@ -349,7 +354,7 @@ This is the **single** canonical handoff location. (An older
   `MatchFrame` or replay-bearing match state.
 - [[2026-06-14-fmx-179-monorepo-workspace-bootstrap]] - FMX-179
   monorepo/workspace bootstrap packet: raw Perplexity/source-check captures,
-  synthesis, decision queue, draft ADR-0114 and exact scaffold plan. Recommended
+  synthesis, decision queue, accepted ADR-0114 and exact scaffold plan. Recommended
   packet is D1-D8 = A/A/A/A/A/A/A/A: progressive one-context package catalog,
   real foundation packages only, workspace package facades, pnpm workspace
   linking + TypeScript references + Nx TypeScript plugin, no placeholder green
@@ -358,7 +363,7 @@ This is the **single** canonical handoff location. (An older
 - [[2026-06-14-fmx-138-determinism-portfolio-principle]] - FMX-138
   portfolio determinism + seeded-variance principle packet: raw
   Perplexity/Web/source-check captures, synthesis, decision queue and draft
-  ADR-0113. Recommended packet is D1/D2/D3 = A/A/A: classify surfaces by
+  ADR-0113. Approved packet is D1/D2/D3 = A/A/A: classify surfaces by
   portfolio role, use bounded seeded variance only through existing
   owner-context RNG streams and keep Hall-of-Fame induction pure deterministic
   for MVP unless a future approved owner-stream flavor rule is added.
@@ -372,12 +377,12 @@ This is the **single** canonical handoff location. (An older
   server-verified or imported-verified eligible histories.
 - [[2026-06-14-fmx-185-age-assurance]] - FMX-185 original age assurance and
   IARC/USK rating-evidence packet: raw Perplexity/Web captures, synthesis,
-  compliance evidence home, decision queue and then-draft ADR-0112. Superseded
+  compliance evidence home, decision queue and then-accepted ADR-0112. Superseded
   as the current handoff by [[2026-06-19-fmx-185-age-assurance-promotion]],
   which records Nico's approval and ADR-0112 promotion.
 - [[2026-06-14-fmx-134-rivalry-commercial-signal]] - FMX-134
   RivalryCommercialSignal orphan-contract packet: raw Perplexity/Web captures,
-  synthesis, decision queue and draft ADR-0111. Recommended packet is D1/D2/D3
+  synthesis, decision queue and accepted ADR-0111. Approved packet is D1/D2/D3
   = B/A/A: remove the orphan signal, let CommercialPortfolio derive from
   `RivalryTierTransitioned` / `DerbyContext` through a local ACL/projection,
   keep fan-side `derby_factor` with Audience & Atmosphere and apply accepted
@@ -413,26 +418,26 @@ This is the **single** canonical handoff location. (An older
   fun/perception overrides.
 - [[2026-06-13-fmx-133-match-engine-core-model]] - FMX-133 match-engine core
   model decision packet: raw Perplexity/source-check captures, synthesis, HITL
-  queue and draft GD-0042. Recommended packet is A/A/A/A/A/A: hybrid
+  queue and draft GD-0042. Approved packet is A/A/A/A/A/A: hybrid
   event-chain + xT/EPV utility + shot xG + attribute contests, broad v1
   statistical envelopes, profile spatial-density rules, tiered calibration
   harness and ADR-0096 numeric representation closure preserved.
 - [[2026-06-13-fmx-194-monetization-legal-gates]] - FMX-194 monetization legal
   gates decision packet: raw Perplexity/source captures, synthesis, compliance
-  evidence home, HITL queue and draft ADR-0109. Recommended packet is A/A/A/A/A:
+  evidence home, HITL queue and accepted ADR-0109. Approved packet is A/A/A/A/A:
   web MoR-first with direct PSP fallback, Apple/Google IAP for native in-app
   digital cash, immediate-delivery waiver plus unspent-only revocation/no
   gameplay rollback, proportional age assurance and paid soft-launch
   compliance-gated activation.
 - [[2026-06-13-fmx-190-no-p2w-mp-fairness]] - FMX-190 no-P2W /
   MP-fairness invariant decision packet: raw Perplexity/Web/tooling captures,
-  synthesis, HITL queue and draft ADR-0108. Recommended packet is A/A/A/A/A:
+  synthesis, HITL queue and accepted ADR-0108. Approved packet is A/A/A/A/A:
   dedicated project-wide ADR, broad shared/competitive surfaces, docs-level
   test contract now with code gates later, paid information as forbidden power,
   and visible cosmetics non-competitive only when mechanically inert.
 - [[2026-06-13-fmx-191-monetization-model]] - FMX-191 monetization model and
   no-P2W canon decision packet: raw Perplexity/Web captures, synthesis, HITL
-  queue and draft GD-0041 / ADR-0107. Recommended packet is A/A/A/A/A: free
+  queue and draft GD-0041 / ADR-0107. Approved packet is A/A/A/A/A: free
   core, deterministic cosmetics, optional non-power Supporter Club, later
   cosmetic-only season card, ADR-0063 Investor isolated to singleplayer and
   FMX-190 left for CI/test enforcement.
@@ -547,7 +552,7 @@ This is the **single** canonical handoff location. (An older
   `PressArticle`, `ToneProfileLibrary`, `PressPublicationPolicy`), deterministic
   ICU fallback coverage, validation, provenance and optional schema-validated LLM
   paraphrase controls. Notification remains delivery; People supplies persona
-  cards; owning domains keep authoritative state. Awaiting Nico ratification.
+  cards; owning domains keep authoritative state. Accepted by Nico 2026-06-19 ratification.
 - [[2026-06-02-fmx-55-agent-claim-status-rule]] - FMX-55 operational workflow
   update: claimable Linear issues are `Backlog` or `Todo`; an agent's first
   visible action is now to verify no active branch/PR/worktree owns the issue and
@@ -579,7 +584,7 @@ This is the **single** canonical handoff location. (An older
   factoring, restructuring/payment holiday, owner support and emergency-sale
   mandate; CommercialPortfolio emits commercial receivable, advance eligibility,
   contract-liability and fair-value facts; Investor remains clean SP entitlement
-  cash only. Awaiting Nico decisions on thresholds, media-advance activation,
+  cash only. Accepted by Nico 2026-06-19 decisions on thresholds, media-advance activation,
   board guarantees, emergency-sale hardness and supplier-arrears depth.
 - [[2026-06-01-fmx-50-investor-compliance-entitlement-boundary]] - FMX-50 Investor
   compliance & entitlement boundary (`risk:legal`): `PaymentProviderPort`
@@ -598,7 +603,7 @@ This is the **single** canonical handoff location. (An older
   cooldown fields; travel/alcohol/safety/children/digital risk gates; ADR-0050
   event additions and ADR-0058 boundary amendment. Stays inside the accepted
   CommercialPortfolio / Audience & Atmosphere / Stadium Operations /
-  Regulations / Club Management split. Awaiting Nico decisions on first-playable
+  Regulations / Club Management split. Accepted by Nico 2026-06-19 decisions on first-playable
   catalog size, Quick-mode campaign board depth, alcohol abstraction, cooldown
   hardness, SLO staff depth, travel disruption depth and sponsor make-good
   visibility.
@@ -620,7 +625,7 @@ This is the **single** canonical handoff location. (An older
   restrictions and ghost matches. Refined GD-0022, Economy System,
   Regulations, Matchday Event Engine, Rivalry, Stadium/Campus, Audience &
   Atmosphere, Club Economy MVP pillar, ADR-0050, ADR-0058 and
-  commercial-contract surfaces. Awaiting Nico decisions on final cost ranges,
+  commercial-contract surfaces. Accepted by Nico 2026-06-19 decisions on final cost ranges,
   auto-mitigation defaults, policing-control depth and severe incident
   frequency.
 - [[2026-06-01-fmx-47-catering-merchandise-operations]] - FMX-47 catering and
@@ -631,7 +636,7 @@ This is the **single** canonical handoff location. (An older
   revenue↔safety dial; supplier pouring-rights/exclusivity carve-outs; IFRS 15
   cash-vs-recognition. Refined draft GD-0022, Economy System, Stadium & Campus,
   commercial-contract surface, ADR-0050 events and ADR-0058 boundary amendment.
-  Stays inside CommercialPortfolio; awaiting Nico decisions on operational depth
+  Stays inside CommercialPortfolio; accepted by Nico 2026-06-19 decisions on operational depth
   ceiling, per-country defaults, alcohol depth, penalty hardness and Quick-mode
   abstraction.
 - [[2026-05-28-fmx-45-cup-competition-revenue]] - FMX-45 cup and
@@ -642,7 +647,7 @@ This is the **single** canonical handoff location. (An older
   hard cash vs receivable vs future EV separation; elimination-shock read model
   instead of hidden cash loss. Refined draft GD-0022, Economy System,
   Regulations, Club Economy MVP pillar, ADR-0050, ADR-0058 and
-  commercial-contract surfaces. Awaiting Nico decisions on final calibration,
+  commercial-contract surfaces. Accepted by Nico 2026-06-19 decisions on final calibration,
   Quick budget reliance on cup EV, replay activation and season-ticket cup
   material-right liabilities.
 - [[2026-05-28-fmx-44-commercial-contract-lifecycle]] - FMX-44 commercial
@@ -653,7 +658,7 @@ This is the **single** canonical handoff location. (An older
   severity; renewal windows; cash-vs-recognition timing; Quick / Standard /
   Expert contract surfaces and AI-club hooks reserved for FMX-51. Refined draft
   GD-0022, Economy System, Sponsorship Portfolio, Stadium/Campus, Club Economy
-  MVP pillar, ADR-0058 and commercial-contract surfaces. Awaiting Nico
+  MVP pillar, ADR-0058 and commercial-contract surfaces. Accepted by Nico 2026-06-19
   decisions on ADR-0058 acceptance, default presets, Quick conflict strictness,
   controversial categories, Standard-vs-Expert true-ups and auto-renew
   confirmation.
@@ -665,7 +670,7 @@ This is the **single** canonical handoff location. (An older
   accessibility; full accrual accounting through cash, receivables, deferred
   revenue, match recognition and credit/refund liability pools. Refined draft
   GD-0022, Economy System, Fan Ecology, Stadium/Campus, Club Economy MVP
-  pillar and commercial-contract surfaces; awaiting Nico decisions on
+  pillar and commercial-contract surfaces; accepted by Nico 2026-06-19 decisions on
   share/discount ranges, Quick waitlist visibility, instalment risk, cup
   material-right depth and utilisation strictness.
 - [[2026-05-28-fmx-29-youth-academy]] - FMX-29 ownership dossier for
@@ -692,17 +697,17 @@ This is the **single** canonical handoff location. (An older
   reporting to Sporting Director, **and** every major football
   management sim treats academy as structurally separate persistent
   area. Draft ADR-0060 with four options + §Recommendation + §Map
-  patch proposal (order-tolerant - applies as 17th or 18th depending
+  patch accepted record (order-tolerant - applies as 17th or 18th depending
   on ADR-0059 ratification order). New state-machine note
   `state-machines/youth-academy.md` with four coordinated FSMs.
-  `risk:legal` label set. Awaiting Nico decision.
+  `risk:legal` label set. Accepted by Nico 2026-06-19 decision.
 - [[2026-05-28-fmx-42-fan-demand-price-elasticity]] - FMX-42 demand and pricing
   dossier: segment-specific latent fan demand before capacity allocation,
   season-ticket renewal versus single-ticket curves, top-match surcharge and
   bounded dynamic-pricing risks, capacity pressure, country-profile demand
   tendencies, and persistent ticketing trust feeding renewal, boycott,
   atmosphere and sponsor-fit risk. Refined draft Fan Ecology, GD-0022,
-  Economy System and commercial-contract surfaces; awaiting Nico decisions on
+  Economy System and commercial-contract surfaces; accepted by Nico 2026-06-19 decisions on
   dynamic-pricing scope, country guardrail hardness and Quick-mode trust
   visibility.
 - [[2026-05-28-fmx-33-community-overlay-pipeline]] - FMX-33 ownership
@@ -720,14 +725,14 @@ This is the **single** canonical handoff location. (An older
   argument**: ratified ADR-0056 + ADR-0057 explicitly reference
   "FMX-33 Community Overlay Pipeline" as upstream orchestrator. Draft
   ADR-0059 with four options + Option E anti-pattern + §Recommendation
-  + §Map patch proposal (order-tolerant). `risk:legal` label set.
-  Awaiting Nico decision.
+  + §Map patch accepted record (order-tolerant). `risk:legal` label set.
+  Accepted by Nico 2026-06-19 decision.
 - [[2026-05-28-fmx-41-economy-impact-map]] - FMX-41 economy impact map
   and commercial-contract dossier: direct financial-success domains, Top-5
   research anchors, season-ticket and ticket-pricing trade-offs, fan segment
   demand, catering/merchandise/sponsorship contract families, cup revenue,
   fan-service campaigns and Investor clean singleplayer cash. Added draft
-  GD-0022, draft ADR-0058 and draft commercial contract note; awaiting Nico
+  GD-0022, accepted ADR-0058 and draft commercial contract note; accepted by Nico 2026-06-19
   decisions on ADR-0058 boundary and Investor activation timing.
 - [[2026-05-28-fmx-34-rivalry-system]] - FMX-34 ownership dossier
   for the rivalry-edge graph + 5-sub-score formula (regional +
@@ -737,11 +742,11 @@ This is the **single** canonical handoff location. (An older
   credit-rating / customer-affinity / recommendation analogues;
   real-world UEFA risk-match + Premier League Category A/B/C +
   Bundesliga DFL Rotspiel), synthesis recommending Option C (own
-  Rivalry System bounded context), draft ADR-0057 with three options
-  + Option D anti-pattern + §Recommendation + §Map patch proposal
+  Rivalry System bounded context), accepted ADR-0057 with three options
+  + Option D anti-pattern + §Recommendation + §Map patch accepted record
   (order-tolerant). Smallest carve in the wave (lighter scope than
   Tactics / Regulations) - cross-cutting consumer count + Vernon
-  pattern tip it toward separate context. Awaiting Nico decision.
+  pattern tip it toward separate context. Accepted by Nico 2026-06-19 decision.
 - [[2026-05-28-fmx-30-regulations-compliance]] - FMX-30 ownership
   dossier for the regulatory rule catalog (FFP/SCR/PSR, work permits
   / GBE, home-grown quotas, transfer windows, license-tier facility
@@ -751,9 +756,9 @@ This is the **single** canonical handoff location. (An older
   multi-regulator landscape UEFA SCR + Premier League PSR + La Liga
   cost control + Bundesliga licensing + GBE), synthesis recommending
   Option B (own Regulations & Compliance bounded context), draft
-  ADR-0056 with four options + §Recommendation + §Map patch proposal
+  ADR-0056 with four options + §Recommendation + §Map patch accepted record
   (order-tolerant). `risk:legal` label set - IP-clean surface
-  contained in one context per GD-0015 + ADR-0007. Awaiting Nico
+  contained in one context per GD-0015 + ADR-0007. Accepted by Nico 2026-06-19
   decision.
 - [[2026-05-28-fmx-28-tactics-persistence]] - FMX-28 ownership dossier
   for the persistent tactics library (presets, set-piece routines,
@@ -761,39 +766,39 @@ This is the **single** canonical handoff location. (An older
   Match's per-match `tactic lock`. Three Perplexity queries (genre /
   DDD library-vs-instance / real-world 2023-2026 club tactical
   archives), synthesis recommending Option C (own Tactics bounded
-  context), draft ADR-0055 with four options + §Recommendation + §Map
-  patch proposal (order-tolerant). Awaiting Nico decision.
+  context), accepted ADR-0055 with four options + §Recommendation + §Map
+  patch accepted record (order-tolerant). Accepted by Nico 2026-06-19 decision.
 - [[2026-05-28-fmx-38-player-staff-development-decision-model]] - anchored
   FMX-38 player/staff development and decision-influence analysis into research
   synthesis, draft GD-0021, feature/game-design/ADR links and an explicit
-  staff-skill MVP option gate. Awaiting Nico decision on GD-0021 approval and
+  staff-skill MVP option gate. Accepted by Nico 2026-06-19 decision on GD-0021 approval and
   staff-skill option A/B/C.
 - [[2026-05-28-fmx-26-staff-backroom]] - FMX-26 ownership dossier for
   Staff & Backroom residual scope after ADR-0052. Three Perplexity
   queries (genre / DDD / real-world 2024-2026 Sporting Director model),
   synthesis recommending Option B (own Staff Operations bounded context
-  as 13th), draft ADR-0053 with three options + §Recommendation + §Map
-  patch proposal. Awaiting Nico decision.
+  as 13th), accepted ADR-0053 with three options + §Recommendation + §Map
+  patch accepted record. Accepted by Nico 2026-06-19 decision.
 - [[2026-05-28-fmx-25-manager-legacy-ratification]] - FMX-25 ratification
   pass for ADR-0051 Manager & Legacy Context. Three Perplexity queries
   (roguelite genre, DDD, football-sim precedent), synthesis recommending
   Accept (Option A), ADR-0051 expanded with three concrete options + map
-  patch proposal. Awaiting Nico decision.
+  patch accepted record. Accepted by Nico 2026-06-19 decision.
 - [[2026-05-28-ai-narration-framework-testing]] - anchored follow-up AI
   narration testing/framework research into raw notes, synthesis, ADR-0054,
   contract-testing framework and map/current-state updates.
 - [[2026-05-28-fmx-23-eos-people-skills-personas]] - anchored the EOS
   Player/Staff Values report and follow-up research into research synthesis,
-  draft GD-0020, feature spec, draft ADR-0052 and map/current-state links.
+  draft GD-0020, feature spec, accepted ADR-0052 and map/current-state links.
 - [[2026-05-27-fmx-16-manager-archetype-roguelite]] - anchored the
-  Manager-Archetype Roguelite raw report into research synthesis, draft GDDR,
-  draft ADR-0051, MVP hook updates and index/current-state links.
+  Manager-Archetype Roguelite raw report into research synthesis, accepted GDDR,
+  accepted ADR-0051, MVP hook updates and index/current-state links.
 - [[2026-05-27-fmx-13-club-economy-blueprint]] - anchored the club-economy
-  raw report into research synthesis, draft GDDR/system notes, feature spec,
+  raw report into research synthesis, accepted GDDR/system notes, feature spec,
   ADR-0050 and implementation-contract notes.
 - [[2026-05-27-ai-narrative-runtime-integration]] - promoted the two
   narrative/LLM raw reports into AI narrative runtime research, draft GD-0018
-  and draft ADR-0030.
+  and accepted ADR-0030.
 - [[2026-05-22-vault-consistency-pass]] - vault-wide consistency + link-health
   pass: Postgres/Drizzle realignment, supersede/front-door/authority hygiene,
   structure renames, mojibake/BOM repair, broken-link fixes; docs-check green.

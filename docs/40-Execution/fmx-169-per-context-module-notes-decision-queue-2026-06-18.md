@@ -1,11 +1,11 @@
 ---
 title: FMX-169 Per-Context Module Notes Decision Queue
-status: draft
-tags: [execution, decision-queue, bounded-context, module-notes, context-map, ddd, fmx-169]
+status: accepted
+tags: [execution, decision-queue, bounded-context, module-notes, context-map, ddd, fmx-169, accepted]
 created: 2026-06-18
-updated: 2026-06-18
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-169
 related:
   - [[../60-Research/per-context-module-notes-2026-06-18]]
@@ -19,9 +19,14 @@ related:
 
 # FMX-169 Per-Context Module Notes Decision Queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-169.
+
+
 ## Status
 
-Awaiting Nico. This queue records recommendations only. No per-context module
+Accepted by Nico on 2026-06-19. This queue records recommendations only. No per-context module
 notes, template path, or canonical architecture-doc ownership rule is binding
 until Nico answers.
 
@@ -120,4 +125,8 @@ Operational interpretation:
 
 ## Nico Decision Log
 
-Pending.
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=C, D2=A, D3=B, D4=A now / B later**.
+
+No open Nico decision remains for FMX-169.

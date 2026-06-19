@@ -179,7 +179,7 @@ consumer-owned rules engine.
 |---|---|---|
 | `RisingRivalTriggered` | `consumerPolicyRefs[]` with `consumer-finance` and/or `commercial-baseline` | Consumer contexts project the investment/reputation/commercial pressure bands. |
 | `GiantCollapseTriggered` | `forcedSalePolicyRef` | Club Management/ADR-0079 can open ownership-transition or forced-sale policy state from the event snapshot. |
-| `GiantCollapseTriggered` | `transferRestrictionPolicyRef` | Transfer/Regulations-facing consumers can project an embargo, registration cap or spending constraint without AI World joins. |
+| `GiantCollapseTriggered` | `transferRestrictionPolicyRef` | Transfer/Regulations-facing consumers can project an embargo, registration cap or saccepted constraint without AI World joins. |
 | `GiantCollapseTriggered` | `boardCrisisPolicyRef` | Club Management can project board/ownership crisis state and link to insolvency/administration FSMs. |
 | `ContinentalEraShifted` | `youthDiffusionHint` | Reserved typed ref for future Youth/Data work; no active youth mutation in FMX-139. |
 
@@ -197,7 +197,7 @@ This preserves GD-0024's no-hidden-catch-up promise.
 
 ## Decision Status
 
-Awaiting Nico in
+Accepted by Nico 2026-06-19 in
 [[../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]].
 
 Until approved, the ADR/GDDR edits in this PR are a concrete proposed amendment,

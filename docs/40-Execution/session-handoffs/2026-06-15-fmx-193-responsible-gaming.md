@@ -47,8 +47,8 @@ Recommended packet: **D1-D7 = A/A/A/A/A/A/A**:
 - optional local session reminders, default off for 18+;
 - versioned responsible-gaming statement now, product route later;
 - PM-18 responsible-gaming scope only, OSS/license split to a separate issue;
-- responsible-gaming guardrails can become binding independently of monetization
-  SKU ratification.
+- responsible-gaming guardrails are binding independently of monetization SKU
+  ratification.
 
 ## Promotion needed
 
@@ -62,4 +62,3 @@ If Nico accepts D1-D7, promote:
 
 ADR-0107, ADR-0108 and GD-0041 remain separate decision gates unless Nico
 explicitly ratifies them.
-

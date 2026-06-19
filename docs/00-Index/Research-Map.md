@@ -20,7 +20,7 @@ design notes.
 - [Research Summary](../60-Research/00-summary.md)
 - [Version Pin Audit](../60-Research/version-pin-audit-2026-06-19.md) -
   FMX-198 Perplexity-discovery and source-checked audit of active and
-  target-only version references. Recommendation pending Nico: update pnpm to
+  target-only version references. Accepted recommendation: update pnpm to
   11.8.0 in a narrow follow-up, choose Node 24 LTS vs Node 22 holdback before
   code bootstrap, keep PostgreSQL 17 active until the DB bootstrap decision,
   queue a Capacitor 8.x mobile re-pin decision, and refresh target-only ledger
@@ -40,24 +40,24 @@ design notes.
   FMX-157 Perplexity-first and source-checked packet for unresolved follow-up
   detail across Youth Academy audit/retention, Scouting -> Youth Academy
   discovery, Youth Academy -> Transfer `YouthLoaned`, opposition-scouting
-  reports and Manager & Legacy youth summaries. Recommendation pending Nico:
+  reports and Manager & Legacy youth summaries. Accepted recommendation:
   targeted ADR/state-machine amendments, producer-owned events plus consumer
   ACL snapshots, and reserved post-MVP scope until D1-D6 are approved in the
   [FMX-157 decision queue](../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19.md).
 - [SurrealDB Deferral Re-evaluation Watch](../60-Research/surrealdb-deferral-reevaluation-watch-2026-06-19.md) -
   FMX-166 Perplexity-first and source-checked packet replacing the stale
   "stable 1.x / re-evaluate 2.x" SurrealDB deferral wording. Recommendation
-  pending Nico: keep SurrealDB deferred / Assess, use a compound graph/live
+  accepted by Nico 2026-06-19: keep SurrealDB deferred / Assess, use a compound graph/live
   product-need plus current-stable operations-readiness trigger, assign the
   Lead Architect/Data Platform watch owner, run quarterly plus event-driven
   checks and require any future Trial to be non-authoritative, rebuildable and
-  exact-pinned to the then-current stable line. Decisions remain pending in
+  exact-pinned to the then-current stable line. Decisions were accepted on 2026-06-19 in
   [FMX-166 decision queue](../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19.md).
 - [Argon2id WASM KDF Validation](../60-Research/argon2id-wasm-kdf-validation-2026-06-19.md) -
   FMX-173 Perplexity-first and source-checked packet for ADR-0098's portable
-  export passphrase path. Recommendation pending Nico: first spike with
+  export passphrase path. Accepted recommendation: first spike with
   exact-pinned `hash-wasm@4.12.0`, OWASP floor as minimum, one Worker, offline
-  lazy chunk, mobile p95 gate and fail-closed fallback. Decisions remain pending
+  lazy chunk, mobile p95 gate and fail-closed fallback. Decisions are accepted
   in
   [FMX-173 decision queue](../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19.md).
 - [FMX-105 Save Trust Closure Reconciliation](../60-Research/fmx-105-save-trust-closure-reconciliation-2026-06-19.md) -
@@ -69,14 +69,14 @@ design notes.
   [FMX-105 closure record](../40-Execution/fmx-105-save-trust-closure-record-2026-06-19.md).
 - [Per-Context Module Notes Surface](../60-Research/per-context-module-notes-2026-06-18.md) -
   FMX-169 Perplexity-first and source-checked packet for deciding whether the
-  28 bounded contexts need per-context module notes. Recommended packet, pending
+  28 bounded contexts need per-context module notes. Approved packet, pending
   Nico: staged hybrid. Keep `bounded-context-map` canonical for catalog,
   relationship topology and folder mapping; add short local interface cards for
-  a first MVP-critical slice only after approval. Decisions remain pending in
+  a first MVP-critical slice only after approval. Decisions were accepted on 2026-06-19 in
   [FMX-169 decision queue](../40-Execution/fmx-169-per-context-module-notes-decision-queue-2026-06-18.md).
 - [Observability Trace Backend Re-add Trigger](../60-Research/observability-trace-backend-readd-trigger-2026-06-18.md) -
   FMX-171 Perplexity-first and source-checked packet for concrete Tempo/Mimir
-  re-add signals and MVP span policy. Recommendation pending Nico:
+  re-add signals and MVP span policy. Accepted recommendation:
   `TempoBackendRequired` after split runtime path plus one 30-minute
   Loki/Prometheus localisation failure; `MimirBackendRequired` when 15-month
   Prometheus retention needs `--storage.tsdb.retention.size` above 80% of
@@ -125,20 +125,20 @@ design notes.
   a specific no-issue instance with replacement traceability.
 - [DriftConsumerPolicyRef Contract](../60-Research/drift-consumer-policy-ref-contract-2026-06-17.md) -
   FMX-139 Perplexity-first and source-checked packet for the
-  `DriftConsumerPolicyRef` placeholder in ADR-0071/GD-0024. Recommended packet:
+  `DriftConsumerPolicyRef` placeholder in ADR-0071/GD-0024. Approved packet:
   hybrid ref/snapshot contract, AI World Simulation owns
   `WorldDriftPolicyCatalog` identity/versioning, GD-0043/FMX-52 owns final
   values, consumer contexts apply effects from ACL projections and
-  `youthDiffusionHint` is a reserved typed ref pending Youth/Data work.
-  Decisions remain pending in
+  `youthDiffusionHint` is a reserved typed ref accepted Youth/Data work.
+  Decisions were accepted on 2026-06-19 in
   [FMX-139 decision queue](../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17.md).
 - [Watch Party Context Ownership](../60-Research/watch-party-context-ownership-2026-06-17.md) -
   FMX-159 Perplexity-first and source-checked packet for defining Watch Party
-  as a party-scoped session/social orchestration context. Recommended packet:
-  draft ADR-0133, Watch Party owns lifecycle/polls/participants/broadcast
+  as a party-scoped session/social orchestration context. Approved packet:
+  accepted ADR-0133, Watch Party owns lifecycle/polls/participants/broadcast
   state/pause-vote/chat/markers/moderation, Match remains event-log/replay
   authority, Notification remains delivery owner and Offline Sync remains
-  sync/rebase/collaboration infrastructure. Decisions remain pending in
+  sync/rebase/collaboration infrastructure. Decisions were accepted on 2026-06-19 in
   [FMX-159 decision queue](../40-Execution/fmx-159-watch-party-context-ownership-decision-queue-2026-06-17.md).
 - [Release Versioning and App Build Process](../60-Research/release-versioning-process-2026-06-16.md) -
   FMX-178 Perplexity-first and source-checked packet for the draft
@@ -146,7 +146,7 @@ design notes.
   SemVer technical version plus player label, generated `release.json`,
   build-once/promote-digest Dokploy flow, prompt-to-refresh PWA update UX,
   app/API/save/content compatibility, SBOM/provenance evidence and named release
-  captain before beta. Decisions remain pending in
+  captain before beta. Decisions were accepted on 2026-06-19 in
   [FMX-178 decision queue](../40-Execution/fmx-178-release-versioning-app-build-decision-queue-2026-06-16.md).
 - [Branch Protection Ruleset and CODEOWNER Activation](../60-Research/branch-protection-codeowner-activation-2026-06-16.md) -
   FMX-181 Perplexity-first and source-checked packet for the accepted GitHub
@@ -164,10 +164,10 @@ design notes.
 - [Sporting Core Context-definition Maturity](../60-Research/sporting-core-context-definition-maturity-2026-06-16.md) -
   FMX-132 Perplexity-first and source-checked packet for defining Match,
   Training and Squad & Player as three draft Original-11 context-definition
-  ADRs. Recommended packet: dedicated ADRs, Squad & Player durable
+  ADRs. Approved packet: dedicated ADRs, Squad & Player durable
   availability/player-state ownership, Training load/readiness/development
   signal ownership, Match fixture-scoped simulation/event ownership, and
-  GD-0005 R2-03 closure after Nico D5 approval. Decisions remain pending in
+  GD-0005 R2-03 closure after Nico D5 approval. Decisions were accepted on 2026-06-19 in
   [FMX-132 decision queue](../40-Execution/fmx-132-sporting-core-context-definitions-decision-queue-2026-06-16.md).
 - [Loan Cap and Obligation Catalog](../60-Research/loan-cap-and-obligation-catalog-2026-06-16.md) -
   FMX-155 Perplexity-first and source-checked packet for ADR-0075's
@@ -189,7 +189,7 @@ design notes.
   It proposes a Community Overlay text trust gate, Narrative prompt/output
   envelopes, strict Zod/provider validation, no-tool/no-write isolation,
   deterministic fallback and a malicious-pack red-team corpus. Decisions remain
-  pending in
+  accepted in
   [FMX-188 decision queue](../40-Execution/fmx-188-prompt-injection-defensive-contract-decision-queue-2026-06-16.md).
 - [HoF Induction Voting Reconciliation](../60-Research/hof-induction-voting-reconciliation-2026-06-16.md) -
   FMX-151 Perplexity-first and source-checked reconciliation of the stale
@@ -256,21 +256,21 @@ design notes.
   operational response: [[../30-Implementation/privacy-and-consent]] §9 remains
   the legal decision tree/template, while [[../30-Implementation/incident-response]]
   owns `T0`, 72-hour checkpoints, BfDI/national-authority route checks,
-  severity mapping, RACI and drill cadence. Decision remains pending Nico in
+  severity mapping, RACI and drill cadence. Decision remains accepted by Nico 2026-06-19 in
   [FMX-183 decision queue](../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15.md).
 - [Effect-intent Taxonomy Across Narrative and Media Ecology](../60-Research/effect-intent-taxonomy-cross-producer-2026-06-15.md) -
   FMX-162 Perplexity-first and source-checked packet for draft
   [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]]:
   one advisory published-language catalog across Narrative dialogue/press and
   Media Ecology coverage, owner-context validation and a future exhaustive
-  mapping conformance test. Decisions remain pending in
+  mapping conformance test. Decisions were accepted on 2026-06-19 in
   [FMX-162 decision queue](../40-Execution/fmx-162-effect-intent-taxonomy-decision-queue-2026-06-15.md).
 - [Responsible Gaming Binding Record](../60-Research/responsible-gaming-binding-record-2026-06-15.md) -
   FMX-193 Perplexity-first and source-checked packet for the draft
   responsible-gaming invariant: no paid random rewards, no coercive retention
   loops, dark-pattern release self-audit, optional local session reminders,
   versioned public statement and compliance evidence home. Decisions remain
-  pending in
+  accepted in
   [FMX-193 decision queue](../40-Execution/fmx-193-responsible-gaming-decision-queue-2026-06-15.md).
 - [Cosmetic Identity Catalog](../60-Research/cosmetic-identity-catalog-2026-06-15.md) -
   FMX-192 Perplexity-first and source-checked packet for draft
@@ -278,21 +278,21 @@ design notes.
   [[../20-Features/feature-cosmetic-identity-catalog]]: free Create-a-Club
   baseline identity, eight-family cosmetic taxonomy, deterministic
   non-tradeable/no-RNG acquisition classes, IP/accessibility evidence and
-  pricing/legal handoff hooks. Decisions remain pending in
+  pricing/legal handoff hooks. Decisions were accepted on 2026-06-19 in
   [FMX-192 decision queue](../40-Execution/fmx-192-cosmetic-identity-catalog-decision-queue-2026-06-15.md).
 - [PWA Offline Mobile Release Content QA Gates](../60-Research/pwa-offline-mobile-release-content-qa-gates-2026-06-15.md) -
   FMX-197 Perplexity-first and source-checked packet for the ADR-0118
   follow-up: hybrid-online offline degradation, storage/quota/eviction UX,
   service-worker rollback, staged release evidence, content-pack validation,
   pseudo-loc/generated-content safety and versioned rebaseline records.
-  Decisions remain pending in
+  Decisions were accepted on 2026-06-19 in
   [FMX-197 decision queue](../40-Execution/fmx-197-pwa-offline-mobile-release-content-qa-decision-queue-2026-06-15.md).
 - [Mutation Testing Gate](../60-Research/mutation-testing-gate-2026-06-15.md) -
   FMX-172 Perplexity-first and source-checked packet for the ADR-0118
   follow-up: scoped Stryker mutation testing, baseline-first 70/80/90
   thresholds, reporting/nightly/release cadence before any PR subgate,
   CI-only incremental artifacts and deterministic survivor triage. Decisions
-  remain pending in
+  were accepted on 2026-06-19 in
   [FMX-172 decision queue](../40-Execution/fmx-172-stryker-mutation-gate-decision-queue-2026-06-15.md).
 - [Babylon Renderer Stack Cleanup](../60-Research/babylon-vs-three-floor-tier-budget-2026-06-15.md) -
   FMX-158 Perplexity-first and source-checked cleanup for the ADR-0047 renderer
@@ -303,7 +303,7 @@ design notes.
   FMX-156 Perplexity-first and source-checked packet for ADR-0043 -> ADR-0102:
   inbox-first offline replay, Web Push/native push as best-effort
   wake/attention, conservative cross-device suppression and dependency-version
-  routing. Decision remains pending Nico in
+  routing. Decision remains accepted by Nico 2026-06-19 in
   [FMX-156 decision queue](../40-Execution/fmx-156-notification-platform-decision-queue-2026-06-15.md).
 - [Code-CI Pipeline Contract](../60-Research/code-ci-pipeline-2026-06-15.md) -
   FMX-175 Perplexity-first and source-checked packet for future code-CI
@@ -325,7 +325,7 @@ design notes.
   future code bootstrap: draft
   [Stack Currency Ledger](../30-Implementation/stack-currency-ledger.md),
   source-conflict policy, PostgreSQL 17 vs 18.x drift, latest-stable
-  compatibility bundle and automation timing. Decisions remain pending in
+  compatibility bundle and automation timing. Decisions were accepted on 2026-06-19 in
   [FMX-168 decision queue](../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15.md).
 - [Replay/dedup ownership seam](../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15.md) -
   FMX-164 Perplexity-first and source-checked packet for ADR-0119: Offline Sync
@@ -333,9 +333,9 @@ design notes.
   replay/dedup policy and processed-command state through Command Reception;
   ADR-0028 remains post-commit event publication/domain mutation trail.
 - [Deterministic Simulation QA Harness](../60-Research/deterministic-simulation-qa-harness-2026-06-15.md) -
-  FMX-196 Perplexity-first and source-checked packet for draft ADR-0120:
+  FMX-196 Perplexity-first and source-checked packet for accepted ADR-0120:
   replay evidence levels, seed tiers, statistical soak metrics, runtime parity
-  and save-forward/replay compatibility boundaries. Decisions remain pending in
+  and save-forward/replay compatibility boundaries. Decisions were accepted on 2026-06-19 in
   [FMX-196 decision queue](../40-Execution/fmx-196-deterministic-simulation-qa-decision-queue-2026-06-15.md).
 - [Documentation Baseline 2026-05-22](Documentation-V1.md) - current
   temporal/structural closure baseline for vault gaps.
@@ -356,8 +356,8 @@ design notes.
   **vault-design deltas**, a reusable **planning-agent blueprint**, and adversarial
   consistency + platform-tier follow-up reviews. Backlog staged as Linear team FMX epics
   **FMX-56..FMX-65** (37 children FMX-66..FMX-102) + platform-tier epic **E10/FMX-103**
-  (14 children FMX-104..FMX-117) + dependency links. `status: draft` proposal — all items
-  pending Nico's ask-first gate.
+  (14 children FMX-104..FMX-117) + dependency links. `status: draft` accepted record — all items
+  accepted by Nico 2026-06-19's ask-first gate.
 
 ## Mobile Route Map, IA & Client-State (FMX-98, 2026-06-03)
 
@@ -481,7 +481,7 @@ design notes.
   with a three-surface classification: audit/replay surfaces and
   projection/measurement surfaces stay pure deterministic; variety/drama
   surfaces may use bounded seeded variance through existing owner-context RNG
-  streams. Decision remains pending Nico in
+  streams. Decision remains accepted by Nico 2026-06-19 in
   [[../40-Execution/fmx-138-determinism-portfolio-principle-decision-queue-2026-06-14]].
   Raw captures:
   [[../60-Research/raw-perplexity/raw-determinism-portfolio-simulation-architecture-2026-06-14]],
@@ -531,8 +531,8 @@ design notes.
   seed fixture cadence, soak statistics, same-WASM parity and save-forward vs
   version-pinned replay compatibility. Grounds draft
   [[../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix]]
-  plus draft [[../40-Quality/deterministic-simulation-qa-harness]]. No decision
-  is binding until Nico answers D1-D7 in
+	  plus accepted [[../40-Quality/deterministic-simulation-qa-harness]]. The decision
+	  is binding after Nico approved D1-D7 on 2026-06-19 in
   [[../40-Execution/fmx-196-deterministic-simulation-qa-decision-queue-2026-06-15]].
   Raw captures:
   [[../60-Research/raw-perplexity/raw-deterministic-simulation-qa-harness-2026-06-15]],
@@ -641,7 +641,7 @@ design notes.
   attribute probability mapping, spatial sample-density and calibration-harness
   gates. Recommends draft
   [[../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]] and keeps
-  numeric representation closed by ADR-0096. Decision remains pending Nico in
+  numeric representation closed by ADR-0096. Decision remains accepted by Nico 2026-06-19 in
   [[../40-Execution/fmx-133-match-engine-core-model-decision-queue-2026-06-13]].
   Raw captures:
   [[../60-Research/raw-perplexity/raw-match-engine-real-world-envelopes-2026-06-13]],
@@ -663,7 +663,7 @@ design notes.
   `transfer.escalation`, `dynasty.ownershipBoard`, `legacy.hof`,
   `world.drift`, `legacy.nationalTeam`, etc.) instead of generic FMX-52 economy
   calibration.
-  Decision remains pending Nico in
+  Decision remains accepted by Nico 2026-06-19 in
   [[../40-Execution/fmx-141-gameplay-calibration-decision-queue-2026-06-13]].
   Raw captures:
   [[../60-Research/raw-perplexity/raw-gameplay-calibration-sim-precedents-2026-06-13]],
@@ -708,7 +708,7 @@ design notes.
   progressive one-context package catalog, real foundation packages only,
   workspace package facades, pnpm workspace linking + TypeScript project
   references + Nx TypeScript plugin, no placeholder green gates and
-  `@klubhaus-elf/*` namespace pending Nico D1-D8. Raw captures:
+  `@klubhaus-elf/*` namespace accepted by Nico 2026-06-19 D1-D8. Raw captures:
   [[../60-Research/raw-perplexity/raw-monorepo-workspace-ddd-package-granularity-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-monorepo-workspace-game-production-precedents-2026-06-14]],
   [[../60-Research/raw-perplexity/raw-monorepo-workspace-tooling-bootstrap-2026-06-14]],
@@ -750,7 +750,7 @@ design notes.
   free core, deterministic cosmetics, optional non-power Supporter Club, later
   cosmetic-only season card, no ads in MVP, no paid random rewards, strict
   no-P2W entitlement taxonomy and ADR-0063 Investor isolation to singleplayer
-  only. Decision remains pending Nico in
+  only. Decision remains accepted by Nico 2026-06-19 in
   [[../40-Execution/fmx-191-monetization-decision-queue-2026-06-13]]; draft homes:
   [[../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]] and
   [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]].
@@ -768,7 +768,7 @@ design notes.
   [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
   as a dedicated zero-effect rule for real-money entitlements across shared saves,
   rankings, async groups, watch-party state, exports, official comparisons and future
-  multiplayer. Decision remains pending Nico in
+  multiplayer. Decision remains accepted by Nico 2026-06-19 in
   [[../40-Execution/fmx-190-no-p2w-mp-fairness-decision-queue-2026-06-13]].
   Raw captures:
   [[../60-Research/raw-perplexity/raw-no-p2w-mp-fairness-guardrails-2026-06-13]],
@@ -799,7 +799,7 @@ design notes.
   as the non-binding decision home: web MoR-first payment posture, native IAP
   boundary, immediate-delivery waiver plus unspent-only revocation/no gameplay
   rollback, proportional age assurance and a paid activation compliance gate.
-  Decision remains pending Nico in
+  Decision remains accepted by Nico 2026-06-19 in
   [[../40-Execution/fmx-194-monetization-legal-gates-decision-queue-2026-06-13]].
   Compliance evidence:
   [[../40-Compliance/monetization-legal-gates-evidence-2026-06-13]].
@@ -876,7 +876,7 @@ design notes.
   Continental Era Shift / rising nations. Records Nico's selected planning
   options: proposed AI World Simulation bounded context, hybrid RNG allocation,
   reputation-first rising-nations scope and two-level global/per-confederation
-  caps. Feeds draft [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]],
+  caps. Feeds accepted [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]],
   proposed
   [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]],
   raw capture
@@ -1032,7 +1032,7 @@ before any promotion.
   for supporter segments, latent demand, season-ticket renewal, price
   elasticity, top-match surcharges, capacity pressure and ticketing-trust
   backlash. Recommends segment-specific latent demand plus trust guardrails,
-  not one global elasticity constant. Refines draft [[../50-Game-Design/audience-and-atmosphere]],
+  not one global elasticity constant. Refines accepted [[../50-Game-Design/audience-and-atmosphere]],
   [[../50-Game-Design/GD-0022-economy-commercial-impact-and-contracts]],
   [[../50-Game-Design/economy-system]] and
   [[../30-Implementation/club-economy-commercial-contracts]].
@@ -1254,8 +1254,8 @@ before any promotion.
   test/evaluation matrix. Feeds draft
   [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], draft
   [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]],
-  draft [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]],
-  draft [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
+  accepted [[../50-Game-Design/GD-0020-eos-player-skills-personas-and-people]],
+  accepted [[../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context]]
   and [[../20-Features/feature-ai-narration-mvp-pillar]].
 
 ## AI Narration Testing and Framework (2026-05-28)
@@ -1328,7 +1328,7 @@ before any promotion.
   usage, server-authoritative canonical matches and 2D/ticker/replay from
   committed event/spatial facts. Feeds draft
   [[../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine]]
-  and amends draft [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
+  and amends accepted [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]].
 
 ## Raw Perplexity transcripts (Wave 2)
 

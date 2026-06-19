@@ -148,7 +148,7 @@ keeps SurrealDB reserved only as a non-authoritative projection/live-graph
 option. The old "1.x reserved / 2.x maturity" shorthand is stale; future
 SurrealDB Trial work must source-check the current stable line at that future
 date, exact-pin it, and prove a concrete FMX graph/live need plus rebuildable
-projection operations. Recommended trigger/owner decisions are pending Nico in
+projection operations. Recommended trigger/owner decisions are accepted by Nico 2026-06-19 in
 [[../../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]].
 
 ### D1 — Keep schema-per-save; document a ceiling + cold/archive fallback

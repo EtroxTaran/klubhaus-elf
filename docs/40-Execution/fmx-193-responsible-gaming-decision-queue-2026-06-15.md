@@ -1,11 +1,11 @@
 ---
 title: FMX-193 Responsible gaming decision queue
-status: current
-tags: [execution, decision-queue, responsible-gaming, dark-patterns, monetization, compliance, fmx-193]
+status: accepted
+tags: [execution, decision-queue, responsible-gaming, dark-patterns, monetization, compliance, fmx-193, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-193
 related:
   - [[../60-Research/responsible-gaming-binding-record-2026-06-15]]
@@ -18,20 +18,24 @@ related:
 
 # FMX-193 Responsible gaming decision queue
 
-This is the HITL decision packet for FMX-193. No option below is accepted until
-Nico decides.
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-193.
+
+
+This is the HITL decision packet for FMX-193. Nico accepted the approved packet on 2026-06-19.
 
 ## D1 - record shape
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| **A. Dedicated ADR-0122 plus compliance home** | Create a standalone draft ADR and a durable responsible-gaming compliance note. | **Recommended.** Auditable and separate from monetization SKU/fairness debates. |
+| **A. Dedicated ADR-0122 plus compliance home** | Create a standalone accepted ADR and a durable responsible-gaming compliance note. | **Recommended.** Auditable and separate from monetization SKU/fairness debates. |
 | B. Fold into ADR-0107/ADR-0108 only | Add responsible gaming to the existing monetization/no-P2W drafts. | Mixes player-wellbeing, rating evidence and competitive fairness into overloaded records. |
 | C. Compliance note only | Keep the checklist without an ADR. | Too weak for cross-cutting product and architecture gates. |
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D2 - paid random rewards
 
@@ -43,7 +47,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D3 - dark-pattern gate
 
@@ -55,7 +59,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D4 - wellness/session reminders
 
@@ -67,7 +71,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D5 - public responsible-gaming statement
 
@@ -79,7 +83,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D6 - PM-18 scope split
 
@@ -91,19 +95,19 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D7 - relation to monetization drafts
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| **A. Bind guardrails independently if accepted** | Responsible-gaming bans can become binding even while ADR-0107/0108/GD-0041 remain draft. | **Recommended.** No paid randomness/no dark patterns are safer than final SKU details. |
+| **A. Accepted: bind guardrails independently** | Responsible-gaming bans are binding even while ADR-0107/0108/GD-0041 remain separate monetization records. | **Recommended.** No paid randomness/no dark patterns are safer than final SKU details. |
 | B. Wait for monetization ratification | Keep all responsible-gaming rules draft until monetization is approved. | Unnecessarily delays invariant-level guardrails. |
 | C. Ratify monetization through FMX-193 | Use this issue to accept ADR-0107/0108/GD-0041. | Not recommended; FMX-193 did not research all monetization decisions. |
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## Decision record
 
@@ -114,8 +118,8 @@ Nico decides.
   `codex/fmx-193-responsible-gaming-binding-record`.
 - 2026-06-15: Perplexity-first research saved and weak citations separated
   from source-checked evidence.
-- 2026-06-15: Decision-pending synthesis, draft ADR-0122 and draft compliance
-  home prepared.
+- 2026-06-15: Decision synthesis, ADR-0122 and compliance home prepared;
+  promoted after Nico approval on 2026-06-19.
 
 ## Proposed packet
 
@@ -128,6 +132,13 @@ to `accepted` / `binding: true` and
 ADR-0107, ADR-0108 and GD-0041 remain separate decision gates unless Nico
 explicitly ratifies them.
 
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A, D7=A**.
+
+No open Nico decision remains for FMX-193.
+
 ## Related
 
 - [[../60-Research/responsible-gaming-binding-record-2026-06-15]]
@@ -136,4 +147,3 @@ explicitly ratifies them.
 - [[../60-Research/raw-perplexity/raw-responsible-gaming-source-checks-2026-06-15]]
 - [[../40-Compliance/responsible-gaming]]
 - [[../10-Architecture/09-Decisions/ADR-0122-responsible-gaming-and-dark-pattern-invariant]]
-

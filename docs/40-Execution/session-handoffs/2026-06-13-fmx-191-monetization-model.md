@@ -76,4 +76,5 @@ related:
 
 ## Promotion Needed
 
-- Promote only after Nico approves the recommended A/A/A/A/A packet or supplies changes.
+- Promotion completed after Nico approved the recommended A/A/A/A/A packet on
+  2026-06-19.

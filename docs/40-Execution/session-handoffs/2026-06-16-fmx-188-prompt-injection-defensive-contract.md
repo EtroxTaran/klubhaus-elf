@@ -54,7 +54,7 @@ D6=A.
 
 ## Blockers
 
-- FMX-188 remains decision-pending until Nico approves the guardrail options.
+- FMX-188 is accepted after Nico approved the guardrail options on 2026-06-19.
 
 ## Durable Notes Updated
 

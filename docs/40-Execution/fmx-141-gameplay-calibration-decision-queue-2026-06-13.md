@@ -1,11 +1,11 @@
 ---
 title: FMX-141 Gameplay calibration decision queue
-status: current
-tags: [execution, decision-queue, gameplay, calibration, pending, fmx-141]
+status: accepted
+tags: [execution, decision-queue, gameplay, calibration, pending, fmx-141, accepted]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-141
 related:
   - [[../60-Research/gameplay-calibration-ownership-and-harness-2026-06-13]]
@@ -15,6 +15,11 @@ related:
 ---
 
 # FMX-141 Gameplay calibration decision queue
+
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-141.
+
 
 This is the HITL queue for FMX-141. It turns the research synthesis and draft
 GD-0043 into explicit Nico decisions before gameplay-wide calibration can become
@@ -79,8 +84,13 @@ binding.
   [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate|GD-0043]]
   and
   [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]] prepared.
-- Pending Nico: D1-D5 above.
+- Accepted by Nico 2026-06-19: D1-D5 above.
 
 ## Recommended approval packet
 
 Approve **D1=A, D2=A, D3=A, D4=A, D5=A**.
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A**.
+
+No open Nico decision remains for FMX-141.

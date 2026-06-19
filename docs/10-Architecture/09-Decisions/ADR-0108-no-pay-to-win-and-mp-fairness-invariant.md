@@ -1,11 +1,11 @@
 ---
 title: ADR-0108 No-Pay-to-Win and Multiplayer Fairness Invariant
-status: draft
-tags: [adr, architecture, monetization, no-p2w, multiplayer, fairness, testing, fmx-190]
+status: accepted
+tags: [adr, architecture, monetization, no-p2w, multiplayer, fairness, testing, fmx-190, accepted]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 amends:
   - [[ADR-0063-investor-entitlement-and-payment-boundary]]
   - [[ADR-0107-pricing-and-iap-monetization-boundary]]
@@ -28,9 +28,14 @@ related:
 
 # ADR-0108: No-Pay-to-Win and Multiplayer Fairness Invariant
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
 > **Decision gate.** This ADR is the non-binding FMX-190 proposal. It becomes
 > binding only if Nico approves D1-D5 in

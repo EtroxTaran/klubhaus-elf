@@ -66,5 +66,5 @@ related:
 
 ## Promotion Needed
 
-- Promote ADR-0108 only after Nico approves the recommended A/A/A/A/A packet or
-  supplies changes.
+- ADR-0108 was promoted after Nico approved the recommended A/A/A/A/A packet on
+  2026-06-19.

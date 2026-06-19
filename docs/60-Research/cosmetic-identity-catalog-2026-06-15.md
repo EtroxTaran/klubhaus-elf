@@ -28,7 +28,7 @@ related:
 
 ## Scope
 
-FMX-192 prepares the decision-pending cosmetic identity catalog for
+FMX-192 preserves the accepted cosmetic identity catalog for
 Create-a-Club, roguelite achievement identity and later non-power monetization.
 It does not ratify prices, SKUs, payment providers, commerce integrations,
 season-card cadence or a paid store.
@@ -92,9 +92,9 @@ redundancy, small crest legibility and safe text/badge overlays.
 
 Recommended selection: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A, D7=A**.
 
-## Proposed catalog invariants
+## Accepted catalog invariants
 
-These are proposals until Nico accepts the decision queue:
+Nico accepted these invariants on 2026-06-19:
 
 - Free baseline identity is part of Create-a-Club and cannot be paywalled.
 - Every cosmetic item has `mechanicalEffect = none`.

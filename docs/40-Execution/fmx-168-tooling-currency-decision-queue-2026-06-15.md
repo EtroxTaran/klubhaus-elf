@@ -1,11 +1,11 @@
 ---
 title: FMX-168 Tooling currency decision queue
-status: current
-tags: [execution, decision-queue, tooling, dependency-currency, stack-ledger, bootstrap, fmx-168]
+status: accepted
+tags: [execution, decision-queue, tooling, dependency-currency, stack-ledger, bootstrap, fmx-168, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-168
 related:
   - [[../60-Research/tooling-currency-sweep-2026-06-15]]
@@ -17,8 +17,12 @@ related:
 
 # FMX-168 Tooling currency decision queue
 
-This is the HITL decision packet for FMX-168. No option below is accepted until
-Nico decides.
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-168.
+
+
+This is the HITL decision packet for FMX-168. Nico accepted the approved packet on 2026-06-19.
 
 ## D1 - Stack Currency Ledger home and authority
 
@@ -30,7 +34,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D2 - Source authority and conflict policy
 
@@ -42,19 +46,19 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D3 - PostgreSQL 17 active pin vs PostgreSQL 18 current stable
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| **A. Target PostgreSQL 18.x for code bootstrap after approval** | Keep this PR docs-only, then update the future code-phase target/tool pin to current stable PostgreSQL 18.x in the bootstrap or a dedicated follow-up after Nico approves. | **Recommended.** Aligns with official current stable while respecting DB-major migration/hosting risk. |
+| **A. Accepted: target PostgreSQL 18.x for code bootstrap** | Keep this PR docs-only, then update the future code-phase target/tool pin to current stable PostgreSQL 18.x in the bootstrap or a dedicated follow-up after Nico's approval. | **Recommended.** Aligns with official current stable while respecting DB-major migration/hosting risk. |
 | B. Stay on PostgreSQL 17 | Treat 17 as acceptable because it is supported until 2029. | Operationally safe short-term, but violates the project latest-stable rule unless Nico grants an exception. |
 | C. Spike PostgreSQL 19 beta | Evaluate beta features now. | Not recommended for bootstrap; official PostgreSQL guidance says beta is for testing, not production. |
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D4 - Code bootstrap package compatibility bundle
 
@@ -66,7 +70,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D5 - Dependency automation timing
 
@@ -78,7 +82,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## Decision record
 
@@ -107,6 +111,13 @@ If accepted:
   compatibility bundle rather than individual packages in isolation.
 - Create a later code-phase automation task for Renovate/reporting/frozen
   lockfile gates after the workspace exists.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A**.
+
+No open Nico decision remains for FMX-168.
 
 ## Related
 

@@ -24,57 +24,57 @@ unless re-opened by a current issue or accepted ADR.
 - [Branch Protection Ruleset and CODEOWNER Activation](../60-Research/branch-protection-codeowner-activation-2026-06-16.md) - FMX-181 accepted GitHub ruleset migration posture: active docs-phase `main` ruleset mirror `17748728`, classic branch protection kept until verified, Nico PR-bypass only and CODEOWNER/review hardening deferred to real code paths plus green `quality` / `e2e` / `security` evidence.
 - [Code-CI Pipeline Contract](../60-Research/code-ci-pipeline-2026-06-15.md) - FMX-175 accepted future required context package: active `docs-check` / `linear-id`, future `quality` / `e2e` / `security` only after real code scripts, workflows and burn-in; D-002 names `cursor-smoke` / `configured` are historical only.
 - [Architecture Fitness Function](../40-Quality/architecture-fitness-function.md) - FMX-167 accepted future `quality` subgate for no cross-context internals, no shared tables, no cross-context joins/FKs and no ownerless lookup tables; uses `dependency-cruiser` plus custom TypeScript/SQL scanners after code bootstrap and burn-in.
-- [Stryker Mutation Testing Gate](../40-Quality/stryker-mutation-testing-gate.md) - FMX-172 decision-pending future mutation gate: scoped high-risk deterministic/domain surfaces, baseline-first 70/80/90 threshold activation, CI-only incremental artifacts and deterministic survivor triage; remains non-binding until Nico approves ADR-0125 / D1-D6.
+- [Stryker Mutation Testing Gate](../40-Quality/stryker-mutation-testing-gate.md) - FMX-172 accepted future mutation gate: scoped high-risk deterministic/domain surfaces, baseline-first 70/80/90 threshold activation, CI-only incremental artifacts and deterministic survivor triage; binding after Nico approved ADR-0125 / D1-D6 on 2026-06-19.
 - [pnpm Tooling Currency](../60-Research/pnpm-tooling-currency-2026-06-15.md) - FMX-195 source-checked active pnpm pin refresh to 11.7.0; code bootstrap still re-checks versions before adding workspace dependencies.
-- [Notification Offline Delivery and Ratification Packet](../60-Research/notification-offline-delivery-2026-06-15.md) - FMX-156 decision-pending packet for ADR-0102: inbox-first replay, Web Push/native push as best-effort wake/attention channels, conservative push suppression and package-version routing.
-- [BfDI Breach Notification Playbook](../60-Research/breach-notification-runbook-2026-06-15.md) - FMX-183 decision-pending packet for GDPR Art. 33/34 operations: `privacy-and-consent` keeps the legal tree/template; `incident-response` owns the 72-hour drill, BfDI/national-authority route check, RACI and severity mapping.
+- [Notification Offline Delivery and Ratification Packet](../60-Research/notification-offline-delivery-2026-06-15.md) - FMX-156 accepted packet for ADR-0102: inbox-first replay, Web Push/native push as best-effort wake/attention channels, conservative push suppression and package-version routing.
+- [BfDI Breach Notification Playbook](../60-Research/breach-notification-runbook-2026-06-15.md) - FMX-183 accepted packet for GDPR Art. 33/34 operations: `privacy-and-consent` keeps the legal tree/template; `incident-response` owns the 72-hour drill, BfDI/national-authority route check, RACI and severity mapping.
 - [3D Presentation Architecture](../30-Implementation/3d-presentation-architecture.md) -
   post-MVP presentation-only Babylon.js scene-host guidance behind the
   `SceneDescriptor` / `CapabilityGate` seam; live match render remains Canvas
   2D and no 3D dependency is added in the docs-only phase.
-- [Monorepo Workspace Bootstrap Plan](../30-Implementation/monorepo-workspace-bootstrap-plan.md) - FMX-179 non-binding scaffold plan for `apps/web` + `packages/*`: package catalog, namespace, Nx/pnpm/TypeScript linking, no-placeholder gates and bounded-context-map patch after ADR-0114 approval.
-- [Release Versioning and App Build Process](../30-Implementation/release-versioning-app-build-process.md) - FMX-178 draft runbook for future app release identity: SemVer plus player label, generated `release.json`, build-once/promote-digest Dokploy flow, PWA update UX, save/content compatibility, SBOM/provenance evidence and beta release captain after ADR-0132 approval.
+- [Monorepo Workspace Bootstrap Plan](../30-Implementation/monorepo-workspace-bootstrap-plan.md) - FMX-179 accepted scaffold plan for `apps/web` + `packages/*`: package catalog, namespace, Nx/pnpm/TypeScript linking, no-placeholder gates and bounded-context-map patch after ADR-0114 approval.
+- [Release Versioning and App Build Process](../30-Implementation/release-versioning-app-build-process.md) - FMX-178 accepted runbook for future app release identity: SemVer plus player label, generated `release.json`, build-once/promote-digest Dokploy flow, PWA update UX, save/content compatibility, SBOM/provenance evidence and beta release captain after ADR-0132 approval.
 - [Compliance Evidence](../40-Compliance/README.md) - legal/compliance artifact evidence home; currently includes the non-binding FMX-194 monetization legal gates checklist and the FMX-185 age-assurance/rating checklist promoted by accepted ADR-0112, with legal/store review still gating release, storefront submission and paid activation.
 - [Cursor Cloud Agent Workflow](../30-Implementation/cursor-cloud-agent-workflow.md)
 - [PWA Offline Strategy](../30-Implementation/pwa-offline-strategy.md)
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md) - current MVP PWA/offline-ready implementation stance.
 - [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md) - current persistence implementation stance.
 - [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md)
-  - non-binding FMX-156 implementation overlay while ADR-0102 is pending:
+  - accepted FMX-156 implementation overlay for ADR-0102:
   first-party Notification bounded context; Postgres durable truth; Dexie
   offline inbox replay; SSE/Centrifugo/email/Web Push/native push as
   best-effort accelerants; exact package pins routed to dependency-currency or
   first code-phase Notification implementation.
 - [AI Narration Contract Testing Framework](../30-Implementation/ai-narration-contract-testing-framework.md)
-  - draft FMX-3 implementation framework for Narrative contracts, eval corpus,
+  - accepted FMX-3 implementation framework for Narrative contracts, eval corpus,
   safety/privacy tests, provider fallback, FMX-88 fallback manifest coverage,
   Playtest First, FMX-153 replay/reopen exact-snapshot suites, FMX-162's future
   `effect-intent-catalog-exhaustive-mapping` contract test and CI tiers.
 - [Club Economy Accounting Ledger](../30-Implementation/club-economy-accounting-ledger.md)
-  - draft FMX-13 ledger contracts for weekly finance facts, accounting
+  - accepted FMX-13 ledger contracts for weekly finance facts, accounting
   projections and staged insolvency.
 - [Club Economy Commercial Contracts](../30-Implementation/club-economy-commercial-contracts.md)
-  - draft FMX-41/FMX-45/FMX-46 commercial contracts for fan demand, ticketing,
+  - accepted FMX-41/FMX-45/FMX-46 commercial contracts for fan demand, ticketing,
   season-ticket accounting, cup/competition revenue profiles, fan events and
   Investor grants, plus matchday operating-cost profiles and risk settlement.
 - [Economy Calibration and Soak-Test Runbook](../30-Implementation/economy-calibration-and-soak-test-runbook.md)
-  - draft FMX-52 economy calibration/soak method: deterministic fixtures + seed strategy,
+  - accepted FMX-52 economy calibration/soak method: deterministic fixtures + seed strategy,
   50y gate + 100y deep soak harness, invariants/metamorphic relations, golden
   baseline + drift detection, parameter/scenario sheets and the evidence-acceptance gate.
 - [Gameplay Calibration and Soak-Test Runbook](../30-Implementation/gameplay-calibration-and-soak-test-runbook.md)
-  - draft FMX-141 non-economy gameplay calibration method: named slots, T0-T4
+  - accepted FMX-141 non-economy gameplay calibration method: named slots, T0-T4
   harness tiers, slot/parameter/scenario sheets, envelope checks and
   baseline/rebaseline policy.
 - [Deterministic Simulation QA Harness](../40-Quality/deterministic-simulation-qa-harness.md)
-  - draft FMX-196 quality runbook for replay evidence levels, seed tiers,
+  - accepted FMX-196 quality runbook for replay evidence levels, seed tiers,
   same-WASM parity, soak reports, save-forward matrix and approval-gated
-  rebaseline/retention policy; remains non-binding until Nico approves
+  rebaseline/retention policy; binding after Nico approved on 2026-06-19
   ADR-0120 / D1-D7.
 - [PWA Offline Mobile Release Content QA Gates](../40-Quality/pwa-offline-mobile-release-content-qa-gates.md)
-  - draft FMX-197 quality runbook for hybrid-online offline degradation,
+  - accepted FMX-197 quality runbook for hybrid-online offline degradation,
   storage/quota/eviction UX, service-worker rollback, staged release evidence,
   content-pack validation, pseudo-loc/generated-content safety and versioned
-  rebaseline records; remains non-binding until Nico approves ADR-0124 / D1-D7.
+  rebaseline records; binding after Nico approved ADR-0124 / D1-D7 on 2026-06-19.
 - [Architecture Fitness Function](../40-Quality/architecture-fitness-function.md)
   - accepted FMX-167 quality runbook for future import, Drizzle/schema/query and
   migration boundary scanners; no code scripts or dependencies are active in

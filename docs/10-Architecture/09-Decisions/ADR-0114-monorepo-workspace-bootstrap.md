@@ -1,11 +1,11 @@
 ---
 title: ADR-0114 Monorepo Workspace Bootstrap
-status: draft
-tags: [adr, architecture, monorepo, workspace, nx, pnpm, typescript, ddd, code-phase, fmx-179, draft]
+status: accepted
+tags: [adr, architecture, monorepo, workspace, nx, pnpm, typescript, ddd, code-phase, fmx-179, draft, accepted]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 amends:
   - [[ADR-0019-modular-monolith-ddd]]
   - [[ADR-0110-code-phase-dod-transition-contract]]
@@ -26,19 +26,24 @@ related:
 
 # ADR-0114: Monorepo Workspace Bootstrap
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
 > **Proposal only (FMX-179).** This ADR records the recommended bootstrap shape
 > after research. It does not create a workspace, install dependencies, activate
-> code-phase checks, or amend accepted ADRs until Nico approves D1-D8 in
+> code-phase checks, or amend accepted ADRs after Nico approved D1-D8 on 2026-06-19 in
 > [[../../40-Execution/fmx-179-monorepo-workspace-bootstrap-decision-queue-2026-06-14]].
 
 ## Date
 
 - Drafted: 2026-06-14 (FMX-179)
-- Binding status: pending Nico
+- Binding status: accepted by Nico 2026-06-19
 
 ## Context
 
@@ -130,7 +135,7 @@ decisions.
 
 ## Proposed decision
 
-Pending Nico approval:
+Accepted by Nico 2026-06-19 approval:
 
 - **D1 = A:** adopt a progressive one-context package catalog.
 - **D2 = A:** first scaffold creates only real foundation packages/apps with
@@ -184,7 +189,7 @@ Then add a `Future package` column or appendix using the catalog in
 [[../../60-Research/monorepo-workspace-bootstrap-2026-06-14]].
 
 This patch is deliberately not applied in FMX-179 because ADR-0114 is still
-draft/non-binding.
+accepted/binding.
 
 ## Consequences
 
@@ -194,7 +199,7 @@ Positive:
   target.
 - Package roots correspond to real code and real checks.
 - Existing `@klubhaus-elf/*` module docs become the likely package namespace,
-  pending approval.
+  approved on 2026-06-19.
 - Bounded-context extraction remains a package/deployment move rather than a
   late directory rescue.
 

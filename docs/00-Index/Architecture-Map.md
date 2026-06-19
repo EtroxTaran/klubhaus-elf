@@ -37,23 +37,23 @@ future-scope or historical context.
   League Orchestration owns tie-break rules, official ordering and
   promotion/relegation/rollover outcomes; Statistics & Analytics owns
   projection-only standings history, leaders and analytics views. FMX-134
-  prepares a pending ADR-0111 cleanup for the Rivalry -> CommercialPortfolio
+  prepares a accepted ADR-0111 cleanup for the Rivalry -> CommercialPortfolio
   contract: recommended line is no `RivalryCommercialSignal`; CommercialPortfolio
   derives commercial interpretation from `RivalryTierTransitioned` /
   `DerbyContext(matchId)` through a local ACL/projection after Nico approval.
-  FMX-156 prepares pending ADR-0102 cleanup for the Notification platform:
+  FMX-156 prepares accepted ADR-0102 cleanup for the Notification platform:
   inbox-first replay, Web Push/native push as best-effort accelerants and no
   package-pin ratification until dependency-currency/code phase.
-  FMX-179 prepares pending ADR-0114 for the future workspace/package mapping:
+  FMX-179 prepares accepted ADR-0114 for the future workspace/package mapping:
   progressive one-context package catalog, real packages only and
   `@klubhaus-elf/*` namespace after Nico approval.
   FMX-164 accepts ADR-0119 for the command-reception replay/dedup seam:
   Offline Sync owns client queue/retry/rebase UX, while Audit & Security owns
   authoritative replay/dedup policy and processed-command state through a
   synchronous Command Reception capability before domain validation.
-  FMX-196 prepares pending ADR-0120 for deterministic simulation QA:
+  FMX-196 accepts ADR-0120 for deterministic simulation QA:
   replay evidence levels, seed tiers, soak metrics, same-WASM parity and
-  save-forward/replay compatibility; it is non-binding until Nico approval.
+  save-forward/replay compatibility after Nico approved D1-D7 on 2026-06-19.
   FMX-167 accepts ADR-0121 for architecture fitness: future code-phase
   `quality` hard-fails cross-context internals, schema/table imports, Drizzle
   relation/FK violations, cross-context joins and ownerless shared lookup
@@ -63,8 +63,8 @@ future-scope or historical context.
   snapshots, passkey-first plus password fallback and an explicit cut away from
   domain memberships, payments/entitlements, age policy, Offline Sync queues,
   Community Overlay pack lifecycle and Audit & Security retention.
-  FMX-162 prepares draft ADR-0126 for the Narrative/Media Ecology advisory
-  effect-intent taxonomy; it is non-binding until Nico answers D1-D7.
+  FMX-162 accepts ADR-0126 for the Narrative/Media Ecology advisory
+  effect-intent taxonomy after Nico approved D1-D7 on 2026-06-19.
   FMX-186 accepts ADR-0127 for the GDPR Article 17 vs HGB/AO
   payment/receipt/shared-history partition: current 10/8/6 retention buckets,
   separate finance key domain, detachable account-to-finance mapping,
@@ -73,10 +73,10 @@ future-scope or historical context.
 	  verification, raw-body preservation, delivery/event dedupe,
 	  business-object idempotency, optional-only IP allowlisting, provider
 	  reconciliation and pentest-before-bounty launch posture.
-	  FMX-178 prepares draft ADR-0132 for release versioning and app-build
+	  FMX-178 prepares accepted ADR-0132 for release versioning and app-build
 	  identity: SemVer plus player label, generated `release.json`,
 	  build-once/promote-digest Dokploy flow, PWA update UX, compatibility matrix
-	  and SBOM/provenance release evidence pending Nico approval.
+	  and SBOM/provenance release evidence accepted by Nico 2026-06-19.
   FMX-185 accepts ADR-0112 for the age-assurance and rating-evidence posture:
   16+ self-declaration before account fields/optional telemetry, no DOB or
   under-16 refusal trail, IARC-first digital-store evidence and JMStV §7
@@ -126,17 +126,17 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0027 Postgres Data Model](../10-Architecture/09-Decisions/ADR-0027-postgres-data-model.md) - accepted schema-per-save/Drizzle model; MP saves are provisioned from MP setup state, never imported from SP/hotseat/local payloads.
 - [ADR-0028 Postgres Transactional Outbox](../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox.md)
 - [ADR-0119 Command Reception Dedup Seam](../10-Architecture/09-Decisions/ADR-0119-command-reception-dedup-seam.md) - accepted FMX-164 seam: command replay/dedup is a synchronous Audit & Security-owned reception capability, not the client Offline Sync queue and not an outbox consumer.
-- [ADR-0120 Deterministic Simulation QA and Save-Forward Matrix](../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix.md) - draft FMX-196 proposal only: deterministic simulation QA artifact levels, seed tiers, same-WASM parity, soak metrics and save-forward/replay compatibility boundary.
+- [ADR-0120 Deterministic Simulation QA and Save-Forward Matrix](../10-Architecture/09-Decisions/ADR-0120-deterministic-simulation-qa-and-save-forward-matrix.md) - accepted FMX-196 accepted decision: deterministic simulation QA artifact levels, seed tiers, same-WASM parity, soak metrics and save-forward/replay compatibility boundary.
 - [ADR-0121 Architecture Fitness Function for No Shared Tables](../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables.md) - accepted FMX-167 future code-phase quality subgate: `dependency-cruiser` import rules plus custom TypeScript/SQL scanners for no cross-context internals, no shared tables and no cross-context joins/FKs.
 - [ADR-0123 Identity & Access Context Definition](../10-Architecture/09-Decisions/ADR-0123-identity-access-context-definition.md) - accepted FMX-163 context definition: Identity & Access owns account/session/device/global-claim truth and publishes `PrincipalContext`, while domain memberships, payments/entitlements, sync queues, community pack lifecycle and audit retention stay outside.
-- [ADR-0124 PWA Offline Mobile Release Content QA Gates](../10-Architecture/09-Decisions/ADR-0124-pwa-offline-mobile-release-content-qa-gates.md) - draft FMX-197 proposal only: hybrid-online offline degradation, storage/quota/eviction UX, service-worker rollback, staged release evidence and content-pack/localization/generated-content QA gates.
+- [ADR-0124 PWA Offline Mobile Release Content QA Gates](../10-Architecture/09-Decisions/ADR-0124-pwa-offline-mobile-release-content-qa-gates.md) - accepted FMX-197 accepted decision: hybrid-online offline degradation, storage/quota/eviction UX, service-worker rollback, staged release evidence and content-pack/localization/generated-content QA gates.
 - [ADR-0128 Webhook Receiver Security Contract](../10-Architecture/09-Decisions/ADR-0128-webhook-receiver-security-contract.md) - accepted FMX-187 receiver contract: provider-native signature/JWT/signed-payload verification, raw-body preservation, delivery/event dedupe, business-object idempotency, optional-only IP allowlisting, provider reconciliation and pentest-before-bounty posture.
-- [ADR-0132 Release Versioning and App Build Process](../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process.md) - draft FMX-178 proposal only: SemVer technical version plus player label, generated `release.json`, immutable digest promotion/rollback, PWA update UX, save/content compatibility and release evidence.
+- [ADR-0132 Release Versioning and App Build Process](../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process.md) - accepted FMX-178 accepted decision: SemVer technical version plus player label, generated `release.json`, immutable digest promotion/rollback, PWA update UX, save/content compatibility and release evidence.
 - [ADR-0029 3D Presentation Layer](../10-Architecture/09-Decisions/ADR-0029-3d-presentation-layer.md)
 - [ADR-0041 Presentation Renderer Strategy](../10-Architecture/09-Decisions/ADR-0041-presentation-renderer-strategy.md)
 - [ADR-0047 Babylon.js 3D Presentation Engine](../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine.md)
 - [ADR-0043 Notification and Messaging Platform](../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform.md) - superseded historical Notification platform source decision.
-- [ADR-0102 Notification Platform Re-ratification + Offline-delivery Clause](../10-Architecture/09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause.md) - draft FMX-156 successor proposal: keep ADR-0102 as ADR-0043 successor after Nico approval, use Postgres + Dexie inbox as authoritative replay surface and treat push/realtime/email as best-effort accelerants.
+- [ADR-0102 Notification Platform Re-ratification + Offline-delivery Clause](../10-Architecture/09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause.md) - accepted FMX-156 successor accepted record: keep ADR-0102 as ADR-0043 successor after Nico approval, use Postgres + Dexie inbox as authoritative replay surface and treat push/realtime/email as best-effort accelerants.
 - [ADR-0050 Club Economy Accounting Ledger](../10-Architecture/09-Decisions/ADR-0050-club-economy-accounting-ledger.md) - accepted Club Management finance ledger, accounting projections, country economy profiles, cup cash/receivable/forecast events, matchday operating-cost ledger events and staged insolvency boundary.
 - [ADR-0058 Club Economy Commercial Impact Boundary](../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary.md) - accepted CommercialPortfolio boundary for ticketing, contracts, cup settlement, matchday operating-cost profiles, fan events and Investor entitlement policy.
 - [ADR-0063 Investor Entitlement and Payment Boundary](../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary.md) - accepted Investor entitlement/payment boundary; FMX-189 clarifies `MP_DENIED` as no MP offer, grant, ledger, read-model effect or save-transition path.
@@ -155,7 +155,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 ## Current Binding Research and Specs
 
 - [Postgres + Drizzle Integration](../30-Implementation/postgres-drizzle-integration.md)
-- [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md) - non-binding FMX-156 implementation overlay while ADR-0102 remains decision-pending.
+- [Notification and Messaging Platform](../30-Implementation/notification-messaging-platform.md) - accepted FMX-156 implementation overlay for ADR-0102.
 - [Club Economy Accounting Ledger](../30-Implementation/club-economy-accounting-ledger.md) - draft implementation contracts for weekly ledger entries, economy read models and insolvency state.
 - [Club Economy Commercial Contracts](../30-Implementation/club-economy-commercial-contracts.md) - draft contracts for fan demand, ticketing, commercial contracts, cup/competition revenue, matchday operating costs, fan events and Investor grants.
 - [Hybrid-online PWA Strategy](../30-Implementation/hybrid-online-pwa-strategy.md)
@@ -209,16 +209,16 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0014 State Machines](../10-Architecture/09-Decisions/ADR-0014-state-machines.md) - promote before changing runtime orchestration.
 - [ADR-0015 Spectator Snapshot Streaming](../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming.md) - post-MVP watch-party layer.
 - [ADR-0016 Community Dataset Overrides](../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides.md) - future-scope until UGC moderation/security gates are implemented.
-- [ADR-0114 Monorepo Workspace Bootstrap](../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap.md) - draft FMX-179 package-boundary and workspace scaffold proposal; no workspace/package convention is binding until Nico approves D1-D8.
+- [ADR-0114 Monorepo Workspace Bootstrap](../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap.md) - accepted FMX-179 package-boundary and workspace scaffold record; workspace/package conventions are binding after Nico approved D1-D8 on 2026-06-19.
 - [ADR-0030 LLM Out Of Authoritative State Boundary](../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state.md) - draft Runtime-LLM re-evaluation for Broad Full Dialogue outside authoritative state; FMX-88 adds the fallback manifest, Article 50 gate and MVP no-export rule; FMX-87 clarifies mechanics consume selected finite intents, not generated prose; no implementation until accepted.
 - [ADR-0051 Manager and Legacy Context](../10-Architecture/09-Decisions/ADR-0051-manager-and-legacy-context.md) - draft context-map change; no implementation until accepted.
 - [ADR-0052 People, Persona and Skills Context](../10-Architecture/09-Decisions/ADR-0052-people-persona-and-skills-context.md) - draft context-map change; no implementation until accepted.
 - [ADR-0054 Narrative Context and AI Narration Framework](../10-Architecture/09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework.md) - draft context-map change plus FMX-87 dialogue-intent/effect-result planning contracts; no implementation until accepted.
 - [ADR-0065 Narrative Media and Press Content Ownership](../10-Architecture/09-Decisions/ADR-0065-narrative-media-press-content-ownership.md) - draft extension of ADR-0054; no implementation until accepted.
-- [ADR-0107 Pricing and IAP Monetization Boundary](../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary.md) - draft FMX-191 monetization boundary for classified entitlements, no-P2W invariant, provider separation and privacy/legal gates; pending Nico D1-D5, no implementation until accepted.
-- [ADR-0108 No-Pay-to-Win and MP Fairness Invariant](../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant.md) - draft FMX-190 zero-effect invariant for real-money entitlements across shared saves, rankings, async groups, watch-party state, exports, official comparisons and future multiplayer; pending Nico D1-D5, no implementation until accepted.
-- [ADR-0111 Rivalry Commercial Signal Contract Reconciliation](../10-Architecture/09-Decisions/ADR-0111-rivalry-commercial-signal-contract-reconciliation.md) - draft FMX-134 proposal to remove the orphan `RivalryCommercialSignal`, derive CommercialPortfolio policy from Rivalry facts through a local ACL/projection and keep fan-side `derby_factor` in Audience & Atmosphere; pending Nico D1-D3, no implementation until accepted.
-- [ADR-0126 Cross-producer Effect-intent Taxonomy](../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy.md) - draft FMX-162 proposal for a single published-language advisory effect-intent catalog across Narrative dialogue/press and Media Ecology coverage; pending Nico D1-D7, no implementation until accepted.
+- [ADR-0107 Pricing and IAP Monetization Boundary](../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary.md) - accepted FMX-191 monetization boundary for classified entitlements, no-P2W invariant, provider separation and privacy/legal gates; accepted by Nico 2026-06-19 D1-D5, no implementation until accepted.
+- [ADR-0108 No-Pay-to-Win and MP Fairness Invariant](../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant.md) - accepted FMX-190 zero-effect invariant for real-money entitlements across shared saves, rankings, async groups, watch-party state, exports, official comparisons and future multiplayer; accepted by Nico 2026-06-19 D1-D5, no implementation until accepted.
+- [ADR-0111 Rivalry Commercial Signal Contract Reconciliation](../10-Architecture/09-Decisions/ADR-0111-rivalry-commercial-signal-contract-reconciliation.md) - accepted FMX-134 accepted record to remove the orphan `RivalryCommercialSignal`, derive CommercialPortfolio policy from Rivalry facts through a local ACL/projection and keep fan-side `derby_factor` in Audience & Atmosphere; accepted by Nico 2026-06-19 D1-D3, no implementation until accepted.
+- [ADR-0126 Cross-producer Effect-intent Taxonomy](../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy.md) - accepted FMX-162 accepted record for a single published-language advisory effect-intent catalog across Narrative dialogue/press and Media Ecology coverage; accepted by Nico 2026-06-19 D1-D7, no implementation until accepted.
 
 ## Rule
 

@@ -63,7 +63,6 @@ related:
 
 ## Needs promotion
 
-- ADR-0133 promotes only after Nico approves D1-D8.
-- No implementation work is authorized by this packet while ADR-0133 remains
-  draft.
-
+- ADR-0133 promoted after Nico approved D1-D8 on 2026-06-19.
+- No implementation work is authorized by this packet beyond the accepted docs
+  closure.

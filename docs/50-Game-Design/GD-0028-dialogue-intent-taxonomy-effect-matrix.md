@@ -1,11 +1,11 @@
 ---
 title: GD-0028 Dialogue Intent Taxonomy and Effect Matrix
 status: accepted
-tags: [game-design, gddr, narrative, dialogue, intents, effects, ai, llm, fmx-87, gap-g13]
+tags: [game-design, gddr, narrative, dialogue, intents, effects, ai, llm, fmx-87, gap-g13, accepted]
 created: 2026-06-05
-updated: 2026-06-15
+updated: 2026-06-19
 type: game-design
-binding: false
+binding: true
 related:
   - [[README]]
   - [[GD-0018-ai-narrative-personas-and-dialogue]]
@@ -29,6 +29,11 @@ related:
 ---
 
 # GD-0028: Dialogue Intent Taxonomy and Effect Matrix
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this game-design record is now
+> binding according to its approved scope.
+
 
 ## Status
 
@@ -277,9 +282,9 @@ result read-only for follow-up rendering and provenance.
   are GD-0043 `dialogue.trustMorale` calibration work.
 - FMX-82 owns final media-outlet cadence/reach/stance interactions with
   press/media intents.
-- FMX-162 prepares the cross-producer effect-intent catalog that reconciles
+- FMX-162 accepts the cross-producer effect-intent catalog that reconciles
   these dialogue intents with ADR-0065 press aliases and ADR-0085 media coverage
-  intents. It remains non-binding until Nico accepts
+  intents. It is binding after Nico approved D1-D7 on 2026-06-19 in
   [[../10-Architecture/09-Decisions/ADR-0126-cross-producer-effect-intent-taxonomy]].
 - ADR-0052 ratification must settle final People/persona ownership before
   implementation.

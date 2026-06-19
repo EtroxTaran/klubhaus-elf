@@ -1,11 +1,11 @@
 ---
 title: ADR-0124 PWA Offline Mobile Release Content QA Gates
-status: draft
-tags: [adr, architecture, pwa, offline, mobile, service-worker, rollback, content-qa, localization, llm, quality, fmx-197]
+status: accepted
+tags: [adr, architecture, pwa, offline, mobile, service-worker, rollback, content-qa, localization, llm, quality, fmx-197, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 linear: FMX-197
 amends:
   - [[ADR-0020-hybrid-online-mvp-offline-ready]]
@@ -25,11 +25,16 @@ related:
 
 # ADR-0124: PWA Offline Mobile Release Content QA Gates
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-Prepared for FMX-197 on 2026-06-15. Not binding until Nico approves D1-D7 in
+Prepared for FMX-197 on 2026-06-15. Binding after Nico approved D1-D7 on 2026-06-19 in
 [[../../40-Execution/fmx-197-pwa-offline-mobile-release-content-qa-decision-queue-2026-06-15]].
 
 ## Date

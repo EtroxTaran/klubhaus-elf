@@ -1,11 +1,11 @@
 ---
 title: FMX-134 Rivalry commercial signal decision queue
-status: current
-tags: [execution, decision-queue, rivalry, commercial, ddd, contract, pending, fmx-134]
+status: accepted
+tags: [execution, decision-queue, rivalry, commercial, ddd, contract, pending, fmx-134, accepted]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-134
 related:
   - [[../60-Research/rivalry-commercial-signal-contract-2026-06-14]]
@@ -17,11 +17,16 @@ related:
 
 # FMX-134 Rivalry commercial signal decision queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-134.
+
+
 This is the HITL decision queue for FMX-134. It turns the research synthesis
 [[../60-Research/rivalry-commercial-signal-contract-2026-06-14]] into explicit
-Nico decisions before draft
+Nico decisions for accepted
 [[../10-Architecture/09-Decisions/ADR-0111-rivalry-commercial-signal-contract-reconciliation|ADR-0111]]
-can become binding.
+.
 
 ## D1 - Rivalry commercial contract shape
 
@@ -60,11 +65,18 @@ can become binding.
 - 2026-06-14: synthesis created in
   [[../60-Research/rivalry-commercial-signal-contract-2026-06-14]].
 - 2026-06-14: draft ADR-0111 prepared as a non-binding proposal record.
-- Pending Nico: D1-D3 above.
+- Accepted by Nico 2026-06-19: D1-D3 above.
 
 ## Recommended approval packet
 
 Approve **D1=B, D2=A, D3=A**.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=B, D2=A, D3=A**.
+
+No open Nico decision remains for FMX-134.
 
 ## Related
 
@@ -73,4 +85,3 @@ Approve **D1=B, D2=A, D3=A**.
 - [[../10-Architecture/09-Decisions/ADR-0057-rivalry-system-context]]
 - [[../10-Architecture/09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]]
 - [[../10-Architecture/bounded-context-map]]
-

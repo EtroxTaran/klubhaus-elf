@@ -1,11 +1,11 @@
 ---
 title: FMX-173 Argon2id KDF Validation Decision Queue
-status: open
-tags: [execution, decision-queue, fmx-173, argon2id, kdf, wasm, security, save-format]
+status: accepted
+tags: [execution, decision-queue, fmx-173, argon2id, kdf, wasm, security, save-format, accepted]
 created: 2026-06-19
 updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-173
 owner: Nico
 related:
@@ -16,6 +16,11 @@ related:
 ---
 
 # FMX-173 Argon2id KDF Validation Decision Queue
+
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-173.
+
 
 ## Context
 
@@ -39,7 +44,7 @@ ship the export/import path.
 Recommendation: **A** for the first spike, with **B** as fallback if review
 rejects `hash-wasm`.
 
-Decision: [ ] A [ ] B [ ] C [ ] D [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D2 - Parameter policy
 
@@ -51,7 +56,7 @@ Decision: [ ] A [ ] B [ ] C [ ] D [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D3 - Benchmark gate before release
 
@@ -63,7 +68,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D4 - PWA loading and offline contract
 
@@ -75,7 +80,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D5 - Failure/fallback behavior
 
@@ -87,7 +92,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D6 - Passphrase byte contract
 
@@ -99,7 +104,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## Required follow-up after Nico decision
 
@@ -108,6 +113,13 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
   integrity, SBOM and dependency-review evidence.
 - Build a Worker benchmark harness and add the floor/standard device evidence
   before portable export is marked release-ready.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A first spike with B fallback if review rejects hash-wasm, D2=A, D3=A, D4=A, D5=A, D6=A**.
+
+No open Nico decision remains for FMX-173.
 
 ## Related
 

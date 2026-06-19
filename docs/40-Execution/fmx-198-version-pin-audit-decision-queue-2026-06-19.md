@@ -1,11 +1,11 @@
 ---
 title: FMX-198 Version Pin Audit Decision Queue
-status: open
-tags: [execution, decision-queue, fmx-198, dependency-currency, tooling, pnpm, node, postgresql, capacitor]
+status: accepted
+tags: [execution, decision-queue, fmx-198, dependency-currency, tooling, pnpm, node, postgresql, capacitor, accepted]
 created: 2026-06-19
 updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-198
 owner: Nico
 related:
@@ -17,6 +17,11 @@ related:
 ---
 
 # FMX-198 Version Pin Audit Decision Queue
+
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-198.
+
 
 ## Context
 
@@ -39,7 +44,7 @@ decision.
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D2 - Node runtime pin posture
 
@@ -51,7 +56,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**, with **B** acceptable only as an explicit holdback.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D3 - PostgreSQL active pin
 
@@ -63,7 +68,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D4 - Capacitor mobile baseline
 
@@ -75,7 +80,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D5 - Stack ledger maintenance
 
@@ -87,7 +92,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D6 - Historical source-check rows
 
@@ -99,7 +104,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## Required follow-up after Nico decision
 
@@ -114,6 +119,13 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 - If D6=A, keep this FMX-198 audit linked from future implementation packets
   and require a fresh source-check for any package row older than the current
   beat.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A**.
+
+No open Nico decision remains for FMX-198.
 
 ## Related
 

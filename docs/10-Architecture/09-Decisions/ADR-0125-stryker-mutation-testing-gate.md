@@ -1,11 +1,11 @@
 ---
 title: ADR-0125 Stryker Mutation Testing Gate
-status: draft
-tags: [adr, architecture, testing, quality, mutation, stryker, vitest, determinism, ci, fmx-172]
+status: accepted
+tags: [adr, architecture, testing, quality, mutation, stryker, vitest, determinism, ci, fmx-172, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 linear: FMX-172
 amends:
   - [[ADR-0118-test-strategy-and-quality-gates]]
@@ -25,11 +25,16 @@ related:
 
 # ADR-0125: Stryker Mutation Testing Gate
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
-Prepared for FMX-172 on 2026-06-15. Not binding until Nico approves D1-D6 in
+Prepared for FMX-172 on 2026-06-15. Binding after Nico approved D1-D6 on 2026-06-19 in
 [[../../40-Execution/fmx-172-stryker-mutation-gate-decision-queue-2026-06-15]].
 
 ## Date

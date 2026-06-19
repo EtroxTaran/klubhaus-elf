@@ -1,11 +1,11 @@
 ---
 title: FMX-157 Manager Legacy Scouting Youth Feed Decision Queue
-status: open
-tags: [execution, decision-queue, fmx-157, manager-legacy, scouting, youth, academy, contracts]
+status: accepted
+tags: [execution, decision-queue, fmx-157, manager-legacy, scouting, youth, academy, contracts, accepted]
 created: 2026-06-19
 updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-157
 owner: Nico
 related:
@@ -22,6 +22,11 @@ related:
 
 # FMX-157 Manager Legacy Scouting Youth Feed Decision Queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-157.
+
+
 ## Context
 
 ADR-0060, ADR-0064, ADR-0075 and ADR-0080 already name the relevant context
@@ -29,7 +34,7 @@ boundaries and placeholder events. FMX-157 captures the remaining decisions
 needed before implementation can define exact academy audit, cohort retention,
 opposition-scouting and handoff schemas.
 
-No option below is binding until Nico accepts it.
+Nico accepted the approved packet on 2026-06-19; the chosen options below are binding.
 
 ## D1 - Canonical promotion path
 
@@ -41,7 +46,7 @@ No option below is binding until Nico accepts it.
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D2 - Academy audit owner and Manager & Legacy feed
 
@@ -53,7 +58,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D3 - Audit cadence and cohort history retention
 
@@ -66,7 +71,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 Recommendation: **A** as a starting design default, with final thresholds in
 FMX-52 / GD-0043 calibration.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D4 - Opposition scouting ownership
 
@@ -78,7 +83,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D5 - Cross-context handoff schema pattern
 
@@ -90,7 +95,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## D6 - Scope timing
 
@@ -102,7 +107,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 Recommendation: **A**.
 
-Decision: [ ] A [ ] B [ ] C [ ] defer
+Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
 ## Required follow-up after Nico decision
 
@@ -114,6 +119,13 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
   wording and the Manager & Legacy summary inputs.
 - If Nico chooses D6-B, create implementation-phase contract-test follow-ups
   for the selected event envelopes.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A**.
+
+No open Nico decision remains for FMX-157.
 
 ## Related
 

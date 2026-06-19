@@ -1,11 +1,11 @@
 ---
 title: FMX-139 DriftConsumerPolicyRef Decision Queue
-status: draft
-tags: [execution, decision-queue, ddd, event-sourcing, ai-world, world-drift, policy-catalog, fmx-139]
+status: accepted
+tags: [execution, decision-queue, ddd, event-sourcing, ai-world, world-drift, policy-catalog, fmx-139, accepted]
 created: 2026-06-17
-updated: 2026-06-17
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-139
 related:
   - [[../60-Research/drift-consumer-policy-ref-contract-2026-06-17]]
@@ -20,11 +20,16 @@ related:
 
 # FMX-139 DriftConsumerPolicyRef Decision Queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-139.
+
+
 ## Status
 
-Awaiting Nico. This queue records recommendations only; the
+Accepted by Nico on 2026-06-19. This queue records recommendations only; the
 `DriftConsumerPolicyRef` schema and `WorldDriftPolicyCatalog` owner split do not
-become binding until Nico answers.
+become binding after Nico approved it on 2026-06-19.
 
 ## D1 - `DriftConsumerPolicyRef` Shape
 
@@ -82,8 +87,8 @@ generation mechanics.
 
 Options:
 
-- **A. Keep the FMX-139 contract as a proposed amendment in this PR and promote
-  only after Nico approves D1-D3.**
+- **A. Accepted: promote the FMX-139 contract after Nico approved D1-D4 on
+  2026-06-19.**
 - **B. Treat the agent recommendation as accepted because ADR-0071 is already
   accepted.**
 - **C. Defer all ADR/GDDR wording until after a separate discussion.**
@@ -111,3 +116,8 @@ Operational interpretation:
 ## Nico Decision Log
 
 Pending.
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=C, D2=A, D3=B, D4=A**.
+
+No open Nico decision remains for FMX-139.

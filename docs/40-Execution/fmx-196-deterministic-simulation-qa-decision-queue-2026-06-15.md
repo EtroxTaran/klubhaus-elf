@@ -1,11 +1,11 @@
 ---
 title: FMX-196 Deterministic simulation QA decision queue
-status: current
-tags: [execution, decision-queue, determinism, replay, soak-test, save-forward, match-engine, quality, fmx-196]
+status: accepted
+tags: [execution, decision-queue, determinism, replay, soak-test, save-forward, match-engine, quality, fmx-196, accepted]
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-196
 related:
   - [[../60-Research/deterministic-simulation-qa-harness-2026-06-15]]
@@ -17,8 +17,12 @@ related:
 
 # FMX-196 Deterministic simulation QA decision queue
 
-This is the HITL decision packet for FMX-196. No option below is accepted until
-Nico decides.
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-196.
+
+
+This is the HITL decision packet for FMX-196. Nico accepted the approved packet on 2026-06-19.
 
 ## D1 - replay artifact levels
 
@@ -30,7 +34,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D2 - seed fixture tiers
 
@@ -42,7 +46,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D3 - byte-exact vs statistical gates
 
@@ -54,7 +58,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D4 - soak metric policy
 
@@ -66,7 +70,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D5 - save-forward compatibility boundary
 
@@ -78,7 +82,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D6 - runtime parity matrix
 
@@ -90,7 +94,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## D7 - retention and rebaseline
 
@@ -102,7 +106,7 @@ Nico decides.
 
 **Recommendation:** A.
 
-**Decision:** Pending Nico.
+**Decision:** Accepted by Nico 2026-06-19.
 
 ## Decision record
 
@@ -112,8 +116,8 @@ Nico decides.
   `codex/fmx-196-deterministic-simulation-qa`.
 - 2026-06-15: Perplexity-first research saved and weak citations separated
   from source-checked evidence.
-- 2026-06-15: Decision-pending synthesis, draft ADR-0120 and draft quality
-  runbook prepared.
+- 2026-06-15: Decision synthesis, ADR-0120 and current quality runbook prepared;
+  promoted after Nico approval on 2026-06-19.
 
 ## Proposed packet
 
@@ -126,6 +130,13 @@ to `accepted` / `binding: true` and
 `binding: true`. Patch [[../60-Research/determinism-and-replay]] so its
 no-snapshot rule explicitly allows QA sparse snapshots while keeping compact
 production replay as the default.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A, D7=A**.
+
+No open Nico decision remains for FMX-196.
 
 ## Related
 

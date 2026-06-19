@@ -1,15 +1,20 @@
 ---
 title: GD-0024 AI World-Drift Algorithm
 status: accepted
-tags: [game-design, gddr, ai-world, world-drift, dynasty, determinism, policy-catalog, fmx-91, fmx-139]
+tags: [game-design, gddr, ai-world, world-drift, dynasty, determinism, policy-catalog, fmx-91, fmx-139, accepted]
 created: 2026-06-03
-updated: 2026-06-17
+updated: 2026-06-19
 type: game-design
-binding: false
+binding: true
 related: [[README]], [[GD-0010-ai-world]], [[GD-0011-career-progression]], [[GD-0023-ai-club-economy-behaviour]], [[GD-0043-gameplay-calibration-ownership-and-acceptance-gate]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/raw-perplexity/raw-ai-world-drift-algorithm-2026-06-03]], [[../60-Research/drift-consumer-policy-ref-contract-2026-06-17]], [[../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-ddd-2026-06-17]], [[../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-realworld-2026-06-17]], [[../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-games-2026-06-17]], [[../60-Research/raw-perplexity/raw-drift-consumer-policy-ref-source-checks-2026-06-17]], [[../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/late-game-systems]], [[../60-Research/determinism-and-replay]], [[../10-Architecture/09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]], [[../30-Implementation/economy-calibration-and-soak-test-runbook]]
 ---
 
 # GD-0024: AI World-Drift Algorithm
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this game-design record is now
+> binding according to its approved scope.
+
 
 ## Status
 
@@ -22,10 +27,10 @@ accepted
 > **History (pre-ratification banner, demoted 2026-06-11 per ADR-0092 / FMX-143):**
 > FMX-91 draft. Nico selected the four core planning options on 2026-06-03:
 > AI World Simulation as proposed bounded context, hybrid RNG allocation,
-> reputation-first rising-nations scope and two-level caps. This GDDR remains
-> non-binding until ratified through the normal game-design gate.
+> reputation-first rising-nations scope and two-level caps. This pre-ratification
+> banner is historical; the current frontmatter is the binding status source.
 
-> **FMX-139 proposed amendment (2026-06-17, pending Nico):**
+> **FMX-139 proposed amendment (2026-06-17, accepted by Nico 2026-06-19):**
 > `DriftConsumerPolicyRef` becomes a hybrid ref/snapshot proposal with AI World
 > Simulation owning `WorldDriftPolicyCatalog` identity/versioning, while
 > GD-0043/FMX-52 keeps final values and consumer contexts apply their own

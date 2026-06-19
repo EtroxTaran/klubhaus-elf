@@ -1,11 +1,11 @@
 ---
 title: ADR-0113 Portfolio Determinism and Seeded-Variance Principle
-status: draft
-tags: [adr, architecture, determinism, rng, seeded-variance, replay, gameplay, match-engine, fmx-138]
+status: accepted
+tags: [adr, architecture, determinism, rng, seeded-variance, replay, gameplay, match-engine, fmx-138, accepted]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 amends:
   - [[ADR-0018-systemic-events-and-player-lifecycle]]
 supersedes:
@@ -26,9 +26,14 @@ related:
 
 # ADR-0113: Portfolio Determinism and Seeded-Variance Principle
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
-draft
+accepted
 
 > **Decision gate.** This ADR is the non-binding FMX-138 proposal. It becomes
 > binding only if Nico approves D1-D3 in
@@ -96,7 +101,7 @@ axis. FMX-138 defines the default while preserving accepted local decisions.
 
 ## Decision
 
-Pending Nico.
+Accepted by Nico 2026-06-19.
 
 Recommended approval packet: **D1=A, D2=A, D3=A**.
 
@@ -169,7 +174,7 @@ Negative / constraints:
 
 ## HITL gate
 
-Pending Nico decisions:
+Accepted by Nico 2026-06-19 decisions:
 
 - D1: adopt the portfolio rule?
 - D2: classify match outcome variety, injury occurrence and AI-manager decisions

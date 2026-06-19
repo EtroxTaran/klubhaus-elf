@@ -43,7 +43,8 @@ related:
 
 ## Open Tasks
 
-- Nico must decide D1-D5 before ADR-0109 can become binding.
+- Nico approved D1-D5 on 2026-06-19; ADR-0109 is binding for the docs-vault
+  legal-gates posture.
 - Legal counsel must approve actual Terms, withdrawal text, imprint, privacy,
   DPA/AVV, refund policy, age gate and provider contracts before paid activation.
 - Future implementation must re-check current provider/store docs and versions.
@@ -66,4 +67,3 @@ None binding. Recommended packet is D1=A, D2=A, D3=A, D4=A, D5=A.
 If Nico approves the packet, promote ADR-0109 to `accepted` / `binding: true`
 and update ADR-0063/0107/0108 references plus Current-State/Decision-Log in the
 same PR.
-

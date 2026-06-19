@@ -1,11 +1,11 @@
 ---
 title: FMX-194 Monetization legal gates decision queue
-status: current
-tags: [execution, decision-queue, monetization, payment, legal, compliance, pending, fmx-194]
+status: accepted
+tags: [execution, decision-queue, monetization, payment, legal, compliance, pending, fmx-194, accepted]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-06-19
 type: decision-queue
-binding: false
+binding: true
 linear: FMX-194
 related:
   - [[../60-Research/monetization-legal-gates-2026-06-13]]
@@ -18,11 +18,16 @@ related:
 
 # FMX-194 Monetization legal gates decision queue
 
+> **APPROVED on 2026-06-19.** Nico approved all recommended options via
+> `APPROVE ALL RECOMMENDED`. This note is now the accepted decision
+> record; no open Nico decision remains for FMX-194.
+
+
 This is the HITL decision queue for FMX-194. It turns the research synthesis
 [[../60-Research/monetization-legal-gates-2026-06-13]] into explicit Nico
-decisions before
+decisions for accepted
 [[../10-Architecture/09-Decisions/ADR-0109-payment-provider-and-monetization-legal-gates|ADR-0109]]
-can become binding.
+.
 
 ## D1 - web payment vendor posture
 
@@ -80,11 +85,18 @@ can become binding.
 - 2026-06-13: Perplexity research and official/source checks saved.
 - 2026-06-13: compliance evidence home created in [[../40-Compliance/README]].
 - 2026-06-13: draft ADR-0109 prepared as a non-binding proposal record.
-- Pending Nico: D1-D5 above.
+- Accepted by Nico 2026-06-19: D1-D5 above.
 
 ## Recommended approval packet
 
 Approve **D1=A, D2=A, D3=A, D4=A, D5=A**.
+
+
+## Approved Packet
+
+Nico approved all recommended options on 2026-06-19: **D1=A, D2=A with B fallback if app-shell purchase work is deferred, D3=A, D4=A with B acceptable if Nico wants a simpler launch posture, D5=A with C schedule fallback**.
+
+No open Nico decision remains for FMX-194.
 
 ## Related
 
@@ -94,4 +106,3 @@ Approve **D1=A, D2=A, D3=A, D4=A, D5=A**.
 - [[../10-Architecture/09-Decisions/ADR-0063-investor-entitlement-and-payment-boundary]]
 - [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]]
 - [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
-

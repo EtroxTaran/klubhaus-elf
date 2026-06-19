@@ -1,11 +1,11 @@
 ---
 title: Stack Currency Ledger
-status: draft
+status: current
 tags: [implementation, tooling, dependency-currency, stack-ledger, bootstrap, fmx-168, fmx-198]
 created: 2026-06-15
 updated: 2026-06-19
 type: implementation
-binding: false
+binding: true
 linear: FMX-168
 related:
   - [[../60-Research/tooling-currency-sweep-2026-06-15]]
@@ -22,6 +22,11 @@ related:
 ---
 
 # Stack Currency Ledger
+
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this implementation or quality note is now
+> binding according to its approved scope.
+
 
 > Proposed by FMX-168. This ledger is `draft` / `binding: false` until Nico
 > accepts D1-D5 in

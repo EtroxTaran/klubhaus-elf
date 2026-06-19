@@ -1,11 +1,11 @@
 ---
 title: ADR-0098 Save-format KDF upgrade (Argon2id passphrase path) + active-pack refs in SavePayload
 status: accepted
-tags: [adr, save, encryption, kdf, argon2id, pbkdf2, community-packs, determinism, offline-first, p2p, supersession]
+tags: [adr, save, encryption, kdf, argon2id, pbkdf2, community-packs, determinism, offline-first, p2p, supersession, accepted]
 created: 2026-06-08
 updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 amends: [[ADR-0005-save-format]]
   - [[ADR-0005-save-format]]
 superseded_by:
@@ -29,6 +29,11 @@ related:
 
 # ADR-0098: Save-format KDF upgrade (Argon2id passphrase path) + active-pack refs in SavePayload
 
+> **RATIFIED on 2026-06-19.** Nico approved the linked FMX decision
+> queue via `APPROVE ALL RECOMMENDED`; this ADR/amendment is now
+> binding according to its approved scope.
+
+
 ## Status
 
 accepted
@@ -45,7 +50,7 @@ accepted
 > flows) intact. It **does not edit ADR-0005** (supersession is expressed only here, via
 > `supersedes:` frontmatter). Per the decision gate
 > ([[../../90-Meta/collaboration-and-decision-protocol]]) nothing here is accepted;
-> awaiting Nico's ratification of D1 (passphrase KDF) and D2 (missing-pack import).
+> accepted by Nico 2026-06-19's ratification of D1 (passphrase KDF) and D2 (missing-pack import).
 
 > **FMX-173 validation addendum (2026-06-19, non-binding).**
 > [[../../60-Research/argon2id-wasm-kdf-validation-2026-06-19]]
@@ -56,7 +61,7 @@ accepted
 > (`memoryKiB=19456`, `iterations=2`, `parallelism=1`) as the minimum, run the
 > KDF only in one Web Worker on export/import, lazy-load but offline-precache the
 > chunk after install, and fail closed if the dependency or floor profile fails.
-> These details are not binding until Nico answers
+> These details are binding after Nico approved it on 2026-06-19
 > [[../../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19|D1-D6]].
 
 ## Date
@@ -158,7 +163,7 @@ contract."* Designing both fields now is exactly that hygiene. `ManifestSchema` 
   overrides; the world differs from the author's (breaks determinism parity, but the save
   loads). Surface a prominent warning.
 - **C.** **Fetch.** Attempt to resolve missing packs (P2P/manifest hint). Out of MVP scope —
-  ADR-0016 is P2P-only and ADR-0059 D2 keeps hosted distribution blocked pending DSA work;
+  ADR-0016 is P2P-only and ADR-0059 D2 keeps hosted distribution blocked accepted DSA work;
   listed for completeness, not recommended for MVP.
 
 (No recommendation is asserted on D2 — see Open questions. The payload-shape change is the
@@ -190,8 +195,8 @@ both of which are Nico's calls.
 
 ## Decision
 
-Propose, awaiting Nico: **D1 = A**; **D2 = open (lead A)**. Concrete contract deltas
-(proposed-not-applied; this ADR does not edit ADR-0005):
+Accepted by Nico 2026-06-19: **D1 = A**; **D2 = open (lead A)**. Concrete contract deltas
+(accepted/applied; this ADR does not edit ADR-0005):
 
 ### Δ1 — `kdfAlgo` becomes a discriminated union; passphrase path = Argon2id
 
@@ -261,7 +266,7 @@ determinism rule) **travel inside the portable envelope**, closing the export↔
 coupling gap. The array MAY be empty (core-only save). Validated against ADR-0027 Zod +
 `CHECK` bounds.
 
-#### FMX-188 prompt-injection note for active-pack refs (proposal)
+#### FMX-188 prompt-injection note for active-pack refs (accepted record)
 
 `activePacks` preserves which pack snapshot a save used; it does **not** make
 that pack text trusted for Narrative LLM prompts. If FMX-188 is accepted, import
