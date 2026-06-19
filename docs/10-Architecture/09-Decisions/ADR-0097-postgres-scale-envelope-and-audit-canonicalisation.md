@@ -3,7 +3,7 @@ title: ADR-0097 PostgreSQL data-model scale envelope + audit-table canonicalisat
 status: accepted
 tags: [adr, architecture, data, postgresql, schema-per-save, scaling, audit, fmx-105, fmx-170]
 created: 2026-06-08
-updated: 2026-06-15
+updated: 2026-06-19
 type: adr
 binding: true
 amends: [[ADR-0027-postgres-data-model]]
@@ -19,7 +19,9 @@ related:
   - [[../../60-Research/surrealdb-schema-patterns]]
   - [[../../60-Research/audit-security-context-definition-2026-06-07]]
   - [[../../60-Research/postgres-schema-ceiling-slo-benchmark-2026-06-15]]
+  - [[../../60-Research/surrealdb-deferral-reevaluation-watch-2026-06-19]]
   - [[../../40-Execution/fmx-170-postgres-schema-ceiling-decision-queue-2026-06-15]]
+  - [[../../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]]
   - [[../bounded-context-map]]
   - [[../../00-Index/Open-Decisions-Dossier]]
 ---
@@ -140,6 +142,14 @@ cannot tell which is canonical. This ADR fixes one answer.
 Accepted by Nico on 2026-06-15 (FMX-170): **D1 = A with soft-warn 300 /
 hard-stop 1000**, **D2 = user-confirmed hybrid archive pressure**, **D3 = drop
 platform `audit_log`**.
+
+2026-06-19 FMX-166 source-check note: this ADR's data-layer scope-call still
+keeps SurrealDB reserved only as a non-authoritative projection/live-graph
+option. The old "1.x reserved / 2.x maturity" shorthand is stale; future
+SurrealDB Trial work must source-check the current stable line at that future
+date, exact-pin it, and prove a concrete FMX graph/live need plus rebuildable
+projection operations. Recommended trigger/owner decisions are pending Nico in
+[[../../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]].
 
 ### D1 — Keep schema-per-save; document a ceiling + cold/archive fallback
 

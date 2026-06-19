@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-19
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-19-fmx-173-argon2id-kdf-validation]], [[2026-06-19-fmx-105-save-trust-reconciliation]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-19-fmx-166-surrealdb-deferral-watch]], [[2026-06-19-fmx-173-argon2id-kdf-validation]], [[2026-06-19-fmx-105-save-trust-reconciliation]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-19-fmx-166-surrealdb-deferral-watch]] - FMX-166 SurrealDB
+  deferral watch packet: raw Perplexity/source-check captures, synthesis and
+  decision queue for replacing stale `1.x`/`2.x` wording with a current-stable
+  at future Trial rule, compound graph/live product-need trigger, owner/cadence
+  recommendation and non-authoritative rebuildable projection gate. Pending
+  Nico D1-D5; SurrealDB remains deferred / Assess and no version pin is binding.
 - [[2026-06-19-fmx-173-argon2id-kdf-validation]] - FMX-173 Argon2id
   WASM KDF validation packet: raw Perplexity/source-check captures, synthesis
   and decision queue for provider, OWASP floor, Worker/mobile benchmark gate,

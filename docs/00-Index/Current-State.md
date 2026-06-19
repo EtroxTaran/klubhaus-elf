@@ -2513,6 +2513,12 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
 
 - **DB (hybrid):** PostgreSQL + Drizzle is the system of record. **SurrealDB
   deferred** to an optional additive realtime/graph engine behind an interface.
+  FMX-166 source checks on 2026-06-19 correct the stale "stable 1.x /
+  re-evaluate 2.x" shorthand: SurrealDB remains deferred / Assess, but any
+  future Trial must source-check and exact-pin the then-current stable line
+  rather than inheriting an old major-line pin. Recommended watch owner,
+  trigger and promotion gate are pending Nico in
+  [[../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]].
   **Wave 2 groundwork landed 2026-05-19**: [[../10-Architecture/09-Decisions/ADR-0027-postgres-data-model]]
   (supersedes ADR-0004) and [[../10-Architecture/09-Decisions/ADR-0028-postgres-transactional-outbox]]
   (supersedes ADR-0013) lock the Postgres design (schema-per-save, A2 lazy

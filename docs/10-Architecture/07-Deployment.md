@@ -3,10 +3,10 @@ title: Deployment
 status: current
 tags: [architecture, deployment, dokploy, observability, release, versioning]
 created: 2026-05-15
-updated: 2026-06-18
+updated: 2026-06-19
 type: architecture
 binding: false
-related: [[09-Decisions/ADR-0017-observability-logging]], [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]], [[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]], [[09-Decisions/ADR-0044-cicd-and-merge-policy]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]], [[09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]], [[09-Decisions/ADR-0132-release-versioning-app-build-process]], [[../30-Implementation/deployment-dokploy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/release-versioning-app-build-process]]
+related: [[09-Decisions/ADR-0017-observability-logging]], [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]], [[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]], [[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]], [[../60-Research/surrealdb-deferral-reevaluation-watch-2026-06-19]], [[../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]], [[09-Decisions/ADR-0044-cicd-and-merge-policy]], [[09-Decisions/ADR-0090-offline-sync-scope-and-conflict-strategy]], [[09-Decisions/ADR-0102-notification-platform-re-ratification-offline-delivery-clause]], [[09-Decisions/ADR-0104-mobile-delivery-grounding-and-ratification]], [[09-Decisions/ADR-0132-release-versioning-app-build-process]], [[../30-Implementation/deployment-dokploy]], [[../30-Implementation/observability-runbook]], [[../30-Implementation/release-versioning-app-build-process]]
 ---
 
 # Deployment
@@ -54,7 +54,12 @@ MVP runtime services:
   Dexie in-app inbox is the authoritative-for-read channel, SSE/Centrifugo,
   email and Web Push are best-effort online accelerants).
 - `surrealdb`: optional additive projection/live-graph store when a feature
-  explicitly enables it; never the authoritative data store.
+  explicitly enables it; never the authoritative data store. FMX-166 keeps it
+  disabled-by-default / Assess. No deployment version is pinned in planning;
+  any future Trial must source-check and exact-pin the current stable release
+  line at that time, prove rebuild/restore and disable paths, and stay
+  non-authoritative. The observed current stable patch on 2026-06-19 is 3.1.4,
+  but that is evidence for this watch, not a future implementation pin.
 - `redis`: session/cache/rate-limit and future Centrifugo engine storage;
   never the durable outbox or audit store.
 - `match-worker`: future extracted Match Worker for server-authoritative
