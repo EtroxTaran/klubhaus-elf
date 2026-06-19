@@ -175,9 +175,12 @@ proof before PR blocking and no standalone `mutation` branch-protection context.
 - Code-phase local parity remains target-only until bootstrap creates real
   app/package paths and code scripts. Do not describe nonexistent Biome, Nx,
   lint-staged or code-test hooks as active.
-- Use the pinned toolchain in the repo. As of FMX-195, active docs-phase tooling
-  pins pnpm 11.7.0; future code bootstrap still re-checks tool versions before
-  adding workspace dependencies.
+- Use the pinned toolchain in the repo. As of FMX-198, active docs-phase
+  tooling still pins pnpm 11.7.0, but source checks observe 11.8.0 as current
+  stable; update is pending Nico D1 in
+  [[../40-Execution/fmx-198-version-pin-audit-decision-queue-2026-06-19]].
+  Future code bootstrap still re-checks tool versions before adding workspace
+  dependencies.
 
 ## Override policy (utmost unusual only)
 

@@ -24,6 +24,19 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-198 version pin audit prepared — pending Nico decisions (2026-06-19).**
+> [[../60-Research/version-pin-audit-2026-06-19]] source-checks active pins and
+> target stack rows against Perplexity discovery, Context7/Ref, npm registry,
+> GitHub releases, Node.js, PostgreSQL and vendor docs. Current finding:
+> `lefthook@2.1.9`, Stryker/Vitest `9.6.1`/`4.1.9`, `hash-wasm@4.12.0`,
+> React/DOM `19.2.7`, TypeScript `6.0.3`, Drizzle ORM `0.45.2`, Playwright
+> `1.61.0`, Biome `2.5.0`, Vite `8.0.16` and several other target rows are
+> current; active `pnpm@11.7.0` is stale vs `11.8.0`; Node 22 and PostgreSQL
+> 17 are supported but not newest stable/LTS; Nx moved to 23.0.0; Capacitor
+> core moved to 8.4.1; and SurrealDB same-day watch evidence moved to 3.1.5.
+> No active toolchain files were mutated. Nico decisions D1-D5 live in
+> [[../40-Execution/fmx-198-version-pin-audit-decision-queue-2026-06-19]].
+
 > **FMX-148 named supporter-group surface accepted (2026-06-19).**
 > [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context|ADR-0062]]
 > now treats `NamedSupporterGroup` as specified but opt-in/default-off for MVP,
@@ -562,15 +575,16 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../40-Execution/fmx-195-pnpm-tooling-currency-decision-queue-2026-06-15]].
 >
 > **FMX-168 Tooling currency sweep prepared — pending Nico decisions
-> (2026-06-15).** Branch `codex/fmx-168-tooling-currency-sweep` adds
+> (2026-06-15; refreshed by FMX-198 on 2026-06-19).** Branch
+> `codex/fmx-168-tooling-currency-sweep` adds
 > [[../60-Research/tooling-currency-sweep-2026-06-15]] plus draft
 > [[../30-Implementation/stack-currency-ledger]]. The packet records the
-> active pin reality (Node 22, pnpm 11.7.0, PostgreSQL 17), current source
-> checks for the future stack (React 19.2.7, TypeScript 6.0.3, TanStack Start
-> 1.168.25, Nx 22.7.5, Drizzle ORM 0.45.2, Babylon.js 9.12.0, Capacitor 8.4.0
-> and related tooling) and the PostgreSQL 17 vs current-stable PostgreSQL 18.x
-> drift. No new dependency, automation or database target decision is binding
-> until Nico approves D1-D5 in
+> active pin reality (Node 22, pnpm 11.7.0, PostgreSQL 17) and current source
+> checks for the future stack. FMX-198 refreshes the current observed values:
+> pnpm 11.8.0, Node 24.17.0 LTS / Node 22.23.0 supported, PostgreSQL 18.4 /
+> 17.10 supported, TanStack Start 1.168.26, Nx 23.0.0, Babylon.js 9.13.0 and
+> Capacitor core 8.4.1. No new dependency, automation or database target
+> decision is binding until Nico approves D1-D5 in
 > [[../40-Execution/fmx-168-tooling-currency-decision-queue-2026-06-15]].
 > Recommended packet is all A: one stack ledger now with machine-readable export
 > later, stable numeric latest with explicit source-conflict ledger, PostgreSQL

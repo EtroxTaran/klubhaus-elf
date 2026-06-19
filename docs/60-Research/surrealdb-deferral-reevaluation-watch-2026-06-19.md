@@ -13,6 +13,7 @@ related:
   - [[raw-perplexity/raw-fmx-166-surrealdb-deferral-governance-2026-06-19]]
   - [[raw-perplexity/raw-fmx-166-surrealdb-deferral-game-precedents-2026-06-19]]
   - [[raw-perplexity/raw-fmx-166-surrealdb-deferral-source-checks-2026-06-19]]
+  - [[raw-perplexity/raw-fmx-198-version-source-checks-2026-06-19]]
   - [[../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]]
   - [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]
   - [[../10-Architecture/09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]
@@ -32,7 +33,7 @@ mechanism without reopening PostgreSQL as the system of record?
 
 SurrealDB remains **deferred / Assess**, not adopted. The current source check
 does change one fact: the old `1.x` pin is stale. On 2026-06-19 the observed
-current stable SurrealDB patch is **3.1.4**, so future FMX work must never
+current stable SurrealDB patch is **3.1.5**, so future FMX work must never
 inherit "1.x" as a planning pin. If SurrealDB is ever trialed, it must be
 source-checked and exact-pinned to the current stable release line at that
 future date.
@@ -61,7 +62,7 @@ research and recommendations for Nico's D1-D5 approval.
 
 | Fact | Evidence | FMX implication |
 |---|---|---|
-| SurrealDB latest stable line moved past the old wording | Official releases page lists 3.1 as latest and 3.1.4 as latest patch on 2026-06-10; GitHub tag/release evidence agrees. | Remove `1.x` as a future planning pin. At a future Trial, verify and exact-pin the then-current stable line. |
+| SurrealDB latest stable line moved past the old wording | FMX-166 source checks replaced the old `1.x` wording; FMX-198 then observed GitHub latest release `v3.1.5`, published 2026-06-19, as the current stable patch. | Remove `1.x` as a future planning pin. At a future Trial, verify and exact-pin the then-current stable line. |
 | Roadmap items are not guaranteed | SurrealDB roadmap says items and timescales can change; distributed live queries and incremental backups are watch items, not proof. | Roadmap movement can trigger a review, but not adoption. |
 | Graph/live features are real product surface | Official docs and Context7/Ref checks expose graph/record links, live queries, migrations and observability. | Keep the option open for a projection/live graph store. |
 | Backup/import/export maturity is still a trial gate | Official docs describe SurrealQL export/import and validation; roadmap tracks incremental backups separately. | Any future Trial must prove rebuild/restore objectives for the projection data. |
@@ -137,7 +138,7 @@ Approve the D1-D5 packet in
 - D2 = A, Lead Architect/Data Platform watch owner, quarterly plus event-driven
   checks.
 - D3 = A, replace `1.x` wording with "exact current stable at Trial"; note
-  3.1.4 only as the 2026-06-19 observed fact.
+  3.1.5 only as the 2026-06-19 observed fact.
 - D4 = A, Assess -> Trial only for non-authoritative rebuildable projection
   with written exit metrics.
 - D5 = A, canonical homes split across ADR-0021, ADR-0097, `11-Risks` and
@@ -149,6 +150,7 @@ Approve the D1-D5 packet in
 - [[raw-perplexity/raw-fmx-166-surrealdb-deferral-governance-2026-06-19]]
 - [[raw-perplexity/raw-fmx-166-surrealdb-deferral-game-precedents-2026-06-19]]
 - [[raw-perplexity/raw-fmx-166-surrealdb-deferral-source-checks-2026-06-19]]
+- [[raw-perplexity/raw-fmx-198-version-source-checks-2026-06-19]]
 - [[../40-Execution/fmx-166-surrealdb-deferral-watch-decision-queue-2026-06-19]]
 - [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]
 - [[../10-Architecture/09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]

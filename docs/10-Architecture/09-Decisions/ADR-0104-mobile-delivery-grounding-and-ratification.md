@@ -1,9 +1,9 @@
 ---
 title: ADR-0104 Mobile-delivery grounding + ratification (supersedes ADR-0025)
 status: accepted
-tags: [adr, architecture, mobile, pwa, capacitor, push, ios, dma, grounding, governance]
+tags: [adr, architecture, mobile, pwa, capacitor, push, ios, dma, grounding, governance, fmx-198]
 created: 2026-06-08
-updated: 2026-06-11
+updated: 2026-06-19
 type: adr
 binding: false
 supersedes: ADR-0025-mobile-delivery
@@ -19,6 +19,7 @@ related:
   - [[../11-Risks]]
   - [[../../50-Game-Design/GD-0016-mobile-ux-loop]]
   - [[../../60-Research/pwa-offline-patterns]]
+  - [[../../60-Research/version-pin-audit-2026-06-19]]
   - [[../../00-Index/Open-Decisions-Dossier]]
 ---
 
@@ -110,6 +111,12 @@ once and could flip again):
   Nico, but the implementable anchor today is **Capacitor 7 (min iOS 14, Xcode 16+)**.
   *(Note: an initial Perplexity pass guessed "Capacitor 6"; the GitHub releases API corrected it to
   7.6.6 — recorded here as evidence the version was checked against the real source, not assumed.)*
+
+> **FMX-198 currency note (2026-06-19):** this Capacitor 7.x anchor is now a
+> historical accepted baseline, not the newest stable package observation.
+> Direct source checks now observe `@capacitor/core@8.4.1` as current stable
+> and Capacitor 9 as alpha. Re-pinning the mobile baseline to Capacitor 8.x is
+> a Nico platform/support decision because it changes native floors.
 
 These belong in a proper `60-Research/mobile-delivery-ios-push-and-capacitor-2026-06-08` note on
 ratify; this ADR carries the inline citations until that note lands.

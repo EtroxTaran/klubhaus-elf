@@ -145,7 +145,10 @@ items listed in [[../../30-Implementation/code-phase-dod-transition-contract]]:
 
 The bootstrap PR must verify current stable tool versions again at the time of
 implementation and pin exact versions. The npm registry reported
-`nx@22.7.5` and `pnpm@11.6.0` on 2026-06-14; FMX-195 owns the pnpm pin update.
+`nx@22.7.5` and `pnpm@11.6.0` on 2026-06-14; FMX-195 owned the pnpm update to
+11.7.0. FMX-198 later observed `nx@23.0.0` and `pnpm@11.8.0` on
+2026-06-19, so bootstrap must use the refreshed stack ledger and treat the Nx
+major as HITL.
 
 ## Consequences
 
@@ -175,4 +178,3 @@ Costs / constraints:
 - [[../../10-Architecture/09-Design-System]]
 - [[../../60-Research/code-phase-dod-transition-contract-2026-06-14]]
 - [[../../40-Execution/fmx-180-code-phase-dod-transition-decision-queue-2026-06-14]]
-

@@ -58,8 +58,9 @@ MVP runtime services:
   disabled-by-default / Assess. No deployment version is pinned in planning;
   any future Trial must source-check and exact-pin the current stable release
   line at that time, prove rebuild/restore and disable paths, and stay
-  non-authoritative. The observed current stable patch on 2026-06-19 is 3.1.4,
-  but that is evidence for this watch, not a future implementation pin.
+  non-authoritative. FMX-198 observed current stable patch 3.1.5 on
+  2026-06-19, but that is evidence for this watch, not a future implementation
+  pin.
 - `redis`: session/cache/rate-limit and future Centrifugo engine storage;
   never the durable outbox or audit store.
 - `match-worker`: future extracted Match Worker for server-authoritative
@@ -77,9 +78,10 @@ for the app container health check.
 - **PWA + Capacitor shell.** The responsive PWA is the single source of
   truth and carries the MVP; a thin, additive Capacitor shell is the
   post-MVP path to the App Store / Play Store, reusing the unchanged web
-  `webDir` (ADR-0104). The implementable anchor is **Capacitor 7.x**
-  (min iOS 14.0, Xcode 16+), re-pinned at build per the currency rule
-  (Capacitor 8 is a watch item). Native APNs/FCM push lands with that
+  `webDir` (ADR-0104). ADR-0104's accepted historical anchor is
+  **Capacitor 7.x** (min iOS 14.0, Xcode 16+), but FMX-198 source checks show
+  Capacitor 8.4.1 is now current stable; changing the mobile baseline is a
+  Nico platform decision, not a silent docs edit. Native APNs/FCM push lands with that
   shell; until then the EU-iOS-no-Web-Push limitation (dated 2026-06-08,
   DMA-driven and reversible) constrains push on iOS.
 - **Narrow cloud-sync.** Offline Sync is a thin context at MVP

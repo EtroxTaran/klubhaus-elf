@@ -18,6 +18,14 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Version Pin Audit](../60-Research/version-pin-audit-2026-06-19.md) -
+  FMX-198 Perplexity-discovery and source-checked audit of active and
+  target-only version references. Recommendation pending Nico: update pnpm to
+  11.8.0 in a narrow follow-up, choose Node 24 LTS vs Node 22 holdback before
+  code bootstrap, keep PostgreSQL 17 active until the DB bootstrap decision,
+  queue a Capacitor 8.x mobile re-pin decision, and refresh target-only ledger
+  rows without treating them as a future manifest. Decision queue:
+  [FMX-198 decision queue](../40-Execution/fmx-198-version-pin-audit-decision-queue-2026-06-19.md).
 - [Named Supporter Group Consent DSA and Naming](../60-Research/named-supporter-group-consent-dsa-naming-2026-06-19.md) -
   FMX-148 Perplexity-first and source-checked packet closing ADR-0062's named
   supporter-group surface. Accepted outcome: `NamedSupporterGroup` is

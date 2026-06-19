@@ -41,6 +41,12 @@ The output is a proposed Stack Currency Ledger plus Nico decision questions.
 | Drizzle | `drizzle-orm@0.45.2` is npm latest stable; 1.0 is still RC/beta-tagged. Do not adopt 1.0 RC without a decision/spike. |
 | Capacitor | `@capacitor/core@8.4.0` is stable latest; Capacitor 8 carries Android SDK 36/minSdk 24 and iOS 15/Xcode 26 requirements. This is platform scope, not just a package bump. |
 
+> **FMX-198 refresh (2026-06-19):** this table is a June 15 source snapshot.
+> [[version-pin-audit-2026-06-19]] observes `pnpm@11.8.0`,
+> `@tanstack/react-start@1.168.26`, `@capacitor/core@8.4.1`,
+> `@babylonjs/core@9.13.0` and `nx@23.0.0`. Use the refreshed stack ledger,
+> not this historical table, for current source-check facts.
+
 Full source rows are preserved in
 [[raw-perplexity/raw-tooling-currency-source-checks-2026-06-15]].
 

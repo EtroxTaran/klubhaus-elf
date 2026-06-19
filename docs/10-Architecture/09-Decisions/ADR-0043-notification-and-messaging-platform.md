@@ -1,15 +1,15 @@
 ---
 title: ADR-0043 Notification and Messaging Platform
 status: superseded
-tags: [adr, architecture, notification, messaging, realtime, email, push, gdpr]
+tags: [adr, architecture, notification, messaging, realtime, email, push, gdpr, fmx-198]
 created: 2026-05-22
-updated: 2026-06-11
+updated: 2026-06-19
 accepted_at: 2026-05-22
 type: adr
 binding: true
 supersedes:
 superseded_by: ADR-0102-notification-platform-re-ratification-offline-delivery-clause
-related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0021-revised-tech-stack]], [[ADR-0023-realtime-transport]], [[ADR-0025-mobile-delivery]], [[ADR-0028-postgres-transactional-outbox]], [[../../30-Implementation/notification-messaging-platform]], [[../../30-Implementation/privacy-and-consent]], [[../../30-Implementation/rate-limiting-anti-abuse]]
+related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0021-revised-tech-stack]], [[ADR-0023-realtime-transport]], [[ADR-0025-mobile-delivery]], [[ADR-0028-postgres-transactional-outbox]], [[../../30-Implementation/notification-messaging-platform]], [[../../30-Implementation/privacy-and-consent]], [[../../30-Implementation/rate-limiting-anti-abuse]], [[../../60-Research/version-pin-audit-2026-06-19]]
 ---
 
 # ADR-0043: Notification and Messaging Platform
@@ -17,6 +17,11 @@ related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0021-revised-tech-stack]], [[A
 > **SUPERSEDED on 2026-06-08 by [[ADR-0102-notification-platform-re-ratification-offline-delivery-clause]].**
 > Old way: notification platform without an offline-delivery clause. New way: same platform re-ratified under the gate + inbox-first offline clause (SSE/email/push best-effort online). Kept for history — do not
 > implement.
+>
+> **FMX-198 currency note (2026-06-19):** package numbers in this superseded ADR
+> are historical source observations. Current source-version status lives in
+> [[../../30-Implementation/notification-messaging-platform]] and
+> [[../../60-Research/version-pin-audit-2026-06-19]].
 
 ## Status
 

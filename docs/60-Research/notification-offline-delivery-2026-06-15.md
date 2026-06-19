@@ -128,6 +128,11 @@ pin list. On 2026-06-15:
 - `web-push` 3.6.7, `@types/web-push` 3.6.4 and
   `@capacitor/push-notifications` 8.1.1 still matched the ADR-0043 values.
 
+FMX-198 refreshed these observations on 2026-06-19: `react-email@6.6.3`,
+`@react-email/render@2.0.9` and `@capacitor/core@8.4.1` are current stable
+source-check facts, while `web-push`, `@types/web-push` and
+`@capacitor/push-notifications` remain current at the values above.
+
 Exact code pins must be rechecked at the implementation beat.
 
 ## Decision needed from Nico

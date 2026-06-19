@@ -2,7 +2,7 @@
 title: Glossary (Architecture & Ubiquitous Language)
 status: current
 tags: [architecture, glossary, ubiquitous-language, ddd, arc42]
-updated: 2026-06-15
+updated: 2026-06-19
 type: arch
 related: [[../00-Index/Glossary]]
 ---
@@ -28,7 +28,7 @@ ADR / context.
 
 ## Data, persistence & messaging
 
-- **System of record** — PostgreSQL 18.x holds authoritative state; SurrealDB 1.x is a reserved, non-authoritative projection ([[09-Decisions/ADR-0027-postgres-data-model]], [[09-Decisions/ADR-0021-revised-tech-stack]]).
+- **System of record** — PostgreSQL 18.x is the target authoritative state; SurrealDB is only a reserved, non-authoritative future projection option and any Trial must source-check/exact-pin the then-current stable line ([[09-Decisions/ADR-0027-postgres-data-model]], [[09-Decisions/ADR-0021-revised-tech-stack]]).
 - **Schema-per-save** — Each active career save is isolated in its own Postgres schema; the documented single-node scale ceiling is 300 soft-warn / 1000 hard-stop live save schemas with a verified cold/archive fallback ([[09-Decisions/ADR-0027-postgres-data-model]], [[09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]).
 - **Transactional outbox** — Domain events written to `outbox_event` in the **same transaction** as the state change; idempotent by UUIDv7 `event_id`; the outbox is the committed domain-event publication path and domain mutation trail, not the pre-commit command dedup gate ([[09-Decisions/ADR-0028-postgres-transactional-outbox]], [[09-Decisions/ADR-0119-command-reception-dedup-seam]]).
 - **Event-carried state transfer** — A consumer derives state from a self-contained event payload (no cross-context join); e.g. League reading `WatchPartyScheduled` to set the deadline anchor ([[09-Decisions/ADR-0088-async-escalation-fsm-and-watch-party-deadline-source-of-truth]]).

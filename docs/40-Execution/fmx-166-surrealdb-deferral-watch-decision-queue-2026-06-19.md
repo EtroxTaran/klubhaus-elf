@@ -12,6 +12,7 @@ related:
   - [[../60-Research/surrealdb-deferral-reevaluation-watch-2026-06-19]]
   - [[../60-Research/raw-perplexity/raw-fmx-166-surrealdb-deferral-reevaluation-2026-06-19]]
   - [[../60-Research/raw-perplexity/raw-fmx-166-surrealdb-deferral-source-checks-2026-06-19]]
+  - [[../60-Research/raw-perplexity/raw-fmx-198-version-source-checks-2026-06-19]]
   - [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]
   - [[../10-Architecture/09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]
   - [[../10-Architecture/11-Risks]]
@@ -58,7 +59,7 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 
 | Option | Description | Trade-off |
 |---|---|---|
-| **A - exact current stable at Trial** | Remove historical major-line pinning. At any future Trial, source-check releases/tags/docs and exact-pin the current stable line then. Record 3.1.4 only as the 2026-06-19 observed fact. | Aligns with FMX dependency currency and avoids stale major-line rot. Requires a fresh check at Trial time. |
+| **A - exact current stable at Trial** | Remove historical major-line pinning. At any future Trial, source-check releases/tags/docs and exact-pin the current stable line then. FMX-198 records 3.1.5 only as the 2026-06-19 observed fact. | Aligns with FMX dependency currency and avoids stale major-line rot. Requires a fresh check at Trial time. |
 | B - pin SurrealDB 3.1.x now | Record 3.1.x as the future line. | Current today, but likely stale before implementation and creates false adoption pressure. |
 | C - keep `1.x` wording for conservatism | Keep old stable-line language. | Rejected: it is factually stale on 2026-06-19. |
 | D - no version language | Only say "current stable" with no dated example. | Clean but hides the reason this issue existed. |
@@ -107,4 +108,3 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
 - [[../10-Architecture/09-Decisions/ADR-0021-revised-tech-stack]]
 - [[../10-Architecture/09-Decisions/ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]
 - [[../10-Architecture/11-Risks]]
-
