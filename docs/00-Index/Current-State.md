@@ -24,6 +24,17 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-148 named supporter-group surface accepted (2026-06-19).**
+> [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context|ADR-0062]]
+> now treats `NamedSupporterGroup` as specified but opt-in/default-off for MVP,
+> not as an undefined stub. A&A owns fictional group facts and segment effects;
+> People remains the source of truth for any representative actor/persona behind
+> an opaque ref; hosted community-pack distribution remains future-scope behind
+> DSA/privacy/moderation/legal gates. Research:
+> [[../60-Research/named-supporter-group-consent-dsa-naming-2026-06-19]];
+> decision record:
+> [[../40-Execution/fmx-148-named-supporter-group-decision-record-2026-06-19]].
+
 > **FMX-157 Manager Legacy / Scouting / Youth feed packet pending (2026-06-19).**
 > Branch `codex/fmx-157-manager-legacy-scouting-youth-feed` preserves the
 > non-binding decision packet for unresolved follow-up detail across Youth

@@ -6,7 +6,7 @@ created: 2026-05-17
 updated: 2026-06-19
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-19-fmx-166-surrealdb-deferral-watch]], [[2026-06-19-fmx-173-argon2id-kdf-validation]], [[2026-06-19-fmx-105-save-trust-reconciliation]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-19-fmx-148-named-supporter-group]], [[2026-06-19-fmx-166-surrealdb-deferral-watch]], [[2026-06-19-fmx-173-argon2id-kdf-validation]], [[2026-06-19-fmx-105-save-trust-reconciliation]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-19-fmx-148-named-supporter-group]] - FMX-148 named supporter-group
+  surface: raw Perplexity/source-check captures, synthesis, decision record and
+  ADR/index amendments closing ADR-0062's `NamedSupporterGroup` stub. Accepted
+  D1-D3: opt-in/default-off, People dependency via opaque refs only and
+  fictional local/P2P scope with hosted UGC future-scope behind DSA/privacy/
+  moderation/legal gates.
 - [[2026-06-19-fmx-157-manager-legacy-scouting-youth-feed]] - FMX-157
   Manager Legacy / Scouting / Youth feed packet: raw Perplexity/source-check
   captures, synthesis and decision queue for Youth Academy audit/retention,

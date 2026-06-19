@@ -3,7 +3,7 @@ title: ADR-0062 Audience & Atmosphere Context
 status: accepted
 tags: [adr, architecture, ddd, audience-and-atmosphere, fan-ecology, scoring-context, supporting-subdomain, fmx-32, accepted]
 created: 2026-05-28
-updated: 2026-06-08
+updated: 2026-06-19
 type: adr
 binding: true
 supersedes:
@@ -33,6 +33,9 @@ related:
   - [[../../60-Research/raw-perplexity/raw-club-management-sub-aggregate-audit-2026-05-28]]
   - [[../../60-Research/fan-demand-price-elasticity-2026-05-28]]
   - [[../../60-Research/season-ticket-lifecycle-and-accounting-2026-05-28]]
+  - [[../../60-Research/named-supporter-group-consent-dsa-naming-2026-06-19]]
+  - [[../../60-Research/raw-perplexity/raw-fmx-148-source-checks-2026-06-19]]
+  - [[../../40-Execution/fmx-148-named-supporter-group-decision-record-2026-06-19]]
 ---
 
 # ADR-0062: Audience & Atmosphere Context
@@ -55,11 +58,15 @@ bounded context (Club Management → 17 contexts after Stadium
 Operations carve-out, +1 for A&A). Combined with the
 CommercialPortfolio carve-out (ADR-0061), the map grows to 19
 contexts in this ratification event. Cross-save dependencies on
-People (ADR-0052 draft) + Narrative (ADR-0054 draft) + Manager &
-Legacy (ADR-0051 accepted) + Community Overlay Pipeline (ADR-0059
-proposed) remain as documented; `NamedSupporterGroup` aggregate
-stays opt-in via FMX-54-gated command until FMX-54 (Fan Ecology
-persona privacy & creative-IP-safe-naming review) ratifies.
+People (ADR-0052) + Narrative (ADR-0054) + Manager & Legacy
+(ADR-0051 accepted) + Community Overlay Pipeline (ADR-0059) remain
+as documented. FMX-148 closed the remaining named-group surface on
+2026-06-19: `NamedSupporterGroup` is specified as an opt-in/default-
+off fictional overlay; Audience & Atmosphere owns group facts and
+segment effects; People remains the source of truth for any
+representative actor/persona behind opaque refs; MVP Community
+Overlay stays local/P2P, with hosted UGC behind a future DSA/privacy/
+moderation/legal gate.
 
 ## Context
 
@@ -124,11 +131,11 @@ The audit synthesis §F4.2 documents the six-of-six firing:
    category alignment), Ticketing & Settlement (latent demand +
    trust state for pricing + renewal probability).
 5. **Cross-cutting role ✓ strong** — segment mood is economic
-   signal + regulatory signal (UEFA SLO + Premier League IFAB) +
-   atmosphere signal + political signal (board pressure + ouster-
-   call) + brand signal (sponsor-fit risk) + persona signal (named-
-   group dialogue scenes via Narrative per ADR-0054). Six cross-
-   cutting roles. No single existing context can host without
+   signal + regulatory signal (UEFA SLO + Premier League fan
+   engagement/advisory-board pattern) + atmosphere signal + political
+   signal (board pressure + ouster-call) + brand signal (sponsor-fit
+   risk) + persona signal (named-group dialogue scenes via Narrative
+   per ADR-0054). Six cross-cutting roles. No single existing context can host without
    language leak.
 6. **Low co-change with neighbours ✓** — atmosphere weekly tick
    evolves independently of ledger postings; segment loyalty
@@ -164,10 +171,11 @@ audience / loyalty subsystems to **own bounded context with own UI
 Real-world football operations §F5.2 anchors a distinct regulatory
 subdomain:
 
-- **SLO (Supporter Liaison Officer)** — UEFA Club Licensing
-  mandate since 2010, reinforced 2024-2025; DFB-DFL Sicherheitsfaktoren
-  + SLO-Konzept; Premier League Independent Fan Advisory Boards
-  mandated 2024-2025.
+- **SLO (Supporter Liaison Officer) / fan advisory pattern** —
+  UEFA Club Licensing mandates a supporter liaison function; the
+  Premier League Fan Engagement Standard supports fan advisory
+  contact/forum patterns. DFB/DFL SLO references remain background
+  until a separate official source check is needed.
 - **GDPR Art. 6** lawful basis for supporter-segment data; **Art.
   9** special-category data for implicit religious / political
   affiliation captured by ultras / anti-racism networks.
@@ -177,9 +185,9 @@ subdomain:
 Cross-save dependencies:
 
 - **Persona overlay** for named supporter-group representatives
-  flows through People context (ADR-0052 draft) — the named-group
-  rep is a Person with persona + skill profile; Audience & Atmosphere
-  owns the *group* aggregate referencing the Person.
+  flows through People context (ADR-0052) by opaque actor/persona ref
+  only; Audience & Atmosphere owns the *group* aggregate and never
+  stores People internals.
 - **Narrative integration** for fan-incident storylets flows through
   Narrative context (ADR-0054) — generated storylets consume
   Audience & Atmosphere `SegmentMoodBoard` + `FanIncidentTimeline`
@@ -194,12 +202,12 @@ Cross-save dependencies:
   population baselines flow through Manager & Legacy (ADR-0051)
   at save creation only.
 
-The remaining concrete-detail items (named-group persona privacy
-hardening, creative-IP-safe-naming generator pattern, GDPR Art. 6
-consent flows for named-group representatives) are deferred to
-follow-up ticket **FMX-54 Fan Ecology persona privacy & creative-
-IP-safe-naming review** (already created 2026-05-28, sibling to
-FMX-32 under parent FMX-24, `risk:legal` label).
+FMX-54 supplied the fan-persona privacy and creative-IP-safe naming
+research. FMX-148 folds that result back into this ADR: supporter
+groups and representatives are fictional by default, A&A never stores
+real fan/member data or People internals, and hosted community-pack
+distribution remains future-scope until a dedicated DSA/privacy/
+moderation/legal packet exists.
 
 ## Options considered
 
@@ -290,10 +298,10 @@ Carve Audience & Atmosphere as own bounded context with own
 - **Cross-genre analogues:** CK3 vassal opinion, Civ VI Loyalty,
   Cities Skylines districts mood, TW Three Kingdoms public order —
   all separated segmented audience / loyalty as own context.
-- **Regulatory anchor:** UEFA SLO + DFB-DFL SLO-Konzept + Premier
-  League IFAB + GDPR Art. 6 segment data + GDPR Art. 9 special-
-  category data + DSA Art. 16 UGC obligations — distinct regulatory
-  subdomain.
+- **Regulatory anchor:** UEFA SLO + Premier League fan engagement /
+  advisory-board pattern + GDPR Art. 6 segment data + GDPR Art. 9
+  special-category data + DSA hosted-UGC obligations — distinct
+  regulatory subdomain.
 - **Trade-off:** adds one bounded context to the map. Marginal cost
   justified by six-of-six firing + Vernon scoring-context canonical
   + cross-genre unanimous + real-world regulatory anchor + the
@@ -342,9 +350,9 @@ converging arguments:
    subdomain classification + IDDD ch. 7 Customer-Supplier with ACL
    directly apply.
 
-3. **F5 real-world regulatory anchor.** UEFA SLO mandate + DFB-DFL
-   SLO-Konzept + Premier League IFAB + GDPR Art. 6 / 9 + DSA Art.
-   16 form a distinct regulatory subdomain that Club Management
+3. **F5 real-world regulatory anchor.** UEFA SLO mandate + Premier
+   League fan engagement/advisory-board pattern + GDPR Art. 6 / 9 +
+   hosted-UGC obligations form a distinct regulatory subdomain that Club Management
    cannot cleanly host without language leak. The persona-overlay
    surface (named supporter-group representatives appearing in
    controlled dialogue scenes via People + Narrative) makes the
@@ -361,14 +369,12 @@ converging arguments:
   Customer-Supplier contracts via published events; Snapshot
   pattern on `FanDemandForecast` → CommercialPortfolio keeps
   coupling loose; ACL on every customer side.
-- **Persona overlay scope.** `NamedSupporterGroup` aggregate
-  references People (ADR-0052 draft) for the named-group
-  representative as a Person. Mitigation: FMX-54 follow-up ticket
-  (Fan Ecology persona privacy & creative-IP-safe-naming review)
-  hardens GDPR Art. 6 / 9 consent flows + DSA Art. 16 UGC
-  obligations + community-overlay persona-data handling. Named-
-  group overlay is **opt-in via FMX-54-gated command**, not
-  default-on at MVP.
+- **Persona overlay scope.** `NamedSupporterGroup` may reference a
+  People actor/persona only through an opaque ref. Mitigation:
+  FMX-148 makes the overlay **opt-in/default-off**, keeps shipped
+  groups and reps fictional, forbids real fan/member/person data in
+  A&A, and leaves hosted UGC behind a future DSA/privacy/moderation/
+  legal gate.
 - **Cadence-independence resolution.** Vernon does not explicitly
   name "weekly loop independence" as a split criterion. The
   dossier resolves this via IDDD ch. 3 + 5 ("different life cycles
@@ -382,10 +388,12 @@ converging arguments:
 - **Creative IP-safe naming.** No real supporter-group names
   (Ultras Frankfurt, Curva Sud, Yellow Wall, Spion Kop) embedded
   as samples; all sample names follow Nico's vault-wide evocative-
-  but-clearly-not-real rule. Mitigation: FMX-54 follow-up handles
-  the creative-naming generator pattern.
+  but-clearly-not-real rule. Mitigation: FMX-54/FMX-148 extend the
+  ADR-0007/GD-0015 naming gate to supporter groups, reps, chants,
+  slogans, banners and overlay display names.
 
-Status stays `proposed` / `binding: false` until Nico ratifies.
+Nico ratified the context on 2026-05-28 and accepted the FMX-148
+named-group amendment on 2026-06-19.
 
 ## Decision
 
@@ -418,12 +426,13 @@ If ratified, Audience & Atmosphere owns:
   price-elasticity-2026-05-28.md` §Trust state. Trust shocks fire
   on aggressive-pricing detection, sponsor-misalignment events,
   fan-engagement scandals; decay rate per segment varies.
-- **`NamedSupporterGroup` aggregate** (per-club, per-group) — **FMX-
-  54-gated**: opt-in overlay for named ultras / curva representatives
-  with persona link to People (ADR-0052 draft) for controlled
-  dialogue scenes via Narrative (ADR-0054). Default off at MVP;
-  enabled per save creation via community overlay (ADR-0059) or
-  manual scenario configuration.
+- **`NamedSupporterGroup` aggregate** (per-club, per-group): opt-in/
+  default-off fictional supporter-group overlay attached to a
+  segment, with identity archetype, red lines, mobilisation style,
+  influence band, visibility tier, policy version and optional
+  opaque representative actor ref from People (ADR-0052). It is
+  enabled only through explicit save/scenario setup or local/P2P
+  Community Overlay import; it is not a default-on MVP feature.
 - **Process Manager / Saga** for weekly atmosphere loop + season-
   ticket campaign cohort feedback + politics-event escalation +
   ticketing-trust-shock evaluation. Orchestrates atmosphere
@@ -447,9 +456,10 @@ Audience & Atmosphere does **not** own:
   `FanIncidentLogged` consumed by Rivalry as fan-incident sub-score).
 - Tactical lineup snapshot (owned by Tactics per ADR-0055).
 - Match per-fixture simulation (owned by Match).
-- People / Person actor registry (owned by People per ADR-0052
-  draft; Audience & Atmosphere references Person IDs in
-  `NamedSupporterGroup` aggregate but does not own Person identity).
+- People / Person actor registry, persona substrate or dialogue
+  context cards (owned by People per ADR-0052; Audience & Atmosphere
+  may reference an optional opaque actor ref in `NamedSupporterGroup`
+  but does not own Person identity).
 - Narrative storylet generation (owned by Narrative per ADR-0054;
   Audience & Atmosphere supplies `SegmentMoodBoard` +
   `FanIncidentTimeline` as context cards consumed by Narrative).
@@ -480,8 +490,9 @@ Draft commands:
   signal consumed by Club Management.
 - `ResetTicketingTrustShock` — clear trust-shock memory after
   reconciliation event.
-- `OnboardNamedSupporterGroup` — FMX-54-gated opt-in for named-
-  group overlay.
+- `OnboardNamedSupporterGroup` — opt-in/default-off onboarding for
+  fictional named-group overlays at save/scenario setup or local/P2P
+  overlay import.
 - `UpdateSegmentDemand` — internal command for weekly atmosphere
   tick.
 - `ApplyAtmosphereSnapshot` — internal command for per-fixture
@@ -509,7 +520,8 @@ Draft events:
 - `ChoreoCampaignRegistered`
 - `FanPipelineQualityUpdated` *(consumed by Manager & Legacy
   archetype hook aggregation per GD-0019)*
-- `NamedSupporterGroupOnboarded` (FMX-54-gated)
+- `NamedSupporterGroupOnboarded` (opt-in/default-off; fictional
+  group facts plus optional opaque People actor ref only)
 - `SegmentMoodUpdated` (internal projection event)
 
 Draft read models:
@@ -527,7 +539,8 @@ Draft read models:
 - `FanIncidentTimeline` — per-club fan-incident log. Consumed by
   Notification + Narrative + Audit (per ADR-0053 audit-trail
   pattern).
-- `NamedSupporterGroupRoster` — FMX-54-gated.
+- `NamedSupporterGroupRoster` — opt-in/default-off fictional group
+  roster, separate from segment population/mood truth.
 - `OusterCallEscalationBoard` — current ouster-call escalation
   tier per club. Consumed by Club Management + Manager & Legacy.
 - `FanPipelineQualitySnapshot` — pipeline-quality signal aggregated
@@ -593,17 +606,20 @@ Draft consumed facts:
   Club Management, CommercialPortfolio, Rivalry, Matchday-Event-
   Engine, Notification, Manager & Legacy, Match consume via ACL.
 - **GDPR / DSGVO posture:** segment-level aggregate state only;
-  no individual fan records inside `SupporterSegment`. Named-group
-  representative data inside `NamedSupporterGroup` flows through
-  People (ADR-0052) under Person identity governance + FMX-54
-  hardening.
-- **DSA Art. 16 posture:** fan-incident log queryable for notice-
-  and-action workflows; community-overlay imports per ADR-0059
-  validated by Audience & Atmosphere BC.
-- **UEFA SLO + DFB-DFL SLO-Konzept posture:** `SLOLiaisonContact`
-  read model exposes per-club Supporter Liaison Officer identity
-  (Person reference per ADR-0052) for regulatory compliance
-  consumed by Regulations & Compliance.
+  no individual fan records inside `SupporterSegment`.
+  `NamedSupporterGroup` stores fictional group facts only; any
+  representative is an optional opaque People actor/persona ref.
+  A&A does not store People internals, real fan/member records,
+  handles, photos, account profiles or special-category labels.
+- **DSA / hosted UGC posture:** MVP Community Overlay remains
+  local/P2P. Hosted pack distribution is future-scope until a
+  dedicated notice/action, moderation, appeal, revocation, DSAR and
+  legal-review packet exists.
+- **Supporter representation posture:** `SLOLiaisonContact` read
+  model exposes per-club liaison/contact identity as an opaque Person
+  reference per ADR-0052 for Regulations & Compliance. The model
+  represents contact channels/forums, not individual supporter
+  dossiers.
 
 ## Rationale
 
@@ -636,8 +652,9 @@ DDD authorities (Evans Blue Book ch. 14 + Vernon IDDD ch. 3 + 7 +
 + MS Learn) and real-world enterprise analogues (Salesforce
 Marketing Cloud + Schufa + Spotify + Tesco Clubcard) and cross-
 genre precedent (CK3 + Civ VI + Cities + TW) and real-world football
-regulatory framework (UEFA SLO + DFB-DFL + Premier League IFAB +
-GDPR + DSA) all converge: **when an audience-scoring subdomain has
+regulatory framework (UEFA SLO + Premier League fan engagement /
+advisory-board pattern + GDPR + DSA hosted-UGC risk) all converge:
+**when an audience-scoring subdomain has
 its own ubiquitous language, weekly scoring loop, storage, multiple
 consumers, cross-cutting role and regulatory anchor, it deserves
 its own bounded context.** The marginal cost (one extra context in
@@ -664,9 +681,10 @@ Positive:
 - Mirrors real-world Supporter Liaison Officer + Independent Fan
   Advisory Board organisational structure — playtesters recognise
   the model.
-- Named-group persona overlay (FMX-54-gated, opt-in) gives a clear
-  contract surface for community-overlay segment customisation +
-  controlled dialogue scenes via Narrative.
+- Named-group overlay (FMX-148, opt-in/default-off) gives a clear
+  contract surface for local/P2P community-overlay segment
+  customisation and controlled dialogue scenes via People + Narrative
+  without storing People internals in A&A.
 - Six-of-six DDD criteria firing means the wave-2 surface (FMX-42
   segment elasticity + FMX-43 season-ticket cohort feedback) lands
   in the architecturally correct owner from day one.
@@ -684,11 +702,11 @@ Negative:
   Management + Rivalry + Matchday-Event-Engine + Notification +
   Manager & Legacy + Match + Ticketing & Settlement. Coordination
   grows.
-- Named-group persona overlay scope tied to FMX-54 outcome; until
-  FMX-54 ratifies, `NamedSupporterGroup` aggregate stays opt-in
-  via FMX-54-gated command and `OnboardNamedSupporterGroup` /
-  `NamedSupporterGroupOnboarded` are stubbed (no persona link to
-  People).
+- Named-group overlay is now specified by FMX-148 but remains
+  opt-in/default-off. It adds a privacy/legal review surface for any
+  future real-person or hosted-UGC expansion, but it no longer blocks
+  the A&A contract because A&A consumes People only through opaque
+  refs.
 - Cross-save legacy + community-overlay seeds dependency chain
   (ADR-0051 + ADR-0059 + ADR-0052) means Audience & Atmosphere
   cannot fully express until those upstream ADRs ratify.
@@ -710,7 +728,7 @@ apply-PR for whichever lands second renumbers the prose accordingly.
 
 ````diff
  | **Rivalry System** | RivalryEdge graph (club pair × sub-score history × threshold-tier FSM)... | RivalryScore / IsDerbyFixture... |
-+| **Audience & Atmosphere** | `SupporterSegment` Aggregate (per-segment loyalty + mood + volatility + attendance probability + season-ticket renewal probability + price sensitivity + propensity), `AtmosphereSnapshot` Aggregate (per-fixture atmosphere multiplier derived from rivalry × table × utilisation × form × weather × security × choreo participation), `FanIncident` Aggregate (choreo + protest banner + ticket boycott + ouster-call threshold-triggered FSM), `TicketingTrustLedger` Aggregate (persistent trust state with 3-season shock memory), `NamedSupporterGroup` Aggregate (FMX-54-gated named-group overlay with persona link to People context per ADR-0052) | `FanDemandForecast` / `AtmosphereSnapshot` / `SegmentMoodBoard` / `TicketingTrustStateSnapshot` / `FanIncidentTimeline` / `NamedSupporterGroupRoster` / `OusterCallEscalationBoard` / `FanPipelineQualitySnapshot` queries; `FanDemandForecasted` / `FanIncidentLogged` / `AtmosphereSnapshotPublished` / `SegmentRenewalProbabilityUpdated` / `TicketingTrustStateChanged` / `OusterCallEscalated` / `BoycottThresholdConfirmed` / `ChoreoCampaignRegistered` / `FanPipelineQualityUpdated` / `NamedSupporterGroupOnboarded` / `SegmentMoodUpdated` events |
++| **Audience & Atmosphere** | `SupporterSegment` Aggregate (per-segment loyalty + mood + volatility + attendance probability + season-ticket renewal probability + price sensitivity + propensity), `AtmosphereSnapshot` Aggregate (per-fixture atmosphere multiplier derived from rivalry × table × utilisation × form × weather × security × choreo participation), `FanIncident` Aggregate (choreo + protest banner + ticket boycott + ouster-call threshold-triggered FSM), `TicketingTrustLedger` Aggregate (persistent trust state with 3-season shock memory), `NamedSupporterGroup` Aggregate (opt-in/default-off fictional group overlay with optional opaque People actor ref per ADR-0052) | `FanDemandForecast` / `AtmosphereSnapshot` / `SegmentMoodBoard` / `TicketingTrustStateSnapshot` / `FanIncidentTimeline` / `NamedSupporterGroupRoster` / `OusterCallEscalationBoard` / `FanPipelineQualitySnapshot` queries; `FanDemandForecasted` / `FanIncidentLogged` / `AtmosphereSnapshotPublished` / `SegmentRenewalProbabilityUpdated` / `TicketingTrustStateChanged` / `OusterCallEscalated` / `BoycottThresholdConfirmed` / `ChoreoCampaignRegistered` / `FanPipelineQualityUpdated` / `NamedSupporterGroupOnboarded` / `SegmentMoodUpdated` events |
  | **Offline Sync** | MVP: cache/draft status... | Draft/cache status now; sync status later |
 ````
 
@@ -739,15 +757,15 @@ apply-PR for whichever lands second renumbers the prose accordingly.
 +ADR-0059 Community Overlay Pipeline (proposed) at save creation
 +only; Audience & Atmosphere BC owns semantic validation per
 +Vernon (same pattern as Regulations + Rivalry + Youth Academy).
-+`NamedSupporterGroup` Aggregate is FMX-54-gated (Fan Ecology
-+persona privacy & creative-IP-safe-naming review, sibling FMX-54
-+ticket under parent FMX-24, `risk:legal` label); default off at
-+MVP. UEFA SLO + DFB-DFL SLO-Konzept + Premier League Independent
-+Fan Advisory Board posture exposed via `SLOLiaisonContact` read
-+model consumed by Regulations & Compliance. `risk:legal` hardline
-+applies per GD-0015 IP-clean data + ADR-0007 naming schema (no
-+real club, supporter-group, fan-incident or person names embedded
-+as samples).
++`NamedSupporterGroup` Aggregate is opt-in/default-off per FMX-148,
++fictional by default, and may hold only an optional opaque People
++actor ref for a representative. MVP Community Overlay remains local/
++P2P; hosted UGC is future-scope until DSA/privacy/moderation/legal
++gates exist. UEFA/Premier League supporter-representation posture is
++exposed via `SLOLiaisonContact` read model consumed by Regulations &
++Compliance. `risk:legal` hardline applies per GD-0015 IP-clean data
++and ADR-0007 naming schema (no real club, supporter-group, fan-incident
++or person names embedded as samples).
 ````
 
 ### §2 high-level Mermaid — new node + edges

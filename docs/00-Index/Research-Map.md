@@ -18,6 +18,13 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Named Supporter Group Consent DSA and Naming](../60-Research/named-supporter-group-consent-dsa-naming-2026-06-19.md) -
+  FMX-148 Perplexity-first and source-checked packet closing ADR-0062's named
+  supporter-group surface. Accepted outcome: `NamedSupporterGroup` is
+  opt-in/default-off, fictional by default, references People only by opaque
+  actor/persona refs, and keeps hosted UGC future-scope behind DSA/privacy/
+  moderation/legal gates. Decision record:
+  [FMX-148 decision record](../40-Execution/fmx-148-named-supporter-group-decision-record-2026-06-19.md).
 - [Manager Legacy / Scouting / Youth Feed Follow-ups](../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19.md) -
   FMX-157 Perplexity-first and source-checked packet for unresolved follow-up
   detail across Youth Academy audit/retention, Scouting -> Youth Academy

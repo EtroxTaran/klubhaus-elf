@@ -3,7 +3,7 @@ title: Open-Decisions Dossier — questions, recommendations, ratify checklist
 status: current
 tags: [meta, index, decisions, open-questions, dossier, fmx-105]
 created: 2026-06-07
-updated: 2026-06-18
+updated: 2026-06-19
 type: index
 binding: false
 related:
@@ -26,6 +26,8 @@ related:
   - [[../60-Research/replay-dedup-ownership-seam-offline-sync-vs-audit-2026-06-15]]
   - [[../60-Research/adr-0090-command-queue-seam-propagation-2026-06-18]]
   - [[../40-Execution/fmx-165-command-queue-seam-decision-record-2026-06-18]]
+  - [[../60-Research/named-supporter-group-consent-dsa-naming-2026-06-19]]
+  - [[../40-Execution/fmx-148-named-supporter-group-decision-record-2026-06-19]]
 ---
 
 # Open-Decisions Dossier
@@ -120,6 +122,17 @@ related:
 > and LWW only for cosmetic prefs. Authoritative records:
 > [[../60-Research/adr-0090-command-queue-seam-propagation-2026-06-18]] and
 > [[../40-Execution/fmx-165-command-queue-seam-decision-record-2026-06-18]].
+
+> **Post-dossier FMX-148 named supporter-group surface (historical
+> completeness, added 2026-06-19; dossier stays closed).** FMX-148 does not
+> reopen A1. It records that ADR-0052 is sufficient for Audience & Atmosphere's
+> named supporter-group dependency when A&A consumes only opaque People actor/
+> persona refs. Nico accepted D1/D2/D3 = opt-in/default-off surface, People not
+> a hard blocker via opaque refs and fictional local/P2P legal scope. Hosted UGC
+> remains future-scope behind DSA/privacy/moderation/legal gates. Authoritative
+> records: [[../40-Execution/fmx-148-named-supporter-group-decision-record-2026-06-19]],
+> [[../60-Research/named-supporter-group-consent-dsa-naming-2026-06-19]] and
+> [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]].
 
 > **Post-dossier FMX-179 monorepo/workspace bootstrap (historical
 > completeness, added 2026-06-14; dossier stays closed).** FMX-179 packages the

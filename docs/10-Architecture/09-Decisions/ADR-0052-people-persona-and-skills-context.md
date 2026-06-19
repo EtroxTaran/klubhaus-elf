@@ -3,7 +3,7 @@ title: ADR-0052 People, Persona and Skills Context
 status: accepted
 tags: [adr, architecture, ddd, people, persona, player-skills, fmx-23]
 created: 2026-05-28
-updated: 2026-06-16
+updated: 2026-06-19
 type: adr
 binding: false
 supersedes:
@@ -22,6 +22,8 @@ related:
   - [[../../60-Research/staff-skill-mvp-scope-2026-06-15]]
   - [[../../60-Research/ai-narration-world-and-dialogue-mvp-2026-05-28]]
   - [[../../60-Research/people-persona-skills-bounded-context-2026-06-07]]
+  - [[../../60-Research/named-supporter-group-consent-dsa-naming-2026-06-19]]
+  - [[../../40-Execution/fmx-148-named-supporter-group-decision-record-2026-06-19]]
   - [[../../20-Features/feature-eos-player-skills-and-people-context]]
   - [[../../20-Features/feature-ai-narration-mvp-pillar]]
   - [[../../00-Index/Open-Decisions-Dossier]]
@@ -36,6 +38,11 @@ accepted
 > Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `draft`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+> FMX-148 adds a narrow consumer note: Audience & Atmosphere may reference a
+> named supporter-group representative only by opaque People actor/persona ref.
+> People remains the source of truth for personhood/persona/dialogue cards; A&A
+> owns fictional group facts and stores no People internals. This does not
+> broaden ADR-0052's `binding: false` implementation posture.
 
 ## Date
 
