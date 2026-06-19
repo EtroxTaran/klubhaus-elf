@@ -2505,7 +2505,10 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   parallel to (not inside) the match renderer; gated by `SceneDescriptor`
   contract + 2D fallback on Floor / `prefers-reduced-motion` / Save-Data /
   iOS context-loss trip.
-- **Observability:** lean MVP profile; Tempo/Mimir deferred (ADR-0017 amended).
+- **Observability:** lean MVP profile; Tempo/Mimir deferred (ADR-0017
+  amended). FMX-171 proposes concrete pending triggers: Tempo after split
+  runtime path + one 30-minute Loki/Prometheus localisation failure; Mimir when
+  15-month Prometheus retention needs >80% TSDB disk for seven daily checks.
 - **Auth:** F2 already locked Argon2id (review premise was wrong); only library
   refined to `@node-rs/argon2`. Deps pinned + Renovate (no more `"latest"`).
 - **Secrets (F11):** Category B is now Postgres `DATABASE_URL` + roles;
@@ -2608,8 +2611,9 @@ A deep tech-stack review is recorded in [[../10-Architecture/09-Decisions/ADR-00
   parameterized queries.
 - Game saves live in IndexedDB via Dexie.
 - Observability is self-hosted by default: OpenTelemetry JS +
-  Grafana Loki / Prometheus / Tempo / Alloy + Grafana, with GlitchTip
-  for crash/error reporting. See
+  Grafana Loki / Prometheus / Alloy + Grafana, with GlitchTip for crash/error
+  reporting. Tempo and Mimir are deferred; FMX-171 proposes concrete re-add
+  triggers and an instrument-now/collect-later span policy pending Nico. See
   [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]].
 
 ## Classified Future Architecture (Baseline 2026-05-22)
@@ -4179,12 +4183,14 @@ Implementation should start from
     is superseded; only the transactional-outbox intent carries forward.
 - **ADR-0017 Observability and Logging** (accepted 2026-05-17, gap
   D11/C6/E3). Self-hosted operational monitoring is the default:
-  OpenTelemetry JS instrumentation; Grafana Loki, Prometheus, Tempo,
-  Alloy and Grafana for logs/metrics/traces/dashboards; GlitchTip via
-  Sentry-compatible SDKs for crash/error reporting. Client diagnostics
-  are privacy-minimised, redacted before local queueing/sending and
-  capped when stored offline. Product analytics are deferred to H7/G3
-  and must not be mixed into operational logs.
+  OpenTelemetry JS instrumentation; Grafana Loki, Prometheus, Alloy and Grafana
+  for logs/metrics/dashboards; GlitchTip via Sentry-compatible SDKs for
+  crash/error reporting. Tempo/Mimir remain deferred at MVP. FMX-171 proposes
+  concrete re-add signals and span export-off policy pending Nico:
+  [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]].
+  Client diagnostics are privacy-minimised, redacted before local
+  queueing/sending and capped when stored offline. Product analytics are
+  deferred to H7/G3 and must not be mixed into operational logs.
 - **ADR-0018 Systemic Events and Player Lifecycle Architecture**
   (accepted 2026-05-17). Player development, mentoring, injuries,
   systemic events, narrative rendering and venue operations are

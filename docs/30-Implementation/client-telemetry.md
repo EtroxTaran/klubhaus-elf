@@ -3,11 +3,11 @@ title: Client Telemetry
 status: current
 tags: [implementation, telemetry, pwa, errors, performance, indexeddb, release, versioning]
 created: 2026-05-17
-updated: 2026-06-16
+updated: 2026-06-18
 type: implementation
 binding: false
 adr: [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0132-release-versioning-app-build-process]]
-related: [[../60-Research/telemetry-privacy]], [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]], [[../40-Compliance/age-assurance-and-rating-evidence]], [[observability-runbook]], [[release-versioning-app-build-process]]
+related: [[../60-Research/telemetry-privacy]], [[../60-Research/observability-trace-backend-readd-trigger-2026-06-18]], [[../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18]], [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]], [[../40-Compliance/age-assurance-and-rating-evidence]], [[observability-runbook]], [[release-versioning-app-build-process]]
 ---
 
 # Client Telemetry
@@ -65,6 +65,11 @@ Performance diagnostics:
 - match worker duration;
 - outbox replay duration;
 - IndexedDB transaction duration.
+
+FMX-171 proposes **instrument-now, collect-later** for spans: keep the span
+coverage points in the architecture contract, but production span export stays
+no-op / `AlwaysOffSampler` / no exporter until Tempo is enabled. Browser
+offline telemetry queues must not store verbose spans.
 
 ## Offline Queue Rules
 

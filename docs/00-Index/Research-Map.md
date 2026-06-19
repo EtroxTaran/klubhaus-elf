@@ -18,6 +18,15 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Observability Trace Backend Re-add Trigger](../60-Research/observability-trace-backend-readd-trigger-2026-06-18.md) -
+  FMX-171 Perplexity-first and source-checked packet for concrete Tempo/Mimir
+  re-add signals and MVP span policy. Recommendation pending Nico:
+  `TempoBackendRequired` after split runtime path plus one 30-minute
+  Loki/Prometheus localisation failure; `MimirBackendRequired` when 15-month
+  Prometheus retention needs `--storage.tsdb.retention.size` above 80% of
+  dedicated TSDB disk for seven daily checks; span coverage now with production
+  trace export off until Tempo is enabled. Decision queue:
+  [FMX-171 decision queue](../40-Execution/fmx-171-observability-trigger-span-policy-decision-queue-2026-06-18.md).
 - [ADR-0090 Command Queue Seam Propagation](../60-Research/adr-0090-command-queue-seam-propagation-2026-06-18.md) -
   FMX-165 Perplexity-first and source-checked packet for propagating the
   accepted ADR-0090 `CommandQueue` seam and ADR-0119 replay/dedup split into

@@ -3,10 +3,10 @@ title: Telemetry, Privacy and GDPR - Locked Decisions
 status: current
 tags: [research, telemetry, privacy, gdpr, observability, pwa]
 created: 2026-05-17
-updated: 2026-06-09
+updated: 2026-06-18
 type: research
 binding: true
-related: [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
+related: [[../95-Archive/gap-reports/wave-3-gap-analysis]], [[observability-trace-backend-readd-trigger-2026-06-18]], [[../10-Architecture/09-Decisions/ADR-0017-observability-logging]], [[../10-Architecture/09-Decisions/ADR-0002-offline-first]], [[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]
 ---
 
 # Telemetry, Privacy and GDPR - Locked Decisions
@@ -62,7 +62,9 @@ The low-ops default is:
 - **Grafana Alloy** as collector/agent.
 - **Loki** for operational logs.
 - **Prometheus** for metrics and alert input.
-- **Tempo** for traces once request flows and worker flows exist.
+- **Tempo** for traces once the FMX-171 trace-backend trigger is accepted and
+  fires; until then, span coverage is a contract but production trace export is
+  off.
 
 Sentry self-hosted remains the upgrade path if GlitchTip lacks release,
 source-map, performance or workflow features. It is not the default
@@ -148,7 +150,7 @@ Initial retention defaults:
 | Loki operational logs | 14 days | none unless incident legal hold |
 | GlitchTip crash reports | 30 days | release-level counts after deletion |
 | Prometheus metrics | 15 months | aggregate dashboards |
-| Tempo traces | 7 days | none |
+| Tempo traces | 7 days once enabled | none |
 | Client offline telemetry queue | max 24 hours and small queue cap | none |
 | Domain audit events | per ADR-0013: hot 60 days, archive forever | SurrealDB archive tables |
 
@@ -186,7 +188,7 @@ Export requirements:
 Telemetry systems are incident evidence sources, but access is admin-only.
 Incident handling must document:
 
-- who may access Grafana / Loki / Prometheus / Tempo / GlitchTip;
+- who may access Grafana / Loki / Prometheus / Tempo when deployed / GlitchTip;
 - how to freeze a narrow time window under legal hold;
 - how to redact evidence before sharing externally;
 - how to detect telemetry pipeline failures so the team does not operate

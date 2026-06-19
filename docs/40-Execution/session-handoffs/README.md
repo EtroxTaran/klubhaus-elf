@@ -42,6 +42,14 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-18-fmx-171-observability-trigger-span-policy]] - FMX-171
+  observability trace-backend trigger and MVP span policy: raw
+  Perplexity/source-check captures, synthesis, decision queue and proposed
+  ADR-0017/crosscutting/deployment/runbook amendments. Pending Nico D1-D4;
+  recommendation is Tempo only after split runtime path plus one 30-minute
+  Loki/Prometheus localisation failure, Mimir only when 15-month Prometheus
+  retention needs >80% TSDB disk for seven daily checks, and span coverage now
+  with production trace export off until Tempo is enabled.
 - [[2026-06-18-fmx-165-command-queue-seam]] - FMX-165 ADR-0090
   command-queue seam propagation: raw Perplexity/source-check captures,
   synthesis and decision record applying accepted ADR-0090/ADR-0119 to
