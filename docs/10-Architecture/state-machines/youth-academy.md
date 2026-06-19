@@ -3,7 +3,7 @@ title: State Machine - Youth Academy
 status: current
 tags: [architecture, state-machine, youth, academy, lifecycle, fmx-29, proposed]
 created: 2026-05-28
-updated: 2026-06-08
+updated: 2026-06-19
 type: state-machine
 binding: false
 related:
@@ -18,6 +18,8 @@ related:
   - [[../09-Decisions/ADR-0056-regulations-compliance-context]]
   - [[../../50-Game-Design/GD-0007-youth]]
   - [[../../50-Game-Design/youth-academy-and-development]]
+  - [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
+  - [[../../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]]
 ---
 
 # State Machine - Youth Academy (proposed)
@@ -26,6 +28,14 @@ related:
 > (FMX-29; accepted 2026-06-08). This note is the **current** FSM surface that the Youth
 > Academy bounded context owns. It becomes binding for implementation when the
 > project enters the development phase (`binding: true`).
+
+> **FMX-157 pending follow-up (2026-06-19):** proposed additions for
+> `AcademyCategoryAuditCycle`, long-save cohort-history summaries and
+> `AcademyPipelineSummaryUpdated` are preserved in
+> [[../../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
+> and
+> [[../../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]].
+> They are not part of the current FSM until Nico accepts D1-D6.
 
 Youth Academy owns three coordinated state machines per ADR-0060:
 

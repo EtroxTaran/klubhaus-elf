@@ -7,6 +7,24 @@ updated: 2026-06-19
 
 # Research Summary
 
+## Manager Legacy / Scouting / Youth Feed Follow-ups (FMX-157, 2026-06-19)
+
+[[manager-legacy-scouting-youth-feed-followups-2026-06-19]] preserves the
+FMX-157 Perplexity-first and source-checked packet for unresolved Youth Academy
+audit/retention, Scouting -> Youth Academy discovery, Youth Academy -> Transfer
+`YouthLoaned`, opposition-scouting report ownership and Manager & Legacy
+youth-summary feeds. Recommendation pending Nico: targeted amendments to
+existing ADR/state-machine homes, Youth Academy owns audit/history summaries,
+Scouting owns discovery and opposition-report execution/freshness, Tactics owns
+match-plan/template interpretation, Transfer consumes `YouthLoaned`, and Manager
+& Legacy consumes immutable summaries only. Pending decisions D1-D6 live in
+[[../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]].
+Raw captures:
+[[raw-perplexity/raw-fmx-157-academy-audit-retention-2026-06-19]],
+[[raw-perplexity/raw-fmx-157-opposition-scouting-2026-06-19]],
+[[raw-perplexity/raw-fmx-157-handoff-schemas-2026-06-19]],
+[[raw-perplexity/raw-fmx-157-source-checks-2026-06-19]].
+
 ## SurrealDB Deferral Re-evaluation Watch (FMX-166, 2026-06-19)
 
 [[surrealdb-deferral-reevaluation-watch-2026-06-19]] preserves the FMX-166

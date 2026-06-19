@@ -24,6 +24,23 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-157 Manager Legacy / Scouting / Youth feed packet pending (2026-06-19).**
+> Branch `codex/fmx-157-manager-legacy-scouting-youth-feed` preserves the
+> non-binding decision packet for unresolved follow-up detail across Youth
+> Academy audit/retention, Scouting -> Youth Academy discovery, Youth Academy ->
+> Transfer `YouthLoaned`, opposition-scouting reports and Manager & Legacy
+> youth-summary feeds. Research:
+> [[../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]]
+> plus raw Perplexity/source-check captures. Recommendation pending Nico:
+> targeted amendments rather than a standalone ADR; Youth Academy owns
+> `AcademyCategoryAuditCycle` and long-save cohort summaries; Scouting owns
+> `ExternalYouthProspectIdentified` and opposition-report execution/freshness;
+> Tactics owns match-plan/template interpretation; Transfer consumes
+> `YouthLoaned`; Manager & Legacy consumes immutable summaries only. No audit
+> cadence, retention window, event envelope or opposition split is binding until
+> Nico answers
+> [[../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]].
+
 > **FMX-105 save-trust closure sweep current (2026-06-19).**
 > [[../60-Research/fmx-105-save-trust-closure-reconciliation-2026-06-19]]
 > confirms stale FMX-105 is resolved by already accepted homes:

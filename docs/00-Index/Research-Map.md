@@ -18,6 +18,14 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Manager Legacy / Scouting / Youth Feed Follow-ups](../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19.md) -
+  FMX-157 Perplexity-first and source-checked packet for unresolved follow-up
+  detail across Youth Academy audit/retention, Scouting -> Youth Academy
+  discovery, Youth Academy -> Transfer `YouthLoaned`, opposition-scouting
+  reports and Manager & Legacy youth summaries. Recommendation pending Nico:
+  targeted ADR/state-machine amendments, producer-owned events plus consumer
+  ACL snapshots, and reserved post-MVP scope until D1-D6 are approved in the
+  [FMX-157 decision queue](../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19.md).
 - [SurrealDB Deferral Re-evaluation Watch](../60-Research/surrealdb-deferral-reevaluation-watch-2026-06-19.md) -
   FMX-166 Perplexity-first and source-checked packet replacing the stale
   "stable 1.x / re-evaluate 2.x" SurrealDB deferral wording. Recommendation

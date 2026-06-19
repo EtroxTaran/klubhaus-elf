@@ -212,6 +212,7 @@ PR as the work that needs them.
 
 ## Current Binding Non-ADR Inputs
 
+- [[../60-Research/manager-legacy-scouting-youth-feed-followups-2026-06-19]] - FMX-157 non-binding follow-up packet for Youth Academy audit/retention, Scouting -> Youth Academy discovery, Youth Academy -> Transfer `YouthLoaned`, opposition-scouting report ownership and Manager & Legacy youth-summary feeds. Decisions remain pending in [[../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]]; do not treat the proposed audit cadence, retention windows or event envelopes as binding until Nico approves D1-D6.
 - [[../30-Implementation/postgres-drizzle-integration]] - implementation spec for ADR-0027/0028.
 - [[../30-Implementation/notification-messaging-platform]] - non-binding implementation overlay for the ADR-0043 notification/messaging boundary and FMX-156's decision-pending ADR-0102 offline-delivery proposal.
 - [[../30-Implementation/hybrid-online-pwa-strategy]] - implementation stance for ADR-0020.
