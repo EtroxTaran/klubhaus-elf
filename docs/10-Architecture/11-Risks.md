@@ -28,7 +28,7 @@ to upgrade out of, not consciously accepted trade-offs from a decision.
 
 | Item | Status | Risk if unaddressed | Plan |
 |---|---|---|---|
-| **Storybook 8 vs Vite 7 peer mismatch** (`apps/web`: `@storybook/* ^8.6.14`, `vite ^7.1.5`) | Tracked, non-urgent, non-blocking (unmet-peer warning only; build/test green) | Drifts each Vite minor; SB8 builder may break on a future Vite 7.x; blocks SB9-only addon APIs | `pnpm dlx storybook@latest upgrade` (runs SB9 codemods, e.g. `@storybook/test`→`storybook/test`, `addon-viewport` becomes core). SB9 officially supports Vite 7. Verify `pnpm --filter @klubhaus-elf/web build-storybook` + showcase visual pass across Scheme × Club × Viewport ([[09-Decisions/ADR-0010-design-system]] §13). Re-pin exact versions after upgrade (ADR-0021 no-`latest` rule); Renovate groups `@storybook/*`. |
+| **Storybook 8 vs Vite 7 peer mismatch** (`apps/web`: historical `@storybook/* ^8.6.14`, `vite ^7.1.5`) | Historical/tracked, non-blocking while the repo is docs-only. FMX-198 observes Storybook `10.4.6` and Vite `8.0.16` as current source-check facts on 2026-06-19. | Drifts each Vite/Storybook major; old SB8/SB9 migration wording is no longer a current package target. | Re-check Storybook/Vite from current docs before code/bootstrap restores `apps/web`; pin exact versions after upgrade (ADR-0021 no-`latest` rule); verify `pnpm --filter @klubhaus-elf/web build-storybook` + showcase visual pass across Scheme × Club × Viewport ([[09-Decisions/ADR-0010-design-system]] §13). Renovate groups `@storybook/*`. |
 
 ## Re-audit risk register (ADR re-audit, 2026-06-08)
 

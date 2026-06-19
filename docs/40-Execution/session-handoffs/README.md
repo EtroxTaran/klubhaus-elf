@@ -45,8 +45,10 @@ This is the **single** canonical handoff location. (An older
 - [[2026-06-19-fmx-198-version-pin-audit]] - FMX-198 version-pin audit:
   raw Perplexity/source-check captures, synthesis, stack-ledger refresh and
   decision queue for active pnpm, Node, PostgreSQL, Capacitor and target-only
-  package row currency. Pending Nico D1-D5; no active toolchain files were
-  mutated.
+  package row currency, plus completion-audit coverage for XState,
+  Storybook/Vite, i18n, architecture-fitness/test-support packages,
+  match-engine helper libs, Motion and Centrifugo historical rows. Pending
+  Nico D1-D6; no active toolchain files were mutated.
 - [[2026-06-19-fmx-185-age-assurance-promotion]] - FMX-185 promotion sweep:
   Nico approved D1-D6 = A/A/A/A/A/A after a Perplexity freshness pass and
   source checks; ADR-0112 and the age-assurance/rating evidence checklist are

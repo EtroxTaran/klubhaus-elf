@@ -63,8 +63,8 @@ which decisions are still human-owned.
 | Node.js | `22` (`.mise.toml`) | `24.17.0` LTS; `26.3.1` current; `22.23.0` supported LTS | 0 | **FMX-198 D2 pending.** Node 22 is supported but no longer newest LTS/current and is not exact-pinned. |
 | pnpm | `11.7.0` | `11.8.0` | 0 | **FMX-198 D1 pending.** Active pin is stale; recommended narrow follow-up is exact `11.8.0`. |
 | PostgreSQL | `17` (`.mise.toml`) | `18.4`; 17.10 still supported; 19 beta | 0 | **D3 pending.** Recommend PostgreSQL 18.x for code-phase target after Nico approval; do not use 19 beta for production bootstrap. |
-| TypeScript | Target-only | `6.0.3` | 0 | **D4 pending.** Latest stable must be tested with full stack at bootstrap; holdback needs approval. |
-| React / React DOM | Target-only | `19.2.7` | 0 | **D4 pending.** TanStack peers allow React 18/19; project latest-stable rule points to React 19 unless bootstrap evidence forces a decision. |
+| TypeScript | Target-only | `6.0.3` | 0 | **FMX-168 D4 pending.** Latest stable must be tested with full stack at bootstrap; holdback needs approval. |
+| React / React DOM | Target-only | `19.2.7` | 0 | **FMX-168 D4 pending.** TanStack peers allow React 18/19; project latest-stable rule points to React 19 unless bootstrap evidence forces a decision. |
 | TanStack Start | Target-only | `1.168.26` | 0 | Requires Node `>=22.12`; choose Vite or Rsbuild lane explicitly. |
 | TanStack Router | Target-only | `1.170.16` | 0 | Pair with Start; React 18/19 peer range. |
 | TanStack Query | Target-only | `5.101.0` | 1 | React 18/19 peer range. |
@@ -87,7 +87,7 @@ which decisions are still human-owned.
 | fast-check | Target-only | `4.8.0` | 1 | Preserve seeds/counterexamples in future test reports. |
 | Stryker core / Vitest runner | Target-only | `9.6.1` | 1 | Runner peers exact Stryker core and Vitest `>=2`; FMX-172 confirms this source-checked pair for the draft mutation gate. |
 | Biome | Target-only | `2.5.0` | 1 | Formatting/lint rule changes need explicit config diff review. |
-| Paraglide JS | Target-only | `2.19.0` | 2 | Peer TypeScript `>=5.6`; i18n ADR remains separate. |
+| Paraglide JS | Target-only | `2.20.0` | 2 | Peer TypeScript `>=5.6`; i18n ADR remains separate. |
 | Tolgee React | Target-only | `7.1.1` | 2 | React 19 peer range. |
 | Babylon.js core | Target-only | `9.13.0` | 2 | Optional presentation only; renderer changes require smoke/performance evidence. |
 | Capacitor core | Target-only | `8.4.1` | 3 | Native support floors are product/platform decisions; 9.x alpha is not a bootstrap target. |

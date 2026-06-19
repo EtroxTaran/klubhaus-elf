@@ -21,7 +21,8 @@ related:
 ## Context
 
 FMX-198 audited current docs-vault version references against Perplexity
-discovery, Context7/Ref documentation and direct official source checks.
+discovery, Context7/Ref documentation, direct official source checks and a
+completion-audit scan for exact version rows outside the main stack ledger.
 
 The audit updates current-facing documentation, but it does not mutate active
 toolchain files (`package.json`, `.mise.toml`) because those changes affect the
@@ -88,6 +89,18 @@ Recommendation: **A**.
 
 Decision: [ ] A [ ] B [ ] C [ ] defer
 
+## D6 - Historical source-check rows
+
+| Option | Description | Trade-off |
+|---|---|---|
+| **A - preserve historical rows, require current source-check before implementation** | Keep older raw/pre-mortem/re-audit package rows as dated evidence, but treat FMX-198 or a newer source-check as the current fact layer before code pins. | Preserves research provenance without pretending old rows are current. Requires agents to check the newest source note before implementation. |
+| B - rewrite every historical row to current versions | Backfill all raw and historical notes with current package versions. | Creates churn and weakens provenance; old research packets stop reflecting what was true when authored. |
+| C - leave historical rows with no current pointer | Do nothing beyond the main ledger. | Lower effort, but future readers can misread stale raw rows as current package facts. |
+
+Recommendation: **A**.
+
+Decision: [ ] A [ ] B [ ] C [ ] defer
+
 ## Required follow-up after Nico decision
 
 - If D1=A, update `package.json` and `.mise.toml` pnpm to `11.8.0`, run
@@ -98,6 +111,9 @@ Decision: [ ] A [ ] B [ ] C [ ] defer
   keep PostgreSQL minor patch current.
 - If D4 selects a Capacitor baseline, supersede or amend ADR-0104 instead of
   scattering version text.
+- If D6=A, keep this FMX-198 audit linked from future implementation packets
+  and require a fresh source-check for any package row older than the current
+  beat.
 
 ## Related
 

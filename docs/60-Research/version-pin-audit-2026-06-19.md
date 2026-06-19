@@ -37,7 +37,7 @@ The audit found three categories:
 
 | Category | Items | Handling |
 |---|---|---|
-| Current exact observations | `lefthook@2.1.9`, Stryker core/runner `9.6.1`, `vitest@4.1.9`, `web-push@3.6.7`, `@types/web-push@3.6.4`, `@capacitor/push-notifications@8.1.1`, `hash-wasm@4.12.0`, `@rabbit-company/argon2id@2.1.0`, `@node-rs/argon2@2.0.2`, React/DOM `19.2.7`, TypeScript `6.0.3`, Drizzle ORM `0.45.2`, Zod `4.4.3`, Zustand `5.0.14`, Workbox window `7.4.1`, Biome `2.5.0`, Playwright `1.61.0`, fast-check `4.8.0`, Vite `8.0.16`. | Safe as current source-check facts. Re-check at code bootstrap before pinning. |
+| Current exact observations | `lefthook@2.1.9`, Stryker core/runner `9.6.1`, `vitest@4.1.9`, `web-push@3.6.7`, `@types/web-push@3.6.4`, `@capacitor/push-notifications@8.1.1`, `hash-wasm@4.12.0`, `@rabbit-company/argon2id@2.1.0`, `@node-rs/argon2@2.0.2`, React/DOM `19.2.7`, TypeScript `6.0.3`, Drizzle ORM `0.45.2`, Zod `4.4.3`, Zustand `5.0.14`, Workbox window `7.4.1`, Biome `2.5.0`, Playwright `1.61.0`, fast-check `4.8.0`, Vite `8.0.16`, architecture-fitness candidates and test-support packages listed below. | Safe as current source-check facts. Re-check at code bootstrap before pinning. |
 | Stale docs-only target rows | React Email `6.3.1`, `@react-email/render@2.0.8`, `@capacitor/core@8.3.4`/`8.4.0`, TanStack Start `1.168.25`, Router `1.170.15`, Virtual `3.14.2`, Dexie `4.4.3`, Babylon `9.12.0`, Rsbuild React plugin `2.0.1`, SurrealDB `3.1.4` same-day watch evidence. | Update current docs to the newer observed stable values and keep historical/raw notes as history. |
 | Active toolchain/platform decisions | `packageManager: pnpm@11.7.0`, `.mise.toml` Node `22`, pnpm `11.7.0`, PostgreSQL `17`, Nx `22.7.5`, Capacitor 7.x mobile baseline. | Do not mutate silently. These affect developer tooling, runtime, database major, monorepo tooling or native support floors; queue Nico decisions. |
 
@@ -68,13 +68,35 @@ Current target-only rows that should be refreshed in
 | `@rsbuild/plugin-react` | 2.0.1 | 2.1.0 | Stale minor/patch; pair with Rsbuild core at bootstrap. |
 | SurrealDB watch evidence | 3.1.4 | 3.1.5 | Same-day source drift; never a future implementation pin. |
 
+## Completion-audit addendum
+
+A second docs-tree pass checked exact package/version references outside the
+main stack ledger. Results:
+
+| Surface | Previous docs value | 2026-06-19 source check | Assessment |
+|---|---:|---:|---|
+| ADR-0121 architecture-fitness candidates | `dependency-cruiser@17.4.3`, `ts-morph@28.0.0`, `pgsql-ast-parser@12.0.2`, `typescript@6.0.3` | Same npm `latest` values; `dependency-cruiser` has 18 beta only. | Current; re-check before install. |
+| Test-strategy source-check rows | `@vitest/browser@4.1.9`, `@vitest/browser-playwright@4.1.9`, `@axe-core/playwright@4.11.3`, `lighthouse@13.4.0` | Same npm `latest` values; beta/next/rc tags are not targets. | Current; no current doc patch needed. |
+| Match-engine helper rows | Rust `libm@0.2.16`, `pure-rand@8.4.0`; `xxhash-wasm` package named without exact pin | `libm@0.2.16`, `pure-rand@8.4.0`, `xxhash-wasm@1.1.0` | Existing exact rows current; `xxhash-wasm` should be source-checked before install. |
+| Scouting FSM library note | XState v5 current stable 5.20.1 | npm `xstate@5.32.1`; Context7/Stately docs confirm XState v5 docs/API family | Exact observation stale; v5 family still valid. ADR-0064 patched. |
+| i18n stack note | Paraglide JS v2.0.0; Tolgee server v6.0.0 | `@inlang/paraglide-js@2.20.0`, `@tolgee/react@7.1.1`, Tolgee Platform `v3.205.3` | Exact observations stale/historical; stack direction unchanged. ADR-0094 patched. |
+| Storybook/Vite risk row | Storybook 8 vs Vite 7, SB9 upgrade target | Storybook `10.4.6`, `@storybook/react-vite@10.4.6`, Vite `8.0.16` | Historical risk while repo is docs-only; re-check before app bootstrap. Risk row patched. |
+| Motion re-audit row | Motion 12.40.0 | npm `motion@12.40.0` | Current as a dated re-audit fact. |
+| Centrifugo re-audit row | Centrifugo v5.x / v5.1.0 | GitHub latest `v6.8.3` | Historical/stale exact observation; no current deployment pin exists. Re-check before Centrifugo adoption. |
+
+Historical pre-mortem, raw Perplexity, and prior source-check notes are not
+rewritten wholesale. Current/accepted docs that could mislead implementation
+readers now carry FMX-198 refresh notes, and the raw FMX-198 source-check note
+preserves the broader evidence set.
+
 Current target-only rows that remain correct from the source check include
 React/DOM `19.2.7`, TypeScript `6.0.3`, TanStack Query `5.101.0`, TanStack
 Table `8.21.3`, TanStack Form `1.33.0`, Vite `8.0.16`,
 `@vitejs/plugin-react@6.0.2`, Rsbuild core `2.0.15`, Tailwind CSS `4.3.1`,
 Zustand `5.0.14`, Zod `4.4.3`, Drizzle ORM `0.45.2`, Drizzle Kit `0.31.10`,
 Vitest `4.1.9`, Playwright `1.61.0`, fast-check `4.8.0`, Stryker core/runner
-`9.6.1`, Biome `2.5.0` and Tolgee React `7.1.1` where already listed.
+`9.6.1`, Biome `2.5.0`, Paraglide JS `2.20.0` and Tolgee React `7.1.1`
+where already listed.
 
 ## Notification and mobile corrections
 
@@ -113,6 +135,9 @@ Recommended decisions:
   queue a mobile-platform re-pin decision.
 - D5 = A: refresh target-only ledger rows now, but re-check every row before
   the first real dependency lockfile is committed.
+- D6 = A: keep older raw/pre-mortem package rows as historical evidence, but
+  require FMX-198 or a newer source-check note for current package facts before
+  implementation.
 
 ## Related
 

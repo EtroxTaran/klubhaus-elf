@@ -406,9 +406,11 @@ Draft consumed facts:
   `Math.random` / `Date.now` in simulation paths; report aging uses the
   deterministic clock per ADR-0027.
 - `ScoutAssignment` and `ScoutingReport` FSMs are deterministic; the concrete
-  FSM library (XState v5 — current stable 5.20.1 — vs a lightweight in-house
-  deterministic FSM) is an **implementation-phase** selection, consistent with
-  sibling context ADRs, and must re-verify currency at that time.
+  FSM library (XState v5 — FMX-198 observes npm current stable 5.32.1, while
+  Context7/Stately docs confirm the v5 actor/state-machine docs posture — vs a
+  lightweight in-house deterministic FSM) is an **implementation-phase**
+  selection, consistent with sibling context ADRs, and must re-verify currency
+  at that time.
 - Domain events emitted through the ADR-0028 transactional outbox; Transfer,
   Squad & Player, Youth Academy, Notification, Club Management consume via ACL.
 - Cross-save legacy seeds (a starting scouting-network posture) and community-

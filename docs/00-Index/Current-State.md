@@ -33,8 +33,10 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `1.61.0`, Biome `2.5.0`, Vite `8.0.16` and several other target rows are
 > current; active `pnpm@11.7.0` is stale vs `11.8.0`; Node 22 and PostgreSQL
 > 17 are supported but not newest stable/LTS; Nx moved to 23.0.0; Capacitor
-> core moved to 8.4.1; and SurrealDB same-day watch evidence moved to 3.1.5.
-> No active toolchain files were mutated. Nico decisions D1-D5 live in
+> core moved to 8.4.1; XState moved to 5.32.1; Storybook current stable is
+> 10.4.6; Paraglide/Tolgee exact observations moved; and SurrealDB same-day
+> watch evidence moved to 3.1.5. No active toolchain files were mutated. Nico
+> decisions D1-D6 live in
 > [[../40-Execution/fmx-198-version-pin-audit-decision-queue-2026-06-19]].
 
 > **FMX-148 named supporter-group surface accepted (2026-06-19).**

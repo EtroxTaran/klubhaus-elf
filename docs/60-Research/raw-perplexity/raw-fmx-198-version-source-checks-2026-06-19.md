@@ -25,7 +25,8 @@ Checked current stable package and runtime signals against:
 - Node.js official `dist/index.json`;
 - PostgreSQL official `versions.rss`;
 - Context7 and Ref docs for TanStack Start, React Email, Stryker and Capacitor;
-- local vault search with `rg`.
+- local vault search with `rg`, including a completion-audit pass for exact
+  `package@x.y.z` and "latest stable" language outside the main stack ledger.
 
 Perplexity was used as discovery only because it returned multiple stale or
 incorrect package-version claims in the same session.
@@ -76,6 +77,58 @@ Read-only registry query on 2026-06-19:
 | `@rsbuild/plugin-react` | 2.1.0 | older next/beta/rc tags | FMX-168 2.0.1 row is stale. Pairing must be checked with core. |
 | `tailwindcss` | 4.3.1 | `next` 4.0.0 | Current stable. |
 
+## Completion-audit npm dist-tags
+
+After the first draft PR, a broader docs-tree search found additional exact
+tool/library rows in accepted ADRs, current risk notes, raw source checks and
+historical research packets. Read-only npm checks on 2026-06-19 produced:
+
+| Package | npm `latest` | Other relevant tags | FMX implication |
+|---|---:|---|---|
+| `dependency-cruiser` | 17.4.3 | `beta` 18.0.0-beta-1 | ADR-0121's June 15 source-check row is still current; 18 beta is not a target. |
+| `ts-morph` | 28.0.0 | `rc` 2.0.4-rc | ADR-0121's candidate row is still current. |
+| `pgsql-ast-parser` | 12.0.2 |  | ADR-0121's candidate row is still current. |
+| `@vitest/browser` | 4.1.9 | `beta` 5.0.0-beta.5 | Test-strategy source-check row remains current; 5 beta is not a target. |
+| `@vitest/browser-playwright` | 4.1.9 | `beta` 5.0.0-beta.5 | Test-strategy source-check row remains current. |
+| `@axe-core/playwright` | 4.11.3 | `next` 4.11.4 snapshot; `rc` 4.12.1 snapshot | Test-strategy source-check row remains current stable; snapshots are not targets. |
+| `lighthouse` | 13.4.0 | `next` 13.0.1 dev tag | Test-strategy source-check row remains current stable. |
+| `pure-rand` | 8.4.0 | old `next` alpha | Match-engine source-check row remains current. |
+| `xxhash-wasm` | 1.1.0 |  | Match-engine package name exists; no current docs exact pin was found. Re-check before install. |
+| `xstate` | 5.32.1 | old v5 beta tag | ADR-0064's "XState v5 current stable 5.20.1" wording was stale; v5 remains the stable family. |
+| `motion` | 12.40.0 | old beta/rc tags | ADR re-audit Motion row remains current. |
+| `storybook` | 10.4.6 | `next` 10.5.0-alpha.7 | Current Storybook line is 10.x; the SB8/SB9 risk text is historical until app code returns. |
+| `@storybook/react-vite` | 10.4.6 | `next` 10.5.0-alpha.7 | Pair with Storybook 10.x if the future app uses this builder. |
+| `@inlang/paraglide-js` | 2.20.0 |  | ADR-0094's Paraglide v2.0.0 observation is stale as an exact package fact. |
+| `@tolgee/react` | 7.1.1 | old rc tag | Stack ledger row remains current for the React package. |
+| `@noble/hashes` | 2.2.0 |  | FMX-173 source-check row remains current. |
+| `argon2-browser` | 1.18.0 |  | FMX-173 rejected legacy row remains current/stale-by-age. |
+| `argon2-wasm` | 0.9.0 |  | FMX-173 rejected legacy row remains current/stale-by-age. |
+
+## Completion-audit non-npm releases
+
+| Source | Observation | FMX implication |
+|---|---|---|
+| GitHub `centrifugal/centrifugo` latest release | `v6.8.3`, published 2026-06-16, non-prerelease. | Older research mentioning Centrifugo v5.x is historical; re-check before any realtime scale deployment. |
+| GitHub `tolgee/tolgee-platform` latest release | `v3.205.3`, published 2026-06-19, non-prerelease. | ADR-0094's Tolgee server v6.0.0 observation is historical/stale as an exact server release reference. |
+| crates.io `libm` | `max_stable_version=0.2.16`, `newest_version=0.2.16`, updated 2026-03-17. | ADR-0096's Rust `libm` row remains current. |
+
+## Context7 completion-audit check - XState
+
+Sources:
+
+- Context7 resolved XState to `/statelyai/docs` for current Stately/XState docs.
+- Context7 docs state the Stately/XState docs are for XState v5 and point
+  previous-version readers to the v4 docs.
+- XState v5 docs use the actor-first/setup APIs (`setup`, `fromPromise`,
+  actors, typed events/context).
+
+FMX implication:
+
+- ADR-0064's library-family framing is still valid: XState v5 remains the
+  relevant current API family for a possible implementation-phase FSM choice.
+- The exact source-check number in ADR-0064 needed refreshing from 5.20.1 to
+  npm current 5.32.1.
+
 ## Official runtime and release feeds
 
 | Source | Observation | FMX implication |
@@ -105,6 +158,11 @@ Read-only registry query on 2026-06-19:
 | Notification docs / ADR-0043 | React Email, render and Capacitor core values stale. | Update current implementation note; keep superseded ADR as history with a warning. |
 | ADR-0104 / deployment | Capacitor 7.x described as implementable anchor, Capacitor 8 as watch item. | Source-check shows Capacitor 8 stable; queue a mobile-platform re-pin decision instead of silently changing accepted ADR outcome. |
 | SurrealDB current notes | Some current summaries still name 3.1.4. | Update current notes to 3.1.5 while retaining future Trial re-check semantics. |
+| ADR-0064 Scouting FSM library note | XState v5 named with exact current-stable 5.20.1. | Update exact observation to 5.32.1; keep the implementation-phase choice open. |
+| ADR-0094 i18n stack | Paraglide JS v2.0.0 and Tolgee server v6.0.0 named as June research facts. | Mark as historical/stale exact observations; current source checks are `@inlang/paraglide-js@2.20.0`, `@tolgee/react@7.1.1`, Tolgee Platform `v3.205.3`. |
+| `11-Risks` Storybook row | Storybook 8 vs Vite 7 mismatch still appeared as an active package-row risk. | Mark as historical/docs-only until app code returns; current source checks are Storybook 10.4.6 and Vite 8.0.16. |
+| ADR-0121 architecture-fitness rows | `dependency-cruiser@17.4.3`, `ts-morph@28.0.0`, `pgsql-ast-parser@12.0.2`, `typescript@6.0.3`. | Still current stable; no doc patch needed beyond FMX-198 evidence. |
+| ADR-0096 match-engine rows | Rust `libm@0.2.16` and `pure-rand@8.4.0`. | Still current stable; no doc patch needed beyond FMX-198 evidence. |
 
 ## Source URLs
 
@@ -123,3 +181,9 @@ Read-only registry query on 2026-06-19:
   <https://github.com/ionic-team/capacitor-docs/blob/main/docs/main/updating/8-0.md>
 - Capacitor official plugin versioning:
   <https://github.com/ionic-team/capacitor-docs/blob/main/docs/plugins/official.md>
+- XState/Stately docs via Context7: `/statelyai/docs`
+- Centrifugo latest release:
+  <https://api.github.com/repos/centrifugal/centrifugo/releases/latest>
+- Tolgee Platform latest release:
+  <https://api.github.com/repos/tolgee/tolgee-platform/releases/latest>
+- crates.io `libm`: <https://crates.io/api/v1/crates/libm>

@@ -16,8 +16,9 @@ references. Current finding: `lefthook@2.1.9`, Stryker/Vitest
 `0.45.2`, `hash-wasm@4.12.0`, Playwright `1.61.0`, Biome `2.5.0` and Vite
 `8.0.16` are current source-check facts; active `pnpm@11.7.0` is stale vs
 `11.8.0`; Node 22 and PostgreSQL 17 are supported but not newest stable/LTS;
-Nx moved to 23.0.0; Capacitor core moved to 8.4.1; and SurrealDB current
-stable evidence moved to 3.1.5. Pending decisions D1-D5 live in
+Nx moved to 23.0.0; Capacitor core moved to 8.4.1; XState moved to 5.32.1;
+Storybook current stable is 10.4.6; Paraglide/Tolgee exact observations moved;
+and SurrealDB current stable evidence moved to 3.1.5. Pending decisions D1-D6 live in
 [[../40-Execution/fmx-198-version-pin-audit-decision-queue-2026-06-19]]. Raw
 captures:
 [[raw-perplexity/raw-fmx-198-version-pin-audit-2026-06-19]],

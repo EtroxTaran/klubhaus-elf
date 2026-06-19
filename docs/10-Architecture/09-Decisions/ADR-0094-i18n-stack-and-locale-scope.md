@@ -88,6 +88,10 @@ This ADR fixes the stack and the MVP locale scope so those touch-points migrate 
 
 Grounded by the PM-09 CORE library comparison (May 2026) and a targeted June-2026 version/feature
 re-check (Perplexity, see Rationale): **Paraglide JS v2.0.0**, **Tolgee server v6.0.0**.
+FMX-198 later observes `@inlang/paraglide-js@2.20.0`, `@tolgee/react@7.1.1`
+and Tolgee Platform `v3.205.3` as current source-check facts on 2026-06-19;
+these refresh the dated package observations without changing the accepted
+Paraglide + Tolgee stack direction.
 
 - **A (RECOMMENDED) — Paraglide JS + `format.js` Intl polyfills + Tolgee self-hosted; MVP locales
   DE/EN/FR/ES/IT.**
