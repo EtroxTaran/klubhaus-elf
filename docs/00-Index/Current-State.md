@@ -35,6 +35,18 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > implementation-complete. Closure record:
 > [[../40-Execution/fmx-105-save-trust-closure-record-2026-06-19]].
 
+> **FMX-173 Argon2id WASM KDF validation packet pending (2026-06-19).**
+> Branch `codex/fmx-173-argon2id-kdf-validation` prepares the source-checked,
+> non-binding validation packet for ADR-0098's portable-export passphrase path:
+> [[../60-Research/argon2id-wasm-kdf-validation-2026-06-19]].
+> Recommendation pending Nico: exact-pin `hash-wasm@4.12.0` for the first
+> code-phase spike, keep the OWASP Argon2id floor as the minimum, run KDF work
+> only in one Web Worker, gate target-device p95 before release, keep the chunk
+> out of the initial shell but offline-available after install, and fail closed
+> on module/floor-profile failure. No provider, parameter, fallback or
+> passphrase-normalization rule is binding until Nico answers D1-D6 in
+> [[../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19]].
+
 > **FMX-169 per-context module notes packet merged (2026-06-18, PR #223).**
 > Branch `codex/fmx-169-per-context-module-notes` prepared the non-binding
 > decision packet for whether FMX should add one module note per bounded context

@@ -1,7 +1,7 @@
 ---
 title: Raw Perplexity Research Transcripts
 status: raw
-tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, erasure, retention, hgb, ao, shared-history, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, rulesets, branch-protection, codeowners, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, policy-catalog, onboarding, ftue, contract-lifecycle, tooling, pnpm, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, career, national-team, bundestrainer, i18n, locale, paraglide, intl, risk-register, ai, llm, fallback, transfer, loan, obligation-to-buy, workflow, branch-naming, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-161, fmx-167, fmx-174, fmx-178, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
+tags: [research, raw, perplexity, wave-2, player-strength, matchday, operations, financing, debt, gameplay, calibration, soak-test, privacy, gdpr, erasure, retention, hgb, ao, shared-history, incident-response, breach-notification, bfdi, ip, naming, narrative, newsworthiness, dialogue, intents, effects, media, press, fixture, competition, commercial, discipline, suspension, appeals, opposition, tactics, statistics, analytics, standings, read-model, insolvency, ledger, chart-of-accounts, category-code, match-engine, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, rulesets, branch-protection, codeowners, pitch, weather, stadium, renderer, babylon, ownership, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, age-assurance, ratings, iarc, usk, ai-world, world-drift, policy-catalog, onboarding, ftue, contract-lifecycle, tooling, pnpm, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, career, national-team, bundestrainer, i18n, locale, paraglide, intl, risk-register, argon2id, kdf, hash-wasm, ai, llm, fallback, transfer, loan, obligation-to-buy, workflow, branch-naming, fmx-31, fmx-52, fmx-54, fmx-67, fmx-78, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-91, fmx-94, fmx-99, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-150, fmx-151, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-161, fmx-167, fmx-173, fmx-174, fmx-178, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197]
 created: 2026-05-16
 updated: 2026-06-19
 type: index
@@ -16,6 +16,16 @@ research transcripts and attached research reports (German source language).
 They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
+
+## FMX-173 Argon2id WASM KDF validation (2026-06-19)
+
+Perplexity-first discovery and targeted source checks for validating ADR-0098's
+Argon2id WASM path for protected portable exports.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-fmx-173-argon2id-wasm-kdf-2026-06-19]] | Argon2id WASM browser/PWA feasibility, dependency candidates, OWASP/RFC parameter posture, low-end mobile gate, offline-loading risks and comparable products | [[../argon2id-wasm-kdf-validation-2026-06-19]] |
+| [[raw-fmx-173-argon2id-wasm-source-checks-2026-06-19]] | Source checks for hash-wasm, candidate package versions, OWASP, RFC 9106, MDN Web APIs, WebCrypto fallback constraints and vault/export precedents | [[../argon2id-wasm-kdf-validation-2026-06-19]] |
 
 ## FMX-105 save trust closure reconciliation (2026-06-19)
 

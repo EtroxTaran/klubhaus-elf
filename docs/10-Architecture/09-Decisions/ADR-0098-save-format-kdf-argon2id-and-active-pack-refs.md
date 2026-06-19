@@ -3,7 +3,7 @@ title: ADR-0098 Save-format KDF upgrade (Argon2id passphrase path) + active-pack
 status: accepted
 tags: [adr, save, encryption, kdf, argon2id, pbkdf2, community-packs, determinism, offline-first, p2p, supersession]
 created: 2026-06-08
-updated: 2026-06-16
+updated: 2026-06-19
 type: adr
 binding: false
 amends: [[ADR-0005-save-format]]
@@ -14,6 +14,8 @@ related:
   - [[ADR-0016-community-dataset-overrides]]
   - [[ADR-0059-community-overlay-pipeline-context]]
   - [[../../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16]]
+  - [[../../60-Research/argon2id-wasm-kdf-validation-2026-06-19]]
+  - [[../../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19]]
   - [[ADR-0027-postgres-data-model]]
   - [[ADR-0020-hybrid-online-mvp-offline-ready]]
   - [[ADR-0051-manager-and-legacy-context]]
@@ -44,6 +46,18 @@ accepted
 > `supersedes:` frontmatter). Per the decision gate
 > ([[../../90-Meta/collaboration-and-decision-protocol]]) nothing here is accepted;
 > awaiting Nico's ratification of D1 (passphrase KDF) and D2 (missing-pack import).
+
+> **FMX-173 validation addendum (2026-06-19, non-binding).**
+> [[../../60-Research/argon2id-wasm-kdf-validation-2026-06-19]]
+> source-checks the browser/PWA Argon2id WASM dependency, parameter floor,
+> mobile benchmark gate and offline-loading posture for this ADR's portable
+> export passphrase path. The recommendation is to prototype exact-pinned
+> `hash-wasm@4.12.0`, keep the OWASP Argon2id floor
+> (`memoryKiB=19456`, `iterations=2`, `parallelism=1`) as the minimum, run the
+> KDF only in one Web Worker on export/import, lazy-load but offline-precache the
+> chunk after install, and fail closed if the dependency or floor profile fails.
+> These details are not binding until Nico answers
+> [[../../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19|D1-D6]].
 
 ## Date
 
@@ -191,9 +205,9 @@ kdfIterations: 600_000
 // portable_export mode (changed): Argon2id via WASM
 kdfAlgo: 'argon2id'
 argon2idParams: {                       // authenticated header bytes (AAD), like all header fields
-  memoryKiB: number                     // e.g. 19_456 (OWASP min) — tunable, pinned per export
-  iterations: number                    // e.g. 2 (OWASP min profile)
-  parallelism: number                   // e.g. 1
+  memoryKiB: number                     // proposed floor: 19_456 (OWASP min)
+  iterations: number                    // proposed floor: 2
+  parallelism: number                   // proposed floor: 1
 }
 ```
 
@@ -203,6 +217,28 @@ argon2idParams: {                       // authenticated header bytes (AAD), lik
 the existing AAD-authenticated header. The Argon2id params are pinned per export (read from
 the envelope on import), so tuning the OWASP profile upward over time never breaks an old
 file.
+
+FMX-173 proposes the following validation posture before this path can ship in
+code:
+
+- Provider: exact-pin `hash-wasm@4.12.0` for the first code-phase spike because
+  it is maintained, documented for browser/Web Worker use, exposes Argon2id
+  params directly, has no runtime dependencies and bundles the WASM module for
+  tree-shaken lazy loading. `@rabbit-company/argon2id@2.1.0` is a fallback if
+  Nico prefers an Argon2id-only package and a supply-chain audit passes.
+  `argon2-browser` and `argon2-wasm` are rejected for new adoption because their
+  latest npm releases are stale for the current PWA dependency-currency rule.
+- Parameter floor: `memoryKiB=19456`, `iterations=2`, `parallelism=1`,
+  `hashLength=32`, with a per-export random salt of at least 16 bytes. The
+  implementation may strengthen parameters upward after benchmark calibration,
+  but must not silently go below the OWASP floor.
+- Performance gate: standard mobile targets must meet p95 <= 1000 ms and floor
+  mobile targets p95 <= 1500 ms for the KDF Worker path, without main-thread
+  long tasks or memory-kill failures.
+- PWA loading: the Argon2id module stays out of the initial shell and ordinary
+  save-load path, but must be available offline after install/precache. Module
+  load or benchmark failure blocks protected portable export/import rather than
+  downgrading silently.
 
 ### Δ2 — `SavePayload` gains `activePacks` (ADR-0005 §6)
 
@@ -290,9 +326,11 @@ Negative / Risks:
 2. **D2 — missing-pack import behaviour**: block (A), degrade-to-core (B), or fetch (C)?
    Leaning A for MVP determinism safety; C depends on hosted distribution, currently blocked
    (ADR-0059 D2, ADR-0016 P2P-only). (Nico's call.)
-3. **Argon2id parameter profile** to pin per export (OWASP min 19 MiB/t=2/p=1 vs a
-   higher-memory profile) given low-end Android export targets from ADR-0005 §Consequences —
-   a tuning choice, GDDR/perf-budget territory, not a contract choice.
+3. **FMX-173 dependency/parameter/gate choices**: provider, parameter floor,
+   benchmark gate, PWA loading, fallback posture and passphrase normalization are
+   tracked in
+   [[../../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19]]
+   and remain Nico decisions before code-phase adoption.
 
 ## Supersedes
 
@@ -316,6 +354,10 @@ is recorded only in this file's `supersedes:` frontmatter.
 - [[../../60-Research/llm-prompt-injection-defensive-contract-ugc-2026-06-16]] — FMX-188
   proposed text trust rule: `activePacks` content hashes identify pack snapshots but do not
   by themselves authorize pack text as LLM input.
+- [[../../60-Research/argon2id-wasm-kdf-validation-2026-06-19]] and
+  [[../../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19]]
+  — FMX-173 source-checked packet for the Argon2id WASM provider, OWASP floor,
+  mobile/PWA gate, fallback posture and passphrase-byte rule.
 - [[ADR-0027-postgres-data-model]] — Zod + `CHECK` bounds the new `activePacks` field
   validates against; per-save schema isolation.
 - [[ADR-0020-hybrid-online-mvp-offline-ready]] — amends ADR-0005 MVP timing; "avoid schema
@@ -338,6 +380,13 @@ is recorded only in this file's `supersedes:` frontmatter.
   Crypto (PBKDF2 is) — Argon2id requires a WASM/JS build.
   https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
   (confirmed via Perplexity 2026-06-08).
+- FMX-173 source checks (2026-06-19): hash-wasm README/releases, npm registry,
+  OWASP Password Storage Cheat Sheet, RFC 9106, MDN Web Crypto/Web Workers/
+  WebAssembly/performance APIs and targeted comparable-product research. Raw
+  captures are preserved in
+  [[../../60-Research/raw-perplexity/raw-fmx-173-argon2id-wasm-kdf-2026-06-19]]
+  and
+  [[../../60-Research/raw-perplexity/raw-fmx-173-argon2id-wasm-source-checks-2026-06-19]].
 - [[ADR-0005-save-format]] §3 (rejected Argon2id; PBKDF2 @ 600 k mandate), §5 (`kdfAlgo`
   envelope discriminator), §6 (`SavePayload`), §8 (version bump policy), §11 (import flow),
   §Future ("Argon2id can replace PBKDF2 in a later envelope-v2").
