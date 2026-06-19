@@ -3,10 +3,10 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-18
+updated: 2026-06-19
 type: index
 binding: true
-related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
+related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-19-fmx-105-save-trust-reconciliation]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
 ---
 
 # Session Handoffs
@@ -42,6 +42,12 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-19-fmx-105-save-trust-reconciliation]] - FMX-105 closure sweep:
+  raw Perplexity/source-check captures, synthesis and closure record proving the
+  stale save-trust/command-integrity issue is already covered by accepted
+  ADR-0115 and ADR-0116. No new ADR/GDDR or Nico decision is needed; remaining
+  browser/schema/key-rotation/mixed-provenance details stay code-phase
+  follow-ups.
 - [[2026-06-18-fmx-169-per-context-module-notes]] - FMX-169 per-context
   module-note surface packet: raw Perplexity/source-check captures, synthesis
   and decision queue for central map only vs all-28 notes vs staged hybrid.
