@@ -3,7 +3,7 @@ title: Auth Flows
 status: current
 tags: [implementation, auth, webauthn, passkeys, mfa, sessions, asvs, nist-800-63b]
 created: 2026-05-18
-updated: 2026-06-14
+updated: 2026-06-19
 type: implementation
 binding: true
 adr:
@@ -250,10 +250,10 @@ AAL2-capable credential (see §7).
 - **Mandatory profile fields**: email, display name (1–64
   characters), locale (BCP-47, pre-filled from `Accept-Language`),
   timezone (IANA, pre-filled from `Intl.DateTimeFormat`).
-- **Age gate**: the 16+ self-declaration from
-  [[privacy-and-consent]] §3.2 is shown before account fields and
-  before any optional telemetry surface. "No" creates no account and
-  no persisted refusal record.
+- **Age gate**: accepted ADR-0112 binds the 16+ self-declaration from
+  [[privacy-and-consent]] §3.2. It is shown before account fields and
+  before any optional telemetry surface. "No" creates no account, no
+  persisted refusal record and no optional telemetry trail.
 - **Consent**: explicit, unchecked-by-default checkbox for the
   Terms + Privacy Policy links. **No** pre-ticked boxes (EDPB
   Guidelines on Deceptive Design Patterns 03/2022).

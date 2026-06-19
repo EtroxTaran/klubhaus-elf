@@ -3,7 +3,7 @@ title: Privacy and Consent — implementation surface
 status: current
 tags: [implementation, gdpr, eprivacy, privacy, consent, dsar, deletion, age-gate, breach-runbook, community, naming, fmx-54, fmx-186]
 created: 2026-05-18
-updated: 2026-06-16
+updated: 2026-06-19
 type: implementation
 binding: true
 adr:
@@ -12,6 +12,7 @@ adr:
   - "[[../10-Architecture/09-Decisions/ADR-0013-transactional-outbox]]"
   - "[[../10-Architecture/09-Decisions/ADR-0017-observability-logging]]"
   - "[[../10-Architecture/09-Decisions/ADR-0019-modular-monolith-ddd]]"
+  - "[[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture]]"
   - "[[../10-Architecture/09-Decisions/ADR-0127-erasure-vs-hgb-retention-field-partition]]"
 related:
   - "[[../60-Research/gdpr-compliance]]"
@@ -234,7 +235,9 @@ to consent to at MVP).
 
 ### 3.2 16+ age gate
 
-Per [[../60-Research/gdpr-compliance]] §6 and FMX-185 research
+Per accepted
+[[../10-Architecture/09-Decisions/ADR-0112-age-assurance-and-rating-evidence-posture|ADR-0112]],
+[[../60-Research/gdpr-compliance]] §6 and FMX-185 research
 [[../60-Research/age-assurance-and-iarc-rating-2026-06-14]], a
 **mandatory single radio question** appears at the top of the
 signup form before any account field or optional telemetry surface:
@@ -278,7 +281,7 @@ needed.
 FMX deliberately does **not** collect date of birth at MVP. A
 DOB-derived age-band model, parental-consent path or external
 age-verification system is a future HITL/legal decision and is
-triggered by the re-check list in
+triggered only by the re-check list in
 [[../40-Compliance/age-assurance-and-rating-evidence]].
 
 ### 3.3 Privacy Notice link freshness

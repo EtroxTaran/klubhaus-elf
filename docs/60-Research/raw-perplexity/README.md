@@ -17,6 +17,15 @@ They are
 **not authoritative** for implementation — they are the lossless input feeding
 the synthesised research notes one folder up.
 
+## FMX-185 Age assurance freshness check (2026-06-19)
+
+Perplexity-first freshness check and official/source checks before promoting
+ADR-0112 after Nico approved D1-D6 = A/A/A/A/A/A.
+
+| File | Topic | Synthesis target |
+|---|---|---|
+| [[raw-age-assurance-freshness-check-2026-06-19]] | Freshness pass for GDPR Art. 8, KJM/USK AVS scope, JMStV youth-protection representative trigger, IARC/USK digital rating path and comparable-game rating pressure | [[../age-assurance-and-iarc-rating-2026-06-14]] |
+
 ## FMX-148 Named Supporter Group Surface (2026-06-19)
 
 Perplexity-first discovery and targeted source checks for closing ADR-0062's

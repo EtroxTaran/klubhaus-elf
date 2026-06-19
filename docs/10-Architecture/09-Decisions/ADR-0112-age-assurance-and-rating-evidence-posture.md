@@ -1,11 +1,11 @@
 ---
 title: ADR-0112 Age Assurance and Rating Evidence Posture
-status: draft
+status: accepted
 tags: [adr, architecture, privacy, compliance, age-gate, age-assurance, iarc, usk, fmx-185]
 created: 2026-06-14
-updated: 2026-06-14
+updated: 2026-06-19
 type: adr
-binding: false
+binding: true
 amends:
   - [[ADR-0017-observability-logging]]
   - [[ADR-0063-investor-entitlement-and-payment-boundary]]
@@ -17,6 +17,7 @@ related:
   - [[../../60-Research/raw-perplexity/raw-age-rating-iarc-usk-evidence-2026-06-14]]
   - [[../../60-Research/raw-perplexity/raw-football-manager-age-rating-precedents-2026-06-14]]
   - [[../../60-Research/raw-perplexity/raw-age-assurance-source-checks-2026-06-14]]
+  - [[../../60-Research/raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]]
   - [[../../40-Compliance/age-assurance-and-rating-evidence]]
   - [[../../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]]
   - [[../../30-Implementation/privacy-and-consent]]
@@ -28,16 +29,20 @@ related:
 
 ## Status
 
-draft
+accepted
 
-> **Decision gate.** This ADR is the non-binding FMX-185 proposal. It becomes
-> binding only if Nico approves D1-D6 in
-> [[../../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]].
-> Until then it is planning context and must not be implemented from.
+> **Accepted 2026-06-19.** Nico approved D1-D6 = A/A/A/A/A/A from
+> [[../../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]] after
+> a Perplexity freshness pass and source check preserved in
+> [[../../60-Research/raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]].
+> This ADR is binding planning truth for age-assurance and rating-evidence
+> posture. It is still not legal advice; public release, storefront submission
+> and paid activation remain gated by named legal/store review evidence.
 
 ## Date
 
 - Drafted: 2026-06-14 (FMX-185)
+- Accepted: 2026-06-19 (Nico approved D1-D6 = A/A/A/A/A/A)
 
 ## Context
 
@@ -100,11 +105,9 @@ youth-protection-officer trigger. Existing FMX privacy docs already define a
 | **A. FMX-185 owns age/rating only** | Responsible-gaming/no-dark-pattern statement remains FMX-193, with cross-links. | **Recommended.** Avoids duplicate compliance records. |
 | B. Merge FMX-193 into FMX-185 | Add responsible-gaming statement now. | Too broad for one legal beat. |
 
-## Proposed decision
+## Decision
 
-Approve **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A**.
-
-If accepted:
+Accepted **D1=A, D2=A, D3=A, D4=A, D5=A, D6=A**:
 
 - Account signup keeps a mandatory 16+ self-declaration before account fields.
 - The account system stores only successful `attested_age_band = '16+'`; it
@@ -134,6 +137,7 @@ If accepted:
 ## Related
 
 - [[../../60-Research/age-assurance-and-iarc-rating-2026-06-14]]
+- [[../../60-Research/raw-perplexity/raw-age-assurance-freshness-check-2026-06-19]]
 - [[../../40-Compliance/age-assurance-and-rating-evidence]]
 - [[../../40-Execution/fmx-185-age-assurance-decision-queue-2026-06-14]]
 - [[../../30-Implementation/privacy-and-consent]]

@@ -3,7 +3,7 @@ title: Compliance Evidence
 status: current
 tags: [compliance, legal, evidence, monetization, privacy, consumer-law, age-assurance, ratings, gdpr, retention, security, webhook, fmx-186, fmx-187]
 created: 2026-06-13
-updated: 2026-06-16
+updated: 2026-06-19
 type: index
 binding: false
 related:
@@ -43,6 +43,8 @@ Linear issue explicitly promotes it.
   release self-audit evidence. Non-binding until ADR-0122 is accepted.
 - [[monetization-legal-gates-evidence-2026-06-13]] - FMX-194 compliance artifact
   checklist for first paid monetization activation.
-- [[age-assurance-and-rating-evidence]] - FMX-185 compliance artifact checklist
-  for MVP age assurance, optional telemetry gating, IARC/USK rating evidence and
-  youth-protection review triggers.
+- [[age-assurance-and-rating-evidence]] - FMX-185 binding planning checklist
+  promoted by accepted ADR-0112 for MVP age assurance, optional telemetry
+  gating, IARC/USK rating evidence and youth-protection review triggers; named
+  legal/store review still gates release, storefront submission and paid
+  activation.
