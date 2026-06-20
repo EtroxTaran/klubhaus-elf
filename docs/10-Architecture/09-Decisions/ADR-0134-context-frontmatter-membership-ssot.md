@@ -1,11 +1,11 @@
 ---
 title: ADR-0134 context frontmatter as NotebookLM-export membership SSOT
-status: draft
+status: accepted
 tags: [adr, architecture, docs, tooling, notebooklm, governance]
 created: 2026-06-19
-updated: 2026-06-19
+updated: 2026-06-20
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related: [[bounded-context-map]], [[ADR-0089-bounded-context-portfolio-reconciliation]], [[vault-governance]], [[Decision-Log]]
@@ -15,7 +15,7 @@ related: [[bounded-context-map]], [[ADR-0089-bounded-context-portfolio-reconcili
 
 ## Status
 
-draft
+accepted
 
 ## Date
 
