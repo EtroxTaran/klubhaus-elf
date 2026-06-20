@@ -2,6 +2,7 @@
 title: Audit Trail
 status: current
 tags: [implementation, audit, outbox, compliance, observability]
+context: audit-security
 created: 2026-05-17
 updated: 2026-06-16
 type: implementation

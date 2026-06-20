@@ -2,6 +2,7 @@
 title: Commercial Contract Lifecycle and Breach Model - Research Synthesis 2026-05-28
 status: draft
 tags: [research, economy, commercial, contracts, sponsorship, catering, merchandise, hospitality, breach, fmx-44]
+context: commercial-portfolio
 created: 2026-05-28
 updated: 2026-05-28
 type: research

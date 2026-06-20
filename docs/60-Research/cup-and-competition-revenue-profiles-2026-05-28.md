@@ -2,6 +2,7 @@
 title: Cup and Competition Revenue Profiles - Research Synthesis 2026-05-28
 status: draft
 tags: [research, economy, cup, competition, revenue, forecast, legal, fmx-45]
+context: [club-management-economy, league-orchestration]
 created: 2026-05-28
 updated: 2026-06-03
 type: research

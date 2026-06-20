@@ -2,6 +2,7 @@
 title: State Machine - Watch Party
 status: current
 tags: [architecture, state-machine, watch-party, multiplayer]
+context: watch-party
 created: 2026-05-16
 updated: 2026-06-17
 type: state-machine

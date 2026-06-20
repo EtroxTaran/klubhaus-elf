@@ -2,6 +2,7 @@
 title: Live Match Pause Ratification
 status: current
 tags: [research, synthesis, match, watch-party, pause-vote, tactics-pause, reputation, anti-grief, determinism, fmx-140]
+context: [watch-party, match]
 created: 2026-06-16
 updated: 2026-06-16
 type: research

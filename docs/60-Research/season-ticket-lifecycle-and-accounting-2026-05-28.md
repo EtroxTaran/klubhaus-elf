@@ -2,6 +2,7 @@
 title: Season-Ticket Lifecycle and Accounting - Research Synthesis 2026-05-28
 status: draft
 tags: [research, economy, ticketing, season-tickets, accounting, fans, fmx-43]
+context: [commercial-portfolio, audience-atmosphere]
 created: 2026-05-28
 updated: 2026-05-28
 type: research

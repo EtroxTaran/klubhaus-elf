@@ -2,6 +2,7 @@
 title: Manager & Legacy Bounded Context - Ratification Synthesis 2026-05-28
 status: draft
 tags: [research, manager, legacy, bounded-context, ratification, fmx-25]
+context: manager-legacy
 created: 2026-05-28
 updated: 2026-05-28
 type: research

@@ -2,6 +2,7 @@
 title: ADR-0130 Training Context Definition
 status: accepted
 tags: [adr, architecture, ddd, bounded-context, sporting-core, training, development, load, readiness, fmx-132, accepted]
+context: training
 created: 2026-06-16
 updated: 2026-06-19
 type: adr

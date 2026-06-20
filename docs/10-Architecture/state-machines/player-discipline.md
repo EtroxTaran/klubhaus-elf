@@ -2,6 +2,7 @@
 title: State Machine - Player Discipline
 status: current
 tags: [architecture, state-machine, discipline, suspension, appeals, squad, match, regulations, fmx-80]
+context: [squad-player, regulations-compliance]
 created: 2026-06-05
 updated: 2026-06-05
 type: state-machine

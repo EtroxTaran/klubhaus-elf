@@ -2,6 +2,7 @@
 title: ADR-0124 PWA Offline Mobile Release Content QA Gates
 status: accepted
 tags: [adr, architecture, pwa, offline, mobile, service-worker, rollback, content-qa, localization, llm, quality, fmx-197, accepted]
+context: offline-sync
 created: 2026-06-15
 updated: 2026-06-19
 type: adr

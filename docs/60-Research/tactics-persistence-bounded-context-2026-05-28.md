@@ -2,6 +2,7 @@
 title: Tactics Persistence Bounded Context - Ownership Synthesis 2026-05-28
 status: draft
 tags: [research, tactics, set-pieces, bounded-context, fmx-28]
+context: tactics
 created: 2026-05-28
 updated: 2026-05-28
 type: research

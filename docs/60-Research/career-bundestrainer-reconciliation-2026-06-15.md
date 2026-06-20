@@ -2,6 +2,7 @@
 title: Career Bundestrainer Reconciliation
 status: current
 tags: [research, synthesis, career, national-team, bundestrainer, reputation, calibration, fmx-130]
+context: [league-orchestration, manager-legacy]
 created: 2026-06-15
 updated: 2026-06-15
 type: research

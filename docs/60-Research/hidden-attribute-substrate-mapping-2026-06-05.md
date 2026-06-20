@@ -2,6 +2,7 @@
 title: Hidden-attribute substrate mapping (8-meta / OCEAN → labels) — synthesis (FMX-86)
 status: draft
 tags: [research, persona, ocean, player-skills, scouting, mentoring, determinism, game-design, ddd, fmx-86, gap-g22]
+context: [people-persona-skills, scouting]
 created: 2026-06-05
 updated: 2026-06-05
 type: research

@@ -2,6 +2,7 @@
 title: Fan Demand and Price Elasticity - Research Synthesis 2026-05-28
 status: draft
 tags: [research, fans, ticketing, price-elasticity, attendance, economy, fmx-42]
+context: audience-atmosphere
 created: 2026-05-28
 updated: 2026-05-28
 type: research

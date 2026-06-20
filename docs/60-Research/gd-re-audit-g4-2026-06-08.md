@@ -2,6 +2,7 @@
 title: GD re-audit — cluster G4 (Transfers / Scouting / Escalation)
 status: draft
 tags: [research, audit, gd-re-audit, g4, transfers, scouting, escalation, inactivity-pressure, contracts, async-multiplayer]
+context: [transfer, scouting]
 created: 2026-06-08
 updated: 2026-06-08
 type: research

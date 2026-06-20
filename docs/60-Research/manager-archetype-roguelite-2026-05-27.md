@@ -2,6 +2,7 @@
 title: Manager Archetype Roguelite - Research Synthesis 2026-05-27
 status: draft
 tags: [research, roguelite, meta-progression, manager, archetype, fmx-16]
+context: manager-legacy
 created: 2026-05-27
 updated: 2026-05-27
 type: research

@@ -2,6 +2,7 @@
 title: ADR-0122 Responsible Gaming and Dark-Pattern Invariant
 status: accepted
 tags: [adr, architecture, responsible-gaming, dark-patterns, monetization, compliance, loot-boxes, fmx-193, accepted]
+context: audit-security
 created: 2026-06-15
 updated: 2026-06-19
 type: adr

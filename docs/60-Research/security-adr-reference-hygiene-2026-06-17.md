@@ -2,6 +2,7 @@
 title: Security ADR Reference Hygiene
 status: current
 tags: [research, adr, reference-hygiene, threat-model, security, server-authority, fmx-182]
+context: audit-security
 created: 2026-06-17
 updated: 2026-06-17
 type: research

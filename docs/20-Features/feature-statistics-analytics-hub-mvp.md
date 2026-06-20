@@ -2,6 +2,7 @@
 title: Feature - Statistics Analytics Hub MVP
 status: draft
 tags: [feature, statistics, analytics, standings, data-hub, mvp, fmx-94, fmx-131]
+context: statistics-analytics
 created: 2026-06-05
 updated: 2026-06-12
 type: feature

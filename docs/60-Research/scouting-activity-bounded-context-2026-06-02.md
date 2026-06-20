@@ -2,6 +2,7 @@
 title: Scouting Activity bounded-context ownership (FMX-27)
 status: draft
 tags: [research, scouting, transfer, squad-club, ddd, bounded-context, fmx-27]
+context: scouting
 created: 2026-06-02
 updated: 2026-06-02
 type: research

@@ -2,6 +2,7 @@
 title: Awards, Honours, Records & Hall-of-Fame Owner (FMX-95)
 status: current
 tags: [research, awards, honours, records, hall-of-fame, manager-legacy, prestige, determinism, ddd, fmx-95]
+context: manager-legacy
 created: 2026-06-06
 updated: 2026-06-06
 type: research

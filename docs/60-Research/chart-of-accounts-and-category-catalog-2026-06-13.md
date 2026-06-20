@@ -2,6 +2,7 @@
 title: "Chart of accounts and category catalog (FMX-150)"
 status: current
 tags: [research, synthesis, ledger, chart-of-accounts, category-code, accounting, economy, fmx-150]
+context: club-management-economy
 created: 2026-06-13
 updated: 2026-06-13
 type: research

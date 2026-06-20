@@ -2,6 +2,7 @@
 title: ADR-0120 Deterministic Simulation QA and Save-Forward Matrix
 status: accepted
 tags: [adr, architecture, determinism, replay, soak-test, save-forward, match-engine, quality, fmx-196, accepted]
+context: match
 created: 2026-06-15
 updated: 2026-06-19
 type: adr

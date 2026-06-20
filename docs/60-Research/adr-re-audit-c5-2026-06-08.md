@@ -2,6 +2,7 @@
 title: ADR re-audit — Cluster C5 (Economy / Finance / Commercial / Investor)
 status: draft
 tags: [research, audit, re-audit, economy, finance, commercial, investor, ledger, settlement, bankruptcy, cluster-c5, adr-0050, adr-0058, adr-0062, adr-0063, adr-0070, adr-0079, adr-0086]
+context: [club-management-economy, commercial-portfolio]
 created: 2026-06-08
 updated: 2026-06-08
 type: research

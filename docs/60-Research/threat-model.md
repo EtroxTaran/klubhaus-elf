@@ -2,6 +2,7 @@
 title: Threat Model
 status: current
 tags: [research, security, threat-model, stride, owasp-asvs, anti-cheat, pwa]
+context: audit-security
 created: 2026-05-18
 updated: 2026-06-09
 type: research

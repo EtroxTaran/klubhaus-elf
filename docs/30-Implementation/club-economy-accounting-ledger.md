@@ -2,6 +2,7 @@
 title: Club Economy Accounting Ledger - Draft Contracts
 status: draft
 tags: [implementation, economy, accounting, club-management, commercial, contracts, financing, debt, fmx-13, fmx-41, fmx-49]
+context: [club-management-economy, commercial-portfolio]
 created: 2026-05-27
 updated: 2026-06-12
 type: implementation

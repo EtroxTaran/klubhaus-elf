@@ -2,6 +2,7 @@
 title: Economy Calibration and Soak-Test Runbook - Draft
 status: draft
 tags: [implementation, economy, calibration, soak-test, stress-test, determinism, testing, kpi, fmx-52, fmx-141]
+context: club-management-economy
 created: 2026-06-01
 updated: 2026-06-13
 type: implementation

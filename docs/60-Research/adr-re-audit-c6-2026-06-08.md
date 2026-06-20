@@ -2,6 +2,7 @@
 title: ADR re-audit — Cluster C6 (People / Players / Staff / Manager / Youth / Scouting)
 status: draft
 tags: [research, audit, adr, ddd, people, staff, manager-legacy, youth-academy, scouting, contracts, discipline, loans, c6, 2026-06-08]
+context: [people-persona-skills, staff-operations, manager-legacy]
 created: 2026-06-08
 updated: 2026-06-08
 type: research

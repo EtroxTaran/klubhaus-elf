@@ -2,6 +2,7 @@
 title: Onboarding guided first season — FMX-99
 status: current
 tags: [research, onboarding, ftue, guided-season, feed-cards, accessibility, fmx-99]
+context: [narrative-dialogue, notification]
 created: 2026-06-03
 updated: 2026-06-03
 type: research

@@ -2,6 +2,7 @@
 title: Sponsorship Portfolio - Asset-level Sponsor Inventory
 status: draft
 tags: [game-design, sponsors, finance, commercial, contracts, contract-lifecycle, breach, fan-fit, fan-service, activations, privacy, ip, naming, fmx-41, fmx-44, fmx-48, fmx-54]
+context: commercial-portfolio
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

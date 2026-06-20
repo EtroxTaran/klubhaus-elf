@@ -2,6 +2,7 @@
 title: Competition & Season registry sub-aggregate (FMX-79)
 status: current
 tags: [research, league, competition, season, fixture, ddd, bounded-context, gap-g1, fmx-79]
+context: league-orchestration
 created: 2026-06-02
 updated: 2026-06-02
 type: research

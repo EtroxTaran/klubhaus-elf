@@ -2,6 +2,7 @@
 title: Hidden-attribute reveal owner reconciliation
 status: current
 tags: [research, hidden-attributes, scouting, people, ddd, game-design, fmx-154]
+context: [people-persona-skills, scouting]
 created: 2026-06-14
 updated: 2026-06-14
 type: research

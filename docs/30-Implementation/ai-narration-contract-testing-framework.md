@@ -2,6 +2,7 @@
 title: AI Narration Contract Testing Framework
 status: current
 tags: [implementation, testing, ai, llm, narrative, contracts, mvp, fmx-3]
+context: narrative-dialogue
 created: 2026-05-28
 updated: 2026-06-19
 type: implementation

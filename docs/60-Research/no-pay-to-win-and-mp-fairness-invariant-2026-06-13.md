@@ -2,6 +2,7 @@
 title: "No-pay-to-win and MP-fairness invariant (FMX-190)"
 status: current
 tags: [research, synthesis, monetization, no-p2w, multiplayer, fairness, testing, fmx-190]
+context: audit-security
 created: 2026-06-13
 updated: 2026-06-13
 type: research

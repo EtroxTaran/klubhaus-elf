@@ -2,6 +2,7 @@
 title: GD re-audit — cluster G7 (Narrative / AI-world / Dialogue / Media / Personas / Roguelite)
 status: draft
 tags: [research, audit, gd-re-audit, g7, narrative, ai-world, dialogue, media-ecology, personas, roguelite, llm, determinism]
+context: [narrative-dialogue, ai-world-simulation, media-ecology]
 created: 2026-06-08
 updated: 2026-06-08
 type: research

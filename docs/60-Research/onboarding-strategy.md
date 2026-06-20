@@ -3,6 +3,7 @@ title: Onboarding Strategy — FTUE, Inbox Tutorial, Feed-Cards, Accessibility
 status: current
 binding: true
 tags: [research, onboarding, ftue, tutorial, inbox, feed-cards, accessibility, mobile-ux]
+context: [narrative-dialogue, notification]
 created: 2026-05-17
 updated: 2026-06-03
 type: research

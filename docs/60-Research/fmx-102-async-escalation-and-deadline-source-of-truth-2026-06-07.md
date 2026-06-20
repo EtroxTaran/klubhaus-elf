@@ -2,6 +2,7 @@
 title: Async escalation FSM + watch-party deadline source-of-truth (FMX-102)
 status: current
 tags: [research, transfer, escalation, league-week, watch-party, deadlines, determinism, fmx-102]
+context: [transfer, watch-party]
 created: 2026-06-07
 updated: 2026-06-07
 type: research

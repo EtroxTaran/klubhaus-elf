@@ -2,6 +2,7 @@
 title: ADR-0091 Audit & Security — context definition
 status: accepted
 tags: [adr, architecture, ddd, audit, security, anti-abuse, replay-protection, gdpr, fmx-104]
+context: audit-security
 created: 2026-06-07
 updated: 2026-06-15
 type: adr

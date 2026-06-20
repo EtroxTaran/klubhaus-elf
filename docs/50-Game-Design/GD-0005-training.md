@@ -2,6 +2,7 @@
 title: GD-0005 Training & Development
 status: accepted
 tags: [game-design, gddr, training]
+context: training
 created: 2026-05-17
 updated: 2026-06-11
 type: game-design

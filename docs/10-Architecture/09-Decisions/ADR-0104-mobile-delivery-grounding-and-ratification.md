@@ -2,6 +2,7 @@
 title: ADR-0104 Mobile-delivery grounding + ratification (supersedes ADR-0025)
 status: accepted
 tags: [adr, architecture, mobile, pwa, capacitor, push, ios, dma, grounding, governance, fmx-198]
+context: offline-sync
 created: 2026-06-08
 updated: 2026-06-19
 type: adr

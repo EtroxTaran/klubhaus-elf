@@ -2,6 +2,7 @@
 title: Youth Academy Lifecycle Bounded-Context Ownership Synthesis (FMX-29)
 status: draft
 tags: [research, synthesis, youth, academy, lifecycle, bounded-context, ddd, fmx-29]
+context: youth-academy
 created: 2026-05-28
 updated: 2026-05-28
 type: research-synthesis

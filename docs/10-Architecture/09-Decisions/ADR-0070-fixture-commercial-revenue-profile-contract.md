@@ -2,6 +2,7 @@
 title: ADR-0070 FixtureCommercialProfile + CompetitionRevenueProfile publication contract
 status: accepted
 tags: [adr, architecture, league, competition, fixture, commercial, revenue, published-language, outbox, acl, quality-profile, fmx-78, fmx-147]
+context: [league-orchestration, commercial-portfolio]
 created: 2026-06-03
 updated: 2026-06-13
 accepted_at: 2026-06-03

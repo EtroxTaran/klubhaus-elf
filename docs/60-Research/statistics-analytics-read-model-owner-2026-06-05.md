@@ -2,6 +2,7 @@
 title: Statistics & Analytics Read-Model Owner (FMX-94)
 status: current
 tags: [research, statistics, analytics, read-model, cqrs, ddd, match, league, mvp, fmx-94]
+context: statistics-analytics
 created: 2026-06-05
 updated: 2026-06-05
 type: research

@@ -2,6 +2,7 @@
 title: GD-0035 Live-Coaching Intervention & Pause Rules
 status: accepted
 tags: [game-design, gddr, match, watch-party, live-coaching, intervention-buffer, pause-vote, tactics-pause, reputation, anti-grief, multiplayer, fmx-101, fmx-140]
+context: [match, watch-party]
 created: 2026-06-07
 updated: 2026-06-16
 type: gddr

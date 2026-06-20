@@ -2,6 +2,7 @@
 title: Feature - Fan Ecology UI
 status: draft
 tags: [feature, fans, ux]
+context: audience-atmosphere
 created: 2026-05-16
 updated: 2026-05-28
 type: feature

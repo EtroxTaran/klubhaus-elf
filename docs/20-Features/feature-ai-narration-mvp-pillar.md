@@ -2,6 +2,7 @@
 title: Feature - AI Narration MVP Pillar
 status: draft
 tags: [feature, ai, llm, narrative, dialogue, mvp, fmx-3]
+context: narrative-dialogue
 created: 2026-05-28
 updated: 2026-06-05
 type: feature

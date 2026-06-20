@@ -2,6 +2,7 @@
 title: Club Management Sub-Aggregate Ownership Audit Synthesis (FMX-32)
 status: draft
 tags: [research, synthesis, club-management, stadium, fan-ecology, audience-and-atmosphere, sponsorship, commercial-portfolio, ticketing, settlement, bounded-context, ddd, fmx-32]
+context: club-management-economy
 created: 2026-05-28
 updated: 2026-05-28
 type: research-synthesis

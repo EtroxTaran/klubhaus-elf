@@ -2,6 +2,7 @@
 title: Scouting and Recruitment - Funnel, Scout Attributes, Market Dynamics
 status: draft
 tags: [game-design, scouting, recruitment, transfers]
+context: scouting
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

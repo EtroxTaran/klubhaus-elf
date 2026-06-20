@@ -2,6 +2,7 @@
 title: Set-piece variant selection determinism (FMX-70)
 status: current
 tags: [research, match-engine, determinism, set-pieces, tactics, rng, replay, gap-g9, fmx-70]
+context: [match, tactics]
 created: 2026-06-02
 updated: 2026-06-02
 type: research

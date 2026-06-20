@@ -2,6 +2,7 @@
 title: Feature - Sponsorship Portfolio
 status: draft
 tags: [feature, sponsors, finance]
+context: commercial-portfolio
 created: 2026-05-16
 updated: 2026-05-18
 type: feature

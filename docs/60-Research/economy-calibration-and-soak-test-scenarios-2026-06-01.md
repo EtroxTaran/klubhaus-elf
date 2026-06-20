@@ -2,6 +2,7 @@
 title: Economy Calibration and Soak-Test Scenarios - Research Synthesis 2026-06-01
 status: draft
 tags: [research, economy, calibration, soak-test, stress-test, balancing, kpi, insolvency, determinism, fmx-52]
+context: club-management-economy
 created: 2026-06-01
 updated: 2026-06-01
 type: research

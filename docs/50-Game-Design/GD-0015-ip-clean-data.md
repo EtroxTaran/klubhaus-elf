@@ -2,6 +2,7 @@
 title: GD-0015 IP-clean Data Generation
 status: accepted
 tags: [game-design, gddr, ip, gamedata, privacy, gdpr, naming, community, fmx-54]
+context: [community-overlay, audit-security]
 created: 2026-05-17
 updated: 2026-06-11
 type: game-design

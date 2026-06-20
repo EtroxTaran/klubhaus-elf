@@ -2,6 +2,7 @@
 title: PWA Offline Mobile Release Content QA Gates
 status: current
 tags: [research, synthesis, pwa, offline, mobile, service-worker, rollback, content-qa, localization, llm, quality, fmx-197]
+context: offline-sync
 created: 2026-06-15
 updated: 2026-06-15
 type: research

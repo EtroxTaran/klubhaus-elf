@@ -2,6 +2,7 @@
 title: "Pre-Mortem 2026-05-20 · 13 · Community, Moderation & UGC"
 status: current
 tags: [research, pre-mortem, community, moderation, ugc, dsa, content-filter, 2026-Q2]
+context: [community-overlay, audit-security]
 created: 2026-05-20
 updated: 2026-05-22
 type: research

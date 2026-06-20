@@ -2,6 +2,7 @@
 title: Club Economy Impact Map and Commercial Contracts - Research Synthesis 2026-05-28
 status: draft
 tags: [research, economy, finance, commercial, tickets, fans, contracts, cup, competition, fmx-41, fmx-45]
+context: [club-management-economy, commercial-portfolio]
 created: 2026-05-28
 updated: 2026-05-28
 type: research

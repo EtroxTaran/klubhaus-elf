@@ -2,6 +2,7 @@
 title: GD-0009 League & Competition Structure
 status: accepted
 tags: [game-design, gddr, league]
+context: league-orchestration
 created: 2026-05-17
 updated: 2026-06-11
 type: game-design

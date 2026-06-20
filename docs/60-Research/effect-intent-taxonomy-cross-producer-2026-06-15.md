@@ -2,6 +2,7 @@
 title: "Effect-intent taxonomy across Narrative and Media Ecology"
 status: current
 tags: [research, synthesis, effect-intent, narrative, media-ecology, press, dialogue, ddd, fmx-162]
+context: [narrative-dialogue, media-ecology]
 created: 2026-06-15
 updated: 2026-06-15
 type: research

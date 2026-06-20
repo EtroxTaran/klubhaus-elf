@@ -2,6 +2,7 @@
 title: ADR-0105 Wage + transfer-fee/amortisation ledger posting contracts
 status: accepted
 tags: [adr, architecture, economy, accounting, ledger, wages, staff, transfer-fees, amortisation, ias38, loans, club-management, determinism, fmx-144, accepted]
+context: club-management-economy
 created: 2026-06-12
 updated: 2026-06-13
 type: adr

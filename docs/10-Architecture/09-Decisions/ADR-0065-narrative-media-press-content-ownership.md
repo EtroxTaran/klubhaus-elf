@@ -2,6 +2,7 @@
 title: ADR-0065 Narrative Media and Press Content Ownership
 status: accepted
 tags: [adr, architecture, ddd, narrative, media, press, notification, people, llm, fmx-31, accepted]
+context: [narrative-dialogue, media-ecology]
 created: 2026-06-02
 updated: 2026-06-19
 type: adr

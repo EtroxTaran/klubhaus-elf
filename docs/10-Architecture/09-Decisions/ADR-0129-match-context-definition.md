@@ -2,6 +2,7 @@
 title: ADR-0129 Match Context Definition
 status: accepted
 tags: [adr, architecture, ddd, bounded-context, sporting-core, match, simulation, events, fmx-132, accepted]
+context: match
 created: 2026-06-16
 updated: 2026-06-19
 type: adr

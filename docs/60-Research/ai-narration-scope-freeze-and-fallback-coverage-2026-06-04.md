@@ -2,6 +2,7 @@
 title: AI narration scope freeze and fallback coverage
 status: current
 tags: [research, ai, llm, narrative, compliance, fallback, fmx-88]
+context: narrative-dialogue
 created: 2026-06-04
 updated: 2026-06-04
 type: research

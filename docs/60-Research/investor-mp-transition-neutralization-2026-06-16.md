@@ -2,6 +2,7 @@
 title: Investor MP Transition Neutralization
 status: current
 tags: [research, synthesis, investor, multiplayer, singleplayer, no-p2w, monetization, fmx-189]
+context: [audit-security, club-management-economy]
 created: 2026-06-16
 updated: 2026-06-16
 type: research

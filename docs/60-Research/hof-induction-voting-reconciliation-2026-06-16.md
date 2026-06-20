@@ -2,6 +2,7 @@
 title: Hall-of-Fame Induction Voting Reconciliation
 status: current
 tags: [research, synthesis, hall-of-fame, determinism, seeded-variance, fmx-151]
+context: manager-legacy
 created: 2026-06-16
 updated: 2026-06-16
 type: research

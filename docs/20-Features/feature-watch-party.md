@@ -2,6 +2,7 @@
 title: Feature - Watch Party
 status: draft
 tags: [feature, watch-party, multiplayer]
+context: watch-party
 created: 2026-05-16
 updated: 2026-05-18
 type: feature

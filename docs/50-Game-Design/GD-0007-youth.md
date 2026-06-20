@@ -2,6 +2,7 @@
 title: GD-0007 Youth Academy
 status: accepted
 tags: [game-design, gddr, youth]
+context: youth-academy
 created: 2026-05-17
 updated: 2026-06-11
 type: game-design

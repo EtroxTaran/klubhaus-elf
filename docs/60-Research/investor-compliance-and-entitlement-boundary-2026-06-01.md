@@ -2,6 +2,7 @@
 title: Investor Compliance and Entitlement Boundary - Research Synthesis 2026-06-01
 status: draft
 tags: [research, economy, investor, monetization, entitlement, iap, compliance, consumer-law, age-rating, legal, fmx-50]
+context: [audit-security, club-management-economy]
 created: 2026-06-01
 updated: 2026-06-01
 type: research

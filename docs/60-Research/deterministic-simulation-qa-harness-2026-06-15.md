@@ -2,6 +2,7 @@
 title: Deterministic Simulation QA Harness
 status: current
 tags: [research, synthesis, determinism, replay, soak-test, save-forward, match-engine, quality, fmx-196]
+context: match
 created: 2026-06-15
 updated: 2026-06-15
 type: research

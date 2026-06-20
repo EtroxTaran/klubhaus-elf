@@ -3,6 +3,7 @@ title: Late-Game Systems — Continental Cups, Bundestrainer, Ownership, Hall of
 status: current
 binding: true
 tags: [research, late-game, endgame, continental, national-team, bundestrainer, ownership, takeover, hall-of-fame, legacy, longevity]
+context: manager-legacy
 created: 2026-05-17
 updated: 2026-06-15
 type: research

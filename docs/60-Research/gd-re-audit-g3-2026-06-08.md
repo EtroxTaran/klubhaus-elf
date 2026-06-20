@@ -3,6 +3,7 @@ title: "GD Re-Audit — Cluster G3: Players / Squad / Training / Youth / Skills 
 status: draft
 binding: false
 tags: [research, gddr, gd-audit, re-audit, players, squad, training, youth, skills, development, persona, ocean, determinism, cluster-g3, 2026-06-08]
+context: [squad-player, people-persona-skills]
 created: 2026-06-08
 updated: 2026-06-08
 type: research

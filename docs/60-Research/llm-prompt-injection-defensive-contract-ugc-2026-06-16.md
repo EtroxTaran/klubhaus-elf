@@ -2,6 +2,7 @@
 title: LLM Prompt Injection Defensive Contract for UGC Narrative
 status: draft
 tags: [research, ai, llm, prompt-injection, narrative, ugc, community-packs, security, contracts, fmx-188]
+context: [audit-security, community-overlay]
 created: 2026-06-16
 updated: 2026-06-16
 type: research

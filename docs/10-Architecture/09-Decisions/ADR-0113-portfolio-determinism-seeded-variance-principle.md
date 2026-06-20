@@ -2,6 +2,7 @@
 title: ADR-0113 Portfolio Determinism and Seeded-Variance Principle
 status: accepted
 tags: [adr, architecture, determinism, rng, seeded-variance, replay, gameplay, match-engine, fmx-138, accepted]
+context: ai-world-simulation
 created: 2026-06-14
 updated: 2026-06-19
 type: adr

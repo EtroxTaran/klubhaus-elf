@@ -2,6 +2,7 @@
 title: State Machine - League Week
 status: current
 tags: [architecture, state-machine, league, async, ddd]
+context: league-orchestration
 created: 2026-05-16
 updated: 2026-05-22
 type: state-machine

@@ -2,6 +2,7 @@
 title: "Insolvency event-to-ledger posting contract (FMX-146)"
 status: current
 tags: [research, synthesis, club-economy, accounting-ledger, insolvency, game-design, ddd, fmx-146]
+context: club-management-economy
 created: 2026-06-12
 updated: 2026-06-12
 type: research

@@ -2,6 +2,7 @@
 title: ADR-0075 Loan-Orchestration Process Manager
 status: accepted
 tags: [adr, architecture, ddd, transfer, loan, squad, match, regulations, club-management, youth, fmx-85]
+context: transfer
 created: 2026-06-04
 updated: 2026-06-19
 type: adr

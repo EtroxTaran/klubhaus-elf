@@ -2,6 +2,7 @@
 title: Fixture scheduling contract + determinism (FMX-72)
 status: current
 tags: [research, league, fixtures, scheduling, determinism, rng, replay, contracts, gap-g1, fmx-72]
+context: league-orchestration
 created: 2026-06-02
 updated: 2026-06-02
 type: research

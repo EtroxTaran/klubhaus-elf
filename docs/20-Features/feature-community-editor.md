@@ -2,6 +2,7 @@
 title: Feature - Community Editor
 status: draft
 tags: [feature, editor, datasets, modding]
+context: community-overlay
 created: 2026-05-16
 updated: 2026-05-18
 type: feature

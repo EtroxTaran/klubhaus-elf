@@ -2,6 +2,7 @@
 title: Staff & Backroom Bounded Context - Ownership Synthesis 2026-05-28
 status: draft
 tags: [research, staff, backroom, lifecycle, bounded-context, fmx-26]
+context: staff-operations
 created: 2026-05-28
 updated: 2026-05-28
 type: research

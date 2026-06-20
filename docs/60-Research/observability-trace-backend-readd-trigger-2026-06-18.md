@@ -2,6 +2,7 @@
 title: Observability Trace Backend Re-add Trigger and MVP Span Policy
 status: current
 tags: [research, synthesis, observability, tracing, tempo, mimir, prometheus, opentelemetry, alloy, fmx-171]
+context: audit-security
 created: 2026-06-18
 updated: 2026-06-18
 type: research

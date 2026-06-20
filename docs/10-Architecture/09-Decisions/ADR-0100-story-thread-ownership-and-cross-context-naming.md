@@ -2,6 +2,7 @@
 title: ADR-0100 Story-thread ownership and cross-context naming (StoryThread vs CoverageThread; storyThreadId as correlation key)
 status: accepted
 tags: [adr, architecture, ddd, narrative, media-ecology, story-thread, bounded-context, correlation-key, ownership, fmx-105]
+context: [narrative-dialogue, media-ecology]
 created: 2026-06-08
 updated: 2026-06-11
 type: adr

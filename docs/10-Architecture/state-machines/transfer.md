@@ -2,6 +2,7 @@
 title: State Machine - Transfer Negotiation
 status: current
 tags: [architecture, state-machine, transfer, ddd]
+context: transfer
 created: 2026-05-16
 updated: 2026-06-03
 type: state-machine

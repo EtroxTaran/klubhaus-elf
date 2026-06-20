@@ -2,6 +2,7 @@
 title: ADR-0119 Command Reception Dedup Seam
 status: accepted
 tags: [adr, architecture, command-reception, replay-protection, idempotency, offline-sync, audit, outbox, fmx-164]
+context: [audit-security, offline-sync]
 created: 2026-06-15
 updated: 2026-06-15
 type: adr

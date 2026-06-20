@@ -2,6 +2,7 @@
 title: ADR-0073 Player Contract Lifecycle FSM
 status: accepted
 tags: [adr, architecture, ddd, squad, transfer, contracts, regulations, notification, fmx-81]
+context: [squad-player, transfer]
 created: 2026-06-03
 updated: 2026-06-11
 type: adr

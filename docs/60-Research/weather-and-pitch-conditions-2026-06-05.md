@@ -2,6 +2,7 @@
 title: "Weather & pitch conditions — ownership + determinism (FMX-66)"
 status: draft
 tags: [research, weather, pitch, determinism, replay, rng, environment, match, fmx-66]
+context: environment-climate
 created: 2026-06-05
 updated: 2026-06-05
 type: research

@@ -2,6 +2,7 @@
 title: Pitch-condition state ownership reconciliation
 status: current
 tags: [research, ddd, pitch, weather, stadium, bounded-context, ownership, fmx-142]
+context: [stadium-operations, environment-climate]
 created: 2026-06-14
 updated: 2026-06-14
 type: research

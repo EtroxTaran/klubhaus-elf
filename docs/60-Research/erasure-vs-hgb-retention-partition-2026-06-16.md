@@ -2,6 +2,7 @@
 title: Erasure vs HGB retention partition
 status: current
 tags: [research, synthesis, gdpr, erasure, retention, hgb, ao, payments, finance-records, privacy, fmx-186]
+context: audit-security
 created: 2026-06-16
 updated: 2026-06-16
 type: research

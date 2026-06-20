@@ -2,6 +2,7 @@
 title: Argon2id WASM KDF Validation Packet
 status: draft
 tags: [research, fmx-173, argon2id, kdf, wasm, pwa, security, save-format, mobile-performance]
+context: audit-security
 created: 2026-06-19
 updated: 2026-06-19
 type: research

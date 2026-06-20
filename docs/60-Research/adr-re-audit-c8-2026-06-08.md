@@ -2,6 +2,7 @@
 title: ADR re-audit — Cluster C8 (Narrative / Media / AI-World / Notifications / Stats)
 status: draft
 tags: [research, audit, adr-re-audit, c8, narrative, media-ecology, ai-world, llm, notifications, analytics, ddd, determinism]
+context: [narrative-dialogue, media-ecology]
 created: 2026-06-08
 updated: 2026-06-08
 type: research

@@ -2,6 +2,7 @@
 title: ADR-0126 Cross-producer effect-intent taxonomy
 status: accepted
 tags: [adr, architecture, ddd, effect-intent, narrative, media-ecology, press, dialogue, published-language, fmx-162, accepted]
+context: [narrative-dialogue, media-ecology]
 created: 2026-06-15
 updated: 2026-06-19
 type: adr

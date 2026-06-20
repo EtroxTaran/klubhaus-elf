@@ -2,6 +2,7 @@
 title: GD-0002 Match Engine & Simulation Model
 status: accepted
 tags: [game-design, gddr, match-engine, spatial-event, accepted]
+context: match
 created: 2026-05-17
 updated: 2026-06-19
 type: game-design

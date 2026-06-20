@@ -2,6 +2,7 @@
 title: Compliance Evidence
 status: current
 tags: [compliance, legal, evidence, monetization, privacy, consumer-law, age-assurance, ratings, gdpr, retention, security, webhook, fmx-186, fmx-187]
+context: audit-security
 created: 2026-06-13
 updated: 2026-06-19
 type: index

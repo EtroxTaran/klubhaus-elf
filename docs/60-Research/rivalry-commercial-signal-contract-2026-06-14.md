@@ -2,6 +2,7 @@
 title: Rivalry commercial signal contract reconciliation
 status: current
 tags: [research, ddd, rivalry, commercial, derby, bounded-context, contract, fmx-134]
+context: [rivalry, commercial-portfolio]
 created: 2026-06-14
 updated: 2026-06-14
 type: research

@@ -2,6 +2,7 @@
 title: Player discipline sub-aggregate
 status: current
 tags: [research, discipline, suspension, appeals, regulations, match, squad, narrative, ddd, fmx-80]
+context: [squad-player, regulations-compliance]
 created: 2026-06-05
 updated: 2026-06-05
 type: research

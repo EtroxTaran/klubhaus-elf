@@ -2,6 +2,7 @@
 title: AI world-drift algorithm spec (FMX-91)
 status: current
 tags: [research, ai-world, world-drift, dynasty, determinism, game-design, ddd, fmx-91]
+context: ai-world-simulation
 created: 2026-06-03
 updated: 2026-06-03
 type: research

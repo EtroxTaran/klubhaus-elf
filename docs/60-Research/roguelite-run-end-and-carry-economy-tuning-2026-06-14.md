@@ -2,6 +2,7 @@
 title: "Roguelite run-end and carry-economy tuning (FMX-137)"
 status: current
 tags: [research, synthesis, roguelite, run-end, insolvency, board, carry-slots, meta-progression, fmx-137]
+context: [manager-legacy, club-management-economy]
 created: 2026-06-14
 updated: 2026-06-14
 type: research

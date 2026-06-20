@@ -2,6 +2,7 @@
 title: Feature — 3D Presentation Layer (Stadium, Cutscenes, Backdrop)
 status: draft
 tags: [feature, presentation, 3d, babylon, stadium, cutscene, mobile, pwa]
+context: [stadium-operations, match]
 created: 2026-05-20
 updated: 2026-06-15
 type: feature

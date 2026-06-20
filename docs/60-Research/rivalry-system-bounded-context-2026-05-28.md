@@ -2,6 +2,7 @@
 title: Rivalry System Bounded Context - Ownership Synthesis 2026-05-28
 status: draft
 tags: [research, rivalry, derby, bounded-context, fmx-34]
+context: rivalry
 created: 2026-05-28
 updated: 2026-05-28
 type: research

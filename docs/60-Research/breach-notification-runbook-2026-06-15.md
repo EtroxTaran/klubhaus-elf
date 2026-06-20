@@ -2,6 +2,7 @@
 title: "Breach notification runbook research (FMX-183)"
 status: current
 tags: [research, synthesis, gdpr, privacy, incident-response, breach-notification, bfdi, security, live-service, fmx-183]
+context: audit-security
 created: 2026-06-15
 updated: 2026-06-15
 type: research

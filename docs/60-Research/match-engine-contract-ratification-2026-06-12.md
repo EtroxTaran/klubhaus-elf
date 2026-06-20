@@ -2,6 +2,7 @@
 title: Match-engine contract ratification research (FMX-135)
 status: current
 tags: [research, match-engine, determinism, replay, quality-profile, wasm, wasmtime, rust, typescript, fixed-point, fmx-135]
+context: match
 created: 2026-06-12
 updated: 2026-06-12
 type: research

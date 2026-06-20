@@ -3,6 +3,7 @@ title: Presentation Renderer Strategy - Canvas 2D plus Babylon.js
 status: current
 binding: true
 tags: [research, rendering, pwa, 3d, stadium, presentation, babylon, fmx-158]
+context: match
 created: 2026-05-22
 updated: 2026-06-15
 type: research

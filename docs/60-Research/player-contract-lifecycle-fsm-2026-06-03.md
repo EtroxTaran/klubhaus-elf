@@ -2,6 +2,7 @@
 title: Player contract lifecycle FSM — synthesis (FMX-81)
 status: current
 tags: [research, transfer, contracts, squad, regulations, notification, fmx-81]
+context: [squad-player, transfer]
 created: 2026-06-03
 updated: 2026-06-03
 type: research

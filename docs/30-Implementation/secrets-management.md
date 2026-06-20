@@ -2,6 +2,7 @@
 title: Secrets Management — sops + age + direnv, rotation, leak response, dep audit, backup drills
 status: current
 tags: [implementation, secrets, sops, age, direnv, key-rotation, leak-response, supply-chain, backups]
+context: audit-security
 created: 2026-05-18
 updated: 2026-06-09
 type: implementation

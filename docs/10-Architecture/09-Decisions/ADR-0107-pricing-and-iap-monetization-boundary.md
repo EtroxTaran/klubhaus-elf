@@ -2,6 +2,7 @@
 title: ADR-0107 Pricing and IAP Monetization Boundary
 status: accepted
 tags: [adr, architecture, monetization, pricing, iap, entitlement, no-p2w, privacy, fmx-191, accepted]
+context: audit-security
 created: 2026-06-13
 updated: 2026-06-19
 type: adr

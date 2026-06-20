@@ -2,6 +2,7 @@
 title: GD-0034 Media-Outlet Ecology Model
 status: accepted
 tags: [game-design, gddr, media, media-ecology, outlets, press, editorial-stance, narrative, fmx-82, accepted]
+context: media-ecology
 created: 2026-06-07
 updated: 2026-06-19
 type: gddr

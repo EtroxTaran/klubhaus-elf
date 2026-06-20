@@ -2,6 +2,7 @@
 title: PWA Offline Patterns
 status: review
 tags: [research, pwa, save, offline-first, indexeddb, service-worker, sync]
+context: offline-sync
 created: 2026-05-15
 updated: 2026-06-09
 type: research

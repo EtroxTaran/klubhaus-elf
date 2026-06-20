@@ -2,6 +2,7 @@
 title: ADR-0090 Command Queue Seam Propagation
 status: current
 tags: [research, fmx-165, offline-sync, pwa, command-queue, conflict-resolution, event-sourcing, bounded-context]
+context: offline-sync
 created: 2026-06-18
 updated: 2026-06-18
 type: research

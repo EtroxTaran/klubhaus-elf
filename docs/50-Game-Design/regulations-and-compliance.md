@@ -2,6 +2,7 @@
 title: Regulations and Compliance - Promotion-Gated Stadium and Operations Rules
 status: draft
 tags: [game-design, regulations, compliance, leagues, promotion, economy, financing, debt, cup, competition, matchday, security, sanctions, transfer, loan, obligation-to-buy, fmx-41, fmx-45, fmx-46, fmx-49, fmx-155]
+context: regulations-compliance
 created: 2026-05-16
 updated: 2026-06-16
 type: game-design

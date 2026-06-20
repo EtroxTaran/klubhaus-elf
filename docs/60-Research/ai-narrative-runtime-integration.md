@@ -2,6 +2,7 @@
 title: AI Narrative Runtime Integration Research
 status: current
 tags: [research, ai, llm, narrative, persona, dialogue, openrouter, ai-act]
+context: narrative-dialogue
 created: 2026-05-27
 updated: 2026-05-28
 type: research

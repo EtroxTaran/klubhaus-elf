@@ -2,6 +2,7 @@
 title: Hybrid-online PWA Strategy
 status: current
 tags: [pwa, implementation, mvp, offline-ready]
+context: offline-sync
 created: 2026-05-18
 updated: 2026-06-18
 type: implementation

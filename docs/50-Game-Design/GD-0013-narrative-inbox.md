@@ -2,6 +2,7 @@
 title: GD-0013 Narrative, Inbox & Events
 status: accepted
 tags: [game-design, gddr, narrative]
+context: [narrative-dialogue, notification]
 created: 2026-05-17
 updated: 2026-06-11
 type: game-design

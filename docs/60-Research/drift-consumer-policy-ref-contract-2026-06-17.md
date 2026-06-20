@@ -2,6 +2,7 @@
 title: DriftConsumerPolicyRef Contract
 status: current
 tags: [research, synthesis, ddd, event-sourcing, ai-world, world-drift, policy-catalog, determinism, fmx-139]
+context: ai-world-simulation
 created: 2026-06-17
 updated: 2026-06-17
 type: research

@@ -2,6 +2,7 @@
 title: GD-0008 Finance, Economy & Stadium
 status: accepted
 tags: [game-design, gddr, finance, economy, accounting, commercial, financing, debt, investor, fmx-13, fmx-41, fmx-49]
+context: club-management-economy
 created: 2026-05-17
 updated: 2026-06-12
 type: game-design

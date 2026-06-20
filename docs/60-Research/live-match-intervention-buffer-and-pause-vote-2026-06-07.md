@@ -2,6 +2,7 @@
 title: Live-match Intervention Buffer + Watch-Party Pause-Vote (FMX-101)
 status: current
 tags: [research, match, watch-party, intervention-buffer, pause-vote, determinism, anti-grief, ddd, event-sourcing, multiplayer, fmx-101]
+context: [match, watch-party]
 created: 2026-06-07
 updated: 2026-06-07
 type: research

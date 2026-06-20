@@ -2,6 +2,7 @@
 title: State Machine - Player Contract Lifecycle
 status: current
 tags: [architecture, state-machine, squad, player, contracts, transfer, regulations, fmx-81]
+context: squad-player
 created: 2026-06-03
 updated: 2026-06-03
 type: state-machine

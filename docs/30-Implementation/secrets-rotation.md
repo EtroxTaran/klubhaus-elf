@@ -2,6 +2,7 @@
 title: Secrets Rotation — Cloud-Agent Credential Boundary
 status: current
 tags: [security, implementation, cloud-agents]
+context: audit-security
 created: 2026-05-15
 updated: 2026-05-18
 type: implementation

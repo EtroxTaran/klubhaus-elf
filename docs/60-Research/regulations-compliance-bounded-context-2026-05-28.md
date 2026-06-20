@@ -2,6 +2,7 @@
 title: Regulations & Compliance Bounded Context - Ownership Synthesis 2026-05-28
 status: draft
 tags: [research, regulations, compliance, ffp, work-permits, bounded-context, fmx-30]
+context: regulations-compliance
 created: 2026-05-28
 updated: 2026-05-28
 type: research

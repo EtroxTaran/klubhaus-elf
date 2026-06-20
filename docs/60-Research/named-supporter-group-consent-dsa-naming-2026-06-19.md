@@ -2,6 +2,7 @@
 title: Named Supporter Group Consent DSA and Naming
 status: current
 tags: [research, synthesis, fmx-148, audience, atmosphere, supporter-groups, privacy, gdpr, dsa, naming, ip, people]
+context: audience-atmosphere
 created: 2026-06-19
 updated: 2026-06-19
 type: research

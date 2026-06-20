@@ -2,6 +2,7 @@
 title: "Match-engine core model and calibration (FMX-133)"
 status: current
 tags: [research, synthesis, match-engine, xg, xt, epv, calibration, quality-profile, fmx-133]
+context: match
 created: 2026-06-13
 updated: 2026-06-13
 type: research

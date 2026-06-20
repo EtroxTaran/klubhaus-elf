@@ -2,6 +2,7 @@
 title: ADR-0061 Club Management Sub-Aggregate Ownership Audit
 status: accepted
 tags: [adr, architecture, ddd, club-management, stadium, audience-and-atmosphere, fan-ecology, sponsorship, commercial-portfolio, ticketing, settlement, fmx-32, accepted]
+context: club-management-economy
 created: 2026-05-28
 updated: 2026-06-08
 type: adr

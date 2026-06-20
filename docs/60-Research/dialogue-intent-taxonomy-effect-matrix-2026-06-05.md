@@ -2,6 +2,7 @@
 title: Dialogue intent taxonomy and effect matrix
 status: current
 tags: [research, narrative, dialogue, intents, effects, football, ddd, fmx-87]
+context: narrative-dialogue
 created: 2026-06-05
 updated: 2026-06-05
 type: research

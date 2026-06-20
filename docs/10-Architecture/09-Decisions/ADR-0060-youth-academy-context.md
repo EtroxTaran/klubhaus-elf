@@ -2,6 +2,7 @@
 title: ADR-0060 Youth Academy Context
 status: accepted
 tags: [adr, architecture, ddd, youth, academy, lifecycle, fmx-29, proposed, accepted]
+context: youth-academy
 created: 2026-05-28
 updated: 2026-06-19
 type: adr

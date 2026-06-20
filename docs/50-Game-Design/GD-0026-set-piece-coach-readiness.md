@@ -2,6 +2,7 @@
 title: GD-0026 Set-Piece-Coach Effect-Readiness Multiplier Curve
 status: accepted
 tags: [game-design, gddr, set-pieces, staff, training, tactics, match, determinism, fmx-69, gap-g12]
+context: [training, staff-operations, tactics]
 created: 2026-06-04
 updated: 2026-06-13
 type: game-design

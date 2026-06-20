@@ -2,6 +2,7 @@
 title: "Notification offline delivery and ratification packet (FMX-156)"
 status: current
 tags: [research, synthesis, notification, messaging, inbox, push, offline, pwa, game-precedent, fmx-156]
+context: notification
 created: 2026-06-15
 updated: 2026-06-15
 type: research

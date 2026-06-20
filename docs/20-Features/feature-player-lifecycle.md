@@ -2,6 +2,7 @@
 title: Feature - Player Lifecycle and Development
 status: draft
 tags: [feature, player-development, youth, mentoring]
+context: squad-player
 created: 2026-05-17
 updated: 2026-05-28
 type: feature

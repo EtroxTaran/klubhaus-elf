@@ -3,6 +3,7 @@ title: Transfer Market Simulation - Valuation, AI Selling, Clauses and Negotiati
 status: current
 binding: true
 tags: [research, transfers, contracts, valuation, ai, economy, narrative, determinism]
+context: transfer
 created: 2026-05-17
 updated: 2026-05-17
 type: research

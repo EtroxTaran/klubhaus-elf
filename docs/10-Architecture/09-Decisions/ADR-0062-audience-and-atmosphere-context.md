@@ -2,6 +2,7 @@
 title: ADR-0062 Audience & Atmosphere Context
 status: accepted
 tags: [adr, architecture, ddd, audience-and-atmosphere, fan-ecology, scoring-context, supporting-subdomain, fmx-32, accepted]
+context: audience-atmosphere
 created: 2026-05-28
 updated: 2026-06-19
 type: adr

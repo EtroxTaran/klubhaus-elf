@@ -2,6 +2,7 @@
 title: Watch Party Context Ownership
 status: current
 tags: [research, synthesis, ddd, bounded-context, watch-party, match, notification, offline-sync, crdt, fmx-159]
+context: watch-party
 created: 2026-06-17
 updated: 2026-06-17
 type: research

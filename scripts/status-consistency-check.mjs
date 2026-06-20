@@ -13,12 +13,26 @@
 //   4. every `status: superseded` note must carry an INLINE `superseded_by:`
 //      resolving to existing note(s) (docs-check's line parser cannot see
 //      list-style values, so list-style is also rejected here)
+//   5. every `context:` value must be one of the 28 known bounded-context
+//      slugs (ADR-0134) — guards the NotebookLM-export membership SSOT against
+//      typos / slugs that name no bundle
 import { readdirSync, readFileSync, existsSync } from 'node:fs'
 import path from 'node:path'
 
 const root = process.cwd()
 const docsRoot = path.join(root, 'docs')
 const errors = []
+
+// The 28 bounded-context bundle slugs (ADR-0089 / ADR-0134). Keep in sync with
+// the DOMAINS array in scripts/export-notebooklm.mjs.
+const KNOWN_CONTEXTS = new Set([
+  'identity-access', 'league-orchestration', 'club-management-economy', 'squad-player',
+  'training', 'transfer', 'match', 'watch-party', 'notification', 'manager-legacy',
+  'staff-operations', 'tactics', 'regulations-compliance', 'rivalry', 'stadium-operations',
+  'audience-atmosphere', 'commercial-portfolio', 'offline-sync', 'audit-security',
+  'ai-world-simulation', 'narrative-dialogue', 'youth-academy', 'statistics-analytics',
+  'people-persona-skills', 'scouting', 'environment-climate', 'media-ecology', 'community-overlay',
+])
 
 // Mirrors docs-check.mjs — keep the two lists in sync when adding frozen dirs.
 const ignoredPathParts = [
@@ -108,6 +122,23 @@ for (const file of files) {
         if (!target) continue
         if (!basenames.has(path.basename(target, '.md'))) {
           errors.push(`${toPosix(file)}: superseded_by target "${target}" does not exist`)
+        }
+      }
+    }
+  }
+
+  // 5. context: values must be known bounded-context slugs (ADR-0134).
+  if (!ignored && block) {
+    const ctx = block.match(/^context:\s*(.+)$/m)
+    if (ctx) {
+      const values = ctx[1]
+        .replace(/^\[|\]$/g, '')
+        .split(',')
+        .map((v) => v.trim().replace(/^["']|["']$/g, '').toLowerCase())
+        .filter(Boolean)
+      for (const v of values) {
+        if (!KNOWN_CONTEXTS.has(v)) {
+          errors.push(`${toPosix(file)}: unknown context "${v}" — must be one of the 28 bounded-context slugs (ADR-0134)`)
         }
       }
     }

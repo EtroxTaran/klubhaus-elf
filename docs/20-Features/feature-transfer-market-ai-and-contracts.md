@@ -2,6 +2,7 @@
 title: Feature - AI Transfer Market and Contracts
 status: approved
 tags: [feature, transfers, contracts, ai, scouting, economy]
+context: transfer
 created: 2026-05-17
 updated: 2026-05-28
 type: feature

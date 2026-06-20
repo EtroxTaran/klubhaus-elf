@@ -2,6 +2,7 @@
 title: Determinism, RNG and Replay - Locked Decisions
 status: current
 tags: [research, determinism, rng, replay, match-engine, save-format]
+context: match
 created: 2026-05-16
 updated: 2026-05-17
 type: research

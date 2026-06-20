@@ -2,6 +2,7 @@
 title: Feature - Stadium Builder
 status: draft
 tags: [feature, stadium, infrastructure]
+context: stadium-operations
 created: 2026-05-16
 updated: 2026-05-18
 type: feature

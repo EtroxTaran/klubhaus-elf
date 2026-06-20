@@ -2,6 +2,7 @@
 title: Club Economy Blueprint - Research Synthesis 2026-05-27
 status: draft
 tags: [research, economy, finance, club-management, accounting, fmx-13]
+context: club-management-economy
 created: 2026-05-27
 updated: 2026-05-27
 type: research

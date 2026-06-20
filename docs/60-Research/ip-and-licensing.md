@@ -2,6 +2,7 @@
 title: IP and Licensing
 status: ready
 tags: [research, ip, gamedata, legal, privacy, gdpr, naming, fmx-54]
+context: audit-security
 created: 2026-05-15
 updated: 2026-06-01
 type: research

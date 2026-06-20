@@ -2,6 +2,7 @@
 title: Mode - Manage a Club Career
 status: draft
 tags: [game-design, mode, career, anstoss, national-team, bundestrainer, fmx-130]
+context: [manager-legacy, league-orchestration]
 created: 2026-05-16
 updated: 2026-06-15
 type: game-design

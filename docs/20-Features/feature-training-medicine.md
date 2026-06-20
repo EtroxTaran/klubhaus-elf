@@ -2,6 +2,7 @@
 title: Feature - Training, Medicine and Availability
 status: draft
 tags: [feature, training, medicine, injuries, availability]
+context: [training, squad-player]
 created: 2026-05-17
 updated: 2026-05-28
 type: feature

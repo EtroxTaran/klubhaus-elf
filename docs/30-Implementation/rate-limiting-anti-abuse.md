@@ -2,6 +2,7 @@
 title: Rate Limiting and Anti-Abuse — edge WAF, endpoint quotas, anti-griefing, escalation
 status: current
 tags: [implementation, rate-limiting, anti-abuse, anti-griefing, waf, ddos, bot-mitigation, mcaptcha]
+context: audit-security
 created: 2026-05-18
 updated: 2026-05-22
 type: implementation

@@ -2,6 +2,7 @@
 title: Audit & Security context — definition grounding 2026-06-07
 status: draft
 tags: [research, audit, security, anti-abuse, replay-protection, gdpr, ddd, fmx-104]
+context: audit-security
 created: 2026-06-07
 updated: 2026-06-15
 type: research

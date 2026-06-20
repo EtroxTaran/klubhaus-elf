@@ -2,6 +2,7 @@
 title: Fan-Service Campaign Catalog and Effects - Research Synthesis 2026-06-01
 status: draft
 tags: [research, economy, fans, fan-service, sponsorship, travel, alcohol, safety, community, fmx-48]
+context: [commercial-portfolio, audience-atmosphere]
 created: 2026-06-01
 updated: 2026-06-01
 type: research

@@ -2,6 +2,7 @@
 title: GD-0040 Future Contracts/CLM Extraction-Seam Decision
 status: accepted
 tags: [game-design, gddr, contracts, clm, bounded-context, extraction-seam, ddd, transfer, squad, staff, loan, commercial]
+context: [squad-player, transfer, commercial-portfolio]
 created: 2026-06-08
 updated: 2026-06-08
 type: gddr

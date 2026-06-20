@@ -2,6 +2,7 @@
 title: Watch Party and Conference Mode
 status: accepted
 tags: [game-design, mode, multiplayer, watch-party, conference, accepted]
+context: watch-party
 created: 2026-05-16
 updated: 2026-06-19
 type: game-design

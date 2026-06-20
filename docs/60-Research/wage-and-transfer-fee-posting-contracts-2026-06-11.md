@@ -2,6 +2,7 @@
 title: Wage + Transfer-Fee/Amortisation Ledger Posting Contracts (FMX-144)
 status: current
 tags: [research, economy, accounting, ledger, wages, transfer-fees, amortisation, ias38, loans, double-entry, determinism, fmx-144]
+context: club-management-economy
 created: 2026-06-11
 updated: 2026-06-12
 type: research

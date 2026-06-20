@@ -3,6 +3,7 @@ title: Match Engine Runtime Strategy - Swappable Runtime Spike with Rust Default
 status: current
 binding: false
 tags: [research, match-engine, runtime, typescript, rust, wasm, web-worker, offline-first, multiplayer, wave-3]
+context: match
 created: 2026-05-17
 updated: 2026-05-27
 type: research

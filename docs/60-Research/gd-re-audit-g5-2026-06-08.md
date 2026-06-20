@@ -2,6 +2,7 @@
 title: GD re-audit — Cluster G5 (Economy / Finance / Board / Commercial / Career-progression)
 status: draft
 tags: [research, audit, re-audit, game-design, gddr, economy, finance, board, ownership, commercial, career-progression, insolvency, cluster-g5, gd-0008, gd-0011, gd-0022, gd-0023, gd-0030]
+context: club-management-economy
 created: 2026-06-08
 updated: 2026-06-08
 type: research

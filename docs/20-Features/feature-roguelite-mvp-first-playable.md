@@ -2,6 +2,7 @@
 title: Feature - Roguelite MVP First Playable
 status: approved
 tags: [feature, mvp, roguelite, first-playable]
+context: manager-legacy
 created: 2026-05-18
 updated: 2026-06-14
 type: feature

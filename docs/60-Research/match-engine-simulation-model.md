@@ -2,6 +2,7 @@
 title: Match Engine Simulation Model - Historical Input
 status: current
 tags: [research, match-engine, simulation, markov, attributes, wave-3, reopened]
+context: match
 created: 2026-05-16
 updated: 2026-05-27
 type: research

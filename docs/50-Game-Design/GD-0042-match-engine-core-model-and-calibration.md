@@ -2,6 +2,7 @@
 title: GD-0042 Match-engine core model and calibration
 status: accepted
 tags: [game-design, gddr, match-engine, xg, xt, epv, calibration, quality-profile, fmx-133, accepted]
+context: match
 created: 2026-06-13
 updated: 2026-06-19
 type: gddr

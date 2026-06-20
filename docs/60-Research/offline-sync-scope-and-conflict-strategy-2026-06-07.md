@@ -2,6 +2,7 @@
 title: Offline Sync — MVP scope + conflict-resolution strategy (grounding)
 status: draft
 tags: [research, offline, sync, pwa, crdt, conflict-resolution, determinism, fmx-66b]
+context: offline-sync
 created: 2026-06-07
 updated: 2026-06-07
 type: research

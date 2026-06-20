@@ -2,6 +2,7 @@
 title: GD-0037 Offline Narration Tier for the AI-Narration MVP Pillar
 status: accepted
 tags: [game-design, gddr, narrative, ai, llm, offline-first, webgpu, on-device, progressive-enhancement, mvp-pillar]
+context: [narrative-dialogue, offline-sync]
 created: 2026-06-08
 updated: 2026-06-08
 type: gddr

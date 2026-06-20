@@ -2,6 +2,7 @@
 title: "Age assurance and IARC rating evidence (FMX-185)"
 status: current
 tags: [research, synthesis, age-gate, age-assurance, gdpr, jmstv, kjm, iarc, usk, compliance, fmx-185]
+context: audit-security
 created: 2026-06-14
 updated: 2026-06-19
 type: research

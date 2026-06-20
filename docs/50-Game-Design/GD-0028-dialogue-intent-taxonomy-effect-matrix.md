@@ -2,6 +2,7 @@
 title: GD-0028 Dialogue Intent Taxonomy and Effect Matrix
 status: accepted
 tags: [game-design, gddr, narrative, dialogue, intents, effects, ai, llm, fmx-87, gap-g13, accepted]
+context: narrative-dialogue
 created: 2026-06-05
 updated: 2026-06-19
 type: game-design

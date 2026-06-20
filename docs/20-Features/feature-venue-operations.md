@@ -2,6 +2,7 @@
 title: Feature - Venue Operations
 status: draft
 tags: [feature, stadium, venue, events, club-management]
+context: [stadium-operations, commercial-portfolio]
 created: 2026-05-17
 updated: 2026-05-18
 type: feature

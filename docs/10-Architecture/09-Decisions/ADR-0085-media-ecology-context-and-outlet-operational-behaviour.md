@@ -2,6 +2,7 @@
 title: ADR-0085 Media Ecology Context and Outlet Operational Behaviour
 status: accepted
 tags: [adr, architecture, ddd, media, media-ecology, outlets, press, narrative, audience, notification, determinism, fmx-82, accepted]
+context: media-ecology
 created: 2026-06-07
 updated: 2026-06-19
 type: adr

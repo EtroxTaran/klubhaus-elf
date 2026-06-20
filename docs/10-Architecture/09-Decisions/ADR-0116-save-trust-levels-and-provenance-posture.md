@@ -2,6 +2,7 @@
 title: ADR-0116 Save Trust Levels and Provenance Posture
 status: accepted
 tags: [adr, architecture, security, save-format, save-trust, provenance, hall-of-fame, leaderboards, fmx-184]
+context: audit-security
 created: 2026-06-14
 updated: 2026-06-14
 type: adr

@@ -2,6 +2,7 @@
 title: State Machine - Match
 status: current
 tags: [architecture, state-machine, match]
+context: match
 created: 2026-05-16
 updated: 2026-06-16
 type: state-machine

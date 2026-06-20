@@ -2,6 +2,7 @@
 title: GD-0003 Squad, Players & Attributes
 status: accepted
 tags: [game-design, gddr, squad]
+context: squad-player
 created: 2026-05-17
 updated: 2026-06-11
 type: game-design

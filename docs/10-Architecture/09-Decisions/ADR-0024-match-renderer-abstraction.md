@@ -2,6 +2,7 @@
 title: ADR-0024 Match Renderer Abstraction
 status: accepted
 tags: [adr, architecture, ui, match-view]
+context: match
 created: 2026-05-19
 updated: 2026-06-08
 accepted_at: 2026-05-19

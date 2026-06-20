@@ -2,6 +2,7 @@
 title: ADR-0123 Identity & Access Context Definition
 status: accepted
 tags: [adr, architecture, identity-access, ddd, auth, webauthn, passkeys, session, device, gdpr, security, fmx-163]
+context: identity-access
 created: 2026-06-15
 updated: 2026-06-15
 type: adr

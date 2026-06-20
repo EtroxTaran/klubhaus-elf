@@ -2,6 +2,7 @@
 title: ADR-0084 National-Team Dual-Role Scope & International-Window Contract
 status: accepted
 tags: [adr, architecture, league-orchestration, manager, legacy, national-team, international-window, calendar, determinism, fmx-84]
+context: [league-orchestration, manager-legacy]
 created: 2026-06-06
 updated: 2026-06-11
 type: adr

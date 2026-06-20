@@ -2,6 +2,7 @@
 title: "Cosmetic identity catalog (FMX-192)"
 status: current
 tags: [research, synthesis, cosmetics, identity, monetization, no-p2w, ip-clean, accessibility, fmx-192]
+context: audit-security
 created: 2026-06-15
 updated: 2026-06-15
 type: research

@@ -2,6 +2,7 @@
 title: ADR-0059 Community Overlay Pipeline Context
 status: accepted
 tags: [adr, architecture, ddd, community, overlay, import, privacy, gdpr, dsa, naming, fmx-33, fmx-54, risk-legal]
+context: community-overlay
 created: 2026-05-28
 updated: 2026-06-16
 type: adr

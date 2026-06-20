@@ -2,6 +2,7 @@
 title: Background-fast Matchday Cost-Settlement Pipeline (FMX-92)
 status: current
 tags: [research, economy, matchday-costs, settlement, background-fast, quality-profile, determinism, ddd, event-sourcing, fmx-92]
+context: club-management-economy
 created: 2026-06-07
 updated: 2026-06-07
 type: research

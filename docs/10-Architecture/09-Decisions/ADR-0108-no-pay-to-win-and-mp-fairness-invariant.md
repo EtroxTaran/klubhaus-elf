@@ -2,6 +2,7 @@
 title: ADR-0108 No-Pay-to-Win and Multiplayer Fairness Invariant
 status: accepted
 tags: [adr, architecture, monetization, no-p2w, multiplayer, fairness, testing, fmx-190, accepted]
+context: audit-security
 created: 2026-06-13
 updated: 2026-06-19
 type: adr

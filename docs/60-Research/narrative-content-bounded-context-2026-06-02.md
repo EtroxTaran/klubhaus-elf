@@ -2,6 +2,7 @@
 title: Narrative media and press content bounded-context ownership (FMX-31)
 status: draft
 tags: [research, narrative, media, press, notification, people, ddd, bounded-context, fmx-31]
+context: narrative-dialogue
 created: 2026-06-02
 updated: 2026-06-02
 type: research

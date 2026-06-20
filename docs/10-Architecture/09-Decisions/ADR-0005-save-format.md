@@ -3,6 +3,7 @@ title: ADR-0005 Save Format and Versioning
 status: accepted
 amended_by: [[ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0097-postgres-scale-envelope-and-audit-canonicalisation]]
 tags: [adr, save, encryption, compression, versioning, e2ee]
+context: audit-security
 created: 2026-05-15
 updated: 2026-06-16
 accepted_at: 2026-05-16

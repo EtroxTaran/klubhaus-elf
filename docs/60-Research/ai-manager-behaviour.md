@@ -3,6 +3,7 @@ title: AI Manager Behaviour — Architecture, Personalities, Difficulty, World D
 status: current
 binding: true
 tags: [research, ai, utility-ai, manager-personality, difficulty, world-drift, dynasty, determinism]
+context: ai-world-simulation
 created: 2026-05-17
 updated: 2026-05-17
 type: research

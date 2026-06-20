@@ -3,6 +3,7 @@ title: Tactics & Formations — Mobile-first Manager Game Tactics Depth
 status: current
 binding: true
 tags: [research, tactics, formations, roles, instructions, familiarity, opposition, mobile-ux, touch]
+context: tactics
 created: 2026-05-17
 updated: 2026-05-17
 type: research

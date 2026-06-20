@@ -2,6 +2,7 @@
 title: League↔Regulations fixture/competition eligibility hand-off (FMX-74)
 status: current
 tags: [research, league, regulations, compliance, eligibility, handoff, contracts, determinism, gap-g1, fmx-74, risk-legal]
+context: [regulations-compliance, league-orchestration]
 created: 2026-06-03
 updated: 2026-06-03
 type: research
