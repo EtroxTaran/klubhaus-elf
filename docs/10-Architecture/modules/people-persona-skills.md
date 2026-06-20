@@ -7,7 +7,7 @@ created: 2026-06-20
 updated: 2026-06-20
 type: module
 binding: false
-related: [[../05-Building-Blocks]], [[../bounded-context-map]], [[../09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../09-Decisions/ADR-0027-postgres-data-model]], [[../09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
+related: [[../05-Building-Blocks]], [[../bounded-context-map]], [[../09-Decisions/ADR-0052-people-persona-and-skills-context]], [[../09-Decisions/ADR-0027-postgres-data-model]], [[../09-Decisions/ADR-0030-llm-out-of-authoritative-state]], [[../09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[../people-persona-skills-domain-model]]
 ---
 
 # People / Persona & Skills Boundary

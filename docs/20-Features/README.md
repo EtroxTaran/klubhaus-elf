@@ -3,7 +3,7 @@ title: Features
 status: current
 tags: [feature, index]
 created: 2026-05-15
-updated: 2026-06-15
+updated: 2026-06-20
 type: index
 binding: false
 related: [[../00-Index/Feature-Map]], [[../00-Index/MVP-Scope]], [[../50-Game-Design/README]], [[../00-Index/Documentation-V1]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[feature-statistics-analytics-hub-mvp]]
@@ -49,6 +49,12 @@ stubs as future-scope planning, not open documentation gaps.
 Older feature stubs may contain historical "In scope (MVP)" headings. The
 canonical MVP scope is [[../00-Index/MVP-Scope]]; use it before interpreting
 those headings.
+
+## Architecture-completeness drafts (FMX-200)
+
+- [[feature-account-and-authentication]] — Identity & Access player-facing account/auth flows (FMX-203).
+- [[feature-league-season-orchestration]] — fixtures, standings, season rollover, promotion/relegation (FMX-203).
+- [[feature-staff-operations]] — hire/assign/wage staff flows (FMX-205).
 
 ## Feature stubs (future-scope planning)
 
