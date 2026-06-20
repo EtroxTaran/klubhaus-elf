@@ -2,6 +2,7 @@
 title: Client Telemetry
 status: current
 tags: [implementation, telemetry, pwa, errors, performance, indexeddb, release, versioning]
+context: [offline-sync, audit-security]
 created: 2026-05-17
 updated: 2026-06-19
 type: implementation

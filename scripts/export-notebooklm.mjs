@@ -4,15 +4,23 @@
 //
 // The vault is organised by *artefact type* (10-Architecture, 50-Game-Design,
 // 60-Research, ...), not by domain. A domain like "Transfer" is scattered across
-// ADRs + GDDRs + research + features + implementation, and there is no
-// `domain:`/`context:` frontmatter field. We therefore derive membership from
-// two signals, combined with OR:
-//   (a) frontmatter `tags:` intersecting the domain's tag set, or
-//   (b) a seed ADR-/GD- decision number appearing in the file basename.
-// The seed numbers come from docs/10-Architecture/bounded-context-map.md, so the
-// authoritative decision records land in their domain even when their tags do
-// not literally name the domain. A file may belong to several domains — that is
-// intended, so each NotebookLM space is self-contained.
+// ADRs + GDDRs + research + features + implementation.
+//
+// Membership is decided in this precedence (ADR-0134):
+//   1. PRIMARY (authoritative / "eindeutig"): an explicit `context:` frontmatter
+//      field naming one or more bounded-context slugs. When present it is the
+//      single source of truth — tags/seeds are ignored for that file, so a doc
+//      lands in exactly the bundle(s) it declares and nowhere else.
+//   2. FALLBACK (until the `context:` backfill completes): the legacy heuristic —
+//      frontmatter `tags:` intersecting the domain tag set, OR a seed ADR-/GD-
+//      decision number appearing in the file basename. The seed numbers come from
+//      docs/10-Architecture/bounded-context-map.md.
+// A file may belong to several contexts (list form) — that is intended, so each
+// NotebookLM space is self-contained.
+//
+// Superseded docs (status: superseded) are still exported, but into a
+// `_historical/` sub-folder per bundle with a banner, never alongside current
+// content — so "explain me this domain" reflects the live decision, not a retired one.
 //
 // Output: export/notebooklm/<NN-slug>/ with NotebookLM-friendly markdown
 // (YAML frontmatter rewritten to a readable header, [[wikilinks]] flattened to
@@ -72,8 +80,9 @@ const DOMAINS = [
   {
     slug: 'squad-player',
     name: 'Squad & Player',
-    tags: ['squad', 'player-skills', 'persona', 'hidden-attribute', 'discipline', 'lifecycle'],
-    seeds: ['ADR-0018', 'GD-0003', 'GD-0020', 'GD-0021', 'GD-0027'],
+    // persona / player-skills / hidden-attribute moved to the People / Persona & Skills bundle.
+    tags: ['squad', 'discipline', 'lifecycle'],
+    seeds: ['ADR-0018', 'ADR-0131', 'GD-0003', 'GD-0020', 'GD-0021'],
   },
   {
     slug: 'training',
@@ -84,14 +93,16 @@ const DOMAINS = [
   {
     slug: 'transfer',
     name: 'Transfer',
-    tags: ['transfer', 'transfers', 'scouting', 'recruitment', 'loan', 'contract-lifecycle', 'escalation'],
-    seeds: ['ADR-0064', 'ADR-0073', 'ADR-0075', 'ADR-0088', 'GD-0006', 'GD-0036'],
+    // scouting / recruitment moved to the dedicated Scouting bundle.
+    tags: ['transfer', 'transfers', 'loan', 'contract-lifecycle', 'escalation'],
+    seeds: ['ADR-0073', 'ADR-0075', 'ADR-0088', 'GD-0006', 'GD-0036'],
   },
   {
     slug: 'match',
     name: 'Match',
-    tags: ['match', 'match-engine', 'matchday', 'replay', 'weather', 'pitch'],
-    seeds: ['ADR-0003', 'ADR-0024', 'ADR-0026', 'ADR-0041', 'ADR-0049', 'ADR-0072', 'ADR-0087', 'GD-0002', 'GD-0025', 'GD-0029', 'GD-0035'],
+    // weather moved to the Environment & Climate bundle (pitch stays — shared with Stadium/Match).
+    tags: ['match', 'match-engine', 'matchday', 'replay', 'pitch'],
+    seeds: ['ADR-0003', 'ADR-0024', 'ADR-0026', 'ADR-0041', 'ADR-0049', 'ADR-0072', 'ADR-0087', 'ADR-0129', 'GD-0002', 'GD-0025', 'GD-0035'],
   },
   {
     slug: 'watch-party',
@@ -165,7 +176,6 @@ const DOMAINS = [
     tags: ['audit', 'security', 'privacy', 'anti-abuse', 'secrets', 'gdpr'],
     seeds: [],
   },
-  // --- Cross-cutting topic areas (proposed / not-yet-ratified contexts) ----
   {
     slug: 'ai-world-simulation',
     name: 'AI & World Simulation',
@@ -174,9 +184,10 @@ const DOMAINS = [
   },
   {
     slug: 'narrative-dialogue',
-    name: 'Narrative, Dialogue & Media',
-    tags: ['narrative', 'dialogue', 'press', 'media'],
-    seeds: ['ADR-0054', 'GD-0018', 'GD-0028', 'GD-0034'],
+    name: 'Narrative & Dialogue',
+    // media moved to the dedicated Media Ecology bundle.
+    tags: ['narrative', 'dialogue', 'press'],
+    seeds: ['ADR-0054', 'GD-0018', 'GD-0028'],
   },
   {
     slug: 'youth-academy',
@@ -190,7 +201,41 @@ const DOMAINS = [
     tags: ['statistics', 'analytics'],
     seeds: ['ADR-0081', 'GD-0031'],
   },
+  // --- Contexts split out of merged hosts so each is standalone-explainable ---
+  {
+    slug: 'people-persona-skills',
+    name: 'People / Persona & Skills',
+    tags: ['persona', 'player-skills', 'hidden-attribute', 'ocean', 'actor-class'],
+    seeds: ['ADR-0052'],
+  },
+  {
+    slug: 'scouting',
+    name: 'Scouting',
+    tags: ['scouting', 'recruitment'],
+    seeds: ['ADR-0064'],
+  },
+  {
+    slug: 'environment-climate',
+    name: 'Environment & Climate',
+    tags: ['weather', 'climate', 'environment'],
+    seeds: ['ADR-0077'],
+  },
+  {
+    slug: 'media-ecology',
+    name: 'Media Ecology',
+    tags: ['media', 'media-ecology', 'outlets'],
+    seeds: ['ADR-0085', 'ADR-0100', 'ADR-0126', 'GD-0034'],
+  },
+  {
+    slug: 'community-overlay',
+    name: 'Community Overlay Pipeline',
+    tags: ['community', 'overlay', 'modding', 'datapack'],
+    seeds: ['ADR-0059', 'ADR-0016', 'ADR-0097', 'ADR-0098', 'GD-0015'],
+  },
 ]
+
+// All known context slugs — used to validate `context:` frontmatter values.
+const KNOWN_SLUGS = new Set(DOMAINS.map((d) => d.slug))
 
 // Small, fixed set of cross-domain anchors copied into every bundle so each
 // NotebookLM space is readable on its own.
@@ -295,9 +340,13 @@ function loadFiles(includeRaw) {
       base,
       title: fields?.get('title')?.replace(/^["']|["']$/g, '') || base,
       tags: parseTags(fields?.get('tags')),
+      // `context:` is the authoritative membership SSOT (ADR-0134); single slug
+      // or list. Parsed with the same tolerant parser as tags.
+      contexts: parseTags(fields?.get('context')),
       type: fields?.get('type') || '',
       status: fields?.get('status') || '',
       updated: fields?.get('updated') || '',
+      supersededBy: (fields?.get('superseded_by') || '').replace(/^\[\[|\]\]$/g, '').trim(),
       content,
       decision: decisionId(base),
     }
@@ -305,19 +354,28 @@ function loadFiles(includeRaw) {
 }
 
 function matchesDomain(file, domain) {
+  // PRIMARY (ADR-0134): an explicit `context:` is authoritative — the file lands
+  // in exactly the declared bundle(s); tags/seeds are ignored for it.
+  if (file.contexts.length) return file.contexts.includes(domain.slug)
+  // FALLBACK (until backfilled): legacy tag-intersection OR seed basename.
   const tagSet = new Set(domain.tags.map((t) => t.toLowerCase()))
   if (file.tags.some((t) => tagSet.has(t))) return true
   if (file.decision && domain.seeds.includes(file.decision)) return true
   return false
 }
 
-function buildHeader(file, domainName, bodyLeadsWithH1) {
+function buildHeader(file, domainName, bodyLeadsWithH1, historical) {
   const meta = []
   if (file.type) meta.push(`**Typ:** ${file.type}`)
   if (file.status) meta.push(`**Status:** ${file.status}`)
   if (file.updated) meta.push(`**Aktualisiert:** ${file.updated}`)
   // Skip our own H1 when the body already opens with one, to avoid a duplicate title.
   const lines = bodyLeadsWithH1 ? [] : [`# ${file.title}`, '']
+  if (historical) {
+    lines.push(
+      `> ⚠️ **SUPERSEDED — historischer Stand. NICHT umsetzen.**${file.supersededBy ? ` Ersetzt durch ${file.supersededBy}.` : ''}`,
+    )
+  }
   lines.push(`> **Domäne:** ${domainName}${meta.length ? ` · ${meta.join(' · ')}` : ''}`)
   if (file.tags.length) lines.push(`> **Tags:** ${file.tags.join(', ')}`)
   lines.push(`> **Quelle:** \`${file.posix}\``)
@@ -325,10 +383,10 @@ function buildHeader(file, domainName, bodyLeadsWithH1) {
   return lines.join('\n')
 }
 
-function render(file, domainName, titleByBasename) {
+function render(file, domainName, titleByBasename, historical = false) {
   const body = flattenWikiLinks(stripFrontmatter(file.content), titleByBasename).replace(/^\s+/, '')
   const bodyLeadsWithH1 = /^#\s/.test(body)
-  return `${buildHeader(file, domainName, bodyLeadsWithH1)}\n${body}`.replace(/\s*$/, '') + '\n'
+  return `${buildHeader(file, domainName, bodyLeadsWithH1, historical)}\n${body}`.replace(/\s*$/, '') + '\n'
 }
 
 // Reserve a collision-free filename within a bundle directory.
@@ -381,14 +439,30 @@ function main() {
     mkdirSync(dir, { recursive: true })
 
     const matched = files.filter((f) => matchesDomain(f, domain))
+    const current = matched.filter((f) => f.status !== 'superseded')
+    const historical = matched.filter((f) => f.status === 'superseded')
     const used = new Set()
     const indexRows = []
 
-    for (const file of matched) {
+    for (const file of current) {
       const name = uniqueName(used, file.base, file)
       writeFileSync(path.join(dir, name), render(file, domain.name, titleByBasename))
       indexRows.push(`- **${file.title}** — \`${name}\` (Quelle: \`${file.posix}\`)`)
       assignedCount.set(file.posix, (assignedCount.get(file.posix) || 0) + 1)
+    }
+
+    // Superseded docs go into _historical/ with a banner — never beside current content.
+    const histRows = []
+    if (historical.length) {
+      const histDir = path.join(dir, '_historical')
+      mkdirSync(histDir, { recursive: true })
+      const usedHist = new Set()
+      for (const file of historical) {
+        const name = uniqueName(usedHist, file.base, file)
+        writeFileSync(path.join(histDir, name), render(file, domain.name, titleByBasename, true))
+        histRows.push(`- **${file.title}** — \`_historical/${name}\` (Quelle: \`${file.posix}\`)`)
+        assignedCount.set(file.posix, (assignedCount.get(file.posix) || 0) + 1)
+      }
     }
 
     // Shared-core anchors, clearly prefixed so they sort together and read as context.
@@ -417,23 +491,27 @@ function main() {
     const indexLines = [
       `# ${domain.name} — NotebookLM-Bundle`,
       '',
-      `Domänen-Slug: \`${domain.slug}\` · ${matched.length} domänenspezifische Datei(en) + ${sharedFiles.length} geteilte Kontext-Datei(en).`,
+      `Domänen-Slug: \`${domain.slug}\` · ${current.length} aktuelle Datei(en)${historical.length ? ` + ${historical.length} historische (superseded)` : ''} + ${sharedFiles.length} geteilte Kontext-Datei(en).`,
       '',
-      'Tag-Treffer + Seed-Entscheidungen, die dieses Bundle definieren:',
-      `- Tags: ${domain.tags.join(', ') || '—'}`,
-      `- Seeds: ${domain.seeds.join(', ') || '—'}`,
+      'Zugehörigkeit (ADR-0134): primär `context:`-Frontmatter, sonst Tag/Seed-Fallback.',
+      `- Slug: \`${domain.slug}\``,
+      `- Fallback-Tags: ${domain.tags.join(', ') || '—'}`,
+      `- Fallback-Seeds: ${domain.seeds.join(', ') || '—'}`,
       '',
       '## Enthaltene Dateien',
       '',
       ...indexRows.sort(),
       '',
+      ...(histRows.length
+        ? ['## Historisch (superseded — nicht umsetzen)', '', ...histRows.sort(), '']
+        : []),
       '## Geteilter Kontext (_shared-*)',
       '',
       ...sharedFiles.map((abs) => `- \`_shared-${basenameWithoutExt(abs)}.md\` (Quelle: \`${toPosix(abs)}\`)`),
       '',
     ]
     writeFileSync(path.join(dir, '_index.md'), indexLines.join('\n'))
-    summary.push({ dirName, name: domain.name, count: matched.length })
+    summary.push({ dirName, name: domain.name, count: current.length, historical: historical.length })
   })
 
   // Coverage report: which (non-shared) files matched no selected domain.
@@ -441,6 +519,12 @@ function main() {
   const unassigned = files
     .filter((f) => !assignedCount.has(f.posix) && !sharedPosix.has(f.posix))
     .map((f) => f.posix)
+    .sort()
+
+  // Integrity: any `context:` value that is not a known bundle slug is a typo/gap.
+  const badContext = files
+    .filter((f) => f.contexts.some((c) => !KNOWN_SLUGS.has(c)))
+    .map((f) => `${f.posix} → [${f.contexts.filter((c) => !KNOWN_SLUGS.has(c)).join(', ')}]`)
     .sort()
 
   const manifestLines = [
@@ -452,9 +536,9 @@ function main() {
     '',
     '## Bundles',
     '',
-    '| Ordner | Domäne | Domänenspezifische Dateien |',
-    '|---|---|---|',
-    ...summary.map((s) => `| \`${s.dirName}/\` | ${s.name} | ${s.count} |`),
+    '| Ordner | Domäne | Aktuelle Dateien | Historisch (superseded) |',
+    '|---|---|---|---|',
+    ...summary.map((s) => `| \`${s.dirName}/\` | ${s.name} | ${s.count} | ${s.historical || 0} |`),
     '',
     '## Geteilter Kontext (in jedem Bundle)',
     '',
@@ -463,19 +547,31 @@ function main() {
     `## Nicht zugeordnet (${unassigned.length})`,
     '',
     unassigned.length
-      ? 'Diese Notizen haben keiner Domäne via Tags/Seeds entsprochen — Manifest bei Bedarf nachschärfen:'
+      ? 'Diese Notizen haben weder ein `context:`-Frontmatter noch einen Tag/Seed-Treffer — `context:` ergänzen, um sie eindeutig zuzuordnen:'
       : 'Alle Notizen wurden mindestens einer Domäne zugeordnet.',
     '',
     ...unassigned.map((p) => `- \`${p}\``),
+    '',
+    `## Unbekannte \`context:\`-Werte (${badContext.length})`,
+    '',
+    badContext.length
+      ? 'Diese Notizen nennen einen `context:`-Slug, der kein bekanntes Bundle ist (Tippfehler oder fehlendes Bundle) — bitte korrigieren:'
+      : 'Keine — alle `context:`-Werte zeigen auf bekannte Bundles.',
+    '',
+    ...badContext.map((p) => `- \`${p}\``),
     '',
   ]
   writeFileSync(path.join(outRoot, '_MANIFEST.md'), manifestLines.join('\n'))
 
   // Console summary.
   console.log(`export-notebooklm: ${files.length} notes -> ${path.relative(root, outRoot) || outRoot}`)
-  for (const s of summary) console.log(`  ${s.dirName.padEnd(28)} ${String(s.count).padStart(3)} files  (${s.name})`)
+  for (const s of summary) {
+    const hist = s.historical ? ` +${s.historical} hist` : ''
+    console.log(`  ${s.dirName.padEnd(28)} ${String(s.count).padStart(3)} files${hist}  (${s.name})`)
+  }
   console.log(`  shared-core per bundle: ${sharedFiles.length} files`)
   console.log(`  unassigned: ${unassigned.length} (see _MANIFEST.md)`)
+  if (badContext.length) console.log(`  ⚠ unknown context: values: ${badContext.length} (see _MANIFEST.md)`)
 }
 
 main()

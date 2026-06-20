@@ -2,6 +2,7 @@
 title: Mobile route map, IA & client-state pattern (FMX-98)
 status: current
 tags: [research, ui-ux, mobile, ia, navigation, client-state, optimistic-ui, worker, determinism, fmx-98]
+context: offline-sync
 created: 2026-06-03
 updated: 2026-06-09
 type: research

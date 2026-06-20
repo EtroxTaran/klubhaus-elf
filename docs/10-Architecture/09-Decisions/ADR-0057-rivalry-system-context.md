@@ -2,6 +2,7 @@
 title: ADR-0057 Rivalry System Context
 status: accepted
 tags: [adr, architecture, ddd, rivalry, derby, fmx-34, fmx-40, accepted]
+context: rivalry
 created: 2026-05-28
 updated: 2026-06-08
 type: adr

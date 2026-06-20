@@ -2,6 +2,7 @@
 title: Club Financing Tools Separate from Investor - Research Synthesis 2026-06-01
 status: draft
 tags: [research, economy, finance, accounting, debt, compliance, investor, club-management, fmx-49]
+context: club-management-economy
 created: 2026-06-01
 updated: 2026-06-01
 type: research

@@ -2,6 +2,7 @@
 title: Audience & Atmosphere - Six Segments and Atmosphere Engine
 status: draft
 tags: [game-design, fans, audience, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, matchday, fan-service, privacy, gdpr, ip, naming, risk, fmx-32, fmx-41, fmx-42, fmx-43, fmx-46, fmx-48, fmx-54]
+context: audience-atmosphere
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

@@ -2,6 +2,7 @@
 title: Player-to-Player Transfer Negotiations
 status: draft
 tags: [game-design, transfers, multiplayer, escalation]
+context: transfer
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

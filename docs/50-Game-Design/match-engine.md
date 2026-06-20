@@ -2,6 +2,7 @@
 title: Match Engine - Swappable Spatial-Event Specification
 status: accepted
 tags: [game-design, match-engine, simulation, spatial-event, accepted]
+context: match
 created: 2026-05-16
 updated: 2026-06-19
 type: game-design

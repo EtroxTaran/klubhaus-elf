@@ -2,6 +2,7 @@
 title: ADR-0016 Community Datasets via Versioned Override Packs
 status: accepted
 tags: [adr, architecture, data, modding, community]
+context: community-overlay
 created: 2026-05-16
 updated: 2026-06-11
 type: adr

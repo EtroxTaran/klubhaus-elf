@@ -2,6 +2,7 @@
 title: ADR re-audit — Cluster C3 (Match Engine / Simulation / Presentation)
 status: draft
 tags: [research, audit, match-engine, determinism, renderer, frame-contract, babylon, spectator, in-match-control, cluster-c3]
+context: match
 created: 2026-06-08
 updated: 2026-06-08
 type: research

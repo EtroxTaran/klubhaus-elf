@@ -2,6 +2,7 @@
 title: Club Economy Commercial Contracts - Draft Contracts
 status: draft
 tags: [implementation, economy, commercial, contracts, contract-lifecycle, breach, tickets, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, security, webhook, financing, debt, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, fmx-78, fmx-187]
+context: [commercial-portfolio, club-management-economy]
 created: 2026-05-28
 updated: 2026-06-16
 type: implementation

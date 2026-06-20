@@ -2,6 +2,7 @@
 title: "Responsible gaming"
 status: current
 tags: [compliance, responsible-gaming, dark-patterns, monetization, loot-boxes, iarc, usk, fmx-193]
+context: audit-security
 created: 2026-06-15
 updated: 2026-06-19
 type: compliance

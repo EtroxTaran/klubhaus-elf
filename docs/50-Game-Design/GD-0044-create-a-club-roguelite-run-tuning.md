@@ -2,6 +2,7 @@
 title: GD-0044 Create-a-Club Roguelite run tuning
 status: accepted
 tags: [game-design, gddr, roguelite, run-end, insolvency, board, carry-slots, meta-progression, fmx-137]
+context: manager-legacy
 created: 2026-06-14
 updated: 2026-06-14
 type: gddr

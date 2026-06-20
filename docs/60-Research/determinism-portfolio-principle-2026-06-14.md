@@ -2,6 +2,7 @@
 title: Determinism Portfolio Principle
 status: current
 tags: [research, determinism, seeded-variance, replay, rng, match-engine, gameplay, fmx-138]
+context: match
 created: 2026-06-14
 updated: 2026-06-14
 type: research

@@ -2,6 +2,7 @@
 title: Economy System - Weekly Ledger, Accounting and Club Risk
 status: draft
 tags: [game-design, economy, finance, accounting, commercial, financing, debt, contract-lifecycle, breach, club-management, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, country-profile, calibration, soak-test, fmx-13, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-52, fmx-53]
+context: [club-management-economy, commercial-portfolio]
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

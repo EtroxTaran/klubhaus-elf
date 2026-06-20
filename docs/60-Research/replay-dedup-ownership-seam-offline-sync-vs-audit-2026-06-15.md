@@ -2,6 +2,7 @@
 title: "Replay/dedup ownership seam: Offline Sync vs Audit & Security (FMX-164)"
 status: current
 tags: [research, synthesis, replay-protection, idempotency, offline-sync, audit, command-reception, event-sourcing, fmx-164]
+context: [audit-security, offline-sync]
 created: 2026-06-15
 updated: 2026-06-15
 type: research

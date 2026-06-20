@@ -2,6 +2,7 @@
 title: FMX-105 Save Trust Closure Reconciliation
 status: current
 tags: [research, reconciliation, security, save-trust, command-integrity, provenance, fmx-105]
+context: audit-security
 created: 2026-06-19
 updated: 2026-06-19
 type: research

@@ -2,6 +2,7 @@
 title: Async Multiplayer - Private Group with Two Cadence Models
 status: draft
 tags: [game-design, mode, multiplayer, async]
+context: [league-orchestration, watch-party]
 created: 2026-05-16
 updated: 2026-06-16
 type: game-design

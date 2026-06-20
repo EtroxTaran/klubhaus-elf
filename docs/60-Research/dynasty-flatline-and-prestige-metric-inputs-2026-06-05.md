@@ -2,6 +2,7 @@
 title: Dynasty flatline investigation + prestige/HoF metric inputs
 status: current
 tags: [research, dynasty, flatline, engagement, prestige, hall-of-fame, legacy, era-detection, kpi, soak-test, determinism, manager-legacy, fmx-90]
+context: manager-legacy
 created: 2026-06-05
 updated: 2026-06-05
 type: research

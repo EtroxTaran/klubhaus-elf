@@ -2,6 +2,7 @@
 title: ADR re-audit — cluster C7 (Competition / League / Regulations / Fixtures / National)
 status: draft
 tags: [research, adr-audit, c7, league-orchestration, regulations, fixtures, tactics, rivalry, awards, national-team, opposition-template, determinism]
+context: [league-orchestration, regulations-compliance]
 created: 2026-06-08
 updated: 2026-06-08
 type: research

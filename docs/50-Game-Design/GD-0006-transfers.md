@@ -2,6 +2,7 @@
 title: GD-0006 Transfers & Scouting
 status: accepted
 tags: [game-design, gddr, transfers]
+context: transfer
 created: 2026-05-17
 updated: 2026-06-16
 type: game-design

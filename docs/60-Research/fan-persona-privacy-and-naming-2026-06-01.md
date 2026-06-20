@@ -2,6 +2,7 @@
 title: Fan Ecology Persona Privacy and Creative IP-Safe Naming Review - Research Synthesis 2026-06-01
 status: draft
 tags: [research, privacy, gdpr, ip, naming, community, overlay, audience, atmosphere, fmx-54]
+context: [audience-atmosphere, community-overlay]
 created: 2026-06-01
 updated: 2026-06-01
 type: research

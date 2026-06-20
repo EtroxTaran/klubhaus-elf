@@ -2,6 +2,7 @@
 title: "PostgreSQL schema ceiling SLO benchmark"
 status: current
 tags: [research, synthesis, postgresql, schema-per-save, archive, restore, audit-log, pg-dump, pitr, fmx-170]
+context: audit-security
 created: 2026-06-15
 updated: 2026-06-15
 type: research

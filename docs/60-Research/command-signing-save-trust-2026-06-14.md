@@ -2,6 +2,7 @@
 title: "Command signing and save trust posture (FMX-184)"
 status: current
 tags: [research, synthesis, security, command-signing, replay-protection, save-trust, provenance, hall-of-fame, leaderboards, fmx-184]
+context: audit-security
 created: 2026-06-14
 updated: 2026-06-14
 type: research

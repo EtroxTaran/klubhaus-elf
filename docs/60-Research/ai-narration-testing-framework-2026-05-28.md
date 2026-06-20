@@ -2,6 +2,7 @@
 title: AI Narration Testing and Framework Synthesis 2026-05-28
 status: current
 tags: [research, ai, llm, narrative, testing, evaluation, security, storylets, mvp]
+context: narrative-dialogue
 created: 2026-05-28
 updated: 2026-05-28
 type: research

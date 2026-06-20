@@ -2,6 +2,7 @@
 title: GD-0025 In-Match Controls & Live-Control Kit
 status: accepted
 tags: [game-design, gddr, ux, mobile, match, controls, halftime, shouts, fmx-100]
+context: match
 created: 2026-06-03
 updated: 2026-06-13
 type: game-design

@@ -2,6 +2,7 @@
 title: EOS Player, Staff, Skills and Personas - Research Synthesis 2026-05-28
 status: draft
 tags: [research, player-skills, staff, persona, people, fmx-23]
+context: people-persona-skills
 created: 2026-05-28
 updated: 2026-05-28
 type: research

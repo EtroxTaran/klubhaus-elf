@@ -2,6 +2,7 @@
 title: "Quality-profile enum and settlement-path reconciliation (FMX-147)"
 status: current
 tags: [research, synthesis, quality-profile, settlement, match-engine, commercial-portfolio, ddd, schema-versioning, fmx-147]
+context: [commercial-portfolio, match]
 created: 2026-06-12
 updated: 2026-06-13
 type: research

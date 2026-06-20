@@ -2,6 +2,7 @@
 title: Incident Response
 status: current
 tags: [implementation, operations, incident-response, observability, gdpr, privacy, breach-notification, bfdi, fmx-183]
+context: audit-security
 created: 2026-05-17
 updated: 2026-06-19
 type: implementation

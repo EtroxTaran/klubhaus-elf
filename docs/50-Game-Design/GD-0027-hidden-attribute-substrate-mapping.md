@@ -2,6 +2,7 @@
 title: GD-0027 Hidden-Attribute Substrate Mapping (8-meta / OCEAN → labels)
 status: accepted
 tags: [game-design, gddr, persona, ocean, player-skills, scouting, mentoring, determinism, fmx-86, gap-g22]
+context: people-persona-skills
 created: 2026-06-05
 updated: 2026-06-14
 type: game-design

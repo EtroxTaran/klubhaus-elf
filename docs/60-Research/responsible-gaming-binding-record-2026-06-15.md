@@ -2,6 +2,7 @@
 title: "Responsible gaming binding record (FMX-193)"
 status: current
 tags: [research, synthesis, responsible-gaming, dark-patterns, monetization, compliance, iarc, usk, fmx-193]
+context: audit-security
 created: 2026-06-15
 updated: 2026-06-15
 type: research

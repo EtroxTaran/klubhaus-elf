@@ -2,6 +2,7 @@
 title: AI Club Economy Behaviour - Research Synthesis 2026-06-01
 status: draft
 tags: [research, economy, ai, ai-clubs, world-simulation, debt, wages, transfers, homeostasis, fmx-51]
+context: [ai-world-simulation, club-management-economy]
 created: 2026-06-01
 updated: 2026-06-01
 type: research

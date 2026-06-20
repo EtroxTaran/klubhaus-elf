@@ -2,6 +2,7 @@
 title: "Age assurance and rating evidence"
 status: current
 tags: [compliance, legal, age-gate, age-assurance, ratings, iarc, usk, pegi, privacy, fmx-185]
+context: audit-security
 created: 2026-06-14
 updated: 2026-06-19
 type: compliance

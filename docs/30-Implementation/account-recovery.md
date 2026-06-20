@@ -2,6 +2,7 @@
 title: Account Recovery
 status: current
 tags: [implementation, account-recovery, master-key-envelope, key-rotation, web-crypto, recovery-codes]
+context: identity-access
 created: 2026-05-18
 updated: 2026-06-09
 type: implementation

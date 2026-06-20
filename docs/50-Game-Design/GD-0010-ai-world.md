@@ -2,6 +2,7 @@
 title: GD-0010 AI Managers & World Simulation
 status: accepted
 tags: [game-design, gddr, ai]
+context: ai-world-simulation
 created: 2026-05-17
 updated: 2026-06-11
 type: game-design

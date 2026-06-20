@@ -2,6 +2,7 @@
 title: Match-day Event Engine - Rule-based Trigger / Probability / Effect / Prevention
 status: draft
 tags: [game-design, events, matchday, weather, sanctions, operations, fan-service, safety, fmx-46, fmx-48]
+context: stadium-operations
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

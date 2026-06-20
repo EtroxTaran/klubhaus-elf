@@ -2,6 +2,7 @@
 title: ADR-0112 Age Assurance and Rating Evidence Posture
 status: accepted
 tags: [adr, architecture, privacy, compliance, age-gate, age-assurance, iarc, usk, fmx-185]
+context: audit-security
 created: 2026-06-14
 updated: 2026-06-19
 type: adr

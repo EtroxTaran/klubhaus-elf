@@ -2,6 +2,7 @@
 title: GDPR Compliance — RoPA, lawful basis, retention, DPIA, DPO
 status: current
 tags: [research, gdpr, eprivacy, privacy, ropa, dpia, compliance]
+context: audit-security
 created: 2026-05-18
 updated: 2026-06-14
 type: research

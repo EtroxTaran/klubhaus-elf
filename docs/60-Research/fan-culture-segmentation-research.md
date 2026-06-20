@@ -2,6 +2,7 @@
 title: Fan Culture Segmentation and Atmosphere Research
 status: in-review
 tags: [research, fans, atmosphere, segmentation, ultras, synthesis, wave-2]
+context: audience-atmosphere
 created: 2026-05-16
 updated: 2026-05-16
 type: research

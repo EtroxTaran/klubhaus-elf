@@ -2,6 +2,7 @@
 title: Standings Authority - League vs Statistics (FMX-131)
 status: current
 tags: [research, standings, league, statistics, analytics, cqrs, ddd, process-manager, promotion, relegation, fmx-131]
+context: [league-orchestration, statistics-analytics]
 created: 2026-06-12
 updated: 2026-06-12
 type: research

@@ -2,6 +2,7 @@
 title: MoneyBand → amountMinor Collapse Rule (FMX-149)
 status: current
 tags: [research, economy, accounting, ledger, money-band, collapse, determinism, replay, rng, ias37, fmx-149]
+context: club-management-economy
 created: 2026-06-12
 updated: 2026-06-12
 type: research

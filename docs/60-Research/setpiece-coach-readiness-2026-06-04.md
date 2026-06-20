@@ -2,6 +2,7 @@
 title: Set-piece-coach effect-readiness multiplier curve — synthesis (FMX-69)
 status: draft
 tags: [research, set-pieces, staff, training, tactics, match, determinism, fmx-69]
+context: [training, staff-operations]
 created: 2026-06-04
 updated: 2026-06-04
 type: research

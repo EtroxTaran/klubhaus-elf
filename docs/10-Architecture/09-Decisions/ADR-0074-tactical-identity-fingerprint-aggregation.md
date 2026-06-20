@@ -2,6 +2,7 @@
 title: ADR-0074 Tactical-Identity Fingerprint Aggregation Algorithm
 status: accepted
 tags: [adr, architecture, tactics, meta, match, fingerprint, ewma, bayes, determinism, fmx-68]
+context: tactics
 created: 2026-06-03
 updated: 2026-06-11
 type: adr

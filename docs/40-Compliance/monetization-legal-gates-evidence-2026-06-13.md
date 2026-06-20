@@ -2,6 +2,7 @@
 title: "Monetization legal gates evidence (FMX-194)"
 status: current
 tags: [compliance, legal, monetization, payment, refund, age-gate, consumer-law, gdpr, retention, security, webhook, fmx-194, fmx-186, fmx-187]
+context: audit-security
 created: 2026-06-13
 updated: 2026-06-16
 type: compliance

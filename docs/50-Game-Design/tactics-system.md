@@ -2,6 +2,7 @@
 title: Tactics System - Position, Role, Duty, Instructions, Traits
 status: draft
 tags: [game-design, tactics, match, mobile-ux]
+context: tactics
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

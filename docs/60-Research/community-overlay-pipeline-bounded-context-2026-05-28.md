@@ -2,6 +2,7 @@
 title: Community Overlay Pipeline Bounded Context - Ownership Synthesis 2026-05-28
 status: draft
 tags: [research, community, overlay, import, bounded-context, risk-legal, fmx-33]
+context: community-overlay
 created: 2026-05-28
 updated: 2026-05-28
 type: research

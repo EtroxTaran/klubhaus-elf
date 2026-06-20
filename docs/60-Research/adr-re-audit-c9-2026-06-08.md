@@ -2,6 +2,7 @@
 title: ADR re-audit — cluster C9 (Environment / Cross-cutting / Ops / Governance / Security)
 status: draft
 tags: [research, audit, adr-re-audit, c9, observability, ci-cd, worktree, team-topology, cursor, audit-security, naming, weather-pitch, governance]
+context: audit-security
 created: 2026-06-08
 updated: 2026-06-17
 type: research

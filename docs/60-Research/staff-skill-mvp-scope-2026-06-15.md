@@ -2,6 +2,7 @@
 title: "Staff skill MVP scope packet (FMX-152)"
 status: current
 tags: [research, synthesis, staff, skills, player-development, backroom, game-precedent, ddd, fmx-152]
+context: [people-persona-skills, staff-operations]
 created: 2026-06-15
 updated: 2026-06-16
 type: research

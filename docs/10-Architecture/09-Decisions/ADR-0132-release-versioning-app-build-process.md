@@ -2,6 +2,7 @@
 title: ADR-0132 Release Versioning and App Build Process
 status: accepted
 tags: [adr, architecture, release, versioning, app-build, dokploy, pwa, telemetry, provenance, sbom, fmx-178, draft, accepted]
+context: audit-security
 created: 2026-06-16
 updated: 2026-06-19
 type: adr

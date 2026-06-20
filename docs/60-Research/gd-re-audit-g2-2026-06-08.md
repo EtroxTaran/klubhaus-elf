@@ -2,6 +2,7 @@
 title: GD re-audit — Cluster G2 (Match / Tactics / Set-piece / In-match / Live-control)
 status: draft
 tags: [research, audit, gddr, game-design, match-engine, tactics, set-pieces, in-match-controls, live-coaching, determinism, cluster-g2, ratification-sweep]
+context: [match, tactics]
 created: 2026-06-08
 updated: 2026-06-08
 type: research

@@ -2,6 +2,7 @@
 title: "Pre-Mortem 2026-05-20 · 15 · Browser/Device/Storage Matrix"
 status: current
 tags: [research, pre-mortem, browser, ios-safari, indexeddb, storage, pwa, 2026-Q2]
+context: offline-sync
 created: 2026-05-20
 updated: 2026-05-22
 type: research

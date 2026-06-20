@@ -2,6 +2,7 @@
 title: ADR-0003 Match Engine Architecture
 status: superseded
 tags: [adr, match-engine, simulation, web-worker, deterministic]
+context: match
 created: 2026-05-15
 updated: 2026-06-11
 accepted_at: 2026-05-16

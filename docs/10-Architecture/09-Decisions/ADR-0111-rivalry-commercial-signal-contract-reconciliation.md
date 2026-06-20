@@ -2,6 +2,7 @@
 title: ADR-0111 Rivalry Commercial Signal Contract Reconciliation
 status: accepted
 tags: [adr, architecture, ddd, rivalry, commercial, derby, bounded-context, contract, fmx-134, accepted]
+context: [rivalry, commercial-portfolio]
 created: 2026-06-14
 updated: 2026-06-19
 type: adr

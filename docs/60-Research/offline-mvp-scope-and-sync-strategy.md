@@ -3,6 +3,7 @@ title: Offline MVP Scope and Future Sync Strategy
 status: current
 binding: true
 tags: [research, offline, pwa, mvp, sync, indexeddb]
+context: offline-sync
 created: 2026-05-18
 updated: 2026-05-27
 type: research

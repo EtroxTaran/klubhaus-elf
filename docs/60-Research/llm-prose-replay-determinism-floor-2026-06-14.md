@@ -2,6 +2,7 @@
 title: LLM Prose Replay Determinism Floor
 status: current
 tags: [research, ai, llm, narrative, replay, determinism, match-engine, commentary, fmx-153]
+context: narrative-dialogue
 created: 2026-06-14
 updated: 2026-06-14
 type: research

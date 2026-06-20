@@ -2,6 +2,7 @@
 title: State Machine - Youth Academy
 status: current
 tags: [architecture, state-machine, youth, academy, lifecycle, fmx-29, proposed]
+context: youth-academy
 created: 2026-05-28
 updated: 2026-06-19
 type: state-machine

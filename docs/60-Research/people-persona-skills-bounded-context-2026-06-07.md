@@ -2,6 +2,7 @@
 title: People / Persona & Skills bounded context — grounding + recommendation
 status: draft
 tags: [research, people, persona, player-skills, ddd, bounded-context, fmx-23]
+context: people-persona-skills
 created: 2026-06-07
 updated: 2026-06-07
 type: research

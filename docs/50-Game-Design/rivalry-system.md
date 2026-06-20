@@ -2,6 +2,7 @@
 title: Rivalry System - Emergent Five-sub-score Rivalry Graph
 status: draft
 tags: [game-design, rivalry, fans, history, matchday, risk, fmx-46]
+context: rivalry
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

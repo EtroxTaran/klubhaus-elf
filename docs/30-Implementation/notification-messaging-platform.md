@@ -2,6 +2,7 @@
 title: Notification and Messaging Platform
 status: current
 tags: [implementation, notification, messaging, inbox, email, push, realtime, scheduler, gdpr, offline, fmx-156, fmx-198]
+context: notification
 created: 2026-05-22
 updated: 2026-06-19
 type: implementation

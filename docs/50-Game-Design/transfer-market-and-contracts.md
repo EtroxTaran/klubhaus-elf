@@ -2,6 +2,7 @@
 title: Transfer Market and Contracts
 status: draft
 tags: [game-design, transfers, contracts, ai, economy, scouting, narrative]
+context: [transfer, squad-player]
 created: 2026-05-17
 updated: 2026-06-11
 type: game-design

@@ -2,6 +2,7 @@
 title: GD-0004 Tactics & Formations
 status: accepted
 tags: [game-design, gddr, tactics]
+context: tactics
 created: 2026-05-17
 updated: 2026-06-11
 type: game-design

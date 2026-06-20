@@ -2,6 +2,7 @@
 title: PWA Offline Strategy
 status: superseded
 tags: [pwa, implementation]
+context: offline-sync
 created: 2026-05-15
 updated: 2026-05-18
 type: implementation

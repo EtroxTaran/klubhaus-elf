@@ -2,6 +2,7 @@
 title: Community Overlay Pipeline — decision grounding 2026-06-07
 status: draft
 tags: [research, community, overlay, import, ddd, dsa, bounded-context, fmx-33, fmx-54]
+context: community-overlay
 created: 2026-06-07
 updated: 2026-06-07
 type: research

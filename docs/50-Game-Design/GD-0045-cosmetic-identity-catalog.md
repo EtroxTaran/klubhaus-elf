@@ -2,6 +2,7 @@
 title: GD-0045 Cosmetic Identity Catalog
 status: accepted
 tags: [game-design, gddr, cosmetics, identity, monetization, no-p2w, create-a-club, fmx-192, accepted]
+context: audit-security
 created: 2026-06-15
 updated: 2026-06-19
 type: gddr

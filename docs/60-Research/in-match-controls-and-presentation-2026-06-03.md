@@ -2,6 +2,7 @@
 title: In-Match Controls & Presentation — synthesis (FMX-100)
 status: current
 tags: [research, match, ui-ux, controls, determinism, canvas, performance, accessibility, fmx-100]
+context: match
 created: 2026-06-03
 updated: 2026-06-03
 type: research

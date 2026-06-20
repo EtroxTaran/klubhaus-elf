@@ -2,6 +2,7 @@
 title: State Machine - Dynasty Board & Ownership
 status: current
 tags: [architecture, state-machine, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, club-management, fmx-89]
+context: club-management-economy
 created: 2026-06-05
 updated: 2026-06-12
 type: state-machine

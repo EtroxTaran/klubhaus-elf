@@ -2,6 +2,7 @@
 title: "Dynasty board, ownership & bankruptcy — research synthesis (FMX-89)"
 status: draft
 tags: [research, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, determinism, fmx-89]
+context: club-management-economy
 created: 2026-06-05
 updated: 2026-06-05
 type: research

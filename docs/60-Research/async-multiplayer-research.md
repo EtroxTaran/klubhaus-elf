@@ -2,6 +2,7 @@
 title: Async Multiplayer Research - Cadence, Watch Parties, Transfer Escalation
 status: in-review
 tags: [research, async, multiplayer, watch-party, synthesis, wave-2]
+context: watch-party
 created: 2026-05-16
 updated: 2026-05-16
 type: research

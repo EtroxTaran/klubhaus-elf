@@ -2,6 +2,7 @@
 title: Loan Cap and Obligation Catalog
 status: current
 tags: [research, synthesis, transfer, loan, regulations, obligation-to-buy, deterministic, fmx-155]
+context: [transfer, regulations-compliance]
 created: 2026-06-16
 updated: 2026-06-16
 type: research

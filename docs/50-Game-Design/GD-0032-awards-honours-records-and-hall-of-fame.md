@@ -2,6 +2,7 @@
 title: GD-0032 Awards, Honours, Records & Hall of Fame
 status: accepted
 tags: [game-design, gddr, awards, honours, records, hall-of-fame, legacy, prestige, dynasty, fmx-95]
+context: manager-legacy
 created: 2026-06-06
 updated: 2026-06-13
 type: game-design

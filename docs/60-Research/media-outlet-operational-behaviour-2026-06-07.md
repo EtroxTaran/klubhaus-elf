@@ -2,6 +2,7 @@
 title: Media-Outlet Operational Behaviour & Ownership (FMX-82)
 status: current
 tags: [research, media, outlets, press, narrative, media-ecology, editorial-stance, reach, cadence, determinism, ddd, fmx-82]
+context: media-ecology
 created: 2026-06-07
 updated: 2026-06-07
 type: research

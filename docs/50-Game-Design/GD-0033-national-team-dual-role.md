@@ -2,6 +2,7 @@
 title: GD-0033 National-Team (Bundestrainer) Dual-Role
 status: accepted
 tags: [game-design, gddr, national-team, dual-role, late-game, dynasty, prestige, career-progression, fmx-84]
+context: [manager-legacy, league-orchestration]
 created: 2026-06-06
 updated: 2026-06-13
 type: game-design

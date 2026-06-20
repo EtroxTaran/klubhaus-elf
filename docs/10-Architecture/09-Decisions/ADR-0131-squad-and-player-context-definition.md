@@ -2,6 +2,7 @@
 title: ADR-0131 Squad & Player Context Definition
 status: accepted
 tags: [adr, architecture, ddd, bounded-context, sporting-core, squad-player, player-state, availability, contracts, discipline, fmx-132, accepted]
+context: squad-player
 created: 2026-06-16
 updated: 2026-06-19
 type: adr

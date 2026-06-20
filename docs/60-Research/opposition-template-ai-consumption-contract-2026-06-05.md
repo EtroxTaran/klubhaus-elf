@@ -2,6 +2,7 @@
 title: "Opposition-template AI consumption contract - research synthesis (FMX-67)"
 status: draft
 tags: [research, tactics, opposition, ai, match, determinism, replay, fmx-67]
+context: [tactics, ai-world-simulation]
 created: 2026-06-05
 updated: 2026-06-05
 type: research

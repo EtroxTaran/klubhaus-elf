@@ -2,6 +2,7 @@
 title: Feature - Cosmetic Identity Catalog
 status: current
 tags: [feature, cosmetics, identity, create-a-club, monetization, no-p2w, fmx-192]
+context: [commercial-portfolio, audit-security]
 created: 2026-06-15
 updated: 2026-06-19
 type: feature

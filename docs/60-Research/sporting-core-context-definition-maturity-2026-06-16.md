@@ -2,6 +2,7 @@
 title: Sporting Core Context-definition Maturity
 status: current
 tags: [research, synthesis, ddd, bounded-context, sporting-core, match, training, squad-player, fmx-132]
+context: [match, squad-player, training]
 created: 2026-06-16
 updated: 2026-06-16
 type: research

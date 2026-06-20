@@ -2,6 +2,7 @@
 title: ADR-0102 Notification platform re-ratification + offline-delivery clause
 status: accepted
 tags: [adr, architecture, notification, messaging, offline, pwa, sync, governance, supersede, fmx-106, fmx-156, accepted]
+context: [notification, offline-sync]
 created: 2026-06-08
 updated: 2026-06-19
 type: adr

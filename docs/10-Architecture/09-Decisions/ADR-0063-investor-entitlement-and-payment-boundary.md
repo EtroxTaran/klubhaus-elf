@@ -2,6 +2,7 @@
 title: ADR-0063 Investor Entitlement and Payment Boundary
 status: accepted
 tags: [adr, architecture, economy, investor, monetization, entitlement, iap, payment, compliance, legal, security, webhook, risk-legal, fmx-50, fmx-187, proposed, accepted]
+context: [audit-security, club-management-economy]
 created: 2026-06-01
 updated: 2026-06-19
 type: adr

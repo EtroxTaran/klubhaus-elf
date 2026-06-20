@@ -2,6 +2,7 @@
 title: Set Pieces - Corners, Free Kicks, Penalties, Throw-ins
 status: draft
 tags: [game-design, tactics, set-pieces]
+context: tactics
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

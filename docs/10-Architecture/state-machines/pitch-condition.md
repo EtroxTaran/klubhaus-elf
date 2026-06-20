@@ -2,6 +2,7 @@
 title: State Machine - Pitch Condition
 status: current
 tags: [architecture, state-machine, pitch, weather, stadium, environment, match, fmx-66]
+context: [stadium-operations, environment-climate]
 created: 2026-06-05
 updated: 2026-06-14
 type: state-machine

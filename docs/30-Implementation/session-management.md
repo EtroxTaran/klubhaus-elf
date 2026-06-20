@@ -2,6 +2,7 @@
 title: Session Management
 status: current
 tags: [implementation, session, redis, refresh-token, rotation, device-list, csrf, tanstack-start]
+context: identity-access
 created: 2026-05-18
 updated: 2026-05-18
 type: implementation

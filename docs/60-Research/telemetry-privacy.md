@@ -2,6 +2,7 @@
 title: Telemetry, Privacy and GDPR - Locked Decisions
 status: current
 tags: [research, telemetry, privacy, gdpr, observability, pwa]
+context: audit-security
 created: 2026-05-17
 updated: 2026-06-18
 type: research

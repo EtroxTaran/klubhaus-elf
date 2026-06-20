@@ -2,6 +2,7 @@
 title: Matchday Operating Costs and Risk-Cost Settlement - Research Synthesis 2026-05-29
 status: draft
 tags: [research, economy, matchday, operations, security, stadium, sanctions, risk, fmx-46]
+context: [stadium-operations, club-management-economy]
 created: 2026-05-29
 updated: 2026-05-29
 type: research

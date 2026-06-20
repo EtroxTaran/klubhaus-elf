@@ -2,6 +2,7 @@
 title: ADR-0067 Set-piece variant selection determinism
 status: accepted
 tags: [adr, architecture, match-engine, determinism, set-pieces, tactics, rng, replay, gap-g9, fmx-70]
+context: [match, tactics]
 created: 2026-06-02
 updated: 2026-06-08
 accepted_at: 2026-06-02

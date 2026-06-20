@@ -2,6 +2,7 @@
 title: Feature - Async Week Loop
 status: draft
 tags: [feature, multiplayer, async]
+context: league-orchestration
 created: 2026-05-16
 updated: 2026-05-18
 type: feature

@@ -2,6 +2,7 @@
 title: Isometric Stadium & Campus — Presentation Research
 status: current
 tags: [research, design, 3d, stadium, presentation]
+context: stadium-operations
 updated: 2026-05-27
 type: research
 related: [[stadium-and-campus]], [[anstoss-series-deep-dive]], [[presentation-renderer-strategy]], [[../10-Architecture/09-Decisions/ADR-0047-babylon-3d-presentation-engine]], [[../10-Architecture/09-Design-Styleguide]]

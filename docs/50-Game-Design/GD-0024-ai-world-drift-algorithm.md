@@ -2,6 +2,7 @@
 title: GD-0024 AI World-Drift Algorithm
 status: accepted
 tags: [game-design, gddr, ai-world, world-drift, dynasty, determinism, policy-catalog, fmx-91, fmx-139, accepted]
+context: ai-world-simulation
 created: 2026-06-03
 updated: 2026-06-19
 type: game-design

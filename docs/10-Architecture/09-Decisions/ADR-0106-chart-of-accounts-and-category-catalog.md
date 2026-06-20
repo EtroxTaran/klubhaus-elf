@@ -2,6 +2,7 @@
 title: ADR-0106 Chart of Accounts and Category Catalog
 status: accepted
 tags: [adr, architecture, economy, accounting, ledger, chart-of-accounts, category-code, club-management, fmx-150, accepted]
+context: club-management-economy
 created: 2026-06-13
 updated: 2026-06-13
 type: adr

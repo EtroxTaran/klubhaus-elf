@@ -2,6 +2,7 @@
 title: "Monetization legal gates (FMX-194)"
 status: current
 tags: [research, synthesis, monetization, payment, merchant-of-record, refund, age-gate, legal, compliance, consumer-law, fmx-194]
+context: audit-security
 created: 2026-06-13
 updated: 2026-06-13
 type: research

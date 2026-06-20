@@ -2,6 +2,7 @@
 title: ADR-0098 Save-format KDF upgrade (Argon2id passphrase path) + active-pack refs in SavePayload
 status: accepted
 tags: [adr, save, encryption, kdf, argon2id, pbkdf2, community-packs, determinism, offline-first, p2p, supersession, accepted]
+context: [audit-security, community-overlay]
 created: 2026-06-08
 updated: 2026-06-19
 type: adr

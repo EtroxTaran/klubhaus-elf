@@ -2,6 +2,7 @@
 title: ADR-0043 Notification and Messaging Platform
 status: superseded
 tags: [adr, architecture, notification, messaging, realtime, email, push, gdpr, fmx-198]
+context: notification
 created: 2026-05-22
 updated: 2026-06-19
 accepted_at: 2026-05-22

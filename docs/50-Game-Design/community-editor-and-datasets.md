@@ -2,6 +2,7 @@
 title: Community Editor and Dataset Override Packs
 status: draft
 tags: [game-design, editor, datasets, modding, community, privacy, gdpr, dsa, ip, naming, fmx-54]
+context: community-overlay
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

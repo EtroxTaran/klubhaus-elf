@@ -2,6 +2,7 @@
 title: Youth Academy bounded context — decision grounding 2026-06-07
 status: draft
 tags: [research, youth, academy, ddd, bounded-context, regulations, fmx-29]
+context: youth-academy
 created: 2026-06-07
 updated: 2026-06-07
 type: research

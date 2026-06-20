@@ -2,6 +2,7 @@
 title: ADR-0055 Tactics Context
 status: accepted
 tags: [adr, architecture, ddd, tactics, set-pieces, fmx-28, fmx-37, accepted]
+context: tactics
 created: 2026-05-28
 updated: 2026-06-14
 type: adr

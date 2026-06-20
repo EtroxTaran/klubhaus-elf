@@ -2,6 +2,7 @@
 title: Feature - Club Economy MVP Pillar
 status: draft
 tags: [feature, mvp, economy, finance, accounting, financing, debt, commercial, contract-lifecycle, breach, club-management, season-tickets, cup, competition, matchday, operations, fan-service, fmx-13, fmx-41, fmx-43, fmx-44, fmx-45, fmx-46, fmx-48, fmx-49]
+context: club-management-economy
 created: 2026-05-27
 updated: 2026-06-01
 type: feature

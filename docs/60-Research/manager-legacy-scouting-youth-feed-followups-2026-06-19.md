@@ -2,6 +2,7 @@
 title: Manager Legacy Scouting Youth Feed Follow-ups
 status: draft
 tags: [research, synthesis, fmx-157, manager-legacy, scouting, youth, academy, contracts, retention]
+context: [manager-legacy, scouting, youth-academy]
 created: 2026-06-19
 updated: 2026-06-19
 type: research

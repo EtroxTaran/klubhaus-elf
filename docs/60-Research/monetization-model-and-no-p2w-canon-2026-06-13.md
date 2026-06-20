@@ -2,6 +2,7 @@
 title: "Monetization model and no-P2W canon (FMX-191)"
 status: current
 tags: [research, synthesis, monetization, no-p2w, pricing, cosmetics, supporter, legal, fmx-191]
+context: audit-security
 created: 2026-06-13
 updated: 2026-06-13
 type: research

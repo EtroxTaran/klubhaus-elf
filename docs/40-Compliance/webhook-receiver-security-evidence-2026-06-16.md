@@ -2,6 +2,7 @@
 title: Webhook receiver security evidence
 status: current
 tags: [compliance, security, evidence, webhook, webhooks, payment, entitlement, pentest, bug-bounty, fmx-187]
+context: audit-security
 created: 2026-06-16
 updated: 2026-06-16
 type: compliance

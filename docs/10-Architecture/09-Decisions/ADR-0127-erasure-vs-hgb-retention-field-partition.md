@@ -2,6 +2,7 @@
 title: ADR-0127 Erasure vs HGB retention field partition
 status: accepted
 tags: [adr, architecture, privacy, gdpr, erasure, retention, hgb, ao, payments, finance-records, dsar, fmx-186]
+context: audit-security
 created: 2026-06-16
 updated: 2026-06-16
 type: adr

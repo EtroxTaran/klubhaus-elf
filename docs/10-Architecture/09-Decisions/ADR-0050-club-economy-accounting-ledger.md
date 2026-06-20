@@ -2,6 +2,7 @@
 title: ADR-0050 Club Economy Accounting Ledger
 status: accepted
 tags: [adr, architecture, economy, accounting, club-management, financing, debt, commercial, cup, competition, matchday, catering, merchandise, operations, fan-service, investor, fmx-13, fmx-32, fmx-41, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, accepted]
+context: club-management-economy
 created: 2026-05-27
 updated: 2026-06-13
 type: adr

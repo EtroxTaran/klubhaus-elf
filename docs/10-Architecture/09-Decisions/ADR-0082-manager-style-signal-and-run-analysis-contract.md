@@ -2,6 +2,7 @@
 title: ADR-0082 Manager Style-Signal & Run-Analysis Contract (MVP hooks)
 status: accepted
 tags: [adr, architecture, manager, legacy, roguelite, meta, signals, run-analysis, determinism, fmx-93]
+context: manager-legacy
 created: 2026-06-05
 updated: 2026-06-11
 type: adr

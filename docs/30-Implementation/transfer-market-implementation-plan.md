@@ -2,6 +2,7 @@
 title: Transfer Market Implementation Plan
 status: current
 tags: [implementation, transfers, contracts, ai, testing]
+context: transfer
 created: 2026-05-17
 updated: 2026-05-17
 type: implementation

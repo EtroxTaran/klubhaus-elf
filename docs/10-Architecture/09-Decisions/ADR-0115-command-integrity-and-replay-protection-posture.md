@@ -2,6 +2,7 @@
 title: ADR-0115 Command Integrity and Replay Protection Posture
 status: accepted
 tags: [adr, architecture, security, command-signing, replay-protection, offline-sync, audit, fmx-184]
+context: audit-security
 created: 2026-06-14
 updated: 2026-06-15
 type: adr

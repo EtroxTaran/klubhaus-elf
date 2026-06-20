@@ -2,6 +2,7 @@
 title: ADR-0109 Payment Provider and Monetization Legal Gates
 status: accepted
 tags: [adr, architecture, monetization, payment, merchant-of-record, refund, age-gate, compliance, legal, fmx-194, accepted]
+context: audit-security
 created: 2026-06-13
 updated: 2026-06-19
 type: adr

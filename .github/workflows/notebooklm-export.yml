@@ -1,0 +1,38 @@
+name: NotebookLM export
+
+# Regenerates the per-domain NotebookLM bundles from the docs vault on every push
+# to main and publishes them as a downloadable build artifact. The export under
+# export/notebooklm/ is git-ignored on purpose (generated, not source), so this
+# workflow is the canonical "latest" copy: download the artifact, import a bundle
+# into NotebookLM. Membership + bundle layout live in scripts/export-notebooklm.mjs
+# (per-domain `context:` SSOT, ADR-0134). Thin trigger only — logic is in the script.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: notebooklm-export
+  cancel-in-progress: true
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Regenerate NotebookLM bundles (clean)
+        run: node scripts/export-notebooklm.mjs --clean
+      - name: Upload bundles as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: notebooklm-export
+          path: export/notebooklm/
+          if-no-files-found: error
+          retention-days: 30

@@ -2,6 +2,7 @@
 title: Tactical-Identity Fingerprint Aggregation — synthesis (FMX-68)
 status: draft
 tags: [research, match, tactics, meta, fingerprint, ewma, bayes, determinism, fmx-68]
+context: [tactics, match]
 created: 2026-06-03
 updated: 2026-06-03
 type: research

@@ -2,6 +2,7 @@
 title: Payment retention legal review evidence
 status: current
 tags: [compliance, legal, gdpr, erasure, retention, hgb, ao, payments, tax, fmx-186]
+context: audit-security
 created: 2026-06-16
 updated: 2026-06-16
 type: compliance

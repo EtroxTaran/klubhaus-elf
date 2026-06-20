@@ -2,6 +2,7 @@
 title: ADR-0002 Offline-first Strategy
 status: superseded
 tags: [adr, pwa, offline-first, service-worker, workbox, indexeddb, dexie, sync]
+context: offline-sync
 created: 2026-05-15
 updated: 2026-06-11
 accepted_at: 2026-05-16

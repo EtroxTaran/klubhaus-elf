@@ -2,6 +2,7 @@
 title: Core Loop - Season Arc and Weekly Heartbeat
 status: draft
 tags: [game-design, core-loop, pacing]
+context: league-orchestration
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

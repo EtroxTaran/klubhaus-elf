@@ -2,6 +2,7 @@
 title: Privacy and Consent — implementation surface
 status: current
 tags: [implementation, gdpr, eprivacy, privacy, consent, dsar, deletion, age-gate, breach-runbook, community, naming, fmx-54, fmx-186]
+context: audit-security
 created: 2026-05-18
 updated: 2026-06-19
 type: implementation

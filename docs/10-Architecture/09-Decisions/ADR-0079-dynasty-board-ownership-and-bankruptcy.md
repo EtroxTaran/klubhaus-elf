@@ -2,6 +2,7 @@
 title: ADR-0079 Dynasty Board, Ownership & Bankruptcy FSMs
 status: accepted
 tags: [adr, architecture, ddd, dynasty, board, confidence, ownership, takeover, bankruptcy, administration, club-management, determinism, replay, world-drift, fmx-89, fmx-139, accepted]
+context: club-management-economy
 created: 2026-06-05
 updated: 2026-06-19
 type: adr

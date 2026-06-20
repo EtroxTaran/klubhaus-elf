@@ -2,6 +2,7 @@
 title: GD-0021 Player and Staff Development and Decision Influence
 status: accepted
 tags: [game-design, gddr, player-development, staff, transfers, skills, fmx-38]
+context: [squad-player, staff-operations, people-persona-skills]
 created: 2026-05-28
 updated: 2026-06-15
 type: game-design

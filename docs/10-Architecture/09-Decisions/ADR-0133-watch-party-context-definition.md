@@ -2,6 +2,7 @@
 title: ADR-0133 Watch Party Context Definition
 status: accepted
 tags: [adr, architecture, ddd, bounded-context, watch-party, match, notification, offline-sync, crdt, fmx-159, accepted]
+context: watch-party
 created: 2026-06-17
 updated: 2026-06-19
 type: adr

@@ -2,6 +2,7 @@
 title: ADR-0058 Club Economy Commercial Impact Boundary
 status: accepted
 tags: [adr, architecture, economy, commercial, contract-lifecycle, breach, club-management, commercial-portfolio, cup, competition, matchday, catering, merchandise, operations, fan-service, investor, entitlement, fmx-32, fmx-41, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-50, accepted]
+context: [club-management-economy, commercial-portfolio]
 created: 2026-05-28
 updated: 2026-06-08
 type: adr

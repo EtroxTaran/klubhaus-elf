@@ -2,6 +2,7 @@
 title: League Regulations and Football Pyramids Research
 status: in-review
 tags: [research, regulations, leagues, pyramid, dfb, fa, lfp, figc, laliga]
+context: [regulations-compliance, league-orchestration]
 created: 2026-05-16
 updated: 2026-05-16
 type: research

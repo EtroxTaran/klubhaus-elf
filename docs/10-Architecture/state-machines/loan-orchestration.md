@@ -2,6 +2,7 @@
 title: State Machine - Loan Orchestration
 status: current
 tags: [architecture, state-machine, transfer, loan, saga, fmx-85, proposed]
+context: transfer
 created: 2026-06-04
 updated: 2026-06-19
 type: state-machine

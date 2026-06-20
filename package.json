@@ -5,9 +5,11 @@
   "type": "module",
   "packageManager": "pnpm@11.7.0",
   "scripts": {
+    "build": "node scripts/export-notebooklm.mjs --clean",
     "docs:check": "node scripts/docs-check.mjs",
     "docs:status-check": "node scripts/status-consistency-check.mjs",
     "docs:export:notebooklm": "node scripts/export-notebooklm.mjs",
+    "docs:export:notebooklm:clean": "node scripts/export-notebooklm.mjs --clean",
     "docs:preview": "node tools/docs-preview/preview.mjs",
     "sync:design": "node scripts/design-sync.mjs",
     "hooks:install": "lefthook install",

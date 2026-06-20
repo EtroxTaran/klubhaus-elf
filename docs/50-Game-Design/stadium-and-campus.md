@@ -2,6 +2,7 @@
 title: Stadium and Club Campus - Build-out and On-grounds Economy
 status: draft
 tags: [game-design, stadium, infrastructure, anstoss, commercial, contract-lifecycle, breach, season-tickets, matchday, catering, merchandise, operations, fan-service, fmx-41, fmx-43, fmx-44, fmx-46, fmx-47, fmx-48]
+context: [stadium-operations, commercial-portfolio]
 created: 2026-05-16
 updated: 2026-06-11
 type: game-design

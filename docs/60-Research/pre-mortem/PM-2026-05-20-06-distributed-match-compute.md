@@ -2,6 +2,7 @@
 title: "Pre-Mortem 2026-05-20 · 06 · Distributed Match Compute (BYOC)"
 status: current
 tags: [research, pre-mortem, byoc, distributed-compute, match-engine, security, future-scope, 2026-Q2]
+context: [match, audit-security]
 created: 2026-05-20
 updated: 2026-05-22
 type: research

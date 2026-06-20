@@ -2,6 +2,7 @@
 title: National-team (Bundestrainer) dual-role — research synthesis
 status: synthesized
 tags: [research, national-team, dual-role, late-game, international-calendar, fmx-84]
+context: league-orchestration
 created: 2026-06-06
 updated: 2026-06-06
 type: research

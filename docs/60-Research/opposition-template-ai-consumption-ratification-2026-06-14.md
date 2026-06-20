@@ -2,6 +2,7 @@
 title: "Opposition-template AI consumption ratification cleanup (FMX-136)"
 status: current
 tags: [research, synthesis, tactics, opposition, ai-world, match, determinism, replay, snapshot, fmx-136, fmx-67]
+context: [tactics, ai-world-simulation]
 created: 2026-06-14
 updated: 2026-06-14
 type: research

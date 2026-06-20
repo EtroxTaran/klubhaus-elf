@@ -3,6 +3,7 @@ title: Player Strength Presentation - Impact Lens
 status: current
 binding: true
 tags: [research, player-strength, squad-ui, tactics, scouting, ux, read-model]
+context: [statistics-analytics, squad-player]
 created: 2026-05-17
 updated: 2026-05-17
 type: research

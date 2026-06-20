@@ -2,6 +2,7 @@
 title: Feature - Match-day Event Engine
 status: draft
 tags: [feature, events, matchday, weather, sanctions]
+context: match
 created: 2026-05-16
 updated: 2026-05-18
 type: feature

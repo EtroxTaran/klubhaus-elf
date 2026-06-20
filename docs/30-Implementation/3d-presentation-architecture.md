@@ -2,6 +2,7 @@
 title: 3D Presentation Architecture (Babylon.js)
 status: current
 tags: [implementation, presentation, 3d, babylon, stadium, cutscene, pwa, mobile, context-loss]
+context: [match, stadium-operations]
 created: 2026-05-20
 updated: 2026-06-15
 type: implementation

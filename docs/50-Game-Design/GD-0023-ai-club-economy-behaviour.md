@@ -2,6 +2,7 @@
 title: GD-0023 AI Club Economy Behaviour
 status: accepted
 tags: [game-design, gddr, ai, ai-clubs, economy, world-simulation, fmx-51]
+context: ai-world-simulation
 created: 2026-06-01
 updated: 2026-06-11
 type: game-design

@@ -2,6 +2,7 @@
 title: GD-0041 Monetization Model and No-Pay-to-Win Canon
 status: accepted
 tags: [game-design, gddr, monetization, no-p2w, pricing, cosmetics, supporter, fmx-191, accepted]
+context: audit-security
 created: 2026-06-13
 updated: 2026-06-19
 type: gddr

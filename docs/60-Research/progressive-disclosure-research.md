@@ -2,6 +2,7 @@
 title: Progressive Disclosure for Tactical Depth (Casual + Power-User)
 status: in-review
 tags: [research, ux, tactics, progressive-disclosure, synthesis, wave-2]
+context: tactics
 created: 2026-05-16
 updated: 2026-05-17
 type: research

@@ -2,6 +2,7 @@
 title: Identity & Access Context Definition
 status: current
 tags: [research, architecture, identity-access, ddd, bounded-context, auth, session, device, gdpr, fmx-163]
+context: identity-access
 created: 2026-06-15
 updated: 2026-06-15
 type: research

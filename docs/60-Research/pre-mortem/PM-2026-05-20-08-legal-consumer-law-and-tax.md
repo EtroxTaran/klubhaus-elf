@@ -2,6 +2,7 @@
 title: "Pre-Mortem 2026-05-20 · 08 · Legal, Consumer-Law & Tax"
 status: current
 tags: [research, pre-mortem, legal, consumer-law, tax, trademark, dsa, agb, 2026-Q2]
+context: audit-security
 created: 2026-05-20
 updated: 2026-06-09
 type: research

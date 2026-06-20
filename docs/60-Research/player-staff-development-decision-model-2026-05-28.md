@@ -2,6 +2,7 @@
 title: Player, Staff Development and Decision Influence - Research Synthesis 2026-05-28
 status: draft
 tags: [research, player-development, staff, skills, transfers, decision-model, fmx-38]
+context: [people-persona-skills, training, transfer]
 created: 2026-05-28
 updated: 2026-05-28
 type: research

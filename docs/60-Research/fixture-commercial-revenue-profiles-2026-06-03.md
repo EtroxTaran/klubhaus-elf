@@ -2,6 +2,7 @@
 title: Fixture commercial and competition revenue profile publication contract (FMX-78)
 status: current
 tags: [research, league, competition, fixture, commercial, revenue, ddd, eventing, game-design, fmx-78]
+context: [league-orchestration, commercial-portfolio]
 created: 2026-06-03
 updated: 2026-06-03
 type: research

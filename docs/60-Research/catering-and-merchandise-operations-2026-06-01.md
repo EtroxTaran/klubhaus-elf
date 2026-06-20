@@ -2,6 +2,7 @@
 title: Catering and Merchandise Operations Depth - Research Synthesis 2026-06-01
 status: draft
 tags: [research, economy, catering, merchandise, retail, operations, inventory, cogs, ifrs15, legal, fmx-47]
+context: commercial-portfolio
 created: 2026-06-01
 updated: 2026-06-01
 type: research

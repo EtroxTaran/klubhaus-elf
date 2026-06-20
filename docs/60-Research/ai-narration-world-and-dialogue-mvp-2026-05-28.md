@@ -2,6 +2,7 @@
 title: AI Narration, World and Dialogue MVP Synthesis 2026-05-28
 status: current
 tags: [research, ai, llm, narrative, dialogue, worldgen, persona, media, fans, openrouter, ai-act]
+context: narrative-dialogue
 created: 2026-05-28
 updated: 2026-05-28
 type: research

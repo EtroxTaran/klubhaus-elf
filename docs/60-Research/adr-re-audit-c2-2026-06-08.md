@@ -2,6 +2,7 @@
 title: ADR re-audit — Cluster C2 (Data / Persistence / Save / Sync)
 status: draft
 tags: [research, audit, adr, data, persistence, save, sync, postgres, surrealdb, outbox, offline, crdt, fmx-105]
+context: [offline-sync, audit-security]
 created: 2026-06-08
 updated: 2026-06-08
 type: research

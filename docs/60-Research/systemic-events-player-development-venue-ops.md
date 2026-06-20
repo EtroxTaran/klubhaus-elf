@@ -3,6 +3,7 @@ title: Systemic Events, Player Development, Injuries and Venue Operations
 status: current
 binding: true
 tags: [research, player-development, injuries, events, narrative, venue, training]
+context: [squad-player, training, stadium-operations]
 created: 2026-05-17
 updated: 2026-05-28
 type: research

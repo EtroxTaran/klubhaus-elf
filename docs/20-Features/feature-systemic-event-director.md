@@ -2,6 +2,7 @@
 title: Feature - Systemic Event Director
 status: draft
 tags: [feature, events, world-events, scheduler, narrative]
+context: [ai-world-simulation, narrative-dialogue]
 created: 2026-05-17
 updated: 2026-05-18
 type: feature

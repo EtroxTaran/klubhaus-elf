@@ -2,6 +2,7 @@
 title: Feature - Tactics with Progressive Disclosure
 status: draft
 tags: [feature, tactics, ux, progressive-disclosure]
+context: tactics
 created: 2026-05-16
 updated: 2026-05-18
 type: feature

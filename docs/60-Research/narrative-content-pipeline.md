@@ -3,6 +3,7 @@ title: Narrative Content & Authoring Pipeline — Events, Story Arcs, Voice, Pre
 status: current
 binding: true
 tags: [research, narrative, authoring, i18n, icu, events, story-arcs, voice, press-conference, newspaper]
+context: narrative-dialogue
 created: 2026-05-17
 updated: 2026-05-28
 type: research

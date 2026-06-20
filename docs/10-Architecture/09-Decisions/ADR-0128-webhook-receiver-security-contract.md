@@ -2,6 +2,7 @@
 title: ADR-0128 Webhook Receiver Security Contract
 status: accepted
 tags: [adr, architecture, security, webhook, webhooks, replay-protection, idempotency, payment, entitlement, pentest, bug-bounty, audit, fmx-187]
+context: audit-security
 created: 2026-06-16
 updated: 2026-06-16
 type: adr

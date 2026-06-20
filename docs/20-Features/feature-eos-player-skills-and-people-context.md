@@ -2,6 +2,7 @@
 title: Feature - EOS Player Skills and People Context
 status: draft
 tags: [feature, player-skills, people, persona, mvp, fmx-23]
+context: people-persona-skills
 created: 2026-05-28
 updated: 2026-06-16
 type: feature

@@ -2,6 +2,7 @@
 title: GD-0014 Save & Career Model
 status: accepted
 tags: [game-design, gddr, save]
+context: offline-sync
 created: 2026-05-17
 updated: 2026-06-11
 type: game-design

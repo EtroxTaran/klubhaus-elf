@@ -2,6 +2,7 @@
 title: ADR-0012 Async Multiplayer Cadence Models (Fixed + Dynamic)
 status: accepted
 tags: [adr, architecture, async, multiplayer, cadence]
+context: league-orchestration
 created: 2026-05-16
 updated: 2026-06-11
 type: adr

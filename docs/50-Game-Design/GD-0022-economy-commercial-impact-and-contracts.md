@@ -2,6 +2,7 @@
 title: GD-0022 Economy Commercial Impact and Contracts
 status: accepted
 tags: [game-design, gddr, economy, commercial, financing, debt, contract-lifecycle, breach, tickets, fans, fan-demand, price-elasticity, season-tickets, cup, competition, matchday, catering, merchandise, operations, inventory, fan-service, accounting, investor, entitlement, compliance, fmx-41, fmx-42, fmx-43, fmx-44, fmx-45, fmx-46, fmx-47, fmx-48, fmx-49, fmx-50, fmx-78]
+context: [club-management-economy, commercial-portfolio]
 created: 2026-05-28
 updated: 2026-06-11
 type: game-design

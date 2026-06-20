@@ -2,6 +2,7 @@
 title: Feature - Rivalry System
 status: draft
 tags: [feature, rivalry, fans, narrative]
+context: rivalry
 created: 2026-05-16
 updated: 2026-05-18
 type: feature

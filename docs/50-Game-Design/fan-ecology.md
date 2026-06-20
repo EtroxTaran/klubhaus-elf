@@ -2,6 +2,7 @@
 title: Fan Ecology - Six Segments and Atmosphere Engine
 status: superseded
 tags: [game-design, fans, atmosphere, ultras, economy, ticketing, price-elasticity, season-tickets, fmx-32, fmx-41, fmx-42, fmx-43, superseded]
+context: audience-atmosphere
 created: 2026-05-16
 updated: 2026-05-28
 type: game-design

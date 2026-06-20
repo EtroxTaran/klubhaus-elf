@@ -2,6 +2,7 @@
 title: Swappable Spatial-Event Match Engine Research
 status: current
 tags: [research, match-engine, runtime, rust, typescript, wasm, spatial-event, offline, llm, disconnect]
+context: match
 created: 2026-05-27
 updated: 2026-05-27
 type: research

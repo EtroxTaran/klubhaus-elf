@@ -3,6 +3,7 @@ title: Data Generators — Names, Crests, Cities, Clubs, Players
 status: current
 binding: true
 tags: [research, data-generation, worldgen, names, crests, players, clubs, determinism, ip-safe, privacy, gdpr, fmx-54]
+context: ai-world-simulation
 created: 2026-05-17
 updated: 2026-06-01
 type: research

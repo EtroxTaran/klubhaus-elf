@@ -2,6 +2,7 @@
 title: Manager-archetype MVP hooks + perk/prestige stance — synthesis (FMX-93)
 status: draft
 tags: [research, meta, manager, archetype, roguelite, perks, prestige, confidence, fmx-93]
+context: manager-legacy
 created: 2026-06-05
 updated: 2026-06-05
 type: research

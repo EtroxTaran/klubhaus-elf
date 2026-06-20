@@ -2,6 +2,7 @@
 title: Feature - Player-to-Player Transfer Negotiation
 status: draft
 tags: [feature, transfers, multiplayer, escalation]
+context: transfer
 created: 2026-05-16
 updated: 2026-05-18
 type: feature

@@ -2,6 +2,7 @@
 title: Release Versioning and App Build Process
 status: current
 tags: [research, release, versioning, app-build, dokploy, pwa, telemetry, provenance, sbom, save-compatibility, fmx-178]
+context: [audit-security, offline-sync]
 created: 2026-06-16
 updated: 2026-06-16
 type: research

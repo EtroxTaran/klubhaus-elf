@@ -2,6 +2,7 @@
 title: Ledger Posting Shape — Double- vs Single-Entry + Chart-of-Accounts Granularity (FMX-145)
 status: current
 tags: [research, economy, accounting, ledger, double-entry, chart-of-accounts, determinism, replay, ddd, event-sourcing, fmx-145]
+context: club-management-economy
 created: 2026-06-11
 updated: 2026-06-11
 type: research

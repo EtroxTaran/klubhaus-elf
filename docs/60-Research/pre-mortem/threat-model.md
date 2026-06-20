@@ -2,6 +2,7 @@
 title: "Pre-Mortem Threat Model — Trust Boundaries 2026-05-20"
 status: current
 tags: [research, pre-mortem, threat-model, security, trust-boundaries, stride, 2026-Q2]
+context: audit-security
 created: 2026-05-20
 updated: 2026-06-14
 type: research

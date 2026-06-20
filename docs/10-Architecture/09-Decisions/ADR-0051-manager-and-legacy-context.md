@@ -2,6 +2,7 @@
 title: ADR-0051 Manager and Legacy Context
 status: accepted
 tags: [adr, architecture, ddd, manager, legacy, roguelite, fmx-16, fmx-25, fmx-35, accepted]
+context: manager-legacy
 created: 2026-05-27
 updated: 2026-06-08
 type: adr

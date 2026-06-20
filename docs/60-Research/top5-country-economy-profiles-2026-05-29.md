@@ -2,6 +2,7 @@
 title: Top-5 Country Economy Calibration Profiles - Research Synthesis 2026-05-29
 status: draft
 tags: [research, economy, finance, country-profile, calibration, germany, england, spain, italy, france, fmx-53]
+context: club-management-economy
 created: 2026-05-29
 updated: 2026-05-29
 type: research

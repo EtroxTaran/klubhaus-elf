@@ -2,6 +2,7 @@
 title: ADR-0117 Narrative Display Snapshot Replay Determinism Floor
 status: accepted
 tags: [adr, architecture, ai, llm, narrative, replay, determinism, match-engine, commentary, fmx-153]
+context: narrative-dialogue
 created: 2026-06-14
 updated: 2026-06-14
 type: adr

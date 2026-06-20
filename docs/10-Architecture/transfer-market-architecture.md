@@ -3,6 +3,7 @@ title: Transfer Market Architecture
 status: current
 binding: true
 tags: [architecture, transfers, contracts, ddd, state-machine, determinism]
+context: transfer
 created: 2026-05-17
 updated: 2026-05-17
 type: architecture
