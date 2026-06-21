@@ -113,7 +113,7 @@ accepted by Nico 2026-06-19: use a staged hybrid where
 [[../10-Architecture/bounded-context-map]] stays canonical for the context
 catalog, cluster map, relationship topology and source-folder mapping, while
 short per-context interface cards are added only for a first MVP-critical slice.
-Recommended decisions are D1=C, D2=A, D3=B, D4=A now / B later in
+Accepted decisions are D1=C, D2=A, D3=B, D4=A now / B later in
 [[../40-Execution/fmx-169-per-context-module-notes-decision-queue-2026-06-18]].
 Raw captures: [[raw-perplexity/raw-per-context-module-notes-2026-06-18]],
 [[raw-perplexity/raw-per-context-module-notes-source-checks-2026-06-18]].
@@ -122,8 +122,8 @@ Raw captures: [[raw-perplexity/raw-per-context-module-notes-2026-06-18]],
 
 [[observability-trace-backend-readd-trigger-2026-06-18]] preserves the FMX-171
 Perplexity-first and source-checked packet for replacing ADR-0017's qualitative
-Tempo/Mimir re-add wording with concrete draft signals. Recommendation pending
-Nico: re-add Tempo only after a split runtime path exists and one
+Tempo/Mimir re-add wording with concrete draft signals. Accepted D1-D4:
+re-add Tempo only after a split runtime path exists and one
 staging/production incident cannot be localised with Loki + Prometheus within 30
 minutes; re-add Mimir when 15-month Prometheus retention would require
 `--storage.tsdb.retention.size` above 80% of dedicated TSDB disk for seven
@@ -138,7 +138,7 @@ Raw captures:
 
 [[icu-mf1-risk-register-reconciliation-2026-06-18]] preserves the FMX-161
 Perplexity-first and source-checked packet for reconciling `11-Risks` with
-ADR-0094's ICU-MF1 validation note. Current recommendation: the broad ICU-MF1
+ADR-0094's ICU-MF1 validation note. Accepted decision: the broad ICU-MF1
 risk is resolved for MVP locales DE/EN/FR/ES/IT because Paraglide native
 variants use `Intl.PluralRules` and ICU MF1 is optional plugin syntax; keep an
 active reopen gate before first Slavic/case-heavy locale support or ICU-syntax

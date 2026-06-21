@@ -1,7 +1,7 @@
 ---
 title: FMX-141 Gameplay calibration decision queue
 status: accepted
-tags: [execution, decision-queue, gameplay, calibration, pending, fmx-141, accepted]
+tags: [execution, decision-queue, gameplay, calibration, fmx-141, accepted]
 created: 2026-06-13
 updated: 2026-06-19
 type: decision-queue

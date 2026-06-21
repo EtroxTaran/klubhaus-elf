@@ -26,8 +26,8 @@ related:
 
 ## Status
 
-Accepted by Nico on 2026-06-19. This queue records recommendations only. The Tempo/Mimir trigger
-thresholds and MVP span policy do not become binding after Nico approved it on 2026-06-19.
+Accepted by Nico on 2026-06-19. The Tempo/Mimir trigger thresholds and MVP span
+policy are binding after Nico approved D1-D4 on 2026-06-19.
 
 ## D1 - Tempo Re-add Trigger
 
@@ -118,7 +118,7 @@ Operator interpretation:
 
 ## Nico Decision Log
 
-Pending.
+Accepted by Nico on 2026-06-19: **D1=C, D2=A, D3=B, D4=A**.
 ## Approved Packet
 
 Nico approved all recommended options on 2026-06-19: **D1=C, D2=A, D3=B, D4=A**.

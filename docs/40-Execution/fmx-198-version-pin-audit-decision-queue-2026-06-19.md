@@ -30,9 +30,9 @@ discovery, Context7/Ref documentation, direct official source checks and a
 completion-audit scan for exact version rows outside the main stack ledger.
 
 The audit updates current-facing documentation, but it does not mutate active
-toolchain files (`package.json`, `.mise.toml`) because those changes affect the
-developer runtime, package manager or database target and therefore need Nico's
-decision.
+toolchain files (`package.json`, `.mise.toml`). After Nico approved D1-D6, those
+runtime/package-manager/database changes still belong in narrow follow-up beats
+with fresh source checks and validation.
 
 ## D1 - Active pnpm pin
 
@@ -106,19 +106,18 @@ Recommendation: **A**.
 
 Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
-## Required follow-up after Nico decision
+## Post-Approval Follow-Up
 
-- If D1=A, update `package.json` and `.mise.toml` pnpm to `11.8.0`, run
-  `node scripts/docs-check.mjs`, and preserve the source-check evidence.
-- If D2 selects Node 24 or Node 22 exact patch, update `.mise.toml`, CI/docs
-  runtime notes and code-phase bootstrap contracts consistently.
-- If D3 changes PostgreSQL, route through the data-layer/bootstrap decision and
-  keep PostgreSQL minor patch current.
-- If D4 selects a Capacitor baseline, supersede or amend ADR-0104 instead of
-  scattering version text.
-- If D6=A, keep this FMX-198 audit linked from future implementation packets
-  and require a fresh source-check for any package row older than the current
-  beat.
+- D1=A: update `package.json` and `.mise.toml` pnpm in a narrow follow-up, run
+  `node scripts/docs-check.mjs`, and preserve fresh source-check evidence.
+- D2=A: update `.mise.toml`, CI/docs runtime notes and code-phase bootstrap
+  contracts consistently after Node 24 bootstrap compatibility checks pass.
+- D3=A: route PostgreSQL 18.x through the data-layer/bootstrap decision and keep
+  PostgreSQL minor patch evidence current.
+- D4=A: queue the Capacitor 8.x baseline through the mobile-platform follow-up;
+  supersede or amend ADR-0104 rather than scattering version text.
+- D6=A: keep this FMX-198 audit linked from future implementation packets and
+  require a fresh source-check for any package row older than the current beat.
 
 
 ## Approved Packet

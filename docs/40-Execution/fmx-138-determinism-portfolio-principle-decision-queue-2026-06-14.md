@@ -1,7 +1,7 @@
 ---
 title: FMX-138 determinism portfolio principle decision queue
 status: accepted
-tags: [execution, decision-queue, determinism, seeded-variance, rng, gameplay, pending, fmx-138, accepted]
+tags: [execution, decision-queue, determinism, seeded-variance, rng, gameplay, fmx-138, accepted]
 created: 2026-06-14
 updated: 2026-06-19
 type: decision-queue

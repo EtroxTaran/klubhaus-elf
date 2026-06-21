@@ -1,7 +1,7 @@
 ---
 title: FMX-194 Monetization legal gates decision queue
 status: accepted
-tags: [execution, decision-queue, monetization, payment, legal, compliance, pending, fmx-194, accepted]
+tags: [execution, decision-queue, monetization, payment, legal, compliance, fmx-194, accepted]
 created: 2026-06-13
 updated: 2026-06-19
 type: decision-queue

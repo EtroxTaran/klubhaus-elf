@@ -71,9 +71,13 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > `AcademyCategoryAuditCycle` and long-save cohort summaries; Scouting owns
 > `ExternalYouthProspectIdentified` and opposition-report execution/freshness;
 > Tactics owns match-plan/template interpretation; Transfer consumes
-> `YouthLoaned`; Manager & Legacy consumes immutable summaries only. No audit
-> cadence, retention window, event envelope or opposition split is binding until
-> Nico answers
+> `YouthLoaned`; Manager & Legacy consumes immutable summaries only. Nico
+> approved D1-D6 on 2026-06-19: targeted amendments, Youth Academy audit
+> ownership, 2-season academy audit cadence, 5-season detail / 20+ season
+> summaries, split opposition scouting, producer-event plus consumer
+> ACL/snapshot handoffs and post-MVP/reserved-stub timing are accepted. Final
+> numeric thresholds stay calibration inputs for FMX-52 / GD-0043, not open Nico
+> decisions:
 > [[../40-Execution/fmx-157-manager-legacy-scouting-youth-feed-decision-queue-2026-06-19]].
 
 > **FMX-105 save-trust closure sweep current (2026-06-19).**
@@ -118,12 +122,12 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../60-Research/icu-mf1-risk-register-reconciliation-2026-06-18]].
 > Decision queue:
 > [[../40-Execution/fmx-161-icu-mf1-risk-register-decision-queue-2026-06-18]].
-> Current recommendation: treat the broad ICU-MF1 concern as resolved for MVP
-> locales DE/EN/FR/ES/IT because Paraglide variants use `Intl.PluralRules` and
-> ICU MF1 is optional plugin syntax, while keeping an active reopen gate before
-> the first Slavic/case-heavy locale or ICU-syntax authoring migration. Nico
-> still needs to confirm whether PL/CZ/RU or another case-heavy locale is
-> near-term; if yes, keep the residual risk active and run an i18n spike.
+> Accepted D1-D4: treat the broad ICU-MF1 concern as resolved for MVP locales
+> DE/EN/FR/ES/IT because Paraglide variants use `Intl.PluralRules` and ICU MF1
+> is optional plugin syntax; keep a residual reopen gate before the first
+> Slavic/case-heavy locale or ICU-syntax authoring migration; confirm no
+> Slavic/case-heavy locale is MVP or near-term scope; leave ADR-0094 body cleanup
+> outside FMX-161. No open Nico decision remains.
 
 > **FMX-165 ADR-0090 command-queue seam merged (2026-06-18, PR #224).** Branch
 > `codex/fmx-165-command-queue-seam` applied already accepted ADR-0090 D1=A/D2=A

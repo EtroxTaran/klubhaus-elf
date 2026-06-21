@@ -1,7 +1,7 @@
 ---
 title: FMX-133 Match-engine core model decision queue
 status: accepted
-tags: [execution, decision-queue, match-engine, calibration, pending, fmx-133, accepted]
+tags: [execution, decision-queue, match-engine, calibration, fmx-133, accepted]
 created: 2026-06-13
 updated: 2026-06-19
 type: decision-queue

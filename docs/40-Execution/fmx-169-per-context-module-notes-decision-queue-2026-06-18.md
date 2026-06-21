@@ -26,9 +26,9 @@ related:
 
 ## Status
 
-Accepted by Nico on 2026-06-19. This queue records recommendations only. No per-context module
-notes, template path, or canonical architecture-doc ownership rule is binding
-until Nico answers.
+Accepted by Nico on 2026-06-19. D1-D4 are binding for the docs-vault planning
+surface: staged hybrid, eight-context first slice, interface-card template and
+manual same-PR drift control now with future code-phase CI.
 
 ## D1 - Target Documentation Surface
 
@@ -121,7 +121,8 @@ Operational interpretation:
   Transfer, Club Management and Offline Sync.
 - Each note links to the accepted/proposed ADRs, GDDRs, state machines and
   future generated schemas instead of copying them.
-- The branch should create the template and first notes only after Nico answers.
+- Follow-up implementation may create the template and first notes under the
+  accepted first-slice policy.
 
 ## Nico Decision Log
 
