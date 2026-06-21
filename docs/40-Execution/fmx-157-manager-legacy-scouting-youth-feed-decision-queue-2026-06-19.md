@@ -109,16 +109,15 @@ Recommendation: **A**.
 
 Decision: **Accepted by Nico on 2026-06-19; see approved packet below.**
 
-## Required follow-up after Nico decision
+## Post-Approval Follow-Up Notes
 
-- If Nico accepts D1-D6, promote the accepted answers into the relevant ADRs and
-  state-machine notes.
-- If Nico chooses D1-B, draft a standalone ADR as `status: draft`,
-  `binding: false` first.
-- If Nico changes D3, update the Youth Academy state machine retention/audit
-  wording and the Manager & Legacy summary inputs.
-- If Nico chooses D6-B, create implementation-phase contract-test follow-ups
-  for the selected event envelopes.
+- The accepted answers were promoted into the relevant ADRs and state-machine
+  notes during the June 19 closure sweep.
+- No standalone ADR is needed because Nico accepted D1=A.
+- D3=A is the accepted starting default; final numeric tuning remains a
+  calibration input, not an open Nico decision.
+- D6=A keeps the detailed envelopes as post-MVP/reserved stubs until a later
+  implementation beat activates them.
 
 
 ## Approved Packet

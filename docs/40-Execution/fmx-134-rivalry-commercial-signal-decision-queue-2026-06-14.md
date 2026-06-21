@@ -1,7 +1,7 @@
 ---
 title: FMX-134 Rivalry commercial signal decision queue
 status: accepted
-tags: [execution, decision-queue, rivalry, commercial, ddd, contract, pending, fmx-134, accepted]
+tags: [execution, decision-queue, rivalry, commercial, ddd, contract, fmx-134, accepted]
 created: 2026-06-14
 updated: 2026-06-19
 type: decision-queue

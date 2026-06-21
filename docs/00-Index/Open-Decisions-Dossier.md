@@ -71,13 +71,16 @@ related:
 > and [[Decision-Log]].
 
 > **Post-dossier FMX-141 calibration ownership (historical completeness, added
-> 2026-06-13; dossier stays closed).** FMX-141 moved the old generic
-> non-economy "FMX-52 calibration" pointers into a new draft gameplay
-> calibration queue. Authoritative pending records:
+> 2026-06-13; dossier stays closed).** FMX-141 resolved the old generic
+> non-economy "FMX-52 calibration" pointers outside this dossier. Nico approved
+> D1-D5 = A/A/A/A/A: gameplay-wide calibration umbrella plus economy-specific
+> runbook, 14-slot taxonomy, T0-T4 harness tiers, Nico-owned baseline authority
+> until delegated and realism-anchored tuning with documented fun/perception
+> overrides. Authoritative records:
 > [[../40-Execution/fmx-141-gameplay-calibration-decision-queue-2026-06-13]],
 > [[../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate]]
-> and [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]. Nico
-> still needs to approve D1-D5; this closed dossier is not reopened.
+> and [[../30-Implementation/gameplay-calibration-and-soak-test-runbook]]. This
+> closed dossier is not reopened.
 
 > **Post-dossier FMX-137 roguelite tuning (historical completeness, added
 > 2026-06-14; dossier stays closed).** FMX-137 resolved the Create-a-Club
@@ -93,13 +96,16 @@ related:
 > [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]].
 
 > **Post-dossier FMX-138 determinism portfolio principle (historical
-> completeness, added 2026-06-14; dossier stays closed).** FMX-138 packages the
-> cross-cutting deterministic-vs-seeded-variance question as a new pending queue
-> rather than reopening this dossier. Authoritative pending records:
+> completeness, added 2026-06-14; dossier stays closed).** FMX-138 resolved the
+> cross-cutting deterministic-vs-seeded-variance question outside this dossier.
+> Nico approved D1-D3 = A/A/A: variety surfaces are seeded while projection,
+> measurement and audit surfaces stay pure; match outcome variety, injury
+> occurrence and AI-manager decisions use seeded streams; existing pure
+> declarations stay preserved unless explicitly reopened. Authoritative records:
 > [[../40-Execution/fmx-138-determinism-portfolio-principle-decision-queue-2026-06-14]],
 > [[../10-Architecture/09-Decisions/ADR-0113-portfolio-determinism-seeded-variance-principle]]
-> and [[../60-Research/determinism-portfolio-principle-2026-06-14]]. Nico still
-> needs to approve D1-D3; this closed dossier is not reopened.
+> and [[../60-Research/determinism-portfolio-principle-2026-06-14]]. This closed
+> dossier is not reopened.
 
 > **Post-dossier FMX-164 replay/dedup ownership seam (historical completeness,
 > added 2026-06-15; dossier stays closed).** FMX-164 resolved the post-ADR-0090/
@@ -135,14 +141,18 @@ related:
 > [[../10-Architecture/09-Decisions/ADR-0062-audience-and-atmosphere-context]].
 
 > **Post-dossier FMX-179 monorepo/workspace bootstrap (historical
-> completeness, added 2026-06-14; dossier stays closed).** FMX-179 packages the
-> code-phase workspace/package-boundary decision as a new pending queue rather
-> than reopening this dossier. Authoritative pending records:
+> completeness, added 2026-06-14; dossier stays closed).** FMX-179 resolved the
+> code-phase workspace/package-boundary decision outside this dossier. Nico
+> approved D1-D8 = A/A/A/A/A/A/A/A: progressive one-context package catalog,
+> real foundation packages only, workspace package facades, pnpm workspace links
+> plus TS references plus Nx TypeScript plugin, real-target-only gates,
+> `@klubhaus-elf/*`, module owner metadata before domain CODEOWNERS and fresh
+> exact-pin source checks in the scaffold PR. Authoritative records:
 > [[../40-Execution/fmx-179-monorepo-workspace-bootstrap-decision-queue-2026-06-14]],
 > [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]],
 > [[../30-Implementation/monorepo-workspace-bootstrap-plan]] and
-> [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]. Nico still needs
-> to approve D1-D8; this closed dossier is not reopened.
+> [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]. This closed dossier
+> is not reopened.
 
 One place where everything still open across the domains **was decided**. Each item below is a
 crisp question with researched options and a **recommended answer** (grounded externally

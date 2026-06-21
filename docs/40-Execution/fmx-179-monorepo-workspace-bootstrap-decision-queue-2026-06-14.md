@@ -1,7 +1,7 @@
 ---
 title: FMX-179 monorepo workspace bootstrap decision queue
 status: accepted
-tags: [execution, decision-queue, monorepo, workspace, nx, pnpm, ddd, pending, fmx-179, accepted]
+tags: [execution, decision-queue, monorepo, workspace, nx, pnpm, ddd, fmx-179, accepted]
 created: 2026-06-14
 updated: 2026-06-19
 type: decision-queue

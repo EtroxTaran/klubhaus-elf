@@ -69,10 +69,10 @@ design notes.
   [FMX-105 closure record](../40-Execution/fmx-105-save-trust-closure-record-2026-06-19.md).
 - [Per-Context Module Notes Surface](../60-Research/per-context-module-notes-2026-06-18.md) -
   FMX-169 Perplexity-first and source-checked packet for deciding whether the
-  28 bounded contexts need per-context module notes. Approved packet, pending
-  Nico: staged hybrid. Keep `bounded-context-map` canonical for catalog,
-  relationship topology and folder mapping; add short local interface cards for
-  a first MVP-critical slice only after approval. Decisions were accepted on 2026-06-19 in
+  28 bounded contexts need per-context module notes. Accepted D1-D4: staged
+  hybrid. Keep `bounded-context-map` canonical for catalog, relationship
+  topology and folder mapping; add short local interface cards for the first
+  MVP-critical slice. Decisions were accepted on 2026-06-19 in
   [FMX-169 decision queue](../40-Execution/fmx-169-per-context-module-notes-decision-queue-2026-06-18.md).
 - [Observability Trace Backend Re-add Trigger](../60-Research/observability-trace-backend-readd-trigger-2026-06-18.md) -
   FMX-171 Perplexity-first and source-checked packet for concrete Tempo/Mimir
@@ -86,7 +86,7 @@ design notes.
 - [ICU-MF1 Risk Register Reconciliation](../60-Research/icu-mf1-risk-register-reconciliation-2026-06-18.md) -
   FMX-161 Perplexity-first and source-checked packet for reconciling the stale
   `11-Risks` "i18n ICU-MF1 validation pending" row with ADR-0094's
-  resolved-for-MVP validation note. Recommended current truth: Paraglide native
+  resolved-for-MVP validation note. Accepted current truth: Paraglide native
   variants + `Intl.PluralRules` cover MVP locale plural categories without
   making ICU MF1 mandatory; ICU MF1 remains optional plugin syntax; inflected
   club names remain casus-slot/content-model work; first Slavic/case-heavy

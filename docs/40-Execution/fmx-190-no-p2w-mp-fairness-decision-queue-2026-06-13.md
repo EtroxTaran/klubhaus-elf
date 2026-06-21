@@ -1,7 +1,7 @@
 ---
 title: FMX-190 No-P2W and MP-fairness decision queue
 status: accepted
-tags: [execution, decision-queue, monetization, no-p2w, multiplayer, fairness, pending, fmx-190, accepted]
+tags: [execution, decision-queue, monetization, no-p2w, multiplayer, fairness, fmx-190, accepted]
 created: 2026-06-13
 updated: 2026-06-19
 type: decision-queue

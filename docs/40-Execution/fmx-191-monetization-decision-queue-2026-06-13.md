@@ -1,7 +1,7 @@
 ---
 title: FMX-191 Monetization model decision queue
 status: accepted
-tags: [execution, decision-queue, monetization, no-p2w, pricing, pending, fmx-191, accepted]
+tags: [execution, decision-queue, monetization, no-p2w, pricing, fmx-191, accepted]
 created: 2026-06-13
 updated: 2026-06-19
 type: decision-queue
