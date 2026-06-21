@@ -15,6 +15,7 @@ related: [[../../00-Index/Current-State]], [[../../00-Index/Open-Decisions-Dossi
 
 - Issue: FMX-210
 - Branch: `codex/fmx-210-decision-closure-frontdoor-reconcile`
+- PR: [#237](https://github.com/EtroxTaran/klubhaus-elf/pull/237)
 
 ## Goals
 
@@ -46,10 +47,8 @@ related: [[../../00-Index/Current-State]], [[../../00-Index/Open-Decisions-Dossi
 
 ## Open Tasks
 
-- Commit, push and open the FMX-210 PR.
-- Move FMX-210 to `In Review` after the PR is attached.
-- Let the docs-phase required checks run; docs-only PR can auto-merge when
-  green per ADR-0044.
+- Monitor PR #237 checks and merge when green per ADR-0044.
+- Linear should close FMX-210 when PR #237 merges via `Closes FMX-210`.
 
 ## Decisions Made
 
