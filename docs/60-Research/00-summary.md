@@ -2,10 +2,26 @@
 title: Research Summary
 status: current
 tags: [research, summary, contracts, ai, llm, narrative, newsworthiness, dialogue, intents, discipline, suspension, appeals, opposition, tactics, ai-world, statistics, analytics, standings, read-model, match-engine, gameplay, calibration, determinism, seeded-variance, runtime, replay, snapshot, quality-profile, testing, quality, ci, rulesets, branch-protection, codeowners, architecture-fitness, dependency-cruiser, bounded-context, watch-party, crdt, vitest, playwright, fast-check, stryker, pitch, weather, stadium, renderer, babylon, ownership, insolvency, ledger, chart-of-accounts, category-code, roguelite, run-end, carry-slots, hall-of-fame, monetization, no-p2w, compliance, legal, privacy, gdpr, erasure, retention, hgb, ao, incident-response, breach-notification, bfdi, age-assurance, ratings, iarc, usk, dod, monorepo, tooling, dependency-currency, stack-ledger, pnpm, replay-protection, idempotency, command-reception, command-queue, career, national-team, bundestrainer, i18n, locale, paraglide, intl, risk-register, postgresql, schema-per-save, archive, pitr, pwa, offline, mobile, rollback, content-qa, release, versioning, app-build, provenance, sbom, transfer, loan, obligation-to-buy, policy-catalog, argon2id, kdf, hash-wasm, workflow, branch-naming, supporter-groups, audience, atmosphere, fmx-67, fmx-80, fmx-81, fmx-83, fmx-87, fmx-88, fmx-94, fmx-130, fmx-131, fmx-133, fmx-135, fmx-136, fmx-137, fmx-139, fmx-140, fmx-141, fmx-142, fmx-146, fmx-147, fmx-148, fmx-150, fmx-151, fmx-152, fmx-153, fmx-155, fmx-158, fmx-159, fmx-160, fmx-161, fmx-164, fmx-165, fmx-167, fmx-168, fmx-169, fmx-170, fmx-173, fmx-174, fmx-177, fmx-178, fmx-180, fmx-181, fmx-183, fmx-185, fmx-186, fmx-191, fmx-194, fmx-195, fmx-196, fmx-197, fmx-198]
-updated: 2026-06-19
+updated: 2026-06-22
 ---
 
 # Research Summary
+
+## Architecture Decision Portfolio Review (FMX-211, 2026-06-22)
+
+[[architecture-decision-portfolio-review-2026-06-22]] preserves the FMX-211
+full architecture/gameplay compatibility review. Current recommendation:
+accept the portfolio as coherent/current with targeted hardening follow-ups,
+not a broad replacement sweep. The review source-checks DDD/context boundaries,
+transactional outbox, TanStack Start/React, Drizzle/PostgreSQL, PWA/offline
+storage and realtime SSE against current primary docs. Key hardening items:
+status-body hygiene for stale accepted-vs-pending prose, FMX-198 stack-currency
+follow-through, all-28 module-card readiness before multi-team code fan-out and
+ADR-0121 architecture-fitness tooling as a first foundation gate. Decision
+queue:
+[[../40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22]].
+Raw checks:
+[[raw-perplexity/raw-fmx-211-architecture-source-checks-2026-06-22]].
 
 ## Version Pin Audit (FMX-198, 2026-06-19)
 

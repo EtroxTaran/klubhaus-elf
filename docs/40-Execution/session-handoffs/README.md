@@ -3,7 +3,7 @@ title: Session Handoffs
 status: current
 tags: [meta, execution, hot]
 created: 2026-05-17
-updated: 2026-06-21
+updated: 2026-06-22
 type: index
 binding: true
 related: [[../../90-Meta/agent-memory-protocol]], [[2026-06-21-fmx-210-decision-closure-frontdoor-reconcile]], [[2026-06-19-open-decision-closure]], [[2026-06-19-fmx-198-version-pin-audit]], [[2026-06-19-fmx-185-age-assurance-promotion]], [[2026-06-19-fmx-148-named-supporter-group]], [[2026-06-19-fmx-166-surrealdb-deferral-watch]], [[2026-06-19-fmx-173-argon2id-kdf-validation]], [[2026-06-19-fmx-105-save-trust-reconciliation]], [[2026-06-18-fmx-169-per-context-module-notes]], [[2026-06-18-fmx-171-observability-trigger-span-policy]], [[2026-06-18-fmx-161-icu-mf1-risk-register]], [[2026-06-18-fmx-165-command-queue-seam]], [[2026-06-17-fmx-182-security-adr-reference-hygiene]], [[2026-06-17-fmx-174-branch-naming]], [[2026-06-17-fmx-139-drift-consumer-policy-ref]], [[2026-06-17-fmx-159-watch-party-context-ownership]], [[2026-06-16-fmx-178-release-versioning-app-build]], [[2026-06-16-fmx-155-loan-cap-obligation-catalog]], [[2026-06-16-fmx-160-context-portfolio-gate]], [[2026-06-16-fmx-181-branch-protection-ruleset-activation]]
@@ -42,6 +42,11 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-22-fmx-211-architecture-review]] - FMX-211 architecture portfolio
+  review: source checks, synthesis and decision queue for validating gameplay
+  documentation against the technical architecture. Recommendation is
+  architecture coherent/current with targeted hardening follow-ups, pending
+  Nico decisions D1-D6.
 - [[2026-06-21-fmx-210-decision-closure-frontdoor-reconcile]] - FMX-210
   front-door reconciliation after open-decision closure: live Linear/GitHub and
   `origin/main` audit, stale pending wording removed from Current-State,
