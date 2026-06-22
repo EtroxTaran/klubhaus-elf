@@ -10,6 +10,7 @@ linear: FMX-211
 sourceType: synthesis
 related:
   - [[raw-perplexity/raw-fmx-211-architecture-source-checks-2026-06-22]]
+  - [[architecture-adr-coverage-matrix-2026-06-22]]
   - [[../40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22]]
   - [[../00-Index/Architecture-Map]]
   - [[../00-Index/Game-Design-Map]]
@@ -75,6 +76,11 @@ hardening items should be closed before code bootstrap:
 | State-machine notes | 11 current, 12 draft | Current FSM coverage is useful but not yet complete for every workflow. |
 | Validators before edits | `docs-check` passed, `status-consistency-check` passed | The remaining issues are semantic clarity, not broken vault structure. |
 
+ADR-by-ADR coverage lives in
+[[architecture-adr-coverage-matrix-2026-06-22]]. That appendix checks every
+current accepted ADR once; superseded ADRs are treated as historical evidence
+and implementation exclusions.
+
 ## Architecture Fitness Verdict
 
 | Criterion | Verdict | Evidence / concern |
@@ -105,7 +111,7 @@ hardening items should be closed before code bootstrap:
 | IndexedDB/Dexie client storage | ADR-0020/0124. | IndexedDB is asynchronous and suitable for structured client data; Dexie adds a usable abstraction. | localStorage, OPFS-only, SQLite WASM, or server-only. localStorage blocks and is too small/simple; others are heavier or less aligned with web baseline. | Compatible. Keep game state out of localStorage. |
 | TanStack Start + React shell | ADR-0021 and stack ledger. | TanStack Start provides SSR, streaming, server functions and type-safe routing without taking domain authority away from DDD modules. | Next.js/Remix/SPA-only. Viable, but current decisions already favor TanStack data/router cohesion and server functions. | Compatible. RC status is a bootstrap risk gate, not a pivot trigger. |
 | React role | UI composition only. | React docs position it as UI/component library; FMX keeps domain state in contexts/services. | Put simulation/domain state in React stores. That would erase server authority and team boundaries. | Compatible. Zustand remains narrow client/sim state, not system of record. |
-| Match engine abstraction | ADR-0049/0096/0026/0120 and GD-0042. | A deterministic engine port lets gameplay evolve and enables runtime spike without tying renderer/UI to authority. | Browser-only TS engine or hard Rust-first engine without spike. One risks authority/perf, the other premature lock-in. | Compatible. Runtime spike remains code-phase evidence, not a chat decision. |
+| Match engine abstraction | ADR-0096/0026/0120 and GD-0042, with ADR-0049 as superseded history. | A deterministic engine port lets gameplay evolve and enables runtime spike without tying renderer/UI to authority. | Browser-only TS engine or hard Rust-first engine without spike. One risks authority/perf, the other premature lock-in. | Compatible. Runtime spike remains code-phase evidence, not a chat decision. |
 | Renderer abstraction | ADR-0024/0029/0041/0047. | Canvas 2D for MVP match authority/presentation, optional Babylon presentation later. Keeps visuals non-authoritative. | 3D match first or SVG/DOM match first. Too much risk/perf burden for core simulation. | Compatible. No gameplay state may depend on renderer. |
 | Realtime transport | ADR-0023/0099/0102. | SSE is enough for MVP one-way projection streams; Centrifugo remains scale path behind interface. | WebSockets/Centrifugo from day one or polling only. WebSocket-first adds ops too early; polling-only weakens live UX. | Compatible. Durable event log/inbox remains source of truth. |
 | LLM/narrative boundary | ADR-0030/0054/0065/0117/0126 and GD-0018/0028. | Generated prose never applies authoritative state; persisted display snapshots protect replay. | Let LLMs produce state-changing effects. Not acceptable for determinism/security. | Compatible. This is one of the strongest architecture/gameplay alignments. |
@@ -301,6 +307,7 @@ architecture decision.
 ## Related
 
 - [[raw-perplexity/raw-fmx-211-architecture-source-checks-2026-06-22]]
+- [[architecture-adr-coverage-matrix-2026-06-22]]
 - [[../40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22]]
 - [[../10-Architecture/bounded-context-map]]
 - [[../10-Architecture/10-Quality]]

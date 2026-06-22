@@ -10,6 +10,7 @@ linear: FMX-211
 owner: Nico
 related:
   - [[../60-Research/architecture-decision-portfolio-review-2026-06-22]]
+  - [[../60-Research/architecture-adr-coverage-matrix-2026-06-22]]
   - [[../60-Research/raw-perplexity/raw-fmx-211-architecture-source-checks-2026-06-22]]
   - [[../10-Architecture/bounded-context-map]]
   - [[../30-Implementation/stack-currency-ledger]]
@@ -110,6 +111,7 @@ Should FMX-211 be closed as **architecture coherent with targeted hardening**
 ## Related
 
 - [[../60-Research/architecture-decision-portfolio-review-2026-06-22]]
+- [[../60-Research/architecture-adr-coverage-matrix-2026-06-22]]
 - [[../60-Research/raw-perplexity/raw-fmx-211-architecture-source-checks-2026-06-22]]
 - [[../10-Architecture/09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]]
 - [[../30-Implementation/stack-currency-ledger]]

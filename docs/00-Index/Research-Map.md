@@ -22,7 +22,9 @@ design notes.
   FMX-211 source-checked review of the gameplay documentation against the
   technical architecture and accepted decision portfolio. Recommendation:
   architecture is coherent/current with targeted hardening follow-ups, not a
-  broad replacement sweep. Key follow-ups are status-body hygiene, FMX-198
+  broad replacement sweep. ADR-by-ADR coverage:
+  [Architecture ADR Coverage Matrix](../60-Research/architecture-adr-coverage-matrix-2026-06-22.md).
+  Key follow-ups are status-body hygiene, FMX-198
   stack-currency execution, all-28 module-card readiness before multi-team code
   fan-out, dynamic workflow promotion and ADR-0121 architecture-fitness tooling.
   Decision queue:

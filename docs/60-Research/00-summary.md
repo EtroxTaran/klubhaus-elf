@@ -14,7 +14,8 @@ full architecture/gameplay compatibility review. Current recommendation:
 accept the portfolio as coherent/current with targeted hardening follow-ups,
 not a broad replacement sweep. The review source-checks DDD/context boundaries,
 transactional outbox, TanStack Start/React, Drizzle/PostgreSQL, PWA/offline
-storage and realtime SSE against current primary docs. Key hardening items:
+storage and realtime SSE against current primary docs. ADR-by-ADR coverage is
+in [[architecture-adr-coverage-matrix-2026-06-22]]. Key hardening items:
 status-body hygiene for stale accepted-vs-pending prose, FMX-198 stack-currency
 follow-through, all-28 module-card readiness before multi-team code fan-out and
 ADR-0121 architecture-fitness tooling as a first foundation gate. Decision

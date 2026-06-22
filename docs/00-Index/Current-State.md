@@ -36,7 +36,10 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > **FMX-211 architecture portfolio review drafted (2026-06-22).**
 > [[../60-Research/architecture-decision-portfolio-review-2026-06-22]]
 > reviews the accepted gameplay documentation against the architecture and
-> decision portfolio with current primary-source checks. Recommendation:
+> decision portfolio with current primary-source checks plus ADR-by-ADR
+> coverage in
+> [[../60-Research/architecture-adr-coverage-matrix-2026-06-22]].
+> Recommendation:
 > current architecture is coherent/current with targeted hardening follow-ups,
 > not a broad replacement sweep. Pending Nico decisions D1-D6 live in
 > [[../40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22]]:

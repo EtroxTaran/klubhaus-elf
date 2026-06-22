@@ -8,6 +8,7 @@ type: handoff
 binding: false
 related:
   - [[../../60-Research/architecture-decision-portfolio-review-2026-06-22]]
+  - [[../../60-Research/architecture-adr-coverage-matrix-2026-06-22]]
   - [[../../60-Research/raw-perplexity/raw-fmx-211-architecture-source-checks-2026-06-22]]
   - [[../fmx-211-architecture-review-decision-queue-2026-06-22]]
   - [[../../00-Index/Architecture-Map]]
@@ -39,6 +40,8 @@ related:
   [[../../60-Research/raw-perplexity/raw-fmx-211-architecture-source-checks-2026-06-22]].
 - Added synthesis and portfolio review:
   [[../../60-Research/architecture-decision-portfolio-review-2026-06-22]].
+- Added ADR-by-ADR coverage matrix:
+  [[../../60-Research/architecture-adr-coverage-matrix-2026-06-22]].
 - Added Nico decision queue:
   [[../fmx-211-architecture-review-decision-queue-2026-06-22]].
 
@@ -70,6 +73,7 @@ related:
 
 - `docs/60-Research/raw-perplexity/raw-fmx-211-architecture-source-checks-2026-06-22.md`
 - `docs/60-Research/architecture-decision-portfolio-review-2026-06-22.md`
+- `docs/60-Research/architecture-adr-coverage-matrix-2026-06-22.md`
 - `docs/40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22.md`
 - `docs/40-Execution/session-handoffs/2026-06-22-fmx-211-architecture-review.md`
 

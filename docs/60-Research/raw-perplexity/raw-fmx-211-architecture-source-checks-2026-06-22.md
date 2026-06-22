@@ -10,6 +10,7 @@ linear: FMX-211
 sourceType: primary-docs
 related:
   - [[../architecture-decision-portfolio-review-2026-06-22]]
+  - [[../architecture-adr-coverage-matrix-2026-06-22]]
   - [[../../40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22]]
   - [[../../00-Index/Architecture-Map]]
   - [[../../00-Index/Game-Design-Map]]

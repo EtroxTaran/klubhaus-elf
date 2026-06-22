@@ -112,7 +112,6 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 ## Current Binding ADRs
 
 - [ADR-0003 Match Engine](../10-Architecture/09-Decisions/ADR-0003-match-engine.md) - historical TypeScript-first target, superseded as planning target by ADR-0049.
-- [ADR-0049 Swappable Spatial-Event Match Engine](../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine.md) - accepted replacement target for the match-engine boundary/runtime; numeric/runtime details are amended by ADR-0096.
 - [ADR-0005 Save Format](../10-Architecture/09-Decisions/ADR-0005-save-format.md) - encrypted save/export envelope; FMX-189 clarifies portable SP/hotseat/imported saves have no MP seed authority.
 - [ADR-0007 Naming Schema](../10-Architecture/09-Decisions/ADR-0007-naming-schema.md)
 - [ADR-0009 Cursor Orchestration](../10-Architecture/09-Decisions/ADR-0009-cursor-orchestration.md)
@@ -214,6 +213,7 @@ changes that depend on them require ADR-0014 promotion or a superseding ADR.
 - [ADR-0014 State Machines](../10-Architecture/09-Decisions/ADR-0014-state-machines.md) - promote before changing runtime orchestration.
 - [ADR-0015 Spectator Snapshot Streaming](../10-Architecture/09-Decisions/ADR-0015-spectator-snapshot-streaming.md) - post-MVP watch-party layer.
 - [ADR-0016 Community Dataset Overrides](../10-Architecture/09-Decisions/ADR-0016-community-dataset-overrides.md) - future-scope until UGC moderation/security gates are implemented.
+- [ADR-0049 Swappable Spatial-Event Match Engine](../10-Architecture/09-Decisions/ADR-0049-swappable-spatial-event-match-engine.md) - historical swappable match-engine planning record, superseded by accepted ADR-0096; kept for traceability, not implementation authority.
 - Runtime LLM implementation remains gated by accepted [[../10-Architecture/09-Decisions/ADR-0030-llm-out-of-authoritative-state]] plus FMX-88/FMX-188 safety gates; the accepted boundary is current, but authoritative-state writes from generated prose remain forbidden.
 - Workspace/package bootstrap follows accepted [[../10-Architecture/09-Decisions/ADR-0114-monorepo-workspace-bootstrap]]; actual package creation still waits for the code-phase foundation beat and fresh source checks.
 - Monetization/payment activation follows accepted [[../10-Architecture/09-Decisions/ADR-0107-pricing-and-iap-monetization-boundary]], [[../10-Architecture/09-Decisions/ADR-0108-no-pay-to-win-and-mp-fairness-invariant]] and [[../10-Architecture/09-Decisions/ADR-0122-responsible-gaming-and-dark-pattern-invariant]]; paid activation remains legal/store/release gated.
