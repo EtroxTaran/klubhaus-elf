@@ -47,6 +47,17 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > all-28 module-card readiness before multi-team code fan-out, dynamic workflow
 > promotion and ADR-0121 architecture-fitness timing. Until Nico answers, this
 > is a non-binding review packet.
+>
+> **Deep-grounded companion + reconciliation added (Claude, 2026-06-22).**
+> [[../60-Research/architecture-review-deep-grounded-2026-06-22]] is the grounded
+> + adversarial companion (per-ADR currency, compatibility matrix, DDD/modularity
+> scorecard, guardrail-reality audit). Net-new findings and divergences are
+> reconciled into the shared queue in
+> [[../40-Execution/fmx-211-reconciliation-delta-2026-06-22]] (new items **D7–D14**:
+> gameplay ownership gaps, story-thread enum, age-band, Babylon spike, determinism
+> D4, guardrail activation, modularity proof, binding-field convention). Safe SSOT
+> fixes (AGENTS.md currency, ADR-0021 Drizzle pin, ADR-0014 binding, superseded
+> cross-ref repoints, map-orphan removal) applied in the same PR.
 
 > **FMX-198 version pin audit accepted by Nico 2026-06-19 (2026-06-19).**
 > [[../60-Research/version-pin-audit-2026-06-19]] source-checks active pins and

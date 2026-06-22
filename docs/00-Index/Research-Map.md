@@ -29,6 +29,13 @@ design notes.
   fan-out, dynamic workflow promotion and ADR-0121 architecture-fitness tooling.
   Decision queue:
   [FMX-211 decision queue](../40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22.md).
+- [Architecture Review — Deep Grounded Companion](../60-Research/architecture-review-deep-grounded-2026-06-22.md) -
+  grounded + adversarial companion to the portfolio review (per-ADR currency
+  grounding, cross-decision compatibility matrix, DDD/modularity/team-separability
+  scorecard, gameplay→architecture traceability, guardrail-reality audit;
+  117 sound / 5 questionable / 1 reconsider, 0 design conflicts). Reconciled via
+  [FMX-211 reconciliation delta](../40-Execution/fmx-211-reconciliation-delta-2026-06-22.md)
+  (agreement, net-new onto D2/D3, new D7–D14, divergences, applied safe fixes).
 - [Version Pin Audit](../60-Research/version-pin-audit-2026-06-19.md) -
   FMX-198 Perplexity-discovery and source-checked audit of active and
   target-only version references. Accepted recommendation: update pnpm to

@@ -37,6 +37,12 @@ future-scope or historical context.
   recommendation is portfolio coherent/current with targeted hardening
   follow-ups, pending Nico decisions in
   [[../40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22]].
+  Grounded + adversarial companion:
+  [[../60-Research/architecture-review-deep-grounded-2026-06-22]] (per-ADR
+  currency, compatibility matrix, DDD/modularity/team-separability scorecard,
+  guardrail-reality audit), reconciled in
+  [[../40-Execution/fmx-211-reconciliation-delta-2026-06-22]] (new items D7–D14;
+  safe SSOT fixes applied).
 - [[../10-Architecture/bounded-context-map]] - 28 ratified bounded contexts
   after ADR-0089. FMX-131 clarifies the League/Statistics standings seam:
   League Orchestration owns tie-break rules, official ordering and

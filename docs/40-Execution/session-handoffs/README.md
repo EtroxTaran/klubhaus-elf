@@ -42,6 +42,9 @@ This is the **single** canonical handoff location. (An older
 
 ## Handoffs
 
+- [[2026-06-22-reconciliation]] - FMX-211 deep-grounded review reconciliation:
+  adds the grounded + adversarial companion review and the reconciliation delta
+  (new decision items D7–D14), and applies safe SSOT fixes onto PR #238.
 - [[2026-06-22-fmx-211-architecture-review]] - FMX-211 architecture portfolio
   review: source checks, synthesis and decision queue for validating gameplay
   documentation against the technical architecture. Recommendation is

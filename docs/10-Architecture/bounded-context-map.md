@@ -198,8 +198,9 @@ Operations supplies `StadiumCommercialSnapshot`,
 `FacilityComplianceChecked`. League / Competition supplies
 `CompetitionRevenueProfilePublished` +
 `FixtureCommercialProfilesPublished` + profile snapshot queries +
-`SeasonAdvanced`. Rivalry supplies `RivalryTierTransitioned` +
-`RivalryCommercialSignal`. Regulations supplies `EffectiveRuleSet`
+`SeasonAdvanced`. Rivalry supplies `RivalryTierTransitioned` (the former
+`RivalryCommercialSignal` is removed per ADR-0111 — CommercialPortfolio derives
+any commercial impact itself). Regulations supplies `EffectiveRuleSet`
 (UEFA FSR + PL APT + La Liga PSR + GDPR + DSA + CRA + Late
 Payment Directive + CEN-EN 17210 obligations). No context writes
 Club ledger rows directly.

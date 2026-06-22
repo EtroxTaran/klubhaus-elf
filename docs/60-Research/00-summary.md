@@ -23,6 +23,11 @@ queue:
 [[../40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22]].
 Raw checks:
 [[raw-perplexity/raw-fmx-211-architecture-source-checks-2026-06-22]].
+Grounded + adversarial companion:
+[[architecture-review-deep-grounded-2026-06-22]] (per-ADR currency, compatibility
+matrix, DDD/modularity scorecard, guardrail audit), reconciled in
+[[fmx-211-reconciliation-delta-2026-06-22]] (new items D7–D14 + applied safe SSOT
+fixes).
 
 ## Version Pin Audit (FMX-198, 2026-06-19)
 

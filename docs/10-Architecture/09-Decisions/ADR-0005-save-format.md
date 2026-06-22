@@ -99,6 +99,11 @@ scheme. Exports are an extra step on top.
 
 ### 3. Key derivation — PBKDF2
 
+> **Amended by [[ADR-0098-save-format-kdf-argon2id-and-active-pack-refs]]:** the
+> **passphrase** path (portable export key) moves to **Argon2id**; PBKDF2-SHA256
+> @600k is retained only for the high-entropy device-backup key. Read ADR-0098
+> for the binding KDF split before implementing this section.
+
 Two derivations, depending on mode:
 
 **Device backup key**:
