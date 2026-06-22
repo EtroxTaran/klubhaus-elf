@@ -127,6 +127,19 @@ for (const file of files) {
     }
   }
 
+  // 5. binding axis (FMX-211 D2/D14): `status` is the sole lifecycle authority;
+  //    `binding` is the orthogonal "in force in the repo today?" axis. A retired
+  //    decision can never be in force, and every ADR must declare its binding.
+  if (!ignored) {
+    const binding = block?.match(/^binding:\s*(.*)$/m)?.[1]?.trim() ?? null
+    if (status === 'superseded' && binding === 'true') {
+      errors.push(`${toPosix(file)}: status superseded but binding:true — a retired decision cannot be in force (set binding:false)`)
+    }
+    if (/09-Decisions[\\/]ADR-\d{4}-/.test(file) && binding === null) {
+      errors.push(`${toPosix(file)}: ADR missing the binding field (FMX-211 D2/D14: status=lifecycle, binding=in-force)`)
+    }
+  }
+
   // 5. context: values must be known bounded-context slugs (ADR-0134).
   if (!ignored && block) {
     const ctx = block.match(/^context:\s*(.+)$/m)

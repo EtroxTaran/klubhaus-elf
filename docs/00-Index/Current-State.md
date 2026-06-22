@@ -39,25 +39,23 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > decision portfolio with current primary-source checks plus ADR-by-ADR
 > coverage in
 > [[../60-Research/architecture-adr-coverage-matrix-2026-06-22]].
-> Recommendation:
-> current architecture is coherent/current with targeted hardening follow-ups,
-> not a broad replacement sweep. Pending Nico decisions D1-D6 live in
-> [[../40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22]]:
-> portfolio verdict, status-body hygiene, FMX-198 stack-currency routing,
-> all-28 module-card readiness before multi-team code fan-out, dynamic workflow
-> promotion and ADR-0121 architecture-fitness timing. Until Nico answers, this
-> is a non-binding review packet.
+> Verdict: current architecture is coherent/current with targeted hardening,
+> not a broad replacement sweep. The D1-D6 queue lives in
+> [[../40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22]].
 >
-> **Deep-grounded companion + reconciliation added (Claude, 2026-06-22).**
+> **Deep-grounded companion + reconciliation — DECISIONS RATIFIED (Nico, 2026-06-22).**
 > [[../60-Research/architecture-review-deep-grounded-2026-06-22]] is the grounded
 > + adversarial companion (per-ADR currency, compatibility matrix, DDD/modularity
-> scorecard, guardrail-reality audit). Net-new findings and divergences are
-> reconciled into the shared queue in
-> [[../40-Execution/fmx-211-reconciliation-delta-2026-06-22]] (new items **D7–D14**:
-> gameplay ownership gaps, story-thread enum, age-band, Babylon spike, determinism
-> D4, guardrail activation, modularity proof, binding-field convention). Safe SSOT
-> fixes (AGENTS.md currency, ADR-0021 Drizzle pin, ADR-0014 binding, superseded
-> cross-ref repoints, map-orphan removal) applied in the same PR.
+> scorecard, guardrail-reality audit). **All D1–D14 are now decided** in
+> [[../40-Execution/fmx-211-reconciliation-delta-2026-06-22]] §0 (reversal = new ADR).
+> Enacted this PR: the two-axis `status`/`binding` governance rule (D2/D14) +
+> superseded-binding CI invariant + 9 binding-field corrections; ADR-0122 D4 age-band
+> re-spec (D9); GD-0012 onboarding → League Orchestration (D7a); ADR-0100 story-thread
+> "C-lite" closure (D8); plus the earlier SSOT fixes (AGENTS.md currency, ADR-0021
+> Drizzle pin, ADR-0014 binding, cross-ref repoints, map-orphan). Decided directions
+> still to enact via their own ADRs / at code bootstrap: D3 pins, D4 module cards,
+> D5 process note, D6+D13 fitness-gate+extraction proof, **D7b new Monetization &
+> Entitlements context (28→29)**, D10 Babylon spike, D11 determinism D4, D12 guardrail DoD.
 
 > **FMX-198 version pin audit accepted by Nico 2026-06-19 (2026-06-19).**
 > [[../60-Research/version-pin-audit-2026-06-19]] source-checks active pins and

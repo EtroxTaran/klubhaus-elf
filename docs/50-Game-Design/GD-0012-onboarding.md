@@ -3,9 +3,10 @@ title: GD-0012 Onboarding & New Game
 status: accepted
 tags: [game-design, gddr, onboarding, fmx-99]
 created: 2026-05-17
-updated: 2026-06-11
+updated: 2026-06-22
 type: game-design
 binding: true
+context: league-orchestration
 related: [[README]], [[onboarding-and-tutorial]], [[GD-0008-finance-economy]], [[GD-0016-mobile-ux-loop]], [[GD-0017-mvp-scope-and-mode-sequencing]], [[../00-Index/MVP-Scope]], [[../60-Research/onboarding-strategy]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/raw-perplexity/raw-onboarding-guided-first-season-2026-06-03]], [[../60-Research/club-boss-analysis]], [[../60-Research/anstoss-series-deep-dive]], [[../10-Architecture/09-Decisions/ADR-0008-mobile-first-ui]], [[../10-Architecture/09-Decisions/ADR-0006-i18n]]
 ---
 
@@ -18,6 +19,16 @@ accepted
 > Ratified `accepted` 2026-06-08 in the vault-wide ratification sweep
 > ([[decision-queue-2026-06-08-ratified|ledger]], PR #153); body previously read `approved`. Body
 > status reconciled to the frontmatter SSOT (ADR-0092) on 2026-06-11 (FMX-143).
+
+> **Context ownership (FMX-211 D7a, decided 2026-06-22).** The persistent per-save
+> onboarding state — Season-1 objective roadmap and tutorial-arc progression — is
+> owned by **League Orchestration** (the per-save season/week clock it keys off);
+> Manager & Legacy is disqualified (it shapes a world only at save-creation, never
+> inside a running save). The deterministic feed-card priority score is a
+> presentation read-model on the Notification/inbox surface (a pure function over
+> already-published facts, no authoritative state); FTUE/tips/recap flags stay
+> client-local in the Offline Sync IndexedDB seam (ADR-0090, local-preference class).
+> No new bounded context.
 
 > **Accepted** (re-ratified 2026-06-08, PR #153) — the **Decided / strong** section is ratified design
 > direction; an ADR or implementation must not contradict it. The

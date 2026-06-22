@@ -68,6 +68,28 @@ Controlled per note type — see [[templates/README]]. Implement only from
 `current` / `accepted` / `approved`. Never from `draft` / `superseded` /
 `archived`.
 
+## Status vs binding — two axes (FMX-211 D2/D14, decided 2026-06-22)
+
+`status` and `binding` are **orthogonal** and must not be conflated:
+
+- **`status`** = the note's lifecycle of record (`draft` → `accepted`/`current`
+  → `superseded`). It is the **sole lifecycle authority**, enforced by
+  `scripts/status-consistency-check.mjs`.
+- **`binding`** = "are this decision's rules in force in the repo **today**?"
+  `binding: false` is **legitimate** for an `accepted` decision whose enforcement
+  is **future-scope** (e.g. [[ADR-0046-team-topology-and-scaling]])
+  or **activation-pending** (e.g. [[ADR-0044-cicd-and-merge-policy]]
+  — the gate does not exist yet). Such a flag is the honest signal that a guardrail
+  is decided but not yet enforced; the code-phase gate that activates it (ADR-0110
+  DoD) is what flips it to `binding: true`.
+
+Therefore: **there is no "accepted ⇒ `binding: true`" rule** — that would assert
+rules are in force that are not. The only hard, judgment-free invariants
+(CI-enforced) are: **`status: superseded` ⇒ `binding: false`** (a retired decision
+cannot be in force), and **every ADR must declare an explicit `binding` field**.
+Changing a ratified decision recorded under this model requires a **new ADR**, not
+an in-place edit.
+
 ## Draft / idea layer
 
 `draft` (ADRs) and `idea` (game design) notes are a **recognized intent

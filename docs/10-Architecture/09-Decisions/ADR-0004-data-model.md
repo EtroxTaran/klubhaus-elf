@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-06-16
 accepted_at: 2026-05-16
 type: adr
-binding: true
+binding: false
 amended_by: [[ADR-0020-hybrid-online-mvp-offline-ready]]
 superseded_by: ADR-0027-postgres-data-model
 related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0013-transactional-outbox]], [[ADR-0005-save-format]], [[ADR-0007-naming-schema]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-stack]], [[ADR-0027-postgres-data-model]], [[../bounded-context-map]], [[../../60-Research/surrealdb-schema-patterns]], [[../../60-Research/determinism-and-replay]]

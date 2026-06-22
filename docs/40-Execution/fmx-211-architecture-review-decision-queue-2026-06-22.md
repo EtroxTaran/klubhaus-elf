@@ -19,6 +19,12 @@ related:
 
 # FMX-211 Architecture Review Decision Queue
 
+> **DECIDED 2026-06-22 by Nico.** D1–D6 are ratified together with the companion's
+> D7–D14 — the consolidated ratified answers (and where D2 was refined to a
+> two-axis `status`/`binding` model) are in
+> [[fmx-211-reconciliation-delta-2026-06-22]] §0. A change of heart requires a new
+> ADR. The per-item recommendations below are retained as rationale.
+
 ## Context
 
 FMX-211 reviewed the current gameplay documentation, accepted ADR/GDDR
@@ -41,7 +47,7 @@ This queue is **not accepted** until Nico answers.
 
 Recommendation: **A**.
 
-Decision: **Pending Nico.**
+Decision: **Decided 2026-06-22** — see [[fmx-211-reconciliation-delta-2026-06-22]] §0 (D2 refined to the two-axis model).
 
 ## D2 - Status-body hygiene
 
@@ -53,7 +59,7 @@ Decision: **Pending Nico.**
 
 Recommendation: **A**.
 
-Decision: **Pending Nico.**
+Decision: **Decided 2026-06-22** — see [[fmx-211-reconciliation-delta-2026-06-22]] §0 (D2 refined to the two-axis model).
 
 ## D3 - Stack-currency follow-through
 
@@ -65,7 +71,7 @@ Decision: **Pending Nico.**
 
 Recommendation: **A**.
 
-Decision: **Pending Nico.**
+Decision: **Decided 2026-06-22** — see [[fmx-211-reconciliation-delta-2026-06-22]] §0 (D2 refined to the two-axis model).
 
 ## D4 - Module-card completeness
 
@@ -77,7 +83,7 @@ Decision: **Pending Nico.**
 
 Recommendation: **B**.
 
-Decision: **Pending Nico.**
+Decision: **Decided 2026-06-22** — see [[fmx-211-reconciliation-delta-2026-06-22]] §0 (D2 refined to the two-axis model).
 
 ## D5 - Dynamic workflow promotion
 
@@ -89,7 +95,7 @@ Decision: **Pending Nico.**
 
 Recommendation: **A**.
 
-Decision: **Pending Nico.**
+Decision: **Decided 2026-06-22** — see [[fmx-211-reconciliation-delta-2026-06-22]] §0 (D2 refined to the two-axis model).
 
 ## D6 - Architecture fitness timing
 
@@ -101,12 +107,13 @@ Decision: **Pending Nico.**
 
 Recommendation: **A**.
 
-Decision: **Pending Nico.**
+Decision: **Decided 2026-06-22** — see [[fmx-211-reconciliation-delta-2026-06-22]] §0 (D2 refined to the two-axis model).
 
-## Open Nico Question
+## Nico Question — answered (D1)
 
-Should FMX-211 be closed as **architecture coherent with targeted hardening**
-(recommended), or should it trigger a broad architecture replacement sweep?
+**Decided 2026-06-22:** FMX-211 closes as **architecture coherent/current with
+targeted hardening** (no broad replacement sweep). Hardening is tracked via the
+ratified D2–D14 in [[fmx-211-reconciliation-delta-2026-06-22]].
 
 ## Related
 

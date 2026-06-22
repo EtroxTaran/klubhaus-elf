@@ -1,7 +1,7 @@
 ---
-title: FMX-211 Reconciliation Delta — deep-grounded review vs portfolio review (2026-06-22)
-status: draft
-tags: [architecture, review, reconciliation, decision-queue, fmx-211, audit]
+title: FMX-211 Reconciliation Delta + Ratified Decisions D1–D14 (2026-06-22)
+status: accepted
+tags: [architecture, review, reconciliation, decision-queue, fmx-211, audit, decided]
 context: audit-security
 created: 2026-06-22
 updated: 2026-06-22
@@ -10,17 +10,65 @@ binding: false
 related: [[architecture-decision-portfolio-review-2026-06-22]], [[fmx-211-architecture-review-decision-queue-2026-06-22]], [[architecture-review-deep-grounded-2026-06-22]], [[architecture-adr-coverage-matrix-2026-06-22]], [[stack-currency-ledger]], [[Decision-Log]], [[collaboration-and-decision-protocol]]
 ---
 
-# FMX-211 Reconciliation Delta — deep-grounded review vs portfolio review
+# FMX-211 Reconciliation Delta + Ratified Decisions D1–D14
 
-> **Status: draft / non-binding.** This note reconciles two architecture reviews
-> authored 2026-06-22 for FMX-211: Codex's
-> [[architecture-decision-portfolio-review-2026-06-22|portfolio review]] (decision
-> queue **D1–D6**) and the grounded + adversarial
-> [[architecture-review-deep-grounded-2026-06-22|deep companion]]. It records
-> where they **agree**, folds the companion's **net-new findings** onto the
-> existing queue, opens **new decision items D7–D14**, lists the **divergences**
-> for the Lead Architect, and logs the **safe SSOT fixes already applied** in this
-> PR. It ratifies nothing — Nico decides D1–D14.
+> **DECIDED 2026-06-22 by Nico (Lead Architect).** All of D1–D14 below are
+> **ratified**. A later change of heart on any item is made by writing a **new
+> ADR** (or amending the relevant one), not by silently editing this record. This
+> note reconciles Codex's
+> [[architecture-decision-portfolio-review-2026-06-22|portfolio review]] (D1–D6)
+> and the grounded + adversarial
+> [[architecture-review-deep-grounded-2026-06-22|deep companion]] (D7–D14), records
+> the ratified answer for each, logs what was **applied in this PR**, and names the
+> **follow-up ADRs / code-phase gates** that formally enact the rest.
+
+## 0. Ratified decisions (D1–D14)
+
+Status legend: **applied** = enacted in this PR; **ADR** = decided, to be formally
+enacted via a (new/amended) ADR; **code-phase** = decided direction, enacted at
+code bootstrap.
+
+| # | Decision (ratified) | Enactment |
+|---|---|---|
+| **D1** | Architecture **coherent/current**; targeted hardening only; FMX-211 closes (no broad pivot). | applied (verdict) |
+| **D2+D14** | **Two-axis governance:** `status` = sole lifecycle authority; `binding` = "in force today" (so accepted-yet-`binding:false` is legitimate for future-scope/activation-pending). **Reject** "accepted⇒binding:true". Fix only provably-wrong cells. | **applied** |
+| **D3a** | **Drizzle 0.45.2 stable** (kit 0.31.10) for the money core; v1 = Nico-gated spike only if it GAs pre-bootstrap. | applied (ADR-0021 wording) + code-phase pin |
+| **D3b** | **PostgreSQL 18.4** target. | applied (AGENTS.md) + code-phase pin |
+| **D3c** | **Bootstrap on Nx 23.0.x** (greenfield = no migration). | code-phase |
+| **D3d** | **Capacitor 8.4.1**; record iOS 15 / Xcode 26 / Node 22 floors. | ADR (ADR-0104) + code-phase |
+| **D3-Node** | **Node 24 LTS** (above the converged Node-22 floor). | code-phase |
+| **D4** | **Staged all-28 module cards** before multi-team fan-out; card template = ADR-0121 §4 ownership-metadata schema (authored once). | code-phase (ADR-0110 gate) |
+| **D5** | **Promote workflows** into one current `30-Implementation/` process note deriving authority from ADR-0045/0103/0110. | ADR/process note |
+| **D6+D13** | **One ladder:** ADR-0121 hard gate as foundation-PR-1 **with violation fixtures**, AND one real port-extraction (Match worker behind `MatchEnginePort`) passing the same contract suite in-proc + over network transport as a code-phase DoD exit criterion. | code-phase (ADR-0110/0121) |
+| **D7a** | **Onboarding** objective-roadmap state → **League Orchestration**; feed-card score = Notification read-model; FTUE flags client-local. No new context. | **applied** (GD-0012 tag+note) |
+| **D7b** | **Create a new "Monetization & Entitlements" context** (28→29) owning entitlement *fulfilment* across all classes; migrate `InvestorEntitlement` in; distinct from the no-P2W enforcement seam. | **ADR** (new) + GD-0038 gate |
+| **D8** | **"C-lite":** keep D1=A aggregates; the lifecycle enum gets one canonical Published-Language home in ADR-0126; no phase-correlation contract. | **applied** (ADR-0100 closure) + ADR-0126 catalog entry |
+| **D9** | **Re-spec ADR-0122 D4** to "default off for the 16+ band"; **do not** widen ADR-0112. | **applied** (ADR-0122) |
+| **D10** | **Spike-then-pin Babylon** (recorded lazy-chunk + Standard-tier FPS); stays `binding:false`; seam keeps it reversible. | ADR (ADR-0047) + post-MVP spike |
+| **D11** | **D4 = hard blocking multi-engine parity spike** + CI-asserted config hardening; reconcile the stale binding `determinism-and-replay.md` note to the WASM runtime; lean on the Wasm 3.0 deterministic profile. | ADR (ADR-0096) + code-phase |
+| **D12** | **Guardrail activation = ADR-0110 DoD entry criterion**, per rail. Priority: ADR-0044 CI substrate **P0** → command-integrity (0115/0116/0119) P1 → webhook (0128) P1 → no-P2W (0108) P2 → responsible-gaming (0122) P2. | code-phase (ADR-0110) |
+
+### Applied in this PR for D2+D14
+- 7 superseded ADRs (0001/0002/0004/0009/0013/0025/0043) `binding:true`→`false`;
+  ADR-0010 gains `binding:true`; **ADR-0093 `binding:true`** (the real apply-miss).
+- Two-axis rule written into [[vault-governance]]; new CI invariant in
+  `scripts/status-consistency-check.mjs` (`superseded ⇒ binding:false`; every ADR
+  must declare `binding`). The intentional future-scope `binding:false` set
+  (ADR-0046/0044/0052…) is **kept** — it is the honest "not in force yet" signal
+  that D12 retires.
+
+### Follow-up ADRs to author (decided, not yet written)
+- **D7b** — new *Monetization & Entitlements* context ADR (+ bounded-context-map
+  §1 28→29, GD-0038 record, module note).
+- **D8** — add `ThreadLifecyclePhase` enum to the ADR-0126 Published-Language catalog.
+- **D10** — ADR-0047 spike-gate clause; **D11** — ADR-0096 D4 spike + rewrite
+  `determinism-and-replay.md`; **D3d** — ADR-0104 Capacitor-8 floors.
+- **D4/D5/D6/D12** — fold into the ADR-0110 code-phase DoD + the new D5 process note.
+
+---
+
+The sections below record the **reconciliation rationale and evidence** behind the
+ratified table above (agreements, net-new findings, divergences now resolved).
 
 ## 1. Agreement (no action)
 
@@ -67,7 +115,7 @@ Codex's D2 and D3. Several are **applied in this PR** (§5); the rest are flagge
   `@soccer-manager/*`. Corrected to `PostgreSQL 18`, **Babylon.js** (ADR-0047),
   and `@klubhaus-elf/*` (ADR-0114 D6). Codex's index sweep did not cover AGENTS.md.
 
-## 3. New decision items for Nico (D7–D14)
+## 3. D7–D14 rationale (all ratified — see §0; reversal = new ADR)
 
 Continue Codex's numbering; full evidence in
 [[architecture-review-deep-grounded-2026-06-22]].
@@ -114,7 +162,7 @@ Continue Codex's numbering; full evidence in
   (status-alone authority vs "accepted/current ⇒ `binding:true`"), then a single
   sweep applies it. *(Resolves the open tail of Codex's D2.)*
 
-## 4. Divergences from Codex's conclusions (Lead Architect to adjudicate)
+## 4. Divergences from Codex's conclusions (now resolved — ratified per §0)
 
 1. **Gameplay coverage 79% vs 100%.** Codex rates all 11 gameplay areas
    compatible; the companion finds two ownerless aggregates (D7). The disagreement
@@ -126,6 +174,8 @@ Continue Codex's numbering; full evidence in
    flip (ADR-0014) and routes the convention itself to Nico.
 
 ## 5. Applied in this PR (safe, source-backed SSOT fixes)
+
+**Reconciliation commit 1** (SSOT corrections):
 
 | File | Edit | Authority |
 |---|---|---|
@@ -140,6 +190,19 @@ Continue Codex's numbering; full evidence in
 
 **Not changed (already reconciled):** ADR-0050 (`amended_by` populated + banner),
 ADR-0058/0061 (top Ratification note already states Option C), ADR-0057 (no orphan).
+
+**Reconciliation commit 2** (enacting the ratified decisions D2/D14, D7a, D8, D9):
+
+| File | Edit | Decision |
+|---|---|---|
+| ADR-0001/0002/0004/0009/0013/0025/0043 | `binding: true`→`false` (superseded ⇒ not in force) | D2/D14 |
+| `ADR-0010` | add `binding: true` (was missing) | D2/D14 |
+| `ADR-0093` | `binding: false`→`true` (accepted ratification apply-miss) | D2/D14 |
+| [[vault-governance]] | written two-axis `status` vs `binding` rule | D2/D14 |
+| `scripts/status-consistency-check.mjs` | new invariant: `superseded ⇒ binding:false`; every ADR declares `binding` | D2/D14 |
+| `ADR-0122` D4 | "default off for 18+"→"default off for the attested 16+ band" | D9 |
+| `GD-0012` | `context: league-orchestration` + ownership note | D7a |
+| `ADR-0100` | Open Question closed → "C-lite" canonical enum home | D8 |
 
 ## 6. Deferred follow-ups (flagged, not done here)
 
