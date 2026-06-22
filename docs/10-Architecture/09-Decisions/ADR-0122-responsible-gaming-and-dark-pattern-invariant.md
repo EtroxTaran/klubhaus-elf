@@ -111,7 +111,9 @@ completed self-audit from [[../../40-Compliance/responsible-gaming]].
 
 FMX should reserve an optional local session reminder:
 
-- default off for 18+ users;
+- default off for all users (the attested **16+** band — FMX-211 D9, 2026-06-22:
+  ADR-0112 stores only the coarse 16+ band by data-minimisation, so the default
+  is uniform; do not widen the age SSOT to gate a wellness toggle);
 - neutral copy;
 - configurable thresholds;
 - no required telemetry;
@@ -171,7 +173,7 @@ or store policy.
 
 | Option | Meaning | Assessment |
 |---|---|---|
-| A. Optional local reminders, default off for 18+ | Neutral, local, no required telemetry. | **Recommended.** Helpful without paternalism. |
+| A. Optional local reminders, default off for the attested 16+ band | Neutral, local, no required telemetry. | **Decided (FMX-211 D9).** Helpful without paternalism; keys off the only band ADR-0112 stores. |
 | B. Default on for all users | Stronger nudge. | Higher friction and no clear need for adult strategy players. |
 | C. No reminders | Omit feature entirely. | Leaves a low-cost wellbeing tool unused. |
 

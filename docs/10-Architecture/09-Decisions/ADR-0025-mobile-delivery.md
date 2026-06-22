@@ -6,7 +6,7 @@ created: 2026-05-19
 updated: 2026-06-11
 accepted_at: 2026-05-19
 type: adr
-binding: true
+binding: false
 supersedes:
 superseded_by: ADR-0104-mobile-delivery-grounding-and-ratification
 related: [[ADR-0021-revised-tech-stack]], [[ADR-0008-mobile-first-ui]], [[ADR-0023-realtime-transport]], [[ADR-0002-offline-first]], [[../11-Risks]]

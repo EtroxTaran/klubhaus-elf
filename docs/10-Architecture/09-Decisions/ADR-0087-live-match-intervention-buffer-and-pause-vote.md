@@ -15,7 +15,7 @@ related:
   - [[ADR-0019-modular-monolith-ddd]]
   - [[ADR-0028-postgres-transactional-outbox]]
   - [[ADR-0049-swappable-spatial-event-match-engine]]
-  - [[ADR-0015-spectator-snapshot-streaming]]
+  - [[ADR-0099-spectator-watch-party-streaming-over-committed-event-log]]
   - [[ADR-0011-server-authoritative-multiplayer]]
   - [[ADR-0026-match-frame-contract]]
   - [[../bounded-context-map]]
@@ -113,7 +113,7 @@ tactics-pause, role/reputation and abuse-revocation questions.
 Scope: the Match-owned `InterventionBufferPolicy` value object + buffer/rejection events; the
 Watch-Party-owned deliberate pause-vote process manager (distinct from §5.1); their event-only
 coordination; the `§7` live-coaching matrix ownership split; the determinism contract. Out of
-scope: spectator-delay tuning (ADR-0015); the disconnect-pause path beyond boundary clarification;
+scope: spectator-delay tuning (ADR-0099, supersedes ADR-0015); the disconnect-pause path beyond boundary clarification;
 match simulation internals (ADR-0049); **all numeric magnitudes** (→ FMX-52 behind
 `interventionPolicyVersion` / `pausePrivilegePolicyVersion`).
 
@@ -282,7 +282,7 @@ Local privilege layer:
 |---|---|---|
 | Pause allowed? | **Watch Party** | policy flag gating the pause-vote saga |
 | Inputs at any time? (Always / Only fixed windows) | **WP sets flag → Match enforces** | WP owns the rule; flows to Match's `acceptanceWindow` via the ACL; Match enforces deterministically |
-| Coach / Spectator view delay | **Watch Party** | streaming (ADR-0015), unchanged |
+| Coach / Spectator view delay | **Watch Party** | streaming (ADR-0099, supersedes ADR-0015), unchanged |
 | Disconnect pause mode / window | **Watch Party** | existing §5.1, unchanged |
 | Chat | **Watch Party** | unchanged |
 | *(new)* deliberate pause budget/cooldown/quorum/max-duration | **Watch Party** | pause-vote saga (§B) |

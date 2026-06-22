@@ -7,7 +7,7 @@ updated: 2026-06-16
 accepted_at: 2026-05-16
 type: adr
 binding: true
-related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0015-spectator-snapshot-streaming]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0063-investor-entitlement-and-payment-boundary]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/investor-mp-transition-neutralization-2026-06-16]], [[../../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16]], [[../../60-Research/raw-perplexity/raw-architecture]]
+related: [[ADR-0003-match-engine]], [[ADR-0049-swappable-spatial-event-match-engine]], [[ADR-0019-modular-monolith-ddd]], [[ADR-0028-postgres-transactional-outbox]], [[ADR-0014-state-machines]], [[ADR-0099-spectator-watch-party-streaming-over-committed-event-log]], [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0063-investor-entitlement-and-payment-boundary]], [[../state-machines/league-week]], [[../state-machines/match]], [[../../60-Research/match-engine-runtime-strategy]], [[../../60-Research/swappable-spatial-event-match-engine-2026-05-27]], [[../../60-Research/investor-mp-transition-neutralization-2026-06-16]], [[../../40-Execution/fmx-189-investor-mp-separation-decision-record-2026-06-16]], [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
 
 # ADR-0011: Server-Authoritative Multiplayer
@@ -113,7 +113,8 @@ The engine is deterministic given seed + lineups + tactics (per
 replacement target, plus Wave 3 gap D8). Therefore an AI vs AI
 match can be **re-simulated on demand** to produce a full event log
 whenever a user wants to watch the match (e.g. via a watch-party
-proposal in [[ADR-0015-spectator-snapshot-streaming]]).
+proposal in [[ADR-0099-spectator-watch-party-streaming-over-committed-event-log]],
+which supersedes the original ADR-0015 snapshot-streaming proposal).
 
 Rationale:
 

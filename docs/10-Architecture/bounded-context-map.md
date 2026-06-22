@@ -3,7 +3,7 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-06-18
+updated: 2026-06-22
 type: architecture
 binding: true
 related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]], [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]], [[../60-Research/identity-access-context-definition-2026-06-15]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[09-Decisions/ADR-0123-identity-access-context-definition]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[../40-Quality/architecture-fitness-function]]
@@ -36,11 +36,11 @@ change, not a refactor.
 | **Identity & Access** | `Account`, credentials, sessions, registered devices, global roles/claims, principal context, account deletion/recovery initiation (ADR-0123) | `PrincipalContext`, session/device validity, global claim snapshots, auth/security identity events |
 | **League Orchestration** | Season, week, match-day, mode, pause, quorum; **Competition & Season registry** sub-aggregate cluster (ADR-0066): `Competition` + `Season` reference entities, `LeagueCompetitionSeason` edition aggregate, `PyramidConfiguration` (tier order + promotion/relegation), participants by `ClubId` ref, League-owned tie-break rule + official current/final ordering | League status, deadlines, lifecycle events; `CompetitionRevenueProfilePublished` / `FixtureCommercialProfilesPublished` / profile snapshot queries / `SeasonAdvanced`; `GetOfficialCompetitionStandings` / `CompetitionStandingsFinalizedV1` |
 | **Club Management** | Finance ledger (sole writer; balanced double-entry postings per ADR-0095; wage-block + transfer-fee/amortisation posting contracts per ADR-0105: `PlayerWageBlockPosted` / `StaffWageBlockPosted` as counterpart to the `StaffWagePosted` + `ContractFinancialIntent` ACLs, `TransferFeeCapitalised` / `TransferInstalmentSettled` / `RegistrationAmortisationPosted` as the Transfer→Ledger ACL incl. `LoanFinancialIntent` mapping), accounting projections, budget envelopes, board pressure, insolvency state | Club state, economy snapshots, board pressure |
-| **Squad & Player** | Player base data, durable availability, fitness/form/morale, contracts, injuries, discipline and applied development state (definition proposal: ADR-0131) | Impact Lens projections, squad projections, player state, availability snapshots, contract/discipline/injury facts |
-| **Training** | Training plan, load, readiness, development signals, role-familiarity/set-piece readiness signals (definition proposal: ADR-0130) | Training outcomes, fatigue/readiness signals, growth deltas, set-piece readiness facts |
+| **Squad & Player** | Player base data, durable availability, fitness/form/morale, contracts, injuries, discipline and applied development state (accepted definition: ADR-0131) | Impact Lens projections, squad projections, player state, availability snapshots, contract/discipline/injury facts |
+| **Training** | Training plan, load, readiness, development signals, role-familiarity/set-piece readiness signals (accepted definition: ADR-0130) | Training outcomes, fatigue/readiness signals, growth deltas, set-piece readiness facts |
 | **Transfer** | Market valuation, opportunities, offers, clause packages, negotiation cases, deadlines, escalation | Transfer state, valuation bands, pressure signals, completed deals |
-| **Match** | Line-up, tactic snapshot lock, intervention buffer, deterministic simulation, results and event log (definition proposal: ADR-0129) | Result, match events, replay stream, match report facts |
-| **Watch Party** | Session lifecycle, scheduling/polls, participants/roles, broadcast cursor, spectator delay, conference coordination, pause-vote orchestration and party-scoped chat/markers/moderation (definition proposal: ADR-0133) | Watch-party status, schedule/deadline events, participant/role facts, party timeline/chat/marker projections, `PauseMatch`/`ResumeMatch` commands to Match |
+| **Match** | Line-up, tactic snapshot lock, intervention buffer, deterministic simulation, results and event log (accepted definition: ADR-0129) | Result, match events, replay stream, match report facts |
+| **Watch Party** | Session lifecycle, scheduling/polls, participants/roles, broadcast cursor, spectator delay, conference coordination, pause-vote orchestration and party-scoped chat/markers/moderation (accepted definition: ADR-0133) | Watch-party status, schedule/deadline events, participant/role facts, party timeline/chat/marker projections, `PauseMatch`/`ResumeMatch` commands to Match |
 | **Notification** | Durable notifications, inbox, preferences, subscriptions, schedules, delivery attempts, provider adapters, push preparation, digests | User-facing message projections, unread counters, delivery/audit events |
 | **Manager & Legacy** | Manager profile, run analysis snapshots, manager style signals, archetype candidates, legacy unlock catalog, prestige profile | Post-run reflection projections, legacy/prestige configuration for new-save creation, archetype candidate board |
 | **Staff Operations** | Staff contract lifecycle, role assignment, pipeline coverage, wage schedule, specialisation metadata | Staff roster + role-assignment board projections, pipeline-coverage snapshots, wage events for the Club Management ledger |
@@ -88,22 +88,24 @@ boundaries; a context may relate across clusters:
 5. **Engagement & Narrative** — Narrative, Media Ecology, Notification, Watch Party.
 6. **Platform & Governance** — Identity & Access, Offline Sync, Audit & Security, Community Overlay Pipeline.
 
-FMX-132 adds non-binding context-definition proposals for three Original-11
-Sporting Core contexts: [[09-Decisions/ADR-0129-match-context-definition]]
-(Match), [[09-Decisions/ADR-0130-training-context-definition]] (Training) and
+FMX-132 adds accepted context-definition records for three Original-11 Sporting
+Core contexts: [[09-Decisions/ADR-0129-match-context-definition]] (Match),
+[[09-Decisions/ADR-0130-training-context-definition]] (Training) and
 [[09-Decisions/ADR-0131-squad-and-player-context-definition]] (Squad & Player).
-They are draft sources until Nico answers
+Nico accepted D1-D7 on 2026-06-19 in
 [[../40-Execution/fmx-132-sporting-core-context-definitions-decision-queue-2026-06-16]];
-the accepted map/count does not change.
+the accepted map/count does not change because these clarify existing context
+rows.
 
-FMX-159 adds a non-binding context-definition proposal for
+FMX-159 adds the accepted context-definition record
 [[09-Decisions/ADR-0133-watch-party-context-definition]] (Watch Party).
-If accepted, Watch Party owns party-scoped session/social orchestration while
-Match remains simulation/event-log/replay authority, Notification remains
-delivery/inbox/preference owner and Offline Sync remains sync/rebase and
-collaboration infrastructure. It is draft until Nico answers
+Watch Party owns party-scoped session/social orchestration while Match remains
+simulation/event-log/replay authority, Notification remains delivery/inbox/
+preference owner and Offline Sync remains sync/rebase and collaboration
+infrastructure. Nico accepted D1-D8 on 2026-06-19 in
 [[../40-Execution/fmx-159-watch-party-context-ownership-decision-queue-2026-06-17]];
-the accepted map/count does not change.
+the accepted map/count does not change because Watch Party was already in the
+28-context catalog.
 
 The **Competition & Season registry** was ratified 2026-06-02 via
 [[09-Decisions/ADR-0066-competition-registry-sub-aggregate]] (FMX-79, closing the
@@ -137,13 +139,13 @@ AI World Simulation is the canonical planning-source context for
 League Orchestration, Club Management and Transfer provide source
 facts/projections through published language.
 
-FMX-139 proposes a pending clarification to the AI World row: AI World
-Simulation would own `WorldDriftPolicyCatalog` identity/versioning for
+FMX-139 adds an accepted clarification to the AI World row: AI World Simulation
+owns `WorldDriftPolicyCatalog` identity/versioning for
 `DriftConsumerPolicyRef` values carried by drift events, while GD-0043/FMX-52
 keeps numeric calibration and consumers apply effects inside their own
-contexts. Until Nico answers
-[[../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]],
-this is a non-binding contract proposal, not a map/count change.
+contexts. Nico accepted D1-D4 on 2026-06-19 in
+[[../40-Execution/fmx-139-drift-consumer-policy-ref-decision-queue-2026-06-17]];
+this is a contract clarification, not a map/count change.
 
 The **Statistics & Analytics** projection-only bounded context (FMX-94,
 [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], ratified
@@ -196,8 +198,9 @@ Operations supplies `StadiumCommercialSnapshot`,
 `FacilityComplianceChecked`. League / Competition supplies
 `CompetitionRevenueProfilePublished` +
 `FixtureCommercialProfilesPublished` + profile snapshot queries +
-`SeasonAdvanced`. Rivalry supplies `RivalryTierTransitioned` +
-`RivalryCommercialSignal`. Regulations supplies `EffectiveRuleSet`
+`SeasonAdvanced`. Rivalry supplies `RivalryTierTransitioned` (the former
+`RivalryCommercialSignal` is removed per ADR-0111 — CommercialPortfolio derives
+any commercial impact itself). Regulations supplies `EffectiveRuleSet`
 (UEFA FSR + PL APT + La Liga PSR + GDPR + DSA + CRA + Late
 Payment Directive + CEN-EN 17210 obligations). No context writes
 Club ledger rows directly.
@@ -476,12 +479,12 @@ Match/Squad/Club/Fan/Transfer contexts remain the authoritative fact owners.
 
 ### 1.4 Watch Party context (FMX-159)
 
-[[09-Decisions/ADR-0133-watch-party-context-definition]] is a draft,
-non-binding proposal. If accepted, Watch Party owns party-scoped lifecycle,
-poll/schedule, participant/role, broadcast/session, spectator-delay,
-conference, pause-vote, chat, marker and moderation state.
+[[09-Decisions/ADR-0133-watch-party-context-definition]] is accepted. Watch
+Party owns party-scoped lifecycle, poll/schedule, participant/role,
+broadcast/session, spectator-delay, conference, pause-vote, chat, marker and
+moderation state.
 
-The proposed relationship is explicit:
+The accepted relationship is explicit:
 
 - Match owns simulation, committed event log, replay execution, frame contract,
   intervention application and result authority.

@@ -7,7 +7,7 @@ created: 2026-05-15
 updated: 2026-06-11
 accepted_at: 2026-05-16
 type: adr
-binding: true
+binding: false
 superseded_by: ADR-0020-hybrid-online-mvp-offline-ready
 related: [[ADR-0001-tech-stack]], [[ADR-0004-data-model]], [[ADR-0005-save-format]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0028-postgres-transactional-outbox]], [[../../60-Research/pwa-offline-patterns]], [[../../60-Research/determinism-and-replay]]
 ---

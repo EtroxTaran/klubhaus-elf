@@ -6,7 +6,7 @@ created: 2026-05-16
 updated: 2026-06-11
 accepted_at: 2026-05-16
 type: adr
-binding: true
+binding: false
 superseded_by: ADR-0028-postgres-transactional-outbox
 related: [[ADR-0019-modular-monolith-ddd]], [[ADR-0011-server-authoritative-multiplayer]], [[ADR-0014-state-machines]], [[ADR-0021-revised-tech-stack]], [[ADR-0023-realtime-transport]], [[ADR-0028-postgres-transactional-outbox]], [[../../60-Research/raw-perplexity/raw-architecture]]
 ---
