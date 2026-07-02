@@ -3,7 +3,7 @@ title: Game Design Map
 status: current
 tags: [game-design, meta]
 created: 2026-05-16
-updated: 2026-06-16
+updated: 2026-07-02
 type: map
 binding: false
 related: [[Project-Goals]], [[MVP-Scope]], [[Feature-Map]], [[Documentation-V1]], [[../50-Game-Design/GD-0024-ai-world-drift-algorithm]], [[../50-Game-Design/GD-0012-onboarding]], [[../50-Game-Design/GD-0006-transfers]], [[../50-Game-Design/regulations-and-compliance]], [[../50-Game-Design/GD-0018-ai-narrative-personas-and-dialogue]], [[../50-Game-Design/GD-0028-dialogue-intent-taxonomy-effect-matrix]], [[../50-Game-Design/GD-0031-analytics-hub-and-statistics]], [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]], [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]]
@@ -125,6 +125,12 @@ sections are not active work by default.
   and the Easy coarse-dial tactic surface compiling into the same tactic
   contract; encodes directions Nico ratified 2026-07-01/02; open forks carry
   ★-recommendations only; record awaiting Nico ratification.
+- [[../50-Game-Design/GD-0047-easy-tactic-preset-library]] - draft FMX-217
+  Easy-World tactic preset library and aggressiveness-dial record: the native
+  coarse-dial/preset surface that compiles deterministically into the SAME
+  tactic contract Pro writes (per the 2026-07-02 Easy-tactic-surface decision);
+  the FMX-217 fork-resolution proposal carries the single preset-count and
+  aggressiveness→dial-mapping recommendation; record awaiting Nico ratification.
 - [[../60-Research/dual-mode-two-worlds-research-index-2026-07-02]] - FMX-212
   Stage-1 research corpus index (12 notes) grounding GD-0046 and draft
   ADR-0135..0138.

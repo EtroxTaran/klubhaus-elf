@@ -1,13 +1,13 @@
 ---
 title: ADR-0135 Tier-parity and assist-strength calibration contract
 status: draft
-tags: [adr, architecture, dual-mode, parity, calibration, assist, monte-carlo, fmx-212]
+tags: [adr, architecture, dual-mode, parity, calibration, assist, monte-carlo, fmx-212, fmx-218]
 context: [tactics, match, statistics-analytics, ai-world-simulation]
 created: 2026-07-02
 updated: 2026-07-02
 type: adr
 binding: false
-linear: FMX-212
+linear: [FMX-212, FMX-218]
 supersedes:
 superseded_by:
 related:
@@ -23,6 +23,7 @@ related:
   - [[../../60-Research/off-pitch-parity-measurement-economy-loop-2026-07-02]]
   - [[../../60-Research/in-match-controls-tier-gating-2026-07-01]]
   - [[../../60-Research/management-delegation-and-easy-mode-surfaces-2026-07-02]]
+  - [[../../60-Research/raw-perplexity/raw-parity-calibration-methodology-2026-07-02]]
   - [[../../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
   - [[../../30-Implementation/economy-calibration-and-soak-test-runbook]]
 ---
@@ -39,6 +40,15 @@ slot taxonomy** (new metric definitions, two new slot families, one new slot
 field). Touching GD-0043 is a decision reserved to Nico; nothing in this note
 is binding until he ratifies it. Marked items are the research corpus's
 ★-recommendations — **recommendations, not decisions**.
+
+FMX-218 (2026-07-02) hardens the calibration **methodology** this ADR left open —
+anchor ownership/versioning (§2), harness cadence sizing (§6) and the shared
+Auto-Coach↔opponent-AI evaluation boundary (§5) — grounded in
+[[../../60-Research/raw-perplexity/raw-parity-calibration-methodology-2026-07-02|the FMX-218 raw capture]].
+Every parity **band number and per-cell seed count stays explicitly
+OPEN/harness-gated**: FMX-218 fixes the method that will *produce* those values,
+never the values themselves. Its additions are equally **recommendations, not
+decisions**.
 
 ## Date
 
@@ -115,6 +125,15 @@ Per the tier-parity packet's **NEW-parity-normalization** ★-recommendation
   output — a raw easy/pro ratio would be trivially high in a squad-dominated
   engine ([[../../60-Research/tier-parity-measurement-calibration-2026-07-01|tier-parity packet]],
   Findings 5–6).
+- **`R` is a ratio-of-differences estimator — low-denominator caveat** (★ FMX-218,
+  recommendation, not a decision). Because
+  `R = (easy_opt − random) / (pro_opt − random)`, its variance EXPLODES where the
+  denominator (achievable decision value) is small — precisely the squad-dominated
+  cells. Therefore the head-to-head co-primary is the **PRIMARY instrument in
+  low-denominator cells**, acceptance is **WORST-CELL** (a per-cell CI bound), and
+  **`R` is NEVER pooled or averaged across cells** — it is comparable only within a
+  fixed cell, the UCI_Elo context-specificity rule
+  ([[../../60-Research/raw-perplexity/raw-parity-calibration-methodology-2026-07-02|FMX-218 raw capture]], Q2).
 - **Co-primary gate — head-to-head win-probability band** of `P_pro_opt` vs
   `P_easy_opt` over the sweep (the direct restricted-vs-unrestricted
   measurement, Finding 1 of the same packet).
@@ -135,22 +154,54 @@ already instrumented via `match.core`/`match.liveControl` and is the cheapest
 place to make the metric real
 ([[../../60-Research/in-match-controls-tier-gating-2026-07-01|live-controls packet]], D4 input).
 
-### 2. Anchor policy: versioned agents inside the parameter pack
+### 2. Anchor policy: versioned anchor agents in a shared registry, pinned by reference
 
-- Every parity/strength slot carries **versioned `ExpertReference` (E) and
-  `NaiveBaseline` (N) agents as artifacts inside its parameter pack**. A
-  strength number is only meaningful relative to a named, versioned reference
-  and setting — the chess-precedent rule the Auto-Coach packet derives from
-  UCI_Elo/CCRL anchoring (Finding 3).
-- **Anchor policy** (★ tier-parity packet **NEW-optimal-anchor-policy**,
-  recommendation, not a decision): the gate anchor is a **fixed-budget
-  optimizer artifact (approximate best response), re-derived with the same
-  versioned budget on every relevant patch**; fixed scripted heuristics
-  (`P_pro_ref`, `P_easy_naive`) run unchanged as smoke references; human
-  benchmarks are post-launch T4 validation. Comparing against stale optima
-  silently overstates parity (tier-parity packet, Finding 2 and
-  patch-stability rule 2).
-- **`anchorClass` becomes a first-class slot field** (★ off-pitch packet
+- Every parity/strength slot depends on **versioned `ExpertReference` (E) and
+  `NaiveBaseline` (N) anchor agents**. A strength number is only meaningful
+  relative to a named, versioned reference and setting — the chess-precedent rule
+  the Auto-Coach packet derives from UCI_Elo/CCRL anchoring (Finding 3). But the
+  **anchor bytes live in a SEPARATE shared calibration/agent registry** —
+  immutable, content-addressed artifacts, the MLflow/DVC/W&B registry pattern —
+  **NOT inside the slot's parameter pack**; each slot's pack **version-pins** them
+  via two NEW first-class slot fields: `anchorRefs: [<registryId@semver>]` and
+  `evalSuiteVersion`. Bundling the anchor bytes into the pack welds a long-lived
+  baseline lifecycle to fast config churn and blocks reproducible historical
+  re-runs (★ FMX-218 Q1,
+  [[../../60-Research/raw-perplexity/raw-parity-calibration-methodology-2026-07-02|FMX-218 raw capture]];
+  recommendation, not a decision).
+- **Ownership split** (★ FMX-218, recommendation, not a decision): the
+  **infra/eval-platform team owns the evaluation SYSTEM** — the registry, storage,
+  access control, CI eval pipelines and the eval-suite build; **Nico/domain owns
+  what "expert" and "naive" MEAN** and signs off on any anchor change. Change
+  control: domain proposes an anchor change with its expected metric impact; infra
+  rolls it out via the registry under code-review approval and a changelog.
+- **Anchor SemVer discipline** (★ tier-parity packet **NEW-optimal-anchor-policy**
+  as amended by FMX-218, recommendation, not a decision): **MAJOR** = a
+  rules/reward/engine/kernel-comparability break OR anchor-quality-diagnostic
+  degradation (below) — this **forces anchor re-derivation and re-banding** and is
+  already coupled to a `match.core` rebaseline; **MINOR** = a compatible
+  improvement keeping the eval protocol comparable; **PATCH** = a neutral bugfix
+  that does not alter evaluated strength. **Never mutate an anchor in place** —
+  always cut a new version and mark historical metrics with the suite + anchor
+  versions they ran on.
+- The gate anchor E is a **fixed-budget optimizer artifact (approximate best
+  response), re-derived on every relevant patch** — but re-derived **matched in
+  OUTCOME space (equal approximate-exploitability / self-play
+  convergence-plateau), not merely equal compute budget**. An anchor is a BIASED
+  estimator of the true optimum: if the pro surface is harder to optimize than the
+  easy surface, a fixed budget under-estimates `P_pro_opt` MORE, which **INFLATES
+  `R` and silently overstates parity**. Fixed scripted heuristics (`P_pro_ref`,
+  `P_easy_naive`) run unchanged as smoke references; human benchmarks are
+  post-launch T4 validation. Comparing against stale or under-converged optima
+  silently overstates parity (tier-parity packet, Finding 2 and patch-stability
+  rule 2).
+- **Each anchor artifact carries an anchor-QUALITY diagnostic** (★ FMX-218,
+  recommendation, not a decision) — an approximate-exploitability estimate or a
+  self-play convergence-plateau check — stored with the artifact; its
+  **degradation is a MAJOR SemVer trigger** forcing re-derivation, because a
+  silently under-converged anchor is the single-direction error that
+  fixed-compute matching cannot catch.
+- **`anchorClass` remains a first-class slot field** (★ off-pitch packet
   **NEW-offpitch-anchor-class** Option C, recommendation, not a decision):
   `anchorClass: optimizer | scriptedReference`, declared per slot/area.
   Optimizer where the decision structure is compact (match/tactics, training,
@@ -165,6 +216,9 @@ place to make the metric real
   number is marked `confidence: reference-relative` instead of borrowing the
   match-slice placeholders. An under-budgeted "optimizer" masquerading as an
   optimum would overstate parity — worse than an honest reference.
+- **E is DERIVED from the shared evaluation kernel of §5** run at max/unthrottled
+  budget as a pinned calibration config — **not separately authored** (see the §5
+  joint change-control rider); N is a degenerate fixed config of the same kernel.
 
 ### 3. The D3 envelope (shape ratified; numbers OPEN)
 
@@ -187,6 +241,16 @@ degrading an assistant's static picks**
 ([[../../60-Research/assisted-play-parity-auto-coach-2026-07-01|Auto-Coach packet]],
 Findings 2/5 and its D3-b rationale); and **Easy is never a dominated
 strategy** (hard invariant, §4.2).
+
+**Banding procedure (★ FMX-218; numbers stay OPEN).** Once the harness produces
+per-cell distributions, set the fairness **CAP** from the UPPER CI bound of
+head-to-head vs the perceived-unfairness threshold, and the depth **FLOOR** from
+the LOWER CI bound of `R` vs the meaningful-edge threshold; the per-cell seed
+count is the power analysis needed to resolve those edges at worst-case p (§6).
+Because `R`'s variance explodes in low-denominator (squad-dominated) cells (§1),
+both bounds are applied **per cell** — head-to-head is the primary instrument
+there and `R` is never pooled into a mean. This fixes the *method* that produces
+the bands; the values above remain harness-gated.
 
 ### 4. New slot families (proposed additions to GD-0043's taxonomy)
 
@@ -216,10 +280,14 @@ Adopted as drafted in the
   vs E; **proposal-diversity index** (guard against one-preset meta collapse).
 - **Harness tiers:** T2 Monte-Carlo envelope + T3 multi-season soak (an
   Auto-Coach-managed club must not drift into FM-holiday-style decay).
-- **Hard invariants:** `S` never below a per-decision-class floor; **aggregate
-  `S` < 1.0** — the Auto-Coach must never beat the expert-reference agent,
-  otherwise pressing it becomes the optimum and the pro surface dies (the
-  packet's "too strong" failure mode, Finding 6).
+- **Hard invariants (confidence-bound form, ★ FMX-218):** the **UPPER CI bound
+  of aggregate `S` < 1.0** — the Auto-Coach must never beat the expert-reference
+  agent, otherwise pressing it becomes the optimum and the pro surface dies (the
+  packet's "too strong" failure mode, Finding 6); and the **LOWER CI bound of
+  per-decision-class `S` ≥ its floor**. Casting the point estimates as confidence
+  bounds means a single unlucky seed draw cannot red the build: nightly
+  evaluation of these invariants applies **FWER/FDR multiplicity control** across
+  the cell family and a **replicate-before-gate** rule.
 - **Rebaseline coupling:** any `match.core` rebaseline invalidates the
   calibration; `assist.autoCoach` must re-run (and re-derive its anchors)
   before the gate passes again.
@@ -246,11 +314,12 @@ invariant DL4 rides on this slot family):
   are diagnostics, never gate-bearing alone (off-pitch packet, Findings 4/10
   and the slot-family draft).
 - **Hard invariants (all areas, independent of anchor class):**
-  - **No-domination distribution check (T3):** `P_naive`-with-delegation must
-    not sit below the AI-field squad-expected band in league-position
-    distribution — this is the measurable form of ratified "Easy is never a
-    dominated strategy", and it is testable v1 in every area because floors
-    need only `P_random`/`P_naive` and distributions, not optimizers.
+  - **No-domination distribution check (T3, confidence-bound form, ★ FMX-218):**
+    the **LOWER CI bound** of `P_naive`-with-delegation's position-vs-AI-field
+    must not sit below the domination threshold in **EVERY cell** — the measurable
+    form of ratified "Easy is never a dominated strategy", testable v1 in every
+    area because floors need only `P_random`/`P_naive` and distributions, not
+    optimizers.
   - **Worst-staff-band-above-easy-floor:** the weakest hireable staff band
     executing a delegated area must still keep the save above the easy floor —
     delegation quality may scale with staff, the parity floor may not.
@@ -274,14 +343,46 @@ selects UI affordances and delegation policy only.
 
 - **Mechanism — throttled expert** (★ Auto-Coach packet
   **NEW-autocoach-strength-mechanism** Option A): assistants run the **same
-  evaluation the AI-league managers use** (one policy to maintain, one
-  simulation core), generate top-N candidates, and select via a
+  shared evaluation KERNEL the AI-league managers use** (one kernel to maintain,
+  one simulation core), generate top-N candidates, and select via a
   temperature/probability schedule tuned to hit the target `S`, deterministic
-  under a seeded stream. **Degraded evaluation (calibrated noise on beliefs)
-  is rejected for explanation-bearing assistants**: it produces wrong beliefs
-  that leak into the explanation UI and break the propose-only trust contract
-  (packet Findings 4/10). Separately authored assistant heuristics are
-  rejected as the documented FM-style decay architecture (Findings 2/5).
+  under a seeded stream — the Stockfish `Skill Level`/`UCI_Elo` "throttle
+  SELECTION, not understanding" precedent, one engine externally anchored to a
+  fixed rating list (★ FMX-218 Q3,
+  [[../../60-Research/raw-perplexity/raw-parity-calibration-methodology-2026-07-02|FMX-218 raw capture]]).
+  **Degraded evaluation (calibrated noise on beliefs) is rejected for
+  explanation-bearing assistants**: it produces wrong beliefs that leak into the
+  explanation UI and break the propose-only trust contract (packet Findings
+  4/10). Separately authored assistant heuristics are rejected as the documented
+  FM-style decay architecture (Findings 2/5).
+- **One shared evaluation kernel, three thin adapters** (★ FMX-218,
+  recommendation, not a decision): the kernel is a **stateless "Tactical
+  Evaluation Core"** — a Shared-Kernel SUPPORTING subdomain — operating ONLY on
+  the D4 compiled tactic contract (`TacticSnapshot` at `lineup_locked`) plus
+  `match.core`, exposing a state→value function + candidate generation and
+  **nothing else**. Three context-local adapters wrap it, each owning its OWN
+  policy: (a) the **opponent-AI manager** (difficulty/personality, no
+  explain-duty) in AI World Simulation; (b) the **Auto-Coach**
+  (throttle-to-target-`S`, propose-only, explanation) in Tactics/Training; (c) the
+  anchors — **E = the SAME kernel at max/unthrottled budget as a pinned
+  calibration config, N = a degenerate fixed config** of the same action space.
+  The word is **kernel, never "policy"** in the shared-eval sense: sharing a
+  stateless kernel over the published tactic contract is safe, whereas sharing a
+  *policy* would leak difficulty/personality/explain-duty across contexts
+  (perceived-unfairness + entangled incentives, FMX-218 Q3).
+- **The Auto-Coach adapter exposes the CHOSEN candidate's rationale only**, never
+  the kernel's internal candidate RANKING — this preserves propose-only trust and
+  prevents opponent-AI internals from leaking onto a player surface.
+- **Joint change-control rider (binds §2↔§5):** a **MAJOR kernel bump forces
+  re-derivation and re-banding of E**, and all `S`/`R` regressions are measured
+  against the **RE-DERIVED E**. The shared kernel is adopted partly BECAUSE it
+  enables **common-random-numbers (CRN) PAIRED estimation** of `S` and the
+  head-to-head `E` (fix seed + kernel, vary only the selection temperature) — the
+  primary sample-budget reducer, forfeited if the policies were separate. But that
+  same sharing means a kernel heuristic change moves both E and the throttled
+  Auto-Coach TOGETHER; without this re-derive-then-re-band rider and the
+  anchor-quality diagnostic of §2, a kernel change could silently **mask a real
+  `S` regression** (the CRN-entanglement failure).
 - **Granularity — per-decision-class vector, season-aggregate corridor as the
   gate** (★ **NEW-autocoach-strength-granularity**): engineering tunes an
   internal `S` vector per decision class (lineup, tactic preset, in-match
@@ -304,6 +405,56 @@ No new harness tier is created; the contract maps onto GD-0043's T0–T4:
 The match area is the reference implementation (§1); off-pitch areas reuse the
 metric definitions and add their own scenario cells and packs.
 
+**Cadence methodology (★ FMX-218, recommendation, not a decision).** The three
+cadences — **per-merge smoke / nightly trend / per-release soak** — are governed
+by a **SEQUENTIAL group-sequential/SPRT stopping rule per cell**, with a defined
+indifference region around each band edge and versioned α/β error rates (the
+Stockfish *fishtest* precedent). **The per-cell seed count is an OUTPUT of the
+stopping rule and stays explicitly OPEN**, exactly as the band numbers do: SPRT
+terminates clearly-inside and clearly-outside cells early and spends budget only
+on borderline cells, so the research's worst-case Wilson bounds (~381 games at a
+0.55 edge, ~2401 at 0.52, × the ~15x policy-pair cells) are a **BOUND, not the
+operating cost**. Each cadence additionally carries a hard **WALL-CLOCK CEILING** —
+the global governor and the hard n-cap for cells that never terminate.
+
+- **Per-merge smoke** — a wide-indifference SPRT over the 2–3 sentinel combos,
+  rejecting only on clearly-outside results or invariant breaks: a
+  non-statistical fast-fail, not a parity measurement.
+- **Nightly trend** — SPRT over a **pairwise / t-way COVERING-ARRAY subset that
+  MUST be generated FROM the slot/policy-pair taxonomy** (so a new `assist.*` slot
+  cannot silently escape coverage), measuring drift vs the last baseline,
+  monitored-not-blocking, under the FWER/FDR + replicate-before-gate rules of §4.1.
+- **Per-release soak** — SPRT run to full resolution or the hard n-cap: the **only
+  HARD gate**, plus the T3 no-domination distribution check.
+
+**Optimizer/anchor RE-DERIVATION is a separately-budgeted, versioned-compute
+artifact pinned to the per-release/rebaseline cadence — NEVER nightly, never
+per-merge.** All three cadences and both anchors MUST run the **SAME pinned kernel
+build + `evalSuiteVersion`**, or the `S`/`R` numbers are incommensurable across
+cadences; and the explain / propose-only / logging wrapper sits **OUTSIDE the
+kernel hot loop** (cost boundary).
+
+### Considered alternatives (rejected)
+
+The genuine forks the FMX-218 methodology closes (recommendations, not decisions):
+
+- **(i) Fixed Wilson-n cadence sizing** — rejected: a worst-case BOUND that
+  over-spends decided cells and under-powers borderline ones, unaffordable at the
+  ~15x cell multiplier; the SPRT sequential stopping rule (§6) is chosen instead.
+- **(ii) Anchors bundled as bytes inside the parameter pack** (the earlier §2
+  wording) — rejected: welds the baseline lifecycle to config churn and blocks
+  reproducible historical re-runs; the registry-by-reference scheme (§2) is chosen.
+- **(iii) Separate Auto-Coach and opponent-AI kernels (full separation)** —
+  rejected: behavioral divergence, double maintenance, and loss of the self-play
+  proxy and CRN paired estimation; one shared kernel + adapters (§5) is chosen.
+- **(iv) A single undifferentiated shared POLICY** — rejected: leaks
+  difficulty/personality/explain-duty across contexts (perceived-unfairness +
+  entangled incentives); a shared stateless kernel wrapped by context-local
+  adapters (§5) is chosen.
+- **(v) A mean/pooled-`R` acceptance gate** — rejected: it passes coin-flip
+  low-denominator cells; the worst-cell per-cell CI bound with head-to-head as the
+  primary instrument (§1/§3) is chosen.
+
 ## Rationale
 
 - **One grammar, honest per-area claims.** Option C keeps every parity number
@@ -322,6 +473,18 @@ metric definitions and add their own scenario cells and packs.
 - **Makes "Easy never dominated" testable now.** The no-domination T3
   distribution check needs only naive/random policies, so the hardest promise
   is enforceable v1 in every area, including the anchor-weak ones.
+- **Trustworthy gate without inventing numbers (★ FMX-218).** Three refinements
+  keep the gate honest while every band value stays harness-gated: anchors are
+  registry-pinned, SemVer-versioned, and matched in outcome space with a
+  quality diagnostic (§2), so a biased/stale anchor cannot silently inflate `R`;
+  one shared *kernel* (not a shared policy) with context-local adapters (§5)
+  buys CRN paired estimation and behavioral consistency without leaking
+  difficulty/explain-duty across contexts, guarded by the re-derive-then-re-band
+  rider against CRN entanglement; and the cadence is an SPRT stopping rule under
+  a wall-clock ceiling (§6) with CI-bound invariants + FWER/FDR (§4), so the
+  ~15x cell space is affordable and a single unlucky seed cannot red the build.
+  The *method* (SPRT, CI-bound banding, power analysis) is specifiable now; the
+  *values* are not — exactly as the D3 bands remain open.
 
 ## Consequences
 
@@ -354,26 +517,56 @@ Negative / follow-up:
 
 ### Open forks carried (Nico decides; ★ = research recommendation, not a decision)
 
-1. **Parity band numbers** — R floor/cap, head-to-head band, season point cap
-   (★ placeholders 0.85–0.95 / 52–57% / ~4–8 pts, pending harness evidence).
+1. **Parity band numbers — OPEN/harness-gated.** `R` floor/cap (★ placeholder
+   0.85–0.95), head-to-head band (★ 52–57%), season-point cap (★ ~4–8 pts) — set
+   only once the sim harness produces per-cell distributions.
 2. **Parity normalization** — ★ `R` headline + head-to-head co-primary
-   (NEW-parity-normalization Option b+c).
-3. **Anchor policy** — ★ versioned fixed-budget optimizer re-derived per
-   patch, scripted heuristics as smoke references (NEW-optimal-anchor-policy
-   Option b).
+   (NEW-parity-normalization Option b+c), with `R` a within-cell instrument only (§1).
+3. **Anchor policy — RESOLVED-INTO-ONE-ARTIFACT pending Nico.** Anchors live in a
+   separate shared registry, pinned by `anchorRefs`/`evalSuiteVersion`; **E is the
+   shared §5 kernel at max/unthrottled budget (not separately authored)**, N a
+   degenerate config; SemVer-versioned, re-derived matched in outcome space
+   (NEW-optimal-anchor-policy Option b, amended by FMX-218).
 4. **Per-area anchor class & claim wording** — ★ declared `anchorClass` per
    slot + two-class wording (NEW-offpitch-anchor-class C,
    NEW-d3-claim-strength-per-area B).
-5. **Strength mechanism** — ★ throttled expert; degraded evaluation rejected
-   for explanation-bearing assistants (NEW-autocoach-strength-mechanism A).
+5. **Strength mechanism — RESOLVED-INTO-ONE-ARTIFACT pending Nico.** Throttled
+   expert over **ONE shared evaluation kernel** (E = the same kernel at max
+   budget); degraded evaluation rejected for explanation-bearing assistants
+   (NEW-autocoach-strength-mechanism A).
 6. **Strength granularity** — ★ per-decision-class vector with
    season-aggregate corridor gate (NEW-autocoach-strength-granularity).
 7. **Per-area override sweep scope** — ★ whole-mode families + at most 2–3
-   sentinel override combos (interacts with the open per-area-override fork).
+   sentinel override combos; nightly runs the taxonomy-generated covering array
+   (§6) (interacts with the open per-area-override fork).
 8. **Delegation slot-family details** — ★ NEW-delegation-strength-spec shape
    incl. runbook ownership split.
 9. **Extending GD-0043 itself** — this whole ADR; GD-0043 is binding and only
-   Nico can extend its taxonomy.
+   Nico can extend its taxonomy. Includes ratifying the stateless **"Tactical
+   Evaluation Core"** as a new Shared-Kernel SUPPORTING subdomain and the
+   **infra-owns-system / Nico-owns-semantics** anchor ownership split (§2/§5) —
+   an architecture/module-boundary call touching the AI/Match seam.
+
+**FMX-218 sub-forks newly carried** (methodology fixed here; values OPEN):
+
+10. **SPRT parameters** — the α/β error rates and the indifference half-width
+    around each band edge (and the per-cadence hard n-cap): a Nico/domain
+    calibration decision, un-settable until the engine exists.
+11. **Per-cadence wall-clock ceilings** (smoke / nightly / release-soak) and the
+    definition of "release" (RC-only vs every release) — an infra + Nico budget
+    decision that gates whether the full sweep sits on the release critical path.
+12. **Reduced-horizon soak proxies** — whether reduced-horizon proxies are
+    acceptable for the most expensive off-pitch cells (e.g. a 50y
+    transfers/scouting delegation soak) with an explicit fidelity caveat, or
+    whether full-horizon is mandatory — a cost-vs-fidelity tradeoff for Nico.
+13. **Residual higher-order interaction gap** — pairwise/t-way covering arrays
+    miss faults living only in an untested >t-way override combo: accept the
+    residual risk between full per-release sweeps, or mandate specific extra
+    sentinel combos (e.g. Easy-everywhere + Expert-tactics) — a scope call for Nico.
+14. **Anchor SemVer trigger threshold** — how much anchor-quality-diagnostic
+    degradation (exploitability/plateau drift) constitutes a MAJOR bump forcing
+    re-derivation — a domain-semantics threshold Nico signs off, un-quantifiable
+    pre-harness.
 
 ## Supersedes
 
@@ -402,5 +595,8 @@ Corpus and machinery:
 - [[../../60-Research/off-pitch-parity-measurement-economy-loop-2026-07-02]]
 - [[../../60-Research/in-match-controls-tier-gating-2026-07-01]]
 - [[../../60-Research/management-delegation-and-easy-mode-surfaces-2026-07-02]]
+- [[../../60-Research/raw-perplexity/raw-parity-calibration-methodology-2026-07-02]]
+  — FMX-218 raw capture (anchor versioning, cadence sizing, shared-kernel
+  boundary; grounds §2/§5/§6).
 - [[../../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
 - [[../../30-Implementation/economy-calibration-and-soak-test-runbook]]
