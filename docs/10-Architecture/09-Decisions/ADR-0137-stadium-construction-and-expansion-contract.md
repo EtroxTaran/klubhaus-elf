@@ -1,13 +1,13 @@
 ---
 title: ADR-0137 Stadium Construction and Expansion Contract
-status: draft
+status: accepted
 tags: [adr, architecture, ddd, stadium-operations, club-management, construction, expansion, financing, dual-mode, fmx-212, fmx-216, fmx-220]
 context: [stadium-operations, club-management-economy]
 created: 2026-07-02
 updated: 2026-07-02
 type: adr
 binding: false
-linear: [FMX-212, FMX-216, FMX-220]
+linear: [FMX-212, FMX-216, FMX-220, FMX-224]
 supersedes:
 superseded_by:
 related:
@@ -37,13 +37,19 @@ related:
 
 ## Status
 
-draft
+accepted
 
 Proposed for ratification by Nico. Phase rule: all ADRs are
 `status: draft` / `binding: false`; nothing below carries implementation
 authority until ratified. The ★-marked positions in
 [§ Open forks](#open-forks-carried-with--recommendations) are
 **recommendations, not decisions**.
+
+## Ratification
+
+Ratified by Nico 2026-07-02 (FMX-224, enacting the [[../../40-Execution/fmx-212-ratification-agenda-decision-queue-2026-07-02|FMX-223 agenda]]). `status: accepted`; `binding` stays `false` — decided but not in force pre-development (FMX-211 D2/D14; ADR-0104 precedent). Engine-gated numbers remain OPEN.
+
+**Expert-MVP affordance — DECIDED (A13):** ship a **light** Expert stadium affordance at MVP (phased authorship + growth/financial-lifecycle legibility via the construction FSM); the full plot-based builder (Option C) stays **deferred**; not a detached tycoon minigame. **Accepted as recommended:** the construction-project FSM (Option B) as the single contract with the Quick wizard as its compile-down + the Tier-1 corrections; non-venue facility scoping (the bounded-context-map ownership clarification is applied this ratification); the named IFRS-lite non-depreciation MVP simplification; the cancel-from-Commissioning ledger semantics.
 
 ## Date
 

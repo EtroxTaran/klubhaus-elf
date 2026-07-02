@@ -1,13 +1,13 @@
 ---
 title: ADR-0135 Tier-parity and assist-strength calibration contract
-status: draft
+status: accepted
 tags: [adr, architecture, dual-mode, parity, calibration, assist, monte-carlo, fmx-212, fmx-218, fmx-222]
 context: [tactics, match, statistics-analytics, ai-world-simulation]
 created: 2026-07-02
 updated: 2026-07-02
 type: adr
 binding: false
-linear: [FMX-212, FMX-218, FMX-221, FMX-222]
+linear: [FMX-212, FMX-218, FMX-221, FMX-222, FMX-224]
 supersedes:
 superseded_by:
 related:
@@ -34,7 +34,7 @@ related:
 
 ## Status
 
-draft
+accepted
 
 Proposed. Prepared for FMX-212 Stage 2 on 2026-07-02. This ADR **proposes an extension of
 the binding [[../../50-Game-Design/GD-0043-gameplay-calibration-ownership-and-acceptance-gate|GD-0043]]
@@ -59,6 +59,12 @@ reduced-horizon soak proxies (§6), and the higher-order interaction residual
 OPEN/engine-gated. Grounded in
 [[../../60-Research/raw-perplexity/raw-parity-architecture-placement-2026-07-02|the FMX-222 raw capture]].
 **Recommendations, not decisions.**
+
+## Ratification
+
+Ratified by Nico 2026-07-02 (FMX-224, enacting the [[../../40-Execution/fmx-212-ratification-agenda-decision-queue-2026-07-02|FMX-223 agenda]]). `status: accepted`; `binding` stays `false` — decided but not in force pre-development (FMX-211 D2/D14; ADR-0104 precedent). Engine-gated numbers remain OPEN.
+
+**Accepted as recommended:** the parity metric grammar (floor-normalized R + head-to-head co-primary, two-anchor S), the assist.autoCoach and assist.delegation.<area> slot families (finance+stadium share `financeStadium`), the Tactical Evaluation Core as a Shared-Kernel supporting subdomain (the bounded-context-map amendment is applied this ratification), reduced-horizon soak proxies, and the higher-order-interaction residual-risk monitor. Parity band NUMBERS and SPRT parameters remain explicitly OPEN/engine-gated.
 
 ## Date
 

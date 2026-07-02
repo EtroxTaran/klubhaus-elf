@@ -1,13 +1,13 @@
 ---
 title: ADR-0136 Delegation-to-Staff Contract (non-tactic areas, consent ladder, deterministic execution)
-status: draft
+status: accepted
 tags: [adr, architecture, dual-mode, delegation, staff-operations, consent, determinism, fmx-212, fmx-215, fmx-219]
 context: [staff-operations, training, scouting, transfer, club-management-economy]
 created: 2026-07-02
 updated: 2026-07-02
 type: adr
 binding: false
-linear: [FMX-212, FMX-215, FMX-219]
+linear: [FMX-212, FMX-215, FMX-219, FMX-224]
 supersedes:
 superseded_by:
 related:
@@ -37,7 +37,7 @@ related:
 
 ## Status
 
-draft
+accepted
 
 Proposed for Nico's ratification. The delegation **model shape** and
 the **consent ladder** are OPEN forks; this ADR presents them with a single
@@ -72,6 +72,12 @@ scope reopen, arbitration-order permutation, salience thresholds,
 pure-vs-variance) remain OPEN for Nico; only the option-invariant mechanism is
 settled. Every item here is a recommendation, not a decision; nothing is
 self-accepted.
+
+## Ratification
+
+Ratified by Nico 2026-07-02 (FMX-224, enacting the [[../../40-Execution/fmx-212-ratification-agenda-decision-queue-2026-07-02|FMX-223 agenda]]). `status: accepted`; `binding` stays `false` — decided but not in force pre-development (FMX-211 D2/D14; ADR-0104 precedent). Engine-gated numbers remain OPEN.
+
+**Determinism vs seeded variance — DECIDED (A8):** declare-now / arm-later. v1 ships **pure-deterministic** with the reserved per-area variance sub-labels **declared at zero draws**; bounded seeded variance is **armed in the first post-v1 content patch**, confined to the routine/digest action class (never a material/irreversible act, never flips salienceClass). **Accepted as recommended:** the OOTP per-area consent ladder; the fixed resource-relative competence floor for the unbanded areas (gated on employing+paying the staff seat; GD-0021 scope stays closed at MVP); the obligation-first tick arbitration order (finance obligations settle before discretionary spend); the three-axis salienceClass taxonomy. Salience fractions and floor/cap percentiles remain calibration-gated.
 
 ## Date
 

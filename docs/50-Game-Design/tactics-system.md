@@ -4,7 +4,7 @@ status: draft
 tags: [game-design, tactics, match, mobile-ux]
 context: tactics
 created: 2026-05-16
-updated: 2026-06-11
+updated: 2026-07-02
 type: game-design
 binding: false
 related: [[README]], [[../60-Research/progressive-disclosure-research]], [[../60-Research/ai-manager-behaviour]], [[../60-Research/tactics-and-formations]], [[../60-Research/data-generators]], [[../60-Research/player-strength-presentation]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/match-engine-simulation-model]], [[match-engine]], [[set-pieces]], [[progressive-disclosure-ui]], [[GD-0020-eos-player-skills-personas-and-people]]
@@ -245,9 +245,11 @@ discipline / energy. Full numbers:
 
 | Tier | Tactic UI |
 |---|---|
-| **Quick** | 5 starter presets + recommended XI + Mentality 5-band + "Recommended Counter" + 3 shouts |
+| **Quick** | authored starter presets (count owned solely by [[GD-0047-easy-tactic-preset-library]] §1, currently 7) + recommended XI + Mentality 5-band + "Recommended Counter" + 3 shouts |
 | **Standard** | Tap-to-edit formation + bottom-sheet role picker (top 3 per position) + 6 player instructions + 5 team instructions + 10 saved presets + 3-5 opposition templates + 3 manual opposition instructions + 3 shouts |
 | **Expert** | All 20 formations + all 50 roles + long-press drag + 18 player instructions in 4 groups + 8 team instructions + light per-phase overrides + 50 saved presets + community import + full opposition library + sub-archetype + manager-signature view + 3 shouts |
+
+> **SSOT note (superseded-by-reference, ratified 2026-07-02 via FMX-224):** This section no longer asserts a hard Easy/Quick authored-preset count of its own. The single source of truth for that count is [[GD-0047-easy-tactic-preset-library|GD-0047]] §1 (currently 7).
 
 See [[progressive-disclosure-ui]] for the broader pattern.
 

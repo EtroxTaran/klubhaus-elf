@@ -1,13 +1,13 @@
 ---
 title: GD-0046 Two-Worlds Mode Model
-status: draft
+status: accepted
 tags: [game-design, gddr, dual-mode, two-worlds, progressive-disclosure, tiers, parity, fmx-212, fmx-213]
 context: [tactics, match, identity-access, league-orchestration]
 created: 2026-07-02
 updated: 2026-07-02
 type: gddr
 binding: false
-linear: [FMX-212, FMX-213]
+linear: [FMX-212, FMX-213, FMX-224]
 supersedes:
 superseded_by:
 related:
@@ -60,7 +60,13 @@ related:
 
 ## Status
 
-draft
+accepted
+
+## Ratification
+
+Ratified by Nico 2026-07-02 (FMX-224, enacting the [[../40-Execution/fmx-212-ratification-agenda-decision-queue-2026-07-02|FMX-223 agenda]]). `status: accepted`; `binding` stays `false` — decided but not in force pre-development (FMX-211 D2/D14; ADR-0104 precedent). Engine-gated numbers remain OPEN.
+
+**World names — DECIDED (A1, override of the drafted ★ Spieltag/Taktiktafel):** the two worlds are named **Bauchgefühl** (Easy world) and **Spielidee** (Pro world) — the collision-free pair (avoids the *Spieltag* fixture-round homonym). This is the selected pair; it is subject only to the final GD-0015/ADR-0007 IP-clean + confusable/edit-distance + native-speaker verification gate (a verification task, not an open decision). Onboarding presentation (experience-goal question, equal tiles, persistent "switch anytime"), the mode-blind competitive framing, and the player-promise copy are accepted as recommended.
 
 ## Date
 

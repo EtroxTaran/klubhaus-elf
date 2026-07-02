@@ -255,6 +255,41 @@ related:
 >   half-width — all remain OPEN until the sim harness exists; no recommendation
 >   is offered.
 
+> **RATIFIED — FMX-224 two-worlds ratification (Nico 2026-07-02).** All FMX-212 /
+> FMX-213..224 **Bucket-A** (architecture/shape) forks are now **RESOLVED**;
+> GD-0046, GD-0047 and ADR-0135..0138 are `accepted` (`binding: false` — decided
+> but not yet in force, pre-development). The resolved Bucket-A items:
+> - **World naming** → **Bauchgefühl** (Easy) / **Spielidee** (Pro), *pending the
+>   IP-clean verification gate* (denylist/similarity/test/review per ADR-0007 +
+>   GD-0015) — the names are chosen but must still clear the naming gate before use.
+> - **Competitive labeling + MP treatment** → **mode-blind competitive-labeling
+>   primitive** accepted; MP group-mode composition stays post-MVP (ADR-0138).
+> - **Delegation** → model shape + `manual`/`propose`/`delegate` consent ladder +
+>   per-area override + fixed staff-competence floor + cross-domain per-tick
+>   arbitration order + three-axis act-and-report feed-salience taxonomy accepted
+>   (ADR-0136); the GD-0021 staff-skill scope extension is enacted via its own
+>   ratified change to GD-0021 / FMX-152.
+> - **Determinism** → **declare-now / arm-later** seeded-variance posture accepted
+>   (ADR-0138 / portfolio ADR-0113 substrate).
+> - **Stadium** → construction/expansion FSM + `ScheduleFacilityProject`
+>   disposition + depreciation/impairment + cancel-from-`Commissioning` semantics,
+>   with a light Expert-MVP expressive affordance (ADR-0137).
+> - **Presets** → **7-preset** Easy library + single macro aggressiveness dial;
+>   GD-0047 §7 supersedes tactics-system §13 by reference (§13 cedes the count to
+>   GD-0047 §1) (GD-0047).
+> - **Parity architecture** → floor+cap parity-envelope architecture + Tactical
+>   Evaluation Core eval-core subdomain placement accepted (ADR-0135; the
+>   bounded-context-map amendment applied on ratification).
+>
+> **Bucket-B (engine-gated numbers) stays OPEN** — accepting the notes does NOT
+> close these: parity band values (R floor/cap, head-to-head %, season-point cap),
+> SPRT α/β + indifference half-width + wall-clock ceilings, and the calibration
+> thresholds (feed-salience fractions, preset-floor / squad-fit / robustness
+> constants). All remain OPEN until the sim harness exists.
+> **Remaining verification gate:** the **Bauchgefühl / Spielidee** world names must
+> still pass the ADR-0007 / GD-0015 IP-clean naming verification before they are
+> treated as final.
+
 One place where everything still open across the domains **was decided**. Each item below is a
 crisp question with researched options and a **recommended answer** (grounded externally
 2026-06-07 — Perplexity Sonar + Exa + DDD/sim literature; see the per-item research notes).
