@@ -118,6 +118,16 @@ sections are not active work by default.
 - [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]] - accepted
   FMX-137 run-end, carry-slot, async cosmetic and archetype-taxonomy tuning for
   Create-a-Club Roguelite.
+- [[../50-Game-Design/GD-0046-two-worlds-mode-model]] - draft FMX-212
+  two-worlds mode model record: three internal tiers (Quick/Standard/Expert)
+  branded as two worlds (Easy = Quick+Standard, Pro = Expert), switch anytime,
+  bounded pro edge via floor+cap envelope (D3 revised 2026-07-02), full sweep
+  and the Easy coarse-dial tactic surface compiling into the same tactic
+  contract; encodes directions Nico ratified 2026-07-01/02; open forks carry
+  ★-recommendations only; record awaiting Nico ratification.
+- [[../60-Research/dual-mode-two-worlds-research-index-2026-07-02]] - FMX-212
+  Stage-1 research corpus index (12 notes) grounding GD-0046 and draft
+  ADR-0135..0138.
 - [[../50-Game-Design/mode-manage-a-club-career]] - visible as "comes later"; post-MVP playable.
 - [[../50-Game-Design/singleplayer-baseline]]
 - [[../50-Game-Design/async-multiplayer-private-group]]

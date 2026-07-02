@@ -344,6 +344,62 @@ design notes.
 - [Research Wave 2 Gaps](../95-Archive/gap-reports/research-wave-2-gaps.md) - superseded
   by Wave 3; kept for traceability of R2-01..R2-19 IDs.
 
+## Dual-Mode / Two-Worlds Corpus (FMX-212, 2026-07-01/02)
+
+- [[../60-Research/dual-mode-two-worlds-research-index-2026-07-02]] — master
+  index of the FMX-212 Stage-1 corpus (12 notes in Wave 1 + Wave 2 + two
+  critic follow-ups). Grounds the ratified dual-mode directions D1–D4 plus
+  the Easy tactic surface (Nico 2026-07-01/02, incl. the 2026-07-02 D3
+  revision near-parity → bounded pro edge) and hands the open forks to the
+  Stage-2 draft set ([[../50-Game-Design/GD-0046-two-worlds-mode-model]],
+  draft ADR-0135..0138,
+  [[../40-Execution/fmx-212-fmx-143-re-approval-packet-two-worlds-2026-07-02]]).
+- [[../60-Research/dual-mode-precedents-sports-management-2026-07-01]] — genre
+  survey of casual+deep control layers in one management product (Anstoss
+  preset pattern, FM responsibilities, console sports-sim assist modes);
+  evidence base for D1.
+- [[../60-Research/assisted-play-parity-auto-coach-2026-07-01]] — Auto-Coach
+  strength specification: two-anchor normalized strength `S`,
+  throttled-expert mechanism precedent, per-decision-class degradation
+  evidence, draft `assist.autoCoach` slot.
+- [[../60-Research/tier-parity-measurement-calibration-2026-07-01]] —
+  restricted-play framing, policy ladder (`P_random` … `P_pro_opt`),
+  floor-normalized parity ratio, patch-stability rules, draft
+  `tactics.tierParity` slot; feeds the open parity-band-numbers fork.
+- [[../60-Research/tactic-preset-coverage-and-counters-2026-07-01]] — preset
+  library sizing, soft-counter cycle and aggressiveness-dial mapping for the
+  Easy coarse-dial tactic surface; owns the open preset-count /
+  aggressiveness-mapping fork.
+- [[../60-Research/in-match-controls-tier-gating-2026-07-01]] — live-kit
+  gating per mode for GD-0025's one-tier MVP kit; evidence the live kit can
+  stay mode-invariant.
+- [[../60-Research/management-delegation-and-easy-mode-surfaces-2026-07-02]] —
+  delegation model shapes (FM/OOTP/NBA-2K survey) and easy surfaces for the
+  non-tactic areas; owns the open delegation-shape + consent-ladder fork;
+  grounds draft ADR-0136.
+- [[../60-Research/stadium-construction-expansion-models-2026-07-02]] —
+  stadium construction/expansion model options; confirms the Stadium
+  Operations contract gap; owns the open stadium-model fork; grounds draft
+  ADR-0137.
+- [[../60-Research/mode-choice-switching-and-competitive-labeling-2026-07-02]]
+  — onboarding mode choice, switch ceremony and competitive-labeling options;
+  owns the open world-naming + labeling forks.
+- [[../60-Research/dual-mode-vault-delta-reconciliation-2026-07-02]] — purely
+  internal audit of every vault note encoding the three-tier model and the
+  exact delta the two-worlds framing forces; grounds the FMX-143 re-approval
+  packet.
+- [[../60-Research/asymmetric-interface-fairness-multiplayer-2026-07-02]] —
+  MP fairness under asymmetric interfaces on one simulation core; owns the
+  open MP-treatment fork.
+- [[../60-Research/mode-state-contract-placement-and-integrity-2026-07-02]] —
+  critic follow-up: placement/integrity of the four mode-state fact families
+  (preference, per-unit snapshot + mode log, consent facts, MP composition);
+  grounds draft ADR-0138.
+- [[../60-Research/off-pitch-parity-measurement-economy-loop-2026-07-02]] —
+  critic follow-up: per-area anchor feasibility, two-class anchor scheme, T3
+  outcome-distribution gates and the no-domination invariant for the
+  multi-season economy loop; grounds draft ADR-0135/0136.
+
 ## Domain-Model Audit & Backlog (2026-06-02)
 
 - [[../60-Research/domain-model-audit-and-backlog-2026-06-02]] — full read-only DDD +
