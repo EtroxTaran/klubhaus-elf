@@ -154,6 +154,37 @@ related:
 > [[../60-Research/monorepo-workspace-bootstrap-2026-06-14]]. This closed dossier
 > is not reopened.
 
+> **Post-dossier FMX-212 dual-mode / two-worlds (historical completeness +
+> open-fork pointer, added 2026-07-02; dossier stays closed).** Nico ratified
+> the dual-mode directions live on 2026-07-01/02: D1 three internal tiers
+> (Quick/Standard/Expert) branded as two worlds (Easy = Quick+Standard,
+> Pro = Expert); D2 mode/tier switchable anytime, everywhere; **D3 revised
+> 2026-07-02** (supersedes the 2026-07-01 near-parity call): bounded pro edge
+> via a floor+cap envelope on a floor-normalized parity ratio, exact numbers
+> explicitly open until the sim harness exists, pro edge confined to
+> adaptation decision classes, Easy never a dominated strategy; D4 full sweep
+> across every decision-bearing area; Easy tactic surface = native coarse
+> dials/presets compiling deterministically into the same tactic contract Pro
+> writes. The FMX-212 **open forks live in the Stage-2 draft set, not here**
+> (every ★ is a recommendation, not a decision): delegation model shape +
+> consent ladder and per-area override
+> ([[../10-Architecture/09-Decisions/ADR-0136-delegation-to-staff-contract|ADR-0136]]),
+> stadium expansion model choice
+> ([[../10-Architecture/09-Decisions/ADR-0137-stadium-construction-and-expansion-contract|ADR-0137]]),
+> competitive labeling + MP treatment
+> ([[../10-Architecture/09-Decisions/ADR-0138-mode-state-placement-and-integrity|ADR-0138]]),
+> parity band numbers
+> ([[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]]),
+> world naming and preset count / aggressiveness mapping
+> ([[../50-Game-Design/GD-0046-two-worlds-mode-model|GD-0046]]). Authoritative
+> records: [[../50-Game-Design/GD-0046-two-worlds-mode-model]], draft
+> ADR-0135..0138,
+> [[../40-Execution/fmx-212-fmx-143-re-approval-packet-two-worlds-2026-07-02]]
+> and the corpus index
+> [[../60-Research/dual-mode-two-worlds-research-index-2026-07-02]]. All
+> Stage-2 notes are `draft`/`binding: false` awaiting Nico ratification. This
+> closed dossier is not reopened.
+
 One place where everything still open across the domains **was decided**. Each item below is a
 crisp question with researched options and a **recommended answer** (grounded externally
 2026-06-07 — Perplexity Sonar + Exa + DDD/sim literature; see the per-item research notes).

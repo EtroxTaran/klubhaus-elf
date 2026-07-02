@@ -24,6 +24,32 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-212 dual-mode / two-worlds Stage-2 draft set authored (2026-07-02).**
+> Stage-1 delivered the twelve-note dual-mode research corpus (Wave 1
+> 2026-07-01, Wave 2 + two critic follow-ups 2026-07-02), indexed in
+> [[../60-Research/dual-mode-two-worlds-research-index-2026-07-02]]. Nico
+> ratified the directions live: D1 three internal tiers
+> (Quick/Standard/Expert) branded as two worlds (Easy = Quick+Standard,
+> Pro = Expert); D2 mode/tier switchable anytime, everywhere; D3 (2026-07-02,
+> revising the 2026-07-01 near-parity call) bounded pro edge via a floor+cap
+> envelope on a floor-normalized parity ratio — exact numbers explicitly open
+> until the sim harness exists, pro edge confined to adaptation decision
+> classes, Easy never a dominated strategy; D4 full sweep across every
+> decision-bearing management area; Easy tactic surface = native coarse
+> dials/presets compiling deterministically into the same tactic contract Pro
+> writes. Stage-2 drafts (all `draft`/`binding: false`, awaiting Nico
+> ratification): [[../50-Game-Design/GD-0046-two-worlds-mode-model]],
+> [[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]],
+> [[../10-Architecture/09-Decisions/ADR-0136-delegation-to-staff-contract|ADR-0136]],
+> [[../10-Architecture/09-Decisions/ADR-0137-stadium-construction-and-expansion-contract|ADR-0137]],
+> [[../10-Architecture/09-Decisions/ADR-0138-mode-state-placement-and-integrity|ADR-0138]]
+> and the FMX-143 re-approval packet
+> [[../40-Execution/fmx-212-fmx-143-re-approval-packet-two-worlds-2026-07-02]].
+> Open forks (delegation shape + consent ladder, stadium expansion model,
+> competitive labeling, MP treatment, world naming, parity band numbers,
+> preset count / aggressiveness mapping, per-area override) carry
+> ★-recommendations only — recommendations, not decisions.
+
 > **Open decision closure accepted (2026-06-19).**
 > Nico approved all recommended options across the active open-decision sweep on
 > 2026-06-19. The vault now has 29 active decision queues and 163 individual
