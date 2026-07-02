@@ -32,6 +32,15 @@ related:
 
 # ADR-0100: Story-thread ownership and cross-context naming (StoryThread vs CoverageThread; storyThreadId as correlation key)
 
+> **Open Question closed (FMX-211 D8, decided 2026-06-22) — "C-lite".** D1=A (per-context
+> aggregates: `StoryThread`@Narrative, `CoverageThread`@Media Ecology) stands. The shared
+> lifecycle enum `emerging → heating → climax → resolved` gets **one canonical
+> Published-Language home** in the cross-producer effect-intent/PL catalog
+> ([[ADR-0126-cross-producer-effect-intent-taxonomy]]), referenced by both contexts — **not**
+> a shared aggregate/kernel and **no** phase-correlation contract (GD-0013 needs none; the two
+> state machines advance independently; `storyThreadId` correlates identity, not phase). This
+> removes the enum-drift risk without re-opening D1=A.
+
 > **Recorded as a partial supersession / amendment (Nico, 2026-06-11, FMX-143).** This ADR
 > **amends** [[ADR-0076-narrative-newsworthiness-event-contracts|ADR-0076]] and
 > [[ADR-0085-media-ecology-context-and-outlet-operational-behaviour|ADR-0085]] — it replaces

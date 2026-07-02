@@ -5,7 +5,7 @@ tags: [adr, architecture, governance, ratification, async, cadence, state-machin
 created: 2026-06-08
 updated: 2026-06-16
 type: adr
-binding: false
+binding: true
 supersedes:
 superseded_by:
 related:

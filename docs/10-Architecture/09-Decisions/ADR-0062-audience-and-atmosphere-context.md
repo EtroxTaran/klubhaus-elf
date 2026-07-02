@@ -414,7 +414,8 @@ If ratified, Audience & Atmosphere owns:
   customise segment names + thresholds.
 - **`AtmosphereSnapshot` aggregate** (per-club, per-fixture):
   atmosphere multiplier derived from rivalry × table × utilisation
-  × form × weather × security × choreo participation. Consumed by
+  × form × weather (inbound `MatchWeatherResolved` from Environment &
+  Climate, ADR-0077) × security × choreo participation. Consumed by
   Matchday-Event-Engine for atmosphere + security input; by Match
   for home-advantage multiplier; by Notification for storylet copy.
 - **`FanIncident` aggregate** (per-club, per-incident): threshold-

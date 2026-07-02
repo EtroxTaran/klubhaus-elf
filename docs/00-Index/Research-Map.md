@@ -3,7 +3,7 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-06-19
+updated: 2026-06-22
 type: map
 binding: false
 related: [[Current-State]], [[../60-Research/argon2id-wasm-kdf-validation-2026-06-19]], [[../60-Research/raw-perplexity/raw-fmx-173-argon2id-wasm-kdf-2026-06-19]], [[../60-Research/raw-perplexity/raw-fmx-173-argon2id-wasm-source-checks-2026-06-19]], [[../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19]], [[../60-Research/icu-mf1-risk-register-reconciliation-2026-06-18]], [[../60-Research/raw-perplexity/raw-icu-mf1-risk-register-reconciliation-2026-06-18]], [[../60-Research/raw-perplexity/raw-icu-mf1-risk-register-source-checks-2026-06-18]], [[../40-Execution/fmx-161-icu-mf1-risk-register-decision-queue-2026-06-18]], [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]], [[../60-Research/raw-perplexity/raw-loan-cap-obligation-catalog-2026-06-16]], [[../60-Research/raw-perplexity/raw-loan-cap-obligation-source-checks-2026-06-16]], [[../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]], [[../60-Research/breach-notification-runbook-2026-06-15]], [[../60-Research/raw-perplexity/raw-breach-notification-runbook-2026-06-15]], [[../60-Research/raw-perplexity/raw-breach-notification-runbook-source-checks-2026-06-15]], [[../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/match-engine-core-model-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-real-world-envelopes-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-action-utility-models-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-game-precedents-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-calibration-harness-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-source-checks-2026-06-13]], [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-real-world-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-ddd-accounting-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-games-2026-06-12]], [[../60-Research/quality-profile-enum-settlement-path-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-enum-ddd-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-real-world-football-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-sim-games-2026-06-12]], [[../60-Research/raw-perplexity/raw-pre1-contract-replacement-2026-06-13]], [[../60-Research/chart-of-accounts-and-category-catalog-2026-06-13]], [[../60-Research/raw-perplexity/raw-chart-of-accounts-game-ledger-2026-06-13]], [[../60-Research/raw-perplexity/raw-football-club-accounting-families-2026-06-13]], [[../60-Research/raw-perplexity/raw-sports-management-finance-ui-2026-06-13]], [[../60-Research/raw-perplexity/raw-chart-of-accounts-versioning-2026-06-13]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]], [[../60-Research/raw-perplexity/raw-roguelite-run-end-thresholds-2026-06-14]], [[../60-Research/raw-perplexity/raw-roguelite-comparable-games-2026-06-14]], [[../60-Research/raw-perplexity/raw-roguelite-meta-progression-best-practices-2026-06-14]]
@@ -18,6 +18,24 @@ design notes.
 ## Summary
 
 - [Research Summary](../60-Research/00-summary.md)
+- [Architecture Decision Portfolio Review](../60-Research/architecture-decision-portfolio-review-2026-06-22.md) -
+  FMX-211 source-checked review of the gameplay documentation against the
+  technical architecture and accepted decision portfolio. Recommendation:
+  architecture is coherent/current with targeted hardening follow-ups, not a
+  broad replacement sweep. ADR-by-ADR coverage:
+  [Architecture ADR Coverage Matrix](../60-Research/architecture-adr-coverage-matrix-2026-06-22.md).
+  Key follow-ups are status-body hygiene, FMX-198
+  stack-currency execution, all-28 module-card readiness before multi-team code
+  fan-out, dynamic workflow promotion and ADR-0121 architecture-fitness tooling.
+  Decision queue:
+  [FMX-211 decision queue](../40-Execution/fmx-211-architecture-review-decision-queue-2026-06-22.md).
+- [Architecture Review — Deep Grounded Companion](../60-Research/architecture-review-deep-grounded-2026-06-22.md) -
+  grounded + adversarial companion to the portfolio review (per-ADR currency
+  grounding, cross-decision compatibility matrix, DDD/modularity/team-separability
+  scorecard, gameplay→architecture traceability, guardrail-reality audit;
+  117 sound / 5 questionable / 1 reconsider, 0 design conflicts). Reconciled via
+  [FMX-211 reconciliation delta](../40-Execution/fmx-211-reconciliation-delta-2026-06-22.md)
+  (agreement, net-new onto D2/D3, new D7–D14, divergences, applied safe fixes).
 - [Version Pin Audit](../60-Research/version-pin-audit-2026-06-19.md) -
   FMX-198 Perplexity-discovery and source-checked audit of active and
   target-only version references. Accepted recommendation: update pnpm to

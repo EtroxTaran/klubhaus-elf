@@ -3,6 +3,7 @@ title: ADR-0010 Klubhaus Design System
 status: accepted
 tags: [adr, design, ui]
 updated: 2026-06-09
+binding: true
 ---
 
 # ADR-0010: Klubhaus Design System

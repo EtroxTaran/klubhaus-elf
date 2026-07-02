@@ -6,7 +6,7 @@ created: 2026-05-15
 updated: 2026-06-11
 accepted_at: 2026-05-15
 type: adr
-binding: true
+binding: false
 superseded_by: ADR-0021-revised-tech-stack
 related: [[ADR-0020-hybrid-online-mvp-offline-ready]], [[ADR-0021-revised-tech-stack]]
 ---

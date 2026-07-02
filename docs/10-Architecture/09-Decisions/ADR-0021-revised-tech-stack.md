@@ -76,7 +76,10 @@ Kamal-2 escape-hatch note (see [[../11-Risks]] and
 
 1. **Database — hybrid.** PostgreSQL + Drizzle ORM is the system of record from
    day one (ACID for money/contracts/progression; trivial Hetzner
-   `pg_dump`/PITR; Drizzle v1 best-in-class TS inference). Graph-ish needs
+   `pg_dump`/PITR; Drizzle's best-in-class TS inference). **Pin Drizzle ORM to the
+   latest stable line (0.45.x) per [[stack-currency-ledger]]; Drizzle 1.0 is
+   RC/beta — adopt only as a Nico-approved RC spike, never as a default pin.**
+   Graph-ish needs
    (scouting, relationships) use typed recursive CTEs. **SurrealDB is deferred,
    not adopted**: it may be introduced post-launch as an additive engine for
    realtime/graph behind the [[ADR-0023-realtime-transport]] interface iff it

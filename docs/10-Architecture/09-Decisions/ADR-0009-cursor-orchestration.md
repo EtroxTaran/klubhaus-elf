@@ -5,7 +5,7 @@ tags: [adr, meta]
 created: 2026-05-15
 updated: 2026-06-11
 type: adr
-binding: true
+binding: false
 supersedes:
 superseded_by: ADR-0103-multi-agent-orchestration-conflict-serialization
 related: []

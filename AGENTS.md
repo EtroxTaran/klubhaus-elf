@@ -39,11 +39,11 @@ server-authoritative multiplayer are planned future capabilities.
 
 TanStack Start (file-based routing, server functions, SSR) + React + shadcn/ui +
 Tailwind + the TanStack data layer (Query, Table, Virtual, Form) + Zustand v5
-(client/sim state) + Zod 4 + **PostgreSQL 17 + Drizzle ORM** (system of record) +
+(client/sim state) + Zod 4 + **PostgreSQL 18 + Drizzle ORM** (system of record) +
 Dexie/IndexedDB (client cache/drafts) + TypeScript strict + Vitest + Playwright +
 fast-check + Stryker + Biome + pnpm + mise + sops+age+direnv + Docker + Dokploy on
-Hetzner. Match rendering is **Canvas 2D** (Three.js/React Three Fiber is a
-post-MVP presentation layer, never match-authoritative); realtime is **SSE for the
+Hetzner. Match rendering is **Canvas 2D** (Babylon.js is the post-MVP 3D/
+isometric presentation layer, never match-authoritative; ADR-0047); realtime is **SSE for the
 MVP → Centrifugo at scale**, behind a transport interface. **SurrealDB is deferred
 — it is not the database** — and may return post-launch only as an additive
 realtime/graph engine behind that interface (see ADR-0021).
@@ -157,7 +157,7 @@ works. If you can't, say so explicitly instead of claiming success.
 - Server-only secrets MUST go through `createServerFn` or `createServerOnlyFn` -
   never read `process.env.*` inside a route loader.
 - All database access flows through the typed `QueryGateway` exported from
-  `@soccer-manager/db` (`gateway.withPlatform` / `gateway.withSave`). Domain code
+  `@klubhaus-elf/db` (`gateway.withPlatform` / `gateway.withSave`). Domain code
   never imports the raw `pg.Pool` or `drizzle()` (lint-enforced). Queries are
   parameterized through Drizzle; never string-concatenate SQL.
 - Drizzle is the single source of truth: `pgTable` declarations in
@@ -179,7 +179,7 @@ works. If you can't, say so explicitly instead of claiming success.
 - Before any UI work, **read `docs/10-Architecture/09-Design-System.md`**
   (§1–12 = how it works; §13 = using the Storybook showcase as the reference
   + the story-authoring convention) and use the showcase to see components
-  rendered: `pnpm --filter @soccer-manager/web storybook` (local :6006) or the
+  rendered: `pnpm --filter @klubhaus-elf/web storybook` (local :6006) or the
   deployed `SHOWCASE_DOMAIN`. The showcase is the canonical *visual* reference;
   the code in `apps/web/src` is authoritative on any conflict.
 - **New design export** (claude.ai/design, e.g. an
@@ -255,7 +255,7 @@ Linear holds operational status; the docs vault remains the durable knowledge ba
 - Do not switch package managers (npm/yarn forbidden - pnpm only).
 - Do not reintroduce ESLint or Prettier - Biome is canonical.
 - Do not hand-edit shadcn/ui primitives or `routeTree.gen.ts`.
-- Do not bypass the `QueryGateway` (`@soccer-manager/db`) or import the raw pg pool / `drizzle()` outside `packages/db`.
+- Do not bypass the `QueryGateway` (`@klubhaus-elf/db`) or import the raw pg pool / `drizzle()` outside `packages/db`.
 - Do not use class components, default exports for React components, or enums.
 - Do not use real Bundesliga/EPL club names/logos/player names; see ADR-0007.
 - Do not invent styling/layout or add one-off styled components when a
