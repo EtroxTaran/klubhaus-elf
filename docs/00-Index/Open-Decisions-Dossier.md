@@ -3,7 +3,7 @@ title: Open-Decisions Dossier — questions, recommendations, ratify checklist
 status: current
 tags: [meta, index, decisions, open-questions, dossier, fmx-105]
 created: 2026-06-07
-updated: 2026-06-19
+updated: 2026-07-02
 type: index
 binding: false
 related:
@@ -184,6 +184,33 @@ related:
 > [[../60-Research/dual-mode-two-worlds-research-index-2026-07-02]]. All
 > Stage-2 notes are `draft`/`binding: false` awaiting Nico ratification. This
 > closed dossier is not reopened.
+
+> **Post-dossier FMX-213..218 dual-mode fork-resolution proposals (open-fork
+> pointer update, added 2026-07-02; dossier stays closed).** The eight FMX-212
+> open forks now each have a single-recommendation proposal drafted on the
+> FMX-213 integration branch (integration PR open). **All eight stay OPEN —
+> proposal drafted, awaiting Nico ratification** (every recommendation is a
+> recommendation, not a decision); this closed dossier is not reopened and the
+> authoritative homes remain the Stage-2 records below.
+> - **World naming** → proposal drafted (FMX-213),
+>   [[../60-Research/raw-perplexity/raw-two-worlds-naming-branding-2026-07-02]] →
+>   [[../50-Game-Design/GD-0046-two-worlds-mode-model|GD-0046]].
+> - **Competitive labeling** and **MP treatment** → proposal drafted (FMX-214),
+>   [[../60-Research/raw-perplexity/raw-two-worlds-labeling-mp-fairness-2026-07-02]] →
+>   [[../10-Architecture/09-Decisions/ADR-0138-mode-state-placement-and-integrity|ADR-0138]].
+> - **Delegation model shape** and **consent ladder + per-area override** →
+>   proposal drafted (FMX-215),
+>   [[../60-Research/raw-perplexity/raw-delegation-model-decision-2026-07-02]] →
+>   [[../10-Architecture/09-Decisions/ADR-0136-delegation-to-staff-contract|ADR-0136]].
+> - **Stadium expansion model** → proposal drafted (FMX-216),
+>   [[../60-Research/raw-perplexity/raw-stadium-expansion-model-decision-2026-07-02]] →
+>   [[../10-Architecture/09-Decisions/ADR-0137-stadium-construction-and-expansion-contract|ADR-0137]].
+> - **Preset count / aggressiveness mapping** → proposal drafted (FMX-217),
+>   [[../60-Research/raw-perplexity/raw-easy-tactic-preset-library-2026-07-02]] →
+>   [[../50-Game-Design/GD-0047-easy-tactic-preset-library|GD-0047]].
+> - **Parity band numbers** → proposal drafted (FMX-218),
+>   [[../60-Research/raw-perplexity/raw-parity-calibration-methodology-2026-07-02]] →
+>   [[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]].
 
 One place where everything still open across the domains **was decided**. Each item below is a
 crisp question with researched options and a **recommended answer** (grounded externally

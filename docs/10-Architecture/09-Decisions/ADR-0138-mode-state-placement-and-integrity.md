@@ -1,13 +1,13 @@
 ---
 title: ADR-0138 Mode-State Placement and Integrity (preference vs per-unit snapshots, command-derived mode log)
 status: draft
-tags: [adr, architecture, dual-mode, mode-state, integrity, league-orchestration, match, audit-security, fmx-212]
+tags: [adr, architecture, dual-mode, mode-state, integrity, league-orchestration, match, audit-security, fmx-212, fmx-214]
 context: [match, league-orchestration, audit-security, identity-access, watch-party]
 created: 2026-07-02
 updated: 2026-07-02
 type: adr
 binding: false
-linear: FMX-212
+linear: [FMX-212, FMX-214]
 supersedes:
 superseded_by:
 related:
@@ -32,6 +32,7 @@ related:
   - [[../../60-Research/mode-choice-switching-and-competitive-labeling-2026-07-02]]
   - [[../../60-Research/asymmetric-interface-fairness-multiplayer-2026-07-02]]
   - [[../../60-Research/dual-mode-vault-delta-reconciliation-2026-07-02]]
+  - [[../../60-Research/raw-perplexity/raw-two-worlds-labeling-mp-fairness-2026-07-02]]
 ---
 
 # ADR-0138: Mode-State Placement and Integrity (preference vs per-unit snapshots, command-derived mode log)
@@ -43,10 +44,14 @@ draft
 Proposed for Nico's ratification. This ADR assigns contractual owners
 to the mode/world **fact families** the ratified dual-mode decisions create,
 and fixes how mode-bearing facts stay trustworthy in an offline-capable PWA.
-The **competitive labeling** and **MP treatment** forks stay OPEN; every ★
-below is the research packet's recommendation — **recommendation, not a
-decision**. Authored under the never-self-accept rule; `binding: false` until
-Nico ratifies.
+The **competitive labeling** and **MP treatment** forks — previously carried
+as two independent open forks — are now carried as a **single converged ★
+recommendation**: one unified, mode-blind competitive primitive (§O5, FMX-214
+[[../../60-Research/raw-perplexity/raw-two-worlds-labeling-mp-fairness-2026-07-02|labeling+MP fairness capture]]).
+That convergence is still a **recommendation, not a decision** —
+`binding: false` until Nico ratifies; every ★ below is the research corpus's
+recommendation authored under the never-self-accept rule. **Per-area override
+remains explicitly deferred and gated on this fork.**
 
 ## Date
 
@@ -203,7 +208,7 @@ changes are ordinary signed game-state commands — never cosmetic-LWW
 preferences — because they change who may mutate game state (Finding 8),
 which is exactly what makes them command-derivable for O3.
 
-### O5 — Family D + MP encoding: what enters MP contracts now
+### O5 — Family D + MP encoding + competitive labeling: the converged primitive
 
 - **Vault-delta ★ (adopted as this ADR's proposal): do NOT encode world
   into MP contracts in Stage-2 — leave a reserved field only.** D2
@@ -212,17 +217,65 @@ which is exactly what makes them command-derivable for O3.
   keyed on "world" would misclassify mixed-surface players
   ([[../../60-Research/dual-mode-vault-delta-reconciliation-2026-07-02|vault-delta note]],
   MP-treatment input). The truth surface for MP is the family-B snapshot,
-  not the world label.
-- **MP treatment (OPEN fork):** the fairness packet's ★ is **Option A —
-  mode-blind unified competition + full mode transparency** (sorting by
-  performance only; mode visible via family-B badges/log; D3 envelope
-  monitored in MP telemetry). Option B (mode-segregated ladders) stays
-  **explicitly reopenable if an official large-population ranked ladder
-  ever ships**; Option C (mode-normalization boosts) is **rejected by
-  evidence unless D3 itself is revised** — it would make the engine read
-  the authoring surface, breaking the one-contract invariant
-  ([[../../60-Research/asymmetric-interface-fairness-multiplayer-2026-07-02|fairness packet]],
-  MP-treatment fork).
+  not the world label. **Hardened:** the reserved `world` slot stays
+  `null`/unread until a future ADR populates it, and the reservation is
+  **gate-enforced, not merely documented** — a twin to
+  [[ADR-0108-no-pay-to-win-and-mp-fairness-invariant|ADR-0108]]'s existing
+  API/schema gate. The clause that today rejects payment/entitlement fields
+  as competitive inputs gains: *"…and must not accept world/mode-label
+  fields as competitive sorting/matchmaking inputs."* An empty slot silently
+  wired to sorting by a future engineer is a latent footgun; the CI gate, not
+  documentation, is what forecloses it.
+- **★ Converged competitive primitive (labeling + MP, one decision —
+  recommendation, not a decision).** The competitive-labeling fork (badge/
+  board shape, previously carried by
+  [[../../50-Game-Design/GD-0046-two-worlds-mode-model|GD-0046]]) and the
+  MP-treatment fork are the **same primitive** and are recommended as one
+  mode-blind design (FMX-214
+  [[../../60-Research/raw-perplexity/raw-two-worlds-labeling-mp-fairness-2026-07-02|labeling+MP fairness capture]];
+  labeling packet ★B+D + fairness packet ★A collapse to one competitive-
+  integrity contract):
+  1. **One canonical competition, sorted by performance only.** World is
+     **never** a sort, ranking, matchmaking, promotion/relegation, or
+     partition key — for single-player leaderboards **and** async MP. Under
+     D2, any mode-keyed ladder is either a D2-violating lock or trivially
+     gamed (register Easy for optics, switch Pro for decisive fixtures), so
+     world can never be a competitive input.
+  2. **Mode = an evidence-grade, prestige-neutral world-identity badge.** It
+     is the E1 server-verified family-B projection (§O3), **never
+     client-asserted** (a client-asserted badge is forgeable — a fake "Easy"
+     badge on a Pro player is the R3 meta-gaming attack — turning
+     transparency into a lie). It is surfaced where it **explains a specific
+     outcome** (match/opponent card, end-of-match report, the player's own
+     season profile), and **not** as a column on the standings table, so the
+     eye never correlates "Easy badge = lower row" across a season.
+  3. **Pro-only prestige = a strictly additive read-time FILTERED VIEW.** A
+     predicate over the family-B mode log, over the **same** canonical board
+     and the **same** rating — never a second persisted aggregate, never a
+     cached membership flag (which desyncs on `EntryModeRebadgedV1`), never a
+     separate rating/promotion/reward, and **never UI-elevated above** the
+     canonical board. The canonical board stays authoritative; the Pro-pure
+     view is derived. (Prestige bifurcation — Pro-pure silently becoming
+     "the real ladder," the chess-OTB-is-canonical dynamic that would invert
+     D1's two-equal-worlds — is the highest-severity integrity risk, so this
+     is an explicit constraint, not an aspiration.)
+  4. **Disclosure = invariants + loss-moment agency, never raw numbers.** At
+     the loss-moment the end-of-match report narrates *"they adapted at
+     halftime — Pro adds adaptation tools, and smart Easy calls still win the
+     league"* and offers a free, instant, optional one-tap switch (D2 as the
+     anti-frustration payload); the raw 52–57 % head-to-head lives only in
+     docs/patch-notes. The switch-CTA must be low-frequency and framed as
+     agency (*"you can add Pro's adaptation tools"*), never as blame or
+     upsell, and must co-appear with the "smart Easy calls still win" line —
+     its exact framing/frequency is a playtest-tunable (open sub-fork).
+  5. **Rejected options.** Option C (co-equal
+     per-world ladders) and Option C-boost (mode-normalization) are recorded
+     **rejected-BY-INVARIANT** — they violate the §2 no-mode-key invariants
+     and the D3 one-contract invariant (C-boost forces the engine to read the
+     authoring surface) — not merely rejected-by-evidence. Option B
+     (segregated/mode-aware ladders) stays **reopenable only if an official
+     large-population ranked ladder ever ships**, gated on real population
+     data.
 - **Family D group config (fairness packet NEW-mp-group-mode-config ★,
   Option A):** post-MVP, "league mode composition" (open / Easy-only /
   Pro-only) becomes one more per-group knob in the
@@ -273,7 +326,19 @@ packet, stress evidence for D1).
 5. **Badges are informational only.** No mode-based rewards, rankings or
    matchmaking keys; watch-party and social surfaces stay mode-neutral so
    the label never becomes a stigma channel (fairness packet R8, labeling
-   packet Finding 4).
+   packet Finding 4). Two option-independent clauses: (a) when a badge is
+   shown it is the **E1 server-verified family-B projection** and appears on
+   **outcome-explaining surfaces**, never as a standings-table column that
+   correlates a mode tag with row position; (b) season-level surfaces show
+   mode **composition/profile** (family B), never a single collapsed world
+   label, so a straddling run never carries a false competitive claim (the
+   same fidelity reason per-area override is deferred).
+6. **One canonical competition; Pro-pure is an additive derived view**
+   *(applies under the recommended labeling+MP primitive — labeling is still
+   a fork).* Under the recommended primitive the unified board is
+   canonical/authoritative; any Pro-pure surface is a **read-time filtered
+   view** over the same rated units and the same rating — never a separate
+   aggregate, rating, promotion/relegation, reward, or a UI-elevated board.
 
 ### 3. Integrity flow (E1, names illustrative)
 
@@ -297,17 +362,25 @@ amendment — **fed by the D3 numbers-finalization pass once the sim harness
 exists** ([[ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]]) —
 would cover **bounded-edge disclosure**:
 
-- the **mode-twin zero-effect property**: identical authoritative outputs
-  for identical tactic contracts regardless of authoring surface, added to
-  the future `no-p2w-architecture-contract` gate family so
-  "no-depth-to-win beyond D3's envelope" gets the same CI standing as
-  no-pay-to-win (fairness packet Finding 9 and D3 stress input);
+- the **mode-twin zero-effect property**, framed as an **extension of
+  ADR-0108's existing zero-effect property** — one property carrying **two
+  quantified dimensions** (entitlement **and** authoring-surface/world):
+  identical authoritative outputs for identical tactic contracts regardless
+  of authoring surface. This is deliberately **not** a second, parallel
+  "no-depth-to-win" gate family (which would double the invariant surface and
+  drift); it is one property with an added dimension, keeping the same CI
+  standing as no-pay-to-win (fairness packet Finding 9 and D3 stress input);
 - the **copy gate applied to fairness claims about modes**: player/store
   copy communicates the invariants, not raw envelope numbers, and no
   fairness claim ships without its backing test (fairness packet R5,
   mirroring ADR-0108's existing copy/source gate);
-- an `mp.tierParity`-class telemetry slot with the D3 envelope as
-  acceptance gate, per ADR-0135's slot taxonomy.
+- an `mp.tierParity`-class telemetry slot with the D3 envelope as an
+  explicit **release BLOCKER**, not an advisory acceptance gate, per
+  ADR-0135's slot taxonomy: if the realized edge drifts past the D3 cap or
+  makes Easy a **dominated** strategy in any matchup, every published
+  fairness claim (and the honesty of the mode-blind label itself) is
+  retroactively falsified, so the gate **blocks release** rather than merely
+  warning.
 
 This ADR deliberately does **not** amend ADR-0108 now: the amendment's
 substance is the finalized D3 numbers, which are explicitly open.
@@ -321,11 +394,16 @@ Draft — nothing is decided here. Proposed for ratification:
    mode-log invariant.
 2. **B1+B2 / E1** as the snapshot + integrity architecture (B3, E2, E3-as-
    trust-mechanism rejected).
-3. **No world field in MP contracts in Stage-2** — reserved field only;
-   MP treatment itself stays an open fork carried in §Open forks.
-4. Family-C placement is ratified through
-   [[ADR-0136-delegation-to-staff-contract|ADR-0136]]; this ADR adds only
-   the family-B projection dependency on its events.
+3. **No world field in MP contracts in Stage-2** — reserved field only,
+   with the ADR-0108 **schema-gate-twin** posture (the reserved `world` slot
+   is gate-enforced `null`/unread, not merely documented). The competitive-
+   labeling and MP-treatment forks are now carried as a **single converged ★**
+   (one mode-blind unified primitive, §O5) rather than two independent open
+   forks — still **recommendation, not decision**, carried in §Open forks.
+4. Family-C placement is governed by
+   [[ADR-0136-delegation-to-staff-contract|ADR-0136]] (open there — its C1 is a
+   ★ recommendation, not a decision); this ADR adds only the family-B
+   projection dependency on its events.
 
 ## Rationale
 
@@ -374,24 +452,51 @@ Negative / constraints:
 - A3 discipline ("no competitive contract reads preference") needs a future
   contract-check twin to the ADR-0108 schema gate, or drift will reintroduce
   the preference-as-evidence bug.
+- Opening **per-area override** would convert `world` from a scalar into a
+  **per-area vector** across the badge, the reserved MP slot, and family-D
+  `modeComposition` — a breaking migration. Its deferral therefore protects
+  an **invariant** (the load-bearing scalar simplification), not optional
+  backlog, and costs zero fidelity because family B already records
+  per-surface truth at tier-enum granularity.
 
 ## Open forks for Nico (carried, not decided here)
 
-- **Competitive labeling** (badge/board shape; fork carried by
-  [[../../50-Game-Design/GD-0046-two-worlds-mode-model|GD-0046]]): labeling
-  packet ★ = one main board with a prestige-neutral world badge + opt-in
-  Pro-pure prestige boards; this ADR only supplies the substrate (family B)
-  either choice needs.
-- **MP treatment**: fairness packet ★ = mode-blind unified competition +
-  transparency (Option A); B reopenable if a large ranked ladder ships; C
-  rejected-by-evidence unless D3 is revised. This ADR encodes only the
-  reserved field.
+- **Competitive labeling + MP treatment (single converged ★)** — the two
+  were previously carried as independent forks; FMX-214 converges them into
+  **one mode-blind unified primitive** (§O5): one canonical competition
+  sorted by performance only for single-player boards **and** async MP; mode
+  = an E1-verified, prestige-neutral world-identity badge on outcome-
+  explaining surfaces only; Pro-only prestige = an additive read-time
+  filtered view over the same board and rating; disclosure by invariants +
+  loss-moment agency, not raw numbers. This ADR supplies the substrate
+  (family B) the primitive needs. Points for Nico:
+  - **(a) Option B** (segregated/mode-aware ladders) reopenable **only** on
+    an official large-population ranked ladder, gated on real population data.
+  - **(b) Option C / C-boost** recommended **rejected-BY-INVARIANT** (they
+    violate the §2 no-mode-key invariants + the D3 one-contract invariant) —
+    a **governance upgrade from rejected-by-evidence** for Nico to ratify, so
+    the fork cannot silently reopen.
+  - **(c) Badge kept OFF the standings table** (badge only on outcome-
+    explaining surfaces) — a **conscious divergence** from the drafted
+    labeling Option-A wording that said "shown on league tables," for Nico to
+    bless.
+  - **(d) The loss-moment switch-CTA** framing/frequency is **deferred to
+    playtest**, under the design principle *never framed as "you lost because
+    you're on Easy"* (low-frequency, agency not upsell, co-shown with "smart
+    Easy calls still win the league").
 - **Family A variant timing**: ★ = A3 with A1 at MVP, A2 once hosted
   profiles matter — the A2 trigger point is Nico's call.
 - **Family D group-mode-config**: ★ = adopt post-MVP as group config +
   mode log (fairness packet NEW-mp-group-mode-config Option A).
-- **World naming / parity numbers / preset mapping / per-area override**:
-  open in their own FMX-212 notes
+- **Per-area override**: recommended **explicitly DEFERRED and gated on THIS
+  fork** (GD-0046 fork 5 / vault-delta C4). Deferral protects a load-bearing
+  **scalar → per-area-vector** simplification and **costs zero fidelity**
+  because family B already records per-surface truth at tier-enum
+  granularity; opening it converts `world` from a scalar into a per-area
+  vector across the badge, the reserved MP slot, and family-D
+  `modeComposition` — a breaking migration (§Consequences).
+- **World naming / parity numbers / preset mapping**: open in their own
+  FMX-212 notes
   ([[../../50-Game-Design/GD-0046-two-worlds-mode-model|GD-0046]],
   [[ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]]);
   family-B records are naming-proof because they persist the internal tier
@@ -404,9 +509,11 @@ Negative / constraints:
 - **P2P save sharing before sync:** the only niche where E2's
   self-contained chain has value; revisit only if that feature ships
   (mode-state packet, future scope).
-- **Commitment flag ("Pro-pure run"):** a pure family-B derivation (mode
-  log contains only Expert entries) plus ADR-0116 eligibility — must not be
-  built as a separate stored flag.
+- **Commitment flag ("Pro-pure run") and the Pro-pure BOARD:** both are pure
+  family-B derivations (mode log contains only Expert entries) plus ADR-0116
+  eligibility — the flag must not be built as a separate stored flag, and the
+  Pro-pure board must be a **read-time filtered view** over the mode log,
+  never a separate stored flag or persisted aggregate (§2 invariant 6).
 - **ADR-0108 amendment:** drafted after the D3 numbers-finalization pass
   (§4 above).
 
@@ -420,6 +527,8 @@ None
 - [[../../60-Research/mode-choice-switching-and-competitive-labeling-2026-07-02]]
 - [[../../60-Research/asymmetric-interface-fairness-multiplayer-2026-07-02]]
 - [[../../60-Research/dual-mode-vault-delta-reconciliation-2026-07-02]]
+- [[../../60-Research/raw-perplexity/raw-two-worlds-labeling-mp-fairness-2026-07-02]]
+  — FMX-214 raw capture feeding the converged labeling+MP primitive (§O5)
 - [[ADR-0108-no-pay-to-win-and-mp-fairness-invariant]]
 - [[ADR-0115-command-integrity-and-replay-protection-posture]]
 - [[ADR-0116-save-trust-levels-and-provenance-posture]]

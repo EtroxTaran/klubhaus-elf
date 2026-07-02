@@ -3,7 +3,7 @@ title: Research Map
 status: current
 tags: [research, meta]
 created: 2026-05-16
-updated: 2026-06-22
+updated: 2026-07-02
 type: map
 binding: false
 related: [[Current-State]], [[../60-Research/argon2id-wasm-kdf-validation-2026-06-19]], [[../60-Research/raw-perplexity/raw-fmx-173-argon2id-wasm-kdf-2026-06-19]], [[../60-Research/raw-perplexity/raw-fmx-173-argon2id-wasm-source-checks-2026-06-19]], [[../40-Execution/fmx-173-argon2id-kdf-validation-decision-queue-2026-06-19]], [[../60-Research/icu-mf1-risk-register-reconciliation-2026-06-18]], [[../60-Research/raw-perplexity/raw-icu-mf1-risk-register-reconciliation-2026-06-18]], [[../60-Research/raw-perplexity/raw-icu-mf1-risk-register-source-checks-2026-06-18]], [[../40-Execution/fmx-161-icu-mf1-risk-register-decision-queue-2026-06-18]], [[../60-Research/loan-cap-and-obligation-catalog-2026-06-16]], [[../60-Research/raw-perplexity/raw-loan-cap-obligation-catalog-2026-06-16]], [[../60-Research/raw-perplexity/raw-loan-cap-obligation-source-checks-2026-06-16]], [[../40-Execution/fmx-155-loan-cap-obligation-catalog-decision-queue-2026-06-16]], [[../60-Research/breach-notification-runbook-2026-06-15]], [[../60-Research/raw-perplexity/raw-breach-notification-runbook-2026-06-15]], [[../60-Research/raw-perplexity/raw-breach-notification-runbook-source-checks-2026-06-15]], [[../40-Execution/fmx-183-breach-notification-decision-queue-2026-06-15]], [[../60-Research/fan-persona-privacy-and-naming-2026-06-01]], [[../60-Research/fixture-commercial-revenue-profiles-2026-06-03]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/onboarding-guided-first-season-2026-06-03]], [[../60-Research/player-contract-lifecycle-fsm-2026-06-03]], [[../60-Research/ai-narration-scope-freeze-and-fallback-coverage-2026-06-04]], [[../60-Research/newsworthiness-event-publication-semantics-2026-06-04]], [[../60-Research/dialogue-intent-taxonomy-effect-matrix-2026-06-05]], [[../60-Research/player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/raw-perplexity/raw-player-discipline-sub-aggregate-2026-06-05]], [[../60-Research/opposition-template-ai-consumption-contract-2026-06-05]], [[../60-Research/raw-perplexity/raw-opposition-template-ai-consumption-2026-06-05]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/raw-perplexity/raw-statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/raw-perplexity/raw-standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/match-engine-core-model-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-real-world-envelopes-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-action-utility-models-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-game-precedents-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-calibration-harness-2026-06-13]], [[../60-Research/raw-perplexity/raw-match-engine-source-checks-2026-06-13]], [[../60-Research/insolvency-ledger-posting-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-real-world-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-ddd-accounting-2026-06-12]], [[../60-Research/raw-perplexity/raw-insolvency-ledger-games-2026-06-12]], [[../60-Research/quality-profile-enum-settlement-path-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-enum-ddd-contract-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-real-world-football-2026-06-12]], [[../60-Research/raw-perplexity/raw-quality-profile-sim-games-2026-06-12]], [[../60-Research/raw-perplexity/raw-pre1-contract-replacement-2026-06-13]], [[../60-Research/chart-of-accounts-and-category-catalog-2026-06-13]], [[../60-Research/raw-perplexity/raw-chart-of-accounts-game-ledger-2026-06-13]], [[../60-Research/raw-perplexity/raw-football-club-accounting-families-2026-06-13]], [[../60-Research/raw-perplexity/raw-sports-management-finance-ui-2026-06-13]], [[../60-Research/raw-perplexity/raw-chart-of-accounts-versioning-2026-06-13]], [[../60-Research/roguelite-run-end-and-carry-economy-tuning-2026-06-14]], [[../60-Research/raw-perplexity/raw-roguelite-run-end-thresholds-2026-06-14]], [[../60-Research/raw-perplexity/raw-roguelite-comparable-games-2026-06-14]], [[../60-Research/raw-perplexity/raw-roguelite-meta-progression-best-practices-2026-06-14]]
@@ -417,6 +417,34 @@ design notes.
   critic follow-up: per-area anchor feasibility, two-class anchor scheme, T3
   outcome-distribution gates and the no-domination invariant for the
   multi-season economy loop; grounds draft ADR-0135/0136.
+
+## Dual-Mode Fork Resolution (FMX-213..218, 2026-07-02)
+
+Six raw fork-resolution captures pressure-testing the FMX-212 open forks and
+carrying one recommended answer each; drafted on the FMX-213 integration branch,
+awaiting Nico ratification of the underlying Stage-2 records.
+
+- [[../60-Research/raw-perplexity/raw-two-worlds-naming-branding-2026-07-02]] —
+  FMX-213 world-naming / mode-branding fork; recommends the Easy/Pro two-worlds
+  labels feeding [[../50-Game-Design/GD-0046-two-worlds-mode-model]].
+- [[../60-Research/raw-perplexity/raw-two-worlds-labeling-mp-fairness-2026-07-02]] —
+  FMX-214 competitive-labeling + multiplayer-fairness treatment forks under one
+  asymmetric-interface core; feeds draft
+  [[../10-Architecture/09-Decisions/ADR-0138-mode-state-placement-and-integrity]].
+- [[../60-Research/raw-perplexity/raw-delegation-model-decision-2026-07-02]] —
+  FMX-215 delegation model shape + `manual`/`propose`/`delegate` consent ladder
+  and per-area override forks; feeds draft
+  [[../10-Architecture/09-Decisions/ADR-0136-delegation-to-staff-contract]].
+- [[../60-Research/raw-perplexity/raw-stadium-expansion-model-decision-2026-07-02]] —
+  FMX-216 stadium construction/expansion model choice fork; feeds draft
+  [[../10-Architecture/09-Decisions/ADR-0137-stadium-construction-and-expansion-contract]].
+- [[../60-Research/raw-perplexity/raw-easy-tactic-preset-library-2026-07-02]] —
+  FMX-217 Easy-World tactic preset-count + aggressiveness→dial-mapping fork;
+  feeds draft [[../50-Game-Design/GD-0047-easy-tactic-preset-library]].
+- [[../60-Research/raw-perplexity/raw-parity-calibration-methodology-2026-07-02]] —
+  FMX-218 parity-band-numbers fork (anchor agents, Auto-Coach↔AI policy,
+  calibration methodology); feeds draft
+  [[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract]].
 
 ## Domain-Model Audit & Backlog (2026-06-02)
 

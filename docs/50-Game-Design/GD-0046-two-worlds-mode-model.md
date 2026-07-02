@@ -1,13 +1,13 @@
 ---
 title: GD-0046 Two-Worlds Mode Model
 status: draft
-tags: [game-design, gddr, dual-mode, two-worlds, progressive-disclosure, tiers, parity, fmx-212]
+tags: [game-design, gddr, dual-mode, two-worlds, progressive-disclosure, tiers, parity, fmx-212, fmx-213]
 context: [tactics, match, identity-access, league-orchestration]
 created: 2026-07-02
 updated: 2026-07-02
 type: gddr
 binding: false
-linear: FMX-212
+linear: [FMX-212, FMX-213]
 supersedes:
 superseded_by:
 related:
@@ -22,6 +22,7 @@ related:
   - [[../60-Research/dual-mode-precedents-sports-management-2026-07-01]]
   - [[../60-Research/mode-choice-switching-and-competitive-labeling-2026-07-02]]
   - [[../60-Research/dual-mode-vault-delta-reconciliation-2026-07-02]]
+  - [[../60-Research/raw-perplexity/raw-two-worlds-naming-branding-2026-07-02]]
   - [[../60-Research/tactic-preset-coverage-and-counters-2026-07-01]]
   - [[../60-Research/tier-parity-measurement-calibration-2026-07-01]]
   - [[../60-Research/assisted-play-parity-auto-coach-2026-07-01]]
@@ -235,6 +236,14 @@ Newbie/Bit/Veteran answers (the stigma anti-pattern) with purpose framing —
 (Findings 4, 10; onboarding fork ★ C). *Recommendation, not a decision* on
 the copy; the mapping-table change itself follows from ratified D1.
 
+Anti-stigma rider: the tiles are equal-weight with no pre-selected card and no
+"Recommended" badge, and the persistent "Du kannst die Welt jederzeit
+wechseln" line stays. The middle (Standard-depth) answer is framed as a richer
+Easy world — "**Spieltag mit mehr Details**" — and **never** as
+"Normal/Standard/Empfohlen": the "Normal trap" implies a default the player
+should be able to handle, which re-stigmatises the lean answer. Final middle
+wording is Nico's taste. *Recommendation, not a decision.*
+
 ### Switch ceremony — ★ B+C with A underneath (mode-choice packet)
 
 - **B — first-class world switcher:** a named surface (Club/More sheet per
@@ -302,27 +311,76 @@ transitional Stage-2 default —
    world choice — Pro-exclusive prestige is *additional* opt-in surface, not
    devaluation
    ([[../60-Research/mode-choice-switching-and-competitive-labeling-2026-07-02]]
-   Findings 3–4, naming-fork copy rules).
+   Findings 3–4, naming-fork copy rules). Additive rule (applies regardless of
+   the naming outcome): the Pro world's noun must read warm / human /
+   football-concrete (a place, object or philosophy), never heroic or
+   command-center (no Zentrale / Kommando / Feldherr / Masterplan-as-genius) —
+   a heroic Pro noun makes the Easy world the visible consolation in trailers
+   and store banners. Present the two names only as a paired question with
+   identical visual weight (equal tile containers, matched icons), never
+   stacked as a ranked list — a toggle-silhouette hierarchy is inferred before
+   copy is read
+   ([[../60-Research/raw-perplexity/raw-two-worlds-naming-branding-2026-07-02]]).
+5. **One competition, honestly labeled — never split.** Both worlds share a
+   single competition sorted only by how you perform; the world you play is
+   shown as a prestige-neutral, informational badge (per run, and in
+   multiplayer per match), and any Pro-only prestige is only ever an optional
+   "pure" view over that same board and the same rating — never a separate
+   class, ladder, ranking, or matchmaking bracket. We tell you the fairness
+   rules — the Pro edge is bounded, adaptation-only, and Easy is never a losing
+   strategy — but never a raw win-percentage, so a defeat reads as "they
+   out-adapted me," not "the game is rigged." When you do lose, we say so
+   plainly and offer you Pro's tools for next time — your choice, instantly, at
+   no cost — because the world you play is always yours to change.
 
 ## Open (Wave 2) — OPEN forks for Nico
 
 All ★ marks below are the research packets' recommendations —
 **recommendations, not decisions**; each fork stays open until Nico rules.
 
-1. **World naming (player-facing pair, DE-first).** ★ Purpose-framed or
-   identity-framed pair (mode-choice naming fork Options B/C; depth-scale
-   names like "Easy/Profi" rejected by the evidence and by conflict C1).
-   Illustrative **placeholder** pairs — clearly placeholders, not proposals;
-   the final pair needs the GD-0015 / ADR-0007 IP-clean check and a DE-first
-   copy test:
-   - "**Spieltag**" / "**Taktikzentrale**" (EN: Matchday / Tactics Hub) —
-     purpose-framed, per the mode-choice packet's illustration.
-   - "**Trainerbank**" / "**Taktiktafel**" (EN: Touchline / Whiteboard) —
-     identity-framed manager fantasies, per the vault-delta packet's
-     illustration.
-   - "**Instinkt**" / "**Masterplan**" (EN: Instinct / Masterplan) —
-     identity-framed, session-feel contrast.
-2. **Parity band numbers (D3 envelope constants).** The placeholders
+1. **World naming (player-facing pair, DE-first).** ★ Purpose/place-framed,
+   session-identity pair (never a depth/skill ladder; depth-scale names like
+   "Easy/Profi" stay rejected per the evidence and conflict C1). All pairs are
+   placeholders pending Nico's taste + the formal IP-clean / confusable /
+   edit-distance / competitor-mark gate (Anstoss / Fussball Manager / Football
+   Manager / FIFA / eFootball + adjacent-gaming marks) + a DE copy test;
+   connotation claims are medium-confidence native-speaker synthesis
+   ([[../60-Research/raw-perplexity/raw-two-worlds-naming-branding-2026-07-02]]).
+   Ranked shortlist (★ = recommendation, not a decision):
+   1. **TOP — "Spieltag" (Easy) / "Taktiktafel" (Pro)** (EN: Matchday /
+      Tactics Board). This **upgrades** the note's prior illustration: prefer
+      "**Taktiktafel**" over "Taktikzentrale" — the whiteboard is a human,
+      prestige-neutral image that both worlds' coaches use, whereas
+      "-zentrale"/HQ silently tilts prestige to the Pro world and breaks
+      co-equality in toggles and screenshots. **Condition:** "Spieltag" is
+      already the standard DE fixture-round / matchday UI term, so adopting it
+      as a world name requires reserving the word exclusively for the world
+      label and renaming the fixture-round UI concept (candidate: Spielwoche /
+      Ligarunde / Runde) — see the new open sub-fork below.
+   2. **TOP FALLBACK (collision-free, fully DE-native) — "Bauchgefühl"
+      (Easy) / "Spielidee" (Pro)** (EN: Instinct / Playing-idea). Replaces the
+      Denglisch "Masterplan" with the idiomatic Pep-era "Spielidee"; both are
+      respected, co-equal coaching philosophies (Intuition vs Konzeption),
+      neither is reserved UI vocabulary (no homonym), and the two ~3-syllable
+      nouns give the best toggle-silhouette symmetry. **Promote to top if Nico
+      declines the Spieltag UI rename.**
+   3. **FALLBACK — "Trainerbank" (Easy) / "Taktiktafel" (Pro)** (EN:
+      Touchline / Board). Milder homonym (Trainerbank ≈ the bench UI element);
+      keep only as a serious-managerial fallback.
+
+   Reject as the Pro-world noun any heroic / HQ / militaristic word
+   (Taktikzentrale, Masterplan-as-hero, Feldherr, Kommandostand) — co-equality
+   is bidirectional (a try-hard Pro label re-brands the Easy player an
+   amateur), and "Feldherr" additionally carries a live registered-mark
+   collision.
+2. **World-name / UI-term homonym resolution (gates the Spieltag pick).**
+   If "Spieltag" is chosen as the Easy-world name, decide whether to reserve it
+   exclusively for the world label and rename the fixture-round UI concept
+   (candidate: Spielwoche / Ligarunde / Runde), OR take the collision-free
+   "Bauchgefühl" / "Spielidee" alternate. Touches UI vocabulary → needs Nico.
+   ★ Reserve-and-rename if Spieltag is the taste pick; else the alternate.
+   *Recommendation, not a decision.*
+3. **Parity band numbers (D3 envelope constants).** The placeholders
    (R ≈ 0.85–0.95; head-to-head 52–57 %; season ≤ ~4–8 points) are
    evidence-shaped, not decided. ★ Keep them as the starting envelope and set
    the final numbers only from the calibration harness (equal-squad
@@ -333,7 +391,7 @@ All ★ marks below are the research packets' recommendations —
    [[../60-Research/tier-parity-measurement-calibration-2026-07-01]] (★ B);
    [[../60-Research/tactic-preset-coverage-and-counters-2026-07-01]]
    (D3 input).
-3. **Competitive labeling.** ★ One main leaderboard with a
+4. **Competitive labeling.** ★ One main leaderboard with a
    **prestige-neutral world badge** on every entry (backed by the per-run
    world snapshot) **plus opt-in Pro-pure prestige boards** (entries qualify
    only if the whole run stayed Pro) — mode-choice labeling fork ★ B+D;
@@ -343,7 +401,7 @@ All ★ marks below are the research packets' recommendations —
    [[../60-Research/asymmetric-interface-fairness-multiplayer-2026-07-02]]
    labeling ★ A). Mid-competition switches are re-badged BG3-style (never
    blocked, never silent).
-4. **Per-area override ("Easy everywhere except Pro tactics").** Stays
+5. **Per-area override ("Easy everywhere except Pro tactics").** Stays
    future-scope and is additionally **gated on the MP-treatment and
    labeling forks** because it makes the world label untruthful for
    straddling players (vault-delta conflict C4). ★ If/when it ships, parity
