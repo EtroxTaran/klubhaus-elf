@@ -1,13 +1,13 @@
 ---
 title: ADR-0136 Delegation-to-Staff Contract (non-tactic areas, consent ladder, deterministic execution)
 status: draft
-tags: [adr, architecture, dual-mode, delegation, staff-operations, consent, determinism, fmx-212, fmx-215]
+tags: [adr, architecture, dual-mode, delegation, staff-operations, consent, determinism, fmx-212, fmx-215, fmx-219]
 context: [staff-operations, training, scouting, transfer, club-management-economy]
 created: 2026-07-02
 updated: 2026-07-02
 type: adr
 binding: false
-linear: [FMX-212, FMX-215]
+linear: [FMX-212, FMX-215, FMX-219]
 supersedes:
 superseded_by:
 related:
@@ -30,6 +30,7 @@ related:
   - [[../../60-Research/stadium-construction-expansion-models-2026-07-02]]
   - [[../../60-Research/assisted-play-parity-auto-coach-2026-07-01]]
   - [[../../60-Research/raw-perplexity/raw-delegation-model-decision-2026-07-02]]
+  - [[../../60-Research/raw-perplexity/raw-delegation-contract-hardening-2026-07-02]]
 ---
 
 # ADR-0136: Delegation-to-Staff Contract (non-tactic areas, consent ladder, deterministic execution)
@@ -55,6 +56,22 @@ determinism→labeling claim was overstated. This revision **affirms the
 recommended shape and re-drafts the invariants and §7** accordingly (the shape
 stays an OPEN fork for Nico — see §Decision and the O1/O2 forks). All changes
 are additive refinements to a proposal; nothing here is self-accepted.
+
+**FMX-219 sub-fork closure (2026-07-02).** A three-lens adversarial synthesis
+(determinism/replay-safety, gameplay-balance/fairness, trust/legibility)
+reconciled the four load-bearing delegation sub-forks — GD-0021 staff-skill
+scope (Fork 7), cross-domain per-tick resource-arbitration order (Fork 8),
+DL2b feed-salience taxonomy (Fork 9), and determinism-vs-seeded-variance at v1
+(Fork 4) — grounded in
+[[../../60-Research/raw-perplexity/raw-delegation-contract-hardening-2026-07-02|raw delegation-contract-hardening capture]].
+This revision folds the converged **mechanism** requirements into §2, §5
+(DL2b split into pre-confirm/undo/digest; new DL2c salience-computed-at-emission;
+DL4c fixed-floor refinements; DL5 ledger-snapshot extension; new DL10 variance
+substrate), §6 and the Open-forks list. The four **direction** calls (GD-0021
+scope reopen, arbitration-order permutation, salience thresholds,
+pure-vs-variance) remain OPEN for Nico; only the option-invariant mechanism is
+settled. Every item here is a recommendation, not a decision; nothing is
+self-accepted.
 
 ## Date
 
@@ -244,13 +261,34 @@ Per the mode-state packet's C1 deltas:
   eventually-consistent outbox projection (aligns with DL5's closed-world input
   vector — a delegated policy must not act on a stale consent level).
   `DelegationOverview` (settings + switch-preview surface).
-- **Canonical cross-domain execution order per tick:** delegated policies
-  evaluate in one fixed order (starting proposal: Training → Scouting →
-  Transfer → Club-Management (finance-routine) → Stadium). This order is
-  **both a determinism invariant AND an economy-balance lever** — the later an
-  area sits, the more it is starved of contested shared budget/wages/ledger in
-  that tick — so the exact order is an **open fork for Nico** (below), not an
-  architect default.
+- **Cross-domain execution order per tick (FMX-219 reframed).** Under DL5
+  command-logging, byte-stable **replay** of an existing save does NOT depend on
+  this order — replay re-applies logged commands in recorded sequence. The order
+  is load-bearing only for **generation-determinism** (forward advance,
+  headless/CI sim, re-derivation/tamper-check). It is therefore a
+  **generation-determinism invariant AND an economy-balance lever**, NOT a
+  replay invariant (the prior wording conflated the two). Mechanism invariants
+  that hold under EVERY permutation: (i) the order is **total down to item
+  level** with a documented stable tie-break sort key (e.g.
+  `(areaRank, entityId/commandPrecursorId)`) — never hashmap/set iteration
+  order; (ii) it executes as a single-threaded **sequential fold** over the
+  intra-tick-consistent snapshot, each step seeing the prior step's committed
+  spend on the shared ledger (see DL5 ledger clause); (iii) it is **versioned**
+  in `policyVersion`/`rulesVersion` so a reorder cannot silently re-derive old
+  saves differently on the generation path. Starting **proposal** (Nico's
+  balance call, reframed from Training → Scouting → Transfer → Finance →
+  Stadium): settle **pre-committed Finance-obligations** (wages/debt service)
+  ahead of arbitration, then Training → Scouting → Transfer →
+  Stadium-maintenance **last** (most deferrable; already §4 envelope-protected +
+  `propose` fallback = safest to starve). Rationale for the reframe: placing
+  finance-routine second-to-last let delegated discretionary spend draw the
+  ledger before obligations settled, risking a delegated Easy insolvency — the
+  trap a "just runs" player can least diagnose. **NO SILENT STARVATION:** an
+  area starved of contested budget in a tick emits an explicit,
+  individually-surfaced "deferred/skipped — weekly budget exhausted after
+  {area}" report (a MATERIAL event per DL2b), never a silent no-op. The exact
+  permutation and whether to expose it as a player-settable "spending priority"
+  are open forks (below) — recommendation, not a decision.
 - Execution: each owning domain evaluates with the **same expert-policy
   family that drives AI clubs and Auto-Coach proposals**, throttled by its
   GD-0021 pipeline band instead of a global temperature — one policy family,
@@ -299,16 +337,18 @@ is a Quick-tier property; Standard is the deliberate learning-ramp middle.
 |---|---|
 | **DL1** | Delegated staff **never overwrite manual pins**: the player can pin any individual item (a shortlist target, a protected player, a training block) and delegation routes around it — the [[../../50-Game-Design/progressive-disclosure-ui|progressive-disclosure-ui]] §4/§7 tier-switch guarantee, generalized. |
 | **DL2a** (audit record) | Every delegated action is recorded as a **first-class, queryable audit fact** (command-derived, see DL7); silent delegation is forbidden. This is the trust/audit **floor**, not the player-facing feed. External re-grounding note: no primary source documents a generalized delegated-actions audit feed in FM/OOTP, so DL2a is FMX going **beyond** genre norm, not restating it (raw capture Q1/cross-cutting). |
-| **DL2b** (salience-tiered surface) | The player-facing **act-and-report feed** (ADR-0102) is **salience-tiered**: MATERIAL / IRREVERSIBLE / fan-salient acts surface **individually** with a GD-0028-style explanation and a **one-tap undo/protect** affordance; routine acts roll into a **periodic digest**. An unfiltered per-action feed is **forbidden** — it recreates the weekly-touch queue Option A exists to remove. The material/irreversible/fan-salient classification is **load-bearing calibration debt** (see open forks), not a UI afterthought. |
+| **DL2b** (salience-tiered surface, FMX-219 three-axis/three-outlet) | The player-facing **act-and-report feed** (ADR-0102) is salience-tiered by a **UNION of THREE orthogonal axes** — surface individually if **ANY** trips, digest only if **ALL** are low: **(A1) IRREVERSIBILITY** (owning domain cannot undo: player-out sales, contract terminations/non-renewals, accepted bids, committed construction spend, financing draws); **(A2) MATERIALITY, CLUB-RESOURCE-RELATIVE** — fraction of the club's own weekly budget / squad value / wage bill, NOT an absolute currency threshold (mirrors DL4a's resource-relative floor; absolute thresholds over-surface for giants, under-protect minnows across the tier/club spread); **(A3) FAN/EMOTIONAL salience** — REUSES GD-0021's existing transfer-matrix protection score + first-team status + tenure/academy origin + manually-pinned/dialogue-touched players (NO new stat). **Three OUTLETS, not two:** **(T1) PRE-CONFIRM** — irreversible AND material, or any spend tripping DL9 → pre-act veto/soft-hold window reusing the DL8/DL9 escalate-to-confirm pattern, NOT a fake post-hoc undo of a completed act; **(T2) SURFACE+UNDO** — reversible but notable/fan-salient → act + genuine undo; **(T3) DIGEST** — routine (registration, in-band sponsor renewals, in-envelope maintenance, scout reshuffles, training blocks). An unfiltered per-action feed remains **forbidden** — it recreates the weekly-touch queue Option A exists to remove. The classification is **load-bearing calibration debt** (thresholds + resource fractions = Nico's call, open fork 9), NOT a UI afterthought. |
+| **DL2c** (salience computed at emission) | Salience is a **DETERMINISTIC, versioned classification FUNCTION** computed **AT EMISSION** and persisted as a `salienceClass` field on each logged delegated command (DL2a/DL7); it is NEVER recomputed lazily from mutable/wall-clock/UI state. Reason: undo/protect are themselves signed state-mutating commands, so the undoable set must be replay-reproducible — a nondeterministic salience input would let two replays surface/undo different items and diverge. Digest-vs-surface is a pure projection over the stored field. |
 | **DL3** | Explanations and the feed **survive mode/tier switches** (D2): switching worlds never discards delegation history or pending reports. |
 | **DL4a** (never-dominated floor, resource-relative) | The no-domination floor is **FIELD/CLUB-RESOURCE-relative, not staff-band-pinned**: naive-play-with-delegation must stay **at or above the AI-field squad-expected band at EQUAL club resources** (off-pitch packet's actual invariant), never below the D3 easy floor. Staff-skill band modulates delegated quality **freely within the corridor**; weak staff must genuinely produce **worse (non-clamped)** delegated outcomes — that is what makes "hire good people" a real lever and prevents the hire-cheap-staff / bank-the-wages free lunch. |
 | **DL4b** (symmetric cap) | The **BEST** legal staff band also sits **inside** the D3 corridor: "hire elite staff + press continue" must never beat deliberate Pro play. Delegated quality is **monotonic in the staff band across a range whose BOTH ends lie inside the corridor** (envelope methodology per [[ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]]). External validation: the genre designs delegation strong-but-not-dominant, reserving high-leverage decisions for manual play (raw capture Q5b). |
-| **DL4c** (coupling-scope honesty) | Staff-skill coupling via GD-0021 `PipelineCoverageSnapshot` bands is satisfiable at MVP **only for training and scouting** (GD-0021 / FMX-152 Option B restricts staff-skill bands to Training/Scouting/Medical/Match-Day; Recruitment gives Transfer only discovery/shortlist quality, **not** negotiation/sell-deal quality). **Transfer-negotiation, finance-routine and stadium-maintenance have NO staff-skill band in the accepted SSOT** and therefore run a **FIXED, staff-independent competence-floor policy** at MVP. Genuine staff coupling in those three areas is a post-MVP dependency that **REOPENS GD-0021's accepted scope** and is raised to Nico as an explicit fork (below) — never asserted in code. |
-| **DL5** | Delegated execution is replay-safe by **COMMAND-LOGGING, not by pure re-derivation**: each delegated action is an ordinary first-class, signed, logged domain command; **replay re-applies the logged commands**, and `policyVersion` is **provenance** metadata, not a replay input. Policy **purity** is still required as a **live-consistency and testability** property, over a fully-enumerated **closed-world input vector** — {domain state, staff-skill band, consent level, manual-pin set, and (if variance is armed) an isolated reserved sub-stream position} — with an explicit clause: **no wall-clock/real-time reads, no "today", no async queue-arrival-order dependence, no cross-save state**; consent level and pins are read from an **intra-tick-consistent snapshot** (not the eventually-consistent outbox projection). This **EXTENDS** ADR-0084 NT5 discipline to a multi-context, recurring-emission setting; it does **not** inherit NT5 wholesale (NT5 is single-context, one-shot, zero-draw). *Why the change:* a pure re-derivation model would make "re-validate `E_ref` on economy/market changes" a **save-corruption bug** — a patched client would replay an old save divergently because the pure function reads changed tuning constants. |
+| **DL4c** (coupling-scope honesty) | Staff-skill coupling via GD-0021 `PipelineCoverageSnapshot` bands is satisfiable at MVP **only for training and scouting** (GD-0021 / FMX-152 Option B restricts staff-skill bands to Training/Scouting/Medical/Match-Day; Recruitment gives Transfer only discovery/shortlist quality, **not** negotiation/sell-deal quality). **Transfer-negotiation, finance-routine and stadium-maintenance have NO staff-skill band in the accepted SSOT** and therefore run a **FIXED, staff-independent competence-floor policy** at MVP. Genuine staff coupling in those three areas is a post-MVP dependency that **REOPENS GD-0021's accepted scope** and is raised to Nico as an explicit fork (below) — never asserted in code. **FMX-219 fixed-floor calibration constraints (proposal, recommendation not a decision):** the fixed staff-independent floor is (a) pinned at the RESOURCE-RELATIVE **competent-median** of the DL4a corridor — above the banded areas' weak-staff band, NEVER at their floor, else neglecting staff becomes a dominant wage-arbitrage strategy DL4a bans elsewhere; (b) **gated on ACTUALLY EMPLOYING + PAYING a role-appropriate staff seat** — a vacant seat falls back to `propose` or a reduced floor (closes the hire-cheap/bank-wages free lunch); (c) surfaced in the UI as a **CONSTANT "club baseline competence / standard practice"**, NOT a named Sporting-Director/CFO/Facilities avatar whose skill appears to vary (a fixed floor is more legible than a fake band; a decorative avatar that mechanically does nothing is a false causal model that reads as the game lying). These refine the floor's shape; they do NOT enact the GD-0021 scope change — that stays open fork 7. |
+| **DL5** | Delegated execution is replay-safe by **COMMAND-LOGGING, not by pure re-derivation**: each delegated action is an ordinary first-class, signed, logged domain command; **replay re-applies the logged commands**, and `policyVersion` is **provenance** metadata, not a replay input. Policy **purity** is still required as a **live-consistency and testability** property, over a fully-enumerated **closed-world input vector** — {domain state, staff-skill band, consent level, manual-pin set, and (if variance is armed) an isolated reserved sub-stream position} — with an explicit clause: **no wall-clock/real-time reads, no "today", no async queue-arrival-order dependence, no cross-save state**; consent level and pins are read from an **intra-tick-consistent snapshot** (not the eventually-consistent outbox projection) — and (FMX-219) the **SAME intra-tick-consistent snapshot rule extends explicitly to the contested shared budget/wages/LEDGER** that the §2 arbitration fold read-modify-writes across domains in one tick; each fold step reads the prior step's committed spend from that snapshot, never the eventually-consistent outbox projection, or spend ordering becomes nondeterministic. This **EXTENDS** ADR-0084 NT5 discipline to a multi-context, recurring-emission setting; it does **not** inherit NT5 wholesale (NT5 is single-context, one-shot, zero-draw). *Why the change:* a pure re-derivation model would make "re-validate `E_ref` on economy/market changes" a **save-corruption bug** — a patched client would replay an old save divergently because the pure function reads changed tuning constants. |
 | **DL6** | Staff **persona** affects narration/advice tone only (GD-0028 surfaces); it never changes a delegated mechanical outcome. |
 | **DL7** | All consent/assignment facts **and delegated OUTPUT actions** are **command-derived**: the consent/assignment **input** facts exist as signed game-state commands, and each delegated **output** action is a logged command (DL2a), so replay re-applies logged commands rather than re-deriving policy — per the mode-log integrity contract ([[ADR-0138-mode-state-placement-and-integrity|ADR-0138]], same FMX-212 wave). Never client-asserted flags. |
 | **DL8** | Financing instruments are player-confirmed in **every** tier (see §4). |
 | **DL9** (aggregate per-tick spend guard) | Financing/spend confirmation (DL8) is enforced on the **per-tick AGGREGATE**, not only per-instrument: if delegated spends across areas in a single tick (transfer outlay + in-envelope maintenance + finance-routine) **jointly** cross a run-ending threshold that **no single instrument trips**, the aggregate is **escalated to player-confirm**. Prevents a run-ending composite slipping past the per-instrument DL8 net and the DL2b digest. |
+| **DL10** (variance substrate, if armed) | IF bounded seeded variance is ever armed (open fork 4), the mechanism is fixed **regardless of Nico's pure-vs-variance direction**: (i) the RNG substrate is **COUNTER/HASH-based per-label** (sub-stream seed = `hash(masterSeed, label)`), NEVER a shared linear stream — a shared cursor shifts every other consumer's draw position (the ADR-0084 §3 anti-pattern); (ii) the label is keyed to `(area, tick, action-slot/seq)` so draws are individually addressable and a future new delegated action type cannot renumber existing draws; (iii) variance is **CONFINED to the routine/digest action class** — it never causes a MATERIAL or IRREVERSIBLE act and never flips a `salienceClass` (the salience classifier and every surfaced act stay deterministic); (iv) the DL4a floor and DL4b cap are enforced on a **DISTRIBUTION PERCENTILE** (P-low above the never-dominated floor, P-high below the Pro-dominance cap), NOT on the mean; (v) variance amplitude is its own `assist.delegation.<area>` slot, dialable to zero per-area; (vi) at v1 the reserved sub-labels are **DECLARED at zero draws** (ADR-0084 national-team:offers declare-now/arm-later precedent) so variance is a later drop-in with no save-format break. Isolation is at the stream-cursor level only — a variance-driven spend still mutates the shared ledger every deterministic system reads next tick, so variance is contained in the **draw**, NOT in state-causality. |
 
 ### 6. Strength spec and calibration
 
@@ -316,17 +356,35 @@ Each delegated area gets a slot in the `assist.delegation.<area>` calibration
 slot family (delegation packet NEW-delegation-strength-spec; off-pitch packet
 slot-family proposal): shared anchor grammar, per-area parameter packs, and a
 declared per-area `anchorClass` (optimizer for training and stadium/financing
-timing; scripted reference for transfers and scouting at v1). The
+timing; scripted reference for transfers and scouting at v1). **Area-set note:**
+the five delegation consent areas map onto **four**
+[[ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]] §4.2
+calibration slots — finance-routine and stadium-maintenance share the
+`financeStadium` slot (neither has an independent optimizer anchor); a split into
+separate slots is an open calibration sub-fork. The
 gate-bearing observable is the T3 outcome distribution plus the DL4a floor
 and DL4b cap no-domination checks; exact numbers are calibration debt owned by the GD-0043
 process. The parity-band numbers themselves remain an **explicitly open**
 part of D3 until the sim harness exists.
 
+Per FMX-219, if variance is armed, its amplitude is a distinct
+dialable-to-zero parameter in each area's `assist.delegation.<area>` pack, and
+the DL4a/DL4b gate-bearing observable is the T3 outcome-distribution
+**PERCENTILE** (not the mean). Because the four sub-forks are **entangled
+levers** (arbitration order decides which spend trips DL9 which DL2b surfaces;
+variance widens the distribution the DL4a percentile guard must clamp; a
+variance-drawn spend early in the §2 fold amplifies through the arbitration
+chain), they require **ONE JOINT calibration pass on the sim harness, not four
+isolated ones**.
+
 ### 7. Competitive / MP note
 
 Because delegated execution is a deterministic, versioned policy function
 (DL5), each area's delegated strength is **measurable and disclosable**
-against the same anchors as the Auto-Coach. This makes DL5 an **enabler of
+against the same anchors as the Auto-Coach. (Precisely: DL5 gives
+generation-determinism and single-save replay-safety; the §2 arbitration order
+is load-bearing for the generation/CI path, not for replay of an existing save,
+which is order-independent under command-logging.) This makes DL5 an **enabler of
 single-save replay/testability and of HONEST disclosure** — it removes the
 hidden-variance objection and lets us state per-area delegated strength — but
 it is explicitly **NOT MP shared-world determinism** (lockstep /
@@ -422,6 +480,14 @@ Negative / follow-up:
   last in line is systematically starved of contested shared budget/wages —
   so the order is a gameplay-balance call for Nico, not an architecture
   default (open fork below).
+- **Fixed-floor experience/legibility debt (SF1):** in the three uncoupled
+  areas the "hire good people" lever is dead at MVP; the constant "club
+  baseline" framing must be honest and the post-MVP GD-0021 extension (fork 7)
+  is the real resolution — disclose, do not hide.
+- **Entangled calibration (SF2/3/4):** the arbitration order, salience
+  thresholds and variance amplitude interact; DL9 escalation must name the
+  **AGGREGATE** cause, never blame the last-in-line area, or it degrades into
+  rubber-stamping; and the four need one joint sim-harness pass.
 
 ## Open forks for Nico (carried, not decided here)
 
@@ -442,6 +508,15 @@ Negative / follow-up:
    **leans pure at v1** given the added multi-domain surface; this reasoned
    counter is recorded **beside Nico's standing seeded-variance preference**
    so he decides with both in view (recommendation, not a decision).
+   *FMX-219 update:* the reconciled mechanism is now fixed in **DL10**
+   (counter/hash per-label substrate, `(area,tick,seq)` keying,
+   confined-to-digest, DL4a/DL4b percentile guards, declare-now/arm-later
+   zero-draw) **regardless of direction**. The **direction stays open**,
+   recorded co-equal: the determinism lens leans **PURE at v1** (zero
+   replay benefit under command-logging; variance is a clean post-v1 drop-in),
+   the balance lens leans **bounded variance at v1** (de-exploits delegation,
+   reinforces the D3 adaptation-edge) — both recorded BESIDE Nico's standing
+   seeded-variance preference. Recommendation to keep open, not a decision.
 5. **Strength-spec slot granularity** — single slot vs per-area family; ★
    one slot family with per-area parameter packs and declared `anchorClass`
    (recommendation, not a decision).
@@ -458,21 +533,39 @@ Negative / follow-up:
    scope closed), or does delegation justify **extending GD-0021's accepted
    staff-skill scope** to add negotiation/CFO/facilities bands post-MVP? A
    Nico-gated scope decision that DL4c must **not** make in code
-   (recommendation, not a decision).
+   (recommendation, not a decision). *FMX-219 update:* the ★ fixed floor now
+   carries the DL4c FMX-219 constraints (resource-relative competent-median
+   pin, employ+pay gate, constant "club baseline" UI). The **direction** (fixed
+   floor at MVP vs extend GD-0021 post-MVP) is still Nico's; the scope change is
+   **NOT enacted**.
 8. **Cross-domain per-tick execution / resource-arbitration order** (NEW —
    genuinely needs Nico) — when several delegated policies draw the same
    weekly budget/wages/ledger, a canonical order is required for determinism,
    but the order is **also a balance lever** (last-in-line is starved of
-   contested budget). Which area gets first claim? ★ starting proposal
-   Training → Scouting → Transfer → Finance → Stadium — but this is a
-   **gameplay-balance** call, not an architecture default (recommendation, not
-   a decision).
+   contested budget). Which area gets first claim? **★ reframed starting
+   proposal (FMX-219):** settle Finance-obligations (wages/debt) ahead of
+   arbitration, then Training → Scouting → Transfer → Stadium-maintenance
+   **last** (§4-protected) — reframed because finance-second-to-last risked a
+   delegated Easy insolvency. Totality + tie-break sort key, sequential fold
+   over the intra-tick ledger snapshot, and `policyVersion`/`rulesVersion`
+   versioning (§2) are **settled generation-determinism invariants under every
+   permutation**; the **PERMUTATION** and whether to expose it as a
+   player-settable "spending priority" (behind the Fein-Tuning disclosure) are
+   the **gameplay-balance** calls for Nico, not an architecture default
+   (recommendation, not a decision).
 9. **Feed salience threshold** (NEW — needs Nico as calibration owner) — what
    counts as MATERIAL / IRREVERSIBLE / fan-salient (surface individually +
    undo/protect) vs routine (digest) under DL2b? **Load-bearing trust
    calibration**: hiding a fan-favourite sale or a run-ending spend costs more
    trust than noise, and getting it wrong reintroduces the queue or breaks
    trust (recommendation deferred — this is a calibration-owner decision).
+   *FMX-219 update:* the **structure** is now settled as a proposal in
+   DL2b/DL2c (three-axis union; PRE-CONFIRM / UNDO / DIGEST three outlets;
+   club-resource-relative materiality; reuse of GD-0021's existing
+   fan/board protection score; compute-at-emission `salienceClass`). Only the
+   **THRESHOLD NUMBERS** + resource fractions + a possible player "always tell
+   me about X" pin remain the calibration-owner (Nico) call, tuned
+   false-positives-cheap / false-negatives-catastrophic.
 
 ## Future-scope notes (classified future-scope)
 
@@ -504,6 +597,7 @@ discipline.
 - [[../../60-Research/stadium-construction-expansion-models-2026-07-02]] — stadium construction/maintenance delegation nuance + budget envelope.
 - [[../../60-Research/assisted-play-parity-auto-coach-2026-07-01]] — throttled-expert policy mechanism this contract generalizes.
 - [[../../60-Research/raw-perplexity/raw-delegation-model-decision-2026-07-02]] — FMX-215 external re-grounding capture (DL2 beyond-genre; DL4 strong-but-not-dominant; §7 determinism-is-enabler-not-precondition; OOTP/FM learning-ramp + propose-middle precedents).
+- [[../../60-Research/raw-perplexity/raw-delegation-contract-hardening-2026-07-02]] — FMX-219 sub-fork closure grounding (fixed-floor calibration, obligation-first arbitration order, three-axis salience taxonomy, DL10 variance substrate).
 - [[ADR-0053-staff-operations-context]] — Staff Operations boundary this contract extends.
 - [[ADR-0084-national-team-dual-role-and-international-window-contract]] — accepted consent-ladder + deterministic auto-management precedent (NT5).
 - [[ADR-0090-offline-sync-scope-and-conflict-strategy]] — state-class partition (assignments are game-state commands, never LWW).

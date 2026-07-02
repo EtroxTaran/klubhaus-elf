@@ -212,6 +212,49 @@ related:
 >   [[../60-Research/raw-perplexity/raw-parity-calibration-methodology-2026-07-02]] →
 >   [[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]].
 
+> **Post-dossier FMX-219..222 dual-mode second-wave fork-hardening proposals
+> (open-fork pointer update, added 2026-07-02; dossier stays closed).** Deep
+> review of the FMX-213..218 proposals surfaced a second wave of load-bearing
+> *sub-forks* inside the delegation, stadium, parity and preset contracts. Each
+> now carries a single-recommendation proposal folded into the named note as
+> "proposal drafted, awaiting Nico" (every ★ is a recommendation, not a
+> decision). **All stay OPEN**; this closed dossier is not reopened and the
+> authoritative homes remain the Stage-2 records below.
+> - **FMX-219 delegation sub-forks** — GD-0021 staff-skill scope /
+>   fixed-competence-floor, cross-domain per-tick arbitration order,
+>   three-axis act-and-report feed salience taxonomy, and
+>   determinism-vs-seeded-variance substrate → proposal drafted,
+>   [[../60-Research/raw-perplexity/raw-delegation-contract-hardening-2026-07-02]] →
+>   [[../10-Architecture/09-Decisions/ADR-0136-delegation-to-staff-contract|ADR-0136]].
+>   The GD-0021 staff-skill scope extension is flagged as **requiring a
+>   ratified change to the accepted GD-0021 / FMX-152 scope**, not asserted.
+> - **FMX-220 stadium ledger sub-forks** — `ScheduleFacilityProject`
+>   disposition, facility depreciation/impairment treatment,
+>   cancel-from-`Commissioning` ledger semantics, and the Expert-MVP expressive
+>   affordance → proposal drafted,
+>   [[../60-Research/raw-perplexity/raw-stadium-ledger-refinements-2026-07-02]] →
+>   [[../10-Architecture/09-Decisions/ADR-0137-stadium-construction-and-expansion-contract|ADR-0137]].
+> - **FMX-221 preset-count reconciliation sub-forks** — tactics-system §13
+>   "5 starter presets" vs GD-0047 "7" reconciliation, the final authored count
+>   (7 vs 6, ceded to the ADR-0135 round-robin), the §13 supersede-by-reference
+>   clause-move, and the count-scaled I5 robustness-invariant blessing →
+>   proposal drafted in
+>   [[../50-Game-Design/GD-0047-easy-tactic-preset-library|GD-0047]] §7 (the §13
+>   edit is **flagged as requiring a ratified change to `tactics-system`**, made
+>   there on ratification, never pre-applied).
+> - **FMX-222 parity-architecture sub-forks** — Tactical Evaluation Core
+>   Shared-Kernel subdomain placement (**flagged as requiring a ratified change
+>   to the binding bounded-context map**, proposed inside the ADR only),
+>   reduced-horizon soak proxies, and the higher-order interaction residual
+>   risk → proposal drafted,
+>   [[../60-Research/raw-perplexity/raw-parity-architecture-placement-2026-07-02]] →
+>   [[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]].
+> - **Still DEFERRED (engine-gated, not proposable yet):** the parity band
+>   numbers (R floor/cap, head-to-head %), the preset floor / squad-fit penalty
+>   / robustness constants, and the SPRT α/β error rates + indifference
+>   half-width — all remain OPEN until the sim harness exists; no recommendation
+>   is offered.
+
 One place where everything still open across the domains **was decided**. Each item below is a
 crisp question with researched options and a **recommended answer** (grounded externally
 2026-06-07 — Perplexity Sonar + Exa + DDD/sim literature; see the per-item research notes).

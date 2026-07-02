@@ -1,18 +1,19 @@
 ---
 title: ADR-0137 Stadium Construction and Expansion Contract
 status: draft
-tags: [adr, architecture, ddd, stadium-operations, club-management, construction, expansion, financing, dual-mode, fmx-212, fmx-216]
+tags: [adr, architecture, ddd, stadium-operations, club-management, construction, expansion, financing, dual-mode, fmx-212, fmx-216, fmx-220]
 context: [stadium-operations, club-management-economy]
 created: 2026-07-02
 updated: 2026-07-02
 type: adr
 binding: false
-linear: [FMX-212, FMX-216]
+linear: [FMX-212, FMX-216, FMX-220]
 supersedes:
 superseded_by:
 related:
   - [[../../60-Research/stadium-construction-expansion-models-2026-07-02]]
   - [[../../60-Research/raw-perplexity/raw-stadium-expansion-model-decision-2026-07-02|Raw capture — Stadium expansion model pressure-test (FMX-216)]]
+  - [[../../60-Research/raw-perplexity/raw-stadium-ledger-refinements-2026-07-02|Raw capture — Stadium ledger & Expert-joy refinements (FMX-220)]]
   - [[../../60-Research/management-delegation-and-easy-mode-surfaces-2026-07-02]]
   - [[../../60-Research/off-pitch-parity-measurement-economy-loop-2026-07-02]]
   - [[../../60-Research/tier-parity-measurement-calibration-2026-07-01]]
@@ -251,6 +252,46 @@ venue facilities** — this ADR scopes ADR-0050's `ScheduleFacilityProject`
 away from venue facilities (see Supersedes and fork 7) so one aggregate in one
 context drives the venue construction lifecycle (no dual-write).
 
+**Fork 7 — non-venue construction shares one capitalisation truth
+(recommendation, not a decision).** Non-venue facility construction
+(training / youth / medical) retains a lighter `ScheduleFacilityProject`-style
+command, **but posts through the SAME capitalisation posting family as venue**
+(§7 `ConstructionInProgressAccrued` / `FacilityAssetCommissioned`),
+**discriminated by a `facilityClass` field (`venue | training | youth |
+medical`)** — it **MUST NOT** retain ADR-0050's legacy `FacilityProjectCommitted`
+separate CIP→PPE path. One capitalisation truth, at most two front doors; small
+non-capitalisable upgrades are **explicitly expensed** (routed to maintenance),
+never given a private capitalisation path. This is the single-ledger-truth
+constraint (GD-0008 one Club-owned ledger; [[ADR-0061-club-management-sub-aggregate-audit]]
+Club Management sole writer) applied to non-venue capex — full-retire is
+rejected because it orphans non-venue capex and re-opens the exact gap this ADR
+exists to close, one domain over
+([[../../60-Research/raw-perplexity/raw-stadium-ledger-refinements-2026-07-02|FMX-220 raw]]
+Query 3: venue is the ring-fenced, larger, SPV-financed, richer-construction
+asset while training/youth/medical are lighter incremental sporting-ops
+upgrades). (recommendation, not a decision)
+
+**Venue/non-venue partition predicate (testable).** `venue` = anything under
+Stadium Operations' `FacilityCondition` / `SeatClassInventory` /
+`HospitalityInventory` that **changes matchday capacity or triggers
+`EffectiveRuleSet` compliance** → `CommissionConstructionProject`; everything
+else → `ScheduleFacilityProject`. The predicate is a hard partition: it
+guarantees **no project routes through both doors or neither**, so the "at most
+two front doors" claim above is machine-checkable rather than aspirational.
+(recommendation, not a decision)
+
+**Non-venue lifecycle ownership (requires ratifying a change to the binding
+bounded-context map).** Scoping `ScheduleFacilityProject` to non-venue leaves a
+*lifecycle* command inside ADR-0050 (the sole-ledger-writer context) — the same
+anti-pattern this ADR fixes for venue. The symmetric fix is that **academy
+builds belong to Youth Academy ([[ADR-0060-youth-academy-context|ADR-0060]])
+and training/medical to Staff Operations
+([[ADR-0053-staff-operations-context|ADR-0053]])**, with ADR-0050
+retaining only the *postings*. This touches the **binding** bounded-context map
+and is **NOT decided or edited here** — flagged for Nico's ratification (Open
+fork 7). It is recorded inside this ADR precisely so the binding map is not
+silently rewritten. (recommendation, not a decision)
+
 - `CommissionConstructionProject(projectSpec{type: standUpgrade |
   seatMixConversion | moduleBuild | renovation | foundationRebuild, target,
   scope, urgencyFactor}, financingPlanRef?)`
@@ -302,8 +343,14 @@ mandatory whether or not a `financingPlanRef` is present. A commission enters
 - `ResumeConstructionProject` — legal only from `Paused`; restores progress
   from the persisted pointer.
 - `CancelConstructionProject` — legal from any pre-`Completed` state; triggers
-  the write-off posting (§7). **Cancel-from-`Commissioning` is an open
-  sub-fork** (force-complete-and-capitalise vs sunk-cost write-off — fork 9).
+  the §7 cancel semantics. Cancel carries a **deterministic `retainUse` flag on
+  the command** (defaulted `true` for `foundationRebuild` / `standUpgrade`
+  issued in `Commissioning`) that keys the **two-branch cancel semantics in
+  §7** — **NOT** a runtime recoverable-amount valuation (that would smuggle a
+  runtime valuation into the FSM and break [[ADR-0061-club-management-sub-aggregate-audit]]
+  §Determinism / byte-stability). The `Commissioning`-cancel disposition is
+  resolved in §7 (force-complete-and-capitalise vs sunk-cost write-off, keyed on
+  `retainUse`) — Open fork 9. (recommendation, not a decision)
 
 Planning / `EffectiveRuleSet` compliance is a guard on the **`→ Committed`
 edge** (a commission that violates the effective rule set is declined at the
@@ -394,6 +441,45 @@ Identical to the ratified easy-tactic compile pattern — every tier writes the
 - **Expert:** composes phased multi-stand programmes, seat-mix ratios inside
   the compliance envelope, financing mixes, and pause/resume/cancel calls.
 
+  **Expert-MVP joy affordance (recommendation, not a decision — fork 10).**
+  With Option C (plot builder) deferred, require **≥1 Expert-MVP affordance =
+  phased multi-season programme AUTHORSHIP + season-by-season growth
+  VISUALISATION + curated identity-module COMPOSITION (name/compose your
+  stand)** — the **temporal-authorship + visualised-anticipation** differentiator,
+  **NOT more numeric knobs** (which is the We-Are-Football / FIFA-Manager
+  "worthless features" bloat anti-pattern:
+  [[../../60-Research/raw-perplexity/raw-stadium-ledger-refinements-2026-07-02|FMX-220 raw]]
+  Query 4; genre evidence: Anstoss's load-bearing joy is *visible multi-season
+  growth + a legible financial-and-visual dual decision*, not free placement).
+  Three hard bindings:
+  - **(i) Contract-minimal — read-model-only** per
+    [[ADR-0041-presentation-renderer-strategy]], emitting an **ORDERED BATCH of
+    the existing `CommissionConstructionProject` command** (or one multi-phase
+    `projectSpec`) against the **existing `ConstructionProject` aggregate**. It
+    **MUST NOT** become a new `Programme` aggregate with its own
+    lifecycle/events — that would be a bounded-context-map change **and** a
+    second simulation path.
+  - **(ii) Honesty-distinctive financial legibility.** Expert's surface is the
+    one that **SEES the financial lifecycle it authors** — the CIP build-up, the
+    `FacilityAssetCommissioned` capitalisation events, the stage-payable schedule
+    and the cashflow/runway trajectory across seasons
+    ([[../../50-Game-Design/GD-0008-finance-economy]] "Expert shows accounting
+    statements" tier) — with the **hard constraint that any payback/growth
+    projection is DERIVED FROM the real §7 posting-family/accrual logic that will
+    actually post, never a parallel optimistic estimator** (a sold-vs-posted
+    honesty gap that would also corrupt the §8 optimizer anchor).
+  - **(iii) Bounded by §8 parity — expressive-not-stronger.** Expert composes /
+    sequences the **same curated catalogue pieces**; no identity/hospitality
+    effect magnitude unreachable from Standard presets. This clears "not a
+    detached tycoon minigame" **structurally**.
+
+  Cross-fork synergy: **fork 9 Branch-A force-complete fairness is the safety
+  net that makes this ambitious multi-season authorship psychologically safe —
+  decide 9 and 10 together.** Identity composition is **near-zero contract cost**
+  (§2's `moduleBuild` already carries identity/mood outputs as first-class), so
+  it should **ship with the affordance, not defer with Option C**. (recommendation,
+  not a decision)
+
 D2 consequence: because all tiers write one command against one aggregate,
 switching tier mid-project migrates **nothing** — a project commissioned from
 the Quick wizard is pausable from Expert and vice versa.
@@ -438,19 +524,107 @@ ADR-0050 via apply-pass, mirroring `TransferFeeCapitalised` /
   `Dr asset.ppe.facilities / Cr asset.ppe.construction_in_progress`. `Completed`
   is the single capitalisation trigger (§1). Maintenance base and the
   ageing-decay curve re-base per [[../../50-Game-Design/stadium-and-campus]] §6.
-- **`ConstructionAssetWrittenOff`** — on cancel:
-  `Dr expense.impairment.sunk_construction / Cr asset.ppe.construction_in_progress`.
+- **Cancel semantics — two branches keyed on a deterministic `retainUse` flag
+  (§2)** (Open fork 9; recommendation, not a decision). The `Commissioning`
+  cancel disposition is resolved on **determinism**: the sim has no market to
+  compute a recoverable amount deterministically, so the branch is keyed on the
+  `retainUse` flag on the command, **not** a runtime valuation
+  ([[ADR-0061-club-management-sub-aggregate-audit]] §Determinism — the FSM
+  already pins deterministic `stageBoundaries`, no `Date.now`, idempotent
+  boundary-crossing).
+  - **Branch A — `Commissioning` + `retainUse=true`:** **force-complete** →
+    fire the **existing** `FacilityAssetCommissioned` reclass
+    (`Dr asset.ppe.facilities / Cr asset.ppe.construction_in_progress`),
+    capitalise **at cost**; **no new posting at MVP**. (A venue rebuild in
+    commissioning almost always retains future economic benefit — IAS-16's
+    "available for use" test is *probable future benefit*, not physical
+    %-complete: [[../../60-Research/raw-perplexity/raw-stadium-ledger-refinements-2026-07-02|FMX-220 raw]]
+    Query 1 / cross-fork takeaway.)
+  - **Branch B — pre-`Commissioning` cancel OR genuine no-future-benefit
+    abandonment (`retainUse=false`):** the **existing**
+    `ConstructionAssetWrittenOff` (`Dr expense.impairment.sunk_construction /
+    Cr asset.ppe.construction_in_progress`). Blanket write-off fits only genuine
+    abandonment (no use, no benefit).
+  - **Default presumption (Nico ratifies):** `Commissioning` → A;
+    pre-`Commissioning` → B; `retainUse` defaults `true` for `foundationRebuild`
+    / `standUpgrade`.
 - **Cost boundary:** capitalise only **directly-attributable** cost; admin and
   abnormal cost is expensed as incurred.
 - **Crash-build:** `urgencyFactor` posts the premium cost drafted in the GD
   build-economics formulas (directly attributable → capitalised).
 
+**IAS-36 impairment — reserved post-MVP seam (determinism-gated)**
+(recommendation, not a decision). The sim has no market to compute a
+recoverable amount deterministically, so **MVP capitalises at cost only**
+(Branch A above). The impairment posting is a **NAMED post-MVP seam** — a
+**NEW distinct event `FacilityAssetImpaired`**
+(`Dr expense.impairment.facilities / Cr accumulated.impairment.facilities`),
+gated on a deterministic recoverable-amount model. **CRITICAL correctness note:**
+this must be **its own event with its own contra-asset credit** — **NEVER a
+reuse of `ConstructionAssetWrittenOff`**, because after the Branch-A reclass the
+CIP balance is zero, and crediting `asset.ppe.construction_in_progress` again
+drives CIP **negative** and unbalances the ledger
+([[ADR-0095-balanced-transfer-ledger-posting-invariant|ADR-0095]] balanced-posting
+rule). **ADR-0106 apply-pass: reserve `expense.impairment.facilities` +
+`accumulated.impairment.facilities` now.** This defers the valuation-dependent
+posting exactly like fork 8's depreciation seam (seam-treatment symmetry). Lens
+evidence pointed both ways (post the impairment now vs defer); deferral wins for
+MVP because ADR-0061 §Determinism is load-bearing — see Considered alternatives.
+
+**Contractor-payable independence** (recommendation, not a decision). The
+**asset side** and the **`liability.construction_payable` side are independent
+postings**. Cancelling addresses the **asset** only (capitalise or write-off);
+any **unpaid stage payable + retention + termination penalty STAYS a liability**
+([[ADR-0101-settlement-value-collapse-quality-profile-insolvency-ledger-contract|ADR-0101]]
+contractor-as-creditor). A settlement reducing the payable below book is an
+**explicit negotiated gain / write-back posting, never a silent net-off**.
+
 **Depreciation (open sub-fork 8 — name the treatment).** ★ default:
 **facilities held at cost; ageing modelled as maintenance OPEX; no book
-depreciation at MVP**, with a post-MVP `FacilityDepreciationPosted` (periodic
-non-cash) seam. The alternative — a real depreciation line now — is a genuine
-FFP-fidelity call (P&L is read by licence checks; no-depreciation inflates
-going-concern), so the treatment is **named, not left implicit**.
+depreciation at MVP**, with a reserved post-MVP `FacilityDepreciationPosted`
+(periodic non-cash) seam. The treatment is **named, not left implicit**.
+(recommendation, not a decision)
+
+**IFRS-lite divergence (named, not hidden).** This default is a deliberate,
+narrowly-scoped divergence — stated in full so it stays defensible
+([[../../60-Research/raw-perplexity/raw-stadium-ledger-refinements-2026-07-02|FMX-220 raw]]
+Query 2):
+
+- **(a) Deliberate IAS-16 divergence, not a neutral abstraction.**
+  Depreciation of finite-life PPE is **mandatory**; an entity **cannot elect
+  not to depreciate** a stadium it recognises. Do not frame "no book
+  depreciation" as a neutral modelling choice — it is a real IAS-16 deviation.
+- **(b) ONLY non-depreciation diverges.** Maintenance-as-OPEX is itself
+  **IFRS-correct** — day-to-day servicing / restoration to prior condition is
+  expensed under IAS 16 (it is not a component replacement). Framing the
+  divergence narrowly (only the missing depreciation line) keeps it defensible.
+- **(c) It flatters every P&L-reading surface.** Understating cost / inflating
+  profit biases UEFA break-even, domestic licensing and going-concern tests
+  ([[../../50-Game-Design/GD-0008-finance-economy]] line 146). Mitigated by the
+  fact **UEFA itself neutralises depreciation on *new* stadium/training
+  infrastructure** — so for new-build the divergence is near regulatory reality;
+  for legacy carrying value it still diverges from domestic statutory profit.
+- **(d) Carrying value never tracks §6 physical decay.** Capitalise-but-
+  never-depreciate means a **heavily-decayed stand still sits at full book
+  cost** — the balance-sheet value and the §6 physical-decay curve drift apart.
+  Named explicitly so no downstream surface assumes book value tracks condition.
+
+Two hygiene bindings (recommendation, not a decision):
+
+- **Maintenance OPEX must be a NAMED balanced posting** through Club Management
+  (`Dr expense.maintenance / Cr cash|payable`), never prose and never a Stadium
+  Operations posting — Stadium Operations owns the decay fact, Club Management
+  posts the expense (ADR-0050 sole-writer rule).
+- **ADR-0106 apply-pass: reserve `accumulated.depreciation.facilities` now** so
+  the `FacilityDepreciationPosted` seam (`Dr expense.depreciation /
+  Cr accumulated.depreciation.facilities`, periodic non-cash) is a **real
+  reserved seam, not aspirational** — an [[ADR-0106-chart-of-accounts-and-category-catalog|ADR-0106]]
+  chart-of-accounts change requiring ratification.
+
+This is a genuine FFP-fidelity-vs-scope call (P&L is read by licence/UEFA
+checks); research cannot settle it — **Nico ratifies (Open fork 8)**. It is
+co-located with the IAS-23 interest-expensing caveat directly below as one
+honest "deliberate divergences" list.
 
 **Construction-period interest (IAS-23, IFRS-lite divergence).** Interest on
 construction financing is **expensed immediately**, NOT capitalised into CIP.
@@ -482,8 +656,10 @@ support / restructuring fund construction like anything else,
 **Auto-`Pause` on crisis.** A club that enters ADR-0101 `cash_flow_crisis` /
 administration **force-`Pause`s** its active projects (§1 guard transition,
 processed before progress advance) so it stops drawing further stage payments.
-A large mid-build cancellation may trigger CIP impairment and treats the
-contractor as a creditor (ADR-0101 interaction — see Consequences).
+A large mid-build cancellation is handled by the two-branch cancel semantics
+above and treats the contractor as a creditor under **Contractor-payable
+independence** (ADR-0101 interaction — the asset side and the payable side are
+posted independently; see that binding above and Consequences).
 
 ### 8. Parity and D3 properties (contract-level, per ADR-0135)
 
@@ -518,6 +694,11 @@ and [[../../60-Research/off-pitch-parity-measurement-economy-loop-2026-07-02]]):
   exactly like hospitality: no Expert-exclusive identity effect **strength** —
   Expert may compose more expressively, but cannot reach an identity/mood
   effect magnitude unreachable from Standard's identity-arrangement presets.
+- **Sold-vs-posted parity guard (fork 10).** Any Expert financial-lifecycle
+  projection (payback / growth, §5) **must be computed by the same §7
+  posting-family/accrual logic that actually posts**; a parallel optimistic
+  estimator would create a sold-vs-posted gap that **corrupts the optimizer
+  anchor** of this parity cell.
 
 ### 9. Delegation interplay (per ADR-0136)
 
@@ -595,15 +776,27 @@ Negative / follow-ups:
   existing note).
 - **ADR-0050 apply-pass required:** add the construction posting family
   (`ConstructionInProgressAccrued`, `FacilityAssetCommissioned`,
-  `ConstructionAssetWrittenOff`, optional `FacilityDepreciationPosted`) and the
-  `PendingCommitment → Committed` choreography (solvency/drawdown confirmation)
-  to ADR-0050. This ADR no longer "amends nothing" (see Supersedes).
+  `ConstructionAssetWrittenOff`, optional `FacilityDepreciationPosted`, and the
+  post-MVP seam `FacilityAssetImpaired`) and the `PendingCommitment → Committed`
+  choreography (solvency/drawdown confirmation) to ADR-0050, with **non-venue
+  capitalisation routed through the same family via the `facilityClass`
+  discriminator** (fork 7). This ADR no longer "amends nothing" (see Supersedes).
+- **ADR-0106 chart-of-accounts apply-pass required (recommendation, not a
+  decision):** reserve `accumulated.depreciation.facilities` (fork 8 seam),
+  `expense.impairment.facilities` and `accumulated.impairment.facilities`
+  (fork 9 seam) now, so the deferred depreciation/impairment seams are real, not
+  aspirational.
 - **Thin-Expert-at-MVP risk (fork 10):** with Option C deferred, the Expert
   stadium surface at MVP risks reading as "Standard plus more dialogs and
-  accounting" over the same toys. Recommend at least one *expressive-not-stronger*
-  Expert-MVP affordance (name-your-stand / phased mega-project visualisation /
-  curated identity-module composition); named as a risk + open sub-fork, not a
-  UI spec here.
+  accounting" over the same toys. The converged recommendation is to **REQUIRE
+  ≥1 Expert-MVP affordance** (phased multi-season authorship + season-by-season
+  growth visualisation + curated identity-module composition + financial-
+  lifecycle legibility, §5), under three constraints: **read-model-only, no new
+  aggregate** (ordered batch of the existing `CommissionConstructionProject`
+  command), and **derived-from-real-postings** (no parallel optimistic
+  estimator, §8 sold-vs-posted guard). Adds MVP scope and depends on an
+  art/render budget — named as a risk + open sub-fork 10, not a UI spec here.
+  (recommendation, not a decision)
 - **Auto-`Pause`-on-crisis cross-context interaction (ADR-0101):** a
   force-paused or cancelled mid-build turns the contractor into a creditor and
   may require CIP impairment on a large cancellation — new choreography between
@@ -645,24 +838,71 @@ ratifies.
    (conditional on demand-model fidelity) per the off-pitch research's
    declared-anchor-class recommendation.
 7. **`ScheduleFacilityProject` disposition (NEW).** Full retire vs
-   scope-to-non-venue-facilities (training / youth / medical keep a lighter
-   path, venue construction goes through this FSM). ★ **scope-to-non-venue** as
-   default — whether non-venue builds should eventually share this FSM is
-   Nico's bounded-context call.
-8. **Facility depreciation treatment (NEW).** Name-the-simplification
-   (facilities held at cost; ageing = maintenance OPEX; no book depreciation at
-   MVP) vs add a real `FacilityDepreciationPosted` line now. ★
-   **name-the-simplification + post-MVP seam.** Genuine FFP-fidelity-vs-scope
-   call (P&L is read by licence checks); evidence cannot settle it.
-9. **Cancel-from-`Commissioning` ledger semantics (NEW).** A project cancelled
-   while in `Commissioning` is essentially available-for-use imminent —
-   force-complete-and-capitalise vs sunk-cost write-off. Undecided; affects
-   whether the asset ever reaches PPE.
-10. **Expert-MVP expressive affordance (NEW).** Require ≥1
-    expressive-not-stronger Expert-MVP affordance (name-your-stand / phased
-    mega-project visualisation / curated identity-module composition) in MVP
-    scope, or accept thin-Expert-at-MVP and rely on deferred Option C? Adds
-    scope — Nico's call.
+   scope-to-non-venue-facilities. ★ **scope-to-non-venue WITH the shared
+   capitalisation posting family** (`facilityClass` discriminator, §2) + the
+   **testable venue/non-venue partition predicate**; small non-capitalisable
+   upgrades explicitly expensed, never a private capitalisation path. **Flag:**
+   reassigning non-venue *lifecycle* ownership (academy builds → Youth Academy
+   ADR-0060; training/medical → Staff Operations ADR-0053, ADR-0050 keeps only
+   postings) is a change to the **binding bounded-context map** — Nico ratifies,
+   not decided in-ADR. Full-retire rejected (orphans non-venue capex).
+8. **Facility depreciation treatment (NEW).** ★ **name-the-simplification +
+   reserved post-MVP `FacilityDepreciationPosted` seam**, with the **sharpened
+   four-point IAS-16 caveat** (§7): deliberate divergence, only non-depreciation
+   diverges, it flatters P&L-reading surfaces (softened by UEFA new-infra
+   neutralisation), carrying value never tracks §6 decay. Reserve
+   `accumulated.depreciation.facilities` in ADR-0106 now. Genuine
+   FFP-fidelity-vs-scope call — **Nico ratifies**; evidence cannot settle it.
+9. **Cancel-from-`Commissioning` ledger semantics (NEW).** ★ **two-branch
+   cancel keyed on a deterministic `retainUse` flag**: `Commissioning` +
+   `retainUse` → **force-complete-and-capitalise at cost** (existing
+   `FacilityAssetCommissioned` reclass); pre-`Commissioning` / abandonment →
+   existing **sunk-cost write-off**. IAS-36 impairment **deferred as a
+   determinism-gated post-MVP seam** (own `FacilityAssetImpaired` event + own
+   contra-asset, reserved in ADR-0106 — never a CIP re-credit); contractor
+   payable handled independently. Default branch presumption + `retainUse`
+   defaults are **Nico's to ratify**.
+10. **Expert-MVP expressive affordance (NEW).** ★ **REQUIRE the Expert-MVP
+    affordance** (phased authorship + season-by-season growth visualisation +
+    curated identity composition + financial-lifecycle legibility, §5) —
+    read-model-only, ordered batch of the existing command, **no new aggregate**,
+    derived-from-real-postings, §8-parity-bounded. Adds MVP scope — **Nico's
+    call**; contingent on an art/render budget for the growth visualisation
+    (plain-table fallback collapses the joy). Couple with fork 9 (Branch-A
+    fairness is its safety net).
+
+### Considered alternatives (forks 7–10)
+
+Rejected co-equal options, recorded so nothing is silently dropped (each a
+recommendation-level non-selection, not a decision):
+
+- **Fork 7 — full-retire `ScheduleFacilityProject`.** *Rejected:* orphans
+  non-venue capex and re-opens the exact capitalisation gap this ADR closes,
+  one domain over. Also rejected: two *independent* capitalisation paths
+  (venue + non-venue) — a dual-write hazard against the single-ledger-truth
+  constraint. Chosen instead: scope-to-non-venue with the **shared** posting
+  family.
+- **Fork 8 — post a real `FacilityDepreciationPosted` line at MVP.** *Rejected
+  for MVP on scope* (retained as the named post-MVP seam); it is the
+  higher-fidelity FFP option and is a genuine Nico call, not a research verdict.
+- **Fork 9 — blanket sunk-cost write-off for all cancels.** *Rejected:* IAS-16's
+  test is *probable future benefit*, not physical %-complete; a venue rebuild in
+  `Commissioning` almost always retains benefit, so blanket write-off is
+  wrong-for-the-common-case. Also **Lens-1's post-the-impairment-now variant**
+  is *rejected for MVP on [[ADR-0061-club-management-sub-aggregate-audit]]
+  §Determinism* (no deterministic recoverable-amount model) but **retained as
+  the post-MVP `FacilityAssetImpaired` seam shape**.
+- **Fork 10 — accept thin-Expert / rely solely on deferred Option C.**
+  *Rejected as the recommendation* because it leaves the Expert MVP surface as
+  "Standard plus dialogs"; retained only as the fallback if the art/render
+  budget for the growth visualisation cannot be funded.
+
+**Fork 9↔10 exploit-watch (recommendation, not a decision).** Because fork 9
+Branch-A capitalises a `Commissioning` cancel at cost, verify the
+commission→take-capacity-hit→cancel-at-`Commissioning`-to-capitalise-cheaply
+loop is **non-dominant** against the §8 parity harness before ratification —
+the §2 commitment gate + persisted `Paused` restriction already price most of
+it, but it is an explicit harness check item.
 
 ## Supersedes
 
@@ -675,6 +915,13 @@ via apply-pass — it no longer "amends nothing." The precise disposition of
 open fork 7. It otherwise **extends** the ADR-0061 Stadium Operations contract
 surface (ratified Option C context) with the construction/expansion slice it
 lacked.
+
+**Fork 7 apply-pass to ADR-0050 (recommendation, not a decision).** The
+ADR-0050 apply-pass must route **non-venue** facility capitalisation through the
+**SAME shared posting family** (`facilityClass` discriminator, §2), **not** a
+separate `FacilityProjectCommitted` CIP→PPE path — one capitalisation truth.
+(Apply to ADR-0050 via apply-pass; do **NOT** rewrite ADR-0050's canonical
+posting statements here.)
 
 ## Related Docs
 
