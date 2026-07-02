@@ -1,13 +1,13 @@
 ---
 title: ADR-0135 Tier-parity and assist-strength calibration contract
 status: draft
-tags: [adr, architecture, dual-mode, parity, calibration, assist, monte-carlo, fmx-212, fmx-218]
+tags: [adr, architecture, dual-mode, parity, calibration, assist, monte-carlo, fmx-212, fmx-218, fmx-222]
 context: [tactics, match, statistics-analytics, ai-world-simulation]
 created: 2026-07-02
 updated: 2026-07-02
 type: adr
 binding: false
-linear: [FMX-212, FMX-218]
+linear: [FMX-212, FMX-218, FMX-221, FMX-222]
 supersedes:
 superseded_by:
 related:
@@ -15,6 +15,7 @@ related:
   - [[../../50-Game-Design/GD-0042-match-engine-core-model-and-calibration]]
   - [[../../50-Game-Design/GD-0041-monetization-model-and-no-pay-to-win-canon]]
   - [[../../50-Game-Design/GD-0046-two-worlds-mode-model]]
+  - [[../../50-Game-Design/GD-0047-easy-tactic-preset-library]]
   - [[ADR-0136-delegation-to-staff-contract]]
   - [[ADR-0137-stadium-construction-and-expansion-contract]]
   - [[ADR-0138-mode-state-placement-and-integrity]]
@@ -24,6 +25,7 @@ related:
   - [[../../60-Research/in-match-controls-tier-gating-2026-07-01]]
   - [[../../60-Research/management-delegation-and-easy-mode-surfaces-2026-07-02]]
   - [[../../60-Research/raw-perplexity/raw-parity-calibration-methodology-2026-07-02]]
+  - [[../../60-Research/raw-perplexity/raw-parity-architecture-placement-2026-07-02]]
   - [[../../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
   - [[../../30-Implementation/economy-calibration-and-soak-test-runbook]]
 ---
@@ -49,6 +51,14 @@ Every parity **band number and per-cell seed count stays explicitly
 OPEN/harness-gated**: FMX-218 fixes the method that will *produce* those values,
 never the values themselves. Its additions are equally **recommendations, not
 decisions**.
+
+FMX-222 (2026-07-02) CONVERGES three carried methodology sub-forks into flagged
+proposals — the Tactical Evaluation Core's bounded-context-map placement (§2/§5),
+reduced-horizon soak proxies (§6), and the higher-order interaction residual
+(§4.4/§6) — fixing **METHOD only**; every band number and SPRT/α-β parameter stays
+OPEN/engine-gated. Grounded in
+[[../../60-Research/raw-perplexity/raw-parity-architecture-placement-2026-07-02|the FMX-222 raw capture]].
+**Recommendations, not decisions.**
 
 ## Date
 
@@ -174,7 +184,16 @@ place to make the metric real
   access control, CI eval pipelines and the eval-suite build; **Nico/domain owns
   what "expert" and "naive" MEAN** and signs off on any anchor change. Change
   control: domain proposes an anchor change with its expected metric impact; infra
-  rolls it out via the registry under code-review approval and a changelog.
+  rolls it out via the registry under code-review approval and a changelog. Frame
+  this split as a **CUSTOMER-SUPPLIER relationship between TWO subdomains, not
+  co-ownership of one Shared Kernel** (the ambiguity Vernon's Shared-Kernel guidance
+  warns against): the eval **SYSTEM** (registry, storage, access, CI eval pipelines,
+  suite build) is a **GENERIC subdomain owned by the infra/platform team** (downstream
+  supplier); the eval **SEMANTICS** (what "expert"/"naive" MEAN) is **Nico+domain-owned
+  core/supporting knowledge** (upstream customer). Naming the relationship
+  Customer-Supplier keeps the boundary crisp and reinforces, rather than dilutes, the
+  module seam (★ FMX-222, recommendation, not a decision;
+  [[../../60-Research/raw-perplexity/raw-parity-architecture-placement-2026-07-02|FMX-222 raw capture]]).
 - **Anchor SemVer discipline** (★ tier-parity packet **NEW-optimal-anchor-policy**
   as amended by FMX-218, recommendation, not a decision): **MAJOR** = a
   rules/reward/engine/kernel-comparability break OR anchor-quality-diagnostic
@@ -200,7 +219,12 @@ place to make the metric real
   self-play convergence-plateau check — stored with the artifact; its
   **degradation is a MAJOR SemVer trigger** forcing re-derivation, because a
   silently under-converged anchor is the single-direction error that
-  fixed-compute matching cannot catch.
+  fixed-compute matching cannot catch. This diagnostic is **GATE-BEARING and
+  versioned, NOT advisory** (★ FMX-222, recommendation, not a decision): it must be
+  cheap enough to run every release and to gate on, because under-convergence is a
+  single-DIRECTION error (biased-low `P_pro_opt` → inflated `R` → overstated parity)
+  that neither fixed-compute-budget matching nor CRN paired estimation can detect on
+  its own.
 - **`anchorClass` remains a first-class slot field** (★ off-pitch packet
   **NEW-offpitch-anchor-class** Option C, recommendation, not a decision):
   `anchorClass: optimizer | scriptedReference`, declared per slot/area.
@@ -230,6 +254,11 @@ tier-parity packet's Option B machinery:
 | Floor-normalized parity ratio `R` per cell | 0.85 ≤ R ≤ 0.95 | **OPEN — evidence-shaped placeholder** |
 | Head-to-head win-prob `P_pro_opt` vs `P_easy_opt` | 52–57% | **OPEN — evidence-shaped placeholder** |
 | Season-scale pro edge, equal squads, 34 matchdays | ~4–8 league points | **OPEN — evidence-shaped placeholder** |
+| Preset no-hard-counter floor `Y` (GD-0047 I2 / A-FLOOR-Y) | OPEN | OPEN — harness-gated |
+| Squad-fit penalty threshold (GD-0047 I5 / A-FIT-PEN) | ~20% placeholder | OPEN — harness-gated |
+| Squad-robustness fraction `k` in ⌈k·N⌉ (GD-0047 I5 / A-ROBUST-N) | ⌈4/7⌉ placeholder shape | OPEN — harness-gated |
+| Top-band stamina cost (GD-0047 DI3 / A-STAM) | OPEN | OPEN — harness-gated |
+| Cross-mode no-hard-counter floor (A-NHC) | OPEN | OPEN — harness-gated |
 
 The **exact numbers are explicitly open** until the simulation harness exists
 and produces distributions to band against; ratifying this ADR ratifies the
@@ -250,7 +279,10 @@ count is the power analysis needed to resolve those edges at worst-case p (§6).
 Because `R`'s variance explodes in low-denominator (squad-dominated) cells (§1),
 both bounds are applied **per cell** — head-to-head is the primary instrument
 there and `R` is never pooled into a mean. This fixes the *method* that produces
-the bands; the values above remain harness-gated.
+the bands; the values above remain harness-gated. The **A-NHC cross-mode floor
+(§4.4)** is banded per cell from the LOWER CI bound of the directed-adversary
+head-to-head vs the no-hard-counter threshold, alongside the §3 CAP/FLOOR — the
+same worst-cell, never-pooled discipline.
 
 ### 4. New slot families (proposed additions to GD-0043's taxonomy)
 
@@ -294,12 +326,21 @@ Adopted as drafted in the
 
 #### 4.2 `assist.delegation.<area>` (training | scouting | transfers | financeStadium)
 
+> **Area-set mapping (reconciles with [[ADR-0136-delegation-to-staff-contract|ADR-0136]]):**
+> delegation exposes **five** consent/execution areas — training, scouting,
+> transfers, finance-routine, stadium-maintenance — but this calibration slot
+> family uses **four** keys: finance-routine and stadium-maintenance share the
+> `financeStadium` slot because neither exposes an independent optimizer anchor
+> (shared `anchorClass`, see below). Whether they ever split into two calibration
+> slots is an open calibration sub-fork tied to `anchorClass` (recommendation,
+> not a decision).
+
 Adopted per the delegation digest's **NEW-delegation-strength-spec**
 ★-recommendation as qualified by the
 [[../../60-Research/off-pitch-parity-measurement-economy-loop-2026-07-02|off-pitch packet]]
 (recommendation, not a decision). The delegation contract these slots gate is
 [[ADR-0136-delegation-to-staff-contract|ADR-0136]] (same FMX-212 wave; its
-invariant DL4 rides on this slot family):
+floor-and-cap invariants DL4a/DL4b ride on this slot family):
 
 - **Shared N/E methodology:** the same two-anchor `S` grammar as
   `assist.autoCoach`, with **per-area parameter packs** (own policy ladder,
@@ -339,6 +380,65 @@ live-controls packet's **NEW-live-assist-parity-number** input. Its target
 sits inside the §3 envelope; ADR-0072/ADR-0087 contracts are untouched — mode
 selects UI affordances and delegation policy only.
 
+#### 4.4 Preset & dial invariants blessed from GD-0047 (proposed; extends §4.0 `tactics.tierParity`)
+
+> **Recommendation, not a decision.** Blesses the
+> [[../../50-Game-Design/GD-0047-easy-tactic-preset-library|GD-0047]] §2/§3
+> preset & dial invariants as standing equal-squad round-robin assertions on the
+> `tactics.tierParity` slot, keyed to the tactics-system §14 archetype list.
+> Every threshold stays **SYMBOLIC/OPEN/harness-gated** (§3 table); GD-0047
+> authors the invariant **SHAPE**, this ADR owns the numeric threshold and the
+> assertion mechanization. GD-0047 references these names; it never re-types the
+> numbers.
+
+**Ownership split.** GD-0047 §2 = design-intent narrative; this block = the
+normative gate-bearing assertion text + the OPEN threshold. No predicate is
+canonical in both notes.
+
+**A-NHC — Cross-mode no-hard-counter floor (per cell, worst-cell CI form).** A
+specialization of the §4.2 no-domination invariant and the §1 worst-cell
+per-cell `R` bound, extended across the mode boundary. For every Easy preset
+(§14 / GD-0047 §1) in every scenario cell, the **LOWER CI bound** of the
+preset's expected-points / win-probability share against a Pro hand-tuned tactic
+must stay **≥ the per-cell no-hard-counter floor** (threshold OPEN, §3 table).
+It is the **lower guard-rail whose upper guard-rail is the §3 head-to-head CAP**;
+it inherits §1's never-pooled worst-cell rule, §4.1's FWER/FDR +
+replicate-before-gate machinery, and the ban's re-author-parameters-only
+remediation. Two enforceability conditions (★, recommendation, not a decision):
+(a) **DIRECTED adversary** — the Pro opponent is a **per-preset best-response**
+(max-exploitation search targeting each Easy preset specifically), **NOT** merely
+the general fixed-budget `P_pro_opt`, because §2's optimizer-bias logic means a
+general optimizer **UNDER-finds** the pathological counter and a general-anchor
+check can **false-PASS** while a real exploit exists; (b) **cells range over
+preset × aggressiveness-dial-band** (GD-0047 §3), not presets alone — the DI2
+band-collapse hazard (max-aggression preset degenerating into a dominating
+gegenpress) lives at a (preset × dial-band) cell.
+
+**Cross-reference map (GD-0047 ID ↔ ADR-0135 assertion):**
+
+| GD-0047 ID | ADR-0135 assertion | Form | Threshold |
+|---|---|---|---|
+| I1 | A-INTRANS | structural/boolean (both disjoint loops hold in the measured round-robin) | none |
+| I2 | A-FLOOR-Y | worst-cell LOWER-CI ≥ Y% of preset-pool mean xPts, never pooled | Y% OPEN |
+| I3 | A-COVER | structural/boolean (every §14 archetype has ≥1 primary strong-vs preset) | none |
+| I4 | A-NONDOM | structural/boolean (every preset strict best-fit to ≥1 archetype + Pareto-non-dominated) | none |
+| I5-penalty | A-FIT-PEN | squad-fit penalty threshold (Anstoss up-to-20% wrong-shape) | ~20% OPEN |
+| I5-robust | A-ROBUST-N | ≥ ⌈k·N⌉ presets above A-FIT-PEN for every squad shape over LIVE count N; ≥1 intransitive triangle survives; every archetype soft-countered by ≥2 different-fit presets | k OPEN (⌈4/7⌉ placeholder shape) |
+| DI3 | A-STAM | top-band stamina cost surfaced + dial-band-aware availability warning | cost OPEN |
+| (GD-0047 fork 3) | A-NHC | cross-mode no-hard-counter per-cell floor (above) | floor OPEN |
+
+**Well-formedness (★, recommendation, not a decision):** threshold-parameterized
+assertions (A-FLOOR-Y, A-FIT-PEN, A-ROBUST-N, A-STAM, A-NHC) are **worst-cell
+LOWER-CI bounds, never pooled/averaged**, matching the post-FMX-218 §1/§4.1/§4.2
+grammar — one unlucky seed cannot red the build, one genuine hard-counter cell
+does; **A-ROBUST-N is parametrized by the LIVE preset count N (⌈k·N⌉)**, never
+the literal "4/7", so the P3⊕P7 merge (7→6) cannot silently invalidate it;
+structural assertions (A-INTRANS, A-COVER, A-NONDOM) carry no OPEN number and are
+separated from the threshold family; the **FINAL authored count (7 vs 6) is
+owned HERE** — GD-0047 authors 7, the Direct/Vertical family (P3⊕P7) merge
+trigger + correlation threshold are an ADR-0135 §3 round-robin **OUTPUT**,
+referenced by role not by literals.
+
 ### 5. Strength mechanism and granularity (★-recommendations, not decisions)
 
 - **Mechanism — throttled expert** (★ Auto-Coach packet
@@ -360,7 +460,15 @@ selects UI affordances and delegation policy only.
   Evaluation Core"** — a Shared-Kernel SUPPORTING subdomain — operating ONLY on
   the D4 compiled tactic contract (`TacticSnapshot` at `lineup_locked`) plus
   `match.core`, exposing a state→value function + candidate generation and
-  **nothing else**. Three context-local adapters wrap it, each owning its OWN
+  **nothing else**. **DDD note (★ FMX-222, recommendation, not a decision):**
+  "Shared Kernel" is a context-MAPPING relationship, ORTHOGONAL to the
+  core/supporting/generic subdomain axis — so labelling this a SUPPORTING subdomain
+  AND implementing it as a Shared Kernel is fully coherent, not a contradiction.
+  Concrete home: a **sibling framework-agnostic package `packages/tactical-eval/`
+  OUTSIDE `src/domain/`**, mirroring the existing `packages/ai-manager/` precedent
+  already named in the binding map, with a **SINGLE named owning physical home** (no
+  cross-cluster orphan ownership between Sporting Core and Competition & World
+  Simulation). Three context-local adapters wrap it, each owning its OWN
   policy: (a) the **opponent-AI manager** (difficulty/personality, no
   explain-duty) in AI World Simulation; (b) the **Auto-Coach**
   (throttle-to-target-`S`, propose-only, explanation) in Tactics/Training; (c) the
@@ -383,6 +491,22 @@ selects UI affordances and delegation policy only.
   Auto-Coach TOGETHER; without this re-derive-then-re-band rider and the
   anchor-quality diagnostic of §2, a kernel change could silently **mask a real
   `S` regression** (the CRN-entanglement failure).
+- **Kernel scope fitness-function fence (★ FMX-222, recommendation, not a
+  decision):** a build-time architecture-fitness check (sibling to ADR-0121's
+  no-shared-tables function) asserts the shared surface is **EXACTLY the stateless
+  pure function over Published Language** (`TacticSnapshot` at `lineup_locked` + the
+  `match.core` read model) — no mutable state, no adapter policy
+  (difficulty/personality/explain-duty). The moment anything stateful or
+  policy-bearing enters `packages/tactical-eval/`, the fence fails: this is the
+  structural guard that keeps the thin kernel from silently becoming the
+  shared-POLICY god-module rejected in alt (iv) and preserves the §5
+  service-extraction promise (contexts still share only Published Language + one
+  audited pure library).
+- **Kernel micro-benchmark guard (★ FMX-222, recommendation, not a decision):**
+  the kernel carries its OWN hot-loop micro-benchmark **OUTSIDE the parity sweep**,
+  because one shared kernel means a single perf regression is SYSTEMIC — it hits the
+  opponent-AI, the Auto-Coach AND both anchors on every cadence at once — so cost
+  blow-ups must be caught before they multiply across the ~15x cell space.
 - **Granularity — per-decision-class vector, season-aggregate corridor as the
   gate** (★ **NEW-autocoach-strength-granularity**): engineering tunes an
   internal `S` vector per decision class (lineup, tactic preset, in-match
@@ -391,6 +515,34 @@ selects UI affordances and delegation policy only.
   season-aggregate corridor** — the aggregate is what D3 promises, the vector
   is where the ratified "pro edge lives only in adaptation classes" constraint
   is actually enforced and audited.
+
+### 5a. Proposed delta to the binding bounded-context map (requires ratification; map NOT edited here)
+
+> **Recommendation, not a decision. Requires ratifying a change to the binding
+> [[../bounded-context-map]] (binding:true). This ADR proposes the delta; it does
+> NOT edit the map.** (★ FMX-222, grounded in
+> [[../../60-Research/raw-perplexity/raw-parity-architecture-placement-2026-07-02|the FMX-222 raw capture]].)
+
+`bounded-context-map.md` today has NO Shared-Kernel construct and its §3
+Communication Rules forbid shared code (contracts only). Adopting the §5 Tactical
+Evaluation Core therefore needs a genuine, Nico-reserved map amendment that MUST do
+BOTH of the following together — a bare new row without the §3 carve-out leaves the
+kernel in direct, unresolved contradiction with the binding no-shared-code rule (a
+half-ratified map is worse than none):
+
+1. **Add the Shared-Kernel construct** at the AI World Simulation ↔ Tactics/Training
+   seam, naming `packages/tactical-eval/` as the single owning physical home and the
+   Customer-Supplier ownership of §2 (infra-owned generic eval-SYSTEM subdomain ⇄
+   Nico+domain-owned eval-SEMANTICS subdomain).
+2. **Carve an explicit §3 Communication-Rules exception:** "a single-owned,
+   stateless computational kernel over Published Language is a permitted Shared-Kernel
+   exception under joint change-control" — scoped to this one kernel, under the §5
+   joint change-control rider and the §5 fitness-function fence.
+
+Classification carried for Nico: the kernel is proposed as **SUPPORTING**, but
+tactical-AI intelligence is arguably **CORE** for a manager game; the
+core-vs-supporting call drives staffing/ownership rigor (it does not change the
+Shared-Kernel decision) and is surfaced as a genuine alternative below, not asserted.
 
 ### 6. Harness mapping — existing GD-0043 tiers only
 
@@ -434,6 +586,75 @@ build + `evalSuiteVersion`**, or the `S`/`R` numbers are incommensurable across
 cadences; and the explain / propose-only / logging wrapper sits **OUTSIDE the
 kernel hot loop** (cost boundary).
 
+### 6a. Reduced-horizon soak proxies (★ FMX-222, recommendation, not a decision)
+
+Reduced-horizon proxies for the most expensive off-pitch cells (e.g. the ~50-season
+transfers/scouting delegation soak, the single costliest cell in the matrix) are
+ACCEPTABLE ONLY as **non-gating nightly/CI trend/screening** instruments carrying an
+explicit fidelity caveat and a first-class honesty marker
+**`confidence: reduced-horizon-screening`** (mirroring the §2 `anchorClass` /
+claim-strength-per-area pattern), so the differing estimand is contract-visible and
+can NEVER be pooled with, or substituted for, the runbook-owned gate. The
+**full-horizon `soak:50y` stays the ONLY hard per-release gate** for every
+gate-bearing distribution (§4.2) and every hard invariant, per §6's "per-release soak
+= only HARD gate".
+
+Rationale (Law & Kelton / Welch initialization-bias): truncation is valid only when
+the decision metric is short-horizon, empirically stabilized, or a validated proxy
+with known error. The off-pitch cells fail all three — they gate on compounding,
+path-dependent observables (league-position, squad-value trajectory, wage-efficiency;
+§4.2 / off-pitch Finding 10) AND on an absorbing-state-shaped no-domination/insolvency
+tail whose entry hazard is low early and rises with cumulative exposure. Truncation
+therefore **changes the ESTIMAND, not just the estimator**, systematically
+UNDER-stating the late gap and OVER-stating parity — the same single-direction anchor
+error §2 fights, and it lands precisely where the easy floor is most at risk
+(transfers, Finding 9).
+
+**Promotion test (required before any proxy may gate):** a written per-metric
+steady-state / warm-up-removal stabilization check (Welch/MSER-style) PLUS a validated
+proxy-error bound measured against full-horizon runs on a **held-out cell set**.
+Absent that evidence a proxy is screening only. **Proxies must NEVER be used to set or
+tune the §3 CAP/FLOOR bands** — that would bake the truncation bias directly into the
+D3 promise. Cost posture: pay the full-horizon soak once per release, the cheap proxy
+nightly — never the reverse. (Values — the error bound, the held-out cells, which
+cells get proxies — stay OPEN/engine-gated.)
+
+### 6b. Higher-order interaction residual risk (★ FMX-222, recommendation, not a decision)
+
+ACCEPT the residual >t-way risk with the **taxonomy-generated t-way covering array**
+(§6 nightly) + **risk-based sentinel combos** (e.g. Easy-everywhere + Expert-tactics,
+the highest-leverage combo since tactics is where the optimizer edge lives) + a
+**NAMED monitoring trigger**, rather than mandating routine periodic higher-strength
+sweeps — which are combinatorially unaffordable at the ~15x cell multiplier for
+NIST-documented diminishing returns (SP 800-142: most faults 1–2-way, sharply fewer
+at 3–6-way, explicit "no guarantee"). This IS NIST's own remedy: broad t-way +
+risk-based selection + production monitoring. Four conditions bound the acceptance:
+
+- **(a) Coverage fitness-function guard** (sibling to ADR-0121's no-shared-tables
+  function): "every registered slot/adapter appears in the covering-array-GENERATING
+  taxonomy" — extending §6's "a new `assist.*` slot cannot silently escape coverage"
+  to every mode/adapter, so a new cross-context override (e.g. Easy-everywhere +
+  Expert-tactics) cannot live outside the generating set and grow the accepted
+  residual past its evidence base.
+- **(b) Named trigger = T4 consent-gated mode-split parity telemetry** firing off a
+  defined SEQUENTIAL change-detection scheme (CUSUM/EWMA-style control chart) on
+  out-of-envelope drift, escalating to an ad-hoc higher-strength sweep — a
+  statistically-significant signal with a false-alarm/power tradeoff, not a calendar
+  and not a noise chase.
+- **(c) Fault-escape LEDGER:** every field-found override-combo fault becomes a
+  permanent regression sentinel, and any fault empirically shown to require a >t-way
+  coincidence is the trigger to RAISE t — a monitor-and-adapt loop, not a static
+  accept.
+- **(d) Pre-launch substitute (because T4 is POST-LAUNCH and consent-gated):**
+  mandatory pre-launch coverage of the named sentinel combos PLUS one BOUNDED
+  pre-launch higher-strength pass over the highest-risk (preset × dial-band) cells,
+  with reserved compute headroom for the on-demand escalation sweep — otherwise
+  "accept the residual with a monitor" degenerates into "accept it with no monitor for
+  the entire launch window".
+
+Strength t, the extra sentinel combos, and the CUSUM/EWMA detection threshold stay
+explicitly OPEN/engine-gated; SPRT α/β and band numbers stay DEFERRED.
+
 ### Considered alternatives (rejected)
 
 The genuine forks the FMX-218 methodology closes (recommendations, not decisions):
@@ -454,6 +675,29 @@ The genuine forks the FMX-218 methodology closes (recommendations, not decisions
 - **(v) A mean/pooled-`R` acceptance gate** — rejected: it passes coin-flip
   low-denominator cells; the worst-cell per-cell CI bound with head-to-head as the
   primary instrument (§1/§3) is chosen.
+- **(vi) Open-Host-Service / QueryGateway service-call form for the eval kernel**
+  (one context owns it, the other calls it via the Bus) — rejected on cost-boundary
+  grounds (★ FMX-222): the kernel is a hot-loop pure function (state→value + candidate
+  generation per candidate per tick); a Bus/QueryGateway hop per evaluation is
+  architecturally wrong, and the ADR already puts the explain wrapper OUTSIDE the
+  kernel hot loop. The shared-library Shared-Kernel form (§5) beats the service form
+  here even though it is an exception to the map's strict §3 contract-only rule (hence
+  the §5a §3 carve-out).
+- **(vii) Co-ownership of one Shared Kernel by both teams** — rejected (★ FMX-222):
+  the ambiguity Vernon warns against; replaced by the Customer-Supplier framing of §2
+  (infra-owned generic eval-SYSTEM ⇄ domain-owned eval-SEMANTICS).
+- **(viii) Reduced-horizon proxy as a GATE (or full-horizon-everywhere-nightly)** —
+  rejected (★ FMX-222): a truncated proxy changes the estimand and overstates parity
+  (single-direction error), so it stays non-gating screening only (§6a);
+  full-horizon-everywhere-nightly is unaffordable at the costliest 50y cell, which is
+  why the cheap proxy exists — but only as a trend/screen.
+- **(ix) Routine periodic higher-strength covering-array sweeps** — rejected
+  (★ FMX-222): NIST diminishing returns × the ~15x cell multiplier make
+  calendar-driven higher-strength sweeps a bad trade; event-driven-on-signal
+  escalation (§6b) is the affordable posture.
+- **(x) Classifying the Tactical Evaluation Core as a CORE subdomain** — carried as a
+  genuine alternative for Nico (§5a): plausible since tactical-AI is a differentiator,
+  but it changes staffing/ownership rigor, not the Shared-Kernel integration decision.
 
 ## Rationale
 
@@ -541,29 +785,46 @@ Negative / follow-up:
    (§6) (interacts with the open per-area-override fork).
 8. **Delegation slot-family details** — ★ NEW-delegation-strength-spec shape
    incl. runbook ownership split.
-9. **Extending GD-0043 itself** — this whole ADR; GD-0043 is binding and only
+9. **Extending GD-0043 itself** — CONVERGED-INTO-ONE-PROPOSAL pending Nico
+   (★ FMX-222). This whole ADR; GD-0043 is binding and only
    Nico can extend its taxonomy. Includes ratifying the stateless **"Tactical
    Evaluation Core"** as a new Shared-Kernel SUPPORTING subdomain and the
    **infra-owns-system / Nico-owns-semantics** anchor ownership split (§2/§5) —
-   an architecture/module-boundary call touching the AI/Match seam.
+   an architecture/module-boundary call touching the AI/Match seam. The converged
+   proposal: Shared-Kernel SUPPORTING subdomain in `packages/tactical-eval/`;
+   Customer-Supplier ownership (§2); the §5a two-part map amendment (add Shared-Kernel
+   construct + carve §3 exception) + fitness-function fence + micro-benchmark guard.
+   RESIDUAL for Nico: ratifying the binding-map amendment itself, and the
+   core-vs-supporting classification (§5a).
+10. **GD-0047 preset & dial invariants blessed as `tactics.tierParity`
+    assertions (§4.4).** ★ A-NHC cross-mode floor + A-FLOOR-Y / A-FIT-PEN /
+    A-ROBUST-N / A-STAM (thresholds OPEN) and the boolean A-INTRANS / A-COVER /
+    A-NONDOM; includes owning the **final Easy preset count (7 vs 6)** as a §3
+    round-robin output and the **directed-adversary / dial-band enforceability
+    conditions** for A-NHC. Nico ratifies the blessing; the numbers stay
+    harness-gated.
 
 **FMX-218 sub-forks newly carried** (methodology fixed here; values OPEN):
 
-10. **SPRT parameters** — the α/β error rates and the indifference half-width
+11. **SPRT parameters** — the α/β error rates and the indifference half-width
     around each band edge (and the per-cadence hard n-cap): a Nico/domain
     calibration decision, un-settable until the engine exists.
-11. **Per-cadence wall-clock ceilings** (smoke / nightly / release-soak) and the
+12. **Per-cadence wall-clock ceilings** (smoke / nightly / release-soak) and the
     definition of "release" (RC-only vs every release) — an infra + Nico budget
     decision that gates whether the full sweep sits on the release critical path.
-12. **Reduced-horizon soak proxies** — whether reduced-horizon proxies are
-    acceptable for the most expensive off-pitch cells (e.g. a 50y
-    transfers/scouting delegation soak) with an explicit fidelity caveat, or
-    whether full-horizon is mandatory — a cost-vs-fidelity tradeoff for Nico.
-13. **Residual higher-order interaction gap** — pairwise/t-way covering arrays
-    miss faults living only in an untested >t-way override combo: accept the
-    residual risk between full per-release sweeps, or mandate specific extra
-    sentinel combos (e.g. Easy-everywhere + Expert-tactics) — a scope call for Nico.
-14. **Anchor SemVer trigger threshold** — how much anchor-quality-diagnostic
+13. **Reduced-horizon soak proxies** — ★ FMX-222 CONVERGED: acceptable as
+    **NON-GATING nightly screening only**, marked `confidence: reduced-horizon-screening`;
+    full-horizon `soak:50y` stays the only hard gate; promotion-to-gating requires a
+    stabilization check + validated error bound on held-out cells; proxies NEVER tune
+    §3 bands (§6a). RESIDUAL OPEN: the proxy-error bound, the held-out cell set, and
+    which cells get proxies.
+14. **Residual higher-order interaction gap** — ★ FMX-222 CONVERGED: ACCEPT the
+    residual with taxonomy-generated t-way array + risk-based sentinels + a named T4
+    trigger on CUSUM/EWMA out-of-envelope drift + coverage fitness-function guard +
+    fault-escape ledger + a bounded PRE-LAUNCH higher-strength pass (T4 is post-launch)
+    — NOT routine periodic higher-strength sweeps (§6b). RESIDUAL OPEN: strength t, the
+    extra sentinel combos, and the change-detection threshold.
+15. **Anchor SemVer trigger threshold** — how much anchor-quality-diagnostic
     degradation (exploitability/plateau drift) constitutes a MAJOR bump forcing
     re-derivation — a domain-semantics threshold Nico signs off, un-quantifiable
     pre-harness.
@@ -579,8 +840,12 @@ Same FMX-212 wave:
 - [[../../50-Game-Design/GD-0046-two-worlds-mode-model]] — two-worlds cover
   (D1–D4 record; player-facing framing of the D3 envelope and the
   parity-band-numbers fork).
+- [[../../50-Game-Design/GD-0047-easy-tactic-preset-library]] — source of the
+  §4.4 preset & dial invariants (I1–I5 / DI3) blessed here as
+  `tactics.tierParity` assertions; GD-0047 authors the invariant shape, this ADR
+  owns the numbers and the A-NHC cross-mode floor (FMX-221 reconciliation).
 - [[ADR-0136-delegation-to-staff-contract]] — delegation contract gated by the
-  `assist.delegation.<area>` slot family (§4.2, its DL4).
+  `assist.delegation.<area>` slot family (§4.2, its DL4a/DL4b).
 - [[ADR-0137-stadium-construction-and-expansion-contract]] — stadium parity
   cell (enumerable decision space; `anchorClass: optimizer`).
 - [[ADR-0138-mode-state-placement-and-integrity]] — mode-state substrate; its
@@ -598,5 +863,8 @@ Corpus and machinery:
 - [[../../60-Research/raw-perplexity/raw-parity-calibration-methodology-2026-07-02]]
   — FMX-218 raw capture (anchor versioning, cadence sizing, shared-kernel
   boundary; grounds §2/§5/§6).
+- [[../../60-Research/raw-perplexity/raw-parity-architecture-placement-2026-07-02]]
+  — FMX-222 raw capture (Tactical Evaluation Core map placement, reduced-horizon
+  soak proxies, higher-order interaction residual; grounds §2/§5/§5a/§6a/§6b).
 - [[../../30-Implementation/gameplay-calibration-and-soak-test-runbook]]
 - [[../../30-Implementation/economy-calibration-and-soak-test-runbook]]

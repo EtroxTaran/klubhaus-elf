@@ -446,6 +446,33 @@ awaiting Nico ratification of the underlying Stage-2 records.
   calibration methodology); feeds draft
   [[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract]].
 
+## Dual-Mode Fork Hardening (FMX-219..222, 2026-07-02)
+
+Second-wave raw captures re-grounding the load-bearing *sub-forks* the
+FMX-213..218 proposals surfaced inside the delegation, stadium and parity
+contracts; each carries one recommended resolution folded into the named ADR as
+a "recommendation, not a decision". All stay OPEN awaiting Nico ratification.
+
+- [[../60-Research/raw-perplexity/raw-delegation-contract-hardening-2026-07-02]] —
+  FMX-219 four delegation sub-forks (GD-0021 staff-skill scope / fixed-floor,
+  cross-domain arbitration order, three-axis act-and-report feed salience,
+  determinism-vs-seeded-variance substrate); feeds draft
+  [[../10-Architecture/09-Decisions/ADR-0136-delegation-to-staff-contract]].
+- [[../60-Research/raw-perplexity/raw-stadium-ledger-refinements-2026-07-02]] —
+  FMX-220 four stadium sub-forks (`ScheduleFacilityProject` disposition,
+  facility depreciation/impairment treatment, cancel-from-`Commissioning`
+  ledger semantics, Expert-MVP expressive affordance); feeds draft
+  [[../10-Architecture/09-Decisions/ADR-0137-stadium-construction-and-expansion-contract]].
+- [[../60-Research/raw-perplexity/raw-parity-architecture-placement-2026-07-02]] —
+  FMX-222 three parity-architecture sub-forks (Tactical Evaluation Core
+  Shared-Kernel subdomain placement, reduced-horizon soak proxies, higher-order
+  interaction residual risk); feeds draft
+  [[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract]].
+  FMX-221 (tactics-system §13 5-vs-7 reconciliation / final preset count /
+  clause-move / I5 invariant blessing) carries its recommendation in
+  [[../50-Game-Design/GD-0047-easy-tactic-preset-library]] §7 (no separate raw
+  note).
+
 ## Domain-Model Audit & Backlog (2026-06-02)
 
 - [[../60-Research/domain-model-audit-and-backlog-2026-06-02]] — full read-only DDD +

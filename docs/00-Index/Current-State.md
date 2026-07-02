@@ -24,6 +24,38 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-219..222 dual-mode second-wave fork-hardening proposals drafted
+> (2026-07-02).** Deep review of the FMX-213..218 proposals surfaced a second
+> wave of load-bearing *sub-forks* inside the delegation, stadium, parity and
+> preset contracts; each now carries a single-recommendation proposal folded
+> into the named note (recommendation, not a decision). FMX-219 delegation
+> sub-forks (GD-0021 staff-skill scope / fixed floor, cross-domain arbitration
+> order, three-axis feed salience, determinism-vs-variance substrate) →
+> [[../60-Research/raw-perplexity/raw-delegation-contract-hardening-2026-07-02]]
+> → [[../10-Architecture/09-Decisions/ADR-0136-delegation-to-staff-contract|ADR-0136]];
+> FMX-220 stadium ledger sub-forks (`ScheduleFacilityProject` disposition,
+> depreciation treatment, cancel-from-`Commissioning` semantics, Expert-MVP
+> affordance) →
+> [[../60-Research/raw-perplexity/raw-stadium-ledger-refinements-2026-07-02]] →
+> [[../10-Architecture/09-Decisions/ADR-0137-stadium-construction-and-expansion-contract|ADR-0137]];
+> FMX-221 preset-count reconciliation (tactics-system §13 5-vs-7, final count,
+> §13 clause-move, I5 invariant blessing) →
+> [[../50-Game-Design/GD-0047-easy-tactic-preset-library]] §7; FMX-222
+> parity-architecture sub-forks (Tactical Evaluation Core Shared-Kernel
+> placement, reduced-horizon soak proxies, higher-order interaction residual
+> risk) →
+> [[../60-Research/raw-perplexity/raw-parity-architecture-placement-2026-07-02]]
+> → [[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]].
+> Two proposed changes are **flagged as requiring ratification of binding
+> notes** (the binding bounded-context map for the eval-core subdomain; the
+> `tactics-system` §13 preset-count fact and accepted GD-0021 / FMX-152 scope) —
+> proposed inside the ADRs only, never pre-applied. **Remaining open = Nico
+> ratification** of all FMX-219..222 proposals **plus the still-DEFERRED
+> engine-gated numbers** (parity band R floor/cap + head-to-head %, preset
+> floor / squad-fit / robustness constants, SPRT α/β + indifference half-width),
+> which stay OPEN until the sim harness exists. Underlying Stage-2 records stay
+> `draft`/`binding: false`; open-fork index [[Open-Decisions-Dossier]].
+
 > **FMX-213..218 dual-mode fork-resolution proposals drafted (2026-07-02).**
 > The eight FMX-212 open forks on the two-worlds effort now each have a
 > single-recommendation proposal drafted on the FMX-213 integration branch, with

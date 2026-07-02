@@ -7,7 +7,7 @@ created: 2026-07-02
 updated: 2026-07-02
 type: gddr
 binding: false
-linear: [FMX-217]
+linear: [FMX-217, FMX-221]
 supersedes:
 superseded_by:
 related:
@@ -68,9 +68,10 @@ re-open it:
 - **D2** — worlds/tiers switch anytime, everywhere; the save never embeds tier.
 - **D3** — the Pro edge is a bounded floor+cap envelope on the floor-normalized
   parity ratio R (evidence-shaped placeholders R ≈ 0.85–0.95, head-to-head
-  ≈ 52–57 % pro win probability; **exact numbers OPEN** until the sim harness),
-  the edge confined to adaptation decision classes, and **Easy is never a
-  dominated strategy**.
+  ≈ 52–57 % pro win probability; **exact numbers OPEN** until the sim harness;
+  *non-authoritative mirror of ADR-0135 §3 — the numbers are OWNED there, cited
+  here*), the edge confined to adaptation decision classes, and **Easy is never
+  a dominated strategy**.
 - **D4** — the two-worlds model sweeps every decision-bearing area.
 - **Ratified easy-tactics decision** — the Easy surface is a native coarse
   vocabulary (curated presets + one aggressiveness dial, Anstoss pattern) that
@@ -166,9 +167,12 @@ owned by ADR-0135 §3):
   strict best-fit to ≥1 archetype (its "home" matchup) **and** is
   Pareto-non-dominated (no other preset is ≥ it in every cell). No dead
   options — the Anstoss dead-option failure (Finding 3).
-- **I5 — Squad-robustness.** For **every** plausible squad shape: ≥ **4/7**
-  presets stay above the ~20% squad-fit penalty (Anstoss's up-to-20% wrong-
-  shape penalty, Finding 3), **≥1 full intransitive triangle survives**, and
+- **I5 — Squad-robustness.** For **every** plausible squad shape: ≥ **⌈k·N⌉**
+  presets (k harness-gated / OPEN, ⌈4/7⌉ as the placeholder shape) over the
+  **LIVE preset count N** stay above the ~20% squad-fit penalty (Anstoss's
+  up-to-20% wrong-shape penalty, Finding 3) — so the sub-fork-2 merge (7→6)
+  cannot silently break the arithmetic — **≥1 full intransitive triangle
+  survives**, and
   **every archetype is soft-countered by ≥2 presets of *different* squad-fit**
   so a squad missing (say) pace or wingers is not stranded. Equal-squad
   intransitivity is not enough: P1/P3/P5/P7 share correlated athletic/target
@@ -193,7 +197,12 @@ against (Finding 1).
 measured strong-vs / weak-vs vectors of P3 (Hit Them Fast) and P7 (Aim for the
 Big Man) correlate above a harness-set threshold, they collapse to a **single
 Direct/Vertical node** with pace-vs-aerial as a **squad-fit sub-variant** — a
-harness acceptance gate, held OPEN in §9, not decided here.
+harness acceptance gate, held OPEN in §9, not decided here. The **FINAL authored
+count (7 vs 6) is ceded to ADR-0135**: GD-0047 authors 7; the P3⊕P7
+Direct/Vertical merge trigger and its correlation threshold are **OWNED and
+decided by the ADR-0135 §3 round-robin**, so exactly one note owns the final
+integer. GD-0047 does not assert 6-or-7 as a decision; the merge target is named
+by **role (Direct/Vertical family)**, not by the fragile literals P3/P7.
 
 ## 3. The Aggressiveness dial (★ Option B)
 
@@ -284,10 +293,11 @@ delivered through knowledge, not raw strength
 
 ## 6. Calibration ownership
 
-- All matrix **values** — R (0.85–0.95), head-to-head (52–57 %), the preset
-  floor Y% (I2), the ~20% squad-fit penalty threshold and ≥4/7 robustness bar
-  (I5), the top-band stamina cost (DI3) — are **harness-gated / OPEN** and
-  owned by
+- All matrix **values** — R (0.85–0.95), head-to-head (52–57 %) *(both a
+  non-authoritative mirror of ADR-0135 §3 — the numbers are OWNED there, cited
+  here)*, the preset floor Y% (I2), the ~20% squad-fit penalty threshold and
+  ≥ ⌈k·N⌉ robustness bar (I5, ⌈4/7⌉ placeholder shape), the top-band stamina
+  cost (DI3) — are **harness-gated / OPEN** and owned by
   [[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]]
   §3. This note authors the *shape and the invariants*; ADR-0135 sets the
   numbers via the equal-squad round-robin.
@@ -296,6 +306,46 @@ delivered through knowledge, not raw strength
   >50% single-tactic use; counter-templates cancel half) and the **familiarity
   model** (§6.5). No new matchup multiplier is introduced by this note.
 
+## 7. tactics-system §13 SSOT reconciliation — proposed
+
+> **Recommendation, not a decision — requires Nico's ratification. GD-0047 does
+> not edit tactics-system.** This block records the recommended resolution of
+> the §13 "5 starter presets" vs GD-0047 "7" conflict; the §13 edit is made in
+> tactics-system on ratification, never here.
+
+**Conflict.** [[tactics-system]] §13 canonises the Quick tier at "5 starter
+presets"; §1 of this note authors 7. Two facts, one home required.
+
+**Recommended resolution — supersede-by-reference (single owner).** On
+ratification: (a) GD-0047 §1 becomes the **SOLE owner** of the Easy/Quick
+authored-preset count and **SUPERSEDES** the "5 starter presets" fact in
+tactics-system §13; (b) §13 stops carrying a hard integer for the Quick preset
+count and instead **REFERENCES GD-0047 §1** ("the Easy/Quick preset library per
+GD-0047"). This collapses the count to exactly one home and removes the
+divergence class permanently — supersede-not-overwrite, consistent with the
+tactics-system 2026-06-11 status note (a covering GDDR is the binding record for
+its system).
+
+**Why not restate "7" in both notes.** Duplicating the integer into §13 leaves
+two independently-editable homes for one fact; the next preset add/cut re-opens
+the same conflict. Reference-not-restate is the firebreak.
+
+### Considered alternatives (this sub-fork)
+
+- **"5 shown / 7 available" progressive-reveal split — rejected.** Silently
+  retcons §13's original "5" (the entire Quick library, not a display window)
+  into a display-count, minting a **SECOND fact** (shown-count vs library-count)
+  that then needs its own home in [[progressive-disclosure-ui]] — net
+  SSOT-surface expansion disguised as a reconciliation. Also a **balance
+  decision disguised as UI**: the §2 intransitivity loops and the I5 robustness
+  bar are authored over the **full seven**, so an arbitrary visible-5 can be
+  totally-orderable (no surviving cycle) and can strand atypical squads by
+  hiding their only viable specialist. The §5 ~4-family picker grouping already
+  solves choice-overload without hiding presets. Any onboarding reveal must
+  instead be an **ADR-0135 harness assertion** (shown subset carries ≥1 full
+  intransitive triangle + the P6 floor + a count-scaled I5), never an arbitrary
+  5.
+
 ## Open (Wave 2) — OPEN forks for Nico
 
 All ★ marks are **recommendations, not decisions**; each fork stays open until
@@ -303,26 +353,34 @@ Nico rules.
 
 1. **SSOT delta (surface, do not enact).** tactics-system §13 currently
    canonises Quick tier = **"5 starter presets"**, but this note proposes
-   **7**. This must not silently diverge from binding SSOT. Nico to ratify
-   **either** bumping §13 Quick to 7 presets, **or** a "**5 shown / 7
-   available**" progressive-reveal split. ★ Stated here as a *proposed* delta
-   only — GD-0047 does not edit tactics-system.
+   **7**. This must not silently diverge from binding SSOT. ★ **Recommended
+   resolution: bump §13 to a single canonical count via SUPERSEDE-BY-REFERENCE
+   — §13 references GD-0047 §1 as sole count-owner rather than restating an
+   integer (see §7).** The "5 shown / 7 available" split is held under §7
+   Considered alternatives. GD-0047 does not edit tactics-system; Nico ratifies
+   the §13 change.
 2. **Final preset count — 7 vs 6.** ★ Accept the harness-gated P3 (Hit Them
    Fast) / P7 (Aim for the Big Man) merge into a single **Direct/Vertical
    node** (pace-vs-aerial as a squad-fit sub-variant) **iff** the measured
    strong-vs / weak-vs vectors correlate above a set threshold. Nico to confirm
    this conditional-merge policy and who owns the correlation threshold.
-3. **Cross-mode per-matchup no-hard-counter clause — belongs in ADR-0135, not
-   here.** A Pro hand-tuned tactic that **hard-counters** an Easy preset in a
-   single cell makes Easy non-viable there even at a legal *average* edge
-   inside the D3 envelope. ★ Confirm adding a **per-matchup no-hard-counter
-   clause** to the ADR-0135 D3 floor+cap envelope (a scope question for the
-   calibration ADR, raised here for completeness).
+3. **Cross-mode no-hard-counter clause — MOVED to ADR-0135.** ★ **MOVED.** The
+   cross-mode no-hard-counter guarantee (no Pro hand-tuned tactic may
+   hard-counter an Easy preset in a single cell) is now authored as
+   [[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]]
+   §4.4 assertion **A-NHC** — a per-cell worst-cell CI floor, the lower
+   guard-rail beneath the §3 head-to-head CAP. GD-0047 references A-NHC; it is
+   not restated here. Nico ratifies the move + its directed-adversary /
+   dial-band enforceability conditions.
 4. **Blessing on the new invariant set as ADR-0135 harness assertions.** ★
-   Confirm that the preset floor Y% (I2), the ~20% squad-fit penalty threshold
-   and ≥4/7 squad-robustness bar (I5), and the top-band stamina cost (DI3) —
-   all placeholder / OPEN — become **standing round-robin assertions keyed to
-   the §14 archetype list**, with Nico + the harness setting the final numbers.
+   **BLESSED** into
+   [[../10-Architecture/09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]]
+   §4.4 as named standing `tactics.tierParity` assertions (I2→A-FLOOR-Y,
+   I5-penalty→A-FIT-PEN, I5-robust→A-ROBUST-N, DI3→A-STAM; structural I1/I3/I4
+   as boolean assertions A-INTRANS/A-COVER/A-NONDOM), all thresholds
+   **SYMBOLIC/OPEN**, worst-cell LOWER-CI form. GD-0047 authors the invariant
+   **SHAPE**; ADR-0135 owns the numbers and the cross-reference map. Nico
+   ratifies the blessing; the numbers stay harness-gated.
 
 ## Rationale
 
