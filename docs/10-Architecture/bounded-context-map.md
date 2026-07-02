@@ -3,7 +3,7 @@ title: Bounded Context Map
 status: current
 tags: [architecture, ddd, bounded-context, service-ready]
 created: 2026-05-16
-updated: 2026-06-22
+updated: 2026-07-02
 type: architecture
 binding: true
 related: [[../60-Research/raw-perplexity/raw-architecture]], [[../60-Research/player-strength-presentation]], [[../60-Research/club-economy-blueprint-2026-05-27]], [[../60-Research/club-economy-impact-map-and-commercial-contracts-2026-05-28]], [[../60-Research/club-management-sub-aggregate-audit-2026-05-28]], [[../60-Research/manager-archetype-roguelite-2026-05-27]], [[../60-Research/eos-player-staff-skills-and-personas-2026-05-28]], [[../60-Research/ai-world-drift-algorithm-2026-06-03]], [[../60-Research/ai-narration-testing-framework-2026-05-28]], [[../60-Research/statistics-analytics-read-model-owner-2026-06-05]], [[../60-Research/standings-authority-league-vs-statistics-2026-06-12]], [[../60-Research/opposition-template-ai-consumption-ratification-2026-06-14]], [[../60-Research/architecture-fitness-function-no-shared-tables-2026-06-15]], [[../60-Research/identity-access-context-definition-2026-06-15]], [[09-Decisions/ADR-0019-modular-monolith-ddd]], [[09-Decisions/ADR-0018-systemic-events-and-player-lifecycle]], [[09-Decisions/ADR-0020-hybrid-online-mvp-offline-ready]], [[09-Decisions/ADR-0043-notification-and-messaging-platform]], [[09-Decisions/ADR-0050-club-economy-accounting-ledger]], [[09-Decisions/ADR-0058-club-economy-commercial-impact-boundary]], [[09-Decisions/ADR-0051-manager-and-legacy-context]], [[09-Decisions/ADR-0052-people-persona-and-skills-context]], [[09-Decisions/ADR-0054-narrative-context-and-ai-narration-framework]], [[09-Decisions/ADR-0061-club-management-sub-aggregate-audit]], [[09-Decisions/ADR-0062-audience-and-atmosphere-context]], [[09-Decisions/ADR-0071-ai-world-simulation-context-and-drift-contract]], [[09-Decisions/ADR-0080-opposition-template-ai-consumption-contract]], [[09-Decisions/ADR-0081-statistics-analytics-read-model-owner]], [[09-Decisions/ADR-0121-architecture-fitness-function-no-shared-tables]], [[09-Decisions/ADR-0123-identity-access-context-definition]], [[05-Building-Blocks]], [[../30-Implementation/mvp-implementation-roadmap]], [[../30-Implementation/club-economy-accounting-ledger]], [[../30-Implementation/club-economy-commercial-contracts]], [[../30-Implementation/ai-narration-contract-testing-framework]], [[../40-Quality/architecture-fitness-function]]
@@ -618,6 +618,51 @@ flowchart TB
     Audit --> Match
     Audit --> League
 ```
+
+### 2.1 Shared kernel: Tactical Evaluation Core (FMX-224, ADR-0135 §A17)
+
+The **Tactical Evaluation Core** — the stateless shared parity/strength
+evaluation kernel — is ratified (2026-07-02, FMX-224, per
+[[09-Decisions/ADR-0135-tier-parity-and-assist-strength-calibration-contract|ADR-0135]]
+§A17) as a
+**Shared-Kernel SUPPORTING subdomain**. It is a shared kernel, **not a bounded
+context**, and is deliberately excluded from the 28-context portfolio counted in
+§1 — a shared kernel is a cross-context evaluation library, not an owned domain
+boundary.
+
+It is implemented as a **framework-agnostic sibling package
+`packages/tactical-eval/`**, mirroring the existing `packages/ai-manager/`
+precedent, and is consumed by the **AI World Simulation** context (opponent-AI
+strength/parity evaluation) and the **Tactics / Training** contexts (Auto-Coach
+proposals) via **context-local adapters** — each consuming context wraps the
+kernel behind its own adapter and applies effects inside its own boundary, so no
+cross-context table read or shared mutable state is introduced.
+
+Ownership is split on two axes: **infrastructure owns the evaluation SYSTEM**
+(the kernel registry and its CI / calibration pipelines), while **Nico and the
+owning domain own the SEMANTICS / anchors** (what the evaluation means and its
+calibration anchors). Engine-gated numbers stay OPEN even under this accepted
+record: parity-band values (R floor/cap, head-to-head %, season-point cap), the
+SPRT α/β + indifference + wall-clock ceilings, and the calibration thresholds
+(feed-salience fractions, preset-floor / squad-fit constants) are not closed by
+accepting this note.
+
+### 2.2 Ownership clarification: non-venue facility construction (FMX-224, ADR-0137 §A10)
+
+Facility CONSTRUCTION lifecycle ownership is clarified (ratified 2026-07-02,
+FMX-224, per
+[[09-Decisions/ADR-0137-stadium-construction-and-expansion-contract|ADR-0137]]
+§A10) as an ownership assignment among the existing §1 contexts — it adds no new
+context:
+
+- **Venue construction** is owned by **Stadium Operations** via the ADR-0137
+  `CommissionConstructionProject` lifecycle.
+- **Non-venue builds** keep the lighter facility-project lifecycle:
+  **training / medical facilities** are owned by **Stadium Operations**, and
+  **youth / academy builds** are owned by **Youth Academy**.
+- All construction — venue and non-venue — posts through the **shared
+  capitalisation family** to Club Management, which remains the sole writer of
+  finance ledger entries per ADR-0050 (Customer-Supplier + ACL).
 
 ## 3. Communication rules
 

@@ -1,13 +1,13 @@
 ---
 title: ADR-0138 Mode-State Placement and Integrity (preference vs per-unit snapshots, command-derived mode log)
-status: draft
+status: accepted
 tags: [adr, architecture, dual-mode, mode-state, integrity, league-orchestration, match, audit-security, fmx-212, fmx-214]
 context: [match, league-orchestration, audit-security, identity-access, watch-party]
 created: 2026-07-02
 updated: 2026-07-02
 type: adr
 binding: false
-linear: [FMX-212, FMX-214]
+linear: [FMX-212, FMX-214, FMX-224]
 supersedes:
 superseded_by:
 related:
@@ -39,7 +39,7 @@ related:
 
 ## Status
 
-draft
+accepted
 
 Proposed for Nico's ratification. This ADR assigns contractual owners
 to the mode/world **fact families** the ratified dual-mode decisions create,
@@ -52,6 +52,12 @@ That convergence is still a **recommendation, not a decision** —
 `binding: false` until Nico ratifies; every ★ below is the research corpus's
 recommendation authored under the never-self-accept rule. **Per-area override
 remains explicitly deferred and gated on this fork.**
+
+## Ratification
+
+Ratified by Nico on 2026-07-02 (FMX-224, enacting the [[../../40-Execution/fmx-212-ratification-agenda-decision-queue-2026-07-02|FMX-223 agenda]]). `status: accepted`; `binding` stays `false` — decided but not in force pre-development (FMX-211 D2/D14; ADR-0104 precedent). Engine-gated numbers remain OPEN.
+
+**Accepted as recommended:** the single mode-blind competitive primitive (one performance-sorted board for SP + async MP; world shown only as an evidence-grade prestige-neutral badge on outcome-explaining surfaces, never a sort/partition key; Pro-pure prestige as a read-time filtered view); command-derived mode facts with per-unit snapshots; the reserved MP field. Per-area override stays deferred (gated on this fork).
 
 ## Date
 

@@ -21,6 +21,8 @@ related:
 
 # FMX-212 ratification agenda — two-worlds decision queue
 
+> **RATIFIED 2026-07-02 (FMX-224).** Bucket A accepted (with overrides A1/A8/A13 as noted); Bucket B stays engine-gated.
+
 ## Purpose
 
 Every open decision from the two-worlds effort (FMX-212 and its sub-issues

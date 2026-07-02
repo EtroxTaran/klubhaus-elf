@@ -118,19 +118,23 @@ sections are not active work by default.
 - [[../50-Game-Design/GD-0044-create-a-club-roguelite-run-tuning]] - accepted
   FMX-137 run-end, carry-slot, async cosmetic and archetype-taxonomy tuning for
   Create-a-Club Roguelite.
-- [[../50-Game-Design/GD-0046-two-worlds-mode-model]] - draft FMX-212
-  two-worlds mode model record: three internal tiers (Quick/Standard/Expert)
-  branded as two worlds (Easy = Quick+Standard, Pro = Expert), switch anytime,
-  bounded pro edge via floor+cap envelope (D3 revised 2026-07-02), full sweep
-  and the Easy coarse-dial tactic surface compiling into the same tactic
-  contract; encodes directions Nico ratified 2026-07-01/02; open forks carry
-  ★-recommendations only; record awaiting Nico ratification.
-- [[../50-Game-Design/GD-0047-easy-tactic-preset-library]] - draft FMX-217
-  Easy-World tactic preset library and aggressiveness-dial record: the native
-  coarse-dial/preset surface that compiles deterministically into the SAME
-  tactic contract Pro writes (per the 2026-07-02 Easy-tactic-surface decision);
-  the FMX-217 fork-resolution proposal carries the single preset-count and
-  aggressiveness→dial-mapping recommendation; record awaiting Nico ratification.
+- [[../50-Game-Design/GD-0046-two-worlds-mode-model]] - accepted FMX-224
+  (ratified Nico 2026-07-02; `binding: false` — decided, not yet in force,
+  pre-development). Two-worlds mode model record: three internal tiers
+  (Quick/Standard/Expert) branded as two worlds (Easy = Quick+Standard,
+  Pro = Expert), switch anytime, bounded pro edge via floor+cap envelope
+  (D3 revised 2026-07-02), full sweep and the Easy coarse-dial tactic surface
+  compiling into the same tactic contract; encodes directions Nico ratified
+  2026-07-01/02. Engine-gated parity band numbers stay OPEN even while accepted.
+- [[../50-Game-Design/GD-0047-easy-tactic-preset-library]] - accepted FMX-224
+  (ratified Nico 2026-07-02; `binding: false` — decided, not yet in force,
+  pre-development). Easy-World tactic preset library and aggressiveness-dial
+  record: the native coarse-dial/preset surface that compiles deterministically
+  into the SAME tactic contract Pro writes (per the 2026-07-02
+  Easy-tactic-surface decision); the 7-preset library + macro aggressiveness
+  dial is accepted. GD-0047 §7 supersedes tactics-system §13 by reference
+  (§13 cedes the Quick/Easy preset count to GD-0047 §1). The final 7-vs-6 count
+  and all threshold constants stay engine-gated (OPEN even while accepted).
 - [[../60-Research/dual-mode-two-worlds-research-index-2026-07-02]] - FMX-212
   Stage-1 research corpus index (12 notes) grounding GD-0046 and draft
   ADR-0135..0138.

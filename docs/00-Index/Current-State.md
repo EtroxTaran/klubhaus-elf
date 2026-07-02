@@ -24,6 +24,19 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-224 two-worlds ratification applied (2026-07-02).** GD-0046/0047 +
+> ADR-0135..0138 accepted (`binding: false` stays — decided but not in force,
+> pre-development). Bauchgefühl/Spielidee world names accepted (pending the
+> ADR-0007/GD-0015 IP-clean naming gate); declare-now/arm-later seeded-variance
+> posture; mode-blind competitive-labeling primitive; delegation shape + consent
+> ladder + competence floor + arbitration order + feed-salience taxonomy; stadium
+> construction/expansion FSM with a light Expert-MVP affordance; 7-preset Easy
+> library + macro aggressiveness dial. The two bounded-context-map amendments
+> (parity eval-core subdomain; delegation seam) and the GD-0047 §7 supersede of
+> tactics-system §13 are applied. Remaining open = engine-gated numbers only
+> (parity band values, SPRT params, calibration thresholds). See
+> [[Decision-Log]], [[Game-Design-Map]] and [[Open-Decisions-Dossier]].
+
 > **FMX-223 two-worlds ratification agenda assembled (2026-07-02).** All open
 > FMX-212 decisions (naming, labeling/MP, delegation, stadium, presets, parity +
 > the two binding-map amendments) consolidated into one ordered accept/override

@@ -1,13 +1,13 @@
 ---
 title: GD-0047 Easy-World Tactic Preset Library & Aggressiveness Dial
-status: draft
+status: accepted
 tags: [game-design, gddr, tactics, dual-mode, two-worlds, presets, fmx-217]
 context: [tactics, match]
 created: 2026-07-02
 updated: 2026-07-02
 type: gddr
 binding: false
-linear: [FMX-217, FMX-221]
+linear: [FMX-217, FMX-221, FMX-224]
 supersedes:
 superseded_by:
 related:
@@ -42,7 +42,13 @@ related:
 
 ## Status
 
-draft
+accepted
+
+## Ratification
+
+Ratified by Nico 2026-07-02 (FMX-224, enacting the [[../40-Execution/fmx-212-ratification-agenda-decision-queue-2026-07-02|FMX-223 agenda]]). `status: accepted`; `binding` stays `false` — decided but not in force pre-development (FMX-211 D2/D14; ADR-0104 precedent). Engine-gated numbers remain OPEN.
+
+**Accepted as recommended:** the 7-preset Easy library + single macro Aggressiveness dial (5 visible / 7 internal bands), each compiling into the shared TacticSnapshot; the tactics-system §13 reconciliation via supersede-by-reference (§13 cedes the count to GD-0047 §1); the no-hard-counter clause now lives in ADR-0135. The final 7-vs-6 count and all threshold constants remain harness-gated.
 
 ## Date
 
