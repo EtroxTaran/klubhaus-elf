@@ -24,6 +24,15 @@ with this page, prefer the accepted ADR or approved/current note linked here.
 > [[../90-Meta/collaboration-and-decision-protocol]] — no technology, gameplay or
 > architecture decision is made without Nico (2–3 sourced options + recommendation).
 
+> **FMX-223 two-worlds ratification agenda assembled (2026-07-02).** All open
+> FMX-212 decisions (naming, labeling/MP, delegation, stadium, presets, parity +
+> the two binding-map amendments) consolidated into one ordered accept/override
+> checklist — Bucket A (Nico-actionable now, each with a ★ recommendation) and
+> Bucket B (engine-gated numbers) — in
+> [[../40-Execution/fmx-212-ratification-agenda-decision-queue-2026-07-02]].
+> **This is the terminus of agent-resolvable work; the next step is Nico's
+> ratification pass.** Decides nothing.
+
 > **FMX-219..222 dual-mode second-wave fork-hardening proposals drafted
 > (2026-07-02).** Deep review of the FMX-213..218 proposals surfaced a second
 > wave of load-bearing *sub-forks* inside the delegation, stadium, parity and
