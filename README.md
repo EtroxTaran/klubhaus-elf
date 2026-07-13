@@ -17,6 +17,30 @@ pnpm docs:preview   # build + serve the Quartz docs site locally
 See `AGENTS.md` for agent rules and `docs/00-Index/Home.md` for the Obsidian
 Vault entry point.
 
+## Automation on bb8
+
+The repository-scoped runner `bb8-klubhaus-elf` executes trusted workflows with
+the labels `self-hosted`, `Linux`, and `X64`. Because this is a public repository,
+the runner accepts same-repository pull requests only; fork pull requests are
+intentionally unable to satisfy the protected local checks.
+
+AI review is a separate local path owned by
+`ai-review-watch@klubhaus-elf.service`. The watcher posts
+`ai-review/consensus` and remains the only live auto-merge actuator. The copied
+auto-merge label workflow is manual-only compatibility documentation. Linear
+keeps the binding `FMX-…` issue link; deterministic AC validation uses its
+safe file-class exemption for documentation, configuration, workflow, and test-only
+changes. A future source-code change without that exemption needs a resolvable
+AC source before merge.
+
+Run the local contracts with:
+
+```bash
+pnpm ci:runner-policy
+pnpm docs:check
+pnpm docs:status-check
+```
+
 ## Docs vault preview
 
 Open `docs/` as a vault in the Obsidian app, or preview it in a browser

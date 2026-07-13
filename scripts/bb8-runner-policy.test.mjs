@@ -27,5 +27,31 @@ const docsCheck = readFileSync(
 if (!docsCheck.includes('github.event.pull_request.head.repo.full_name == github.repository')) {
   throw new Error('docs-check.yml: self-hosted checkout must reject fork PRs')
 }
+if (!docsCheck.includes('node scripts/bb8-runner-policy.test.mjs')) {
+  throw new Error('docs-check.yml: CI must enforce the bb8 runner policy')
+}
+
+const readme = readFileSync(join(root, 'README.md'), 'utf8')
+for (const contract of [
+  'bb8-klubhaus-elf',
+  'same-repository pull requests only',
+  'ai-review-watch@klubhaus-elf.service',
+  'safe file-class exemption',
+]) {
+  if (!readme.includes(contract)) {
+    throw new Error(`README.md: missing runtime contract: ${contract}`)
+  }
+}
+
+const autoMergeLabel = readFileSync(
+  join(root, '.github', 'workflows', 'auto-merge-label.yml'),
+  'utf8',
+)
+if (!autoMergeLabel.includes('workflow_dispatch: {}')) {
+  throw new Error('auto-merge-label.yml: compatibility workflow must be manual-only')
+}
+if (autoMergeLabel.includes('status: {}') || autoMergeLabel.includes('auto-merge.yml')) {
+  throw new Error('auto-merge-label.yml: local watcher must be the only live merge actuator')
+}
 
 console.log('bb8 runner workflow policy passed')

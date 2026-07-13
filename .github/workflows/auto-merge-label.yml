@@ -15,15 +15,14 @@ name: Auto-Merge-Label
 #   - infra/ai-server/docs/adr/**        (AI-Server-ADRs)
 #   - **/AGENTS.md                       (zentrale Regel-SoT, auch verschachtelt)
 #
-# Trigger: status-Event mit context = "ai-review/consensus" und state = success.
-# Der separate Workflow `auto-merge.yml` reagiert auf das Label und ruft
-# `gh pr merge --auto --squash --delete-branch` auf.
+# LOCAL-CI-Kompatibilitaetsoberflaeche: nur manueller Notausloeser. Der lokale
+# ai-review-Watcher ist der einzige Live-Aktuator fuer Labels und Merge.
 #
 # Manueller Override: User kann `block-auto-merge` jederzeit selbst setzen,
 # Workflow respektiert ein bereits vorhandenes Label.
 
 on:
-  status: {}
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -34,10 +33,6 @@ jobs:
   set-label:
     name: Set auto-merge-approved or block-auto-merge
     runs-on: ${{ fromJSON(vars.AI_REVIEW_STAGE_RUNS_ON || '["self-hosted","r2d2","ai-review"]') }}
-    # Filter: nur ai-review/consensus Statuses mit state success
-    if: |
-      github.event.context == 'ai-review/consensus'
-      && github.event.state == 'success'
     steps:
       - name: Find PR for this commit
         id: pr
@@ -154,5 +149,5 @@ jobs:
         run: |
           set -euo pipefail
           gh pr edit "$PR" --add-label auto-merge-approved
-          gh pr comment "$PR" --body "✅ **Auto-Merge freigegeben** — Konsens der 5 Reviewer ist grün, \
-          kein Pfad-Guard greift. \`auto-merge.yml\` registriert den PR für GitHub-Auto-Merge."
+          gh pr comment "$PR" --body "✅ **Auto-Merge freigegeben** — Konsens der Reviewer ist grün, \
+          kein Pfad-Guard greift. Der lokale ai-review-Watcher bleibt der einzige Merge-Aktuator."

@@ -27,3 +27,5 @@ jobs:
         run: node scripts/docs-check.mjs
       - name: Status-consistency check (frontmatter SSOT, ADR-0092 / FMX-143)
         run: node scripts/status-consistency-check.mjs
+      - name: Enforce bb8 runner policy
+        run: node scripts/bb8-runner-policy.test.mjs
