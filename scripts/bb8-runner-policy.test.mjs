@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const root = new URL('..', import.meta.url).pathname
@@ -43,15 +43,8 @@ for (const contract of [
   }
 }
 
-const autoMergeLabel = readFileSync(
-  join(root, '.github', 'workflows', 'auto-merge-label.yml'),
-  'utf8',
-)
-if (!autoMergeLabel.includes('workflow_dispatch: {}')) {
-  throw new Error('auto-merge-label.yml: compatibility workflow must be manual-only')
-}
-if (autoMergeLabel.includes('status: {}') || autoMergeLabel.includes('auto-merge.yml')) {
-  throw new Error('auto-merge-label.yml: local watcher must be the only live merge actuator')
+if (existsSync(join(root, '.github', 'workflows', 'auto-merge-label.yml'))) {
+  throw new Error('auto-merge-label.yml: local watcher repos must not duplicate the merge actuator')
 }
 
 console.log('bb8 runner workflow policy passed')
