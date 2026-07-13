@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   redeploy:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64]
     steps:
       - name: Trigger docs (Quartz vault) redeploy
         env:

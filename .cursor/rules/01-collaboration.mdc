@@ -20,6 +20,13 @@ alwaysApply: true
   security/privacy — stop, present 2–3 options with sourced best-practice
   rationale + a recommendation, and wait for Nico. This is the FMX expression of
   the stop conditions in `docs/30-Implementation/agent-workflow-pattern.md`.
+- **Explicit tool gate:** if Nico names a specific CLI, MCP, script, API, service
+  or workflow and it is unavailable, stop and report the exact failure. Do not
+  use a replacement silently.
+- **Solo/Simple:** prefer one clear, modern, secure path and proportional DDD.
+  Do not add speculative backup/DR, high availability, zero-downtime deployment,
+  enterprise-security programs, duplicate solutions, fallback trees or
+  microservice machinery. Explain a concrete risk and ask Nico before adding it.
 - **Never shorten a path because it is faster or easier** — thoroughness before
   speed; development does not stop once an MVP exists.
 - Research is grounded (Perplexity/Ref/Web) and filed in the vault; see

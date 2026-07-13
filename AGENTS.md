@@ -13,6 +13,13 @@ Before substantial work:
 > Project context for AI coding agents (Claude Code, OpenAI Codex, Cursor Local
 > + Cloud Agents, Bugbot). Humans: see README.md.
 
+> Global engineering rules from the local CLI setup also apply when available
+> (`~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, `~/.cursor/AGENTS.md`,
+> `~/.gemini/GEMINI.md`). This file is the project overlay. If it conflicts
+> with a global non-negotiable such as explicit tool availability, no silent
+> fallback, TDD, or HITL, the global rule wins unless Nico ratifies a newer
+> project decision.
+
 > **Repository reset to docs-vault-only on 2026-05-27.** All implementation
 > (TanStack Start app, packages, match engine, Storybook showcase, design
 > exports, SurrealDB schema, app/test/build toolchain) was removed. The `docs/`
@@ -29,6 +36,14 @@ Before substantial work:
 > rules. No technology, gameplay or architecture decision is made without Nico
 > (stop → 2–3 sourced options + recommendation → wait). Roles, the ask-first gate
 > and the phase: `docs/90-Meta/collaboration-and-decision-protocol.md`.
+>
+> This is currently a private one-maintainer game project and the portfolio's
+> explicit team-ready exception. **Keep It Simple:** prefer one clear, modern,
+> evolvable path; use DDD proportionally and retain baseline security. Do not add
+> speculative backup/DR, high availability, zero-downtime deployment,
+> enterprise-security programs, duplicate solutions, broad fallback systems or
+> microservice machinery. If a concrete risk appears to require any of these,
+> explain it and ask Nico before implementation.
 
 ## Project Overview
 
@@ -156,6 +171,9 @@ works. If you can't, say so explicitly instead of claiming success.
 
 - Server-only secrets MUST go through `createServerFn` or `createServerOnlyFn` -
   never read `process.env.*` inside a route loader.
+- Explicit tool availability is a stop condition: if Nico names a specific CLI,
+  MCP, script, service, or API and it is unavailable, stop and report the exact
+  failure. Do not switch to another tool or checkout silently.
 - All database access flows through the typed `QueryGateway` exported from
   `@klubhaus-elf/db` (`gateway.withPlatform` / `gateway.withSave`). Domain code
   never imports the raw `pg.Pool` or `drizzle()` (lint-enforced). Queries are

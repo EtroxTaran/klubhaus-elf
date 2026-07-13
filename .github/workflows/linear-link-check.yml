@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   linear-id:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64]
     steps:
       - name: Require a Linear FMX-<n> reference
         env:
