@@ -5,6 +5,9 @@ const root = new URL('..', import.meta.url).pathname
 const workflows = readdirSync(join(root, '.github', 'workflows'))
   .filter((workflow) => workflow.endsWith('.yml') || workflow.endsWith('.yaml'))
 
+const sameRepositoryJobGuard =
+  /^  [A-Za-z0-9_-]+:\n(?:    [^\n]*\n)*?    if: [^\n]*github\.event\.pull_request\.head\.repo\.full_name == github\.repository[^\n]*\n(?:    [^\n]*\n)*?    runs-on: \[self-hosted, Linux, X64\]/m
+
 for (const workflow of workflows) {
   const source = readFileSync(join(root, '.github', 'workflows', workflow), 'utf8')
   if (!source.includes('runs-on: [self-hosted, Linux, X64]')) {
@@ -15,11 +18,9 @@ for (const workflow of workflows) {
   }
   if (
     source.includes('pull_request:') &&
-    !source.includes('types: [closed]') &&
-    (!source.includes('github.event.pull_request.head.repo.full_name != github.repository') ||
-      !source.includes('exit 1'))
+    !sameRepositoryJobGuard.test(source)
   ) {
-    throw new Error(`${workflow}: fork pull requests must fail explicitly before using bb8`)
+    throw new Error(`${workflow}: fork pull requests must be rejected before bb8 schedules a job`)
   }
   if (
     source.includes('types: [closed]') &&
@@ -40,11 +41,22 @@ const docsCheck = readFileSync(
   join(root, '.github', 'workflows', 'docs-check.yml'),
   'utf8',
 )
-if (!docsCheck.includes('github.event.pull_request.head.repo.full_name == github.repository')) {
+if (!sameRepositoryJobGuard.test(docsCheck)) {
   throw new Error('docs-check.yml: self-hosted checkout must reject fork PRs')
 }
 if (!docsCheck.includes('node scripts/bb8-runner-policy.test.mjs')) {
   throw new Error('docs-check.yml: CI must enforce the bb8 runner policy')
+}
+
+const linearCheck = readFileSync(
+  join(root, '.github', 'workflows', 'linear-link-check.yml'),
+  'utf8',
+)
+if (!linearCheck.includes('AB06-[0-9]+')) {
+  throw new Error('linear-link-check.yml: current AB06 issue keys must be accepted')
+}
+if (!linearCheck.includes('issue-[0-9]+')) {
+  throw new Error('linear-link-check.yml: global GitHub issue branch names must be accepted')
 }
 
 const readme = readFileSync(join(root, 'README.md'), 'utf8')

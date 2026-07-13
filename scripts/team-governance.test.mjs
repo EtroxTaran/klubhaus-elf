@@ -38,7 +38,11 @@ for (const relativePath of [
   if (!source.startsWith('---\n')) {
     throw new Error(`${relativePath}: YAML frontmatter is required`)
   }
-  const frontmatter = source.split('---\n', 2)[1]
+  const closingDelimiter = source.indexOf('\n---\n', 4)
+  if (closingDelimiter === -1) {
+    throw new Error(`${relativePath}: closing YAML frontmatter delimiter is required`)
+  }
+  const frontmatter = source.slice(4, closingDelimiter)
   for (const field of requiredFields) {
     if (!frontmatter.includes(field)) {
       throw new Error(`${relativePath}: missing frontmatter field ${field}`)

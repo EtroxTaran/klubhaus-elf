@@ -244,13 +244,17 @@ Operational task tracking is **Linear, team FMX**
 states, project/milestones, issue + branch/PR rules, agent rules and the GitHub
 integration — are canonical in `docs/30-Implementation/linear-task-tracking.md`.
 Linear holds operational status; the docs vault remains the durable knowledge base.
+Portfolio-governance work follows the global GitHub `issue-<n>` branch/link
+convention and adds its current `AB06-<n>` work item to the PR title/body;
+historical FMX links remain valid.
 
 ## Commits & PRs
 
 - Conventional Commits: feat / fix / chore / docs / test / refactor.
-- One issue ↔ one git worktree ↔ one branch (ADR-0045): humans `feat/fmx-<n>-<slug>`;
-  agents `claude|codex|cursor/fmx-<n>-<slug>`. PR title `[FMX-<n>] …`; PR body first
-  line **`Closes FMX-<n>`** (1 PR ↔ 1 issue; merge auto-closes it).
+- One issue ↔ one git worktree ↔ one branch (ADR-0045). Portfolio-governance
+  work uses `<type>/<slug>-issue-<n>`, `Closes #<n>`, and an
+  `[AB06-<n>]` / `Part of AB06-<n>` reference. Historical product beats retain
+  their `fmx-<n>` / `FMX-<n>` linkage.
 - **Auto-merge when green** (ADR-0044): squash to main; docs/low-risk merge on green
   with no review (required checks `docs-check` + `linear-id`); code → main needs ≥1
   CODEOWNER review (activates with code-CI). No manual Nico-merge for green PRs. The
