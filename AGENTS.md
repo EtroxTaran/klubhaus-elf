@@ -37,9 +37,11 @@ Before substantial work:
 > (stop → 2–3 sourced options + recommendation → wait). Roles, the ask-first gate
 > and the phase: `docs/90-Meta/collaboration-and-decision-protocol.md`.
 >
-> This is currently a private one-maintainer game project and the portfolio's
-> explicit team-ready exception. **Keep It Simple:** prefer one clear, modern,
-> evolvable path; use DDD proportionally and retain baseline security. Do not add
+> This is the portfolio's explicit team project. Team governance is active now;
+> while only one human collaborator exists, required human approvals remain zero
+> and become one only after a second human collaborator joins. **Keep It Simple:**
+> prefer one clear, modern, evolvable path; use DDD proportionally and retain
+> baseline security. Do not add
 > speculative backup/DR, high availability, zero-downtime deployment,
 > enterprise-security programs, duplicate solutions, broad fallback systems or
 > microservice machinery. If a concrete risk appears to require any of these,

@@ -6,6 +6,7 @@
   "packageManager": "pnpm@11.7.0",
   "scripts": {
     "build": "node scripts/export-notebooklm.mjs --clean",
+    "ci:team-governance": "node scripts/team-governance.test.mjs",
     "ci:runner-policy": "node scripts/bb8-runner-policy.test.mjs",
     "docs:check": "node scripts/docs-check.mjs",
     "docs:status-check": "node scripts/status-consistency-check.mjs",
