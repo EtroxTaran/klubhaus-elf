@@ -13,6 +13,13 @@ Before substantial work:
 > Project context for AI coding agents (Claude Code, OpenAI Codex, Cursor Local
 > + Cloud Agents, Bugbot). Humans: see README.md.
 
+> Global engineering rules from the local CLI setup also apply when available
+> (`~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, `~/.cursor/AGENTS.md`,
+> `~/.gemini/GEMINI.md`). This file is the project overlay. If it conflicts
+> with a global non-negotiable such as explicit tool availability, no silent
+> fallback, TDD, or HITL, the global rule wins unless Nico ratifies a newer
+> project decision.
+
 > **Repository reset to docs-vault-only on 2026-05-27.** All implementation
 > (TanStack Start app, packages, match engine, Storybook showcase, design
 > exports, SurrealDB schema, app/test/build toolchain) was removed. The `docs/`
@@ -29,6 +36,16 @@ Before substantial work:
 > rules. No technology, gameplay or architecture decision is made without Nico
 > (stop → 2–3 sourced options + recommendation → wait). Roles, the ask-first gate
 > and the phase: `docs/90-Meta/collaboration-and-decision-protocol.md`.
+>
+> This is the portfolio's explicit team project. Team governance is active now;
+> while only one human collaborator exists, required human approvals remain zero
+> and become one only after a second human collaborator joins. **Keep It Simple:**
+> prefer one clear, modern, evolvable path; use DDD proportionally and retain
+> baseline security. Do not add
+> speculative backup/DR, high availability, zero-downtime deployment,
+> enterprise-security programs, duplicate solutions, broad fallback systems or
+> microservice machinery. If a concrete risk appears to require any of these,
+> explain it and ask Nico before implementation.
 
 ## Project Overview
 
@@ -156,6 +173,9 @@ works. If you can't, say so explicitly instead of claiming success.
 
 - Server-only secrets MUST go through `createServerFn` or `createServerOnlyFn` -
   never read `process.env.*` inside a route loader.
+- Explicit tool availability is a stop condition: if Nico names a specific CLI,
+  MCP, script, service, or API and it is unavailable, stop and report the exact
+  failure. Do not switch to another tool or checkout silently.
 - All database access flows through the typed `QueryGateway` exported from
   `@klubhaus-elf/db` (`gateway.withPlatform` / `gateway.withSave`). Domain code
   never imports the raw `pg.Pool` or `drizzle()` (lint-enforced). Queries are
@@ -224,13 +244,17 @@ Operational task tracking is **Linear, team FMX**
 states, project/milestones, issue + branch/PR rules, agent rules and the GitHub
 integration — are canonical in `docs/30-Implementation/linear-task-tracking.md`.
 Linear holds operational status; the docs vault remains the durable knowledge base.
+Portfolio-governance work follows the global GitHub `issue-<n>` branch/link
+convention and adds its current `AB06-<n>` work item to the PR title/body;
+historical FMX links remain valid.
 
 ## Commits & PRs
 
 - Conventional Commits: feat / fix / chore / docs / test / refactor.
-- One issue ↔ one git worktree ↔ one branch (ADR-0045): humans `feat/fmx-<n>-<slug>`;
-  agents `claude|codex|cursor/fmx-<n>-<slug>`. PR title `[FMX-<n>] …`; PR body first
-  line **`Closes FMX-<n>`** (1 PR ↔ 1 issue; merge auto-closes it).
+- One issue ↔ one git worktree ↔ one branch (ADR-0045). Portfolio-governance
+  work uses `<type>/<slug>-issue-<n>`, `Closes #<n>`, and an
+  `[AB06-<n>]` / `Part of AB06-<n>` reference. Historical product beats retain
+  their `fmx-<n>` / `FMX-<n>` linkage.
 - **Auto-merge when green** (ADR-0044): squash to main; docs/low-risk merge on green
   with no review (required checks `docs-check` + `linear-id`); code → main needs ≥1
   CODEOWNER review (activates with code-CI). No manual Nico-merge for green PRs. The

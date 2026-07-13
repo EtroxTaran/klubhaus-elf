@@ -5,6 +5,9 @@ alwaysApply: true
 # Stack Baseline
 
 Use pnpm, TypeScript strict, TanStack Start/Router, React, shadcn/ui + Tailwind,
-SurrealDB, Dexie IndexedDB caches/drafts/future saves, Vitest, Playwright,
+PostgreSQL + Drizzle, Dexie IndexedDB caches/drafts/future saves, Vitest, Playwright,
 Biome, Docker, and Dokploy. No npm/yarn, ESLint, Prettier, Redux, Zustand, real
 club/player names, or localStorage game state/cache/drafts.
+
+SurrealDB is deferred and not the system of record. Do not apply SurrealDB
+patterns unless Nico re-ratifies that direction in the vault.

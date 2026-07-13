@@ -1,0 +1,15 @@
+version: 1
+lifecycle: active
+collaboration_profile: team
+scale_profile: simple
+hitl_policy: team-governance
+team_readiness: ready-awaiting-collaborator
+approval_policy: activate-one-approval-with-second-human
+required_human_approvals: 0
+wiki_enabled: true
+graph_enabled: true
+graph_profile: full
+ai_review_enabled: true
+watcher_enabled: true
+auto_merge_enabled: true
+activation: approved-by-nico-2026-07-13

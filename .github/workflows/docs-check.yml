@@ -15,7 +15,8 @@ permissions:
 
 jobs:
   docs-check:
-    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, Linux, X64]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,3 +26,5 @@ jobs:
         run: node scripts/docs-check.mjs
       - name: Status-consistency check (frontmatter SSOT, ADR-0092 / FMX-143)
         run: node scripts/status-consistency-check.mjs
+      - name: Enforce bb8 runner policy
+        run: node scripts/bb8-runner-policy.test.mjs

@@ -9,3 +9,6 @@ delete infrastructure/data, pipe network scripts to a shell, bypass hooks, cache
 unsafe HTTP mutations, or weaken tests/coverage to pass CI. Escalate production
 credentials, Dokploy access, paid services, IP gray areas, and architecture-wide
 trade-offs to Nico.
+
+If a required or explicitly requested tool is unavailable or points at the wrong
+workspace, stop and report it. Silent fallback is a safety failure.

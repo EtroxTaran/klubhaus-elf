@@ -15,3 +15,9 @@ Current phase: **research / analysis / architecture planning — no development*
 (all ADRs/GDDRs reopened to `draft`). Roles, the ask-first decision gate, and the
 phase are defined in `docs/90-Meta/collaboration-and-decision-protocol.md`. The
 full rule set is in AGENTS.md.
+
+Use the global CLI rules when they are loaded: no silent fallback when Nico names
+a tool, targeted questions after reading the vault/docs, Keep It Simple,
+proportional DDD, baseline security and no speculative backup/DR, HA,
+zero-downtime or enterprise machinery without Nicos prior decision. This repo
+remains planning-only until Nico changes the phase.

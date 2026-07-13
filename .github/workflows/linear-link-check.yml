@@ -1,7 +1,7 @@
-name: Linear link check
+name: Work item link check
 
-# Ensures every PR is traceable to a Linear issue (team FMX): the branch carries
-# fmx-<n> (Linear's auto-link key) and the PR title/body references FMX-<n>.
+# Ensures every PR is traceable to its GitHub issue and current AB06 work item.
+# Legacy FMX identifiers remain accepted for already-started work.
 # Convention: docs/30-Implementation/linear-task-tracking.md
 
 on:
@@ -13,9 +13,10 @@ permissions:
 
 jobs:
   linear-id:
-    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, Linux, X64]
     steps:
-      - name: Require a Linear FMX-<n> reference
+      - name: Require GitHub and external work item references
         env:
           HEAD_REF: ${{ github.head_ref }}
           PR_TITLE: ${{ github.event.pull_request.title }}
@@ -23,13 +24,13 @@ jobs:
         run: |
           set -euo pipefail
           ok=1
-          if ! printf '%s' "$HEAD_REF" | grep -Eq 'fmx-[0-9]+'; then
-            echo "::error::Branch '$HEAD_REF' has no 'fmx-<n>' — Linear cannot auto-link it. Rename to e.g. claude/fmx-1-slug."
+          if ! printf '%s' "$HEAD_REF" | grep -Eq '(fmx-[0-9]+|issue-[0-9]+)'; then
+            echo "::error::Branch '$HEAD_REF' has no supported work item suffix (issue-<n> or legacy fmx-<n>)."
             ok=0
           fi
-          if ! printf '%s\n%s' "$PR_TITLE" "$PR_BODY" | grep -Eoq 'FMX-[0-9]+'; then
-            echo "::error::PR title/body must reference a Linear issue (FMX-<n>), e.g. 'Closes FMX-1' or 'Part of FMX-1'."
+          if ! printf '%s\n%s' "$PR_TITLE" "$PR_BODY" | grep -Eoq '(AB06-[0-9]+|FMX-[0-9]+)'; then
+            echo "::error::PR title/body must reference the external work item (AB06-<n>; legacy FMX-<n> remains accepted)."
             ok=0
           fi
-          if [ "$ok" -eq 1 ]; then echo "Linear link OK."; fi
+          if [ "$ok" -eq 1 ]; then echo "Work item links OK."; fi
           exit $((1 - ok))

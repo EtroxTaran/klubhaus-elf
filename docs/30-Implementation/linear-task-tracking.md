@@ -17,6 +17,12 @@ Linear holds **operational status**; the `docs/` vault holds **durable knowledge
 orchestrators that point here (canonical-location rule, [[../90-Meta/vault-governance]]).
 Roles, the ask-first gate and the current phase: [[../90-Meta/collaboration-and-decision-protocol]].
 
+> **Portfolio-governance transition (Nico, 2026-07-13):** New cross-project
+> governance work keeps the global GitHub linkage
+> `<type>/<slug>-issue-<n>` + `Closes #<n>` and references its current
+> external work item as `AB06-<n>` in the PR title/body. Existing FMX branches
+> and links remain valid historical traceability; they are not rewritten.
+
 - **Workspace / team:** `coding-x` / **FMX** — <https://linear.app/coding-x/team/FMX/active>
 - **Active project:** *Phase 1 — Research & Architecture* (milestones: Discovery →
   Architecture → Game-Design → Decision-Ratification). **No cycles** in the
@@ -65,16 +71,20 @@ or editing files. Agents may then move `In Progress → In Review`, or
 
 ## GitHub integration & traceability
 
-The Linear issue ID in the **branch name** is the auto-link key.
+The GitHub issue ID is the branch auto-link key for new portfolio-governance
+work; its external `AB06-<n>` work item is recorded in the PR title/body.
+Existing product beats retain their historical FMX linkage.
 
 - **Branch + worktree:** one issue ↔ one git worktree ↔ one branch (ADR-0045).
-  Humans `feat/fmx-<n>-<slug>`; agents `claude|codex|cursor/fmx-<n>-<slug>`.
+  New portfolio-governance work uses `<type>/<slug>-issue-<n>`; historical
+  product beats keep `feat/fmx-<n>-<slug>` or
+  `claude|codex|cursor/fmx-<n>-<slug>`.
   Topic-only `tool/<theme>` / `tool/<thema>` is historical/non-normal and is not
   a standing accepted branch family. A no-issue branch requires explicit Nico
   approval plus replacement traceability before branch creation.
-- **PR title:** `[FMX-<n>] …`. **PR body first line:** `Closes FMX-<n>` — **1 PR ↔
-  1 issue**, merge auto-closes it (`Part of FMX-<n>` only when one issue truly needs
-  several PRs).
+- **PR linkage:** new portfolio-governance PRs use `[AB06-<n>] …`, retain
+  `Closes #<n>` for the GitHub issue, and add `Part of AB06-<n>`.
+  Historical FMX PRs retain `[FMX-<n>]` + `Closes/Part of FMX-<n>`.
 - **Team automations:** PR opened → `In Progress` remains a fallback/reinforcement;
   PR merged → `Done`. Agent claim status must happen earlier than PR creation, so
   agents still move `Backlog|Todo → In Progress` explicitly through Linear MCP.
@@ -93,7 +103,9 @@ The Linear issue ID in the **branch name** is the auto-link key.
   `Nico <dev@etrox.de>` (repo rule: agents are assistants, not authors). Which
   agent did the work is shown by the **branch prefix** + a PR `Agent:` line.
 - **GitHub Sync** (2-way issue sync) stays **off** — Linear is the source of truth.
-- **Enforcement:** `.github/PULL_REQUEST_TEMPLATE.md` pre-fills `Closes/Part of FMX-<n>` + the `Agent:` line; `.github/workflows/linear-link-check.yml` fails a PR whose branch lacks `fmx-<n>` or whose title/body lacks `FMX-<n>`.
+- **Enforcement:** `.github/workflows/linear-link-check.yml` accepts the global
+  `issue-<n>` branch convention plus an `AB06-<n>` title/body reference;
+  legacy `fmx-<n>` / `FMX-<n>` linkage stays compatible.
 
 ## Setup status
 
