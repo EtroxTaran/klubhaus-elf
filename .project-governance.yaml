@@ -1,0 +1,15 @@
+version: 1
+lifecycle: active
+collaboration_profile: solo
+scale_profile: simple
+hitl_policy: sensitive-only
+team_readiness: not-applicable
+approval_policy: consensus-auto-merge
+required_human_approvals: 0
+wiki_enabled: true
+graph_enabled: true
+graph_profile: code
+ai_review_enabled: true
+watcher_enabled: true
+auto_merge_enabled: true
+activation: approved-by-nico-2026-07-13

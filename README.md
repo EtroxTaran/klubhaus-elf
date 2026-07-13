@@ -26,12 +26,12 @@ intentionally unable to satisfy the protected local checks.
 
 AI review is a separate local path owned by
 `ai-review-watch@klubhaus-elf.service`. The watcher posts
-`ai-review/consensus` and remains the only live auto-merge actuator. The copied
-auto-merge label workflow is manual-only compatibility documentation. Linear
-keeps the binding `FMX-…` issue link; deterministic AC validation uses its
-safe file-class exemption for documentation, configuration, workflow, and test-only
-changes. A future source-code change without that exemption needs a resolvable
-AC source before merge.
+`ai-review/consensus` and remains the only live auto-merge actuator; copied
+AI-review and auto-merge workflows are intentionally absent. Linear keeps the
+binding `FMX-…` issue link, but the deterministic GitHub AC parser does not infer
+acceptance criteria from that identifier. A pull request therefore needs either
+an actually applicable safe file-class exemption or an explicitly resolvable AC
+source before merge.
 
 Run the local contracts with:
 

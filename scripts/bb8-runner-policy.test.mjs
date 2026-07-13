@@ -1,14 +1,9 @@
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const root = new URL('..', import.meta.url).pathname
-const workflows = [
-  'docs-check.yml',
-  'linear-link-check.yml',
-  'notebooklm-export.yml',
-  'post-merge-cleanup.yml',
-  'redeploy-docs.yml',
-]
+const workflows = readdirSync(join(root, '.github', 'workflows'))
+  .filter((workflow) => workflow.endsWith('.yml') || workflow.endsWith('.yaml'))
 
 for (const workflow of workflows) {
   const source = readFileSync(join(root, '.github', 'workflows', workflow), 'utf8')
@@ -17,6 +12,13 @@ for (const workflow of workflows) {
   }
   if (source.includes('pull_request_target:')) {
     throw new Error(`${workflow}: pull_request_target is forbidden`)
+  }
+  if (
+    source.includes('pull_request:') &&
+    source.includes('uses: actions/checkout@') &&
+    !source.includes('github.event.pull_request.head.repo.full_name == github.repository')
+  ) {
+    throw new Error(`${workflow}: self-hosted checkout must reject fork pull requests`)
   }
 }
 
@@ -36,7 +38,7 @@ for (const contract of [
   'bb8-klubhaus-elf',
   'same-repository pull requests only',
   'ai-review-watch@klubhaus-elf.service',
-  'safe file-class exemption',
+  'workflows are intentionally absent',
 ]) {
   if (!readme.includes(contract)) {
     throw new Error(`README.md: missing runtime contract: ${contract}`)
