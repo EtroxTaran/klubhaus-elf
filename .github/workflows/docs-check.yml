@@ -15,11 +15,15 @@ permissions:
 
 jobs:
   docs-check:
-    # Public repo: never execute fork-controlled checkout code on bb8.
-    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: [self-hosted, Linux, X64]
     steps:
+      - name: Reject fork pull requests before using bb8
+        if: github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          echo "::error::Fork pull requests cannot execute required checks on the private bb8 runner."
+          exit 1
       - uses: actions/checkout@v4
+        if: github.event.pull_request.head.repo.full_name == github.repository
       - uses: actions/setup-node@v4
         with:
           node-version: 22

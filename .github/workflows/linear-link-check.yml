@@ -15,6 +15,11 @@ jobs:
   linear-id:
     runs-on: [self-hosted, Linux, X64]
     steps:
+      - name: Reject fork pull requests before using bb8
+        if: github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          echo "::error::Fork pull requests cannot execute required checks on the private bb8 runner."
+          exit 1
       - name: Require a Linear FMX-<n> reference
         env:
           HEAD_REF: ${{ github.head_ref }}

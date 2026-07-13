@@ -15,6 +15,20 @@ for (const workflow of workflows) {
   }
   if (
     source.includes('pull_request:') &&
+    !source.includes('types: [closed]') &&
+    (!source.includes('github.event.pull_request.head.repo.full_name != github.repository') ||
+      !source.includes('exit 1'))
+  ) {
+    throw new Error(`${workflow}: fork pull requests must fail explicitly before using bb8`)
+  }
+  if (
+    source.includes('types: [closed]') &&
+    !source.includes('github.event.pull_request.head.repo.full_name == github.repository')
+  ) {
+    throw new Error(`${workflow}: post-merge actions must ignore fork-owned branches`)
+  }
+  if (
+    source.includes('pull_request:') &&
     source.includes('uses: actions/checkout@') &&
     !source.includes('github.event.pull_request.head.repo.full_name == github.repository')
   ) {
