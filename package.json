@@ -8,6 +8,7 @@
     "build": "node scripts/export-notebooklm.mjs --clean",
     "ci:team-governance": "node scripts/team-governance.test.mjs",
     "ci:runner-policy": "node scripts/bb8-runner-policy.test.mjs",
+    "ci:worktree-port": "node tools/docs-preview/worktree-port.test.mjs",
     "docs:check": "node scripts/docs-check.mjs",
     "docs:status-check": "node scripts/status-consistency-check.mjs",
     "docs:export:notebooklm": "node scripts/export-notebooklm.mjs",

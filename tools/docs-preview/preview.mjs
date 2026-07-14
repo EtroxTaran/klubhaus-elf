@@ -27,6 +27,8 @@ const repoRoot = join(here, '..', '..')
 const vaultDir = join(repoRoot, 'docs')
 const quartzDir = join(here, '.quartz')
 const contentDir = join(quartzDir, 'content')
+const port = process.env.PORT_BASE ?? '8080'
+const wsPort = process.env.PORT_BASE ? String(Number(port) + 1) : '3001'
 
 // Pinned to a fixed Quartz release for a reproducible **default** skin/layout
 // (the rolling `v5` branch drifts over time). Override with QUARTZ_REF.
@@ -127,6 +129,6 @@ console.log('Restoring Quartz community plugins (v5, from lockfile) ...')
 run('npx', ['quartz', 'plugin', 'restore'], quartzDir)
 
 console.log(
-  `Serving ${readdirSync(contentDir).length} top-level vault entries at http://localhost:8080`,
+  `Serving ${readdirSync(contentDir).length} top-level vault entries at http://localhost:${port}`,
 )
-run('npx', ['quartz', 'build', '--serve'], quartzDir)
+run('npx', ['quartz', 'build', '--serve', '--port', port, '--wsPort', wsPort], quartzDir)

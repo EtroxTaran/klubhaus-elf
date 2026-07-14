@@ -42,6 +42,7 @@ stages:
   docs_validation:
     enabled: true
     blocking: true
+    # docs-check.yml also enforces the managed-worktree Quartz HTTP/WS port contract.
     impact_file: wiki/_meta/docs-impact.yaml
     canonical_sources_file: wiki/_meta/canonical-sources.yaml
 
