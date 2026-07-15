@@ -28,3 +28,5 @@ jobs:
         run: node scripts/status-consistency-check.mjs
       - name: Enforce bb8 runner policy
         run: node scripts/bb8-runner-policy.test.mjs
+      - name: Verify managed worktree preview ports
+        run: pnpm ci:worktree-port
