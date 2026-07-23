@@ -3,7 +3,7 @@ title: Agent Workflow Pattern
 status: draft
 tags: [implementation, process, workflow]
 created: 2026-05-17
-updated: 2026-06-17
+updated: 2026-07-23
 type: implementation
 related: [[../00-Index/Home]], [[../00-Index/Decision-Log]], [[../90-Meta/agent-memory-protocol]], [[../90-Meta/vault-governance]], [[ci-and-review-process]], [[code-phase-dod-transition-contract]], [[cursor-cloud-agent-workflow]], [[design-sync-workflow]], [[../10-Architecture/09-Design-System]], [[../10-Architecture/09-Decisions/ADR-0044-cicd-and-merge-policy]], [[../10-Architecture/09-Decisions/ADR-0045-issue-first-worktree-workflow]], [[../10-Architecture/09-Decisions/ADR-0110-code-phase-dod-transition-contract]], [[../60-Research/branch-naming-workflow-reconciliation-2026-06-17]], [[../40-Execution/fmx-174-branch-naming-decision-record-2026-06-17]]
 ---
@@ -61,6 +61,63 @@ Every beat follows this cycle. Do not skip a step; do not reorder.
    No manual Nico-merge for green PRs.
 8. **Linear closes itself** on merge via `Closes FMX-‹n›` (PR merged → Done); add
    final vault paths to the issue if useful.
+
+## Research / Decision beat (current planning phase)
+
+The repo is in the **research / analysis / architecture** phase, so most beats
+produce a **decision or research deliverable** (ADR / GDDR / research note), not
+code. Those beats run this variant of *The Loop*. It shares every gate in this
+doc (vault reflection, alignment, modularity, HITL escalation); only the middle
+changes from *implement* to *research → recommend → decide*.
+
+0. **Preflight — is the issue well-formed?** The issue must carry a clear task
+   definition + acceptance criteria (`## Summary / ## Context / ## Requirements /
+   ## Acceptance Criteria`, per [[linear-task-tracking]]). **Only when they are
+   vague or missing:** draft the acceptance criteria + definition-of-done and
+   confirm them with Nico before starting. A well-formed issue is not
+   re-litigated — proceed.
+1. **Pick + claim** — as in *The Loop* (no branch/PR/worktree owns it → Linear
+   `In Progress` as the first visible action → own worktree + branch).
+2. **Read + understand.** Read the linked vault notes, the grounded `accepted`
+   ADRs/GDDRs, and the sources the issue cites; restate the intent + acceptance
+   criteria. **Grill-with-docs (optional, agent's discretion):** if the core
+   idea/intent is not yet clear, first run a documentation-grounding pass
+   (deep-read the relevant records + external docs via **context7** / **Ref**)
+   *before* broad research — never research on a shaky understanding.
+3. **Research (grounded).** Run a dynamic research workflow: fan out agents —
+   external best-practice via **web / context7 / Ref / Perplexity**, internal via
+   vault grep/read — then analyze and synthesize. **Scale depth to the issue:** a
+   confirm-only beat needs a light pass; a genuine gap, or a tension with a
+   binding record, needs the full fan-out plus an adversarial check. Never guess;
+   ground every external fact (global rule + *Dependencies & Tooling Currency*).
+4. **Recommend (draft-first).** Produce the draft deliverable — a
+   `Status: proposed` ADR/GDDR or a research note — with the recommended answer
+   **filled in**, plus a tight list of the genuine **open questions**, each with
+   2–3 sourced options and a clear recommendation. Never self-accept a decision;
+   `proposed` only — Nico ratifies (ask-first gate,
+   [[../90-Meta/collaboration-and-decision-protocol]]).
+5. **Ask Nico — one consolidation point.** Bring the draft + all open questions in
+   a **single** turn: *"here is the draft; here are the open questions; is this how
+   you think about it, or how do you want to change it?"* Put every
+   decision-bearing question live with alternatives + a recommendation — do not
+   drip them across turns. Resolve everything open before finalizing.
+6. **Finalize.** Apply Nico's decisions; finalize the deliverable and reflect it in
+   the vault — ADR + [[../00-Index/Decision-Log]], or GDDR + `50-Game-Design/README`,
+   plus [[../00-Index/Glossary]] / the relevant index — in the **same PR**
+   (*Vault reflection*).
+7. **PR + handoff.** Open the PR (`Closes` / `Part of FMX-‹n›`) → Linear
+   `In Review`. **Nico merges** — agents never move an issue to `Done`/`Canceled`.
+   Add a `docs/40-Execution/session-handoffs/*` note if the thread continues.
+
+**Communication:** stay silent through steps 2–4; surface **once** at step 5.
+Progress is visible via Linear status and `/workflows`. The *Ask, don't work
+around* stop conditions still fire **immediately** — a contradiction with a
+binding record, blocking ambiguity, or a one-way door without an ADR escalates
+now, it does not wait for step 5.
+
+This variant is operationalized by the shared **`work-issue`** skill
+(`.cursor/skills/work-issue/`, mirrored to `~/.claude/skills/` and
+`~/.codex/skills/`).
 
 ## Beat sizing
 

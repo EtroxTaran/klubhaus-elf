@@ -92,6 +92,20 @@ decision may foreclose evolution. Knowledge-base drift or unclear architecture
 is a **stop condition**: open a Linear issue tagged for Nico, mark the beat
 Blocked, and halt — do not paper over it.
 
+**Research / Decision beats (current phase).** Most beats now produce a
+decision/research deliverable (ADR / GDDR / research note), not code. They follow
+the **Research / Decision beat** variant in
+`docs/30-Implementation/agent-workflow-pattern.md`: preflight the issue's
+acceptance criteria (fix only if deficient) → pick + claim → read + understand
+(optional *grill-with-docs* grounding pass) → **grounded research** (fan-out via
+web/context7/Ref/Perplexity + vault) → **draft-first** `Status: proposed`
+deliverable with a recommendation → **one consolidation checkpoint** with Nico
+(all open D-questions, each with options + a recommendation) → finalize + vault
+delta → PR (Nico merges; agents never `Done`/`Canceled`). Silent through research;
+surface once at the checkpoint. Operationalized by the shared **`work-issue`**
+skill (`.cursor/skills/work-issue/`, mirrored to `~/.claude/skills/` and
+`~/.codex/skills/` like `playwright-cli`).
+
 ## Vault Memory
 
 The `docs/` directory is the Obsidian vault and durable project memory. This file

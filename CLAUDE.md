@@ -16,6 +16,17 @@ Current phase: **research / analysis / architecture planning — no development*
 phase are defined in `docs/90-Meta/collaboration-and-decision-protocol.md`. The
 full rule set is in AGENTS.md.
 
+## Working an issue
+
+Follow the **Research / Decision beat** loop in
+`docs/30-Implementation/agent-workflow-pattern.md` via the shared `work-issue`
+skill (`~/.claude/skills/work-issue/`, canonical in `.cursor/skills/work-issue/`):
+pick + claim → read + understand (optional grill-with-docs) → grounded research →
+draft-first `proposed` ADR/GDDR/research note + recommendation → **one** checkpoint
+with Nico (open questions, each with options + a recommendation) → finalize → PR
+(Nico merges). Silent through research; surface once at the checkpoint. Issue
+conventions: `docs/30-Implementation/linear-task-tracking.md`.
+
 Use the global CLI rules when they are loaded: no silent fallback when Nico names
 a tool, targeted questions after reading the vault/docs, Keep It Simple,
 proportional DDD, baseline security and no speculative backup/DR, HA,
