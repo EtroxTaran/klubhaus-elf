@@ -35,8 +35,10 @@ boundaries") and fills the ADR-0141 seam ("FMX-244 approval-gate — SP admin / 
 Builds on the now-merged ADR-0142/ADR-0143. *(Research note: 2 of 4 grounding legs failed;
 the design rests on a complete DDD/vault synthesis — precedent grounding can be deepened on
 request.)* Two additive lockstep touches (ADR-0132 routing-lane enum; async-mp §9
-generalization) are pre-authorized here and tracked as the paired FMX-244 lockstep follow-up
-(mirrors the ADR-0141 → ADR-0056 two-PR pattern), **not** applied in this ratification.
+generalization) are pre-authorized here and **applied in this same ratification motion**:
+(a) binding ADR-0132's Save/Content Compatibility Rule gains the `live | next-boundary |
+new-continuum-only` routing-lane enum; (b) `async-multiplayer-private-group` §9 (Admin powers)
+generalizes admin-only season-boundary changes to a member-majority vote for update entry.
 
 ## Context
 
@@ -170,11 +172,11 @@ now-merged ADR-0142):
 ## Reopens? — none
 
 ADR-0141 pre-delegated this gate to FMX-244; ADR-0132/0005/0120/0028/0011 are **consumed, not
-contradicted**. Two additive lockstep touches are **pre-authorized by this ratification and tracked
-as the paired FMX-244 lockstep follow-up** (not applied here): (a) binding ADR-0132's per-pack
-compatibility flag gains an additive **routing-lane enum** (`live | next-boundary |
-new-continuum-only`) alongside its existing `applies-to-existing-save | requires-new-run`; (b)
-async-mp §9 generalizes admin-only season-boundary changes to member-majority for update entry.
+contradicted**. Two additive lockstep touches are **pre-authorized by this ratification and applied in the same
+motion (2026-07-23)**: (a) binding ADR-0132's per-pack compatibility rule gains an additive
+**routing-lane enum** (`live | next-boundary | new-continuum-only`) alongside its existing
+"applies-to-existing-save / requires-new-run" axis; (b) `async-multiplayer-private-group` §9
+(Admin powers) generalizes admin-only season-boundary changes to member-majority for update entry.
 
 ## Alternatives considered
 
