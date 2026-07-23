@@ -53,8 +53,15 @@ In the long-term singleplayer baseline:
 - All actions are **delegable** to assistants where the player chooses.
 - The user can **save at any moment**.
 - **Multiple parallel saves** are supported.
-- Cheat modes are not supported (per safety rules), but **scenario packs**
-  ([[community-editor-and-datasets]]) provide pre-canned starting points.
+- Singleplayer supports **explicit, opt-in, clearly-labelled sandbox / casual
+  customization** — state benders (e.g. "casual finance mode", time-travel), an
+  optional editor-class tool, and the paid Investor clean-cash grant — bounded by
+  responsible-gaming (ADR-0122) and trust-flagged per ADR-0116 (a manipulated/assisted
+  run forfeits MP-seeding + public/Hall-of-Fame eligibility, but stays fully playable).
+  Nothing is a hidden or unsupported "cheat"; **scenario packs**
+  ([[community-editor-and-datasets]]) provide pre-canned starting points. *(Reframed per
+  ADR-0145 (FMX-246) — retires the earlier "cheat modes are not supported" wording, which
+  contradicted the already-shipped §8 casual toggles + the Investor.)*
 
 ## 3. UI tier
 
