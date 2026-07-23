@@ -1,6 +1,6 @@
 ---
 title: ADR-0141 Emergent season-boundary rule evolution (amends ADR-0056)
-status: proposed
+status: accepted
 tags: [adr, architecture, regulations, compliance, rule-evolution, world-lifecycle, determinism, fmx-243, fmx-228]
 context: [regulations-compliance, league-orchestration]
 created: 2026-07-23
@@ -24,13 +24,18 @@ related:
 
 ## Status
 
-proposed
+accepted
 
-Authored `proposed` per the never-self-accept rule; **amends the binding ADR-0056** by
-supersede-by-amendment (`vault-governance.md`), never a silent overwrite —
-Nico ratifies. `binding: false`. FMX-243 (epic FMX-228), run through the Research /
-Decision loop; grounded by a dynamic research workflow (IFAB / Premier League AGM /
-UEFA FSR governance tracks + OOTP/NBA-2K precedents + a determinism analysis).
+**Ratified by Nico 2026-07-23** — the five fork decisions (D1–D5) accepted as recommended,
+with **Alternative B adopted**: a single amendment vote authors exactly **one** dated step (one
+effective season); the multi-season phase-in schedule capability is **dropped** for minimal
+surface. Authored `proposed` per the never-self-accept rule; **amends the binding ADR-0056** by
+supersede-by-amendment (`vault-governance.md`), never a silent overwrite. `binding: false` stays:
+enforcement is not wired (D2 declares the mechanism inert at MVP), and per vault-governance
+§"Status vs binding" there is no `accepted ⇒ binding: true` rule. The ADR-0056 §Determinism +
+regulations GDDR lockstep amendments are already merged (FMX-243, PR #252). FMX-243 (epic FMX-228),
+run through the Research / Decision loop; grounded by a dynamic research workflow (IFAB / Premier
+League AGM / UEFA FSR governance tracks + OOTP/NBA-2K precedents + a determinism analysis).
 
 ## Context
 
@@ -66,8 +71,10 @@ and catalog isolation are unchanged.
    newRuleSetVersionHash, ratifiedAtSeq }` written to the per-save transactional outbox
    (ADR-0028). The next-season version is **derived inside the save** from `(prior immutable
    snapshot + ratified diff)`, content-addressed — never a live read of the mutable global
-   catalog. One amendment MAY author a **multi-season phase-in schedule** (one vote → several
-   dated steps, e.g. a cap ramp), which then behaves like pre-authored future-changes.
+   catalog. **(Ratified Alternative B, 2026-07-23:** one amendment authors exactly **one** dated
+   step — one effective season. A gradual change is achieved by re-proposing each season; the
+   multi-season phase-in schedule capability is deliberately out of scope to keep the surface
+   minimal.**)**
 3. **Bounded amendment vocabulary (data, not code):** an enumerated, range-bounded,
    schema-validated catalog of amendable parameters (modelled on GDDR §7.1.5 obligation
    conditions). **No rule DSL, no scripts** — every reachable next-version is a deterministic,
@@ -76,7 +83,7 @@ and catalog isolation are unchanged.
    (tribunal points deductions/fines — FMX-263) stays a **separate track** that may act
    **mid-season** on standings/state but **never** alters rule text.
 
-### Fork decisions (D1–D5 — proposed recommendations; Nico ratifies)
+### Fork decisions (D1–D5 — ratified by Nico 2026-07-23)
 
 - **D1 — vote determinism = seeded variance.** The ratify/reject outcome is a pure function
   of `(event log, aggregate state, reserved RNG sub-stream)`; governance draws come from a
@@ -95,10 +102,12 @@ and catalog isolation are unchanged.
 - **D4 — modes.** Both Continuum types get the mechanism; **career** uses it fully, **roguelite**
   exposes it as an **opt-in Run modifier** (on/off, aggressiveness) so short Runs aren't
   destabilised by rule drift. *(Touches the two-worlds framing, FMX-212.)*
-- **D5 — transition.** **Per-category minimum notice / phase-in** — financial + registration
-  rules require an N-season notice or mandatory phase-in schedule; **contract-affecting rules
-  are grandfathered** (apply only to contracts signed after the effective season). *(OOTP locks
-  contract rules mid-flight; UEFA phased its 90/80/70 cap.)*
+- **D5 — transition.** **Per-category minimum notice** — financial + registration rules require
+  an **N-season notice** before their single effective step; **contract-affecting rules are
+  grandfathered** (apply only to contracts signed after the effective season). *(OOTP locks
+  contract rules mid-flight.)* **(Per ratified Alternative B, the earlier "mandatory phase-in
+  schedule" transition option is dropped** — a gradual ramp like UEFA's 90/80/70 cap is expressed
+  as one re-proposed single-step amendment per season, not one scheduling vote.**)**
 
 ## Invariants (normative — re-scope existing binding rules)
 
@@ -141,13 +150,16 @@ the amendment is reproduced byte-identically from the log + pinned RNG sub-strea
   clause of ADR-0056 widens ("pre-authored **or** emergently authored in-world, both arming at
   a season boundary"); the fairness + catalog-isolation invariants stay verbatim.
 - MVP behaviour is unchanged (declare-inert); no save-format risk. Full governance sim arms later.
-- Lockstep on ratification: amend ADR-0056 §Determinism + regulations GDDR §7.1.1; likely a
-  `saveSchemaVersion` bump (ADR-0132) for the append-only amendment history.
+- Lockstep on ratification: the ADR-0056 §Determinism + regulations GDDR §7.1.1 amendments are
+  **already applied** (FMX-243, PR #252). The `saveSchemaVersion` bump (ADR-0132) for the
+  append-only amendment history is **deferred to post-MVP arming** — D2 declares the mechanism
+  inert at Continuum-v1, so no save-format change lands until emergent evolution is switched on.
 
 ## Alternatives considered
 
 - **A — keep pre-authored-only (status quo):** zero cost, but fails FMX-243's intent and makes
   FMX-263 governing bodies decorative (they can punish, never legislate).
-- **B — season-boundary amendment without phase-in schedules:** the smallest step; drop D-item
-  "multi-season schedule". Viable if Nico wants minimal surface.
+- **B — season-boundary amendment without phase-in schedules:** the smallest step; drop the
+  "multi-season schedule" item. **✅ ADOPTED on ratification (2026-07-23)** — one vote authors one
+  dated step; gradual ramps are re-proposed each season.
 - Full detail + sources: FMX-243 research workflow synthesis.
