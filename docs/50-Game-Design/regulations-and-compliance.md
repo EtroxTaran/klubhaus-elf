@@ -171,7 +171,9 @@ It never embeds cap values, exemption rules or domestic profile numbers.
 At save creation, the active stock profile plus accepted community overrides is
 copied into the per-save `EffectiveRuleSet`. Running saves do not read mutable
 global legal data. Scheduled future changes may exist only if authored into the
-snapshot at creation.
+snapshot at creation. **Amended by ADR-0141 (FMX-243):** future changes may also
+be authored emergently in-world (governing-body ratification) and armed at a
+season boundary, never mid-season.
 
 ### 7.1.2 `LoanRegulationProfile`
 

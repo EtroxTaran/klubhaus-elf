@@ -4,12 +4,13 @@ status: accepted
 tags: [adr, architecture, ddd, regulations, compliance, ffp, work-permits, fmx-30, fmx-39, risk-legal, accepted]
 context: regulations-compliance
 created: 2026-05-28
-updated: 2026-06-08
+updated: 2026-07-23
 type: adr
 binding: true
 supersedes:
 superseded_by:
 related:
+  - [[ADR-0141-emergent-season-boundary-rule-evolution]]
   - [[ADR-0007-naming-schema]]
   - [[ADR-0016-community-dataset-overrides]]
   - [[ADR-0019-modular-monolith-ddd]]
@@ -412,7 +413,11 @@ Draft consumed facts:
   Community Overlay Pipeline). Regulations BC validates schema +
   semantics + merges into the save's rule set at save creation. After
   save creation, the rule set is immutable except for pre-authored
-  future-changes that activate at predetermined dates.
+  future-changes that activate at predetermined dates. **Amended by
+  ADR-0141 (FMX-243):** future-changes may be **either** pre-authored at
+  creation **or** emergently authored in-world (governing-body
+  ratification); both arm only at a season boundary, so mid-season
+  immutability and catalog isolation are unchanged.
 - Eligibility-check pattern: Process Manager / Saga in the BC owning
   the overall business process. For transfer completion: Transfer
   runs the Saga, querying Regulations for window status + work permit
