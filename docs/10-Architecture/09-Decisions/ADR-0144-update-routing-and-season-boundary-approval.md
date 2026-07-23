@@ -1,6 +1,6 @@
 ---
 title: ADR-0144 Update-routing policy & season-boundary approval gate
-status: proposed
+status: accepted
 tags: [adr, architecture, world-lifecycle, continuum, live-ops, governance, update-routing, fmx-244, fmx-228]
 context: [league-orchestration, regulations-compliance]
 created: 2026-07-23
@@ -24,14 +24,19 @@ related:
 
 ## Status
 
-proposed
+accepted
 
-Authored `proposed` per the never-self-accept rule; Nico ratifies. `binding: false`.
-FMX-244 (epic FMX-228), run through the Research / Decision loop. Discharges ADR-0139
-item 3 ("updates enter only at season boundaries") and fills the ADR-0141 seam
-("FMX-244 approval-gate — SP admin / MP majority"). Builds on ADR-0142/ADR-0143 (proposed).
-*(Research note: 2 of 4 grounding legs failed; the design rests on a complete DDD/vault
-synthesis — precedent grounding can be deepened on request.)*
+**Ratified by Nico 2026-07-23** (the six open questions resolved below). Authored
+`proposed` per the never-self-accept rule. `binding: false` stays: enforcement (schemas,
+CI, DoD) is not wired in this planning phase, and per vault-governance §"Status vs binding"
+there is no `accepted ⇒ binding: true` rule. FMX-244 (epic FMX-228), run through the
+Research / Decision loop. Discharges ADR-0139 item 3 ("updates enter only at season
+boundaries") and fills the ADR-0141 seam ("FMX-244 approval-gate — SP admin / MP majority").
+Builds on the now-merged ADR-0142/ADR-0143. *(Research note: 2 of 4 grounding legs failed;
+the design rests on a complete DDD/vault synthesis — precedent grounding can be deepened on
+request.)* Two additive lockstep touches (ADR-0132 routing-lane enum; async-mp §9
+generalization) are pre-authorized here and tracked as the paired FMX-244 lockstep follow-up
+(mirrors the ADR-0141 → ADR-0056 two-PR pattern), **not** applied in this ratification.
 
 ## Context
 
@@ -137,28 +142,36 @@ BoundaryVoteQuorumFailed · BoundaryUpdateArmed{effectiveSeason,newVersion,newVe
 StartParamUpdateShelved`. QA hook: extends ADR-0141/ADR-0120 golden-replay with a MP-vote-tally
 determinism test (same recorded ballots → same arm).
 
-## Open questions (recommendations; Nico ratifies)
+## Ratified decisions (Nico, 2026-07-23)
 
-- **D1 (load-bearing) — LIVE restricted to non-simulation content only?** → **Yes** (Option B
-  re-pins mid-season, breaking ADR-0141 E-a/E-c + ADR-0120's "never present a re-simulated result
-  as canonical").
-- **D2 — confirm per-class default lanes** (esp. content packs + balance → next-boundary of a
-  running Continuum vs new-Continua-only) → **confirm the derived table**.
-- **D3 — MP threshold** — the reused async-mp §5 pause-vote quorum defaults to **66%**, not 50%. →
-  **reuse the configurable §5 quorum (66% default, group-tunable)**; a bare >50% is a floor most
-  groups will raise for engine/rules.
-- **D4 — eligible voter / abstention** — majority-of-cast (with quorum floor, matching async-mp §7
-  abstention) — **blocked on FMX-242** (definition of "active Run-holder" / dormant / late-join).
-- **D5 — ownership** — **the thin Continuum-Lifecycle / Update-Governance context** (not League —
-  avoids a god-context). Nico's bounded-context call.
-- **D7 — START-PARAM late-graft** — can a not-graftable update ever enter a running Continuum via a
-  boundary-regeneration pipeline? → **reserved-inert** (declare-now/arm-later; a full
-  migration/regeneration pipeline carries real re-sim/replay risk — post-MVP).
+The six open questions are resolved as follows (recommendations accepted; D4 closed by the
+now-merged ADR-0142):
+
+- **D1 (load-bearing) — LIVE restricted to non-simulation content only → YES.** Option B
+  (mid-season re-pin) is rejected: it breaks ADR-0141 E-a/E-c + ADR-0120's "never present a
+  re-simulated result as canonical."
+- **D2 — per-class default lane table CONFIRMED as derived** (content packs + balance → the
+  next boundary of a *running* Continuum when graftable, else new-Continua-only). The table in D2
+  is normative; lanes remain derived per release from the two tests.
+- **D3 — MP threshold = the configurable async-mp §5 quorum, 66% default, group-tunable.** A bare
+  >50% is treated as a floor most groups will raise for engine/rules changes.
+- **D4 — eligible voter / abstention (now CLOSED via ADR-0142).** Eligible voters = **active
+  (non-`dormant`) Run-holder seats** per ADR-0142's presence-driven `active ⇄ dormant` lifecycle
+  FSM; `dormant` seats do not count toward quorum or tally. Outcome = **majority-of-cast with the
+  async-mp §7 quorum floor** (abstention = not-cast). Late-join is boundary-only server `AddMember`
+  with zero imported state (ADR-0142 D3), so a late-joiner is eligible only from the boundary at
+  which they join — never retroactively for a vote already in progress.
+- **D5 — ownership = the thin Continuum-Lifecycle / Update-Governance context** (not League —
+  avoids a god-context). Consistent with the "Continuum Lifecycle" platform-tier context introduced
+  by ADR-0142.
+- **D7 — START-PARAM late-graft = reserved-inert** (declare-now / arm-later). A full
+  migration/regeneration pipeline carries real re-sim/replay risk and is deferred post-MVP.
 
 ## Reopens? — none
 
 ADR-0141 pre-delegated this gate to FMX-244; ADR-0132/0005/0120/0028/0011 are **consumed, not
-contradicted**. Two additive lockstep touches on ratification: (a) binding ADR-0132's per-pack
+contradicted**. Two additive lockstep touches are **pre-authorized by this ratification and tracked
+as the paired FMX-244 lockstep follow-up** (not applied here): (a) binding ADR-0132's per-pack
 compatibility flag gains an additive **routing-lane enum** (`live | next-boundary |
 new-continuum-only`) alongside its existing `applies-to-existing-save | requires-new-run`; (b)
 async-mp §9 generalizes admin-only season-boundary changes to member-majority for update entry.
