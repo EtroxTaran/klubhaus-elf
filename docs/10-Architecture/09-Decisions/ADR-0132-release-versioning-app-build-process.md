@@ -4,7 +4,7 @@ status: accepted
 tags: [adr, architecture, release, versioning, app-build, dokploy, pwa, telemetry, provenance, sbom, fmx-178, draft, accepted]
 context: audit-security
 created: 2026-06-16
-updated: 2026-06-19
+updated: 2026-07-23
 type: adr
 binding: true
 linear: FMX-178
@@ -13,6 +13,7 @@ amends:
   - [[ADR-0044-cicd-and-merge-policy]]
   - [[ADR-0124-pwa-offline-mobile-release-content-qa-gates]]
 related:
+  - [[ADR-0144-update-routing-and-season-boundary-approval]]
   - [[../../60-Research/release-versioning-process-2026-06-16]]
   - [[../../60-Research/raw-perplexity/raw-release-versioning-app-build-2026-06-16]]
   - [[../../60-Research/raw-perplexity/raw-release-versioning-source-checks-2026-06-16]]
@@ -221,6 +222,14 @@ Each release declares:
 - whether old app versions can keep using the server;
 - whether a content/database pack change applies to existing saves or requires a
   new run/career.
+
+**Amended by ADR-0144 (FMX-244):** this per-pack compatibility declaration gains
+an additive **routing-lane enum** — `live | next-boundary | new-continuum-only` —
+alongside the existing "applies to existing saves / requires a new run" axis. The
+lane is **derived** (not chosen) from ADR-0144's two tests (does the change alter a
+running season's deterministic outputs? is it graftable onto the Continuum's frozen
+baseline?), and governs *when* a graftable pack enters a running Continuum. This is
+purely additive: the existing save-compatibility semantics are unchanged.
 
 Default planning policy:
 

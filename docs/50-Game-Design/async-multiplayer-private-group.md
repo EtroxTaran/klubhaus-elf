@@ -4,10 +4,10 @@ status: draft
 tags: [game-design, mode, multiplayer, async]
 context: [league-orchestration, watch-party]
 created: 2026-05-16
-updated: 2026-06-16
+updated: 2026-07-23
 type: game-design
 binding: false
-related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/match-engine-runtime-strategy]], [[singleplayer-baseline]], [[match-engine]], [[watch-party-and-conference]], [[transfer-negotiations-p2p]], [[../10-Architecture/state-machines/league-week]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]]
+related: [[README]], [[../60-Research/async-multiplayer-research]], [[../60-Research/match-engine-runtime-strategy]], [[singleplayer-baseline]], [[match-engine]], [[watch-party-and-conference]], [[transfer-negotiations-p2p]], [[../10-Architecture/state-machines/league-week]], [[../10-Architecture/09-Decisions/ADR-0011-server-authoritative-multiplayer]], [[../10-Architecture/09-Decisions/ADR-0043-notification-and-messaging-platform]], [[../10-Architecture/09-Decisions/ADR-0144-update-routing-and-season-boundary-approval]]
 ---
 
 # Async Multiplayer - Private Group with Two Cadence Models
@@ -203,6 +203,16 @@ are post-MVP opt-in integrations, not default notification channels.
 - Member add / remove.
 - Pause / resume override.
 - Force-close week (emergency only, surfaced as group notice).
+
+**Amended by ADR-0144 (FMX-244):** the admin powers above stay admin-only, but the
+distinct act of **update entry** (a content / rule / engine update entering a running
+Continuum at its next season boundary) is **no longer an admin-only decision** — it is
+governed by a **member-majority vote** of active (non-`dormant`) Run-holder seats
+(ADR-0144 D3/D4; quorum reuses the §5 configurable pause-vote threshold, 66 % default,
+group-tunable). This generalizes the pre-existing "admin decides season-boundary changes"
+posture to member-majority for update entry only; cadence/config/lifecycle powers here are
+unchanged. Fail-safe on no-quorum/timeout = **no arm** (Continuum keeps its current version).
+The MP quorum path is declared-now / **armed-later** (inert until MP Continua exist).
 
 ## 10. Group lifecycle
 
